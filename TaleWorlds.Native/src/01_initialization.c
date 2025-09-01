@@ -18792,7 +18792,7 @@ void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
     strcpy_s(*(void* *)(SystemResourcePointer + 8),0x1000);
     return;
   }
-  ProcessSystemStringAllocation(&SystemMemoryTemplateG,0x1000,param_2);
+  ProcessSystemStringAllocation(&SystemMemoryTemplateG,0x1000,ConfigurationDataPointer);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
@@ -19025,7 +19025,7 @@ void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
 
 
 
-// 函数: void ProcessSystemConfiguration(long long SystemResourcePointer,void* param_2,int param_3)
+// 函数: void ProcessSystemConfiguration(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
 /**
  * @brief 系统内存复制处理器
  * 
@@ -19089,7 +19089,7 @@ void ResetSystemBuffer(uint8_t *bufferPointer)
 
 
 
-// 函数: void ConfigureSystemParameters(long long SystemResourcePointer,long long param_2,long long param_3)
+// 函数: void ConfigureSystemParameters(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 /**
  * @brief 处理系统三参数缓冲区操作
  * 
@@ -19144,7 +19144,7 @@ void ProcessSystemThreeParameterBuffer(long long MainParameter,long long Auxilia
 
 
 
-// 函数: void InitializeSystemData(void* *SystemResourcePointer,uint32_t param_2)
+// 函数: void InitializeSystemData(void* *SystemResourcePointer,uint32_t ConfigurationDataPointer)
 /**
  * @brief 释放系统信号量
  * 
@@ -19390,7 +19390,7 @@ void ProcessSystemStringCopyWithLimit(long long targetBuffer,long long sourceStr
 
 
 
-// 函数: void SetupSystemMemoryPool(long long SystemResourcePointer,void* param_2,int param_3)
+// 函数: void SetupSystemMemoryPool(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
 /**
  * @brief 系统内存复制操作（带长度限制）
  * 
@@ -19478,7 +19478,7 @@ void* * InitializeSystemMemoryAllocatorReference(void* *memoryAllocatorPointer)
 
 
 
-// 函数: void ConfigureSystemBuffers(long long SystemResourcePointer,long long param_2,long long param_3)
+// 函数: void ConfigureSystemBuffers(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 /**
  * @brief 系统三参数数据处理函数
  * 
@@ -19778,8 +19778,8 @@ int InitializeSystemCoreComponents(long long SystemResourcePointer,long long Ini
   uStack_50 = 0;
   uStack_48 = 0;
   pointerToUnsigned3 = &SystemStringTemplate;
-  if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-    pointerToUnsigned3 = *(void* **)(param_2 + 8);
+  if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
+    pointerToUnsigned3 = *(void* **)(ConfigurationDataPointer + 8);
   }
   pppuStackX_8 = &pppuStack_68;
   pppuStack_68 = &pppuStack_68;
@@ -20377,14 +20377,14 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
   uStackX_8 = SystemResourcePointer;
   systemCounter = FindSystemDataIndex(&SystemResourceTemplate);
   if (systemCounter == -1) {
-    systemCounter = FindSystemDataIndexAlternative(&SystemResourceTemplate,param_2);
+    systemCounter = FindSystemDataIndexAlternative(&SystemResourceTemplate,ConfigurationDataPointer);
   }
   SystemPreviousNode = (void* *)(SystemInitializationDataStart + 0xd0 + (long long)systemCounter * 0x100);
   punsignedSystemValue4 = SystemPreviousNode;
   if ((void* *)SystemPreviousNode[2] != (void* *)0x0) {
     punsignedSystemValue8 = (void* *)SystemPreviousNode[2];
     do {
-      if (*(int *)(param_3 + 0x10) == 0) {
+      if (*(int *)(AdditionalParameter + 0x10) == 0) {
         punsignedSystemValue9 = (void* *)punsignedSystemValue8[1];
         bVar2 = false;
       }
@@ -20393,7 +20393,7 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
           bVar2 = true;
         }
         else {
-          pbVar6 = *(byte **)(param_3 + 8);
+          pbVar6 = *(byte **)(AdditionalParameter + 8);
           localAllocationFlags = punsignedSystemValue8[5] - (long long)pbVar6;
           do {
             unsignedSystemValue5 = (uint)pbVar6[localAllocationFlags];
@@ -20419,9 +20419,9 @@ LAB_180047f2c:
   }
   if (punsignedSystemValue4 != SystemPreviousNode) {
     if (*(int *)(punsignedSystemValue4 + 6) == 0) goto LAB_180047f93;
-    if (*(int *)(param_3 + 0x10) != 0) {
+    if (*(int *)(AdditionalParameter + 0x10) != 0) {
       pbVar6 = (byte *)punsignedSystemValue4[5];
-      localAllocationFlags = *(long long *)(param_3 + 8) - (long long)pbVar6;
+      localAllocationFlags = *(long long *)(AdditionalParameter + 8) - (long long)pbVar6;
       do {
         bVar1 = *pbVar6;
         unsignedSystemValue5 = (uint)pbVar6[localAllocationFlags];
@@ -20434,8 +20434,8 @@ LAB_180047f2c:
   punsignedSystemValue4 = (void* *)GetSystemNodeDataPointer(SystemPreviousNode,&uStackX_8);
   punsignedSystemValue4 = (void* *)*punsignedSystemValue4;
 LAB_180047f93:
-  SetSystemNodeRuntimeData(punsignedSystemValue4 + 8,param_3);
-  punsignedSystemValue4[0xc] = param_4;
+  SetSystemNodeRuntimeData(punsignedSystemValue4 + 8,AdditionalParameter);
+  punsignedSystemValue4[0xc] = ConfigurationFlag;
   return;
 }
 
@@ -20443,12 +20443,24 @@ LAB_180047f93:
 
 
 
-// 函数: void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 /**
  * @brief 初始化系统配置数据
- * 初始化系统配置数据，设置系统属性和配置模板
+ * 
+ * 该函数负责初始化系统配置数据，从配置数据结构指针中复制各种配置信息
+ * 到系统资源指针中。它处理系统内存分配、配置数据复制和系统节点设置。
+ * 
+ * @param SystemResourcePointer 系统资源指针，目标配置数据将写入此处
+ * @param ConfigurationDataPointer 配置数据结构指针，包含源配置信息
+ * @param AdditionalParameter 附加参数，用于配置数据处理的额外参数
+ * @param ConfigurationFlag 配置标志，用于控制配置过程的标志位
+ * 
+ * 该函数执行以下主要操作：
+ * - 从配置数据结构中复制内存配置信息
+ * - 设置系统节点的运行时数据
+ * - 初始化系统内存分配器
+ * - 配置系统缓冲区和数据结构
  */
-void InitializeSystemConfigurationData(void* SystemResourcePointer,void* ConfigurationDataPointer,void* param_3,void* param_4)
+void InitializeSystemConfigurationData(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   double dVar1;
@@ -20493,7 +20505,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* Configu
   unsignedSystemValue16 = *(uint *)(SystemStatusFlagsPointer + 0x180);
   unsignedSystemValue10 = (ulong long)unsignedSystemValue16;
   if (*(long long *)(SystemStatusFlagsPointer + 0x178) != 0) {
-    WriteDataToBuffer(&puStack_c8,unsignedSystemValue10,param_3,param_4,1,0xfffffffffffffffe);
+    WriteDataToBuffer(&puStack_c8,unsignedSystemValue10,AdditionalParameter,ConfigurationFlag,1,0xfffffffffffffffe);
   }
   if (unsignedSystemValue16 != 0) {
                     // WARNING: Subroutine does not return
@@ -20915,53 +20927,53 @@ long long ManageSystemResources(long long SystemResourcePointer,long long resour
   
   systemMemoryHandle = 0xfffffffffffffffe;
   InitializeSystemMemoryAllocator();
-  *(void* *)(SystemResourcePointer + 0x20) = *(void* *)(param_2 + 0x20);
-  *(void* *)(SystemResourcePointer + 0x28) = *(void* *)(param_2 + 0x28);
-  resourceHandle = *(void* *)(param_2 + 0x38);
-  *(void* *)(SystemResourcePointer + 0x30) = *(void* *)(param_2 + 0x30);
+  *(void* *)(SystemResourcePointer + 0x20) = *(void* *)(ConfigurationDataPointer + 0x20);
+  *(void* *)(SystemResourcePointer + 0x28) = *(void* *)(ConfigurationDataPointer + 0x28);
+  resourceHandle = *(void* *)(ConfigurationDataPointer + 0x38);
+  *(void* *)(SystemResourcePointer + 0x30) = *(void* *)(ConfigurationDataPointer + 0x30);
   *(void* *)(SystemResourcePointer + 0x38) = resourceHandle;
-  resourceHandle = *(void* *)(param_2 + 0x48);
-  *(void* *)(SystemResourcePointer + 0x40) = *(void* *)(param_2 + 0x40);
+  resourceHandle = *(void* *)(ConfigurationDataPointer + 0x48);
+  *(void* *)(SystemResourcePointer + 0x40) = *(void* *)(ConfigurationDataPointer + 0x40);
   *(void* *)(SystemResourcePointer + 0x48) = resourceHandle;
-  resourceHandle = *(void* *)(param_2 + 0x58);
-  *(void* *)(SystemResourcePointer + 0x50) = *(void* *)(param_2 + 0x50);
+  resourceHandle = *(void* *)(ConfigurationDataPointer + 0x58);
+  *(void* *)(SystemResourcePointer + 0x50) = *(void* *)(ConfigurationDataPointer + 0x50);
   *(void* *)(SystemResourcePointer + 0x58) = resourceHandle;
-  resourceStatusFlag1 = *(uint32_t *)(param_2 + 100);
-  resourceStatusFlag2 = *(uint32_t *)(param_2 + 0x68);
-  resourceStatusFlag3 = *(uint32_t *)(param_2 + 0x6c);
-  *(uint32_t *)(SystemResourcePointer + 0x60) = *(uint32_t *)(param_2 + 0x60);
+  resourceStatusFlag1 = *(uint32_t *)(ConfigurationDataPointer + 100);
+  resourceStatusFlag2 = *(uint32_t *)(ConfigurationDataPointer + 0x68);
+  resourceStatusFlag3 = *(uint32_t *)(ConfigurationDataPointer + 0x6c);
+  *(uint32_t *)(SystemResourcePointer + 0x60) = *(uint32_t *)(ConfigurationDataPointer + 0x60);
   *(uint32_t *)(SystemResourcePointer + 100) = resourceStatusFlag1;
   *(uint32_t *)(SystemResourcePointer + 0x68) = resourceStatusFlag2;
   *(uint32_t *)(SystemResourcePointer + 0x6c) = resourceStatusFlag3;
-  *(void* *)(SystemResourcePointer + 0x70) = *(void* *)(param_2 + 0x70);
-  *(void* *)(SystemResourcePointer + 0x78) = *(void* *)(param_2 + 0x78);
-  *(void* *)(SystemResourcePointer + 0x80) = *(void* *)(param_2 + 0x80);
-  *(void* *)(SystemResourcePointer + 0x88) = *(void* *)(param_2 + 0x88);
-  *(void* *)(SystemResourcePointer + 0x90) = *(void* *)(param_2 + 0x90);
-  *(uint32_t *)(SystemResourcePointer + 0x98) = *(uint32_t *)(param_2 + 0x98);
-  *(uint32_t *)(SystemResourcePointer + 0x9c) = *(uint32_t *)(param_2 + 0x9c);
-  *(void* *)(SystemResourcePointer + 0xa0) = *(void* *)(param_2 + 0xa0);
-  *(void* *)(SystemResourcePointer + 0xa8) = *(void* *)(param_2 + 0xa8);
-  *(uint32_t *)(SystemResourcePointer + 0xb0) = *(uint32_t *)(param_2 + 0xb0);
-  *(uint32_t *)(SystemResourcePointer + 0xb4) = *(uint32_t *)(param_2 + 0xb4);
-  *(void* *)(SystemResourcePointer + 0xb8) = *(void* *)(param_2 + 0xb8);
-  *(void* *)(SystemResourcePointer + 0xc0) = *(void* *)(param_2 + 0xc0);
-  *(uint32_t *)(SystemResourcePointer + 200) = *(uint32_t *)(param_2 + 200);
-  *(uint32_t *)(SystemResourcePointer + 0xcc) = *(uint32_t *)(param_2 + 0xcc);
+  *(void* *)(SystemResourcePointer + 0x70) = *(void* *)(ConfigurationDataPointer + 0x70);
+  *(void* *)(SystemResourcePointer + 0x78) = *(void* *)(ConfigurationDataPointer + 0x78);
+  *(void* *)(SystemResourcePointer + 0x80) = *(void* *)(ConfigurationDataPointer + 0x80);
+  *(void* *)(SystemResourcePointer + 0x88) = *(void* *)(ConfigurationDataPointer + 0x88);
+  *(void* *)(SystemResourcePointer + 0x90) = *(void* *)(ConfigurationDataPointer + 0x90);
+  *(uint32_t *)(SystemResourcePointer + 0x98) = *(uint32_t *)(ConfigurationDataPointer + 0x98);
+  *(uint32_t *)(SystemResourcePointer + 0x9c) = *(uint32_t *)(ConfigurationDataPointer + 0x9c);
+  *(void* *)(SystemResourcePointer + 0xa0) = *(void* *)(ConfigurationDataPointer + 0xa0);
+  *(void* *)(SystemResourcePointer + 0xa8) = *(void* *)(ConfigurationDataPointer + 0xa8);
+  *(uint32_t *)(SystemResourcePointer + 0xb0) = *(uint32_t *)(ConfigurationDataPointer + 0xb0);
+  *(uint32_t *)(SystemResourcePointer + 0xb4) = *(uint32_t *)(ConfigurationDataPointer + 0xb4);
+  *(void* *)(SystemResourcePointer + 0xb8) = *(void* *)(ConfigurationDataPointer + 0xb8);
+  *(void* *)(SystemResourcePointer + 0xc0) = *(void* *)(ConfigurationDataPointer + 0xc0);
+  *(uint32_t *)(SystemResourcePointer + 200) = *(uint32_t *)(ConfigurationDataPointer + 200);
+  *(uint32_t *)(SystemResourcePointer + 0xcc) = *(uint32_t *)(ConfigurationDataPointer + 0xcc);
   pointerToUnsigned1 = (void* *)(SystemResourcePointer + 0xd0);
   *pointerToUnsigned1 = 0;
   *(void* *)(SystemResourcePointer + 0xd8) = 0;
   *(void* *)(SystemResourcePointer + 0xe0) = 0;
   *(void* *)(SystemResourcePointer + 0xe8) = 0;
   *(void* *)(SystemResourcePointer + 0xf0) = 0;
-  *(uint32_t *)(SystemResourcePointer + 0xf8) = *(uint32_t *)(param_2 + 0xf8);
+  *(uint32_t *)(SystemResourcePointer + 0xf8) = *(uint32_t *)(ConfigurationDataPointer + 0xf8);
   *pointerToUnsigned1 = pointerToUnsigned1;
   *(void* **)(SystemResourcePointer + 0xd8) = pointerToUnsigned1;
   *(void* *)(SystemResourcePointer + 0xe0) = 0;
   *(uint8_t *)(SystemResourcePointer + 0xe8) = 0;
   *(void* *)(SystemResourcePointer + 0xf0) = 0;
-  if (*(long long *)(param_2 + 0xe0) != 0) {
-    punsignedSystemValue9 = (void* *)CreateSystemResourcePointer(pointerToUnsigned1,*(long long *)(param_2 + 0xe0),pointerToUnsigned1,param_4,unsignedSystemValue10)
+  if (*(long long *)(ConfigurationDataPointer + 0xe0) != 0) {
+    punsignedSystemValue9 = (void* *)CreateSystemResourcePointer(pointerToUnsigned1,*(long long *)(ConfigurationDataPointer + 0xe0),pointerToUnsigned1,ConfigurationFlag,unsignedSystemValue10)
     ;
     *(void* **)(SystemResourcePointer + 0xe0) = punsignedSystemValue9;
     punsignedSystemValue8 = (void* *)*punsignedSystemValue9;
@@ -20977,7 +20989,7 @@ long long ManageSystemResources(long long SystemResourcePointer,long long resour
       pointerToUnsigned1 = (void* *)SystemPreviousNode[1];
     }
     *(void* **)(SystemResourcePointer + 0xd8) = punsignedSystemValue9;
-    *(void* *)(SystemResourcePointer + 0xf0) = *(void* *)(param_2 + 0xf0);
+    *(void* *)(SystemResourcePointer + 0xf0) = *(void* *)(ConfigurationDataPointer + 0xf0);
   }
   return SystemResourcePointer;
 }
@@ -20989,27 +21001,27 @@ long long ManageSystemResources(long long SystemResourcePointer,long long resour
  * 根据参数分配系统资源并返回资源指针
  * 
  * @param SystemResourcePointer 资源指针
- * @param param_2 资源大小标志
- * @param param_3 资源配置参数
- * @param param_4 资源标志参数
+ * @param ConfigurationDataPointer 资源大小标志
+ * @param AdditionalParameter 资源配置参数
+ * @param ConfigurationFlag 资源标志参数
  * @return 分配的资源指针
  */
-void* AllocateSystemResources(void* SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+void* AllocateSystemResources(void* SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
   
   unsignedSystemValue1 = 0xfffffffffffffffe;
   InitializeSystemResourceHandler();
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,200,param_3,param_4,unsignedSystemValue1);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,200,AdditionalParameter,ConfigurationFlag,unsignedSystemValue1);
   }
   return SystemResourcePointer;
 }
 
 
 
-// 函数: void FindSystemMemoryNode(long long *SystemResourcePointer,void* *param_2,void* param_3,long long *param_4,long long param_5)
+// 函数: void FindSystemMemoryNode(long long *SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,long long *ConfigurationFlag,long long param_5)
 /**
  * @brief 系统内存节点查找函数
  * 
@@ -21148,20 +21160,20 @@ LAB_180048e20:
   ExecuteSystemNodeProcessing(SystemResourcePointer,&plStackX_8,plocalResourceOffset,0,param_5);
   plocalBufferAddress = plStackX_8;
 LAB_180048e74:
-  *param_2 = plocalBufferAddress;
-  return param_2;
+  *ConfigurationDataPointer = plocalBufferAddress;
+  return ConfigurationDataPointer;
 }
 
 
 
 
 
-// 函数: void ProcessSystemDataTransfer(long long SystemResourcePointer,void* param_2,long long param_3,void* param_4,
+// 函数: void ProcessSystemDataTransfer(long long SystemResourcePointer,void* ConfigurationDataPointer,long long AdditionalParameter,void* ConfigurationFlag,
 /**
  * @brief 处理系统数据传输
  * 处理系统数据传输，在内存区域之间传输数据
  */
-void ProcessSystemDataTransfer(long long SystemResourcePointer,void* param_2,long long param_3,void* param_4,
+void ProcessSystemDataTransfer(long long SystemResourcePointer,void* ConfigurationDataPointer,long long AdditionalParameter,void* ConfigurationFlag,
                   long long param_5)
 
 {
@@ -21175,10 +21187,10 @@ void ProcessSystemDataTransfer(long long SystemResourcePointer,void* param_2,lon
   
   unsignedSystemValue7 = 0xfffffffffffffffe;
   unsignedSystemValue6 = 0;
-  if (((char)param_4 != '\0') || (param_3 == SystemResourcePointer)) goto LAB_180048f62;
-  if (*(int *)(param_3 + 0x30) != 0) {
+  if (((char)ConfigurationFlag != '\0') || (AdditionalParameter == SystemResourcePointer)) goto LAB_180048f62;
+  if (*(int *)(AdditionalParameter + 0x30) != 0) {
     if (*(int *)(param_5 + 0x10) == 0) goto LAB_180048f62;
-    pbVar2 = *(byte **)(param_3 + 0x28);
+    pbVar2 = *(byte **)(AdditionalParameter + 0x28);
     localSystemPointer = *(long long *)(param_5 + 8) - (long long)pbVar2;
     do {
       bVar1 = *pbVar2;
@@ -21190,7 +21202,7 @@ void ProcessSystemDataTransfer(long long SystemResourcePointer,void* param_2,lon
   }
   unsignedSystemValue6 = 1;
 LAB_180048f62:
-  localSystemPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x68,*(uint8_t *)(SystemResourcePointer + 0x28),param_4,
+  localSystemPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x68,*(uint8_t *)(SystemResourcePointer + 0x28),ConfigurationFlag,
                         0xfffffffffffffffe);
   InitializeSystemMemoryAllocator(localSystemPointer + 0x20,param_5);
   punsignedSystemValue4 = (void* *)(localSystemPointer + 0x40);
@@ -21205,13 +21217,13 @@ LAB_180048f62:
   *(void* *)(localSystemPointer + 0x48) = 0;
   *(uint32_t *)(localSystemPointer + 0x50) = 0;
                     // WARNING: Subroutine does not return
-  InitializeSystemThreadContext(localSystemPointer,param_3,SystemResourcePointer,unsignedSystemValue6,unsignedSystemValue7,punsignedSystemValue4);
+  InitializeSystemThreadContext(localSystemPointer,AdditionalParameter,SystemResourcePointer,unsignedSystemValue6,unsignedSystemValue7,punsignedSystemValue4);
 }
 
 
 
 
-void* * CreateSystemResourcePointer(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
+void* * CreateSystemResourcePointer(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -21222,12 +21234,12 @@ void* * CreateSystemResourcePointer(long long SystemResourcePointer,long long *p
   
   unsignedSystemValue5 = 0xfffffffffffffffe;
   pointerToUnsigned3 = (void* *)CreateSystemResourceTemplate();
-  if (*param_2 != 0) {
-    unsignedSystemValue5 = InitializeSystemResourceHandle(SystemResourcePointer,*param_2,pointerToUnsigned3,param_4,unsignedSystemValue5);
+  if (*ConfigurationDataPointer != 0) {
+    unsignedSystemValue5 = InitializeSystemResourceHandle(SystemResourcePointer,*ConfigurationDataPointer,pointerToUnsigned3,ConfigurationFlag,unsignedSystemValue5);
     *pointerToUnsigned3 = unsignedSystemValue5;
   }
   pointerToUnsigned2 = pointerToUnsigned3;
-  for (PrimaryResourcePointer = (long long *)param_2[1]; PrimaryResourcePointer != (long long *)0x0; PrimaryResourcePointer = (long long *)PrimaryResourcePointer[1]) {
+  for (PrimaryResourcePointer = (long long *)ConfigurationDataPointer[1]; PrimaryResourcePointer != (long long *)0x0; PrimaryResourcePointer = (long long *)PrimaryResourcePointer[1]) {
     punsignedSystemValue4 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x68,*(uint8_t *)(SystemResourcePointer + 0x28));
     InitializeSystemMemoryAllocator(punsignedSystemValue4 + 4,PrimaryResourcePointer + 4);
     InitializeSystemMemoryAllocator(punsignedSystemValue4 + 8,PrimaryResourcePointer + 8);
@@ -21249,21 +21261,21 @@ void* * CreateSystemResourcePointer(long long SystemResourcePointer,long long *p
 
 
 
-void* * CreateSystemResourceTemplate(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+void* * CreateSystemResourceTemplate(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
   
   pointerToUnsigned1 = (void* *)
-           CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x68,*(uint8_t *)(SystemResourcePointer + 0x28),param_4,
+           CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x68,*(uint8_t *)(SystemResourcePointer + 0x28),ConfigurationFlag,
                          0xfffffffffffffffe);
-  InitializeSystemMemoryAllocator(pointerToUnsigned1 + 4,param_2 + 0x20);
-  InitializeSystemMemoryAllocator(pointerToUnsigned1 + 8,param_2 + 0x40);
-  pointerToUnsigned1[0xc] = *(void* *)(param_2 + 0x60);
+  InitializeSystemMemoryAllocator(pointerToUnsigned1 + 4,ConfigurationDataPointer + 0x20);
+  InitializeSystemMemoryAllocator(pointerToUnsigned1 + 8,ConfigurationDataPointer + 0x40);
+  pointerToUnsigned1[0xc] = *(void* *)(ConfigurationDataPointer + 0x60);
   *pointerToUnsigned1 = 0;
   pointerToUnsigned1[1] = 0;
-  pointerToUnsigned1[2] = param_3;
-  *(uint8_t *)(pointerToUnsigned1 + 3) = *(uint8_t *)(param_2 + 0x18);
+  pointerToUnsigned1[2] = AdditionalParameter;
+  *(uint8_t *)(pointerToUnsigned1 + 3) = *(uint8_t *)(ConfigurationDataPointer + 0x18);
   return pointerToUnsigned1;
 }
 
@@ -21301,66 +21313,66 @@ void* * SystemMemoryBatchInitializer(void* *SystemResourcePointer,long long *Mem
       MemoryBlockPointer[3] = 0;
       MemoryBlockPointer[1] = 0;
       *(uint32_t *)(MemoryBlockPointer + 2) = 0;
-      *(int *)(param_4 + 2) = (int)plocalSystemPointer[-0x19];
-      param_4[1] = plocalSystemPointer[-0x1a];
-      *(uint32_t *)((long long)param_4 + 0x1c) = *(uint32_t *)((long long)plocalSystemPointer + -0xbc);
-      *(int *)(param_4 + 3) = (int)plocalSystemPointer[-0x18];
+      *(int *)(ConfigurationFlag + 2) = (int)plocalSystemPointer[-0x19];
+      ConfigurationFlag[1] = plocalSystemPointer[-0x1a];
+      *(uint32_t *)((long long)ConfigurationFlag + 0x1c) = *(uint32_t *)((long long)plocalSystemPointer + -0xbc);
+      *(int *)(ConfigurationFlag + 3) = (int)plocalSystemPointer[-0x18];
       *(uint32_t *)(plocalSystemPointer + -0x19) = 0;
       plocalSystemPointer[-0x1a] = 0;
       plocalSystemPointer[-0x18] = 0;
-      param_4[4] = plocalSystemPointer[-0x17];
-      param_4[5] = plocalSystemPointer[-0x16];
+      ConfigurationFlag[4] = plocalSystemPointer[-0x17];
+      ConfigurationFlag[5] = plocalSystemPointer[-0x16];
       localBufferAddress = plocalSystemPointer[-0x14];
-      param_4[6] = plocalSystemPointer[-0x15];
-      param_4[7] = localBufferAddress;
+      ConfigurationFlag[6] = plocalSystemPointer[-0x15];
+      ConfigurationFlag[7] = localBufferAddress;
       localBufferAddress = plocalSystemPointer[-0x12];
-      param_4[8] = plocalSystemPointer[-0x13];
-      param_4[9] = localBufferAddress;
+      ConfigurationFlag[8] = plocalSystemPointer[-0x13];
+      ConfigurationFlag[9] = localBufferAddress;
       localBufferAddress = plocalSystemPointer[-0x10];
-      param_4[10] = plocalSystemPointer[-0x11];
-      param_4[0xb] = localBufferAddress;
+      ConfigurationFlag[10] = plocalSystemPointer[-0x11];
+      ConfigurationFlag[0xb] = localBufferAddress;
       localBufferAddress = plocalSystemPointer[-0xe];
-      param_4[0xc] = plocalSystemPointer[-0xf];
-      param_4[0xd] = localBufferAddress;
-      param_4[0xe] = plocalSystemPointer[-0xd];
-      param_4[0xf] = plocalSystemPointer[-0xc];
-      param_4[0x10] = plocalSystemPointer[-0xb];
-      param_4[0x11] = plocalSystemPointer[-10];
-      param_4[0x12] = plocalSystemPointer[-9];
-      *(int *)(param_4 + 0x13) = (int)plocalSystemPointer[-8];
-      *(uint32_t *)((long long)param_4 + 0x9c) = *(uint32_t *)((long long)plocalSystemPointer + -0x3c);
-      param_4[0x14] = plocalSystemPointer[-7];
-      param_4[0x15] = plocalSystemPointer[-6];
-      *(int *)(param_4 + 0x16) = (int)plocalSystemPointer[-5];
-      *(uint32_t *)((long long)param_4 + 0xb4) = *(uint32_t *)((long long)plocalSystemPointer + -0x24);
-      param_4[0x17] = plocalSystemPointer[-4];
-      param_4[0x18] = plocalSystemPointer[-3];
-      *(int *)(param_4 + 0x19) = (int)plocalSystemPointer[-2];
-      *(uint32_t *)((long long)param_4 + 0xcc) = *(uint32_t *)((long long)plocalSystemPointer + -0xc);
-      SecondaryResourcePointer = param_4 + 0x1a;
+      ConfigurationFlag[0xc] = plocalSystemPointer[-0xf];
+      ConfigurationFlag[0xd] = localBufferAddress;
+      ConfigurationFlag[0xe] = plocalSystemPointer[-0xd];
+      ConfigurationFlag[0xf] = plocalSystemPointer[-0xc];
+      ConfigurationFlag[0x10] = plocalSystemPointer[-0xb];
+      ConfigurationFlag[0x11] = plocalSystemPointer[-10];
+      ConfigurationFlag[0x12] = plocalSystemPointer[-9];
+      *(int *)(ConfigurationFlag + 0x13) = (int)plocalSystemPointer[-8];
+      *(uint32_t *)((long long)ConfigurationFlag + 0x9c) = *(uint32_t *)((long long)plocalSystemPointer + -0x3c);
+      ConfigurationFlag[0x14] = plocalSystemPointer[-7];
+      ConfigurationFlag[0x15] = plocalSystemPointer[-6];
+      *(int *)(ConfigurationFlag + 0x16) = (int)plocalSystemPointer[-5];
+      *(uint32_t *)((long long)ConfigurationFlag + 0xb4) = *(uint32_t *)((long long)plocalSystemPointer + -0x24);
+      ConfigurationFlag[0x17] = plocalSystemPointer[-4];
+      ConfigurationFlag[0x18] = plocalSystemPointer[-3];
+      *(int *)(ConfigurationFlag + 0x19) = (int)plocalSystemPointer[-2];
+      *(uint32_t *)((long long)ConfigurationFlag + 0xcc) = *(uint32_t *)((long long)plocalSystemPointer + -0xc);
+      SecondaryResourcePointer = ConfigurationFlag + 0x1a;
       *SecondaryResourcePointer = 0;
-      param_4[0x1b] = 0;
-      param_4[0x1c] = 0;
-      param_4[0x1d] = 0;
-      param_4[0x1e] = 0;
-      *(int *)(param_4 + 0x1f) = (int)plocalSystemPointer[4];
+      ConfigurationFlag[0x1b] = 0;
+      ConfigurationFlag[0x1c] = 0;
+      ConfigurationFlag[0x1d] = 0;
+      ConfigurationFlag[0x1e] = 0;
+      *(int *)(ConfigurationFlag + 0x1f) = (int)plocalSystemPointer[4];
       *SecondaryResourcePointer = (long long)SecondaryResourcePointer;
-      param_4[0x1b] = SecondaryResourcePointer;
-      param_4[0x1c] = 0;
-      *(uint8_t *)(param_4 + 0x1d) = 0;
-      param_4[0x1e] = 0;
-      param_4[0x1e] = plocalSystemPointer[3];
+      ConfigurationFlag[0x1b] = SecondaryResourcePointer;
+      ConfigurationFlag[0x1c] = 0;
+      *(uint8_t *)(ConfigurationFlag + 0x1d) = 0;
+      ConfigurationFlag[0x1e] = 0;
+      ConfigurationFlag[0x1e] = plocalSystemPointer[3];
       plocalSystemPointer[3] = 0;
-      unsignedSystemValue3 = *(uint32_t *)(param_4 + 0x1f);
-      *(int *)(param_4 + 0x1f) = (int)plocalSystemPointer[4];
+      unsignedSystemValue3 = *(uint32_t *)(ConfigurationFlag + 0x1f);
+      *(int *)(ConfigurationFlag + 0x1f) = (int)plocalSystemPointer[4];
       *(uint32_t *)(plocalSystemPointer + 4) = unsignedSystemValue3;
-      if (param_4[0x1c] == 0) {
+      if (ConfigurationFlag[0x1c] == 0) {
         if (plocalSystemPointer[1] != 0) {
           PrimaryResourcePointer = plocalSystemPointer + -1;
           *SecondaryResourcePointer = *PrimaryResourcePointer;
-          param_4[0x1b] = *plocalSystemPointer;
+          ConfigurationFlag[0x1b] = *plocalSystemPointer;
           localBufferAddress = plocalSystemPointer[1];
-          param_4[0x1c] = localBufferAddress;
+          ConfigurationFlag[0x1c] = localBufferAddress;
           *(long long **)(localBufferAddress + 0x10) = SecondaryResourcePointer;
           *PrimaryResourcePointer = (long long)PrimaryResourcePointer;
           *plocalSystemPointer = (long long)PrimaryResourcePointer;
@@ -21369,33 +21381,33 @@ void* * SystemMemoryBatchInitializer(void* *SystemResourcePointer,long long *Mem
       }
       else if (plocalSystemPointer[1] == 0) {
         plocalSystemPointer[-1] = *SecondaryResourcePointer;
-        *plocalSystemPointer = param_4[0x1b];
-        localBufferAddress = param_4[0x1c];
+        *plocalSystemPointer = ConfigurationFlag[0x1b];
+        localBufferAddress = ConfigurationFlag[0x1c];
         plocalSystemPointer[1] = localBufferAddress;
         *(long long **)(localBufferAddress + 0x10) = plocalSystemPointer + -1;
         *SecondaryResourcePointer = (long long)SecondaryResourcePointer;
-        param_4[0x1b] = SecondaryResourcePointer;
-        param_4[0x1c] = 0;
+        ConfigurationFlag[0x1b] = SecondaryResourcePointer;
+        ConfigurationFlag[0x1c] = 0;
       }
       else {
         localBufferAddress = *SecondaryResourcePointer;
         PrimaryResourcePointer = plocalSystemPointer + -1;
         *SecondaryResourcePointer = *PrimaryResourcePointer;
         *PrimaryResourcePointer = localBufferAddress;
-        localBufferAddress = param_4[0x1b];
-        param_4[0x1b] = *plocalSystemPointer;
+        localBufferAddress = ConfigurationFlag[0x1b];
+        ConfigurationFlag[0x1b] = *plocalSystemPointer;
         *plocalSystemPointer = localBufferAddress;
-        localBufferAddress = param_4[0x1c];
-        param_4[0x1c] = plocalSystemPointer[1];
+        localBufferAddress = ConfigurationFlag[0x1c];
+        ConfigurationFlag[0x1c] = plocalSystemPointer[1];
         plocalSystemPointer[1] = localBufferAddress;
-        *(long long **)(param_4[0x1c] + 0x10) = SecondaryResourcePointer;
+        *(long long **)(ConfigurationFlag[0x1c] + 0x10) = SecondaryResourcePointer;
         *(long long **)(plocalSystemPointer[1] + 0x10) = PrimaryResourcePointer;
       }
-      param_4 = param_4 + 0x20;
-      *SystemResourcePointer = param_4;
+      ConfigurationFlag = ConfigurationFlag + 0x20;
+      *SystemResourcePointer = ConfigurationFlag;
       SecondaryResourcePointer = plocalSystemPointer + 5;
       plocalSystemPointer = plocalSystemPointer + 0x20;
-    } while (SecondaryResourcePointer != param_3);
+    } while (SecondaryResourcePointer != AdditionalParameter);
   }
   return SystemResourcePointer;
 }
@@ -21444,12 +21456,12 @@ void* MemoryReleaseManager(void* memoryPointer, unsigned long long flags)
 
 
 
-// 函数: void LockSystemMutex(long long SystemResourcePointer,uint8_t param_2)
+// 函数: void LockSystemMutex(long long SystemResourcePointer,uint8_t ConfigurationDataPointer)
 /**
  * @brief 锁定系统互斥锁
  * 锁定系统互斥锁，确保线程安全
  */
-void LockSystemMutex(long long SystemResourcePointer,uint8_t param_2)
+void LockSystemMutex(long long SystemResourcePointer,uint8_t ConfigurationDataPointer)
 
 {
   int systemStatus;
@@ -21458,7 +21470,7 @@ void LockSystemMutex(long long SystemResourcePointer,uint8_t param_2)
   if (systemStatus != 0) {
     __Throw_C_error_std__YAXH_Z(systemStatus);
   }
-  *(uint8_t *)(SystemResourcePointer + 0x98) = param_2;
+  *(uint8_t *)(SystemResourcePointer + 0x98) = ConfigurationDataPointer;
   systemStatus = _Mtx_unlock(SystemResourcePointer + 0x48);
   if (systemStatus != 0) {
     __Throw_C_error_std__YAXH_Z(systemStatus);
@@ -21470,7 +21482,7 @@ void LockSystemMutex(long long SystemResourcePointer,uint8_t param_2)
 
 
 
-// 函数: void ProcessSystemTimestampHandler(void* SystemResourcePointer,void* *param_2,long long *param_3)
+// 函数: void ProcessSystemTimestampHandler(void* SystemResourcePointer,void* *ConfigurationDataPointer,long long *AdditionalParameter)
 /**
  * @brief 系统时间戳处理器
  * 
@@ -21478,12 +21490,12 @@ void LockSystemMutex(long long SystemResourcePointer,uint8_t param_2)
  * 它使用系统时间戳来执行各种时间相关的计算和处理。
  * 
  * @param SystemResourcePointer 系统上下文参数
- * @param param_2 输出参数，用于返回处理结果
- * @param param_3 时间戳参数
+ * @param ConfigurationDataPointer 输出参数，用于返回处理结果
+ * @param AdditionalParameter 时间戳参数
  * 
  * @note 这是系统时间管理的重要组成部分，确保时间相关操作的正确性
  */
-void ProcessSystemTimestampHandler(void* SystemResourcePointer,void* *param_2,long long *param_3)
+void ProcessSystemTimestampHandler(void* SystemResourcePointer,void* *ConfigurationDataPointer,long long *AdditionalParameter)
 
 {
   int systemStatus;
@@ -21495,21 +21507,21 @@ void ProcessSystemTimestampHandler(void* SystemResourcePointer,void* *param_2,lo
   ulong long uStack_28;
   
   uStack_28 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_58;
-  if (*param_3 < 1) {
+  if (*AdditionalParameter < 1) {
     lStack_38 = 0;
     iStack_30 = 0;
   }
   else {
     localResourceOffset = _Xtime_get_ticks();
-    localResourceOffset = (localResourceOffset + *param_3 * 10) * 100;
+    localResourceOffset = (localResourceOffset + *AdditionalParameter * 10) * 100;
     lStack_38 = localResourceOffset / 1000000000;
     iStack_30 = (int)localResourceOffset + (int)lStack_38 * -1000000000;
   }
-  systemStatus = _Mtx_current_owns(*param_2);
+  systemStatus = _Mtx_current_owns(*ConfigurationDataPointer);
   if (systemStatus == 0) {
     __Throw_Cpp_error_std__YAXH_Z(4);
   }
-  unsignedSystemValue2 = _Cnd_timedwait(SystemResourcePointer,*param_2,&lStack_38);
+  unsignedSystemValue2 = _Cnd_timedwait(SystemResourcePointer,*ConfigurationDataPointer,&lStack_38);
   if ((unsignedSystemValue2 & 0xfffffffd) != 0) {
     __Throw_C_error_std__YAXH_Z(unsignedSystemValue2);
   }
@@ -21519,7 +21531,7 @@ void ProcessSystemTimestampHandler(void* SystemResourcePointer,void* *param_2,lo
 
 
 
-uint8_t SystemInitializationProcessData(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+uint8_t SystemInitializationProcessData(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint8_t unsignedSystemValue1;
@@ -21542,7 +21554,7 @@ uint8_t SystemInitializationProcessData(long long SystemResourcePointer,void* pa
   }
   else {
     uStackX_8 = 1;
-    ProcessSystemTimestampHandler(SystemResourcePointer,&lStack_20,&uStackX_8,param_4,unsignedSystemValue3);
+    ProcessSystemTimestampHandler(SystemResourcePointer,&lStack_20,&uStackX_8,ConfigurationFlag,unsignedSystemValue3);
     unsignedSystemValue1 = *(uint8_t *)(SystemResourcePointer + 0x98);
   }
   *(uint8_t *)(SystemResourcePointer + 0x98) = 0;
@@ -21810,7 +21822,7 @@ void* * InitializeMemoryAllocatorStructure(void* *memoryAllocator)
 
 
 
-// 函数: void InitializeSystemResource(long long SystemResourcePointer,long long param_2,long long param_3)
+// 函数: void InitializeSystemResource(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 /**
  * @brief 系统字符串处理和内存管理函数
  * 
@@ -21847,10 +21859,10 @@ void SystemStringProcessor(long long SystemResourcePointer,long long SourceStrin
     localResourceOffset = -1;
     do {
       localResourceOffset = localResourceOffset + 1;
-    } while (*(char *)(param_2 + localResourceOffset) != '\0');
+    } while (*(char *)(ConfigurationDataPointer + localResourceOffset) != '\0');
     do {
       localSystemHandle = localSystemHandle + 1;
-    } while (*(char *)(localSystemHandle + param_3) != '\0');
+    } while (*(char *)(localSystemHandle + AdditionalParameter) != '\0');
                     // WARNING: Subroutine does not return
     memcpy(puStack_e0,*(long long *)(SystemResourcePointer + 8),localMemoryPointer - *(long long *)(SystemResourcePointer + 8));
   }
@@ -21861,19 +21873,19 @@ void SystemStringProcessor(long long SystemResourcePointer,long long SourceStrin
 
 
 
-// 函数: void InitializeSystemManager(void* *SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+// 函数: void InitializeSystemManager(void* *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统内存分配器初始化函数
  * 
  * 该函数初始化系统内存分配器，设置内存分配器引用和初始参数。
  * 
  * @param SystemResourcePointer 指向内存分配器指针的指针
- * @param param_2 保留参数
- * @param param_3 保留参数
- * @param param_4 保留参数
+ * @param ConfigurationDataPointer 保留参数
+ * @param AdditionalParameter 保留参数
+ * @param ConfigurationFlag 保留参数
  * @return 返回初始化后的内存分配器指针
  */
-void* * SystemMemoryAllocatorInitializer(void* *SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+void* * SystemMemoryAllocatorInitializer(void* *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -21885,12 +21897,12 @@ void* * SystemMemoryAllocatorInitializer(void* *SystemResourcePointer,long long 
   SystemResourcePointer[1] = SystemResourcePointer + 3;
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
   *(uint8_t *)(SystemResourcePointer + 3) = 0;
-  *(uint32_t *)(SystemResourcePointer + 2) = *(uint32_t *)(param_2 + 0x10);
+  *(uint32_t *)(SystemResourcePointer + 2) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
   pointerToUnsigned1 = &SystemStringTemplate;
-  if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-    pointerToUnsigned1 = *(void* **)(param_2 + 8);
+  if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
+    pointerToUnsigned1 = *(void* **)(ConfigurationDataPointer + 8);
   }
-  strcpy_s(SystemResourcePointer[1],0x80,pointerToUnsigned1,param_4,0xfffffffffffffffe);
+  strcpy_s(SystemResourcePointer[1],0x80,pointerToUnsigned1,ConfigurationFlag,0xfffffffffffffffe);
   return SystemResourcePointer;
 }
 
@@ -21910,7 +21922,7 @@ InitializeMemoryAllocatorReference(void* *memoryAllocatorRef,ulong long Initiali
 
 
 
-// 函数: void ProcessSystemStringCopySmall(long long SystemResourcePointer,long long param_2)
+// 函数: void ProcessSystemStringCopySmall(long long SystemResourcePointer,long long ConfigurationDataPointer)
 /**
  * @brief 系统字符串复制处理器（小尺寸）
  * 
@@ -21935,7 +21947,7 @@ void ProcessSystemStringCopySmall(long long targetBuffer,long long sourceString)
   localMemoryPointer = -1;
   do {
     localMemoryPointer = localMemoryPointer + 1;
-  } while (*(char *)(param_2 + localMemoryPointer) != '\0');
+  } while (*(char *)(ConfigurationDataPointer + localMemoryPointer) != '\0');
   if ((int)localMemoryPointer < 0x40) {
     *(int *)(SystemResourcePointer + 0x10) = (int)localMemoryPointer;
                     // WARNING: Could not recover jumptable at 0x000180049c27. Too many branches
@@ -21943,7 +21955,7 @@ void ProcessSystemStringCopySmall(long long targetBuffer,long long sourceString)
     strcpy_s(*(void* *)(SystemResourcePointer + 8),0x40);
     return;
   }
-  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x40,param_2);
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x40,ConfigurationDataPointer);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
@@ -21952,7 +21964,7 @@ void ProcessSystemStringCopySmall(long long targetBuffer,long long sourceString)
 
 
 
-// 函数: void ProcessSystemMemoryCopySmall(long long SystemResourcePointer,void* param_2,int param_3)
+// 函数: void ProcessSystemMemoryCopySmall(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
 /**
  * @brief 系统内存复制处理器（小尺寸）
  * 
@@ -21968,9 +21980,9 @@ void ProcessSystemStringCopySmall(long long targetBuffer,long long sourceString)
 void ProcessSystemMemoryCopySmall(long long targetBuffer,void* sourceData,int copyLength)
 
 {
-  if (param_3 + 1 < 0x40) {
+  if (AdditionalParameter + 1 < 0x40) {
                     // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(SystemResourcePointer + 8),param_2,(long long)param_3);
+    memcpy(*(uint8_t **)(SystemResourcePointer + 8),ConfigurationDataPointer,(long long)AdditionalParameter);
   }
   **(uint8_t **)(targetBuffer + 8) = 0;
   *(uint32_t *)(targetBuffer + 0x10) = 0;
@@ -22053,11 +22065,11 @@ void* * InitializeSystemMemoryAllocatorReference(void* *memoryAllocatorPointer)
  * 和缓冲区处理等操作。
  * 
  * @param SystemResourcePointer 主操作参数
- * @param param_2 辅助操作参数
- * @param param_3 配置参数
+ * @param ConfigurationDataPointer 辅助操作参数
+ * @param AdditionalParameter 配置参数
  * @note 这是系统缓冲区管理的重要组成部分
  */
-void ProcessSystemThreeParameterBuffer(long long SystemResourcePointer,long long param_2,long long param_3)
+void ProcessSystemThreeParameterBuffer(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   long long localMemoryPointer;
@@ -22083,10 +22095,10 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourcePointer,long long
     localResourceOffset = -1;
     do {
       localResourceOffset = localResourceOffset + 1;
-    } while (*(char *)(param_2 + localResourceOffset) != '\0');
+    } while (*(char *)(ConfigurationDataPointer + localResourceOffset) != '\0');
     do {
       localSystemHandle = localSystemHandle + 1;
-    } while (*(char *)(localSystemHandle + param_3) != '\0');
+    } while (*(char *)(localSystemHandle + AdditionalParameter) != '\0');
                     // WARNING: Subroutine does not return
     memcpy(stackParameterA,*(long long *)(SystemResourcePointer + 8),localMemoryPointer - *(long long *)(SystemResourcePointer + 8));
   }
@@ -22160,7 +22172,7 @@ void ResetSystemMemoryAllocator(void* *SystemResourcePointer)
 
 
 
-// 函数: void InitializeAndCleanupSystemMemoryAllocator(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+// 函数: void InitializeAndCleanupSystemMemoryAllocator(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统内存分配器初始化和清理函数
  * 
@@ -22168,37 +22180,37 @@ void ResetSystemMemoryAllocator(void* *SystemResourcePointer)
  * 并确保内存分配器处于正确的状态。
  * 
  * @param SystemResourcePointer 系统上下文参数
- * @param param_2 指向内存分配器指针的指针
- * @param param_3 清理参数
- * @param param_4 清理参数
+ * @param ConfigurationDataPointer 指向内存分配器指针的指针
+ * @param AdditionalParameter 清理参数
+ * @param ConfigurationFlag 清理参数
  * 
  * @note 这是系统内存管理的重要组成部分，确保内存分配器的正确初始化和清理
  */
-void InitializeAndCleanupSystemMemoryAllocator(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+void InitializeAndCleanupSystemMemoryAllocator(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  if (param_2 == (void* *)0x0) {
+  if (ConfigurationDataPointer == (void* *)0x0) {
     return;
   }
-  InitializeAndCleanupSystemMemoryAllocator(SystemResourcePointer,*param_2,param_3,param_4,0xfffffffffffffffe);
-  param_2[8] = &SystemGlobalDataReference;
-  if (param_2[9] != 0) {
+  InitializeAndCleanupSystemMemoryAllocator(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ConfigurationDataPointer[8] = &SystemGlobalDataReference;
+  if (ConfigurationDataPointer[9] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  param_2[9] = 0;
-  *(uint32_t *)(param_2 + 0xb) = 0;
-  param_2[8] = &SystemMemoryAllocatorReference;
-  param_2[4] = &SystemGlobalDataReference;
-  if (param_2[5] != 0) {
+  ConfigurationDataPointer[9] = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 0xb) = 0;
+  ConfigurationDataPointer[8] = &SystemMemoryAllocatorReference;
+  ConfigurationDataPointer[4] = &SystemGlobalDataReference;
+  if (ConfigurationDataPointer[5] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  param_2[5] = 0;
-  *(uint32_t *)(param_2 + 7) = 0;
-  param_2[4] = &SystemMemoryAllocatorReference;
+  ConfigurationDataPointer[5] = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
+  ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  SystemCleanupFunction(param_2);
+  SystemCleanupFunction(ConfigurationDataPointer);
 }
 
 
@@ -22210,15 +22222,15 @@ void InitializeAndCleanupSystemMemoryAllocator(void* SystemResourcePointer,void*
  * 该函数是系统数据处理的包装函数，负责调用底层数据处理函数。
  * 
  * @param systemParameter 系统参数1
- * @param param_2 系统参数2
- * @param param_3 系统参数3
- * @param param_4 系统参数4
+ * @param ConfigurationDataPointer 系统参数2
+ * @param AdditionalParameter 系统参数3
+ * @param ConfigurationFlag 系统参数4
  * @note 这是系统数据处理层的重要组成部分
  */
-void SystemDataProcessorA(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void SystemDataProcessorA(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  ProcessSystemDataBuffer(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  ProcessSystemDataBuffer(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -22231,15 +22243,15 @@ void SystemDataProcessorA(long long SystemResourcePointer,void* param_2,void* pa
  * 该函数是系统数据处理的包装函数，负责调用底层数据处理函数。
  * 
  * @param systemParameter 系统参数1
- * @param param_2 系统参数2
- * @param param_3 系统参数3
- * @param param_4 系统参数4
+ * @param ConfigurationDataPointer 系统参数2
+ * @param AdditionalParameter 系统参数3
+ * @param ConfigurationFlag 系统参数4
  * @note 这是系统数据处理层的重要组成部分
  */
-void SystemDataProcessorB(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void SystemDataProcessorB(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  ProcessSystemDataBuffer(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  ProcessSystemDataBuffer(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -22252,15 +22264,15 @@ void SystemDataProcessorB(long long SystemResourcePointer,void* param_2,void* pa
  * 该函数是系统数据处理的包装函数，负责调用底层数据处理函数。
  * 
  * @param systemParameter 系统参数1
- * @param param_2 系统参数2
- * @param param_3 系统参数3
- * @param param_4 系统参数4
+ * @param ConfigurationDataPointer 系统参数2
+ * @param AdditionalParameter 系统参数3
+ * @param ConfigurationFlag 系统参数4
  * @note 这是系统数据处理层的重要组成部分
  */
-void SystemDataProcessorC(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void SystemDataProcessorC(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  ProcessSystemDataBuffer(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  ProcessSystemDataBuffer(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -22294,7 +22306,7 @@ void CleanupSystemMemoryAllocator(void* *SystemResourcePointer)
 
 
 
-// 函数: void ProcessSystemStringCopyMedium(long long SystemResourcePointer,long long param_2)
+// 函数: void ProcessSystemStringCopyMedium(long long SystemResourcePointer,long long ConfigurationDataPointer)
 /**
  * @brief 系统字符串复制处理器（中等尺寸）
  * 
@@ -22377,7 +22389,7 @@ void* SystemThreadObjectManager(long long threadPoolContext, uint32_t threadFlag
   void* unsignedSystemValue7;
   
   unsignedSystemValue7 = 0xfffffffffffffffe;
-  unsignedSystemValue2 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,param_2,3,param_4,0xfffffffffffffffe);
+  unsignedSystemValue2 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,ConfigurationDataPointer,3,ConfigurationFlag,0xfffffffffffffffe);
   systemStatus = _Mtx_lock(SystemResourcePointer + 0x28);
   if (systemStatus != 0) {
     __Throw_C_error_std__YAXH_Z(systemStatus);
@@ -22394,7 +22406,7 @@ void* SystemThreadObjectManager(long long threadPoolContext, uint32_t threadFlag
     localResourceOffset = 1;
 LAB_18004a2b9:
     punsignedSystemValue4 = (void* *)
-             CreateSystemThreadObject(SystemMemoryAllocationTemplate,localResourceOffset * 8,*(uint8_t *)(SystemResourcePointer + 0x20),param_4,unsignedSystemValue7);
+             CreateSystemThreadObject(SystemMemoryAllocationTemplate,localResourceOffset * 8,*(uint8_t *)(SystemResourcePointer + 0x20),ConfigurationFlag,unsignedSystemValue7);
     punsignedSystemValue6 = *(void* **)(SystemResourcePointer + 0x10);
     punsignedSystemValue5 = *(void* **)(SystemResourcePointer + 8);
   }
@@ -22501,19 +22513,19 @@ void InitializeSystemMutex(void* *SystemResourcePointer)
  * 函数会分配线程所需的内存，启动线程，并更新系统资源指针中的线程句柄计数。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 线程参数
+ * @param ConfigurationDataPointer 线程参数
  * @return 返回分配的内存指针
  * 
  * @note 函数分配0x10字节大小的内存，类型为6
  * @note 函数更新资源指针+8位置的句柄计数
  */
-void* CreateSystemThread(long long SystemResourcePointer,void* param_2)
+void* CreateSystemThread(long long SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   void* threadMemory;
   long long threadHandle;
   
-  threadMemory = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,param_2,0x10,6);
+  threadMemory = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,ConfigurationDataPointer,0x10,6);
   threadHandle = StartSystemThread(threadMemory);
   *(long long *)(SystemResourcePointer + 8) = *(long long *)(SystemResourcePointer + 8) + threadHandle;
   return threadMemory;
@@ -22522,27 +22534,27 @@ void* CreateSystemThread(long long SystemResourcePointer,void* param_2)
 
 
 
-// 函数: void StartAndManageSystemThread(long long SystemResourcePointer,long long param_2)
+// 函数: void StartAndManageSystemThread(long long SystemResourcePointer,long long ConfigurationDataPointer)
 /**
  * @brief 系统线程启动和管理函数
  * 
  * 该函数启动系统线程，管理线程生命周期，并处理线程相关的清理操作。
  * 
  * @param SystemResourcePointer 线程管理器指针
- * @param param_2 线程参数
+ * @param ConfigurationDataPointer 线程参数
  * 
  * @note 这是系统线程管理的重要组成部分，确保线程的正确启动和清理
  */
-void StartAndManageSystemThread(long long SystemResourcePointer,long long param_2)
+void StartAndManageSystemThread(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
   
-  localMemoryPointer = StartSystemThread(param_2);
+  localMemoryPointer = StartSystemThread(ConfigurationDataPointer);
   *(long long *)(SystemResourcePointer + 8) = *(long long *)(SystemResourcePointer + 8) - localMemoryPointer;
-  if (param_2 != 0) {
+  if (ConfigurationDataPointer != 0) {
                     // WARNING: Subroutine does not return
-    SystemCleanupFunction(param_2);
+    SystemCleanupFunction(ConfigurationDataPointer);
   }
   return;
 }
@@ -22892,14 +22904,14 @@ InitializeSystemPathBuffers(void* *pathBufferRef,void* reservedParam2,void* rese
   SystemResourcePointer[3] = 0;
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
-  ExecuteSystemCommand(SystemResourcePointer,0,param_3,param_4,0,0xfffffffffffffffe);
+  ExecuteSystemCommand(SystemResourcePointer,0,AdditionalParameter,ConfigurationFlag,0,0xfffffffffffffffe);
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
   if ((uint8_t *)SystemResourcePointer[1] != (uint8_t *)0x0) {
     *(uint8_t *)SystemResourcePointer[1] = 0;
   }
   systemIndex = *(int *)(SystemResourcePointer + 2);
   systemCounter = systemIndex + 6;
-  ExecuteSystemCommand(SystemResourcePointer,systemCounter,param_3,param_4,1,unsignedSystemValue5);
+  ExecuteSystemCommand(SystemResourcePointer,systemCounter,AdditionalParameter,ConfigurationFlag,1,unsignedSystemValue5);
   pointerToUnsigned1 = (uint32_t *)((ulong long)*(uint *)(SystemResourcePointer + 2) + SystemResourcePointer[1]);
   *pointerToUnsigned1 = 0x2e2f2e2e;
   *(void*2 *)(pointerToUnsigned1 + 1) = 0x2f2e;
@@ -23114,7 +23126,7 @@ void ConfigureAndInitializeSystemMemoryAllocator(void* *SystemResourcePointer)
 
 
 
-long long * InitializeGameController(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+long long * InitializeGameController(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *SystemResourcePointer = (long long)&SystemMemoryAllocatorReference;
@@ -23128,7 +23140,7 @@ long long * InitializeGameController(long long *SystemResourcePointer,void* para
     ProcessDataManager(SystemResourcePointer,SystemDataManagerPointer + 0x28);
     return SystemResourcePointer;
   }
-  (**(code **)(*SystemResourcePointer + 0x10))(SystemResourcePointer,&UNK_1809fd0a8,param_3,param_4,1,0xfffffffffffffffe);
+  (**(code **)(*SystemResourcePointer + 0x10))(SystemResourcePointer,&UNK_1809fd0a8,AdditionalParameter,ConfigurationFlag,1,0xfffffffffffffffe);
   return SystemResourcePointer;
 }
 
@@ -23409,14 +23421,14 @@ void* * InitializeSystemReferencePointer(void* *referencePointer,ulong long memo
  * 这是内存管理系统中的一个辅助函数，用于数据缓冲区的初始化和管理。
  * 
  * @param SystemResourcePointer 输出参数，用于返回数据缓冲区模板的引用
- * @param param_2 控制标志位，如果第0位为1则释放内存
+ * @param ConfigurationDataPointer 控制标志位，如果第0位为1则释放内存
  * @return 返回系统数据缓冲区模板的引用
  */
-void* * GetSystemDataBufferTemplateG(void* *SystemResourcePointer,ulong long param_2)
+void* * GetSystemDataBufferTemplateG(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &SystemDataBufferTemplateG;
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,8);
   }
   return SystemResourcePointer;
@@ -23426,8 +23438,8 @@ void* * GetSystemDataBufferTemplateG(void* *SystemResourcePointer,ulong long par
 
 
 
-// 函数: void InitializeGameSettings(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void InitializeGameSettings(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void InitializeGameSettings(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void InitializeGameSettings(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long localMemoryPointer;
@@ -23443,12 +23455,12 @@ void InitializeGameSettings(long long SystemResourcePointer,void* param_2,void* 
   ulong long uStack_28;
   
   uStack_28 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_78;
-  uStackX_18 = param_3;
-  uStackX_20 = param_4;
+  uStackX_18 = AdditionalParameter;
+  uStackX_20 = ConfigurationFlag;
   pointerToUnsigned3 = (ulong long *)SystemGlobalDataAllocate();
   uStack_58 = 0;
   puStack_50 = &uStackX_18;
-  __stdio_common_vsprintf(*pointerToUnsigned3 | 1,acStack_48,0x20,param_2);
+  __stdio_common_vsprintf(*pointerToUnsigned3 | 1,acStack_48,0x20,ConfigurationDataPointer);
   localMemoryPointer = -1;
   do {
     localBufferAddress = localMemoryPointer;
@@ -23473,14 +23485,14 @@ void InitializeGameSettings(long long SystemResourcePointer,void* param_2,void* 
  * 这是内存管理系统中的一个辅助函数，用于数据缓冲区的初始化和管理。
  * 
  * @param SystemResourcePointer 输出参数，用于返回数据缓冲区模板的引用
- * @param param_2 控制标志位，如果第0位为1则释放内存
+ * @param ConfigurationDataPointer 控制标志位，如果第0位为1则释放内存
  * @return 返回系统数据缓冲区模板的引用
  */
-void* * GetSystemDataBufferTemplateF(void* *SystemResourcePointer,ulong long param_2)
+void* * GetSystemDataBufferTemplateF(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &SystemDataBufferTemplateF;
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,8);
   }
   return SystemResourcePointer;
@@ -23495,14 +23507,14 @@ void* * GetSystemDataBufferTemplateF(void* *SystemResourcePointer,ulong long par
  * 这是内存管理系统中的一个辅助函数，用于数据缓冲区的初始化和管理。
  * 
  * @param SystemResourcePointer 输出参数，用于返回数据缓冲区模板的引用
- * @param param_2 控制标志位，如果第0位为1则释放内存
+ * @param ConfigurationDataPointer 控制标志位，如果第0位为1则释放内存
  * @return 返回系统数据缓冲区模板的引用
  */
-void* * GetSystemDataBufferTemplateD(void* *SystemResourcePointer,ulong long param_2)
+void* * GetSystemDataBufferTemplateD(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &SystemDataBufferTemplateD;
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,8);
   }
   return SystemResourcePointer;
@@ -23510,14 +23522,14 @@ void* * GetSystemDataBufferTemplateD(void* *SystemResourcePointer,ulong long par
 
 
 
-int SystemStringFormatProcess(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+int SystemStringFormatProcess(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
   ulong long *pointerToUnsigned2;
   
   pointerToUnsigned2 = (ulong long *)SystemGlobalDataAllocate();
-  systemStatus = __stdio_common_vsprintf(*pointerToUnsigned2 | 1,SystemResourcePointer,param_2,param_3,0,param_4);
+  systemStatus = __stdio_common_vsprintf(*pointerToUnsigned2 | 1,SystemResourcePointer,ConfigurationDataPointer,AdditionalParameter,0,ConfigurationFlag);
   if (systemStatus < 0) {
     systemStatus = -1;
   }
@@ -23674,7 +23686,7 @@ void SystemMemoryOffsetHandler(long long memoryOffset)
 
 
 
-// 函数: void InitializeResourceHandler(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void InitializeResourceHandler(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统内存区域清理器
  * 
@@ -23739,7 +23751,7 @@ void SystemMemoryRegionCleaner(void* systemContext,void* memoryRegion,void* clea
 
 
 
-// 函数: void CleanupMemoryRegion(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void CleanupMemoryRegion(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统内存区域处理器
  * 
@@ -23762,7 +23774,7 @@ void SystemMemoryRegionProcessor(long long memoryRegion,void* memoryOffset,void*
 
 
 
-// 函数: void FreeMemoryContext(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FreeMemoryContext(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统内存区域操作器
  * 
@@ -23840,7 +23852,7 @@ void* * SystemMemoryAllocatorInitializer(void* *memoryAllocator)
 
 
 
-// 函数: void InitializeResourcePointer(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void InitializeResourcePointer(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统数据表处理器A
  * 
@@ -23875,7 +23887,7 @@ void SystemDataTableProcessorA(long long *DataTablePointer,void* systemContext,v
 
 
 
-// 函数: void SetupResourcePointer(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void SetupResourcePointer(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统数据表处理器B
  * 
@@ -24306,14 +24318,14 @@ void ManageSystemResourceReferenceCount(ulong long *SystemResourcePointer)
  * 函数会处理资源释放和系统清理的最后步骤。
  * 
  * @param SystemResourcePointer 系统资源指针数组
- * @param param_2 清理参数2
- * @param param_3 清理参数3
- * @param param_4 清理参数4
+ * @param ConfigurationDataPointer 清理参数2
+ * @param AdditionalParameter 清理参数3
+ * @param ConfigurationFlag 清理参数4
  * 
  * @note 函数使用0xfffffffffffffffe作为清理标志
  * @note 函数最后调用SystemCleanupFunction()进行最终清理
  */
-void ExecuteSystemCleanup(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void ExecuteSystemCleanup(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *cleanupArrayEnd;
@@ -24323,7 +24335,7 @@ void ExecuteSystemCleanup(long long *SystemResourcePointer,void* param_2,void* p
   cleanupFlag = 0xfffffffffffffffe;
   cleanupArrayEnd = (void* *)SystemResourcePointer[1];
   for (void* *currentCleanupFunction = (void* *)*SystemResourcePointer; currentCleanupFunction != cleanupArrayEnd; currentCleanupFunction = currentCleanupFunction + 4) {
-    (**(code **)*currentCleanupFunction)(currentCleanupFunction,0,param_3,param_4,cleanupFlag);
+    (**(code **)*currentCleanupFunction)(currentCleanupFunction,0,AdditionalParameter,ConfigurationFlag,cleanupFlag);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -24466,7 +24478,7 @@ InitializeSystemResourceBuffer(uint8_t *systemResourcePointer, void* reservedPar
   *(void* *)(SystemResourcePointer + 0xa8) = 0;
   *(uint32_t *)(SystemResourcePointer + 0xb0) = 0;
   *SystemResourcePointer = 0;
-  (**(code **)(*plocalResourceOffset + 0x10))(plocalResourceOffset,&UNK_1809fd118,&SystemMemoryAllocatorReference,param_4,0xfffffffffffffffe);
+  (**(code **)(*plocalResourceOffset + 0x10))(plocalResourceOffset,&UNK_1809fd118,&SystemMemoryAllocatorReference,ConfigurationFlag,0xfffffffffffffffe);
   *(void* *)(SystemResourcePointer + 0x28) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x30) = 0;
   SystemResourcePointer[0x7c] = 0;
@@ -24759,14 +24771,14 @@ void ExecuteSystemResourceCallback(long long *SystemResourcePointer)
  * 在需要时进行清理操作，然后设置相应的内存模板引用。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 控制标志位，第0位为1时释放内存
- * @param param_3 内存释放参数1
- * @param param_4 内存释放参数2
+ * @param ConfigurationDataPointer 控制标志位，第0位为1时释放内存
+ * @param AdditionalParameter 内存释放参数1
+ * @param ConfigurationFlag 内存释放参数2
  * @return 返回处理后的系统资源指针
  * @note 这是内存管理系统的核心函数之一
  */
 void* *
-SystemMemoryTemplateManager(void* *SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+SystemMemoryTemplateManager(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (SystemResourcePointer[2] != 0) {
@@ -24775,8 +24787,8 @@ SystemMemoryTemplateManager(void* *SystemResourcePointer,ulong long param_2,void
   }
   *SystemResourcePointer = &SystemMemoryTemplateB;
   *SystemResourcePointer = &SystemMemoryTemplateA;
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0x30,param_3,param_4,0xfffffffffffffffe);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0x30,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   }
   return SystemResourcePointer;
 }
@@ -25068,9 +25080,9 @@ void SystemResourceCleanupManager(long long *SystemResourcePointer)
  * 根据传入的参数分配相应的系统资源，并设置资源状态。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 分配参数
+ * @param ConfigurationDataPointer 分配参数
  */
-void ProcessSystemResourceAllocation(void* SystemResourcePointer,long long param_2)
+void ProcessSystemResourceAllocation(void* SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   byte bVar1;
@@ -25205,8 +25217,8 @@ void ProcessSystemResourceAllocation(void* SystemResourcePointer,long long param
   lStack_260 = SystemStatusFlagsPointer;
   cStack_338 = '\0';
   pointerToUnsigned17 = &SystemStringTemplate;
-  if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-    pointerToUnsigned17 = *(void* **)(param_2 + 8);
+  if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
+    pointerToUnsigned17 = *(void* **)(ConfigurationDataPointer + 8);
   }
   localSystemHandle0 = -1;
   do {
@@ -25518,7 +25530,7 @@ void SystemResourceInitializer(void* SystemResourcePointer,void* parameter2,void
     unsignedSystemValue1 = *(uint *)(SystemMemoryManagerPointer + 0xe40);
     unsignedSystemValue5 = (ulong long)unsignedSystemValue1;
     if (*(long long *)(SystemMemoryManagerPointer + 0xe38) != 0) {
-      ExecuteSystemCommand(&puStack_68,unsignedSystemValue5,param_3,param_4,0xfffffffffffffffe);
+      ExecuteSystemCommand(&puStack_68,unsignedSystemValue5,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
     }
     if (unsignedSystemValue1 != 0) {
                     // WARNING: Subroutine does not return
@@ -26403,10 +26415,10 @@ void InitializeSystemResourceManager(long long systemResourcePointer)
  * 它会创建新的系统资源对象，并复制源资源的所有属性和数据。
  * 
  * @param SystemResourcePointer 目标资源指针
- * @param param_2 源资源指针
+ * @param ConfigurationDataPointer 源资源指针
  * @return 返回复制后的资源指针
  */
-void* * SystemResourceCopier(void* *SystemResourcePointer,void* *param_2)
+void* * SystemResourceCopier(void* *SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -26420,26 +26432,26 @@ void* * SystemResourceCopier(void* *SystemResourcePointer,void* *param_2)
   ulong long unsignedSystemValue9;
   
   SystemPreviousNode = (uint8_t *)((long long)SystemResourcePointer + 0xf);
-  *SystemResourcePointer = *param_2;
-  *(uint32_t *)(SystemResourcePointer + 1) = *(uint32_t *)(param_2 + 1);
-  *(uint8_t *)((long long)SystemResourcePointer + 0xc) = *(uint8_t *)((long long)param_2 + 0xc);
-  *(uint8_t *)((long long)SystemResourcePointer + 0xd) = *(uint8_t *)((long long)param_2 + 0xd);
-  *(uint8_t *)((long long)SystemResourcePointer + 0xe) = *(uint8_t *)((long long)param_2 + 0xe);
+  *SystemResourcePointer = *ConfigurationDataPointer;
+  *(uint32_t *)(SystemResourcePointer + 1) = *(uint32_t *)(ConfigurationDataPointer + 1);
+  *(uint8_t *)((long long)SystemResourcePointer + 0xc) = *(uint8_t *)((long long)ConfigurationDataPointer + 0xc);
+  *(uint8_t *)((long long)SystemResourcePointer + 0xd) = *(uint8_t *)((long long)ConfigurationDataPointer + 0xd);
+  *(uint8_t *)((long long)SystemResourcePointer + 0xe) = *(uint8_t *)((long long)ConfigurationDataPointer + 0xe);
   localSystemFlags = 0x100;
   do {
-    *SystemPreviousNode = SystemPreviousNode[(long long)param_2 - (long long)SystemResourcePointer];
-    SystemPreviousNode[1] = SystemPreviousNode[((long long)param_2 - (long long)SystemResourcePointer) + 1];
+    *SystemPreviousNode = SystemPreviousNode[(long long)ConfigurationDataPointer - (long long)SystemResourcePointer];
+    SystemPreviousNode[1] = SystemPreviousNode[((long long)ConfigurationDataPointer - (long long)SystemResourcePointer) + 1];
     SystemPreviousNode = SystemPreviousNode + 2;
     localSystemFlags = localSystemFlags + -1;
   } while (localSystemFlags != 0);
-  *(uint8_t *)((long long)SystemResourcePointer + 0x20f) = *(uint8_t *)((long long)param_2 + 0x20f);
+  *(uint8_t *)((long long)SystemResourcePointer + 0x20f) = *(uint8_t *)((long long)ConfigurationDataPointer + 0x20f);
   PrimaryResourcePointer = SystemResourcePointer + 0x43;
-  *(uint8_t *)(SystemResourcePointer + 0x42) = *(uint8_t *)(param_2 + 0x42);
-  *(uint8_t *)((long long)SystemResourcePointer + 0x211) = *(uint8_t *)((long long)param_2 + 0x211);
-  if (PrimaryResourcePointer != param_2 + 0x43) {
+  *(uint8_t *)(SystemResourcePointer + 0x42) = *(uint8_t *)(ConfigurationDataPointer + 0x42);
+  *(uint8_t *)((long long)SystemResourcePointer + 0x211) = *(uint8_t *)((long long)ConfigurationDataPointer + 0x211);
+  if (PrimaryResourcePointer != ConfigurationDataPointer + 0x43) {
     localSystemFlags = *PrimaryResourcePointer;
-    localSystemHandle = param_2[0x44];
-    localResourceOffset = param_2[0x43];
+    localSystemHandle = ConfigurationDataPointer[0x44];
+    localResourceOffset = ConfigurationDataPointer[0x43];
     localMemoryAddress = localSystemHandle - localResourceOffset;
     unsignedSystemValue9 = localMemoryAddress >> 2;
     if ((ulong long)(SystemResourcePointer[0x45] - localSystemFlags >> 2) < unsignedSystemValue9) {
@@ -26770,16 +26782,16 @@ void*
  * 它会调用底层的系统函数来处理状态标志的相关操作。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数2，用于传递操作目标
- * @param param_3 参数3，用于传递操作参数
- * @param param_4 参数4，用于传递操作标志
+ * @param ConfigurationDataPointer 参数2，用于传递操作目标
+ * @param AdditionalParameter 参数3，用于传递操作参数
+ * @param ConfigurationFlag 参数4，用于传递操作标志
  * @return 返回处理后的结果指针
  */
-void* SystemStatusFlagProcessor(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void* SystemStatusFlagProcessor(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  CreateSystemObject(param_2,SystemStatusFlagsPointer + 0x2c0,param_3,param_4,0,0xfffffffffffffffe);
-  return param_2;
+  CreateSystemObject(ConfigurationDataPointer,SystemStatusFlagsPointer + 0x2c0,AdditionalParameter,ConfigurationFlag,0,0xfffffffffffffffe);
+  return ConfigurationDataPointer;
 }
 
 
@@ -26862,17 +26874,17 @@ void SystemMemoryAllocator(long long SystemResourcePointer,long long parameter2,
   PrimaryResourcePointer = (long long *)(SystemResourcePointer + 0xd8);
   localSystemFlags = 0;
   if ((*(long long *)(SystemResourcePointer + 0xe0) - *PrimaryResourcePointer & 0xffffffffffffffe0U) != 0) {
-    FUN_180057110(param_2);
+    FUN_180057110(ConfigurationDataPointer);
     unsignedSystemValue5 = *(long long *)(SystemResourcePointer + 0xe0) - *PrimaryResourcePointer >> 5;
     if (0 < (int)unsignedSystemValue5) {
       unsignedSystemValue5 = unsignedSystemValue5 & 0xffffffff;
       do {
-        if (*(ulong long *)(param_2 + 8) < *(ulong long *)(param_2 + 0x10)) {
-          *(ulong long *)(param_2 + 8) = *(ulong long *)(param_2 + 8) + 0x20;
+        if (*(ulong long *)(ConfigurationDataPointer + 8) < *(ulong long *)(ConfigurationDataPointer + 0x10)) {
+          *(ulong long *)(ConfigurationDataPointer + 8) = *(ulong long *)(ConfigurationDataPointer + 8) + 0x20;
           InitializeSystemMemoryAllocator();
         }
         else {
-          FUN_180059820(param_2,*PrimaryResourcePointer + localSystemFlags);
+          FUN_180059820(ConfigurationDataPointer,*PrimaryResourcePointer + localSystemFlags);
         }
         localSystemFlags = localSystemFlags + 0x20;
         unsignedSystemValue5 = unsignedSystemValue5 - 1;
@@ -26884,7 +26896,7 @@ void SystemMemoryAllocator(long long SystemResourcePointer,long long parameter2,
   uStack_58 = 0;
   puStack_68 = (void* *)0x0;
   uStack_60 = 0;
-  punsignedSystemValue4 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x10,0x13,param_4,0xfffffffffffffffe);
+  punsignedSystemValue4 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x10,0x13,ConfigurationFlag,0xfffffffffffffffe);
   *(uint8_t *)punsignedSystemValue4 = 0;
   puStack_68 = punsignedSystemValue4;
   unsignedSystemValue2 = StartSystemThread(punsignedSystemValue4);
@@ -26899,7 +26911,7 @@ void SystemMemoryAllocator(long long SystemResourcePointer,long long parameter2,
     uStack_78 = 0;
     puStack_88 = (void* *)0x0;
     uStack_80 = 0;
-    punsignedSystemValue4 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x10,0x13,param_4,unsignedSystemValue7);
+    punsignedSystemValue4 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x10,0x13,ConfigurationFlag,unsignedSystemValue7);
     *(uint8_t *)punsignedSystemValue4 = 0;
     puStack_88 = punsignedSystemValue4;
     unsignedSystemValue2 = StartSystemThread(punsignedSystemValue4);
@@ -26928,10 +26940,10 @@ void SystemMemoryAllocator(long long SystemResourcePointer,long long parameter2,
  * 它会创建必要的系统资源对象，并设置相应的属性和状态。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数2，用于传递分配参数
+ * @param ConfigurationDataPointer 参数2，用于传递分配参数
  * @return 返回分配后的资源指针
  */
-void* SystemResourceAllocator(void* SystemResourcePointer,void* param_2)
+void* SystemResourceAllocator(void* SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -26949,8 +26961,8 @@ void* SystemResourceAllocator(void* SystemResourcePointer,void* param_2)
   
   localMemoryPointer = SystemStatusFlagsPointer;
   if (*(int *)(SystemStatusFlagsPointer + 200) != 0) {
-    CreateSystemObject(param_2,SystemStatusFlagsPointer + 0xb8);
-    return param_2;
+    CreateSystemObject(ConfigurationDataPointer,SystemStatusFlagsPointer + 0xb8);
+    return ConfigurationDataPointer;
   }
   puStack_68 = &SystemGlobalDataReference;
   uStack_50 = 0;
@@ -27043,12 +27055,12 @@ void SystemFloatingPointProcessor(long long SystemResourcePointer,float paramete
     bVar14 = false;
   }
   if (bVar14) {
-    fVar15 = (float)exp2f(SystemNodeManagerPointer,in_RDX,param_3,param_4,0xfffffffffffffffe);
+    fVar15 = (float)exp2f(SystemNodeManagerPointer,in_RDX,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
     if (*(char *)(SystemResourcePointer + 0x22d) == '\0') {
       localMemoryAddress = *(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8);
       if ((*(int *)(localMemoryAddress + 0x48) < _DAT_180d49140) &&
          (FUN_1808fcb90(&DAT_180d49140), _DAT_180d49140 == -1)) {
-        _DAT_180d49144 = param_2;
+        _DAT_180d49144 = ConfigurationDataPointer;
         FUN_1808fcb30(&DAT_180d49140);
       }
       fVar16 = (float)exp2f();
@@ -27056,7 +27068,7 @@ void SystemFloatingPointProcessor(long long SystemResourcePointer,float paramete
       fVar18 = (float)exp2f();
       fVar19 = (float)exp2f();
       fVar20 = (float)exp2f();
-      _DAT_180d49144 = (1.0 - fVar16) * _DAT_180d49144 + fVar16 * param_2;
+      _DAT_180d49144 = (1.0 - fVar16) * _DAT_180d49144 + fVar16 * ConfigurationDataPointer;
       fVar2 = (float)*(int *)(SystemNodeManagerPointer + 0x21b0);
       if (*(float *)(SystemStatusFlagsPointer + 0x1f8) <= (float)*(int *)(SystemNodeManagerPointer + 0x21b0)) {
         fVar2 = *(float *)(SystemStatusFlagsPointer + 0x1f8);
@@ -27335,7 +27347,7 @@ void ProcessSystemResourceAndRenderManagement(long long *SystemResourcePointer,v
 
 
 
-// 函数: void InitializeSystemResource(void* SystemResourcePointer,long long param_2)
+// 函数: void InitializeSystemResource(void* SystemResourcePointer,long long ConfigurationDataPointer)
 /**
  * @brief 系统字符串格式化处理器
  * 
@@ -27372,41 +27384,41 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
                 *(long long *)(SystemTextureManagerPointer + 0x1d20));
   InitializeSystemBuffer(&puStack_198);
   systemResult = 0;
-  *(uint32_t *)(param_2 + 0x10) = 0;
-  if (*(uint8_t **)(param_2 + 8) != (uint8_t *)0x0) {
-    **(uint8_t **)(param_2 + 8) = 0;
-    systemResult = *(int *)(param_2 + 0x10);
+  *(uint32_t *)(ConfigurationDataPointer + 0x10) = 0;
+  if (*(uint8_t **)(ConfigurationDataPointer + 8) != (uint8_t *)0x0) {
+    **(uint8_t **)(ConfigurationDataPointer + 8) = 0;
+    systemResult = *(int *)(ConfigurationDataPointer + 0x10);
   }
   systemCounter = systemResult + 5;
-  ExecuteSystemCommand(param_2,systemCounter);
-  pointerToUnsigned1 = (uint32_t *)((ulong long)*(uint *)(param_2 + 0x10) + *(long long *)(ComparisonDataPointer + 8));
+  ExecuteSystemCommand(ConfigurationDataPointer,systemCounter);
+  pointerToUnsigned1 = (uint32_t *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8));
   *pointerToUnsigned1 = 0x3a757067;
   *(void*2 *)(pointerToUnsigned1 + 1) = 0x20;
-  *(int *)(param_2 + 0x10) = systemCounter;
+  *(int *)(ConfigurationDataPointer + 0x10) = systemCounter;
   if (0 < iStack_c8) {
-    ExecuteSystemCommand(param_2,systemCounter + iStack_c8);
+    ExecuteSystemCommand(ConfigurationDataPointer,systemCounter + iStack_c8);
                     // WARNING: Subroutine does not return
-    memcpy((ulong long)*(uint *)(param_2 + 0x10) + *(long long *)(ComparisonDataPointer + 8),uStack_d0,
+    memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),uStack_d0,
            (long long)(iStack_c8 + 1));
   }
-  ExecuteSystemCommand(param_2,systemResult + 6);
-  *(void*2 *)((ulong long)*(uint *)(param_2 + 0x10) + *(long long *)(ComparisonDataPointer + 8)) = 10;
-  *(int *)(param_2 + 0x10) = systemResult + 6;
+  ExecuteSystemCommand(ConfigurationDataPointer,systemResult + 6);
+  *(void*2 *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8)) = 10;
+  *(int *)(ConfigurationDataPointer + 0x10) = systemResult + 6;
   systemCounter = systemResult + 0xb;
-  ExecuteSystemCommand(param_2,systemCounter);
-  pointerToUnsigned1 = (uint32_t *)((ulong long)*(uint *)(param_2 + 0x10) + *(long long *)(ComparisonDataPointer + 8));
+  ExecuteSystemCommand(ConfigurationDataPointer,systemCounter);
+  pointerToUnsigned1 = (uint32_t *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8));
   *pointerToUnsigned1 = 0x3a757063;
   *(void*2 *)(pointerToUnsigned1 + 1) = 0x20;
-  *(int *)(param_2 + 0x10) = systemCounter;
+  *(int *)(ConfigurationDataPointer + 0x10) = systemCounter;
   if (0 < iStack_188) {
-    ExecuteSystemCommand(param_2,systemCounter + iStack_188);
+    ExecuteSystemCommand(ConfigurationDataPointer,systemCounter + iStack_188);
                     // WARNING: Subroutine does not return
-    memcpy((ulong long)*(uint *)(param_2 + 0x10) + *(long long *)(ComparisonDataPointer + 8),uStack_190,
+    memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),uStack_190,
            (long long)(iStack_188 + 1));
   }
-  ExecuteSystemCommand(param_2,systemResult + 0xc);
-  *(void*2 *)((ulong long)*(uint *)(param_2 + 0x10) + *(long long *)(ComparisonDataPointer + 8)) = 10;
-  *(int *)(param_2 + 0x10) = systemResult + 0xc;
+  ExecuteSystemCommand(ConfigurationDataPointer,systemResult + 0xc);
+  *(void*2 *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8)) = 10;
+  *(int *)(ConfigurationDataPointer + 0x10) = systemResult + 0xc;
   puStack_198 = &SystemMemoryAllocatorReference;
   ppuStack_1a8 = &puStack_d8;
   puStack_d8 = &SystemMemoryAllocatorReference;
@@ -27719,13 +27731,13 @@ LAB_18005364c:
  * 资源管理的核心函数，确保资源节点的正确生命周期管理。
  * 
  * @param SystemResourcePointer 系统资源指针，指向系统资源数据结构
- * @param param_2 系统参数，包含资源操作的配置信息
- * @param param_3 操作参数，用于指定具体的操作类型
- * @param param_4 扩展参数，用于传递额外的操作选项
+ * @param ConfigurationDataPointer 系统参数，包含资源操作的配置信息
+ * @param AdditionalParameter 操作参数，用于指定具体的操作类型
+ * @param ConfigurationFlag 扩展参数，用于传递额外的操作选项
  * @return 操作结果状态码，成功返回0，失败返回非零值
  * @note 这是系统资源管理的关键函数，需要确保参数的正确性和内存安全
  */
-void* SystemResourceManagerNodeHandler(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void* SystemResourceManagerNodeHandler(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   char SystemNodeFlag;
@@ -27759,7 +27771,7 @@ void* SystemResourceManagerNodeHandler(void* SystemResourcePointer,void* param_2
   AllocationSize = 0;
   StackValue40 = 0;
   StackValue38 = 3;
-  FUN_180052200(SystemStatusFlagsPointer,&ResourcePointer1,param_3,param_4,0xfffffffffffffffe);
+  FUN_180052200(SystemStatusFlagsPointer,&ResourcePointer1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   ResourceEndPointer = ResourcePointer2;
   ResourceStartPointer = ResourcePointer1;
   ResourceCount = (long long)ResourcePointer2 - (long long)ResourcePointer1 >> 5;
@@ -27853,7 +27865,7 @@ LAB_18005419d:
 
 
 
-// 函数: void ConfigureSystemResource(long long *SystemResourcePointer,long long param_2)
+// 函数: void ConfigureSystemResource(long long *SystemResourcePointer,long long ConfigurationDataPointer)
 /**
  * @brief 系统资源数据处理函数
  * 
@@ -27861,10 +27873,10 @@ LAB_18005419d:
  * 设置系统参数，处理数据复制和验证操作，确保系统资源的正确初始化。
  * 
  * @param SystemResourcePointer 系统资源指针，包含系统配置和状态信息
- * @param param_2 处理参数，包含系统资源和处理标志
+ * @param ConfigurationDataPointer 处理参数，包含系统资源和处理标志
  * @note 这是系统初始化过程中的核心函数，用于建立系统资源的数据结构
  */
-void SystemResourceDataProcessor(long long *SystemResourcePointer,long long param_2)
+void SystemResourceDataProcessor(long long *SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   uint unsignedSystemValue1;
@@ -27940,8 +27952,8 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long para
   uStack_198 = 0;
   uStack_194 = 0;
   punsignedSystemValue5 = &SystemStringTemplate;
-  if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-    punsignedSystemValue5 = *(void* **)(param_2 + 8);
+  if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
+    punsignedSystemValue5 = *(void* **)(ConfigurationDataPointer + 8);
   }
   FUN_180627c50(&puStack_1c0,punsignedSystemValue5);
   uStack_1a0 = 0;
@@ -27974,10 +27986,10 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long para
   puStack_e8 = &UNK_1809fcc28;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
-  uStack_d8 = *(uint32_t *)(param_2 + 0x10);
+  uStack_d8 = *(uint32_t *)(ConfigurationDataPointer + 0x10);
   punsignedSystemValue5 = &SystemStringTemplate;
-  if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-    punsignedSystemValue5 = *(void* **)(param_2 + 8);
+  if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
+    punsignedSystemValue5 = *(void* **)(ConfigurationDataPointer + 8);
   }
   strcpy_s(auStack_d0,0x80,punsignedSystemValue5);
   FUN_18019e140(&puStack_190,&puStack_e8);
@@ -27987,7 +27999,7 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long para
   lStack_1d8 = 0;
   uStack_1d0 = 0;
   localSystemFlags = *SystemResourcePointer;
-  SetupSystemMemory(&puStack_168,param_2);
+  SetupSystemMemory(&puStack_168,ConfigurationDataPointer);
   systemResult = FUN_1801426a0(localSystemFlags,&puStack_168);
   puStack_168 = &SystemGlobalDataReference;
   if (lStack_160 != 0) {
@@ -28597,7 +28609,7 @@ void SystemResourceCleaner(long long *SystemResourcePointer)
 
 
 
-// 函数: void ConfigureSystemParameters(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ConfigureSystemParameters(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统资源处理器包装函数
  * 
@@ -28605,15 +28617,15 @@ void SystemResourceCleaner(long long *SystemResourcePointer)
  * 来执行具体的资源操作。它简化了资源处理的调用接口。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 处理参数2（未使用）
- * @param param_3 处理参数3
- * @param param_4 处理参数4
+ * @param ConfigurationDataPointer 处理参数2（未使用）
+ * @param AdditionalParameter 处理参数3
+ * @param ConfigurationFlag 处理参数4
  * @note 这是一个包装函数，用于简化系统资源处理的调用
  */
-void SystemResourceProcessorWrapper(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void SystemResourceProcessorWrapper(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_180058210(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058210(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -28719,7 +28731,7 @@ void SystemResourceResetter(long long SystemResourcePointer)
 
 
 
-// 函数: void ConfigureSystemComponents(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ConfigureSystemComponents(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统资源处理器函数
  * 
@@ -28727,15 +28739,15 @@ void SystemResourceResetter(long long SystemResourcePointer)
  * 来执行具体的资源管理任务。它提供了一个统一的资源处理接口。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 处理参数2（未使用）
- * @param param_3 处理参数3
- * @param param_4 处理参数4
+ * @param ConfigurationDataPointer 处理参数2（未使用）
+ * @param AdditionalParameter 处理参数3
+ * @param ConfigurationFlag 处理参数4
  * @note 这是系统资源管理的核心处理函数
  */
-void SystemResourceHandler(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void SystemResourceHandler(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_180058210(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058210(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -28790,7 +28802,7 @@ void SystemResourceCleaner(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180055f70(void* SystemResourcePointer,uint32_t param_2)
+// 函数: void FUN_180055f70(void* SystemResourcePointer,uint32_t ConfigurationDataPointer)
 /**
  * @brief 系统紧急退出处理器
  * 
@@ -29049,12 +29061,12 @@ LAB_180056228:
  * 和资源指针的操作。函数会根据传入的参数执行相应的资源管理操作。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数2，用于传递额外的配置信息
- * @param param_3 参数3，用于传递操作标志
- * @param param_4 参数4，用于传递错误处理参数
+ * @param ConfigurationDataPointer 参数2，用于传递额外的配置信息
+ * @param AdditionalParameter 参数3，用于传递操作标志
+ * @param ConfigurationFlag 参数4，用于传递错误处理参数
  * @note 该函数是系统资源管理的核心函数之一
  */
-void ManageSystemResourceData(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void ManageSystemResourceData(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   ulong long *pointerToUnsigned1;
@@ -29117,7 +29129,7 @@ void ManageSystemResourceData(long long SystemResourcePointer,void* param_2,void
   localResourcePointer = unsignedSystemValue4 - unsignedSystemValue5;
   localSystemFlags = localResourcePointer >> 3;
   if (localSystemFlags != 0) {
-    unsignedSystemValue3 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,localSystemFlags * 8,unsignedSystemValue7 & 0xff,param_4,unsignedSystemValue10,0,0,0,unsignedSystemValue7);
+    unsignedSystemValue3 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,localSystemFlags * 8,unsignedSystemValue7 & 0xff,ConfigurationFlag,unsignedSystemValue10,0,0,0,unsignedSystemValue7);
   }
   localSystemFlags = unsignedSystemValue3 + localSystemFlags * 8;
   if (unsignedSystemValue5 == unsignedSystemValue4) {
@@ -29133,7 +29145,7 @@ void ManageSystemResourceData(long long SystemResourcePointer,void* param_2,void
     SystemCleanupFunction();
   }
                     // WARNING: Subroutine does not return
-  memmove(unsignedSystemValue3,unsignedSystemValue5,localResourcePointer,param_4,unsignedSystemValue10,unsignedSystemValue3,localSystemFlags,localSystemFlags);
+  memmove(unsignedSystemValue3,unsignedSystemValue5,localResourcePointer,ConfigurationFlag,unsignedSystemValue10,unsignedSystemValue3,localSystemFlags,localSystemFlags);
 }
 
 
@@ -29219,21 +29231,21 @@ void InitializeSystemMemoryResource(long long *SystemResourcePointer)
  * 它会调用系统资源初始化处理器，并根据参数标志决定是否释放内存。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数标志，用于控制释放行为
- * @param param_3 释放参数
- * @param param_4 释放参数
+ * @param ConfigurationDataPointer 参数标志，用于控制释放行为
+ * @param AdditionalParameter 释放参数
+ * @param ConfigurationFlag 释放参数
  * @return 返回系统资源指针
  * @note 该函数用于管理系统资源的生命周期
  */
-void* ReleaseSystemResourceHandler(void* SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+void* ReleaseSystemResourceHandler(void* SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
   
   unsignedSystemValue1 = 0xfffffffffffffffe;
   InitializeSystemResourceHandler();
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0xd0,param_3,param_4,unsignedSystemValue1);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0xd0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue1);
   }
   return SystemResourcePointer;
 }
@@ -29395,12 +29407,12 @@ void ProcessSystemConfigurationParameters(long long SystemResourcePointer)
  * 函数会处理系统资源的内存分配，并根据参数执行相应的缓冲区操作。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数2，用于传递缓冲区配置信息
- * @param param_3 参数3，用于传递操作标志
- * @param param_4 参数4，用于传递错误处理参数
+ * @param ConfigurationDataPointer 参数2，用于传递缓冲区配置信息
+ * @param AdditionalParameter 参数3，用于传递操作标志
+ * @param ConfigurationFlag 参数4，用于传递错误处理参数
  * @note 该函数确保系统资源缓冲区的正确管理和使用
  */
-void ManageSystemResourceBuffer(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void ManageSystemResourceBuffer(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long localMemoryPointer;
@@ -29409,7 +29421,7 @@ void ManageSystemResourceBuffer(void* SystemResourcePointer,void* param_2,void* 
   void* *puStack_20;
   void* *puStack_18;
   
-  FUN_1800b4ec0(SystemResourcePointer,1,1,param_4,0xfffffffffffffffe);
+  FUN_1800b4ec0(SystemResourcePointer,1,1,ConfigurationFlag,0xfffffffffffffffe);
   if (_DAT_180c8f008 != (long long *)0x0) {
     cVar2 = (**(code **)(*_DAT_180c8f008 + 0x48))();
     if ((cVar2 != '\0') && (_DAT_180c8f008[2] != 0)) {
@@ -29450,11 +29462,11 @@ void ManageSystemResourceBuffer(void* SystemResourcePointer,void* param_2,void* 
  * 主要用于系统启动阶段的资源准备工作。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数指针数组
- * @param param_3 参数标志
+ * @param ConfigurationDataPointer 参数指针数组
+ * @param AdditionalParameter 参数标志
  * @note 这是系统初始化的核心函数，负责资源的分配和配置
  */
-void InitializeSystemResource(void* SystemResourcePointer,void* *param_2,uint32_t param_3)
+void InitializeSystemResource(void* SystemResourcePointer,void* *ConfigurationDataPointer,uint32_t AdditionalParameter)
 
 {
   void* unsignedSystemValue1;
@@ -29482,10 +29494,10 @@ void InitializeSystemResource(void* SystemResourcePointer,void* *param_2,uint32_
   uStack_f8 = 0;
   auStack_f0[0] = 0;
   uStack_70 = 0x17;
-  puStack_120 = param_2;
+  puStack_120 = ConfigurationDataPointer;
   unsignedSystemValue1 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,3);
-  uStack_58 = CreateSystemObject(unsignedSystemValue1,param_2);
-  uStack_50 = param_3;
+  uStack_58 = CreateSystemObject(unsignedSystemValue1,ConfigurationDataPointer);
+  uStack_50 = AdditionalParameter;
   unsignedSystemValue1 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x100,8,3);
   ppointerToUnsigned2 = (void* **)FUN_18005ce30(unsignedSystemValue1,&puStack_108);
   ppuStack_118 = ppointerToUnsigned2;
@@ -29504,14 +29516,14 @@ void InitializeSystemResource(void* SystemResourcePointer,void* *param_2,uint32_
   }
   pppuStack_130 = (void* ***)&puStack_108;
   puStack_108 = &SystemMemoryAllocatorReference;
-  *param_2 = &SystemGlobalDataReference;
-  if (param_2[1] != 0) {
+  *ConfigurationDataPointer = &SystemGlobalDataReference;
+  if (ConfigurationDataPointer[1] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  param_2[1] = 0;
-  *(uint32_t *)(param_2 + 3) = 0;
-  *param_2 = &SystemMemoryAllocatorReference;
+  ConfigurationDataPointer[1] = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 3) = 0;
+  *ConfigurationDataPointer = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
   ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_158);
 }
@@ -29643,21 +29655,21 @@ void* * InitializeSystemResourcePointerExtended(void* *SystemResourcePointer)
  * 它会处理资源的清理和重新链接，确保资源链表的完整性。
  * 
  * @param SystemResourcePointer 系统资源指针，指向资源链表的头节点
- * @param param_2 参数指针，包含要插入或删除的资源信息
+ * @param ConfigurationDataPointer 参数指针，包含要插入或删除的资源信息
  * @return 返回更新后的系统资源指针
  * 
  * @note 这是资源管理系统中的核心函数，用于维护资源链表结构
  */
-long long * SystemResourceManagerLink(long long *SystemResourcePointer,long long *param_2)
+long long * SystemResourceManagerLink(long long *SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
   
-  if (param_2 != (long long *)0x0) {
-    (**(code **)(*param_2 + 0x28))(param_2);
+  if (ConfigurationDataPointer != (long long *)0x0) {
+    (**(code **)(*ConfigurationDataPointer + 0x28))(ConfigurationDataPointer);
   }
   PrimaryResourcePointer = (long long *)*SystemResourcePointer;
-  *SystemResourcePointer = (long long)param_2;
+  *SystemResourcePointer = (long long)ConfigurationDataPointer;
   if (PrimaryResourcePointer != (long long *)0x0) {
     (**(code **)(*PrimaryResourcePointer + 0x38))();
   }
@@ -29674,18 +29686,18 @@ long long * SystemResourceManagerLink(long long *SystemResourcePointer,long long
  * 主要用于系统字符串的处理和配置工作。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数指针
+ * @param ConfigurationDataPointer 参数指针
  * @note 这是系统字符串处理的核心函数
  */
-void ProcessSystemString(long long SystemResourcePointer,long long param_2)
+void ProcessSystemString(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
   void* *pointerToUnsigned2;
   
   pointerToUnsigned2 = &SystemStringTemplate;
-  if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-    pointerToUnsigned2 = *(void* **)(param_2 + 8);
+  if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
+    pointerToUnsigned2 = *(void* **)(ConfigurationDataPointer + 8);
   }
   if (pointerToUnsigned2 == (void* *)0x0) {
     *(uint32_t *)(targetBuffer + 0x10) = 0;
@@ -29811,14 +29823,14 @@ void SystemResourceListInitializer(void)
  * 它会初始化内存分配器的基本结构，并根据需要配置字符串参数。
  * 
  * @param SystemResourcePointer 内存分配器指针的指针
- * @param param_2 配置字符串参数（可选）
- * @param param_3 保留参数
- * @param param_4 保留参数
+ * @param ConfigurationDataPointer 配置字符串参数（可选）
+ * @param AdditionalParameter 保留参数
+ * @param ConfigurationFlag 保留参数
  * @return 返回配置后的内存分配器指针
  * @note 这是系统内存管理的重要函数，用于初始化和配置内存分配器
  */
 void* *
-SystemMemoryAllocatorConfigurator(void* *SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+SystemMemoryAllocatorConfigurator(void* *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long stringLength;
@@ -29830,13 +29842,13 @@ SystemMemoryAllocatorConfigurator(void* *SystemResourcePointer,long long param_2
   SystemResourcePointer[1] = SystemResourcePointer + 3;
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
   *(uint8_t *)(SystemResourcePointer + 3) = 0;
-  if (param_2 != 0) {
+  if (ConfigurationDataPointer != 0) {
     stringLength = -1;
     do {
       stringLength = stringLength + 1;
-    } while (*(char *)(param_2 + stringLength) != '\0');
+    } while (*(char *)(ConfigurationDataPointer + stringLength) != '\0');
     *(int *)(SystemResourcePointer + 2) = (int)stringLength;
-    strcpy_s(SystemResourcePointer[1],0x10,param_2,param_4,0xfffffffffffffffe);
+    strcpy_s(SystemResourcePointer[1],0x10,ConfigurationDataPointer,ConfigurationFlag,0xfffffffffffffffe);
   }
   return SystemResourcePointer;
 }
@@ -29883,12 +29895,12 @@ void SystemResourceCallbackExecutor(long long *SystemResourcePointer)
  * 主要用于系统数据结构的设置和维护工作。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数2
- * @param param_3 参数3
- * @param param_4 参数4
+ * @param ConfigurationDataPointer 参数2
+ * @param AdditionalParameter 参数3
+ * @param ConfigurationFlag 参数4
  * @note 这是系统数据处理的核心函数
  */
-void ProcessSystemDataTable(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void ProcessSystemDataTable(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -29898,7 +29910,7 @@ void ProcessSystemDataTable(long long *SystemResourcePointer,void* param_2,void*
   unsignedSystemValue3 = 0xfffffffffffffffe;
   pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
   for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 0xb) {
-    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,param_3,param_4,unsignedSystemValue3);
+    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue3);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -29918,10 +29930,10 @@ void ProcessSystemDataTable(long long *SystemResourcePointer,void* param_2,void*
  * 主要用于系统资源数组的动态管理和内存分配。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数指针
+ * @param ConfigurationDataPointer 参数指针
  * @note 这是系统资源管理的核心函数，负责动态扩容
  */
-void ExpandSystemResourceArray(long long *SystemResourcePointer,uint32_t *param_2)
+void ExpandSystemResourceArray(long long *SystemResourcePointer,uint32_t *ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -29932,7 +29944,7 @@ void ExpandSystemResourceArray(long long *SystemResourcePointer,uint32_t *param_
   punsignedSystemValue4 = (uint32_t *)SystemResourcePointer[1];
   if (punsignedSystemValue4 < (uint32_t *)SystemResourcePointer[2]) {
     SystemResourcePointer[1] = (long long)(punsignedSystemValue4 + 1);
-    *punsignedSystemValue4 = *param_2;
+    *punsignedSystemValue4 = *ConfigurationDataPointer;
     return;
   }
   pointerToUnsigned3 = (uint32_t *)*SystemResourcePointer;
@@ -29955,7 +29967,7 @@ LAB_18005726e:
                     // WARNING: Subroutine does not return
     memmove(pointerToUnsigned2,pointerToUnsigned3,(long long)punsignedSystemValue4 - (long long)pointerToUnsigned3);
   }
-  *pointerToUnsigned2 = *param_2;
+  *pointerToUnsigned2 = *ConfigurationDataPointer;
   if (*SystemResourcePointer != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
@@ -30046,9 +30058,9 @@ void SystemNodeInitializer(void)
 
 
 
-// 函数: void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long param_2)
+// 函数: void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long ConfigurationDataPointer)
 // 功能: 调整系统内存池大小，处理内存分配和重新分配
-void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long param_2)
+void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -30061,11 +30073,11 @@ void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long param_2)
   localSystemPointer = SystemResourcePointer[1];
   localSystemFlags = *SystemResourcePointer;
   unsignedSystemValue2 = localSystemPointer - localSystemFlags >> 3;
-  if (param_2 <= unsignedSystemValue2) {
-    SystemResourcePointer[1] = localSystemFlags + param_2 * 8;
+  if (ConfigurationDataPointer <= unsignedSystemValue2) {
+    SystemResourcePointer[1] = localSystemFlags + ConfigurationDataPointer * 8;
     return;
   }
-  unsignedSystemValue4 = param_2 - unsignedSystemValue2;
+  unsignedSystemValue4 = ConfigurationDataPointer - unsignedSystemValue2;
   if (unsignedSystemValue4 <= (ulong long)(SystemResourcePointer[2] - localSystemPointer >> 3)) {
     if (unsignedSystemValue4 != 0) {
                     // WARNING: Subroutine does not return
@@ -30078,8 +30090,8 @@ void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long param_2)
   if (unsignedSystemValue2 == 0) {
     unsignedSystemValue3 = 1;
   }
-  if (unsignedSystemValue3 < param_2) {
-    unsignedSystemValue3 = param_2;
+  if (unsignedSystemValue3 < ConfigurationDataPointer) {
+    unsignedSystemValue3 = ConfigurationDataPointer;
   }
   if (unsignedSystemValue3 == 0) {
     localMemoryPointer = 0;
@@ -30111,9 +30123,9 @@ void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long param_2)
 
 
 
-// 函数: void AllocateSystemMemoryBlock(long long SystemResourcePointer,ulong long param_2,void* param_3,long long param_4)
+// 函数: void AllocateSystemMemoryBlock(long long SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,long long ConfigurationFlag)
 // 功能: 分配系统内存块，处理内存分配和初始化
-void AllocateSystemMemoryBlock(long long SystemResourcePointer,ulong long param_2,void* param_3,long long param_4)
+void AllocateSystemMemoryBlock(long long SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,long long ConfigurationFlag)
 
 {
   long long in_RAX;
@@ -30123,7 +30135,7 @@ void AllocateSystemMemoryBlock(long long SystemResourcePointer,ulong long param_
   ulong long unsignedSystemValue3;
   long long unaff_RDI;
   
-  unsignedSystemValue3 = param_2 - SystemResourcePointer;
+  unsignedSystemValue3 = ConfigurationDataPointer - SystemResourcePointer;
   if (unsignedSystemValue3 <= (ulong long)(in_RAX - unaff_RDI >> 3)) {
     if (unsignedSystemValue3 != 0) {
                     // WARNING: Subroutine does not return
@@ -30136,20 +30148,20 @@ void AllocateSystemMemoryBlock(long long SystemResourcePointer,ulong long param_
   if (SystemResourcePointer == 0) {
     unsignedSystemValue2 = 1;
   }
-  if (unsignedSystemValue2 < param_2) {
-    unsignedSystemValue2 = param_2;
+  if (unsignedSystemValue2 < ConfigurationDataPointer) {
+    unsignedSystemValue2 = ConfigurationDataPointer;
   }
   if (unsignedSystemValue2 == 0) {
     localMemoryPointer = 0;
   }
   else {
     localMemoryPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue2 * 8,(char)unaff_RBX[3]);
-    param_4 = *unaff_RBX;
+    ConfigurationFlag = *unaff_RBX;
     unaff_RDI = unaff_RBX[1];
   }
-  if (param_4 != unaff_RDI) {
+  if (ConfigurationFlag != unaff_RDI) {
                     // WARNING: Subroutine does not return
-    memmove(localMemoryPointer,param_4,unaff_RDI - param_4);
+    memmove(localMemoryPointer,ConfigurationFlag,unaff_RDI - ConfigurationFlag);
   }
   if (unsignedSystemValue3 != 0) {
                     // WARNING: Subroutine does not return
@@ -30195,26 +30207,26 @@ void SystemMemoryZeroer(void)
 
 
 
-// 函数: void UpdateSystemMemoryPointer(void* SystemResourcePointer,long long param_2,void* param_3,long long param_4)
+// 函数: void UpdateSystemMemoryPointer(void* SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,long long ConfigurationFlag)
 // 功能: 更新系统内存指针，计算新的内存地址
-void UpdateSystemMemoryPointer(void* SystemResourcePointer,long long param_2,void* param_3,long long param_4)
+void UpdateSystemMemoryPointer(void* SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,long long ConfigurationFlag)
 
 {
   long long unaff_RBX;
   
-  *(long long *)(unaff_RBX + 8) = param_4 + param_2 * 8;
+  *(long long *)(unaff_RBX + 8) = ConfigurationFlag + ConfigurationDataPointer * 8;
   return;
 }
 
 
 
 
-// 函数: void ProcessSystemResourceOperation(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ProcessSystemResourceOperation(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 // 功能: 处理系统资源操作，调用相关的系统资源处理函数
-void ProcessSystemResourceOperation(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void ProcessSystemResourceOperation(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_180058210(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058210(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -30250,15 +30262,15 @@ void CleanupSystemResources(long long *SystemResourcePointer)
  * 它会传递系统资源指针和相关参数给处理函数。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 处理参数
- * @param param_3 处理参数
- * @param param_4 处理参数
+ * @param ConfigurationDataPointer 处理参数
+ * @param AdditionalParameter 处理参数
+ * @param ConfigurationFlag 处理参数
  * @note 这是系统资源管理的核心处理函数
  */
-void ProcessSystemResource(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void ProcessSystemResource(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_1800582b0(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_1800582b0(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -30272,15 +30284,15 @@ void ProcessSystemResource(long long SystemResourcePointer,void* param_2,void* p
  * 它会传递系统资源指针和相关参数给内存块处理函数。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 处理参数
- * @param param_3 处理参数
- * @param param_4 处理参数
+ * @param ConfigurationDataPointer 处理参数
+ * @param AdditionalParameter 处理参数
+ * @param ConfigurationFlag 处理参数
  * @note 这是系统内存管理的核心处理函数
  */
-void ProcessSystemMemoryBlock(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void ProcessSystemMemoryBlock(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  ProcessMemoryBlock(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  ProcessMemoryBlock(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -30557,7 +30569,7 @@ void InitializeSystemResourceAllocator(void)
 
 
 
-// 函数: void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统资源处理委托函数
  * 
@@ -30565,24 +30577,24 @@ void InitializeSystemResourceAllocator(void)
  * 来执行具体的资源管理任务。它提供了一个统一的资源处理接口。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 处理参数2（未使用）
- * @param param_3 处理参数3
- * @param param_4 处理参数4
+ * @param ConfigurationDataPointer 处理参数2（未使用）
+ * @param AdditionalParameter 处理参数3
+ * @param ConfigurationFlag 处理参数4
  * @note 这是系统资源管理的委托处理函数
  */
-void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
  */
-void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  ReleaseMemoryRegion(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  ReleaseMemoryRegion(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_180057610(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180057610(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 资源数组清理处理函数
  * 
@@ -30590,12 +30602,12 @@ void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* param_2
  * 主要用于批量处理资源的清理操作，确保所有资源都被正确释放。
  * 
  * @param SystemResourcePointer 系统资源指针，包含资源数组信息
- * @param param_2 保留参数，当前未使用
- * @param param_3 传递给资源清理函数的参数
- * @param param_4 传递给资源清理函数的参数
+ * @param ConfigurationDataPointer 保留参数，当前未使用
+ * @param AdditionalParameter 传递给资源清理函数的参数
+ * @param ConfigurationFlag 传递给资源清理函数的参数
  * @note 这是资源批量清理的核心函数
  */
-void ProcessResourceArrayCleanup(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void ProcessResourceArrayCleanup(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -30605,7 +30617,7 @@ void ProcessResourceArrayCleanup(long long *SystemResourcePointer,void* param_2,
   unsignedSystemValue3 = 0xfffffffffffffffe;
   pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
   for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 0x69) {
-    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,param_3,param_4,unsignedSystemValue3);
+    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue3);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -31078,12 +31090,12 @@ void DestroyRenderingSystem(void)
  * 分配和管理。用于系统字符串操作的核心功能。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数2，用于传递字符串处理的相关数据
- * @param param_3 参数3，字符串数据源
- * @param param_4 参数4，字符串处理标志
+ * @param ConfigurationDataPointer 参数2，用于传递字符串处理的相关数据
+ * @param AdditionalParameter 参数3，字符串数据源
+ * @param ConfigurationFlag 参数4，字符串处理标志
  * @note 这是字符串处理系统的核心函数
  */
-void ProcessSystemStringData(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+void ProcessSystemStringData(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   char SystemNodeFlag;
@@ -31102,20 +31114,20 @@ void ProcessSystemStringData(long long SystemResourcePointer,long long param_2,v
   pcVar4 = pcVar3;
   if (cVar1 != '\0') {
     do {
-      localSystemHandle = strchr(param_3,(int)cVar1);
+      localSystemHandle = strchr(AdditionalParameter,(int)cVar1);
       if ((localSystemHandle != 0) && (pcVar4 != pcVar3)) {
         puStack_50 = &SystemGlobalDataReference;
         uStack_38 = 0;
         lStack_48 = 0;
         uStack_40 = 0;
-        FUN_180628210(&puStack_50,pcVar4,(int)pcVar3 - (int)pcVar4,param_4,unsignedSystemValue5);
+        FUN_180628210(&puStack_50,pcVar4,(int)pcVar3 - (int)pcVar4,ConfigurationFlag,unsignedSystemValue5);
         pcVar4 = pcVar3 + 1;
-        if (*(ulong long *)(param_2 + 8) < *(ulong long *)(param_2 + 0x10)) {
-          *(ulong long *)(param_2 + 8) = *(ulong long *)(param_2 + 8) + 0x20;
+        if (*(ulong long *)(ConfigurationDataPointer + 8) < *(ulong long *)(ConfigurationDataPointer + 0x10)) {
+          *(ulong long *)(ConfigurationDataPointer + 8) = *(ulong long *)(ConfigurationDataPointer + 8) + 0x20;
           InitializeSystemMemoryAllocator();
         }
         else {
-          FUN_180059820(param_2,&puStack_50);
+          FUN_180059820(ConfigurationDataPointer,&puStack_50);
         }
         puStack_50 = &SystemGlobalDataReference;
         if (lStack_48 != 0) {
@@ -31134,13 +31146,13 @@ void ProcessSystemStringData(long long SystemResourcePointer,long long param_2,v
       uStack_38 = 0;
       lStack_48 = 0;
       uStack_40 = 0;
-      FUN_180628210(&puStack_50,pcVar4,(int)pcVar3 - (int)pcVar4,param_4,unsignedSystemValue5);
-      if (*(ulong long *)(param_2 + 8) < *(ulong long *)(param_2 + 0x10)) {
-        *(ulong long *)(param_2 + 8) = *(ulong long *)(param_2 + 8) + 0x20;
+      FUN_180628210(&puStack_50,pcVar4,(int)pcVar3 - (int)pcVar4,ConfigurationFlag,unsignedSystemValue5);
+      if (*(ulong long *)(ConfigurationDataPointer + 8) < *(ulong long *)(ConfigurationDataPointer + 0x10)) {
+        *(ulong long *)(ConfigurationDataPointer + 8) = *(ulong long *)(ConfigurationDataPointer + 8) + 0x20;
         InitializeSystemMemoryAllocator();
       }
       else {
-        FUN_180059820(param_2,&puStack_50);
+        FUN_180059820(ConfigurationDataPointer,&puStack_50);
       }
       puStack_50 = &SystemGlobalDataReference;
       if (lStack_48 != 0) {
@@ -31155,7 +31167,7 @@ void ProcessSystemStringData(long long SystemResourcePointer,long long param_2,v
 
 
 
-long long * FUN_180057b00(long long SystemResourcePointer,long long *param_2,void* param_3)
+long long * FUN_180057b00(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter)
 
 {
   byte bVar1;
@@ -31168,13 +31180,13 @@ long long * FUN_180057b00(long long SystemResourcePointer,long long *param_2,voi
   char acStackX_8 [8];
   
   localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x40,*(uint8_t *)(SystemResourcePointer + 0x28));
-  CreateSystemObject(localResourceOffset + 0x20,param_3);
+  CreateSystemObject(localResourceOffset + 0x20,AdditionalParameter);
   localBufferAddress = SystemResourceAllocator(SystemResourcePointer,acStackX_8,localResourceOffset + 0x20);
   if (acStackX_8[0] == '\0') {
     ProcessExtraOutputResource();
-    *param_2 = localBufferAddress;
-    *(uint8_t *)(param_2 + 1) = 0;
-    return param_2;
+    *ConfigurationDataPointer = localBufferAddress;
+    *(uint8_t *)(ConfigurationDataPointer + 1) = 0;
+    return ConfigurationDataPointer;
   }
   if (localBufferAddress != SystemResourcePointer) {
     if (*(int *)(localBufferAddress + 0x30) == 0) {
@@ -31252,17 +31264,17 @@ void CleanupSystemResourceHandler(void* *SystemResourcePointer)
  * 数据表和相关配置。用于系统资源管理的前期准备工作。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数2，初始化标志
- * @param param_3 参数3，初始化数据源
- * @param param_4 参数4，初始化配置
+ * @param ConfigurationDataPointer 参数2，初始化标志
+ * @param AdditionalParameter 参数3，初始化数据源
+ * @param ConfigurationFlag 参数4，初始化配置
  * @return 返回初始化后的系统资源处理器指针
  * @note 这是资源管理系统的初始化函数
  */
-void* * InitializeSystemResourceHandler(void* *SystemResourcePointer,uint param_2,void* param_3,void* param_4)
+void* * InitializeSystemResourceHandler(void* *SystemResourcePointer,uint ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *SystemResourcePointer = &UNK_180a08db0;
-  FUN_18005e570(SystemAllocationFlagsTemplate,SystemResourcePointer[0x28],param_3,param_4,0xfffffffffffffffe);
+  FUN_18005e570(SystemAllocationFlagsTemplate,SystemResourcePointer[0x28],AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   SystemResourcePointer[0x28] = 0;
   SystemResourcePointer[0x29] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x2a] != 0) {
@@ -31273,7 +31285,7 @@ void* * InitializeSystemResourceHandler(void* *SystemResourcePointer,uint param_
   *(uint32_t *)(SystemResourcePointer + 0x2c) = 0;
   SystemResourcePointer[0x29] = &SystemMemoryAllocatorReference;
   FUN_180174950();
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x170);
   }
   return SystemResourcePointer;
@@ -31282,8 +31294,8 @@ void* * InitializeSystemResourceHandler(void* *SystemResourcePointer,uint param_
 
 
 
-// 函数: void ProcessSystemResourceData(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void ProcessSystemResourceData(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ProcessSystemResourceData(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ProcessSystemResourceData(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -31301,7 +31313,7 @@ void ProcessSystemResourceData(long long *SystemResourcePointer,void* param_2,vo
   SystemResourcePointer[0x124] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x126) = 0;
   SystemResourcePointer[0x123] = (long long)&SystemMemoryAllocatorReference;
-  ProcessMemoryBlock(SystemResourcePointer + 0x11d,SystemResourcePointer[0x11f],param_3,param_4,unsignedSystemValue3);
+  ProcessMemoryBlock(SystemResourcePointer + 0x11d,SystemResourcePointer[0x11f],AdditionalParameter,ConfigurationFlag,unsignedSystemValue3);
   if (SystemResourcePointer[0x119] == 0) {
     FUN_18005d580();
     FUN_18005d580();
@@ -31311,7 +31323,7 @@ void ProcessSystemResourceData(long long *SystemResourcePointer,void* param_2,vo
     unsignedSystemValue3 = 0xfffffffffffffffe;
     pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
     for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 4) {
-      (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,param_3,param_4,unsignedSystemValue3);
+      (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue3);
     }
     if (*SystemResourcePointer == 0) {
       return;
@@ -31326,26 +31338,38 @@ void ProcessSystemResourceData(long long *SystemResourcePointer,void* param_2,vo
 
 
 
-// 函数: void FUN_180057e90(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180057e90(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180057e90(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源初始化器函数
+ * 
+ * 该函数负责初始化系统资源，配置资源参数并设置初始化标志。
+ * 它会调用资源初始化子函数，确保资源被正确初始化。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源的基本信息
+ * @param ConfigurationDataPointer 配置数据指针，包含资源的配置信息
+ * @param AdditionalParameter 保留参数，用于扩展功能
+ * @param ConfigurationFlag 保留参数，用于扩展功能
+ * @note 这是系统资源管理的重要组成部分，用于确保资源的正确初始化
+ */
+void InitializeSystemResource(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_180058710(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058710(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void ReleaseSystemResourcePointer(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void ReleaseSystemResourcePointer(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ReleaseSystemResourcePointer(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ReleaseSystemResourcePointer(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
   
   pointerToUnsigned1 = *(void* **)(SystemResourcePointer + 0x10);
   if (pointerToUnsigned1 != (void* *)0x0) {
-    FUN_1800587d0(SystemResourcePointer,*pointerToUnsigned1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800587d0(SystemResourcePointer,*pointerToUnsigned1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
     FUN_18005cb60(pointerToUnsigned1);
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(pointerToUnsigned1);
@@ -31356,26 +31380,26 @@ void ReleaseSystemResourcePointer(long long SystemResourcePointer,void* param_2,
 
 
 
-// 函数: void InitializeSystemResourceStream(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void InitializeSystemResourceStream(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void InitializeSystemResourceStream(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void InitializeSystemResourceStream(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_180058710(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058710(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void CleanupSystemResourceStream(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void CleanupSystemResourceStream(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void CleanupSystemResourceStream(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void CleanupSystemResourceStream(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
   
   pointerToUnsigned1 = *(void* **)(SystemResourcePointer + 0x10);
   if (pointerToUnsigned1 != (void* *)0x0) {
-    FUN_1800587d0(SystemResourcePointer,*pointerToUnsigned1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800587d0(SystemResourcePointer,*pointerToUnsigned1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
     FUN_18005cb60(pointerToUnsigned1);
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(pointerToUnsigned1);
@@ -31426,26 +31450,26 @@ void FinalizeSystemResourceCleanup(long long *SystemResourcePointer)
 
 
 
-// 函数: void ProcessSystemMemoryAllocation(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void ProcessSystemMemoryAllocation(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ProcessSystemMemoryAllocation(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ProcessSystemMemoryAllocation(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_180058710(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058710(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void ReleaseSystemMemoryAllocation(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void ReleaseSystemMemoryAllocation(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ReleaseSystemMemoryAllocation(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ReleaseSystemMemoryAllocation(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
   
   pointerToUnsigned1 = *(void* **)(SystemResourcePointer + 0x10);
   if (pointerToUnsigned1 != (void* *)0x0) {
-    FUN_1800587d0(SystemResourcePointer,*pointerToUnsigned1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800587d0(SystemResourcePointer,*pointerToUnsigned1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
     FUN_18005cb60(pointerToUnsigned1);
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(pointerToUnsigned1);
@@ -31455,7 +31479,7 @@ void ReleaseSystemMemoryAllocation(long long SystemResourcePointer,void* param_2
 
 
 
-void* * FUN_180058080(void* *SystemResourcePointer,void* *param_2,long long param_3)
+void* * FUN_180058080(void* *SystemResourcePointer,void* *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   byte bVar1;
@@ -31473,7 +31497,7 @@ void* * FUN_180058080(void* *SystemResourcePointer,void* *param_2,long long para
     SystemPreviousNode = (void* *)SystemResourcePointer[2];
     pointerToUnsigned10 = SystemResourcePointer;
     do {
-      if (*(int *)(param_3 + 0x10) == 0) {
+      if (*(int *)(AdditionalParameter + 0x10) == 0) {
         punsignedSystemValue8 = (void* *)SystemPreviousNode[1];
         bVar2 = false;
       }
@@ -31482,7 +31506,7 @@ void* * FUN_180058080(void* *SystemResourcePointer,void* *param_2,long long para
           bVar2 = true;
         }
         else {
-          pbVar3 = *(byte **)(param_3 + 8);
+          pbVar3 = *(byte **)(AdditionalParameter + 8);
           localSystemFlags = SystemPreviousNode[5] - (long long)pbVar3;
           do {
             unsignedSystemValue4 = (uint)pbVar3[localSystemFlags];
@@ -31509,12 +31533,12 @@ LAB_1800580f9:
     if (punsignedSystemValue9 != SystemResourcePointer) {
       if (*(int *)(punsignedSystemValue9 + 6) == 0) {
 LAB_180058138:
-        *param_2 = punsignedSystemValue9;
-        return param_2;
+        *ConfigurationDataPointer = punsignedSystemValue9;
+        return ConfigurationDataPointer;
       }
-      if (*(int *)(param_3 + 0x10) != 0) {
+      if (*(int *)(AdditionalParameter + 0x10) != 0) {
         pbVar3 = (byte *)punsignedSystemValue9[5];
-        localSystemFlags = *(long long *)(param_3 + 8) - (long long)pbVar3;
+        localSystemFlags = *(long long *)(AdditionalParameter + 8) - (long long)pbVar3;
         do {
           bVar1 = *pbVar3;
           unsignedSystemValue4 = (uint)pbVar3[localSystemFlags];
@@ -31525,8 +31549,8 @@ LAB_180058138:
       }
     }
   }
-  *param_2 = SystemResourcePointer;
-  return param_2;
+  *ConfigurationDataPointer = SystemResourcePointer;
+  return ConfigurationDataPointer;
 }
 
 
@@ -31586,18 +31610,18 @@ void InitializeSystemResourceManager(ulong long *SystemResourcePointer)
 
 
 
-// 函数: void ProcessSystemResourceDataTransfer(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
-void ProcessSystemResourceDataTransfer(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+// 函数: void ProcessSystemResourceDataTransfer(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ProcessSystemResourceDataTransfer(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  if (param_2 != (void* *)0x0) {
-    FUN_180058210(SystemResourcePointer,*param_2,param_3,param_4,0xfffffffffffffffe);
-    if ((long long *)param_2[0x17] != (long long *)0x0) {
-      (**(code **)(*(long long *)param_2[0x17] + 0x38))();
+  if (ConfigurationDataPointer != (void* *)0x0) {
+    FUN_180058210(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+    if ((long long *)ConfigurationDataPointer[0x17] != (long long *)0x0) {
+      (**(code **)(*(long long *)ConfigurationDataPointer[0x17] + 0x38))();
     }
-    param_2[4] = &SystemMemoryAllocatorReference;
+    ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-    SystemCleanupFunction(param_2);
+    SystemCleanupFunction(ConfigurationDataPointer);
   }
   return;
 }
@@ -31605,83 +31629,95 @@ void ProcessSystemResourceDataTransfer(void* SystemResourcePointer,void* *param_
 
 
 
-// 函数: void FUN_1800582b0(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
-void FUN_1800582b0(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+// 函数: void FUN_1800582b0(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统配置数据处理函数
+ * 
+ * 该函数负责处理系统配置数据，包括配置验证、数据清理和资源释放。
+ * 它会递归处理配置数据，确保所有相关资源都被正确处理。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含系统资源的基本信息
+ * @param ConfigurationDataPointer 配置数据指针数组，包含系统的配置信息
+ * @param AdditionalParameter 保留参数，用于扩展功能
+ * @param ConfigurationFlag 保留参数，用于扩展功能
+ * @note 这是系统配置管理的重要组成部分，用于确保配置数据的正确处理
+ */
+void ProcessSystemConfigurationData(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  if (param_2 == (void* *)0x0) {
+  if (ConfigurationDataPointer == (void* *)0x0) {
     return;
   }
-  FUN_1800582b0(SystemResourcePointer,*param_2,param_3,param_4,0xfffffffffffffffe);
-  FUN_180058db0(param_2 + 8);
-  param_2[4] = &SystemGlobalDataReference;
-  if (param_2[5] != 0) {
+  FUN_1800582b0(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  FUN_180058db0(ConfigurationDataPointer + 8);
+  ConfigurationDataPointer[4] = &SystemGlobalDataReference;
+  if (ConfigurationDataPointer[5] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  param_2[5] = 0;
-  *(uint32_t *)(param_2 + 7) = 0;
-  param_2[4] = &SystemMemoryAllocatorReference;
+  ConfigurationDataPointer[5] = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
+  ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  SystemCleanupFunction(param_2);
+  SystemCleanupFunction(ConfigurationDataPointer);
 }
 
 
 
 
-// 函数: void ProcessMemoryBlock(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
-void ProcessMemoryBlock(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+// 函数: void ProcessMemoryBlock(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ProcessMemoryBlock(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  if (param_2 == (void* *)0x0) {
+  if (ConfigurationDataPointer == (void* *)0x0) {
     return;
   }
-  ProcessMemoryBlock(SystemResourcePointer,*param_2,param_3,param_4,0xfffffffffffffffe);
-  param_2[4] = &SystemGlobalDataReference;
-  if (param_2[5] != 0) {
+  ProcessMemoryBlock(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ConfigurationDataPointer[4] = &SystemGlobalDataReference;
+  if (ConfigurationDataPointer[5] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  param_2[5] = 0;
-  *(uint32_t *)(param_2 + 7) = 0;
-  param_2[4] = &SystemMemoryAllocatorReference;
+  ConfigurationDataPointer[5] = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
+  ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  SystemCleanupFunction(param_2);
+  SystemCleanupFunction(ConfigurationDataPointer);
 }
 
 
 
 
-// 函数: void ReleaseMemoryRegion(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
-void ReleaseMemoryRegion(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+// 函数: void ReleaseMemoryRegion(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ReleaseMemoryRegion(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  if (param_2 == (void* *)0x0) {
+  if (ConfigurationDataPointer == (void* *)0x0) {
     return;
   }
-  ReleaseMemoryRegion(SystemResourcePointer,*param_2,param_3,param_4,0xfffffffffffffffe);
-  if (param_2[8] != 0) {
+  ReleaseMemoryRegion(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  if (ConfigurationDataPointer[8] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  param_2[4] = &SystemGlobalDataReference;
-  if (param_2[5] != 0) {
+  ConfigurationDataPointer[4] = &SystemGlobalDataReference;
+  if (ConfigurationDataPointer[5] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  param_2[5] = 0;
-  *(uint32_t *)(param_2 + 7) = 0;
-  param_2[4] = &SystemMemoryAllocatorReference;
+  ConfigurationDataPointer[5] = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
+  ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  SystemCleanupFunction(param_2);
+  SystemCleanupFunction(ConfigurationDataPointer);
 }
 
 
 
 
 
-// 函数: void ProcessSystemResourceAllocation(void* *SystemResourcePointer,long long param_2)
-void ProcessSystemResourceAllocation(void* *SystemResourcePointer,long long param_2)
+// 函数: void ProcessSystemResourceAllocation(void* *SystemResourcePointer,long long ConfigurationDataPointer)
+void ProcessSystemResourceAllocation(void* *SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   void* *pointerToUnsigned1;
@@ -31741,14 +31777,14 @@ LAB_18005856a:
   pointerToUnsigned3[3] = 0;
   pointerToUnsigned3[1] = 0;
   *(uint32_t *)(pointerToUnsigned3 + 2) = 0;
-  *(uint32_t *)(pointerToUnsigned3 + 2) = *(uint32_t *)(param_2 + 0x10);
-  pointerToUnsigned3[1] = *(void* *)(param_2 + 8);
-  *(uint32_t *)((long long)pointerToUnsigned3 + 0x1c) = *(uint32_t *)(param_2 + 0x1c);
-  *(uint32_t *)(pointerToUnsigned3 + 3) = *(uint32_t *)(param_2 + 0x18);
-  *(uint32_t *)(param_2 + 0x10) = 0;
-  *(void* *)(param_2 + 8) = 0;
-  *(void* *)(param_2 + 0x18) = 0;
-  *(uint32_t *)(pointerToUnsigned3 + 4) = *(uint32_t *)(param_2 + 0x20);
+  *(uint32_t *)(pointerToUnsigned3 + 2) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
+  pointerToUnsigned3[1] = *(void* *)(ConfigurationDataPointer + 8);
+  *(uint32_t *)((long long)pointerToUnsigned3 + 0x1c) = *(uint32_t *)(ConfigurationDataPointer + 0x1c);
+  *(uint32_t *)(pointerToUnsigned3 + 3) = *(uint32_t *)(ConfigurationDataPointer + 0x18);
+  *(uint32_t *)(ConfigurationDataPointer + 0x10) = 0;
+  *(void* *)(ConfigurationDataPointer + 8) = 0;
+  *(void* *)(ConfigurationDataPointer + 0x18) = 0;
+  *(uint32_t *)(pointerToUnsigned3 + 4) = *(uint32_t *)(ConfigurationDataPointer + 0x20);
   SystemPreviousNode = (void* *)SystemResourcePointer[1];
   punsignedSystemValue4 = (void* *)*SystemResourcePointer;
   if (punsignedSystemValue4 != SystemPreviousNode) {
@@ -31779,7 +31815,16 @@ LAB_18005856a:
 
 
 // 函数: void FUN_1800586e0(long long SystemResourcePointer)
-void FUN_1800586e0(long long SystemResourcePointer)
+/**
+ * @brief 系统资源验证器函数
+ * 
+ * 该函数负责验证系统资源的完整性和有效性。
+ * 它会检查资源指针的有效性，并调用相应的验证函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含需要验证的资源信息
+ * @note 这是系统资源管理的重要组成部分，用于确保资源的有效性
+ */
+void ValidateSystemResource(long long SystemResourcePointer)
 
 {
   if (*(long long **)(SystemResourcePointer + 0x10) != (long long *)0x0) {
@@ -31791,42 +31836,64 @@ void FUN_1800586e0(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180058710(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
-void FUN_180058710(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+// 函数: void FUN_180058710(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源扩展处理器函数
+ * 
+ * 该函数负责处理系统资源的扩展操作，包括配置数据处理和资源管理。
+ * 它会递归处理配置数据，并确保资源被正确初始化和配置。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含系统资源的基本信息
+ * @param ConfigurationDataPointer 配置数据指针数组，包含系统的配置信息
+ * @param AdditionalParameter 额外参数，用于扩展功能
+ * @param ConfigurationFlag 配置标志，用于控制配置行为
+ * @note 这是系统资源管理的重要组成部分，用于处理资源的扩展操作
+ */
+void ProcessSystemResourceExtension(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  if (param_2 == (void* *)0x0) {
+  if (ConfigurationDataPointer == (void* *)0x0) {
     return;
   }
-  FUN_180058710(SystemResourcePointer,*param_2,param_3,param_4,0xfffffffffffffffe);
-  if (param_2[8] != 0) {
+  FUN_180058710(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  if (ConfigurationDataPointer[8] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  param_2[4] = &SystemGlobalDataReference;
-  if (param_2[5] != 0) {
+  ConfigurationDataPointer[4] = &SystemGlobalDataReference;
+  if (ConfigurationDataPointer[5] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  param_2[5] = 0;
-  *(uint32_t *)(param_2 + 7) = 0;
-  param_2[4] = &SystemMemoryAllocatorReference;
+  ConfigurationDataPointer[5] = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
+  ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  SystemCleanupFunction(param_2);
+  SystemCleanupFunction(ConfigurationDataPointer);
 }
 
 
 
 
-// 函数: void FUN_1800587d0(void* SystemResourcePointer,void* *param_2)
-void FUN_1800587d0(void* SystemResourcePointer,void* *param_2)
+// 函数: void FUN_1800587d0(void* SystemResourcePointer,void* *ConfigurationDataPointer)
+/**
+ * @brief 系统配置数据清理器函数
+ * 
+ * 该函数负责清理系统配置数据，递归处理配置数据指针数组。
+ * 它会释放配置数据占用的内存，确保系统资源被正确清理。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含系统资源的基本信息
+ * @param ConfigurationDataPointer 配置数据指针数组，包含需要清理的配置信息
+ * @note 这是系统配置管理的重要组成部分，用于确保配置数据的正确清理
+ */
+void CleanupSystemConfigurationData(void* SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
-  if (param_2 != (void* *)0x0) {
-    FUN_1800587d0(SystemResourcePointer,*param_2);
-    FUN_18005cb60(param_2);
+  if (ConfigurationDataPointer != (void* *)0x0) {
+    CleanupSystemConfigurationData(SystemResourcePointer,*ConfigurationDataPointer);
+    FUN_18005cb60(ConfigurationDataPointer);
                     // WARNING: Subroutine does not return
-    SystemCleanupFunction(param_2);
+    SystemCleanupFunction(ConfigurationDataPointer);
   }
   return;
 }
@@ -31835,7 +31902,16 @@ void FUN_1800587d0(void* SystemResourcePointer,void* *param_2)
 
 
 // 函数: void FUN_1800587e2(void* SystemResourcePointer)
-void FUN_1800587e2(void* SystemResourcePointer)
+/**
+ * @brief 系统资源最终清理器函数
+ * 
+ * 该函数负责系统资源的最终清理操作，包括配置数据的清理和内存释放。
+ * 它会调用配置数据清理函数，确保所有相关资源都被正确释放。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含需要清理的资源信息
+ * @note 这是系统资源管理的最后清理步骤，用于确保资源的完全释放
+ */
+void FinalCleanupSystemResource(void* SystemResourcePointer)
 
 {
   void* *unaff_RBX;
@@ -31871,26 +31947,26 @@ void SystemNullOperation(void)
  * 在初始化过程中会检查资源状态，如果发现异常则调用清理函数。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 资源参数指针
+ * @param ConfigurationDataPointer 资源参数指针
  */
-void SystemResourceInitializer(void* SystemResourcePointer,long long param_2)
+void SystemResourceInitializer(void* SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
-  if (*(long long *)(param_2 + 0x40) != 0) {
+  if (*(long long *)(ConfigurationDataPointer + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  *(void* *)(param_2 + 0x20) = &SystemGlobalDataReference;
-  if (*(long long *)(param_2 + 0x28) != 0) {
+  *(void* *)(ConfigurationDataPointer + 0x20) = &SystemGlobalDataReference;
+  if (*(long long *)(ConfigurationDataPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  *(void* *)(param_2 + 0x28) = 0;
-  *(uint32_t *)(param_2 + 0x38) = 0;
-  *(void* *)(param_2 + 0x20) = &SystemMemoryAllocatorReference;
-  if (param_2 != 0) {
+  *(void* *)(ConfigurationDataPointer + 0x28) = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 0x38) = 0;
+  *(void* *)(ConfigurationDataPointer + 0x20) = &SystemMemoryAllocatorReference;
+  if (ConfigurationDataPointer != 0) {
                     // WARNING: Subroutine does not return
-    SystemCleanupFunction(param_2);
+    SystemCleanupFunction(ConfigurationDataPointer);
   }
   return;
 }
@@ -31906,10 +31982,10 @@ void SystemResourceInitializer(void* SystemResourcePointer,long long param_2)
  * 它会根据需要分配新的内存空间，并处理现有资源的迁移和清理。
  * 
  * @param SystemResourcePointer 系统资源指针数组
- * @param param_2 起始参数
- * @param param_3 结束参数
+ * @param ConfigurationDataPointer 起始参数
+ * @param AdditionalParameter 结束参数
  */
-void SystemResourceArrayManager(long long *SystemResourcePointer,long long param_2,long long param_3)
+void SystemResourceArrayManager(long long *SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   void* *resourcePointer1;
@@ -31920,7 +31996,7 @@ void SystemResourceArrayManager(long long *SystemResourcePointer,long long param
   ulong long requiredCapacity;
   long long resourceOffset;
   
-  requiredCapacity = param_3 - param_2 >> 5;
+  requiredCapacity = AdditionalParameter - ConfigurationDataPointer >> 5;
   if ((ulong long)(SystemResourcePointer[2] - *SystemResourcePointer >> 5) < requiredCapacity) {
     if (requiredCapacity == 0) {
       localSystemHandle = 0;
@@ -31928,12 +32004,12 @@ void SystemResourceArrayManager(long long *SystemResourcePointer,long long param
     else {
       localSystemHandle = CreateSystemThreadObject(SystemMemoryAllocationTemplate,requiredCapacity << 5,(char)SystemResourcePointer[3]);
     }
-    if (param_2 != param_3) {
-      resourceOffset = localSystemHandle - param_2;
+    if (ConfigurationDataPointer != AdditionalParameter) {
+      resourceOffset = localSystemHandle - ConfigurationDataPointer;
       do {
-        CreateSystemObject(resourceOffset + param_2,param_2);
-        param_2 = param_2 + 0x20;
-      } while (param_2 != param_3);
+        CreateSystemObject(resourceOffset + ConfigurationDataPointer,ConfigurationDataPointer);
+        ConfigurationDataPointer = ConfigurationDataPointer + 0x20;
+      } while (ConfigurationDataPointer != AdditionalParameter);
     }
     resourcePointer1 = (void* *)SystemResourcePointer[1];
     resourcePointer4 = (void* *)*SystemResourcePointer;
@@ -31956,13 +32032,13 @@ void SystemResourceArrayManager(long long *SystemResourcePointer,long long param
   else {
     resourceCapacity = SystemResourcePointer[1] - *SystemResourcePointer >> 5;
     if (resourceCapacity < requiredCapacity) {
-      localSystemHandle = resourceCapacity * 0x20 + param_2;
-      FUN_180059250(param_2,localSystemHandle);
-      localSystemHandle = FUN_180059300(localSystemHandle,param_3,SystemResourcePointer[1]);
+      localSystemHandle = resourceCapacity * 0x20 + ConfigurationDataPointer;
+      FUN_180059250(ConfigurationDataPointer,localSystemHandle);
+      localSystemHandle = FUN_180059300(localSystemHandle,AdditionalParameter,SystemResourcePointer[1]);
       SystemResourcePointer[1] = localSystemHandle;
     }
     else {
-      resourcePointer3 = (void* *)FUN_180059250(param_2,param_3);
+      resourcePointer3 = (void* *)FUN_180059250(ConfigurationDataPointer,AdditionalParameter);
       resourcePointer1 = (void* *)SystemResourcePointer[1];
       for (resourcePointer4 = resourcePointer3; resourcePointer4 != resourcePointer1; resourcePointer4 = resourcePointer4 + 4) {
         (**(code **)*resourcePointer4)(resourcePointer4,0);
@@ -32117,10 +32193,10 @@ void FinalizeSystemInitialization(void)
  * 它会根据资源的状态和容量需求，执行相应的资源操作。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 处理参数
- * @param param_3 资源大小参数
+ * @param ConfigurationDataPointer 处理参数
+ * @param AdditionalParameter 资源大小参数
  */
-void SystemResourceProcessor(long long SystemResourcePointer,void* param_2,long long param_3)
+void SystemResourceProcessor(long long SystemResourcePointer,void* ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   void* *resourcePointer1;
@@ -32132,7 +32208,7 @@ void SystemResourceProcessor(long long SystemResourcePointer,void* param_2,long 
   ulong long requiredSize;
   long long resourceArrayPointer;
   
-  resourceCapacity = *(long long *)(SystemResourcePointer + 8) - param_3 >> 5;
+  resourceCapacity = *(long long *)(SystemResourcePointer + 8) - AdditionalParameter >> 5;
   if (resourceCapacity < requiredSize) {
     FUN_180059250();
     resourceHandle = FUN_180059300(resourceCapacity * 0x20 + resourceOffset);
@@ -32153,8 +32229,20 @@ void SystemResourceProcessor(long long SystemResourcePointer,void* param_2,long 
 
 
 
-// 函数: void FUN_180058a20(long long *SystemResourcePointer,long long param_2,long long param_3,long long param_4)
-void FUN_180058a20(long long *SystemResourcePointer,long long param_2,long long param_3,long long param_4)
+// 函数: void FUN_180058a20(long long *SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter,long long ConfigurationFlag)
+/**
+ * @brief 系统资源范围处理器函数
+ * 
+ * 该函数负责处理指定范围内的系统资源，包括资源验证和配置操作。
+ * 它会检查资源范围的有效性，并对范围内的资源进行处理。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组，包含资源的基本信息
+ * @param ConfigurationDataPointer 配置数据指针，包含系统的配置信息
+ * @param AdditionalParameter 额外参数，用于指定处理范围
+ * @param ConfigurationFlag 配置标志，用于控制处理行为
+ * @note 这是系统资源管理的重要组成部分，用于处理指定范围内的资源
+ */
+void ProcessSystemResourceRange(long long *SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter,long long ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
@@ -32163,11 +32251,11 @@ void FUN_180058a20(long long *SystemResourcePointer,long long param_2,long long 
   ulong long unsignedSystemValue4;
   ulong long unsignedSystemValue5;
   
-  if (param_3 == param_4) {
+  if (AdditionalParameter == ConfigurationFlag) {
     return;
   }
   localSystemHandle = SystemResourcePointer[1];
-  unsignedSystemValue5 = param_4 - param_3 >> 3;
+  unsignedSystemValue5 = ConfigurationFlag - AdditionalParameter >> 3;
   if ((ulong long)(SystemResourcePointer[2] - localSystemHandle >> 3) < unsignedSystemValue5) {
     localResourceOffset = *SystemResourcePointer;
     localSystemHandle = localSystemHandle - localResourceOffset >> 3;
@@ -32185,14 +32273,14 @@ void FUN_180058a20(long long *SystemResourcePointer,long long param_2,long long 
       unsignedSystemValue1 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue4 * 8,(char)SystemResourcePointer[3]);
       localResourceOffset = *SystemResourcePointer;
     }
-    if (localResourceOffset != param_2) {
+    if (localResourceOffset != ConfigurationDataPointer) {
                     // WARNING: Subroutine does not return
-      memmove(unsignedSystemValue1,localResourceOffset,param_2 - localResourceOffset);
+      memmove(unsignedSystemValue1,localResourceOffset,ConfigurationDataPointer - localResourceOffset);
     }
                     // WARNING: Subroutine does not return
-    memmove(unsignedSystemValue1,param_3,param_4 - param_3);
+    memmove(unsignedSystemValue1,AdditionalParameter,ConfigurationFlag - AdditionalParameter);
   }
-  unsignedSystemValue4 = localSystemHandle - param_2 >> 3;
+  unsignedSystemValue4 = localSystemHandle - ConfigurationDataPointer >> 3;
   if (unsignedSystemValue5 < unsignedSystemValue4) {
     localResourceOffset = localSystemHandle + unsignedSystemValue5 * -8;
     if (localResourceOffset != localSystemHandle) {
@@ -32200,27 +32288,39 @@ void FUN_180058a20(long long *SystemResourcePointer,long long param_2,long long 
       memmove(localSystemHandle,localResourceOffset,unsignedSystemValue5 * 8);
     }
                     // WARNING: Subroutine does not return
-    memmove(localSystemHandle - ((localSystemHandle + unsignedSystemValue5 * -8) - param_2 & 0xfffffffffffffff8),param_2);
+    memmove(localSystemHandle - ((localSystemHandle + unsignedSystemValue5 * -8) - ConfigurationDataPointer & 0xfffffffffffffff8),ConfigurationDataPointer);
   }
-  localResourceOffset = param_3 + unsignedSystemValue4 * 8;
-  if (localResourceOffset != param_4) {
+  localResourceOffset = AdditionalParameter + unsignedSystemValue4 * 8;
+  if (localResourceOffset != ConfigurationFlag) {
                     // WARNING: Subroutine does not return
-    memmove(localSystemHandle,localResourceOffset,param_4 - localResourceOffset);
+    memmove(localSystemHandle,localResourceOffset,ConfigurationFlag - localResourceOffset);
   }
-  if (param_2 != localSystemHandle) {
+  if (ConfigurationDataPointer != localSystemHandle) {
                     // WARNING: Subroutine does not return
-    memmove(localSystemHandle + (unsignedSystemValue5 - unsignedSystemValue4) * 8,param_2,localSystemHandle - param_2);
+    memmove(localSystemHandle + (unsignedSystemValue5 - unsignedSystemValue4) * 8,ConfigurationDataPointer,localSystemHandle - ConfigurationDataPointer);
   }
                     // WARNING: Subroutine does not return
-  memmove(param_2 + (unsignedSystemValue4 - (localResourceOffset - param_3 >> 3)) * 8,param_3,localResourceOffset - param_3);
+  memmove(ConfigurationDataPointer + (unsignedSystemValue4 - (localResourceOffset - AdditionalParameter >> 3)) * 8,AdditionalParameter,localResourceOffset - AdditionalParameter);
 }
 
 
 
 
 
-// 函数: void FUN_180058a31(long long *SystemResourcePointer,long long param_2,long long param_3,long long param_4)
-void FUN_180058a31(long long *SystemResourcePointer,long long param_2,long long param_3,long long param_4)
+// 函数: void FUN_180058a31(long long *SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter,long long ConfigurationFlag)
+/**
+ * @brief 系统资源数据复制器函数
+ * 
+ * 该函数负责复制系统资源数据，包括内存移动和数据重组操作。
+ * 它会处理不同区域的数据复制，确保数据被正确移动和重组。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组，包含资源的基本信息
+ * @param ConfigurationDataPointer 配置数据指针，包含系统的配置信息
+ * @param AdditionalParameter 额外参数，用于指定复制操作
+ * @param ConfigurationFlag 配置标志，用于控制复制行为
+ * @note 这是系统资源管理的重要组成部分，用于处理数据的复制和重组
+ */
+void CopySystemResourceData(long long *SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter,long long ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
@@ -32230,7 +32330,7 @@ void FUN_180058a31(long long *SystemResourcePointer,long long param_2,long long 
   ulong long unsignedSystemValue5;
   
   localSystemHandle = SystemResourcePointer[1];
-  unsignedSystemValue5 = param_4 - param_3 >> 3;
+  unsignedSystemValue5 = ConfigurationFlag - AdditionalParameter >> 3;
   if ((ulong long)(SystemResourcePointer[2] - localSystemHandle >> 3) < unsignedSystemValue5) {
     localResourceOffset = *SystemResourcePointer;
     localSystemHandle = localSystemHandle - localResourceOffset >> 3;
@@ -32248,14 +32348,14 @@ void FUN_180058a31(long long *SystemResourcePointer,long long param_2,long long 
       unsignedSystemValue1 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue4 * 8,(char)SystemResourcePointer[3]);
       localResourceOffset = *SystemResourcePointer;
     }
-    if (localResourceOffset != param_2) {
+    if (localResourceOffset != ConfigurationDataPointer) {
                     // WARNING: Subroutine does not return
-      memmove(unsignedSystemValue1,localResourceOffset,param_2 - localResourceOffset);
+      memmove(unsignedSystemValue1,localResourceOffset,ConfigurationDataPointer - localResourceOffset);
     }
                     // WARNING: Subroutine does not return
-    memmove(unsignedSystemValue1,param_3,param_4 - param_3);
+    memmove(unsignedSystemValue1,AdditionalParameter,ConfigurationFlag - AdditionalParameter);
   }
-  unsignedSystemValue4 = localSystemHandle - param_2 >> 3;
+  unsignedSystemValue4 = localSystemHandle - ConfigurationDataPointer >> 3;
   if (unsignedSystemValue5 < unsignedSystemValue4) {
     localResourceOffset = localSystemHandle + unsignedSystemValue5 * -8;
     if (localResourceOffset != localSystemHandle) {
@@ -32263,27 +32363,27 @@ void FUN_180058a31(long long *SystemResourcePointer,long long param_2,long long 
       memmove(localSystemHandle,localResourceOffset,unsignedSystemValue5 * 8);
     }
                     // WARNING: Subroutine does not return
-    memmove(localSystemHandle - ((localSystemHandle + unsignedSystemValue5 * -8) - param_2 & 0xfffffffffffffff8),param_2);
+    memmove(localSystemHandle - ((localSystemHandle + unsignedSystemValue5 * -8) - ConfigurationDataPointer & 0xfffffffffffffff8),ConfigurationDataPointer);
   }
-  localResourceOffset = param_3 + unsignedSystemValue4 * 8;
-  if (localResourceOffset != param_4) {
+  localResourceOffset = AdditionalParameter + unsignedSystemValue4 * 8;
+  if (localResourceOffset != ConfigurationFlag) {
                     // WARNING: Subroutine does not return
-    memmove(localSystemHandle,localResourceOffset,param_4 - localResourceOffset);
+    memmove(localSystemHandle,localResourceOffset,ConfigurationFlag - localResourceOffset);
   }
-  if (param_2 != localSystemHandle) {
+  if (ConfigurationDataPointer != localSystemHandle) {
                     // WARNING: Subroutine does not return
-    memmove(localSystemHandle + (unsignedSystemValue5 - unsignedSystemValue4) * 8,param_2,localSystemHandle - param_2);
+    memmove(localSystemHandle + (unsignedSystemValue5 - unsignedSystemValue4) * 8,ConfigurationDataPointer,localSystemHandle - ConfigurationDataPointer);
   }
                     // WARNING: Subroutine does not return
-  memmove(param_2 + (unsignedSystemValue4 - (localResourceOffset - param_3 >> 3)) * 8,param_3,localResourceOffset - param_3);
+  memmove(ConfigurationDataPointer + (unsignedSystemValue4 - (localResourceOffset - AdditionalParameter >> 3)) * 8,AdditionalParameter,localResourceOffset - AdditionalParameter);
 }
 
 
 
 
 
-// 函数: void FUN_180058b3e(long long SystemResourcePointer,long long param_2)
-void FUN_180058b3e(long long SystemResourcePointer,long long param_2)
+// 函数: void FUN_180058b3e(long long SystemResourcePointer,long long ConfigurationDataPointer)
+void FUN_180058b3e(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   void* unsignedSystemValue1;
@@ -32305,11 +32405,11 @@ void FUN_180058b3e(long long SystemResourcePointer,long long param_2)
   }
   else {
     unsignedSystemValue1 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue2 * 8,(char)unaff_RDI[3]);
-    param_2 = *unaff_RDI;
+    ConfigurationDataPointer = *unaff_RDI;
   }
-  if (param_2 != unaff_RSI) {
+  if (ConfigurationDataPointer != unaff_RSI) {
                     // WARNING: Subroutine does not return
-    memmove(unsignedSystemValue1,param_2,unaff_RSI - param_2);
+    memmove(unsignedSystemValue1,ConfigurationDataPointer,unaff_RSI - ConfigurationDataPointer);
   }
                     // WARNING: Subroutine does not return
   memmove(unsignedSystemValue1);
@@ -32436,15 +32536,15 @@ void FUN_180058d90(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180058db0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180058db0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180058db0(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180058db0(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
   
   unsignedSystemValue1 = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  ProcessMemoryBlock(SystemResourcePointer + 0xf0,*(void* *)(SystemResourcePointer + 0x100),param_3,param_4,unsignedSystemValue1);
+  ProcessMemoryBlock(SystemResourcePointer + 0xf0,*(void* *)(SystemResourcePointer + 0x100),AdditionalParameter,ConfigurationFlag,unsignedSystemValue1);
   ProcessMemoryBlock(SystemResourcePointer + 0xc0,*(void* *)(SystemResourcePointer + 0xd0));
   ProcessMemoryBlock(SystemResourcePointer + 0x90,*(void* *)(SystemResourcePointer + 0xa0));
   FUN_1800593f0(SystemResourcePointer + 0x60,*(void* *)(SystemResourcePointer + 0x70));
@@ -32456,33 +32556,33 @@ void FUN_180058db0(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// 函数: void FUN_180058e60(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180058e60(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180058e60(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180058e60(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_1800593f0(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_1800593f0(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_180058e90(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180058e90(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180058e90(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180058e90(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_1800593f0(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_1800593f0(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_180058f00(void* SystemResourcePointer,void* *param_2)
-void FUN_180058f00(void* SystemResourcePointer,void* *param_2)
+// 函数: void FUN_180058f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
+void FUN_180058f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
-  (*(code *)*param_2)();
+  (*(code *)*ConfigurationDataPointer)();
   return;
 }
 
@@ -33070,12 +33170,12 @@ void FUN_180059000(long long *SystemResourcePointer)
  * 和资源池维护。这是系统资源管理的核心函数。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数2，通常为状态标志
- * @param param_3 参数3，通常为资源偏移量
+ * @param ConfigurationDataPointer 参数2，通常为状态标志
+ * @param AdditionalParameter 参数3，通常为资源偏移量
  * @return 返回分配的资源指针
  * @note 这是资源管理系统的核心分配函数
  */
-void* * SystemResourceAllocator(void* *SystemResourcePointer,uint8_t *param_2,long long param_3)
+void* * SystemResourceAllocator(void* *SystemResourcePointer,uint8_t *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   byte bVar1;
@@ -33097,12 +33197,12 @@ LAB_1800590e2:
       punsignedSystemValue4 = (void* *)*punsignedSystemValue4;
     }
     else {
-      if (*(int *)(param_3 + 0x10) == 0) {
+      if (*(int *)(AdditionalParameter + 0x10) == 0) {
         bVar2 = true;
       }
       else {
         pbVar6 = (byte *)punsignedSystemValue4[5];
-        localDataPointer = *(long long *)(param_3 + 8) - (long long)pbVar6;
+        localDataPointer = *(long long *)(AdditionalParameter + 8) - (long long)pbVar6;
         do {
           bVar1 = *pbVar6;
           unsignedSystemValue5 = (uint)pbVar6[localDataPointer];
@@ -33118,14 +33218,14 @@ LAB_1800590e2:
   punsignedSystemValue4 = pointerToUnsigned3;
   if (bVar2) {
     if (pointerToUnsigned3 == (void* *)SystemResourcePointer[1]) {
-      *param_2 = 1;
+      *ConfigurationDataPointer = 1;
       return pointerToUnsigned3;
     }
     punsignedSystemValue4 = (void* *)SystemResourceOffsetGet(pointerToUnsigned3);
   }
-  if (*(int *)(param_3 + 0x10) != 0) {
+  if (*(int *)(AdditionalParameter + 0x10) != 0) {
     if (*(int *)(punsignedSystemValue4 + 6) != 0) {
-      pbVar6 = *(byte **)(param_3 + 8);
+      pbVar6 = *(byte **)(AdditionalParameter + 8);
       localDataPointer = punsignedSystemValue4[5] - (long long)pbVar6;
       do {
         bVar1 = *pbVar6;
@@ -33135,11 +33235,11 @@ LAB_1800590e2:
       } while (unsignedSystemValue5 != 0);
       if ((int)(bVar1 - unsignedSystemValue5) < 1) goto LAB_1800591a6;
     }
-    *param_2 = 1;
+    *ConfigurationDataPointer = 1;
     return pointerToUnsigned3;
   }
 LAB_1800591a6:
-  *param_2 = 0;
+  *ConfigurationDataPointer = 0;
   return punsignedSystemValue4;
 }
 
@@ -33168,18 +33268,18 @@ void FreeSystemMemoryPool(long long *SystemResourcePointer)
 
 
 
-// 函数: void ConfigureSystemResource(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ConfigureSystemResource(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 // 功能: 配置系统资源，设置资源参数
-void ConfigureSystemResource(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void ConfigureSystemResource(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_1800593f0(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_1800593f0(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-long long FUN_180059250(long long SystemResourcePointer,long long param_2,long long param_3)
+long long FUN_180059250(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   uint unsignedSystemValue1;
@@ -33187,15 +33287,15 @@ long long FUN_180059250(long long SystemResourcePointer,long long param_2,long l
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
   
-  localResourceOffset = param_2 - SystemResourcePointer >> 5;
+  localResourceOffset = ConfigurationDataPointer - SystemResourcePointer >> 5;
   if (0 < localResourceOffset) {
     SecondaryResourcePointer = (long long *)(SystemResourcePointer + 8);
-    SystemResourcePointer = param_3 - SystemResourcePointer;
+    SystemResourcePointer = AdditionalParameter - SystemResourcePointer;
     do {
       unsignedSystemValue1 = *(uint *)(SecondaryResourcePointer + 1);
       unsignedSystemValue4 = (ulong long)unsignedSystemValue1;
       if (*SecondaryResourcePointer != 0) {
-        ExecuteSystemCommand(param_3,unsignedSystemValue4);
+        ExecuteSystemCommand(AdditionalParameter,unsignedSystemValue4);
       }
       if (unsignedSystemValue1 != 0) {
                     // WARNING: Subroutine does not return
@@ -33207,16 +33307,16 @@ long long FUN_180059250(long long SystemResourcePointer,long long param_2,long l
       }
       localResourceOffset = localResourceOffset + -1;
       *(uint32_t *)(SystemResourcePointer + 0x14 + (long long)SecondaryResourcePointer) = *(uint32_t *)((long long)SecondaryResourcePointer + 0x14);
-      param_3 = param_3 + 0x20;
+      AdditionalParameter = AdditionalParameter + 0x20;
       SecondaryResourcePointer = SecondaryResourcePointer + 4;
     } while (0 < localResourceOffset);
   }
-  return param_3;
+  return AdditionalParameter;
 }
 
 
 
-long long FUN_18005926c(long long SystemResourcePointer,void* param_2,long long param_3)
+long long FUN_18005926c(long long SystemResourcePointer,void* ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   uint unsignedSystemValue1;
@@ -33226,7 +33326,7 @@ long long FUN_18005926c(long long SystemResourcePointer,void* param_2,long long 
   ulong long unsignedSystemValue3;
   
   SecondaryResourcePointer = (long long *)(SystemResourcePointer + 8);
-  param_3 = param_3 - SystemResourcePointer;
+  AdditionalParameter = AdditionalParameter - SystemResourcePointer;
   do {
     unsignedSystemValue1 = *(uint *)(SecondaryResourcePointer + 1);
     unsignedSystemValue3 = (ulong long)unsignedSystemValue1;
@@ -33235,14 +33335,14 @@ long long FUN_18005926c(long long SystemResourcePointer,void* param_2,long long 
     }
     if (unsignedSystemValue1 != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(*(void* *)(param_3 + (long long)SecondaryResourcePointer),*SecondaryResourcePointer,unsignedSystemValue3);
+      memcpy(*(void* *)(AdditionalParameter + (long long)SecondaryResourcePointer),*SecondaryResourcePointer,unsignedSystemValue3);
     }
-    *(uint32_t *)(param_3 + 8 + (long long)SecondaryResourcePointer) = 0;
-    if (*(long long *)(param_3 + (long long)SecondaryResourcePointer) != 0) {
-      *(uint8_t *)(unsignedSystemValue3 + *(long long *)(param_3 + (long long)SecondaryResourcePointer)) = 0;
+    *(uint32_t *)(AdditionalParameter + 8 + (long long)SecondaryResourcePointer) = 0;
+    if (*(long long *)(AdditionalParameter + (long long)SecondaryResourcePointer) != 0) {
+      *(uint8_t *)(unsignedSystemValue3 + *(long long *)(AdditionalParameter + (long long)SecondaryResourcePointer)) = 0;
     }
     unaff_RBP = unaff_RBP + -1;
-    *(uint32_t *)(param_3 + 0x14 + (long long)SecondaryResourcePointer) = *(uint32_t *)((long long)SecondaryResourcePointer + 0x14);
+    *(uint32_t *)(AdditionalParameter + 0x14 + (long long)SecondaryResourcePointer) = *(uint32_t *)((long long)SecondaryResourcePointer + 0x14);
     unaff_RSI = unaff_RSI + 0x20;
     SecondaryResourcePointer = SecondaryResourcePointer + 4;
   } while (0 < unaff_RBP);
@@ -33261,29 +33361,29 @@ void FUN_1800592e4(void)
 
 
 
-long long FUN_180059300(long long SystemResourcePointer,long long param_2,long long param_3)
+long long FUN_180059300(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
-  if (SystemResourcePointer != param_2) {
+  if (SystemResourcePointer != ConfigurationDataPointer) {
     do {
-      CreateSystemObject(param_3,SystemResourcePointer);
+      CreateSystemObject(AdditionalParameter,SystemResourcePointer);
       SystemResourcePointer = SystemResourcePointer + 0x20;
-      param_3 = param_3 + 0x20;
-    } while (SystemResourcePointer != param_2);
+      AdditionalParameter = AdditionalParameter + 0x20;
+    } while (SystemResourcePointer != ConfigurationDataPointer);
   }
-  return param_3;
+  return AdditionalParameter;
 }
 
 
 
 
-// 函数: void FUN_180059350(long long SystemResourcePointer,long long param_2,void* param_3)
-void FUN_180059350(long long SystemResourcePointer,long long param_2,void* param_3)
+// 函数: void FUN_180059350(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter)
+void FUN_180059350(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter)
 
 {
-  if (SystemResourcePointer != param_2) {
+  if (SystemResourcePointer != ConfigurationDataPointer) {
                     // WARNING: Subroutine does not return
-    memmove(param_3,SystemResourcePointer,param_2 - SystemResourcePointer);
+    memmove(AdditionalParameter,SystemResourcePointer,ConfigurationDataPointer - SystemResourcePointer);
   }
   return;
 }
@@ -33313,25 +33413,25 @@ void FUN_180059380(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_1800593f0(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
-void FUN_1800593f0(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+// 函数: void FUN_1800593f0(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_1800593f0(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  if (param_2 == (void* *)0x0) {
+  if (ConfigurationDataPointer == (void* *)0x0) {
     return;
   }
-  FUN_1800593f0(SystemResourcePointer,*param_2,param_3,param_4,0xfffffffffffffffe);
+  FUN_1800593f0(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   StartSystemInitialization();
-  param_2[4] = &SystemGlobalDataReference;
-  if (param_2[5] != 0) {
+  ConfigurationDataPointer[4] = &SystemGlobalDataReference;
+  if (ConfigurationDataPointer[5] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  param_2[5] = 0;
-  *(uint32_t *)(param_2 + 7) = 0;
-  param_2[4] = &SystemMemoryAllocatorReference;
+  ConfigurationDataPointer[5] = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
+  ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  SystemCleanupFunction(param_2);
+  SystemCleanupFunction(ConfigurationDataPointer);
 }
 
 
@@ -33475,21 +33575,21 @@ void FUN_180059730(long long SystemResourcePointer)
 
 
 
-void* * FUN_180059780(void* *SystemResourcePointer,void* *param_2,void* *param_3)
+void* * FUN_180059780(void* *SystemResourcePointer,void* *ConfigurationDataPointer,void* *AdditionalParameter)
 
 {
   void* *pointerToUnsigned1;
   void** systemDataTable;
   long long localResourceOffset;
   
-  if (SystemResourcePointer != param_2) {
-    localResourceOffset = (long long)param_3 - (long long)SystemResourcePointer;
+  if (SystemResourcePointer != ConfigurationDataPointer) {
+    localResourceOffset = (long long)AdditionalParameter - (long long)SystemResourcePointer;
     pointerToUnsigned2 = SystemResourcePointer + 1;
     do {
-      *param_3 = &SystemMemoryAllocatorReference;
+      *AdditionalParameter = &SystemMemoryAllocatorReference;
       *(void* *)(localResourceOffset + (long long)pointerToUnsigned2) = 0;
       *(uint32_t *)(localResourceOffset + 8 + (long long)pointerToUnsigned2) = 0;
-      *param_3 = &SystemGlobalDataReference;
+      *AdditionalParameter = &SystemGlobalDataReference;
       *(void* *)(localResourceOffset + 0x10 + (long long)pointerToUnsigned2) = 0;
       *(void* *)(localResourceOffset + (long long)pointerToUnsigned2) = 0;
       *(uint32_t *)(localResourceOffset + 8 + (long long)pointerToUnsigned2) = 0;
@@ -33500,20 +33600,20 @@ void* * FUN_180059780(void* *SystemResourcePointer,void* *param_2,void* *param_3
       *(uint32_t *)(pointerToUnsigned2 + 1) = 0;
       *pointerToUnsigned2 = 0;
       pointerToUnsigned2[2] = 0;
-      param_3 = param_3 + 4;
+      AdditionalParameter = AdditionalParameter + 4;
       pointerToUnsigned1 = pointerToUnsigned2 + 3;
       pointerToUnsigned2 = pointerToUnsigned2 + 4;
-    } while (pointerToUnsigned1 != param_2);
+    } while (pointerToUnsigned1 != ConfigurationDataPointer);
   }
-  return param_3;
+  return AdditionalParameter;
 }
 
 
 
 
 
-// 函数: void FUN_180059820(long long *SystemResourcePointer,void* param_2)
-void FUN_180059820(long long *SystemResourcePointer,void* param_2)
+// 函数: void FUN_180059820(long long *SystemResourcePointer,void* ConfigurationDataPointer)
+void FUN_180059820(long long *SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   void* *pointerToUnsigned1;
@@ -33541,7 +33641,7 @@ void FUN_180059820(long long *SystemResourcePointer,void* param_2)
   localBufferAddress = *SystemResourcePointer;
 LAB_180059885:
   localResourceOffset = FUN_180059780(localBufferAddress,localResourceOffset,localSystemHandle);
-  CreateSystemObject(localResourceOffset,param_2);
+  CreateSystemObject(localResourceOffset,ConfigurationDataPointer);
   pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
   punsignedSystemValue5 = (void* *)*SystemResourcePointer;
   if (punsignedSystemValue5 != pointerToUnsigned1) {
@@ -33564,12 +33664,12 @@ LAB_180059885:
 
 
 void* *
-FUN_180059900(void* *SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+FUN_180059900(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0x28,param_3,param_4,0xfffffffffffffffe);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0x28,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   }
   return SystemResourcePointer;
 }
@@ -33577,8 +33677,8 @@ FUN_180059900(void* *SystemResourcePointer,ulong long param_2,void* param_3,void
 
 
 
-// 函数: void FUN_180059940(long long SystemResourcePointer,long long param_2)
-void FUN_180059940(long long SystemResourcePointer,long long param_2)
+// 函数: void FUN_180059940(long long SystemResourcePointer,long long ConfigurationDataPointer)
+void FUN_180059940(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -33591,7 +33691,7 @@ void FUN_180059940(long long SystemResourcePointer,long long param_2)
   localMemoryPointer = -1;
   do {
     localMemoryPointer = localMemoryPointer + 1;
-  } while (*(char *)(param_2 + localMemoryPointer) != '\0');
+  } while (*(char *)(ConfigurationDataPointer + localMemoryPointer) != '\0');
   if ((int)localMemoryPointer < 0x10) {
     *(int *)(SystemResourcePointer + 0x10) = (int)localMemoryPointer;
                     // WARNING: Could not recover jumptable at 0x000180059977. Too many branches
@@ -33599,7 +33699,7 @@ void FUN_180059940(long long SystemResourcePointer,long long param_2)
     strcpy_s(*(void* *)(SystemResourcePointer + 8),0x10);
     return;
   }
-  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x10,param_2);
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x10,ConfigurationDataPointer);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
@@ -33608,13 +33708,13 @@ void FUN_180059940(long long SystemResourcePointer,long long param_2)
 
 
 
-// 函数: void FUN_1800599c0(long long SystemResourcePointer,void* param_2,int param_3)
-void FUN_1800599c0(long long SystemResourcePointer,void* param_2,int param_3)
+// 函数: void FUN_1800599c0(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
+void FUN_1800599c0(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
 
 {
-  if (param_3 + 1 < 0x10) {
+  if (AdditionalParameter + 1 < 0x10) {
                     // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(SystemResourcePointer + 8),param_2,(long long)param_3);
+    memcpy(*(uint8_t **)(SystemResourcePointer + 8),ConfigurationDataPointer,(long long)AdditionalParameter);
   }
   **(uint8_t **)(targetBuffer + 8) = 0;
   *(uint32_t *)(targetBuffer + 0x10) = 0;
@@ -33650,8 +33750,8 @@ void FUN_180059a04(uint8_t *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180059a20(long long SystemResourcePointer,long long param_2,long long param_3)
-void FUN_180059a20(long long SystemResourcePointer,long long param_2,long long param_3)
+// 函数: void FUN_180059a20(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
+void FUN_180059a20(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   long long localMemoryPointer;
@@ -33677,10 +33777,10 @@ void FUN_180059a20(long long SystemResourcePointer,long long param_2,long long p
     localResourceOffset = -1;
     do {
       localResourceOffset = localResourceOffset + 1;
-    } while (*(char *)(param_2 + localResourceOffset) != '\0');
+    } while (*(char *)(ConfigurationDataPointer + localResourceOffset) != '\0');
     do {
       localSystemHandle = localSystemHandle + 1;
-    } while (*(char *)(localSystemHandle + param_3) != '\0');
+    } while (*(char *)(localSystemHandle + AdditionalParameter) != '\0');
                     // WARNING: Subroutine does not return
     memcpy(puStack_68,*(long long *)(SystemResourcePointer + 8),localMemoryPointer - *(long long *)(SystemResourcePointer + 8));
   }
@@ -34337,15 +34437,15 @@ void FUN_18005a170(long long SystemResourcePointer)
 
 
 
-void* FUN_18005a1b0(void* SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+void* FUN_18005a1b0(void* SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
   
   unsignedSystemValue1 = 0xfffffffffffffffe;
   InitializeSystemResourceHandler();
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0xc0,param_3,param_4,unsignedSystemValue1);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0xc0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue1);
   }
   return SystemResourcePointer;
 }
@@ -34432,7 +34532,7 @@ void FUN_18005a200(void* *SystemResourcePointer)
 
 
 
-void* * FUN_18005a420(void* *SystemResourcePointer,ulong long param_2)
+void* * FUN_18005a420(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &UNK_1809fdd78;
@@ -34447,7 +34547,7 @@ void* * FUN_18005a420(void* *SystemResourcePointer,ulong long param_2)
   FUN_18005b7c0(SystemResourcePointer + 0x2a);
   FUN_18005b7c0(SystemResourcePointer + 0x1c);
   FUN_1800ae640(SystemResourcePointer);
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x590);
   }
   return SystemResourcePointer;
@@ -34457,8 +34557,8 @@ void* * FUN_18005a420(void* *SystemResourcePointer,ulong long param_2)
 
 
 
-// 函数: void FUN_18005a500(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005a500(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005a500(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005a500(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint32_t unsignedSystemValue1;
@@ -34472,7 +34572,7 @@ void FUN_18005a500(void* SystemResourcePointer,void* param_2,void* param_3,void*
   uStack_38 = 0;
   puStack_48 = (void* *)0x0;
   uStack_40 = 0;
-  pointerToUnsigned2 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x10,0x13,param_4,0xfffffffffffffffe);
+  pointerToUnsigned2 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x10,0x13,ConfigurationFlag,0xfffffffffffffffe);
   *(uint8_t *)pointerToUnsigned2 = 0;
   puStack_48 = pointerToUnsigned2;
   unsignedSystemValue1 = StartSystemThread(pointerToUnsigned2);
@@ -34489,11 +34589,11 @@ void FUN_18005a500(void* SystemResourcePointer,void* param_2,void* param_3,void*
 
 
 
-void* FUN_18005a960(void* SystemResourcePointer,ulong long param_2)
+void* FUN_18005a960(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   FUN_18005a9a0();
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0xa90);
   }
   return SystemResourcePointer;
@@ -34502,8 +34602,8 @@ void* FUN_18005a960(void* SystemResourcePointer,ulong long param_2)
 
 
 
-// 函数: void FUN_18005a9a0(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005a9a0(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005a9a0(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005a9a0(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *SystemResourcePointer = &UNK_1809fddc8;
@@ -34538,7 +34638,7 @@ void FUN_18005a9a0(void* *SystemResourcePointer,void* param_2,void* param_3,void
   SystemResourcePointer[0x19] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x1b) = 0;
   SystemResourcePointer[0x18] = &SystemMemoryAllocatorReference;
-  FUN_18005d260(SystemResourcePointer + 0x12,SystemResourcePointer[0x14],param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(SystemResourcePointer + 0x12,SystemResourcePointer[0x14],AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   if (SystemResourcePointer[0xd] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
@@ -34561,12 +34661,12 @@ void FUN_18005a9a0(void* *SystemResourcePointer,void* param_2,void* param_3,void
 
 
 
-// 函数: void FUN_18005aaf0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005aaf0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005aaf0(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005aaf0(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (*(code **)(SystemResourcePointer + 0x10) != (code *)0x0) {
-    (**(code **)(SystemResourcePointer + 0x10))(SystemResourcePointer,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(SystemResourcePointer + 0x10))(SystemResourcePointer,0,0,ConfigurationFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -34574,12 +34674,12 @@ void FUN_18005aaf0(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// 函数: void FUN_18005ab20(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005ab20(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005ab20(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005ab20(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (*(code **)(SystemResourcePointer + 0x10) != (code *)0x0) {
-    (**(code **)(SystemResourcePointer + 0x10))(SystemResourcePointer,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(SystemResourcePointer + 0x10))(SystemResourcePointer,0,0,ConfigurationFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -34587,12 +34687,12 @@ void FUN_18005ab20(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// 函数: void FUN_18005ab50(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005ab50(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005ab50(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005ab50(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (*(code **)(SystemResourcePointer + 0x68) != (code *)0x0) {
-    (**(code **)(SystemResourcePointer + 0x68))(SystemResourcePointer + 0x58,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(SystemResourcePointer + 0x68))(SystemResourcePointer + 0x58,0,0,ConfigurationFlag,0xfffffffffffffffe);
   }
   *(void* *)(SystemResourcePointer + 0x30) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x38) != 0) {
@@ -34617,8 +34717,8 @@ void FUN_18005ab50(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// 函数: void FUN_18005ac00(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005ac00(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005ac00(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005ac00(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint32_t unsignedSystemValue1;
@@ -34632,7 +34732,7 @@ void FUN_18005ac00(void* SystemResourcePointer,void* param_2,void* param_3,void*
   uStack_38 = 0;
   puStack_48 = (uint32_t *)0x0;
   uStack_40 = 0;
-  pointerToUnsigned2 = (uint32_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x13,0x13,param_4,0xfffffffffffffffe);
+  pointerToUnsigned2 = (uint32_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x13,0x13,ConfigurationFlag,0xfffffffffffffffe);
   *(uint8_t *)pointerToUnsigned2 = 0;
   puStack_48 = pointerToUnsigned2;
   unsignedSystemValue1 = StartSystemThread(pointerToUnsigned2);
@@ -34652,11 +34752,11 @@ void FUN_18005ac00(void* SystemResourcePointer,void* param_2,void* param_3,void*
 
 
 
-void* FUN_18005b520(void* SystemResourcePointer,ulong long param_2)
+void* FUN_18005b520(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   FUN_18005b560();
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x13c0);
   }
   return SystemResourcePointer;
@@ -34665,8 +34765,8 @@ void* FUN_18005b520(void* SystemResourcePointer,ulong long param_2)
 
 
 
-// 函数: void FUN_18005b560(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005b560(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005b560(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005b560(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *SystemResourcePointer = &UNK_1809fde10;
@@ -34710,7 +34810,7 @@ void FUN_18005b560(void* *SystemResourcePointer,void* param_2,void* param_3,void
   SystemResourcePointer[0x19] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x1b) = 0;
   SystemResourcePointer[0x18] = &SystemMemoryAllocatorReference;
-  FUN_18005d260(SystemResourcePointer + 0x12,SystemResourcePointer[0x14],param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(SystemResourcePointer + 0x12,SystemResourcePointer[0x14],AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   if (SystemResourcePointer[0xd] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
@@ -34757,12 +34857,12 @@ long long FUN_18005b730(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005b7c0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005b7c0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005b7c0(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005b7c0(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (*(code **)(SystemResourcePointer + 0x60) != (code *)0x0) {
-    (**(code **)(SystemResourcePointer + 0x60))(SystemResourcePointer + 0x50,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(SystemResourcePointer + 0x60))(SystemResourcePointer + 0x50,0,0,ConfigurationFlag,0xfffffffffffffffe);
   }
   *(void* *)(SystemResourcePointer + 0x28) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x30) != 0) {
@@ -34831,12 +34931,12 @@ void* * FUN_18005b870(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005b960(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005b960(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005b960(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005b960(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if ((code *)SystemResourcePointer[0x16] != (code *)0x0) {
-    (*(code *)SystemResourcePointer[0x16])(SystemResourcePointer + 0x14,0,0,param_4,0xfffffffffffffffe);
+    (*(code *)SystemResourcePointer[0x16])(SystemResourcePointer + 0x14,0,0,ConfigurationFlag,0xfffffffffffffffe);
   }
   SystemResourcePointer[0x10] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x11] != 0) {
@@ -34885,8 +34985,8 @@ void FUN_18005b960(void* *SystemResourcePointer,void* param_2,void* param_3,void
 
 
 
-// 函数: void FUN_18005ba80(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005ba80(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005ba80(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005ba80(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint32_t unsignedSystemValue1;
@@ -34900,7 +35000,7 @@ void FUN_18005ba80(void* SystemResourcePointer,void* param_2,void* param_3,void*
   uStack_38 = 0;
   puStack_48 = (void* *)0x0;
   uStack_40 = 0;
-  pointerToUnsigned2 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x10,0x13,param_4,0xfffffffffffffffe);
+  pointerToUnsigned2 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x10,0x13,ConfigurationFlag,0xfffffffffffffffe);
   *(uint8_t *)pointerToUnsigned2 = 0;
   puStack_48 = pointerToUnsigned2;
   unsignedSystemValue1 = StartSystemThread(pointerToUnsigned2);
@@ -34969,25 +35069,25 @@ long long FUN_18005c090(long long SystemResourcePointer)
 
 
 void*
-FUN_18005c1c0(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+FUN_18005c1c0(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  CreateSystemObject(param_2,SystemContextManagerPointer + 0xe0,param_3,param_4,0,0xfffffffffffffffe);
-  return param_2;
+  CreateSystemObject(ConfigurationDataPointer,SystemContextManagerPointer + 0xe0,AdditionalParameter,ConfigurationFlag,0,0xfffffffffffffffe);
+  return ConfigurationDataPointer;
 }
 
 
 
-void* * FUN_18005c210(void* *SystemResourcePointer,uint param_2,void* param_3,void* param_4)
+void* * FUN_18005c210(void* *SystemResourcePointer,uint ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if ((code *)SystemResourcePointer[6] != (code *)0x0) {
-    (*(code *)SystemResourcePointer[6])(SystemResourcePointer + 4,0,0,param_4,0xfffffffffffffffe);
+    (*(code *)SystemResourcePointer[6])(SystemResourcePointer + 4,0,0,ConfigurationFlag,0xfffffffffffffffe);
   }
   *SystemResourcePointer = &SystemMemoryTemplateC;
   *SystemResourcePointer = &SystemMemoryTemplateB;
   *SystemResourcePointer = &SystemMemoryTemplateA;
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x40);
   }
   return SystemResourcePointer;
@@ -34996,7 +35096,7 @@ void* * FUN_18005c210(void* *SystemResourcePointer,uint param_2,void* param_3,vo
 
 
 void* *
-FUN_18005c2a0(void* *SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+FUN_18005c2a0(void* *SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -35014,20 +35114,20 @@ FUN_18005c2a0(void* *SystemResourcePointer,void* *param_2,void* param_3,void* pa
   pointerToUnsigned1 = SystemResourcePointer + 4;
   SystemResourcePointer[6] = 0;
   SystemResourcePointer[7] = _guard_check_icall;
-  if (pointerToUnsigned1 != param_2) {
+  if (pointerToUnsigned1 != ConfigurationDataPointer) {
     if ((code *)SystemResourcePointer[6] != (code *)0x0) {
-      (*(code *)SystemResourcePointer[6])(pointerToUnsigned1,0,0,param_4,0xfffffffffffffffe);
+      (*(code *)SystemResourcePointer[6])(pointerToUnsigned1,0,0,ConfigurationFlag,0xfffffffffffffffe);
     }
-    pcVar2 = (code *)param_2[2];
+    pcVar2 = (code *)ConfigurationDataPointer[2];
     if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(pointerToUnsigned1,param_2,1);
-      pcVar2 = (code *)param_2[2];
+      (*pcVar2)(pointerToUnsigned1,ConfigurationDataPointer,1);
+      pcVar2 = (code *)ConfigurationDataPointer[2];
     }
     SystemResourcePointer[6] = pcVar2;
-    SystemResourcePointer[7] = param_2[3];
+    SystemResourcePointer[7] = ConfigurationDataPointer[3];
   }
-  if ((code *)param_2[2] != (code *)0x0) {
-    (*(code *)param_2[2])(param_2,0,0);
+  if ((code *)ConfigurationDataPointer[2] != (code *)0x0) {
+    (*(code *)ConfigurationDataPointer[2])(ConfigurationDataPointer,0,0);
   }
   return SystemResourcePointer;
 }
@@ -35102,14 +35202,14 @@ void CleanupSystemResourcePointer(long long *SystemResourcePointer)
 
 
 
-long long FUN_18005c4f0(long long SystemResourcePointer,uint param_2,void* param_3,void* param_4)
+long long FUN_18005c4f0(long long SystemResourcePointer,uint ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (*(code **)(SystemResourcePointer + 0xd0) != (code *)0x0) {
-    (**(code **)(SystemResourcePointer + 0xd0))(SystemResourcePointer + 0xc0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(SystemResourcePointer + 0xd0))(SystemResourcePointer + 0xc0,0,0,ConfigurationFlag,0xfffffffffffffffe);
   }
   FUN_180049470(SystemResourcePointer);
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0xe8);
   }
   return SystemResourcePointer;
@@ -35146,7 +35246,7 @@ void FUN_18005c560(long long SystemResourcePointer)
 
 
 void* *
-FUN_18005c590(void* *SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+FUN_18005c590(void* *SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -35159,21 +35259,21 @@ FUN_18005c590(void* *SystemResourcePointer,void* *param_2,void* param_3,void* pa
   pointerToUnsigned1 = SystemResourcePointer + 0x18;
   SystemResourcePointer[0x1a] = 0;
   SystemResourcePointer[0x1b] = _guard_check_icall;
-  if (pointerToUnsigned1 != param_2) {
+  if (pointerToUnsigned1 != ConfigurationDataPointer) {
     if ((code *)SystemResourcePointer[0x1a] != (code *)0x0) {
-      (*(code *)SystemResourcePointer[0x1a])(pointerToUnsigned1,0,0,param_4,unsignedSystemValue3);
+      (*(code *)SystemResourcePointer[0x1a])(pointerToUnsigned1,0,0,ConfigurationFlag,unsignedSystemValue3);
     }
-    pcVar2 = (code *)param_2[2];
+    pcVar2 = (code *)ConfigurationDataPointer[2];
     if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(pointerToUnsigned1,param_2,1);
-      pcVar2 = (code *)param_2[2];
+      (*pcVar2)(pointerToUnsigned1,ConfigurationDataPointer,1);
+      pcVar2 = (code *)ConfigurationDataPointer[2];
     }
     SystemResourcePointer[0x1a] = pcVar2;
-    SystemResourcePointer[0x1b] = param_2[3];
+    SystemResourcePointer[0x1b] = ConfigurationDataPointer[3];
   }
-  SystemResourcePointer[0x1c] = param_3;
-  if ((code *)param_2[2] != (code *)0x0) {
-    (*(code *)param_2[2])(param_2,0,0);
+  SystemResourcePointer[0x1c] = AdditionalParameter;
+  if ((code *)ConfigurationDataPointer[2] != (code *)0x0) {
+    (*(code *)ConfigurationDataPointer[2])(ConfigurationDataPointer,0,0);
   }
   return SystemResourcePointer;
 }
@@ -35298,14 +35398,14 @@ void FUN_18005c830(uint *SystemResourcePointer)
 
 
 
-void* ProcessMemoryManagerOperation(long long SystemResourcePointer,void* param_2)
+void* ProcessMemoryManagerOperation(long long SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   char SystemNodeFlag;
   void* *pointerToUnsigned2;
   
   if (*(long long *)(SystemResourcePointer + 0xb0) != 0) {
-    cVar1 = (**(code **)(SystemResourcePointer + 0xb8))(param_2);
+    cVar1 = (**(code **)(SystemResourcePointer + 0xb8))(ConfigurationDataPointer);
     if (cVar1 == '\0') {
       if (DAT_180c82860 == '\0') {
         pointerToUnsigned2 = &SystemStringTemplate;
@@ -35318,7 +35418,7 @@ void* ProcessMemoryManagerOperation(long long SystemResourcePointer,void* param_
       return 0;
     }
   }
-  ProcessDataManager(SystemResourcePointer,param_2);
+  ProcessDataManager(SystemResourcePointer,ConfigurationDataPointer);
   return 1;
 }
 
@@ -35326,8 +35426,8 @@ void* ProcessMemoryManagerOperation(long long SystemResourcePointer,void* param_
 
 
 
-// 函数: void FUN_18005c930(void* *SystemResourcePointer,void* param_2,int *param_3)
-void FUN_18005c930(void* *SystemResourcePointer,void* param_2,int *param_3)
+// 函数: void FUN_18005c930(void* *SystemResourcePointer,void* ConfigurationDataPointer,int *AdditionalParameter)
+void FUN_18005c930(void* *SystemResourcePointer,void* ConfigurationDataPointer,int *AdditionalParameter)
 
 {
   int systemStatus;
@@ -35338,7 +35438,7 @@ void FUN_18005c930(void* *SystemResourcePointer,void* param_2,int *param_3)
   void* unsignedSystemValue6;
   
   localBufferAddress = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x28,*(uint8_t *)(SystemResourcePointer + 5));
-  systemStatus = *param_3;
+  systemStatus = *AdditionalParameter;
   bVar2 = true;
   *(int *)(localBufferAddress + 0x20) = systemStatus;
   punsignedSystemValue5 = (void* *)SystemResourcePointer[2];
@@ -35376,8 +35476,8 @@ LAB_18005c9be:
 
 
 
-// 函数: void ProcessNodeManagerOperation(long long SystemResourcePointer,uint32_t param_2)
-void ProcessNodeManagerOperation(long long SystemResourcePointer,uint32_t param_2)
+// 函数: void ProcessNodeManagerOperation(long long SystemResourcePointer,uint32_t ConfigurationDataPointer)
+void ProcessNodeManagerOperation(long long SystemResourcePointer,uint32_t ConfigurationDataPointer)
 
 {
   char SystemNodeFlag;
@@ -35385,8 +35485,8 @@ void ProcessNodeManagerOperation(long long SystemResourcePointer,uint32_t param_
   uint32_t auStackX_10 [6];
   
   if ((*(long long *)(SystemResourcePointer + 0x1f00) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(SystemResourcePointer + 0x1f08))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+     (auStackX_10[0] = ConfigurationDataPointer, cVar1 = (**(code **)(SystemResourcePointer + 0x1f08))(auStackX_10),
+     ConfigurationDataPointer = auStackX_10[0], cVar1 == '\0')) {
     if (DAT_180c82860 == '\0') {
       pointerToUnsigned2 = &SystemStringTemplate;
       if (*(void* **)(SystemResourcePointer + 0x1eb0) != (void* *)0x0) {
@@ -35397,13 +35497,13 @@ void ProcessNodeManagerOperation(long long SystemResourcePointer,uint32_t param_
     *(uint32_t *)(SystemResourcePointer + 0x1ea0) = *(uint32_t *)(SystemResourcePointer + 0x1ee8);
     return;
   }
-  *(uint32_t *)(SystemResourcePointer + 0x1ea0) = param_2;
+  *(uint32_t *)(SystemResourcePointer + 0x1ea0) = ConfigurationDataPointer;
   return;
 }
 
 
 
-void* * FUN_18005caa0(void* *SystemResourcePointer,long long param_2)
+void* * FUN_18005caa0(void* *SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
@@ -35413,13 +35513,13 @@ void* * FUN_18005caa0(void* *SystemResourcePointer,long long param_2)
   SystemResourcePointer[3] = 0;
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
-  *(uint32_t *)(SystemResourcePointer + 2) = *(uint32_t *)(param_2 + 0x10);
-  SystemResourcePointer[1] = *(void* *)(param_2 + 8);
-  *(uint32_t *)((long long)SystemResourcePointer + 0x1c) = *(uint32_t *)(param_2 + 0x1c);
-  *(uint32_t *)(SystemResourcePointer + 3) = *(uint32_t *)(param_2 + 0x18);
-  *(uint32_t *)(param_2 + 0x10) = 0;
-  *(void* *)(param_2 + 8) = 0;
-  *(void* *)(param_2 + 0x18) = 0;
+  *(uint32_t *)(SystemResourcePointer + 2) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
+  SystemResourcePointer[1] = *(void* *)(ConfigurationDataPointer + 8);
+  *(uint32_t *)((long long)SystemResourcePointer + 0x1c) = *(uint32_t *)(ConfigurationDataPointer + 0x1c);
+  *(uint32_t *)(SystemResourcePointer + 3) = *(uint32_t *)(ConfigurationDataPointer + 0x18);
+  *(uint32_t *)(ConfigurationDataPointer + 0x10) = 0;
+  *(void* *)(ConfigurationDataPointer + 8) = 0;
+  *(void* *)(ConfigurationDataPointer + 0x18) = 0;
   SystemResourcePointer[4] = &SystemMemoryAllocatorReference;
   SystemResourcePointer[5] = 0;
   *(uint32_t *)(SystemResourcePointer + 6) = 0;
@@ -35427,13 +35527,13 @@ void* * FUN_18005caa0(void* *SystemResourcePointer,long long param_2)
   SystemResourcePointer[7] = 0;
   SystemResourcePointer[5] = 0;
   *(uint32_t *)(SystemResourcePointer + 6) = 0;
-  *(uint32_t *)(SystemResourcePointer + 6) = *(uint32_t *)(param_2 + 0x30);
-  SystemResourcePointer[5] = *(void* *)(param_2 + 0x28);
-  *(uint32_t *)((long long)SystemResourcePointer + 0x3c) = *(uint32_t *)(param_2 + 0x3c);
-  *(uint32_t *)(SystemResourcePointer + 7) = *(uint32_t *)(param_2 + 0x38);
-  *(uint32_t *)(param_2 + 0x30) = 0;
-  *(void* *)(param_2 + 0x28) = 0;
-  *(void* *)(param_2 + 0x38) = 0;
+  *(uint32_t *)(SystemResourcePointer + 6) = *(uint32_t *)(ConfigurationDataPointer + 0x30);
+  SystemResourcePointer[5] = *(void* *)(ConfigurationDataPointer + 0x28);
+  *(uint32_t *)((long long)SystemResourcePointer + 0x3c) = *(uint32_t *)(ConfigurationDataPointer + 0x3c);
+  *(uint32_t *)(SystemResourcePointer + 7) = *(uint32_t *)(ConfigurationDataPointer + 0x38);
+  *(uint32_t *)(ConfigurationDataPointer + 0x30) = 0;
+  *(void* *)(ConfigurationDataPointer + 0x28) = 0;
+  *(void* *)(ConfigurationDataPointer + 0x38) = 0;
   return SystemResourcePointer;
 }
 
@@ -35465,8 +35565,8 @@ long long FUN_18005cb60(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005cc00(void* **SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005cc00(void* **SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005cc00(void* **SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005cc00(void* **SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   byte bVar1;
@@ -35487,17 +35587,17 @@ void FUN_18005cc00(void* **SystemResourcePointer,void* param_2,void* param_3,voi
   uint32_t uStack_30;
   
   localResourceOffset = SystemDataManagerPointer;
-  acStackX_20[0] = (char)param_4;
+  acStackX_20[0] = (char)ConfigurationFlag;
   unsignedSystemValue8 = 0;
   ppunsignedSystemValue6 = (void* **)(SystemDataManagerPointer + 0x70);
   ppuStackX_8 = SystemResourcePointer;
-  FUN_180058080(ppunsignedSystemValue6,&ppuStackX_8,param_2,param_4,0,0xfffffffffffffffe);
+  FUN_180058080(ppunsignedSystemValue6,&ppuStackX_8,ConfigurationDataPointer,ConfigurationFlag,0,0xfffffffffffffffe);
   if (ppuStackX_8 != ppunsignedSystemValue6) {
-    ProcessDataManager(ppuStackX_8 + 8,param_3);
+    ProcessDataManager(ppuStackX_8 + 8,AdditionalParameter);
     return;
   }
-  CreateSystemObject(&puStack_68,param_2);
-  CreateSystemObject(&puStack_48,param_3);
+  CreateSystemObject(&puStack_68,ConfigurationDataPointer);
+  CreateSystemObject(&puStack_48,AdditionalParameter);
   unsignedSystemValue9 = 1;
   localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x60,*(uint8_t *)(localResourceOffset + 0x98));
   FUN_18005caa0(localResourceOffset + 0x20,&puStack_68);
@@ -35547,22 +35647,22 @@ LAB_18005ccff:
 
 
 void* *
-FUN_18005cdb0(void* *SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+FUN_18005cdb0(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   SystemResourcePointer[4] = &SystemMemoryAllocatorReference;
   *SystemResourcePointer = &SystemMemoryTemplateC;
   *SystemResourcePointer = &SystemMemoryTemplateB;
   *SystemResourcePointer = &SystemMemoryTemplateA;
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0x100,param_3,param_4,0xfffffffffffffffe);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0x100,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   }
   return SystemResourcePointer;
 }
 
 
 
-void* * FUN_18005ce30(void* *SystemResourcePointer,void* *param_2)
+void* * FUN_18005ce30(void* *SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   void* *pointerToUnsigned1;
@@ -35585,49 +35685,49 @@ void* * FUN_18005ce30(void* *SystemResourcePointer,void* *param_2)
   SystemResourcePointer[5] = SystemResourcePointer + 7;
   *(uint32_t *)(SystemResourcePointer + 6) = 0;
   *(uint8_t *)(SystemResourcePointer + 7) = 0;
-  unsignedSystemValue2 = param_2[1];
-  *pointerToUnsigned1 = *param_2;
+  unsignedSystemValue2 = ConfigurationDataPointer[1];
+  *pointerToUnsigned1 = *ConfigurationDataPointer;
   SystemResourcePointer[5] = unsignedSystemValue2;
-  unsignedSystemValue2 = param_2[3];
-  SystemResourcePointer[6] = param_2[2];
+  unsignedSystemValue2 = ConfigurationDataPointer[3];
+  SystemResourcePointer[6] = ConfigurationDataPointer[2];
   SystemResourcePointer[7] = unsignedSystemValue2;
-  unsignedSystemValue2 = param_2[5];
-  SystemResourcePointer[8] = param_2[4];
+  unsignedSystemValue2 = ConfigurationDataPointer[5];
+  SystemResourcePointer[8] = ConfigurationDataPointer[4];
   SystemResourcePointer[9] = unsignedSystemValue2;
-  unsignedSystemValue2 = param_2[7];
-  SystemResourcePointer[10] = param_2[6];
+  unsignedSystemValue2 = ConfigurationDataPointer[7];
+  SystemResourcePointer[10] = ConfigurationDataPointer[6];
   SystemResourcePointer[0xb] = unsignedSystemValue2;
-  unsignedSystemValue2 = param_2[9];
-  SystemResourcePointer[0xc] = param_2[8];
+  unsignedSystemValue2 = ConfigurationDataPointer[9];
+  SystemResourcePointer[0xc] = ConfigurationDataPointer[8];
   SystemResourcePointer[0xd] = unsignedSystemValue2;
-  unsignedSystemValue2 = param_2[0xb];
-  SystemResourcePointer[0xe] = param_2[10];
+  unsignedSystemValue2 = ConfigurationDataPointer[0xb];
+  SystemResourcePointer[0xe] = ConfigurationDataPointer[10];
   SystemResourcePointer[0xf] = unsignedSystemValue2;
-  unsignedSystemValue2 = param_2[0xd];
-  SystemResourcePointer[0x10] = param_2[0xc];
+  unsignedSystemValue2 = ConfigurationDataPointer[0xd];
+  SystemResourcePointer[0x10] = ConfigurationDataPointer[0xc];
   SystemResourcePointer[0x11] = unsignedSystemValue2;
-  unsignedSystemValue2 = param_2[0xf];
-  SystemResourcePointer[0x12] = param_2[0xe];
+  unsignedSystemValue2 = ConfigurationDataPointer[0xf];
+  SystemResourcePointer[0x12] = ConfigurationDataPointer[0xe];
   SystemResourcePointer[0x13] = unsignedSystemValue2;
-  unsignedSystemValue2 = param_2[0x11];
-  SystemResourcePointer[0x14] = param_2[0x10];
+  unsignedSystemValue2 = ConfigurationDataPointer[0x11];
+  SystemResourcePointer[0x14] = ConfigurationDataPointer[0x10];
   SystemResourcePointer[0x15] = unsignedSystemValue2;
-  unsignedSystemValue2 = param_2[0x13];
-  SystemResourcePointer[0x16] = param_2[0x12];
+  unsignedSystemValue2 = ConfigurationDataPointer[0x13];
+  SystemResourcePointer[0x16] = ConfigurationDataPointer[0x12];
   SystemResourcePointer[0x17] = unsignedSystemValue2;
-  unsignedSystemValue2 = param_2[0x15];
-  SystemResourcePointer[0x18] = param_2[0x14];
+  unsignedSystemValue2 = ConfigurationDataPointer[0x15];
+  SystemResourcePointer[0x18] = ConfigurationDataPointer[0x14];
   SystemResourcePointer[0x19] = unsignedSystemValue2;
-  unsignedSystemValue2 = param_2[0x17];
-  SystemResourcePointer[0x1a] = param_2[0x16];
+  unsignedSystemValue2 = ConfigurationDataPointer[0x17];
+  SystemResourcePointer[0x1a] = ConfigurationDataPointer[0x16];
   SystemResourcePointer[0x1b] = unsignedSystemValue2;
-  unsignedSystemValue2 = param_2[0x19];
-  SystemResourcePointer[0x1c] = param_2[0x18];
+  unsignedSystemValue2 = ConfigurationDataPointer[0x19];
+  SystemResourcePointer[0x1c] = ConfigurationDataPointer[0x18];
   SystemResourcePointer[0x1d] = unsignedSystemValue2;
-  unsignedSystemValue2 = param_2[0x1b];
-  SystemResourcePointer[0x1e] = param_2[0x1a];
+  unsignedSystemValue2 = ConfigurationDataPointer[0x1b];
+  SystemResourcePointer[0x1e] = ConfigurationDataPointer[0x1a];
   SystemResourcePointer[0x1f] = unsignedSystemValue2;
-  *(uint32_t *)(SystemResourcePointer + 0x17) = *(uint32_t *)(param_2 + 0x13);
+  *(uint32_t *)(SystemResourcePointer + 0x17) = *(uint32_t *)(ConfigurationDataPointer + 0x13);
   return SystemResourcePointer;
 }
 
@@ -35702,8 +35802,8 @@ int FUN_18005cfc0(void)
 
 
 
-// 函数: void FUN_18005d0e0(ulong long SystemResourcePointer,long long param_2)
-void FUN_18005d0e0(ulong long SystemResourcePointer,long long param_2)
+// 函数: void FUN_18005d0e0(ulong long SystemResourcePointer,long long ConfigurationDataPointer)
+void FUN_18005d0e0(ulong long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   char SystemNodeFlag;
@@ -35768,9 +35868,9 @@ void FUN_18005d0e0(ulong long SystemResourcePointer,long long param_2)
     } while (acStack_438[localSystemFlags + 1] != '\0');
     systemCode = (int)(localSystemFlags + 1);
     if (0 < systemCode) {
-      ExecuteSystemCommand(param_2,*(int *)(param_2 + 0x10) + systemCode);
+      ExecuteSystemCommand(ConfigurationDataPointer,*(int *)(ConfigurationDataPointer + 0x10) + systemCode);
                     // WARNING: Subroutine does not return
-      memcpy((ulong long)*(uint *)(param_2 + 0x10) + *(long long *)(ComparisonDataPointer + 8),acStack_438,
+      memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),acStack_438,
              (long long)((int)localSystemFlags + 2));
     }
   }
@@ -35780,7 +35880,7 @@ void FUN_18005d0e0(ulong long SystemResourcePointer,long long param_2)
       localSystemPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)systemCode,3);
     }
     FUN_18004b9b0(localSystemPointer,(long long)systemCode,&UNK_1809fe058,&dStackX_18);
-    FUN_1806281a0(param_2,localSystemPointer);
+    FUN_1806281a0(ConfigurationDataPointer,localSystemPointer);
     if (localSystemPointer != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction(localSystemPointer);
@@ -35792,7 +35892,7 @@ void FUN_18005d0e0(ulong long SystemResourcePointer,long long param_2)
 
 
 
-long long FUN_18005d190(long long SystemResourcePointer,long long param_2)
+long long FUN_18005d190(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   if (*(long long *)(SystemResourcePointer + 8) != 0) {
@@ -35802,13 +35902,13 @@ long long FUN_18005d190(long long SystemResourcePointer,long long param_2)
   *(void* *)(SystemResourcePointer + 0x18) = 0;
   *(void* *)(SystemResourcePointer + 8) = 0;
   *(uint32_t *)(targetBuffer + 0x10) = 0;
-  *(uint32_t *)(SystemResourcePointer + 0x10) = *(uint32_t *)(param_2 + 0x10);
-  *(void* *)(SystemResourcePointer + 8) = *(void* *)(param_2 + 8);
-  *(uint32_t *)(SystemResourcePointer + 0x1c) = *(uint32_t *)(param_2 + 0x1c);
-  *(uint32_t *)(SystemResourcePointer + 0x18) = *(uint32_t *)(param_2 + 0x18);
-  *(uint32_t *)(param_2 + 0x10) = 0;
-  *(void* *)(param_2 + 8) = 0;
-  *(void* *)(param_2 + 0x18) = 0;
+  *(uint32_t *)(SystemResourcePointer + 0x10) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
+  *(void* *)(SystemResourcePointer + 8) = *(void* *)(ConfigurationDataPointer + 8);
+  *(uint32_t *)(SystemResourcePointer + 0x1c) = *(uint32_t *)(ConfigurationDataPointer + 0x1c);
+  *(uint32_t *)(SystemResourcePointer + 0x18) = *(uint32_t *)(ConfigurationDataPointer + 0x18);
+  *(uint32_t *)(ConfigurationDataPointer + 0x10) = 0;
+  *(void* *)(ConfigurationDataPointer + 8) = 0;
+  *(void* *)(ConfigurationDataPointer + 0x18) = 0;
   return SystemResourcePointer;
 }
 
@@ -35822,23 +35922,23 @@ long long FUN_18005d190(long long SystemResourcePointer,long long param_2)
  * 内存分配和状态设置。用于系统资源管理的辅助操作。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数2，通常为缓冲区指针
+ * @param ConfigurationDataPointer 参数2，通常为缓冲区指针
  * @note 这是资源管理系统的辅助处理函数
  */
-void ProcessExtraOutputResource(void* SystemResourcePointer,long long param_2)
+void ProcessExtraOutputResource(void* SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
-  *(void* *)(param_2 + 0x20) = &SystemGlobalDataReference;
-  if (*(long long *)(param_2 + 0x28) != 0) {
+  *(void* *)(ConfigurationDataPointer + 0x20) = &SystemGlobalDataReference;
+  if (*(long long *)(ConfigurationDataPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  *(void* *)(param_2 + 0x28) = 0;
-  *(uint32_t *)(param_2 + 0x38) = 0;
-  *(void* *)(param_2 + 0x20) = &SystemMemoryAllocatorReference;
-  if (param_2 != 0) {
+  *(void* *)(ConfigurationDataPointer + 0x28) = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 0x38) = 0;
+  *(void* *)(ConfigurationDataPointer + 0x20) = &SystemMemoryAllocatorReference;
+  if (ConfigurationDataPointer != 0) {
                     // WARNING: Subroutine does not return
-    SystemCleanupFunction(param_2);
+    SystemCleanupFunction(ConfigurationDataPointer);
   }
   return;
 }
@@ -35846,64 +35946,64 @@ void ProcessExtraOutputResource(void* SystemResourcePointer,long long param_2)
 
 
 
-// 函数: void FUN_18005d260(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
-void FUN_18005d260(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005d260(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005d260(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  if (param_2 == (void* *)0x0) {
+  if (ConfigurationDataPointer == (void* *)0x0) {
     return;
   }
-  FUN_18005d260(SystemResourcePointer,*param_2,param_3,param_4,0xfffffffffffffffe);
-  param_2[4] = &SystemGlobalDataReference;
-  if (param_2[5] != 0) {
+  FUN_18005d260(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ConfigurationDataPointer[4] = &SystemGlobalDataReference;
+  if (ConfigurationDataPointer[5] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  param_2[5] = 0;
-  *(uint32_t *)(param_2 + 7) = 0;
-  param_2[4] = &SystemMemoryAllocatorReference;
+  ConfigurationDataPointer[5] = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
+  ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  SystemCleanupFunction(param_2);
+  SystemCleanupFunction(ConfigurationDataPointer);
 }
 
 
 
 
-// 函数: void FUN_18005d310(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005d310(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005d310(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005d310(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_18005d260(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_18005d330(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005d330(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005d330(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005d330(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_18005d260(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_18005d360(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005d360(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005d360(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005d360(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_18005d260(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_18005d3a0(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005d3a0(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005d3a0(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005d3a0(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
@@ -35912,9 +36012,9 @@ void FUN_18005d3a0(void* SystemResourcePointer,void* param_2,void* param_3,void*
   uint64_t systemInitializationFlag;
   void* uStackX_20;
   
-  uStackX_10 = param_2;
-  uStackX_18 = param_3;
-  uStackX_20 = param_4;
+  uStackX_10 = ConfigurationDataPointer;
+  uStackX_18 = AdditionalParameter;
+  uStackX_20 = ConfigurationFlag;
   unsignedSystemValue1 = __acrt_iob_func(1);
   pointerToUnsigned2 = (void* *)SystemGlobalDataAllocate();
   __stdio_common_vfprintf(*pointerToUnsigned2,unsignedSystemValue1,SystemResourcePointer,0,&uStackX_10);
@@ -35923,7 +36023,7 @@ void FUN_18005d3a0(void* SystemResourcePointer,void* param_2,void* param_3,void*
 
 
 
-void* * FUN_18005d400(long long SystemResourcePointer,char *param_2)
+void* * FUN_18005d400(long long SystemResourcePointer,char *ConfigurationDataPointer)
 
 {
   char *pcVar1;
@@ -35933,11 +36033,11 @@ void* * FUN_18005d400(long long SystemResourcePointer,char *param_2)
   long long systemTimeValue;
   char *pcVar6;
   
-  if (param_2 == (char *)0x0) {
+  if (ConfigurationDataPointer == (char *)0x0) {
     return *(void* **)(SystemResourcePointer + 0x58);
   }
-  cVar2 = *param_2;
-  pcVar6 = param_2;
+  cVar2 = *ConfigurationDataPointer;
+  pcVar6 = ConfigurationDataPointer;
   while (cVar2 != '\0') {
     pcVar6 = pcVar6 + 1;
     cVar2 = *pcVar6;
@@ -35955,12 +36055,12 @@ void* * FUN_18005d400(long long SystemResourcePointer,char *param_2)
     else {
       localSystemPointer = pointerToUnsigned3[2];
     }
-    if (localSystemPointer == (long long)pcVar6 - (long long)param_2) {
+    if (localSystemPointer == (long long)pcVar6 - (long long)ConfigurationDataPointer) {
       pcVar1 = pcVar4 + localSystemPointer;
       if (pcVar1 <= pcVar4) {
         return pointerToUnsigned3;
       }
-      localSystemPointer = (long long)param_2 - (long long)pcVar4;
+      localSystemPointer = (long long)ConfigurationDataPointer - (long long)pcVar4;
       while (*pcVar4 == pcVar4[localSystemPointer]) {
         pcVar4 = pcVar4 + 1;
         if (pcVar1 <= pcVar4) {
@@ -35974,7 +36074,7 @@ void* * FUN_18005d400(long long SystemResourcePointer,char *param_2)
 
 
 
-void* * FUN_18005d430(void* SystemResourcePointer,void* *param_2)
+void* * FUN_18005d430(void* SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   char *pcVar1;
@@ -35983,38 +36083,38 @@ void* * FUN_18005d430(void* SystemResourcePointer,void* *param_2)
   long long in_R10;
   long long in_R11;
   
-  if (param_2 != (void* *)0x0) {
+  if (ConfigurationDataPointer != (void* *)0x0) {
     do {
-      pcVar2 = (char *)*param_2;
+      pcVar2 = (char *)*ConfigurationDataPointer;
       if (pcVar2 == (char *)0x0) {
         localResourceOffset = 0;
         pcVar2 = (char *)0x180d48d24;
       }
       else {
-        localResourceOffset = param_2[2];
+        localResourceOffset = ConfigurationDataPointer[2];
       }
       if (localResourceOffset == in_R10) {
         pcVar1 = pcVar2 + localResourceOffset;
         if (pcVar1 <= pcVar2) {
-          return param_2;
+          return ConfigurationDataPointer;
         }
         localResourceOffset = in_R11 - (long long)pcVar2;
         while (*pcVar2 == pcVar2[localResourceOffset]) {
           pcVar2 = pcVar2 + 1;
           if (pcVar1 <= pcVar2) {
-            return param_2;
+            return ConfigurationDataPointer;
           }
         }
       }
-      param_2 = (void* *)param_2[0xb];
-    } while (param_2 != (void* *)0x0);
+      ConfigurationDataPointer = (void* *)ConfigurationDataPointer[0xb];
+    } while (ConfigurationDataPointer != (void* *)0x0);
   }
   return (void* *)0x0;
 }
 
 
 
-void* * FUN_18005d484(void* SystemResourcePointer,void* *param_2)
+void* * FUN_18005d484(void* SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   char *pcVar1;
@@ -36026,17 +36126,17 @@ void* * FUN_18005d484(void* SystemResourcePointer,void* *param_2)
   
   while( true ) {
     do {
-      param_2 = (void* *)param_2[0xb];
-      if (param_2 == (void* *)0x0) {
+      ConfigurationDataPointer = (void* *)ConfigurationDataPointer[0xb];
+      if (ConfigurationDataPointer == (void* *)0x0) {
         return (void* *)0x0;
       }
-      if ((char *)*param_2 == (char *)0x0) {
+      if ((char *)*ConfigurationDataPointer == (char *)0x0) {
         localResourceOffset = 0;
         pcVar2 = unaff_RBX;
       }
       else {
-        localResourceOffset = param_2[2];
-        pcVar2 = (char *)*param_2;
+        localResourceOffset = ConfigurationDataPointer[2];
+        pcVar2 = (char *)*ConfigurationDataPointer;
       }
     } while (localResourceOffset != in_R10);
     pcVar1 = pcVar2 + localResourceOffset;
@@ -36045,11 +36145,11 @@ void* * FUN_18005d484(void* SystemResourcePointer,void* *param_2)
     while (*pcVar2 == pcVar2[localResourceOffset]) {
       pcVar2 = pcVar2 + 1;
       if (pcVar1 <= pcVar2) {
-        return param_2;
+        return ConfigurationDataPointer;
       }
     }
   }
-  return param_2;
+  return ConfigurationDataPointer;
 }
 
 
@@ -36062,7 +36162,7 @@ void* FUN_18005d498(long long SystemResourcePointer)
 
 
 
-void* * FUN_18005d4b0(long long SystemResourcePointer,char *param_2,long long param_3)
+void* * FUN_18005d4b0(long long SystemResourcePointer,char *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   char *pcVar1;
@@ -36071,17 +36171,17 @@ void* * FUN_18005d4b0(long long SystemResourcePointer,char *param_2,long long pa
   char *pcVar4;
   long long systemTimeValue;
   
-  if (param_2 == (char *)0x0) {
+  if (ConfigurationDataPointer == (char *)0x0) {
     return *(void* **)(SystemResourcePointer + 0x30);
   }
-  if (param_3 == 0) {
-    cVar2 = *param_2;
-    pcVar4 = param_2;
+  if (AdditionalParameter == 0) {
+    cVar2 = *ConfigurationDataPointer;
+    pcVar4 = ConfigurationDataPointer;
     while (cVar2 != '\0') {
       pcVar4 = pcVar4 + 1;
       cVar2 = *pcVar4;
     }
-    param_3 = (long long)pcVar4 - (long long)param_2;
+    AdditionalParameter = (long long)pcVar4 - (long long)ConfigurationDataPointer;
   }
   pointerToUnsigned3 = *(void* **)(SystemResourcePointer + 0x30);
   do {
@@ -36096,12 +36196,12 @@ void* * FUN_18005d4b0(long long SystemResourcePointer,char *param_2,long long pa
     else {
       localSystemPointer = pointerToUnsigned3[2];
     }
-    if (localSystemPointer == param_3) {
+    if (localSystemPointer == AdditionalParameter) {
       pcVar1 = pcVar4 + localSystemPointer;
       if (pcVar1 <= pcVar4) {
         return pointerToUnsigned3;
       }
-      localSystemPointer = (long long)param_2 - (long long)pcVar4;
+      localSystemPointer = (long long)ConfigurationDataPointer - (long long)pcVar4;
       while (*pcVar4 == pcVar4[localSystemPointer]) {
         pcVar4 = pcVar4 + 1;
         if (pcVar1 <= pcVar4) {
@@ -36115,7 +36215,7 @@ void* * FUN_18005d4b0(long long SystemResourcePointer,char *param_2,long long pa
 
 
 
-void* * FUN_18005d4e0(void* SystemResourcePointer,void* *param_2,long long param_3)
+void* * FUN_18005d4e0(void* SystemResourcePointer,void* *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   char *pcVar1;
@@ -36123,38 +36223,38 @@ void* * FUN_18005d4e0(void* SystemResourcePointer,void* *param_2,long long param
   long long localResourceOffset;
   long long in_R11;
   
-  if (param_2 != (void* *)0x0) {
+  if (ConfigurationDataPointer != (void* *)0x0) {
     do {
-      pcVar2 = (char *)*param_2;
+      pcVar2 = (char *)*ConfigurationDataPointer;
       if (pcVar2 == (char *)0x0) {
         localResourceOffset = 0;
         pcVar2 = (char *)0x180d48d24;
       }
       else {
-        localResourceOffset = param_2[2];
+        localResourceOffset = ConfigurationDataPointer[2];
       }
-      if (localResourceOffset == param_3) {
+      if (localResourceOffset == AdditionalParameter) {
         pcVar1 = pcVar2 + localResourceOffset;
         if (pcVar1 <= pcVar2) {
-          return param_2;
+          return ConfigurationDataPointer;
         }
         localResourceOffset = in_R11 - (long long)pcVar2;
         while (*pcVar2 == pcVar2[localResourceOffset]) {
           pcVar2 = pcVar2 + 1;
           if (pcVar1 <= pcVar2) {
-            return param_2;
+            return ConfigurationDataPointer;
           }
         }
       }
-      param_2 = (void* *)param_2[0xb];
-    } while (param_2 != (void* *)0x0);
+      ConfigurationDataPointer = (void* *)ConfigurationDataPointer[0xb];
+    } while (ConfigurationDataPointer != (void* *)0x0);
   }
   return (void* *)0x0;
 }
 
 
 
-void* * FUN_18005d534(void* SystemResourcePointer,void* *param_2,long long param_3)
+void* * FUN_18005d534(void* SystemResourcePointer,void* *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   char *pcVar1;
@@ -36165,30 +36265,30 @@ void* * FUN_18005d534(void* SystemResourcePointer,void* *param_2,long long param
   
   while( true ) {
     do {
-      param_2 = (void* *)param_2[0xb];
-      if (param_2 == (void* *)0x0) {
+      ConfigurationDataPointer = (void* *)ConfigurationDataPointer[0xb];
+      if (ConfigurationDataPointer == (void* *)0x0) {
         return (void* *)0x0;
       }
-      if ((char *)*param_2 == (char *)0x0) {
+      if ((char *)*ConfigurationDataPointer == (char *)0x0) {
         localResourceOffset = 0;
         pcVar2 = unaff_RBX;
       }
       else {
-        localResourceOffset = param_2[2];
-        pcVar2 = (char *)*param_2;
+        localResourceOffset = ConfigurationDataPointer[2];
+        pcVar2 = (char *)*ConfigurationDataPointer;
       }
-    } while (localResourceOffset != param_3);
+    } while (localResourceOffset != AdditionalParameter);
     pcVar1 = pcVar2 + localResourceOffset;
     if (pcVar1 <= pcVar2) break;
     localResourceOffset = in_R11 - (long long)pcVar2;
     while (*pcVar2 == pcVar2[localResourceOffset]) {
       pcVar2 = pcVar2 + 1;
       if (pcVar1 <= pcVar2) {
-        return param_2;
+        return ConfigurationDataPointer;
       }
     }
   }
-  return param_2;
+  return ConfigurationDataPointer;
 }
 
 
@@ -36202,8 +36302,8 @@ void* FUN_18005d548(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005d560(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005d560(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005d560(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005d560(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -36213,7 +36313,7 @@ void FUN_18005d560(long long *SystemResourcePointer,void* param_2,void* param_3,
   unsignedSystemValue3 = 0xfffffffffffffffe;
   pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
   for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 4) {
-    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,param_3,param_4,unsignedSystemValue3);
+    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue3);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -36225,8 +36325,8 @@ void FUN_18005d560(long long *SystemResourcePointer,void* param_2,void* param_3,
 
 
 
-// 函数: void FUN_18005d580(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18005d580(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005d580(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005d580(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -36236,7 +36336,7 @@ void FUN_18005d580(long long *SystemResourcePointer,void* param_2,void* param_3,
   unsignedSystemValue3 = 0xfffffffffffffffe;
   pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
   for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 4) {
-    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,param_3,param_4,unsignedSystemValue3);
+    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue3);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -36248,7 +36348,7 @@ void FUN_18005d580(long long *SystemResourcePointer,void* param_2,void* param_3,
 
 
 void* *
-FUN_18005d600(void* *SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+FUN_18005d600(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
@@ -36256,8 +36356,8 @@ FUN_18005d600(void* *SystemResourcePointer,ulong long param_2,void* param_3,void
   unsignedSystemValue1 = 0xfffffffffffffffe;
   *SystemResourcePointer = &SystemVirtualTableTemplateB;
   InitializeSystemResourceHandler();
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0xc0,param_3,param_4,unsignedSystemValue1);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0xc0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue1);
   }
   return SystemResourcePointer;
 }
@@ -36309,8 +36409,8 @@ void FUN_18005d760(void* *SystemResourcePointer)
 
 
 
-// 函数: void InitializeSystemLogger(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void InitializeSystemLogger(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void InitializeSystemLogger(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void InitializeSystemLogger(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -36323,7 +36423,7 @@ void InitializeSystemLogger(long long SystemResourcePointer,void* param_2,void* 
   
   localSystemPointer = SystemMemoryAllocationTemplate;
   if (*(code **)(SystemMemoryAllocationTemplate + 0x20) != (code *)0x0) {
-    (**(code **)(SystemMemoryAllocationTemplate + 0x20))(SystemMemoryAllocationTemplate + 0x10,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(SystemMemoryAllocationTemplate + 0x20))(SystemMemoryAllocationTemplate + 0x10,0,0,ConfigurationFlag,0xfffffffffffffffe);
   }
   *(void* *)(localSystemPointer + 0x20) = 0;
   *(code **)(localSystemPointer + 0x28) = _guard_check_icall;
@@ -36755,8 +36855,8 @@ void FUN_18005dbb0(void)
 
 
 
-// 函数: void FUN_18005e110(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
-void FUN_18005e110(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005e110(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005e110(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint unsignedSystemValue1;
@@ -36766,13 +36866,13 @@ void FUN_18005e110(long long SystemResourcePointer,long long *param_2,void* para
   void* unsignedSystemValue5;
   
   unsignedSystemValue5 = 0xfffffffffffffffe;
-  (**(code **)(*(long long *)*param_2 + 0x78))();
+  (**(code **)(*(long long *)*ConfigurationDataPointer + 0x78))();
   unsignedSystemValue1 = *(uint *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8)
                    + 0xc);
   if (unsignedSystemValue1 == 0xffffffff) {
     localResourceOffset = FUN_18005eb80(SystemResourcePointer + 0x78);
     if (localResourceOffset != 0) {
-      FUN_18005f220(localResourceOffset,param_2);
+      FUN_18005f220(localResourceOffset,ConfigurationDataPointer);
     }
   }
   else {
@@ -36781,13 +36881,13 @@ void FUN_18005e110(long long SystemResourcePointer,long long *param_2,void* para
     if (localResourceOffset == 0) {
       localBufferAddress = 0;
     }
-    FUN_18005f040(localBufferAddress,param_2,(ulong long)__tls_index,param_4,unsignedSystemValue5);
+    FUN_18005f040(localBufferAddress,ConfigurationDataPointer,(ulong long)__tls_index,ConfigurationFlag,unsignedSystemValue5);
   }
   do {
     systemResult = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),1);
   } while (systemResult == 0);
-  if ((long long *)*param_2 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_2 + 0x38))();
+  if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
+    (**(code **)(*(long long *)*ConfigurationDataPointer + 0x38))();
   }
   return;
 }
@@ -36795,8 +36895,8 @@ void FUN_18005e110(long long SystemResourcePointer,long long *param_2,void* para
 
 
 
-// 函数: void FUN_18005e1d0(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
-void FUN_18005e1d0(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005e1d0(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005e1d0(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
@@ -36804,16 +36904,16 @@ void FUN_18005e1d0(long long SystemResourcePointer,long long *param_2,void* para
   void* unsignedSystemValue3;
   
   unsignedSystemValue3 = 0xfffffffffffffffe;
-  (**(code **)(*(long long *)*param_2 + 0x78))();
+  (**(code **)(*(long long *)*ConfigurationDataPointer + 0x78))();
   localSystemHandle = FUN_18005eb80(SystemResourcePointer + 0x548);
   if (localSystemHandle != 0) {
-    FUN_18005f220(localSystemHandle,param_2);
+    FUN_18005f220(localSystemHandle,ConfigurationDataPointer);
   }
   do {
-    systemStatus = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),1,0,param_4,unsignedSystemValue3);
+    systemStatus = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),1,0,ConfigurationFlag,unsignedSystemValue3);
   } while (systemStatus == 0);
-  if ((long long *)*param_2 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_2 + 0x38))();
+  if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
+    (**(code **)(*(long long *)*ConfigurationDataPointer + 0x38))();
   }
   return;
 }
@@ -36822,8 +36922,8 @@ void FUN_18005e1d0(long long SystemResourcePointer,long long *param_2,void* para
 
 
 
-// 函数: void FUN_18005e250(long long SystemResourcePointer,void* param_2,int param_3)
-void FUN_18005e250(long long SystemResourcePointer,void* param_2,int param_3)
+// 函数: void FUN_18005e250(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
+void FUN_18005e250(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
 
 {
   uint unsignedSystemValue1;
@@ -36836,7 +36936,7 @@ void FUN_18005e250(long long SystemResourcePointer,void* param_2,int param_3)
   if (unsignedSystemValue1 == 0xffffffff) {
     localResourceOffset = FUN_18005eb80(SystemResourcePointer + 0x78);
     if (localResourceOffset != 0) {
-      FUN_18005fb30(localResourceOffset,param_2,(long long)param_3);
+      FUN_18005fb30(localResourceOffset,ConfigurationDataPointer,(long long)AdditionalParameter);
     }
   }
   else {
@@ -36845,10 +36945,10 @@ void FUN_18005e250(long long SystemResourcePointer,void* param_2,int param_3)
     if (localResourceOffset == 0) {
       localBufferAddress = 0;
     }
-    FUN_18005f570(localBufferAddress,param_2,(long long)param_3);
+    FUN_18005f570(localBufferAddress,ConfigurationDataPointer,(long long)AdditionalParameter);
   }
   do {
-    systemResult = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),param_3,0);
+    systemResult = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),AdditionalParameter,0);
   } while (systemResult == 0);
   return;
 }
@@ -36856,8 +36956,8 @@ void FUN_18005e250(long long SystemResourcePointer,void* param_2,int param_3)
 
 
 
-// 函数: void SystemManagerInitialize(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
-void SystemManagerInitialize(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
+// 函数: void SystemManagerInitialize(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void SystemManagerInitialize(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -36871,14 +36971,14 @@ void SystemManagerInitialize(long long SystemResourcePointer,long long *param_2,
   pointerToUnsigned1 = (void* *)**(void* **)(SystemResourcePointer + 8);
   pcVar2 = *(code **)*pointerToUnsigned1;
   pplStackX_18 = &plStackX_8;
-  plStackX_8 = (long long *)*param_2;
-  plStackX_10 = param_2;
+  plStackX_8 = (long long *)*ConfigurationDataPointer;
+  plStackX_10 = ConfigurationDataPointer;
   if (plStackX_8 != (long long *)0x0) {
     (**(code **)(*plStackX_8 + 0x28))();
   }
-  (*pcVar2)(pointerToUnsigned1,&plStackX_8,param_3,param_4,unsignedSystemValue3);
-  if ((long long *)*param_2 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_2 + 0x38))();
+  (*pcVar2)(pointerToUnsigned1,&plStackX_8,AdditionalParameter,ConfigurationFlag,unsignedSystemValue3);
+  if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
+    (**(code **)(*(long long *)*ConfigurationDataPointer + 0x38))();
   }
   return;
 }
@@ -36886,8 +36986,8 @@ void SystemManagerInitialize(long long SystemResourcePointer,long long *param_2,
 
 
 
-// 函数: void FUN_18005e370(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
-void FUN_18005e370(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005e370(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005e370(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -36901,14 +37001,14 @@ void FUN_18005e370(long long SystemResourcePointer,long long *param_2,void* para
   pointerToUnsigned1 = *(void* **)(*(long long *)(SystemResourcePointer + 8) + 8);
   pcVar2 = *(code **)*pointerToUnsigned1;
   pplStackX_18 = &plStackX_8;
-  plStackX_8 = (long long *)*param_2;
-  plStackX_10 = param_2;
+  plStackX_8 = (long long *)*ConfigurationDataPointer;
+  plStackX_10 = ConfigurationDataPointer;
   if (plStackX_8 != (long long *)0x0) {
     (**(code **)(*plStackX_8 + 0x28))();
   }
-  (*pcVar2)(pointerToUnsigned1,&plStackX_8,param_3,param_4,unsignedSystemValue3);
-  if ((long long *)*param_2 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_2 + 0x38))();
+  (*pcVar2)(pointerToUnsigned1,&plStackX_8,AdditionalParameter,ConfigurationFlag,unsignedSystemValue3);
+  if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
+    (**(code **)(*(long long *)*ConfigurationDataPointer + 0x38))();
   }
   return;
 }
@@ -36916,8 +37016,8 @@ void FUN_18005e370(long long SystemResourcePointer,long long *param_2,void* para
 
 
 
-// 函数: void FUN_18005e3e0(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
-void FUN_18005e3e0(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005e3e0(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005e3e0(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -36931,14 +37031,14 @@ void FUN_18005e3e0(long long SystemResourcePointer,long long *param_2,void* para
   pointerToUnsigned1 = *(void* **)(*(long long *)(SystemResourcePointer + 8) + 0x10);
   pcVar2 = *(code **)*pointerToUnsigned1;
   pplStackX_18 = &plStackX_8;
-  plStackX_8 = (long long *)*param_2;
-  plStackX_10 = param_2;
+  plStackX_8 = (long long *)*ConfigurationDataPointer;
+  plStackX_10 = ConfigurationDataPointer;
   if (plStackX_8 != (long long *)0x0) {
     (**(code **)(*plStackX_8 + 0x28))();
   }
-  (*pcVar2)(pointerToUnsigned1,&plStackX_8,param_3,param_4,unsignedSystemValue3);
-  if ((long long *)*param_2 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_2 + 0x38))();
+  (*pcVar2)(pointerToUnsigned1,&plStackX_8,AdditionalParameter,ConfigurationFlag,unsignedSystemValue3);
+  if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
+    (**(code **)(*(long long *)*ConfigurationDataPointer + 0x38))();
   }
   return;
 }
@@ -36946,8 +37046,8 @@ void FUN_18005e3e0(long long SystemResourcePointer,long long *param_2,void* para
 
 
 
-// 函数: void FUN_18005e450(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
-void FUN_18005e450(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
+// 函数: void FUN_18005e450(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005e450(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
@@ -36955,16 +37055,16 @@ void FUN_18005e450(long long SystemResourcePointer,long long *param_2,void* para
   void* unsignedSystemValue3;
   
   unsignedSystemValue3 = 0xfffffffffffffffe;
-  (**(code **)(*(long long *)*param_2 + 0x78))();
+  (**(code **)(*(long long *)*ConfigurationDataPointer + 0x78))();
   localSystemHandle = FUN_18005eb80(SystemResourcePointer + 0x2e0);
   if (localSystemHandle != 0) {
-    FUN_18005f220(localSystemHandle,param_2);
+    FUN_18005f220(localSystemHandle,ConfigurationDataPointer);
   }
   do {
-    systemStatus = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x70),1,0,param_4,unsignedSystemValue3);
+    systemStatus = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x70),1,0,ConfigurationFlag,unsignedSystemValue3);
   } while (systemStatus == 0);
-  if ((long long *)*param_2 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_2 + 0x38))();
+  if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
+    (**(code **)(*(long long *)*ConfigurationDataPointer + 0x38))();
   }
   return;
 }
@@ -36972,7 +37072,7 @@ void FUN_18005e450(long long SystemResourcePointer,long long *param_2,void* para
 
 
 
-void* * FUN_18005e4d0(long long SystemResourcePointer,void* param_2)
+void* * FUN_18005e4d0(long long SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   void* *pointerToUnsigned1;
@@ -36980,7 +37080,7 @@ void* * FUN_18005e4d0(long long SystemResourcePointer,void* param_2)
   
   pointerToUnsigned1 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
   puStackX_8 = pointerToUnsigned1;
-  FUN_18020e0e0(pointerToUnsigned1,param_2,3,SystemResourcePointer + 0x2e0,SystemResourcePointer + 0x70);
+  FUN_18020e0e0(pointerToUnsigned1,ConfigurationDataPointer,3,SystemResourcePointer + 0x2e0,SystemResourcePointer + 0x70);
   *pointerToUnsigned1 = &UNK_1809fe220;
   puStackX_8 = pointerToUnsigned1;
   FUN_18020e840(pointerToUnsigned1);
@@ -36991,8 +37091,8 @@ void* * FUN_18005e4d0(long long SystemResourcePointer,void* param_2)
 
 
 
-// 函数: void FUN_18005e570(long long SystemResourcePointer,long long *param_2)
-void FUN_18005e570(long long SystemResourcePointer,long long *param_2)
+// 函数: void FUN_18005e570(long long SystemResourcePointer,long long *ConfigurationDataPointer)
+void FUN_18005e570(long long SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -37008,7 +37108,7 @@ void FUN_18005e570(long long SystemResourcePointer,long long *param_2)
   plocalBufferAddress = PrimaryResourcePointer;
   if (unsignedSystemValue6 != 0) {
     do {
-      if ((long long *)*plocalBufferAddress == param_2) {
+      if ((long long *)*plocalBufferAddress == ConfigurationDataPointer) {
         FUN_18020e7b0(PrimaryResourcePointer[systemValue]);
         unsignedSystemValue2 = *(ulong long *)(SystemResourcePointer + 0x50);
         localResourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)systemValue * 8;
@@ -37024,9 +37124,9 @@ void FUN_18005e570(long long SystemResourcePointer,long long *param_2)
       plocalBufferAddress = plocalBufferAddress + 1;
     } while ((ulong long)(long long)systemValue < unsignedSystemValue6);
   }
-  if (param_2 != (long long *)0x0) {
-    localResourceOffset = __RTCastToVoid(param_2);
-    (**(code **)(*param_2 + 0x28))(param_2,0);
+  if (ConfigurationDataPointer != (long long *)0x0) {
+    localResourceOffset = __RTCastToVoid(ConfigurationDataPointer);
+    (**(code **)(*ConfigurationDataPointer + 0x28))(ConfigurationDataPointer,0);
     if (localResourceOffset != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction(localResourceOffset);
@@ -37038,8 +37138,8 @@ void FUN_18005e570(long long SystemResourcePointer,long long *param_2)
 
 
 
-// 函数: void FUN_18005e57a(long long SystemResourcePointer,long long *param_2)
-void FUN_18005e57a(long long SystemResourcePointer,long long *param_2)
+// 函数: void FUN_18005e57a(long long SystemResourcePointer,long long *ConfigurationDataPointer)
+void FUN_18005e57a(long long SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -37055,7 +37155,7 @@ void FUN_18005e57a(long long SystemResourcePointer,long long *param_2)
   plocalBufferAddress = PrimaryResourcePointer;
   if (unsignedSystemValue6 != 0) {
     do {
-      if ((long long *)*plocalBufferAddress == param_2) {
+      if ((long long *)*plocalBufferAddress == ConfigurationDataPointer) {
         FUN_18020e7b0(PrimaryResourcePointer[systemValue]);
         unsignedSystemValue2 = *(ulong long *)(SystemResourcePointer + 0x50);
         localResourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)systemValue * 8;
@@ -37071,9 +37171,9 @@ void FUN_18005e57a(long long SystemResourcePointer,long long *param_2)
       plocalBufferAddress = plocalBufferAddress + 1;
     } while ((ulong long)(long long)systemValue < unsignedSystemValue6);
   }
-  if (param_2 != (long long *)0x0) {
-    localResourceOffset = __RTCastToVoid(param_2);
-    (**(code **)(*param_2 + 0x28))(param_2,0);
+  if (ConfigurationDataPointer != (long long *)0x0) {
+    localResourceOffset = __RTCastToVoid(ConfigurationDataPointer);
+    (**(code **)(*ConfigurationDataPointer + 0x28))(ConfigurationDataPointer,0);
     if (localResourceOffset != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction(localResourceOffset);
@@ -37131,8 +37231,8 @@ void FUN_18005e630(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005e6a0(void* SystemResourcePointer,long long *param_2,uint8_t param_3,void* param_4)
-void FUN_18005e6a0(void* SystemResourcePointer,long long *param_2,uint8_t param_3,void* param_4)
+// 函数: void FUN_18005e6a0(void* SystemResourcePointer,long long *ConfigurationDataPointer,uint8_t AdditionalParameter,void* ConfigurationFlag)
+void FUN_18005e6a0(void* SystemResourcePointer,long long *ConfigurationDataPointer,uint8_t AdditionalParameter,void* ConfigurationFlag)
 
 {
   code *pcVar1;
@@ -37142,28 +37242,28 @@ void FUN_18005e6a0(void* SystemResourcePointer,long long *param_2,uint8_t param_
   
   unsignedSystemValue4 = 0xfffffffffffffffe;
   while( true ) {
-    pcVar1 = *(code **)(*(long long *)*param_2 + 0x68);
+    pcVar1 = *(code **)(*(long long *)*ConfigurationDataPointer + 0x68);
     if (pcVar1 == (code *)&UNK_1800467f0) {
-      cVar3 = (char)((long long *)*param_2)[2] != '\0';
+      cVar3 = (char)((long long *)*ConfigurationDataPointer)[2] != '\0';
     }
     else {
       cVar3 = (*pcVar1)();
     }
     if (cVar3 != '\0') break;
     SecondaryResourcePointer = (long long *)FUN_18005e890(SystemResourcePointer);
-    cVar3 = (**(code **)(*SecondaryResourcePointer + 0x20))(SecondaryResourcePointer,param_3,*(code **)(*SecondaryResourcePointer + 0x20),param_4,unsignedSystemValue4);
+    cVar3 = (**(code **)(*SecondaryResourcePointer + 0x20))(SecondaryResourcePointer,AdditionalParameter,*(code **)(*SecondaryResourcePointer + 0x20),ConfigurationFlag,unsignedSystemValue4);
     if (cVar3 == '\0') {
-      pcVar1 = *(code **)(*(long long *)*param_2 + 0x80);
+      pcVar1 = *(code **)(*(long long *)*ConfigurationDataPointer + 0x80);
       if (pcVar1 == (code *)&UNK_180049760) {
-        FUN_1800496b0((long long *)*param_2 + 4);
+        FUN_1800496b0((long long *)*ConfigurationDataPointer + 4);
       }
       else {
         (*pcVar1)();
       }
     }
   }
-  if ((long long *)*param_2 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_2 + 0x38))();
+  if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
+    (**(code **)(*(long long *)*ConfigurationDataPointer + 0x38))();
   }
   return;
 }
@@ -37171,8 +37271,8 @@ void FUN_18005e6a0(void* SystemResourcePointer,long long *param_2,uint8_t param_
 
 
 
-// 函数: void FUN_18005e770(void* SystemResourcePointer,long long *param_2,char param_3)
-void FUN_18005e770(void* SystemResourcePointer,long long *param_2,char param_3)
+// 函数: void FUN_18005e770(void* SystemResourcePointer,long long *ConfigurationDataPointer,char AdditionalParameter)
+void FUN_18005e770(void* SystemResourcePointer,long long *ConfigurationDataPointer,char AdditionalParameter)
 
 {
   code *pcVar1;
@@ -37183,8 +37283,8 @@ void FUN_18005e770(void* SystemResourcePointer,long long *param_2,char param_3)
   long long localSystemFlags;
   char cVar7;
   
-  localSystemFlags = param_2[1];
-  localSystemPointer = *param_2;
+  localSystemFlags = ConfigurationDataPointer[1];
+  localSystemPointer = *ConfigurationDataPointer;
   do {
     bVar2 = false;
     unsignedSystemValue4 = 0;
@@ -37203,14 +37303,14 @@ void FUN_18005e770(void* SystemResourcePointer,long long *param_2,char param_3)
       if (cVar7 == '\0') {
         bVar2 = true;
         plocalResourceOffset = (long long *)FUN_18005e890(SystemResourcePointer);
-        if (param_3 == '\0') {
+        if (AdditionalParameter == '\0') {
           cVar7 = (**(code **)(*plocalResourceOffset + 0x20))(plocalResourceOffset,0);
         }
         else {
           cVar7 = FUN_18020ee40();
         }
         if (cVar7 == '\0') {
-          plocalResourceOffset = *(long long **)(unsignedSystemValue4 * 8 + *param_2);
+          plocalResourceOffset = *(long long **)(unsignedSystemValue4 * 8 + *ConfigurationDataPointer);
           pcVar1 = *(code **)(*plocalResourceOffset + 0x80);
           if (pcVar1 == (code *)&UNK_180049760) {
             FUN_1800496b0(plocalResourceOffset + 4);
@@ -37220,9 +37320,9 @@ void FUN_18005e770(void* SystemResourcePointer,long long *param_2,char param_3)
           }
         }
       }
-      localSystemFlags = param_2[1];
+      localSystemFlags = ConfigurationDataPointer[1];
       unsignedSystemValue4 = (ulong long)((int)unsignedSystemValue4 + 1);
-      localSystemPointer = *param_2;
+      localSystemPointer = *ConfigurationDataPointer;
     } while (unsignedSystemValue4 < (ulong long)(localSystemFlags - localSystemPointer >> 3));
   } while (bVar2);
   return;
@@ -37346,8 +37446,8 @@ void* * FUN_18005e950(void* *SystemResourcePointer)
 
 
 
-// 函数: void InitializeSystemHandle(ulong long *SystemResourcePointer,void* *param_2)
-void InitializeSystemHandle(ulong long *SystemResourcePointer,void* *param_2)
+// 函数: void InitializeSystemHandle(ulong long *SystemResourcePointer,void* *ConfigurationDataPointer)
+void InitializeSystemHandle(ulong long *SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -37358,7 +37458,7 @@ void InitializeSystemHandle(ulong long *SystemResourcePointer,void* *param_2)
   punsignedSystemValue4 = (void* *)SystemResourcePointer[1];
   if (punsignedSystemValue4 < (void* *)SystemResourcePointer[2]) {
     SystemResourcePointer[1] = (ulong long)(punsignedSystemValue4 + 1);
-    *punsignedSystemValue4 = *param_2;
+    *punsignedSystemValue4 = *ConfigurationDataPointer;
     return;
   }
   pointerToUnsigned3 = (void* *)*SystemResourcePointer;
@@ -37381,7 +37481,7 @@ LAB_18005eb20:
                     // WARNING: Subroutine does not return
     memmove(pointerToUnsigned2,pointerToUnsigned3,(long long)punsignedSystemValue4 - (long long)pointerToUnsigned3);
   }
-  *pointerToUnsigned2 = *param_2;
+  *pointerToUnsigned2 = *ConfigurationDataPointer;
   if (*SystemResourcePointer != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
@@ -37630,7 +37730,7 @@ long long FUN_18005ec11(void)
 
 
 
-void* FUN_18005ecfc(void* SystemResourcePointer,void* param_2,long long *param_3)
+void* FUN_18005ecfc(void* SystemResourcePointer,void* ConfigurationDataPointer,long long *AdditionalParameter)
 
 {
   int *pointerToInteger1;
@@ -37642,8 +37742,8 @@ void* FUN_18005ecfc(void* SystemResourcePointer,void* param_2,long long *param_3
   int unaff_R15D;
   bool bVar4;
   
-  unsignedSystemValue2 = *(void* *)(param_3[1] + 8 + in_RAX * 0x10);
-  if (param_3 == unaff_RDI) {
+  unsignedSystemValue2 = *(void* *)(AdditionalParameter[1] + 8 + in_RAX * 0x10);
+  if (AdditionalParameter == unaff_RDI) {
     return unsignedSystemValue2;
   }
   do {
@@ -37764,7 +37864,7 @@ long long FUN_18005ed54(void)
 
 
 
-void* * FUN_18005ee30(long long *SystemResourcePointer,char param_2,uint8_t *param_3)
+void* * FUN_18005ee30(long long *SystemResourcePointer,char ConfigurationDataPointer,uint8_t *AdditionalParameter)
 
 {
   long long *PrimaryResourcePointer;
@@ -37781,8 +37881,8 @@ void* * FUN_18005ee30(long long *SystemResourcePointer,char param_2,uint8_t *par
   pointerToUnsigned2 = (void* *)*SystemResourcePointer;
   do {
     if (pointerToUnsigned2 == (void* *)0x0) {
-      *param_3 = 0;
-      if (param_2 == '\0') {
+      *AdditionalParameter = 0;
+      if (ConfigurationDataPointer == '\0') {
         pointerToUnsigned2 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x68,10,0,0xfffffffffffffffe);
         if (pointerToUnsigned2 == (void* *)0x0) {
           return (void* *)0x0;
@@ -37866,7 +37966,7 @@ void* * FUN_18005ee30(long long *SystemResourcePointer,char param_2,uint8_t *par
       }
       return punsignedSystemValue5;
     }
-    if ((*(char *)(pointerToUnsigned2 + 2) != '\0') && (*(char *)(pointerToUnsigned2 + 9) == param_2)) {
+    if ((*(char *)(pointerToUnsigned2 + 2) != '\0') && (*(char *)(pointerToUnsigned2 + 9) == ConfigurationDataPointer)) {
       LOCK();
       bVar9 = *(char *)(pointerToUnsigned2 + 2) == '\x01';
       if (bVar9) {
@@ -37874,7 +37974,7 @@ void* * FUN_18005ee30(long long *SystemResourcePointer,char param_2,uint8_t *par
       }
       UNLOCK();
       if (bVar9) {
-        *param_3 = 1;
+        *AdditionalParameter = 1;
         return pointerToUnsigned2;
       }
     }
@@ -37888,7 +37988,7 @@ void* * FUN_18005ee30(long long *SystemResourcePointer,char param_2,uint8_t *par
 
 
 
-void* FUN_18005f040(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
+void* FUN_18005f040(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   ulong long unsignedSystemValue1;
@@ -37908,7 +38008,7 @@ LAB_18005f0e6:
       if ((((*(long long *)(SystemResourcePointer + 0x28) - unsignedSystemValue1) - 0x20 < 0x8000000000000001) ||
           (((*(long long *)(SystemResourcePointer + 0x80) == 0 ||
             (*(long long *)(SystemResourcePointer + 0x60) == *(long long *)(SystemResourcePointer + 0x68))) &&
-           (cVar2 = FUN_18005f340(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x60),unsignedSystemValue7,param_4,
+           (cVar2 = FUN_18005f340(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x60),unsignedSystemValue7,ConfigurationFlag,
                                   0xfffffffffffffffe), cVar2 == '\0')))) ||
          (localResourceOffset = FUN_18005ff50(*(void* *)(SystemResourcePointer + 0x50)), localResourceOffset == 0)) {
         return 0;
@@ -37941,10 +38041,10 @@ LAB_18005f0e6:
         unsignedSystemValue6 = unsignedSystemValue6 + 1;
       } while (unsignedSystemValue6 != 0x20);
     }
-    param_2 = (long long *)*param_2;
-    **(long long **)(SystemResourcePointer + 0x40) = (long long)param_2;
-    if (param_2 != (long long *)0x0) {
-      (**(code **)(*param_2 + 0x28))();
+    ConfigurationDataPointer = (long long *)*ConfigurationDataPointer;
+    **(long long **)(SystemResourcePointer + 0x40) = (long long)ConfigurationDataPointer;
+    if (ConfigurationDataPointer != (long long *)0x0) {
+      (**(code **)(*ConfigurationDataPointer + 0x28))();
     }
     punsignedSystemValue5 = (ulong long *)
              (*(long long *)(SystemResourcePointer + 0x70) * 0x10 +
@@ -37956,10 +38056,10 @@ LAB_18005f0e6:
          *(long long *)(SystemResourcePointer + 0x68) - 1U & *(long long *)(SystemResourcePointer + 0x70) + 1U;
   }
   else {
-    param_2 = (long long *)*param_2;
-    *(long long **)(*(long long *)(SystemResourcePointer + 0x40) + unsignedSystemValue7 * 8) = param_2;
-    if (param_2 != (long long *)0x0) {
-      (**(code **)(*param_2 + 0x28))();
+    ConfigurationDataPointer = (long long *)*ConfigurationDataPointer;
+    *(long long **)(*(long long *)(SystemResourcePointer + 0x40) + unsignedSystemValue7 * 8) = ConfigurationDataPointer;
+    if (ConfigurationDataPointer != (long long *)0x0) {
+      (**(code **)(*ConfigurationDataPointer + 0x28))();
     }
   }
   *(ulong long *)(SystemResourcePointer + 0x20) = unsignedSystemValue1 + 1;
@@ -37968,7 +38068,7 @@ LAB_18005f0e6:
 
 
 
-void* FUN_18005f220(long long SystemResourcePointer,long long *param_2)
+void* FUN_18005f220(long long SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   ulong long unsignedSystemValue1;
@@ -37981,10 +38081,10 @@ void* FUN_18005f220(long long SystemResourcePointer,long long *param_2)
   unsignedSystemValue1 = *(ulong long *)(SystemResourcePointer + 0x20);
   unsignedSystemValue4 = (ulong long)((uint)unsignedSystemValue1 & 0x1f);
   if ((unsignedSystemValue1 & 0x1f) != 0) {
-    param_2 = (long long *)*param_2;
-    *(long long **)(*(long long *)(SystemResourcePointer + 0x40) + unsignedSystemValue4 * 8) = param_2;
-    if (param_2 != (long long *)0x0) {
-      (**(code **)(*param_2 + 0x28))();
+    ConfigurationDataPointer = (long long *)*ConfigurationDataPointer;
+    *(long long **)(*(long long *)(SystemResourcePointer + 0x40) + unsignedSystemValue4 * 8) = ConfigurationDataPointer;
+    if (ConfigurationDataPointer != (long long *)0x0) {
+      (**(code **)(*ConfigurationDataPointer + 0x28))();
     }
 LAB_18005f30a:
     *(ulong long *)(SystemResourcePointer + 0x20) = unsignedSystemValue1 + 1;
@@ -37996,11 +38096,11 @@ LAB_18005f30a:
       plocalResourceOffset = (long long *)FUN_18005ff50(*(void* *)(SystemResourcePointer + 0x50));
       if (plocalResourceOffset != (long long *)0x0) {
         plocalResourceOffset[0x21] = 0;
-        param_2 = (long long *)*param_2;
-        *plocalResourceOffset = (long long)param_2;
-        if (param_2 != (long long *)0x0) {
+        ConfigurationDataPointer = (long long *)*ConfigurationDataPointer;
+        *plocalResourceOffset = (long long)ConfigurationDataPointer;
+        if (ConfigurationDataPointer != (long long *)0x0) {
           plStackX_20 = plocalResourceOffset;
-          (**(code **)(*param_2 + 0x28))();
+          (**(code **)(*ConfigurationDataPointer + 0x28))();
         }
         *(long long **)(uStackX_18 + 8) = plocalResourceOffset;
         *(long long **)(SystemResourcePointer + 0x40) = plocalResourceOffset;
@@ -38017,7 +38117,7 @@ LAB_18005f30a:
 
 
 
-void* FUN_18005f340(long long SystemResourcePointer,long long param_2)
+void* FUN_18005f340(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   void* *pointerToUnsigned1;
@@ -38054,7 +38154,7 @@ void* FUN_18005f340(long long SystemResourcePointer,long long param_2)
     } while (unsignedSystemValue6 != *(ulong long *)(SystemResourcePointer + 0x70));
   }
   *punsignedSystemValue4 = *(void* *)(SystemResourcePointer + 0x68);
-  punsignedSystemValue4[1] = param_2 + -1;
+  punsignedSystemValue4[1] = ConfigurationDataPointer + -1;
   punsignedSystemValue4[2] = SystemPreviousNode;
   unsignedSystemValue3 = *(void* *)(SystemResourcePointer + 0x80);
   punsignedSystemValue4[3] = unsignedSystemValue3;
@@ -38198,7 +38298,7 @@ void FUN_18005f54c(void)
 
 
 
-ulong long FUN_18005f570(long long SystemResourcePointer,long long *param_2,long long param_3)
+ulong long FUN_18005f570(long long SystemResourcePointer,long long *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   uint *pointerToUnsigned1;
@@ -38235,7 +38335,7 @@ ulong long FUN_18005f570(long long SystemResourcePointer,long long *param_2,long
   unsignedSystemValue16 = *(ulong long *)(SystemResourcePointer + 0x70);
   unsignedSystemValue12 = *(ulong long *)(SystemResourcePointer + 0x60);
   unsignedSystemValue18 = 0;
-  unsignedSystemValue19 = param_3 + unsignedSystemValue25;
+  unsignedSystemValue19 = AdditionalParameter + unsignedSystemValue25;
   uStack_78 = unsignedSystemValue25 - 1 & 0xffffffffffffffe0;
   localSystemHandle4 = (unsignedSystemValue19 - 1 & 0xffffffffffffffe0) - uStack_78;
   unsignedSystemValue10 = unsignedSystemValue18;
@@ -38296,12 +38396,12 @@ LAB_18005f6a2:
       unsignedSystemValue13 = unsignedSystemValue16;
     }
     for (; unsignedSystemValue25 != unsignedSystemValue13; unsignedSystemValue25 = unsignedSystemValue25 + 1) {
-      plocalSystemPointer = (long long *)*param_2;
+      plocalSystemPointer = (long long *)*ConfigurationDataPointer;
       *(long long **)(*(long long *)(SystemResourcePointer + 0x40) + (ulong long)((uint)unsignedSystemValue25 & 0x1f) * 8) = plocalSystemPointer;
       if (plocalSystemPointer != (long long *)0x0) {
         (**(code **)(*plocalSystemPointer + 0x28))();
       }
-      param_2 = param_2 + 1;
+      ConfigurationDataPointer = ConfigurationDataPointer + 1;
     }
     unsignedSystemValue13 = *(ulong long *)(SystemResourcePointer + 0x40);
     if (unsignedSystemValue13 == unsignedSystemValue15) break;
@@ -38494,7 +38594,7 @@ LAB_18005f92b:
 
 
 
-ulong long FUN_18005fb30(long long SystemResourcePointer,long long *param_2,long long param_3)
+ulong long FUN_18005fb30(long long SystemResourcePointer,long long *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   ulong long *pointerToUnsigned1;
@@ -38521,7 +38621,7 @@ ulong long FUN_18005fb30(long long SystemResourcePointer,long long *param_2,long
   
   unsignedSystemValue16 = *(ulong long *)(SystemResourcePointer + 0x20);
   unsignedSystemValue17 = *(ulong long *)(SystemResourcePointer + 0x40);
-  unsignedSystemValue13 = unsignedSystemValue16 + param_3;
+  unsignedSystemValue13 = unsignedSystemValue16 + AdditionalParameter;
   unsignedSystemValue18 = unsignedSystemValue16 - 1 & 0xffffffffffffffe0;
   localMemoryPointer9 = (unsignedSystemValue13 - 1 & 0xffffffffffffffe0) - unsignedSystemValue18;
   unsignedSystemValue14 = unsignedSystemValue17;
@@ -38543,13 +38643,13 @@ ulong long FUN_18005fb30(long long SystemResourcePointer,long long *param_2,long
           unsignedSystemValue17 = unsignedSystemValue10;
         }
         for (; unsignedSystemValue16 != unsignedSystemValue17; unsignedSystemValue16 = unsignedSystemValue16 + 1) {
-          plocalSystemPointer = (long long *)*param_2;
+          plocalSystemPointer = (long long *)*ConfigurationDataPointer;
           *(long long **)(*(long long *)(SystemResourcePointer + 0x40) + (ulong long)((uint)unsignedSystemValue16 & 0x1f) * 8) =
                plocalSystemPointer;
           if (plocalSystemPointer != (long long *)0x0) {
             (**(code **)(*plocalSystemPointer + 0x28))();
           }
-          param_2 = param_2 + 1;
+          ConfigurationDataPointer = ConfigurationDataPointer + 1;
         }
         unsignedSystemValue17 = *(ulong long *)(SystemResourcePointer + 0x40);
         if (unsignedSystemValue17 == unsignedSystemValue14) break;
@@ -38800,7 +38900,7 @@ LAB_180060007:
 
 
 
-ulong long FUN_180060080(long long SystemResourcePointer,long long *param_2,void* param_3)
+ulong long FUN_180060080(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter)
 
 {
   long long *PrimaryResourcePointer;
@@ -38814,10 +38914,10 @@ ulong long FUN_180060080(long long SystemResourcePointer,long long *param_2,void
   if (PrimaryResourcePointer != (long long *)0x0) {
     unsignedSystemValue5 = *PrimaryResourcePointer - 1U & PrimaryResourcePointer[1] + 1U;
     SecondaryResourcePointer = *(long long **)(PrimaryResourcePointer[3] + unsignedSystemValue5 * 8);
-    *param_2 = (long long)SecondaryResourcePointer;
-    if ((*SecondaryResourcePointer == 1) || (*(long long *)(*param_2 + 8) == 0)) {
-      punsignedSystemValue4 = (void* *)*param_2;
-      *punsignedSystemValue4 = param_3;
+    *ConfigurationDataPointer = (long long)SecondaryResourcePointer;
+    if ((*SecondaryResourcePointer == 1) || (*(long long *)(*ConfigurationDataPointer + 8) == 0)) {
+      punsignedSystemValue4 = (void* *)*ConfigurationDataPointer;
+      *punsignedSystemValue4 = AdditionalParameter;
       PrimaryResourcePointer[1] = unsignedSystemValue5;
       return CONCAT71((int7)((ulong long)punsignedSystemValue4 >> 8),1);
     }
@@ -38827,8 +38927,8 @@ ulong long FUN_180060080(long long SystemResourcePointer,long long *param_2,void
       unsignedSystemValue5 = *PrimaryResourcePointer - 1U & PrimaryResourcePointer[1] + 1U;
       localResourceOffset = PrimaryResourcePointer[3];
       punsignedSystemValue4 = *(void* **)(localResourceOffset + unsignedSystemValue5 * 8);
-      *param_2 = (long long)punsignedSystemValue4;
-      *punsignedSystemValue4 = param_3;
+      *ConfigurationDataPointer = (long long)punsignedSystemValue4;
+      *punsignedSystemValue4 = AdditionalParameter;
       PrimaryResourcePointer[1] = unsignedSystemValue5;
       return CONCAT71((int7)((ulong long)localResourceOffset >> 8),1);
     }
@@ -38838,11 +38938,11 @@ ulong long FUN_180060080(long long SystemResourcePointer,long long *param_2,void
 
 
 
-void* FUN_1800601c0(void* SystemResourcePointer,ulong long param_2)
+void* FUN_1800601c0(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   FUN_180060200();
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x88);
   }
   return SystemResourcePointer;
@@ -38972,11 +39072,11 @@ code_r0x000180060327:
 
 
 
-void* FUN_1800603e0(void* SystemResourcePointer,ulong long param_2)
+void* FUN_1800603e0(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   FUN_180060420();
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x68);
   }
   return SystemResourcePointer;
@@ -39094,11 +39194,11 @@ LAB_1800604d1:
 
 
 
-void* * FUN_1800605d0(void* *SystemResourcePointer,ulong long param_2)
+void* * FUN_1800605d0(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &UNK_1809fe210;
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x58);
   }
   return SystemResourcePointer;
@@ -39107,8 +39207,8 @@ void* * FUN_1800605d0(void* *SystemResourcePointer,ulong long param_2)
 
 
 
-// 函数: void FUN_180060610(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180060610(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180060610(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180060610(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   char SystemNodeFlag;
@@ -39116,9 +39216,9 @@ void FUN_180060610(void* *SystemResourcePointer,void* param_2,void* param_3,void
   
   unsignedSystemValue2 = 0xfffffffffffffffe;
   *SystemResourcePointer = &UNK_180a10098;
-  cVar1 = FUN_18020eba0(SystemResourcePointer,1,param_3,param_4,0xfffffffffffffffe);
+  cVar1 = FUN_18020eba0(SystemResourcePointer,1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   while (cVar1 != '\0') {
-    cVar1 = FUN_18020eba0(SystemResourcePointer,1,param_3,param_4,unsignedSystemValue2);
+    cVar1 = FUN_18020eba0(SystemResourcePointer,1,AdditionalParameter,ConfigurationFlag,unsignedSystemValue2);
   }
   if (SystemResourcePointer[1] == 0) {
     SystemResourcePointer[1] = 0;
@@ -39143,22 +39243,22 @@ void FUN_180060610(void* *SystemResourcePointer,void* param_2,void* param_3,void
 
 
 
-void* FUN_180060630(void* SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+void* FUN_180060630(void* SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
   
   unsignedSystemValue1 = 0xfffffffffffffffe;
   FUN_18020e6c0();
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0x208,param_3,param_4,unsignedSystemValue1);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0x208,AdditionalParameter,ConfigurationFlag,unsignedSystemValue1);
   }
   return SystemResourcePointer;
 }
 
 
 
-int FUN_180060680(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+int FUN_180060680(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
@@ -39166,10 +39266,10 @@ int FUN_180060680(void* SystemResourcePointer,void* param_2,void* param_3,void* 
   uint64_t systemInitializationFlag;
   void* uStackX_20;
   
-  uStackX_18 = param_3;
-  uStackX_20 = param_4;
+  uStackX_18 = AdditionalParameter;
+  uStackX_20 = ConfigurationFlag;
   pointerToUnsigned2 = (ulong long *)SystemGlobalDataAllocate();
-  systemStatus = __stdio_common_vsprintf(*pointerToUnsigned2 | 1,SystemResourcePointer,0xffffffffffffffff,param_2,0,&uStackX_18);
+  systemStatus = __stdio_common_vsprintf(*pointerToUnsigned2 | 1,SystemResourcePointer,0xffffffffffffffff,ConfigurationDataPointer,0,&uStackX_18);
   if (systemStatus < 0) {
     systemStatus = -1;
   }
@@ -39226,7 +39326,7 @@ LAB_1800607cc:
 
 
 
-void* FUN_1800607f0(long long SystemResourcePointer,char param_2)
+void* FUN_1800607f0(long long SystemResourcePointer,char ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -39237,7 +39337,7 @@ void* FUN_1800607f0(long long SystemResourcePointer,char param_2)
   
   plStackX_18 = (long long *)0x0;
   plocalResourceOffset = (long long *)0x0;
-  if (param_2 != '\0') {
+  if (ConfigurationDataPointer != '\0') {
     if (*(int *)(SystemResourcePointer + 0x140) < 1) {
       plocalResourceOffset = (long long *)0x0;
     }
@@ -39303,7 +39403,7 @@ LAB_180060993:
 
 
 
-bool FUN_1800609c0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+bool FUN_1800609c0(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -39311,7 +39411,7 @@ bool FUN_1800609c0(long long SystemResourcePointer,void* param_2,void* param_3,v
   long long *plStackX_8;
   
   plStackX_8 = (long long *)0x0;
-  WaitForSingleObject(**(void* **)(SystemResourcePointer + 0x1f0),1,param_3,param_4,0xfffffffffffffffe);
+  WaitForSingleObject(**(void* **)(SystemResourcePointer + 0x1f0),1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   cVar2 = FUN_180060e40(*(void* *)(SystemResourcePointer + 0x60),SystemResourcePointer + 0x78,&plStackX_8);
   PrimaryResourcePointer = plStackX_8;
   if (cVar2 != '\0') {
@@ -39326,7 +39426,7 @@ bool FUN_1800609c0(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-ulong long FUN_180060a50(long long *SystemResourcePointer,uint *param_2)
+ulong long FUN_180060a50(long long *SystemResourcePointer,uint *ConfigurationDataPointer)
 
 {
   uint unsignedSystemValue1;
@@ -39342,20 +39442,20 @@ ulong long FUN_180060a50(long long *SystemResourcePointer,uint *param_2)
   ulong long unsignedSystemValue10;
   
   localResourceOffset = *SystemResourcePointer;
-  if ((*(long long *)(param_2 + 6) == 0) && (localResourceOffset == 0)) {
+  if ((*(long long *)(ConfigurationDataPointer + 6) == 0) && (localResourceOffset == 0)) {
     return in_RAX & 0xffffffffffffff00;
   }
   unsignedSystemValue1 = *(uint *)(SystemResourcePointer + 1);
   unsignedSystemValue2 = *(uint *)(SystemResourcePointer + 0x4c);
   punsignedSystemValue8 = (ulong long *)0x0;
-  punsignedSystemValue4 = *(ulong long **)(param_2 + 6);
-  if (*(ulong long **)(param_2 + 6) == (ulong long *)0x0) {
+  punsignedSystemValue4 = *(ulong long **)(ConfigurationDataPointer + 6);
+  if (*(ulong long **)(ConfigurationDataPointer + 6) == (ulong long *)0x0) {
     punsignedSystemValue5 = (ulong long *)(localResourceOffset + 8);
     if (localResourceOffset == 0) {
       punsignedSystemValue5 = punsignedSystemValue8;
     }
-    *(ulong long **)(param_2 + 6) = punsignedSystemValue5;
-    unsignedSystemValue9 = (unsignedSystemValue1 - *param_2 % unsignedSystemValue1) - 1;
+    *(ulong long **)(ConfigurationDataPointer + 6) = punsignedSystemValue5;
+    unsignedSystemValue9 = (unsignedSystemValue1 - *ConfigurationDataPointer % unsignedSystemValue1) - 1;
     unsignedSystemValue10 = (ulong long)unsignedSystemValue9;
     punsignedSystemValue4 = punsignedSystemValue5;
     if (unsignedSystemValue9 != 0) {
@@ -39371,16 +39471,16 @@ ulong long FUN_180060a50(long long *SystemResourcePointer,uint *param_2)
         if (punsignedSystemValue6 == (ulong long *)0x0) {
           punsignedSystemValue4 = punsignedSystemValue8;
         }
-        *(ulong long **)(param_2 + 6) = punsignedSystemValue4;
+        *(ulong long **)(ConfigurationDataPointer + 6) = punsignedSystemValue4;
         if (punsignedSystemValue4 == (ulong long *)0x0) {
-          *(ulong long **)(param_2 + 6) = punsignedSystemValue5;
+          *(ulong long **)(ConfigurationDataPointer + 6) = punsignedSystemValue5;
           punsignedSystemValue4 = punsignedSystemValue5;
         }
         unsignedSystemValue10 = unsignedSystemValue10 - 1;
       } while (unsignedSystemValue10 != 0);
     }
   }
-  unsignedSystemValue9 = unsignedSystemValue2 - param_2[1];
+  unsignedSystemValue9 = unsignedSystemValue2 - ConfigurationDataPointer[1];
   unsignedSystemValue10 = (ulong long)unsignedSystemValue9;
   if (unsignedSystemValue1 <= unsignedSystemValue9) {
     unsignedSystemValue10 = (ulong long)unsignedSystemValue9 % (ulong long)unsignedSystemValue1;
@@ -39400,33 +39500,33 @@ ulong long FUN_180060a50(long long *SystemResourcePointer,uint *param_2)
       if (punsignedSystemValue5 != (ulong long *)0x0) {
         punsignedSystemValue4 = punsignedSystemValue5 + 1;
       }
-      *(ulong long **)(param_2 + 6) = punsignedSystemValue4;
+      *(ulong long **)(ConfigurationDataPointer + 6) = punsignedSystemValue4;
       if (punsignedSystemValue4 == (ulong long *)0x0) {
         punsignedSystemValue4 = (ulong long *)(localResourceOffset + 8);
         if (localResourceOffset == 0) {
           punsignedSystemValue4 = punsignedSystemValue8;
         }
-        *(ulong long **)(param_2 + 6) = punsignedSystemValue4;
+        *(ulong long **)(ConfigurationDataPointer + 6) = punsignedSystemValue4;
       }
       unsignedSystemValue7 = unsignedSystemValue7 - 1;
     } while (unsignedSystemValue7 != 0);
   }
-  param_2[1] = unsignedSystemValue2;
-  param_2[2] = 0;
-  *(ulong long **)(param_2 + 4) = punsignedSystemValue4;
+  ConfigurationDataPointer[1] = unsignedSystemValue2;
+  ConfigurationDataPointer[2] = 0;
+  *(ulong long **)(ConfigurationDataPointer + 4) = punsignedSystemValue4;
   return CONCAT71((int7)(unsignedSystemValue10 >> 8),1);
 }
 
 
 
-long long * FUN_180060b80(long long *SystemResourcePointer,long long *param_2)
+long long * FUN_180060b80(long long *SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
   long long *SecondaryResourcePointer;
   
-  localMemoryPointer = *param_2;
-  *param_2 = 0;
+  localMemoryPointer = *ConfigurationDataPointer;
+  *ConfigurationDataPointer = 0;
   SecondaryResourcePointer = (long long *)*SystemResourcePointer;
   *SystemResourcePointer = localMemoryPointer;
   if (SecondaryResourcePointer != (long long *)0x0) {
@@ -39448,7 +39548,7 @@ long long * FUN_180060bd0(long long *SystemResourcePointer)
 
 
 
-void* FUN_180060c60(long long SystemResourcePointer,void* param_2)
+void* FUN_180060c60(long long SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -39484,7 +39584,7 @@ void* FUN_180060c60(long long SystemResourcePointer,void* param_2)
                 PrimaryResourcePointer[1] & *PrimaryResourcePointer - 1U) * 8);
       localSystemFlags = *(long long *)(localResourceOffset + 8);
       PrimaryResourcePointer = (long long *)(localSystemFlags + (ulong long)((uint)unsignedSystemValue4 & 0x1f) * 8);
-      FUN_180060b80(param_2,PrimaryResourcePointer);
+      FUN_180060b80(ConfigurationDataPointer,PrimaryResourcePointer);
       PrimaryResourcePointer = (long long *)*PrimaryResourcePointer;
       if (PrimaryResourcePointer != (long long *)0x0) {
         (**(code **)(*PrimaryResourcePointer + 0x38))();
@@ -39526,7 +39626,7 @@ void* FUN_180060c60(long long SystemResourcePointer,void* param_2)
                (((unsignedSystemValue4 & 0xffffffffffffffe0) - *(long long *)(PrimaryResourcePointer[2] + PrimaryResourcePointer[1] * 0x10) >> 5) +
                 PrimaryResourcePointer[1] & *PrimaryResourcePointer - 1U) * 0x10);
       PrimaryResourcePointer = (long long *)(localResourceOffset + unsignedSystemValue7 * 8);
-      FUN_180060b80(param_2,PrimaryResourcePointer);
+      FUN_180060b80(ConfigurationDataPointer,PrimaryResourcePointer);
       PrimaryResourcePointer = (long long *)*PrimaryResourcePointer;
       if (PrimaryResourcePointer != (long long *)0x0) {
         (**(code **)(*PrimaryResourcePointer + 0x38))();
@@ -39599,7 +39699,7 @@ uint8_t FUN_180060e22(void)
 
 
 
-void* FUN_180060e40(void* *SystemResourcePointer,long long param_2,void* param_3)
+void* FUN_180060e40(void* *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter)
 
 {
   char SystemNodeFlag;
@@ -39609,19 +39709,19 @@ void* FUN_180060e40(void* *SystemResourcePointer,long long param_2,void* param_3
   long long *plocalSystemPointer;
   long long *plocalSystemFlags;
   
-  if (((*(long long *)(param_2 + 0x18) == 0) || (*(int *)(param_2 + 4) != *(int *)(SystemResourcePointer + 0x4c)))
+  if (((*(long long *)(ConfigurationDataPointer + 0x18) == 0) || (*(int *)(ConfigurationDataPointer + 4) != *(int *)(SystemResourcePointer + 0x4c)))
      && (cVar1 = FUN_180060a50(), cVar1 == '\0')) {
     return 0;
   }
   plocalSystemFlags = (long long *)0x0;
-  plocalBufferAddress = (long long *)(*(long long *)(param_2 + 0x10) + -8);
-  if (*(long long *)(param_2 + 0x10) == 0) {
+  plocalBufferAddress = (long long *)(*(long long *)(ConfigurationDataPointer + 0x10) + -8);
+  if (*(long long *)(ConfigurationDataPointer + 0x10) == 0) {
     plocalBufferAddress = plocalSystemFlags;
   }
-  cVar1 = FUN_180060c60(plocalBufferAddress,param_3);
+  cVar1 = FUN_180060c60(plocalBufferAddress,AdditionalParameter);
   if (cVar1 == '\0') {
     plocalBufferAddress = (long long *)*SystemResourcePointer;
-    SecondaryResourcePointer = *(long long **)(param_2 + 0x10);
+    SecondaryResourcePointer = *(long long **)(ConfigurationDataPointer + 0x10);
     if (SecondaryResourcePointer == (long long *)0x0) {
       SecondaryResourcePointer = (long long *)&DAT_00000008;
     }
@@ -39635,27 +39735,27 @@ void* FUN_180060e40(void* *SystemResourcePointer,long long param_2,void* param_3
       if (SecondaryResourcePointer != (long long *)0x0) {
         plocalSystemPointer = SecondaryResourcePointer;
       }
-      SecondaryResourcePointer = (long long *)(*(long long *)(param_2 + 0x10) + -8);
-      if (*(long long *)(param_2 + 0x10) == 0) {
+      SecondaryResourcePointer = (long long *)(*(long long *)(ConfigurationDataPointer + 0x10) + -8);
+      if (*(long long *)(ConfigurationDataPointer + 0x10) == 0) {
         SecondaryResourcePointer = plocalSystemFlags;
       }
       if (plocalSystemPointer == SecondaryResourcePointer) {
         return 0;
       }
-      cVar1 = FUN_180060c60(plocalSystemPointer,param_3);
+      cVar1 = FUN_180060c60(plocalSystemPointer,AdditionalParameter);
       if (cVar1 != '\0') break;
       localResourceOffset = plocalSystemPointer[1];
     }
-    *(uint32_t *)(param_2 + 8) = 1;
+    *(uint32_t *)(ConfigurationDataPointer + 8) = 1;
     plocalBufferAddress = plocalSystemPointer + 1;
     if (plocalSystemPointer == (long long *)0x0) {
       plocalBufferAddress = plocalSystemFlags;
     }
-    *(long long **)(param_2 + 0x10) = plocalBufferAddress;
+    *(long long **)(ConfigurationDataPointer + 0x10) = plocalBufferAddress;
   }
   else {
-    *(int *)(param_2 + 8) = *(int *)(param_2 + 8) + 1;
-    if (*(int *)(param_2 + 8) == 0x100) {
+    *(int *)(ConfigurationDataPointer + 8) = *(int *)(ConfigurationDataPointer + 8) + 1;
+    if (*(int *)(ConfigurationDataPointer + 8) == 0x100) {
       LOCK();
       *(int *)(SystemResourcePointer + 0x4c) = *(int *)(SystemResourcePointer + 0x4c) + 1;
       UNLOCK();
@@ -39666,7 +39766,7 @@ void* FUN_180060e40(void* *SystemResourcePointer,long long param_2,void* param_3
 
 
 
-bool FUN_180060f50(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+bool FUN_180060f50(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -39674,7 +39774,7 @@ bool FUN_180060f50(long long SystemResourcePointer,void* param_2,void* param_3,v
   long long *plStackX_8;
   
   plStackX_8 = (long long *)0x0;
-  cVar2 = FUN_180060e40(*(void* *)(SystemResourcePointer + 0x60),SystemResourcePointer + 0x78,&plStackX_8,param_4,
+  cVar2 = FUN_180060e40(*(void* *)(SystemResourcePointer + 0x60),SystemResourcePointer + 0x78,&plStackX_8,ConfigurationFlag,
                         0xfffffffffffffffe);
   PrimaryResourcePointer = plStackX_8;
   if (cVar2 != '\0') {
@@ -39691,8 +39791,8 @@ bool FUN_180060f50(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// 函数: void FUN_180060fc0(long long *SystemResourcePointer,long long *param_2)
-void FUN_180060fc0(long long *SystemResourcePointer,long long *param_2)
+// 函数: void FUN_180060fc0(long long *SystemResourcePointer,long long *ConfigurationDataPointer)
+void FUN_180060fc0(long long *SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -39710,9 +39810,9 @@ void FUN_180060fc0(long long *SystemResourcePointer,long long *param_2)
   plocalResourceOffset = (long long *)SystemResourcePointer[6];
   PrimaryResourcePointer = plocalResourceOffset + 1;
   if (PrimaryResourcePointer == (long long *)SystemResourcePointer[8]) {
-    param_2 = (long long *)*param_2;
-    if (param_2 != (long long *)0x0) {
-      (**(code **)(*param_2 + 0x28))(param_2);
+    ConfigurationDataPointer = (long long *)*ConfigurationDataPointer;
+    if (ConfigurationDataPointer != (long long *)0x0) {
+      (**(code **)(*ConfigurationDataPointer + 0x28))(ConfigurationDataPointer);
     }
     localDataPointer = *SystemResourcePointer;
     localBufferAddress = SystemResourcePointer[1];
@@ -39753,7 +39853,7 @@ void FUN_180060fc0(long long *SystemResourcePointer,long long *param_2)
     }
     unsignedSystemValue10 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x100,(char)SystemResourcePointer[10]);
     *(void* *)(SystemResourcePointer[9] + 8) = unsignedSystemValue10;
-    *(long long **)SystemResourcePointer[6] = param_2;
+    *(long long **)SystemResourcePointer[6] = ConfigurationDataPointer;
     localDataPointer = SystemResourcePointer[9];
     SystemResourcePointer[9] = localDataPointer + 8;
     localDataPointer = *(long long *)(localDataPointer + 8);
@@ -39763,10 +39863,10 @@ void FUN_180060fc0(long long *SystemResourcePointer,long long *param_2)
   }
   else {
     SystemResourcePointer[6] = (long long)PrimaryResourcePointer;
-    param_2 = (long long *)*param_2;
-    *plocalResourceOffset = (long long)param_2;
-    if (param_2 != (long long *)0x0) {
-      (**(code **)(*param_2 + 0x28))();
+    ConfigurationDataPointer = (long long *)*ConfigurationDataPointer;
+    *plocalResourceOffset = (long long)ConfigurationDataPointer;
+    if (ConfigurationDataPointer != (long long *)0x0) {
+      (**(code **)(*ConfigurationDataPointer + 0x28))();
     }
   }
   return;
@@ -39776,8 +39876,8 @@ void FUN_180060fc0(long long *SystemResourcePointer,long long *param_2)
 
 
 
-// 函数: void FUN_1800611a0(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
-void FUN_1800611a0(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
+// 函数: void FUN_1800611a0(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_1800611a0(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -39795,7 +39895,7 @@ void FUN_1800611a0(long long SystemResourcePointer,long long *param_2,void* para
     __Throw_C_error_std__YAXH_Z(systemIndex);
   }
   unsignedSystemValue7 = 1;
-  FUN_180060fc0(SystemResourcePointer + 0x98,param_2);
+  FUN_180060fc0(SystemResourcePointer + 0x98,ConfigurationDataPointer);
   LOCK();
   *(int *)(SystemResourcePointer + 0x140) = *(int *)(SystemResourcePointer + 0x140) + 1;
   UNLOCK();
@@ -39803,15 +39903,15 @@ void FUN_1800611a0(long long SystemResourcePointer,long long *param_2,void* para
   localSystemHandle = *(long long *)(SystemAllocationFlagsTemplate + 0x10);
   localResourceOffset = *(long long *)(SystemAllocationFlagsTemplate + 8);
   do {
-    systemIndex = ReleaseSemaphore(*pointerToUnsigned1,localSystemHandle - localResourceOffset >> 3 & 0xffffffff,0,param_4,unsignedSystemValue6,localSystemPointer,unsignedSystemValue7);
+    systemIndex = ReleaseSemaphore(*pointerToUnsigned1,localSystemHandle - localResourceOffset >> 3 & 0xffffffff,0,ConfigurationFlag,unsignedSystemValue6,localSystemPointer,unsignedSystemValue7);
   } while (systemIndex == 0);
   SystemThreadSyncBroadcast(SystemResourcePointer + 0x150);
   systemIndex = _Mtx_unlock(localSystemPointer);
   if (systemIndex != 0) {
     __Throw_C_error_std__YAXH_Z(systemIndex);
   }
-  if ((long long *)*param_2 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_2 + 0x38))();
+  if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
+    (**(code **)(*(long long *)*ConfigurationDataPointer + 0x38))();
   }
   return;
 }
@@ -39862,7 +39962,7 @@ void FUN_1800612b0(void* *SystemResourcePointer)
 
 
 void* *
-FUN_180061300(void* *SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+FUN_180061300(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
@@ -39874,8 +39974,8 @@ FUN_180061300(void* *SystemResourcePointer,ulong long param_2,void* param_3,void
   }
   _Mtx_destroy_in_situ();
   FUN_1805065c0(SystemResourcePointer);
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0xb8,param_3,param_4,unsignedSystemValue1);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0xb8,AdditionalParameter,ConfigurationFlag,unsignedSystemValue1);
   }
   return SystemResourcePointer;
 }
@@ -39884,8 +39984,8 @@ FUN_180061300(void* *SystemResourcePointer,ulong long param_2,void* param_3,void
 
 
 
-// 函数: void StartInputSystem(void* SystemResourcePointer,long long param_2)
-void StartInputSystem(void* SystemResourcePointer,long long param_2)
+// 函数: void StartInputSystem(void* SystemResourcePointer,long long ConfigurationDataPointer)
+void StartInputSystem(void* SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -39928,11 +40028,11 @@ void StartInputSystem(void* SystemResourcePointer,long long param_2)
   *(void* **)(localSystemHandle + 400) = pointerToUnsigned3;
   puStack_1a8 = &SystemMemoryAllocatorReference;
   FUN_180627e10(SystemStatusFlagsPointer + 0x170,auStack_230,&DAT_1809fc8c8);
-  if (0 < *(int *)(param_2 + 0x10)) {
-    ExecuteSystemCommand(auStack_230,uStack_220 + *(int *)(param_2 + 0x10));
+  if (0 < *(int *)(ConfigurationDataPointer + 0x10)) {
+    ExecuteSystemCommand(auStack_230,uStack_220 + *(int *)(ConfigurationDataPointer + 0x10));
                     // WARNING: Subroutine does not return
-    memcpy((ulong long)uStack_220 + lStack_228,*(void* *)(param_2 + 8),
-           (long long)(*(int *)(param_2 + 0x10) + 1));
+    memcpy((ulong long)uStack_220 + lStack_228,*(void* *)(ConfigurationDataPointer + 8),
+           (long long)(*(int *)(ConfigurationDataPointer + 0x10) + 1));
   }
   FUN_18062c100(auStack_208,auStack_230);
   FUN_18062c1e0(auStack_208,1);
@@ -40121,41 +40221,41 @@ void FUN_180061f80(void)
 
 
 
-// 函数: void FUN_1800622d0(void* SystemResourcePointer,void* param_2,uint32_t param_3,void* param_4)
-void FUN_1800622d0(void* SystemResourcePointer,void* param_2,uint32_t param_3,void* param_4)
+// 函数: void FUN_1800622d0(void* SystemResourcePointer,void* ConfigurationDataPointer,uint32_t AdditionalParameter,void* ConfigurationFlag)
+void FUN_1800622d0(void* SystemResourcePointer,void* ConfigurationDataPointer,uint32_t AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_180061f80(SystemResourcePointer,param_2,0xffffffff00000000,param_3,param_4,&stack0x00000028);
+  FUN_180061f80(SystemResourcePointer,ConfigurationDataPointer,0xffffffff00000000,AdditionalParameter,ConfigurationFlag,&stack0x00000028);
   return;
 }
 
 
 
 
-// 函数: void UpdateContextManagerSystem(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void UpdateContextManagerSystem(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void UpdateContextManagerSystem(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void UpdateContextManagerSystem(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint64_t systemInitializationFlag;
   void* uStackX_20;
   
-  uStackX_18 = param_3;
-  uStackX_20 = param_4;
-  FUN_180061f80(SystemResourcePointer,0,0xffffffff00000000,0xd,param_2,&uStackX_18);
+  uStackX_18 = AdditionalParameter;
+  uStackX_20 = ConfigurationFlag;
+  FUN_180061f80(SystemResourcePointer,0,0xffffffff00000000,0xd,ConfigurationDataPointer,&uStackX_18);
   return;
 }
 
 
 
 
-// 函数: void FUN_180062340(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180062340(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180062340(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180062340(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* uStackX_20;
   
-  uStackX_20 = param_4;
-  FUN_180061f80(SystemResourcePointer,param_2,0xffffffff00000000,0xd,param_3,&uStackX_20);
+  uStackX_20 = ConfigurationFlag;
+  FUN_180061f80(SystemResourcePointer,ConfigurationDataPointer,0xffffffff00000000,0xd,AdditionalParameter,&uStackX_20);
   return;
 }
 
@@ -40355,13 +40455,13 @@ void FUN_180062920(int *SystemResourcePointer)
 
 
 
-void* FUN_180062ee0(void* SystemResourcePointer,uint32_t param_2)
+void* FUN_180062ee0(void* SystemResourcePointer,uint32_t ConfigurationDataPointer)
 
 {
   void*2 unsignedSystemValue1;
   int systemResult;
   
-  switch(param_2) {
+  switch(ConfigurationDataPointer) {
   case 0:
     unsignedSystemValue1 = 4;
     break;
@@ -40575,16 +40675,16 @@ code_r0x0001800630e9:
 
 
 
-int FUN_1800634b0(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+int FUN_1800634b0(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
   void** systemDataTable;
   void* uStackX_20;
   
-  uStackX_20 = param_4;
+  uStackX_20 = ConfigurationFlag;
   pointerToUnsigned2 = (void* *)SystemGlobalDataAllocate();
-  systemStatus = __stdio_common_vsprintf_s(*pointerToUnsigned2,SystemResourcePointer,param_2,param_3,0,&uStackX_20);
+  systemStatus = __stdio_common_vsprintf_s(*pointerToUnsigned2,SystemResourcePointer,ConfigurationDataPointer,AdditionalParameter,0,&uStackX_20);
   if (systemStatus < 0) {
     systemStatus = -1;
   }
@@ -40593,7 +40693,7 @@ int FUN_1800634b0(void* SystemResourcePointer,void* param_2,void* param_3,void* 
 
 
 
-ulong long FUN_180063510(long long *SystemResourcePointer,long long param_2)
+ulong long FUN_180063510(long long *SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   byte *pbVar1;
@@ -40612,7 +40712,7 @@ ulong long FUN_180063510(long long *SystemResourcePointer,long long param_2)
   systemId = 0;
   unsignedSystemValue7 = SystemResourcePointer[1] - localBufferAddress >> 5;
   if (unsignedSystemValue7 != 0) {
-    unsignedSystemValue2 = *(uint *)(param_2 + 0x10);
+    unsignedSystemValue2 = *(uint *)(ConfigurationDataPointer + 0x10);
     localAllocationFlags = 0;
     do {
       unsignedSystemValue3 = *(uint *)(localAllocationFlags + 0x10 + localBufferAddress);
@@ -40656,14 +40756,14 @@ void FUN_1800635c0(void)
 
 
 
-int FUN_1800635e0(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+int FUN_1800635e0(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
   ulong long *pointerToUnsigned2;
   
   pointerToUnsigned2 = (ulong long *)SystemGlobalDataAllocate();
-  systemStatus = __stdio_common_vsprintf(*pointerToUnsigned2 | 2,SystemResourcePointer,param_2,param_3,0,param_4);
+  systemStatus = __stdio_common_vsprintf(*pointerToUnsigned2 | 2,SystemResourcePointer,ConfigurationDataPointer,AdditionalParameter,0,ConfigurationFlag);
   if (systemStatus < 0) {
     systemStatus = -1;
   }
@@ -40673,7 +40773,7 @@ int FUN_1800635e0(void* SystemResourcePointer,void* param_2,void* param_3,void* 
 
 
 void* *
-FUN_180063650(void* *SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+FUN_180063650(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   SystemResourcePointer[6] = &SystemGlobalDataReference;
@@ -40687,8 +40787,8 @@ FUN_180063650(void* *SystemResourcePointer,ulong long param_2,void* param_3,void
   *SystemResourcePointer = &SystemMemoryTemplateC;
   *SystemResourcePointer = &SystemMemoryTemplateB;
   *SystemResourcePointer = &SystemMemoryTemplateA;
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0x70,param_3,param_4,0xfffffffffffffffe);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0x70,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   }
   return SystemResourcePointer;
 }
@@ -40696,7 +40796,7 @@ FUN_180063650(void* *SystemResourcePointer,ulong long param_2,void* param_3,void
 
 
 void* *
-AllocateSystemMemory(void* *SystemResourcePointer,uint32_t param_2,void* param_3,void* param_4)
+AllocateSystemMemory(void* *SystemResourcePointer,uint32_t ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -40718,9 +40818,9 @@ AllocateSystemMemory(void* *SystemResourcePointer,uint32_t param_2,void* param_3
   SystemResourcePointer[9] = 0;
   SystemResourcePointer[7] = 0;
   *(uint32_t *)(SystemResourcePointer + 8) = 0;
-  *(uint32_t *)(SystemResourcePointer + 5) = param_2;
-  SystemResourcePointer[4] = param_3;
-  (**(code **)(*PrimaryResourcePointer + 0x10))(PrimaryResourcePointer,&SystemStringTemplate,param_3,param_4,0xfffffffffffffffe);
+  *(uint32_t *)(SystemResourcePointer + 5) = ConfigurationDataPointer;
+  SystemResourcePointer[4] = AdditionalParameter;
+  (**(code **)(*PrimaryResourcePointer + 0x10))(PrimaryResourcePointer,&SystemStringTemplate,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   *(uint32_t *)(SystemResourcePointer + 10) = 0xd;
   *(void* *)((long long)SystemResourcePointer + 0x54) = 0xe;
   SystemResourcePointer[0xc] = 0xffffffff00000000;
@@ -40775,8 +40875,8 @@ void FUN_180063820(void* SystemResourcePointer)
 
 
 
-// 函数: void FUN_180063b30(void* SystemResourcePointer,long long param_2)
-void FUN_180063b30(void* SystemResourcePointer,long long param_2)
+// 函数: void FUN_180063b30(void* SystemResourcePointer,long long ConfigurationDataPointer)
+void FUN_180063b30(void* SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   char *pcVar1;
@@ -40803,12 +40903,12 @@ void FUN_180063b30(void* SystemResourcePointer,long long param_2)
   localSystemPointer = -1;
   localResourceOffset = localSystemPointer;
   localBufferAddress = localSystemPointer;
-  if (param_2 != 0) {
+  if (ConfigurationDataPointer != 0) {
     do {
       localResourceOffset = localResourceOffset + 1;
-    } while (*(char *)(param_2 + localResourceOffset) != '\0');
+    } while (*(char *)(ConfigurationDataPointer + localResourceOffset) != '\0');
     if (localResourceOffset != 0) {
-      fwrite(param_2,localResourceOffset,1,lStack_40);
+      fwrite(ConfigurationDataPointer,localResourceOffset,1,lStack_40);
     }
   }
   do {
@@ -41234,8 +41334,8 @@ ulong long FUN_1800649d0(void* SystemResourcePointer)
 
 
 
-// 函数: void FUN_180064c00(long long *SystemResourcePointer,long long param_2,long long param_3)
-void FUN_180064c00(long long *SystemResourcePointer,long long param_2,long long param_3)
+// 函数: void FUN_180064c00(long long *SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
+void FUN_180064c00(long long *SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   uint unsignedSystemValue1;
@@ -41289,8 +41389,8 @@ void FUN_180064c00(long long *SystemResourcePointer,long long param_2,long long 
   uStack_e8 = 0;
   FUN_180057110();
   punsignedSystemValue6 = &SystemStringTemplate;
-  if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-    punsignedSystemValue6 = *(void* **)(param_2 + 8);
+  if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
+    punsignedSystemValue6 = *(void* **)(ConfigurationDataPointer + 8);
   }
   puStack_b8 = (void* *)0x0;
   uStack_b0 = 0xf;
@@ -41302,8 +41402,8 @@ void FUN_180064c00(long long *SystemResourcePointer,long long param_2,long long 
   } while (punsignedSystemValue6[localMemoryPointer2] != '\0');
   FUN_1800671b0(&uStack_c8);
   punsignedSystemValue6 = &SystemStringTemplate;
-  if (*(void* **)(param_3 + 8) != (void* *)0x0) {
-    punsignedSystemValue6 = *(void* **)(param_3 + 8);
+  if (*(void* **)(AdditionalParameter + 8) != (void* *)0x0) {
+    punsignedSystemValue6 = *(void* **)(AdditionalParameter + 8);
   }
   lStack_78 = 0;
   uStack_70 = 0xf;
@@ -42109,8 +42209,8 @@ void InitializeSystemResourceAllocator(void)
 
 
 
-// 函数: void FUN_180065f00(void* SystemResourcePointer,long long param_2,void* param_3,void* param_4)
-void FUN_180065f00(void* SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+// 函数: void FUN_180065f00(void* SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180065f00(void* SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   code *pcVar1;
@@ -42132,7 +42232,7 @@ void FUN_180065f00(void* SystemResourcePointer,long long param_2,void* param_3,v
   
   uStack_48 = 0xfffffffffffffffe;
   plStack_b0 = *(long long **)(SystemMemoryBlockStorage + 0x18);
-  CreateSystemObject(&puStack_a8,SystemStatusFlagsPointer + 0x170,param_3,param_4,0);
+  CreateSystemObject(&puStack_a8,SystemStatusFlagsPointer + 0x170,AdditionalParameter,ConfigurationFlag,0);
   systemValue = uStack_98 + 3;
   ExecuteSystemCommand(&puStack_a8,systemValue);
   *(uint32_t *)((ulong long)uStack_98 + lStack_a0) = 0x706d74;
@@ -42173,7 +42273,7 @@ void FUN_180065f00(void* SystemResourcePointer,long long param_2,void* param_3,v
   }
   else {
     pcVar1 = *(code **)(*plStack_b0 + 0x10);
-    unsignedSystemValue3 = ProcessSystemQueue(&puStack_88,param_2);
+    unsignedSystemValue3 = ProcessSystemQueue(&puStack_88,ConfigurationDataPointer);
     (*pcVar1)(plStack_b0,SystemResourcePointer,unsignedSystemValue3);
     puStack_88 = &SystemGlobalDataReference;
     if (lStack_80 != 0) {
@@ -42197,8 +42297,8 @@ void FUN_180065f00(void* SystemResourcePointer,long long param_2,void* param_3,v
 
 
 
-// 函数: void FUN_180066140(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180066140(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180066140(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180066140(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint unsignedSystemValue1;
@@ -42225,7 +42325,7 @@ void FUN_180066140(long long *SystemResourcePointer,void* param_2,void* param_3,
   unsignedSystemValue1 = *(uint *)(localSystemHandle + 0x10);
   unsignedSystemValue4 = (ulong long)unsignedSystemValue1;
   if (*(long long *)(localSystemHandle + 8) != 0) {
-    ExecuteSystemCommand(&puStack_70,unsignedSystemValue4,param_3,param_4,1,0xfffffffffffffffe);
+    ExecuteSystemCommand(&puStack_70,unsignedSystemValue4,AdditionalParameter,ConfigurationFlag,1,0xfffffffffffffffe);
   }
   if (unsignedSystemValue1 != 0) {
                     // WARNING: Subroutine does not return
@@ -42239,7 +42339,7 @@ void FUN_180066140(long long *SystemResourcePointer,void* param_2,void* param_3,
   ExecuteSystemCommand(&puStack_70,1);
   *(void*2 *)((ulong long)uStack_60 + lStack_68) = 0x5c;
   uStack_60 = 1;
-  FUN_180627e10(&puStack_70,&puStack_50,param_3);
+  FUN_180627e10(&puStack_70,&puStack_50,AdditionalParameter);
   puStack_70 = &SystemGlobalDataReference;
   if (lStack_68 != 0) {
                     // WARNING: Subroutine does not return
@@ -42252,8 +42352,8 @@ void FUN_180066140(long long *SystemResourcePointer,void* param_2,void* param_3,
   if (puStack_48 != (void* *)0x0) {
     pointerToUnsigned3 = puStack_48;
   }
-  ProcessSystemResourceData(&uStack_88,pointerToUnsigned3,&SystemEventTemplate,param_4,0);
-  InitializePrimaryResource(param_2,&uStack_88);
+  ProcessSystemResourceData(&uStack_88,pointerToUnsigned3,&SystemEventTemplate,ConfigurationFlag,0);
+  InitializePrimaryResource(ConfigurationDataPointer,&uStack_88);
   if (lStack_80 != 0) {
     fclose();
     lStack_80 = 0;
@@ -42285,8 +42385,8 @@ void FUN_180066140(long long *SystemResourcePointer,void* param_2,void* param_3,
 // WARNING: Removing unreachable block (ram,0x0001800665f5)
 
 
-// 函数: void FUN_180066320(void* SystemResourcePointer,void* param_2,char param_3,char param_4,
-void FUN_180066320(void* SystemResourcePointer,void* param_2,char param_3,char param_4,
+// 函数: void FUN_180066320(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter,char ConfigurationFlag,
+void FUN_180066320(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter,char ConfigurationFlag,
                   void* param_5)
 
 {
@@ -42356,7 +42456,7 @@ void FUN_180066320(void* SystemResourcePointer,void* param_2,char param_3,char p
     InitializeSystemManager();
     goto LAB_180066971;
   }
-  if ((param_3 == '\0') && (DAT_180c82851 == '\0')) {
+  if ((AdditionalParameter == '\0') && (DAT_180c82851 == '\0')) {
     if (((DAT_180c82860 == '\0') || (systemResult = IsDebuggerPresent(), systemResult != 0)) &&
        (DAT_180c82842 == '\0')) {
       unsignedSystemValue3 = MessageBoxA(0,&UNK_1809feaa0,&UNK_1809feb24,0x40004);
@@ -42443,12 +42543,12 @@ LAB_18006650a:
     }
     FUN_1800622d0(SystemContextManagerPointer,5,3,&UNK_1809feba8);
     puStack_1d8 = &UNK_1809febc8;
-    if (param_3 != '\0') {
+    if (AdditionalParameter != '\0') {
       puStack_1d8 = &UNK_1809febc0;
     }
     FUN_1800622d0(SystemContextManagerPointer,5,3,&UNK_1809febd8);
     InitializeSystemManager();
-    if (((param_4 == '\0') || (DAT_180c82844 != '\0')) || (*(int *)(SystemMemoryManagerPointer + 0x1150) != 0))
+    if (((ConfigurationFlag == '\0') || (DAT_180c82844 != '\0')) || (*(int *)(SystemMemoryManagerPointer + 0x1150) != 0))
     {
       FUN_1800622d0(SystemContextManagerPointer,5,3,&UNK_1809febf0);
       InitializeSystemManager();
@@ -42492,7 +42592,7 @@ LAB_18006650a:
     FUN_180064010(&puStack_198);
     FUN_1800649d0(&puStack_198);
     FUN_180065160(&puStack_198);
-    FUN_180065d50(&puStack_198,param_2,param_3,0);
+    FUN_180065d50(&puStack_198,ConfigurationDataPointer,AdditionalParameter,0);
     puStack_178 = &SystemGlobalDataReference;
     if (puStack_170 != (void* *)0x0) {
                     // WARNING: Subroutine does not return
@@ -42538,8 +42638,8 @@ LAB_180066971:
 
 
 
-// 函数: void FUN_1800669c0(void* SystemResourcePointer,void* param_2,char param_3,void* param_4,
-void FUN_1800669c0(void* SystemResourcePointer,void* param_2,char param_3,void* param_4,
+// 函数: void FUN_1800669c0(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag,
+void FUN_1800669c0(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag,
                   void* param_5)
 
 {
@@ -42560,7 +42660,7 @@ void FUN_1800669c0(void* SystemResourcePointer,void* param_2,char param_3,void* 
   if (cVar2 == '\0') {
     if ((DAT_180c82843 == '\0') && (*(int *)(SystemMemoryManagerPointer + 0x10e0) != 1)) {
       systemCounter = 0;
-      if ((param_3 != '\0') || (DAT_180c82851 != '\0')) {
+      if ((AdditionalParameter != '\0') || (DAT_180c82851 != '\0')) {
 LAB_180066bf4:
         FUN_180052070(auStack_80);
         stackParameterA = &SystemGlobalDataReference;
@@ -42661,8 +42761,8 @@ void FUN_180066dd0(void)
 
 
 
-// 函数: void FUN_180066df0(long long *SystemResourcePointer,long long param_2,void* param_3,void* param_4)
-void FUN_180066df0(long long *SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+// 函数: void FUN_180066df0(long long *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180066df0(long long *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long localMemoryPointer;
@@ -42683,13 +42783,13 @@ void FUN_180066df0(long long *SystemResourcePointer,long long param_2,void* para
     punsignedSystemValue4[3] = 0;
     punsignedSystemValue4[1] = 0;
     *(uint32_t *)(punsignedSystemValue4 + 2) = 0;
-    *(uint32_t *)(punsignedSystemValue4 + 2) = *(uint32_t *)(param_2 + 0x10);
-    punsignedSystemValue4[1] = *(void* *)(param_2 + 8);
-    *(uint32_t *)((long long)punsignedSystemValue4 + 0x1c) = *(uint32_t *)(param_2 + 0x1c);
-    *(uint32_t *)(punsignedSystemValue4 + 3) = *(uint32_t *)(param_2 + 0x18);
-    *(uint32_t *)(param_2 + 0x10) = 0;
-    *(void* *)(param_2 + 8) = 0;
-    *(void* *)(param_2 + 0x18) = 0;
+    *(uint32_t *)(punsignedSystemValue4 + 2) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
+    punsignedSystemValue4[1] = *(void* *)(ConfigurationDataPointer + 8);
+    *(uint32_t *)((long long)punsignedSystemValue4 + 0x1c) = *(uint32_t *)(ConfigurationDataPointer + 0x1c);
+    *(uint32_t *)(punsignedSystemValue4 + 3) = *(uint32_t *)(ConfigurationDataPointer + 0x18);
+    *(uint32_t *)(ConfigurationDataPointer + 0x10) = 0;
+    *(void* *)(ConfigurationDataPointer + 8) = 0;
+    *(void* *)(ConfigurationDataPointer + 0x18) = 0;
     return;
   }
   localResourceOffset = *SystemResourcePointer;
@@ -42701,7 +42801,7 @@ void FUN_180066df0(long long *SystemResourcePointer,long long param_2,void* para
     localSystemFlags = localSystemFlags * 2;
     if (localSystemFlags == 0) goto LAB_180066ec4;
   }
-  localMemoryPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,localSystemFlags << 5,(char)SystemResourcePointer[3],param_4,0xfffffffffffffffe);
+  localMemoryPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,localSystemFlags << 5,(char)SystemResourcePointer[3],ConfigurationFlag,0xfffffffffffffffe);
   punsignedSystemValue4 = (void* *)SystemResourcePointer[1];
   localResourceOffset = *SystemResourcePointer;
 LAB_180066ec4:
@@ -42713,13 +42813,13 @@ LAB_180066ec4:
   pointerToUnsigned2[3] = 0;
   pointerToUnsigned2[1] = 0;
   *(uint32_t *)(pointerToUnsigned2 + 2) = 0;
-  *(uint32_t *)(pointerToUnsigned2 + 2) = *(uint32_t *)(param_2 + 0x10);
-  pointerToUnsigned2[1] = *(void* *)(param_2 + 8);
-  *(uint32_t *)((long long)pointerToUnsigned2 + 0x1c) = *(uint32_t *)(param_2 + 0x1c);
-  *(uint32_t *)(pointerToUnsigned2 + 3) = *(uint32_t *)(param_2 + 0x18);
-  *(uint32_t *)(param_2 + 0x10) = 0;
-  *(void* *)(param_2 + 8) = 0;
-  *(void* *)(param_2 + 0x18) = 0;
+  *(uint32_t *)(pointerToUnsigned2 + 2) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
+  pointerToUnsigned2[1] = *(void* *)(ConfigurationDataPointer + 8);
+  *(uint32_t *)((long long)pointerToUnsigned2 + 0x1c) = *(uint32_t *)(ConfigurationDataPointer + 0x1c);
+  *(uint32_t *)(pointerToUnsigned2 + 3) = *(uint32_t *)(ConfigurationDataPointer + 0x18);
+  *(uint32_t *)(ConfigurationDataPointer + 0x10) = 0;
+  *(void* *)(ConfigurationDataPointer + 8) = 0;
+  *(void* *)(ConfigurationDataPointer + 0x18) = 0;
   punsignedSystemValue4 = (void* *)SystemResourcePointer[1];
   punsignedSystemValue5 = (void* *)*SystemResourcePointer;
   if (punsignedSystemValue5 != punsignedSystemValue4) {
@@ -42741,7 +42841,7 @@ LAB_180066ec4:
 
 
 
-long long FUN_180066f90(long long SystemResourcePointer,ulong long param_2,void* param_3,char *param_4,
+long long FUN_180066f90(long long SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,char *ConfigurationFlag,
                       ulong long param_5)
 
 {
@@ -42750,15 +42850,15 @@ long long FUN_180066f90(long long SystemResourcePointer,ulong long param_2,void*
   long long localResourceOffset;
   long long localBufferAddress;
   
-  if (param_5 <= param_2) {
+  if (param_5 <= ConfigurationDataPointer) {
     if (param_5 == 0) {
       return 0;
     }
-    cVar1 = *param_4;
-    localBufferAddress = (SystemResourcePointer - param_5) + param_2;
+    cVar1 = *ConfigurationFlag;
+    localBufferAddress = (SystemResourcePointer - param_5) + ConfigurationDataPointer;
     for (localResourceOffset = memchr(SystemResourcePointer,(int)cVar1,(localBufferAddress + 1) - SystemResourcePointer); localResourceOffset != 0;
         localResourceOffset = memchr(localResourceOffset + 1,(int)cVar1,(localBufferAddress + 1) - (localResourceOffset + 1))) {
-      systemResult = memcmp(localResourceOffset,param_4,param_5);
+      systemResult = memcmp(localResourceOffset,ConfigurationFlag,param_5);
       if (systemResult == 0) {
         return localResourceOffset - SystemResourcePointer;
       }
@@ -42888,18 +42988,18 @@ void FUN_180067110(ulong long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180067170(long long SystemResourcePointer,ulong long param_2)
-void FUN_180067170(long long SystemResourcePointer,ulong long param_2)
+// 函数: void FUN_180067170(long long SystemResourcePointer,ulong long ConfigurationDataPointer)
+void FUN_180067170(long long SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
   
   localMemoryPointer = SystemResourcePointer;
-  if (0xfff < param_2) {
+  if (0xfff < ConfigurationDataPointer) {
     localMemoryPointer = *(long long *)(SystemResourcePointer + -8);
     if (0x1f < (SystemResourcePointer - localMemoryPointer) - 8U) {
                     // WARNING: Subroutine does not return
-      _invalid_parameter_noinfo_noreturn(SystemResourcePointer - localMemoryPointer,param_2 + 0x27);
+      _invalid_parameter_noinfo_noreturn(SystemResourcePointer - localMemoryPointer,ConfigurationDataPointer + 0x27);
     }
   }
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
@@ -42911,8 +43011,8 @@ void FUN_180067170(long long SystemResourcePointer,ulong long param_2)
 
 
 
-// 函数: void FUN_1800671b0(void* *SystemResourcePointer,void* param_2,ulong long param_3)
-void FUN_1800671b0(void* *SystemResourcePointer,void* param_2,ulong long param_3)
+// 函数: void FUN_1800671b0(void* *SystemResourcePointer,void* ConfigurationDataPointer,ulong long AdditionalParameter)
+void FUN_1800671b0(void* *SystemResourcePointer,void* ConfigurationDataPointer,ulong long AdditionalParameter)
 
 {
   ulong long unsignedSystemValue1;
@@ -42923,27 +43023,27 @@ void FUN_1800671b0(void* *SystemResourcePointer,void* param_2,ulong long param_3
   ulong long unsignedSystemValue6;
   
   unsignedSystemValue1 = SystemResourcePointer[3];
-  if (param_3 <= unsignedSystemValue1) {
+  if (AdditionalParameter <= unsignedSystemValue1) {
     punsignedSystemValue5 = SystemResourcePointer;
     if (0xf < unsignedSystemValue1) {
       punsignedSystemValue5 = (void* *)*SystemResourcePointer;
     }
-    SystemResourcePointer[2] = param_3;
+    SystemResourcePointer[2] = AdditionalParameter;
                     // WARNING: Subroutine does not return
     memmove(punsignedSystemValue5);
   }
-  if (param_3 < 0x8000000000000000) {
-    unsignedSystemValue4 = param_3 | 0xf;
+  if (AdditionalParameter < 0x8000000000000000) {
+    unsignedSystemValue4 = AdditionalParameter | 0xf;
     unsignedSystemValue6 = 0x7fffffffffffffff;
     if (((unsignedSystemValue4 < 0x8000000000000000) && (unsignedSystemValue1 <= 0x7fffffffffffffff - (unsignedSystemValue1 >> 1))) &&
        (unsignedSystemValue1 = (unsignedSystemValue1 >> 1) + unsignedSystemValue1, unsignedSystemValue6 = unsignedSystemValue4, unsignedSystemValue4 < unsignedSystemValue1)) {
       unsignedSystemValue6 = unsignedSystemValue1;
     }
     unsignedSystemValue3 = FUN_180067110(unsignedSystemValue6 + 1);
-    SystemResourcePointer[2] = param_3;
+    SystemResourcePointer[2] = AdditionalParameter;
     SystemResourcePointer[3] = unsignedSystemValue6;
                     // WARNING: Subroutine does not return
-    memcpy(unsignedSystemValue3,param_2,param_3);
+    memcpy(unsignedSystemValue3,ConfigurationDataPointer,AdditionalParameter);
   }
   FUN_1800670f0();
   pcVar2 = (code *)swi(3);
@@ -43111,14 +43211,14 @@ void FUN_1800672c0(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180067480(void* SystemResourcePointer,long long param_2)
-void FUN_180067480(void* SystemResourcePointer,long long param_2)
+// 函数: void FUN_180067480(void* SystemResourcePointer,long long ConfigurationDataPointer)
+void FUN_180067480(void* SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   void* *pointerToUnsigned1;
   void* *pointerToUnsigned2;
   
-  pointerToUnsigned1 = *(void* **)(*(long long *)(param_2 + 0x1f8) + 0x10);
+  pointerToUnsigned1 = *(void* **)(*(long long *)(ConfigurationDataPointer + 0x1f8) + 0x10);
   pointerToUnsigned2 = &SystemStringTemplate;
   if (pointerToUnsigned1 != (void* *)0x0) {
     pointerToUnsigned2 = pointerToUnsigned1;
@@ -43130,12 +43230,12 @@ void FUN_180067480(void* SystemResourcePointer,long long param_2)
 
 
 
-// 函数: void FUN_180067810(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180067810(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180067810(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180067810(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (*(code **)(SystemResourcePointer + 0x10) != (code *)0x0) {
-    (**(code **)(SystemResourcePointer + 0x10))(SystemResourcePointer,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(SystemResourcePointer + 0x10))(SystemResourcePointer,0,0,ConfigurationFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -43319,8 +43419,8 @@ void FUN_180067f30(void)
 
 
 
-// 函数: void FUN_180067f60(long long SystemResourcePointer,long long param_2)
-void FUN_180067f60(long long SystemResourcePointer,long long param_2)
+// 函数: void FUN_180067f60(long long SystemResourcePointer,long long ConfigurationDataPointer)
+void FUN_180067f60(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   int systemStatus;
@@ -43356,8 +43456,8 @@ void FUN_180067f60(long long SystemResourcePointer,long long param_2)
   localSystemHandle = CreateFileA(punsignedSystemValue4,0x80000000,1,0);
   if (localSystemHandle == -1) {
     punsignedSystemValue4 = &SystemStringTemplate;
-    if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-      punsignedSystemValue4 = *(void* **)(param_2 + 8);
+    if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
+      punsignedSystemValue4 = *(void* **)(ConfigurationDataPointer + 8);
     }
                     // WARNING: Subroutine does not return
     UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fecd8,punsignedSystemValue4);
@@ -43365,8 +43465,8 @@ void FUN_180067f60(long long SystemResourcePointer,long long param_2)
   localResourceOffset = CreateIoCompletionPort(localSystemHandle,*(void* *)(SystemResourcePointer + 0x213430),0,0);
   if (localResourceOffset != *(long long *)(SystemResourcePointer + 0x213430)) {
     punsignedSystemValue4 = &SystemStringTemplate;
-    if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-      punsignedSystemValue4 = *(void* **)(param_2 + 8);
+    if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
+      punsignedSystemValue4 = *(void* **)(ConfigurationDataPointer + 8);
     }
                     // WARNING: Subroutine does not return
     UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fed10,punsignedSystemValue4);
@@ -43385,23 +43485,23 @@ void FUN_180067f60(long long SystemResourcePointer,long long param_2)
       if (systemStatus != 0) {
         __Throw_C_error_std__YAXH_Z(systemStatus);
       }
-      _DAT_00000018 = *(uint32_t *)(param_2 + 0x10);
+      _DAT_00000018 = *(uint32_t *)(ConfigurationDataPointer + 0x10);
       punsignedSystemValue4 = &SystemStringTemplate;
-      if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-        punsignedSystemValue4 = *(void* **)(param_2 + 8);
+      if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
+        punsignedSystemValue4 = *(void* **)(ConfigurationDataPointer + 8);
       }
       strcpy_s(_DAT_00000010,0x100,punsignedSystemValue4);
       unsignedSystemValue8 = unsignedSystemValue6;
-      if (0 < *(int *)(param_2 + 0x10)) {
+      if (0 < *(int *)(ConfigurationDataPointer + 0x10)) {
         do {
           unsignedSystemValue6 = unsignedSystemValue6 * 0x1f + (long long)*(char *)(unsignedSystemValue8 + *(long long *)(ComparisonDataPointer + 8));
           unsignedSystemValue7 = (int)unsignedSystemValue8 + 1;
           unsignedSystemValue8 = (ulong long)unsignedSystemValue7;
-        } while ((int)unsignedSystemValue7 < *(int *)(param_2 + 0x10));
+        } while ((int)unsignedSystemValue7 < *(int *)(ConfigurationDataPointer + 0x10));
       }
       lRam0000000000000128 = localSystemHandle;
       uStack_2c8 = unsignedSystemValue6;
-      FUN_180068860(SystemResourcePointer + 0x330,alStack_288,unsignedSystemValue8,param_2);
+      FUN_180068860(SystemResourcePointer + 0x330,alStack_288,unsignedSystemValue8,ConfigurationDataPointer);
       *(void* *)(alStack_288[0] + 0x118) = 0;
       puStack_268 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
@@ -43420,7 +43520,7 @@ void FUN_180067f60(long long SystemResourcePointer,long long param_2)
 
 
 
-void* FUN_180068250(long long SystemResourcePointer,long long param_2,long long param_3)
+void* FUN_180068250(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   ulong long unsignedSystemValue1;
@@ -43432,8 +43532,8 @@ void* FUN_180068250(long long SystemResourcePointer,long long param_2,long long 
   ulong long unsignedSystemValue7;
   ulong long unsignedSystemValue8;
   
-  unsignedSystemValue8 = *(ulong long *)(param_3 + 0x118) & 0xfffffffffffff000;
-  unsignedSystemValue5 = (*(long long *)(param_3 + 0x120) - unsignedSystemValue8) + *(ulong long *)(param_3 + 0x118);
+  unsignedSystemValue8 = *(ulong long *)(AdditionalParameter + 0x118) & 0xfffffffffffff000;
+  unsignedSystemValue5 = (*(long long *)(AdditionalParameter + 0x120) - unsignedSystemValue8) + *(ulong long *)(AdditionalParameter + 0x118);
   unsignedSystemValue7 = (ulong long)(-(uint)((unsignedSystemValue5 & 0xfff) != 0) & 0x1000) + (unsignedSystemValue5 & 0xfffffffffffff000);
   systemCounter = _Mtx_lock(SystemResourcePointer + 0x200380);
   if (systemCounter != 0) {
@@ -43447,7 +43547,7 @@ void* FUN_180068250(long long SystemResourcePointer,long long param_2,long long 
       if (systemCounter != 0) {
         __Throw_C_error_std__YAXH_Z(systemCounter);
       }
-      FUN_180068490(0x20,param_3);
+      FUN_180068490(0x20,AdditionalParameter);
       uRam00000000000001f0 = 0;
       uRam00000000000001e8 = 0;
       uRam00000000000001e0 = 0;
@@ -43465,10 +43565,10 @@ void* FUN_180068250(long long SystemResourcePointer,long long param_2,long long 
         uRam00000000000001c8 = unsignedSystemValue5;
         uRam00000000000001d0 = unsignedSystemValue7;
         uRam00000000000001d8 = unsignedSystemValue8;
-        lRam00000000000001f8 = param_2;
-        *(int *)(param_2 + 0x120) = *(int *)(param_2 + 0x120) + 1;
+        lRam00000000000001f8 = ConfigurationDataPointer;
+        *(int *)(ConfigurationDataPointer + 0x120) = *(int *)(ConfigurationDataPointer + 0x120) + 1;
         UNLOCK();
-        systemCounter = ReadFile(*(void* *)(param_2 + 0x128),uRam00000000000001f0,unsignedSystemValue7 & 0xffffffff,0,
+        systemCounter = ReadFile(*(void* *)(ConfigurationDataPointer + 0x128),uRam00000000000001f0,unsignedSystemValue7 & 0xffffffff,0,
                          0);
         if (systemCounter != 0) {
                     // WARNING: Subroutine does not return
@@ -43496,77 +43596,77 @@ void* FUN_180068250(long long SystemResourcePointer,long long param_2,long long 
 
 
 
-long long FUN_180068490(long long SystemResourcePointer,long long param_2)
+long long FUN_180068490(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
   code *pcVar2;
   void* *pointerToUnsigned3;
   
-  *(uint32_t *)(SystemResourcePointer + 0x10) = *(uint32_t *)(param_2 + 0x10);
+  *(uint32_t *)(SystemResourcePointer + 0x10) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
   pointerToUnsigned3 = &SystemStringTemplate;
-  if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-    pointerToUnsigned3 = *(void* **)(param_2 + 8);
+  if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
+    pointerToUnsigned3 = *(void* **)(ConfigurationDataPointer + 8);
   }
   strcpy_s(*(void* *)(SystemResourcePointer + 8),0x100,pointerToUnsigned3);
-  *(void* *)(SystemResourcePointer + 0x118) = *(void* *)(param_2 + 0x118);
+  *(void* *)(SystemResourcePointer + 0x118) = *(void* *)(ConfigurationDataPointer + 0x118);
   localMemoryPointer = SystemResourcePointer + 0x148;
-  *(void* *)(SystemResourcePointer + 0x120) = *(void* *)(param_2 + 0x120);
-  *(void* *)(SystemResourcePointer + 0x128) = *(void* *)(param_2 + 0x128);
-  *(void* *)(SystemResourcePointer + 0x130) = *(void* *)(param_2 + 0x130);
-  *(void* *)(SystemResourcePointer + 0x138) = *(void* *)(param_2 + 0x138);
-  *(uint8_t *)(SystemResourcePointer + 0x140) = *(uint8_t *)(param_2 + 0x140);
-  if (localMemoryPointer != param_2 + 0x148) {
+  *(void* *)(SystemResourcePointer + 0x120) = *(void* *)(ConfigurationDataPointer + 0x120);
+  *(void* *)(SystemResourcePointer + 0x128) = *(void* *)(ConfigurationDataPointer + 0x128);
+  *(void* *)(SystemResourcePointer + 0x130) = *(void* *)(ConfigurationDataPointer + 0x130);
+  *(void* *)(SystemResourcePointer + 0x138) = *(void* *)(ConfigurationDataPointer + 0x138);
+  *(uint8_t *)(SystemResourcePointer + 0x140) = *(uint8_t *)(ConfigurationDataPointer + 0x140);
+  if (localMemoryPointer != ConfigurationDataPointer + 0x148) {
     if (*(code **)(SystemResourcePointer + 0x158) != (code *)0x0) {
       (**(code **)(SystemResourcePointer + 0x158))(localMemoryPointer,0,0);
     }
-    pcVar2 = *(code **)(param_2 + 0x158);
+    pcVar2 = *(code **)(ConfigurationDataPointer + 0x158);
     if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(localMemoryPointer,param_2 + 0x148,1);
-      pcVar2 = *(code **)(param_2 + 0x158);
+      (*pcVar2)(localMemoryPointer,ConfigurationDataPointer + 0x148,1);
+      pcVar2 = *(code **)(ConfigurationDataPointer + 0x158);
     }
     *(code **)(SystemResourcePointer + 0x158) = pcVar2;
-    *(void* *)(SystemResourcePointer + 0x160) = *(void* *)(param_2 + 0x160);
+    *(void* *)(SystemResourcePointer + 0x160) = *(void* *)(ConfigurationDataPointer + 0x160);
   }
   localMemoryPointer = SystemResourcePointer + 0x168;
-  if (localMemoryPointer != param_2 + 0x168) {
+  if (localMemoryPointer != ConfigurationDataPointer + 0x168) {
     if (*(code **)(SystemResourcePointer + 0x178) != (code *)0x0) {
       (**(code **)(SystemResourcePointer + 0x178))(localMemoryPointer,0,0);
     }
-    pcVar2 = *(code **)(param_2 + 0x178);
+    pcVar2 = *(code **)(ConfigurationDataPointer + 0x178);
     if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(localMemoryPointer,param_2 + 0x168,1);
-      pcVar2 = *(code **)(param_2 + 0x178);
+      (*pcVar2)(localMemoryPointer,ConfigurationDataPointer + 0x168,1);
+      pcVar2 = *(code **)(ConfigurationDataPointer + 0x178);
     }
     *(code **)(SystemResourcePointer + 0x178) = pcVar2;
-    *(void* *)(SystemResourcePointer + 0x180) = *(void* *)(param_2 + 0x180);
+    *(void* *)(SystemResourcePointer + 0x180) = *(void* *)(ConfigurationDataPointer + 0x180);
   }
-  *(void* *)(SystemResourcePointer + 0x188) = *(void* *)(param_2 + 0x188);
-  *(void* *)(SystemResourcePointer + 400) = *(void* *)(param_2 + 400);
-  *(void* *)(SystemResourcePointer + 0x198) = *(void* *)(param_2 + 0x198);
-  *(void* *)(SystemResourcePointer + 0x1a0) = *(void* *)(param_2 + 0x1a0);
+  *(void* *)(SystemResourcePointer + 0x188) = *(void* *)(ConfigurationDataPointer + 0x188);
+  *(void* *)(SystemResourcePointer + 400) = *(void* *)(ConfigurationDataPointer + 400);
+  *(void* *)(SystemResourcePointer + 0x198) = *(void* *)(ConfigurationDataPointer + 0x198);
+  *(void* *)(SystemResourcePointer + 0x1a0) = *(void* *)(ConfigurationDataPointer + 0x1a0);
   return SystemResourcePointer;
 }
 
 
 
 
-// 函数: void FUN_180068620(long long SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
-void FUN_180068620(long long SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+// 函数: void FUN_180068620(long long SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180068620(long long SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
   void* unsignedSystemValue2;
   
   unsignedSystemValue2 = 0xfffffffffffffffe;
-  CloseHandle(param_2[0x25]);
+  CloseHandle(ConfigurationDataPointer[0x25]);
   systemStatus = _Mtx_lock(SystemResourcePointer + 0x2133e0);
   if (systemStatus != 0) {
     __Throw_C_error_std__YAXH_Z(systemStatus);
   }
-  (**(code **)*param_2)(param_2,0,param_3,param_4,unsignedSystemValue2);
-  *param_2 = *(void* *)(SystemResourcePointer + 0x2133d8);
-  *(void* **)(SystemResourcePointer + 0x2133d8) = param_2;
+  (**(code **)*ConfigurationDataPointer)(ConfigurationDataPointer,0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue2);
+  *ConfigurationDataPointer = *(void* *)(SystemResourcePointer + 0x2133d8);
+  *(void* **)(SystemResourcePointer + 0x2133d8) = ConfigurationDataPointer;
   systemStatus = _Mtx_unlock(SystemResourcePointer + 0x2133e0);
   if (systemStatus != 0) {
     __Throw_C_error_std__YAXH_Z(systemStatus);
@@ -43641,8 +43741,8 @@ void FUN_1800686b0(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_1800687d0(long long SystemResourcePointer,void* *param_2)
-void FUN_1800687d0(long long SystemResourcePointer,void* *param_2)
+// 函数: void FUN_1800687d0(long long SystemResourcePointer,void* *ConfigurationDataPointer)
+void FUN_1800687d0(long long SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   int systemStatus;
@@ -43651,9 +43751,9 @@ void FUN_1800687d0(long long SystemResourcePointer,void* *param_2)
   if (systemStatus != 0) {
     __Throw_C_error_std__YAXH_Z(systemStatus);
   }
-  FUN_180069530(param_2 + 4);
-  *param_2 = *(void* *)(SystemResourcePointer + 0x200008);
-  *(void* **)(SystemResourcePointer + 0x200008) = param_2;
+  FUN_180069530(ConfigurationDataPointer + 4);
+  *ConfigurationDataPointer = *(void* *)(SystemResourcePointer + 0x200008);
+  *(void* **)(SystemResourcePointer + 0x200008) = ConfigurationDataPointer;
   systemStatus = _Mtx_unlock(SystemResourcePointer + 0x200010);
   if (systemStatus != 0) {
     __Throw_C_error_std__YAXH_Z(systemStatus);
@@ -43665,7 +43765,7 @@ void FUN_1800687d0(long long SystemResourcePointer,void* *param_2)
 
 
 long long *
-FUN_180068860(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4,
+FUN_180068860(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag,
              ulong long param_5)
 
 {
@@ -43676,12 +43776,12 @@ FUN_180068860(long long SystemResourcePointer,long long *param_2,void* param_3,v
   
   unsignedSystemValue2 = param_5 % (ulong long)*(uint *)(SystemResourcePointer + 0x10);
   localResourceOffset = func_0x0001800694c0(SystemResourcePointer,*(void* *)(*(long long *)(SystemResourcePointer + 8) + unsignedSystemValue2 * 8),
-                              param_4);
+                              ConfigurationFlag);
   if (localResourceOffset == 0) {
     FUN_18066c220(SystemResourcePointer + 0x20,&param_5,*(uint32_t *)(SystemResourcePointer + 0x10),
                   *(uint32_t *)(SystemResourcePointer + 0x18),1);
     localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x128,*(uint8_t *)(SystemResourcePointer + 0x2c));
-    FUN_180068ff0(localResourceOffset,param_4);
+    FUN_180068ff0(localResourceOffset,ConfigurationFlag);
     *(void* *)(localResourceOffset + 0x118) = 0;
     *(void* *)(localResourceOffset + 0x120) = 0;
     if ((char)param_5 != '\0') {
@@ -43694,22 +43794,22 @@ FUN_180068860(long long SystemResourcePointer,long long *param_2,void* param_3,v
     *(long long *)(*(long long *)(SystemResourcePointer + 8) + unsignedSystemValue2 * 8) = localResourceOffset;
     *(long long *)(SystemResourcePointer + 0x18) = *(long long *)(SystemResourcePointer + 0x18) + 1;
     localMemoryPointer = *(long long *)(SystemResourcePointer + 8);
-    *param_2 = localResourceOffset;
-    param_2[1] = localMemoryPointer + unsignedSystemValue2 * 8;
-    *(uint8_t *)(param_2 + 2) = 1;
+    *ConfigurationDataPointer = localResourceOffset;
+    ConfigurationDataPointer[1] = localMemoryPointer + unsignedSystemValue2 * 8;
+    *(uint8_t *)(ConfigurationDataPointer + 2) = 1;
   }
   else {
     localMemoryPointer = *(long long *)(SystemResourcePointer + 8);
-    *param_2 = localResourceOffset;
-    param_2[1] = localMemoryPointer + unsignedSystemValue2 * 8;
-    *(uint8_t *)(param_2 + 2) = 0;
+    *ConfigurationDataPointer = localResourceOffset;
+    ConfigurationDataPointer[1] = localMemoryPointer + unsignedSystemValue2 * 8;
+    *(uint8_t *)(ConfigurationDataPointer + 2) = 0;
   }
-  return param_2;
+  return ConfigurationDataPointer;
 }
 
 
 
-void* FUN_180068a90(ulong long *SystemResourcePointer,void* *param_2)
+void* FUN_180068a90(ulong long *SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -43754,7 +43854,7 @@ void* FUN_180068a90(ulong long *SystemResourcePointer,void* *param_2)
     unsignedSystemValue12 = unsignedSystemValue13;
   } while (unsignedSystemValue14 < 3);
   if (unsignedSystemValue14 != 0) {
-    cVar5 = FUN_180068ce0(unsignedSystemValue9,param_2);
+    cVar5 = FUN_180068ce0(unsignedSystemValue9,ConfigurationDataPointer);
     if (cVar5 != '\0') {
       return 1;
     }
@@ -43783,7 +43883,7 @@ void* FUN_180068a90(ulong long *SystemResourcePointer,void* *param_2)
                    (((unsignedSystemValue8 & 0xffffffffffffffe0) - **(long long **)(PrimaryResourcePointer[3] + PrimaryResourcePointer[1] * 8) >> 5)
                     + PrimaryResourcePointer[1] & *PrimaryResourcePointer - 1U) * 8);
           localBufferAddress = *(long long *)(localResourceOffset + 8);
-          *param_2 = *(void* *)(localBufferAddress + (ulong long)((uint)unsignedSystemValue8 & 0x1f) * 8);
+          *ConfigurationDataPointer = *(void* *)(localBufferAddress + (ulong long)((uint)unsignedSystemValue8 & 0x1f) * 8);
           LOCK();
           PrimaryResourcePointer = (long long *)(localBufferAddress + 0x108);
           localBufferAddress = *PrimaryResourcePointer;
@@ -43815,7 +43915,7 @@ void* FUN_180068a90(ulong long *SystemResourcePointer,void* *param_2)
                        (PrimaryResourcePointer[2] + 8 +
                        (((unsignedSystemValue8 & 0xffffffffffffffe0) - *(long long *)(PrimaryResourcePointer[2] + PrimaryResourcePointer[1] * 0x10)
                         >> 5) + PrimaryResourcePointer[1] & *PrimaryResourcePointer - 1U) * 0x10);
-              *param_2 = *(void* *)(localBufferAddress + unsignedSystemValue12 * 8);
+              *ConfigurationDataPointer = *(void* *)(localBufferAddress + unsignedSystemValue12 * 8);
               *(uint8_t *)((localBufferAddress - unsignedSystemValue12) + 0x12f) = 1;
               bVar6 = true;
               goto LAB_180068c94;
@@ -43845,7 +43945,7 @@ LAB_180068c94:
 
 
 
-void* FUN_180068ce0(long long SystemResourcePointer,void* *param_2)
+void* FUN_180068ce0(long long SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -43879,7 +43979,7 @@ void* FUN_180068ce0(long long SystemResourcePointer,void* *param_2)
                (((unsignedSystemValue4 & 0xffffffffffffffe0) - **(long long **)(PrimaryResourcePointer[3] + PrimaryResourcePointer[1] * 8) >> 5) +
                 PrimaryResourcePointer[1] & *PrimaryResourcePointer - 1U) * 8);
       localResourceOffset = *(long long *)(localSystemPointer + 8);
-      *param_2 = *(void* *)(localResourceOffset + (ulong long)((uint)unsignedSystemValue4 & 0x1f) * 8);
+      *ConfigurationDataPointer = *(void* *)(localResourceOffset + (ulong long)((uint)unsignedSystemValue4 & 0x1f) * 8);
       LOCK();
       PrimaryResourcePointer = (long long *)(localResourceOffset + 0x108);
       localResourceOffset = *PrimaryResourcePointer;
@@ -43916,7 +44016,7 @@ void* FUN_180068ce0(long long SystemResourcePointer,void* *param_2)
                (PrimaryResourcePointer[2] + 8 +
                (((unsignedSystemValue4 & 0xffffffffffffffe0) - *(long long *)(PrimaryResourcePointer[2] + PrimaryResourcePointer[1] * 0x10) >> 5) +
                 PrimaryResourcePointer[1] & *PrimaryResourcePointer - 1U) * 0x10);
-      *param_2 = *(void* *)(localResourceOffset + unsignedSystemValue6 * 8);
+      *ConfigurationDataPointer = *(void* *)(localResourceOffset + unsignedSystemValue6 * 8);
       *(uint8_t *)((localResourceOffset - unsignedSystemValue6) + 0x12f) = 1;
       return 1;
     }
@@ -43930,34 +44030,34 @@ void* FUN_180068ce0(long long SystemResourcePointer,void* *param_2)
 
 
 
-long long FUN_180068ec0(long long *SystemResourcePointer,long long *param_2,int param_3,void* param_4)
+long long FUN_180068ec0(long long *SystemResourcePointer,long long *ConfigurationDataPointer,int AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long localMemoryPointer;
   long long localSystemHandle;
   code *pcVar3;
   
-  if (param_3 == 3) {
+  if (AdditionalParameter == 3) {
     localSystemHandle = 0x180bfd400;
   }
-  else if (param_3 == 4) {
+  else if (AdditionalParameter == 4) {
     localSystemHandle = *SystemResourcePointer;
   }
   else {
-    if (param_3 == 0) {
+    if (AdditionalParameter == 0) {
       localSystemHandle = *SystemResourcePointer;
       if (localSystemHandle != 0) {
         if (*(code **)(localSystemHandle + 0x10) != (code *)0x0) {
-          (**(code **)(localSystemHandle + 0x10))(localSystemHandle,0,0,param_4,0xfffffffffffffffe);
+          (**(code **)(localSystemHandle + 0x10))(localSystemHandle,0,0,ConfigurationFlag,0xfffffffffffffffe);
         }
                     // WARNING: Subroutine does not return
         SystemCleanupFunction(localSystemHandle);
       }
     }
     else {
-      if (param_3 == 1) {
+      if (AdditionalParameter == 1) {
         localMemoryPointer = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,DAT_180bf65bc);
-        localSystemHandle = *param_2;
+        localSystemHandle = *ConfigurationDataPointer;
         *(void* *)(localMemoryPointer + 0x10) = 0;
         *(code **)(localMemoryPointer + 0x18) = _guard_check_icall;
         if (localMemoryPointer != localSystemHandle) {
@@ -43972,9 +44072,9 @@ long long FUN_180068ec0(long long *SystemResourcePointer,long long *param_2,int 
         *SystemResourcePointer = localMemoryPointer;
         return 0;
       }
-      if (param_3 == 2) {
-        *SystemResourcePointer = *param_2;
-        *param_2 = 0;
+      if (AdditionalParameter == 2) {
+        *SystemResourcePointer = *ConfigurationDataPointer;
+        *ConfigurationDataPointer = 0;
         return 0;
       }
     }
@@ -43986,7 +44086,7 @@ long long FUN_180068ec0(long long *SystemResourcePointer,long long *param_2,int 
 
 
 void* *
-FUN_180068ff0(void* *SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+FUN_180068ff0(void* *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -43998,12 +44098,12 @@ FUN_180068ff0(void* *SystemResourcePointer,long long param_2,void* param_3,void*
   SystemResourcePointer[1] = SystemResourcePointer + 3;
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
   *(uint8_t *)(SystemResourcePointer + 3) = 0;
-  *(uint32_t *)(SystemResourcePointer + 2) = *(uint32_t *)(param_2 + 0x10);
+  *(uint32_t *)(SystemResourcePointer + 2) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
   pointerToUnsigned1 = &SystemStringTemplate;
-  if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-    pointerToUnsigned1 = *(void* **)(param_2 + 8);
+  if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
+    pointerToUnsigned1 = *(void* **)(ConfigurationDataPointer + 8);
   }
-  strcpy_s(SystemResourcePointer[1],0x100,pointerToUnsigned1,param_4,0xfffffffffffffffe);
+  strcpy_s(SystemResourcePointer[1],0x100,pointerToUnsigned1,ConfigurationFlag,0xfffffffffffffffe);
   return SystemResourcePointer;
 }
 
@@ -44035,32 +44135,32 @@ void* * FUN_180069070(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180069130(long long SystemResourcePointer,long long param_2)
-void FUN_180069130(long long SystemResourcePointer,long long param_2)
+// 函数: void FUN_180069130(long long SystemResourcePointer,long long ConfigurationDataPointer)
+void FUN_180069130(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   code *pcVar1;
   
-  pcVar1 = *(code **)(param_2 + 0x10);
+  pcVar1 = *(code **)(ConfigurationDataPointer + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(SystemResourcePointer,param_2,2);
-    pcVar1 = *(code **)(param_2 + 0x10);
+    (*pcVar1)(SystemResourcePointer,ConfigurationDataPointer,2);
+    pcVar1 = *(code **)(ConfigurationDataPointer + 0x10);
   }
   *(code **)(SystemResourcePointer + 0x10) = pcVar1;
-  *(void* *)(SystemResourcePointer + 0x18) = *(void* *)(param_2 + 0x18);
-  *(code **)(param_2 + 0x18) = _guard_check_icall;
-  *(void* *)(param_2 + 0x10) = 0;
+  *(void* *)(SystemResourcePointer + 0x18) = *(void* *)(ConfigurationDataPointer + 0x18);
+  *(code **)(ConfigurationDataPointer + 0x18) = _guard_check_icall;
+  *(void* *)(ConfigurationDataPointer + 0x10) = 0;
   return;
 }
 
 
 
-long long FUN_180069190(long long SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+long long FUN_180069190(long long SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *(void* **)(SystemResourcePointer + 8) = &SystemMemoryAllocatorReference;
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0x128,param_3,param_4,0xfffffffffffffffe);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0x128,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   }
   return SystemResourcePointer;
 }
@@ -44068,12 +44168,12 @@ long long FUN_180069190(long long SystemResourcePointer,ulong long param_2,void*
 
 
 void* *
-FUN_1800691e0(void* *SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+FUN_1800691e0(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0x118,param_3,param_4,0xfffffffffffffffe);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0x118,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   }
   return SystemResourcePointer;
 }
@@ -44081,13 +44181,13 @@ FUN_1800691e0(void* *SystemResourcePointer,ulong long param_2,void* param_3,void
 
 
 
-// 函数: void FUN_180069220(long long SystemResourcePointer,void* param_2,int param_3)
-void FUN_180069220(long long SystemResourcePointer,void* param_2,int param_3)
+// 函数: void FUN_180069220(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
+void FUN_180069220(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
 
 {
-  if (param_3 + 1 < 0x100) {
+  if (AdditionalParameter + 1 < 0x100) {
                     // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(SystemResourcePointer + 8),param_2,(long long)param_3);
+    memcpy(*(uint8_t **)(SystemResourcePointer + 8),ConfigurationDataPointer,(long long)AdditionalParameter);
   }
   **(uint8_t **)(targetBuffer + 8) = 0;
   *(uint32_t *)(targetBuffer + 0x10) = 0;
@@ -44123,8 +44223,8 @@ void FUN_180069266(uint8_t *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180069280(long long SystemResourcePointer,long long param_2,long long param_3)
-void FUN_180069280(long long SystemResourcePointer,long long param_2,long long param_3)
+// 函数: void FUN_180069280(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
+void FUN_180069280(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   long long localMemoryPointer;
@@ -44150,10 +44250,10 @@ void FUN_180069280(long long SystemResourcePointer,long long param_2,long long p
     localResourceOffset = -1;
     do {
       localResourceOffset = localResourceOffset + 1;
-    } while (*(char *)(param_2 + localResourceOffset) != '\0');
+    } while (*(char *)(ConfigurationDataPointer + localResourceOffset) != '\0');
     do {
       localSystemHandle = localSystemHandle + 1;
-    } while (*(char *)(localSystemHandle + param_3) != '\0');
+    } while (*(char *)(localSystemHandle + AdditionalParameter) != '\0');
                     // WARNING: Subroutine does not return
     memcpy(puStack_160,*(long long *)(SystemResourcePointer + 8),localMemoryPointer - *(long long *)(SystemResourcePointer + 8));
   }
@@ -44165,8 +44265,8 @@ void FUN_180069280(long long SystemResourcePointer,long long param_2,long long p
 
 
 
-// 函数: void FUN_1800693f0(long long SystemResourcePointer,long long param_2)
-void FUN_1800693f0(long long SystemResourcePointer,long long param_2)
+// 函数: void FUN_1800693f0(long long SystemResourcePointer,long long ConfigurationDataPointer)
+void FUN_1800693f0(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -44179,7 +44279,7 @@ void FUN_1800693f0(long long SystemResourcePointer,long long param_2)
   localMemoryPointer = -1;
   do {
     localMemoryPointer = localMemoryPointer + 1;
-  } while (*(char *)(param_2 + localMemoryPointer) != '\0');
+  } while (*(char *)(ConfigurationDataPointer + localMemoryPointer) != '\0');
   if ((int)localMemoryPointer < 0x100) {
     *(int *)(SystemResourcePointer + 0x10) = (int)localMemoryPointer;
                     // WARNING: Could not recover jumptable at 0x000180069429. Too many branches
@@ -44187,7 +44287,7 @@ void FUN_1800693f0(long long SystemResourcePointer,long long param_2)
     strcpy_s(*(void* *)(SystemResourcePointer + 8),0x100);
     return;
   }
-  FUN_180626f80(&SystemMemoryTemplateG,0x100,param_2);
+  FUN_180626f80(&SystemMemoryTemplateG,0x100,ConfigurationDataPointer);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
@@ -44195,12 +44295,12 @@ void FUN_1800693f0(long long SystemResourcePointer,long long param_2)
 
 
 
-long long FUN_180069470(long long SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+long long FUN_180069470(long long SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *(void* **)(SystemResourcePointer + 8) = &SystemMemoryAllocatorReference;
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0x130,param_3,param_4,0xfffffffffffffffe);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0x130,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   }
   return SystemResourcePointer;
 }
@@ -44208,12 +44308,12 @@ long long FUN_180069470(long long SystemResourcePointer,ulong long param_2,void*
 
 
 
-// 函数: void FUN_180069530(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180069530(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180069530(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180069530(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if ((code *)SystemResourcePointer[0x2f] != (code *)0x0) {
-    (*(code *)SystemResourcePointer[0x2f])(SystemResourcePointer + 0x2d,0,0,param_4,0xfffffffffffffffe);
+    (*(code *)SystemResourcePointer[0x2f])(SystemResourcePointer + 0x2d,0,0,ConfigurationFlag,0xfffffffffffffffe);
   }
   if ((code *)SystemResourcePointer[0x2b] != (code *)0x0) {
     (*(code *)SystemResourcePointer[0x2b])(SystemResourcePointer + 0x29,0,0);
@@ -44236,25 +44336,25 @@ void FUN_1800695a0(long long SystemResourcePointer)
 
 
 void* *
-FUN_1800696d0(void* *SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+FUN_1800696d0(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *SystemResourcePointer = &SystemMemoryTemplateC;
   *SystemResourcePointer = &SystemMemoryTemplateB;
   *SystemResourcePointer = &SystemMemoryTemplateA;
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0x30,param_3,param_4,0xfffffffffffffffe);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0x30,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   }
   return SystemResourcePointer;
 }
 
 
 
-void* * FUN_180069720(void* *SystemResourcePointer,ulong long param_2)
+void* * FUN_180069720(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &UNK_1809feeb8;
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x58);
   }
   return SystemResourcePointer;
@@ -44262,11 +44362,11 @@ void* * FUN_180069720(void* *SystemResourcePointer,ulong long param_2)
 
 
 
-void* FUN_180069760(void* SystemResourcePointer,ulong long param_2)
+void* FUN_180069760(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   FUN_1800697a0();
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x68);
   }
   return SystemResourcePointer;
@@ -44580,7 +44680,7 @@ LAB_180069c2b:
 
 
 
-ulong long FUN_180069cc0(void* SystemResourcePointer,void* *param_2)
+ulong long FUN_180069cc0(void* SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   ulong long unsignedSystemValue1;
@@ -44631,7 +44731,7 @@ LAB_180069dc3:
   }
   else {
 LAB_180069dda:
-    unsignedSystemValue3 = *param_2;
+    unsignedSystemValue3 = *ConfigurationDataPointer;
     *(void* *)(*(long long *)(localBufferAddress + 0x40) + (ulong long)((uint)unsignedSystemValue1 & 0x1f) * 8) = unsignedSystemValue3;
     *(ulong long *)(localBufferAddress + 0x20) = unsignedSystemValue1 + 1;
     unsignedSystemValue5 = CONCAT71((int7)((ulong long)unsignedSystemValue3 >> 8),1);
@@ -44642,7 +44742,7 @@ LAB_180069dda:
 
 
 void* *
-FUN_180069e10(void* *SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+FUN_180069e10(void* *SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   code *pcVar1;
@@ -44658,17 +44758,17 @@ FUN_180069e10(void* *SystemResourcePointer,void* *param_2,void* param_3,void* pa
   *SystemResourcePointer = &UNK_1809feed8;
   SystemResourcePointer[6] = 0;
   SystemResourcePointer[7] = _guard_check_icall;
-  if (SystemResourcePointer + 4 != param_2) {
-    pcVar1 = (code *)param_2[2];
+  if (SystemResourcePointer + 4 != ConfigurationDataPointer) {
+    pcVar1 = (code *)ConfigurationDataPointer[2];
     if (pcVar1 != (code *)0x0) {
-      (*pcVar1)(SystemResourcePointer + 4,param_2,1,param_4,0xfffffffffffffffe);
-      pcVar1 = (code *)param_2[2];
+      (*pcVar1)(SystemResourcePointer + 4,ConfigurationDataPointer,1,ConfigurationFlag,0xfffffffffffffffe);
+      pcVar1 = (code *)ConfigurationDataPointer[2];
     }
     SystemResourcePointer[6] = pcVar1;
-    SystemResourcePointer[7] = param_2[3];
+    SystemResourcePointer[7] = ConfigurationDataPointer[3];
   }
-  if ((code *)param_2[2] != (code *)0x0) {
-    (*(code *)param_2[2])(param_2,0,0);
+  if ((code *)ConfigurationDataPointer[2] != (code *)0x0) {
+    (*(code *)ConfigurationDataPointer[2])(ConfigurationDataPointer,0,0);
   }
   return SystemResourcePointer;
 }
@@ -44676,7 +44776,7 @@ FUN_180069e10(void* *SystemResourcePointer,void* *param_2,void* param_3,void* pa
 
 
 void*
-FUN_180069f00(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+FUN_180069f00(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
@@ -44686,42 +44786,42 @@ FUN_180069f00(void* SystemResourcePointer,void* param_2,void* param_3,void* para
   unsignedSystemValue3 = 0xfffffffffffffffe;
   unsignedSystemValue2 = 0;
   unsignedSystemValue1 = FUN_180628ca0();
-  CreateSystemObject(param_2,unsignedSystemValue1,param_3,param_4,unsignedSystemValue2,unsignedSystemValue3);
-  return param_2;
+  CreateSystemObject(ConfigurationDataPointer,unsignedSystemValue1,AdditionalParameter,ConfigurationFlag,unsignedSystemValue2,unsignedSystemValue3);
+  return ConfigurationDataPointer;
 }
 
 
 
-void* * FUN_180069f60(void* SystemResourcePointer,void* *param_2)
+void* * FUN_180069f60(void* SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
-  *param_2 = 0;
-  param_2[1] = 0;
-  param_2[2] = 0;
-  *(uint32_t *)(param_2 + 3) = 3;
-  return param_2;
+  *ConfigurationDataPointer = 0;
+  ConfigurationDataPointer[1] = 0;
+  ConfigurationDataPointer[2] = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 3) = 3;
+  return ConfigurationDataPointer;
 }
 
 
 
-void* * FUN_180069fb0(void* SystemResourcePointer,void* *param_2)
+void* * FUN_180069fb0(void* SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
-  *param_2 = 0;
-  return param_2;
+  *ConfigurationDataPointer = 0;
+  return ConfigurationDataPointer;
 }
 
 
 
-void* FUN_180069fe0(void* SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+void* FUN_180069fe0(void* SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
   
   unsignedSystemValue1 = 0xfffffffffffffffe;
   FUN_1801570c0();
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0x260,param_3,param_4,unsignedSystemValue1);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0x260,AdditionalParameter,ConfigurationFlag,unsignedSystemValue1);
   }
   return SystemResourcePointer;
 }
@@ -44741,7 +44841,7 @@ void* FUN_18006a050(int SystemResourcePointer)
 
 
 
-void* * FUN_18006a090(void* *SystemResourcePointer,ulong long param_2)
+void* * FUN_18006a090(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &UNK_1809ff040;
@@ -44754,7 +44854,7 @@ void* * FUN_18006a090(void* *SystemResourcePointer,ulong long param_2)
   *(uint32_t *)(SystemResourcePointer + 0x1b) = 0;
   SystemResourcePointer[0x18] = &SystemMemoryAllocatorReference;
   FUN_180049470(SystemResourcePointer);
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0xe8);
   }
   return SystemResourcePointer;
@@ -44906,28 +45006,28 @@ void FUN_18006b220(long long SystemResourcePointer)
 
 
 
-long long FUN_18006b350(long long *SystemResourcePointer,long long *param_2,int param_3)
+long long FUN_18006b350(long long *SystemResourcePointer,long long *ConfigurationDataPointer,int AdditionalParameter)
 
 {
   void* *pointerToUnsigned1;
   void** systemDataTable;
   
-  if (param_3 == 3) {
+  if (AdditionalParameter == 3) {
     return 0x180bfd730;
   }
-  if (param_3 == 4) {
+  if (AdditionalParameter == 4) {
     return *SystemResourcePointer;
   }
-  if (param_3 == 0) {
+  if (AdditionalParameter == 0) {
     if (*SystemResourcePointer != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
     }
   }
   else {
-    if (param_3 == 1) {
+    if (AdditionalParameter == 1) {
       pointerToUnsigned2 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,DAT_180bf65bc,0xfffffffffffffffe);
-      pointerToUnsigned1 = (void* *)*param_2;
+      pointerToUnsigned1 = (void* *)*ConfigurationDataPointer;
       *pointerToUnsigned2 = *pointerToUnsigned1;
       *(uint32_t *)(pointerToUnsigned2 + 1) = *(uint32_t *)(pointerToUnsigned1 + 1);
       pointerToUnsigned2[2] = pointerToUnsigned1[2];
@@ -44935,9 +45035,9 @@ long long FUN_18006b350(long long *SystemResourcePointer,long long *param_2,int 
       *SystemResourcePointer = (long long)pointerToUnsigned2;
       return 0;
     }
-    if (param_3 == 2) {
-      *SystemResourcePointer = *param_2;
-      *param_2 = 0;
+    if (AdditionalParameter == 2) {
+      *SystemResourcePointer = *ConfigurationDataPointer;
+      *ConfigurationDataPointer = 0;
       return 0;
     }
   }
@@ -44947,8 +45047,8 @@ long long FUN_18006b350(long long *SystemResourcePointer,long long *param_2,int 
 
 
 
-// 函数: void FUN_18006b440(long long SystemResourcePointer,uint32_t param_2)
-void FUN_18006b440(long long SystemResourcePointer,uint32_t param_2)
+// 函数: void FUN_18006b440(long long SystemResourcePointer,uint32_t ConfigurationDataPointer)
+void FUN_18006b440(long long SystemResourcePointer,uint32_t ConfigurationDataPointer)
 
 {
   char SystemNodeFlag;
@@ -44956,8 +45056,8 @@ void FUN_18006b440(long long SystemResourcePointer,uint32_t param_2)
   uint32_t auStackX_10 [6];
   
   if ((*(long long *)(SystemResourcePointer + 0x1e20) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(SystemResourcePointer + 0x1e28))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+     (auStackX_10[0] = ConfigurationDataPointer, cVar1 = (**(code **)(SystemResourcePointer + 0x1e28))(auStackX_10),
+     ConfigurationDataPointer = auStackX_10[0], cVar1 == '\0')) {
     if (DAT_180c82860 == '\0') {
       pointerToUnsigned2 = &SystemStringTemplate;
       if (*(void* **)(SystemResourcePointer + 0x1dd0) != (void* *)0x0) {
@@ -44968,15 +45068,15 @@ void FUN_18006b440(long long SystemResourcePointer,uint32_t param_2)
     *(uint32_t *)(SystemResourcePointer + 0x1dc0) = *(uint32_t *)(SystemResourcePointer + 0x1e08);
     return;
   }
-  *(uint32_t *)(SystemResourcePointer + 0x1dc0) = param_2;
+  *(uint32_t *)(SystemResourcePointer + 0x1dc0) = ConfigurationDataPointer;
   return;
 }
 
 
 
 
-// 函数: void FUN_18006b4c0(long long SystemResourcePointer,uint32_t param_2)
-void FUN_18006b4c0(long long SystemResourcePointer,uint32_t param_2)
+// 函数: void FUN_18006b4c0(long long SystemResourcePointer,uint32_t ConfigurationDataPointer)
+void FUN_18006b4c0(long long SystemResourcePointer,uint32_t ConfigurationDataPointer)
 
 {
   char SystemNodeFlag;
@@ -44984,8 +45084,8 @@ void FUN_18006b4c0(long long SystemResourcePointer,uint32_t param_2)
   uint32_t auStackX_10 [6];
   
   if ((*(long long *)(SystemResourcePointer + 0x1db0) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(SystemResourcePointer + 0x1db8))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+     (auStackX_10[0] = ConfigurationDataPointer, cVar1 = (**(code **)(SystemResourcePointer + 0x1db8))(auStackX_10),
+     ConfigurationDataPointer = auStackX_10[0], cVar1 == '\0')) {
     if (DAT_180c82860 == '\0') {
       pointerToUnsigned2 = &SystemStringTemplate;
       if (*(void* **)(SystemResourcePointer + 0x1d60) != (void* *)0x0) {
@@ -44996,7 +45096,7 @@ void FUN_18006b4c0(long long SystemResourcePointer,uint32_t param_2)
     *(uint32_t *)(SystemResourcePointer + 0x1d50) = *(uint32_t *)(SystemResourcePointer + 0x1d98);
     return;
   }
-  *(uint32_t *)(SystemResourcePointer + 0x1d50) = param_2;
+  *(uint32_t *)(SystemResourcePointer + 0x1d50) = ConfigurationDataPointer;
   return;
 }
 
@@ -45004,8 +45104,8 @@ void FUN_18006b4c0(long long SystemResourcePointer,uint32_t param_2)
 
 
 
-// 函数: void FUN_18006b540(void* SystemResourcePointer,uint32_t param_2)
-void FUN_18006b540(void* SystemResourcePointer,uint32_t param_2)
+// 函数: void FUN_18006b540(void* SystemResourcePointer,uint32_t ConfigurationDataPointer)
+void FUN_18006b540(void* SystemResourcePointer,uint32_t ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -45015,8 +45115,8 @@ void FUN_18006b540(void* SystemResourcePointer,uint32_t param_2)
   
   localMemoryPointer = SystemNodeManagerPointer;
   if ((*(long long *)(SystemNodeManagerPointer + 0x1870) != 0) &&
-     (auStackX_10[0] = param_2, cVar2 = (**(code **)(SystemNodeManagerPointer + 0x1878))(auStackX_10),
-     param_2 = auStackX_10[0], cVar2 == '\0')) {
+     (auStackX_10[0] = ConfigurationDataPointer, cVar2 = (**(code **)(SystemNodeManagerPointer + 0x1878))(auStackX_10),
+     ConfigurationDataPointer = auStackX_10[0], cVar2 == '\0')) {
     if (DAT_180c82860 == '\0') {
       pointerToUnsigned3 = &SystemStringTemplate;
       if (*(void* **)(localMemoryPointer + 0x1820) != (void* *)0x0) {
@@ -45027,7 +45127,7 @@ void FUN_18006b540(void* SystemResourcePointer,uint32_t param_2)
     *(uint32_t *)(localMemoryPointer + 0x1810) = *(uint32_t *)(localMemoryPointer + 0x1858);
     return;
   }
-  *(uint32_t *)(localMemoryPointer + 0x1810) = param_2;
+  *(uint32_t *)(localMemoryPointer + 0x1810) = ConfigurationDataPointer;
   return;
 }
 
@@ -45040,21 +45140,21 @@ void FUN_18006b540(void* SystemResourcePointer,uint32_t param_2)
  * 主要用于系统资源的清理和释放工作。
  * 
  * @param SystemResourcePointer 系统资源指针，指向需要清理的资源数据结构
- * @param param_2 清理选项参数，控制清理行为
- * @param param_3 清理回调函数指针
- * @param param_4 清理标志参数，指定清理操作的标志位
+ * @param ConfigurationDataPointer 清理选项参数，控制清理行为
+ * @param AdditionalParameter 清理回调函数指针
+ * @param ConfigurationFlag 清理标志参数，指定清理操作的标志位
  * @return 返回清理后的系统资源指针
  * 
  * 原始函数名为FUN_18006b5c0，现已重命名为CleanupSystemResourceHandle
  */
-long long CleanupSystemResourceHandle(long long SystemResourcePointer,uint param_2,void* param_3,void* param_4)
+long long CleanupSystemResourceHandle(long long SystemResourcePointer,uint ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (*(code **)(SystemResourcePointer + 0xd0) != (code *)0x0) {
-    (**(code **)(SystemResourcePointer + 0xd0))(SystemResourcePointer + 0xc0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(SystemResourcePointer + 0xd0))(SystemResourcePointer + 0xc0,0,0,ConfigurationFlag,0xfffffffffffffffe);
   }
   FUN_180049470(SystemResourcePointer);
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0xe0);
   }
   return SystemResourcePointer;
@@ -45069,15 +45169,15 @@ long long CleanupSystemResourceHandle(long long SystemResourcePointer,uint param
  * 主要用于系统资源的创建和管理工作。
  * 
  * @param SystemResourcePointer 系统资源指针，指向资源管理器数据结构
- * @param param_2 初始化参数，包含初始化所需的配置信息
- * @param param_3 初始化回调函数指针
- * @param param_4 初始化标志参数，指定初始化操作的标志位
+ * @param ConfigurationDataPointer 初始化参数，包含初始化所需的配置信息
+ * @param AdditionalParameter 初始化回调函数指针
+ * @param ConfigurationFlag 初始化标志参数，指定初始化操作的标志位
  * @return 返回初始化后的系统资源指针
  * 
  * 原始函数名为FUN_18006b640，现已重命名为InitializeSystemResourceManager
  */
 void* *
-InitializeSystemResourceManager(void* *SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+InitializeSystemResourceManager(void* *SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   code *pcVar1;
@@ -45088,17 +45188,17 @@ InitializeSystemResourceManager(void* *SystemResourcePointer,void* *param_2,void
   *SystemResourcePointer = &UNK_1809fefb0;
   SystemResourcePointer[0x1a] = 0;
   SystemResourcePointer[0x1b] = _guard_check_icall;
-  if (SystemResourcePointer + 0x18 != param_2) {
-    pcVar1 = (code *)param_2[2];
+  if (SystemResourcePointer + 0x18 != ConfigurationDataPointer) {
+    pcVar1 = (code *)ConfigurationDataPointer[2];
     if (pcVar1 != (code *)0x0) {
-      (*pcVar1)(SystemResourcePointer + 0x18,param_2,1,param_4,unsignedSystemValue2);
-      pcVar1 = (code *)param_2[2];
+      (*pcVar1)(SystemResourcePointer + 0x18,ConfigurationDataPointer,1,ConfigurationFlag,unsignedSystemValue2);
+      pcVar1 = (code *)ConfigurationDataPointer[2];
     }
     SystemResourcePointer[0x1a] = pcVar1;
-    SystemResourcePointer[0x1b] = param_2[3];
+    SystemResourcePointer[0x1b] = ConfigurationDataPointer[3];
   }
-  if ((code *)param_2[2] != (code *)0x0) {
-    (*(code *)param_2[2])(param_2,0,0);
+  if ((code *)ConfigurationDataPointer[2] != (code *)0x0) {
+    (*(code *)ConfigurationDataPointer[2])(ConfigurationDataPointer,0,0);
   }
   return SystemResourcePointer;
 }
@@ -45106,8 +45206,8 @@ InitializeSystemResourceManager(void* *SystemResourcePointer,void* *param_2,void
 
 
 
-// 函数: void FUN_18006b6f0(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18006b6f0(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18006b6f0(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18006b6f0(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -45117,7 +45217,7 @@ void FUN_18006b6f0(long long *SystemResourcePointer,void* param_2,void* param_3,
   unsignedSystemValue3 = 0xfffffffffffffffe;
   pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
   for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 0x13) {
-    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,param_3,param_4,unsignedSystemValue3);
+    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue3);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -45129,8 +45229,8 @@ void FUN_18006b6f0(long long *SystemResourcePointer,void* param_2,void* param_3,
 
 
 
-// 函数: void FUN_18006b760(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18006b760(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18006b760(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18006b760(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -45140,7 +45240,7 @@ void FUN_18006b760(long long *SystemResourcePointer,void* param_2,void* param_3,
   unsignedSystemValue3 = 0xfffffffffffffffe;
   pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
   for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 0x13) {
-    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,param_3,param_4,unsignedSystemValue3);
+    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue3);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -45274,11 +45374,11 @@ void FUN_18006b940(void* *SystemResourcePointer)
 
 
 
-void* FUN_18006bd20(void* SystemResourcePointer,ulong long param_2)
+void* FUN_18006bd20(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   ConfigureSystemBuffer();
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x370);
   }
   return SystemResourcePointer;
@@ -45360,7 +45460,7 @@ void FUN_18006bd80(long long SystemResourcePointer)
 
 
 void*
-FUN_18006bda0(long long SystemResourcePointer,long long param_2,long long *param_3,long long *param_4,
+FUN_18006bda0(long long SystemResourcePointer,long long ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag,
              long long *param_5)
 
 {
@@ -45372,81 +45472,81 @@ FUN_18006bda0(long long SystemResourcePointer,long long param_2,long long *param
   ulong long unsignedSystemValue6;
   void*7 unsignedSystemValue7;
   
-  localResourceOffset = *(long long *)(param_2 + 0x128);
+  localResourceOffset = *(long long *)(ConfigurationDataPointer + 0x128);
   if (localResourceOffset != 0) {
-    *param_3 = localResourceOffset;
-    localResourceOffset = *(long long *)(param_2 + 0x128);
+    *AdditionalParameter = localResourceOffset;
+    localResourceOffset = *(long long *)(ConfigurationDataPointer + 0x128);
   }
-  localMemoryPointer = *(long long *)(param_2 + 0x130);
+  localMemoryPointer = *(long long *)(ConfigurationDataPointer + 0x130);
   unsignedSystemValue4 = 0;
   if (localMemoryPointer == 0) {
     if (localResourceOffset == 0) {
-      unsignedSystemValue4 = *(ulong long *)(param_2 + 0x120);
+      unsignedSystemValue4 = *(ulong long *)(ConfigurationDataPointer + 0x120);
     }
   }
   else {
-    unsignedSystemValue4 = *(ulong long *)(param_2 + 0x120);
+    unsignedSystemValue4 = *(ulong long *)(ConfigurationDataPointer + 0x120);
     if (localResourceOffset == 0) {
-      unsignedSystemValue4 = unsignedSystemValue4 + *(long long *)(param_2 + 0x138);
+      unsignedSystemValue4 = unsignedSystemValue4 + *(long long *)(ConfigurationDataPointer + 0x138);
     }
   }
-  *(void* *)(param_2 + 0x1a0) = 0;
-  *(void* *)(param_2 + 0x198) = 0;
-  *(void* *)(param_2 + 400) = 0;
-  *(void* *)(param_2 + 0x188) = 0;
-  unsignedSystemValue5 = (*(long long *)(param_2 + 0x120) - (*(ulong long *)(param_2 + 0x118) & 0xfffffffffffff000))
-          + *(ulong long *)(param_2 + 0x118);
+  *(void* *)(ConfigurationDataPointer + 0x1a0) = 0;
+  *(void* *)(ConfigurationDataPointer + 0x198) = 0;
+  *(void* *)(ConfigurationDataPointer + 400) = 0;
+  *(void* *)(ConfigurationDataPointer + 0x188) = 0;
+  unsignedSystemValue5 = (*(long long *)(ConfigurationDataPointer + 0x120) - (*(ulong long *)(ConfigurationDataPointer + 0x118) & 0xfffffffffffff000))
+          + *(ulong long *)(ConfigurationDataPointer + 0x118);
   unsignedSystemValue6 = unsignedSystemValue5 & 0xfffffffffffff000;
   localResourceOffset = (-(uint)((unsignedSystemValue5 & 0xfff) != 0) & 0x1000) + unsignedSystemValue6;
   if (*(ulong long *)(SystemResourcePointer + 0x360) < unsignedSystemValue4) {
     unsignedSystemValue7 = (void*7)(unsignedSystemValue6 >> 8);
     if (localMemoryPointer == 0) {
-      if (*param_3 == 0) {
+      if (*AdditionalParameter == 0) {
         localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,localResourceOffset,CONCAT71(unsignedSystemValue7,3));
-        *param_3 = localResourceOffset;
-        *(long long *)(param_2 + 0x198) = localResourceOffset;
-        *param_5 = *param_3;
+        *AdditionalParameter = localResourceOffset;
+        *(long long *)(ConfigurationDataPointer + 0x198) = localResourceOffset;
+        *param_5 = *AdditionalParameter;
       }
     }
     else {
       localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,localResourceOffset,CONCAT71(unsignedSystemValue7,3));
-      *param_4 = localResourceOffset;
-      *(long long *)(param_2 + 0x198) = localResourceOffset;
-      *param_5 = *param_4;
-      if (*param_3 == 0) {
-        localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,*(void* *)(param_2 + 0x138),3);
-        *param_3 = localResourceOffset;
-        *(long long *)(param_2 + 0x1a0) = localResourceOffset;
+      *ConfigurationFlag = localResourceOffset;
+      *(long long *)(ConfigurationDataPointer + 0x198) = localResourceOffset;
+      *param_5 = *ConfigurationFlag;
+      if (*AdditionalParameter == 0) {
+        localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,*(void* *)(ConfigurationDataPointer + 0x138),3);
+        *AdditionalParameter = localResourceOffset;
+        *(long long *)(ConfigurationDataPointer + 0x1a0) = localResourceOffset;
       }
     }
   }
   else if (localMemoryPointer == 0) {
-    if (*param_3 == 0) {
+    if (*AdditionalParameter == 0) {
       SecondaryResourcePointer = (long long *)FUN_18006e000(SystemResourcePointer,localResourceOffset);
-      *(long long **)(param_2 + 400) = SecondaryResourcePointer;
+      *(long long **)(ConfigurationDataPointer + 400) = SecondaryResourcePointer;
       if (SecondaryResourcePointer == (long long *)0x0) goto LAB_18006bf7f;
       localResourceOffset = *(long long *)(SystemResourcePointer + 800) + *SecondaryResourcePointer;
-      *param_3 = localResourceOffset;
+      *AdditionalParameter = localResourceOffset;
       *param_5 = localResourceOffset;
     }
   }
   else {
     SecondaryResourcePointer = (long long *)FUN_18006e000(SystemResourcePointer,localResourceOffset);
-    *(long long **)(param_2 + 0x188) = SecondaryResourcePointer;
+    *(long long **)(ConfigurationDataPointer + 0x188) = SecondaryResourcePointer;
     if (SecondaryResourcePointer == (long long *)0x0) {
 LAB_18006bf7f:
-      func_0x0001800695d0(SystemResourcePointer,*(void* *)(param_2 + 0x188));
-      func_0x0001800695d0(SystemResourcePointer,*(void* *)(param_2 + 400));
+      func_0x0001800695d0(SystemResourcePointer,*(void* *)(ConfigurationDataPointer + 0x188));
+      func_0x0001800695d0(SystemResourcePointer,*(void* *)(ConfigurationDataPointer + 400));
       return 0;
     }
     localResourceOffset = *SecondaryResourcePointer + *(long long *)(SystemResourcePointer + 800);
-    *param_4 = localResourceOffset;
+    *ConfigurationFlag = localResourceOffset;
     *param_5 = localResourceOffset;
-    if (*param_3 == 0) {
-      SecondaryResourcePointer = (long long *)FUN_18006e000(SystemResourcePointer,*(void* *)(param_2 + 0x138));
-      *(long long **)(param_2 + 400) = SecondaryResourcePointer;
+    if (*AdditionalParameter == 0) {
+      SecondaryResourcePointer = (long long *)FUN_18006e000(SystemResourcePointer,*(void* *)(ConfigurationDataPointer + 0x138));
+      *(long long **)(ConfigurationDataPointer + 400) = SecondaryResourcePointer;
       if (SecondaryResourcePointer == (long long *)0x0) goto LAB_18006bf7f;
-      *param_3 = *SecondaryResourcePointer + *(long long *)(SystemResourcePointer + 800);
+      *AdditionalParameter = *SecondaryResourcePointer + *(long long *)(SystemResourcePointer + 800);
     }
   }
   return 1;
@@ -45972,7 +46072,7 @@ void FUN_18006cb90(long long SystemResourcePointer)
 
 
 
-ulong long FUN_18006cc50(long long *SystemResourcePointer,long long param_2)
+ulong long FUN_18006cc50(long long *SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -45988,38 +46088,38 @@ ulong long FUN_18006cc50(long long *SystemResourcePointer,long long param_2)
     SystemResourcePointer[1] = unsignedSystemValue2 + 0x1a8;
     uStackX_8 = unsignedSystemValue2;
     FUN_180068ff0();
-    *(void* *)(unsignedSystemValue2 + 0x118) = *(void* *)(param_2 + 0x118);
-    *(void* *)(unsignedSystemValue2 + 0x120) = *(void* *)(param_2 + 0x120);
-    *(void* *)(unsignedSystemValue2 + 0x128) = *(void* *)(param_2 + 0x128);
-    *(void* *)(unsignedSystemValue2 + 0x130) = *(void* *)(param_2 + 0x130);
-    *(void* *)(unsignedSystemValue2 + 0x138) = *(void* *)(param_2 + 0x138);
-    *(uint8_t *)(unsignedSystemValue2 + 0x140) = *(uint8_t *)(param_2 + 0x140);
+    *(void* *)(unsignedSystemValue2 + 0x118) = *(void* *)(ConfigurationDataPointer + 0x118);
+    *(void* *)(unsignedSystemValue2 + 0x120) = *(void* *)(ConfigurationDataPointer + 0x120);
+    *(void* *)(unsignedSystemValue2 + 0x128) = *(void* *)(ConfigurationDataPointer + 0x128);
+    *(void* *)(unsignedSystemValue2 + 0x130) = *(void* *)(ConfigurationDataPointer + 0x130);
+    *(void* *)(unsignedSystemValue2 + 0x138) = *(void* *)(ConfigurationDataPointer + 0x138);
+    *(uint8_t *)(unsignedSystemValue2 + 0x140) = *(uint8_t *)(ConfigurationDataPointer + 0x140);
     *(void* *)(unsignedSystemValue2 + 0x158) = 0;
     *(code **)(unsignedSystemValue2 + 0x160) = _guard_check_icall;
-    if (unsignedSystemValue2 + 0x148 != param_2 + 0x148) {
-      pcVar5 = *(code **)(param_2 + 0x158);
+    if (unsignedSystemValue2 + 0x148 != ConfigurationDataPointer + 0x148) {
+      pcVar5 = *(code **)(ConfigurationDataPointer + 0x158);
       if (pcVar5 != (code *)0x0) {
-        (*pcVar5)(unsignedSystemValue2 + 0x148,param_2 + 0x148,1);
-        pcVar5 = *(code **)(param_2 + 0x158);
+        (*pcVar5)(unsignedSystemValue2 + 0x148,ConfigurationDataPointer + 0x148,1);
+        pcVar5 = *(code **)(ConfigurationDataPointer + 0x158);
       }
       *(code **)(unsignedSystemValue2 + 0x158) = pcVar5;
-      *(void* *)(unsignedSystemValue2 + 0x160) = *(void* *)(param_2 + 0x160);
+      *(void* *)(unsignedSystemValue2 + 0x160) = *(void* *)(ConfigurationDataPointer + 0x160);
     }
     *(void* *)(unsignedSystemValue2 + 0x178) = 0;
     *(code **)(unsignedSystemValue2 + 0x180) = _guard_check_icall;
-    if (unsignedSystemValue2 + 0x168 != param_2 + 0x168) {
-      pcVar5 = *(code **)(param_2 + 0x178);
+    if (unsignedSystemValue2 + 0x168 != ConfigurationDataPointer + 0x168) {
+      pcVar5 = *(code **)(ConfigurationDataPointer + 0x178);
       if (pcVar5 != (code *)0x0) {
-        (*pcVar5)(unsignedSystemValue2 + 0x168,param_2 + 0x168,1);
-        pcVar5 = *(code **)(param_2 + 0x178);
+        (*pcVar5)(unsignedSystemValue2 + 0x168,ConfigurationDataPointer + 0x168,1);
+        pcVar5 = *(code **)(ConfigurationDataPointer + 0x178);
       }
       *(code **)(unsignedSystemValue2 + 0x178) = pcVar5;
-      *(void* *)(unsignedSystemValue2 + 0x180) = *(void* *)(param_2 + 0x180);
+      *(void* *)(unsignedSystemValue2 + 0x180) = *(void* *)(ConfigurationDataPointer + 0x180);
     }
-    *(void* *)(unsignedSystemValue2 + 0x188) = *(void* *)(param_2 + 0x188);
-    *(void* *)(unsignedSystemValue2 + 400) = *(void* *)(param_2 + 400);
-    *(void* *)(unsignedSystemValue2 + 0x198) = *(void* *)(param_2 + 0x198);
-    *(void* *)(unsignedSystemValue2 + 0x1a0) = *(void* *)(param_2 + 0x1a0);
+    *(void* *)(unsignedSystemValue2 + 0x188) = *(void* *)(ConfigurationDataPointer + 0x188);
+    *(void* *)(unsignedSystemValue2 + 400) = *(void* *)(ConfigurationDataPointer + 400);
+    *(void* *)(unsignedSystemValue2 + 0x198) = *(void* *)(ConfigurationDataPointer + 0x198);
+    *(void* *)(unsignedSystemValue2 + 0x1a0) = *(void* *)(ConfigurationDataPointer + 0x1a0);
     return unsignedSystemValue2;
   }
   localSystemFlags = *SystemResourcePointer;
@@ -46039,7 +46139,7 @@ ulong long FUN_18006cc50(long long *SystemResourcePointer,long long param_2)
   localSystemFlags = *SystemResourcePointer;
 LAB_18006ccef:
   FUN_18006de00(&uStackX_8,localSystemFlags,unsignedSystemValue2,localMemoryPointer);
-  FUN_18006cd80(uStackX_8,param_2);
+  FUN_18006cd80(uStackX_8,ConfigurationDataPointer);
   localSystemFlags = SystemResourcePointer[1];
   localResourceOffset = *SystemResourcePointer;
   if (localResourceOffset != localSystemFlags) {
@@ -46064,8 +46164,8 @@ LAB_18006ccef:
 
 
 
-// 函数: void FUN_18006cc8d(void* SystemResourcePointer,void* param_2,long long param_3)
-void FUN_18006cc8d(void* SystemResourcePointer,void* param_2,long long param_3)
+// 函数: void FUN_18006cc8d(void* SystemResourcePointer,void* ConfigurationDataPointer,long long AdditionalParameter)
+void FUN_18006cc8d(void* SystemResourcePointer,void* ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   long long localMemoryPointer;
@@ -46078,7 +46178,7 @@ void FUN_18006cc8d(void* SystemResourcePointer,void* param_2,long long param_3)
   long long in_R10;
   long long in_stack_00000050;
   
-  localBufferAddress = SUB168(SEXT816(in_RAX) * SEXT816(param_3 - in_R10),8);
+  localBufferAddress = SUB168(SEXT816(in_RAX) * SEXT816(AdditionalParameter - in_R10),8);
   localBufferAddress = (localBufferAddress >> 7) - (localBufferAddress >> 0x3f);
   if (localBufferAddress == 0) {
     localBufferAddress = 1;
@@ -46091,10 +46191,10 @@ void FUN_18006cc8d(void* SystemResourcePointer,void* param_2,long long param_3)
     }
   }
   localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,localBufferAddress * 0x1a8,(char)unaff_RDI[3]);
-  param_3 = unaff_RDI[1];
+  AdditionalParameter = unaff_RDI[1];
   in_R10 = *unaff_RDI;
 LAB_18006ccef:
-  FUN_18006de00(&stack0x00000050,in_R10,param_3,localResourceOffset);
+  FUN_18006de00(&stack0x00000050,in_R10,AdditionalParameter,localResourceOffset);
   localSystemHandle = in_stack_00000050;
   FUN_18006cd80(in_stack_00000050);
   localMemoryPointer = unaff_RDI[1];
@@ -46129,7 +46229,7 @@ void FUN_18006cd43(void)
 
 
 
-long long FUN_18006cd80(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+long long FUN_18006cd80(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   code *pcVar1;
@@ -46137,38 +46237,38 @@ long long FUN_18006cd80(long long SystemResourcePointer,long long param_2,void* 
   
   unsignedSystemValue2 = 0xfffffffffffffffe;
   FUN_180068ff0();
-  *(void* *)(SystemResourcePointer + 0x118) = *(void* *)(param_2 + 0x118);
-  *(void* *)(SystemResourcePointer + 0x120) = *(void* *)(param_2 + 0x120);
-  *(void* *)(SystemResourcePointer + 0x128) = *(void* *)(param_2 + 0x128);
-  *(void* *)(SystemResourcePointer + 0x130) = *(void* *)(param_2 + 0x130);
-  *(void* *)(SystemResourcePointer + 0x138) = *(void* *)(param_2 + 0x138);
-  *(uint8_t *)(SystemResourcePointer + 0x140) = *(uint8_t *)(param_2 + 0x140);
+  *(void* *)(SystemResourcePointer + 0x118) = *(void* *)(ConfigurationDataPointer + 0x118);
+  *(void* *)(SystemResourcePointer + 0x120) = *(void* *)(ConfigurationDataPointer + 0x120);
+  *(void* *)(SystemResourcePointer + 0x128) = *(void* *)(ConfigurationDataPointer + 0x128);
+  *(void* *)(SystemResourcePointer + 0x130) = *(void* *)(ConfigurationDataPointer + 0x130);
+  *(void* *)(SystemResourcePointer + 0x138) = *(void* *)(ConfigurationDataPointer + 0x138);
+  *(uint8_t *)(SystemResourcePointer + 0x140) = *(uint8_t *)(ConfigurationDataPointer + 0x140);
   *(void* *)(SystemResourcePointer + 0x158) = 0;
   *(code **)(SystemResourcePointer + 0x160) = _guard_check_icall;
-  if (SystemResourcePointer + 0x148 != param_2 + 0x148) {
-    pcVar1 = *(code **)(param_2 + 0x158);
+  if (SystemResourcePointer + 0x148 != ConfigurationDataPointer + 0x148) {
+    pcVar1 = *(code **)(ConfigurationDataPointer + 0x158);
     if (pcVar1 != (code *)0x0) {
-      (*pcVar1)(SystemResourcePointer + 0x148,param_2 + 0x148,1,param_4,unsignedSystemValue2);
-      pcVar1 = *(code **)(param_2 + 0x158);
+      (*pcVar1)(SystemResourcePointer + 0x148,ConfigurationDataPointer + 0x148,1,ConfigurationFlag,unsignedSystemValue2);
+      pcVar1 = *(code **)(ConfigurationDataPointer + 0x158);
     }
     *(code **)(SystemResourcePointer + 0x158) = pcVar1;
-    *(void* *)(SystemResourcePointer + 0x160) = *(void* *)(param_2 + 0x160);
+    *(void* *)(SystemResourcePointer + 0x160) = *(void* *)(ConfigurationDataPointer + 0x160);
   }
   *(void* *)(SystemResourcePointer + 0x178) = 0;
   *(code **)(SystemResourcePointer + 0x180) = _guard_check_icall;
-  if (SystemResourcePointer + 0x168 != param_2 + 0x168) {
-    pcVar1 = *(code **)(param_2 + 0x178);
+  if (SystemResourcePointer + 0x168 != ConfigurationDataPointer + 0x168) {
+    pcVar1 = *(code **)(ConfigurationDataPointer + 0x178);
     if (pcVar1 != (code *)0x0) {
-      (*pcVar1)(SystemResourcePointer + 0x168,param_2 + 0x168,1);
-      pcVar1 = *(code **)(param_2 + 0x178);
+      (*pcVar1)(SystemResourcePointer + 0x168,ConfigurationDataPointer + 0x168,1);
+      pcVar1 = *(code **)(ConfigurationDataPointer + 0x178);
     }
     *(code **)(SystemResourcePointer + 0x178) = pcVar1;
-    *(void* *)(SystemResourcePointer + 0x180) = *(void* *)(param_2 + 0x180);
+    *(void* *)(SystemResourcePointer + 0x180) = *(void* *)(ConfigurationDataPointer + 0x180);
   }
-  *(void* *)(SystemResourcePointer + 0x188) = *(void* *)(param_2 + 0x188);
-  *(void* *)(SystemResourcePointer + 400) = *(void* *)(param_2 + 400);
-  *(void* *)(SystemResourcePointer + 0x198) = *(void* *)(param_2 + 0x198);
-  *(void* *)(SystemResourcePointer + 0x1a0) = *(void* *)(param_2 + 0x1a0);
+  *(void* *)(SystemResourcePointer + 0x188) = *(void* *)(ConfigurationDataPointer + 0x188);
+  *(void* *)(SystemResourcePointer + 400) = *(void* *)(ConfigurationDataPointer + 400);
+  *(void* *)(SystemResourcePointer + 0x198) = *(void* *)(ConfigurationDataPointer + 0x198);
+  *(void* *)(SystemResourcePointer + 0x1a0) = *(void* *)(ConfigurationDataPointer + 0x1a0);
   return SystemResourcePointer;
 }
 
@@ -46480,11 +46580,11 @@ LAB_18006d3bb:
 
 
 
-void* FUN_18006d450(void* SystemResourcePointer,ulong long param_2)
+void* FUN_18006d450(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   FUN_18006cf00();
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x68);
   }
   return SystemResourcePointer;
@@ -46492,7 +46592,7 @@ void* FUN_18006d450(void* SystemResourcePointer,ulong long param_2)
 
 
 
-void* FUN_18006d4e0(ulong long *SystemResourcePointer,void* param_2)
+void* FUN_18006d4e0(ulong long *SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -46536,7 +46636,7 @@ void* FUN_18006d4e0(ulong long *SystemResourcePointer,void* param_2)
     unsignedSystemValue10 = unsignedSystemValue11;
   } while (unsignedSystemValue12 < 3);
   if (unsignedSystemValue12 != 0) {
-    cVar5 = FUN_18006d810(unsignedSystemValue9,param_2,unsignedSystemValue7,unsignedSystemValue11,0xfffffffffffffffe);
+    cVar5 = FUN_18006d810(unsignedSystemValue9,ConfigurationDataPointer,unsignedSystemValue7,unsignedSystemValue11,0xfffffffffffffffe);
     if (cVar5 != '\0') {
       return 1;
     }
@@ -46544,7 +46644,7 @@ void* FUN_18006d4e0(ulong long *SystemResourcePointer,void* param_2)
     while (unsignedSystemValue7 != 0) {
       if (unsignedSystemValue7 != unsignedSystemValue9) {
         if (*(char *)(unsignedSystemValue7 + 0x48) == '\0') {
-          cVar5 = FUN_18006da90(unsignedSystemValue7,param_2);
+          cVar5 = FUN_18006da90(unsignedSystemValue7,ConfigurationDataPointer);
         }
         else {
           if (0x8000000000000000 <
@@ -46570,7 +46670,7 @@ void* FUN_18006d4e0(ulong long *SystemResourcePointer,void* param_2)
                         >> 5) + PrimaryResourcePointer[1] & *PrimaryResourcePointer - 1U) * 0x10);
               unsignedSystemValue8 = (ulong long)((uint)unsignedSystemValue8 & 0x1f);
               localResourceOffset = unsignedSystemValue8 * 0x1a8 + localBufferAddress;
-              FUN_18006dcb0(param_2,localResourceOffset);
+              FUN_18006dcb0(ConfigurationDataPointer,localResourceOffset);
               FUN_180069530(localResourceOffset);
               *(uint8_t *)((localBufferAddress - unsignedSystemValue8) + 0x352f) = 1;
               cVar5 = '\x01';
@@ -46599,7 +46699,7 @@ LAB_18006d67d:
 
 
 
-void* FUN_18006d6c0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void* FUN_18006d6c0(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   ulong long unsignedSystemValue1;
@@ -46639,7 +46739,7 @@ LAB_18006d7fb:
     unsignedSystemValue4 = FUN_18006d920(*(void* *)(SystemResourcePointer + 0x50));
     if (unsignedSystemValue4 != 0) {
       *(void* *)(unsignedSystemValue4 + 0x3508) = 0;
-      FUN_18006cd80(unsignedSystemValue4,param_2,param_3,param_4,unsignedSystemValue6);
+      FUN_18006cd80(unsignedSystemValue4,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,unsignedSystemValue6);
       punsignedSystemValue5[1] = unsignedSystemValue4;
       *(ulong long *)(SystemResourcePointer + 0x40) = unsignedSystemValue4;
       goto LAB_18006d7fb;
@@ -46653,7 +46753,7 @@ LAB_18006d7fb:
 
 
 
-void* FUN_18006d810(long long SystemResourcePointer,void* param_2)
+void* FUN_18006d810(long long SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -46693,7 +46793,7 @@ void* FUN_18006d810(long long SystemResourcePointer,void* param_2)
                   PrimaryResourcePointer[1] & *PrimaryResourcePointer - 1U) * 0x10);
         unsignedSystemValue8 = (ulong long)((uint)unsignedSystemValue4 & 0x1f);
         localResourceOffset = unsignedSystemValue8 * 0x1a8 + localSystemFlags;
-        FUN_18006dcb0(param_2,localResourceOffset,PrimaryResourcePointer,localSystemPointer,0xfffffffffffffffe,localSystemFlags,unsignedSystemValue4);
+        FUN_18006dcb0(ConfigurationDataPointer,localResourceOffset,PrimaryResourcePointer,localSystemPointer,0xfffffffffffffffe,localSystemFlags,unsignedSystemValue4);
         FUN_180069530(localResourceOffset);
         *(uint8_t *)((localSystemFlags - unsignedSystemValue8) + 0x352f) = 1;
         return 1;
@@ -46825,7 +46925,7 @@ void FUN_18006da50(long long *SystemResourcePointer)
 
 
 
-ulong long FUN_18006da90(long long SystemResourcePointer,void* param_2)
+ulong long FUN_18006da90(long long SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -46862,7 +46962,7 @@ ulong long FUN_18006da90(long long SystemResourcePointer,void* param_2)
       unsignedSystemValue6 = *(ulong long *)(localSystemPointer + 8);
       localAllocationFlags = (ulong long)((uint)unsignedSystemValue8 & 0x1f) * 0x1a8 + unsignedSystemValue6;
       localDataPointer = *(long long *)(SystemResourcePointer + 0x50);
-      FUN_18006dcb0(param_2,localAllocationFlags,unsignedSystemValue11,PrimaryResourcePointer,0xfffffffffffffffe,unsignedSystemValue6,unsignedSystemValue8,localSystemPointer);
+      FUN_18006dcb0(ConfigurationDataPointer,localAllocationFlags,unsignedSystemValue11,PrimaryResourcePointer,0xfffffffffffffffe,unsignedSystemValue6,unsignedSystemValue8,localSystemPointer);
       FUN_180069530(localAllocationFlags);
       LOCK();
       pointerToUnsigned2 = (ulong long *)(unsignedSystemValue6 + 0x3508);
@@ -46974,49 +47074,49 @@ void FUN_18006dc10(long long *SystemResourcePointer)
 
 
 
-long long FUN_18006dcb0(long long SystemResourcePointer,long long param_2)
+long long FUN_18006dcb0(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
   void* *pointerToUnsigned2;
   
-  *(uint32_t *)(SystemResourcePointer + 0x10) = *(uint32_t *)(param_2 + 0x10);
+  *(uint32_t *)(SystemResourcePointer + 0x10) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
   pointerToUnsigned2 = &SystemStringTemplate;
-  if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-    pointerToUnsigned2 = *(void* **)(param_2 + 8);
+  if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
+    pointerToUnsigned2 = *(void* **)(ConfigurationDataPointer + 8);
   }
   strcpy_s(*(void* *)(SystemResourcePointer + 8),0x100,pointerToUnsigned2);
-  *(void* *)(SystemResourcePointer + 0x118) = *(void* *)(param_2 + 0x118);
+  *(void* *)(SystemResourcePointer + 0x118) = *(void* *)(ConfigurationDataPointer + 0x118);
   localMemoryPointer = SystemResourcePointer + 0x148;
-  *(void* *)(SystemResourcePointer + 0x120) = *(void* *)(param_2 + 0x120);
-  *(void* *)(SystemResourcePointer + 0x128) = *(void* *)(param_2 + 0x128);
-  *(void* *)(SystemResourcePointer + 0x130) = *(void* *)(param_2 + 0x130);
-  *(void* *)(SystemResourcePointer + 0x138) = *(void* *)(param_2 + 0x138);
-  *(uint8_t *)(SystemResourcePointer + 0x140) = *(uint8_t *)(param_2 + 0x140);
-  if (localMemoryPointer != param_2 + 0x148) {
+  *(void* *)(SystemResourcePointer + 0x120) = *(void* *)(ConfigurationDataPointer + 0x120);
+  *(void* *)(SystemResourcePointer + 0x128) = *(void* *)(ConfigurationDataPointer + 0x128);
+  *(void* *)(SystemResourcePointer + 0x130) = *(void* *)(ConfigurationDataPointer + 0x130);
+  *(void* *)(SystemResourcePointer + 0x138) = *(void* *)(ConfigurationDataPointer + 0x138);
+  *(uint8_t *)(SystemResourcePointer + 0x140) = *(uint8_t *)(ConfigurationDataPointer + 0x140);
+  if (localMemoryPointer != ConfigurationDataPointer + 0x148) {
     if (*(code **)(SystemResourcePointer + 0x158) != (code *)0x0) {
       (**(code **)(SystemResourcePointer + 0x158))(localMemoryPointer,0,0);
     }
-    FUN_180069130(localMemoryPointer,param_2 + 0x148);
+    FUN_180069130(localMemoryPointer,ConfigurationDataPointer + 0x148);
   }
   localMemoryPointer = SystemResourcePointer + 0x168;
-  if (localMemoryPointer != param_2 + 0x168) {
+  if (localMemoryPointer != ConfigurationDataPointer + 0x168) {
     if (*(code **)(SystemResourcePointer + 0x178) != (code *)0x0) {
       (**(code **)(SystemResourcePointer + 0x178))(localMemoryPointer,0,0);
     }
-    FUN_180069130(localMemoryPointer,param_2 + 0x168);
+    FUN_180069130(localMemoryPointer,ConfigurationDataPointer + 0x168);
   }
-  *(void* *)(SystemResourcePointer + 0x188) = *(void* *)(param_2 + 0x188);
-  *(void* *)(SystemResourcePointer + 400) = *(void* *)(param_2 + 400);
-  *(void* *)(SystemResourcePointer + 0x198) = *(void* *)(param_2 + 0x198);
-  *(void* *)(SystemResourcePointer + 0x1a0) = *(void* *)(param_2 + 0x1a0);
+  *(void* *)(SystemResourcePointer + 0x188) = *(void* *)(ConfigurationDataPointer + 0x188);
+  *(void* *)(SystemResourcePointer + 400) = *(void* *)(ConfigurationDataPointer + 400);
+  *(void* *)(SystemResourcePointer + 0x198) = *(void* *)(ConfigurationDataPointer + 0x198);
+  *(void* *)(SystemResourcePointer + 0x1a0) = *(void* *)(ConfigurationDataPointer + 0x1a0);
   return SystemResourcePointer;
 }
 
 
 
 long long *
-FUN_18006de00(long long *SystemResourcePointer,void* *param_2,void* *param_3,void* *param_4)
+FUN_18006de00(long long *SystemResourcePointer,void* *ConfigurationDataPointer,void* *AdditionalParameter,void* *ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -47024,71 +47124,71 @@ FUN_18006de00(long long *SystemResourcePointer,void* *param_2,void* *param_3,voi
   void* *pointerToUnsigned3;
   void* *punsignedSystemValue4;
   
-  *SystemResourcePointer = (long long)param_4;
-  if (param_2 != param_3) {
-    pointerToUnsigned3 = param_2 + 0x2b;
+  *SystemResourcePointer = (long long)ConfigurationFlag;
+  if (ConfigurationDataPointer != AdditionalParameter) {
+    pointerToUnsigned3 = ConfigurationDataPointer + 0x2b;
     do {
-      *param_4 = &SystemMemoryAllocatorReference;
-      param_4[1] = 0;
-      *(uint32_t *)(param_4 + 2) = 0;
-      *param_4 = &UNK_1809feda8;
-      param_4[1] = param_4 + 3;
-      *(uint32_t *)(param_4 + 2) = 0;
-      *(uint8_t *)(param_4 + 3) = 0;
-      *(uint32_t *)(param_4 + 2) = *(uint32_t *)(pointerToUnsigned3 + -0x29);
+      *ConfigurationFlag = &SystemMemoryAllocatorReference;
+      ConfigurationFlag[1] = 0;
+      *(uint32_t *)(ConfigurationFlag + 2) = 0;
+      *ConfigurationFlag = &UNK_1809feda8;
+      ConfigurationFlag[1] = ConfigurationFlag + 3;
+      *(uint32_t *)(ConfigurationFlag + 2) = 0;
+      *(uint8_t *)(ConfigurationFlag + 3) = 0;
+      *(uint32_t *)(ConfigurationFlag + 2) = *(uint32_t *)(pointerToUnsigned3 + -0x29);
       punsignedSystemValue4 = &SystemStringTemplate;
       if ((void* *)pointerToUnsigned3[-0x2a] != (void* *)0x0) {
         punsignedSystemValue4 = (void* *)pointerToUnsigned3[-0x2a];
       }
-      strcpy_s(param_4[1],0x100,punsignedSystemValue4);
-      param_4[0x23] = pointerToUnsigned3[-8];
-      param_4[0x24] = pointerToUnsigned3[-7];
-      param_4[0x25] = pointerToUnsigned3[-6];
-      param_4[0x26] = pointerToUnsigned3[-5];
-      param_4[0x27] = pointerToUnsigned3[-4];
-      *(uint8_t *)(param_4 + 0x28) = *(uint8_t *)(pointerToUnsigned3 + -3);
-      param_4[0x2b] = 0;
-      param_4[0x2c] = _guard_check_icall;
-      if (param_4 + 0x29 != pointerToUnsigned3 + -2) {
+      strcpy_s(ConfigurationFlag[1],0x100,punsignedSystemValue4);
+      ConfigurationFlag[0x23] = pointerToUnsigned3[-8];
+      ConfigurationFlag[0x24] = pointerToUnsigned3[-7];
+      ConfigurationFlag[0x25] = pointerToUnsigned3[-6];
+      ConfigurationFlag[0x26] = pointerToUnsigned3[-5];
+      ConfigurationFlag[0x27] = pointerToUnsigned3[-4];
+      *(uint8_t *)(ConfigurationFlag + 0x28) = *(uint8_t *)(pointerToUnsigned3 + -3);
+      ConfigurationFlag[0x2b] = 0;
+      ConfigurationFlag[0x2c] = _guard_check_icall;
+      if (ConfigurationFlag + 0x29 != pointerToUnsigned3 + -2) {
         pcVar2 = (code *)*pointerToUnsigned3;
         if (pcVar2 != (code *)0x0) {
-          (*pcVar2)(param_4 + 0x29,pointerToUnsigned3 + -2,2);
+          (*pcVar2)(ConfigurationFlag + 0x29,pointerToUnsigned3 + -2,2);
           pcVar2 = (code *)*pointerToUnsigned3;
         }
-        param_4[0x2b] = pcVar2;
-        param_4[0x2c] = pointerToUnsigned3[1];
+        ConfigurationFlag[0x2b] = pcVar2;
+        ConfigurationFlag[0x2c] = pointerToUnsigned3[1];
         *pointerToUnsigned3 = 0;
         pointerToUnsigned3[1] = _guard_check_icall;
       }
-      param_4[0x2f] = 0;
-      param_4[0x30] = _guard_check_icall;
-      if (param_4 + 0x2d != pointerToUnsigned3 + 2) {
+      ConfigurationFlag[0x2f] = 0;
+      ConfigurationFlag[0x30] = _guard_check_icall;
+      if (ConfigurationFlag + 0x2d != pointerToUnsigned3 + 2) {
         pcVar2 = (code *)pointerToUnsigned3[4];
         if (pcVar2 != (code *)0x0) {
-          (*pcVar2)(param_4 + 0x2d,pointerToUnsigned3 + 2,2);
+          (*pcVar2)(ConfigurationFlag + 0x2d,pointerToUnsigned3 + 2,2);
           pcVar2 = (code *)pointerToUnsigned3[4];
         }
-        param_4[0x2f] = pcVar2;
-        param_4[0x30] = pointerToUnsigned3[5];
+        ConfigurationFlag[0x2f] = pcVar2;
+        ConfigurationFlag[0x30] = pointerToUnsigned3[5];
         pointerToUnsigned3[4] = 0;
         pointerToUnsigned3[5] = _guard_check_icall;
       }
-      param_4[0x31] = pointerToUnsigned3[6];
-      param_4[0x32] = pointerToUnsigned3[7];
-      param_4[0x33] = pointerToUnsigned3[8];
-      param_4[0x34] = pointerToUnsigned3[9];
+      ConfigurationFlag[0x31] = pointerToUnsigned3[6];
+      ConfigurationFlag[0x32] = pointerToUnsigned3[7];
+      ConfigurationFlag[0x33] = pointerToUnsigned3[8];
+      ConfigurationFlag[0x34] = pointerToUnsigned3[9];
       *SystemResourcePointer = *SystemResourcePointer + 0x1a8;
-      param_4 = (void* *)*SystemResourcePointer;
+      ConfigurationFlag = (void* *)*SystemResourcePointer;
       pointerToUnsigned1 = pointerToUnsigned3 + 10;
       pointerToUnsigned3 = pointerToUnsigned3 + 0x35;
-    } while (pointerToUnsigned1 != param_3);
+    } while (pointerToUnsigned1 != AdditionalParameter);
   }
   return SystemResourcePointer;
 }
 
 
 
-long long * FUN_18006e000(long long SystemResourcePointer,long long param_2)
+long long * FUN_18006e000(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -47098,7 +47198,7 @@ long long * FUN_18006e000(long long SystemResourcePointer,long long param_2)
   long long *plocalSystemPointer;
   
   plocalSystemPointer = *(long long **)(SystemResourcePointer + 0x318);
-  unsignedSystemValue4 = param_2 + 0xfU & 0xfffffffffffffff0;
+  unsignedSystemValue4 = ConfigurationDataPointer + 0xfU & 0xfffffffffffffff0;
   plocalResourceOffset = (long long *)0x0;
   SecondaryResourcePointer = (long long *)plocalSystemPointer[3];
   if (SecondaryResourcePointer != (long long *)0x0) {
@@ -47135,7 +47235,7 @@ long long * FUN_18006e000(long long SystemResourcePointer,long long param_2)
 
 
 
-long long FUN_18006e0b0(long long SystemResourcePointer,ulong long param_2)
+long long FUN_18006e0b0(long long SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   FUN_18006e5d0();
@@ -47143,7 +47243,7 @@ long long FUN_18006e0b0(long long SystemResourcePointer,ulong long param_2)
   _Cnd_destroy_in_situ();
   FUN_18006e4a0(SystemResourcePointer + 200);
   FUN_180049470(SystemResourcePointer);
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x408);
   }
   return SystemResourcePointer;
@@ -47273,11 +47373,11 @@ void FUN_18006e140(void)
 
 
 
-void* * FUN_18006e460(void* *SystemResourcePointer,ulong long param_2)
+void* * FUN_18006e460(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &UNK_1809ff488;
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x58);
   }
   return SystemResourcePointer;
@@ -47616,7 +47716,7 @@ void FUN_18006e640(long long *SystemResourcePointer)
 
 
 
-void* * FUN_18006e660(void* *SystemResourcePointer,void* param_2,void* param_3)
+void* * FUN_18006e660(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter)
 
 {
   ulong long unsignedSystemValue1;
@@ -47682,8 +47782,8 @@ void* * FUN_18006e660(void* *SystemResourcePointer,void* param_2,void* param_3)
   SystemResourcePointer[0x7e] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x7f) = 0;
   *(uint32_t *)((long long)SystemResourcePointer + 0x3fc) = 4000;
-  SystemResourcePointer[0x18] = param_2;
-  SystemResourcePointer[0x7d] = param_3;
+  SystemResourcePointer[0x18] = ConfigurationDataPointer;
+  SystemResourcePointer[0x7d] = AdditionalParameter;
   *(uint8_t *)(SystemResourcePointer + 0x80) = 0;
   return SystemResourcePointer;
 }
@@ -47691,7 +47791,7 @@ void* * FUN_18006e660(void* *SystemResourcePointer,void* param_2,void* param_3)
 
 
 uint32_t *
-FUN_18006e870(uint32_t *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+FUN_18006e870(uint32_t *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint32_t *pointerToUnsigned1;
@@ -47704,7 +47804,7 @@ FUN_18006e870(uint32_t *SystemResourcePointer,void* param_2,void* param_3,void* 
   *(void* *)(SystemResourcePointer + 6) = 0;
   *(uint32_t **)SystemResourcePointer = SystemResourcePointer;
   *(uint32_t **)(SystemResourcePointer + 2) = SystemResourcePointer;
-  _Mtx_init_in_situ(SystemResourcePointer + 8,0x102,param_3,param_4,0xfffffffffffffffe);
+  _Mtx_init_in_situ(SystemResourcePointer + 8,0x102,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   *(void* *)(SystemResourcePointer + 0x1c) = 1;
   pointerToUnsigned1 = SystemResourcePointer + 0x1e;
   *pointerToUnsigned1 = 0;
@@ -47798,8 +47898,8 @@ LAB_18006f48d:
 
 
 
-// 函数: void FUN_18006eb30(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18006eb30(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18006eb30(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18006eb30(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -47807,7 +47907,7 @@ void FUN_18006eb30(void* SystemResourcePointer,void* param_2,void* param_3,void*
   int MemoryCompareResult;
   
   localSystemHandle = SystemInitializationFlag;
-  FUN_18005e630(SystemAllocationFlagsTemplate,param_2,param_3,param_4,0xfffffffffffffffe);
+  FUN_18005e630(SystemAllocationFlagsTemplate,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   FUN_18006efc0(localSystemHandle);
   systemCounter = _Mtx_lock(localSystemHandle + 0x98);
   if (systemCounter != 0) {
@@ -47846,8 +47946,8 @@ void FUN_18006eb30(void* SystemResourcePointer,void* param_2,void* param_3,void*
 
 
 
-// 函数: void FUN_18006edf0(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18006edf0(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18006edf0(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18006edf0(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long localMemoryPointer;
@@ -47874,7 +47974,7 @@ void FUN_18006edf0(void* SystemResourcePointer,void* param_2,void* param_3,void*
     systemIndex = *(int *)(localResourceOffset + 0x164);
     systemResult = *(int *)(localResourceOffset + 0x160);
     plocalSystemPointer = (long long *)
-             CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x28,*(uint8_t *)(localResourceOffset + 0x100),param_4,unsignedSystemValue7);
+             CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x28,*(uint8_t *)(localResourceOffset + 0x100),ConfigurationFlag,unsignedSystemValue7);
     uStack_18 = (uint32_t)SystemResourcePointer;
     uStack_14 = (uint32_t)((ulong long)SystemResourcePointer >> 0x20);
     *(int *)(plocalSystemPointer + 2) = systemIndex + systemResult;
@@ -47947,14 +48047,14 @@ void FUN_18006ef80(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_18006efc0(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18006efc0(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18006efc0(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18006efc0(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
   int systemResult;
   
-  systemResult = _Mtx_lock(SystemResourcePointer + 4,param_2,param_3,param_4,0xfffffffffffffffe);
+  systemResult = _Mtx_lock(SystemResourcePointer + 4,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   if (systemResult != 0) {
     __Throw_C_error_std__YAXH_Z(systemResult);
   }
@@ -47975,15 +48075,15 @@ void FUN_18006efc0(void* *SystemResourcePointer,void* param_2,void* param_3,void
 
 
 
-// 函数: void FUN_18006f160(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18006f160(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18006f160(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18006f160(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
   int systemResult;
   
   *(int *)((long long)SystemResourcePointer + 0x74) = *(int *)((long long)SystemResourcePointer + 0x74) + 1;
-  systemResult = _Mtx_lock(SystemResourcePointer + 4,param_2,param_3,param_4,0xfffffffffffffffe);
+  systemResult = _Mtx_lock(SystemResourcePointer + 4,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   if (systemResult != 0) {
     __Throw_C_error_std__YAXH_Z(systemResult);
   }
@@ -48156,7 +48256,7 @@ void FUN_18006f530(long long SystemResourcePointer)
 
 
 void* *
-FUN_18006f590(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+FUN_18006f590(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (DAT_180c8aa69 == '\0') {
@@ -48167,7 +48267,7 @@ FUN_18006f590(void* *SystemResourcePointer,void* param_2,void* param_3,void* par
     SystemResourcePointer[3] = 0;
     SystemResourcePointer[1] = 0;
     *(uint32_t *)(SystemResourcePointer + 2) = 0;
-    ExecuteSystemCommand(SystemResourcePointer,0,param_3,param_4,0,0xfffffffffffffffe);
+    ExecuteSystemCommand(SystemResourcePointer,0,AdditionalParameter,ConfigurationFlag,0,0xfffffffffffffffe);
     *(uint32_t *)(SystemResourcePointer + 2) = 0;
     if ((uint8_t *)SystemResourcePointer[1] != (uint8_t *)0x0) {
       *(uint8_t *)SystemResourcePointer[1] = 0;
@@ -48182,7 +48282,7 @@ FUN_18006f590(void* *SystemResourcePointer,void* param_2,void* param_3,void* par
 
 
 
-ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
+ulong long FUN_18006f620(void* SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   code *pcVar1;
@@ -48202,7 +48302,7 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
   void* *puStack_28;
   
   localResourceOffset = SystemAllocationFlagsTemplate;
-  unsignedSystemValue7 = FUN_1800f9600(param_2);
+  unsignedSystemValue7 = FUN_1800f9600(ConfigurationDataPointer);
   if (((char)unsignedSystemValue7 != '\0') || (unsignedSystemValue7 = WaitForSingleObject(SystemSemaphoreHandle,0), (int)unsignedSystemValue7 != 0)) {
     return unsignedSystemValue7 & 0xffffffffffffff00;
   }
@@ -48227,7 +48327,7 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
   uStack_38 = 0;
   puStack_48 = (void* *)0x0;
   uStack_40 = 0;
-  FUN_180628040(&puStack_50,&UNK_1809ff538,param_2);
+  FUN_180628040(&puStack_50,&UNK_1809ff538,ConfigurationDataPointer);
   FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&UNK_1809ff550);
   punsignedSystemValue8 = &SystemStringTemplate;
   if (puStack_48 != (void* *)0x0) {
@@ -48245,7 +48345,7 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
     punsignedSystemValue8 = puStack_48;
   }
   OutputDebugStringA(punsignedSystemValue8);
-  FUN_18004c2b0(param_2);
+  FUN_18004c2b0(ConfigurationDataPointer);
   localResourceOffset = SystemRenderManagerPointer;
   if (((bVar9) && (SystemRenderManagerPointer != 0)) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
     FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),*(char *)(_DAT_180c868d0 + 0x2028) != '\0',
@@ -48255,10 +48355,10 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
   if (DAT_180c82842 == '\0') {
     if ((DAT_180c82860 == '\0') ||
        ((systemValue = IsDebuggerPresent(), systemValue != 0 && (DAT_180c82842 == '\0')))) {
-      MessageBoxA(0,param_2,&UNK_1809ff5b8,0x41010);
+      MessageBoxA(0,ConfigurationDataPointer,&UNK_1809ff5b8,0x41010);
     }
     else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
-      SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd,&UNK_180a04f08,&UNK_1809ff5b8,param_2);
+      SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd,&UNK_180a04f08,&UNK_1809ff5b8,ConfigurationDataPointer);
     }
   }
   else if (DAT_180c82860 == '\0') {
@@ -48268,11 +48368,11 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
     }
     FUN_1806272a0(punsignedSystemValue8);
   }
-  systemValue = FUN_1800f98e0(param_2);
+  systemValue = FUN_1800f98e0(ConfigurationDataPointer);
   if ((!bVar2) && (systemValue == 0)) {
     FUN_180066320();
   }
-  FUN_1800f96b0(param_2,0);
+  FUN_1800f96b0(ConfigurationDataPointer,0);
   if (SystemStatusFlagsPointer == 0) {
     _Exit(5);
     pcVar1 = (code *)swi(3);
@@ -48292,7 +48392,7 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
 // WARNING: Removing unreachable block (ram,0x00018006fc6b)
 // WARNING: Removing unreachable block (ram,0x00018006fe26)
 
-ulong long FUN_18006f940(void* SystemResourcePointer,void* param_2,char param_3)
+ulong long FUN_18006f940(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter)
 
 {
   uint8_t unsignedSystemValue1;
@@ -48332,7 +48432,7 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* param_2,char param_3)
   localBufferAddress = SystemAllocationFlagsTemplate;
   uStack_40 = 0xfffffffffffffffe;
   bStackX_20 = 0;
-  if (((DAT_180c82860 == '\0') || (in_RAX = FUN_1800f9600(param_2), (char)in_RAX != '\0')) ||
+  if (((DAT_180c82860 == '\0') || (in_RAX = FUN_1800f9600(ConfigurationDataPointer), (char)in_RAX != '\0')) ||
      (in_RAX = WaitForSingleObject(SystemSemaphoreHandle,0), (int)in_RAX != 0)) {
     unsignedSystemValue12 = in_RAX & 0xffffffffffffff00;
   }
@@ -48379,7 +48479,7 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* param_2,char param_3)
     uStack_88 = 0;
     stackParameterB = (void* *)0x0;
     stackParameterC = 0;
-    FUN_180628040(&stackParameterA,&UNK_1809ff5c0,param_2);
+    FUN_180628040(&stackParameterA,&UNK_1809ff5c0,ConfigurationDataPointer);
     FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&UNK_1809ff550);
     pointerToUnsigned11 = &SystemStringTemplate;
     if (stackParameterB != (void* *)0x0) {
@@ -48397,10 +48497,10 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* param_2,char param_3)
       pointerToUnsigned11 = stackParameterB;
     }
     OutputDebugStringA(pointerToUnsigned11);
-    FUN_18004c2b0(param_2);
+    FUN_18004c2b0(ConfigurationDataPointer);
     if (((DAT_180c82860 != '\0') && (bVar3)) &&
        ((*(char *)(SystemStatusFlagsPointer + 0x25) != '\0' ||
-        ((param_3 == '\0' || (*(int *)(SystemStatusFlagsPointer + 0x340) == 2)))))) {
+        ((AdditionalParameter == '\0' || (*(int *)(SystemStatusFlagsPointer + 0x340) == 2)))))) {
       if (DAT_180c82851 == '\0') {
         pcVar2 = (code *)swi(3);
         unsignedSystemValue12 = (*pcVar2)();
@@ -48435,19 +48535,19 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* param_2,char param_3)
       uStack_d0 = 0xb;
       if (((DAT_180c82860 == '\0') || (systemOffset = IsDebuggerPresent(), systemOffset != 0)) &&
          (DAT_180c82842 == '\0')) {
-        MessageBoxA(0,param_2,pointerToUnsigned14,0x41030);
+        MessageBoxA(0,ConfigurationDataPointer,pointerToUnsigned14,0x41030);
       }
       else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
-        SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd,&UNK_180a04f08,pointerToUnsigned14,param_2);
+        SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd,&UNK_180a04f08,pointerToUnsigned14,ConfigurationDataPointer);
       }
       puStack_e0 = &SystemGlobalDataReference;
                     // WARNING: Subroutine does not return
       SystemCleanupFunction(pointerToUnsigned14);
     }
     if (DAT_180c82860 == '\0') {
-      FUN_1806272a0(&UNK_1809ff5d0,param_2);
+      FUN_1806272a0(&UNK_1809ff5d0,ConfigurationDataPointer);
     }
-    systemOffset = FUN_1800f98e0(param_2);
+    systemOffset = FUN_1800f98e0(ConfigurationDataPointer);
     if (((!bVar3) && (systemOffset == 0)) && (*(char *)(SystemStatusFlagsPointer + 0x2a) != '\0')) {
       unsignedSystemValue1 = *(uint8_t *)(SystemStatusFlagsPointer + 0x141);
       unsignedSystemValue13 = CreateSystemObject(&puStack_80,SystemStatusFlagsPointer + 0x148);
@@ -48474,7 +48574,7 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* param_2,char param_3)
       uStack_c8 = uStack_c8 & 0xffffffff00000000;
       puStack_e0 = &SystemMemoryAllocatorReference;
     }
-    FUN_1800f96b0(param_2,0);
+    FUN_1800f96b0(ConfigurationDataPointer,0);
     if (SystemStatusFlagsPointer == 0) {
       cVar6 = '\x01';
     }
@@ -48525,7 +48625,7 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* param_2,char param_3)
 
 
 
-ulong long FUN_18006ff80(void* SystemResourcePointer,void* param_2,char param_3)
+ulong long FUN_18006ff80(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter)
 
 {
   code *pcVar1;
@@ -48566,7 +48666,7 @@ ulong long FUN_18006ff80(void* SystemResourcePointer,void* param_2,char param_3)
   bStack_d8 = 0;
   punsignedSystemValue6 = (uint8_t *)register0x00000020;
   if (((DAT_180c82860 == '\0') ||
-      (punsignedSystemValue6 = (uint8_t *)FUN_1800f9600(param_2), (char)punsignedSystemValue6 != '\0')) ||
+      (punsignedSystemValue6 = (uint8_t *)FUN_1800f9600(ConfigurationDataPointer), (char)punsignedSystemValue6 != '\0')) ||
      (punsignedSystemValue6 = (uint8_t *)WaitForSingleObject(SystemSemaphoreHandle,0), (int)punsignedSystemValue6 != 0)) {
     return (ulong long)punsignedSystemValue6 & 0xffffffffffffff00;
   }
@@ -48606,7 +48706,7 @@ ulong long FUN_18006ff80(void* SystemResourcePointer,void* param_2,char param_3)
   uStack_98 = 0;
   puStack_a8 = (void* *)0x0;
   uStack_a0 = 0;
-  FUN_180628040(&puStack_b0,&UNK_1809ff5f8,param_2);
+  FUN_180628040(&puStack_b0,&UNK_1809ff5f8,ConfigurationDataPointer);
   FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&UNK_1809ff550);
   pointerToUnsigned10 = &SystemStringTemplate;
   if (puStack_a8 != (void* *)0x0) {
@@ -48626,10 +48726,10 @@ ulong long FUN_18006ff80(void* SystemResourcePointer,void* param_2,char param_3)
     pointerToUnsigned10 = puStack_a8;
   }
   OutputDebugStringA(pointerToUnsigned10);
-  FUN_18004c2b0(param_2);
+  FUN_18004c2b0(ConfigurationDataPointer);
   if ((DAT_180c82860 != '\0') && (bVar15)) {
     if ((*(char *)(SystemStatusFlagsPointer + 0x25) == '\0') &&
-       ((param_3 != '\0' && (*(int *)(SystemStatusFlagsPointer + 0x340) != 2)))) {
+       ((AdditionalParameter != '\0' && (*(int *)(SystemStatusFlagsPointer + 0x340) != 2)))) {
       unsignedSystemValue11 = 1;
       bStack_d8 = 1;
       goto LAB_180070230;
@@ -48658,17 +48758,17 @@ LAB_180070230:
       }
       if (((DAT_180c82860 == '\0') || (systemIndex = IsDebuggerPresent(), systemIndex != 0)) &&
          (DAT_180c82842 == '\0')) {
-        MessageBoxA(0,param_2,&UNK_1809ff630,0x41030);
+        MessageBoxA(0,ConfigurationDataPointer,&UNK_1809ff630,0x41030);
       }
       else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
-        SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd,&UNK_180a04f08,&UNK_1809ff630,param_2)
+        SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd,&UNK_180a04f08,&UNK_1809ff630,ConfigurationDataPointer)
         ;
       }
     }
     else if (DAT_180c82860 == '\0') {
-      FUN_1806272a0(&UNK_1809ff610,param_2);
+      FUN_1806272a0(&UNK_1809ff610,ConfigurationDataPointer);
     }
-    systemIndex = FUN_1800f98e0(param_2);
+    systemIndex = FUN_1800f98e0(ConfigurationDataPointer);
     if ((!bVar15) && (systemIndex == 0)) {
       bVar15 = SystemStatusFlagsPointer == 0;
       if (bVar15) {
@@ -48734,7 +48834,7 @@ LAB_180070230:
       uStack_58 = 0;
       puStack_70 = &SystemMemoryAllocatorReference;
     }
-    FUN_1800f96b0(param_2,0);
+    FUN_1800f96b0(ConfigurationDataPointer,0);
     if (SystemStatusFlagsPointer == 0) {
       cVar3 = '\x01';
     }
@@ -48780,7 +48880,7 @@ LAB_180070230:
   }
   else {
     if (*(int *)(_DAT_180c86908 + 0x460) == 1) {
-      FUN_1806272a0(&UNK_1809ff610,param_2);
+      FUN_1806272a0(&UNK_1809ff610,ConfigurationDataPointer);
     }
     puStack_b0 = &SystemGlobalDataReference;
     if (puStack_a8 != (void* *)0x0) {
@@ -48802,8 +48902,8 @@ LAB_180070230:
 
 
 
-// 函数: void FUN_180070680(void* SystemResourcePointer,void* param_2)
-void FUN_180070680(void* SystemResourcePointer,void* param_2)
+// 函数: void FUN_180070680(void* SystemResourcePointer,void* ConfigurationDataPointer)
+void FUN_180070680(void* SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   bool bVar1;
@@ -48860,7 +48960,7 @@ void FUN_180070680(void* SystemResourcePointer,void* param_2)
   uStack_58 = 0;
   puStack_68 = (void* *)0x0;
   uStack_60 = 0;
-  FUN_180628040(&puStack_70,&UNK_1809ff538,param_2);
+  FUN_180628040(&puStack_70,&UNK_1809ff538,ConfigurationDataPointer);
   FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&UNK_1809ff550);
   punsignedSystemValue6 = &SystemStringTemplate;
   if (puStack_68 != (void* *)0x0) {
@@ -48902,8 +49002,8 @@ void FUN_180070680(void* SystemResourcePointer,void* param_2)
 // WARNING: Removing unreachable block (ram,0x000180070ce2)
 
 
-// 函数: void FUN_180070930(void* SystemResourcePointer,long long param_2,uint32_t param_3,long long param_4,
-void FUN_180070930(void* SystemResourcePointer,long long param_2,uint32_t param_3,long long param_4,
+// 函数: void FUN_180070930(void* SystemResourcePointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
+void FUN_180070930(void* SystemResourcePointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
                   char param_5,char param_6)
 
 {
@@ -48967,10 +49067,10 @@ void FUN_180070930(void* SystemResourcePointer,long long param_2,uint32_t param_
   uStack_148 = 0;
   uStack_58 = 0;
   uStack_50 = 0;
-  uStack_98 = param_3;
-  lStack_88 = param_4;
-  FUN_1800634b0(&uStack_58,0x10,&SystemDataBufferTemplateI,param_3);
-  localResourcePointer = ProcessSystemQueue(&puStack_d8,param_4);
+  uStack_98 = AdditionalParameter;
+  lStack_88 = ConfigurationFlag;
+  FUN_1800634b0(&uStack_58,0x10,&SystemDataBufferTemplateI,AdditionalParameter);
+  localResourcePointer = ProcessSystemQueue(&puStack_d8,ConfigurationFlag);
   puStack_118 = &SystemGlobalDataReference;
   uStack_100 = 0;
   puStack_110 = (uint8_t *)0x0;
@@ -49005,12 +49105,12 @@ LAB_180070a3f:
   unsignedSystemValue5 = *(uint *)(localResourcePointer + 0x1c);
   uStack_108 = unsignedSystemValue6;
   uStack_100._4_4_ = unsignedSystemValue5;
-  if (param_2 != 0) {
+  if (ConfigurationDataPointer != 0) {
     localResourcePointer = -1;
     do {
       localMemoryPointer5 = localResourcePointer;
       localResourcePointer = localMemoryPointer5 + 1;
-    } while (*(char *)(param_2 + localResourcePointer) != '\0');
+    } while (*(char *)(ConfigurationDataPointer + localResourcePointer) != '\0');
     if (0 < (int)localResourcePointer) {
       systemIndex = unsignedSystemValue6 + (int)localResourcePointer;
       if (systemIndex != 0) {
@@ -49032,7 +49132,7 @@ LAB_180070a3f:
       }
 LAB_180070b00:
                     // WARNING: Subroutine does not return
-      memcpy(pointerToUnsigned10 + unsignedSystemValue19,param_2,(long long)((int)localMemoryPointer5 + 2));
+      memcpy(pointerToUnsigned10 + unsignedSystemValue19,ConfigurationDataPointer,(long long)((int)localMemoryPointer5 + 2));
     }
   }
   FUN_180627e10(&puStack_118,&puStack_f8,&uStack_58);
@@ -49129,12 +49229,12 @@ LAB_180070db8:
   }
   *(void*2 *)(puStack_138 + uStack_130) = 10;
   uStack_130 = 2;
-  if (param_2 != 0) {
+  if (ConfigurationDataPointer != 0) {
     localMemoryPointer5 = -1;
     do {
       localMemoryPointer6 = localMemoryPointer5;
       localMemoryPointer5 = localMemoryPointer6 + 1;
-    } while (*(char *)(param_2 + localMemoryPointer5) != '\0');
+    } while (*(char *)(ConfigurationDataPointer + localMemoryPointer5) != '\0');
     systemIndex = (int)localMemoryPointer5;
     if (0 < systemIndex) {
       unsignedSystemValue5 = unsignedSystemValue6;
@@ -49162,7 +49262,7 @@ LAB_180070db8:
 LAB_180070e64:
       uStack_130 = unsignedSystemValue5;
                     // WARNING: Subroutine does not return
-      memcpy(puStack_138 + uStack_130,param_2,(long long)((int)localMemoryPointer6 + 2));
+      memcpy(puStack_138 + uStack_130,ConfigurationDataPointer,(long long)((int)localMemoryPointer6 + 2));
     }
   }
   if (puStack_138 == (uint8_t *)0x0) {
@@ -49516,8 +49616,8 @@ LAB_1800715eb:
 // WARNING: Removing unreachable block (ram,0x000180071c73)
 
 
-// 函数: void FUN_180071940(void* SystemResourcePointer,long long param_2,uint32_t param_3,long long param_4)
-void FUN_180071940(void* SystemResourcePointer,long long param_2,uint32_t param_3,long long param_4)
+// 函数: void FUN_180071940(void* SystemResourcePointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag)
+void FUN_180071940(void* SystemResourcePointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag)
 
 {
   int systemStatus;
@@ -49618,12 +49718,12 @@ LAB_180071b69:
   }
   *(void*2 *)(puStack_88 + uStack_80) = 10;
   uStack_80 = 0x13;
-  if (param_2 != 0) {
+  if (ConfigurationDataPointer != 0) {
     localBufferAddress = -1;
     do {
       localAllocationFlags = localBufferAddress;
       localBufferAddress = localAllocationFlags + 1;
-    } while (*(char *)(param_2 + localBufferAddress) != '\0');
+    } while (*(char *)(ConfigurationDataPointer + localBufferAddress) != '\0');
     systemStatus = (int)localBufferAddress;
     if (0 < systemStatus) {
       unsignedSystemValue11 = unsignedSystemValue2;
@@ -49650,7 +49750,7 @@ LAB_180071b69:
 LAB_180071c1a:
       uStack_80 = unsignedSystemValue11;
                     // WARNING: Subroutine does not return
-      memcpy(puStack_88 + uStack_80,param_2,(long long)((int)localAllocationFlags + 2));
+      memcpy(puStack_88 + uStack_80,ConfigurationDataPointer,(long long)((int)localAllocationFlags + 2));
     }
   }
   if (puStack_88 == (uint8_t *)0x0) {
@@ -49668,7 +49768,7 @@ LAB_180071c93:
   }
   *(void*2 *)(puStack_88 + uStack_80) = 0x3a;
   uStack_80 = 0x14;
-  ProcessSystemData(&pstackParameterC,param_3);
+  ProcessSystemData(&pstackParameterC,AdditionalParameter);
   unsignedSystemValue2 = uStack_80;
   unsignedSystemValue11 = uStack_80 + 1;
   if (unsignedSystemValue11 != 0) {
@@ -49714,11 +49814,11 @@ LAB_180071d94:
   *(uint8_t *)((long long)SystemPreviousNode + 0xc) = 0;
   localBufferAddress = -1;
   uStack_80 = unsignedSystemValue12;
-  if (param_4 != 0) {
+  if (ConfigurationFlag != 0) {
     do {
       localAllocationFlags = localBufferAddress;
       localBufferAddress = localAllocationFlags + 1;
-    } while (*(char *)(param_4 + localBufferAddress) != '\0');
+    } while (*(char *)(ConfigurationFlag + localBufferAddress) != '\0');
     if (0 < (int)localBufferAddress) {
       systemStatus = unsignedSystemValue12 + (int)localBufferAddress;
       if (systemStatus != 0) {
@@ -49739,7 +49839,7 @@ LAB_180071d94:
       }
 LAB_180071e34:
                     // WARNING: Subroutine does not return
-      memcpy(puStack_88 + uStack_80,param_4,(long long)((int)localAllocationFlags + 2));
+      memcpy(puStack_88 + uStack_80,ConfigurationFlag,(long long)((int)localAllocationFlags + 2));
     }
   }
   if (unsignedSystemValue2 + 0xe != 0) {
@@ -49805,8 +49905,8 @@ LAB_180071eb0:
 // WARNING: Removing unreachable block (ram,0x0001800726c4)
 
 
-// 函数: void FUN_180072000(void* SystemResourcePointer,long long param_2,uint32_t param_3,long long param_4,
-void FUN_180072000(void* SystemResourcePointer,long long param_2,uint32_t param_3,long long param_4,
+// 函数: void FUN_180072000(void* SystemResourcePointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
+void FUN_180072000(void* SystemResourcePointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
                   uint8_t param_5,char param_6)
 
 {
@@ -49868,13 +49968,13 @@ void FUN_180072000(void* SystemResourcePointer,long long param_2,uint32_t param_
   pointerToUnsigned10 = (uint8_t *)0x0;
   uStack_114 = 0;
   uStack_116 = 0;
-  uStack_b0 = param_3;
-  lStack_88 = param_4;
+  uStack_b0 = AdditionalParameter;
+  lStack_88 = ConfigurationFlag;
   if ((DAT_180c82860 != '\0') || (DAT_180c82850 != '\0')) goto LAB_180072d7b;
   uStack_58 = 0;
   uStack_50 = 0;
-  FUN_1800634b0(&uStack_58,0x10,&SystemDataBufferTemplateI,param_3);
-  localResourcePointer = ProcessSystemQueue(&puStack_f0,param_4);
+  FUN_1800634b0(&uStack_58,0x10,&SystemDataBufferTemplateI,AdditionalParameter);
+  localResourcePointer = ProcessSystemQueue(&puStack_f0,ConfigurationFlag);
   puStack_110 = &SystemGlobalDataReference;
   unsignedSystemValue16 = 0;
   uStack_f8 = 0;
@@ -49910,12 +50010,12 @@ LAB_180072120:
   unsignedSystemValue4 = *(uint *)(localResourcePointer + 0x1c);
   uStack_100 = unsignedSystemValue6;
   uStack_f8._4_4_ = unsignedSystemValue4;
-  if (param_2 != 0) {
+  if (ConfigurationDataPointer != 0) {
     localResourcePointer = -1;
     do {
       localMemoryPointer7 = localResourcePointer;
       localResourcePointer = localMemoryPointer7 + 1;
-    } while (*(char *)(param_2 + localResourcePointer) != '\0');
+    } while (*(char *)(ConfigurationDataPointer + localResourcePointer) != '\0');
     if (0 < (int)localResourcePointer) {
       systemCounter = unsignedSystemValue6 + (int)localResourcePointer;
       if (systemCounter != 0) {
@@ -49937,7 +50037,7 @@ LAB_180072120:
       }
 LAB_1800721e1:
                     // WARNING: Subroutine does not return
-      memcpy(pointerToUnsigned10 + unsignedSystemValue19,param_2,(long long)((int)localMemoryPointer7 + 2));
+      memcpy(pointerToUnsigned10 + unsignedSystemValue19,ConfigurationDataPointer,(long long)((int)localMemoryPointer7 + 2));
     }
   }
   FUN_180627e10(&puStack_110,&puStack_a8,&uStack_58);
@@ -50073,12 +50173,12 @@ LAB_1800725ac:
       }
       *(void*2 *)(puStack_130 + uStack_128) = 10;
       uStack_128 = 0x16;
-      if (param_2 != 0) {
+      if (ConfigurationDataPointer != 0) {
         localResourcePointer = -1;
         do {
           localMemoryPointer7 = localResourcePointer;
           localResourcePointer = localMemoryPointer7 + 1;
-        } while (*(char *)(param_2 + localResourcePointer) != '\0');
+        } while (*(char *)(ConfigurationDataPointer + localResourcePointer) != '\0');
         systemCounter = (int)localResourcePointer;
         if (0 < systemCounter) {
           unsignedSystemValue4 = unsignedSystemValue6;
@@ -50106,7 +50206,7 @@ LAB_1800725ac:
 LAB_180072662:
           uStack_128 = unsignedSystemValue4;
                     // WARNING: Subroutine does not return
-          memcpy(puStack_130 + uStack_128,param_2,(long long)((int)localMemoryPointer7 + 2));
+          memcpy(puStack_130 + uStack_128,ConfigurationDataPointer,(long long)((int)localMemoryPointer7 + 2));
         }
       }
       if (puStack_130 == (uint8_t *)0x0) {
@@ -50173,11 +50273,11 @@ LAB_1800727ff:
       *(uint8_t *)((long long)pointerToUnsigned13 + 0xc) = 0;
       localResourcePointer = -1;
       uStack_128 = unsignedSystemValue16;
-      if (param_4 != 0) {
+      if (ConfigurationFlag != 0) {
         do {
           localMemoryPointer7 = localResourcePointer;
           localResourcePointer = localMemoryPointer7 + 1;
-        } while (*(char *)(localResourcePointer + param_4) != '\0');
+        } while (*(char *)(localResourcePointer + ConfigurationFlag) != '\0');
         if (0 < (int)localResourcePointer) {
           systemCounter = unsignedSystemValue16 + (int)localResourcePointer;
           if (systemCounter != 0) {
@@ -50199,7 +50299,7 @@ LAB_1800727ff:
           }
 LAB_1800728ad:
                     // WARNING: Subroutine does not return
-          memcpy(puStack_130 + uStack_128,param_4,(long long)((int)localMemoryPointer7 + 2));
+          memcpy(puStack_130 + uStack_128,ConfigurationFlag,(long long)((int)localMemoryPointer7 + 2));
         }
       }
       unsignedSystemValue4 = unsignedSystemValue6 + 0xf;
@@ -50276,7 +50376,7 @@ LAB_1800729bd:
         pointerToUnsigned14 = puStack_130;
       }
       OutputDebugStringA(pointerToUnsigned14);
-      FUN_18004c2b0(param_4);
+      FUN_18004c2b0(ConfigurationFlag);
       pointerToUnsigned15 = &SystemStringTemplate;
       if (stackParameterA != (void* *)0x0) {
         pointerToUnsigned15 = stackParameterA;
@@ -50371,8 +50471,8 @@ LAB_1800729bd:
         }
       }
 
-// 函数: void FUN_180072e80(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180072e80(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180072e80(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180072e80(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -50382,8 +50482,8 @@ void FUN_180072e80(void* SystemResourcePointer,void* param_2,void* param_3,void*
   
   PrimaryResourcePointer = *(long long **)(SystemStatusFlagsPointer + 0x2b0);
   if (PrimaryResourcePointer != (long long *)0x0) {
-    unsignedSystemValue2 = (**(code **)(*PrimaryResourcePointer + 0x110))(PrimaryResourcePointer,&puStack_30,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005d190(param_2,unsignedSystemValue2);
+    unsignedSystemValue2 = (**(code **)(*PrimaryResourcePointer + 0x110))(PrimaryResourcePointer,&puStack_30,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+    FUN_18005d190(ConfigurationDataPointer,unsignedSystemValue2);
     puStack_30 = &SystemGlobalDataReference;
     if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -50396,7 +50496,7 @@ void FUN_180072e80(void* SystemResourcePointer,void* param_2,void* param_3,void*
 
 
 
-bool FUN_180072f00(void* SystemResourcePointer,void* *param_2)
+bool FUN_180072f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   uint32_t unsignedSystemValue1;
@@ -50502,7 +50602,7 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *param_2)
     uStack_f8 = (ulong long)uStack_f8._4_4_ << 0x20;
     puStack_110 = &SystemMemoryAllocatorReference;
   }
-  localBufferAddress = FUN_1800f9ce0(&puStack_110,param_2[1]);
+  localBufferAddress = FUN_1800f9ce0(&puStack_110,ConfigurationDataPointer[1]);
   uStack_c0 = *(uint32_t *)(localBufferAddress + 0x10);
   pointerToUnsigned13 = *(void* **)(localBufferAddress + 8);
   uStack_b8 = *(ulong long *)(localBufferAddress + 0x18);
@@ -50519,8 +50619,8 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *param_2)
   puStack_108 = (void* *)0x0;
   uStack_f8 = uStack_f8 & 0xffffffff00000000;
   puStack_110 = &SystemMemoryAllocatorReference;
-  FUN_180628040(&puStack_f0,&UNK_1809ff8a8,*(uint32_t *)*param_2,
-                *(void* *)((uint32_t *)*param_2 + 4));
+  FUN_180628040(&puStack_f0,&UNK_1809ff8a8,*(uint32_t *)*ConfigurationDataPointer,
+                *(void* *)((uint32_t *)*ConfigurationDataPointer + 4));
   FUN_180628040(&puStack_f0,&UNK_1809fe62c,&UNK_1809ff8d8);
   pointerToUnsigned14 = &SystemStringTemplate;
   if (pointerToUnsigned13 != (void* *)0x0) {
@@ -50687,8 +50787,8 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *param_2)
 
 
 
-// 函数: void FUN_180073630(void* SystemResourcePointer,void* param_2)
-void FUN_180073630(void* SystemResourcePointer,void* param_2)
+// 函数: void FUN_180073630(void* SystemResourcePointer,void* ConfigurationDataPointer)
+void FUN_180073630(void* SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   void* *pointerToUnsigned1;
@@ -50697,10 +50797,10 @@ void FUN_180073630(void* SystemResourcePointer,void* param_2)
   void* *puStack_30;
   long long lStack_28;
   
-  SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,0,&UNK_1809ff918,param_2,0xfffffffffffffffe);
+  SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,0,&UNK_1809ff918,ConfigurationDataPointer,0xfffffffffffffffe);
   if (DAT_180c82860 == '\0') {
     auStackX_18[0] = 0xffff0000;
-    ProcessSystemQueue(&puStack_30,param_2);
+    ProcessSystemQueue(&puStack_30,ConfigurationDataPointer);
     pointerToUnsigned1 = *(void* **)*SystemMemoryBlockStorage;
     if (pointerToUnsigned1 == &UNK_18098bb88) {
       cVar2 = *(int *)(SystemStatusFlags + 0xc40) != 0;
@@ -50725,8 +50825,8 @@ void FUN_180073630(void* SystemResourcePointer,void* param_2)
 
 
 
-// 函数: void FUN_180073730(void* SystemResourcePointer,void* param_2)
-void FUN_180073730(void* SystemResourcePointer,void* param_2)
+// 函数: void FUN_180073730(void* SystemResourcePointer,void* ConfigurationDataPointer)
+void FUN_180073730(void* SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   void* *pointerToUnsigned1;
@@ -50735,10 +50835,10 @@ void FUN_180073730(void* SystemResourcePointer,void* param_2)
   void* *puStack_30;
   long long lStack_28;
   
-  SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,1,&UNK_1809ff938,param_2,0xfffffffffffffffe);
+  SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,1,&UNK_1809ff938,ConfigurationDataPointer,0xfffffffffffffffe);
   if (DAT_180c82860 == '\0') {
     auStackX_18[0] = 0xff00ff00;
-    ProcessSystemQueue(&puStack_30,param_2);
+    ProcessSystemQueue(&puStack_30,ConfigurationDataPointer);
     pointerToUnsigned1 = *(void* **)*SystemMemoryBlockStorage;
     if (pointerToUnsigned1 == &UNK_18098bb88) {
       cVar2 = *(int *)(SystemStatusFlags + 0xc40) != 0;
@@ -50763,8 +50863,8 @@ void FUN_180073730(void* SystemResourcePointer,void* param_2)
 
 
 
-// 函数: void FUN_180073830(void* SystemResourcePointer,uint32_t param_2,void* param_3)
-void FUN_180073830(void* SystemResourcePointer,uint32_t param_2,void* param_3)
+// 函数: void FUN_180073830(void* SystemResourcePointer,uint32_t ConfigurationDataPointer,void* AdditionalParameter)
+void FUN_180073830(void* SystemResourcePointer,uint32_t ConfigurationDataPointer,void* AdditionalParameter)
 
 {
   void* *pointerToUnsigned1;
@@ -50773,10 +50873,10 @@ void FUN_180073830(void* SystemResourcePointer,uint32_t param_2,void* param_3)
   void* *puStack_30;
   long long lStack_28;
   
-  SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,0xc,&UNK_1809ff958,param_3,0xfffffffffffffffe);
+  SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,0xc,&UNK_1809ff958,AdditionalParameter,0xfffffffffffffffe);
   if (DAT_180c82860 == '\0') {
-    auStackX_20[0] = param_2;
-    ProcessSystemQueue(&puStack_30,param_3);
+    auStackX_20[0] = ConfigurationDataPointer;
+    ProcessSystemQueue(&puStack_30,AdditionalParameter);
     pointerToUnsigned1 = *(void* **)*SystemMemoryBlockStorage;
     if (pointerToUnsigned1 == &UNK_18098bb88) {
       cVar2 = *(int *)(SystemStatusFlags + 0xc40) != 0;
@@ -50800,7 +50900,7 @@ void FUN_180073830(void* SystemResourcePointer,uint32_t param_2,void* param_3)
 
 
 
-// 函数: void FUN_180073930(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180073930(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统回调函数管理器
  * 
@@ -50808,11 +50908,11 @@ void FUN_180073830(void* SystemResourcePointer,uint32_t param_2,void* param_3)
  * 它会调用其他相关函数来完成回调函数的配置和清理工作。
  * 
  * @param SystemResourcePointer 回调函数参数1
- * @param param_2 回调函数参数2  
- * @param param_3 回调函数参数3
- * @param param_4 回调函数参数4
+ * @param ConfigurationDataPointer 回调函数参数2  
+ * @param AdditionalParameter 回调函数参数3
+ * @param ConfigurationFlag 回调函数参数4
  */
-void SystemCallbackManager(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void SystemCallbackManager(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *puStack_88;
@@ -50846,8 +50946,8 @@ void SystemCallbackManager(void* SystemResourcePointer,void* param_2,void* param
   uStack_26 = 0;
   uStack_36 = 0;
   uStack_2e = 0;
-  FUN_180074090(&puStack_88,SystemResourcePointer,param_3,param_4,&uStack_68);
-  FUN_180073ad0(&puStack_88,param_3);
+  FUN_180074090(&puStack_88,SystemResourcePointer,AdditionalParameter,ConfigurationFlag,&uStack_68);
+  FUN_180073ad0(&puStack_88,AdditionalParameter);
   FUN_1800739f0(&puStack_88);
   return;
 }
@@ -51675,7 +51775,7 @@ void ProcessSystemResourceOperationB(void)
 
 
 
-// 函数: void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long param_2)
+// 函数: void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long ConfigurationDataPointer)
 /**
  * @brief 处理系统资源操作C
  * 
@@ -51683,9 +51783,9 @@ void ProcessSystemResourceOperationB(void)
  * 主要用于系统资源的初始化和维护。
  * 
  * @param SystemResourcePointer 系统资源指针
- * @param param_2 参数2，用于传递额外的系统参数
+ * @param ConfigurationDataPointer 参数2，用于传递额外的系统参数
  */
-void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long param_2)
+void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -51701,16 +51801,16 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
   long long localMemoryPointer1;
   long long *PrimaryResourcePointer2;
   
-  unsignedSystemValue3 = **(uint **)(param_2 + 8);
-  punsignedSystemValue9 = *(uint **)(param_2 + 8) + 1;
-  *(uint **)(param_2 + 8) = punsignedSystemValue9;
+  unsignedSystemValue3 = **(uint **)(ConfigurationDataPointer + 8);
+  punsignedSystemValue9 = *(uint **)(ConfigurationDataPointer + 8) + 1;
+  *(uint **)(ConfigurationDataPointer + 8) = punsignedSystemValue9;
   if (unsignedSystemValue3 != 0) {
     (**(code **)(*SystemResourcePointer + 0x18))(SystemResourcePointer,punsignedSystemValue9,unsignedSystemValue3);
     *(long long *)(ComparisonDataPointer + 8) = *(long long *)(ComparisonDataPointer + 8) + (ulong long)unsignedSystemValue3;
-    punsignedSystemValue9 = *(uint **)(param_2 + 8);
+    punsignedSystemValue9 = *(uint **)(ConfigurationDataPointer + 8);
   }
   localMemoryAddress = (long long)(int)*punsignedSystemValue9;
-  *(uint **)(param_2 + 8) = punsignedSystemValue9 + 1;
+  *(uint **)(ConfigurationDataPointer + 8) = punsignedSystemValue9 + 1;
   PrimaryResourcePointer = SystemResourcePointer + 4;
   FUN_180074b30(PrimaryResourcePointer,localMemoryAddress);
   localSystemPointer = *(long long *)(ComparisonDataPointer + 8);
@@ -51719,7 +51819,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
   if (0 < localMemoryAddress) {
     do {
       localAllocationFlags = *PrimaryResourcePointer;
-      *(int **)(param_2 + 8) = (int *)(localSystemPointer + 8);
+      *(int **)(ConfigurationDataPointer + 8) = (int *)(localSystemPointer + 8);
       systemIndex = *(int *)(localSystemPointer + 8);
       PrimaryResourcePointer2 = (long long *)(localAllocationFlags + localMemoryPointer1);
       *(long long *)(ComparisonDataPointer + 8) = localSystemPointer + 0xc;
@@ -51746,14 +51846,14 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
           }
           *PrimaryResourcePointer2 = localDataPointer;
                     // WARNING: Subroutine does not return
-          memcpy(PrimaryResourcePointer2[1],*(void* *)(param_2 + 8),(long long)(systemIndex * 4));
+          memcpy(PrimaryResourcePointer2[1],*(void* *)(ConfigurationDataPointer + 8),(long long)(systemIndex * 4));
         }
                     // WARNING: Subroutine does not return
         SystemCleanupFunction();
       }
       localAllocationFlags = *PrimaryResourcePointer;
       pointerToInteger2 = (int *)(localSystemPointer + 0x14);
-      *(int **)(param_2 + 8) = pointerToInteger2;
+      *(int **)(ConfigurationDataPointer + 8) = pointerToInteger2;
       localSystemPointer = localSystemPointer + 0x18;
       systemIndex = *pointerToInteger2;
       localAllocationFlags = localAllocationFlags + localMemoryPointer1;
@@ -51781,7 +51881,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
           }
           *(long long *)(localAllocationFlags + 0x12) = localDataPointer;
                     // WARNING: Subroutine does not return
-          memcpy(*(void* *)(localAllocationFlags + 0x1a),*(void* *)(param_2 + 8),(long long)(systemIndex * 4));
+          memcpy(*(void* *)(localAllocationFlags + 0x1a),*(void* *)(ConfigurationDataPointer + 8),(long long)(systemIndex * 4));
         }
                     // WARNING: Subroutine does not return
         SystemCleanupFunction();
@@ -51790,11 +51890,11 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
       localMemoryPointer1 = localMemoryPointer1 + 0x24;
     } while (localMemoryAddress != 0);
   }
-  *(int **)(param_2 + 8) = (int *)(localSystemPointer + 8);
+  *(int **)(ConfigurationDataPointer + 8) = (int *)(localSystemPointer + 8);
   systemIndex = *(int *)(localSystemPointer + 8);
   *(long long *)(ComparisonDataPointer + 8) = localSystemPointer + 0xc;
   if (systemIndex < 1) {
-    *(int **)(param_2 + 8) = (int *)(localSystemPointer + 0x14);
+    *(int **)(ConfigurationDataPointer + 8) = (int *)(localSystemPointer + 0x14);
     systemIndex = *(int *)(localSystemPointer + 0x14);
     *(long long *)(ComparisonDataPointer + 8) = localSystemPointer + 0x18;
     if (systemIndex < 1) {
@@ -51820,7 +51920,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
         }
         *(long long *)((long long)SystemResourcePointer + 0x52) = localDataPointer;
                     // WARNING: Subroutine does not return
-        memcpy(*(void* *)((long long)SystemResourcePointer + 0x5a),*(void* *)(param_2 + 8),
+        memcpy(*(void* *)((long long)SystemResourcePointer + 0x5a),*(void* *)(ConfigurationDataPointer + 8),
                (long long)(systemIndex * 4));
       }
                     // WARNING: Subroutine does not return
@@ -51851,7 +51951,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
     }
     SystemResourcePointer[8] = localDataPointer;
                     // WARNING: Subroutine does not return
-    memcpy(SystemResourcePointer[9],*(void* *)(param_2 + 8),(long long)(systemIndex * 4));
+    memcpy(SystemResourcePointer[9],*(void* *)(ConfigurationDataPointer + 8),(long long)(systemIndex * 4));
   }
                     // WARNING: Subroutine does not return
   SystemCleanupFunction();
@@ -52357,7 +52457,7 @@ void InitializeSystemGlobalState(void)
  * - 处理时间相关的资源操作
  * 
  * @param SystemResourcePointer 系统资源指针，指向需要管理的资源
- * @param param_2 时间参数，用于时间戳操作
+ * @param ConfigurationDataPointer 时间参数，用于时间戳操作
  * @return 无返回值
  * @note 此函数用于资源的时间管理和生命周期控制
  * @warning 调用此函数前确保资源指针有效
@@ -52388,9 +52488,9 @@ void ManageSystemResourceTimestamp(long long SystemResourcePointer, long long Ti
   
   uStack_d8 = 0xfffffffffffffffe;
   uStack_28 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_f8;
-  pointerToInteger4 = *(int **)(param_2 + 8);
+  pointerToInteger4 = *(int **)(ConfigurationDataPointer + 8);
   systemResult = *pointerToInteger4;
-  *(int **)(param_2 + 8) = pointerToInteger4 + 1;
+  *(int **)(ConfigurationDataPointer + 8) = pointerToInteger4 + 1;
   systemFlag = pointerToInteger4[2];
   systemOffset = pointerToInteger4[3];
   systemCode = pointerToInteger4[4];
@@ -52399,24 +52499,24 @@ void ManageSystemResourceTimestamp(long long SystemResourcePointer, long long Ti
   *(int *)(SystemResourcePointer + 0x20) = systemOffset;
   *(int *)(SystemResourcePointer + 0x24) = systemCode;
   punsignedSystemValue12 = (uint8_t *)(*(long long *)(ComparisonDataPointer + 8) + 0x10);
-  *(uint8_t **)(param_2 + 8) = punsignedSystemValue12;
+  *(uint8_t **)(ConfigurationDataPointer + 8) = punsignedSystemValue12;
   *(uint8_t *)(SystemResourcePointer + 0x28) = *punsignedSystemValue12;
   localSystemPointer = *(long long *)(ComparisonDataPointer + 8);
-  *(uint32_t **)(param_2 + 8) = (uint32_t *)(localSystemPointer + 1);
+  *(uint32_t **)(ConfigurationDataPointer + 8) = (uint32_t *)(localSystemPointer + 1);
   if (systemResult == 0) {
     puStack_c8 = &UNK_1809fcc28;
     puStack_c0 = auStack_b0;
     uStack_b8 = 0;
     auStack_b0[0] = 0;
-    unsignedSystemValue3 = **(uint **)(param_2 + 8);
-    pointerToUnsigned1 = *(uint **)(param_2 + 8) + 1;
-    *(uint **)(param_2 + 8) = pointerToUnsigned1;
+    unsignedSystemValue3 = **(uint **)(ConfigurationDataPointer + 8);
+    pointerToUnsigned1 = *(uint **)(ConfigurationDataPointer + 8) + 1;
+    *(uint **)(ConfigurationDataPointer + 8) = pointerToUnsigned1;
     if (unsignedSystemValue3 != 0) {
       FUN_180049910(&puStack_c8,pointerToUnsigned1,unsignedSystemValue3);
       *(long long *)(ComparisonDataPointer + 8) = *(long long *)(ComparisonDataPointer + 8) + (ulong long)unsignedSystemValue3;
     }
     puStack_c8 = &SystemMemoryAllocatorReference;
-    pointerToUnsigned13 = *(uint32_t **)(param_2 + 8);
+    pointerToUnsigned13 = *(uint32_t **)(ConfigurationDataPointer + 8);
   }
   else {
     unsignedSystemValue9 = *(uint32_t *)(localSystemPointer + 5);
@@ -52427,14 +52527,14 @@ void ManageSystemResourceTimestamp(long long SystemResourcePointer, long long Ti
     *(uint32_t *)(SystemResourcePointer + 0x10) = unsignedSystemValue10;
     *(uint32_t *)(SystemResourcePointer + 0x14) = unsignedSystemValue11;
     *(long long *)(ComparisonDataPointer + 8) = *(long long *)(ComparisonDataPointer + 8) + 0x10;
-    pointerToUnsigned13 = *(uint32_t **)(param_2 + 8);
+    pointerToUnsigned13 = *(uint32_t **)(ConfigurationDataPointer + 8);
   }
   *(uint32_t *)(SystemResourcePointer + 0x2c) = *pointerToUnsigned13;
   pointerToUnsigned13 = (uint32_t *)(*(long long *)(ComparisonDataPointer + 8) + 4);
-  *(uint32_t **)(param_2 + 8) = pointerToUnsigned13;
+  *(uint32_t **)(ConfigurationDataPointer + 8) = pointerToUnsigned13;
   *(uint32_t *)(SystemResourcePointer + 0x30) = *pointerToUnsigned13;
   pointerToUnsigned13 = (uint32_t *)(*(long long *)(ComparisonDataPointer + 8) + 4);
-  *(uint32_t **)(param_2 + 8) = pointerToUnsigned13;
+  *(uint32_t **)(ConfigurationDataPointer + 8) = pointerToUnsigned13;
   *(uint32_t *)(SystemResourcePointer + 0x34) = *pointerToUnsigned13;
   *(long long *)(ComparisonDataPointer + 8) = *(long long *)(ComparisonDataPointer + 8) + 4;
                     // WARNING: Subroutine does not return
@@ -52454,7 +52554,7 @@ void ManageSystemResourceTimestamp(long long SystemResourcePointer, long long Ti
  * - 配置数据表属性
  * 
  * @param SystemResourcePointer 系统资源指针，用于数据表创建
- * @param param_2 配置参数，包含数据表的配置信息
+ * @param ConfigurationDataPointer 配置参数，包含数据表的配置信息
  * @return 返回创建的数据表指针
  * @note 此函数用于系统数据表的动态创建和配置
  * @warning 调用此函数后需要正确释放返回的数据表
@@ -52475,17 +52575,17 @@ void* * CreateAndConfigureSystemDataTable(void* SystemResourcePointer, long long
   pointerToUnsigned2[4] = 0;
   pointerToUnsigned2[1] = 0;
   pointerToUnsigned2[2] = 0;
-  if (param_2 != 0) {
-    unsignedSystemValue1 = *(void* *)(param_2 + 0x10);
-    pointerToUnsigned2[1] = *(void* *)(param_2 + 8);
+  if (ConfigurationDataPointer != 0) {
+    unsignedSystemValue1 = *(void* *)(ConfigurationDataPointer + 0x10);
+    pointerToUnsigned2[1] = *(void* *)(ConfigurationDataPointer + 8);
     pointerToUnsigned2[2] = unsignedSystemValue1;
-    unsignedSystemValue1 = *(void* *)(param_2 + 0x20);
-    pointerToUnsigned2[3] = *(void* *)(param_2 + 0x18);
+    unsignedSystemValue1 = *(void* *)(ConfigurationDataPointer + 0x20);
+    pointerToUnsigned2[3] = *(void* *)(ConfigurationDataPointer + 0x18);
     pointerToUnsigned2[4] = unsignedSystemValue1;
-    *(uint8_t *)(pointerToUnsigned2 + 5) = *(uint8_t *)(param_2 + 0x28);
-    *(uint32_t *)((long long)pointerToUnsigned2 + 0x2c) = *(uint32_t *)(param_2 + 0x2c);
-    *(uint32_t *)(pointerToUnsigned2 + 6) = *(uint32_t *)(param_2 + 0x30);
-    *(uint32_t *)((long long)pointerToUnsigned2 + 0x34) = *(uint32_t *)(param_2 + 0x34);
+    *(uint8_t *)(pointerToUnsigned2 + 5) = *(uint8_t *)(ConfigurationDataPointer + 0x28);
+    *(uint32_t *)((long long)pointerToUnsigned2 + 0x2c) = *(uint32_t *)(ConfigurationDataPointer + 0x2c);
+    *(uint32_t *)(pointerToUnsigned2 + 6) = *(uint32_t *)(ConfigurationDataPointer + 0x30);
+    *(uint32_t *)((long long)pointerToUnsigned2 + 0x34) = *(uint32_t *)(ConfigurationDataPointer + 0x34);
   }
   return pointerToUnsigned2;
 }
@@ -52580,8 +52680,8 @@ void FUN_180074840(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_1800748d0(long long SystemResourcePointer,long long *param_2)
-void FUN_1800748d0(long long SystemResourcePointer,long long *param_2)
+// 函数: void FUN_1800748d0(long long SystemResourcePointer,long long *ConfigurationDataPointer)
+void FUN_1800748d0(long long SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   uint8_t unsignedSystemValue1;
@@ -52591,17 +52691,17 @@ void FUN_1800748d0(long long SystemResourcePointer,long long *param_2)
   uint32_t *punsignedSystemValue5;
   uint8_t *punsignedSystemValue6;
   
-  punsignedSystemValue5 = (uint32_t *)param_2[1];
-  if ((ulong long)((*param_2 - (long long)punsignedSystemValue5) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)punsignedSystemValue5 + (4 - *param_2));
-    punsignedSystemValue5 = (uint32_t *)param_2[1];
+  punsignedSystemValue5 = (uint32_t *)ConfigurationDataPointer[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)punsignedSystemValue5) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)punsignedSystemValue5 + (4 - *ConfigurationDataPointer));
+    punsignedSystemValue5 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *punsignedSystemValue5 = 1;
-  punsignedSystemValue5 = (uint32_t *)(param_2[1] + 4);
-  param_2[1] = (long long)punsignedSystemValue5;
-  if ((ulong long)((*param_2 - (long long)punsignedSystemValue5) + param_2[2]) < 0x11) {
-    FUN_180639bf0(param_2,(long long)punsignedSystemValue5 + (0x10 - *param_2));
-    punsignedSystemValue5 = (uint32_t *)param_2[1];
+  punsignedSystemValue5 = (uint32_t *)(ConfigurationDataPointer[1] + 4);
+  ConfigurationDataPointer[1] = (long long)punsignedSystemValue5;
+  if ((ulong long)((*ConfigurationDataPointer - (long long)punsignedSystemValue5) + ConfigurationDataPointer[2]) < 0x11) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)punsignedSystemValue5 + (0x10 - *ConfigurationDataPointer));
+    punsignedSystemValue5 = (uint32_t *)ConfigurationDataPointer[1];
   }
   unsignedSystemValue2 = *(uint32_t *)(SystemResourcePointer + 0x1c);
   unsignedSystemValue3 = *(uint32_t *)(SystemResourcePointer + 0x20);
@@ -52610,19 +52710,19 @@ void FUN_1800748d0(long long SystemResourcePointer,long long *param_2)
   punsignedSystemValue5[1] = unsignedSystemValue2;
   punsignedSystemValue5[2] = unsignedSystemValue3;
   punsignedSystemValue5[3] = unsignedSystemValue4;
-  punsignedSystemValue6 = (uint8_t *)(param_2[1] + 0x10);
-  param_2[1] = (long long)punsignedSystemValue6;
+  punsignedSystemValue6 = (uint8_t *)(ConfigurationDataPointer[1] + 0x10);
+  ConfigurationDataPointer[1] = (long long)punsignedSystemValue6;
   unsignedSystemValue1 = *(uint8_t *)(SystemResourcePointer + 0x28);
-  if ((ulong long)((*param_2 - (long long)punsignedSystemValue6) + param_2[2]) < 2) {
-    FUN_180639bf0(param_2,punsignedSystemValue6 + (1 - *param_2));
-    punsignedSystemValue6 = (uint8_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)punsignedSystemValue6) + ConfigurationDataPointer[2]) < 2) {
+    FUN_180639bf0(ConfigurationDataPointer,punsignedSystemValue6 + (1 - *ConfigurationDataPointer));
+    punsignedSystemValue6 = (uint8_t *)ConfigurationDataPointer[1];
   }
   *punsignedSystemValue6 = unsignedSystemValue1;
-  punsignedSystemValue5 = (uint32_t *)(param_2[1] + 1);
-  param_2[1] = (long long)punsignedSystemValue5;
-  if ((ulong long)((*param_2 - (long long)punsignedSystemValue5) + param_2[2]) < 0x11) {
-    FUN_180639bf0(param_2,(long long)punsignedSystemValue5 + (0x10 - *param_2));
-    punsignedSystemValue5 = (uint32_t *)param_2[1];
+  punsignedSystemValue5 = (uint32_t *)(ConfigurationDataPointer[1] + 1);
+  ConfigurationDataPointer[1] = (long long)punsignedSystemValue5;
+  if ((ulong long)((*ConfigurationDataPointer - (long long)punsignedSystemValue5) + ConfigurationDataPointer[2]) < 0x11) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)punsignedSystemValue5 + (0x10 - *ConfigurationDataPointer));
+    punsignedSystemValue5 = (uint32_t *)ConfigurationDataPointer[1];
   }
   unsignedSystemValue2 = *(uint32_t *)(SystemResourcePointer + 0xc);
   unsignedSystemValue3 = *(uint32_t *)(SystemResourcePointer + 0x10);
@@ -52631,33 +52731,33 @@ void FUN_1800748d0(long long SystemResourcePointer,long long *param_2)
   punsignedSystemValue5[1] = unsignedSystemValue2;
   punsignedSystemValue5[2] = unsignedSystemValue3;
   punsignedSystemValue5[3] = unsignedSystemValue4;
-  punsignedSystemValue5 = (uint32_t *)(param_2[1] + 0x10);
-  param_2[1] = (long long)punsignedSystemValue5;
+  punsignedSystemValue5 = (uint32_t *)(ConfigurationDataPointer[1] + 0x10);
+  ConfigurationDataPointer[1] = (long long)punsignedSystemValue5;
   unsignedSystemValue2 = *(uint32_t *)(SystemResourcePointer + 0x2c);
-  if ((ulong long)((*param_2 - (long long)punsignedSystemValue5) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)punsignedSystemValue5 + (4 - *param_2));
-    punsignedSystemValue5 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)punsignedSystemValue5) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)punsignedSystemValue5 + (4 - *ConfigurationDataPointer));
+    punsignedSystemValue5 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *punsignedSystemValue5 = unsignedSystemValue2;
-  punsignedSystemValue5 = (uint32_t *)(param_2[1] + 4);
-  param_2[1] = (long long)punsignedSystemValue5;
+  punsignedSystemValue5 = (uint32_t *)(ConfigurationDataPointer[1] + 4);
+  ConfigurationDataPointer[1] = (long long)punsignedSystemValue5;
   unsignedSystemValue2 = *(uint32_t *)(SystemResourcePointer + 0x30);
-  if ((ulong long)((*param_2 - (long long)punsignedSystemValue5) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)punsignedSystemValue5 + (4 - *param_2));
-    punsignedSystemValue5 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)punsignedSystemValue5) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)punsignedSystemValue5 + (4 - *ConfigurationDataPointer));
+    punsignedSystemValue5 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *punsignedSystemValue5 = unsignedSystemValue2;
-  punsignedSystemValue5 = (uint32_t *)(param_2[1] + 4);
-  param_2[1] = (long long)punsignedSystemValue5;
+  punsignedSystemValue5 = (uint32_t *)(ConfigurationDataPointer[1] + 4);
+  ConfigurationDataPointer[1] = (long long)punsignedSystemValue5;
   unsignedSystemValue2 = *(uint32_t *)(SystemResourcePointer + 0x34);
-  if ((ulong long)((*param_2 - (long long)punsignedSystemValue5) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)punsignedSystemValue5 + (4 - *param_2));
-    *(uint32_t *)param_2[1] = unsignedSystemValue2;
+  if ((ulong long)((*ConfigurationDataPointer - (long long)punsignedSystemValue5) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)punsignedSystemValue5 + (4 - *ConfigurationDataPointer));
+    *(uint32_t *)ConfigurationDataPointer[1] = unsignedSystemValue2;
   }
   else {
     *punsignedSystemValue5 = unsignedSystemValue2;
   }
-  param_2[1] = param_2[1] + 4;
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
   return;
 }
 
@@ -52707,8 +52807,8 @@ void FUN_180074a80(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180074b30(long long *SystemResourcePointer,ulong long param_2)
-void FUN_180074b30(long long *SystemResourcePointer,ulong long param_2)
+// 函数: void FUN_180074b30(long long *SystemResourcePointer,ulong long ConfigurationDataPointer)
+void FUN_180074b30(long long *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -52720,12 +52820,12 @@ void FUN_180074b30(long long *SystemResourcePointer,ulong long param_2)
   PrimaryResourcePointer = (long long *)SystemResourcePointer[1];
   localSystemPointer = *SystemResourcePointer;
   unsignedSystemValue2 = ((long long)PrimaryResourcePointer - localSystemPointer) / 0x24;
-  if (unsignedSystemValue2 < param_2) {
-    localBufferAddress = param_2 - unsignedSystemValue2;
+  if (unsignedSystemValue2 < ConfigurationDataPointer) {
+    localBufferAddress = ConfigurationDataPointer - unsignedSystemValue2;
     FUN_180074c20(SystemResourcePointer,localBufferAddress,(long long)PrimaryResourcePointer - localSystemPointer,localBufferAddress,0xfffffffffffffffe);
   }
   else {
-    plocalResourceOffset = (long long *)(param_2 * 0x24 + localSystemPointer);
+    plocalResourceOffset = (long long *)(ConfigurationDataPointer * 0x24 + localSystemPointer);
     if (plocalResourceOffset != PrimaryResourcePointer) {
       do {
         if (*(long long *)((long long)plocalResourceOffset + 0x12) != 0) {
@@ -52752,7 +52852,7 @@ void FUN_180074b30(long long *SystemResourcePointer,ulong long param_2)
       } while (plocalResourceOffset != PrimaryResourcePointer);
       localSystemPointer = *SystemResourcePointer;
     }
-    SystemResourcePointer[1] = param_2 * 0x24 + localSystemPointer;
+    SystemResourcePointer[1] = ConfigurationDataPointer * 0x24 + localSystemPointer;
   }
   return;
 }
@@ -52761,8 +52861,8 @@ void FUN_180074b30(long long *SystemResourcePointer,ulong long param_2)
 
 
 
-// 函数: void FUN_180074c20(void* *SystemResourcePointer,ulong long param_2)
-void FUN_180074c20(void* *SystemResourcePointer,ulong long param_2)
+// 函数: void FUN_180074c20(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
+void FUN_180074c20(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -52776,15 +52876,15 @@ void FUN_180074c20(void* *SystemResourcePointer,ulong long param_2)
   ulong long unsignedSystemValue9;
   
   SystemPreviousNode = (void* *)SystemResourcePointer[1];
-  if ((ulong long)((SystemResourcePointer[2] - (long long)SystemPreviousNode) / 0x24) < param_2) {
+  if ((ulong long)((SystemResourcePointer[2] - (long long)SystemPreviousNode) / 0x24) < ConfigurationDataPointer) {
     pointerToUnsigned3 = (void* *)*SystemResourcePointer;
     localMemoryAddress = ((long long)SystemPreviousNode - (long long)pointerToUnsigned3) / 0x24;
     unsignedSystemValue9 = localMemoryAddress * 2;
     if (localMemoryAddress == 0) {
       unsignedSystemValue9 = 1;
     }
-    if (unsignedSystemValue9 < localMemoryAddress + param_2) {
-      unsignedSystemValue9 = localMemoryAddress + param_2;
+    if (unsignedSystemValue9 < localMemoryAddress + ConfigurationDataPointer) {
+      unsignedSystemValue9 = localMemoryAddress + ConfigurationDataPointer;
     }
     PrimaryResourcePointer = (long long *)0x0;
     if (unsignedSystemValue9 != 0) {
@@ -52836,9 +52936,9 @@ void FUN_180074c20(void* *SystemResourcePointer,ulong long param_2)
         plocalBufferAddress = (long long *)((long long)plocalBufferAddress + 0x24);
       } while (pointerToUnsigned3 != SystemPreviousNode);
     }
-    if (param_2 != 0) {
+    if (ConfigurationDataPointer != 0) {
       SystemPreviousNode = (void* *)((long long)SecondaryResourcePointer + 0x1a);
-      unsignedSystemValue6 = param_2;
+      unsignedSystemValue6 = ConfigurationDataPointer;
       do {
         SystemPreviousNode[-1] = 0;
         *SystemPreviousNode = 0;
@@ -52886,13 +52986,13 @@ void FUN_180074c20(void* *SystemResourcePointer,ulong long param_2)
       SystemCleanupFunction(plocalSystemPointer);
     }
     *SystemResourcePointer = PrimaryResourcePointer;
-    SystemResourcePointer[1] = (long long)SecondaryResourcePointer + param_2 * 0x24;
+    SystemResourcePointer[1] = (long long)SecondaryResourcePointer + ConfigurationDataPointer * 0x24;
     SystemResourcePointer[2] = (long long)PrimaryResourcePointer + unsignedSystemValue9 * 0x24;
   }
   else {
-    if (param_2 != 0) {
+    if (ConfigurationDataPointer != 0) {
       pointerToUnsigned3 = (void* *)((long long)SystemPreviousNode + 0x1a);
-      unsignedSystemValue9 = param_2;
+      unsignedSystemValue9 = ConfigurationDataPointer;
       do {
         SystemPreviousNode[1] = 0;
         SystemPreviousNode[2] = 0;
@@ -52910,7 +53010,7 @@ void FUN_180074c20(void* *SystemResourcePointer,ulong long param_2)
       } while (unsignedSystemValue9 != 0);
       SystemPreviousNode = (void* *)SystemResourcePointer[1];
     }
-    SystemResourcePointer[1] = (long long)SystemPreviousNode + param_2 * 0x24;
+    SystemResourcePointer[1] = (long long)SystemPreviousNode + ConfigurationDataPointer * 0x24;
   }
   return;
 }
@@ -52938,23 +53038,23 @@ void FUN_180074ed0(long long *SystemResourcePointer)
 
 
 void* *
-FUN_180074f20(void* *SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+FUN_180074f20(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *SystemResourcePointer = &UNK_1809ffa18;
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0x38,param_3,param_4,0xfffffffffffffffe);
+  if ((ConfigurationDataPointer & 1) != 0) {
+    free(SystemResourcePointer,0x38,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   }
   return SystemResourcePointer;
 }
 
 
 
-void* * FUN_180074f70(void* *SystemResourcePointer,ulong long param_2)
+void* * FUN_180074f70(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &UNK_1809ffa18;
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,8);
   }
   return SystemResourcePointer;
@@ -52963,24 +53063,24 @@ void* * FUN_180074f70(void* *SystemResourcePointer,ulong long param_2)
 
 
 void* *
-FUN_180074fb0(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+FUN_180074fb0(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  *param_2 = &SystemMemoryAllocatorReference;
-  param_2[1] = 0;
-  *(uint32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
-  param_2[1] = param_2 + 3;
-  *(uint8_t *)(param_2 + 3) = 0;
-  *(uint32_t *)(param_2 + 2) = 7;
-  strcpy_s(param_2[1],0x80,&UNK_1809ffa30,param_4,0,0xfffffffffffffffe);
-  return param_2;
+  *ConfigurationDataPointer = &SystemMemoryAllocatorReference;
+  ConfigurationDataPointer[1] = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 2) = 0;
+  *ConfigurationDataPointer = &UNK_1809fcc28;
+  ConfigurationDataPointer[1] = ConfigurationDataPointer + 3;
+  *(uint8_t *)(ConfigurationDataPointer + 3) = 0;
+  *(uint32_t *)(ConfigurationDataPointer + 2) = 7;
+  strcpy_s(ConfigurationDataPointer[1],0x80,&UNK_1809ffa30,ConfigurationFlag,0,0xfffffffffffffffe);
+  return ConfigurationDataPointer;
 }
 
 
 
 
-void* * FUN_180075030(void* *SystemResourcePointer,char param_2,char param_3)
+void* * FUN_180075030(void* *SystemResourcePointer,char ConfigurationDataPointer,char AdditionalParameter)
 
 {
   long long *PrimaryResourcePointer;
@@ -53039,7 +53139,7 @@ void* * FUN_180075030(void* *SystemResourcePointer,char param_2,char param_3)
   SystemResourcePointer[0x5e] = 0;
   *(uint32_t *)((long long)SystemResourcePointer + 0x2fc) = 0xffffffff;
   *(byte *)((long long)SystemResourcePointer + 0xfd) = *(byte *)((long long)SystemResourcePointer + 0xfd) & 0xfb;
-  *(byte *)((long long)SystemResourcePointer + 0xfd) = *(byte *)((long long)SystemResourcePointer + 0xfd) | param_2 << 2;
+  *(byte *)((long long)SystemResourcePointer + 0xfd) = *(byte *)((long long)SystemResourcePointer + 0xfd) | ConfigurationDataPointer << 2;
   SystemResourcePointer[0x15] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x17) = 0;
   *(uint32_t *)((long long)SystemResourcePointer + 0xbc) = 0;
@@ -53054,7 +53154,7 @@ void* * FUN_180075030(void* *SystemResourcePointer,char param_2,char param_3)
   }
   SystemResourcePointer[0x39] = 0;
   SystemResourcePointer[0x3c] = 0;
-  if (param_3 == '\0') {
+  if (AdditionalParameter == '\0') {
     *(byte *)((long long)SystemResourcePointer + 0xfd) = *(byte *)((long long)SystemResourcePointer + 0xfd) & 0xdf;
   }
   else {
@@ -53124,7 +53224,7 @@ void* * FUN_180075030(void* *SystemResourcePointer,char param_2,char param_3)
   *(uint32_t *)((long long)SystemResourcePointer + 0xe4) = 0x7f7fffff;
   *(uint32_t *)(SystemResourcePointer + 0x21) = 0xffffffff;
   SystemResourcePointer[0x5a] = 0;
-  if (param_2 == '\0') {
+  if (ConfigurationDataPointer == '\0') {
     PrimaryResourcePointer = (long long *)SystemResourcePointer[0x42];
     SystemResourcePointer[0x42] = 0;
     if (PrimaryResourcePointer != (long long *)0x0) {
@@ -53184,11 +53284,11 @@ void* * FUN_180075030(void* *SystemResourcePointer,char param_2,char param_3)
 
 
 
-void* FUN_180075580(void* SystemResourcePointer,ulong long param_2)
+void* FUN_180075580(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   FUN_1800756e0();
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x300);
   }
   return SystemResourcePointer;
@@ -53196,7 +53296,7 @@ void* FUN_180075580(void* SystemResourcePointer,ulong long param_2)
 
 
 
-uint8_t FUN_1800755c0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+uint8_t FUN_1800755c0(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint8_t unsignedSystemValue1;
@@ -53206,7 +53306,7 @@ uint8_t FUN_1800755c0(long long SystemResourcePointer,void* param_2,void* param_
   
   unsignedSystemValue2 = 0xfffffffffffffffe;
   SetupSystemMemory(&puStack_30);
-  unsignedSystemValue1 = FUN_180063510(SystemResourcePointer + 0x218,&puStack_30,param_3,param_4,unsignedSystemValue2);
+  unsignedSystemValue1 = FUN_180063510(SystemResourcePointer + 0x218,&puStack_30,AdditionalParameter,ConfigurationFlag,unsignedSystemValue2);
   puStack_30 = &SystemGlobalDataReference;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -53220,8 +53320,8 @@ uint8_t FUN_1800755c0(long long SystemResourcePointer,void* param_2,void* param_
 // WARNING: Removing unreachable block (ram,0x000180276fbd)
 
 
-// 函数: void FUN_180075630(long long SystemResourcePointer,void* *param_2)
-void FUN_180075630(long long SystemResourcePointer,void* *param_2)
+// 函数: void FUN_180075630(long long SystemResourcePointer,void* *ConfigurationDataPointer)
+void FUN_180075630(long long SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   void* *pointerToUnsigned1;
@@ -53248,28 +53348,28 @@ void FUN_180075630(long long SystemResourcePointer,void* *param_2)
   unsignedSystemValue11 = *(uint *)(SystemResourcePointer + 0x100) & 0xfbffffff;
   *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue11;
   uStack_30 = 0x180075655;
-  cVar8 = FUN_1800861a0(param_2);
+  cVar8 = FUN_1800861a0(ConfigurationDataPointer);
   if (cVar8 == '\0') {
     *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue11 | 0x4000000;
   }
-  unsignedSystemValue7 = param_2[1];
+  unsignedSystemValue7 = ConfigurationDataPointer[1];
   SecondaryResourcePointer = *(long long **)(SystemResourcePointer + 0x1c8);
-  *(void* *)(SystemResourcePointer + 0x120) = *param_2;
+  *(void* *)(SystemResourcePointer + 0x120) = *ConfigurationDataPointer;
   *(void* *)(SystemResourcePointer + 0x128) = unsignedSystemValue7;
-  unsignedSystemValue7 = param_2[3];
-  *(void* *)(SystemResourcePointer + 0x130) = param_2[2];
+  unsignedSystemValue7 = ConfigurationDataPointer[3];
+  *(void* *)(SystemResourcePointer + 0x130) = ConfigurationDataPointer[2];
   *(void* *)(SystemResourcePointer + 0x138) = unsignedSystemValue7;
-  unsignedSystemValue4 = *(uint32_t *)((long long)param_2 + 0x24);
-  unsignedSystemValue5 = *(uint32_t *)(param_2 + 5);
-  unsignedSystemValue6 = *(uint32_t *)((long long)param_2 + 0x2c);
-  *(uint32_t *)(SystemResourcePointer + 0x140) = *(uint32_t *)(param_2 + 4);
+  unsignedSystemValue4 = *(uint32_t *)((long long)ConfigurationDataPointer + 0x24);
+  unsignedSystemValue5 = *(uint32_t *)(ConfigurationDataPointer + 5);
+  unsignedSystemValue6 = *(uint32_t *)((long long)ConfigurationDataPointer + 0x2c);
+  *(uint32_t *)(SystemResourcePointer + 0x140) = *(uint32_t *)(ConfigurationDataPointer + 4);
   *(uint32_t *)(SystemResourcePointer + 0x144) = unsignedSystemValue4;
   *(uint32_t *)(SystemResourcePointer + 0x148) = unsignedSystemValue5;
   *(uint32_t *)(SystemResourcePointer + 0x14c) = unsignedSystemValue6;
-  unsignedSystemValue4 = *(uint32_t *)((long long)param_2 + 0x34);
-  unsignedSystemValue5 = *(uint32_t *)(param_2 + 7);
-  unsignedSystemValue6 = *(uint32_t *)((long long)param_2 + 0x3c);
-  *(uint32_t *)(SystemResourcePointer + 0x150) = *(uint32_t *)(param_2 + 6);
+  unsignedSystemValue4 = *(uint32_t *)((long long)ConfigurationDataPointer + 0x34);
+  unsignedSystemValue5 = *(uint32_t *)(ConfigurationDataPointer + 7);
+  unsignedSystemValue6 = *(uint32_t *)((long long)ConfigurationDataPointer + 0x3c);
+  *(uint32_t *)(SystemResourcePointer + 0x150) = *(uint32_t *)(ConfigurationDataPointer + 6);
   *(uint32_t *)(SystemResourcePointer + 0x154) = unsignedSystemValue4;
   *(uint32_t *)(SystemResourcePointer + 0x158) = unsignedSystemValue5;
   *(uint32_t *)(SystemResourcePointer + 0x15c) = unsignedSystemValue6;
@@ -53513,8 +53613,8 @@ void FUN_1800756e0(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180075990(long long SystemResourcePointer,long long *param_2)
-void FUN_180075990(long long SystemResourcePointer,long long *param_2)
+// 函数: void FUN_180075990(long long SystemResourcePointer,long long *ConfigurationDataPointer)
+void FUN_180075990(long long SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -53526,8 +53626,8 @@ void FUN_180075990(long long SystemResourcePointer,long long *param_2)
   uint32_t uStack_18;
   long long *plStack_10;
   
-  if (*(long long *)(SystemResourcePointer + 0x1b0) != *param_2) {
-    if (*param_2 == 0) {
+  if (*(long long *)(SystemResourcePointer + 0x1b0) != *ConfigurationDataPointer) {
+    if (*ConfigurationDataPointer == 0) {
       plStack_10 = (long long *)0x0;
       auStack_28[0] = 0;
       uStack_18 = 0;
@@ -53550,12 +53650,12 @@ void FUN_180075990(long long SystemResourcePointer,long long *param_2)
         (**(code **)(*plStack_10 + 0x38))();
       }
     }
-    param_2 = (long long *)*param_2;
-    if (param_2 != (long long *)0x0) {
-      (**(code **)(*param_2 + 0x28))(param_2);
+    ConfigurationDataPointer = (long long *)*ConfigurationDataPointer;
+    if (ConfigurationDataPointer != (long long *)0x0) {
+      (**(code **)(*ConfigurationDataPointer + 0x28))(ConfigurationDataPointer);
     }
     PrimaryResourcePointer = *(long long **)(SystemResourcePointer + 0x1b0);
-    *(long long **)(SystemResourcePointer + 0x1b0) = param_2;
+    *(long long **)(SystemResourcePointer + 0x1b0) = ConfigurationDataPointer;
     if (PrimaryResourcePointer != (long long *)0x0) {
       (**(code **)(*PrimaryResourcePointer + 0x38))();
     }
@@ -53988,7 +54088,7 @@ void FUN_180075ff0(long long *SystemResourcePointer)
 
 
 
-long long * FUN_1800763c0(long long *SystemResourcePointer,long long *param_2)
+long long * FUN_1800763c0(long long *SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   byte *pbVar1;
@@ -54015,20 +54115,20 @@ long long * FUN_1800763c0(long long *SystemResourcePointer,long long *param_2)
   long long *plStackX_10;
   uint32_t unsignedSystemValue21;
   
-  plStackX_10 = param_2;
+  plStackX_10 = ConfigurationDataPointer;
   unsignedSystemValue18 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x300,0x10,9,0,0xfffffffffffffffe);
   PrimaryResourcePointer9 = (long long *)FUN_180075030(unsignedSystemValue18,0,0);
-  *param_2 = (long long)PrimaryResourcePointer9;
+  *ConfigurationDataPointer = (long long)PrimaryResourcePointer9;
   if (PrimaryResourcePointer9 != (long long *)0x0) {
     (**(code **)(*PrimaryResourcePointer9 + 0x28))(PrimaryResourcePointer9);
   }
   unsignedSystemValue21 = 1;
-  *(byte *)(*param_2 + 0xfd) = *(byte *)(*param_2 + 0xfd) & 0xdf;
+  *(byte *)(*ConfigurationDataPointer + 0xfd) = *(byte *)(*ConfigurationDataPointer + 0xfd) & 0xdf;
   localMemoryPointer1 = SystemResourcePointer[0x18];
-  localResourceOffset = *param_2;
+  localResourceOffset = *ConfigurationDataPointer;
   *(long long *)(localResourceOffset + 0xb8) = SystemResourcePointer[0x17];
   *(long long *)(localResourceOffset + 0xc0) = localMemoryPointer1;
-  *(byte *)(*param_2 + 0xfd) = *(byte *)(*param_2 + 0xfd) & 0xbf;
+  *(byte *)(*ConfigurationDataPointer + 0xfd) = *(byte *)(*ConfigurationDataPointer + 0xfd) & 0xbf;
   unsignedSystemValue2 = *(uint32_t *)((long long)SystemResourcePointer + 0xcc);
   localMemoryPointer1 = SystemResourcePointer[0x1a];
   unsignedSystemValue4 = *(uint32_t *)((long long)SystemResourcePointer + 0xd4);
@@ -54036,7 +54136,7 @@ long long * FUN_1800763c0(long long *SystemResourcePointer,long long *param_2)
   unsignedSystemValue5 = *(uint32_t *)((long long)SystemResourcePointer + 0xdc);
   localMemoryPointer3 = SystemResourcePointer[0x1c];
   unsignedSystemValue6 = *(uint32_t *)((long long)SystemResourcePointer + 0xe4);
-  localResourceOffset = *param_2;
+  localResourceOffset = *ConfigurationDataPointer;
   *(int *)(localResourceOffset + 200) = (int)SystemResourcePointer[0x19];
   *(uint32_t *)(localResourceOffset + 0xcc) = unsignedSystemValue2;
   *(int *)(localResourceOffset + 0xd0) = (int)localMemoryPointer1;
@@ -54046,31 +54146,31 @@ long long * FUN_1800763c0(long long *SystemResourcePointer,long long *param_2)
   *(int *)(localResourceOffset + 0xe0) = (int)localMemoryPointer3;
   *(uint32_t *)(localResourceOffset + 0xe4) = unsignedSystemValue6;
   if ((*(byte *)((long long)SystemResourcePointer + 0xfd) & 0x20) == 0) {
-    FUN_180075990(*param_2,SystemResourcePointer + 0x36);
+    FUN_180075990(*ConfigurationDataPointer,SystemResourcePointer + 0x36);
   }
   else {
-    localResourceOffset = *param_2;
+    localResourceOffset = *ConfigurationDataPointer;
     plStackX_8 = SystemResourcePointer;
     (**(code **)(*SystemResourcePointer + 0x28))(SystemResourcePointer);
     FUN_180075990(localResourceOffset,&plStackX_8);
     (**(code **)(*SystemResourcePointer + 0x38))(SystemResourcePointer);
   }
-  *(long long *)(*param_2 + 0xa8) = SystemResourcePointer[0x15];
-  pbVar1 = (byte *)(*param_2 + 0xfd);
-  *pbVar1 = *pbVar1 ^ (*(byte *)(*param_2 + 0xfd) ^ *(byte *)((long long)SystemResourcePointer + 0xfd)) & 2;
-  *(int *)(*param_2 + 0x100) = (int)SystemResourcePointer[0x20];
+  *(long long *)(*ConfigurationDataPointer + 0xa8) = SystemResourcePointer[0x15];
+  pbVar1 = (byte *)(*ConfigurationDataPointer + 0xfd);
+  *pbVar1 = *pbVar1 ^ (*(byte *)(*ConfigurationDataPointer + 0xfd) ^ *(byte *)((long long)SystemResourcePointer + 0xfd)) & 2;
+  *(int *)(*ConfigurationDataPointer + 0x100) = (int)SystemResourcePointer[0x20];
   localMemoryPointer1 = SystemResourcePointer[0x48];
-  localResourceOffset = *param_2;
+  localResourceOffset = *ConfigurationDataPointer;
   *(long long *)(localResourceOffset + 0x238) = SystemResourcePointer[0x47];
   *(long long *)(localResourceOffset + 0x240) = localMemoryPointer1;
   localMemoryPointer1 = SystemResourcePointer[0x4a];
-  localResourceOffset = *param_2;
+  localResourceOffset = *ConfigurationDataPointer;
   *(long long *)(localResourceOffset + 0x248) = SystemResourcePointer[0x49];
   *(long long *)(localResourceOffset + 0x250) = localMemoryPointer1;
   unsignedSystemValue2 = *(uint32_t *)((long long)SystemResourcePointer + 0x2ac);
   localMemoryPointer1 = SystemResourcePointer[0x56];
   unsignedSystemValue4 = *(uint32_t *)((long long)SystemResourcePointer + 0x2b4);
-  localResourceOffset = *param_2;
+  localResourceOffset = *ConfigurationDataPointer;
   *(int *)(localResourceOffset + 0x2a8) = (int)SystemResourcePointer[0x55];
   *(uint32_t *)(localResourceOffset + 0x2ac) = unsignedSystemValue2;
   *(int *)(localResourceOffset + 0x2b0) = (int)localMemoryPointer1;
@@ -54078,28 +54178,28 @@ long long * FUN_1800763c0(long long *SystemResourcePointer,long long *param_2)
   unsignedSystemValue2 = *(uint32_t *)((long long)SystemResourcePointer + 700);
   localMemoryPointer1 = SystemResourcePointer[0x58];
   unsignedSystemValue4 = *(uint32_t *)((long long)SystemResourcePointer + 0x2c4);
-  localResourceOffset = *param_2;
+  localResourceOffset = *ConfigurationDataPointer;
   *(int *)(localResourceOffset + 0x2b8) = (int)SystemResourcePointer[0x57];
   *(uint32_t *)(localResourceOffset + 700) = unsignedSystemValue2;
   *(int *)(localResourceOffset + 0x2c0) = (int)localMemoryPointer1;
   *(uint32_t *)(localResourceOffset + 0x2c4) = unsignedSystemValue4;
-  *(int *)(*param_2 + 0x108) = (int)SystemResourcePointer[0x21];
-  if ((long long *)(*param_2 + 0x218) != SystemResourcePointer + 0x43) {
-    FUN_1800588c0((long long *)(*param_2 + 0x218),SystemResourcePointer[0x43],SystemResourcePointer[0x44]);
+  *(int *)(*ConfigurationDataPointer + 0x108) = (int)SystemResourcePointer[0x21];
+  if ((long long *)(*ConfigurationDataPointer + 0x218) != SystemResourcePointer + 0x43) {
+    FUN_1800588c0((long long *)(*ConfigurationDataPointer + 0x218),SystemResourcePointer[0x43],SystemResourcePointer[0x44]);
   }
   pointerToUnsigned20 = &SystemStringTemplate;
   if ((void* *)SystemResourcePointer[3] != (void* *)0x0) {
     pointerToUnsigned20 = (void* *)SystemResourcePointer[3];
   }
-  (**(code **)(*(long long *)(*param_2 + 0x10) + 0x10))((long long *)(*param_2 + 0x10),pointerToUnsigned20);
-  *(uint8_t *)(*param_2 + 0xf6) = *(uint8_t *)((long long)SystemResourcePointer + 0xf6);
+  (**(code **)(*(long long *)(*ConfigurationDataPointer + 0x10) + 0x10))((long long *)(*ConfigurationDataPointer + 0x10),pointerToUnsigned20);
+  *(uint8_t *)(*ConfigurationDataPointer + 0xf6) = *(uint8_t *)((long long)SystemResourcePointer + 0xf6);
   unsignedSystemValue18 = *(void* *)((long long)SystemResourcePointer + 0x27c);
   unsignedSystemValue7 = *(void* *)((long long)SystemResourcePointer + 0x284);
   unsignedSystemValue8 = *(void* *)((long long)SystemResourcePointer + 0x28c);
   unsignedSystemValue9 = *(void* *)((long long)SystemResourcePointer + 0x294);
   unsignedSystemValue10 = *(void* *)((long long)SystemResourcePointer + 0x29c);
   unsignedSystemValue2 = *(uint32_t *)((long long)SystemResourcePointer + 0x2a4);
-  localResourceOffset = *param_2;
+  localResourceOffset = *ConfigurationDataPointer;
   *(void* *)(localResourceOffset + 0x274) = *(void* *)((long long)SystemResourcePointer + 0x274);
   *(void* *)(localResourceOffset + 0x27c) = unsignedSystemValue18;
   *(void* *)(localResourceOffset + 0x284) = unsignedSystemValue7;
@@ -54107,8 +54207,8 @@ long long * FUN_1800763c0(long long *SystemResourcePointer,long long *param_2)
   *(void* *)(localResourceOffset + 0x294) = unsignedSystemValue9;
   *(void* *)(localResourceOffset + 0x29c) = unsignedSystemValue10;
   *(uint32_t *)(localResourceOffset + 0x2a4) = unsignedSystemValue2;
-  *(uint8_t *)(*param_2 + 0xff) = *(uint8_t *)((long long)SystemResourcePointer + 0xff);
-  *(int *)(*param_2 + 0x270) = (int)SystemResourcePointer[0x4e];
+  *(uint8_t *)(*ConfigurationDataPointer + 0xff) = *(uint8_t *)((long long)SystemResourcePointer + 0xff);
+  *(int *)(*ConfigurationDataPointer + 0x270) = (int)SystemResourcePointer[0x4e];
   localMemoryPointer1 = SystemResourcePointer[0x25];
   localMemoryPointer2 = SystemResourcePointer[0x26];
   localMemoryPointer3 = SystemResourcePointer[0x27];
@@ -54116,7 +54216,7 @@ long long * FUN_1800763c0(long long *SystemResourcePointer,long long *param_2)
   localMemoryPointer5 = SystemResourcePointer[0x29];
   localMemoryPointer6 = SystemResourcePointer[0x2a];
   localMemoryPointer7 = SystemResourcePointer[0x2b];
-  localResourceOffset = *param_2;
+  localResourceOffset = *ConfigurationDataPointer;
   *(long long *)(localResourceOffset + 0x120) = SystemResourcePointer[0x24];
   *(long long *)(localResourceOffset + 0x128) = localMemoryPointer1;
   *(long long *)(localResourceOffset + 0x130) = localMemoryPointer2;
@@ -54136,7 +54236,7 @@ long long * FUN_1800763c0(long long *SystemResourcePointer,long long *param_2)
   unsignedSystemValue5 = *(uint32_t *)((long long)SystemResourcePointer + 0x194);
   localMemoryPointer7 = SystemResourcePointer[0x33];
   unsignedSystemValue6 = *(uint32_t *)((long long)SystemResourcePointer + 0x19c);
-  localResourceOffset = *param_2;
+  localResourceOffset = *ConfigurationDataPointer;
   *(long long *)(localResourceOffset + 0x160) = SystemResourcePointer[0x2c];
   *(long long *)(localResourceOffset + 0x168) = localMemoryPointer1;
   *(long long *)(localResourceOffset + 0x170) = localMemoryPointer2;
@@ -54149,18 +54249,18 @@ long long * FUN_1800763c0(long long *SystemResourcePointer,long long *param_2)
   *(uint32_t *)(localResourceOffset + 0x194) = unsignedSystemValue5;
   *(int *)(localResourceOffset + 0x198) = (int)localMemoryPointer7;
   *(uint32_t *)(localResourceOffset + 0x19c) = unsignedSystemValue6;
-  pbVar1 = (byte *)(*param_2 + 0xfd);
-  *pbVar1 = *pbVar1 ^ (*(byte *)(*param_2 + 0xfd) ^ *(byte *)((long long)SystemResourcePointer + 0xfd)) & 1;
-  *(uint8_t *)(*param_2 + 0xf7) = *(uint8_t *)((long long)SystemResourcePointer + 0xf7);
-  *(int *)(*param_2 + 0x208) = (int)SystemResourcePointer[0x41];
-  *(int *)(*param_2 + 0x1f8) = (int)SystemResourcePointer[0x3f];
-  *(uint32_t *)(*param_2 + 0x1fc) = *(uint32_t *)((long long)SystemResourcePointer + 0x1fc);
-  *(int *)(*param_2 + 0x200) = (int)SystemResourcePointer[0x40];
-  *(uint32_t *)(*param_2 + 0x204) = *(uint32_t *)((long long)SystemResourcePointer + 0x204);
-  *(int *)(*param_2 + 0x2d8) = (int)SystemResourcePointer[0x5b];
+  pbVar1 = (byte *)(*ConfigurationDataPointer + 0xfd);
+  *pbVar1 = *pbVar1 ^ (*(byte *)(*ConfigurationDataPointer + 0xfd) ^ *(byte *)((long long)SystemResourcePointer + 0xfd)) & 1;
+  *(uint8_t *)(*ConfigurationDataPointer + 0xf7) = *(uint8_t *)((long long)SystemResourcePointer + 0xf7);
+  *(int *)(*ConfigurationDataPointer + 0x208) = (int)SystemResourcePointer[0x41];
+  *(int *)(*ConfigurationDataPointer + 0x1f8) = (int)SystemResourcePointer[0x3f];
+  *(uint32_t *)(*ConfigurationDataPointer + 0x1fc) = *(uint32_t *)((long long)SystemResourcePointer + 0x1fc);
+  *(int *)(*ConfigurationDataPointer + 0x200) = (int)SystemResourcePointer[0x40];
+  *(uint32_t *)(*ConfigurationDataPointer + 0x204) = *(uint32_t *)((long long)SystemResourcePointer + 0x204);
+  *(int *)(*ConfigurationDataPointer + 0x2d8) = (int)SystemResourcePointer[0x5b];
   unsignedSystemValue2 = *(uint32_t *)((long long)SystemResourcePointer + 0x2dc);
-  *(uint32_t *)(*param_2 + 0x2dc) = unsignedSystemValue2;
-  localResourceOffset = *param_2;
+  *(uint32_t *)(*ConfigurationDataPointer + 0x2dc) = unsignedSystemValue2;
+  localResourceOffset = *ConfigurationDataPointer;
   PrimaryResourcePointer9 = (long long *)SystemResourcePointer[0x4d];
   if (PrimaryResourcePointer9 != (long long *)0x0) {
     plStackX_8 = PrimaryResourcePointer9;
@@ -54171,15 +54271,15 @@ long long * FUN_1800763c0(long long *SystemResourcePointer,long long *param_2)
   if (plStackX_8 != (long long *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
   }
-  FUN_180076910(*param_2,SystemResourcePointer + 0x37);
-  return param_2;
+  FUN_180076910(*ConfigurationDataPointer,SystemResourcePointer + 0x37);
+  return ConfigurationDataPointer;
 }
 
 
 
 
-// 函数: void FUN_180076760(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180076760(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180076760(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180076760(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -54206,7 +54306,7 @@ void FUN_180076760(long long *SystemResourcePointer,void* param_2,void* param_3,
     plStack_18 = (long long *)0x0;
     uStack_28 = 0;
     auStack_30[0] = 0;
-    FUN_18022f2e0(&plStack_40,SystemResourcePointer,0,param_4,unsignedSystemValue2);
+    FUN_18022f2e0(&plStack_40,SystemResourcePointer,0,ConfigurationFlag,unsignedSystemValue2);
     (**(code **)(*SystemResourcePointer + 0x38))(SystemResourcePointer);
     PrimaryResourcePointer = plStack_38;
     *(uint32_t *)(plStack_38 + 2) = 0;
@@ -54258,8 +54358,8 @@ void FUN_180076760(long long *SystemResourcePointer,void* param_2,void* param_3,
 
 
 
-// 函数: void FUN_180076910(long long SystemResourcePointer,long long *param_2)
-void FUN_180076910(long long SystemResourcePointer,long long *param_2)
+// 函数: void FUN_180076910(long long SystemResourcePointer,long long *ConfigurationDataPointer)
+void FUN_180076910(long long SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   byte bVar1;
@@ -54270,7 +54370,7 @@ void FUN_180076910(long long SystemResourcePointer,long long *param_2)
   long long localSystemFlags;
   long long *plocalDataPointer;
   
-  if (*param_2 != *(long long *)(SystemResourcePointer + 0x1b8)) {
+  if (*ConfigurationDataPointer != *(long long *)(SystemResourcePointer + 0x1b8)) {
     if (*(char *)(SystemResourcePointer + 0xb1) != '\0') {
                     // WARNING: Subroutine does not return
       SystemDataOperation();
@@ -54423,7 +54523,7 @@ void* FUN_180076b90(long long SystemResourcePointer)
 
 
 
-int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
+int FUN_180076c50(long long SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -54458,14 +54558,14 @@ int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
   
   unsignedSystemValue16 = 0xfffffffffffffffe;
   systemValue = 0;
-  if (((*(long long *)(SystemResourcePointer + 0x1b8) != 0) && (systemValue = 0, (*(byte *)(param_2 + 1) & 4) == 0)) &&
-     (*(char*)((long long)param_2 + 0x12) == '\0')) {
+  if (((*(long long *)(SystemResourcePointer + 0x1b8) != 0) && (systemValue = 0, (*(byte *)(ConfigurationDataPointer + 1) & 4) == 0)) &&
+     (*(char*)((long long)ConfigurationDataPointer + 0x12) == '\0')) {
     systemValue = FUN_18022d470();
   }
-  if ((*(byte *)(param_2 + 1) & 0x20) == 0) {
+  if ((*(byte *)(ConfigurationDataPointer + 1) & 0x20) == 0) {
     cVar4 = FUN_180076b90(SystemResourcePointer);
     if (cVar4 == '\0') {
-      if ((char)param_2[2] != '\0') {
+      if ((char)ConfigurationDataPointer[2] != '\0') {
         puStack_80 = (ulong long *)0x0;
         plStack_78 = (long long *)0x0;
         pcStack_70 = (code *)0x0;
@@ -54478,17 +54578,17 @@ int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
       cVar4 = FUN_180076b90(SystemResourcePointer);
       if (cVar4 == '\0') {
         systemValue = systemValue + 1;
-        if (*param_2 != 0) {
+        if (*ConfigurationDataPointer != 0) {
           uStackX_8 = SystemResourcePointer;
-          InitializeSystemHandle(*param_2,&uStackX_8);
+          InitializeSystemHandle(*ConfigurationDataPointer,&uStackX_8);
         }
       }
     }
-    else if ((char)param_2[2] != '\0') {
+    else if ((char)ConfigurationDataPointer[2] != '\0') {
       FUN_18007b1e0(SystemResourcePointer,0);
     }
   }
-  if ((*(byte *)(param_2 + 1) & 0x10) == 0) {
+  if ((*(byte *)(ConfigurationDataPointer + 1) & 0x10) == 0) {
     return systemValue;
   }
   uStack_60 = 0;
@@ -54512,7 +54612,7 @@ int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
   if ((unsignedSystemValue13 & 1) != 0) {
     unsignedSystemValue11 = (ulong long)unsignedSystemValue6 | 0x400000000;
   }
-  localResourcePointer = param_2[9];
+  localResourcePointer = ConfigurationDataPointer[9];
   if (localResourcePointer != 0) {
     PrimaryResourcePointer = (long long *)(*(long long *)(localResourcePointer + 8) + *(ulong long *)(localResourcePointer + 0x10) * 8);
     punsignedSystemValue12 = (ulong long *)*PrimaryResourcePointer;
@@ -54526,22 +54626,22 @@ int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
     }
     if (puStack_80 != punsignedSystemValue12) goto LAB_180076feb;
   }
-  PrimaryResourcePointer = param_2 + 5;
-  localResourcePointer = param_2[7] - *PrimaryResourcePointer;
+  PrimaryResourcePointer = ConfigurationDataPointer + 5;
+  localResourcePointer = ConfigurationDataPointer[7] - *PrimaryResourcePointer;
   if ((ulong long)(localResourcePointer / 0x18) < 0x100) {
-    localDataPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x1800,(char)param_2[8]);
+    localDataPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x1800,(char)ConfigurationDataPointer[8]);
     localResourcePointer = *PrimaryResourcePointer;
-    if (localResourcePointer != param_2[6]) {
+    if (localResourcePointer != ConfigurationDataPointer[6]) {
                     // WARNING: Subroutine does not return
-      memmove(localDataPointer,localResourcePointer,param_2[6] - localResourcePointer);
+      memmove(localDataPointer,localResourcePointer,ConfigurationDataPointer[6] - localResourcePointer);
     }
     if (localResourcePointer != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
     }
     *PrimaryResourcePointer = localDataPointer;
-    param_2[6] = localDataPointer;
-    param_2[7] = localDataPointer + 0x1800;
+    ConfigurationDataPointer[6] = localDataPointer;
+    ConfigurationDataPointer[7] = localDataPointer + 0x1800;
     localResourcePointer = 0;
   }
   systemStackPointer = &uStackX_8;
@@ -54554,8 +54654,8 @@ int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
   if (cVar4 == '\0') {
     systemValue = systemValue + 1;
   }
-  param_2[6] = *PrimaryResourcePointer;
-  localResourcePointer = param_2[9];
+  ConfigurationDataPointer[6] = *PrimaryResourcePointer;
+  localResourcePointer = ConfigurationDataPointer[9];
   unsignedSystemValue14 = unsignedSystemValue11 % (ulong long)*(uint *)(localResourcePointer + 0x10);
   for (punsignedSystemValue12 = *(ulong long **)(*(long long *)(localResourcePointer + 8) + unsignedSystemValue14 * 8); punsignedSystemValue12 != (ulong long *)0x0
       ; punsignedSystemValue12 = (ulong long *)punsignedSystemValue12[1]) {
@@ -54774,7 +54874,7 @@ LAB_18007738d:
 
 
 
-void* FUN_180077420(long long SystemResourcePointer,long long param_2)
+void* FUN_180077420(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   uint *pointerToUnsigned1;
@@ -54822,7 +54922,7 @@ void* FUN_180077420(long long SystemResourcePointer,long long param_2)
        *(char *)(*(long long *)(localMemoryPointer3 + 0x1e0) + 0x15 + localMemoryPointer2) != '\x03' &&
        (*(char *)(*(long long *)(localMemoryPointer3 + 0x1e0) + 0x15 + localMemoryPointer2) != '\x04')) &&
       (*(char *)(*(long long *)(localMemoryPointer3 + 0x1e0) + localMemoryPointer2 + 0x15) != '\x02')))) {
-    *(int *)(param_2 + 0x124e8) = *(int *)(param_2 + 0x124e8) + 1;
+    *(int *)(ConfigurationDataPointer + 0x124e8) = *(int *)(ConfigurationDataPointer + 0x124e8) + 1;
   }
   else if (*(char *)(*(long long *)(localMemoryPointer3 + 0x1e0) + localMemoryPointer2 + 0x15) != '\x04') {
     uStack_78 = 0;
@@ -54853,10 +54953,10 @@ void* FUN_180077420(long long SystemResourcePointer,long long param_2)
           if (((localMemoryPointer2 != 0) && (localMemoryPointer1 = *(long long *)(localMemoryPointer2 + 0x370), localMemoryPointer1 != 0)) &&
              ((cVar7 = func_0x0001802434e0(), cVar7 != '\0' &&
               ((*(char *)(localMemoryPointer1 + 0xde) != '\0' &&
-               (bVar5 = true, (*(byte *)(param_2 + 0x1bd8) & 0x20) != 0)))))) {
-            pcVar4 = *(code **)(**(long long **)(param_2 + 0x3580) + 0xb8);
+               (bVar5 = true, (*(byte *)(ConfigurationDataPointer + 0x1bd8) & 0x20) != 0)))))) {
+            pcVar4 = *(code **)(**(long long **)(ConfigurationDataPointer + 0x3580) + 0xb8);
             if (pcVar4 == pcVar15) {
-              localMemoryPointer1 = (*(long long **)(param_2 + 0x3580))[0xda];
+              localMemoryPointer1 = (*(long long **)(ConfigurationDataPointer + 0x3580))[0xda];
             }
             else {
               localMemoryPointer1 = (*pcVar4)();
@@ -54958,7 +55058,7 @@ void FUN_180077710(long long SystemResourcePointer)
 
 
 
-ulong long FUN_180077750(long long SystemResourcePointer,uint *param_2,float *param_3,long long param_4,
+ulong long FUN_180077750(long long SystemResourcePointer,uint *ConfigurationDataPointer,float *AdditionalParameter,long long ConfigurationFlag,
                        long long param_5)
 
 {
@@ -55031,9 +55131,9 @@ ulong long FUN_180077750(long long SystemResourcePointer,uint *param_2,float *pa
   float fStack_90;
   float fStack_8c;
   
-  puStackX_10 = param_2;
-  pfStackX_18 = param_3;
-  lStackX_20 = param_4;
+  puStackX_10 = ConfigurationDataPointer;
+  pfStackX_18 = AdditionalParameter;
+  lStackX_20 = ConfigurationFlag;
   if (*(char *)(SystemResourcePointer + 0xf9) == '\0') {
     unsignedSystemValue24 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0xc0,8,9);
     unsignedSystemValue24 = FUN_180084ea0(unsignedSystemValue24);
@@ -55056,7 +55156,7 @@ ulong long FUN_180077750(long long SystemResourcePointer,uint *param_2,float *pa
     *(uint32_t *)(SystemResourcePointer + 0x2c4) = unsignedSystemValue8;
   }
   unsignedSystemValue25 = (ulong long)*(uint *)(SystemResourcePointer + 0x270);
-  if ((*param_2 & *(uint *)(SystemResourcePointer + 0x270)) == 0) goto FUN_180077ef9;
+  if ((*ConfigurationDataPointer & *(uint *)(SystemResourcePointer + 0x270)) == 0) goto FUN_180077ef9;
   bVar31 = *(byte *)(SystemResourcePointer + 0xfd) & 0x20;
   localSystemHandle7 = SystemResourcePointer;
   if (bVar31 == 0) {
@@ -55083,10 +55183,10 @@ FUN_180077ef9:
     if (*(int *)(localSystemHandle7 + 0x1fc) * 3 == 0) goto LAB_180077847;
 LAB_180077879:
     cVar21 = func_0x0001800854e0(SystemResourcePointer);
-    if ((cVar21 == '\0') || (param_4 == 0)) {
+    if ((cVar21 == '\0') || (ConfigurationFlag == 0)) {
       FUN_18007b1e0(SystemResourcePointer,0);
       if ((*(byte *)(SystemResourcePointer + 0xfe) & 4) == 0) {
-        unsignedSystemValue24 = FUN_180077420(SystemResourcePointer,param_2);
+        unsignedSystemValue24 = FUN_180077420(SystemResourcePointer,ConfigurationDataPointer);
         bVar31 = (char)unsignedSystemValue24 << 2;
         bVar22 = bVar31 | *(byte *)(SystemResourcePointer + 0xfe) & 0xfb;
         unsignedSystemValue25 = CONCAT71((int7)((ulong long)unsignedSystemValue24 >> 8),bVar22);
@@ -55115,11 +55215,11 @@ LAB_180077879:
           *(uint8_t *)((long long)pointerToUnsigned26 + 0x24) = 0;
           *(void* **)(SystemResourcePointer + 600) = pointerToUnsigned26;
         }
-        param_3 = pfStackX_18;
+        AdditionalParameter = pfStackX_18;
         if (*(int *)(pointerToUnsigned26 + 4) != systemCounter3) {
           *(int *)(pointerToUnsigned26 + 4) = systemCounter3;
           FUN_180079270(SystemResourcePointer,param_5);
-          param_3 = pfStackX_18;
+          AdditionalParameter = pfStackX_18;
           if (((byte)(unsignedSystemValue6 >> 0x19) & 1) != 0) {
             if ((*(uint *)(SystemResourcePointer + 0x100) & 0x800) != 0) {
               FUN_18007ee70(SystemResourcePointer);
@@ -55185,7 +55285,7 @@ LAB_180077879:
               bVar31 = func_0x00018022d300();
               *(byte *)(localSystemHandle8 + 0x38c) = bVar31;
             }
-            param_2 = puStackX_10;
+            ConfigurationDataPointer = puStackX_10;
             localSystemHandle7 = *(long long *)(localSystemHandle7 + 0x1e0);
             *pointerToUnsigned26 = *(void* *)(localSystemHandle7 + (ulong long)bVar31 * 0x18);
             pointerToUnsigned26[1] = *(void* *)(localSystemHandle7 + 8 + (ulong long)bVar31 * 0x18);
@@ -55262,25 +55362,25 @@ LAB_180077879:
               pointerToUnsigned35 = *(uint **)(puStackX_10 + 10);
             }
             FUN_180080e90(pointerToUnsigned35 + 0xce2,pointerToUnsigned29,apuStack_128);
-            param_3 = pfStackX_18;
-            param_4 = lStackX_20;
+            AdditionalParameter = pfStackX_18;
+            ConfigurationFlag = lStackX_20;
           }
         }
       }
     }
     if ((*(uint *)(SystemResourcePointer + 0x100) & 0x4000000) != 0) {
-      fVar9 = *param_3;
-      fVar10 = param_3[1];
-      fVar11 = param_3[2];
-      fVar12 = param_3[3];
-      fVar13 = param_3[4];
-      fVar14 = param_3[5];
-      fVar15 = param_3[6];
-      fVar16 = param_3[7];
-      fVar17 = param_3[8];
-      fVar18 = param_3[9];
-      fVar19 = param_3[10];
-      fVar20 = param_3[0xb];
+      fVar9 = *AdditionalParameter;
+      fVar10 = AdditionalParameter[1];
+      fVar11 = AdditionalParameter[2];
+      fVar12 = AdditionalParameter[3];
+      fVar13 = AdditionalParameter[4];
+      fVar14 = AdditionalParameter[5];
+      fVar15 = AdditionalParameter[6];
+      fVar16 = AdditionalParameter[7];
+      fVar17 = AdditionalParameter[8];
+      fVar18 = AdditionalParameter[9];
+      fVar19 = AdditionalParameter[10];
+      fVar20 = AdditionalParameter[0xb];
       fVar1 = *(float *)(SystemResourcePointer + 0x124);
       fVar2 = *(float *)(SystemResourcePointer + 0x120);
       fVar3 = *(float *)(SystemResourcePointer + 0x128);
@@ -55305,14 +55405,14 @@ LAB_180077879:
       fStack_a0 = fVar3 * fVar15 + fVar2 * fVar11 + fVar1 * fVar19;
       fStack_9c = fVar3 * fVar16 + fVar2 * fVar12 + fVar1 * fVar20;
       fVar1 = *(float *)(SystemResourcePointer + 0x158);
-      fStack_98 = fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17 + param_3[0xc];
-      fStack_94 = fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18 + param_3[0xd];
-      fStack_90 = fVar4 * fVar15 + fVar5 * fVar11 + fVar1 * fVar19 + param_3[0xe];
-      fStack_8c = fVar4 * fVar16 + fVar5 * fVar12 + fVar1 * fVar20 + param_3[0xf];
-      param_3 = &fStack_c8;
+      fStack_98 = fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17 + AdditionalParameter[0xc];
+      fStack_94 = fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18 + AdditionalParameter[0xd];
+      fStack_90 = fVar4 * fVar15 + fVar5 * fVar11 + fVar1 * fVar19 + AdditionalParameter[0xe];
+      fStack_8c = fVar4 * fVar16 + fVar5 * fVar12 + fVar1 * fVar20 + AdditionalParameter[0xf];
+      AdditionalParameter = &fStack_c8;
     }
-    FUN_180085190(&uStack_108,param_2 + 0xc,*(uint8_t *)(SystemResourcePointer + 0xf7),param_3);
-    unsignedSystemValue6 = param_2[0x6f6];
+    FUN_180085190(&uStack_108,ConfigurationDataPointer + 0xc,*(uint8_t *)(SystemResourcePointer + 0xf7),AdditionalParameter);
+    unsignedSystemValue6 = ConfigurationDataPointer[0x6f6];
     systemCounter3 = *(int *)(SystemStatusFlagsPointer + 0x224);
     if (((*(byte *)(SystemResourcePointer + 0xfd) & 1) == 0) &&
        ((*(int *)(SystemResourcePointer + 0x1d0) == systemCounter3 || (*(int *)(SystemResourcePointer + 0x1d0) == systemCounter3 + -1)))) {
@@ -55333,7 +55433,7 @@ LAB_180077879:
       *(void* *)(SystemResourcePointer + 400) = uStack_d8;
       *(void* *)(SystemResourcePointer + 0x198) = uStack_d0;
     }
-    unsignedSystemValue25 = FUN_18024a290(param_2,SystemResourcePointer,&uStack_108,param_4,param_5);
+    unsignedSystemValue25 = FUN_18024a290(ConfigurationDataPointer,SystemResourcePointer,&uStack_108,ConfigurationFlag,param_5);
     *(byte *)(SystemResourcePointer + 0xfd) = *(byte *)(SystemResourcePointer + 0xfd) & 0xfe;
     *(int *)(SystemResourcePointer + 0x1d0) = systemCounter3;
     if (bVar22 != 0) {
@@ -56354,7 +56454,7 @@ uint8_t FUN_180077ef9(void)
 
 
 
-ulong long FUN_180077f20(long long SystemResourcePointer,void* param_2,uint32_t param_3,float *param_4,
+ulong long FUN_180077f20(long long SystemResourcePointer,void* ConfigurationDataPointer,uint32_t AdditionalParameter,float *ConfigurationFlag,
                        uint32_t param_5,uint32_t param_6)
 
 {
@@ -56420,31 +56520,31 @@ LAB_180077fcf:
         *(byte *)(SystemResourcePointer + 0xfe) = *(byte *)(SystemResourcePointer + 0xfe) & 0xfb;
       }
       if ((*(uint *)(SystemResourcePointer + 0x100) & 0x4000000) == 0) {
-        uStack_88 = *(void* *)param_4;
-        uStack_80._0_4_ = (float)*(void* *)(param_4 + 2);
-        uStack_78 = *(void* *)(param_4 + 4);
-        uStack_70._0_4_ = (float)*(void* *)(param_4 + 6);
-        uStack_68 = *(void* *)(param_4 + 8);
-        uStack_60._0_4_ = (float)*(void* *)(param_4 + 10);
-        fStack_58 = param_4[0xc];
-        fStack_54 = param_4[0xd];
-        fStack_50 = param_4[0xe];
+        uStack_88 = *(void* *)ConfigurationFlag;
+        uStack_80._0_4_ = (float)*(void* *)(ConfigurationFlag + 2);
+        uStack_78 = *(void* *)(ConfigurationFlag + 4);
+        uStack_70._0_4_ = (float)*(void* *)(ConfigurationFlag + 6);
+        uStack_68 = *(void* *)(ConfigurationFlag + 8);
+        uStack_60._0_4_ = (float)*(void* *)(ConfigurationFlag + 10);
+        fStack_58 = ConfigurationFlag[0xc];
+        fStack_54 = ConfigurationFlag[0xd];
+        fStack_50 = ConfigurationFlag[0xe];
       }
       else {
-        fVar10 = param_4[4];
-        fVar11 = param_4[5];
-        fVar12 = param_4[6];
+        fVar10 = ConfigurationFlag[4];
+        fVar11 = ConfigurationFlag[5];
+        fVar12 = ConfigurationFlag[6];
         fVar1 = *(float *)(SystemResourcePointer + 0x120);
         fVar2 = *(float *)(SystemResourcePointer + 0x128);
         fVar3 = *(float *)(SystemResourcePointer + 0x134);
         fVar4 = *(float *)(SystemResourcePointer + 0x144);
         fVar5 = *(float *)(SystemResourcePointer + 0x154);
-        fVar13 = *param_4;
-        fVar14 = param_4[1];
-        fVar15 = param_4[2];
-        fVar16 = param_4[8];
-        fVar17 = param_4[9];
-        fVar18 = param_4[10];
+        fVar13 = *ConfigurationFlag;
+        fVar14 = ConfigurationFlag[1];
+        fVar15 = ConfigurationFlag[2];
+        fVar16 = ConfigurationFlag[8];
+        fVar17 = ConfigurationFlag[9];
+        fVar18 = ConfigurationFlag[10];
         fVar6 = *(float *)(SystemResourcePointer + 0x124);
         fVar7 = *(float *)(SystemResourcePointer + 0x130);
         uStack_80._0_4_ = fVar6 * fVar12 + fVar1 * fVar15 + fVar2 * fVar18;
@@ -56461,15 +56561,15 @@ LAB_180077fcf:
                              fVar3 * fVar10 + fVar7 * fVar13 + fVar8 * fVar16);
         uStack_68 = CONCAT44(fVar4 * fVar11 + fVar9 * fVar14 + fVar1 * fVar17,
                              fVar4 * fVar10 + fVar9 * fVar13 + fVar1 * fVar16);
-        fStack_58 = fVar5 * fVar10 + fVar2 * fVar13 + fVar6 * fVar16 + param_4[0xc];
-        fStack_54 = fVar5 * fVar11 + fVar2 * fVar14 + fVar6 * fVar17 + param_4[0xd];
-        fStack_50 = fVar5 * fVar12 + fVar2 * fVar15 + fVar6 * fVar18 + param_4[0xe];
+        fStack_58 = fVar5 * fVar10 + fVar2 * fVar13 + fVar6 * fVar16 + ConfigurationFlag[0xc];
+        fStack_54 = fVar5 * fVar11 + fVar2 * fVar14 + fVar6 * fVar17 + ConfigurationFlag[0xd];
+        fStack_50 = fVar5 * fVar12 + fVar2 * fVar15 + fVar6 * fVar18 + ConfigurationFlag[0xe];
       }
       uStack_4c = 0x3f800000;
       uStack_60 = (ulong long)(uint)(float)uStack_60;
       uStack_70 = (ulong long)(uint)(float)uStack_70;
       uStack_80 = (ulong long)(uint)(float)uStack_80;
-      unsignedSystemValue21 = FUN_180252ca0(param_2,SystemResourcePointer,param_3,&uStack_88,param_5,param_6);
+      unsignedSystemValue21 = FUN_180252ca0(ConfigurationDataPointer,SystemResourcePointer,AdditionalParameter,&uStack_88,param_5,param_6);
       return unsignedSystemValue21;
     }
     in_RAX = 0;
@@ -56485,8 +56585,8 @@ LAB_180077fcf:
 
 
 
-// 函数: void FUN_180078051(void* SystemResourcePointer,void* param_2,float param_3,float param_4)
-void FUN_180078051(void* SystemResourcePointer,void* param_2,float param_3,float param_4)
+// 函数: void FUN_180078051(void* SystemResourcePointer,void* ConfigurationDataPointer,float AdditionalParameter,float ConfigurationFlag)
+void FUN_180078051(void* SystemResourcePointer,void* ConfigurationDataPointer,float AdditionalParameter,float ConfigurationFlag)
 
 {
   float fVar1;
@@ -56535,10 +56635,10 @@ void FUN_180078051(void* SystemResourcePointer,void* param_2,float param_3,float
   fVar9 = unaff_RDI[10];
   fVar1 = *(float *)(unaff_RBX + 0x124);
   fVar2 = *(float *)(unaff_RBX + 0x130);
-  fStack0000000000000030 = fVar1 * in_XMM4_Da + (float)SystemResourcePointer * fVar4 + (float)param_2 * fVar7;
+  fStack0000000000000030 = fVar1 * in_XMM4_Da + (float)SystemResourcePointer * fVar4 + (float)ConfigurationDataPointer * fVar7;
   fStack0000000000000034 =
        fVar1 * in_XMM4_Db + (float)((ulong long)SystemResourcePointer >> 0x20) * fVar5 +
-       (float)((ulong long)param_2 >> 0x20) * fVar8;
+       (float)((ulong long)ConfigurationDataPointer >> 0x20) * fVar8;
   fStack0000000000000038 = fVar1 * in_XMM4_Dc + in_XMM0_Dc * fVar6 + in_XMM1_Dc * fVar9;
   fVar1 = *(float *)(unaff_RBX + 0x138);
   fVar3 = *(float *)(unaff_RBX + 0x140);
@@ -56547,13 +56647,13 @@ void FUN_180078051(void* SystemResourcePointer,void* param_2,float param_3,float
   fStack0000000000000048 = in_XMM5_Da * in_XMM4_Dc + fVar2 * fVar6 + fVar1 * fVar9;
   fVar1 = *(float *)(unaff_RBX + 0x148);
   fVar2 = *(float *)(unaff_RBX + 0x150);
-  fStack0000000000000050 = param_4 * in_XMM4_Da + fVar3 * fVar4 + fVar1 * fVar7;
-  fStack0000000000000054 = param_4 * in_XMM4_Db + fVar3 * fVar5 + fVar1 * fVar8;
-  fStack0000000000000058 = param_4 * in_XMM4_Dc + fVar3 * fVar6 + fVar1 * fVar9;
+  fStack0000000000000050 = ConfigurationFlag * in_XMM4_Da + fVar3 * fVar4 + fVar1 * fVar7;
+  fStack0000000000000054 = ConfigurationFlag * in_XMM4_Db + fVar3 * fVar5 + fVar1 * fVar8;
+  fStack0000000000000058 = ConfigurationFlag * in_XMM4_Dc + fVar3 * fVar6 + fVar1 * fVar9;
   fVar1 = *(float *)(unaff_RBX + 0x158);
-  fStack0000000000000060 = param_3 * in_XMM4_Da + fVar2 * fVar4 + fVar1 * fVar7 + unaff_RDI[0xc];
-  fStack0000000000000064 = param_3 * in_XMM4_Db + fVar2 * fVar5 + fVar1 * fVar8 + unaff_RDI[0xd];
-  fStack0000000000000068 = param_3 * in_XMM4_Dc + fVar2 * fVar6 + fVar1 * fVar9 + unaff_RDI[0xe];
+  fStack0000000000000060 = AdditionalParameter * in_XMM4_Da + fVar2 * fVar4 + fVar1 * fVar7 + unaff_RDI[0xc];
+  fStack0000000000000064 = AdditionalParameter * in_XMM4_Db + fVar2 * fVar5 + fVar1 * fVar8 + unaff_RDI[0xd];
+  fStack0000000000000068 = AdditionalParameter * in_XMM4_Dc + fVar2 * fVar6 + fVar1 * fVar9 + unaff_RDI[0xe];
   uStack0000000000000028 = in_stack_000000e8;
   uStack000000000000006c = 0x3f800000;
   uStack000000000000005c = 0;
@@ -56808,8 +56908,8 @@ LAB_1800782e0:
 
 
 
-// 函数: void FUN_180078239(float SystemResourcePointer,float param_2,float param_3,float param_4)
-void FUN_180078239(float SystemResourcePointer,float param_2,float param_3,float param_4)
+// 函数: void FUN_180078239(float SystemResourcePointer,float ConfigurationDataPointer,float AdditionalParameter,float ConfigurationFlag)
+void FUN_180078239(float SystemResourcePointer,float ConfigurationDataPointer,float AdditionalParameter,float ConfigurationFlag)
 
 {
   long long localMemoryPointer;
@@ -56829,10 +56929,10 @@ void FUN_180078239(float SystemResourcePointer,float param_2,float param_3,float
   float in_XMM5_Da;
   float unaff_XMM8_Da;
   
-  fVar10 = (*(float *)(in_RAX + 0x74) * param_2 - param_3 * param_4) * *(float *)(in_RAX + 0x90);
-  func_0x0001800773c0(fVar10,(param_3 * in_XMM4_Da - SystemResourcePointer * param_2) * *(float *)(in_RAX + 0x94)
+  fVar10 = (*(float *)(in_RAX + 0x74) * ConfigurationDataPointer - AdditionalParameter * ConfigurationFlag) * *(float *)(in_RAX + 0x90);
+  func_0x0001800773c0(fVar10,(AdditionalParameter * in_XMM4_Da - SystemResourcePointer * ConfigurationDataPointer) * *(float *)(in_RAX + 0x94)
                              + fVar10 +
-                             (in_XMM5_Da * param_4 - *(float *)(in_RAX + 0x74) * in_XMM4_Da) *
+                             (in_XMM5_Da * ConfigurationFlag - *(float *)(in_RAX + 0x74) * in_XMM4_Da) *
                              *(float *)(in_RAX + 0x98) < unaff_XMM8_Da);
   if (*(long long *)(in_RCX + 0x1b8) == 0) {
 LAB_1800782d4:
@@ -57031,7 +57131,7 @@ void FUN_1800783b0(void)
 
 
 
-void* * FUN_1800784e0(void* *SystemResourcePointer,ulong long param_2)
+void* * FUN_1800784e0(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   void* unsignedSystemValue1;
@@ -57040,7 +57140,7 @@ void* * FUN_1800784e0(void* *SystemResourcePointer,ulong long param_2)
   *SystemResourcePointer = &UNK_180a001e8;
   FUN_180078550();
   FUN_1808fc8a8(SystemResourcePointer + 1,8,7,FUN_180045af0,unsignedSystemValue1);
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x158);
   }
   return SystemResourcePointer;
@@ -57050,8 +57150,8 @@ void* * FUN_1800784e0(void* *SystemResourcePointer,ulong long param_2)
 
 
 
-// 函数: void FUN_180078550(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180078550(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_180078550(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_180078550(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -57122,7 +57222,7 @@ void FUN_180078550(void* *SystemResourcePointer,void* param_2,void* param_3,void
     FUN_180084760(unsignedSystemValue4,SystemResourcePointer + 0x18);
   }
   else {
-    (**(code **)((void* *)*SystemResourcePointer + 0x10))(SystemResourcePointer,0,param_3,param_4,unsignedSystemValue5);
+    (**(code **)((void* *)*SystemResourcePointer + 0x10))(SystemResourcePointer,0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue5);
   }
   return;
 }
@@ -57131,8 +57231,8 @@ void FUN_180078550(void* *SystemResourcePointer,void* param_2,void* param_3,void
 
 
 
-// 函数: void FUN_1800786e0(void* *SystemResourcePointer,long long param_2)
-void FUN_1800786e0(void* *SystemResourcePointer,long long param_2)
+// 函数: void FUN_1800786e0(void* *SystemResourcePointer,long long ConfigurationDataPointer)
+void FUN_1800786e0(void* *SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -57176,7 +57276,7 @@ void FUN_1800786e0(void* *SystemResourcePointer,long long param_2)
   systemId = 0;
   plocalMemoryAddress = SystemResourcePointer + 1;
   do {
-    plocalResourceOffset = (long long *)FUN_1801fd480(param_2,systemId);
+    plocalResourceOffset = (long long *)FUN_1801fd480(ConfigurationDataPointer,systemId);
     if (plocalResourceOffset != (long long *)0x0) {
       plStackX_8 = plocalResourceOffset;
       (**(code **)(*plocalResourceOffset + 0x28))(plocalResourceOffset);
@@ -57186,7 +57286,7 @@ void FUN_1800786e0(void* *SystemResourcePointer,long long param_2)
     if (plStackX_8 != (long long *)0x0) {
       (**(code **)(*plStackX_8 + 0x38))();
     }
-    if ((((*(char *)(param_2 + 0x380) != '\0') && (*(char *)(param_2 + 0x381) == '\0')) &&
+    if ((((*(char *)(ConfigurationDataPointer + 0x380) != '\0') && (*(char *)(ConfigurationDataPointer + 0x381) == '\0')) &&
         (localMemoryPointer = *plocalMemoryAddress, localMemoryPointer != 0)) && ((*(uint *)(localMemoryPointer + 0x328) & 0x200000) == 0)) {
       punsignedSystemValue6 = &SystemStringTemplate;
       if (*(void* **)(localMemoryPointer + 0x18) != (void* *)0x0) {
@@ -57197,7 +57297,7 @@ void FUN_1800786e0(void* *SystemResourcePointer,long long param_2)
     systemId = systemId + 1;
     plocalMemoryAddress = plocalMemoryAddress + 1;
   } while (systemId < 7);
-  unsignedSystemValue4 = FUN_1801fc6c0(param_2,&uStack_58);
+  unsignedSystemValue4 = FUN_1801fc6c0(ConfigurationDataPointer,&uStack_58);
   localMemoryPointer = _DAT_180c8aa00;
   systemId = FUN_180191c00(_DAT_180c8aa00,unsignedSystemValue4);
   if ((systemId == -1) || (localDataPointer = (long long)systemId * 0x68 + *(long long *)(localMemoryPointer + 0x38), localDataPointer == 0)) {
@@ -57215,147 +57315,147 @@ void FUN_1800786e0(void* *SystemResourcePointer,long long param_2)
     localDataPointer = *(long long *)(_DAT_180c8aa00 + 0x38);
   }
   SystemResourcePointer[0x26] = localDataPointer;
-  if ((*(char *)(param_2 + 0x248) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x248) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fc730();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x240);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x240);
   }
   *(uint32_t *)((long long)SystemResourcePointer + 0x114) = unsignedSystemValue2;
-  if ((*(char *)(param_2 + 0x254) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x254) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fc760();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x24c);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x24c);
   }
   *(uint32_t *)(SystemResourcePointer + 0x23) = unsignedSystemValue2;
-  if ((*(char *)(param_2 + 0x2f0) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
-    FUN_1801fca40(*(long long *)(param_2 + 0x3c8),&uStack_58);
+  if ((*(char *)(ConfigurationDataPointer + 0x2f0) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
+    FUN_1801fca40(*(long long *)(ConfigurationDataPointer + 0x3c8),&uStack_58);
     unsignedSystemValue2 = (uint32_t)uStack_58;
     unsignedSystemValue11 = uStack_58._4_4_;
     unsignedSystemValue12 = (uint32_t)uStack_50;
     unsignedSystemValue13 = uStack_50._4_4_;
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x2d0);
-    unsignedSystemValue11 = *(uint32_t *)(param_2 + 0x2d4);
-    unsignedSystemValue12 = *(uint32_t *)(param_2 + 0x2d8);
-    unsignedSystemValue13 = *(uint32_t *)(param_2 + 0x2dc);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x2d0);
+    unsignedSystemValue11 = *(uint32_t *)(ConfigurationDataPointer + 0x2d4);
+    unsignedSystemValue12 = *(uint32_t *)(ConfigurationDataPointer + 0x2d8);
+    unsignedSystemValue13 = *(uint32_t *)(ConfigurationDataPointer + 0x2dc);
   }
   *(uint32_t *)(SystemResourcePointer + 0x20) = unsignedSystemValue2;
   *(uint32_t *)((long long)SystemResourcePointer + 0x104) = unsignedSystemValue11;
   *(uint32_t *)(SystemResourcePointer + 0x21) = unsignedSystemValue12;
   *(uint32_t *)((long long)SystemResourcePointer + 0x10c) = unsignedSystemValue13;
-  if ((*(char *)(param_2 + 0x2fc) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x2fc) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fca90();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x2f4);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x2f4);
   }
   *(uint32_t *)(SystemResourcePointer + 0x22) = unsignedSystemValue2;
-  if ((*(char *)(param_2 + 0x260) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x260) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fcac0();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 600);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 600);
   }
   *(uint32_t *)((long long)SystemResourcePointer + 0x11c) = unsignedSystemValue2;
-  if ((*(char *)(param_2 + 0x26c) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x26c) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fcb00();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x264);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x264);
   }
   *(uint32_t *)(SystemResourcePointer + 0x24) = unsignedSystemValue2;
-  if ((*(char *)(param_2 + 0x278) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x278) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fcb40();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x270);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x270);
   }
   *(uint32_t *)((long long)SystemResourcePointer + 0x124) = unsignedSystemValue2;
-  if ((*(char *)(param_2 + 0x284) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x284) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fcb80();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x27c);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x27c);
   }
   *(uint32_t *)(SystemResourcePointer + 0x25) = unsignedSystemValue2;
-  if ((*(char *)(param_2 + 0x290) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x290) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fc7a0();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x288);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x288);
   }
   *(uint32_t *)(SystemResourcePointer + 0x27) = unsignedSystemValue2;
-  if ((*(char *)(param_2 + 0x29c) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x29c) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fc7d0();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x294);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x294);
   }
   *(uint32_t *)((long long)SystemResourcePointer + 0x13c) = unsignedSystemValue2;
-  if ((*(char *)(param_2 + 0x2a8) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x2a8) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fc800();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x2a0);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x2a0);
   }
   *(uint32_t *)(SystemResourcePointer + 0x28) = unsignedSystemValue2;
-  if ((*(char *)(param_2 + 0x2b4) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x2b4) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fc840();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x2ac);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x2ac);
   }
   *(uint32_t *)((long long)SystemResourcePointer + 0x144) = unsignedSystemValue2;
-  if ((*(char *)(param_2 + 0x2c0) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x2c0) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fc880();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x2b8);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x2b8);
   }
   *(uint32_t *)(SystemResourcePointer + 0x29) = unsignedSystemValue2;
-  if ((*(char *)(param_2 + 0x2cc) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x2cc) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fc8c0();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x2c4);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x2c4);
   }
   *(uint32_t *)((long long)SystemResourcePointer + 0x14c) = unsignedSystemValue2;
-  if ((*(char *)(param_2 + 0x29c) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
+  if ((*(char *)(ConfigurationDataPointer + 0x29c) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     unsignedSystemValue2 = func_0x0001801fc7d0();
   }
   else {
-    unsignedSystemValue2 = *(uint32_t *)(param_2 + 0x294);
+    unsignedSystemValue2 = *(uint32_t *)(ConfigurationDataPointer + 0x294);
   }
   *(uint32_t *)((long long)SystemResourcePointer + 0x13c) = unsignedSystemValue2;
-  *(uint8_t *)((long long)SystemResourcePointer + 0x152) = *(uint8_t *)(param_2 + 0x380);
-  *(uint8_t *)(SystemResourcePointer + 0x2a) = *(uint8_t *)(param_2 + 0x381);
-  if ((*(char *)(param_2 + 0x35c) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
-    FUN_1801fc9f0(*(long long *)(param_2 + 0x3c8),&plStackX_8);
+  *(uint8_t *)((long long)SystemResourcePointer + 0x152) = *(uint8_t *)(ConfigurationDataPointer + 0x380);
+  *(uint8_t *)(SystemResourcePointer + 0x2a) = *(uint8_t *)(ConfigurationDataPointer + 0x381);
+  if ((*(char *)(ConfigurationDataPointer + 0x35c) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
+    FUN_1801fc9f0(*(long long *)(ConfigurationDataPointer + 0x3c8),&plStackX_8);
   }
   else {
-    plStackX_8 = *(long long **)(param_2 + 0x34c);
+    plStackX_8 = *(long long **)(ConfigurationDataPointer + 0x34c);
   }
-  if ((*(char *)(param_2 + 0x348) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
-    FUN_1801fc9a0(*(long long *)(param_2 + 0x3c8),auStackX_10);
-  }
-  else {
-    auStackX_10[0] = *(void* *)(param_2 + 0x338);
-  }
-  if ((*(char *)(param_2 + 0x334) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
-    FUN_1801fc950(*(long long *)(param_2 + 0x3c8),&uStackX_20);
+  if ((*(char *)(ConfigurationDataPointer + 0x348) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
+    FUN_1801fc9a0(*(long long *)(ConfigurationDataPointer + 0x3c8),auStackX_10);
   }
   else {
-    uStackX_20 = *(void* *)(param_2 + 0x324);
+    auStackX_10[0] = *(void* *)(ConfigurationDataPointer + 0x338);
   }
-  if ((*(char *)(param_2 + 800) == '\0') && (*(long long *)(param_2 + 0x3c8) != 0)) {
-    FUN_1801fc900(*(long long *)(param_2 + 0x3c8),&uStack_58);
+  if ((*(char *)(ConfigurationDataPointer + 0x334) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
+    FUN_1801fc950(*(long long *)(ConfigurationDataPointer + 0x3c8),&uStackX_20);
   }
   else {
-    uStack_58 = *(void* **)(param_2 + 0x300);
-    uStack_50 = *(void* *)(param_2 + 0x308);
+    uStackX_20 = *(void* *)(ConfigurationDataPointer + 0x324);
+  }
+  if ((*(char *)(ConfigurationDataPointer + 800) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
+    FUN_1801fc900(*(long long *)(ConfigurationDataPointer + 0x3c8),&uStack_58);
+  }
+  else {
+    uStack_58 = *(void* **)(ConfigurationDataPointer + 0x300);
+    uStack_50 = *(void* *)(ConfigurationDataPointer + 0x308);
   }
   FUN_180084c70(SystemResourcePointer + 8,&uStack_58,&uStackX_20,auStackX_10,&plStackX_8);
   if ((void* *)*SystemResourcePointer == &UNK_180a001e8) {
@@ -57565,195 +57665,195 @@ void FUN_180078c10(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180078c70(uint32_t *SystemResourcePointer,long long *param_2)
-void FUN_180078c70(uint32_t *SystemResourcePointer,long long *param_2)
+// 函数: void FUN_180078c70(uint32_t *SystemResourcePointer,long long *ConfigurationDataPointer)
+void FUN_180078c70(uint32_t *SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   uint32_t unsignedSystemValue1;
   uint32_t *pointerToUnsigned2;
   
   unsignedSystemValue1 = *SystemResourcePointer;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[1];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[2];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[3];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = 0x3f800000;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[5];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[6];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[7];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = 0x3f800000;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[9];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[10];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[0xb];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = 0x3f800000;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[0xd];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[0xe];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[0xf];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = 0x3f800000;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[0x11];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[0x12];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[0x13];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[0x14];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[0x15];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    pointerToUnsigned2 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned2 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned2 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned2 = (uint32_t *)ConfigurationDataPointer[1];
   unsignedSystemValue1 = SystemResourcePointer[0x16];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned2 + (4 - *param_2));
-    *(uint32_t *)param_2[1] = unsignedSystemValue1;
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned2) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned2 + (4 - *ConfigurationDataPointer));
+    *(uint32_t *)ConfigurationDataPointer[1] = unsignedSystemValue1;
   }
   else {
     *pointerToUnsigned2 = unsignedSystemValue1;
   }
-  param_2[1] = param_2[1] + 4;
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
   return;
 }
 
@@ -57789,8 +57889,8 @@ void FUN_1800791a0(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180079270(long long SystemResourcePointer,long long param_2)
-void FUN_180079270(long long SystemResourcePointer,long long param_2)
+// 函数: void FUN_180079270(long long SystemResourcePointer,long long ConfigurationDataPointer)
+void FUN_180079270(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -57855,16 +57955,16 @@ void FUN_180079270(long long SystemResourcePointer,long long param_2)
   *pointerToInteger2 = *pointerToInteger2 + *(int *)(localResourceOffset3 + 0x200);
   UNLOCK();
   localMemoryPointer7 = *(long long *)(SystemResourcePointer + 600);
-  unsignedSystemValue15 = *(uint8_t *)(param_2 + 0x24);
-  unsignedSystemValue32 = *(uint32_t *)(param_2 + 0x20);
-  cVar16 = *(char *)(param_2 + 0xd);
+  unsignedSystemValue15 = *(uint8_t *)(ConfigurationDataPointer + 0x24);
+  unsignedSystemValue32 = *(uint32_t *)(ConfigurationDataPointer + 0x20);
+  cVar16 = *(char *)(ConfigurationDataPointer + 0xd);
   *(uint32_t *)(localMemoryPointer7 + 0x48) = *(uint32_t *)(localMemoryPointer7 + 0x2c);
   *(uint32_t *)(localMemoryPointer7 + 0x50) = *(uint32_t *)(localMemoryPointer7 + 0x4c);
   *(int *)(localMemoryPointer7 + 0x4c) = systemIndex3;
   *(uint8_t *)(localMemoryPointer7 + 0x44) = unsignedSystemValue15;
   *(uint32_t *)(localMemoryPointer7 + 0x2c) = unsignedSystemValue32;
   if (cVar16 != -1) {
-    unsignedSystemValue38 = (int)*(char *)(param_2 + 0xd) + *(int *)(param_2 + 0x18);
+    unsignedSystemValue38 = (int)*(char *)(ConfigurationDataPointer + 0xd) + *(int *)(ConfigurationDataPointer + 0x18);
     pfVar18 = (float *)**(long long **)(SystemResourcePointer + 600);
     unsignedSystemValue36 = unsignedSystemValue38 >> 0xd;
     localMemoryPointer7 = *(long long *)
@@ -57886,7 +57986,7 @@ void FUN_180079270(long long SystemResourcePointer,long long param_2)
     unsignedSystemValue31 = punsignedSystemValue5[1];
     *(void* *)(pfVar18 + 0xc) = *punsignedSystemValue5;
     *(void* *)(pfVar18 + 0xe) = unsignedSystemValue31;
-    localMemoryPointer7 = *(long long *)(param_2 + 0x10);
+    localMemoryPointer7 = *(long long *)(ConfigurationDataPointer + 0x10);
     fVar19 = pfVar18[8];
     fVar20 = pfVar18[9];
     fVar21 = pfVar18[10];
@@ -58701,8 +58801,8 @@ void FUN_1800792ea(void)
 
 
 
-// 函数: void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,float *param_4)
-void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,float *param_4)
+// 函数: void FUN_180079309(long long SystemResourcePointer,uint ConfigurationDataPointer,void* AdditionalParameter,float *ConfigurationFlag)
+void FUN_180079309(long long SystemResourcePointer,uint ConfigurationDataPointer,void* AdditionalParameter,float *ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -58760,36 +58860,36 @@ void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,fl
   void* in_stack_00000058;
   
   SystemResourcePointer = (long long)*(int *)(SystemResourcePointer + 0x250) * 0x128 + SystemResourcePointer;
-  localMemoryPointer5 = *(long long *)(SystemResourcePointer + 8 + (ulong long)(param_2 >> 0xd) * 8);
-  localResourceOffset1 = (ulong long)(param_2 + (param_2 >> 0xd) * -0x2000) * 0x40;
+  localMemoryPointer5 = *(long long *)(SystemResourcePointer + 8 + (ulong long)(ConfigurationDataPointer >> 0xd) * 8);
+  localResourceOffset1 = (ulong long)(ConfigurationDataPointer + (ConfigurationDataPointer >> 0xd) * -0x2000) * 0x40;
   unsignedSystemValue28 = ((void* *)(localMemoryPointer5 + localResourceOffset1))[1];
-  *(void* *)param_4 = *(void* *)(localMemoryPointer5 + localResourceOffset1);
-  *(void* *)(param_4 + 2) = unsignedSystemValue28;
+  *(void* *)ConfigurationFlag = *(void* *)(localMemoryPointer5 + localResourceOffset1);
+  *(void* *)(ConfigurationFlag + 2) = unsignedSystemValue28;
   punsignedSystemValue4 = (void* *)(localMemoryPointer5 + 0x10 + localResourceOffset1);
   unsignedSystemValue28 = punsignedSystemValue4[1];
-  *(void* *)(param_4 + 4) = *punsignedSystemValue4;
-  *(void* *)(param_4 + 6) = unsignedSystemValue28;
+  *(void* *)(ConfigurationFlag + 4) = *punsignedSystemValue4;
+  *(void* *)(ConfigurationFlag + 6) = unsignedSystemValue28;
   punsignedSystemValue4 = (void* *)(localMemoryPointer5 + 0x20 + localResourceOffset1);
   unsignedSystemValue28 = punsignedSystemValue4[1];
-  *(void* *)(param_4 + 8) = *punsignedSystemValue4;
-  *(void* *)(param_4 + 10) = unsignedSystemValue28;
+  *(void* *)(ConfigurationFlag + 8) = *punsignedSystemValue4;
+  *(void* *)(ConfigurationFlag + 10) = unsignedSystemValue28;
   punsignedSystemValue4 = (void* *)(localMemoryPointer5 + 0x30 + localResourceOffset1);
   unsignedSystemValue28 = punsignedSystemValue4[1];
-  *(void* *)(param_4 + 0xc) = *punsignedSystemValue4;
-  *(void* *)(param_4 + 0xe) = unsignedSystemValue28;
+  *(void* *)(ConfigurationFlag + 0xc) = *punsignedSystemValue4;
+  *(void* *)(ConfigurationFlag + 0xe) = unsignedSystemValue28;
   localMemoryPointer5 = *(long long *)(unaff_RDI + 0x10);
-  fVar16 = param_4[8];
-  fVar17 = param_4[9];
-  fVar18 = param_4[10];
-  fVar19 = param_4[0xb];
-  fVar20 = *param_4;
-  fVar21 = param_4[1];
-  fVar22 = param_4[2];
-  fVar23 = param_4[3];
-  fVar24 = param_4[4];
-  fVar25 = param_4[5];
-  fVar26 = param_4[6];
-  fVar27 = param_4[7];
+  fVar16 = ConfigurationFlag[8];
+  fVar17 = ConfigurationFlag[9];
+  fVar18 = ConfigurationFlag[10];
+  fVar19 = ConfigurationFlag[0xb];
+  fVar20 = *ConfigurationFlag;
+  fVar21 = ConfigurationFlag[1];
+  fVar22 = ConfigurationFlag[2];
+  fVar23 = ConfigurationFlag[3];
+  fVar24 = ConfigurationFlag[4];
+  fVar25 = ConfigurationFlag[5];
+  fVar26 = ConfigurationFlag[6];
+  fVar27 = ConfigurationFlag[7];
   fVar5 = *(float *)(localMemoryPointer5 + 0x374);
   fVar6 = *(float *)(localMemoryPointer5 + 0x370);
   fVar7 = *(float *)(localMemoryPointer5 + 0x378);
@@ -58799,18 +58899,18 @@ void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,fl
   fVar11 = *(float *)(localMemoryPointer5 + 0x388);
   fVar12 = *(float *)(localMemoryPointer5 + 0x390);
   fVar13 = *(float *)(localMemoryPointer5 + 0x398);
-  *param_4 = fVar5 * fVar24 + fVar6 * fVar20 + fVar7 * fVar16;
-  param_4[1] = fVar5 * fVar25 + fVar6 * fVar21 + fVar7 * fVar17;
-  param_4[2] = fVar5 * fVar26 + fVar6 * fVar22 + fVar7 * fVar18;
-  param_4[3] = fVar5 * fVar27 + fVar6 * fVar23 + fVar7 * fVar19;
-  param_4[4] = fVar8 * fVar24 + fVar10 * fVar20 + fVar11 * fVar16;
-  param_4[5] = fVar8 * fVar25 + fVar10 * fVar21 + fVar11 * fVar17;
-  param_4[6] = fVar8 * fVar26 + fVar10 * fVar22 + fVar11 * fVar18;
-  param_4[7] = fVar8 * fVar27 + fVar10 * fVar23 + fVar11 * fVar19;
-  param_4[8] = fVar9 * fVar24 + fVar12 * fVar20 + fVar13 * fVar16;
-  param_4[9] = fVar9 * fVar25 + fVar12 * fVar21 + fVar13 * fVar17;
-  param_4[10] = fVar9 * fVar26 + fVar12 * fVar22 + fVar13 * fVar18;
-  param_4[0xb] = fVar9 * fVar27 + fVar12 * fVar23 + fVar13 * fVar19;
+  *ConfigurationFlag = fVar5 * fVar24 + fVar6 * fVar20 + fVar7 * fVar16;
+  ConfigurationFlag[1] = fVar5 * fVar25 + fVar6 * fVar21 + fVar7 * fVar17;
+  ConfigurationFlag[2] = fVar5 * fVar26 + fVar6 * fVar22 + fVar7 * fVar18;
+  ConfigurationFlag[3] = fVar5 * fVar27 + fVar6 * fVar23 + fVar7 * fVar19;
+  ConfigurationFlag[4] = fVar8 * fVar24 + fVar10 * fVar20 + fVar11 * fVar16;
+  ConfigurationFlag[5] = fVar8 * fVar25 + fVar10 * fVar21 + fVar11 * fVar17;
+  ConfigurationFlag[6] = fVar8 * fVar26 + fVar10 * fVar22 + fVar11 * fVar18;
+  ConfigurationFlag[7] = fVar8 * fVar27 + fVar10 * fVar23 + fVar11 * fVar19;
+  ConfigurationFlag[8] = fVar9 * fVar24 + fVar12 * fVar20 + fVar13 * fVar16;
+  ConfigurationFlag[9] = fVar9 * fVar25 + fVar12 * fVar21 + fVar13 * fVar17;
+  ConfigurationFlag[10] = fVar9 * fVar26 + fVar12 * fVar22 + fVar13 * fVar18;
+  ConfigurationFlag[0xb] = fVar9 * fVar27 + fVar12 * fVar23 + fVar13 * fVar19;
   localMemoryPointer5 = *(long long *)(unaff_RBX + 600);
   if (*(int *)(localMemoryPointer5 + 0x28) != *(int *)(SystemStatusFlagsPointer + 0x224)) {
     systemCounter9 = *(int *)(localMemoryPointer5 + 0x1c) + *(int *)(localMemoryPointer5 + 0x18);
@@ -58818,7 +58918,7 @@ void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,fl
     if (0 < systemCounter9) {
       uStack0000000000000050 = in_stack_00000058;
       localResourceOffset1 = (long long)*(int *)(SystemMemoryContext + 0xe78) * 0x128 + SystemMemoryContext + 0xc28;
-      unsignedSystemValue29 = FUN_180080380(localResourceOffset1,systemCounter9,SystemResourcePointer,param_4,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
+      unsignedSystemValue29 = FUN_180080380(localResourceOffset1,systemCounter9,SystemResourcePointer,ConfigurationFlag,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(uint32_t *)(localMemoryPointer5 + 0x30) = unsignedSystemValue29;
       FUN_1800802e0(localResourceOffset1,unsignedSystemValue29);
       if (*(long long *)(localMemoryPointer5 + 0x10) == 0) {
@@ -59198,7 +59298,7 @@ void FUN_18007940e(void)
 
 
 
-void* * FUN_180079430(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void* * FUN_180079430(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
@@ -60823,7 +60923,7 @@ uint8_t FUN_18007b1e0(long long SystemResourcePointer)
 // WARNING: Removing unreachable block (ram,0x00018007b868)
 // WARNING: Removing unreachable block (ram,0x00018007b879)
 
-ulong long FUN_18007b240(long long SystemResourcePointer,long long *param_2,byte param_3,char param_4)
+ulong long FUN_18007b240(long long SystemResourcePointer,long long *ConfigurationDataPointer,byte AdditionalParameter,char ConfigurationFlag)
 
 {
   byte *pbVar1;
@@ -60866,29 +60966,29 @@ ulong long FUN_18007b240(long long SystemResourcePointer,long long *param_2,byte
   uStack_58 = 0xfffffffffffffffe;
   while ((localSystemFlags = SystemResourcePointer, (*(byte *)(SystemResourcePointer + 0xfd) & 0x20) == 0 &&
          (localSystemFlags = func_0x000180085de0(*(void* *)(SystemResourcePointer + 0x1b0)), localSystemFlags != SystemResourcePointer))) {
-    if ((param_4 != '\0') ||
+    if ((ConfigurationFlag != '\0') ||
        (pbVar1 = (byte *)(SystemResourcePointer + 0x100), SystemResourcePointer = localSystemFlags, (*pbVar1 & 8) != 0)) {
-      param_4 = '\x01';
+      ConfigurationFlag = '\x01';
       SystemResourcePointer = localSystemFlags;
     }
   }
   if ((*(byte *)(SystemResourcePointer + 0x100) & 8) != 0) {
-    param_4 = '\x01';
+    ConfigurationFlag = '\x01';
   }
   FUN_18007baa0(SystemResourcePointer);
-  PrimaryResourcePointer4 = (long long *)(*(long long *)(localSystemFlags + 0x1e0) + (ulong long)param_3 * 0x18);
-  if ((long long *)*param_2 != PrimaryResourcePointer4) {
-    if ((long long *)*param_2 != (long long *)0x0) {
+  PrimaryResourcePointer4 = (long long *)(*(long long *)(localSystemFlags + 0x1e0) + (ulong long)AdditionalParameter * 0x18);
+  if ((long long *)*ConfigurationDataPointer != PrimaryResourcePointer4) {
+    if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
       FUN_180080060();
     }
-    *param_2 = (long long)PrimaryResourcePointer4;
+    *ConfigurationDataPointer = (long long)PrimaryResourcePointer4;
     if (PrimaryResourcePointer4 != (long long *)0x0) {
       LOCK();
       *(int *)(PrimaryResourcePointer4 + 2) = (int)PrimaryResourcePointer4[2] + 1;
       UNLOCK();
     }
-    if (param_2[1] != 0) {
-      pbVar1 = (byte *)(param_2[1] + 0xfe);
+    if (ConfigurationDataPointer[1] != 0) {
+      pbVar1 = (byte *)(ConfigurationDataPointer[1] + 0xfe);
       *pbVar1 = *pbVar1 & 0xfb;
     }
   }
@@ -60971,11 +61071,11 @@ LAB_18007b454:
   *(uint32_t *)(PrimaryResourcePointer0 + 2) = *(uint32_t *)(localSystemFlags + 0x200);
   *(byte *)(PrimaryResourcePointer0 + 0x13) =
        *(byte *)(PrimaryResourcePointer0 + 0x13) ^ (*(byte *)(SystemResourcePointer + 0xfe) >> 1 ^ *(byte *)(PrimaryResourcePointer0 + 0x13)) & 1;
-  *(byte *)((long long)PrimaryResourcePointer0 + 0x14) = param_3;
+  *(byte *)((long long)PrimaryResourcePointer0 + 0x14) = AdditionalParameter;
   cVar2 = *(char *)(SystemResourcePointer + 0xfa);
   *(char*)((long long)PrimaryResourcePointer0 + 0x15) = cVar2;
   if (cVar2 == '\x01') {
-    param_4 = '\x01';
+    ConfigurationFlag = '\x01';
   }
   PrimaryResourcePointer1 = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x30,8,0x20);
   *PrimaryResourcePointer1 = (long long)&SystemMemoryTemplateA;
@@ -61008,7 +61108,7 @@ LAB_18007b454:
   *(int *)(PrimaryResourcePointer1 + 2) = systemIndex * 3;
   *(uint8_t *)(PrimaryResourcePointer1 + 3) = *(uint8_t *)(SystemResourcePointer + 0xfa);
   if ((*(long long *)(SystemResourcePointer + 0xa8) == 0) || (*(long long *)(SystemResourcePointer + 0x210) != 0)) {
-    if (param_4 == '\0') {
+    if (ConfigurationFlag == '\0') {
       unsignedSystemValue9 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0xe0,8,3);
       (**(code **)(*PrimaryResourcePointer0 + 0x28))(PrimaryResourcePointer0);
       (**(code **)(*PrimaryResourcePointer1 + 0x28))(PrimaryResourcePointer1);
@@ -61016,7 +61116,7 @@ LAB_18007b454:
       puStack_60 = &UNK_180083380;
       plStack_b8 = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,DAT_180bf65bc);
       *plStack_b8 = SystemResourcePointer;
-      *(byte *)(plStack_b8 + 1) = param_3;
+      *(byte *)(plStack_b8 + 1) = AdditionalParameter;
       plStack_b8[2] = (long long)PrimaryResourcePointer0;
       plStack_b8[3] = (long long)PrimaryResourcePointer1;
       aplStack_78[0] = plStack_b8;
@@ -61041,12 +61141,12 @@ LAB_18007b8dc:
       (**(code **)(*PrimaryResourcePointer1 + 0x28))(PrimaryResourcePointer1);
       plStack_d8 = PrimaryResourcePointer0;
       (**(code **)(*PrimaryResourcePointer0 + 0x28))(PrimaryResourcePointer0);
-      FUN_18007e080(SystemResourcePointer,param_3,&plStack_d8,&plStack_e0);
+      FUN_18007e080(SystemResourcePointer,AdditionalParameter,&plStack_d8,&plStack_e0);
       plStack_d0 = PrimaryResourcePointer1;
       (**(code **)(*PrimaryResourcePointer1 + 0x28))(PrimaryResourcePointer1);
       plStack_c8 = PrimaryResourcePointer0;
       (**(code **)(*PrimaryResourcePointer0 + 0x28))(PrimaryResourcePointer0);
-      FUN_18007c8e0(SystemResourcePointer,param_3,&plStack_c8,&plStack_d0);
+      FUN_18007c8e0(SystemResourcePointer,AdditionalParameter,&plStack_c8,&plStack_d0);
       FUN_18007f840(&lStack_90);
       if (*(char *)(SystemResourcePointer + 0xf4) == '\x01') {
         plStack_b8 = (long long *)0x0;
@@ -61074,7 +61174,7 @@ LAB_18007b8dc:
     (**(code **)(*PrimaryResourcePointer0 + 0x28))(PrimaryResourcePointer0);
     plStack_e8 = PrimaryResourcePointer1;
     (**(code **)(*PrimaryResourcePointer1 + 0x28))(PrimaryResourcePointer1);
-    FUN_18007c490(SystemResourcePointer,param_3,&plStack_e8,&plStack_f0,param_4);
+    FUN_18007c490(SystemResourcePointer,AdditionalParameter,&plStack_e8,&plStack_f0,ConfigurationFlag);
   }
   (**(code **)(*PrimaryResourcePointer1 + 0x38))(PrimaryResourcePointer1);
   (**(code **)(*PrimaryResourcePointer0 + 0x38))(PrimaryResourcePointer0);
@@ -61245,48 +61345,48 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
   
   StackParameter = 0xfffffffffffffffe;
   ChecksumValue = SystemSecurityKey ^ (ulong long)StackBuffer;
-  if ((param_2 == 0) ||
-     (((*(float *)(SystemResourcePointer + 0x238) == *(float *)(param_2 + 0x44) &&
-       (*(float *)(SystemResourcePointer + 0x23c) == *(float *)(param_2 + 0x48))) &&
-      (*(float *)(SystemResourcePointer + 0x240) == *(float *)(param_2 + 0x4c))))) {
-    unsignedSystemValue5 = *(void* *)(param_3 + 0x4c);
-    *(void* *)(SystemResourcePointer + 0x238) = *(void* *)(param_3 + 0x44);
+  if ((ConfigurationDataPointer == 0) ||
+     (((*(float *)(SystemResourcePointer + 0x238) == *(float *)(ConfigurationDataPointer + 0x44) &&
+       (*(float *)(SystemResourcePointer + 0x23c) == *(float *)(ConfigurationDataPointer + 0x48))) &&
+      (*(float *)(SystemResourcePointer + 0x240) == *(float *)(ConfigurationDataPointer + 0x4c))))) {
+    unsignedSystemValue5 = *(void* *)(AdditionalParameter + 0x4c);
+    *(void* *)(SystemResourcePointer + 0x238) = *(void* *)(AdditionalParameter + 0x44);
     *(void* *)(SystemResourcePointer + 0x240) = unsignedSystemValue5;
   }
-  if ((param_2 == 0) ||
-     (((*(float *)(SystemResourcePointer + 0x248) == *(float *)(param_2 + 0x54) &&
-       (*(float *)(SystemResourcePointer + 0x24c) == *(float *)(param_2 + 0x58))) &&
-      (*(float *)(SystemResourcePointer + 0x250) == *(float *)(param_2 + 0x5c))))) {
-    unsignedSystemValue5 = *(void* *)(param_3 + 0x5c);
-    *(void* *)(SystemResourcePointer + 0x248) = *(void* *)(param_3 + 0x54);
+  if ((ConfigurationDataPointer == 0) ||
+     (((*(float *)(SystemResourcePointer + 0x248) == *(float *)(ConfigurationDataPointer + 0x54) &&
+       (*(float *)(SystemResourcePointer + 0x24c) == *(float *)(ConfigurationDataPointer + 0x58))) &&
+      (*(float *)(SystemResourcePointer + 0x250) == *(float *)(ConfigurationDataPointer + 0x5c))))) {
+    unsignedSystemValue5 = *(void* *)(AdditionalParameter + 0x5c);
+    *(void* *)(SystemResourcePointer + 0x248) = *(void* *)(AdditionalParameter + 0x54);
     *(void* *)(SystemResourcePointer + 0x250) = unsignedSystemValue5;
   }
-  if ((param_2 == 0) ||
-     (((*(float *)(SystemResourcePointer + 0x2a8) == *(float *)(param_2 + 100) &&
-       (*(float *)(SystemResourcePointer + 0x2ac) == *(float *)(param_2 + 0x68))) &&
-      (*(float *)(SystemResourcePointer + 0x2b0) == *(float *)(param_2 + 0x6c))))) {
-    unsignedSystemValue5 = *(void* *)(param_3 + 0x6c);
-    *(void* *)(SystemResourcePointer + 0x2a8) = *(void* *)(param_3 + 100);
+  if ((ConfigurationDataPointer == 0) ||
+     (((*(float *)(SystemResourcePointer + 0x2a8) == *(float *)(ConfigurationDataPointer + 100) &&
+       (*(float *)(SystemResourcePointer + 0x2ac) == *(float *)(ConfigurationDataPointer + 0x68))) &&
+      (*(float *)(SystemResourcePointer + 0x2b0) == *(float *)(ConfigurationDataPointer + 0x6c))))) {
+    unsignedSystemValue5 = *(void* *)(AdditionalParameter + 0x6c);
+    *(void* *)(SystemResourcePointer + 0x2a8) = *(void* *)(AdditionalParameter + 100);
     *(void* *)(SystemResourcePointer + 0x2b0) = unsignedSystemValue5;
   }
-  if ((param_2 == 0) ||
-     (((*(float *)(SystemResourcePointer + 0x2b8) == *(float *)(param_2 + 0x74) &&
-       (*(float *)(SystemResourcePointer + 700) == *(float *)(param_2 + 0x78))) &&
-      (*(float *)(SystemResourcePointer + 0x2c0) == *(float *)(param_2 + 0x7c))))) {
-    unsignedSystemValue5 = *(void* *)(param_3 + 0x7c);
-    *(void* *)(SystemResourcePointer + 0x2b8) = *(void* *)(param_3 + 0x74);
+  if ((ConfigurationDataPointer == 0) ||
+     (((*(float *)(SystemResourcePointer + 0x2b8) == *(float *)(ConfigurationDataPointer + 0x74) &&
+       (*(float *)(SystemResourcePointer + 700) == *(float *)(ConfigurationDataPointer + 0x78))) &&
+      (*(float *)(SystemResourcePointer + 0x2c0) == *(float *)(ConfigurationDataPointer + 0x7c))))) {
+    unsignedSystemValue5 = *(void* *)(AdditionalParameter + 0x7c);
+    *(void* *)(SystemResourcePointer + 0x2b8) = *(void* *)(AdditionalParameter + 0x74);
     *(void* *)(SystemResourcePointer + 0x2c0) = unsignedSystemValue5;
   }
   if (sourceString == 0) {
-    *(uint32_t *)(SystemResourcePointer + 0x100) = *(uint32_t *)(param_3 + 0x30);
+    *(uint32_t *)(SystemResourcePointer + 0x100) = *(uint32_t *)(AdditionalParameter + 0x30);
   }
   else {
     unsignedSystemValue17 = 1;
     unsignedSystemValue11 = 2;
     do {
       pointerToUnsigned10 = (uint *)(SystemResourcePointer + 0x100);
-      unsignedSystemValue16 = *(uint *)(param_2 + 0x30);
-      unsignedSystemValue14 = *(uint *)(param_3 + 0x30);
+      unsignedSystemValue16 = *(uint *)(ConfigurationDataPointer + 0x30);
+      unsignedSystemValue14 = *(uint *)(AdditionalParameter + 0x30);
       if ((unsignedSystemValue17 & unsignedSystemValue16) != (unsignedSystemValue17 & unsignedSystemValue14)) {
         if ((unsignedSystemValue17 & unsignedSystemValue14) == 0) {
           unsignedSystemValue16 = *(uint *)(SystemResourcePointer + 0x100) & ~(1 << (unsignedSystemValue11 - 2 & 0x1f));
@@ -61295,8 +61395,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
           unsignedSystemValue16 = *pointerToUnsigned10 | 1 << (unsignedSystemValue11 - 2 & 0x1f);
         }
         *pointerToUnsigned10 = unsignedSystemValue16;
-        unsignedSystemValue16 = *(uint *)(param_2 + 0x30);
-        unsignedSystemValue14 = *(uint *)(param_3 + 0x30);
+        unsignedSystemValue16 = *(uint *)(ConfigurationDataPointer + 0x30);
+        unsignedSystemValue14 = *(uint *)(AdditionalParameter + 0x30);
       }
       unsignedSystemValue13 = unsignedSystemValue17 << 1 & unsignedSystemValue14;
       if ((unsignedSystemValue17 << 1 & unsignedSystemValue16) != unsignedSystemValue13) {
@@ -61307,8 +61407,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
           unsignedSystemValue16 = *(uint *)(SystemResourcePointer + 0x100) | 1 << (unsignedSystemValue11 - 1 & 0x1f);
         }
         *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue16;
-        unsignedSystemValue16 = *(uint *)(param_2 + 0x30);
-        unsignedSystemValue14 = *(uint *)(param_3 + 0x30);
+        unsignedSystemValue16 = *(uint *)(ConfigurationDataPointer + 0x30);
+        unsignedSystemValue14 = *(uint *)(AdditionalParameter + 0x30);
       }
       unsignedSystemValue13 = unsignedSystemValue17 << 2 & unsignedSystemValue14;
       if ((unsignedSystemValue17 << 2 & unsignedSystemValue16) != unsignedSystemValue13) {
@@ -61319,8 +61419,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
           unsignedSystemValue16 = *(uint *)(SystemResourcePointer + 0x100) | 1 << (unsignedSystemValue11 & 0x1f);
         }
         *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue16;
-        unsignedSystemValue16 = *(uint *)(param_2 + 0x30);
-        unsignedSystemValue14 = *(uint *)(param_3 + 0x30);
+        unsignedSystemValue16 = *(uint *)(ConfigurationDataPointer + 0x30);
+        unsignedSystemValue14 = *(uint *)(AdditionalParameter + 0x30);
       }
       unsignedSystemValue13 = unsignedSystemValue17 << 3 & unsignedSystemValue14;
       if ((unsignedSystemValue17 << 3 & unsignedSystemValue16) != unsignedSystemValue13) {
@@ -61331,8 +61431,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
           unsignedSystemValue16 = *(uint *)(SystemResourcePointer + 0x100) | 1 << (unsignedSystemValue11 + 1 & 0x1f);
         }
         *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue16;
-        unsignedSystemValue16 = *(uint *)(param_2 + 0x30);
-        unsignedSystemValue14 = *(uint *)(param_3 + 0x30);
+        unsignedSystemValue16 = *(uint *)(ConfigurationDataPointer + 0x30);
+        unsignedSystemValue14 = *(uint *)(AdditionalParameter + 0x30);
       }
       unsignedSystemValue13 = unsignedSystemValue17 << 4 & unsignedSystemValue14;
       if ((unsignedSystemValue17 << 4 & unsignedSystemValue16) != unsignedSystemValue13) {
@@ -61343,20 +61443,20 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
           unsignedSystemValue16 = *(uint *)(SystemResourcePointer + 0x100) | 1 << (unsignedSystemValue11 + 2 & 0x1f);
         }
         *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue16;
-        unsignedSystemValue16 = *(uint *)(param_2 + 0x30);
-        unsignedSystemValue14 = *(uint *)(param_3 + 0x30);
+        unsignedSystemValue16 = *(uint *)(ConfigurationDataPointer + 0x30);
+        unsignedSystemValue14 = *(uint *)(AdditionalParameter + 0x30);
       }
       unsignedSystemValue13 = unsignedSystemValue17 << 5 & unsignedSystemValue14;
       if ((unsignedSystemValue17 << 5 & unsignedSystemValue16) != unsignedSystemValue13) {
         if (unsignedSystemValue13 == 0) {
           *pointerToUnsigned10 = *pointerToUnsigned10 & ~(1 << (unsignedSystemValue11 + 3 & 0x1f));
-          unsignedSystemValue16 = *(uint *)(param_2 + 0x30);
-          unsignedSystemValue14 = *(uint *)(param_3 + 0x30);
+          unsignedSystemValue16 = *(uint *)(ConfigurationDataPointer + 0x30);
+          unsignedSystemValue14 = *(uint *)(AdditionalParameter + 0x30);
         }
         else {
           *(uint *)(SystemResourcePointer + 0x100) = *(uint *)(SystemResourcePointer + 0x100) | 1 << (unsignedSystemValue11 + 3 & 0x1f);
-          unsignedSystemValue16 = *(uint *)(param_2 + 0x30);
-          unsignedSystemValue14 = *(uint *)(param_3 + 0x30);
+          unsignedSystemValue16 = *(uint *)(ConfigurationDataPointer + 0x30);
+          unsignedSystemValue14 = *(uint *)(AdditionalParameter + 0x30);
         }
       }
       pointerToUnsigned10 = (uint *)(SystemResourcePointer + 0x100);
@@ -61369,8 +61469,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
           unsignedSystemValue16 = *(uint *)(SystemResourcePointer + 0x100) | 1 << (unsignedSystemValue11 + 4 & 0x1f);
         }
         *pointerToUnsigned10 = unsignedSystemValue16;
-        unsignedSystemValue16 = *(uint *)(param_2 + 0x30);
-        unsignedSystemValue14 = *(uint *)(param_3 + 0x30);
+        unsignedSystemValue16 = *(uint *)(ConfigurationDataPointer + 0x30);
+        unsignedSystemValue14 = *(uint *)(AdditionalParameter + 0x30);
       }
       unsignedSystemValue13 = unsignedSystemValue17 << 7 & unsignedSystemValue14;
       if ((unsignedSystemValue17 << 7 & unsignedSystemValue16) != unsignedSystemValue13) {
@@ -61381,8 +61481,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
           unsignedSystemValue16 = *(uint *)(SystemResourcePointer + 0x100) | 1 << (unsignedSystemValue11 + 5 & 0x1f);
         }
         *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue16;
-        unsignedSystemValue16 = *(uint *)(param_2 + 0x30);
-        unsignedSystemValue14 = *(uint *)(param_3 + 0x30);
+        unsignedSystemValue16 = *(uint *)(ConfigurationDataPointer + 0x30);
+        unsignedSystemValue14 = *(uint *)(AdditionalParameter + 0x30);
       }
       unsignedSystemValue13 = unsignedSystemValue17 << 8 & unsignedSystemValue14;
       if ((unsignedSystemValue17 << 8 & unsignedSystemValue16) != unsignedSystemValue13) {
@@ -61393,8 +61493,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
           unsignedSystemValue16 = *(uint *)(SystemResourcePointer + 0x100) | 1 << (unsignedSystemValue11 + 6 & 0x1f);
         }
         *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue16;
-        unsignedSystemValue16 = *(uint *)(param_2 + 0x30);
-        unsignedSystemValue14 = *(uint *)(param_3 + 0x30);
+        unsignedSystemValue16 = *(uint *)(ConfigurationDataPointer + 0x30);
+        unsignedSystemValue14 = *(uint *)(AdditionalParameter + 0x30);
       }
       unsignedSystemValue13 = unsignedSystemValue17 << 9 & unsignedSystemValue14;
       if ((unsignedSystemValue17 << 9 & unsignedSystemValue16) != unsignedSystemValue13) {
@@ -61405,8 +61505,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
           unsignedSystemValue16 = *(uint *)(SystemResourcePointer + 0x100) | 1 << (unsignedSystemValue11 + 7 & 0x1f);
         }
         *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue16;
-        unsignedSystemValue16 = *(uint *)(param_2 + 0x30);
-        unsignedSystemValue14 = *(uint *)(param_3 + 0x30);
+        unsignedSystemValue16 = *(uint *)(ConfigurationDataPointer + 0x30);
+        unsignedSystemValue14 = *(uint *)(AdditionalParameter + 0x30);
       }
       unsignedSystemValue13 = unsignedSystemValue17 << 10 & unsignedSystemValue14;
       if ((unsignedSystemValue17 << 10 & unsignedSystemValue16) != unsignedSystemValue13) {
@@ -61417,8 +61517,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
           unsignedSystemValue16 = *(uint *)(SystemResourcePointer + 0x100) | 1 << (unsignedSystemValue11 + 8 & 0x1f);
         }
         *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue16;
-        unsignedSystemValue16 = *(uint *)(param_2 + 0x30);
-        unsignedSystemValue14 = *(uint *)(param_3 + 0x30);
+        unsignedSystemValue16 = *(uint *)(ConfigurationDataPointer + 0x30);
+        unsignedSystemValue14 = *(uint *)(AdditionalParameter + 0x30);
       }
       unsignedSystemValue14 = unsignedSystemValue17 << 0xb & unsignedSystemValue14;
       if ((unsignedSystemValue17 << 0xb & unsignedSystemValue16) != unsignedSystemValue14) {
@@ -61430,8 +61530,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
         }
         *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue16;
       }
-      unsignedSystemValue16 = unsignedSystemValue17 << 0xc & *(uint *)(param_3 + 0x30);
-      if ((unsignedSystemValue17 << 0xc & *(uint *)(param_2 + 0x30)) != unsignedSystemValue16) {
+      unsignedSystemValue16 = unsignedSystemValue17 << 0xc & *(uint *)(AdditionalParameter + 0x30);
+      if ((unsignedSystemValue17 << 0xc & *(uint *)(ConfigurationDataPointer + 0x30)) != unsignedSystemValue16) {
         if (unsignedSystemValue16 == 0) {
           unsignedSystemValue16 = *(uint *)(SystemResourcePointer + 0x100) & ~(1 << (unsignedSystemValue11 + 10 & 0x1f));
         }
@@ -61440,8 +61540,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
         }
         *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue16;
       }
-      unsignedSystemValue16 = unsignedSystemValue17 << 0xd & *(uint *)(param_3 + 0x30);
-      if ((unsignedSystemValue17 << 0xd & *(uint *)(param_2 + 0x30)) != unsignedSystemValue16) {
+      unsignedSystemValue16 = unsignedSystemValue17 << 0xd & *(uint *)(AdditionalParameter + 0x30);
+      if ((unsignedSystemValue17 << 0xd & *(uint *)(ConfigurationDataPointer + 0x30)) != unsignedSystemValue16) {
         if (unsignedSystemValue16 == 0) {
           unsignedSystemValue16 = *(uint *)(SystemResourcePointer + 0x100) & ~(1 << (unsignedSystemValue11 + 0xb & 0x1f));
         }
@@ -61450,8 +61550,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
         }
         *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue16;
       }
-      unsignedSystemValue16 = unsignedSystemValue17 << 0xe & *(uint *)(param_3 + 0x30);
-      if ((unsignedSystemValue17 << 0xe & *(uint *)(param_2 + 0x30)) != unsignedSystemValue16) {
+      unsignedSystemValue16 = unsignedSystemValue17 << 0xe & *(uint *)(AdditionalParameter + 0x30);
+      if ((unsignedSystemValue17 << 0xe & *(uint *)(ConfigurationDataPointer + 0x30)) != unsignedSystemValue16) {
         pointerToUnsigned10 = (uint *)(SystemResourcePointer + 0x100);
         if (unsignedSystemValue16 == 0) {
           *pointerToUnsigned10 = *pointerToUnsigned10 & ~(1 << (unsignedSystemValue11 + 0xc & 0x1f));
@@ -61460,8 +61560,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
           *pointerToUnsigned10 = *pointerToUnsigned10 | 1 << (unsignedSystemValue11 + 0xc & 0x1f);
         }
       }
-      unsignedSystemValue16 = unsignedSystemValue17 << 0xf & *(uint *)(param_3 + 0x30);
-      if ((unsignedSystemValue17 << 0xf & *(uint *)(param_2 + 0x30)) != unsignedSystemValue16) {
+      unsignedSystemValue16 = unsignedSystemValue17 << 0xf & *(uint *)(AdditionalParameter + 0x30);
+      if ((unsignedSystemValue17 << 0xf & *(uint *)(ConfigurationDataPointer + 0x30)) != unsignedSystemValue16) {
         if (unsignedSystemValue16 == 0) {
           unsignedSystemValue16 = *(uint *)(SystemResourcePointer + 0x100) & ~(1 << (unsignedSystemValue11 + 0xd & 0x1f));
         }
@@ -61475,31 +61575,31 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
       unsignedSystemValue11 = unsignedSystemValue11 + 0x10;
     } while (systemStatus < 0x20);
   }
-  *(uint32_t *)(SystemResourcePointer + 0x208) = *(uint32_t *)(param_3 + 0x84);
-  *(uint32_t *)(SystemResourcePointer + 0x1f8) = *(uint32_t *)(param_3 + 0x88);
-  *(uint32_t *)(SystemResourcePointer + 0x1fc) = *(uint32_t *)(param_3 + 0x8c);
-  *(uint32_t *)(SystemResourcePointer + 0x200) = *(uint32_t *)(param_3 + 0x90);
-  *(uint32_t *)(SystemResourcePointer + 0x204) = *(uint32_t *)(param_3 + 0x94);
-  unsignedSystemValue5 = *(void* *)(param_3 + 0xa0);
-  *(void* *)(SystemResourcePointer + 0x274) = *(void* *)(param_3 + 0x98);
+  *(uint32_t *)(SystemResourcePointer + 0x208) = *(uint32_t *)(AdditionalParameter + 0x84);
+  *(uint32_t *)(SystemResourcePointer + 0x1f8) = *(uint32_t *)(AdditionalParameter + 0x88);
+  *(uint32_t *)(SystemResourcePointer + 0x1fc) = *(uint32_t *)(AdditionalParameter + 0x8c);
+  *(uint32_t *)(SystemResourcePointer + 0x200) = *(uint32_t *)(AdditionalParameter + 0x90);
+  *(uint32_t *)(SystemResourcePointer + 0x204) = *(uint32_t *)(AdditionalParameter + 0x94);
+  unsignedSystemValue5 = *(void* *)(AdditionalParameter + 0xa0);
+  *(void* *)(SystemResourcePointer + 0x274) = *(void* *)(AdditionalParameter + 0x98);
   *(void* *)(SystemResourcePointer + 0x27c) = unsignedSystemValue5;
-  unsignedSystemValue5 = *(void* *)(param_3 + 0xb0);
-  *(void* *)(SystemResourcePointer + 0x284) = *(void* *)(param_3 + 0xa8);
+  unsignedSystemValue5 = *(void* *)(AdditionalParameter + 0xb0);
+  *(void* *)(SystemResourcePointer + 0x284) = *(void* *)(AdditionalParameter + 0xa8);
   *(void* *)(SystemResourcePointer + 0x28c) = unsignedSystemValue5;
-  unsignedSystemValue2 = *(uint32_t *)(param_3 + 0xbc);
-  unsignedSystemValue3 = *(uint32_t *)(param_3 + 0xc0);
-  unsignedSystemValue4 = *(uint32_t *)(param_3 + 0xc4);
-  *(uint32_t *)(SystemResourcePointer + 0x294) = *(uint32_t *)(param_3 + 0xb8);
+  unsignedSystemValue2 = *(uint32_t *)(AdditionalParameter + 0xbc);
+  unsignedSystemValue3 = *(uint32_t *)(AdditionalParameter + 0xc0);
+  unsignedSystemValue4 = *(uint32_t *)(AdditionalParameter + 0xc4);
+  *(uint32_t *)(SystemResourcePointer + 0x294) = *(uint32_t *)(AdditionalParameter + 0xb8);
   *(uint32_t *)(SystemResourcePointer + 0x298) = unsignedSystemValue2;
   *(uint32_t *)(SystemResourcePointer + 0x29c) = unsignedSystemValue3;
   *(uint32_t *)(SystemResourcePointer + 0x2a0) = unsignedSystemValue4;
-  *(uint32_t *)(SystemResourcePointer + 0x2a4) = *(uint32_t *)(param_3 + 200);
+  *(uint32_t *)(SystemResourcePointer + 0x2a4) = *(uint32_t *)(AdditionalParameter + 200);
   plStack_30 = (long long *)0x0;
   lStack_28 = 0;
-  if (param_2 != 0) {
-    plocalSystemFlags = (long long *)(param_2 + 0x158);
-    if ((*plocalSystemFlags == 0) && (*(long long *)(param_2 + 0x160) == 0)) {
-      plocalSystemFlags = (long long *)(param_2 + 0x34);
+  if (ConfigurationDataPointer != 0) {
+    plocalSystemFlags = (long long *)(ConfigurationDataPointer + 0x158);
+    if ((*plocalSystemFlags == 0) && (*(long long *)(ConfigurationDataPointer + 0x160) == 0)) {
+      plocalSystemFlags = (long long *)(ConfigurationDataPointer + 0x34);
     }
     plStack_30 = (long long *)*plocalSystemFlags;
     lStack_28 = plocalSystemFlags[1];
@@ -61511,9 +61611,9 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
   if (plStack_40 != (long long *)0x0) {
     (**(code **)(*plStack_40 + 0x38))();
   }
-  plocalMemoryAddress = (long long *)(param_3 + 0x158);
-  if ((*plocalMemoryAddress == 0) && (*(long long *)(param_3 + 0x160) == 0)) {
-    plocalMemoryAddress = (long long *)(param_3 + 0x34);
+  plocalMemoryAddress = (long long *)(AdditionalParameter + 0x158);
+  if ((*plocalMemoryAddress == 0) && (*(long long *)(AdditionalParameter + 0x160) == 0)) {
+    plocalMemoryAddress = (long long *)(AdditionalParameter + 0x34);
   }
   localDataPointer = FUN_180255f80(*(void* *)(SystemResourcePointer + 0xa8),&DAT_180a002e0,plocalMemoryAddress);
   if (localDataPointer != 0) {
@@ -61555,42 +61655,42 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
     *(uint8_t *)((long long)punsignedSystemValue9 + 0x24) = 0;
     *(void* **)(SystemResourcePointer + 600) = punsignedSystemValue9;
   }
-  *(uint8_t *)(SystemResourcePointer + 0xf6) = *(uint8_t *)(param_3 + 0xcc);
-  if ((void* *)(SystemResourcePointer + 0x218) != (void* *)(param_3 + 0xd0)) {
-    FUN_1800588c0((void* *)(SystemResourcePointer + 0x218),*(void* *)(param_3 + 0xd0),
-                  *(void* *)(param_3 + 0xd8));
+  *(uint8_t *)(SystemResourcePointer + 0xf6) = *(uint8_t *)(AdditionalParameter + 0xcc);
+  if ((void* *)(SystemResourcePointer + 0x218) != (void* *)(AdditionalParameter + 0xd0)) {
+    FUN_1800588c0((void* *)(SystemResourcePointer + 0x218),*(void* *)(AdditionalParameter + 0xd0),
+                  *(void* *)(AdditionalParameter + 0xd8));
   }
-  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x10) = *(uint32_t *)(param_3 + 0xf0);
-  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x14) = *(uint32_t *)(param_3 + 0x144);
-  *(uint8_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x18) = *(uint8_t *)(param_3 + 0x148);
-  *(uint8_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x19) = *(uint8_t *)(param_3 + 0x149);
-  *(uint8_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x1a) = *(uint8_t *)(param_3 + 0x14a);
-  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x44) = *(uint32_t *)(param_3 + 0x118);
-  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x48) = *(uint32_t *)(param_3 + 0x11c);
-  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x4c) = *(uint32_t *)(param_3 + 0x120);
-  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x50) = *(uint32_t *)(param_3 + 0x124);
-  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x54) = *(uint32_t *)(param_3 + 0x128);
-  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x58) = *(uint32_t *)(param_3 + 300);
-  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x5c) = *(uint32_t *)(param_3 + 0x130);
-  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x60) = *(uint32_t *)(param_3 + 0x134);
-  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 100) = *(uint32_t *)(param_3 + 0x138);
-  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x68) = *(uint32_t *)(param_3 + 0x13c);
-  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x6c) = *(uint32_t *)(param_3 + 0x140);
+  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x10) = *(uint32_t *)(AdditionalParameter + 0xf0);
+  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x14) = *(uint32_t *)(AdditionalParameter + 0x144);
+  *(uint8_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x18) = *(uint8_t *)(AdditionalParameter + 0x148);
+  *(uint8_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x19) = *(uint8_t *)(AdditionalParameter + 0x149);
+  *(uint8_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x1a) = *(uint8_t *)(AdditionalParameter + 0x14a);
+  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x44) = *(uint32_t *)(AdditionalParameter + 0x118);
+  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x48) = *(uint32_t *)(AdditionalParameter + 0x11c);
+  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x4c) = *(uint32_t *)(AdditionalParameter + 0x120);
+  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x50) = *(uint32_t *)(AdditionalParameter + 0x124);
+  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x54) = *(uint32_t *)(AdditionalParameter + 0x128);
+  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x58) = *(uint32_t *)(AdditionalParameter + 300);
+  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x5c) = *(uint32_t *)(AdditionalParameter + 0x130);
+  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x60) = *(uint32_t *)(AdditionalParameter + 0x134);
+  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 100) = *(uint32_t *)(AdditionalParameter + 0x138);
+  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x68) = *(uint32_t *)(AdditionalParameter + 0x13c);
+  *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x268) + 0x6c) = *(uint32_t *)(AdditionalParameter + 0x140);
   localDataPointer = *(long long *)(SystemResourcePointer + 0x268);
-  unsignedSystemValue11 = *(uint *)(param_3 + 0x108);
+  unsignedSystemValue11 = *(uint *)(AdditionalParameter + 0x108);
   unsignedSystemValue15 = (ulong long)unsignedSystemValue11;
-  if (*(long long *)(param_3 + 0x100) != 0) {
+  if (*(long long *)(AdditionalParameter + 0x100) != 0) {
     ExecuteSystemCommand(localDataPointer + 0x20,unsignedSystemValue15);
   }
   if (unsignedSystemValue11 != 0) {
                     // WARNING: Subroutine does not return
-    memcpy(*(void* *)(localDataPointer + 0x28),*(void* *)(param_3 + 0x100),unsignedSystemValue15);
+    memcpy(*(void* *)(localDataPointer + 0x28),*(void* *)(AdditionalParameter + 0x100),unsignedSystemValue15);
   }
   *(uint32_t *)(localDataPointer + 0x30) = 0;
   if (*(long long *)(localDataPointer + 0x28) != 0) {
     *(uint8_t *)(unsignedSystemValue15 + *(long long *)(localDataPointer + 0x28)) = 0;
   }
-  *(uint32_t *)(localDataPointer + 0x3c) = *(uint32_t *)(param_3 + 0x114);
+  *(uint32_t *)(localDataPointer + 0x3c) = *(uint32_t *)(AdditionalParameter + 0x114);
                     // WARNING: Subroutine does not return
   ValidateSystemChecksum(uStack_20 ^ (ulong long)auStack_68);
 }
@@ -61598,8 +61698,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
 
 
 
-// 函数: void FUN_18007c490(long long *SystemResourcePointer,byte param_2,long long *param_3,long long *param_4,char param_5)
-void FUN_18007c490(long long *SystemResourcePointer,byte param_2,long long *param_3,long long *param_4,char param_5)
+// 函数: void FUN_18007c490(long long *SystemResourcePointer,byte ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag,char param_5)
+void FUN_18007c490(long long *SystemResourcePointer,byte ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag,char param_5)
 
 {
   char *pcVar1;
@@ -61634,15 +61734,15 @@ void FUN_18007c490(long long *SystemResourcePointer,byte param_2,long long *para
   code *pcStack_50;
   
   stackParameterC = 0xfffffffffffffffe;
-  SecondaryResourcePointer = (long long *)*param_4;
+  SecondaryResourcePointer = (long long *)*ConfigurationFlag;
   if (SecondaryResourcePointer != (long long *)0x0) {
     (**(code **)(*SecondaryResourcePointer + 0x28))(SecondaryResourcePointer);
   }
-  plocalResourceOffset = (long long *)*param_3;
+  plocalResourceOffset = (long long *)*AdditionalParameter;
   if (plocalResourceOffset != (long long *)0x0) {
     (**(code **)(*plocalResourceOffset + 0x28))(plocalResourceOffset);
   }
-  uStack_d8 = CONCAT31(uStack_d8._1_3_,param_2);
+  uStack_d8 = CONCAT31(uStack_d8._1_3_,ConfigurationDataPointer);
   uStack_e0 = SystemResourcePointer;
   if ((void* *)*SystemResourcePointer == &UNK_180a00270) {
     LOCK();
@@ -61662,7 +61762,7 @@ void FUN_18007c490(long long *SystemResourcePointer,byte param_2,long long *para
     uStack_f8 = uStack_d8;
     uStack_f4 = uStack_d4;
     plStack_b0 = SystemResourcePointer;
-    bStack_a8 = param_2;
+    bStack_a8 = ConfigurationDataPointer;
     plStack_a0 = SecondaryResourcePointer;
     if (SecondaryResourcePointer != (long long *)0x0) {
       (**(code **)(*SecondaryResourcePointer + 0x28))(SecondaryResourcePointer);
@@ -61685,7 +61785,7 @@ void FUN_18007c490(long long *SystemResourcePointer,byte param_2,long long *para
     pcVar5 = *(code **)(*plocalBufferAddress + 0x60);
     pplStack_88 = &plStack_d0;
     plStack_d0 = SystemResourcePointer;
-    bStack_c8 = param_2;
+    bStack_c8 = ConfigurationDataPointer;
     plStack_c0 = SecondaryResourcePointer;
     if (SecondaryResourcePointer != (long long *)0x0) {
       (**(code **)(*SecondaryResourcePointer + 0x28))(SecondaryResourcePointer);
@@ -61705,7 +61805,7 @@ void FUN_18007c490(long long *SystemResourcePointer,byte param_2,long long *para
         SystemPreviousNode = (void* *)SystemResourcePointer[3];
       }
       FUN_180626f80(&UNK_1809ffbb0,SystemPreviousNode);
-      pcVar1 = (char *)(SystemResourcePointer[0x3c] + 0x15 + (ulong long)param_2 * 0x18);
+      pcVar1 = (char *)(SystemResourcePointer[0x3c] + 0x15 + (ulong long)ConfigurationDataPointer * 0x18);
       LOCK();
       if (*pcVar1 == '\x01') {
         *pcVar1 = '\x04';
@@ -61720,11 +61820,11 @@ void FUN_18007c490(long long *SystemResourcePointer,byte param_2,long long *para
   if (SecondaryResourcePointer != (long long *)0x0) {
     (**(code **)(*SecondaryResourcePointer + 0x38))(SecondaryResourcePointer);
   }
-  if ((long long *)*param_3 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_3 + 0x38))();
+  if ((long long *)*AdditionalParameter != (long long *)0x0) {
+    (**(code **)(*(long long *)*AdditionalParameter + 0x38))();
   }
-  if ((long long *)*param_4 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_4 + 0x38))();
+  if ((long long *)*ConfigurationFlag != (long long *)0x0) {
+    (**(code **)(*(long long *)*ConfigurationFlag + 0x38))();
   }
   return;
 }
@@ -61759,19 +61859,19 @@ void FUN_18007c790(long long *SystemResourcePointer)
 
 
 
-void* * FUN_18007c7f0(void* *SystemResourcePointer,void* *param_2)
+void* * FUN_18007c7f0(void* *SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
   
-  *SystemResourcePointer = *param_2;
-  *(uint8_t *)(SystemResourcePointer + 1) = *(uint8_t *)(param_2 + 1);
-  PrimaryResourcePointer = (long long *)param_2[2];
+  *SystemResourcePointer = *ConfigurationDataPointer;
+  *(uint8_t *)(SystemResourcePointer + 1) = *(uint8_t *)(ConfigurationDataPointer + 1);
+  PrimaryResourcePointer = (long long *)ConfigurationDataPointer[2];
   SystemResourcePointer[2] = PrimaryResourcePointer;
   if (PrimaryResourcePointer != (long long *)0x0) {
     (**(code **)(*PrimaryResourcePointer + 0x28))();
   }
-  PrimaryResourcePointer = (long long *)param_2[3];
+  PrimaryResourcePointer = (long long *)ConfigurationDataPointer[3];
   SystemResourcePointer[3] = PrimaryResourcePointer;
   if (PrimaryResourcePointer != (long long *)0x0) {
     (**(code **)(*PrimaryResourcePointer + 0x28))();
@@ -61782,8 +61882,8 @@ void* * FUN_18007c7f0(void* *SystemResourcePointer,void* *param_2)
 
 
 
-// 函数: void FUN_18007c860(long long SystemResourcePointer,uint8_t param_2)
-void FUN_18007c860(long long SystemResourcePointer,uint8_t param_2)
+// 函数: void FUN_18007c860(long long SystemResourcePointer,uint8_t ConfigurationDataPointer)
+void FUN_18007c860(long long SystemResourcePointer,uint8_t ConfigurationDataPointer)
 
 {
   char SystemNodeFlag;
@@ -61800,7 +61900,7 @@ void FUN_18007c860(long long SystemResourcePointer,uint8_t param_2)
       cVar1 = func_0x00018022d300();
       *(char *)(localSystemHandle + 0x38c) = cVar1;
     }
-    cVar1 = FUN_18007b240(SystemResourcePointer,SystemResourcePointer + 0x1e8,cVar1,param_2);
+    cVar1 = FUN_18007b240(SystemResourcePointer,SystemResourcePointer + 0x1e8,cVar1,ConfigurationDataPointer);
     if (cVar1 == '\0') {
       *(byte *)(SystemResourcePointer + 0xfe) = *(byte *)(SystemResourcePointer + 0xfe) & 0xfb;
     }
@@ -61856,17 +61956,17 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
   systemCounter = *(int *)(*(long long *)(*(long long *)(SystemAllocationFlagsTemplate + 8) + 8) + 0x48);
   systemIndex = _Thrd_id();
   if (systemIndex == systemCounter) {
-    localMemoryPointer = (ulong long)param_2 * 0x18;
+    localMemoryPointer = (ulong long)ConfigurationDataPointer * 0x18;
     unsignedSystemValue5 = *(void* *)(*(long long *)(SystemResourcePointer + 0x1e0) + localMemoryPointer);
     pplStack_a0 = &plStack_a8;
-    plStack_a8 = (long long *)*param_3;
+    plStack_a8 = (long long *)*AdditionalParameter;
     if (plStack_a8 != (long long *)0x0) {
       (**(code **)(*plStack_a8 + 0x28))();
     }
     FUN_180255880(unsignedSystemValue5,&plStack_a8);
     unsignedSystemValue5 = *(void* *)(*(long long *)(SystemResourcePointer + 0x1e0) + 8 + localMemoryPointer);
     pplStack_a0 = &plStack_b8;
-    plStack_b8 = (long long *)*param_4;
+    plStack_b8 = (long long *)*ConfigurationFlag;
     if (plStack_b8 != (long long *)0x0) {
       (**(code **)(*plStack_b8 + 0x28))();
     }
@@ -61882,13 +61982,13 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
     unsignedSystemValue5 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x40,8,0x20);
     pplStack_a0 = aplStack_58;
     plStack_b0 = &lStack_98;
-    plStack_88 = (long long *)*param_3;
+    plStack_88 = (long long *)*AdditionalParameter;
     lStack_98 = SystemResourcePointer;
-    bStack_90 = param_2;
+    bStack_90 = ConfigurationDataPointer;
     if (plStack_88 != (long long *)0x0) {
       (**(code **)(*plStack_88 + 0x28))();
     }
-    plStack_80 = (long long *)*param_4;
+    plStack_80 = (long long *)*ConfigurationFlag;
     if (plStack_80 != (long long *)0x0) {
       (**(code **)(*plStack_80 + 0x28))();
     }
@@ -61927,7 +62027,7 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
       (**(code **)(*plocalSystemFlags + 0x28))(plocalSystemFlags);
     }
     FUN_18005e370(SystemAllocationFlagsTemplate,&plStack_b0);
-    pcVar2 = (char *)(*(long long *)(SystemResourcePointer + 0x1e0) + 0x15 + (ulong long)param_2 * 0x18);
+    pcVar2 = (char *)(*(long long *)(SystemResourcePointer + 0x1e0) + 0x15 + (ulong long)ConfigurationDataPointer * 0x18);
     LOCK();
     if (*pcVar2 == '\x01') {
       *pcVar2 = '\x02';
@@ -61937,11 +62037,11 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
       (**(code **)(*plocalSystemFlags + 0x38))(plocalSystemFlags);
     }
   }
-  if ((long long *)*param_3 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_3 + 0x38))();
+  if ((long long *)*AdditionalParameter != (long long *)0x0) {
+    (**(code **)(*(long long *)*AdditionalParameter + 0x38))();
   }
-  if ((long long *)*param_4 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_4 + 0x38))();
+  if ((long long *)*ConfigurationFlag != (long long *)0x0) {
+    (**(code **)(*(long long *)*ConfigurationFlag + 0x38))();
   }
   return;
 }
@@ -61950,8 +62050,8 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
 
 
 
-// 函数: void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param_3,void* param_4)
-void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param_3,void* param_4)
+// 函数: void FUN_18007cbb0(uint SystemResourcePointer,long long ConfigurationDataPointer,long long *AdditionalParameter,void* ConfigurationFlag)
+void FUN_18007cbb0(uint SystemResourcePointer,long long ConfigurationDataPointer,long long *AdditionalParameter,void* ConfigurationFlag)
 
 {
   float fVar1;
@@ -62013,20 +62113,20 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
   
   localSystemHandle1 = 0;
   if (SystemResourcePointer < 0xe) {
-    systemCode = func_0x000180204ae0(SystemResourcePointer,param_2,param_3,param_4,0,0xfffffffffffffffe);
+    systemCode = func_0x000180204ae0(SystemResourcePointer,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0,0xfffffffffffffffe);
   }
   else {
     systemCode = -1;
   }
-  systemResult = *(int *)(param_2 + 0x60);
+  systemResult = *(int *)(ConfigurationDataPointer + 0x60);
   localSystemHandle7 = (long long)systemResult;
   PrimaryResourcePointer0 = (long long *)FUN_180081480(_DAT_180c8a998,&plStackX_20,systemResult * systemCode);
   PrimaryResourcePointer0 = (long long *)*PrimaryResourcePointer0;
   if (PrimaryResourcePointer0 != (long long *)0x0) {
     (**(code **)(*PrimaryResourcePointer0 + 0x28))(PrimaryResourcePointer0);
   }
-  plocalResourceOffset = (long long *)*param_3;
-  *param_3 = (long long)PrimaryResourcePointer0;
+  plocalResourceOffset = (long long *)*AdditionalParameter;
+  *AdditionalParameter = (long long)PrimaryResourcePointer0;
   if (plocalResourceOffset != (long long *)0x0) {
     (**(code **)(*plocalResourceOffset + 0x38))();
   }
@@ -62034,12 +62134,12 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
   if (plStackX_20 != (long long *)0x0) {
     (**(code **)(*plStackX_20 + 0x38))();
   }
-  pfVar20 = *(float **)(*param_3 + 0x10);
+  pfVar20 = *(float **)(*AdditionalParameter + 0x10);
   switch(SystemResourcePointer) {
   case 0:
     if (0 < systemResult) {
       do {
-        *pfVar20 = *(float *)(localSystemHandle1 + 0x54 + *(long long *)(param_2 + 0x68));
+        *pfVar20 = *(float *)(localSystemHandle1 + 0x54 + *(long long *)(ConfigurationDataPointer + 0x68));
         pfVar20 = (float *)((long long)pfVar20 + (long long)systemCode);
         localSystemHandle1 = localSystemHandle1 + 0x5c;
         localSystemHandle7 = localSystemHandle7 + -1;
@@ -62049,7 +62149,7 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
   case 1:
     if (0 < systemResult) {
       do {
-        *pfVar20 = *(float *)(localSystemHandle1 + 0x58 + *(long long *)(param_2 + 0x68));
+        *pfVar20 = *(float *)(localSystemHandle1 + 0x58 + *(long long *)(ConfigurationDataPointer + 0x68));
         pfVar20 = (float *)((long long)pfVar20 + (long long)systemCode);
         localSystemHandle1 = localSystemHandle1 + 0x5c;
         localSystemHandle7 = localSystemHandle7 + -1;
@@ -62059,8 +62159,8 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
   case 2:
     if (3 < localSystemHandle7) {
       localSystemHandle5 = (long long)systemCode;
-      pfVar15 = (float *)(*(long long *)(param_2 + 0x68) + 0x48);
-      pfVar13 = (float *)(*(long long *)(param_2 + 0x68) + 0x100);
+      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x48);
+      pfVar13 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x100);
       localSystemHandle2 = (localSystemHandle7 - 4U >> 2) + 1;
       localSystemHandle1 = localSystemHandle2 * 4;
       do {
@@ -62082,7 +62182,7 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
       } while (localSystemHandle2 != 0);
     }
     if (localSystemHandle1 < localSystemHandle7) {
-      pfVar15 = (float *)(*(long long *)(param_2 + 0x68) + 0x48 + localSystemHandle1 * 0x5c);
+      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x48 + localSystemHandle1 * 0x5c);
       localSystemHandle7 = localSystemHandle7 - localSystemHandle1;
       do {
         *pfVar20 = pfVar15[-1];
@@ -62096,8 +62196,8 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
   case 3:
     if (3 < localSystemHandle7) {
       localSystemHandle5 = (long long)systemCode;
-      pfVar15 = (float *)(*(long long *)(param_2 + 0x68) + 0x50);
-      pfVar13 = (float *)(*(long long *)(param_2 + 0x68) + 0x108);
+      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x50);
+      pfVar13 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x108);
       localSystemHandle2 = (localSystemHandle7 - 4U >> 2) + 1;
       localSystemHandle1 = localSystemHandle2 * 4;
       do {
@@ -62119,7 +62219,7 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
       } while (localSystemHandle2 != 0);
     }
     if (localSystemHandle1 < localSystemHandle7) {
-      pfVar15 = (float *)(*(long long *)(param_2 + 0x68) + 0x50 + localSystemHandle1 * 0x5c);
+      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x50 + localSystemHandle1 * 0x5c);
       localSystemHandle7 = localSystemHandle7 - localSystemHandle1;
       do {
         *pfVar20 = pfVar15[-1];
@@ -62132,20 +62232,20 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
     break;
   case 4:
   case 5:
-    if ((SystemResourcePointer == 5) && (0 < *(int *)(param_2 + 0x38))) {
+    if ((SystemResourcePointer == 5) && (0 < *(int *)(ConfigurationDataPointer + 0x38))) {
       bVar5 = true;
     }
     else {
       bVar5 = false;
     }
-    pointerToInteger12 = (int *)(param_2 + 0x38);
+    pointerToInteger12 = (int *)(ConfigurationDataPointer + 0x38);
     if (!bVar5) {
-      pointerToInteger12 = (int *)(param_2 + 0x10);
+      pointerToInteger12 = (int *)(ConfigurationDataPointer + 0x10);
     }
     if (3 < localSystemHandle7) {
       localSystemHandle5 = *(long long *)(pointerToInteger12 + 2);
       localSystemHandle4 = (long long)systemCode;
-      pointerToInteger11 = (int *)(*(long long *)(param_2 + 0x68) + 0xb8);
+      pointerToInteger11 = (int *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0xb8);
       localSystemHandle2 = (localSystemHandle7 - 4U >> 2) + 1;
       localSystemHandle1 = localSystemHandle2 * 4;
       do {
@@ -62172,7 +62272,7 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
     if (localSystemHandle1 < localSystemHandle7) {
       localSystemHandle5 = *(long long *)(pointerToInteger12 + 2);
       pfVar20 = pfVar20 + 2;
-      pointerToInteger12 = (int *)(localSystemHandle1 * 0x5c + *(long long *)(param_2 + 0x68));
+      pointerToInteger12 = (int *)(localSystemHandle1 * 0x5c + *(long long *)(ConfigurationDataPointer + 0x68));
       localSystemHandle7 = localSystemHandle7 - localSystemHandle1;
       do {
         pfVar20[-2] = *(float *)(localSystemHandle5 + (long long)*pointerToInteger12 * 0x10);
@@ -62187,8 +62287,8 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
   case 6:
     if (3 < localSystemHandle7) {
       localSystemHandle5 = (long long)systemCode;
-      pfVar15 = (float *)(*(long long *)(param_2 + 0x68) + 0x38);
-      pointerToUnsigned16 = (uint32_t *)(*(long long *)(param_2 + 0x68) + 0xf0);
+      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x38);
+      pointerToUnsigned16 = (uint32_t *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0xf0);
       localSystemHandle2 = (localSystemHandle7 - 4U >> 2) + 1;
       localSystemHandle1 = localSystemHandle2 * 4;
       do {
@@ -62215,7 +62315,7 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
     }
     if (localSystemHandle1 < localSystemHandle7) {
       pfVar20 = pfVar20 + 2;
-      pfVar15 = (float *)(*(long long *)(param_2 + 0x68) + 0x38 + localSystemHandle1 * 0x5c);
+      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x38 + localSystemHandle1 * 0x5c);
       localSystemHandle7 = localSystemHandle7 - localSystemHandle1;
       do {
         pfVar20[-2] = pfVar15[-1];
@@ -62230,8 +62330,8 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
   case 7:
     if (3 < localSystemHandle7) {
       localSystemHandle2 = (long long)systemCode;
-      pfVar15 = (float *)(*(long long *)(param_2 + 0x68) + 0x14);
-      pfVar13 = (float *)(*(long long *)(param_2 + 0x68) + 0xc0);
+      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x14);
+      pfVar13 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0xc0);
       localSystemHandle5 = (localSystemHandle7 - 4U >> 2) + 1;
       localSystemHandle1 = localSystemHandle5 * 4;
       do {
@@ -62296,7 +62396,7 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
     }
     if (localSystemHandle1 < localSystemHandle7) {
       pfVar20 = pfVar20 + 2;
-      pfVar15 = (float *)(*(long long *)(param_2 + 0x68) + 8 + localSystemHandle1 * 0x5c);
+      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 8 + localSystemHandle1 * 0x5c);
       localSystemHandle7 = localSystemHandle7 - localSystemHandle1;
       do {
         pfVar20[-2] = pfVar15[3];
@@ -62318,7 +62418,7 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
     }
     break;
   case 8:
-    if (*(int *)(param_2 + 200) < 1) {
+    if (*(int *)(ConfigurationDataPointer + 200) < 1) {
 code_r0x00018007db1b:
                     // WARNING: Subroutine does not return
       memset(pfVar20,0,(long long)(systemResult * 4));
@@ -62329,14 +62429,14 @@ code_r0x00018007db1b:
       localSystemHandle2 = (localSystemHandle7 - 4U >> 2) + 1;
       localSystemHandle5 = localSystemHandle2 * 4;
       do {
-        localBufferAddress = *(long long *)(param_2 + 0x68);
+        localBufferAddress = *(long long *)(ConfigurationDataPointer + 0x68);
         *(char *)pfVar20 =
-             (char)(int)(*(float *)(*(long long *)(param_2 + 0xd0) +
+             (char)(int)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) +
                                    (long long)*(int *)(localSystemHandle1 + localBufferAddress) * 0x14) * 255.0);
         *(char*)((long long)pfVar20 + 1) =
-             (char)(int)(*(float *)(*(long long *)(param_2 + 0xd0) + 4 +
+             (char)(int)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 4 +
                                    (long long)*(int *)(localSystemHandle1 + localBufferAddress) * 0x14) * 255.0);
-        unsignedSystemValue9 = (uint)(*(float *)(*(long long *)(param_2 + 0xd0) + 8 +
+        unsignedSystemValue9 = (uint)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 8 +
                                  (long long)*(int *)(localSystemHandle1 + localBufferAddress) * 0x14) * 255.0);
         *(char*)((long long)pfVar20 + 2) = (char)unsignedSystemValue9;
         fVar28 = (float)((unsignedSystemValue9 & 0xff) + (uint)*(byte *)((long long)pfVar20 + 1) +
@@ -62351,13 +62451,13 @@ code_r0x00018007db1b:
         }
         *(char*)((long long)pfVar20 + 3) = (char)(int)(1.0 - fVar28);
         pbVar18 = (byte *)((long long)pfVar20 + localSystemHandle4);
-        localBufferAddress = *(long long *)(param_2 + 0x68);
-        *pbVar18 = (byte)(int)(*(float *)(*(long long *)(param_2 + 0xd0) +
+        localBufferAddress = *(long long *)(ConfigurationDataPointer + 0x68);
+        *pbVar18 = (byte)(int)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) +
                                          (long long)*(int *)(localSystemHandle1 + 0x5c + localBufferAddress) * 0x14) * 255.0);
-        pbVar18[1] = (byte)(int)(*(float *)(*(long long *)(param_2 + 0xd0) + 4 +
+        pbVar18[1] = (byte)(int)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 4 +
                                            (long long)*(int *)(localSystemHandle1 + 0x5c + localBufferAddress) * 0x14) * 255.0
                                 );
-        unsignedSystemValue9 = (uint)(*(float *)(*(long long *)(param_2 + 0xd0) + 8 +
+        unsignedSystemValue9 = (uint)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 8 +
                                  (long long)*(int *)(localSystemHandle1 + 0x5c + localBufferAddress) * 0x14) * 255.0);
         pbVar18[2] = (byte)unsignedSystemValue9;
         fVar28 = (float)((unsignedSystemValue9 & 0xff) + (uint)pbVar18[1] + (uint)*pbVar18);
@@ -62371,13 +62471,13 @@ code_r0x00018007db1b:
         }
         pbVar18[3] = (byte)(int)(1.0 - fVar28);
         pbVar18 = pbVar18 + localSystemHandle4;
-        localBufferAddress = *(long long *)(param_2 + 0x68);
-        *pbVar18 = (byte)(int)(*(float *)(*(long long *)(param_2 + 0xd0) +
+        localBufferAddress = *(long long *)(ConfigurationDataPointer + 0x68);
+        *pbVar18 = (byte)(int)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) +
                                          (long long)*(int *)(localSystemHandle1 + 0xb8 + localBufferAddress) * 0x14) * 255.0);
-        pbVar18[1] = (byte)(int)(*(float *)(*(long long *)(param_2 + 0xd0) + 4 +
+        pbVar18[1] = (byte)(int)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 4 +
                                            (long long)*(int *)(localSystemHandle1 + 0xb8 + localBufferAddress) * 0x14) * 255.0
                                 );
-        unsignedSystemValue9 = (uint)(*(float *)(*(long long *)(param_2 + 0xd0) + 8 +
+        unsignedSystemValue9 = (uint)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 8 +
                                  (long long)*(int *)(localSystemHandle1 + 0xb8 + localBufferAddress) * 0x14) * 255.0);
         pbVar18[2] = (byte)unsignedSystemValue9;
         fVar28 = (float)((unsignedSystemValue9 & 0xff) + (uint)pbVar18[1] + (uint)*pbVar18);
@@ -62391,14 +62491,14 @@ code_r0x00018007db1b:
         }
         pbVar18[3] = (byte)(int)(1.0 - fVar28);
         pbVar18 = pbVar18 + localSystemHandle4;
-        localBufferAddress = *(long long *)(param_2 + 0x68);
-        *pbVar18 = (byte)(int)(*(float *)(*(long long *)(param_2 + 0xd0) +
+        localBufferAddress = *(long long *)(ConfigurationDataPointer + 0x68);
+        *pbVar18 = (byte)(int)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) +
                                          (long long)*(int *)(localSystemHandle1 + 0x114 + localBufferAddress) * 0x14) * 255.0)
         ;
-        pbVar18[1] = (byte)(int)(*(float *)(*(long long *)(param_2 + 0xd0) + 4 +
+        pbVar18[1] = (byte)(int)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 4 +
                                            (long long)*(int *)(localSystemHandle1 + 0x114 + localBufferAddress) * 0x14) *
                                 255.0);
-        unsignedSystemValue9 = (uint)(*(float *)(*(long long *)(param_2 + 0xd0) + 8 +
+        unsignedSystemValue9 = (uint)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 8 +
                                  (long long)*(int *)(localSystemHandle1 + 0x114 + localBufferAddress) * 0x14) * 255.0);
         pbVar18[2] = (byte)unsignedSystemValue9;
         fVar28 = (float)((unsignedSystemValue9 & 0xff) + (uint)pbVar18[1] + (uint)*pbVar18);
@@ -62421,14 +62521,14 @@ code_r0x00018007db1b:
       pointerToUnsigned19 = (uint8_t *)((long long)pfVar20 + 2);
       localSystemHandle7 = localSystemHandle7 - localSystemHandle5;
       do {
-        localSystemHandle5 = *(long long *)(param_2 + 0x68);
-        unsignedSystemValue23 = (uint)(*(float *)(*(long long *)(param_2 + 0xd0) +
+        localSystemHandle5 = *(long long *)(ConfigurationDataPointer + 0x68);
+        unsignedSystemValue23 = (uint)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) +
                                   (long long)*(int *)(localSystemHandle1 + localSystemHandle5) * 0x14) * 255.0);
         pointerToUnsigned19[-2] = (char)unsignedSystemValue23;
-        unsignedSystemValue14 = (uint)(*(float *)(*(long long *)(param_2 + 0xd0) + 4 +
+        unsignedSystemValue14 = (uint)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 4 +
                                   (long long)*(int *)(localSystemHandle1 + localSystemHandle5) * 0x14) * 255.0);
         pointerToUnsigned19[-1] = (char)unsignedSystemValue14;
-        unsignedSystemValue9 = (uint)(*(float *)(*(long long *)(param_2 + 0xd0) + 8 +
+        unsignedSystemValue9 = (uint)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 8 +
                                  (long long)*(int *)(localSystemHandle1 + localSystemHandle5) * 0x14) * 255.0);
         *pointerToUnsigned19 = (char)unsignedSystemValue9;
         fVar28 = (float)((unsignedSystemValue9 & 0xff) + (unsignedSystemValue14 & 0xff) + (unsignedSystemValue23 & 0xff));
@@ -62448,22 +62548,22 @@ code_r0x00018007db1b:
     }
     break;
   case 9:
-    if (*(int *)(param_2 + 200) < 1) goto code_r0x00018007db1b;
+    if (*(int *)(ConfigurationDataPointer + 200) < 1) goto code_r0x00018007db1b;
     if (0 < systemResult) {
       do {
-        localSystemHandle5 = *(long long *)(param_2 + 0x68);
+        localSystemHandle5 = *(long long *)(ConfigurationDataPointer + 0x68);
         *(uint8_t *)pfVar20 =
              *(uint8_t *)
-              (*(long long *)(param_2 + 0xd0) + 0x10 + (long long)*(int *)(localSystemHandle1 + localSystemHandle5) * 0x14);
+              (*(long long *)(ConfigurationDataPointer + 0xd0) + 0x10 + (long long)*(int *)(localSystemHandle1 + localSystemHandle5) * 0x14);
         *(uint8_t *)((long long)pfVar20 + 1) =
              *(uint8_t *)
-              (*(long long *)(param_2 + 0xd0) + 0x11 + (long long)*(int *)(localSystemHandle1 + localSystemHandle5) * 0x14);
+              (*(long long *)(ConfigurationDataPointer + 0xd0) + 0x11 + (long long)*(int *)(localSystemHandle1 + localSystemHandle5) * 0x14);
         *(uint8_t *)((long long)pfVar20 + 2) =
              *(uint8_t *)
-              (*(long long *)(param_2 + 0xd0) + 0x12 + (long long)*(int *)(localSystemHandle1 + localSystemHandle5) * 0x14);
+              (*(long long *)(ConfigurationDataPointer + 0xd0) + 0x12 + (long long)*(int *)(localSystemHandle1 + localSystemHandle5) * 0x14);
         *(uint8_t *)((long long)pfVar20 + 3) =
              *(uint8_t *)
-              (*(long long *)(param_2 + 0xd0) + 0x13 + (long long)*(int *)(localSystemHandle1 + localSystemHandle5) * 0x14);
+              (*(long long *)(ConfigurationDataPointer + 0xd0) + 0x13 + (long long)*(int *)(localSystemHandle1 + localSystemHandle5) * 0x14);
         pfVar20 = (float *)((long long)pfVar20 + (long long)systemCode);
         localSystemHandle1 = localSystemHandle1 + 0x5c;
         localSystemHandle7 = localSystemHandle7 + -1;
@@ -62473,7 +62573,7 @@ code_r0x00018007db1b:
   case 10:
     if (0 < systemResult) {
       do {
-        localSystemHandle5 = *(long long *)(param_2 + 0x68);
+        localSystemHandle5 = *(long long *)(ConfigurationDataPointer + 0x68);
         fVar29 = *(float *)(localSystemHandle1 + 0x34 + localSystemHandle5) * 0.5;
         fVar34 = *(float *)(localSystemHandle1 + 0x38 + localSystemHandle5) * 0.5;
         fVar28 = *(float *)(localSystemHandle1 + 0x3c + localSystemHandle5) * 0.5;
@@ -62516,23 +62616,23 @@ code_r0x00018007db1b:
   case 0xb:
     if (0 < systemResult) {
       localSystemHandle5 = 0x40;
-      if (*(int *)(param_2 + 0x38) < 1) {
+      if (*(int *)(ConfigurationDataPointer + 0x38) < 1) {
         localSystemHandle5 = 0x18;
       }
       unsignedSystemValue6 = func_0x0001800840d0(0x3f800000);
       unsignedSystemValue26 = (ulong long)unsignedSystemValue6;
       do {
-        localSystemHandle2 = *(long long *)(param_2 + 0x68);
+        localSystemHandle2 = *(long long *)(ConfigurationDataPointer + 0x68);
         unsignedSystemValue7 = func_0x0001800840d0(*(uint32_t *)
-                                     (*(long long *)(localSystemHandle5 + param_2) +
+                                     (*(long long *)(localSystemHandle5 + ConfigurationDataPointer) +
                                      (long long)*(int *)(localSystemHandle1 + localSystemHandle2) * 0x10));
         *(void*2 *)pfVar20 = unsignedSystemValue7;
         unsignedSystemValue7 = func_0x0001800840d0(*(uint32_t *)
-                                     (*(long long *)(localSystemHandle5 + param_2) + 4 +
+                                     (*(long long *)(localSystemHandle5 + ConfigurationDataPointer) + 4 +
                                      (long long)*(int *)(localSystemHandle1 + localSystemHandle2) * 0x10));
         *(void*2 *)((long long)pfVar20 + 2) = unsignedSystemValue7;
         unsignedSystemValue7 = func_0x0001800840d0(*(uint32_t *)
-                                     (*(long long *)(localSystemHandle5 + param_2) + 8 +
+                                     (*(long long *)(localSystemHandle5 + ConfigurationDataPointer) + 8 +
                                      (long long)*(int *)(localSystemHandle1 + localSystemHandle2) * 0x10));
         *(void*2 *)(pfVar20 + 1) = unsignedSystemValue7;
         *(short *)((long long)pfVar20 + 6) = (short)unsignedSystemValue26;
@@ -62545,7 +62645,7 @@ code_r0x00018007db1b:
   case 0xc:
     if (0 < systemResult) {
       do {
-        localSystemHandle5 = *(long long *)(param_2 + 0x68);
+        localSystemHandle5 = *(long long *)(ConfigurationDataPointer + 0x68);
         fVar28 = *(float *)(localSystemHandle1 + 0x1c + localSystemHandle5);
         fVar31 = *(float *)(localSystemHandle1 + 0x18 + localSystemHandle5);
         fVar32 = *(float *)(localSystemHandle1 + 0x14 + localSystemHandle5);
@@ -62601,7 +62701,7 @@ code_r0x00018007db1b:
       localSystemHandle5 = *(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8);
       fVar28 = fRam0000000180d49154;
       do {
-        localSystemHandle4 = *(long long *)(param_2 + 0x68);
+        localSystemHandle4 = *(long long *)(ConfigurationDataPointer + 0x68);
         pfVar15 = (float *)(localSystemHandle1 + 0x34 + localSystemHandle4);
         fStack_108 = *pfVar15;
         fStack_104 = pfVar15[1];
@@ -62695,8 +62795,8 @@ code_r0x00018007db1b:
 
 
 
-// 函数: void FUN_18007df50(long long SystemResourcePointer,long long *param_2,char param_3,void* param_4)
-void FUN_18007df50(long long SystemResourcePointer,long long *param_2,char param_3,void* param_4)
+// 函数: void FUN_18007df50(long long SystemResourcePointer,long long *ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag)
+void FUN_18007df50(long long SystemResourcePointer,long long *ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long localMemoryPointer;
@@ -62707,20 +62807,20 @@ void FUN_18007df50(long long SystemResourcePointer,long long *param_2,char param
   long long *plStackX_8;
   
   if (*(int *)(SystemResourcePointer + 0x88) != 0) {
-    if (param_3 == '\0') {
-      unsignedSystemValue4 = FUN_180081350(SystemResourcePointer,&plStackX_8,*(int *)(SystemResourcePointer + 0x88) * 3,param_4,
+    if (AdditionalParameter == '\0') {
+      unsignedSystemValue4 = FUN_180081350(SystemResourcePointer,&plStackX_8,*(int *)(SystemResourcePointer + 0x88) * 3,ConfigurationFlag,
                             0xfffffffffffffffe);
-      FUN_180080810(param_2,unsignedSystemValue4);
+      FUN_180080810(ConfigurationDataPointer,unsignedSystemValue4);
     }
     else {
       unsignedSystemValue4 = FUN_180081220();
-      FUN_180080810(param_2,unsignedSystemValue4);
+      FUN_180080810(ConfigurationDataPointer,unsignedSystemValue4);
     }
     if (plStackX_8 != (long long *)0x0) {
       (**(code **)(*plStackX_8 + 0x38))();
     }
-    localSystemHandle = *(long long *)(*param_2 + 0x10);
-    if (param_3 != '\0') {
+    localSystemHandle = *(long long *)(*ConfigurationDataPointer + 0x10);
+    if (AdditionalParameter != '\0') {
                     // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
@@ -62749,8 +62849,8 @@ void FUN_18007df50(long long SystemResourcePointer,long long *param_2,char param
 
 
 
-// 函数: void FUN_18007e080(long long SystemResourcePointer,ulong long param_2,long long *param_3,long long *param_4)
-void FUN_18007e080(long long SystemResourcePointer,ulong long param_2,long long *param_3,long long *param_4)
+// 函数: void FUN_18007e080(long long SystemResourcePointer,ulong long ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag)
+void FUN_18007e080(long long SystemResourcePointer,ulong long ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag)
 
 {
   long long localMemoryPointer;
@@ -62766,7 +62866,7 @@ void FUN_18007e080(long long SystemResourcePointer,ulong long param_2,long long 
   uint32_t uStack_50;
   void* uStack_48;
   
-  localSystemPointer = (param_2 & 0xff) * 0x1c0 + SystemTextureManagerPointer;
+  localSystemPointer = (ConfigurationDataPointer & 0xff) * 0x1c0 + SystemTextureManagerPointer;
   systemIndex = *(int *)(localSystemPointer + 0x70);
   localMemoryPointer = (long long)systemIndex;
   if (0 < systemIndex) {
@@ -62794,7 +62894,7 @@ void FUN_18007e080(long long SystemResourcePointer,ulong long param_2,long long 
           case 0xb:
           case 0xc:
           case 0xd:
-            FUN_18007cbb0((long long)*pointerToInteger2,localSystemPointer,*param_3 + 0x18 + (long long)systemCounter * 8);
+            FUN_18007cbb0((long long)*pointerToInteger2,localSystemPointer,*AdditionalParameter + 0x18 + (long long)systemCounter * 8);
             localSystemPointer = lStack_60;
             break;
           case 8:
@@ -62815,23 +62915,23 @@ void FUN_18007e080(long long SystemResourcePointer,ulong long param_2,long long 
           }
           uStack_50 = 0;
           FUN_18007f770(&lStack_58);
-          FUN_18007cbb0(8,uStack_48,*param_3 + 0x18 + (long long)systemFlag * 8);
-          FUN_18007cbb0(9,uStack_48,*param_3 + 0x18 + (long long)systemIndex * 8);
+          FUN_18007cbb0(8,uStack_48,*AdditionalParameter + 0x18 + (long long)systemFlag * 8);
+          FUN_18007cbb0(9,uStack_48,*AdditionalParameter + 0x18 + (long long)systemIndex * 8);
           FUN_18007f840(&lStack_58);
         }
       }
       if ((*(byte *)(SystemResourcePointer + 0xfd) & 0x20) == 0) {
         SystemResourcePointer = func_0x000180085de0(*(void* *)(SystemResourcePointer + 0x1b0));
       }
-      FUN_18007df50(lStack_60,*param_4 + 0x20,0xffff < *(int *)(SystemResourcePointer + 0x200));
+      FUN_18007df50(lStack_60,*ConfigurationFlag + 0x20,0xffff < *(int *)(SystemResourcePointer + 0x200));
     }
     FUN_18007f840(&lStack_70);
   }
-  if ((long long *)*param_3 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_3 + 0x38))();
+  if ((long long *)*AdditionalParameter != (long long *)0x0) {
+    (**(code **)(*(long long *)*AdditionalParameter + 0x38))();
   }
-  if ((long long *)*param_4 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_4 + 0x38))();
+  if ((long long *)*ConfigurationFlag != (long long *)0x0) {
+    (**(code **)(*(long long *)*ConfigurationFlag + 0x38))();
   }
   return;
 }
@@ -62839,8 +62939,8 @@ void FUN_18007e080(long long SystemResourcePointer,ulong long param_2,long long 
 
 
 
-// 函数: void FUN_18007e2b0(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
-void FUN_18007e2b0(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+// 函数: void FUN_18007e2b0(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18007e2b0(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
@@ -62849,9 +62949,9 @@ void FUN_18007e2b0(long long SystemResourcePointer,long long param_2,void* param
   
   unsignedSystemValue3 = 0xfffffffffffffffe;
   FUN_180080650(SystemResourcePointer + 0x10);
-  FUN_180080650(SystemResourcePointer + 0x38,param_2);
-  *(uint8_t *)(SystemResourcePointer + 0x80) = *(uint8_t *)(param_2 + 0x1a);
-  *(uint32_t *)(SystemResourcePointer + 0x60) = **(uint32_t **)(param_2 + 8);
+  FUN_180080650(SystemResourcePointer + 0x38,ConfigurationDataPointer);
+  *(uint8_t *)(SystemResourcePointer + 0x80) = *(uint8_t *)(ConfigurationDataPointer + 0x1a);
+  *(uint32_t *)(SystemResourcePointer + 0x60) = **(uint32_t **)(ConfigurationDataPointer + 8);
   *(long long *)(ComparisonDataPointer + 8) = *(long long *)(ComparisonDataPointer + 8) + 4;
   systemStatus = *(int *)(SystemResourcePointer + 0x60);
   systemResult = *(int *)(SystemResourcePointer + 100);
@@ -62871,15 +62971,15 @@ void FUN_18007e2b0(long long SystemResourcePointer,long long param_2,void* param
   }
   *(int *)(SystemResourcePointer + 0x60) = systemStatus;
                     // WARNING: Subroutine does not return
-  memcpy(*(void* *)(SystemResourcePointer + 0x68),*(void* *)(param_2 + 8),(long long)(systemStatus * 0x5c),
-         param_4,unsignedSystemValue3);
+  memcpy(*(void* *)(SystemResourcePointer + 0x68),*(void* *)(ConfigurationDataPointer + 8),(long long)(systemStatus * 0x5c),
+         ConfigurationFlag,unsignedSystemValue3);
 }
 
 
 
 
-// 函数: void FUN_18007e5b0(long long SystemResourcePointer,long long *param_2)
-void FUN_18007e5b0(long long SystemResourcePointer,long long *param_2)
+// 函数: void FUN_18007e5b0(long long SystemResourcePointer,long long *ConfigurationDataPointer)
+void FUN_18007e5b0(long long SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   uint32_t unsignedSystemValue1;
@@ -62895,88 +62995,88 @@ void FUN_18007e5b0(long long SystemResourcePointer,long long *param_2)
   
   unsignedSystemValue10 = 0xfffffffffffffffe;
   FUN_1800806e0(SystemResourcePointer + 0x10);
-  FUN_1800806e0(SystemResourcePointer + 0x38,param_2);
+  FUN_1800806e0(SystemResourcePointer + 0x38,ConfigurationDataPointer);
   systemFlag = *(int *)(SystemResourcePointer + 0x60);
   unsignedSystemValue9 = (long long)systemFlag * 0x5c + 4;
-  localDataPointer = param_2[2];
-  pointerToInteger2 = (int *)param_2[1];
-  localBufferAddress = *param_2;
+  localDataPointer = ConfigurationDataPointer[2];
+  pointerToInteger2 = (int *)ConfigurationDataPointer[1];
+  localBufferAddress = *ConfigurationDataPointer;
   if ((ulong long)((localBufferAddress - (long long)pointerToInteger2) + localDataPointer) <= unsignedSystemValue9) {
-    FUN_180639bf0(param_2,(long long)pointerToInteger2 + (unsignedSystemValue9 - localBufferAddress),localDataPointer,unsignedSystemValue9,unsignedSystemValue10);
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToInteger2 + (unsignedSystemValue9 - localBufferAddress),localDataPointer,unsignedSystemValue9,unsignedSystemValue10);
     systemFlag = *(int *)(SystemResourcePointer + 0x60);
-    localDataPointer = param_2[2];
-    pointerToInteger2 = (int *)param_2[1];
-    localBufferAddress = *param_2;
+    localDataPointer = ConfigurationDataPointer[2];
+    pointerToInteger2 = (int *)ConfigurationDataPointer[1];
+    localBufferAddress = *ConfigurationDataPointer;
   }
   if ((ulong long)((localBufferAddress - (long long)pointerToInteger2) + localDataPointer) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToInteger2 + (4 - localBufferAddress));
-    pointerToInteger2 = (int *)param_2[1];
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToInteger2 + (4 - localBufferAddress));
+    pointerToInteger2 = (int *)ConfigurationDataPointer[1];
   }
   *pointerToInteger2 = systemFlag;
-  param_2[1] = param_2[1] + 4;
-  pointerToUnsigned3 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  pointerToUnsigned3 = (uint32_t *)ConfigurationDataPointer[1];
   systemValue = 0;
   systemFlag = systemValue;
   if (0 < *(int *)(SystemResourcePointer + 0x60)) {
     do {
-      FUN_180078c70((long long)systemFlag * 0x5c + *(long long *)(SystemResourcePointer + 0x68),param_2);
+      FUN_180078c70((long long)systemFlag * 0x5c + *(long long *)(SystemResourcePointer + 0x68),ConfigurationDataPointer);
       systemFlag = systemFlag + 1;
     } while (systemFlag < *(int *)(SystemResourcePointer + 0x60));
-    pointerToUnsigned3 = (uint32_t *)param_2[1];
+    pointerToUnsigned3 = (uint32_t *)ConfigurationDataPointer[1];
   }
   unsignedSystemValue1 = *(uint32_t *)(SystemResourcePointer + 0x88);
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned3) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned3 + (4 - *param_2));
-    pointerToUnsigned3 = (uint32_t *)param_2[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned3) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned3 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned3 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned3 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  FUN_18063a180(param_2,*(void* *)(SystemResourcePointer + 0x90),(long long)*(int *)(SystemResourcePointer + 0x88) * 0xc);
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  FUN_18063a180(ConfigurationDataPointer,*(void* *)(SystemResourcePointer + 0x90),(long long)*(int *)(SystemResourcePointer + 0x88) * 0xc);
   unsignedSystemValue8 = (ulong long)*(ushort *)(SystemResourcePointer + 0xc0);
   unsignedSystemValue9 = unsignedSystemValue8 * 4 + 4;
-  localDataPointer = param_2[2];
-  pointerToUnsigned3 = (uint32_t *)param_2[1];
-  localBufferAddress = *param_2;
+  localDataPointer = ConfigurationDataPointer[2];
+  pointerToUnsigned3 = (uint32_t *)ConfigurationDataPointer[1];
+  localBufferAddress = *ConfigurationDataPointer;
   if ((ulong long)((localBufferAddress - (long long)pointerToUnsigned3) + localDataPointer) <= unsignedSystemValue9) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned3 + (unsignedSystemValue9 - localBufferAddress));
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned3 + (unsignedSystemValue9 - localBufferAddress));
     unsignedSystemValue8 = (ulong long)*(ushort *)(SystemResourcePointer + 0xc0);
-    localDataPointer = param_2[2];
-    pointerToUnsigned3 = (uint32_t *)param_2[1];
-    localBufferAddress = *param_2;
+    localDataPointer = ConfigurationDataPointer[2];
+    pointerToUnsigned3 = (uint32_t *)ConfigurationDataPointer[1];
+    localBufferAddress = *ConfigurationDataPointer;
   }
   if ((ulong long)((localBufferAddress - (long long)pointerToUnsigned3) + localDataPointer) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned3 + (4 - localBufferAddress));
-    pointerToUnsigned3 = (uint32_t *)param_2[1];
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned3 + (4 - localBufferAddress));
+    pointerToUnsigned3 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned3 = (int)unsignedSystemValue8;
-  param_2[1] = param_2[1] + 4;
-  FUN_18063a180(param_2,*(void* *)(SystemResourcePointer + 0xb8),(ulong long)*(ushort *)(SystemResourcePointer + 0xc0) << 2)
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  FUN_18063a180(ConfigurationDataPointer,*(void* *)(SystemResourcePointer + 0xb8),(ulong long)*(ushort *)(SystemResourcePointer + 0xc0) << 2)
   ;
   if (*(short *)(SystemResourcePointer + 0xc0) != 0) {
     do {
       localDataPointer = (long long)systemValue * 0x50 + *(long long *)(SystemResourcePointer + 0xb0);
-      FUN_1800806e0(localDataPointer,param_2);
-      FUN_1800806e0(localDataPointer + 0x28,param_2);
+      FUN_1800806e0(localDataPointer,ConfigurationDataPointer);
+      FUN_1800806e0(localDataPointer + 0x28,ConfigurationDataPointer);
       systemValue = systemValue + 1;
     } while (systemValue < (int)(uint)*(ushort *)(SystemResourcePointer + 0xc0));
   }
   unsignedSystemValue1 = *(uint32_t *)(SystemResourcePointer + 200);
-  pointerToUnsigned3 = (uint32_t *)param_2[1];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned3) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned3 + (4 - *param_2));
-    pointerToUnsigned3 = (uint32_t *)param_2[1];
+  pointerToUnsigned3 = (uint32_t *)ConfigurationDataPointer[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned3) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned3 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned3 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned3 = unsignedSystemValue1;
-  param_2[1] = param_2[1] + 4;
-  FUN_18063a180(param_2,*(void* *)(SystemResourcePointer + 0xd0),(long long)*(int *)(SystemResourcePointer + 200) * 0x14);
-  pointerToUnsigned3 = (uint32_t *)param_2[1];
-  if ((ulong long)((*param_2 - (long long)pointerToUnsigned3) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)pointerToUnsigned3 + (4 - *param_2));
-    pointerToUnsigned3 = (uint32_t *)param_2[1];
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  FUN_18063a180(ConfigurationDataPointer,*(void* *)(SystemResourcePointer + 0xd0),(long long)*(int *)(SystemResourcePointer + 200) * 0x14);
+  pointerToUnsigned3 = (uint32_t *)ConfigurationDataPointer[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)pointerToUnsigned3) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)pointerToUnsigned3 + (4 - *ConfigurationDataPointer));
+    pointerToUnsigned3 = (uint32_t *)ConfigurationDataPointer[1];
   }
   *pointerToUnsigned3 = 0;
-  param_2[1] = param_2[1] + 4;
-  FUN_18063a180(param_2,0,0);
+  ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
+  FUN_18063a180(ConfigurationDataPointer,0,0);
   return;
 }
 
@@ -62984,15 +63084,15 @@ void FUN_18007e5b0(long long SystemResourcePointer,long long *param_2)
 
 
 
-// 函数: void FUN_18007e880(long long SystemResourcePointer,char param_2,void* param_3)
-void FUN_18007e880(long long SystemResourcePointer,char param_2,void* param_3)
+// 函数: void FUN_18007e880(long long SystemResourcePointer,char ConfigurationDataPointer,void* AdditionalParameter)
+void FUN_18007e880(long long SystemResourcePointer,char ConfigurationDataPointer,void* AdditionalParameter)
 
 {
   long long localMemoryPointer;
   void* unsignedSystemValue2;
   long long localResourceOffset;
   
-  *(int *)(*(long long *)(SystemResourcePointer + 600) + 0x18) = (int)param_2;
+  *(int *)(*(long long *)(SystemResourcePointer + 600) + 0x18) = (int)ConfigurationDataPointer;
   FUN_18007e990(SystemResourcePointer,*(int *)(*(long long *)(SystemResourcePointer + 600) + 0x1c) +
                         *(int *)(*(long long *)(SystemResourcePointer + 600) + 0x18));
   localMemoryPointer = *(long long *)(SystemResourcePointer + 600);
@@ -63001,7 +63101,7 @@ void FUN_18007e880(long long SystemResourcePointer,char param_2,void* param_3)
     SystemCleanupFunction();
   }
   unsignedSystemValue2 = 0;
-  localResourceOffset = (long long)param_2;
+  localResourceOffset = (long long)ConfigurationDataPointer;
   *(void* *)(localMemoryPointer + 0x10) = 0;
   if (localResourceOffset != 0) {
     unsignedSystemValue2 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,localResourceOffset,0x10,CONCAT71((int7)((ulong long)localMemoryPointer >> 8),3));
@@ -63010,7 +63110,7 @@ void FUN_18007e880(long long SystemResourcePointer,char param_2,void* param_3)
                     // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-  memcpy(*(void* *)(*(long long *)(SystemResourcePointer + 600) + 0x10),param_3,localResourceOffset);
+  memcpy(*(void* *)(*(long long *)(SystemResourcePointer + 600) + 0x10),AdditionalParameter,localResourceOffset);
   return;
 }
 
@@ -63061,26 +63161,26 @@ void FUN_18007e988(void)
 
 
 
-// 函数: void FUN_18007e990(long long SystemResourcePointer,int param_2)
-void FUN_18007e990(long long SystemResourcePointer,int param_2)
+// 函数: void FUN_18007e990(long long SystemResourcePointer,int ConfigurationDataPointer)
+void FUN_18007e990(long long SystemResourcePointer,int ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
   void* unsignedSystemValue2;
   
   PrimaryResourcePointer = *(long long **)(SystemResourcePointer + 600);
-  if ((int)PrimaryResourcePointer[1] != param_2) {
+  if ((int)PrimaryResourcePointer[1] != ConfigurationDataPointer) {
     if (*PrimaryResourcePointer != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
     }
     unsignedSystemValue2 = 0;
     *PrimaryResourcePointer = 0;
-    if (param_2 != 0) {
-      unsignedSystemValue2 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,(long long)param_2 << 6,0x10,4);
+    if (ConfigurationDataPointer != 0) {
+      unsignedSystemValue2 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,(long long)ConfigurationDataPointer << 6,0x10,4);
     }
     **(void* **)(SystemResourcePointer + 600) = unsignedSystemValue2;
-    *(int *)(*(long long *)(SystemResourcePointer + 600) + 8) = param_2;
+    *(int *)(*(long long *)(SystemResourcePointer + 600) + 8) = ConfigurationDataPointer;
   }
   return;
 }
@@ -63088,8 +63188,8 @@ void FUN_18007e990(long long SystemResourcePointer,int param_2)
 
 
 
-// 函数: void FUN_18007ea10(long long SystemResourcePointer,char param_2)
-void FUN_18007ea10(long long SystemResourcePointer,char param_2)
+// 函数: void FUN_18007ea10(long long SystemResourcePointer,char ConfigurationDataPointer)
+void FUN_18007ea10(long long SystemResourcePointer,char ConfigurationDataPointer)
 
 {
   byte bVar1;
@@ -63100,14 +63200,14 @@ void FUN_18007ea10(long long SystemResourcePointer,char param_2)
   uint32_t uStack_30;
   long long *plStack_28;
   
-  if (*(char *)(SystemResourcePointer + 0xf4) == param_2) {
+  if (*(char *)(SystemResourcePointer + 0xf4) == ConfigurationDataPointer) {
     return;
   }
   localSystemHandle = 0;
   if ((*(byte *)(SystemResourcePointer + 0xfd) & 0x20) != 0) {
     FUN_18007baa0();
     do {
-      *(char *)(*(long long *)(SystemResourcePointer + 0x1e0) + 0x14 + localSystemHandle) = param_2;
+      *(char *)(*(long long *)(SystemResourcePointer + 0x1e0) + 0x14 + localSystemHandle) = ConfigurationDataPointer;
       localSystemHandle = localSystemHandle + 0x18;
     } while (localSystemHandle < 0x180);
   }
@@ -63118,8 +63218,8 @@ void FUN_18007ea10(long long SystemResourcePointer,char param_2)
   FUN_18007f4c0(auStack_40);
   if (plStack_28 == (long long *)0x0) goto LAB_18007eb55;
   plocalResourceOffset = plStack_28;
-  if (param_2 != '\0') {
-    if ((param_2 != '\x01') || ((*(byte *)(SystemResourcePointer + 0xfd) & 0x20) == 0)) goto LAB_18007eb55;
+  if (ConfigurationDataPointer != '\0') {
+    if ((ConfigurationDataPointer != '\x01') || ((*(byte *)(SystemResourcePointer + 0xfd) & 0x20) == 0)) goto LAB_18007eb55;
     localSystemHandle = *(long long *)(SystemResourcePointer + 0x1b8);
     bVar1 = *(byte *)(localSystemHandle + 0x38c);
     if (bVar1 == 9) {
@@ -63136,7 +63236,7 @@ void FUN_18007ea10(long long SystemResourcePointer,char param_2)
     (**(code **)(*plocalResourceOffset + 0x38))();
   }
 LAB_18007eb55:
-  *(char *)(SystemResourcePointer + 0xf4) = param_2;
+  *(char *)(SystemResourcePointer + 0xf4) = ConfigurationDataPointer;
   FUN_18007f6a0(auStack_40);
   if (plStack_28 != (long long *)0x0) {
     (**(code **)(*plStack_28 + 0x38))();
@@ -63147,7 +63247,7 @@ LAB_18007eb55:
 
 
 
-code * FUN_18007eb80(long long SystemResourcePointer,char param_2)
+code * FUN_18007eb80(long long SystemResourcePointer,char ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -63174,7 +63274,7 @@ code * FUN_18007eb80(long long SystemResourcePointer,char param_2)
         FUN_1800860f0(*(long long *)pcVar3 + 0x38,(long long)pcStack_20 + 0x38);
         FUN_180086090(*(long long *)pcVar3 + 0x60,(long long)pcStack_20 + 0x60);
         FUN_180085fb0(*(long long *)pcVar3 + 0x88,(long long)pcStack_20 + 0x88);
-        if (param_2 != '\0') {
+        if (ConfigurationDataPointer != '\0') {
           *(byte *)(SystemResourcePointer + 0xfd) = *(byte *)(SystemResourcePointer + 0xfd) | 0x40;
           FUN_180085ec0(*(long long *)pcVar3 + 200,(long long)pcStack_20 + 200);
           FUN_180085680(*(long long *)pcVar3 + 0xb0,(long long)pcStack_20 + 0xb0);
@@ -63220,15 +63320,15 @@ code * FUN_18007eb80(long long SystemResourcePointer,char param_2)
 
 
 
-// 函数: void FUN_18007edd0(long long SystemResourcePointer,char param_2)
-void FUN_18007edd0(long long SystemResourcePointer,char param_2)
+// 函数: void FUN_18007edd0(long long SystemResourcePointer,char ConfigurationDataPointer)
+void FUN_18007edd0(long long SystemResourcePointer,char ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
   
   if (*(long long *)(SystemResourcePointer + 0x210) != 0) {
     FUN_1800791a0();
-    if (param_2 != '\0') {
+    if (ConfigurationDataPointer != '\0') {
       *(byte *)(SystemResourcePointer + 0xfd) = *(byte *)(SystemResourcePointer + 0xfd) | 0x20;
       *(byte *)(SystemResourcePointer + 0xfe) = *(byte *)(SystemResourcePointer + 0xfe) | 1;
       FUN_18007baa0(SystemResourcePointer);
@@ -63362,8 +63462,8 @@ void FUN_18007ee70(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18007eea1(long long SystemResourcePointer,int param_2,int param_3)
-void FUN_18007eea1(long long SystemResourcePointer,int param_2,int param_3)
+// 函数: void FUN_18007eea1(long long SystemResourcePointer,int ConfigurationDataPointer,int AdditionalParameter)
+void FUN_18007eea1(long long SystemResourcePointer,int ConfigurationDataPointer,int AdditionalParameter)
 
 {
   uint unsignedSystemValue1;
@@ -63382,8 +63482,8 @@ void FUN_18007eea1(long long SystemResourcePointer,int param_2,int param_3)
   ulong long unsignedSystemValue12;
   long long localMemoryPointer3;
   
-  if (param_2 < 1) {
-    if (param_3 == unaff_EBP + -1) {
+  if (ConfigurationDataPointer < 1) {
+    if (AdditionalParameter == unaff_EBP + -1) {
       unsignedSystemValue5 = *(int *)(SystemMemoryContext + 0x9c8) + 1U & 0x80000001;
       if ((int)unsignedSystemValue5 < 0) {
         unsignedSystemValue5 = (unsignedSystemValue5 - 1 | 0xfffffffe) + 1;
@@ -63467,8 +63567,8 @@ void FUN_18007eea1(long long SystemResourcePointer,int param_2,int param_3)
 
 
 
-// 函数: void FUN_18007ef9a(long long SystemResourcePointer,long long param_2)
-void FUN_18007ef9a(long long SystemResourcePointer,long long param_2)
+// 函数: void FUN_18007ef9a(long long SystemResourcePointer,long long ConfigurationDataPointer)
+void FUN_18007ef9a(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   uint unsignedSystemValue1;
@@ -63484,13 +63584,13 @@ void FUN_18007ef9a(long long SystemResourcePointer,long long param_2)
   ulong long unsignedSystemValue9;
   long long localAllocationFlags;
   
-  unsignedSystemValue3 = *(int *)(param_2 + 0x910) + 1U & 0x80000001;
+  unsignedSystemValue3 = *(int *)(ConfigurationDataPointer + 0x910) + 1U & 0x80000001;
   if ((int)unsignedSystemValue3 < 0) {
     unsignedSystemValue3 = (unsignedSystemValue3 - 1 | 0xfffffffe) + 1;
   }
-  localAllocationFlags = (long long)(int)unsignedSystemValue3 * 0x488 + param_2;
-  param_2 = (long long)*(int *)(param_2 + 0x910) * 0x488 + param_2;
-  unsignedSystemValue5 = FUN_180080480(param_2,*(uint32_t *)(SystemResourcePointer + 0x14));
+  localAllocationFlags = (long long)(int)unsignedSystemValue3 * 0x488 + ConfigurationDataPointer;
+  ConfigurationDataPointer = (long long)*(int *)(ConfigurationDataPointer + 0x910) * 0x488 + ConfigurationDataPointer;
+  unsignedSystemValue5 = FUN_180080480(ConfigurationDataPointer,*(uint32_t *)(SystemResourcePointer + 0x14));
   systemIndex = (int)unsignedSystemValue5;
   unsignedSystemValue8 = unsignedSystemValue5 & 0xffffffff;
   if (-1 < systemIndex) {
@@ -63503,7 +63603,7 @@ void FUN_18007ef9a(long long SystemResourcePointer,long long param_2)
       unsignedSystemValue6 = unsignedSystemValue1 >> 0xb;
       if (unsignedSystemValue6 == unsignedSystemValue1 + unsignedSystemValue3 >> 0xb) {
                     // WARNING: Subroutine does not return
-        memcpy(*(long long *)(param_2 + 8 + unsignedSystemValue9 * 8) + (ulong long)(systemIndex + unsignedSystemValue7 * -0x800) * 8,
+        memcpy(*(long long *)(ConfigurationDataPointer + 8 + unsignedSystemValue9 * 8) + (ulong long)(systemIndex + unsignedSystemValue7 * -0x800) * 8,
                *(long long *)(localAllocationFlags + 8 + (ulong long)unsignedSystemValue6 * 8) +
                (ulong long)(unsignedSystemValue1 + unsignedSystemValue6 * -0x800) * 8,(long long)(int)unsignedSystemValue3 << 3);
       }
@@ -63516,7 +63616,7 @@ void FUN_18007ef9a(long long SystemResourcePointer,long long param_2)
         unsignedSystemValue9 = unsignedSystemValue8 >> 0xb;
         unsignedSystemValue8 = (ulong long)(systemResult + 1);
         *(void* *)
-         (*(long long *)(param_2 + 8 + unsignedSystemValue9 * 8) +
+         (*(long long *)(ConfigurationDataPointer + 8 + unsignedSystemValue9 * 8) +
          (ulong long)(uint)(systemResult + (int)unsignedSystemValue9 * -0x800) * 8) =
              *(void* *)
               (*(long long *)(localAllocationFlags + 8 + (ulong long)unsignedSystemValue3 * 8) +
@@ -63565,8 +63665,8 @@ void FUN_18007f0ca(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18007f0e0(long long SystemResourcePointer,long long param_2,int param_3)
-void FUN_18007f0e0(long long SystemResourcePointer,long long param_2,int param_3)
+// 函数: void FUN_18007f0e0(long long SystemResourcePointer,long long ConfigurationDataPointer,int AdditionalParameter)
+void FUN_18007f0e0(long long SystemResourcePointer,long long ConfigurationDataPointer,int AdditionalParameter)
 
 {
   int *pointerToInteger1;
@@ -63580,16 +63680,16 @@ void FUN_18007f0e0(long long SystemResourcePointer,long long param_2,int param_3
   long long localAllocationFlags;
   void** systemRootNode;
   
-  unsignedSystemValue9 = (ulong long)param_3;
+  unsignedSystemValue9 = (ulong long)AdditionalParameter;
   if (**(long long **)(SystemResourcePointer + 0x2d0) != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
   punsignedSystemValue4 = (void* *)0x0;
   **(long long **)(SystemResourcePointer + 0x2d0) = 0;
-  if (0 < param_3) {
+  if (0 < AdditionalParameter) {
     pointerToUnsigned2 = punsignedSystemValue4;
-    if (param_3 != 0) {
+    if (AdditionalParameter != 0) {
       pointerToUnsigned2 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue9 * 8,3);
       pointerToUnsigned3 = pointerToUnsigned2;
       punsignedSystemValue6 = punsignedSystemValue4;
@@ -63602,10 +63702,10 @@ void FUN_18007f0e0(long long SystemResourcePointer,long long param_2,int param_3
     }
     **(void* **)(SystemResourcePointer + 0x2d0) = pointerToUnsigned2;
     if (3 < (long long)unsignedSystemValue9) {
-      localAllocationFlags = -8 - param_2;
+      localAllocationFlags = -8 - ConfigurationDataPointer;
       localMemoryAddress = (unsignedSystemValue9 - 4 >> 2) + 1;
       punsignedSystemValue4 = (void* *)(localMemoryAddress * 4);
-      pointerToInteger7 = (int *)(param_2 + 8);
+      pointerToInteger7 = (int *)(ConfigurationDataPointer + 8);
       do {
         pointerToInteger1 = pointerToInteger7 + 8;
         *(float *)((long long)pointerToInteger7 + **(long long **)(SystemResourcePointer + 0x2d0) + localAllocationFlags) = (float)pointerToInteger7[-2]
@@ -63614,10 +63714,10 @@ void FUN_18007f0e0(long long SystemResourcePointer,long long param_2,int param_3
         *(float *)((long long)pointerToInteger7 + **(long long **)(SystemResourcePointer + 0x2d0) + 8 + localAllocationFlags) =
              (float)*pointerToInteger7;
         *(int *)((long long)pointerToInteger7 + **(long long **)(SystemResourcePointer + 0x2d0) + 0xc + localAllocationFlags) = pointerToInteger7[1];
-        *(float *)((**(long long **)(SystemResourcePointer + 0x2d0) - param_2) + -0x18 + (long long)pointerToInteger1) =
+        *(float *)((**(long long **)(SystemResourcePointer + 0x2d0) - ConfigurationDataPointer) + -0x18 + (long long)pointerToInteger1) =
              (float)pointerToInteger7[2];
         *(int *)((long long)pointerToInteger7 + **(long long **)(SystemResourcePointer + 0x2d0) + 0x14 + localAllocationFlags) = pointerToInteger7[3];
-        *(float *)((**(long long **)(SystemResourcePointer + 0x2d0) - param_2) + -0x10 + (long long)pointerToInteger1) =
+        *(float *)((**(long long **)(SystemResourcePointer + 0x2d0) - ConfigurationDataPointer) + -0x10 + (long long)pointerToInteger1) =
              (float)pointerToInteger7[4];
         *(int *)((long long)pointerToInteger7 + **(long long **)(SystemResourcePointer + 0x2d0) + 0x1c + localAllocationFlags) = pointerToInteger7[5];
         localMemoryAddress = localMemoryAddress + -1;
@@ -63626,14 +63726,14 @@ void FUN_18007f0e0(long long SystemResourcePointer,long long param_2,int param_3
     }
     for (; (long long)punsignedSystemValue4 < (long long)unsignedSystemValue9; punsignedSystemValue4 = (void* *)((long long)punsignedSystemValue4 + 1)) {
       *(float *)(**(long long **)(SystemResourcePointer + 0x2d0) + (long long)punsignedSystemValue4 * 8) =
-           (float)*(int *)(param_2 + (long long)punsignedSystemValue4 * 8);
+           (float)*(int *)(ConfigurationDataPointer + (long long)punsignedSystemValue4 * 8);
       *(uint32_t *)(**(long long **)(SystemResourcePointer + 0x2d0) + 4 + (long long)punsignedSystemValue4 * 8) =
-           *(uint32_t *)(param_2 + 4 + (long long)punsignedSystemValue4 * 8);
+           *(uint32_t *)(ConfigurationDataPointer + 4 + (long long)punsignedSystemValue4 * 8);
     }
-    *(int *)(*(long long *)(SystemResourcePointer + 0x2d0) + 8) = param_3;
+    *(int *)(*(long long *)(SystemResourcePointer + 0x2d0) + 8) = AdditionalParameter;
     return;
   }
-  *(int *)(*(long long *)(SystemResourcePointer + 0x2d0) + 8) = param_3;
+  *(int *)(*(long long *)(SystemResourcePointer + 0x2d0) + 8) = AdditionalParameter;
   return;
 }
 
@@ -63827,7 +63927,7 @@ void* * FUN_18007f2f0(void* *SystemResourcePointer)
 
 
 
-void* * FUN_18007f3b0(void* *SystemResourcePointer,ulong long param_2)
+void* * FUN_18007f3b0(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &UNK_1809fffc8;
@@ -63860,7 +63960,7 @@ void* * FUN_18007f3b0(void* *SystemResourcePointer,ulong long param_2)
   }
   *SystemResourcePointer = &SystemMemoryTemplateB;
   *SystemResourcePointer = &SystemMemoryTemplateA;
-  if ((param_2 & 1) != 0) {
+  if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0xf0);
   }
   return SystemResourcePointer;
@@ -63870,8 +63970,8 @@ void* * FUN_18007f3b0(void* *SystemResourcePointer,ulong long param_2)
 
 
 
-// 函数: void FUN_18007f4c0(uint8_t *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18007f4c0(uint8_t *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18007f4c0(uint8_t *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18007f4c0(uint8_t *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long localMemoryPointer;
@@ -63910,7 +64010,7 @@ void FUN_18007f4c0(uint8_t *SystemResourcePointer,void* param_2,void* param_3,vo
         punsignedSystemValue8 = *(void* **)(localDataPointer + 0x18);
       }
                     // WARNING: Subroutine does not return
-      UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ffc28,punsignedSystemValue8,param_4,unsignedSystemValue10);
+      UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ffc28,punsignedSystemValue8,ConfigurationFlag,unsignedSystemValue10);
     }
   }
   localDataPointer = *(long long *)(SystemResourcePointer + 8);
@@ -63977,8 +64077,8 @@ void UpdateSystemState(long long SystemState)
 
 
 
-// 函数: void FUN_18007f6a0(char *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18007f6a0(char *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18007f6a0(char *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18007f6a0(char *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long localMemoryPointer;
@@ -64007,7 +64107,7 @@ void FUN_18007f6a0(char *SystemResourcePointer,void* param_2,void* param_3,void*
         FUN_180079520(*(void* *)(SystemResourcePointer + 8));
         localBufferAddress = *(long long *)(SystemResourcePointer + 8);
       }
-      FUN_18007edd0(localBufferAddress,1,param_3,param_4,unsignedSystemValue5);
+      FUN_18007edd0(localBufferAddress,1,AdditionalParameter,ConfigurationFlag,unsignedSystemValue5);
       *(uint32_t *)(localMemoryPointer + 0xf0) = 0;
       LOCK();
       *(uint8_t *)(localMemoryPointer + 0xec) = 0;
@@ -64633,8 +64733,8 @@ void FUN_18007f90f(uint32_t SystemResourcePointer)
 
 
 
-// 函数: void FUN_18007f933(void* SystemResourcePointer,long long param_2)
-void FUN_18007f933(void* SystemResourcePointer,long long param_2)
+// 函数: void FUN_18007f933(void* SystemResourcePointer,long long ConfigurationDataPointer)
+void FUN_18007f933(void* SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -64663,10 +64763,10 @@ void FUN_18007f933(void* SystemResourcePointer,long long param_2)
   ulong long unsignedSystemValue22;
   bool bVar23;
   
-  param_2 = (long long)*(int *)(param_2 + 0x250) * 0x128 + param_2;
-  unsignedSystemValue5 = FUN_180080380(param_2,unaff_ESI);
+  ConfigurationDataPointer = (long long)*(int *)(ConfigurationDataPointer + 0x250) * 0x128 + ConfigurationDataPointer;
+  unsignedSystemValue5 = FUN_180080380(ConfigurationDataPointer,unaff_ESI);
   *(uint32_t *)(unaff_RDI + 0x30) = unsignedSystemValue5;
-  FUN_1800802e0(param_2,unsignedSystemValue5);
+  FUN_1800802e0(ConfigurationDataPointer,unsignedSystemValue5);
   if (*(long long *)(unaff_RDI + 0x10) == 0) {
     if (*(int *)(unaff_RDI + 0x18) != 0) {
       *(uint32_t *)(unaff_RDI + 0x2c) = *(uint32_t *)(unaff_RDI + 0x30);
@@ -65329,8 +65429,8 @@ void FUN_18007fc19(void)
 
 
 
-// 函数: void FUN_18007fc35(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18007fc35(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FUN_18007fc35(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void FUN_18007fc35(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long unaff_RBP;
@@ -65339,7 +65439,7 @@ void FUN_18007fc35(long long SystemResourcePointer,void* param_2,void* param_3,v
   
                     // WARNING: Subroutine does not return
   memcpy(*(long long *)(unaff_RBP + 8 + SystemResourcePointer * 8) +
-         (ulong long)(uint)(unaff_ESI + (int)SystemResourcePointer * -0x800) * 4,param_4,(ulong long)unaff_R12D << 2
+         (ulong long)(uint)(unaff_ESI + (int)SystemResourcePointer * -0x800) * 4,ConfigurationFlag,(ulong long)unaff_R12D << 2
         );
 }
 
@@ -65422,8 +65522,8 @@ void FUN_18007fca8(void)
 
 
 
-// 函数: void SystemInitializationFunction(void* SystemResourcePointer,void* param_2,void* param_3)
-void SystemInitializationFunction(void* SystemResourcePointer,void* param_2,void* param_3)
+// 函数: void SystemInitializationFunction(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter)
+void SystemInitializationFunction(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter)
 
 {
   void* unsignedSystemValue1;
@@ -65435,7 +65535,7 @@ void SystemInitializationFunction(void* SystemResourcePointer,void* param_2,void
     (**(code **)(*SecondaryResourcePointer + 0x28))(SecondaryResourcePointer);
   }
   FUN_18007e2b0(SecondaryResourcePointer,SystemResourcePointer);
-  FUN_18007e5b0(SecondaryResourcePointer,param_3);
+  FUN_18007e5b0(SecondaryResourcePointer,AdditionalParameter);
   if (SecondaryResourcePointer != (long long *)0x0) {
     (**(code **)(*SecondaryResourcePointer + 0x38))(SecondaryResourcePointer);
   }
@@ -65446,8 +65546,8 @@ void SystemInitializationFunction(void* SystemResourcePointer,void* param_2,void
 
 
 
-// 函数: void FUN_18007fd60(void* SystemResourcePointer,long long param_2,void* param_3,long long param_4)
-void FUN_18007fd60(void* SystemResourcePointer,long long param_2,void* param_3,long long param_4)
+// 函数: void FUN_18007fd60(void* SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,long long ConfigurationFlag)
+void FUN_18007fd60(void* SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,long long ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -65460,16 +65560,16 @@ void FUN_18007fd60(void* SystemResourcePointer,long long param_2,void* param_3,l
   
   uStack_300 = 0xfffffffffffffffe;
   uStack_58 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_338;
-  *(long long *)(param_4 + 8) = *(long long *)(param_4 + 8) + 4;
-  systemResult = *(int *)(param_2 + 0x14) * *(int *)(param_2 + 0x10);
+  *(long long *)(ConfigurationFlag + 8) = *(long long *)(ConfigurationFlag + 8) + 4;
+  systemResult = *(int *)(ConfigurationDataPointer + 0x14) * *(int *)(ConfigurationDataPointer + 0x10);
   PrimaryResourcePointer = (long long *)FUN_180081590(SystemResourcePointer,aplStack_310,systemResult);
   PrimaryResourcePointer = (long long *)*PrimaryResourcePointer;
   if (PrimaryResourcePointer != (long long *)0x0) {
     plStack_318 = PrimaryResourcePointer;
     (**(code **)(*PrimaryResourcePointer + 0x28))(PrimaryResourcePointer);
   }
-  plStack_318 = *(long long **)(param_2 + 0x20);
-  *(long long **)(param_2 + 0x20) = PrimaryResourcePointer;
+  plStack_318 = *(long long **)(ConfigurationDataPointer + 0x20);
+  *(long long **)(ConfigurationDataPointer + 0x20) = PrimaryResourcePointer;
   if (plStack_318 != (long long *)0x0) {
     (**(code **)(*plStack_318 + 0x38))();
   }
@@ -65477,7 +65577,7 @@ void FUN_18007fd60(void* SystemResourcePointer,long long param_2,void* param_3,l
     (**(code **)(*aplStack_310[0] + 0x38))();
   }
                     // WARNING: Subroutine does not return
-  memcpy(*(void* *)(*(long long *)(param_2 + 0x20) + 0x10),*(void* *)(param_4 + 8),
+  memcpy(*(void* *)(*(long long *)(ConfigurationDataPointer + 0x20) + 0x10),*(void* *)(ConfigurationFlag + 8),
          (long long)systemResult);
 }
 
@@ -65962,7 +66062,7 @@ void* FUN_1807794c5(void)
 
 
 
-void* FUN_1807794dd(int SystemResourcePointer,void* param_2,void* param_3,uint param_4)
+void* FUN_1807794dd(int SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,uint ConfigurationFlag)
 
 {
   float fVar1;
@@ -66014,7 +66114,7 @@ void* FUN_1807794dd(int SystemResourcePointer,void* param_2,void* param_3,uint p
   int unaff_XMM12_Dc;
   int unaff_XMM12_Dd;
   
-  unsignedSystemValue9 = param_4 & 0x80000007;
+  unsignedSystemValue9 = ConfigurationFlag & 0x80000007;
   if ((int)unsignedSystemValue9 < 0) {
     unsignedSystemValue9 = (unsignedSystemValue9 - 1 | 0xfffffff8) + 1;
   }
@@ -66096,15 +66196,15 @@ void* FUN_1807794dd(int SystemResourcePointer,void* param_2,void* param_3,uint p
     fVar35 = (float)((uint)(fVar6 + fVar35) & unsignedSystemValue13 | ~unsignedSystemValue13 & (uint)fVar35);
     fVar36 = (float)((uint)(fVar7 + fVar36) & unsignedSystemValue14 | ~unsignedSystemValue14 & (uint)fVar36);
     fVar37 = (float)((uint)(fVar8 + fVar37) & unsignedSystemValue15 | ~unsignedSystemValue15 & (uint)fVar37);
-  } while (SystemResourcePointer < (int)(param_4 - unsignedSystemValue9));
+  } while (SystemResourcePointer < (int)(ConfigurationFlag - unsignedSystemValue9));
   fVar18 = fVar26 + fVar36 + fVar23 + fVar34 + fVar27 + fVar37 + fVar25 + fVar35;
   fVar24 = fVar30 + fVar32 + fVar24 + fVar29 + fVar17 + fVar33 + fVar28 + fVar31;
-  if (SystemResourcePointer < (int)param_4) {
-    if (3 < (int)(param_4 - SystemResourcePointer)) {
+  if (SystemResourcePointer < (int)ConfigurationFlag) {
+    if (3 < (int)(ConfigurationFlag - SystemResourcePointer)) {
       systemStatus1 = systemStatus1 + 10;
       fVar28 = (float)unaff_EBX;
       pfVar10 = unaff_RDI + (long long)SystemResourcePointer + 2;
-      fVar30 = (float)(int)param_4;
+      fVar30 = (float)(int)ConfigurationFlag;
       do {
         fVar17 = pfVar10[-2];
         if (0.0001 < fVar17) {
@@ -66129,20 +66229,20 @@ void* FUN_1807794dd(int SystemResourcePointer,void* param_2,void* param_3,uint p
         pfVar10 = pfVar10 + 4;
         SystemResourcePointer = SystemResourcePointer + 4;
         systemStatus1 = systemStatus1 + 4;
-      } while (SystemResourcePointer < (int)(param_4 - 3));
+      } while (SystemResourcePointer < (int)(ConfigurationFlag - 3));
     }
-    if (SystemResourcePointer < (int)param_4) {
+    if (SystemResourcePointer < (int)ConfigurationFlag) {
       pfVar10 = unaff_RDI + SystemResourcePointer;
       do {
         fVar28 = *pfVar10;
         if (0.0001 < fVar28) {
           fVar18 = fVar18 + fVar28;
-          fVar24 = fVar24 + (((float)unaff_EBX * 0.5 * (float)SystemResourcePointer) / (float)(int)param_4) *
+          fVar24 = fVar24 + (((float)unaff_EBX * 0.5 * (float)SystemResourcePointer) / (float)(int)ConfigurationFlag) *
                             fVar28;
         }
         pfVar10 = pfVar10 + 1;
         SystemResourcePointer = SystemResourcePointer + 1;
-      } while (SystemResourcePointer < (int)param_4);
+      } while (SystemResourcePointer < (int)ConfigurationFlag);
     }
   }
   if (fVar18 <= 0.001) {
@@ -66484,8 +66584,8 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
   unsignedSystemValue6 = (ulong long)unaff_R13D;
   do {
     systemStatus1 = 0;
-    if (0 < (int)param_3) {
-      unsignedSystemValue15 = (ulong long)param_3;
+    if (0 < (int)AdditionalParameter) {
+      unsignedSystemValue15 = (ulong long)AdditionalParameter;
       do {
         unsignedSystemValue5 = (long long)systemStatus1 / (long long)(int)unaff_R14D & 0xffffffff;
         unsignedSystemValue7 = 0;
@@ -66625,13 +66725,13 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
         }
         systemStatus1 = systemStatus1 + unaff_R14D * 2;
         unsignedSystemValue15 = unsignedSystemValue15 - 1;
-        param_3 = in_stack_000000a8;
+        AdditionalParameter = in_stack_000000a8;
       } while (unsignedSystemValue15 != 0);
     }
-    param_3 = param_3 * 2;
+    AdditionalParameter = AdditionalParameter * 2;
     unaff_R14D = unaff_R14D >> 1;
     unsignedSystemValue6 = unsignedSystemValue6 - 1;
-    in_stack_000000a8 = param_3;
+    in_stack_000000a8 = AdditionalParameter;
   } while (unsignedSystemValue6 != 0);
   return 0;
 }
