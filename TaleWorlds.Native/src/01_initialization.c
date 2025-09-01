@@ -22091,31 +22091,42 @@ void CleanupSystemMemoryAllocator(void* *param_1)
 
 
 
-// 函数: void FUN_18004a180(long long param_1,long long param_2)
-void FUN_18004a180(long long param_1,long long param_2)
+// 函数: void ProcessSystemStringCopyMedium(long long param_1,long long param_2)
+/**
+ * @brief 系统字符串复制处理器（中等尺寸）
+ * 
+ * 该函数处理中等尺寸字符串的复制操作，最大长度限制为0x80字节。
+ * 它检查源字符串长度，执行字符串复制，并设置相应的长度标志。
+ * 
+ * @param targetBuffer 目标缓冲区指针
+ * @param sourceString 源字符串指针
+ * 
+ * @note 这是系统字符串处理的重要组成部分，专门处理中等尺寸字符串的复制
+ */
+void ProcessSystemStringCopyMedium(long long targetBuffer,long long sourceString)
 
 {
   long long lVar1;
   
-  if (param_2 == 0) {
-    *(uint32_t *)(param_1 + 0x10) = 0;
-    **(uint8_t **)(param_1 + 8) = 0;
+  if (sourceString == 0) {
+    *(uint32_t *)(targetBuffer + 0x10) = 0;
+    **(uint8_t **)(targetBuffer + 8) = 0;
     return;
   }
   lVar1 = -1;
   do {
     lVar1 = lVar1 + 1;
-  } while (*(char *)(param_2 + lVar1) != '\0');
+  } while (*(char *)(sourceString + lVar1) != '\0');
   if ((int)lVar1 < 0x80) {
-    *(int *)(param_1 + 0x10) = (int)lVar1;
+    *(int *)(targetBuffer + 0x10) = (int)lVar1;
                     // WARNING: Could not recover jumptable at 0x00018004a1b9. Too many branches
                     // WARNING: Treating indirect jump as call
-    strcpy_s(*(void* *)(param_1 + 8),0x80);
+    strcpy_s(*(void* *)(targetBuffer + 8),0x80);
     return;
   }
-  FUN_180626f80(&UNK_18098bc48,0x80,param_2);
-  *(uint32_t *)(param_1 + 0x10) = 0;
-  **(uint8_t **)(param_1 + 8) = 0;
+  FUN_180626f80(&UNK_18098bc48,0x80,sourceString);
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
   return;
 }
 
@@ -22202,8 +22213,17 @@ LAB_18004a322:
 
 
 
-// 函数: void FUN_18004a360(void* *param_1)
-void FUN_18004a360(void* *param_1)
+// 函数: void DestroySystemMutex(void* *param_1)
+/**
+ * @brief 系统互斥锁销毁函数
+ * 
+ * 该函数销毁系统互斥锁，清理互斥锁资源，确保互斥锁处于正确的状态。
+ * 
+ * @param param_1 指向互斥锁指针的指针
+ * 
+ * @note 这是系统线程同步的重要组成部分，确保互斥锁的正确销毁
+ */
+void DestroySystemMutex(void* *param_1)
 
 {
   *param_1 = &UNK_1809fcd00;
@@ -22221,7 +22241,7 @@ void FUN_18004a360(void* *param_1)
 void* FUN_18004a3c0(void* param_1,ulong long param_2)
 
 {
-  FUN_18004a360();
+  DestroySystemMutex();
   if ((param_2 & 1) != 0) {
     free(param_1,0x78);
   }
@@ -22231,8 +22251,17 @@ void* FUN_18004a3c0(void* param_1,ulong long param_2)
 
 
 
-// 函数: void FUN_18004a400(void* *param_1)
-void FUN_18004a400(void* *param_1)
+// 函数: void InitializeSystemMutex(void* *param_1)
+/**
+ * @brief 系统互斥锁初始化函数
+ * 
+ * 该函数初始化系统互斥锁，设置互斥锁的初始状态。
+ * 
+ * @param param_1 指向互斥锁指针的指针
+ * 
+ * @note 这是系统线程同步的重要组成部分，确保互斥锁的正确初始化
+ */
+void InitializeSystemMutex(void* *param_1)
 
 {
   *param_1 = &UNK_1809fccc0;
@@ -22259,8 +22288,18 @@ void* FUN_18004a430(long long param_1,void* param_2)
 
 
 
-// 函数: void FUN_18004a470(long long param_1,long long param_2)
-void FUN_18004a470(long long param_1,long long param_2)
+// 函数: void StartAndManageSystemThread(long long param_1,long long param_2)
+/**
+ * @brief 系统线程启动和管理函数
+ * 
+ * 该函数启动系统线程，管理线程生命周期，并处理线程相关的清理操作。
+ * 
+ * @param param_1 线程管理器指针
+ * @param param_2 线程参数
+ * 
+ * @note 这是系统线程管理的重要组成部分，确保线程的正确启动和清理
+ */
+void StartAndManageSystemThread(long long param_1,long long param_2)
 
 {
   long long lVar1;
@@ -22585,7 +22624,7 @@ void ExecuteSystemFinalCleanup(void)
   if (_DAT_180c8a990 != 0) {
     FUN_18004b730();
     *(void* **)(lVar2 + 0xc0) = &UNK_1809fcc88;
-    FUN_18004a360(lVar2 + 0x48);
+    DestroySystemMutex(lVar2 + 0x48);
     *(void* *)(lVar2 + 0x10) = &UNK_1809fccc0;
     *(void* *)(lVar2 + 0x10) = &UNK_1809fcce0;
     *(void* **)(lVar2 + 8) = &UNK_1809fcca0;
@@ -22761,8 +22800,18 @@ bool FUN_18004b390(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004b3f0(void* *param_1)
-void FUN_18004b3f0(void* *param_1)
+// 函数: void ConfigureAndInitializeSystemMemoryAllocator(void* *param_1)
+/**
+ * @brief 系统内存分配器配置和初始化函数
+ * 
+ * 该函数配置和初始化系统内存分配器，设置内存分配器参数，
+ * 执行内存分配操作，并确保内存分配器处于正确的状态。
+ * 
+ * @param param_1 指向内存分配器指针的指针
+ * 
+ * @note 这是系统内存管理的重要组成部分，确保内存分配器的正确配置和初始化
+ */
+void ConfigureAndInitializeSystemMemoryAllocator(void* *param_1)
 
 {
   uint uVar1;
@@ -25320,54 +25369,62 @@ void FUN_18004f920(void)
 
 
 // 函数: void FUN_180050b00(void)
-void FUN_180050b00(void)
+/**
+ * @brief 初始化系统数据结构
+ * 
+ * 该函数负责初始化系统的核心数据结构，包括数据表、指针数组等。
+ * 它会检查系统状态，设置初始化标志，并准备系统运行所需的基础数据结构。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保数据结构的正确初始化
+ */
+void InitializeSystemDataStructures(void)
 
 {
-  long long *plVar1;
+  long long *systemDataPointer;
   void** systemDataTable;
-  code *pcVar3;
-  uint8_t *puVar4;
-  void* uVar5;
-  long long lVar6;
-  int iVar7;
-  long long lVar8;
-  long long **pplVar9;
-  void*2 *puVar10;
-  uint uVar11;
-  ulong long uVar13;
-  float fVar14;
-  double dVar15;
-  double dVar16;
-  long long **pplStackX_8;
-  long long *plStackX_10;
-  long long *plStackX_18;
-  long long lStackX_20;
-  long long lStack_90;
-  long long lStack_88;
-  long long lStack_80;
-  long long lStack_78;
-  long long ***ppplStack_70;
-  void* uStack_68;
-  long long **pplStack_60;
-  void* uStack_58;
-  ulong long uVar12;
+  code *systemCodePointer;
+  uint8_t *systemBytePointer;
+  void* systemHandle;
+  long long systemMemoryBase;
+  int systemStatusFlag;
+  long long systemCounter;
+  long long **systemDoublePointer;
+  void*2 *systemTypedPointer;
+  uint systemIndex;
+  ulong long systemTimestamp;
+  float systemFloatValue;
+  double systemDoubleValue1;
+  double systemDoubleValue2;
+  long long **stackDoublePointerX8;
+  long long *stackPointerX10;
+  long long *stackPointerX18;
+  long long stackValueX20;
+  long long stackValue90;
+  long long stackValue88;
+  long long stackValue80;
+  long long stackValue78;
+  long long ***stackTriplePointer70;
+  void* stackHandle68;
+  long long **stackDoublePointer60;
+  void* stackHandle58;
+  ulong long loopCounter;
   
-  lVar8 = _DAT_180c868d0;
-  lVar6 = _DAT_180c86870;
+  systemCounter = _DAT_180c868d0;
+  systemMemoryBase = _DAT_180c86870;
   if (DAT_180c82860 != '\0') {
     FUN_180050b30();
     return;
   }
-  uStack_68 = 0xfffffffffffffffe;
+  stackHandle68 = 0xfffffffffffffffe;
   *(void* *)(_DAT_180c868d0 + 0x2038) = *(void* *)(_DAT_180c868d0 + 0x2030);
-  puVar10 = (void*2 *)(lVar8 + 0x14);
-  lVar8 = 0x100;
-  uVar12 = 0;
+  systemTypedPointer = (void*2 *)(systemCounter + 0x14);
+  systemCounter = 0x100;
+  loopCounter = 0;
   do {
-    *puVar10 = 0;
-    puVar10 = puVar10 + 0xc;
-    lVar8 = lVar8 + -1;
-  } while (lVar8 != 0);
+    *systemTypedPointer = 0;
+    systemTypedPointer = systemTypedPointer + 0xc;
+    systemCounter = systemCounter + -1;
+  } while (systemCounter != 0);
   FUN_18004be90(_DAT_180c8a990 + 0x48);
   _DAT_180c8ed28 = 0;
   _DAT_180bf3ffc = 0;
