@@ -18256,12 +18256,12 @@ LAB_180044ee3:
         goto LAB_180044f8f;
       }
     }
-    puVar13 = &SystemStringTemplate;
-    if (puStack_b0 != (void* *)0x0) {
-      puVar13 = puStack_b0;
+    SymbolSearchPath = &SystemStringTemplate;
+    if (CustomSearchPath != (void* *)0x0) {
+      SymbolSearchPath = CustomSearchPath;
     }
-    iVar2 = SymInitialize(_DAT_180c96218,puVar13,1);
-    if (iVar2 == 0) {
+    SymbolInitializationResult = SymInitialize(_DAT_180c96218,SymbolSearchPath,1);
+    if (SymbolInitializationResult == 0) {
       puStack_b8 = &SystemGlobalDataReference;
       if (puStack_b0 != (void* *)0x0) {
                     // WARNING: Subroutine does not return
@@ -18269,7 +18269,7 @@ LAB_180044ee3:
       }
     }
     else {
-      *(char *)plVar6 = '\x01';
+      *(char *)AllocatedMemoryPointer = '\x01';
       puStack_b8 = &SystemGlobalDataReference;
       if (puStack_b0 != (void* *)0x0) {
                     // WARNING: Subroutine does not return
@@ -23017,17 +23017,27 @@ void InitializeSystemEntryPoint(long long systemContext,void* entryPointData,voi
 
 
 
-// 函数: void FUN_18004b710(long long param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004b710(long long param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统资源清理器A
+ * 
+ * 该函数负责清理系统资源，通过检查系统上下文中的资源指针，
+ * 并调用相应的清理函数来释放资源。
+ * 
+ * @param systemContext 系统上下文指针
+ * @param resourceParameter 资源参数
+ * @param cleanupFlag 清理标志
+ * @param cleanupContext 清理上下文
+ */
+void SystemResourceCleanerA(long long systemContext,void* resourceParameter,void* cleanupFlag,void* cleanupContext)
 
 {
-  void* *puVar1;
+  void* *resourcePointer;
   
-  puVar1 = *(void* **)(param_1 + 0x10);
-  if (puVar1 != (void* *)0x0) {
-    FUN_18004b790(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
+  resourcePointer = *(void* **)(systemContext + 0x10);
+  if (resourcePointer != (void* *)0x0) {
+    SystemResourceCleanupHandler(systemContext,*resourcePointer,cleanupFlag,cleanupContext,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
-    SystemCleanupFunction(puVar1);
+    SystemCleanupFunction(resourcePointer);
   }
   return;
 }
@@ -23035,17 +23045,27 @@ void FUN_18004b710(long long param_1,void* param_2,void* param_3,void* param_4)
 
 
 
-// 函数: void FUN_18004b730(long long param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004b730(long long param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统资源清理器B
+ * 
+ * 该函数负责清理系统资源，与SystemResourceCleanerA功能相似，
+ * 用于不同场景下的资源清理工作。
+ * 
+ * @param systemContext 系统上下文指针
+ * @param resourceParameter 资源参数
+ * @param cleanupFlag 清理标志
+ * @param cleanupContext 清理上下文
+ */
+void SystemResourceCleanerB(long long systemContext,void* resourceParameter,void* cleanupFlag,void* cleanupContext)
 
 {
-  void* *puVar1;
+  void* *resourcePointer;
   
-  puVar1 = *(void* **)(param_1 + 0x10);
-  if (puVar1 != (void* *)0x0) {
-    FUN_18004b790(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
+  resourcePointer = *(void* **)(systemContext + 0x10);
+  if (resourcePointer != (void* *)0x0) {
+    SystemResourceCleanupHandler(systemContext,*resourcePointer,cleanupFlag,cleanupContext,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
-    SystemCleanupFunction(puVar1);
+    SystemCleanupFunction(resourcePointer);
   }
   return;
 }
@@ -23053,14 +23073,22 @@ void FUN_18004b730(long long param_1,void* param_2,void* param_3,void* param_4)
 
 
 
-// 函数: void FUN_18004b790(void* param_1,void* *param_2)
-void FUN_18004b790(void* param_1,void* *param_2)
+/**
+ * @brief 系统资源清理处理器
+ * 
+ * 该函数是系统资源清理的核心处理器，递归地清理系统资源。
+ * 它会检查资源指针是否有效，然后递归调用自身进行深度清理。
+ * 
+ * @param systemContext 系统上下文指针
+ * @param resourcePointer 资源指针
+ */
+void SystemResourceCleanupHandler(void* systemContext,void* *resourcePointer)
 
 {
-  if (param_2 != (void* *)0x0) {
-    FUN_18004b790(param_1,*param_2);
+  if (resourcePointer != (void* *)0x0) {
+    SystemResourceCleanupHandler(systemContext,*resourcePointer);
                     // WARNING: Subroutine does not return
-    SystemCleanupFunction(param_2);
+    SystemCleanupFunction(resourcePointer);
   }
   return;
 }
@@ -23068,13 +23096,20 @@ void FUN_18004b790(void* param_1,void* *param_2)
 
 
 
-// 函数: void FUN_18004b7a2(void* param_1)
-void FUN_18004b7a2(void* param_1)
+/**
+ * @brief 系统资源清理执行器
+ * 
+ * 该函数是系统资源清理的执行器，通过调用资源清理处理器
+ * 来执行实际的资源清理工作。
+ * 
+ * @param systemContext 系统上下文指针
+ */
+void SystemResourceCleanupExecutor(void* systemContext)
 
 {
-  void* *unaff_RBX;
+  void* *resourcePointer;
   
-  FUN_18004b790(param_1,*unaff_RBX);
+  SystemResourceCleanupHandler(systemContext,*resourcePointer);
                     // WARNING: Subroutine does not return
   SystemCleanupFunction();
 }
@@ -23216,22 +23251,42 @@ int FUN_18004b9b0(void* param_1,void* param_2,void* param_3,void* param_4)
 
 
 
-// 函数: void FUN_18004ba30(long long param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004ba30(long long param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统初始化器A
+ * 
+ * 该函数负责系统的初始化工作，调用核心初始化函数
+ * 来完成系统组件的初始化。
+ * 
+ * @param systemContext 系统上下文指针
+ * @param initParameter 初始化参数
+ * @param initFlag 初始化标志
+ * @param initContext 初始化上下文
+ */
+void SystemInitializerA(long long systemContext,void* initParameter,void* initFlag,void* initContext)
 
 {
-  FUN_1800582b0(param_1,*(void* *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  SystemCoreInitializer(systemContext,*(void* *)(systemContext + 0x10),initFlag,initContext,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_18004ba60(long long param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004ba60(long long param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统初始化器B
+ * 
+ * 该函数负责系统的初始化工作，与SystemInitializerA功能相似，
+ * 用于不同场景下的系统初始化。
+ * 
+ * @param systemContext 系统上下文指针
+ * @param initParameter 初始化参数
+ * @param initFlag 初始化标志
+ * @param initContext 初始化上下文
+ */
+void SystemInitializerB(long long systemContext,void* initParameter,void* initFlag,void* initContext)
 
 {
-  FUN_1800582b0(param_1,*(void* *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  SystemCoreInitializer(systemContext,*(void* *)(systemContext + 0x10),initFlag,initContext,0xfffffffffffffffe);
   return;
 }
 
@@ -23240,16 +23295,22 @@ void FUN_18004ba60(long long param_1,void* param_2,void* param_3,void* param_4)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004ba90(void* *param_1)
-void FUN_18004ba90(void* *param_1)
+/**
+ * @brief 系统数据指针设置器
+ * 
+ * 该函数负责设置系统数据指针，并解锁系统互斥锁。
+ * 
+ * @param dataPointer 数据指针参数
+ */
+void SystemDataPointerSetter(void* *dataPointer)
 
 {
-  int iVar1;
+  int mutexUnlockResult;
   
-  _DAT_180c8a9b0 = *param_1;
-  iVar1 = _Mtx_unlock(0x180c91970);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  _DAT_180c8a9b0 = *dataPointer;
+  mutexUnlockResult = _Mtx_unlock(0x180c91970);
+  if (mutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
   return;
 }
@@ -23257,33 +23318,60 @@ void FUN_18004ba90(void* *param_1)
 
 
 
-// 函数: void FUN_18004bad0(long long param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004bad0(long long param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统配置初始化器A
+ * 
+ * 该函数负责系统配置的初始化工作，调用核心配置初始化函数
+ * 来完成系统配置的设置。
+ * 
+ * @param systemContext 系统上下文指针
+ * @param configParameter 配置参数
+ * @param configFlag 配置标志
+ * @param configContext 配置上下文
+ */
+void SystemConfigInitializerA(long long systemContext,void* configParameter,void* configFlag,void* configContext)
 
 {
-  FUN_180058370(param_1,*(void* *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  SystemCoreConfigInitializer(systemContext,*(void* *)(systemContext + 0x10),configFlag,configContext,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_18004bb00(long long param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004bb00(long long param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统配置初始化器B
+ * 
+ * 该函数负责系统配置的初始化工作，与SystemConfigInitializerA功能相似，
+ * 用于不同场景下的系统配置初始化。
+ * 
+ * @param systemContext 系统上下文指针
+ * @param configParameter 配置参数
+ * @param configFlag 配置标志
+ * @param configContext 配置上下文
+ */
+void SystemConfigInitializerB(long long systemContext,void* configParameter,void* configFlag,void* configContext)
 
 {
-  FUN_180058370(param_1,*(void* *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  SystemCoreConfigInitializer(systemContext,*(void* *)(systemContext + 0x10),configFlag,configContext,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_18004bb30(long long param_1)
-void FUN_18004bb30(long long param_1)
+/**
+ * @brief 系统内存释放器
+ * 
+ * 该函数负责释放系统内存，调用核心内存释放函数
+ * 来完成内存的释放工作。
+ * 
+ * @param memoryOffset 内存偏移量参数
+ */
+void SystemMemoryReleaser(long long memoryOffset)
 
 {
-  FUN_180057010(param_1 + 0x60);
+  ReleaseSystemMemory(memoryOffset + 0x60);
   return;
 }
 
