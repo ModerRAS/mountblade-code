@@ -30503,7 +30503,19 @@ void FUN_1800575d4(void)
 
 
 // 函数: void FUN_1800575f0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_1800575f0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统资源处理委托函数
+ * 
+ * 该函数是系统资源处理的委托函数，它调用底层的资源处理函数
+ * 来执行具体的资源管理任务。它提供了一个统一的资源处理接口。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 处理参数2（未使用）
+ * @param param_3 处理参数3
+ * @param param_4 处理参数4
+ * @note 这是系统资源管理的委托处理函数
+ */
+void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   FUN_180058420(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
