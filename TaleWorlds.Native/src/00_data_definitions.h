@@ -2534,21 +2534,21 @@ int InitializeSystemEventHandler(void)
   SystemMemoryConfigPointerNonary = &SystemMemoryDataBufferQuaternary;
   SystemMemoryDataBufferQuaternary = 0;
   SystemMemoryBufferSizeQuaternary = 0x1b;
-  strcpy_s(&DAT_180bfa798,0x80,&UnknownDataPointer180a24bd0,StringProcessorFlags,SystemMutexFlags);
-  _DAT_180bfa818 = &SystemMemoryConfigTemplate;
-  _DAT_180bfa820 = &DAT_180bfa830;
-  DAT_180bfa830 = 0;
-  _DAT_180bfa828 = 0x19;
-  strcpy_s(&DAT_180bfa830,0x80,&UnknownDataPointer180a24bf0);
-  _DAT_180bfa8b0 = &SystemMemoryConfigTemplate;
-  _DAT_180bfa8b8 = &DAT_180bfa8c8;
-  DAT_180bfa8c8 = 0;
-  _DAT_180bfa8c0 = 0x1f;
-  strcpy_s(&DAT_180bfa8c8,0x80,&UnknownDataPointer180a24c10);
-  _DAT_180bfa948 = &SystemMemoryConfigTemplate;
-  _DAT_180bfa950 = &DAT_180bfa960;
-  DAT_180bfa960 = 0;
-  _DAT_180bfa958 = 0x1b;
+  strcpy_s(&SystemMemoryDataBufferQuaternary,0x80,&UnknownDataPointer180a24bd0,StringProcessorFlags,SystemMutexFlags);
+  SystemMemoryConfigPointerDecenary = &SystemMemoryConfigTemplate;
+  SystemMemoryConfigPointerUndenary = &SystemMemoryDataBufferQuinary;
+  SystemMemoryDataBufferQuinary = 0;
+  SystemMemoryBufferSizeQuinary = 0x19;
+  strcpy_s(&SystemMemoryDataBufferQuinary,0x80,&UnknownDataPointer180a24bf0);
+  SystemMemoryConfigPointerDuodenary = &SystemMemoryConfigTemplate;
+  SystemMemoryConfigPointerTredecenary = &SystemMemoryDataBufferSenary;
+  SystemMemoryDataBufferSenary = 0;
+  SystemMemoryBufferSizeSenary = 0x1f;
+  strcpy_s(&SystemMemoryDataBufferSenary,0x80,&UnknownDataPointer180a24c10);
+  SystemMemoryConfigPointerQuattuordecenary = &SystemMemoryConfigTemplate;
+  SystemMemoryConfigPointerQuindecenary = &SystemMemoryDataBufferOctonary;
+  SystemMemoryDataBufferOctonary = 0;
+  SystemMemoryBufferSizeOctonary = 0x1b;
   strcpy_s(&DAT_180bfa960,0x80,&UnknownDataPointer180a24c30);
   _DAT_180bfa9e0 = &SystemMemoryConfigTemplate;
   _DAT_180bfa9e8 = &DAT_180bfa9f8;
@@ -7282,23 +7282,30 @@ FUN_18045d980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   }
   return;
 }
-uint64_t * BufferAllocateSystem(uint64_t *param_1,int param_2)
+/**
+ * 分配系统缓冲区
+ * 初始化系统所需的各种数据结构和内存缓冲区
+ * 
+ * @param bufferPointerArray 缓冲区指针数组，用于存储系统数据
+ * @param bufferSize 缓冲区大小参数
+ * @return 初始化后的缓冲区指针数组
+ */
+uint64_t * BufferAllocateSystem(uint64_t *bufferPointerArray, int bufferSize)
 {
-  longlong *pModuleInitializationResult;
-  int StringIndex;
-  uint64_t StringProcessingResult;
-  longlong lVar4;
-  int iVar5;
-  uint64_t *puVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float FloatCalculationResult;
-  float fVar15;
+  longlong *moduleInitializationResult;
+  int stringIndex;
+  uint64_t memoryAllocationResult;
+  longlong allocatedMemory;
+  int loopCounter;
+  uint64_t *bufferIterator;
+  ulonglong requiredSize;
+  longlong iteratorCount;
+  float qualityLevel;
+  float scaleFactor;
+  float baseValue;
+  float adjustedValue;
+  float floatCalculationResult;
+  float finalValue;
   *param_1 = &UNK_180a1a2f0;
   lVar4 = 0;
   param_1[1] = 0;
