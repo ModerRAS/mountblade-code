@@ -597,7 +597,7 @@ void* SystemDataNodeLinkageTable;                // 系统数据节点链接表
 void* SystemDataNodeLinkageManager;               // 系统数据节点链接管理器
 void* SystemDataNodeLinkageHandler;               // 系统数据节点链接处理器
 void* SystemConfigurationDataTemplate;  // DAT_180bf52c0
-void* SystemDataComparisonTemplateUndenary;  // DAT_180a01028
+void* SystemStringTemplate;  // DAT_180a01028
 void* SystemDataComparisonTemplateDuodenary;  // DAT_180a01000
 void* SystemDataNodeLinkageCache;                // 系统数据节点链接缓存
 void* SystemDataNodeLinkageBackup;                // 系统数据节点链接备份
