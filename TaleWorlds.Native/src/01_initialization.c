@@ -399,17 +399,17 @@ void* SystemGlobalDataProcessor;      // SystemGlobalDataManager
 
 // 系统全局数据指针
 void* SystemGlobalDataPointerA;        // SystemGlobalDataReference
-void* SystemGlobalDataPointerB;        // UNK_1809fcc58
-void* SystemGlobalDataPointerC;        // UNK_1809fcc28
+void* SystemGlobalDataPointerB;        // SystemGlobalDataSecondary
+void* SystemGlobalDataPointerC;        // SystemGlobalDataTertiary
 
 // 系统配置数据指针
 void* SystemConfigDataPointerA;        // SystemConfigDataPointerA
 void* SystemConfigDataPointerB;        // SystemConfigDataPointerB
 void* SystemConfigDataPointerC;        // SystemConfigDataPointerC
 void* SystemConfigDataPointerD;        // SystemConfigDataPointerD
-void* SystemConfigDataPointerE;        // _DAT_180bf6750
-void* SystemConfigDataPointerF;        // _DAT_180bf7e90
-void* SystemSemaphoreHandle;            // _DAT_180c91900
+void* SystemConfigDataPointerE;        // SystemConfigDataSecondary
+void* SystemConfigDataPointerF;        // SystemConfigDataTertiary
+void* SystemSemaphoreHandle;            // SystemSemaphoreInstance
 /**
  * @brief 系统内存分配器函数
  * 
@@ -20052,22 +20052,37 @@ FUN_180047d40(void* *param_1,void* *param_2,void* param_3,void* param_4)
 
 
 
-// 函数: void FUN_180047e10(long long param_1)
-void FUN_180047e10(long long param_1)
+// 函数: void SetSystemMemoryAllocatorReference(long long param_1)
+/**
+ * @brief 设置系统内存分配器引用
+ * 
+ * 该函数负责在指定对象的偏移量0x10处设置系统内存分配器的引用。
+ * 这是一个简单的指针设置操作，用于初始化对象的内存分配器引用。
+ * 
+ * @param systemObject 系统对象指针
+ */
+void SetSystemMemoryAllocatorReference(long long systemObject)
 
 {
-  *(undefined **)(param_1 + 0x10) = &SystemMemoryAllocatorReference;
+  *(undefined **)(systemObject + 0x10) = &SystemMemoryAllocatorReference;
   return;
 }
 
 
 
 
-// 函数: void FUN_180047e40(void* *param_1)
-void FUN_180047e40(void* *param_1)
+/**
+ * @brief 设置系统内存分配器指针
+ * 
+ * 该函数负责在指定指针位置设置系统内存分配器的指针。
+ * 这是一个简单的指针赋值操作，用于初始化内存分配器指针。
+ * 
+ * @param allocatorPointer 内存分配器指针的指针
+ */
+void SetSystemMemoryAllocatorPointer(void* *allocatorPointer)
 
 {
-  *param_1 = &SystemMemoryAllocatorReference;
+  *allocatorPointer = &SystemMemoryAllocatorReference;
   return;
 }
 
