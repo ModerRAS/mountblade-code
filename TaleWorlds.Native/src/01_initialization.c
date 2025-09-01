@@ -35780,7 +35780,19 @@ void CleanupSystemResourcePointer(long long *SystemResourcePointer)
 
 
 
-long long FUN_18005c4f0(long long SystemResourcePointer,uint ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 释放系统资源配置
+ * 
+ * 该函数负责释放系统资源配置，包括清理内存和调用资源释放函数。
+ * 它会根据配置标志决定是否完全释放资源内存。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 返回系统资源指针
+ */
+long long ReleaseSystemResourceConfiguration(long long SystemResourcePointer,uint ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (*(code **)(SystemResourcePointer + 0xd0) != (code *)0x0) {
@@ -36117,7 +36129,16 @@ void* * FUN_18005caa0(void* *SystemResourcePointer,long long ConfigurationDataPo
 
 
 
-long long FUN_18005cb60(long long SystemResourcePointer)
+/**
+ * @brief 重置系统资源数据结构
+ * 
+ * 该函数负责重置系统资源数据结构，清理全局数据引用并重置相关字段。
+ * 它会检查系统资源状态，并在必要时调用清理函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 返回重置后的系统资源指针
+ */
+long long ResetSystemResourceDataStructure(long long SystemResourcePointer)
 
 {
   *(void* *)(SystemResourcePointer + 0x40) = &SystemGlobalDataReference;
@@ -36470,7 +36491,17 @@ void FUN_18005d0e0(ulong long SystemResourcePointer,long long ConfigurationDataP
 
 
 
-long long FUN_18005d190(long long SystemResourcePointer,long long ConfigurationDataPointer)
+/**
+ * @brief 传输系统资源配置数据
+ * 
+ * 该函数负责传输系统资源配置数据，将配置数据从一个资源复制到另一个资源。
+ * 它会清理源资源配置，并将目标配置数据复制到源资源中。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 返回系统资源指针
+ */
+long long TransferSystemResourceConfigurationData(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   if (*(long long *)(SystemResourcePointer + 8) != 0) {
@@ -38073,7 +38104,16 @@ LAB_18005eb20:
 
 
 
-long long FUN_18005eb80(long long SystemResourcePointer)
+/**
+ * @brief 查找线程本地存储资源
+ * 
+ * 该函数负责查找线程本地存储资源，通过线程ID哈希值在资源表中查找对应的资源。
+ * 它会遍历资源节点，使用哈希算法快速定位线程特定的资源数据。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 返回找到的线程本地存储资源地址
+ */
+long long FindThreadLocalStorageResource(long long SystemResourcePointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -38209,7 +38249,15 @@ long long FUN_18005eb80(long long SystemResourcePointer)
 
 
 
-long long FUN_18005ec11(void)
+/**
+ * @brief 分配系统资源标识符
+ * 
+ * 该函数负责分配系统资源标识符，使用原子操作确保线程安全。
+ * 它会递增资源计数器，并返回新的资源标识符。
+ * 
+ * @return 返回分配的系统资源标识符
+ */
+long long AllocateSystemResourceId(void)
 
 {
   long long *PrimaryResourcePointer;
@@ -38346,7 +38394,15 @@ void* FUN_18005ecfc(void* SystemResourcePointer,void* ConfigurationDataPointer,l
 
 
 
-long long FUN_18005ed54(void)
+/**
+ * @brief 管理系统资源分配池
+ * 
+ * 该函数负责管理系统资源分配池，处理资源的分配和释放。
+ * 它会检查资源池的状态，并根据需要调用资源分配函数。
+ * 
+ * @return 返回系统资源管理状态
+ */
+long long ManageSystemResourceAllocationPool(void)
 
 {
   uint *pointerToUnsigned1;
@@ -39375,7 +39431,16 @@ joined_r0x00018005fdcd:
 
 
 
-long long FUN_18005ff50(long long SystemResourcePointer)
+/**
+ * @brief 从资源池分配资源
+ * 
+ * 该函数负责从资源池中分配资源，使用原子操作确保线程安全。
+ * 它会检查资源池的容量，并返回可用的资源地址。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 返回分配的资源地址，如果没有可用资源则返回0
+ */
+long long AllocateFromResourcePool(long long SystemResourcePointer)
 
 {
   ulong long *pointerToUnsigned1;
