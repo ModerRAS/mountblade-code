@@ -87700,12 +87700,12 @@ void CleanupSystemResources(uint8_t8 resourceType, uint8_t8 resourceInstance, ui
     return;
   }
   ReleaseSystemResources(&SystemResourceData, *SystemResourceManagerPointer, cleanupOptions, cleanupFlags, 0xfffffffffffffffe);
-  resource_manager[4] = &ResourceCleanupMarker;
-  if (resource_manager[5] != 0) {
+  resourceManager[4] = &ResourceCleanupMarker;
+  if (resourceManager[5] != 0) {
                     // WARNING: Subroutine does not return
     EmergencyResourceCleanup();
   }
-  resource_manager[5] = 0;
+  resourceManager[5] = 0;
   *(uint8_t4 *)(resource_manager + 7) = 0;
   resource_manager[4] = &ResourceResetMarker;
                     // WARNING: Subroutine does not return
