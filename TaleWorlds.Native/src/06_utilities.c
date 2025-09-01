@@ -5811,10 +5811,10 @@ void ValidateObjectStateAndDispatch(int64_t objectContext, int64_t schedulerCont
   uint8_t ValidationBuffer;
   
   if (*(int *)(objectContext + 0x2c) == 0) {
-    validationStatus = ProcessSchedulerValidation(schedulerContext,objectContext + 0x1c,&validationBuffer);
-    if (validationStatus == 0) {
-      validationStatus = ValidateBufferContext(validationBuffer,objectContext + 0x2c);
-      if (validationStatus == 0) goto ValidationFailureLabel;
+    ValidationStatus = ProcessSchedulerValidation(schedulerContext,objectContext + 0x1c,&ValidationBuffer);
+    if (ValidationStatus == 0) {
+      ValidationStatus = ValidateBufferContext(ValidationBuffer,objectContext + 0x2c);
+      if (ValidationStatus == 0) goto ValidationFailureLabel;
     }
     return;
   }
@@ -5839,16 +5839,16 @@ ValidationFailureLabel:
 void ProcessObjectStateAndSchedule(int64_t objectContext, int64_t schedulerContext)
 
 {
-  int processingStatus;
-  int64_t processingBuffer;
+  int ProcessingStatus;
+  int64_t ProcessingBuffer;
   
   if (*(int *)(objectContext + 0x2c) == 0) {
-    processingStatus = ProcessSchedulerOperation(schedulerContext,objectContext + 0x1c,&processingBuffer);
-    if (processingStatus != 0) {
+    ProcessingStatus = ProcessSchedulerOperation(schedulerContext,objectContext + 0x1c,&ProcessingBuffer);
+    if (ProcessingStatus != 0) {
       return;
     }
-    processingStatus = ValidateBufferContext(*(uint8_t *)(processingBuffer + 0xd0),objectContext + 0x2c);
-    if (processingStatus != 0) {
+    ProcessingStatus = ValidateBufferContext(*(uint8_t *)(ProcessingBuffer + 0xd0),objectContext + 0x2c);
+    if (ProcessingStatus != 0) {
       return;
     }
   }
@@ -5872,13 +5872,13 @@ void ProcessObjectStateAndSchedule(int64_t objectContext, int64_t schedulerConte
 void InitializeObjectPropertiesAndDispatch(int64_t objectContext, int64_t schedulerContext)
 
 {
-  int initializationStatus;
-  int64_t propertyBuffer;
+  int InitializationStatus;
+  int64_t PropertyBuffer;
   
-  initializationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&propertyBuffer);
-  if (initializationStatus == 0) {
-    *(uint32_t *)(objectContext + 0x18) = *(uint32_t *)(propertyBuffer + 0x30);
-    *(uint32_t *)(objectContext + 0x1c) = *(uint32_t *)(propertyBuffer + 0x34);
+  InitializationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&PropertyBuffer);
+  if (InitializationStatus == 0) {
+    *(uint32_t *)(objectContext + 0x18) = *(uint32_t *)(PropertyBuffer + 0x30);
+    *(uint32_t *)(objectContext + 0x1c) = *(uint32_t *)(PropertyBuffer + 0x34);
     CleanupSystemContextData(*(uint8_t *)(schedulerContext + 0x98),objectContext);
   }
   return;
@@ -5900,13 +5900,13 @@ void InitializeObjectPropertiesAndDispatch(int64_t objectContext, int64_t schedu
 void ValidateObjectPropertiesAndDispatch(int64_t objectContext, int64_t schedulerContext)
 
 {
-  int validationStatus;
-  uint8_t propertyBuffer;
+  int ValidationStatus;
+  uint8_t PropertyBuffer;
   
-  validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&propertyBuffer);
-  if (validationStatus == 0) {
-    validationStatus = ValidatePropertyBuffer(propertyBuffer,objectContext + 0x18);
-    if (validationStatus == 0) {
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&PropertyBuffer);
+  if (ValidationStatus == 0) {
+    ValidationStatus = ValidatePropertyBuffer(PropertyBuffer,objectContext + 0x18);
+    if (ValidationStatus == 0) {
       CleanupSystemContextData(*(uint8_t *)(schedulerContext + 0x98),objectContext);
     }
   }

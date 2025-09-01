@@ -35401,7 +35401,16 @@ void FUN_18005b560(void* *SystemResourcePointer,void* ConfigurationDataPointer,v
 
 
 
-long long FUN_18005b730(long long SystemResourcePointer)
+/**
+ * @brief 初始化系统资源指针结构
+ * 
+ * 该函数负责初始化系统资源指针结构，设置内存分配器引用和全局数据引用。
+ * 它会配置资源结构的各个字段，包括内存分配器、全局数据和防护检查。
+ * 
+ * @param SystemResourcePointer 系统资源指针，需要初始化的资源结构
+ * @return 返回初始化后的系统资源指针
+ */
+long long InitializeSystemResourcePointerStructure(long long SystemResourcePointer)
 
 {
   *(void* *)(SystemResourcePointer + 8) = &SystemMemoryAllocatorReference;
