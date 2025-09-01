@@ -19142,7 +19142,7 @@ b6df(void)
       if (iVar2 != 0) {
         return;
       }
-      iVar2 = FUN_1808a7f40();
+      iVar2 = ValidateResourceHash();
       if (iVar2 != 0) {
         return;
       }
@@ -84953,8 +84953,16 @@ void InitializeSystemDataStructureAS(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809420a0(void)
-void FUN_1809420a0(void)
+ /**
+ * 初始化系统数据结构AT
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAT(void)
+/**
+ * 初始化系统数据结构AT
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAT(void)
 
 {
   _DAT_180bf9690 = &SystemDataStructure;
@@ -84966,8 +84974,16 @@ void FUN_1809420a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809420c0(void)
-void FUN_1809420c0(void)
+ /**
+ * 初始化系统数据结构AU
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAU(void)
+/**
+ * 初始化系统数据结构AU
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAU(void)
 
 {
   _DAT_180bf96f0 = &SystemDataStructure;
@@ -84979,8 +84995,16 @@ void FUN_1809420c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809420e0(void)
-void FUN_1809420e0(void)
+ /**
+ * 初始化系统数据结构AV
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAV(void)
+/**
+ * 初始化系统数据结构AV
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAV(void)
 
 {
   _DAT_180bf9750 = &SystemDataStructure;
@@ -84992,8 +85016,16 @@ void FUN_1809420e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942100(void)
-void FUN_180942100(void)
+ /**
+ * 初始化系统数据结构AW
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAW(void)
+/**
+ * 初始化系统数据结构AW
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAW(void)
 
 {
   _DAT_180bf97b0 = &SystemDataStructure;
