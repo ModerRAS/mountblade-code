@@ -1694,8 +1694,14 @@ void ConfigureMemoryDiagnostics;
 undefined DAT_180c9246c;
 undefined UNK_180a2ac10;
 
-// 函数: undefined FUN_180942890;
-undefined FUN_180942890;
+// 函数: void InitializeSystemConfiguration(void)
+/**
+ * @brief 初始化系统配置
+ * 
+ * 该函数负责初始化系统的基本配置信息
+ * 设置系统运行所需的配置参数和环境变量
+ */
+void InitializeSystemConfiguration(void);
 undefined DAT_180c92490;
 
 // 函数: undefined FUN_1809428e0;
