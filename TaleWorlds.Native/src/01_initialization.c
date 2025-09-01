@@ -20688,26 +20688,26 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2
       dVar1 = *(double *)(localMemoryPointer3 + 0xa0 + unsignedSystemValue10);
       dVar3 = (double)*(uint *)(localMemoryPointer3 + 0xb0 + unsignedSystemValue10);
       if (dVar3 != 0.0) {
-        FUN_18062e0f0(punsignedSystemValue5,&SystemPropertyTemplate,&UNK_1809fc8f8,dVar3);
+        SetSystemPropertyNumericValue(punsignedSystemValue5,&SystemPropertyTemplate,&SystemPropertyNumericTemplate,dVar3);
       }
       if (dVar1 != 0.0) {
-        FUN_18062e0f0(punsignedSystemValue5,&SystemPropertyTemplate,&UNK_1809fc918,dVar1);
+        SetSystemPropertyNumericValue(punsignedSystemValue5,&SystemPropertyTemplate,&SystemPropertyScaleFactorTemplate,dVar1);
       }
       dVar1 = *(double *)(localMemoryPointer3 + 0xb8 + unsignedSystemValue10);
       dVar3 = (double)*(uint *)(localMemoryPointer3 + 200 + unsignedSystemValue10);
       if (dVar3 != 0.0) {
-        FUN_18062e0f0(punsignedSystemValue5,&SystemPropertyTemplate,&UNK_1809fc928,dVar3);
+        SetSystemPropertyNumericValue(punsignedSystemValue5,&SystemPropertyTemplate,&SystemPropertyVerticalScaleTemplate,dVar3);
       }
       if (dVar1 != 0.0) {
-        FUN_18062e0f0(punsignedSystemValue5,&SystemPropertyTemplate,&UNK_1809fc940,dVar1);
+        SetSystemPropertyNumericValue(punsignedSystemValue5,&SystemPropertyTemplate,&SystemPropertyAspectRatioTemplate,dVar1);
       }
       dVar1 = *(double *)(localMemoryPointer3 + 0x20 + unsignedSystemValue10);
       if (dVar1 != 0.0) {
-        FUN_18062e0f0(punsignedSystemValue5,&SystemPropertyTemplate,&UNK_1809fc958,dVar1);
+        SetSystemPropertyNumericValue(punsignedSystemValue5,&SystemPropertyTemplate,&SystemPropertyWidthTemplate,dVar1);
       }
       dVar1 = *(double *)(localMemoryPointer3 + 0x28 + unsignedSystemValue10);
       if (dVar1 != 0.0) {
-        FUN_18062e0f0(punsignedSystemValue5,&SystemPropertyTemplate,&UNK_1809fc970,dVar1);
+        SetSystemPropertyNumericValue(punsignedSystemValue5,&SystemPropertyTemplate,&SystemPropertyHeightTemplate,dVar1);
       }
       localMemoryPointer1 = *(long long *)(localMemoryPointer3 + 0x30 + unsignedSystemValue10);
       dVar1 = (double)localMemoryPointer1;
