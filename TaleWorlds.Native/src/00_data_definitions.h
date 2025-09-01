@@ -42,14 +42,14 @@ int InitializePhysicsEngine(void)
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int initializeAudioSystem(void)
+int InitializeAudioSystem(void)
 {
   longlong callbackResult;
   g_audioSystemData = &unknownGlobalData;
   g_audioSystemConfig = &g_audioSystemState;
   g_audioSystemFlags = 0;
   g_audioSystemState = 0;
-  callbackResult = registerSystemCallback(audioSystemCallback);
+  callbackResult = RegisterSystemCallback(AudioSystemCallback);
   return (callbackResult != 0) - 1;
 }
 /**
@@ -58,14 +58,14 @@ int initializeAudioSystem(void)
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int initializeInputSystem(void)
+int InitializeInputSystem(void)
 {
   longlong callbackResult;
   g_inputSystemData = &unknownInputData;
   g_inputSystemConfig = &g_inputSystemState;
   g_inputSystemFlags = 0;
   g_inputSystemState = 0;
-  callbackResult = registerSystemCallback(inputSystemCallback);
+  callbackResult = RegisterSystemCallback(InputSystemCallback);
   return (callbackResult != 0) - 1;
 }
 /**
@@ -74,14 +74,14 @@ int initializeInputSystem(void)
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int initializeNetworkSystem(void)
+int InitializeNetworkSystem(void)
 {
   longlong callbackResult;
   g_networkSystemData = &unknownNetworkData;
   g_networkSystemConfig = &g_networkSystemState;
   g_networkSystemFlags = 0;
   g_networkSystemState = 0;
-  callbackResult = registerSystemCallback(networkSystemCallback);
+  callbackResult = RegisterSystemCallback(NetworkSystemCallback);
   return (callbackResult != 0) - 1;
 }
 /**
@@ -90,14 +90,14 @@ int initializeNetworkSystem(void)
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int initializeFileSystem(void)
+int InitializeFileSystem(void)
 {
   longlong callbackResult;
   g_fileSystemData = &unknownGlobalData;
   g_fileSystemConfig = &g_fileSystemState;
   g_fileSystemFlags = 0;
   g_fileSystemState = 0;
-  callbackResult = registerSystemCallback(fileSystemCallback);
+  callbackResult = RegisterSystemCallback(FileSystemCallback);
   return (callbackResult != 0) - 1;
 }
 /**
@@ -106,14 +106,14 @@ int initializeFileSystem(void)
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int initializeMemoryManager(void)
+int InitializeMemoryManager(void)
 {
   longlong callbackResult;
   g_memoryManagerData = &unknownGlobalData;
   g_memoryManagerConfig = &g_memoryManagerState;
   g_memoryManagerFlags = 0;
   g_memoryManagerState = 0;
-  callbackResult = registerSystemCallback(memoryManagerCallback);
+  callbackResult = RegisterSystemCallback(MemoryManagerCallback);
   return (callbackResult != 0) - 1;
 }
 /**
@@ -126,7 +126,7 @@ int initializeMemoryManager(void)
  * @param param_4 互斥锁属性
  * @return 初始化成功返回0，失败返回-1
  */
-int initializeRenderingThreadSync(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
+int InitializeRenderingThreadSync(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
 {
   longlong callbackResult;
   undefined8 mutexFlags;
@@ -134,7 +134,7 @@ int initializeRenderingThreadSync(undefined8 threadId,undefined8 syncPtr,undefin
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(RENDER_MUTEX_ADDRESS,2,mutexType,mutexAttr,mutexFlags);
   g_renderingSyncState = 0;
-  callbackResult = registerSystemCallback(renderingThreadSyncCallback);
+  callbackResult = RegisterSystemCallback(RenderingThreadSyncCallback);
   return (callbackResult != 0) - 1;
 }
 /**
@@ -147,7 +147,7 @@ int initializeRenderingThreadSync(undefined8 threadId,undefined8 syncPtr,undefin
  * @param param_4 互斥锁属性
  * @return 初始化成功返回0，失败返回-1
  */
-int initializePhysicsEngineSync(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
+int InitializePhysicsEngineSync(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
 {
   longlong callbackResult;
   undefined8 mutexFlags;
@@ -155,14 +155,14 @@ int initializePhysicsEngineSync(undefined8 threadId,undefined8 syncPtr,undefined
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(PHYSICS_MUTEX_ADDRESS,2,mutexType,mutexAttr,mutexFlags);
   g_physicsSyncState = 0;
-  callbackResult = registerSystemCallback(physicsEngineSyncCallback);
+  callbackResult = RegisterSystemCallback(PhysicsEngineSyncCallback);
   return (callbackResult != 0) - 1;
 }
 /**
  * 初始化条件变量和互斥锁C
  * 设置线程同步所需的条件变量和互斥锁
  */
-int initializeConditionMutexC(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int InitializeConditionMutexC(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
   longlong result;
   undefined8 mutexFlags;
@@ -170,14 +170,14 @@ int initializeConditionMutexC(undefined8 param_1,undefined8 param_2,undefined8 p
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c911e8,2,param_3,param_4,mutexFlags);
   globalData_180c91238 = 0;
-  result = registerSystemCallback(initializeConditionMutexC_Callback);
+  result = RegisterSystemCallback(InitializeConditionMutexC_Callback);
   return (result != 0) - 1;
 }
 /**
  * 初始化条件变量和互斥锁D
  * 设置线程同步所需的条件变量和互斥锁
  */
-int initializeConditionMutexD(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int InitializeConditionMutexD(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
   longlong result;
   undefined8 mutexFlags;
@@ -185,7 +185,7 @@ int initializeConditionMutexD(undefined8 param_1,undefined8 param_2,undefined8 p
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91288,2,param_3,param_4,mutexFlags);
   globalData_180c912d8 = 0;
-  result = registerSystemCallback(initializeConditionMutexD_Callback);
+  result = RegisterSystemCallback(InitializeConditionMutexD_Callback);
   return (result != 0) - 1;
 }
 
@@ -193,7 +193,7 @@ int initializeConditionMutexD(undefined8 param_1,undefined8 param_2,undefined8 p
  * 初始化字符串处理器A
  * 设置字符串处理所需的数据结构和回调
  */
-int initializeStringProcessorA(void)
+int InitializeStringProcessorA(void)
 {
   longlong result;
   undefined8 stringFlags;
@@ -202,14 +202,14 @@ int initializeStringProcessorA(void)
   globalData_180bf6548 = 0;
   globalData_180bf6540 = 0xd;
   strcpy_s(&globalData_180bf6548,0x10,&unknownData_180a004e8,stringFlags,0xfffffffffffffffe);
-  result = registerSystemCallback(initializeStringProcessorA_Callback);
+  result = RegisterSystemCallback(InitializeStringProcessorA_Callback);
   return (result != 0) - 1;
 }
 /**
  * 初始化字符串处理器B
  * 设置字符串处理所需的数据结构和回调
  */
-int initializeStringProcessorB(void)
+int InitializeStringProcessorB(void)
 {
   longlong result;
   undefined8 stringFlags;
@@ -218,14 +218,14 @@ int initializeStringProcessorB(void)
   globalData_180bf65a8 = 0;
   globalData_180bf65a0 = 0xf;
   strcpy_s(&globalData_180bf65a8,0x10,&unknownData_180a004f8,stringFlags,0xfffffffffffffffe);
-  result = registerSystemCallback(initializeStringProcessorB_Callback);
+  result = RegisterSystemCallback(InitializeStringProcessorB_Callback);
   return (result != 0) - 1;
 }
 /**
  * 初始化字符串处理器C
  * 设置字符串处理所需的数据结构和回调
  */
-int initializeStringProcessorC(void)
+int InitializeStringProcessorC(void)
 {
   longlong result;
   undefined8 stringFlags;
@@ -234,14 +234,14 @@ int initializeStringProcessorC(void)
   globalData_180bf65d8 = 0;
   globalData_180bf65d0 = 0xf;
   strcpy_s(&globalData_180bf65d8,0x10,&unknownData_180a00508,stringFlags,0xfffffffffffffffe);
-  result = registerSystemCallback(initializeStringProcessorC_Callback);
+  result = RegisterSystemCallback(InitializeStringProcessorC_Callback);
   return (result != 0) - 1;
 }
 /**
  * 初始化字符串处理器D
  * 设置字符串处理所需的数据结构和回调
  */
-int initializeStringProcessorD(void)
+int InitializeStringProcessorD(void)
 {
   longlong result;
   undefined8 stringFlags;
@@ -250,14 +250,14 @@ int initializeStringProcessorD(void)
   globalData_180bf6608 = 0;
   globalData_180bf6600 = 0xd;
   strcpy_s(&globalData_180bf6608,0x10,&unknownData_180a00518,stringFlags,0xfffffffffffffffe);
-  result = registerSystemCallback(initializeStringProcessorD_Callback);
+  result = RegisterSystemCallback(InitializeStringProcessorD_Callback);
   return (result != 0) - 1;
 }
 /**
  * 初始化字符串处理器E
  * 设置字符串处理所需的数据结构和回调
  */
-int initializeStringProcessorE(void)
+int InitializeStringProcessorE(void)
 {
   longlong result;
   undefined8 stringFlags;
@@ -266,14 +266,14 @@ int initializeStringProcessorE(void)
   globalData_180bf6638 = 0;
   globalData_180bf6630 = 0xc;
   strcpy_s(&globalData_180bf6638,0x10,&unknownData_180a00528,stringFlags,0xfffffffffffffffe);
-  result = registerSystemCallback(initializeStringProcessorE_Callback);
+  result = RegisterSystemCallback(InitializeStringProcessorE_Callback);
   return (result != 0) - 1;
 }
 /**
  * 初始化字符串处理器F
  * 设置字符串处理所需的数据结构和回调
  */
-int initializeStringProcessorF(void)
+int InitializeStringProcessorF(void)
 {
   longlong result;
   undefined8 stringFlags;
@@ -282,13 +282,19 @@ int initializeStringProcessorF(void)
   globalData_180bf6668 = 0;
   globalData_180bf6660 = 4;
   strcpy_s(&globalData_180bf6668,0x10,&unknownData_180a00538,stringFlags,0xfffffffffffffffe);
-  result = registerSystemCallback(initializeStringProcessorF_Callback);
+  result = RegisterSystemCallback(InitializeStringProcessorF_Callback);
   return (result != 0) - 1;
 }
-int FUN_18002e6f0(void)
+/**
+ * 初始化模块配置A
+ * 设置模块A所需的全局数据结构和配置参数
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int initializeModuleConfigurationA(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
+  longlong initializationResult;
+  undefined8 configurationFlags;
   _DAT_180bf6680 = &UNK_1809fdc18;
   _DAT_180bf6688 = &DAT_180bf6698;
   DAT_180bf6698 = 0;
