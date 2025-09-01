@@ -19803,9 +19803,9 @@ void ReleaseMemoryBlockReference(ulong long *SystemResourcePointer)
   if (pointerToUnsigned2 == (void* *)0x0) {
     return;
   }
-  unsignedSystemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
-  if (unsignedSystemValue4 != 0) {
-    localResourceOffset = unsignedSystemValue4 + 0x80 + ((long long)pointerToUnsigned2 - unsignedSystemValue4 >> 0x10) * 0x50;
+  systemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
+  if (systemValue4 != 0) {
+    localResourceOffset = systemValue4 + 0x80 + ((long long)pointerToUnsigned2 - systemValue4 >> 0x10) * 0x50;
     localResourceOffset = localResourceOffset - (ulong long)*(uint *)(localResourceOffset + 4);
     if ((*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList) && (*(char *)(localResourceOffset + 0xe) == '\0')) {
       *pointerToUnsigned2 = *(void* *)(localResourceOffset + 0x20);
@@ -20969,9 +20969,9 @@ void ProcessSystemExceptionList(ulong long *SystemResourcePointer)
   if (pointerToUnsigned2 == (void* *)0x0) {
     return;
   }
-  unsignedSystemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
-  if (unsignedSystemValue4 != 0) {
-    localResourceOffset = unsignedSystemValue4 + 0x80 + ((long long)pointerToUnsigned2 - unsignedSystemValue4 >> 0x10) * 0x50;
+  systemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
+  if (systemValue4 != 0) {
+    localResourceOffset = systemValue4 + 0x80 + ((long long)pointerToUnsigned2 - systemValue4 >> 0x10) * 0x50;
     localResourceOffset = localResourceOffset - (ulong long)*(uint *)(localResourceOffset + 4);
     if ((*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList) && (*(char *)(localResourceOffset + 0xe) == '\0')) {
       *pointerToUnsigned2 = *(void* *)(localResourceOffset + 0x20);
@@ -23066,7 +23066,17 @@ InitializeSystemPathBuffers(void* *pathBufferRef,void* reservedParam2,void* rese
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void* FUN_18004b1f0(char SystemResourcePointer)
+/**
+ * @brief 系统资源初始化与验证函数
+ * 
+ * 该函数负责初始化和验证系统资源，包括节点管理器的检查、
+ * 系统配置数据的设置以及资源的分配和清理。
+ * 
+ * @param SystemResourcePointer 系统资源指针，用于资源管理
+ * @return 返回初始化状态，0表示失败，非0表示成功
+ * @note 这是系统初始化过程中的核心函数
+ */
+void* InitializeSystemResourceValidation(char SystemResourcePointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -24376,9 +24386,9 @@ void ManageSystemResourceReferenceCount(ulong long *SystemResourcePointer)
   if (pointerToUnsigned2 == (void* *)0x0) {
     return;
   }
-  unsignedSystemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
-  if (unsignedSystemValue4 != 0) {
-    localResourceOffset = unsignedSystemValue4 + 0x80 + ((long long)pointerToUnsigned2 - unsignedSystemValue4 >> 0x10) * 0x50;
+  systemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
+  if (systemValue4 != 0) {
+    localResourceOffset = systemValue4 + 0x80 + ((long long)pointerToUnsigned2 - systemValue4 >> 0x10) * 0x50;
     localResourceOffset = localResourceOffset - (ulong long)*(uint *)(localResourceOffset + 4);
     if ((*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList) && (*(char *)(localResourceOffset + 0xe) == '\0')) {
       *pointerToUnsigned2 = *(void* *)(localResourceOffset + 0x20);
@@ -26175,95 +26185,104 @@ void InitializeSystemDataStructures(void)
       __Throw_C_error_std__YAXH_Z(iVar7);
     }
 
-// 函数: void FUN_180050b30(long long SystemResourcePointer)
-void FUN_180050b30(long long SystemResourcePointer)
+/**
+ * @brief 初始化系统资源分配器
+ * 
+ * 该函数负责初始化系统资源分配器，设置内存分配模板和资源指针。
+ * 函数会初始化系统数据表，设置图形上下文，并配置资源分配相关的参数。
+ * 
+ * @param systemResourcePointer 系统资源指针，用于访问和配置系统资源
+ * 
+ * @note 这是系统资源管理的重要组成部分，确保资源的正确分配和初始化
+ */
+void InitializeSystemResourceAllocator(long long systemResourcePointer)
 
 {
-  long long *PrimaryResourcePointer;
+  long long *primaryResourcePointer;
   void** systemDataTable;
-  code *pcVar3;
-  uint8_t *punsignedSystemValue4;
-  void* unsignedSystemValue5;
-  int iVar6;
+  code *programCounter;
+  uint8_t *systemDataPointer;
+  void* systemValuePointer;
+  int systemStatus;
   long long localDataPointer;
-  long long **pplocalMemoryAddress;
-  void*2 *punsignedSystemValue9;
-  uint unsignedSystemValue10;
-  ulong long unsignedSystemValue12;
-  float fVar13;
-  double dVar14;
-  double dVar15;
-  long long **pplStackX_8;
-  long long *plStackX_10;
-  long long *plStackX_18;
-  long long lStackX_20;
-  long long lStack_90;
-  long long lStack_88;
-  long long lStack_80;
-  long long lStack_78;
-  long long ***ppplStack_70;
-  void* uStack_68;
-  long long **pplStack_60;
-  void* uStack_58;
-  ulong long unsignedSystemValue11;
+  long long **memoryAllocationPointer;
+  void*2 *systemTypedPointer;
+  uint systemValue10;
+  ulong long systemValue12;
+  float floatValue;
+  double doubleValue1;
+  double doubleValue2;
+  long long **stackPointer8;
+  long long *stackPointer10;
+  long long *stackPointer18;
+  long long stackValue20;
+  long long stackValue90;
+  long long stackValue88;
+  long long stackValue80;
+  long long stackValue78;
+  long long ***stackPointer70;
+  void* stackValue68;
+  long long **stackPointer60;
+  void* stackValue58;
+  ulong long loopCounter;
   
   localDataPointer = _DAT_180c868d0;
-  uStack_68 = 0xfffffffffffffffe;
+  stackValue68 = 0xfffffffffffffffe;
   *(void* *)(_DAT_180c868d0 + 0x2038) = *(void* *)(_DAT_180c868d0 + 0x2030);
-  punsignedSystemValue9 = (void*2 *)(localDataPointer + 0x14);
+  systemTypedPointer = (void*2 *)(localDataPointer + 0x14);
   localDataPointer = 0x100;
-  unsignedSystemValue11 = 0;
+  loopCounter = 0;
   do {
-    *punsignedSystemValue9 = 0;
-    punsignedSystemValue9 = punsignedSystemValue9 + 0xc;
+    *systemTypedPointer = 0;
+    systemTypedPointer = systemTypedPointer + 0xc;
     localDataPointer = localDataPointer + -1;
   } while (localDataPointer != 0);
   FUN_18004be90(SystemGraphicsContextPointer + 0x48);
   _DAT_180c8ed28 = 0;
   _DAT_180bf3ffc = 0;
   if (DAT_180c82851 != '\0') {
-    PrimaryResourcePointer = *(long long **)(SystemResourcePointer + 8);
-    pplocalMemoryAddress = (long long **)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x48,8,3);
-    *pplocalMemoryAddress = (long long *)&SystemMemoryTemplateA;
-    *pplocalMemoryAddress = (long long *)&SystemMemoryTemplateB;
-    *(uint32_t *)(pplocalMemoryAddress + 1) = 0;
-    *pplocalMemoryAddress = (long long *)&SystemMemoryTemplateC;
+    primaryResourcePointer = *(long long **)(systemResourcePointer + 8);
+    memoryAllocationPointer = (long long **)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x48,8,3);
+    *memoryAllocationPointer = (long long *)&SystemMemoryTemplateA;
+    *memoryAllocationPointer = (long long *)&SystemMemoryTemplateB;
+    *(uint32_t *)(memoryAllocationPointer + 1) = 0;
+    *memoryAllocationPointer = (long long *)&SystemMemoryTemplateC;
     LOCK();
-    *(uint8_t *)(pplocalMemoryAddress + 2) = 0;
+    *(uint8_t *)(memoryAllocationPointer + 2) = 0;
     UNLOCK();
-    pplocalMemoryAddress[3] = (long long *)0xffffffffffffffff;
-    *pplocalMemoryAddress = (long long *)&UNK_180a08c60;
-    *(uint32_t *)(pplocalMemoryAddress + 5) = 4;
-    pplocalMemoryAddress[4] = PrimaryResourcePointer;
-    ppplStack_70 = (long long ***)pplocalMemoryAddress;
-    pplStack_60 = pplocalMemoryAddress;
-    (*(code *)(*pplocalMemoryAddress)[5])(pplocalMemoryAddress);
-    pointerToUnsigned2 = (void* *)PrimaryResourcePointer[0x28];
-    pcVar3 = *(code **)*pointerToUnsigned2;
-    ppplStack_70 = &pplStackX_8;
-    pplStackX_8 = pplocalMemoryAddress;
-    (*(code *)(*pplocalMemoryAddress)[5])(pplocalMemoryAddress);
-    (*pcVar3)(pointerToUnsigned2,&pplStackX_8);
-    ProcessSystemCallback(PrimaryResourcePointer[0x28]);
-    (*(code *)(*pplocalMemoryAddress)[7])(pplocalMemoryAddress);
+    memoryAllocationPointer[3] = (long long *)0xffffffffffffffff;
+    *memoryAllocationPointer = (long long *)&UNK_180a08c60;
+    *(uint32_t *)(memoryAllocationPointer + 5) = 4;
+    memoryAllocationPointer[4] = primaryResourcePointer;
+    stackPointer70 = (long long ***)memoryAllocationPointer;
+    stackPointer60 = memoryAllocationPointer;
+    (*(code *)(*memoryAllocationPointer)[5])(memoryAllocationPointer);
+    pointerToUnsigned2 = (void* *)primaryResourcePointer[0x28];
+    programCounter = *(code **)*pointerToUnsigned2;
+    stackPointer70 = &stackPointer8;
+    stackPointer8 = memoryAllocationPointer;
+    (*(code *)(*memoryAllocationPointer)[5])(memoryAllocationPointer);
+    (*programCounter)(pointerToUnsigned2,&stackPointer8);
+    ProcessSystemCallback(primaryResourcePointer[0x28]);
+    (*(code *)(*memoryAllocationPointer)[7])(memoryAllocationPointer);
   }
   localDataPointer = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
-  unsignedSystemValue12 = unsignedSystemValue11;
+  systemValue12 = loopCounter;
   if (localDataPointer / 0x1c != 0) {
     do {
-      FUN_1801edeb0(localDataPointer,unsignedSystemValue12 * 0x1c + *(long long *)(SystemRenderManagerPointer + 0x10));
-      unsignedSystemValue10 = (int)unsignedSystemValue11 + 1;
-      unsignedSystemValue11 = (ulong long)unsignedSystemValue10;
+      FUN_1801edeb0(localDataPointer,systemValue12 * 0x1c + *(long long *)(SystemRenderManagerPointer + 0x10));
+      systemValue10 = (int)loopCounter + 1;
+      loopCounter = (ulong long)systemValue10;
       localDataPointer = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
-      unsignedSystemValue12 = (long long)(int)unsignedSystemValue10;
-    } while ((ulong long)(long long)(int)unsignedSystemValue10 < (ulong long)(localDataPointer / 0x1c));
+      systemValue12 = (long long)(int)systemValue10;
+    } while ((ulong long)(long long)(int)systemValue10 < (ulong long)(localDataPointer / 0x1c));
   }
   *(void* *)(SystemRenderManagerPointer + 0x18) = *(void* *)(SystemRenderManagerPointer + 0x10);
-  *(uint8_t *)(*(long long *)(*(long long *)(SystemResourcePointer + 8) + 0x140) + 0x208) = 1;
-  if (*(char *)(SystemResourcePointer + 0x3c8) != '\0') {
-    FUN_18004e5f0(SystemResourcePointer);
+  *(uint8_t *)(*(long long *)(*(long long *)(systemResourcePointer + 8) + 0x140) + 0x208) = 1;
+  if (*(char *)(systemResourcePointer + 0x3c8) != '\0') {
+    FUN_18004e5f0(systemResourcePointer);
     LOCK();
-    *(uint8_t *)(SystemResourcePointer + 0x3c8) = 0;
+    *(uint8_t *)(systemResourcePointer + 0x3c8) = 0;
     UNLOCK();
   }
   localDataPointer = _DAT_180c8a9d8;
@@ -26283,91 +26302,110 @@ void FUN_180050b30(long long SystemResourcePointer)
   UNLOCK();
   localDataPointer = SystemPerformancePreviousStorage;
   if (SystemPerformancePreviousStorage == 0) {
-    QueryPerformanceCounter(&lStackX_20);
-    localDataPointer = lStackX_20;
+    QueryPerformanceCounter(&stackValue20);
+    localDataPointer = stackValue20;
   }
-  *(double *)(SystemResourcePointer + 0x68) = (double)(localDataPointer - SystemPerformanceCounterStorage) * SystemPerformanceFrequencyStorage;
+  *(double *)(systemResourcePointer + 0x68) = (double)(localDataPointer - SystemPerformanceCounterStorage) * SystemPerformanceFrequencyStorage;
   if (DAT_180c82863 != '\0') {
-    uStack_58 = 0x180c91288;
-    iVar6 = _Mtx_lock(0x180c91288);
-    if (iVar6 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar6);
+    stackValue58 = 0x180c91288;
+    systemStatus = _Mtx_lock(0x180c91288);
+    if (systemStatus != 0) {
+      __Throw_C_error_std__YAXH_Z(systemStatus);
     }
 
-// 函数: void FUN_180051150(long long SystemResourcePointer,void* param_2)
-void FUN_180051150(long long SystemResourcePointer,void* param_2)
+/**
+ * @brief 初始化系统数据同步器
+ * 
+ * 该函数负责初始化系统数据同步器，处理系统数据的同步操作，
+ * 包括内存分配、节点遍历和数据同步设置。
+ * 
+ * @param systemResourcePointer 系统资源指针，用于访问系统资源
+ * @param dataSyncPointer 数据同步指针，用于数据同步操作
+ * 
+ * @note 这是系统数据同步管理的重要组成部分
+ */
+void InitializeSystemDataSynchronizer(long long systemResourcePointer,void* dataSyncPointer)
 
 {
-  long long *PrimaryResourcePointer;
-  char cVar2;
-  char cVar3;
-  int iVar4;
-  uint32_t unsignedSystemValue5;
-  uint8_t *punsignedSystemValue6;
+  long long *primaryResourcePointer;
+  char systemFlag1;
+  char systemFlag2;
+  int systemStatus;
+  uint32_t systemValue5;
+  uint8_t *systemDataPointer;
   void** systemCurrentNode;
   void** systemNextNode;
   long long localResourcePointer;
-  uint unsignedSystemValue10;
+  uint systemValue10;
   long long localMemoryPointer2;
-  ulong long unsignedSystemValue13;
-  long long *PrimaryResourcePointer4;
-  float fVar15;
-  void* unsignedSystemValue16;
-  float fVar17;
-  uint8_t auStack_348 [32];
-  long long **pplStack_328;
-  void* *puStack_320;
-  uint32_t uStack_318;
-  void* uStack_308;
-  char cStack_300;
-  char acStack_2ff [7];
-  long long *plStack_2f8;
-  uint32_t uStack_2f0;
-  void* *puStack_2e8;
-  void* *puStack_2e0;
-  uint32_t uStack_2d8;
-  void* uStack_2d0;
-  uint32_t auStack_2c8 [2];
-  long long *plStack_2c0;
-  void* uStack_2b8;
-  void* auStack_2a8 [67];
-  long long alStack_90 [3];
-  uint32_t uStack_78;
-  ulong long uStack_68;
-  ulong long unsignedSystemValue11;
+  ulong long systemValue13;
+  long long *primaryResourcePointer4;
+  float floatValue;
+  void* systemValue16;
+  float floatValue2;
+  uint8_t systemBuffer348 [32];
+  long long **stackPointer328;
+  void* *stackPointer320;
+  uint32_t stackValue318;
+  void* stackValue308;
+  char stackFlag300;
+  char stackBuffer2ff [7];
+  long long *stackPointer2f8;
+  uint32_t stackValue2f0;
+  void* *stackPointer2e8;
+  void* *stackPointer2e0;
+  uint32_t stackValue2d8;
+  void* stackValue2d0;
+  uint32_t stackBuffer2c8 [2];
+  long long *stackPointer2c0;
+  void* stackValue2b8;
+  void* stackBuffer2a8 [67];
+  long long stackBuffer90 [3];
+  uint32_t stackValue78;
+  ulong long stackValue68;
+  ulong long systemValue11;
   
-  uStack_2b8 = 0xfffffffffffffffe;
-  uStack_68 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_348;
-  fVar15 = (float)param_2;
-  _DAT_180c8ed20 = (long long)(fVar15 * 100000.0);
+  stackValue2b8 = 0xfffffffffffffffe;
+  stackValue68 = SystemEncryptionKeyTemplate ^ (ulong long)systemBuffer348;
+  floatValue = (float)dataSyncPointer;
+  _DAT_180c8ed20 = (long long)(floatValue * 100000.0);
   _DAT_180c8ed30 = _DAT_180c8ed30 + _DAT_180c8ed20;
-  _DAT_180bf3ff8 = fVar15;
-  unsignedSystemValue16 = FUN_180091020();
-  unsignedSystemValue16 = FUN_1801ed510(unsignedSystemValue16,param_2);
-  cVar2 = FUN_180160500(unsignedSystemValue16,0x52);
-  cVar3 = FUN_180160500(1,0x51);
+  _DAT_180bf3ff8 = floatValue;
+  systemValue16 = FUN_180091020();
+  systemValue16 = FUN_1801ed510(systemValue16,dataSyncPointer);
+  systemFlag1 = FUN_180160500(systemValue16,0x52);
+  systemFlag2 = FUN_180160500(1,0x51);
   localMemoryPointer2 = 0xe0;
-  if (cVar3 == '\0') {
-    if (cVar2 == '\0') goto LAB_18005122d;
+  if (systemFlag2 == '\0') {
+    if (systemFlag1 == '\0') goto LAB_18005122d;
   }
   else {
 
-// 函数: void FUN_180051d00(long long SystemResourcePointer)
-void FUN_180051d00(long long SystemResourcePointer)
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统资源管理器，处理资源的分配和管理。
+ * 函数会设置系统数据表，管理资源偏移量，并配置系统参数。
+ * 
+ * @param systemResourcePointer 系统资源指针，用于访问和配置系统资源
+ * 
+ * @note 这是系统资源管理的重要组成部分，确保资源的正确管理和分配
+ */
+void InitializeSystemResourceManager(long long systemResourcePointer)
 
 {
-  int *pointerToInteger1;
+  int *integerPointer;
   void** systemDataTable;
   long long localResourceOffset;
-  ulong long unsignedSystemValue4;
+  ulong long systemValue4;
   
-  pointerToUnsigned2 = *(void* **)(SystemResourcePointer + 0x218);
+  pointerToUnsigned2 = *(void* **)(systemResourcePointer + 0x218);
   if (pointerToUnsigned2 == (void* *)0x0) {
     return;
   }
-  unsignedSystemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
-  if (unsignedSystemValue4 != 0) {
-    localResourceOffset = unsignedSystemValue4 + 0x80 + ((long long)pointerToUnsigned2 - unsignedSystemValue4 >> 0x10) * 0x50;
+  systemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
+  if (systemValue4 != 0) {
+    localResourceOffset = systemValue4 + 0x80 + ((long long)pointerToUnsigned2 - systemValue4 >> 0x10) * 0x50;
     localResourceOffset = localResourceOffset - (ulong long)*(uint *)(localResourceOffset + 4);
     if ((*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList) && (*(char *)(localResourceOffset + 0xe) == '\0')) {
       *pointerToUnsigned2 = *(void* *)(localResourceOffset + 0x20);
@@ -30033,9 +30071,9 @@ void FUN_1800575d4(void)
   if (pointerToUnsigned2 == (void* *)0x0) {
     return;
   }
-  unsignedSystemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
-  if (unsignedSystemValue4 != 0) {
-    localResourceOffset = unsignedSystemValue4 + 0x80 + ((long long)pointerToUnsigned2 - unsignedSystemValue4 >> 0x10) * 0x50;
+  systemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
+  if (systemValue4 != 0) {
+    localResourceOffset = systemValue4 + 0x80 + ((long long)pointerToUnsigned2 - systemValue4 >> 0x10) * 0x50;
     localResourceOffset = localResourceOffset - (ulong long)*(uint *)(localResourceOffset + 4);
     if ((*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList) && (*(char *)(localResourceOffset + 0xe) == '\0')) {
       *pointerToUnsigned2 = *(void* *)(localResourceOffset + 0x20);
@@ -30385,9 +30423,9 @@ void FUN_180057814(void)
   if (pointerToUnsigned2 == (void* *)0x0) {
     return;
   }
-  unsignedSystemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
-  if (unsignedSystemValue4 != 0) {
-    localResourceOffset = unsignedSystemValue4 + 0x80 + ((long long)pointerToUnsigned2 - unsignedSystemValue4 >> 0x10) * 0x50;
+  systemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
+  if (systemValue4 != 0) {
+    localResourceOffset = systemValue4 + 0x80 + ((long long)pointerToUnsigned2 - systemValue4 >> 0x10) * 0x50;
     localResourceOffset = localResourceOffset - (ulong long)*(uint *)(localResourceOffset + 4);
     if ((*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList) && (*(char *)(localResourceOffset + 0xe) == '\0')) {
       *pointerToUnsigned2 = *(void* *)(localResourceOffset + 0x20);
@@ -30468,9 +30506,9 @@ void FUN_1800578a0(void)
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  unsignedSystemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
-  if (unsignedSystemValue4 != 0) {
-    localResourceOffset = unsignedSystemValue4 + 0x80 + ((long long)pointerToUnsigned2 - unsignedSystemValue4 >> 0x10) * 0x50;
+  systemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
+  if (systemValue4 != 0) {
+    localResourceOffset = systemValue4 + 0x80 + ((long long)pointerToUnsigned2 - systemValue4 >> 0x10) * 0x50;
     localResourceOffset = localResourceOffset - (ulong long)*(uint *)(localResourceOffset + 4);
     if ((*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList) && (*(char *)(localResourceOffset + 0xe) == '\0')) {
       *pointerToUnsigned2 = *(void* *)(localResourceOffset + 0x20);
@@ -33504,9 +33542,9 @@ void FUN_18005a010(long long SystemResourcePointer)
   if (pointerToUnsigned2 == (void* *)0x0) {
     return;
   }
-  unsignedSystemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
-  if (unsignedSystemValue4 != 0) {
-    localResourceOffset = unsignedSystemValue4 + 0x80 + ((long long)pointerToUnsigned2 - unsignedSystemValue4 >> 0x10) * 0x50;
+  systemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
+  if (systemValue4 != 0) {
+    localResourceOffset = systemValue4 + 0x80 + ((long long)pointerToUnsigned2 - systemValue4 >> 0x10) * 0x50;
     localResourceOffset = localResourceOffset - (ulong long)*(uint *)(localResourceOffset + 4);
     if ((*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList) && (*(char *)(localResourceOffset + 0xe) == '\0')) {
       *pointerToUnsigned2 = *(void* *)(localResourceOffset + 0x20);
@@ -54230,9 +54268,9 @@ void FUN_180077710(long long SystemResourcePointer)
   if (pointerToUnsigned2 == (void* *)0x0) {
     return;
   }
-  unsignedSystemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
-  if (unsignedSystemValue4 != 0) {
-    localResourceOffset = unsignedSystemValue4 + 0x80 + ((long long)pointerToUnsigned2 - unsignedSystemValue4 >> 0x10) * 0x50;
+  systemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
+  if (systemValue4 != 0) {
+    localResourceOffset = systemValue4 + 0x80 + ((long long)pointerToUnsigned2 - systemValue4 >> 0x10) * 0x50;
     localResourceOffset = localResourceOffset - (ulong long)*(uint *)(localResourceOffset + 4);
     if ((*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList) && (*(char *)(localResourceOffset + 0xe) == '\0')) {
       *pointerToUnsigned2 = *(void* *)(localResourceOffset + 0x20);
