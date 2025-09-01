@@ -2089,7 +2089,7 @@ undefined SystemLogConfigDataB;
 undefined SystemLogConfigDataC;
 undefined SystemLogConfigDataD;
 undefined SystemMemoryConfigDataTemplateB;
-undefined DAT_180a001d0;
+undefined SystemMemoryConfigDataTemplateA;
 undefined SystemMemoryConfigDataTemplateC;
 undefined SystemMemoryConfigDataTemplateD;
 undefined SystemMemoryConfigDataTemplateE;
@@ -5343,7 +5343,7 @@ int InitializeSystemManager(longlong managerHandle)
   }
   if (resourceTable != 0) {
                     // WARNING: Subroutine does not return
-    ProcessResourceAllocation(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resourceTable,&UNK_18095b500,0xb8,1);
+    ProcessResourceAllocation(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resourceTable,&SystemResourceTable,0xb8,1);
   }
   return iVar1;
 }
@@ -8595,7 +8595,7 @@ int ProcessObjectContextValidationAndStatusUpdate(longlong param_1,longlong para
     }
     else {
       resourceTable = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(int *)(param_1 + 0x20),
-                            &UNK_1809862d0,0x315,0,0,1);
+                            &SystemMemoryAllocationTable,0x315,0,0,1);
       if (resourceTable != 0) {
                     // WARNING: Subroutine does not return
         memcpy(resourceTable,*(undefined8 *)(param_1 + 0x18),(longlong)*(int *)(param_1 + 0x20));
@@ -8647,7 +8647,7 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(longlong param_1,undefin
     iVar1 = 0x1f;
   }
   else {
-    resourceTable = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2,&UNK_1809862d0,0x315,0);
+    resourceTable = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2,&SystemMemoryAllocationTable,0x315,0);
     if (resourceTable != 0) {
                     // WARNING: Subroutine does not return
       memcpy(resourceTable,*(undefined8 *)(unaff_RDI + 0x18),(longlong)*(int *)(unaff_RDI + 0x20));
@@ -9558,7 +9558,7 @@ int ProcessDataWithBuffer(longlong *param_1,longlong param_2,int param_3)
   int iVar1;
   int iVar2;
   
-  iVar1 = ProcessStringOperation(param_2,param_3,&UNK_180986298);
+  iVar1 = ProcessStringOperation(param_2,param_3,&SystemStringBufferA);
   iVar2 = ProcessStringOperation(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 8 + 0x20);
@@ -9588,7 +9588,7 @@ int ProcessDataWithQueue(longlong *param_1,longlong param_2,int param_3)
   int iVar1;
   int iVar2;
   
-  iVar1 = ProcessStringOperation(param_2,param_3,&UNK_180984010);
+  iVar1 = ProcessStringOperation(param_2,param_3,&SystemStringBufferB);
   iVar2 = ProcessStringOperation(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 0xc + 0x20);
@@ -9618,7 +9618,7 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
   int iVar1;
   int iVar2;
   
-  iVar1 = ProcessStringOperation(param_2,param_3,&UNK_180982240);
+  iVar1 = ProcessStringOperation(param_2,param_3,&SystemStringBufferC);
   iVar2 = ProcessStringOperation(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,((int)param_1[2] + 2) * 0xc);
@@ -11658,7 +11658,7 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
               do {
                 uStack_e0 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
                 uStack_e8 = 0;
-                puStack_f0 = &UNK_180983588;
+                puStack_f0 = &SystemDataBufferA;
                 ParseDataStructure(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
                 iVar4 = func_0x0001808c7ed0(uVar3);
               } while (0 < iVar4);
@@ -25367,7 +25367,7 @@ LAB_18089e70b:
         return uVar8;
       }
     }
-    uVar8 = FUN_1808ad9d0(resourceHash1,unaff_R15 + 0x78,0);
+    uVar8 = ProcessResourceData(resourceHash1,unaff_R15 + 0x78,0);
     if (((int)uVar8 == 0) &&
        (uVar8 = CheckResourceFinalization(extraout_XMM0_Da_03,unaff_R15 + 0x88,0), (int)uVar8 == 0)) {
                     // WARNING: Subroutine does not return
@@ -25442,12 +25442,12 @@ LAB_18089e70b:
     ReleaseResourceBuffer(unaff_RBP + -0x29);
   }
   else {
-    uVar4 = FUN_1808a71c0();
+    uVar4 = GetResourceIdentifier();
     if ((int)uVar4 != 0) {
       return uVar4;
     }
   }
-  uVar4 = FUN_1808ad9d0();
+  uVar4 = ProcessResourceData();
   if (((int)uVar4 == 0) && (uVar4 = CheckResourceFinalization(), (int)uVar4 == 0)) {
                     // WARNING: Subroutine does not return
     CleanupResourceData();
@@ -25557,7 +25557,7 @@ ulonglong ProcessResourceTableOperationsAndDataValidation(longlong param_1,longl
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
-  uVar4 = FUN_1808ad130(param_1,param_2);
+  uVar4 = ValidateResourceChecksum(param_1,param_2);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -25862,7 +25862,7 @@ ulonglong ProcessResourceTableValidationAndOperations(void)
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
-  uVar4 = FUN_1808ad130();
+  uVar4 = ValidateResourceChecksum();
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -26604,7 +26604,7 @@ undefined8 ResourceBatchProcessor(longlong param_1,longlong *param_2)
         auStackX_10[0] = *(undefined4 *)(param_1 + 0x60);
         resourceHash = (**(code **)**(undefined8 **)(*param_2 + 8))
                           (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
-        if (((((int)resourceHash == 0) && (resourceHash = FUN_180898eb0(param_2,param_1 + 100), (int)resourceHash == 0))
+        if (((((int)resourceHash == 0) && (resourceHash = ComputeDataHash(param_2,param_1 + 100), (int)resourceHash == 0))
             && (resourceHash = FUN_180898eb0(param_2,param_1 + 0x68), (int)resourceHash == 0)) &&
            (((resourceHash = FUN_180898eb0(param_2,param_1 + 0x6c), (int)resourceHash == 0 &&
              (resourceHash = FUN_180898eb0(param_2,dataContext + 0x70), (int)resourceHash == 0)) &&
