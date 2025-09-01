@@ -3048,14 +3048,26 @@ int ProcessNetworkPacketPhaseSix(longlong connectionContext, longlong packetData
 
 
 
-int FUN_180842c60(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络数据包头部信息
+ * 
+ * 该函数负责处理网络数据包的头部信息，包括连接状态检查、
+ * 数据包解析和多层协议处理。函数按顺序处理数据包的不同部分，
+ * 确保网络通信的正确性和完整性。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 网络数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理后的数据包大小或状态码
+ */
+int ProcessNetworkPacketHeader(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkStatus uVar2;
-  NetworkStatus uVar3;
-  int networkStatus4;
-  int iVar5;
+  NetworkStatus primaryConnectionStatus;
+  NetworkStatus secondaryConnectionStatus;
+  NetworkStatus tertiaryConnectionStatus;
+  int packetProcessingOffset;
+  int dataProcessedSize;
   
   uVar1 = *(NetworkStatus *)(connectionContext + 0x1c);
   uVar2 = *(NetworkStatus *)(connectionContext + 0x18);
@@ -3077,76 +3089,120 @@ int FUN_180842c60(longlong connectionContext,longlong packetData,int dataSize)
 
 
 
-int FUN_180842d40(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理带有多个缓冲区的网络数据包
+ * 
+ * 该函数处理网络数据包，使用多个缓冲区进行数据处理。
+ * 它依次处理不同类型的缓冲区，并返回处理的总字节数。
+ * 
+ * @param connectionContext 连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理的总字节数
+ */
+int ProcessNetworkPacketWithMultipleBuffers(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkStatus uVar2;
-  int networkStatus3;
-  int networkStatus4;
+  NetworkStatus primaryBufferStatus;
+  NetworkStatus secondaryBufferStatus;
+  int firstProcessingOffset;
+  int secondProcessingOffset;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x18);
-  uVar2 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180983680);
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b7d0(networkStatus3 + packetData,dataSize - networkStatus3,uVar1);
-  return networkStatus4 + networkStatus3;
+  primaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x18);
+  secondaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
+  firstProcessingOffset = FUN_18074b880(packetData,dataSize,&UNK_180983680);
+  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = func_0x00018074b800(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,secondaryBufferStatus);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = func_0x00018074b7d0(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,primaryBufferStatus);
+  return secondProcessingOffset + firstProcessingOffset;
 }
 
 
 
-int FUN_180842e00(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理带有网络缓冲区复制的网络数据包
+ * 
+ * 该函数处理网络数据包，首先处理初始数据，然后使用网络缓冲区复制功能
+ * 处理剩余数据，最后使用特定缓冲区处理剩余部分。
+ * 
+ * @param connectionContext 连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理的总字节数
+ */
+int ProcessNetworkPacketWithBufferCopy(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  int networkStatus2;
-  int networkStatus3;
+  NetworkStatus bufferStatus;
+  int initialProcessedSize;
+  int copiedDataSize;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180983560);
-  networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  return networkStatus3 + networkStatus2;
+  bufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
+  initialProcessedSize = FUN_18074b880(packetData,dataSize,&UNK_180983560);
+  copiedDataSize = NetworkBufferCopyData(packetData + initialProcessedSize,dataSize - initialProcessedSize,&NetworkBufferDataTemplate);
+  initialProcessedSize = initialProcessedSize + copiedDataSize;
+  copiedDataSize = func_0x00018074b800(initialProcessedSize + packetData,dataSize - initialProcessedSize,bufferStatus);
+  return copiedDataSize + initialProcessedSize;
 }
 
 
 
-int FUN_180842e70(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理带有备用缓冲区的网络数据包
+ * 
+ * 该函数处理网络数据包，使用备用缓冲区配置。它首先处理初始数据，
+ * 然后使用网络缓冲区复制功能处理剩余数据，最后使用特定缓冲区完成处理。
+ * 
+ * @param connectionContext 连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理的总字节数
+ */
+int ProcessNetworkPacketWithAlternateBuffer(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  int networkStatus2;
-  int networkStatus3;
+  NetworkStatus alternateBufferStatus;
+  int initialProcessedSize;
+  int copiedDataSize;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180983710);
-  networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  return networkStatus3 + networkStatus2;
+  alternateBufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
+  initialProcessedSize = FUN_18074b880(packetData,dataSize,&UNK_180983710);
+  copiedDataSize = NetworkBufferCopyData(packetData + initialProcessedSize,dataSize - initialProcessedSize,&NetworkBufferDataTemplate);
+  initialProcessedSize = initialProcessedSize + copiedDataSize;
+  copiedDataSize = func_0x00018074b800(initialProcessedSize + packetData,dataSize - initialProcessedSize,alternateBufferStatus);
+  return copiedDataSize + initialProcessedSize;
 }
 
 
 
-int FUN_180842ee0(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理带有特殊缓冲区的网络数据包
+ * 
+ * 该函数处理网络数据包，使用特殊缓冲区配置。它首先处理初始数据，
+ * 然后使用网络缓冲区复制功能处理剩余数据，最后使用特定缓冲区完成处理。
+ * 
+ * @param connectionContext 连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理的总字节数
+ */
+int ProcessNetworkPacketWithSpecialBuffer(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  int networkStatus2;
-  int networkStatus3;
+  NetworkStatus specialBufferStatus;
+  int initialProcessedSize;
+  int copiedDataSize;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_1809835f0);
-  networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  return networkStatus3 + networkStatus2;
+  specialBufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
+  initialProcessedSize = FUN_18074b880(packetData,dataSize,&UNK_1809835f0);
+  copiedDataSize = NetworkBufferCopyData(packetData + initialProcessedSize,dataSize - initialProcessedSize,&NetworkBufferDataTemplate);
+  initialProcessedSize = initialProcessedSize + copiedDataSize;
+  copiedDataSize = func_0x00018074b800(initialProcessedSize + packetData,dataSize - initialProcessedSize,specialBufferStatus);
+  return copiedDataSize + initialProcessedSize;
 }
 
 
