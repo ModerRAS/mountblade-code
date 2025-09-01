@@ -1838,7 +1838,7 @@ uint8_t SystemMemoryRecoveryStatus;
 uint8_t SystemMemoryRecoveryPoolPrimary;
 uint8_t SystemMemoryRecoveryPoolSecondary;
 uint8_t SystemMemoryRecoveryPoolTertiary;
-uint8_t SystemMemoryRecoveryPoolD;
+uint8_t SystemMemoryRecoveryPoolQuaternary;
 
  void ConfigureMemoryRecovery(void);
 /**
