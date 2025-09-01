@@ -16974,15 +16974,27 @@ void FUN_180045c00(void)
 
 
 
+/**
+ * @brief 初始化系统指针池
+ * 
+ * 该函数负责初始化系统指针池，设置默认的指针地址，
+ * 并根据清理标志决定是否释放相关内存资源
+ * 
+ * @param systemPointerPool 系统指针池指针
+ * @param initializationFlags 初始化标志，用于控制内存清理行为
+ * @param reservedParam3 保留参数3
+ * @param reservedParam4 保留参数4
+ * @return 返回系统指针池指针
+ */
 undefined8 *
-FUN_180045d80(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+InitializeSystemPointerPool(undefined8 *systemPointerPool,ulonglong initializationFlags,undefined8 reservedParam3,undefined8 reservedParam4)
 
 {
-  *param_1 = &UNK_18098bcb0;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x1018,param_3,param_4,0xfffffffffffffffe);
+  *systemPointerPool = &UNK_18098bcb0;
+  if ((initializationFlags & 1) != 0) {
+    free(systemPointerPool,0x1018,reservedParam3,reservedParam4,0xfffffffffffffffe);
   }
-  return param_1;
+  return systemPointerPool;
 }
 
 
@@ -60063,8 +60075,15 @@ LAB_18007f5cb:
 
 
 
-// 函数: void FUN_18007f660(longlong param_1)
-void FUN_18007f660(longlong param_1)
+/**
+ * @brief 系统状态更新函数
+ * 
+ * 该函数负责更新系统状态，处理系统事件和消息
+ * 用于游戏运行时的状态管理和事件处理
+ * 
+ * @param SystemState 系统状态参数
+ */
+void UpdateSystemState(longlong SystemState)
 
 {
   FUN_18007f6a0();
