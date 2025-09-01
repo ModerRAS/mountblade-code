@@ -20313,7 +20313,7 @@ void InitializeSystemCoreEngine(void)
     puStack_508 = &SystemStringFormatTemplate;
     pcStack_500 = SystemStringFormatProcessor;
     appplStack_518[0] = (long long ***)&ppplStack_590;
-    FUN_18005c650(appplStack_518);
+    ProcessSystemResourceData(appplStack_518);
     *(double *)(localSystemFlags + 0xa0 + SystemInitializationDataStart) = (double)(1.0 / fVar12);
     *(double *)(localSystemFlags + 0xb8 + SystemInitializationDataStart) = (double)(1.0 / fVar11);
     *(int *)(localSystemFlags + 0xb0 + SystemInitializationDataStart) = (int)(long long)SystemScaleFactorXStorage;
@@ -20356,7 +20356,7 @@ void InitializeSystemCoreEngine(void)
     }
     uStack_600 = uStack_600 & 0xffffffff;
   }
-  FUN_18062c1e0(&lStack_678,1);
+  InitializeSystemRuntimeState(&lStack_678,1);
   iVar3 = uStack_608 + 0x11;
   WriteDataToBuffer(&puStack_618,iVar3);
   punsignedSystemValue8 = (uint32_t *)(puStack_610 + uStack_608);
@@ -20373,8 +20373,8 @@ void InitializeSystemCoreEngine(void)
   }
   *systemPreviousNode = 0;
   *(uint8_t *)(systemPreviousNode + 2) = 0;
-  FUN_18062dee0(systemPreviousNode,punsignedSystemValue9,&DAT_1809fc7ec);
-  FUN_1800ae730(SystemNodeManagerPointer,systemPreviousNode);
+  ConfigureSystemNodeParameters(systemPreviousNode,punsignedSystemValue9,&SystemConfigurationDataTemplate);
+  RegisterSystemNode(SystemNodeManagerPointer,systemPreviousNode);
   if (systemPreviousNode[1] != 0) {
     fclose();
     systemPreviousNode[1] = 0;
@@ -20414,7 +20414,7 @@ void* CopySystemDataStructure(void* *SystemResourcePointer,void* *param_2,void* 
 {
   *SystemResourcePointer = *param_2;
   *(uint32_t *)(SystemResourcePointer + 1) = *(uint32_t *)(param_2 + 1);
-  FUN_180049b30(SystemResourcePointer + 2,param_2 + 2,param_3,param_4,0xfffffffffffffffe);
+  InitializeSystemResourceExtended(SystemResourcePointer + 2,param_2 + 2,param_3,param_4,0xfffffffffffffffe);
   *(uint32_t *)(SystemResourcePointer + 0x15) = *(uint32_t *)(param_2 + 0x15);
   *(uint32_t *)((long long)SystemResourcePointer + 0xac) = *(uint32_t *)((long long)param_2 + 0xac);
   SystemResourcePointer[0x16] = param_2[0x16];
@@ -20554,10 +20554,10 @@ LAB_180047f2c:
       if ((int)(bVar1 - unsignedSystemValue5) < 1) goto LAB_180047f93;
     }
   }
-  punsignedSystemValue4 = (void* *)FUN_180048cc0(systemPreviousNode,&uStackX_8);
+  punsignedSystemValue4 = (void* *)GetSystemNodeDataPointer(systemPreviousNode,&uStackX_8);
   punsignedSystemValue4 = (void* *)*punsignedSystemValue4;
 LAB_180047f93:
-  FUN_180627be0(punsignedSystemValue4 + 8,param_3);
+  SetSystemNodeRuntimeData(punsignedSystemValue4 + 8,param_3);
   punsignedSystemValue4[0xc] = param_4;
   return;
 }
@@ -20628,11 +20628,11 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2
   }
   uStack_b0 = CONCAT44(*(uint32_t *)(localMemoryPointer1 + 0x18c),(uint32_t)uStack_b0);
   uStack_b8 = unsignedSystemValue16;
-  FUN_1806277c0(&puStack_c8,5);
+  InitializeSystemDataBuffer(&puStack_c8,5);
   *(uint32_t *)(puStack_c0 + uStack_b8) = 0x73676f6c;
   *(void*2 *)((long long)(puStack_c0 + uStack_b8) + 4) = 0x2f;
   uStack_b8 = 5;
-  FUN_1806277c0(&puStack_c8,0x18);
+  InitializeSystemDataBuffer(&puStack_c8,0x18);
   punsignedSystemValue8 = (uint32_t *)(puStack_c0 + uStack_b8);
   *punsignedSystemValue8 = 0x66726570;
   punsignedSystemValue8[1] = 0x616d726f;
@@ -20647,7 +20647,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2
   }
   *punsignedSystemValue5 = 0;
   *(uint8_t *)(punsignedSystemValue5 + 2) = 0;
-  FUN_18062dee0(punsignedSystemValue5,punsignedSystemValue9,&DAT_1809fc7ec);
+  ConfigureSystemNodeParameters(punsignedSystemValue5,punsignedSystemValue9,&SystemConfigurationDataTemplate);
   unsignedSystemValue16 = 0;
   unsignedSystemValue10 = unsignedSystemValue12;
   if (SystemInitializationDataEnd - SystemInitializationDataStart >> 8 != 0) {
@@ -20658,7 +20658,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2
       uStack_70 = 0;
       pcStack_80 = (char *)0x0;
       uStack_78 = 0;
-      FUN_1806277c0(&puStack_88,*(uint32_t *)(SystemInitializationDataStart + 0x10 + unsignedSystemValue10));
+      InitializeSystemDataBuffer(&puStack_88,*(uint32_t *)(SystemInitializationDataStart + 0x10 + unsignedSystemValue10));
       iVar17 = *(int *)(localMemoryPointer3 + 0x10 + unsignedSystemValue10);
       if (iVar17 != 0) {
                     // WARNING: Subroutine does not return
@@ -20684,7 +20684,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2
       if (pcStack_80 != (char *)0x0) {
         pcVar14 = pcStack_80;
       }
-      FUN_18062e0f0(punsignedSystemValue5,&UNK_1809fc8e8,pcVar14);
+      SetSystemPropertyStringValue(punsignedSystemValue5,&SystemPropertyNameTemplate,pcVar14);
       dVar1 = *(double *)(localMemoryPointer3 + 0xa0 + unsignedSystemValue10);
       dVar3 = (double)*(uint *)(localMemoryPointer3 + 0xb0 + unsignedSystemValue10);
       if (dVar3 != 0.0) {
@@ -23094,7 +23094,7 @@ void* FUN_18004b1f0(char SystemResourcePointer)
     punsignedSystemValue4 = puStack_28;
   }
   uStack_20 = iVar5;
-  FUN_18062dee0(&uStack_48,punsignedSystemValue4,&DAT_1809fc7ec);
+  FUN_18062dee0(&uStack_48,punsignedSystemValue4,&SystemConfigurationDataTemplate);
   PrimaryResourcePointer = SystemNodeManagerPointer;
   if (lStack_40 == 0) {
     unsignedSystemValue6 = 3;
@@ -27094,7 +27094,7 @@ void FUN_180052ef0(long long *SystemResourcePointer,void* param_2,void* param_3,
     plStackX_8 = alStack_70;
     puStack_60 = &UNK_180058f90;
     puStack_58 = &UNK_180058f80;
-    FUN_18005c650(alStack_70);
+    ProcessSystemResourceData(alStack_70);
   }
   if ((_DAT_180c8a9d0 != 0) &&
      ((*(int *)(SystemNodeManagerPointer + 900) != *(int *)(SystemNodeManagerPointer + 0x380) ||
@@ -29078,7 +29078,7 @@ void FUN_180056b30(void* SystemResourcePointer,void* param_2,void* param_3,void*
   }
   puStack_20 = &UNK_180058ee0;
   puStack_18 = &UNK_180058ec0;
-  FUN_18005c650(auStack_30);
+  ProcessSystemResourceData(auStack_30);
   *(uint8_t *)(_DAT_180c8a980 + 0x3a0) = 1;
   FUN_18005e630(SystemAllocationFlagsTemplate);
   FUN_18005e630(SystemAllocationFlagsTemplate);
@@ -34450,8 +34450,17 @@ FUN_18005c590(void* *SystemResourcePointer,void* *param_2,void* param_3,void* pa
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18005c650(long long *SystemResourcePointer)
-void FUN_18005c650(long long *SystemResourcePointer)
+/**
+ * 处理系统资源数据
+ * 
+ * 该函数负责处理系统资源数据，包括数据分配、加密和配置。
+ * 主要用于系统资源的管理和处理操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_18005c650，现已重命名为ProcessSystemResourceData
+ */
+void ProcessSystemResourceData(long long *SystemResourcePointer)
 
 {
   int iVar1;
