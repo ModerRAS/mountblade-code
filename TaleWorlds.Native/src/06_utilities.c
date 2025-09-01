@@ -354,9 +354,9 @@ void* NetworkEventDispatcher;
 void* InitializeRenderingSystem(void);
 void* RenderingEngineInstance;
 void* GraphicsDeviceHandle;
-void* shaderManager;
-void* renderQueueManager;
-void* graphicsMemoryPool;
+void* ShaderManager;
+void* RenderQueueManager;
+void* GraphicsMemoryPool;
 
  /**
  * @brief 初始化动画系统
@@ -1161,10 +1161,10 @@ void* MemoryDebuggerConfigurationData;
  * 配置内存地址对齐和边界检查
  */
 void SetupMemoryAlignment(void);
-uint32_t MemoryAlignmentConfigData1;
-uint32_t MemoryAlignmentConfigData2;
-uint32_t MemoryAlignmentConfigData3;
-uint32_t MemoryAlignmentConfigData4;
+uint32_t MemoryAlignmentPrimaryConfig;
+uint32_t MemoryAlignmentSecondaryConfig;
+uint32_t MemoryAlignmentTertiaryConfig;
+uint32_t MemoryAlignmentQuaternaryConfig;
 void* MemoryAlignmentReservedMemory;
 /**
  * @brief 初始化内存压缩
@@ -1173,10 +1173,10 @@ void* MemoryAlignmentReservedMemory;
  * 设置内存压缩算法和参数
  */
 void InitializeMemoryCompression(void);
-uint32_t MemoryCompressionConfigData1;
-uint32_t MemoryCompressionConfigData2;
-uint32_t MemoryCompressionConfigData3;
-uint32_t MemoryCompressionConfigData4;
+uint32_t MemoryCompressionPrimaryConfig;
+uint32_t MemoryCompressionSecondaryConfig;
+uint32_t MemoryCompressionTertiaryConfig;
+uint32_t MemoryCompressionQuaternaryConfig;
 void* MemoryCompressionReservedMemory;
 
  void ConfigureMemoryEncryption(void);
@@ -1187,10 +1187,10 @@ void* MemoryCompressionReservedMemory;
  * 设置加密算法和密钥管理
  */
 void ConfigureMemoryEncryption(void);
-uint32_t MemoryEncryptionConfigData1;
-uint32_t MemoryEncryptionConfigData2;
-uint32_t MemoryEncryptionConfigData3;
-uint32_t MemoryEncryptionConfigData4;
+uint32_t MemoryEncryptionPrimaryConfig;
+uint32_t MemoryEncryptionSecondaryConfig;
+uint32_t MemoryEncryptionTertiaryConfig;
+uint32_t MemoryEncryptionQuaternaryConfig;
 void* MemoryEncryptionReservedMemory;
 
  void InitializeMemoryVirtualization(void);
@@ -1201,10 +1201,10 @@ void* MemoryEncryptionReservedMemory;
  * 设置虚拟内存映射和管理
  */
 void InitializeMemoryVirtualization(void);
-uint32_t MemoryVirtualizationConfigData1;
-uint32_t MemoryVirtualizationConfigData2;
-uint32_t MemoryVirtualizationConfigData3;
-uint32_t MemoryVirtualizationConfigData4;
+uint32_t MemoryVirtualizationPrimaryConfig;
+uint32_t MemoryVirtualizationSecondaryConfig;
+uint32_t MemoryVirtualizationTertiaryConfig;
+uint32_t MemoryVirtualizationQuaternaryConfig;
 void* MemoryVirtualizationReservedMemory;
 
  void SetupMemoryPrefetch(void);
@@ -1215,10 +1215,10 @@ void* MemoryVirtualizationReservedMemory;
  * 配置数据预取和缓存策略
  */
 void SetupMemoryPrefetch(void);
-uint32_t MemoryPrefetchConfigData1;
-uint32_t MemoryPrefetchConfigData2;
-uint32_t MemoryPrefetchConfigData3;
-uint32_t MemoryPrefetchConfigData4;
+uint32_t MemoryPrefetchPrimaryConfig;
+uint32_t MemoryPrefetchSecondaryConfig;
+uint32_t MemoryPrefetchTertiaryConfig;
+uint32_t MemoryPrefetchQuaternaryConfig;
 void* MemoryPrefetchReservedMemory;
 
  void InitializeMemoryBandwidth(void);
@@ -1229,10 +1229,10 @@ void* MemoryPrefetchReservedMemory;
  * 设置带宽分配和优先级策略
  */
 void InitializeMemoryBandwidth(void);
-uint32_t MemoryBandwidthConfigData1;
-uint32_t MemoryBandwidthConfigData2;
-uint32_t MemoryBandwidthConfigData3;
-uint32_t MemoryBandwidthConfigData4;
+uint32_t MemoryBandwidthPrimaryConfig;
+uint32_t MemoryBandwidthSecondaryConfig;
+uint32_t MemoryBandwidthTertiaryConfig;
+uint32_t MemoryBandwidthQuaternaryConfig;
 void* MemoryBandwidthReservedMemory;
 
  void ConfigureMemoryLatency(void);
@@ -1243,10 +1243,10 @@ void* MemoryBandwidthReservedMemory;
  * 设置内存访问延迟优化策略
  */
 void ConfigureMemoryLatency(void);
-uint32_t MemoryLatencyConfigData1;
-uint32_t MemoryLatencyConfigData2;
-uint32_t MemoryLatencyConfigData3;
-uint32_t MemoryLatencyConfigData4;
+uint32_t MemoryLatencyPrimaryConfig;
+uint32_t MemoryLatencySecondaryConfig;
+uint32_t MemoryLatencyTertiaryConfig;
+uint32_t MemoryLatencyQuaternaryConfig;
 void* MemoryLatencyReservedMemory;
 
  void InitializeMemoryThroughput(void);
@@ -1527,14 +1527,14 @@ uint8_t ReallocHandle;
 uint8_t ReallocData;
 uint8_t ReallocBuffer;
 
- void CopyMemoryBlock;
+ void CopyMemoryBlock(void);
 /**
  * @brief 复制内存块
  * 
  * 该函数负责复制内存块数据
  * 在不同内存区域间传输数据
  */
-void CopyMemoryBlock;
+void CopyMemoryBlock(void);
 uint8_t CopyMemoryHandle;
 uint8_t CopyMemoryContext;
 uint8_t CopyMemoryConfig;
@@ -1542,42 +1542,42 @@ uint8_t CopyMemoryStatus;
 uint8_t CopyMemoryData;
 uint8_t CopyMemoryBuffer;
 
- void CompareMemoryBlocks;
+ void CompareMemoryBlocks(void);
 /**
  * @brief 比较内存块
  * 
  * 该函数负责比较两个内存块的内容
  * 检查内存数据是否相同
  */
-void CompareMemoryBlocks;
+void CompareMemoryBlocks(void);
 uint8_t CompareMemoryContext;
 uint8_t CompareMemoryConfig;
 uint8_t CompareMemoryStatus;
 uint8_t CompareMemoryData;
 uint8_t CompareMemoryBuffer;
 
- void SetMemoryProtection;
+ void SetMemoryProtection(void);
 /**
  * @brief 设置内存保护
  * 
  * 该函数负责设置内存保护属性
  * 控制内存访问权限和保护级别
  */
-void SetMemoryProtection;
+void SetMemoryProtection(void);
 uint8_t MemoryProtectContext;
 uint8_t MemoryProtectConfig;
 uint8_t MemoryProtectStatus;
 uint8_t MemoryProtectData;
 uint8_t MemoryProtectBuffer;
 
- void GetMemoryProtection;
+ void GetMemoryProtection(void);
 /**
  * @brief 获取内存保护信息
  * 
  * 该函数负责获取内存保护属性
  * 查询内存区域的访问权限和保护状态
  */
-void GetMemoryProtection;
+void GetMemoryProtection(void);
 uint8_t GetProtectContext;
 uint8_t GetProtectConfig;
 uint8_t GetProtectStatus;
@@ -1585,28 +1585,28 @@ uint8_t GetProtectData;
 uint8_t GetProtectBuffer;
 uint8_t GetProtectInfo;
 
- void FlushMemoryCache;
+ void FlushMemoryCache(void);
 /**
  * @brief 刷新内存缓存
  * 
  * 该函数负责刷新系统内存缓存
  * 确保内存数据同步到持久存储
  */
-void FlushMemoryCache;
+void FlushMemoryCache(void);
 uint8_t FlushCacheConfig;
 uint8_t FlushCacheStatus;
 uint8_t FlushCacheHandle;
 uint8_t FlushCacheData;
 uint8_t FlushCacheContext;
 
- void InvalidateMemoryCache;
+ void InvalidateMemoryCache(void);
 /**
  * @brief 使内存缓存失效
  * 
  * 该函数负责使系统内存缓存失效
  * 清除缓存中的数据，强制重新加载
  */
-void InvalidateMemoryCache;
+void InvalidateMemoryCache(void);
 uint8_t InvalidateCacheConfig;
 uint8_t InvalidateCacheStatus;
 uint8_t InvalidateCacheHandle;
@@ -1783,14 +1783,14 @@ uint8_t SystemMemoryConfigDataTemplateL;
 uint8_t SystemMemoryConfigDataTemplateM;
 uint8_t SystemMemoryConfigDataTemplateN;
 
- void SetupMemoryQuality;
+ void SetupMemoryQuality(void);
 /**
  * @brief 设置内存质量管理
  * 
  * 该函数负责设置内存质量管理系统
  * 配置内存质量评估和改进策略
  */
-void SetupMemoryQuality;
+void SetupMemoryQuality(void);
 void* SystemMemoryQualityController;
 bool SystemMemoryQualityEnabled;
 void* SystemMemoryQualityThreshold;
@@ -1801,14 +1801,14 @@ void* SystemMemoryValidationStatus;
 void* SystemMemoryValidationFlags;
 uint8_t SystemMemoryValidationData;
 
- void InitializeMemoryValidation;
+ void InitializeMemoryValidation(void);
 /**
  * @brief 初始化内存验证
  * 
  * 该函数负责初始化内存验证系统
  * 设置内存数据验证和完整性检查
  */
-void InitializeMemoryValidation;
+void InitializeMemoryValidation(void);
 uint8_t SystemMemoryRecoveryController;
 uint8_t SystemMemoryRecoveryStatus;
 uint8_t SystemMemoryRecoveryPoolA;
@@ -1816,27 +1816,27 @@ uint8_t SystemMemoryRecoveryPoolB;
 uint8_t SystemMemoryRecoveryPoolC;
 uint8_t SystemMemoryRecoveryPoolD;
 
- void ConfigureMemoryRecovery;
+ void ConfigureMemoryRecovery(void);
 /**
  * @brief 配置内存恢复
  * 
  * 该函数负责配置内存恢复系统
  * 设置内存错误恢复和数据修复机制
  */
-void ConfigureMemoryRecovery;
+void ConfigureMemoryRecovery(void);
 uint8_t SystemDataPointer;
 uint8_t SystemMemoryConfigDataTemplate;
 uint8_t SystemMemoryConfigDataTable;
 uint8_t SystemMemoryConfigDataCache;
 
- void SetupMemoryAuditing;
+ void SetupMemoryAuditing(void);
 /**
  * @brief 设置内存审计
  * 
  * 该函数负责设置内存审计系统
  * 配置内存访问审计和安全检查
  */
-void SetupMemoryAuditing;
+void SetupMemoryAuditing(void);
 uint8_t SystemMemoryConfigDataTemplateO;
 uint8_t SystemDataStructureInstance;
 uint8_t SystemDataStructureHandle;
@@ -1844,28 +1844,28 @@ uint8_t SystemDataStructureContext;
 uint8_t SystemDataConfiguration;
 uint8_t SystemMemoryConfigDataTemplateP;
 
- void InitializeMemoryCompliance;
+ void InitializeMemoryCompliance(void);
 /**
  * @brief 初始化内存合规性
  * 
  * 该函数负责初始化内存合规性系统
  * 设置内存使用合规性检查和报告
  */
-void InitializeMemoryCompliance;
+void InitializeMemoryCompliance(void);
 uint8_t SystemMemoryConfigDataTemplateM;
 uint8_t SystemMemoryConfigDataTemplateN;
 uint8_t SystemMemoryConfigDataTemplateO;
 uint8_t SystemMemoryConfigDataTemplateP;
 uint8_t SystemMemoryConfigDataTemplateQ;
 
- void ConfigureMemoryDiagnostics;
+ void ConfigureMemoryDiagnostics(void);
 /**
  * @brief 配置内存诊断
  * 
  * 该函数负责配置内存诊断系统
  * 设置内存故障诊断和排除工具
  */
-void ConfigureMemoryDiagnostics;
+void ConfigureMemoryDiagnostics(void);
 uint8_t SystemMemoryConfigDataTemplateS;
 uint8_t SystemMemoryConfigDataTemplateR;
 
@@ -1941,14 +1941,14 @@ uint8_t SystemDataTable;
 uint8_t SystemDataBuffer;
 uint8_t SystemDataCache;
 
- uint8_t CleanupMemoryBlock;
+ void CleanupMemoryBlock(void);
 /**
  * @brief 清理内存块
  * 
  * 该函数负责清理系统中的内存块资源
  * 释放分配的内存，防止内存泄漏
  */
-uint8_t CleanupMemoryBlock;
+void CleanupMemoryBlock(void);
 uint8_t SecurityContextData;
 uint8_t SecurityContextFlags;
 uint8_t SecurityContextHandle;
@@ -1957,71 +1957,71 @@ uint8_t SecurityValidationData;
 uint8_t SecurityValidationFlags;
 uint8_t SecurityValidationHandle;
 
- uint8_t InitializeSecurityContext;
+ void InitializeSecurityContext(void);
 /**
  * @brief 初始化安全上下文
  * 
  * 该函数负责初始化系统的安全上下文
  * 设置安全参数和访问控制
  */
-uint8_t InitializeSecurityContext;
+void InitializeSecurityContext(void);
 uint8_t SecurityTokenBuffer;
 uint8_t SecurityTokenLength;
 uint8_t SecurityTokenType;
 uint8_t SecurityTokenFlags;
 
- void ValidateSecurityToken;
+ void ValidateSecurityToken(void);
 /**
  * @brief 验证安全令牌
  * 
  * 该函数负责验证系统的安全令牌
  * 确保令牌的有效性和完整性
  */
-void ValidateSecurityToken;
+void ValidateSecurityToken(void);
 uint8_t AuthenticationContext;
 uint8_t AuthenticationConfig;
 
- void ProcessAuthenticationRequest;
+ void ProcessAuthenticationRequest(void);
 /**
  * @brief 处理认证请求
  * 
  * 该函数负责处理系统的认证请求
  * 验证用户身份和权限
  */
-void ProcessAuthenticationRequest;
+void ProcessAuthenticationRequest(void);
 uint8_t AuthRequestData;
 uint8_t AuthRequestConfig;
 uint8_t AuthResponseData;
 uint8_t AuthResponseConfig;
 
- void EncryptDataBuffer;
+ void EncryptDataBuffer(void);
 /**
  * @brief 加密数据缓冲区
  * 
  * 该函数负责加密数据缓冲区中的内容
  * 保护敏感数据的安全性
  */
-void EncryptDataBuffer;
+void EncryptDataBuffer(void);
 
- void DecryptDataBuffer;
+ void DecryptDataBuffer(void);
 /**
  * @brief 解密数据缓冲区
  * 
  * 该函数负责解密数据缓冲区中的内容
  * 恢复加密的敏感数据
  */
-void DecryptDataBuffer;
+void DecryptDataBuffer(void);
 uint8_t EncryptionKey;
 uint8_t EncryptionIV;
 
- void HashDataBuffer;
+ void HashDataBuffer(void);
 /**
  * @brief 哈希数据缓冲区
  * 
  * 该函数负责计算数据缓冲区的哈希值
  * 用于数据完整性验证
  */
-void HashDataBuffer;
+void HashDataBuffer(void);
 uint8_t HashAlgorithm;
 uint8_t HashDigestBuffer;
 uint8_t HashSaltBuffer;
@@ -2030,14 +2030,14 @@ uint8_t HashOutputBufferSize;
 uint8_t RandomSeedBuffer;
 uint8_t RandomGeneratorBuffer;
 
- void GenerateSecureRandom;
+ void GenerateSecureRandom(void);
 /**
  * @brief 生成安全随机数
  * 
  * 该函数负责生成安全的随机数
  * 用于加密和安全相关操作
  */
-void GenerateSecureRandom;
+void GenerateSecureRandom(void);
 uint8_t _tls_index;
 void *ThreadLocalStorageData;
 uint8_t SystemMemoryConfigDataTemplateV;
@@ -2049,14 +2049,14 @@ uint8_t SystemMemoryConfigDataTemplateY;
 uint8_t SystemMemoryConfigDataTemplateZ;
 uint8_t SystemMemoryConfigDataTemplateAA;
 
- void VerifyDataIntegrity;
+ void VerifyDataIntegrity(void);
 /**
  * @brief 验证数据完整性
  * 
  * 该函数负责验证数据的完整性
  * 确保数据未被篡改
  */
-void VerifyDataIntegrity;
+void VerifyDataIntegrity(void);
 uint8_t SystemEnvironmentDataTemplateA;
 uint8_t SystemEnvironmentDataTemplateB;
 uint8_t SystemConfigurationDataTemplateC;
@@ -2137,14 +2137,14 @@ uint8_t SystemMemoryConfigDataTemplateAlternateTwo;
 uint8_t SystemResourceManager;
 uint8_t SystemEventHandler;
 
- void InitializeSystemLogging;
+ void InitializeSystemLogging(void);
 /**
  * @brief 初始化系统日志
  * 
  * 该函数负责初始化系统的日志记录功能
  * 设置日志级别、输出目标和格式
  */
-void InitializeSystemLogging;
+void InitializeSystemLogging(void);
 uint8_t SystemLogConfigDataPrimary;
 uint8_t SystemLogConfigDataSecondary;
 uint8_t SystemLogConfigDataTertiary;
@@ -2156,26 +2156,26 @@ uint8_t SystemMemoryConfigDataTemplateEighth;
 uint8_t SystemMemoryConfigDataTemplateNinth;
 uint8_t SystemMemoryConfigDataTemplateTenth;
 
- void ConfigureLogOutput;
+ void ConfigureLogOutput(void);
 /**
  * @brief 配置日志输出
  * 
  * 该函数负责配置日志的输出方式和目标
  * 设置日志文件路径和控制台输出
  */
-void ConfigureLogOutput;
+void ConfigureLogOutput(void);
 uint8_t SystemMemoryConfigDataTemplateB;
 uint8_t LogOutputConfigDataTemplateA;
 uint8_t LogOutputConfigDataTemplateB;
 
- void ProcessLogMessage;
+ void ProcessLogMessage(void);
 /**
  * @brief 处理日志消息
  * 
  * 该函数负责处理系统生成的日志消息
  * 格式化消息并输出到配置的目标
  */
-void ProcessLogMessage;
+void ProcessLogMessage(void);
 uint8_t LogMessageProcessorDataTemplateA;
 uint8_t LogMessageProcessorDataTemplateB;
 uint8_t LogMessageProcessorDataTemplateC;
@@ -2475,41 +2475,41 @@ uint8_t WorkerThreadQueueData;
  * 设置线程的执行环境和参数
  */
 void CreateWorkerThread;
-uint8_t SystemMemoryConfigDataTemplateC91038;
+uint8_t SystemMemoryConfigDataTemplateWorkerThreadPrimary;
 uint8_t WorkerThreadContextData;
-uint8_t SystemMemoryConfigDataTemplateA8A0;
+uint8_t SystemMemoryConfigDataTemplateWorkerThreadSecondary;
 uint8_t ThreadLocalStorageData;
 uint8_t ThreadStackData;
 uint8_t ThreadRegistryData;
 uint8_t ThreadHandleData;
-uint8_t SystemMemoryConfigDataTemplateC548;
-uint8_t SystemMemoryConfigDataTemplateA8C0;
-uint8_t SystemMemoryConfigDataTemplateA8E0;
-uint8_t SystemMemoryConfigDataTemplateA900;
-uint8_t SystemMemoryConfigDataTemplateA920;
-uint8_t SystemMemoryConfigDataTemplateA948;
-uint8_t SystemMemoryConfigDataTemplateA968;
+uint8_t SystemMemoryConfigDataTemplateThreadStackPrimary;
+uint8_t SystemMemoryConfigDataTemplateThreadStackSecondary;
+uint8_t SystemMemoryConfigDataTemplateThreadStackTertiary;
+uint8_t SystemMemoryConfigDataTemplateThreadAllocatorPrimary;
+uint8_t SystemMemoryConfigDataTemplateThreadAllocatorSecondary;
+uint8_t SystemMemoryConfigDataTemplateThreadAllocatorTertiary;
+uint8_t SystemMemoryConfigDataTemplateThreadAllocatorQuaternary;
 uint8_t MemoryTemplateHeader;
 uint8_t MemoryTemplateData;
 uint8_t MemoryTemplateConfig;
 uint8_t SystemMemoryAllocatorHandle;
-uint8_t SystemMemoryConfigDataTemplateAA08;
-uint8_t SystemMemoryConfigDataTemplateA9A0;
-uint8_t SystemMemoryConfigDataTemplateAA68;
-uint8_t SystemMemoryConfigDataTemplateABB0;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerPrimary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerSecondary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerTertiary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerQuaternary;
 uint8_t SystemMemoryManager;
 uint8_t SystemDataStructure;
 uint8_t SystemDataPointer;
-uint8_t SystemMemoryConfigDataTemplateAAC8;
-uint8_t SystemMemoryConfigDataTemplateAAD0;
-uint8_t SystemMemoryConfigDataTemplateAA78;
-uint8_t SystemMemoryConfigDataTemplateAA90;
-uint8_t SystemMemoryConfigDataTemplateAAA8;
-uint8_t SystemMemoryConfigDataTemplateAAB8;
-uint8_t SystemMemoryConfigDataTemplateAAE0;
-uint8_t SystemMemoryConfigDataTemplateAAF0;
-uint8_t SystemMemoryConfigDataTemplateAB48;
-uint8_t SystemMemoryConfigDataTemplateAB58;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerQuinary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerSenary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerSeptenary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerOctonary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerNonary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerDenary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerUndenary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerDuodenary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerTerdenary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerQuattuordenary;
 uint8_t AnimationClipTable;
 uint8_t SkeletonTable;
 uint8_t AnimationStateTable;
@@ -6310,24 +6310,24 @@ void ProcessSystemBufferExpansion(uint8_t8 systemContext, uint8_t8 bufferContext
   uint capacityCheck;
   longlong systemBasePointer;
   longlong systemRegister;
-  longlong stackData1;
-  longlong stackData2;
+  longlong stackPointerPrimary;
+  longlong stackPointerSecondary;
   
-  validationStatus = ProcessSystemContext(systemContext, bufferContext, *(uint8_t8 *)(stackData2 + 8));
+  validationStatus = ProcessSystemContext(systemContext, bufferContext, *(uint8_t8 *)(stackPointerSecondary + 8));
   if (validationStatus != 0) {
     return;
   }
   newBufferPointer = 0;
-  bufferOffset = stackData1 + 8;
-  if (stackData1 == 0) {
+  bufferOffset = stackPointerPrimary + 8;
+  if (stackPointerPrimary == 0) {
     bufferOffset = newBufferPointer;
   }
   validationStatus = ValidateBufferContext(bufferOffset, systemBasePointer + 0x18);
   if (validationStatus != 0) {
     return;
   }
-  capacityCheck = (int)*(uint *)(stackData2 + 0x2c) >> 0x1f;
-  bufferSize = (*(uint *)(stackData2 + 0x2c) ^ capacityCheck) - capacityCheck;
+  capacityCheck = (int)*(uint *)(stackPointerSecondary + 0x2c) >> 0x1f;
+  bufferSize = (*(uint *)(stackPointerSecondary + 0x2c) ^ capacityCheck) - capacityCheck;
   validationStatus = *(int *)(stackData2 + 0x28) + 1;
   if (iVar2 < iVar1) {
     iVar2 = (int)((float)iVar2 * 1.5);
