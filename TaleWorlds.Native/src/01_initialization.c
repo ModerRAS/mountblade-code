@@ -28747,7 +28747,7 @@ void SystemResourceCleaner(long long *SystemResourcePointer)
   
   localMemoryPointer = SystemResourcePointer[1];
   for (localSystemHandle = *SystemResourcePointer; localSystemHandle != localMemoryPointer; localSystemHandle = localSystemHandle + 0x48) {
-    FUN_180058c20(localSystemHandle);
+    DestroySystemResource(localSystemHandle);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -30358,7 +30358,7 @@ void CleanupSystemResources(long long *SystemResourcePointer)
   
   localMemoryPointer = SystemResourcePointer[1];
   for (localSystemHandle = *SystemResourcePointer; localSystemHandle != localMemoryPointer; localSystemHandle = localSystemHandle + 0x48) {
-    FUN_180058c20(localSystemHandle);
+    DestroySystemResource(localSystemHandle);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -32317,8 +32317,9 @@ void ResetSystemState(void)
 
 
 
-// 函数: void FUN_180058c16(void)
-void FUN_180058c16(void)
+// 函数: void ClearSystemCache(void)
+// 功能: 清除系统缓存，释放缓存资源
+void ClearSystemCache(void)
 
 {
   return;
@@ -32327,8 +32328,9 @@ void FUN_180058c16(void)
 
 
 
-// 函数: void FUN_180058c20(long long SystemResourcePointer)
-void FUN_180058c20(long long SystemResourcePointer)
+// 函数: void DestroySystemResource(long long SystemResourcePointer)
+// 功能: 销毁系统资源，释放相关资源
+void DestroySystemResource(long long SystemResourcePointer)
 
 {
   FUN_1800591c0();
