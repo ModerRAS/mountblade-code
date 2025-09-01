@@ -11700,12 +11700,12 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
               uStack_c8 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 0x3f800000;
-              FUN_180891d40(&puStack_d8,*(undefined8 *)(param_1 + 0x58));
+              CompressData(&puStack_d8,*(undefined8 *)(param_1 + 0x58));
               puStack_98 = &UNK_180984358;
               uStack_88 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_90 = 0;
               uStack_80 = 0;
-              FUN_180891cf0(&puStack_98,*(undefined8 *)(param_1 + 0x58));
+              DecompressData(&puStack_98,*(undefined8 *)(param_1 + 0x58));
               puStack_b8 = &UNK_1809843d0;
               uStack_a8 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_b0 = 0;
@@ -13966,7 +13966,7 @@ LAB_180897ce8:
   uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_438;
   uStackX_18 = param_3;
   uStackX_20 = param_4;
-  FUN_18076b930(auStack_418,0x400,param_2,&uStackX_18);
+  ProcessDataBuffer(auStack_418,0x400,param_2,&uStackX_18);
   (**(code **)(*param_1 + 8))(param_1,auStack_418);
                     // WARNING: Subroutine does not return
   FinalizeSecurityOperation(uStack_18 ^ (ulonglong)auStack_438);
@@ -20482,7 +20482,7 @@ LAB_18089c586:
       (*(ulonglong *)(param_1 + 0x48) <= uVar7 &&
       (uVar7 < (longlong)*(int *)(param_1 + 0x50) * 0x1c + *(ulonglong *)(param_1 + 0x48)));
       uVar7 = uVar7 + 0x1c) {
-    FUN_1807d3e20(param_1 + 0x58);
+    DefragmentMemory(param_1 + 0x58);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(resourceData + 8)) && (uVar5 = 0x1c, *(int *)(resourceData[1] + 0x18) == 0)) {
@@ -20736,7 +20736,7 @@ LAB_18089c586:
       (*(ulonglong *)(unaff_RSI + 0x48) <= resourceHash5 &&
       (resourceHash5 < (longlong)*(int *)(unaff_RSI + 0x50) * 0x1c + *(ulonglong *)(unaff_RSI + 0x48)));
       resourceHash5 = resourceHash5 + 0x1c) {
-    fVar21 = (float)FUN_1807d3e20(unaff_RSI + 0x58);
+    fVar21 = (float)DefragmentMemory(unaff_RSI + 0x58);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) && (uVar8 = 0x1c, *(int *)(unaff_RDI[1] + 0x18) == 0)) {
@@ -20983,7 +20983,7 @@ LAB_18089c586:
       (*(ulonglong *)(unaff_RSI + 0x48) <= resourceHash5 &&
       (resourceHash5 < (longlong)*(int *)(unaff_RSI + 0x50) * 0x1c + *(ulonglong *)(unaff_RSI + 0x48)));
       resourceHash5 = resourceHash5 + 0x1c) {
-    fVar21 = (float)FUN_1807d3e20(unaff_RSI + 0x58);
+    fVar21 = (float)DefragmentMemory(unaff_RSI + 0x58);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) && (uVar8 = 0x1c, *(int *)(unaff_RDI[1] + 0x18) == 0)) {
@@ -21195,7 +21195,7 @@ LAB_18089c586:
       (*(ulonglong *)(unaff_RSI + 0x48) <= resourceHash1 &&
       (resourceHash1 < (longlong)*(int *)(unaff_RSI + 0x50) * 0x1c + *(ulonglong *)(unaff_RSI + 0x48)));
       resourceHash1 = resourceHash1 + 0x1c) {
-    fVar20 = (float)FUN_1807d3e20(unaff_RSI + 0x58);
+    fVar20 = (float)DefragmentMemory(unaff_RSI + 0x58);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) &&
