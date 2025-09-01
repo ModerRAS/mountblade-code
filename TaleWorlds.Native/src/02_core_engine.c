@@ -21,52 +21,52 @@
 
 // 02_core_engine.c - 2355 个函数
 
-// 函数: undefined engine_initialize_core_system;
-undefined engine_initialize_core_system;
-undefined engine_global_context_ptr;
-undefined engine_config_data;
-undefined engine_memory_pool;
-undefined engine_render_state;
-undefined engine_frame_counter;
-undefined engine_time_delta;
-undefined engine_performance_data;
+// 函数: engine_initialize_core_system;
+engine_initialize_core_system;
+engine_global_context_ptr;
+engine_config_data;
+engine_memory_pool;
+engine_render_state;
+engine_frame_counter;
+engine_time_delta;
+engine_performance_data;
 
-// 函数: undefined engine_setup_rendering_context;
-undefined engine_setup_rendering_context;
-undefined engine_display_context;
+// 函数: engine_setup_rendering_context;
+engine_setup_rendering_context;
+engine_display_context;
 
-// 函数: undefined engine_configure_display_settings;
-undefined engine_configure_display_settings;
-undefined engine_screen_resolution;
+// 函数: engine_configure_display_settings;
+engine_configure_display_settings;
+engine_screen_resolution;
 
-// 函数: undefined engine_process_main_loop;
-undefined engine_process_main_loop;
-undefined engine_input_state;
-undefined engine_input_buffer;
-undefined engine_mouse_position;
-undefined engine_keyboard_state;
+// 函数: engine_process_main_loop;
+engine_process_main_loop;
+engine_input_state;
+engine_input_buffer;
+engine_mouse_position;
+engine_keyboard_state;
 
-// 函数: undefined engine_handle_input_events;
-undefined engine_handle_input_events;
+// 函数: engine_handle_input_events;
+engine_handle_input_events;
 
-// 函数: undefined engine_update_game_state;
-undefined engine_update_game_state;
-undefined engine_game_data;
-undefined engine_player_state;
-undefined engine_camera_data;
-undefined engine_lighting_data;
-undefined engine_texture_data;
-undefined engine_shader_data;
-undefined engine_audio_data;
-undefined engine_network_data;
-undefined engine_calculate_frame_time;
-undefined engine_physics_data;
-undefined engine_ui_data;
+// 函数: engine_update_game_state;
+engine_update_game_state;
+engine_game_data;
+engine_player_state;
+engine_camera_data;
+engine_lighting_data;
+engine_texture_data;
+engine_shader_data;
+engine_audio_data;
+engine_network_data;
+engine_calculate_frame_time;
+engine_physics_data;
+engine_ui_data;
 undefined8 engine_system_flags;
-undefined engine_error_code;
-undefined engine_warning_count;
-undefined engine_debug_info;
-undefined engine_log_buffer;
+engine_error_code;
+engine_warning_count;
+engine_debug_info;
+engine_log_buffer;
 
 // 资源管理系统函数指针
 void* engine_setup_resource_manager;
@@ -147,131 +147,131 @@ void* engine_config_manager_ptr;
 void* engine_error_handler_ptr;
 uint8_t engine_audio_flag;
 void* engine_debug_system_ptr;
-undefined engine_network_context_ptr;
-undefined engine_input_device_ptr;
-undefined engine_keyboard_handler_ptr;
-undefined engine_mouse_handler_ptr;
-undefined engine_controller_handler_ptr;
-undefined engine_touch_handler_ptr;
-undefined engine_gesture_handler_ptr;
-undefined engine_vibration_handler_ptr;
-undefined engine_audio_device_ptr;
-undefined engine_sound_buffer_ptr;
-undefined engine_music_buffer_ptr;
-undefined engine_voice_buffer_ptr;
-undefined engine_audio_effect_ptr;
-undefined engine_network_socket_ptr;
-undefined engine_network_protocol_ptr;
-undefined engine_network_client_ptr;
-undefined engine_network_server_ptr;
-undefined engine_network_session_ptr;
-undefined engine_network_message_ptr;
-undefined engine_network_packet_ptr;
-undefined engine_network_stream_ptr;
-undefined engine_network_event_ptr;
-undefined engine_network_callback_ptr;
-undefined engine_network_handler_ptr;
-undefined engine_network_state_ptr;
-undefined engine_network_config_ptr;
-undefined engine_network_stats_ptr;
-undefined engine_network_debug_ptr;
-undefined engine_system_data_buffer_1;
+void* engine_network_context_ptr;
+void* engine_input_device_ptr;
+void* engine_keyboard_handler_ptr;
+void* engine_mouse_handler_ptr;
+void* engine_controller_handler_ptr;
+void* engine_touch_handler_ptr;
+void* engine_gesture_handler_ptr;
+void* engine_vibration_handler_ptr;
+void* engine_audio_device_ptr;
+void* engine_sound_buffer_ptr;
+void* engine_music_buffer_ptr;
+void* engine_voice_buffer_ptr;
+void* engine_audio_effect_ptr;
+void* engine_network_socket_ptr;
+void* engine_network_protocol_ptr;
+void* engine_network_client_ptr;
+void* engine_network_server_ptr;
+void* engine_network_session_ptr;
+void* engine_network_message_ptr;
+void* engine_network_packet_ptr;
+void* engine_network_stream_ptr;
+void* engine_network_event_ptr;
+void* engine_network_callback_ptr;
+void* engine_network_handler_ptr;
+void* engine_network_state_ptr;
+void* engine_network_config_ptr;
+void* engine_network_stats_ptr;
+void* engine_network_debug_ptr;
+void* engine_system_data_buffer_1;
 char engine_particle_flag;
-undefined engine_memory_data_buffer_1;
-undefined engine_network_flag_4;
-undefined engine_unknown_c0;
-undefined engine_skeleton_data_ptr;
-undefined engine_animation_state_ptr;
+engine_memory_data_buffer_1;
+engine_network_flag_4;
+engine_unknown_c0;
+engine_skeleton_data_ptr;
+engine_animation_state_ptr;
 
-// 函数: undefined engine_initialize_main_system;
-undefined engine_initialize_main_system;
-undefined engine_main_system_ptr;
+// 函数: engine_initialize_main_system;
+engine_initialize_main_system;
+engine_main_system_ptr;
 
-// 函数: undefined engine_setup_core_components;
-undefined engine_setup_core_components;
+// 函数: engine_setup_core_components;
+engine_setup_core_components;
 
-// 函数: undefined engine_configure_display_settings;
-undefined engine_configure_display_settings;
-undefined engine_display_buffer_data;
-undefined UNK_1809fdd78;
-undefined engine_render_config_ptr;
-undefined engine_graphics_context_ptr;
-undefined engine_shader_context_ptr;
-undefined _guard_check_icall;
+// 函数: engine_configure_display_settings;
+engine_configure_display_settings;
+engine_display_buffer_data;
+uint32 UNK_1809fdd78;
+engine_render_config_ptr;
+engine_graphics_context_ptr;
+engine_shader_context_ptr;
+uint32 _guard_check_icall;
 
-// 函数: undefined engine_initialize_render_pipeline;
-undefined engine_initialize_render_pipeline;
+// 函数: engine_initialize_render_pipeline;
+engine_initialize_render_pipeline;
 
-// 函数: undefined engine_setup_input_handlers;
-undefined engine_setup_input_handlers;
-undefined engine_input_context_ptr;
-undefined UNK_1809fe80c;
-undefined engine_data_10;
-undefined engine_controller_state_ptr;
-undefined engine_touch_input_ptr;
-undefined engine_gesture_data_ptr;
-undefined engine_input_buffer_ptr;
-undefined UNK_1809fe8b0;
-undefined UNK_18098ba10;
-undefined engine_data_28;
-undefined UNK_18098ba40;
-undefined UNK_18098ba50;
-undefined UNK_18098ba60;
-undefined UNK_18098ba70;
-undefined engine_unknown_80;
-undefined UNK_18098ba98;
-undefined UNK_18098baa0;
-undefined engine_data_28;
-undefined UNK_1809fe7f8;
-undefined UNK_1809fe8f8;
-undefined UNK_1809fe900;
-undefined engine_unknown_10;
-undefined engine_unknown_28;
-undefined engine_unknown_40;
-undefined engine_unknown_50;
-undefined engine_unknown_68;
-undefined engine_unknown_78;
-undefined engine_unknown_88;
-undefined engine_unknown_98;
-undefined engine_unknown_a8;
-undefined engine_unknown_b8;
-undefined engine_unknown_c8;
-undefined engine_data_d8;
-undefined engine_data_c0;
+// 函数: engine_setup_input_handlers;
+engine_setup_input_handlers;
+engine_input_context_ptr;
+uint32 UNK_1809fe80c;
+engine_data_10;
+engine_controller_state_ptr;
+engine_touch_input_ptr;
+engine_gesture_data_ptr;
+engine_input_buffer_ptr;
+uint32 UNK_1809fe8b0;
+uint32 UNK_18098ba10;
+engine_data_28;
+uint32 UNK_18098ba40;
+uint32 UNK_18098ba50;
+uint32 UNK_18098ba60;
+uint32 UNK_18098ba70;
+engine_unknown_80;
+uint32 UNK_18098ba98;
+uint32 UNK_18098baa0;
+engine_data_28;
+uint32 UNK_1809fe7f8;
+uint32 UNK_1809fe8f8;
+uint32 UNK_1809fe900;
+engine_unknown_10;
+engine_unknown_28;
+engine_unknown_40;
+engine_unknown_50;
+engine_unknown_68;
+engine_unknown_78;
+engine_unknown_88;
+engine_unknown_98;
+engine_unknown_a8;
+engine_unknown_b8;
+engine_unknown_c8;
+engine_data_d8;
+engine_data_c0;
 char engine_network_flag;
 char engine_render_flag;
 char engine_physics_flag;
 char engine_animation_flag;
-undefined UNK_1809fe848;
-undefined engine_unknown_68;
-undefined engine_unknown_a0;
-undefined engine_unknown_24;
-undefined engine_unknown_28;
-undefined engine_data_50;
-undefined engine_unknown_58;
-undefined engine_unknown_70;
-undefined engine_unknown_88;
-undefined engine_unknown_a8;
-undefined engine_unknown_c0;
-undefined engine_unknown_c8;
-undefined engine_unknown_d8;
-undefined engine_unknown_f0;
-undefined engine_unknown_08;
-undefined engine_unknown_28;
-undefined engine_unknown_40;
-undefined engine_unknown_60;
-undefined engine_unknown_70;
-undefined engine_unknown_50;
-undefined engine_unknown_70;
-undefined engine_unknown_e0;
-undefined DAT_00000018;
-undefined DAT_00000010;
-undefined engine_unknown_d8;
-undefined engine_unknown_10;
+uint32 UNK_1809fe848;
+engine_unknown_68;
+engine_unknown_a0;
+engine_unknown_24;
+engine_unknown_28;
+engine_data_50;
+engine_unknown_58;
+engine_unknown_70;
+engine_unknown_88;
+engine_unknown_a8;
+engine_unknown_c0;
+engine_unknown_c8;
+engine_unknown_d8;
+engine_unknown_f0;
+engine_unknown_08;
+engine_unknown_28;
+engine_unknown_40;
+engine_unknown_60;
+engine_unknown_70;
+engine_unknown_50;
+engine_unknown_70;
+engine_unknown_e0;
+uint32 DAT_00000018;
+uint32 DAT_00000010;
+engine_unknown_d8;
+engine_unknown_10;
 longlong UNK_00000128;
-undefined DAT_00000000;
-undefined engine_unknown_40;
-undefined engine_unknown_78;
+uint32 DAT_00000000;
+engine_unknown_40;
+engine_unknown_78;
 ulonglong UNK_000001c8;
 ulonglong UNK_000001d0;
 ulonglong UNK_000001d8;
@@ -280,1081 +280,1081 @@ undefined8 UNK_000001e8;
 undefined8 UNK_000001f0;
 longlong UNK_000001f8;
 undefined1 engine_data_bc;
-undefined engine_unknown_a8;
-undefined engine_unknown_b8;
-undefined engine_unknown_c8;
-undefined engine_unknown_d8;
+engine_unknown_a8;
+engine_unknown_b8;
+engine_unknown_c8;
+engine_unknown_d8;
 char engine_system_state_flag;
-undefined engine_unknown_30;
-undefined engine_unknown_70;
-undefined engine_unknown_68;
-undefined engine_unknown_b0;
+engine_unknown_30;
+engine_unknown_70;
+engine_unknown_68;
+engine_unknown_b0;
 undefined1 engine_physics_config_flag;
-undefined engine_unknown_98;
-undefined engine_unknown_90;
-undefined engine_unknown_e8;
-undefined engine_unknown_88;
+engine_unknown_98;
+engine_unknown_90;
+engine_unknown_e8;
+engine_unknown_88;
 char engine_network_config_flag;
-undefined engine_unknown_38;
-undefined engine_unknown_50;
-undefined engine_unknown_b0;
-undefined engine_unknown_b8;
-undefined engine_unknown_c0;
-undefined engine_unknown_d0;
-undefined engine_unknown_f8;
-undefined engine_unknown_10;
-undefined engine_unknown_30;
+engine_unknown_38;
+engine_unknown_50;
+engine_unknown_b0;
+engine_unknown_b8;
+engine_unknown_c0;
+engine_unknown_d0;
+engine_unknown_f8;
+engine_unknown_10;
+engine_unknown_30;
 char engine_system_initialized_flag;
-undefined engine_data_08;
-undefined engine_unknown_48;
-undefined engine_data_60;
-undefined engine_unknown_88;
-undefined engine_unknown_b0;
-undefined engine_unknown_bc;
-undefined engine_unknown_c8;
-undefined engine_unknown_e0;
-undefined engine_unknown_c0;
-undefined engine_unknown_00;
-undefined engine_unknown_40;
-undefined engine_unknown_48;
-undefined engine_unknown_88;
-undefined engine_unknown_a8;
-undefined engine_unknown_d8;
-undefined engine_unknown_18;
-undefined engine_unknown_38;
-undefined engine_unknown_58;
-undefined engine_unknown_a8;
-undefined engine_unknown_18;
-undefined engine_unknown_68;
-undefined engine_unknown_28;
-undefined engine_unknown_08;
-undefined engine_unknown_70;
-undefined UNK_180277350;
+engine_data_08;
+engine_unknown_48;
+engine_data_60;
+engine_unknown_88;
+engine_unknown_b0;
+engine_unknown_bc;
+engine_unknown_c8;
+engine_unknown_e0;
+engine_unknown_c0;
+engine_unknown_00;
+engine_unknown_40;
+engine_unknown_48;
+engine_unknown_88;
+engine_unknown_a8;
+engine_unknown_d8;
+engine_unknown_18;
+engine_unknown_38;
+engine_unknown_58;
+engine_unknown_a8;
+engine_unknown_18;
+engine_unknown_68;
+engine_unknown_28;
+engine_unknown_08;
+engine_unknown_70;
+uint32 UNK_180277350;
 
-// 函数: undefined engine_initialize_audio_system;
-undefined engine_initialize_audio_system;
-undefined engine_data_98;
-undefined engine_unknown_88;
-undefined engine_unknown_70;
-undefined engine_unknown_80;
-undefined engine_unknown_b0;
+// 函数: engine_initialize_audio_system;
+engine_initialize_audio_system;
+engine_data_98;
+engine_unknown_88;
+engine_unknown_70;
+engine_unknown_80;
+engine_unknown_b0;
 
-// 函数: undefined engine_setup_network_components;
-undefined engine_setup_network_components;
+// 函数: engine_setup_network_components;
+engine_setup_network_components;
 
-// 函数: undefined engine_initialize_physics_engine;
-undefined engine_initialize_physics_engine;
+// 函数: engine_initialize_physics_engine;
+engine_initialize_physics_engine;
 int UNK_180d49150;
 float UNK_180d49154;
-undefined engine_unknown_70;
-undefined engine_unknown_b0;
-undefined engine_unknown_e0;
+engine_unknown_70;
+engine_unknown_b0;
+engine_unknown_e0;
 
-// 函数: undefined engine_setup_ui_system;
-undefined engine_setup_ui_system;
-undefined engine_unknown_c8;
-undefined engine_unknown_28;
+// 函数: engine_setup_ui_system;
+engine_setup_ui_system;
+engine_unknown_c8;
+engine_unknown_28;
 
-// 函数: undefined engine_initialize_debug_tools;
-undefined engine_initialize_debug_tools;
+// 函数: engine_initialize_debug_tools;
+engine_initialize_debug_tools;
 
-// 函数: undefined engine_configure_resource_manager;
-undefined engine_configure_resource_manager;
-undefined engine_data_60;
-undefined engine_unknown_f8;
-undefined engine_unknown_60;
-undefined engine_unknown_28;
-undefined engine_unknown_90;
-undefined engine_unknown_88;
-undefined engine_unknown_f0;
-undefined engine_unknown_58;
-undefined engine_unknown_c0;
-undefined engine_unknown_98;
-undefined engine_data_30;
-undefined engine_unknown_f8;
-undefined engine_unknown_40;
-undefined engine_unknown_88;
-undefined engine_unknown_d0;
-undefined engine_unknown_10;
-undefined engine_unknown_58;
-undefined engine_unknown_78;
-undefined engine_unknown_a8;
-undefined engine_unknown_e0;
-undefined engine_unknown_50;
-undefined engine_unknown_c8;
-undefined engine_unknown_5c;
-undefined engine_data_64;
-undefined engine_unknown_68;
-undefined engine_unknown_80;
-undefined engine_unknown_98;
-undefined engine_unknown_b8;
-undefined engine_unknown_80;
-undefined engine_unknown_80;
-undefined engine_unknown_00;
-undefined engine_unknown_e0;
-undefined engine_unknown_f8;
-undefined engine_unknown_30;
-undefined engine_unknown_48;
-undefined engine_unknown_80;
-undefined engine_unknown_88;
-undefined engine_data_c8;
-undefined engine_unknown_b0;
-undefined engine_unknown_f0;
-undefined engine_unknown_18;
+// 函数: engine_configure_resource_manager;
+engine_configure_resource_manager;
+engine_data_60;
+engine_unknown_f8;
+engine_unknown_60;
+engine_unknown_28;
+engine_unknown_90;
+engine_unknown_88;
+engine_unknown_f0;
+engine_unknown_58;
+engine_unknown_c0;
+engine_unknown_98;
+engine_data_30;
+engine_unknown_f8;
+engine_unknown_40;
+engine_unknown_88;
+engine_unknown_d0;
+engine_unknown_10;
+engine_unknown_58;
+engine_unknown_78;
+engine_unknown_a8;
+engine_unknown_e0;
+engine_unknown_50;
+engine_unknown_c8;
+engine_unknown_5c;
+engine_data_64;
+engine_unknown_68;
+engine_unknown_80;
+engine_unknown_98;
+engine_unknown_b8;
+engine_unknown_80;
+engine_unknown_80;
+engine_unknown_00;
+engine_unknown_e0;
+engine_unknown_f8;
+engine_unknown_30;
+engine_unknown_48;
+engine_unknown_80;
+engine_unknown_88;
+engine_data_c8;
+engine_unknown_b0;
+engine_unknown_f0;
+engine_unknown_18;
 
-// 函数: undefined engine_start_main_loop;
-undefined engine_start_main_loop;
+// 函数: engine_start_main_loop;
+engine_start_main_loop;
 
-// 函数: undefined engine_process_frame_update;
-undefined engine_process_frame_update;
-undefined engine_unknown_50;
-undefined engine_data_f8;
-undefined engine_data_00;
-undefined engine_data_08;
+// 函数: engine_process_frame_update;
+engine_process_frame_update;
+engine_unknown_50;
+engine_data_f8;
+engine_data_00;
+engine_data_08;
 
-// 函数: undefined engine_handle_render_frame;
-undefined engine_handle_render_frame;
-undefined engine_unknown_30;
-undefined engine_unknown_14;
-undefined engine_data_10;
-undefined DAT_180a0143c;
-undefined engine_unknown_48;
-undefined engine_unknown_60;
-undefined engine_unknown_70;
-undefined engine_unknown_78;
-undefined engine_unknown_88;
-undefined engine_unknown_94;
-undefined engine_unknown_9c;
-undefined engine_unknown_a8;
-undefined engine_unknown_c0;
-undefined engine_unknown_70;
-undefined engine_unknown_b8;
+// 函数: engine_handle_render_frame;
+engine_handle_render_frame;
+engine_unknown_30;
+engine_unknown_14;
+engine_data_10;
+uint32 DAT_180a0143c;
+engine_unknown_48;
+engine_unknown_60;
+engine_unknown_70;
+engine_unknown_78;
+engine_unknown_88;
+engine_unknown_94;
+engine_unknown_9c;
+engine_unknown_a8;
+engine_unknown_c0;
+engine_unknown_70;
+engine_unknown_b8;
 
-// 函数: undefined engine_process_input_events;
-undefined engine_process_input_events;
-undefined engine_unknown_c8;
-undefined engine_unknown_d8;
+// 函数: engine_process_input_events;
+engine_process_input_events;
+engine_unknown_c8;
+engine_unknown_d8;
 char engine_data_46;
-undefined engine_data_10;
-undefined engine_data_20;
-undefined engine_data_18;
-undefined engine_data_28;
-undefined engine_data_30;
+engine_data_10;
+engine_data_20;
+engine_data_18;
+engine_data_28;
+engine_data_30;
 
-// 函数: undefined engine_update_game_state;
-undefined engine_update_game_state;
+// 函数: engine_update_game_state;
+engine_update_game_state;
 
-// 函数: undefined engine_cleanup_resources;
-undefined engine_cleanup_resources;
+// 函数: engine_cleanup_resources;
+engine_cleanup_resources;
 
-// 函数: undefined engine_shutdown_system;
-undefined engine_shutdown_system;
-undefined engine_unknown_50;
-undefined engine_unknown_80;
-undefined engine_unknown_b0;
-undefined engine_unknown_e0;
-undefined engine_unknown_20;
-undefined UNK_1801b9b60;
+// 函数: engine_shutdown_system;
+engine_shutdown_system;
+engine_unknown_50;
+engine_unknown_80;
+engine_unknown_b0;
+engine_unknown_e0;
+engine_unknown_20;
+uint32 UNK_1801b9b60;
 
-// 函数: undefined engine_initialize_scripting;
-undefined engine_initialize_scripting;
-undefined engine_unknown_4c;
-undefined engine_unknown_68;
-undefined engine_unknown_80;
-undefined UNK_18013bff0;
+// 函数: engine_initialize_scripting;
+engine_initialize_scripting;
+engine_unknown_4c;
+engine_unknown_68;
+engine_unknown_80;
+uint32 UNK_18013bff0;
 
-// 函数: undefined engine_process_network_events;
-undefined engine_process_network_events;
+// 函数: engine_process_network_events;
+engine_process_network_events;
 
-// 函数: undefined engine_handle_physics_simulation;
-undefined engine_handle_physics_simulation;
-undefined engine_unknown_74;
-undefined engine_unknown_75;
+// 函数: engine_handle_physics_simulation;
+engine_handle_physics_simulation;
+engine_unknown_74;
+engine_unknown_75;
 
-// 函数: undefined engine_update_audio_system;
-undefined engine_update_audio_system;
+// 函数: engine_update_audio_system;
+engine_update_audio_system;
 
-// 函数: undefined engine_process_ui_events;
-undefined engine_process_ui_events;
-undefined engine_unknown_98;
+// 函数: engine_process_ui_events;
+engine_process_ui_events;
+engine_unknown_98;
 
-// 函数: undefined engine_handle_debug_output;
-undefined engine_handle_debug_output;
-undefined engine_unknown_99;
-undefined UNK_180126ab0;
-undefined DAT_180a0649c;
-undefined engine_unknown_90;
-undefined engine_unknown_a8;
-undefined UNK_18012d10b;
-undefined engine_unknown_7c;
-undefined UNK_18098d180;
-undefined UNK_18098d184;
-undefined UNK_18098d188;
-undefined engine_unknown_a0;
-undefined engine_unknown_b0;
-undefined engine_unknown_c0;
-undefined engine_unknown_d0;
-undefined engine_unknown_e0;
-undefined engine_unknown_88;
-undefined engine_unknown_f0;
-undefined engine_unknown_00;
-undefined engine_unknown_e8;
-undefined engine_unknown_60;
-undefined engine_unknown_58;
-undefined UNK_180135af0;
-undefined engine_unknown_78;
-undefined engine_unknown_a0;
-undefined engine_unknown_a8;
-undefined UNK_180137f40;
-undefined engine_unknown_b8;
-undefined engine_unknown_c8;
-undefined engine_unknown_e0;
-undefined engine_unknown_f0;
-undefined engine_unknown_00;
-undefined engine_unknown_10;
-undefined engine_unknown_28;
-undefined engine_unknown_40;
-undefined engine_unknown_50;
-undefined engine_unknown_68;
-undefined engine_unknown_78;
-undefined engine_unknown_90;
-undefined engine_unknown_a8;
-undefined engine_unknown_b8;
-undefined engine_unknown_c8;
-undefined engine_unknown_d8;
-undefined engine_unknown_e8;
-undefined engine_unknown_00;
-undefined engine_unknown_20;
-undefined engine_unknown_30;
-undefined engine_unknown_40;
-undefined engine_unknown_58;
-undefined engine_unknown_94;
-undefined engine_unknown_88;
-undefined engine_unknown_98;
-undefined engine_unknown_b0;
-undefined engine_unknown_c0;
-undefined engine_unknown_d0;
-undefined engine_unknown_e8;
-undefined engine_unknown_f8;
-undefined engine_unknown_10;
-undefined engine_unknown_08;
-undefined engine_unknown_20;
-undefined engine_unknown_38;
-undefined engine_unknown_48;
-undefined engine_unknown_58;
-undefined engine_unknown_70;
-undefined engine_unknown_80;
-undefined engine_unknown_90;
-undefined engine_unknown_a8;
-undefined engine_unknown_b8;
-undefined engine_data_70;
-undefined engine_data_80;
-undefined engine_data_78;
-undefined engine_data_7c;
-undefined UNK_180941a80;
+// 函数: engine_handle_debug_output;
+engine_handle_debug_output;
+engine_unknown_99;
+uint32 UNK_180126ab0;
+uint32 DAT_180a0649c;
+engine_unknown_90;
+engine_unknown_a8;
+uint32 UNK_18012d10b;
+engine_unknown_7c;
+uint32 UNK_18098d180;
+uint32 UNK_18098d184;
+uint32 UNK_18098d188;
+engine_unknown_a0;
+engine_unknown_b0;
+engine_unknown_c0;
+engine_unknown_d0;
+engine_unknown_e0;
+engine_unknown_88;
+engine_unknown_f0;
+engine_unknown_00;
+engine_unknown_e8;
+engine_unknown_60;
+engine_unknown_58;
+uint32 UNK_180135af0;
+engine_unknown_78;
+engine_unknown_a0;
+engine_unknown_a8;
+uint32 UNK_180137f40;
+engine_unknown_b8;
+engine_unknown_c8;
+engine_unknown_e0;
+engine_unknown_f0;
+engine_unknown_00;
+engine_unknown_10;
+engine_unknown_28;
+engine_unknown_40;
+engine_unknown_50;
+engine_unknown_68;
+engine_unknown_78;
+engine_unknown_90;
+engine_unknown_a8;
+engine_unknown_b8;
+engine_unknown_c8;
+engine_unknown_d8;
+engine_unknown_e8;
+engine_unknown_00;
+engine_unknown_20;
+engine_unknown_30;
+engine_unknown_40;
+engine_unknown_58;
+engine_unknown_94;
+engine_unknown_88;
+engine_unknown_98;
+engine_unknown_b0;
+engine_unknown_c0;
+engine_unknown_d0;
+engine_unknown_e8;
+engine_unknown_f8;
+engine_unknown_10;
+engine_unknown_08;
+engine_unknown_20;
+engine_unknown_38;
+engine_unknown_48;
+engine_unknown_58;
+engine_unknown_70;
+engine_unknown_80;
+engine_unknown_90;
+engine_unknown_a8;
+engine_unknown_b8;
+engine_data_70;
+engine_data_80;
+engine_data_78;
+engine_data_7c;
+uint32 UNK_180941a80;
 
-// 函数: undefined engine_setup_physics_system;
-undefined engine_setup_physics_system;
-undefined engine_unknown_50;
-undefined engine_unknown_b0;
-undefined engine_unknown_c0;
-undefined engine_unknown_f8;
+// 函数: engine_setup_physics_system;
+engine_setup_physics_system;
+engine_unknown_50;
+engine_unknown_b0;
+engine_unknown_c0;
+engine_unknown_f8;
 char engine_physics_config_flag;
-undefined engine_unknown_e8;
-undefined engine_unknown_e0;
-undefined engine_data_90;
-undefined engine_unknown_c8;
-undefined engine_unknown_e8;
-undefined engine_unknown_c8;
-undefined engine_unknown_d8;
-undefined engine_data_88;
-undefined engine_data_90;
-undefined engine_data_98;
-undefined engine_data_a0;
-undefined engine_data_a8;
-undefined engine_data_e8;
-undefined engine_data_f0;
-undefined engine_data_f8;
-undefined engine_data_00;
-undefined engine_data_40;
-undefined engine_data_48;
-undefined engine_data_50;
-undefined engine_data_58;
-undefined engine_data_98;
-undefined engine_data_a0;
-undefined engine_data_a8;
-undefined engine_data_b0;
-undefined UNK_180941ab0;
-undefined DAT_180a06990;
-undefined DAT_180a06998;
-undefined DAT_180a069a0;
-undefined DAT_180a069a8;
-undefined UNK_18014f7f0;
+engine_unknown_e8;
+engine_unknown_e0;
+engine_data_90;
+engine_unknown_c8;
+engine_unknown_e8;
+engine_unknown_c8;
+engine_unknown_d8;
+engine_data_88;
+engine_data_90;
+engine_data_98;
+engine_data_a0;
+engine_data_a8;
+engine_data_e8;
+engine_data_f0;
+engine_data_f8;
+engine_data_00;
+engine_data_40;
+engine_data_48;
+engine_data_50;
+engine_data_58;
+engine_data_98;
+engine_data_a0;
+engine_data_a8;
+engine_data_b0;
+uint32 UNK_180941ab0;
+uint32 DAT_180a06990;
+uint32 DAT_180a06998;
+uint32 DAT_180a069a0;
+uint32 DAT_180a069a8;
+uint32 UNK_18014f7f0;
 
-// 函数: undefined engine_create_collision_handler;
-undefined engine_create_collision_handler;
+// 函数: engine_create_collision_handler;
+engine_create_collision_handler;
 
-// 函数: undefined engine_setup_collision_system;
-undefined engine_setup_collision_system;
-undefined UNK_18014f640;
+// 函数: engine_setup_collision_system;
+engine_setup_collision_system;
+uint32 UNK_18014f640;
 
-// 函数: undefined engine_initialize_rigid_body;
-undefined engine_initialize_rigid_body;
+// 函数: engine_initialize_rigid_body;
+engine_initialize_rigid_body;
 
-// 函数: undefined engine_configure_physics_world;
-undefined engine_configure_physics_world;
-undefined engine_unknown_48;
-undefined UNK_18014f3d0;
+// 函数: engine_configure_physics_world;
+engine_configure_physics_world;
+engine_unknown_48;
+uint32 UNK_18014f3d0;
 
-// 函数: undefined engine_create_physics_material;
-undefined engine_create_physics_material;
-undefined UNK_18014f180;
-undefined UNK_18014f190;
-undefined UNK_18014f1d0;
-undefined UNK_18014f1e0;
+// 函数: engine_create_physics_material;
+engine_create_physics_material;
+uint32 UNK_18014f180;
+uint32 UNK_18014f190;
+uint32 UNK_18014f1d0;
+uint32 UNK_18014f1e0;
 
-// 函数: undefined engine_setup_force_field;
-undefined engine_setup_force_field;
-undefined engine_unknown_00;
-undefined engine_unknown_10;
-undefined DAT_180a072b8;
-undefined DAT_180a072d0;
-undefined engine_unknown_f0;
+// 函数: engine_setup_force_field;
+engine_setup_force_field;
+engine_unknown_00;
+engine_unknown_10;
+uint32 DAT_180a072b8;
+uint32 DAT_180a072d0;
+engine_unknown_f0;
 
-// 函数: undefined FUN_180150480;
-undefined FUN_180150480;
-undefined engine_data_f0;
-undefined engine_data_f8;
-undefined engine_data_00;
+// 函数: uint32 FUN_180150480;
+uint32 FUN_180150480;
+engine_data_f0;
+engine_data_f8;
+engine_data_00;
 char engine_data_52;
-undefined engine_data_08;
-undefined engine_data_10;
+engine_data_08;
+engine_data_10;
 
-// 函数: undefined engine_create_particle_emitter;
-undefined engine_create_particle_emitter;
-undefined engine_unknown_05;
-undefined engine_unknown_80;
-undefined engine_data_98;
+// 函数: engine_create_particle_emitter;
+engine_create_particle_emitter;
+engine_unknown_05;
+engine_unknown_80;
+engine_data_98;
 
-// 函数: undefined FUN_18015c190;
-undefined FUN_18015c190;
-undefined UNK_180991df0;
-undefined UNK_18098d770;
-undefined UNK_18098d780;
-undefined engine_unknown_10;
-undefined UNK_18098ba18;
-undefined engine_unknown_08;
-undefined engine_unknown_10;
-undefined engine_unknown_28;
-undefined engine_unknown_80;
-undefined engine_unknown_68;
-undefined engine_unknown_a0;
-undefined engine_unknown_90;
+// 函数: uint32 FUN_18015c190;
+uint32 FUN_18015c190;
+uint32 UNK_180991df0;
+uint32 UNK_18098d770;
+uint32 UNK_18098d780;
+engine_unknown_10;
+uint32 UNK_18098ba18;
+engine_unknown_08;
+engine_unknown_10;
+engine_unknown_28;
+engine_unknown_80;
+engine_unknown_68;
+engine_unknown_a0;
+engine_unknown_90;
 
-// 函数: undefined engine_setup_animation_system;
-undefined engine_setup_animation_system;
+// 函数: engine_setup_animation_system;
+engine_setup_animation_system;
 
-// 函数: undefined FUN_18016f990;
-undefined FUN_18016f990;
-undefined DAT_180a080cc;
-undefined engine_unknown_d8;
-undefined engine_unknown_00;
-undefined engine_unknown_00;
-undefined engine_unknown_f0;
-undefined engine_unknown_e8;
-undefined engine_unknown_78;
+// 函数: uint32 FUN_18016f990;
+uint32 FUN_18016f990;
+uint32 DAT_180a080cc;
+engine_unknown_d8;
+engine_unknown_00;
+engine_unknown_00;
+engine_unknown_f0;
+engine_unknown_e8;
+engine_unknown_78;
 
-// 函数: undefined engine_initialize_bone_hierarchy;
-undefined engine_initialize_bone_hierarchy;
-undefined engine_data_3c;
-undefined engine_data_20;
+// 函数: engine_initialize_bone_hierarchy;
+engine_initialize_bone_hierarchy;
+engine_data_3c;
+engine_data_20;
 byte engine_data_38;
-undefined engine_data_3e;
-undefined engine_data_44;
-undefined engine_data_48;
+engine_data_3e;
+engine_data_44;
+engine_data_48;
 undefined4 UNK_180d49440;
-undefined engine_unknown_08;
-undefined engine_unknown_28;
-undefined engine_unknown_68;
+engine_unknown_08;
+engine_unknown_28;
+engine_unknown_68;
 
-// 函数: undefined engine_setup_animation_controller;
-undefined engine_setup_animation_controller;
+// 函数: engine_setup_animation_controller;
+engine_setup_animation_controller;
 
-// 函数: undefined engine_create_animation_state;
-undefined engine_create_animation_state;
-undefined engine_unknown_20;
-undefined engine_unknown_70;
-undefined engine_unknown_40;
-undefined engine_unknown_88;
-undefined engine_data_60;
-undefined engine_unknown_f8;
-undefined engine_unknown_18;
+// 函数: engine_create_animation_state;
+engine_create_animation_state;
+engine_unknown_20;
+engine_unknown_70;
+engine_unknown_40;
+engine_unknown_88;
+engine_data_60;
+engine_unknown_f8;
+engine_unknown_18;
 
-// 函数: undefined engine_setup_keyframe_system;
-undefined engine_setup_keyframe_system;
-undefined engine_unknown_d0;
-undefined DAT_180a096c8;
-undefined DAT_180a096d8;
-undefined DAT_180a096e0;
-undefined DAT_180a096e8;
-undefined DAT_180a096f0;
-undefined DAT_180a096f8;
-undefined DAT_180a09710;
-undefined DAT_180a09718;
-undefined DAT_180a09728;
-undefined DAT_180a09750;
-undefined DAT_180a09768;
-undefined DAT_180a09780;
-undefined DAT_180a097a0;
-undefined DAT_180a097c0;
-undefined DAT_180a097e0;
-undefined DAT_180a09818;
-undefined engine_unknown_b0;
-undefined engine_unknown_30;
-undefined engine_unknown_c8;
-undefined engine_unknown_98;
-undefined engine_unknown_a8;
-undefined engine_unknown_b8;
-undefined UNK_180a1d3d0;
-undefined UNK_180a1d3f0;
-undefined UNK_180a1d590;
-undefined UNK_180a1d700;
-undefined UNK_180a1d9a0;
-undefined UNK_180a1dbc0;
-undefined engine_unknown_b8;
-undefined engine_unknown_48;
-undefined DAT_180a09828;
-undefined engine_unknown_98;
-undefined DAT_180a09848;
-undefined DAT_180a09868;
-undefined DAT_180a09870;
-undefined DAT_180a09880;
-undefined DAT_180a09890;
-undefined DAT_180a09898;
-undefined DAT_180a098a8;
-undefined DAT_180a098b8;
-undefined DAT_180a098c8;
-undefined DAT_180a098e0;
-undefined DAT_180a098f0;
-undefined DAT_180a09928;
-undefined DAT_180a09e30;
-undefined DAT_180a09e38;
-undefined UNK_180a1dd48;
-undefined UNK_180a1dee0;
-undefined UNK_180a1e060;
-undefined UNK_180a1e220;
-undefined UNK_180a1e428;
-undefined UNK_180a1e5a0;
-undefined UNK_180a1e7d0;
-undefined engine_data_68;
-undefined UNK_180a1e978;
-undefined engine_unknown_28;
-undefined engine_data_20;
-undefined engine_data_20;
-undefined engine_data_30;
+// 函数: engine_setup_keyframe_system;
+engine_setup_keyframe_system;
+engine_unknown_d0;
+uint32 DAT_180a096c8;
+uint32 DAT_180a096d8;
+uint32 DAT_180a096e0;
+uint32 DAT_180a096e8;
+uint32 DAT_180a096f0;
+uint32 DAT_180a096f8;
+uint32 DAT_180a09710;
+uint32 DAT_180a09718;
+uint32 DAT_180a09728;
+uint32 DAT_180a09750;
+uint32 DAT_180a09768;
+uint32 DAT_180a09780;
+uint32 DAT_180a097a0;
+uint32 DAT_180a097c0;
+uint32 DAT_180a097e0;
+uint32 DAT_180a09818;
+engine_unknown_b0;
+engine_unknown_30;
+engine_unknown_c8;
+engine_unknown_98;
+engine_unknown_a8;
+engine_unknown_b8;
+uint32 UNK_180a1d3d0;
+uint32 UNK_180a1d3f0;
+uint32 UNK_180a1d590;
+uint32 UNK_180a1d700;
+uint32 UNK_180a1d9a0;
+uint32 UNK_180a1dbc0;
+engine_unknown_b8;
+engine_unknown_48;
+uint32 DAT_180a09828;
+engine_unknown_98;
+uint32 DAT_180a09848;
+uint32 DAT_180a09868;
+uint32 DAT_180a09870;
+uint32 DAT_180a09880;
+uint32 DAT_180a09890;
+uint32 DAT_180a09898;
+uint32 DAT_180a098a8;
+uint32 DAT_180a098b8;
+uint32 DAT_180a098c8;
+uint32 DAT_180a098e0;
+uint32 DAT_180a098f0;
+uint32 DAT_180a09928;
+uint32 DAT_180a09e30;
+uint32 DAT_180a09e38;
+uint32 UNK_180a1dd48;
+uint32 UNK_180a1dee0;
+uint32 UNK_180a1e060;
+uint32 UNK_180a1e220;
+uint32 UNK_180a1e428;
+uint32 UNK_180a1e5a0;
+uint32 UNK_180a1e7d0;
+engine_data_68;
+uint32 UNK_180a1e978;
+engine_unknown_28;
+engine_data_20;
+engine_data_20;
+engine_data_30;
 
-// 函数: undefined engine_initialize_lighting_system;
-undefined engine_initialize_lighting_system;
-undefined engine_data_28;
-undefined engine_unknown_50;
+// 函数: engine_initialize_lighting_system;
+engine_initialize_lighting_system;
+engine_data_28;
+engine_unknown_50;
 
-// 函数: undefined engine_create_directional_light;
-undefined engine_create_directional_light;
+// 函数: engine_create_directional_light;
+engine_create_directional_light;
 
-// 函数: undefined engine_setup_point_light;
-undefined engine_setup_point_light;
+// 函数: engine_setup_point_light;
+engine_setup_point_light;
 
-// 函数: undefined engine_configure_spot_light;
-undefined engine_configure_spot_light;
+// 函数: engine_configure_spot_light;
+engine_configure_spot_light;
 
-// 函数: undefined FUN_18021b9c0;
-undefined FUN_18021b9c0;
+// 函数: uint32 FUN_18021b9c0;
+uint32 FUN_18021b9c0;
 
-// 函数: undefined engine_setup_shadow_mapping;
-undefined engine_setup_shadow_mapping;
+// 函数: engine_setup_shadow_mapping;
+engine_setup_shadow_mapping;
 
-// 函数: undefined engine_configure_light_culling;
-undefined engine_configure_light_culling;
+// 函数: engine_configure_light_culling;
+engine_configure_light_culling;
 
-// 函数: undefined engine_create_global_illumination;
-undefined engine_create_global_illumination;
+// 函数: engine_create_global_illumination;
+engine_create_global_illumination;
 
-// 函数: undefined engine_setup_light_probe_system;
-undefined engine_setup_light_probe_system;
+// 函数: engine_setup_light_probe_system;
+engine_setup_light_probe_system;
 
-// 函数: undefined engine_configure_shadow_quality;
-undefined engine_configure_shadow_quality;
+// 函数: engine_configure_shadow_quality;
+engine_configure_shadow_quality;
 
-// 函数: undefined engine_create_ambient_occlusion;
-undefined engine_create_ambient_occlusion;
-undefined engine_unknown_40;
-undefined engine_unknown_98;
-undefined UNK_180a1ff80;
-undefined UNK_180a1ff8c;
-undefined UNK_180a1ff90;
-undefined UNK_180a20018;
-undefined UNK_180a1ef60;
-undefined engine_unknown_a8;
-undefined engine_unknown_58;
+// 函数: engine_create_ambient_occlusion;
+engine_create_ambient_occlusion;
+engine_unknown_40;
+engine_unknown_98;
+uint32 UNK_180a1ff80;
+uint32 UNK_180a1ff8c;
+uint32 UNK_180a1ff90;
+uint32 UNK_180a20018;
+uint32 UNK_180a1ef60;
+engine_unknown_a8;
+engine_unknown_58;
 
-// 函数: undefined engine_setup_post_processing;
-undefined engine_setup_post_processing;
+// 函数: engine_setup_post_processing;
+engine_setup_post_processing;
 
-// 函数: undefined engine_create_render_target;
-undefined engine_create_render_target;
-undefined engine_unknown_60;
-undefined engine_unknown_88;
-undefined engine_unknown_30;
+// 函数: engine_create_render_target;
+engine_create_render_target;
+engine_unknown_60;
+engine_unknown_88;
+engine_unknown_30;
 
-// 函数: undefined engine_configure_aa_system;
-undefined engine_configure_aa_system;
-undefined engine_unknown_50;
-undefined engine_unknown_b8;
-undefined engine_unknown_00;
-undefined engine_unknown_90;
-undefined engine_unknown_34;
-undefined engine_unknown_e0;
-undefined engine_unknown_70;
-undefined engine_unknown_a8;
-undefined engine_unknown_00;
-undefined engine_unknown_38;
-undefined engine_unknown_d8;
-undefined engine_unknown_f0;
-undefined engine_unknown_c8;
-undefined engine_unknown_a8;
-undefined engine_unknown_b0;
-undefined engine_unknown_20;
-undefined engine_unknown_58;
-undefined engine_unknown_40;
-undefined engine_unknown_90;
-undefined engine_unknown_70;
-undefined engine_unknown_90;
-undefined engine_unknown_f8;
-undefined engine_unknown_a0;
+// 函数: engine_configure_aa_system;
+engine_configure_aa_system;
+engine_unknown_50;
+engine_unknown_b8;
+engine_unknown_00;
+engine_unknown_90;
+engine_unknown_34;
+engine_unknown_e0;
+engine_unknown_70;
+engine_unknown_a8;
+engine_unknown_00;
+engine_unknown_38;
+engine_unknown_d8;
+engine_unknown_f0;
+engine_unknown_c8;
+engine_unknown_a8;
+engine_unknown_b0;
+engine_unknown_20;
+engine_unknown_58;
+engine_unknown_40;
+engine_unknown_90;
+engine_unknown_70;
+engine_unknown_90;
+engine_unknown_f8;
+engine_unknown_a0;
 
-// 函数: undefined engine_setup_hdr_system;
-undefined engine_setup_hdr_system;
-undefined engine_data_e8;
-undefined DAT_180a04ee4;
-undefined engine_unknown_10;
-undefined engine_unknown_28;
-undefined engine_unknown_30;
-undefined DAT_180a0aea0;
-undefined engine_unknown_f8;
-undefined engine_unknown_54;
-undefined engine_unknown_a0;
-undefined engine_unknown_d0;
-undefined engine_unknown_e8;
-undefined engine_unknown_00;
-undefined engine_unknown_20;
-undefined engine_unknown_30;
-undefined engine_unknown_48;
-undefined engine_unknown_58;
-undefined engine_unknown_68;
-undefined engine_unknown_78;
-undefined engine_unknown_88;
-undefined engine_unknown_98;
-undefined engine_unknown_a8;
-undefined engine_data_f0;
+// 函数: engine_setup_hdr_system;
+engine_setup_hdr_system;
+engine_data_e8;
+uint32 DAT_180a04ee4;
+engine_unknown_10;
+engine_unknown_28;
+engine_unknown_30;
+uint32 DAT_180a0aea0;
+engine_unknown_f8;
+engine_unknown_54;
+engine_unknown_a0;
+engine_unknown_d0;
+engine_unknown_e8;
+engine_unknown_00;
+engine_unknown_20;
+engine_unknown_30;
+engine_unknown_48;
+engine_unknown_58;
+engine_unknown_68;
+engine_unknown_78;
+engine_unknown_88;
+engine_unknown_98;
+engine_unknown_a8;
+engine_data_f0;
 
-// 函数: undefined engine_initialize_ui_system;
-undefined FUN_180049cd0;
+// 函数: engine_initialize_ui_system;
+uint32 FUN_180049cd0;
 
-// 函数: undefined engine_create_ui_manager;
-undefined engine_create_ui_manager;
+// 函数: engine_create_ui_manager;
+engine_create_ui_manager;
 
-// 函数: undefined engine_setup_ui_renderer;
-undefined engine_setup_ui_renderer;
+// 函数: engine_setup_ui_renderer;
+engine_setup_ui_renderer;
 
-// 函数: undefined engine_create_widget_system;
-undefined engine_create_widget_system;
+// 函数: engine_create_widget_system;
+engine_create_widget_system;
 
-// 函数: undefined engine_setup_ui_layout;
-undefined engine_setup_ui_layout;
+// 函数: engine_setup_ui_layout;
+engine_setup_ui_layout;
 
-// 函数: undefined engine_configure_ui_events;
-undefined engine_configure_ui_events;
-undefined engine_unknown_c0;
-undefined DAT_180a0ff10;
-undefined engine_data_e8;
-undefined engine_unknown_b8;
-undefined engine_data_18;
-undefined engine_unknown_28;
-undefined engine_unknown_38;
-undefined engine_unknown_48;
-undefined engine_unknown_a8;
-undefined engine_unknown_b0;
-undefined engine_unknown_c0;
-undefined UNK_18020f868;
-undefined engine_unknown_08;
-undefined engine_unknown_f8;
+// 函数: engine_configure_ui_events;
+engine_configure_ui_events;
+engine_unknown_c0;
+uint32 DAT_180a0ff10;
+engine_data_e8;
+engine_unknown_b8;
+engine_data_18;
+engine_unknown_28;
+engine_unknown_38;
+engine_unknown_48;
+engine_unknown_a8;
+engine_unknown_b0;
+engine_unknown_c0;
+uint32 UNK_18020f868;
+engine_unknown_08;
+engine_unknown_f8;
 
-// 函数: undefined engine_create_ui_animation;
-undefined engine_create_ui_animation;
-undefined engine_unknown_b0;
-undefined engine_unknown_d8;
-undefined UNK_180211f50;
+// 函数: engine_create_ui_animation;
+engine_create_ui_animation;
+engine_unknown_b0;
+engine_unknown_d8;
+uint32 UNK_180211f50;
 
-// 函数: undefined engine_setup_ui_transitions;
-undefined engine_setup_ui_transitions;
-undefined UNK_180211ec0;
-undefined engine_unknown_00;
-undefined engine_unknown_08;
-undefined engine_unknown_20;
-undefined DAT_180a0e358;
-undefined engine_unknown_68;
-undefined engine_unknown_b8;
-undefined engine_unknown_d8;
-undefined engine_unknown_70;
-undefined engine_unknown_e0;
-undefined engine_unknown_f0;
-undefined engine_unknown_00;
-undefined engine_unknown_18;
-undefined engine_unknown_28;
-undefined engine_unknown_40;
-undefined engine_unknown_50;
-undefined engine_unknown_68;
-undefined engine_unknown_78;
-undefined engine_unknown_88;
-undefined engine_unknown_98;
-undefined engine_unknown_c0;
-undefined engine_unknown_e8;
-undefined engine_unknown_00;
-undefined engine_unknown_10;
-undefined engine_unknown_20;
-undefined engine_unknown_28;
-undefined engine_unknown_40;
-undefined engine_unknown_50;
-undefined engine_unknown_60;
-undefined engine_unknown_78;
-undefined engine_unknown_88;
-undefined engine_unknown_98;
-undefined engine_unknown_b0;
-undefined engine_unknown_c8;
-undefined engine_unknown_d8;
-undefined engine_unknown_f8;
-undefined engine_unknown_10;
-undefined engine_unknown_20;
-undefined engine_unknown_38;
-undefined engine_unknown_50;
-undefined engine_unknown_60;
-undefined engine_unknown_98;
-undefined engine_unknown_d0;
-undefined engine_unknown_78;
-undefined engine_unknown_b0;
-undefined UNK_18098bc74;
-undefined engine_unknown_08;
-undefined engine_data_dc;
-undefined engine_unknown_d0;
-undefined engine_unknown_88;
-undefined engine_unknown_b8;
-undefined engine_data_f0;
-undefined engine_unknown_38;
-undefined UNK_180a27158;
-undefined engine_unknown_60;
-undefined engine_unknown_20;
-undefined engine_unknown_d8;
-undefined engine_unknown_48;
-undefined engine_unknown_10;
-undefined engine_unknown_a0;
-undefined engine_unknown_58;
-undefined engine_unknown_d0;
-undefined engine_unknown_90;
-undefined engine_unknown_88;
-undefined engine_unknown_e0;
-undefined engine_unknown_c0;
-undefined engine_unknown_f0;
-undefined engine_data_f0;
-undefined UNK_180957a48;
-undefined engine_unknown_10;
-undefined engine_unknown_e0;
-undefined engine_unknown_f0;
-undefined engine_unknown_f0;
-undefined engine_data_60;
-undefined engine_unknown_98;
+// 函数: engine_setup_ui_transitions;
+engine_setup_ui_transitions;
+uint32 UNK_180211ec0;
+engine_unknown_00;
+engine_unknown_08;
+engine_unknown_20;
+uint32 DAT_180a0e358;
+engine_unknown_68;
+engine_unknown_b8;
+engine_unknown_d8;
+engine_unknown_70;
+engine_unknown_e0;
+engine_unknown_f0;
+engine_unknown_00;
+engine_unknown_18;
+engine_unknown_28;
+engine_unknown_40;
+engine_unknown_50;
+engine_unknown_68;
+engine_unknown_78;
+engine_unknown_88;
+engine_unknown_98;
+engine_unknown_c0;
+engine_unknown_e8;
+engine_unknown_00;
+engine_unknown_10;
+engine_unknown_20;
+engine_unknown_28;
+engine_unknown_40;
+engine_unknown_50;
+engine_unknown_60;
+engine_unknown_78;
+engine_unknown_88;
+engine_unknown_98;
+engine_unknown_b0;
+engine_unknown_c8;
+engine_unknown_d8;
+engine_unknown_f8;
+engine_unknown_10;
+engine_unknown_20;
+engine_unknown_38;
+engine_unknown_50;
+engine_unknown_60;
+engine_unknown_98;
+engine_unknown_d0;
+engine_unknown_78;
+engine_unknown_b0;
+uint32 UNK_18098bc74;
+engine_unknown_08;
+engine_data_dc;
+engine_unknown_d0;
+engine_unknown_88;
+engine_unknown_b8;
+engine_data_f0;
+engine_unknown_38;
+uint32 UNK_180a27158;
+engine_unknown_60;
+engine_unknown_20;
+engine_unknown_d8;
+engine_unknown_48;
+engine_unknown_10;
+engine_unknown_a0;
+engine_unknown_58;
+engine_unknown_d0;
+engine_unknown_90;
+engine_unknown_88;
+engine_unknown_e0;
+engine_unknown_c0;
+engine_unknown_f0;
+engine_data_f0;
+uint32 UNK_180957a48;
+engine_unknown_10;
+engine_unknown_e0;
+engine_unknown_f0;
+engine_unknown_f0;
+engine_data_60;
+engine_unknown_98;
 
-// 函数: undefined FUN_18020dd10;
-undefined FUN_18020dd10;
-undefined UNK_18020dbe0;
-undefined engine_unknown_68;
+// 函数: uint32 FUN_18020dd10;
+uint32 FUN_18020dd10;
+uint32 UNK_18020dbe0;
+engine_unknown_68;
 
-// 函数: undefined engine_create_input_handler;
-undefined engine_create_input_handler;
+// 函数: engine_create_input_handler;
+engine_create_input_handler;
 
-// 函数: undefined engine_setup_input_mapping;
-undefined engine_setup_input_mapping;
-undefined engine_unknown_d8;
-undefined engine_unknown_f0;
-undefined engine_unknown_50;
-undefined engine_data_1c;
-undefined engine_unknown_20;
-undefined engine_unknown_38;
-undefined engine_unknown_48;
-undefined engine_unknown_68;
-undefined engine_unknown_80;
-undefined engine_unknown_90;
-undefined engine_unknown_a8;
-undefined engine_unknown_b8;
-undefined engine_unknown_c8;
-undefined engine_unknown_d8;
-undefined engine_render_state_buffer;
-undefined engine_display_config_buffer;
-undefined engine_input_config_buffer;
-undefined engine_audio_config_buffer;
-undefined DAT_180a02618;
-undefined engine_unknown_70;
-undefined engine_unknown_80;
-undefined engine_unknown_a0;
-undefined engine_unknown_b8;
-undefined engine_unknown_d0;
-undefined engine_unknown_e8;
-undefined engine_unknown_00;
-undefined engine_unknown_18;
-undefined engine_unknown_38;
-undefined engine_unknown_58;
-undefined engine_unknown_80;
-undefined engine_unknown_f0;
-undefined engine_unknown_08;
-undefined engine_unknown_20;
-undefined engine_unknown_40;
-undefined engine_unknown_60;
-undefined engine_unknown_78;
-undefined engine_unknown_a0;
-undefined engine_unknown_b0;
-undefined engine_unknown_c8;
-undefined engine_unknown_e0;
-undefined engine_unknown_f8;
-undefined engine_unknown_10;
-undefined engine_unknown_30;
-undefined engine_unknown_50;
-undefined engine_unknown_70;
-undefined engine_unknown_88;
-undefined engine_unknown_90;
-undefined engine_unknown_b0;
-undefined engine_unknown_d0;
-undefined engine_unknown_f0;
-undefined engine_unknown_10;
-undefined engine_unknown_28;
-undefined engine_unknown_48;
-undefined engine_unknown_60;
-undefined engine_unknown_80;
-undefined engine_unknown_98;
-undefined engine_unknown_b8;
-undefined engine_unknown_d8;
-undefined engine_unknown_f0;
-undefined engine_unknown_b4;
-undefined engine_unknown_c0;
-undefined engine_unknown_d0;
-undefined engine_unknown_e0;
-undefined engine_unknown_f0;
-undefined engine_unknown_00;
-undefined engine_unknown_08;
-undefined engine_unknown_10;
-undefined engine_unknown_20;
-undefined engine_unknown_30;
-undefined engine_unknown_40;
-undefined engine_unknown_58;
-undefined engine_unknown_60;
-undefined engine_unknown_6c;
-undefined engine_unknown_74;
-undefined engine_unknown_80;
-undefined engine_unknown_8c;
-undefined engine_unknown_94;
-undefined engine_unknown_9c;
-undefined engine_unknown_a0;
-undefined engine_unknown_a8;
-undefined engine_unknown_b0;
-undefined engine_unknown_b4;
-undefined engine_unknown_bc;
-undefined engine_unknown_c0;
-undefined engine_unknown_c4;
-undefined engine_unknown_c8;
-undefined engine_unknown_cc;
-undefined engine_unknown_d4;
-undefined engine_unknown_d8;
-undefined engine_unknown_ec;
-undefined engine_unknown_f8;
-undefined engine_unknown_08;
-undefined engine_unknown_20;
-undefined engine_unknown_30;
-undefined engine_unknown_38;
-undefined engine_unknown_40;
-undefined engine_unknown_4c;
-undefined engine_unknown_58;
-undefined engine_unknown_64;
-undefined engine_unknown_6c;
-undefined engine_unknown_74;
-undefined engine_unknown_80;
-undefined engine_unknown_98;
-undefined engine_unknown_a4;
-undefined engine_unknown_b0;
-undefined engine_unknown_c0;
-undefined engine_unknown_d0;
-undefined engine_unknown_e0;
-undefined engine_unknown_08;
-undefined engine_unknown_20;
-undefined engine_unknown_40;
-undefined engine_data_28;
-undefined engine_data_10;
-undefined engine_data_70;
-undefined engine_unknown_f0;
-undefined UNK_18022a4a0;
-undefined UNK_18022a4b0;
-undefined UNK_18022a4f0;
-undefined UNK_18022a500;
-undefined engine_unknown_e0;
-undefined UNK_180a27738;
-undefined engine_unknown_c0;
+// 函数: engine_setup_input_mapping;
+engine_setup_input_mapping;
+engine_unknown_d8;
+engine_unknown_f0;
+engine_unknown_50;
+engine_data_1c;
+engine_unknown_20;
+engine_unknown_38;
+engine_unknown_48;
+engine_unknown_68;
+engine_unknown_80;
+engine_unknown_90;
+engine_unknown_a8;
+engine_unknown_b8;
+engine_unknown_c8;
+engine_unknown_d8;
+engine_render_state_buffer;
+engine_display_config_buffer;
+engine_input_config_buffer;
+engine_audio_config_buffer;
+uint32 DAT_180a02618;
+engine_unknown_70;
+engine_unknown_80;
+engine_unknown_a0;
+engine_unknown_b8;
+engine_unknown_d0;
+engine_unknown_e8;
+engine_unknown_00;
+engine_unknown_18;
+engine_unknown_38;
+engine_unknown_58;
+engine_unknown_80;
+engine_unknown_f0;
+engine_unknown_08;
+engine_unknown_20;
+engine_unknown_40;
+engine_unknown_60;
+engine_unknown_78;
+engine_unknown_a0;
+engine_unknown_b0;
+engine_unknown_c8;
+engine_unknown_e0;
+engine_unknown_f8;
+engine_unknown_10;
+engine_unknown_30;
+engine_unknown_50;
+engine_unknown_70;
+engine_unknown_88;
+engine_unknown_90;
+engine_unknown_b0;
+engine_unknown_d0;
+engine_unknown_f0;
+engine_unknown_10;
+engine_unknown_28;
+engine_unknown_48;
+engine_unknown_60;
+engine_unknown_80;
+engine_unknown_98;
+engine_unknown_b8;
+engine_unknown_d8;
+engine_unknown_f0;
+engine_unknown_b4;
+engine_unknown_c0;
+engine_unknown_d0;
+engine_unknown_e0;
+engine_unknown_f0;
+engine_unknown_00;
+engine_unknown_08;
+engine_unknown_10;
+engine_unknown_20;
+engine_unknown_30;
+engine_unknown_40;
+engine_unknown_58;
+engine_unknown_60;
+engine_unknown_6c;
+engine_unknown_74;
+engine_unknown_80;
+engine_unknown_8c;
+engine_unknown_94;
+engine_unknown_9c;
+engine_unknown_a0;
+engine_unknown_a8;
+engine_unknown_b0;
+engine_unknown_b4;
+engine_unknown_bc;
+engine_unknown_c0;
+engine_unknown_c4;
+engine_unknown_c8;
+engine_unknown_cc;
+engine_unknown_d4;
+engine_unknown_d8;
+engine_unknown_ec;
+engine_unknown_f8;
+engine_unknown_08;
+engine_unknown_20;
+engine_unknown_30;
+engine_unknown_38;
+engine_unknown_40;
+engine_unknown_4c;
+engine_unknown_58;
+engine_unknown_64;
+engine_unknown_6c;
+engine_unknown_74;
+engine_unknown_80;
+engine_unknown_98;
+engine_unknown_a4;
+engine_unknown_b0;
+engine_unknown_c0;
+engine_unknown_d0;
+engine_unknown_e0;
+engine_unknown_08;
+engine_unknown_20;
+engine_unknown_40;
+engine_data_28;
+engine_data_10;
+engine_data_70;
+engine_unknown_f0;
+uint32 UNK_18022a4a0;
+uint32 UNK_18022a4b0;
+uint32 UNK_18022a4f0;
+uint32 UNK_18022a500;
+engine_unknown_e0;
+uint32 UNK_180a27738;
+engine_unknown_c0;
 
-// 函数: undefined engine_configure_keyboard_input;
-undefined engine_configure_keyboard_input;
-undefined engine_unknown_d0;
-undefined DAT_180a0ba58;
-undefined DAT_180a0d580;
-undefined engine_unknown_a8;
-undefined engine_unknown_b8;
-undefined engine_unknown_e8;
-undefined engine_unknown_b8;
-undefined engine_unknown_30;
-undefined engine_unknown_70;
-undefined engine_data_30;
-undefined engine_unknown_08;
-undefined engine_unknown_08;
-undefined engine_unknown_48;
-undefined engine_unknown_a0;
-undefined engine_data_8c;
-undefined engine_unknown_2c;
-undefined engine_unknown_70;
-undefined engine_unknown_88;
-undefined engine_unknown_94;
-undefined engine_unknown_a0;
-undefined engine_unknown_ac;
-undefined engine_unknown_20;
+// 函数: engine_configure_keyboard_input;
+engine_configure_keyboard_input;
+engine_unknown_d0;
+uint32 DAT_180a0ba58;
+uint32 DAT_180a0d580;
+engine_unknown_a8;
+engine_unknown_b8;
+engine_unknown_e8;
+engine_unknown_b8;
+engine_unknown_30;
+engine_unknown_70;
+engine_data_30;
+engine_unknown_08;
+engine_unknown_08;
+engine_unknown_48;
+engine_unknown_a0;
+engine_data_8c;
+engine_unknown_2c;
+engine_unknown_70;
+engine_unknown_88;
+engine_unknown_94;
+engine_unknown_a0;
+engine_unknown_ac;
+engine_unknown_20;
 
-// 函数: undefined engine_setup_mouse_input;
-undefined engine_setup_mouse_input;
-undefined engine_unknown_e0;
-undefined engine_unknown_08;
-undefined engine_unknown_98;
-undefined engine_unknown_f0;
-undefined engine_unknown_00;
-undefined UNK_1802a11b8;
+// 函数: engine_setup_mouse_input;
+engine_setup_mouse_input;
+engine_unknown_e0;
+engine_unknown_08;
+engine_unknown_98;
+engine_unknown_f0;
+engine_unknown_00;
+uint32 UNK_1802a11b8;
 char UNK_180d48da9;
 char engine_data_a8;
-undefined UNK_1802a1b10;
-undefined engine_unknown_70;
-undefined engine_unknown_98;
-undefined engine_unknown_c8;
-undefined engine_unknown_f0;
+uint32 UNK_1802a1b10;
+engine_unknown_70;
+engine_unknown_98;
+engine_unknown_c8;
+engine_unknown_f0;
 undefined1 engine_data_a8;
-undefined UNK_1802a1d4c;
-undefined engine_data_18;
-undefined engine_data_28;
-undefined engine_unknown_03;
-undefined engine_unknown_18;
-undefined UNK_180a27cb0;
+uint32 UNK_1802a1d4c;
+engine_data_18;
+engine_data_28;
+engine_unknown_03;
+engine_unknown_18;
+uint32 UNK_180a27cb0;
 undefined4 UNK_180bf5c1c;
 undefined4 UNK_180bf5c20;
 undefined4 UNK_180bf5c24;
-undefined engine_data_d0;
+engine_data_d0;
 char engine_data_ac;
-undefined UNK_18042d5d0;
-undefined engine_unknown_30;
-undefined engine_unknown_80;
-undefined engine_data_b0;
-undefined engine_data_a8;
-undefined engine_unknown_bc;
-undefined engine_unknown_f8;
-undefined engine_unknown_00;
-undefined engine_unknown_18;
-undefined engine_unknown_68;
+uint32 UNK_18042d5d0;
+engine_unknown_30;
+engine_unknown_80;
+engine_data_b0;
+engine_data_a8;
+engine_unknown_bc;
+engine_unknown_f8;
+engine_unknown_00;
+engine_unknown_18;
+engine_unknown_68;
 char engine_data_aa;
-undefined engine_unknown_c8;
-undefined engine_unknown_f0;
-undefined engine_unknown_10;
-undefined engine_unknown_40;
-undefined engine_unknown_60;
-undefined engine_unknown_80;
-undefined engine_unknown_a8;
+engine_unknown_c8;
+engine_unknown_f0;
+engine_unknown_10;
+engine_unknown_40;
+engine_unknown_60;
+engine_unknown_80;
+engine_unknown_a8;
 char engine_data_ab;
-undefined engine_unknown_d0;
-undefined engine_unknown_38;
-undefined engine_unknown_b0;
-undefined engine_unknown_38;
-undefined engine_unknown_28;
-undefined engine_unknown_38;
-undefined engine_unknown_78;
-undefined engine_unknown_88;
-undefined engine_unknown_98;
-undefined engine_unknown_a0;
-undefined engine_unknown_b0;
-undefined engine_unknown_c0;
-undefined engine_unknown_d8;
-undefined engine_unknown_e8;
-undefined engine_unknown_f8;
-undefined engine_unknown_90;
-undefined engine_unknown_48;
-undefined engine_unknown_60;
-undefined engine_unknown_80;
-undefined engine_unknown_90;
-undefined engine_unknown_b8;
-undefined engine_unknown_c8;
-undefined engine_unknown_d8;
-undefined engine_unknown_00;
-undefined engine_unknown_28;
-undefined engine_unknown_50;
-undefined engine_unknown_a8;
-undefined engine_unknown_18;
-undefined engine_unknown_48;
-undefined engine_unknown_68;
-undefined engine_unknown_78;
-undefined engine_unknown_a8;
-undefined engine_unknown_b0;
-undefined engine_unknown_c0;
-undefined engine_unknown_00;
-undefined engine_unknown_58;
-undefined engine_unknown_90;
-undefined DAT_180a09dc0;
-undefined engine_unknown_e0;
-undefined engine_unknown_28;
-undefined engine_unknown_48;
-undefined engine_unknown_e8;
-undefined engine_unknown_f0;
-undefined engine_unknown_28;
-undefined engine_unknown_30;
-undefined engine_unknown_10;
-undefined engine_unknown_a8;
-undefined engine_unknown_c8;
-undefined engine_unknown_44;
-undefined engine_unknown_20;
-undefined engine_unknown_50;
-undefined engine_data_e0;
-undefined engine_data_e4;
-undefined engine_unknown_e8;
-undefined engine_unknown_f4;
-undefined engine_unknown_fc;
-undefined engine_unknown_48;
-undefined engine_unknown_90;
-undefined engine_unknown_50;
-undefined engine_unknown_60;
-undefined engine_unknown_88;
-undefined engine_unknown_98;
-undefined engine_unknown_d0;
-undefined engine_unknown_38;
-undefined engine_unknown_28;
-undefined engine_unknown_20;
-undefined engine_data_b0;
-undefined engine_data_b8;
-undefined engine_data_c0;
-undefined engine_data_c8;
-undefined engine_data_d0;
+engine_unknown_d0;
+engine_unknown_38;
+engine_unknown_b0;
+engine_unknown_38;
+engine_unknown_28;
+engine_unknown_38;
+engine_unknown_78;
+engine_unknown_88;
+engine_unknown_98;
+engine_unknown_a0;
+engine_unknown_b0;
+engine_unknown_c0;
+engine_unknown_d8;
+engine_unknown_e8;
+engine_unknown_f8;
+engine_unknown_90;
+engine_unknown_48;
+engine_unknown_60;
+engine_unknown_80;
+engine_unknown_90;
+engine_unknown_b8;
+engine_unknown_c8;
+engine_unknown_d8;
+engine_unknown_00;
+engine_unknown_28;
+engine_unknown_50;
+engine_unknown_a8;
+engine_unknown_18;
+engine_unknown_48;
+engine_unknown_68;
+engine_unknown_78;
+engine_unknown_a8;
+engine_unknown_b0;
+engine_unknown_c0;
+engine_unknown_00;
+engine_unknown_58;
+engine_unknown_90;
+uint32 DAT_180a09dc0;
+engine_unknown_e0;
+engine_unknown_28;
+engine_unknown_48;
+engine_unknown_e8;
+engine_unknown_f0;
+engine_unknown_28;
+engine_unknown_30;
+engine_unknown_10;
+engine_unknown_a8;
+engine_unknown_c8;
+engine_unknown_44;
+engine_unknown_20;
+engine_unknown_50;
+engine_data_e0;
+engine_data_e4;
+engine_unknown_e8;
+engine_unknown_f4;
+engine_unknown_fc;
+engine_unknown_48;
+engine_unknown_90;
+engine_unknown_50;
+engine_unknown_60;
+engine_unknown_88;
+engine_unknown_98;
+engine_unknown_d0;
+engine_unknown_38;
+engine_unknown_28;
+engine_unknown_20;
+engine_data_b0;
+engine_data_b8;
+engine_data_c0;
+engine_data_c8;
+engine_data_d0;
 
-// 函数: undefined engine_create_controller_system;
-undefined engine_create_controller_system;
+// 函数: engine_create_controller_system;
+engine_create_controller_system;
 
-// 函数: undefined engine_setup_touch_input;
-undefined engine_setup_touch_input;
+// 函数: engine_setup_touch_input;
+engine_setup_touch_input;
 
-// 函数: undefined engine_configure_gesture_system;
-undefined engine_configure_gesture_system;
-undefined UNK_180a241c8;
-undefined UNK_1803c8870;
-undefined UNK_180a23c38;
-undefined UNK_180a23c2c;
-undefined engine_data_94;
-undefined engine_data_98;
-undefined UNK_180a23c70;
-undefined UNK_180a23d50;
-undefined UNK_180a24298;
-undefined UNK_180a23d30;
-undefined UNK_180a23cf0;
-undefined UNK_180a23d10;
-undefined UNK_180a23cb0;
-undefined UNK_180a23cd0;
-undefined engine_data_ec;
-undefined UNK_180a24358;
+// 函数: engine_configure_gesture_system;
+engine_configure_gesture_system;
+uint32 UNK_180a241c8;
+uint32 UNK_1803c8870;
+uint32 UNK_180a23c38;
+uint32 UNK_180a23c2c;
+engine_data_94;
+engine_data_98;
+uint32 UNK_180a23c70;
+uint32 UNK_180a23d50;
+uint32 UNK_180a24298;
+uint32 UNK_180a23d30;
+uint32 UNK_180a23cf0;
+uint32 UNK_180a23d10;
+uint32 UNK_180a23cb0;
+uint32 UNK_180a23cd0;
+engine_data_ec;
+uint32 UNK_180a24358;
 
-// 函数: undefined engine_initialize_network_system;
-undefined engine_initialize_network_system;
-undefined UNK_180a25980;
-undefined engine_data_70;
-undefined UNK_180a258e0;
-undefined UNK_180a258ec;
-undefined UNK_180a258f8;
-undefined UNK_180a259c0;
-undefined UNK_180a259c8;
-undefined UNK_180a259e0;
-undefined UNK_180a25a10;
-undefined DAT_180a0af70;
-undefined UNK_180a25998;
-undefined UNK_180a259a8;
-undefined UNK_180a25a74;
-undefined UNK_180a25a28;
-undefined UNK_180a25a80;
-undefined UNK_180a25a98;
-undefined engine_data_98;
-undefined UNK_180a25a50;
-undefined UNK_180a25a60;
-undefined UNK_180a25aa0;
-undefined UNK_180a25ab0;
-undefined UNK_180a25ae8;
-undefined UNK_180a25af0;
-undefined UNK_180a25b00;
-undefined UNK_180a25ab8;
-undefined UNK_180a25ac8;
-undefined UNK_180a25b10;
-undefined UNK_180a25b20;
-undefined UNK_180a25b30;
-undefined UNK_180a25b40;
-undefined UNK_180a25b48;
-undefined UNK_180a25b60;
-undefined UNK_180a25b6c;
-undefined UNK_180a25b80;
-undefined UNK_180a25b88;
-undefined UNK_180a25bc8;
-undefined UNK_180a25bd4;
-undefined UNK_180a25be0;
-undefined UNK_180a25c58;
-undefined UNK_180a25c84;
-undefined UNK_180a25c90;
-undefined UNK_180a2b468;
-undefined UNK_180a25c04;
-undefined UNK_180a25c10;
-undefined UNK_180a25c20;
-undefined UNK_180a25ca0;
-undefined UNK_180a25cdc;
-undefined engine_unknown_f8;
-undefined UNK_180a25bfc;
-undefined UNK_180a25ce8;
-undefined UNK_180a25cf8;
-undefined engine_data_28;
-undefined DAT_180a0209c;
-undefined DAT_180a022f0;
-undefined DAT_180a02320;
-undefined UNK_180a25ca8;
-undefined engine_data_b4;
-undefined UNK_180a25cc0;
-undefined UNK_180a25cd0;
-undefined UNK_180a25d78;
-undefined UNK_180a25d90;
-undefined UNK_180a25d98;
-undefined UNK_180a25da8;
-undefined DAT_180a02030;
-undefined DAT_180a0206c;
-undefined DAT_180a02080;
-undefined UNK_180a25e58;
-undefined UNK_180a25e70;
-undefined UNK_180a25e80;
-undefined UNK_180a25e90;
-undefined UNK_180a25ebc;
-undefined UNK_180a25ec4;
-undefined UNK_180a25ed0;
-undefined UNK_180a25ee0;
-undefined UNK_180a25ef0;
-undefined UNK_180a25ef8;
-undefined UNK_180a25900;
-undefined UNK_180a25ad0;
-undefined UNK_180a25a6c;
+// 函数: engine_initialize_network_system;
+engine_initialize_network_system;
+uint32 UNK_180a25980;
+engine_data_70;
+uint32 UNK_180a258e0;
+uint32 UNK_180a258ec;
+uint32 UNK_180a258f8;
+uint32 UNK_180a259c0;
+uint32 UNK_180a259c8;
+uint32 UNK_180a259e0;
+uint32 UNK_180a25a10;
+uint32 DAT_180a0af70;
+uint32 UNK_180a25998;
+uint32 UNK_180a259a8;
+uint32 UNK_180a25a74;
+uint32 UNK_180a25a28;
+uint32 UNK_180a25a80;
+uint32 UNK_180a25a98;
+engine_data_98;
+uint32 UNK_180a25a50;
+uint32 UNK_180a25a60;
+uint32 UNK_180a25aa0;
+uint32 UNK_180a25ab0;
+uint32 UNK_180a25ae8;
+uint32 UNK_180a25af0;
+uint32 UNK_180a25b00;
+uint32 UNK_180a25ab8;
+uint32 UNK_180a25ac8;
+uint32 UNK_180a25b10;
+uint32 UNK_180a25b20;
+uint32 UNK_180a25b30;
+uint32 UNK_180a25b40;
+uint32 UNK_180a25b48;
+uint32 UNK_180a25b60;
+uint32 UNK_180a25b6c;
+uint32 UNK_180a25b80;
+uint32 UNK_180a25b88;
+uint32 UNK_180a25bc8;
+uint32 UNK_180a25bd4;
+uint32 UNK_180a25be0;
+uint32 UNK_180a25c58;
+uint32 UNK_180a25c84;
+uint32 UNK_180a25c90;
+uint32 UNK_180a2b468;
+uint32 UNK_180a25c04;
+uint32 UNK_180a25c10;
+uint32 UNK_180a25c20;
+uint32 UNK_180a25ca0;
+uint32 UNK_180a25cdc;
+engine_unknown_f8;
+uint32 UNK_180a25bfc;
+uint32 UNK_180a25ce8;
+uint32 UNK_180a25cf8;
+engine_data_28;
+uint32 DAT_180a0209c;
+uint32 DAT_180a022f0;
+uint32 DAT_180a02320;
+uint32 UNK_180a25ca8;
+engine_data_b4;
+uint32 UNK_180a25cc0;
+uint32 UNK_180a25cd0;
+uint32 UNK_180a25d78;
+uint32 UNK_180a25d90;
+uint32 UNK_180a25d98;
+uint32 UNK_180a25da8;
+uint32 DAT_180a02030;
+uint32 DAT_180a0206c;
+uint32 DAT_180a02080;
+uint32 UNK_180a25e58;
+uint32 UNK_180a25e70;
+uint32 UNK_180a25e80;
+uint32 UNK_180a25e90;
+uint32 UNK_180a25ebc;
+uint32 UNK_180a25ec4;
+uint32 UNK_180a25ed0;
+uint32 UNK_180a25ee0;
+uint32 UNK_180a25ef0;
+uint32 UNK_180a25ef8;
+uint32 UNK_180a25900;
+uint32 UNK_180a25ad0;
+uint32 UNK_180a25a6c;
 
 // 函数: void engine_register_texture_resource(void)
 void engine_register_texture_resource(void)
@@ -5403,8 +5403,8 @@ void FUN_180036d50(void)
 
 
 
-// 函数: void FUN_180036df0(void)
-void FUN_180036df0(void)
+// 函数: void engine_initialize_structure_data(void)
+void engine_initialize_structure_data(void)
 
 {
   char cVar1;
@@ -5453,8 +5453,8 @@ void FUN_180036df0(void)
 
 
 
-// 函数: void FUN_180036ef0(void)
-void FUN_180036ef0(void)
+// 函数: void engine_process_structure_loop(void)
+void engine_process_structure_loop(void)
 
 {
   char cVar1;
@@ -5503,8 +5503,8 @@ void FUN_180036ef0(void)
 
 
 
-// 函数: void FUN_180036ff0(void)
-void FUN_180036ff0(void)
+// 函数: void engine_validate_structure_data(void)
+void engine_validate_structure_data(void)
 
 {
   char cVar1;
@@ -5553,8 +5553,8 @@ void FUN_180036ff0(void)
 
 
 
-// 函数: void FUN_1800370f0(void)
-void FUN_1800370f0(void)
+// 函数: void engine_cleanup_structure_resources(void)
+void engine_cleanup_structure_resources(void)
 
 {
   char cVar1;
@@ -5603,8 +5603,8 @@ void FUN_1800370f0(void)
 
 
 
-// 函数: void FUN_1800371f0(void)
-void FUN_1800371f0(void)
+// 函数: void engine_allocate_structure_memory(void)
+void engine_allocate_structure_memory(void)
 
 {
   char cVar1;
@@ -5653,8 +5653,8 @@ void FUN_1800371f0(void)
 
 
 
-// 函数: void FUN_1800372f0(void)
-void FUN_1800372f0(void)
+// 函数: void engine_configure_structure_parameters(void)
+void engine_configure_structure_parameters(void)
 
 {
   char cVar1;
@@ -5703,8 +5703,8 @@ void FUN_1800372f0(void)
 
 
 
-// 函数: void FUN_1800373f0(void)
-void FUN_1800373f0(void)
+// 函数: void engine_update_structure_state(void)
+void engine_update_structure_state(void)
 
 {
   char cVar1;
@@ -5753,8 +5753,8 @@ void FUN_1800373f0(void)
 
 
 
-// 函数: void FUN_1800374f0(void)
-void FUN_1800374f0(void)
+// 函数: void engine_process_structure_events(void)
+void engine_process_structure_events(void)
 
 {
   char cVar1;
@@ -5805,8 +5805,8 @@ void FUN_1800374f0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800375f0(void)
-void FUN_1800375f0(void)
+// 函数: void engine_handle_structure_callbacks(void)
+void engine_handle_structure_callbacks(void)
 
 {
   undefined8 in_R9;
@@ -5827,8 +5827,8 @@ void FUN_1800375f0(void)
 
 
 
-// 函数: void FUN_180037680(void)
-void FUN_180037680(void)
+// 函数: void engine_validate_structure_handles(void)
+void engine_validate_structure_handles(void)
 
 {
   char cVar1;
@@ -5877,8 +5877,8 @@ void FUN_180037680(void)
 
 
 
-// 函数: void FUN_180037780(void)
-void FUN_180037780(void)
+// 函数: void engine_cleanup_structure_handles(void)
+void engine_cleanup_structure_handles(void)
 
 {
   char cVar1;
@@ -5927,8 +5927,8 @@ void FUN_180037780(void)
 
 
 
-// 函数: void FUN_180037880(void)
-void FUN_180037880(void)
+// 函数: void engine_initialize_structure_handles(void)
+void engine_initialize_structure_handles(void)
 
 {
   char cVar1;
@@ -5977,8 +5977,8 @@ void FUN_180037880(void)
 
 
 
-// 函数: void FUN_180037980(void)
-void FUN_180037980(void)
+// 函数: void engine_process_structure_requests(void)
+void engine_process_structure_requests(void)
 
 {
   char cVar1;
@@ -6027,8 +6027,8 @@ void FUN_180037980(void)
 
 
 
-// 函数: void FUN_180037a80(void)
-void FUN_180037a80(void)
+// 函数: void engine_handle_structure_requests(void)
+void engine_handle_structure_requests(void)
 
 {
   char cVar1;
@@ -6077,8 +6077,8 @@ void FUN_180037a80(void)
 
 
 
-// 函数: void FUN_180037b80(void)
-void FUN_180037b80(void)
+// 函数: void engine_validate_structure_requests(void)
+void engine_validate_structure_requests(void)
 
 {
   char cVar1;
@@ -6127,8 +6127,8 @@ void FUN_180037b80(void)
 
 
 
-// 函数: void FUN_180037c80(void)
-void FUN_180037c80(void)
+// 函数: void engine_cleanup_structure_requests(void)
+void engine_cleanup_structure_requests(void)
 
 {
   char cVar1;
@@ -6177,8 +6177,8 @@ void FUN_180037c80(void)
 
 
 
-// 函数: void FUN_180037d80(void)
-void FUN_180037d80(void)
+// 函数: void engine_initialize_structure_requests(void)
+void engine_initialize_structure_requests(void)
 
 {
   char cVar1;
@@ -6227,8 +6227,8 @@ void FUN_180037d80(void)
 
 
 
-// 函数: void FUN_180037e80(void)
-void FUN_180037e80(void)
+// 函数: void engine_process_structure_operations(void)
+void engine_process_structure_operations(void)
 
 {
   char cVar1;
@@ -6277,8 +6277,8 @@ void FUN_180037e80(void)
 
 
 
-// 函数: void FUN_180037f80(void)
-void FUN_180037f80(void)
+// 函数: void engine_handle_structure_operations(void)
+void engine_handle_structure_operations(void)
 
 {
   char cVar1;
@@ -6327,8 +6327,8 @@ void FUN_180037f80(void)
 
 
 
-// 函数: void FUN_180038080(void)
-void FUN_180038080(void)
+// 函数: void engine_validate_structure_operations(void)
+void engine_validate_structure_operations(void)
 
 {
   char cVar1;
@@ -6379,8 +6379,8 @@ void FUN_180038080(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180038180(void)
-void FUN_180038180(void)
+// 函数: void engine_cleanup_structure_operations(void)
+void engine_cleanup_structure_operations(void)
 
 {
   undefined8 in_R9;
@@ -6403,8 +6403,8 @@ void FUN_180038180(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180038210(void)
-void FUN_180038210(void)
+// 函数: void engine_initialize_structure_operations(void)
+void engine_initialize_structure_operations(void)
 
 {
   undefined8 in_R9;
@@ -6427,8 +6427,8 @@ void FUN_180038210(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800382a0(void)
-void FUN_1800382a0(void)
+// 函数: void engine_process_structure_data(void)
+void engine_process_structure_data(void)
 
 {
   undefined8 in_R9;
@@ -6451,8 +6451,8 @@ void FUN_1800382a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180038330(void)
-void FUN_180038330(void)
+// 函数: void engine_handle_structure_data(void)
+void engine_handle_structure_data(void)
 
 {
   undefined8 in_R9;
@@ -6475,8 +6475,8 @@ void FUN_180038330(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800383c0(void)
-void FUN_1800383c0(void)
+// 函数: void engine_validate_structure_data(void)
+void engine_validate_structure_data(void)
 
 {
   undefined8 in_R9;
@@ -6523,8 +6523,8 @@ void FUN_180038450(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800384e0(void)
-void FUN_1800384e0(void)
+// 函数: void engine_cleanup_structure_data(void)
+void engine_cleanup_structure_data(void)
 
 {
   undefined8 in_R9;
@@ -6547,8 +6547,8 @@ void FUN_1800384e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180038570(void)
-void FUN_180038570(void)
+// 函数: void engine_initialize_structure_data(void)
+void engine_initialize_structure_data(void)
 
 {
   undefined8 in_R9;
@@ -6571,8 +6571,8 @@ void FUN_180038570(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180038610(void)
-void FUN_180038610(void)
+// 函数: void engine_process_structure_buffers(void)
+void engine_process_structure_buffers(void)
 
 {
   undefined8 in_R9;
@@ -6593,8 +6593,8 @@ void FUN_180038610(void)
 
 
 
-// 函数: void FUN_1800386a0(void)
-void FUN_1800386a0(void)
+// 函数: void engine_handle_structure_buffers(void)
+void engine_handle_structure_buffers(void)
 
 {
   char cVar1;
@@ -6643,8 +6643,8 @@ void FUN_1800386a0(void)
 
 
 
-// 函数: void FUN_1800387a0(void)
-void FUN_1800387a0(void)
+// 函数: void engine_validate_structure_buffers(void)
+void engine_validate_structure_buffers(void)
 
 {
   char cVar1;
@@ -6693,8 +6693,8 @@ void FUN_1800387a0(void)
 
 
 
-// 函数: void FUN_1800388a0(void)
-void FUN_1800388a0(void)
+// 函数: void engine_cleanup_structure_buffers(void)
+void engine_cleanup_structure_buffers(void)
 
 {
   char cVar1;
@@ -6743,8 +6743,8 @@ void FUN_1800388a0(void)
 
 
 
-// 函数: void FUN_1800389a0(void)
-void FUN_1800389a0(void)
+// 函数: void engine_initialize_structure_buffers(void)
+void engine_initialize_structure_buffers(void)
 
 {
   char cVar1;
@@ -6793,8 +6793,8 @@ void FUN_1800389a0(void)
 
 
 
-// 函数: void FUN_180038aa0(void)
-void FUN_180038aa0(void)
+// 函数: void engine_process_structure_memory(void)
+void engine_process_structure_memory(void)
 
 {
   char cVar1;
@@ -6843,8 +6843,8 @@ void FUN_180038aa0(void)
 
 
 
-// 函数: void FUN_180038ba0(void)
-void FUN_180038ba0(void)
+// 函数: void engine_handle_structure_memory(void)
+void engine_handle_structure_memory(void)
 
 {
   char cVar1;
@@ -6893,8 +6893,8 @@ void FUN_180038ba0(void)
 
 
 
-// 函数: void FUN_180038ca0(void)
-void FUN_180038ca0(void)
+// 函数: void engine_validate_structure_memory(void)
+void engine_validate_structure_memory(void)
 
 {
   char cVar1;
@@ -6943,8 +6943,8 @@ void FUN_180038ca0(void)
 
 
 
-// 函数: void FUN_180038da0(void)
-void FUN_180038da0(void)
+// 函数: void engine_cleanup_structure_memory(void)
+void engine_cleanup_structure_memory(void)
 
 {
   char cVar1;
@@ -6993,8 +6993,8 @@ void FUN_180038da0(void)
 
 
 
-// 函数: void FUN_180038ea0(void)
-void FUN_180038ea0(void)
+// 函数: void engine_initialize_structure_memory(void)
+void engine_initialize_structure_memory(void)
 
 {
   char cVar1;
@@ -7043,8 +7043,8 @@ void FUN_180038ea0(void)
 
 
 
-// 函数: void FUN_180038fa0(void)
-void FUN_180038fa0(void)
+// 函数: void engine_process_structure_pointers(void)
+void engine_process_structure_pointers(void)
 
 {
   char cVar1;
@@ -7093,8 +7093,8 @@ void FUN_180038fa0(void)
 
 
 
-// 函数: void FUN_1800390a0(void)
-void FUN_1800390a0(void)
+// 函数: void engine_handle_structure_pointers(void)
+void engine_handle_structure_pointers(void)
 
 {
   char cVar1;
@@ -7143,8 +7143,8 @@ void FUN_1800390a0(void)
 
 
 
-// 函数: void FUN_1800391a0(void)
-void FUN_1800391a0(void)
+// 函数: void engine_validate_structure_pointers(void)
+void engine_validate_structure_pointers(void)
 
 {
   char cVar1;
@@ -7193,8 +7193,8 @@ void FUN_1800391a0(void)
 
 
 
-// 函数: void FUN_1800392a0(void)
-void FUN_1800392a0(void)
+// 函数: void engine_cleanup_structure_pointers(void)
+void engine_cleanup_structure_pointers(void)
 
 {
   char cVar1;
@@ -7243,8 +7243,8 @@ void FUN_1800392a0(void)
 
 
 
-// 函数: void FUN_1800393a0(void)
-void FUN_1800393a0(void)
+// 函数: void engine_initialize_structure_pointers(void)
+void engine_initialize_structure_pointers(void)
 
 {
   char cVar1;
@@ -7293,8 +7293,8 @@ void FUN_1800393a0(void)
 
 
 
-// 函数: void FUN_1800394a0(void)
-void FUN_1800394a0(void)
+// 函数: void engine_process_structure_arrays(void)
+void engine_process_structure_arrays(void)
 
 {
   char cVar1;
@@ -7343,8 +7343,8 @@ void FUN_1800394a0(void)
 
 
 
-// 函数: void FUN_1800395a0(void)
-void FUN_1800395a0(void)
+// 函数: void engine_handle_structure_arrays(void)
+void engine_handle_structure_arrays(void)
 
 {
   char cVar1;
@@ -7393,8 +7393,8 @@ void FUN_1800395a0(void)
 
 
 
-// 函数: void FUN_1800396a0(void)
-void FUN_1800396a0(void)
+// 函数: void engine_validate_structure_arrays(void)
+void engine_validate_structure_arrays(void)
 
 {
   char cVar1;
@@ -7443,8 +7443,8 @@ void FUN_1800396a0(void)
 
 
 
-// 函数: void FUN_1800397a0(void)
-void FUN_1800397a0(void)
+// 函数: void engine_cleanup_structure_arrays(void)
+void engine_cleanup_structure_arrays(void)
 
 {
   char cVar1;
@@ -7493,8 +7493,8 @@ void FUN_1800397a0(void)
 
 
 
-// 函数: void FUN_1800398a0(void)
-void FUN_1800398a0(void)
+// 函数: void engine_initialize_structure_arrays(void)
+void engine_initialize_structure_arrays(void)
 
 {
   char cVar1;
@@ -7543,8 +7543,8 @@ void FUN_1800398a0(void)
 
 
 
-// 函数: void FUN_1800399a0(void)
-void FUN_1800399a0(void)
+// 函数: void engine_process_structure_lists(void)
+void engine_process_structure_lists(void)
 
 {
   char cVar1;
@@ -7593,8 +7593,8 @@ void FUN_1800399a0(void)
 
 
 
-// 函数: void FUN_180039aa0(void)
-void FUN_180039aa0(void)
+// 函数: void engine_handle_structure_lists(void)
+void engine_handle_structure_lists(void)
 
 {
   char cVar1;
@@ -7643,8 +7643,8 @@ void FUN_180039aa0(void)
 
 
 
-// 函数: void FUN_180039bb0(void)
-void FUN_180039bb0(void)
+// 函数: void engine_validate_structure_lists(void)
+void engine_validate_structure_lists(void)
 
 {
   char cVar1;
@@ -7693,8 +7693,8 @@ void FUN_180039bb0(void)
 
 
 
-// 函数: void FUN_180039cb0(void)
-void FUN_180039cb0(void)
+// 函数: void engine_cleanup_structure_lists(void)
+void engine_cleanup_structure_lists(void)
 
 {
   char cVar1;
@@ -7743,8 +7743,8 @@ void FUN_180039cb0(void)
 
 
 
-// 函数: void FUN_180039db0(void)
-void FUN_180039db0(void)
+// 函数: void engine_initialize_structure_lists(void)
+void engine_initialize_structure_lists(void)
 
 {
   char cVar1;
@@ -7793,8 +7793,8 @@ void FUN_180039db0(void)
 
 
 
-// 函数: void FUN_180039eb0(void)
-void FUN_180039eb0(void)
+// 函数: void engine_process_structure_queues(void)
+void engine_process_structure_queues(void)
 
 {
   char cVar1;
@@ -7843,8 +7843,8 @@ void FUN_180039eb0(void)
 
 
 
-// 函数: void FUN_180039fb0(void)
-void FUN_180039fb0(void)
+// 函数: void engine_handle_structure_queues(void)
+void engine_handle_structure_queues(void)
 
 {
   char cVar1;
@@ -11023,7 +11023,7 @@ void FUN_180044a50(void)
   undefined *puStack_188;
   undefined *puStack_180;
   undefined4 uStack_178;
-  undefined auStack_170 [32];
+  uint32 auStack_170 [32];
   longlong **applStack_150 [3];
   undefined1 auStack_138 [272];
   ulonglong uStack_28;
@@ -24515,7 +24515,7 @@ void FUN_180065160(undefined8 param_1)
   undefined *puStack_c8;
   undefined *puStack_c0;
   undefined4 uStack_b8;
-  undefined auStack_b0 [40];
+  uint32 auStack_b0 [40];
   undefined4 auStack_88 [14];
   ulonglong uStack_50;
   ulonglong uStack_38;
@@ -45186,7 +45186,7 @@ void FUN_180086e40(longlong param_1,longlong *param_2,longlong param_3)
   undefined *puStack_258;
   undefined *puStack_250;
   uint uStack_248;
-  undefined auStack_240 [520];
+  uint32 auStack_240 [520];
   ulonglong uStack_38;
   
   alStack_268[1] = 0xfffffffffffffffe;
@@ -47519,15 +47519,15 @@ void FUN_18008a620(undefined8 *param_1)
   undefined *puStack_398;
   undefined *puStack_390;
   uint uStack_388;
-  undefined auStack_380 [264];
+  uint32 auStack_380 [264];
   undefined *puStack_278;
   undefined *puStack_270;
   int iStack_268;
-  undefined auStack_260 [264];
+  uint32 auStack_260 [264];
   undefined *puStack_158;
   undefined *puStack_150;
   uint uStack_148;
-  undefined auStack_140 [264];
+  uint32 auStack_140 [264];
   ulonglong uStack_38;
   
   uStack_3f8 = 0xfffffffffffffffe;
@@ -53524,7 +53524,7 @@ void FUN_180091430(void)
   undefined *puStack_c8;
   undefined *puStack_c0;
   undefined4 uStack_b8;
-  undefined auStack_b0 [136];
+  uint32 auStack_b0 [136];
   ulonglong uStack_28;
   
   plVar7 = _engine_data_50;
@@ -53829,7 +53829,7 @@ void FUN_180091970(ulonglong param_1)
   undefined *puStack_138;
   undefined *puStack_130;
   undefined4 uStack_128;
-  undefined auStack_120 [72];
+  uint32 auStack_120 [72];
   undefined *puStack_d8;
   undefined1 *puStack_d0;
   undefined4 uStack_c8;
@@ -55893,7 +55893,7 @@ void FUN_180094b30(longlong param_1,longlong param_2)
   undefined *puStack_78;
   undefined *puStack_70;
   undefined4 uStack_68;
-  undefined auStack_60 [72];
+  uint32 auStack_60 [72];
   ulonglong uStack_18;
   
   uStack_88 = 0xfffffffffffffffe;
