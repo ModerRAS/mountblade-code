@@ -6406,7 +6406,7 @@ void ProcessDynamicBufferReallocation(void)
   longlong bufferPointer;
   uint unsignedValue5;
   longlong ResourceContextPointer;
-  longlong unaff_R14;
+  longlong registerContext1;
   uint8_t8 in_stack_00000060;
   
   resourceIndex = 0;
@@ -8479,12 +8479,12 @@ uint8_t8 ProcessParameterizedFloatComparison(longlong objectContextParam, longlo
   uint8_t4 OperationParam1;
   uint8_t4 OperationParam2;
   uint8_t4 OperationParam3;
-  uint8_t4 uStack_c;
+  uint8_t4 contextFlag;
   
   OperationParam1 = *(uint8_t4 *)(objectContextParam + 0x10);
   OperationParam2 = *(uint8_t4 *)(objectContextParam + 0x14);
   OperationParam3 = *(uint8_t4 *)(objectContextParam + 0x18);
-  uStack_c = *(uint8_t4 *)(objectContextParam + 0x1c);
+  contextFlag = *(uint8_t4 *)(objectContextParam + 0x1c);
   localContextPointer = (**(code **)(**(longlong **)(validationContextParam + 800) + 600))
                     (*(longlong **)(validationContextParam + 800),&OperationParam1,1);
   if ((localContextPointer == 0) || (*(longlong *)(localContextPointer + 0x2e8) == 0)) {
@@ -8516,12 +8516,12 @@ uint8_t8 ProcessSimplifiedParameterizedFloatComparison(longlong objectContextPar
   uint8_t4 OperationParam1;
   uint8_t4 OperationParam2;
   uint8_t4 OperationParam3;
-  uint8_t4 uStack_c;
+  uint8_t4 contextFlag;
   
   OperationParam1 = *(uint8_t4 *)(objectContextParam + 0x10);
   OperationParam2 = *(uint8_t4 *)(objectContextParam + 0x14);
   OperationParam3 = *(uint8_t4 *)(objectContextParam + 0x18);
-  uStack_c = *(uint8_t4 *)(objectContextParam + 0x1c);
+  contextFlag = *(uint8_t4 *)(objectContextParam + 0x1c);
   localContextPointer = (**(code **)(**(longlong **)(validationContextParam + 800) + 600))
                     (*(longlong **)(validationContextParam + 800),&OperationParam1,1);
   if ((localContextPointer == 0) || (*(longlong *)(localContextPointer + 0x2e8) == 0)) {
@@ -8709,7 +8709,7 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(longlong objectContextPa
   int operationResult;
   longlong resourceTable;
   longlong UnaffectedRegisterValue;
-  longlong unaff_R15;
+  longlong registerContext2;
   longlong in_stack_00000060;
   
   if ((int)validationContextParam < 1) {
@@ -8856,7 +8856,7 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t8 objectContextParam, ui
   int operationResult;
   longlong resourceTable;
   longlong UnaffectedRegisterValue;
-  longlong unaff_R15;
+  longlong registerContext2;
   longlong in_stack_00000060;
   
   if (in_EAX == 0) {
@@ -9081,7 +9081,7 @@ uint8_t8 ValidateFloatDataAndExecute(void)
   longlong resourceTable;
   uint8_t8 unsignedResult3;
   longlong UnaffectedRegisterValue;
-  longlong unaff_R14;
+  longlong registerContext1;
   uint8_t4 in_stack_00000048;
   
   resourceTable = LookupResourceIndex();
@@ -9123,7 +9123,7 @@ uint8_t8 ValidateFloatDataAndExecuteSimple(void)
   uint8_t8 validationResult;
   longlong ResourceContextPointer;
   longlong UnaffectedRegisterValue;
-  longlong unaff_R14;
+  longlong registerContext1;
   uint8_t4 in_stack_00000048;
   
   validationResult = ValidateObjectContextAndProcessData();
@@ -9380,7 +9380,7 @@ uint8_t8 ProcessFloatRangeValidationAndDataHandlingNoParams(void)
   uint8_t8 unsignedResult3;
   uint8_t8 *punsignedResult4;
   longlong UnaffectedRegisterValue;
-  longlong unaff_R14;
+  longlong registerContext1;
   uint8_t4 in_stack_00000050;
   
   resourceTable = LookupResourceIndex();
@@ -9426,7 +9426,7 @@ uint64_t ProcessFloatDataValidation(void)
   uint8_t8 *punsignedResult3;
   longlong ResourceContextPointer;
   longlong UnaffectedRegisterValue;
-  longlong unaff_R14;
+  longlong registerContext1;
   uint8_t4 in_stack_00000050;
   
   validationResult = ValidateObjectContextAndProcessData();
@@ -9734,8 +9734,8 @@ int ProcessDataWithStack(longlong *objectContextParam,longlong validationContext
   int integerValue2;
   longlong resourceIndex;
   uint8_t1 SecurityDataBuffer [32];
-  uint uStack_a8;
-  uint uStack_a0;
+  uint resourceFlagHigh;
+  uint resourceFlagLow;
   uint ResourceFlag1;
   uint ResourceFlag2;
   uint ResourceFlag3;
@@ -9763,14 +9763,14 @@ int ProcessDataWithStack(longlong *objectContextParam,longlong validationContext
     if (resourceIndex == 0) {
       ResourceFlag4 = ResourceFlag11 >> 0x18;
       ResourceFlag8 = ResourceFlag12 >> 0x18;
-      uStack_a0 = ResourceFlag10 >> 0x10;
+      resourceFlagLow = ResourceFlag10 >> 0x10;
       ResourceFlag7 = ResourceFlag12 >> 0x10 & 0xff;
       ResourceFlag6 = ResourceFlag12 >> 8 & 0xff;
       ResourceFlag5 = ResourceFlag12 & 0xff;
       ResourceFlag3 = ResourceFlag11 >> 0x10 & 0xff;
       ResourceFlag2 = ResourceFlag11 >> 8 & 0xff;
       ResourceFlag1 = ResourceFlag11 & 0xff;
-      uStack_a8 = ResourceFlag10 & 0xffff;
+      resourceFlagHigh = ResourceFlag10 & 0xffff;
                     // WARNING: Subroutine does not return
       ExecuteSecurityOperation(ResourceDataBuffer,0x27,&SecurityOperationData,ResourceFlag9);
     }
@@ -9945,8 +9945,8 @@ ProcessResourceIndexOperation(longlong resource_handle, uint8_t4 *resource_data,
   int integerValue2;
   longlong resourceIndex;
   uint8_t1 SecurityDataBuffer [32];
-  uint uStack_a8;
-  uint uStack_a0;
+  uint resourceFlagHigh;
+  uint resourceFlagLow;
   uint ResourceFlag1;
   uint ResourceFlag2;
   uint ResourceFlag3;
@@ -9974,14 +9974,14 @@ ProcessResourceIndexOperation(longlong resource_handle, uint8_t4 *resource_data,
     if (resourceIndex == 0) {
       ResourceFlag4 = ResourceFlag11 >> 0x18;
       ResourceFlag8 = ResourceFlag12 >> 0x18;
-      uStack_a0 = ResourceFlag10 >> 0x10;
+      resourceFlagLow = ResourceFlag10 >> 0x10;
       ResourceFlag7 = ResourceFlag12 >> 0x10 & 0xff;
       ResourceFlag6 = ResourceFlag12 >> 8 & 0xff;
       ResourceFlag5 = ResourceFlag12 & 0xff;
       ResourceFlag3 = ResourceFlag11 >> 0x10 & 0xff;
       ResourceFlag2 = ResourceFlag11 >> 8 & 0xff;
       ResourceFlag1 = ResourceFlag11 & 0xff;
-      uStack_a8 = ResourceFlag10 & 0xffff;
+      resourceFlagHigh = ResourceFlag10 & 0xffff;
                     // WARNING: Subroutine does not return
       ExecuteSecurityOperation(ResourceDataBuffer,0x27,&SecurityOperationData,ResourceFlag9);
     }
@@ -11748,7 +11748,7 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
   uint8_t *puStack_b8;
   uint8_t4 uStack_b0;
   uint8_t4 uStack_a8;
-  uint uStack_a0;
+  uint resourceFlagLow;
   uint8_t *pResourceFlag1;
   uint8_t4 ResourceFlag2;
   uint8_t4 ResourceFlag3;
@@ -11789,7 +11789,7 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
                (iVar4 = func_0x0001808c7ed0(SecurityValidationContext), plocalContextPointer3 = DataHandlerContextPointer, 0 < iVar4)) {
               do {
                 uStack_e0 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
-                uStack_e8 = 0;
+                operationFlag1 = 0;
                 puStack_f0 = &SystemDataBufferA;
                 ParseDataStructure(&puStack_f0,*(uint8_t8 *)(objectContextParam + 0x58));
                 iVar4 = func_0x0001808c7ed0(unsignedResult3);
@@ -11804,12 +11804,12 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
             if (iVar4 == 0) {
               puStack_d8 = &SerializationTemplate;
               uStack_c8 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
-              uStack_d0 = 0;
-              uStack_c0 = 1;
+              operationFlag2 = 0;
+              operationFlag3 = 1;
               SerializeData(&puStack_d8,*(uint8_t8 *)(objectContextParam + 0x58));
               puStack_f0 = &DeserializationTemplate;
               uStack_e0 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
-              uStack_e8 = 0;
+              operationFlag1 = 0;
               DeserializeData(&puStack_f0,*(uint8_t8 *)(objectContextParam + 0x58));
               plocalContextPointer3 = DataHandlerContextPointer;
             }
@@ -11820,7 +11820,7 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
             if (iVar4 == 0) {
               puStack_d8 = &CompressionTemplate;
               uStack_c8 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
-              uStack_d0 = 0;
+              operationFlag2 = 0;
               uStack_c0 = 0x3f800000;
               CompressData(&puStack_d8,*(uint8_t8 *)(objectContextParam + 0x58));
               pResourceFlag1 = &DecompressionTemplate;
@@ -11830,12 +11830,12 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
               DecompressData(&pResourceFlag1,*(uint8_t8 *)(objectContextParam + 0x58));
               puStack_b8 = &EncodingTemplate;
               uStack_a8 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
-              uStack_b0 = 0;
+              operationFlag4 = 0;
               uStack_a0 = uStack_a0 & 0xffffff00;
               EncodeData(&puStack_b8,*(uint8_t8 *)(objectContextParam + 0x58));
               puStack_f0 = &DecodingTemplate;
               uStack_e0 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
-              uStack_e8 = 0;
+              operationFlag1 = 0;
               DecodeData(&puStack_f0,*(uint8_t8 *)(objectContextParam + 0x58));
               plocalContextPointer3 = DataHandlerContextPointer;
             }
@@ -11846,7 +11846,7 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
             if (iVar4 == 0) {
               puStack_b8 = &TransformationTemplate;
               uStack_a8 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
-              uStack_b0 = 0;
+              operationFlag4 = 0;
               uStack_a0 = 0x3f800000;
               TransformData(&puStack_b8,*(uint8_t8 *)(objectContextParam + 0x58));
               plocalContextPointer3 = DataHandlerContextPointer;
@@ -13357,9 +13357,9 @@ void SystemInitializerA(void)
   longlong SystemContextPointer;
   uint8_t8 *pvalidationResult2;
   float unaff_R13D;
-  longlong unaff_R14;
+  longlong registerContext1;
   ulonglong validationResult3;
-  longlong unaff_R15;
+  longlong registerContext2;
   uint8_t4 extraout_XMM0_Da;
   uint8_t4 validationResult4;
   uint8_t4 extraout_XMM0_Da_00;
@@ -13634,9 +13634,9 @@ void DataProcessingErrorHandler(void)
   longlong SystemContextPointer;
   uint8_t8 *unaff_R12;
   float unaff_R13D;
-  longlong unaff_R14;
+  longlong registerContext1;
   ulonglong validationResult2;
-  longlong unaff_R15;
+  longlong registerContext2;
   uint8_t4 validationResult3;
   uint8_t4 extraout_XMM0_Da;
   uint8_t4 extraout_XMM0_Da_00;
@@ -13874,8 +13874,8 @@ void FloatProcessingErrorHandler(void)
   float *pfVar5;
   longlong ExecutionContextPointer;
   float unaff_R13D;
-  longlong unaff_R14;
-  longlong unaff_R15;
+  longlong registerContext1;
+  longlong registerContext2;
   float extraout_XMM0_Da;
   uint8_t4 extraout_XMM0_Da_00;
   uint8_t4 extraout_XMM0_Da_01;
@@ -16558,7 +16558,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
   ulonglong unsignedValue5;
   longlong MemoryAddress;
   ulonglong unsignedValue7;
-  longlong unaff_R14;
+  longlong registerContext1;
   ulonglong MemorySize;
   uint8_t4 extraout_XMM0_Da;
   uint8_t4 extraout_XMM0_Da_00;
@@ -16716,7 +16716,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
   longlong MemoryRegion;
   longlong UnaffectedRegisterValue;
   longlong MemoryAddress;
-  longlong unaff_R14;
+  longlong registerContext1;
   longlong BufferPointer;
   uint8_t4 extraout_XMM0_Da;
   uint8_t4 extraout_XMM0_Da_00;
@@ -17537,7 +17537,7 @@ uint8_t8 InitializeResourceProcessingContext(void)
   ulonglong SystemContextPointer;
   longlong UnaffectedRegisterValue;
   uint8_t8 in_R9;
-  longlong unaff_R14;
+  longlong registerContext1;
   longlong DataOffset;
   
   if ((SystemContextPointer & 0x10) != 0) {
@@ -20465,7 +20465,7 @@ ValidateResourceIntegrity(void)
   uint unsignedResult4;
   longlong MemoryRegion;
   int unaff_R12D;
-  longlong unaff_R15;
+  longlong registerContext2;
   uint in_stack_00000050;
   uint uStack0000000000000068;
   
@@ -23501,7 +23501,7 @@ ulonglong ExecuteResourceDataIntegrityValidation(void)
   ulonglong validationResult;
   uint unsignedValue3;
   longlong *unaff_RDI;
-  longlong unaff_R14;
+  longlong registerContext1;
   bool bVar4;
   char cStack0000000000000090;
   uint in_stack_00000098;
@@ -23626,8 +23626,8 @@ ulonglong ProcessResourceDataValidationFlow(void)
   uint validationResult;
   ulonglong ResourceContextPointer;
   longlong *unaff_RDI;
-  longlong unaff_R14;
-  ulonglong unaff_R15;
+  longlong registerContext1;
+  ulonglong registerContext2;
   char in_stack_00000090;
   uint in_stack_00000098;
   
@@ -25630,7 +25630,7 @@ ulonglong ProcessResourceHashCalculationAndValidation(void)
   longlong ExecutionContextPointer;
   uint8_t4 *presourceHash0;
   uint8_t8 *unaff_RDI;
-  longlong unaff_R15;
+  longlong registerContext2;
   uint8_t4 extraout_XMM0_Da;
   uint8_t4 extraout_XMM0_Da_00;
   uint8_t4 extraout_XMM0_Da_01;
@@ -25755,7 +25755,7 @@ ulonglong ProcessResourceValidationAndMemoryAllocation(void)
   longlong ExecutionContextPointer;
   uint8_t4 *punsignedValue7;
   longlong UnaffectedRegisterValue;
-  longlong unaff_R15;
+  longlong registerContext2;
   
   if (*(uint *)(unaff_RDI + 0x40) < 0x84) {
     *(uint8_t8 *)(ExecutionContextPointer + -0x29) = ResourceContextPointer;
@@ -26168,7 +26168,7 @@ ulonglong ProcessResourceTableValidationAndOperations(void)
   longlong ExecutionContextPointer;
   longlong *unaff_RDI;
   int unaff_R12D;
-  longlong unaff_R15;
+  longlong registerContext2;
   bool bVar6;
   bool bVar7;
   bool bVar8;
@@ -26476,7 +26476,7 @@ ulonglong ProcessResourceDataValidationAndAllocation(uint8_t8 objectContextParam
   longlong ExecutionContextPointer;
   longlong *unaff_RDI;
   uint8_t4 unaff_R12D;
-  longlong unaff_R15;
+  longlong registerContext2;
   bool bVar6;
   bool bVar7;
   bool bVar8;
