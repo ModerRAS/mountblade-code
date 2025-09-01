@@ -397,7 +397,7 @@ void* SystemDataTableEntryFirmware;
  * 初始化任务，与入口点A协同工作
  */
 void* SystemInitializationEntryPointBeta;
-void* SystemMemoryRegionCentumSex;
+void* SystemMemoryRegionHundredSix;
 
 // 函数: 系统初始化入口点C
 /**
