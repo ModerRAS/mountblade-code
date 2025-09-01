@@ -1663,29 +1663,28 @@ undefined SystemResourceEntry4;
 undefined SystemResourceHandle;
 undefined SystemResourceContext;
 undefined SystemResourceConfiguration;
-undefined DAT_180bfa780;
-undefined DAT_180bfa788;
-undefined DAT_180bfa790;
-undefined DAT_180bfa798;
-undefined DAT_180bfa818;
-undefined DAT_180bfa820;
-undefined DAT_180bfa828;
-undefined DAT_180bfa830;
-undefined DAT_180bfa8b0;
-undefined DAT_180bfa8b8;
-undefined DAT_180bfa8c0;
-undefined DAT_180bfa8c8;
-undefined DAT_180bfa948;
-undefined DAT_180bfa950;
-undefined DAT_180bfa958;
-undefined DAT_180bfa960;
-undefined DAT_180bfa9e0;
-undefined DAT_180bfa9e8;
-undefined DAT_180bfa9f0;
-undefined DAT_180bfa9f8;
-undefined DAT_180bfaa78;
-undefined DAT_180bfaa80;
-undefined DAT_180bfaa88;
+undefined SystemMemoryConfigDataA;
+undefined SystemMemoryConfigDataB;
+undefined SystemMemoryConfigDataC;
+undefined SystemMemoryConfigDataD;
+undefined SystemMemoryConfigDataE;
+undefined SystemMemoryConfigDataF;
+undefined SystemMemoryConfigDataG;
+undefined SystemMemoryConfigDataH;
+undefined SystemMemoryConfigDataI;
+undefined SystemMemoryConfigDataJ;
+undefined SystemMemoryConfigDataK;
+undefined SystemMemoryConfigDataL;
+undefined SystemMemoryConfigDataM;
+undefined SystemMemoryConfigDataN;
+undefined SystemMemoryConfigDataO;
+undefined SystemMemoryConfigDataP;
+undefined SystemMemoryConfigDataQ;
+undefined SystemMemoryConfigDataR;
+undefined SystemMemoryConfigDataS;
+undefined SystemMemoryConfigDataT;
+undefined SystemMemoryConfigDataU;
+undefined SystemMemoryConfigDataV;
 undefined DAT_180bfaa90;
 undefined SystemMemoryConfigDataTemplateF;
 undefined SystemMemoryConfigDataTemplateG;
@@ -2248,10 +2247,10 @@ undefined SystemSecurityManagerData;
 undefined SystemNetworkManagerData;
 undefined SystemAudioManagerData;
 undefined ResourceSystemState;
-undefined UNK_180a078fc;
-undefined UNK_180a07804;
+undefined SystemInputManagerData;
+undefined SystemVideoManagerData;
 undefined ResourceSystemConfig;
-undefined UNK_18015c090;
+undefined SystemDatabaseManagerData;
 
  void InitializeMemoryManager;
 /**
@@ -23941,7 +23940,7 @@ dcd6(void)
 
 
 
-ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
+ulonglong ProcessResourceValidationAndAllocation(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 resourceHash;
@@ -84082,8 +84081,15 @@ void FreeMemoryResources(undefined8 Param1, undefined8 Param2, undefined8 Param3
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941980(void)
-void FUN_180941980(void)
+ /**
+ * 初始化系统数据结构S
+ * 
+ * 此函数负责初始化系统中的某个关键数据结构S，将全局变量
+ * _DAT_180bf52e8设置为指向预定义的数据结构UNK_18098bcb0。
+ * 这个数据结构可能用于系统启动时的基础配置。
+ */
+void InitializeSystemDataStructureS(void)
+void InitializeSystemDataStructureS(void)
 
 {
   _DAT_180bf52e8 = &UNK_18098bcb0;
@@ -84095,8 +84101,15 @@ void FUN_180941980(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809419a0(void)
-void FUN_1809419a0(void)
+ /**
+ * 初始化系统数据结构T
+ * 
+ * 此函数负责初始化系统中的某个关键数据结构T，将全局变量
+ * _DAT_180bf5738设置为指向预定义的数据结构UNK_18098bcb0。
+ * 这个数据结构可能用于系统启动时的基础配置。
+ */
+void InitializeSystemDataStructureT(void)
+void InitializeSystemDataStructureT(void)
 
 {
   _DAT_180bf5738 = &UNK_18098bcb0;
@@ -84121,8 +84134,16 @@ void DestroySpecificMutex(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809419e0(void)
-void FUN_1809419e0(void)
+ /**
+ * 初始化系统数据结构U
+ * 
+ * 此函数负责初始化系统中的某个关键数据结构U，将全局变量
+ * _DAT_180d49218设置为指向预定义的数据结构UNK_180a3c3e0。
+ * 如果相关状态变量不为0，则调用错误处理函数。
+ * 最后重置相关状态变量并将指针设置为指向默认数据结构。
+ */
+void InitializeSystemDataStructureU(void)
+void InitializeSystemDataStructureU(void)
 
 {
   _DAT_180d49218 = &UNK_180a3c3e0;
@@ -84141,8 +84162,16 @@ void FUN_1809419e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941a30(void)
-void FUN_180941a30(void)
+ /**
+ * 初始化系统数据结构V
+ * 
+ * 此函数负责初始化系统中的某个关键数据结构V，将全局变量
+ * _DAT_180d49240设置为指向预定义的数据结构UNK_180a3c3e0。
+ * 如果相关状态变量不为0，则调用错误处理函数。
+ * 最后重置相关状态变量并将指针设置为指向默认数据结构。
+ */
+void InitializeSystemDataStructureV(void)
+void InitializeSystemDataStructureV(void)
 
 {
   _DAT_180d49240 = &UNK_180a3c3e0;
@@ -84161,8 +84190,16 @@ void FUN_180941a30(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941ad0(void)
-void FUN_180941ad0(void)
+ /**
+ * 初始化系统数据结构W
+ * 
+ * 此函数负责初始化系统中的某个关键数据结构W，处理资源验证
+ * 和链接操作。函数会检查全局变量_DAT_180d493f8，如果有效则
+ * 执行资源链接和引用计数管理。如果资源引用计数降为0，则
+ * 调用清理函数。
+ */
+void InitializeSystemDataStructureW(void)
+void InitializeSystemDataStructureW(void)
 
 {
   int *piVar1;
@@ -84201,8 +84238,16 @@ void FUN_180941ad0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941b20(void)
-void FUN_180941b20(void)
+ /**
+ * 初始化系统数据结构X
+ * 
+ * 此函数负责初始化系统中的某个关键数据结构X，将全局变量
+ * _DAT_180d49638设置为指向预定义的数据结构UNK_180a3c3e0。
+ * 如果相关状态变量不为0，则调用错误处理函数。
+ * 最后重置相关状态变量并将指针设置为指向默认数据结构。
+ */
+void InitializeSystemDataStructureX(void)
+void InitializeSystemDataStructureX(void)
 
 {
   _DAT_180d49638 = &UNK_180a3c3e0;
@@ -84221,8 +84266,15 @@ void FUN_180941b20(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941b90(void)
-void FUN_180941b90(void)
+ /**
+ * 初始化系统数据结构Y
+ * 
+ * 此函数负责初始化系统中的某个关键数据结构Y，将全局变量
+ * _DAT_180bf7250设置为指向预定义的数据结构UNK_18098bcb0。
+ * 这个数据结构可能用于系统启动时的基础配置。
+ */
+void InitializeSystemDataStructureY(void)
+void InitializeSystemDataStructureY(void)
 
 {
   _DAT_180bf7250 = &UNK_18098bcb0;
@@ -84247,8 +84299,15 @@ void FUN_180941bb0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941bd0(void)
-void FUN_180941bd0(void)
+ /**
+ * 初始化系统数据结构AA
+ * 
+ * 此函数负责初始化系统中的某个关键数据结构AA，将全局变量
+ * _DAT_180bf7310设置为指向预定义的数据结构UNK_18098bcb0。
+ * 这个数据结构可能用于系统启动时的基础配置。
+ */
+void InitializeSystemDataStructureAA(void)
+void InitializeSystemDataStructureAA(void)
 
 {
   _DAT_180bf7310 = &UNK_18098bcb0;
