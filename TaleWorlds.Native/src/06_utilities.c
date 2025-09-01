@@ -13982,8 +13982,17 @@ void FloatProcessingErrorHandler(void)
 
 
 
- 7859(float ObjectContextParameter)
-7859(float ObjectContextParameter)
+ /**
+ * @brief 处理浮点数运算和上下文验证 (地址: 0x7859)
+ * 
+ * 该函数负责处理浮点数运算和上下文验证操作
+ * 包括浮点数值计算、寄存器操作和上下文验证
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含浮点运算所需的上下文信息
+ * @return 无返回值
+ * @note 这是一个简化的实现，原始函数包含复杂的浮点运算和上下文验证逻辑
+ */
+void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
 
 {
   float CalculatedFloatValue;
