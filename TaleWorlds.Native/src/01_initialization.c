@@ -14389,7 +14389,7 @@ void system_initialize_module_loader(int64_t system_context_ptr)
     else {
       system_char_result_validation = (**(code **)((void* *)*system_global_data_pointer + 0x68))();
     }
-    if (system_char_result_validation == '\0') goto LAB_SYSTEM_CHECK_CHAR_END;
+    if (system_char_result_validation == '\0') goto LAB_SYSTEM_VALIDATE_CHAR_END;
   }
   system_alternate_data_ptr = (int64_t *)system_process_context_data(system_global_data_pointer,0xc0,8,3,system_unsigned_temp_counter);
   system_stack_temp_pointer = system_alternate_data_ptr;
@@ -14420,7 +14420,7 @@ void system_initialize_module_loader(int64_t system_context_ptr)
   if (system_alternate_data_ptr != (int64_t *)0x0) {
     (**(code **)(*system_alternate_data_ptr + 0x38))();
   }
-LAB_SYSTEM_CHECK_CHAR_END:
+LAB_SYSTEM_VALIDATE_CHAR_END:
   system_process_context_data(*(uint8_t *)(system_context_ptr + 0x20));
   if (*(char *)(system_global_data_pointer + 0x1ed) != '\0') {
     system_alternate_data_ptr = (int64_t *)system_process_context_data(system_global_data_pointer,0x28,8,3);
