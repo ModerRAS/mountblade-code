@@ -25856,10 +25856,10 @@ void SystemCleanupHandler(void)
   *(void* *)(lStack_1d8 + 0x20) = 0;
   *(long long *)(localResourceOffset + 0xa8) = lStack_1d8;
   lStack_1d0 = lStack_1d8;
-  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a012e0,&UNK_180a00350,FUN_180086670);
-  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a002e0,&DAT_180a00410,FUN_1800868d0);
-  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a012f0,&UNK_180a00340,FUN_180086600);
-  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00ef8,&UNK_180a00420,FUN_180086960);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a012e0,&UNK_180a00350,SystemCallbackHandler1);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a002e0,&DAT_180a00410,SystemCallbackHandler2);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a012f0,&UNK_180a00340,SystemCallbackHandler3);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00ef8,&UNK_180a00420,SystemCallbackHandler4);
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a00e18,&UNK_180a00450,FUN_180086a00);
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a01228,&DAT_180a00360,FUN_180086740);
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00c90,&UNK_180a00480,FUN_180086aa0);
