@@ -26880,7 +26880,16 @@ NetworkHandle ProcessNetworkConnectionDataTransfer(longlong connectionContext,lo
 
 
 
-NetworkHandle FUN_180855e6b(longlong connectionContext)
+/**
+ * @brief 验证网络连接完整性
+ * 
+ * 该函数验证网络连接的完整性和数据一致性，检查连接上下文中的状态信息。
+ * 它会遍历连接相关的数据结构，确保连接状态的有效性。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @return NetworkHandle 验证结果，成功返回非零值，失败返回0
+ */
+NetworkHandle ValidateNetworkConnectionIntegrity(longlong connectionContext)
 
 {
   longlong *plVar1;
@@ -27341,21 +27350,31 @@ NetworkHandle FUN_1808561bc(void)
 
 
 
-NetworkHandle FUN_18085622e(void)
+/**
+ * @brief 网络连接状态验证器
+ * 
+ * 该函数验证网络连接状态，根据不同的条件返回相应的状态码。
+ * 主要用于网络连接的状态检查和验证工作。
+ * 
+ * @return 验证结果状态码，0表示成功，非0表示错误
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle ValidateNetworkConnectionStatus(void)
 
 {
-  NetworkStatus in_EAX;
-  NetworkHandle primaryNetworkFlag;
-  longlong unaff_RBX;
-  longlong unaff_RDI;
+  NetworkStatus networkStatus;
+  NetworkHandle validationResult;
+  longlong connectionContext;
+  longlong systemContext;
   
-  if ((*(byte *)(unaff_RDI + 0x128) & 4) == 0) {
-    *(NetworkStatus *)(unaff_RBX + 0xc) = in_EAX;
+  if ((*(byte *)(systemContext + 0x128) & 4) == 0) {
+    *(NetworkStatus *)(connectionContext + 0xc) = networkStatus;
     return 0;
   }
-  primaryNetworkFlag = ValidateNetworkConnection();
-  if ((int)primaryNetworkFlag != 0) {
-    return primaryNetworkFlag;
+  validationResult = ValidateNetworkConnection();
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   return 0;
 }
@@ -27536,13 +27555,23 @@ FUN_18085652b:
 
 
 
-NetworkStatus FUN_18085644f(void)
+/**
+ * @brief 网络连接缓冲区清理器
+ * 
+ * 该函数负责清理网络连接缓冲区，释放相关资源。
+ * 主要用于网络连接关闭后的资源清理工作。
+ * 
+ * @return 清理操作的状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkStatus CleanupNetworkConnectionBuffers(void)
 
 {
-  NetworkStatus unaff_EBP;
+  NetworkStatus cleanupStatus;
   
   CleanupNetworkConnectionBuffers(&stack0x00000040);
-  return unaff_EBP;
+  return cleanupStatus;
 }
 
 
