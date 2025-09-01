@@ -16687,8 +16687,14 @@ void InitializeGameCoreSystemNode(void)
 
 
 
-// 函数: void FUN_180042bd0(void)
-void FUN_180042bd0(void)
+/**
+ * @brief 初始化基础分配器节点
+ * 
+ * 该函数负责初始化基础分配器节点，在系统节点树中查找合适的位置
+ * 插入基础分配器节点，并设置节点的标识符和回调函数。
+ * 这是系统内存管理的重要组成部分。
+ */
+void InitializeBaseAllocatorNode(void)
 
 {
   char systemNodeFlag;
@@ -16737,8 +16743,14 @@ void FUN_180042bd0(void)
 
 
 
-// 函数: void FUN_180042cd0(void)
-void FUN_180042cd0(void)
+/**
+ * @brief 初始化系统数据表节点
+ * 
+ * 该函数负责初始化系统数据表节点，在系统节点树中查找合适的位置
+ * 插入数据表节点，并设置节点的标识符和回调函数。
+ * 这是系统数据管理的重要组成部分。
+ */
+void InitializeSystemDataTableNode(void)
 
 {
   char systemNodeFlag;
