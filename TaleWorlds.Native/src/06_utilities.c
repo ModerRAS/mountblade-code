@@ -1792,8 +1792,8 @@ undefined SystemMemoryConfigDataTemplateP;
 void InitializeMemoryCompliance;
 undefined SystemMemoryConfigDataTemplateM;
 undefined SystemMemoryConfigDataTemplateN;
-undefined DAT_180bfb740;
-undefined DAT_180bfb748;
+undefined SystemMemoryConfigDataTemplateO;
+undefined SystemMemoryConfigDataTemplateP;
 undefined SystemMemoryConfigDataTemplateQ;
 
  void ConfigureMemoryDiagnostics;
@@ -1804,7 +1804,7 @@ undefined SystemMemoryConfigDataTemplateQ;
  * 设置内存故障诊断和排除工具
  */
 void ConfigureMemoryDiagnostics;
-undefined DAT_180c9246c;
+undefined SystemMemoryConfigDataTemplateS;
 undefined SystemMemoryConfigDataTemplateR;
 
  void InitializeSystemConfiguration(void)
@@ -1815,7 +1815,7 @@ undefined SystemMemoryConfigDataTemplateR;
  * 设置系统运行所需的配置参数和环境变量
  */
 void InitializeSystemConfiguration(void);
-undefined DAT_180c92490;
+undefined SystemConfigurationDataTemplateA;
 
  void SetupSystemEnvironment(void)
 /**
@@ -1825,7 +1825,7 @@ undefined DAT_180c92490;
  * 配置系统环境变量和运行时参数
  */
 void SetupSystemEnvironment(void);
-undefined DAT_180c92480;
+undefined SystemEnvironmentDataTemplateA;
 
  void ConfigureSystemParameters(void)
 /**
@@ -1853,18 +1853,18 @@ void InitializeSystemResources(void);
  * 设置内存分配和回收的机制
  */
 void InitializeSystemMemoryManager(void);
-undefined DAT_180c924ac;
+undefined SystemMemoryManagerConfigTemplateA;
 undefined SystemMemoryConfigDataTemplateS;
-undefined DAT_180c924b0;
-undefined DAT_180a2c1d0;
-undefined DAT_180c924b4;
-undefined DAT_180a2c338;
-undefined DAT_180c924b8;
-undefined DAT_180a2c510;
-undefined DAT_180bf6048;
-undefined DAT_180bf6050;
-undefined DAT_180bf6058;
-undefined DAT_180bf6060;
+undefined SystemMemoryManagerConfigTemplateB;
+undefined SystemMemoryManagerConfigTemplateC;
+undefined SystemMemoryManagerConfigTemplateD;
+undefined SystemMemoryManagerConfigTemplateE;
+undefined SystemMemoryManagerConfigTemplateF;
+undefined SystemMemoryManagerConfigTemplateG;
+undefined SystemMemoryManagerConfigTemplateH;
+undefined SystemMemoryManagerConfigTemplateI;
+undefined SystemMemoryManagerConfigTemplateJ;
+undefined SystemMemoryManagerConfigTemplateK;
 
  void InitializeSystemThreadManager(void)
 /**
@@ -3197,16 +3197,7 @@ undefined UNK_180a3d970;
 undefined UNK_180a3db60;
 undefined DAT_180bfbd80;
 
- void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
-/**
- * @brief 处理游戏数据对象
- * @param gameContext 游戏上下文指针
- * @param systemContext 系统上下文指针
- * 
- * 该函数负责处理和验证游戏中的数据对象，确保数据完整性
- * 并对不符合要求的数据对象进行相应处理
- */
-/**
+ /**
  * @brief 处理游戏数据对象
  * 
  * 该函数负责处理游戏中的数据对象，包括对象的验证、状态检查和安全处理
@@ -20282,7 +20273,7 @@ ulonglong ProcessResourceDataReadAndValidate(longlong param_1,undefined8 *param_
   lVar7 = (longlong)aiStackX_10[0];
   uVar5 = (int)*(uint *)(param_1 + 0x14) >> 0x1f;
   if (((int)((*(uint *)(param_1 + 0x14) ^ uVar5) - uVar5) < aiStackX_10[0]) &&
-     (uVar4 = FUN_180882f00(param_1 + 8,aiStackX_10[0]), (int)uVar4 != 0)) {
+     (uVar4 = CheckResourceStatus(param_1 + 8,aiStackX_10[0]), (int)uVar4 != 0)) {
     return uVar4;
   }
   iVar1 = *(int *)(param_1 + 0x10);
@@ -20421,7 +20412,7 @@ ulonglong ProcessResourceAllocation(longlong ResourceHandle,undefined8 *Resource
   if (*(uint *)(resourceData + 8) < 0x6a) {
     puStack_88 = (undefined8 *)0x0;
     uStack_80 = 0;
-    uVar6 = FUN_1808a54c0(param_2,&puStack_88,0);
+    uVar6 = ProcessResourceAllocation(param_2,&puStack_88,0);
     uVar7 = (ulonglong)uVar6;
     if (uVar6 != 0) {
 LAB_18089c40a:
@@ -20488,7 +20479,7 @@ LAB_18089c40a:
       for (; (iVar13 = (int)uStack_80, puStack_88 <= presourceHash0 &&
              (presourceHash0 < puStack_88 + (longlong)iVar13 * 3)); presourceHash0 = presourceHash0 + 3) {
         puStackX_18 = (undefined8 *)0x0;
-        uVar6 = FUN_1808aec50(param_1 + 0x48,&puStackX_18);
+        uVar6 = InitializeResourceBuffer(param_1 + 0x48,&puStackX_18);
         uVar7 = (ulonglong)uVar6;
         if (uVar6 != 0) goto LAB_18089c40a;
         resourceHash = presourceHash0[1];
@@ -20670,7 +20661,7 @@ undefined8 * GetResourceDataPointerA(void)
   if (*(uint *)(unaff_RDI + 8) < 0x6a) {
     *(undefined8 *)(unaff_RBP + -0x29) = 0;
     *(undefined8 *)(unaff_RBP + -0x21) = 0;
-    uVar9 = FUN_1808a54c0(validationResult0,unaff_RBP + -0x29,0);
+    uVar9 = ProcessResourceAllocation(validationResult0,unaff_RBP + -0x29,0);
     presourceHash3 = (undefined8 *)(ulonglong)uVar9;
     if (uVar9 != 0) {
 LAB_18089c40a:
@@ -20744,7 +20735,7 @@ LAB_18089c40a:
       for (presourceHash6 = presourceHash3; (presourceHash3 <= presourceHash6 && (presourceHash6 < presourceHash3 + (longlong)iVar19 * 3));
           presourceHash6 = presourceHash6 + 3) {
         *(undefined8 *)(unaff_RBP + 0x77) = 0;
-        uVar9 = FUN_1808aec50(unaff_RSI + 0x48,unaff_RBP + 0x77);
+        uVar9 = InitializeResourceBuffer(unaff_RSI + 0x48,unaff_RBP + 0x77);
         presourceHash3 = (undefined8 *)(ulonglong)uVar9;
         if (uVar9 != 0) goto LAB_18089c40a;
         resourceHash = presourceHash6[1];
@@ -20925,7 +20916,7 @@ undefined8 * GetResourceDataPointerB(void)
   if (*(uint *)(unaff_RDI + 8) < 0x6a) {
     *(undefined8 *)(unaff_RBP + -0x29) = 0;
     *(undefined8 *)(unaff_RBP + -0x21) = 0;
-    uVar9 = FUN_1808a54c0(validationResult0,unaff_RBP + -0x29,0);
+    uVar9 = ProcessResourceAllocation(validationResult0,unaff_RBP + -0x29,0);
     presourceHash2 = (undefined8 *)(ulonglong)uVar9;
     if (uVar9 != 0) {
 LAB_18089c40a:
@@ -20999,7 +20990,7 @@ LAB_18089c40a:
       for (presourceHash6 = presourceHash2; (presourceHash2 <= presourceHash6 && (presourceHash6 < presourceHash2 + (longlong)iVar19 * 3));
           presourceHash6 = presourceHash6 + 3) {
         *(undefined8 *)(unaff_RBP + 0x77) = 0;
-        uVar9 = FUN_1808aec50(unaff_RSI + 0x48,unaff_RBP + 0x77);
+        uVar9 = InitializeResourceBuffer(unaff_RSI + 0x48,unaff_RBP + 0x77);
         presourceHash2 = (undefined8 *)(ulonglong)uVar9;
         if (uVar9 != 0) goto LAB_18089c40a;
         resourceHash = presourceHash6[1];
@@ -21145,7 +21136,7 @@ ulonglong ResourceProcessingHandler(undefined8 param_1)
   if (in_EAX < 0x6a) {
     *(undefined8 **)(unaff_RBP + -0x29) = unaff_R12;
     *(undefined8 **)(unaff_RBP + -0x21) = unaff_R12;
-    uVar9 = FUN_1808a54c0(param_1,unaff_RBP + -0x29,0);
+    uVar9 = ProcessResourceAllocation(param_1,unaff_RBP + -0x29,0);
     resourceHash1 = (ulonglong)uVar9;
     if (uVar9 != 0) {
 LAB_18089c40a:
@@ -21220,7 +21211,7 @@ LAB_18089c40a:
       for (presourceHash5 = presourceHash4; (presourceHash4 <= presourceHash5 && (presourceHash5 < presourceHash4 + (longlong)iVar18 * 3));
           presourceHash5 = presourceHash5 + 3) {
         *(undefined8 **)(unaff_RBP + 0x77) = unaff_R12;
-        uVar9 = FUN_1808aec50(unaff_RSI + 0x48,unaff_RBP + 0x77);
+        uVar9 = InitializeResourceBuffer(unaff_RSI + 0x48,unaff_RBP + 0x77);
         resourceHash1 = (ulonglong)uVar9;
         if (uVar9 != 0) goto LAB_18089c40a;
         uVar7 = presourceHash5[1];
