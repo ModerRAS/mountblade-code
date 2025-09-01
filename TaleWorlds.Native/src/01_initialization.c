@@ -25505,23 +25505,23 @@ uint32_t GetSystemResourceStatus(void)
     uStack_b0 = 0;
     lStack_c0 = 0;
     uStack_b8 = 0;
-    FUN_180628380(&puStack_c8,aunsignedSystemValue1._0_4_);
+    ProcessSystemData(&puStack_c8,aunsignedSystemValue1._0_4_);
     unsignedSystemValue5 = uStack_b8 + 1;
     ExecuteSystemCommand(&puStack_c8,unsignedSystemValue5);
     *(void*2 *)((ulong long)uStack_b8 + lStack_c0) = 0x2c;
     uStack_b8 = unsignedSystemValue5;
-    FUN_180628380(&puStack_c8,aunsignedSystemValue1._0_8_ >> 0x20);
+    ProcessSystemData(&puStack_c8,aunsignedSystemValue1._0_8_ >> 0x20);
     unsignedSystemValue5 = uStack_b8 + 1;
     ExecuteSystemCommand(&puStack_c8,unsignedSystemValue5);
     *(void*2 *)((ulong long)uStack_b8 + lStack_c0) = 0x2c;
     uStack_b8 = unsignedSystemValue5;
-    FUN_180628380(&puStack_c8,aunsignedSystemValue1._8_8_ & 0xffffffff);
+    ProcessSystemData(&puStack_c8,aunsignedSystemValue1._8_8_ & 0xffffffff);
     systemFlag = uStack_b8 + 1;
     ExecuteSystemCommand(&puStack_c8,systemFlag);
     *(void*2 *)((ulong long)uStack_b8 + lStack_c0) = 0x2c;
     uStack_b8 = systemFlag;
-    FUN_180628380(&puStack_c8,aunsignedSystemValue1._8_8_ >> 0x20);
-    punsignedSystemValue4 = (void* *)FUN_180627ae0(auStack_80,&puStack_c8);
+    ProcessSystemData(&puStack_c8,aunsignedSystemValue1._8_8_ >> 0x20);
+    punsignedSystemValue4 = (void* *)CreateSystemObject(auStack_80,&puStack_c8);
     ProcessMemoryManagerOperation(SystemMemoryManagerPointer + 0xe30,punsignedSystemValue4);
     *punsignedSystemValue4 = &SystemGlobalDataReference;
     if (punsignedSystemValue4[1] != 0) {
@@ -25547,23 +25547,23 @@ uint32_t GetSystemResourceStatus(void)
     stackParameterC = 0;
     lStack_a0 = 0;
     uStack_98 = 0;
-    FUN_180628380(&puStack_a8,aunsignedSystemValue1._0_4_);
+    ProcessSystemData(&puStack_a8,aunsignedSystemValue1._0_4_);
     unsignedSystemValue5 = uStack_98 + 1;
     ExecuteSystemCommand(&puStack_a8,unsignedSystemValue5);
     *(void*2 *)((ulong long)uStack_98 + lStack_a0) = 0x2c;
     uStack_98 = unsignedSystemValue5;
-    FUN_180628380(&puStack_a8,aunsignedSystemValue1._0_8_ >> 0x20);
+    ProcessSystemData(&puStack_a8,aunsignedSystemValue1._0_8_ >> 0x20);
     unsignedSystemValue5 = uStack_98 + 1;
     ExecuteSystemCommand(&puStack_a8,unsignedSystemValue5);
     *(void*2 *)((ulong long)uStack_98 + lStack_a0) = 0x2c;
     uStack_98 = unsignedSystemValue5;
-    FUN_180628380(&puStack_a8,aunsignedSystemValue1._8_8_ & 0xffffffff);
+    ProcessSystemData(&puStack_a8,aunsignedSystemValue1._8_8_ & 0xffffffff);
     systemFlag = uStack_98 + 1;
     ExecuteSystemCommand(&puStack_a8,systemFlag);
     *(void*2 *)((ulong long)uStack_98 + lStack_a0) = 0x2c;
     uStack_98 = systemFlag;
-    FUN_180628380(&puStack_a8,aunsignedSystemValue1._8_8_ >> 0x20);
-    punsignedSystemValue4 = (void* *)FUN_180627ae0(auStack_60,&puStack_a8);
+    ProcessSystemData(&puStack_a8,aunsignedSystemValue1._8_8_ >> 0x20);
+    punsignedSystemValue4 = (void* *)CreateSystemObject(auStack_60,&puStack_a8);
     ProcessMemoryManagerOperation(SystemMemoryManagerPointer + 0xef0,punsignedSystemValue4);
     *punsignedSystemValue4 = &SystemGlobalDataReference;
     if (punsignedSystemValue4[1] != 0) {
@@ -26929,7 +26929,7 @@ void*
 void* SystemStatusFlagProcessor(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
-  FUN_180627ae0(param_2,SystemStatusFlagsPointer + 0x2c0,param_3,param_4,0,0xfffffffffffffffe);
+  CreateSystemObject(param_2,SystemStatusFlagsPointer + 0x2c0,param_3,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -26963,7 +26963,7 @@ void SystemDataProcessor(long long SystemResourcePointer)
   uStack_28 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_108;
   uStack_e8 = 0;
   lStack_b0 = SystemResourcePointer;
-  FUN_180627ae0(SystemResourcePointer,SystemStatusFlagsPointer + 0x170);
+  CreateSystemObject(SystemResourcePointer,SystemStatusFlagsPointer + 0x170);
   uStack_e8 = 1;
   systemResult = *(int *)(SystemResourcePointer + 0x10) + 8;
   ExecuteSystemCommand(SystemResourcePointer,systemResult);
@@ -27046,7 +27046,7 @@ void SystemMemoryAllocator(long long SystemResourcePointer,long long parameter2,
   *(void*2 *)(punsignedSystemValue4 + 1) = 0x2a5f;
   *(uint8_t *)((long long)punsignedSystemValue4 + 10) = 0;
   uStack_60 = 10;
-  systemCounter = FUN_180628d60(SystemResourcePointer + 0x2c0,&puStack_70);
+  systemCounter = GetSystemCounter(SystemResourcePointer + 0x2c0,&puStack_70);
   if (-1 < systemCounter) {
     pstackParameterC = &SystemGlobalDataReference;
     uStack_78 = 0;
@@ -27061,7 +27061,7 @@ void SystemMemoryAllocator(long long SystemResourcePointer,long long parameter2,
     *(void*2 *)(punsignedSystemValue4 + 1) = 0x5f53;
     *(uint8_t *)((long long)punsignedSystemValue4 + 10) = 0;
     uStack_80 = 10;
-    FUN_180628d60(SystemResourcePointer + 0x2c0,&pstackParameterC);
+    GetSystemCounter(SystemResourcePointer + 0x2c0,&pstackParameterC);
     pstackParameterC = &SystemGlobalDataReference;
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(punsignedSystemValue4);
@@ -27103,7 +27103,7 @@ void* SystemResourceAllocator(void* SystemResourcePointer,void* param_2)
   
   localMemoryPointer = SystemStatusFlagsPointer;
   if (*(int *)(SystemStatusFlagsPointer + 200) != 0) {
-    FUN_180627ae0(param_2,SystemStatusFlagsPointer + 0xb8);
+    CreateSystemObject(param_2,SystemStatusFlagsPointer + 0xb8);
     return param_2;
   }
   puStack_68 = &SystemGlobalDataReference;
@@ -27119,7 +27119,7 @@ void* SystemResourceAllocator(void* SystemResourcePointer,void* param_2)
   *(void*2 *)(punsignedSystemValue4 + 1) = 0x2a5f;
   *(uint8_t *)((long long)punsignedSystemValue4 + 10) = 0;
   uStack_58 = 10;
-  systemCounter = FUN_180628d60(localMemoryPointer + 0x2c0,&puStack_68);
+  systemCounter = GetSystemCounter(localMemoryPointer + 0x2c0,&puStack_68);
   if (-1 < systemCounter) {
     puStack_88 = &SystemGlobalDataReference;
     uStack_70 = 0;
@@ -27134,7 +27134,7 @@ void* SystemResourceAllocator(void* SystemResourcePointer,void* param_2)
     *(void*2 *)(punsignedSystemValue4 + 1) = 0x5f53;
     *(uint8_t *)((long long)punsignedSystemValue4 + 10) = 0;
     uStack_78 = 10;
-    FUN_180628d60(localMemoryPointer + 0x2c0,&puStack_88);
+    GetSystemCounter(localMemoryPointer + 0x2c0,&puStack_88);
     puStack_88 = &SystemGlobalDataReference;
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(punsignedSystemValue4);
@@ -29640,7 +29640,7 @@ void InitializeSystemResource(void* SystemResourcePointer,void* *param_2,uint32_
   uStack_70 = 0x17;
   puStack_120 = param_2;
   unsignedSystemValue1 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,3);
-  uStack_58 = FUN_180627ae0(unsignedSystemValue1,param_2);
+  uStack_58 = CreateSystemObject(unsignedSystemValue1,param_2);
   uStack_50 = param_3;
   unsignedSystemValue1 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x100,8,3);
   ppointerToUnsigned2 = (void* **)FUN_18005ce30(unsignedSystemValue1,&puStack_108);
@@ -31208,7 +31208,7 @@ long long * FUN_180057b00(long long SystemResourcePointer,long long *param_2,voi
   char acStackX_8 [8];
   
   localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x40,*(uint8_t *)(SystemResourcePointer + 0x28));
-  FUN_180627ae0(localResourceOffset + 0x20,param_3);
+  CreateSystemObject(localResourceOffset + 0x20,param_3);
   localBufferAddress = SystemResourceAllocator(SystemResourcePointer,acStackX_8,localResourceOffset + 0x20);
   if (acStackX_8[0] == '\0') {
     ProcessExtraOutputResource();
@@ -31931,7 +31931,7 @@ void FUN_1800588c0(long long *SystemResourcePointer,long long param_2,long long 
     if (param_2 != param_3) {
       localDataPointer = localSystemHandle - param_2;
       do {
-        FUN_180627ae0(localDataPointer + param_2,param_2);
+        CreateSystemObject(localDataPointer + param_2,param_2);
         param_2 = param_2 + 0x20;
       } while (param_2 != param_3);
     }
@@ -32000,7 +32000,7 @@ void FUN_1800588fc(long long SystemResourcePointer)
   if (unaff_RBX != unaff_R15) {
     localBufferAddress = localSystemHandle - unaff_RBX;
     do {
-      FUN_180627ae0(localBufferAddress + unaff_RBX,unaff_RBX);
+      CreateSystemObject(localBufferAddress + unaff_RBX,unaff_RBX);
       unaff_RBX = unaff_RBX + 0x20;
     } while (unaff_RBX != unaff_R15);
   }
@@ -32043,7 +32043,7 @@ void InitializeSystemTables(void)
   
   localResourceOffset = unaff_R12 - unaff_RBX;
   do {
-    FUN_180627ae0(localResourceOffset + unaff_RBX,unaff_RBX);
+    CreateSystemObject(localResourceOffset + unaff_RBX,unaff_RBX);
     unaff_RBX = unaff_RBX + 0x20;
   } while (unaff_RBX != unaff_R15);
   pointerToUnsigned1 = (void* *)unaff_RDI[1];
@@ -33255,7 +33255,7 @@ long long FUN_180059300(long long SystemResourcePointer,long long param_2,long l
 {
   if (SystemResourcePointer != param_2) {
     do {
-      FUN_180627ae0(param_3,SystemResourcePointer);
+      CreateSystemObject(param_3,SystemResourcePointer);
       SystemResourcePointer = SystemResourcePointer + 0x20;
       param_3 = param_3 + 0x20;
     } while (SystemResourcePointer != param_2);
@@ -33531,7 +33531,7 @@ void FUN_180059820(long long *SystemResourcePointer,void* param_2)
   localBufferAddress = *SystemResourcePointer;
 LAB_180059885:
   localResourceOffset = FUN_180059780(localBufferAddress,localResourceOffset,localSystemHandle);
-  FUN_180627ae0(localResourceOffset,param_2);
+  CreateSystemObject(localResourceOffset,param_2);
   pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
   punsignedSystemValue5 = (void* *)*SystemResourcePointer;
   if (punsignedSystemValue5 != pointerToUnsigned1) {
@@ -34969,7 +34969,7 @@ void*
 FUN_18005c1c0(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
-  FUN_180627ae0(param_2,SystemContextManagerPointer + 0xe0,param_3,param_4,0,0xfffffffffffffffe);
+  CreateSystemObject(param_2,SystemContextManagerPointer + 0xe0,param_3,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -35479,8 +35479,8 @@ void FUN_18005cc00(void* **SystemResourcePointer,void* param_2,void* param_3,voi
     ProcessDataManager(ppuStackX_8 + 8,param_3);
     return;
   }
-  FUN_180627ae0(&puStack_68,param_2);
-  FUN_180627ae0(&puStack_48,param_3);
+  CreateSystemObject(&puStack_68,param_2);
+  CreateSystemObject(&puStack_48,param_3);
   unsignedSystemValue9 = 1;
   localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x60,*(uint8_t *)(localResourceOffset + 0x98));
   FUN_18005caa0(localResourceOffset + 0x20,&puStack_68);
@@ -40299,7 +40299,7 @@ void FUN_180062920(int *SystemResourcePointer)
   lStack_160 = 0;
   uStack_158 = 0;
   uStack_150 = 3;
-  localBufferAddress = FUN_180627ae0(&puStack_188,SystemStatusFlagsPointer + 0x2c0);
+  localBufferAddress = CreateSystemObject(&puStack_188,SystemStatusFlagsPointer + 0x2c0);
   uStack_190 = 1;
   auStack_1b8[0] = 0x20;
   if (*(long long *)(localBufferAddress + 8) != 0) {
@@ -40771,7 +40771,7 @@ void FUN_180063820(void* SystemResourcePointer)
   uStack_248 = 0xfffffffffffffffe;
   uStack_38 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_2e8;
   uStack_240 = SystemResourcePointer;
-  FUN_180627ae0(auStack_288,SystemContextManagerPointer + 0x28);
+  CreateSystemObject(auStack_288,SystemContextManagerPointer + 0x28);
                     // WARNING: Subroutine does not return
   memset(auStack_238,0,0x200);
 }
@@ -41863,7 +41863,7 @@ void FUN_180065160(void* SystemResourcePointer)
         pointerToUnsigned17 = puStack_140;
         pointerToUnsigned18 = puStack_140;
         if (((long long)puStack_138 - (long long)puStack_140 & 0xffffffffffffffe0U) == 0x40) {
-          FUN_180627ae0(&puStack_2a0,puStack_140);
+          CreateSystemObject(&puStack_2a0,puStack_140);
           if (pcStack_298 != (char *)0x0) {
             iStack_290 = 0;
             localMemoryPointer4 = 0;
@@ -42137,7 +42137,7 @@ void FUN_180065f00(void* SystemResourcePointer,long long param_2,void* param_3,v
   
   uStack_48 = 0xfffffffffffffffe;
   plStack_b0 = *(long long **)(SystemMemoryBlockStorage + 0x18);
-  FUN_180627ae0(&puStack_a8,SystemStatusFlagsPointer + 0x170,param_3,param_4,0);
+  CreateSystemObject(&puStack_a8,SystemStatusFlagsPointer + 0x170,param_3,param_4,0);
   systemValue = uStack_98 + 3;
   ExecuteSystemCommand(&puStack_a8,systemValue);
   *(uint32_t *)((ulong long)uStack_98 + lStack_a0) = 0x706d74;
@@ -42151,7 +42151,7 @@ void FUN_180065f00(void* SystemResourcePointer,long long param_2,void* param_3,v
   FUN_180066140(&ppuStack_68,SystemNodeManagerPointer,&DAT_1809fc7d8);
   FUN_180066140(&ppuStack_68,SystemMemoryManagerPointer,&DAT_1809fcfc0);
   pcVar1 = *(code **)(*plStack_b0 + 0x40);
-  unsignedSystemValue3 = FUN_180627ae0(&ppuStack_68,SystemContextManagerPointer + 0x28);
+  unsignedSystemValue3 = CreateSystemObject(&ppuStack_68,SystemContextManagerPointer + 0x28);
   (*pcVar1)(plStack_b0,unsignedSystemValue3);
   ppuStack_68 = (void* **)&SystemGlobalDataReference;
   if (pplStack_60 != (long long **)0x0) {
@@ -42162,7 +42162,7 @@ void FUN_180065f00(void* SystemResourcePointer,long long param_2,void* param_3,v
   uStack_50 = 0;
   ppuStack_68 = (void* **)&SystemMemoryAllocatorReference;
   pcVar1 = *(code **)(*plStack_b0 + 0x40);
-  unsignedSystemValue3 = FUN_180627ae0(&puStack_88,SystemContextManagerPointer + 0xe0);
+  unsignedSystemValue3 = CreateSystemObject(&puStack_88,SystemContextManagerPointer + 0xe0);
   (*pcVar1)(plStack_b0,unsignedSystemValue3);
   puStack_88 = &SystemGlobalDataReference;
   if (lStack_80 != 0) {
@@ -42399,7 +42399,7 @@ void FUN_180066320(void* SystemResourcePointer,void* param_2,char param_3,char p
 LAB_18006650a:
     FUN_180052070(&puStack_198);
     unsignedSystemValue5 = ProcessSystemQueue(&puStack_138,&DAT_1809feb50);
-    systemIndex = FUN_180628d60(&puStack_198,unsignedSystemValue5);
+    systemIndex = GetSystemCounter(&puStack_198,unsignedSystemValue5);
     puStack_138 = &SystemGlobalDataReference;
     if (lStack_130 != 0) {
                     // WARNING: Subroutine does not return
@@ -42464,7 +42464,7 @@ LAB_18006650a:
       FUN_180625690(&puStack_198);
     }
     ppuStack_a8 = &puStack_138;
-    unsignedSystemValue5 = FUN_180627ae0(&puStack_138,&puStack_198);
+    unsignedSystemValue5 = CreateSystemObject(&puStack_138,&puStack_198);
     FUN_180063820(unsignedSystemValue5);
     FUN_180063b30(&puStack_198,param_5);
     FUN_180063cf0(&puStack_198);
@@ -42582,7 +42582,7 @@ LAB_180066bf4:
         uStack_88 = CONCAT44(uStack_88._4_4_,unsignedSystemValue4);
         *punsignedSystemValue5 = 0x73656873617263;
         stackParameterC = 7;
-        FUN_180628d60(auStack_80,&stackParameterA);
+        GetSystemCounter(auStack_80,&stackParameterA);
         stackParameterA = &SystemGlobalDataReference;
                     // WARNING: Subroutine does not return
         SystemCleanupFunction(punsignedSystemValue5);
@@ -44705,7 +44705,7 @@ FUN_180069f00(void* SystemResourcePointer,void* param_2,void* param_3,void* para
   unsignedSystemValue3 = 0xfffffffffffffffe;
   unsignedSystemValue2 = 0;
   unsignedSystemValue1 = FUN_180628ca0();
-  FUN_180627ae0(param_2,unsignedSystemValue1,param_3,param_4,unsignedSystemValue2,unsignedSystemValue3);
+  CreateSystemObject(param_2,unsignedSystemValue1,param_3,param_4,unsignedSystemValue2,unsignedSystemValue3);
   return param_2;
 }
 
@@ -48450,8 +48450,8 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* param_2,char param_3)
     systemOffset = FUN_1800f98e0(param_2);
     if (((!bVar3) && (systemOffset == 0)) && (*(char *)(SystemStatusFlagsPointer + 0x2a) != '\0')) {
       unsignedSystemValue1 = *(uint8_t *)(SystemStatusFlagsPointer + 0x141);
-      unsignedSystemValue13 = FUN_180627ae0(&puStack_80,SystemStatusFlagsPointer + 0x148);
-      unsignedSystemValue13 = FUN_180627ae0(&puStack_e0,unsignedSystemValue13);
+      unsignedSystemValue13 = CreateSystemObject(&puStack_80,SystemStatusFlagsPointer + 0x148);
+      unsignedSystemValue13 = CreateSystemObject(&puStack_e0,unsignedSystemValue13);
       puStack_80 = &SystemGlobalDataReference;
       if (lStack_78 != 0) {
                     // WARNING: Subroutine does not return
@@ -48697,10 +48697,10 @@ LAB_180070230:
       }
       else {
         unsignedSystemValue13 = *(uint8_t *)(SystemStatusFlagsPointer + 0x141);
-        ppunsignedSystemValue8 = (void* **)FUN_180627ae0(&puStack_50,SystemStatusFlagsPointer + 0x148);
+        ppunsignedSystemValue8 = (void* **)CreateSystemObject(&puStack_50,SystemStatusFlagsPointer + 0x148);
         punsignedSystemValue9 = puStack_88;
       }
-      unsignedSystemValue16 = FUN_180627ae0(&puStack_70,ppunsignedSystemValue8);
+      unsignedSystemValue16 = CreateSystemObject(&puStack_70,ppunsignedSystemValue8);
       if (bVar15) {
         pstackParameterC = &SystemGlobalDataReference;
         if (punsignedSystemValue9 != (void* *)0x0) {
@@ -49184,7 +49184,7 @@ LAB_180070ee8:
   }
   *(void*2 *)(puStack_138 + uStack_130) = 0x3a;
   uStack_130 = 3;
-  FUN_180628380(&puStack_140,uStack_98);
+  ProcessSystemData(&puStack_140,uStack_98);
   unsignedSystemValue6 = uStack_130;
   unsignedSystemValue5 = uStack_130 + 1;
   if (unsignedSystemValue5 != 0) {
@@ -49672,7 +49672,7 @@ LAB_180071c93:
   }
   *(void*2 *)(puStack_88 + uStack_80) = 0x3a;
   uStack_80 = 0x14;
-  FUN_180628380(&pstackParameterC,param_3);
+  ProcessSystemData(&pstackParameterC,param_3);
   unsignedSystemValue2 = uStack_80;
   unsignedSystemValue11 = uStack_80 + 1;
   if (unsignedSystemValue11 != 0) {
@@ -50130,7 +50130,7 @@ LAB_1800726e7:
       }
       *(void*2 *)(puStack_130 + uStack_128) = 0x3a;
       uStack_128 = 0x17;
-      FUN_180628380(&puStack_138,uStack_b0);
+      ProcessSystemData(&puStack_138,uStack_b0);
       unsignedSystemValue6 = uStack_128;
       unsignedSystemValue4 = uStack_128 + 1;
       if (unsignedSystemValue4 != 0) {
@@ -50319,12 +50319,12 @@ LAB_1800729bd:
           uStack_114 = 2;
         }
         else {
-          ppointerToUnsigned11 = (void* **)FUN_180627ae0(&puStack_80,SystemStatusFlagsPointer + 0x148);
+          ppointerToUnsigned11 = (void* **)CreateSystemObject(&puStack_80,SystemStatusFlagsPointer + 0x148);
           unsignedSystemValue6 = 1;
           uStack_114 = 1;
           pointerToUnsigned13 = puStack_c8;
         }
-        unsignedSystemValue7 = FUN_180627ae0(&puStack_f0,ppointerToUnsigned11);
+        unsignedSystemValue7 = CreateSystemObject(&puStack_f0,ppointerToUnsigned11);
         if ((unsignedSystemValue6 & 2) != 0) {
           unsignedSystemValue6 = unsignedSystemValue6 & 0xfffffffd;
           puStack_d0 = &SystemGlobalDataReference;
