@@ -12911,7 +12911,7 @@ LAB_180047f2c:
   engine_data_ptr_4 = (void*)engine_map_memory_region(engine_current_data_pointer,&uStackX_8);
   engine_data_ptr_4 = (void*)*engine_data_ptr_4;
 LAB_180047f93:
-  FUN_180627be0(engine_data_ptr_4 + 8,engine_system_parameter_3);
+  engine_setup_control_system(engine_data_ptr_4 + 8,engine_system_parameter_3);
   engine_data_ptr_4[0xc] = engine_system_parameter_4;
   return;
 }
@@ -14483,7 +14483,7 @@ void engine_call_system_cleanup(void)
   engine_temp_uint3 = engine_temp_uint2;
   if (lVar8 / 0x1c != 0) {
     do {
-      FUN_1801edeb0(lVar8,engine_temp_uint3 * 0x1c + *(longlong *)(engine_data_pointer_50 + 0x10));
+      engine_process_memory_allocation(lVar8,engine_temp_uint3 * 0x1c + *(longlong *)(engine_data_pointer_50 + 0x10));
       engine_temp_uint1 = (int)engine_temp_uint2 + 1;
       engine_temp_uint2 = (ulonglong)engine_temp_uint1;
       lVar8 = *(longlong *)(engine_data_pointer_50 + 0x18) - *(longlong *)(engine_data_pointer_50 + 0x10);
