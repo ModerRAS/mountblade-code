@@ -2140,16 +2140,18 @@ uint8_t SystemEventHandlerSlot;                           // 系统事件处理�
  * 设置日志级别、输出目标和格式
  */
 void InitializeSystemLogging(void);
-uint8_t SystemLogConfigDataPrimary;
-uint8_t SystemLogConfigDataSecondary;
-uint8_t SystemLogConfigDataTertiary;
-uint8_t SystemLogConfigDataQuaternary;
-uint8_t SystemMemoryConfigDataTemplateSecureixth;
-uint8_t SystemMemoryConfigDataPrimary;
-uint8_t SystemMemoryConfigDataTemplateSecureeventh;
-uint8_t SystemMemoryConfigDataTemplateEighth;
-uint8_t SystemMemoryConfigDataTemplateNormalinth;
-uint8_t SystemMemoryConfigDataTemplateTenth;
+// 系统日志配置数据变量
+uint8_t SystemLogConfigDataPrimary;                       // 主要日志配置
+uint8_t SystemLogConfigDataSecondary;                     // 次要日志配置
+uint8_t SystemLogConfigDataTertiary;                      // 第三日志配置
+uint8_t SystemLogConfigDataQuaternary;                     // 第四日志配置
+// 系统内存配置数据模板特殊变量
+uint8_t SystemMemoryConfigDataTemplateSecureixth;        // 安全第6配置项（拼写错误）
+uint8_t SystemMemoryConfigDataPrimary;                     // 主要内存配置
+uint8_t SystemMemoryConfigDataTemplateSecureeventh;       // 安全第7配置项（拼写错误）
+uint8_t SystemMemoryConfigDataTemplateEighth;              // 第8配置项
+uint8_t SystemMemoryConfigDataTemplateNormalinth;         // 普通第9配置项（拼写错误）
+uint8_t SystemMemoryConfigDataTemplateTenth;               // 第10配置项
 
  void ConfigureLogOutput(void);
 /**
