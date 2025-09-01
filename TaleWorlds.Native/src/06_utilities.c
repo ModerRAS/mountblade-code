@@ -34185,7 +34185,7 @@ void UnwindEventNotifier(uint8_t ObjectContextParameter,int64_t ValidationContex
 
 
 
-void Unwind_1809031c0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindTimerHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -34199,7 +34199,7 @@ void Unwind_1809031c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809031e0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindAsyncCleanupHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -34219,7 +34219,7 @@ void Unwind_1809031e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809031f0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindIoCompletionHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
