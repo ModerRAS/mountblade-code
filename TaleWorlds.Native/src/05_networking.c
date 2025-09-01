@@ -23483,8 +23483,18 @@ LAB_180853ee2:
 
 
 
-// 函数: void FUN_180853fc0(longlong connectionContext,char packetData)
-void FUN_180853fc0(longlong connectionContext,char packetData)
+/**
+ * @brief 网络连接字符数据处理器
+ * 
+ * 该函数负责处理网络连接中的字符数据，包括数据的解析和验证。
+ * 主要用于网络字符数据的处理操作。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 字符类型的数据包数据
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkConnectionCharDataProcessor(longlong connectionContext,char packetData)
 
 {
   NetworkHandle *networkPointer1;
@@ -24815,8 +24825,15 @@ NetworkHandle FUN_180854f3f(void)
 
 
 
-// 函数: void FUN_180854f55(void)
-void FUN_180854f55(void)
+/**
+ * @brief 网络状态初始化器
+ * 
+ * 该函数负责初始化网络状态，设置网络连接的初始状态。
+ * 主要用于网络状态的初始化操作。
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkStatusInitializer(void)
 
 {
   return;
@@ -24827,9 +24844,22 @@ void FUN_180854f55(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180854f70(longlong connectionContext,NetworkHandle *packetData,longlong dataSize,NetworkStatus *param_4,
-void FUN_180854f70(longlong connectionContext,NetworkHandle *packetData,longlong dataSize,NetworkStatus *param_4,
-                  NetworkStatus param_5)
+/**
+ * @brief 网络数据包批量处理器
+ * 
+ * 该函数负责批量处理网络数据包，包括数据的解析、验证和转发。
+ * 主要用于网络数据包的批量处理操作。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据大小
+ * @param param_4 网络状态参数指针
+ * @param param_5 网络状态参数
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkPacketBatchProcessor(longlong connectionContext,NetworkHandle *packetData,longlong dataSize,NetworkStatus *param_4,
+                                NetworkStatus param_5)
 
 {
   NetworkHandle *networkPointer1;
@@ -24891,8 +24921,15 @@ void FUN_180854f70(longlong connectionContext,NetworkHandle *packetData,longlong
 
 
 
-// 函数: void FUN_180854fc3(void)
-void FUN_180854fc3(void)
+/**
+ * @brief 网络连接终结器
+ * 
+ * 该函数负责终结网络连接，释放相关资源。
+ * 主要用于网络连接的清理和资源释放操作。
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkConnectionFinalizer(void)
 
 {
   NetworkStatus primaryNetworkFlag;
