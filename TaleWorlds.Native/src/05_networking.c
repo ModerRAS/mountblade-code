@@ -14,6 +14,21 @@
  */
 uint CompareNetworkConnectionTimestamps(int64_t *firstConnection, int64_t *secondConnection);
 
+/**
+ * 处理网络连接数据
+ * 
+ * 该函数负责处理网络连接的数据，包括数据包的解析、验证和转发。
+ * 主要用于网络连接数据的处理和传输操作。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据
+ * @param dataSize 数据大小指针
+ * @return 处理结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+uint ProcessNetworkConnectionData(longlong *connectionContext, longlong packetData, longlong *dataSize);
+
 uint32_t NetworkConnectionTableHandle;
 uint32_t NetworkConnectionStatusFlags;
 uint32_t NetworkConnectionTimeoutDuration;
@@ -7291,7 +7306,7 @@ void ProcessNetworkConnectionDataStreamTransfer(longlong connectionContext,longl
       uStack_70 = 1;
       puStack_78 = &UNK_180984540;
       plStack_68 = packetData;
-      networkStatus2 = FUN_18084b990(&puStack_78,connectionContext,packetData);
+      networkStatus2 = ProcessNetworkConnectionData(&puStack_78,connectionContext,packetData);
       if (networkStatus2 != 0) goto LAB_180847dc9;
       bVar7 = (byte)uStack_70;
       if ((byte)uStack_70 != 0) {
@@ -11608,7 +11623,7 @@ LAB_18084bff4:
 
 
 
-// 函数: void FUN_18084bfc9(void)
+// 函数: void NetworkBufferTemplateProcessor(void)
 /**
  * @brief 网络缓冲区模板处理器
  * 
@@ -11627,7 +11642,7 @@ void NetworkBufferTemplateProcessor(void)
 
 
 
-// 函数: void FUN_18084bff2(void)
+// 函数: void NetworkSecurityGuardCleanupProcessor(void)
 /**
  * @brief 网络安全守卫清理器
  * 
@@ -11649,7 +11664,18 @@ void NetworkSecurityGuardCleanupProcessor(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void thunk_FUN_180848e50(char *connectionContext,NetworkHandle *packetData)
+/**
+ * @brief 网络连接参数验证器
+ * 
+ * 该函数负责验证网络连接参数的有效性和格式。
+ * 主要用于网络连接建立前的参数验证工作。
+ * 
+ * @param connectionContext 网络连接上下文字符串
+ * @param packetData 数据包数据指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkConnectionParameterValidator(char *connectionContext,NetworkHandle *packetData)
 
 {
   char *pcVar1;
@@ -19650,8 +19676,18 @@ LAB_180851437:
 
 
 
-// 函数: void FUN_180850c67(longlong connectionContext)
-void FUN_180850c67(longlong connectionContext)
+// 函数: void ProcessNetworkConnectionContext(longlong connectionContext)
+/**
+ * @brief 处理网络连接上下文
+ * 
+ * 该函数负责处理网络连接的上下文数据和状态管理。
+ * 主要用于网络连接的上下文初始化、状态更新和数据处理。
+ * 
+ * @param connectionContext 网络连接上下文
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionContext(longlong connectionContext)
 
 {
   NetworkHandle primaryNetworkFlag;
@@ -19999,8 +20035,16 @@ LAB_1808513bf:
 
 
 
-// 函数: void FUN_180851421(void)
-void FUN_180851421(void)
+// 函数: void UpdateNetworkConnectionStatus(void)
+/**
+ * @brief 更新网络连接状态
+ * 
+ * 该函数负责更新网络连接的状态信息。
+ * 主要用于网络连接状态的同步和更新操作。
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void UpdateNetworkConnectionStatus(void)
 
 {
   longlong unaff_RBP;
@@ -20667,8 +20711,19 @@ NetworkHandle FUN_180851b86(void)
 
 
 
-// 函数: void FUN_180851ba0(longlong connectionContext,NetworkByte packetData)
-void FUN_180851ba0(longlong connectionContext,NetworkByte packetData)
+// 函数: void ProcessNetworkPacketData(longlong connectionContext,NetworkByte packetData)
+/**
+ * @brief 处理网络包数据
+ * 
+ * 该函数负责处理网络包数据的传输和处理。
+ * 主要用于网络数据包的发送和接收处理。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkPacketData(longlong connectionContext,NetworkByte packetData)
 
 {
   int networkStatus1;
