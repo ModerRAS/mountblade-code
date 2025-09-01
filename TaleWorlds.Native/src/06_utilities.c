@@ -1056,11 +1056,11 @@ void* SystemAuditConfigTable4;
  * 设置垃圾回收策略和参数
  */
 void InitializeGarbageCollector(void);
-undefined GarbageCollectorConfigData;
-undefined GarbageCollectorTable0;
-undefined GarbageCollectorTable1;
-undefined GarbageCollectorTable2;
-undefined GarbageCollectorTable3;
+void* GarbageCollectorConfigurationData;
+void* GarbageCollectorStateTable;
+void* GarbageCollectorProcessTable;
+void* GarbageCollectorMemoryTable;
+void* GarbageCollectorControlTable;
 
  void ConfigureMemoryStatistics(void);
 /**
@@ -1070,12 +1070,12 @@ undefined GarbageCollectorTable3;
  * 设置内存使用监控和报告参数
  */
 void ConfigureMemoryStatistics(void);
-undefined MemoryStatisticsConfigData;
-undefined MemoryStatisticsTable0;
-undefined MemoryStatisticsTable1;
-undefined MemoryStatisticsTable2;
-undefined MemoryStatisticsTable3;
-undefined MemoryStatisticsExtendedData;
+void* MemoryStatisticsConfigurationData;
+void* MemoryStatisticsStateTable;
+void* MemoryStatisticsProcessTable;
+void* MemoryStatisticsMemoryTable;
+void* MemoryStatisticsControlTable;
+void* MemoryStatisticsExtendedData;
 
  void InitializeMemoryDebugger(void);
 /**
