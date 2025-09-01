@@ -26,26 +26,26 @@ void* SystemMemoryPoolSenary;
 void* SystemDataTableSenary;
 
 // 核心系统函数指针和相关数据
-void* CoreSystemEntryPoint;
-void* CoreSystemMemoryBlock;
+void* GameCoreSystemEntryPoint;
+void* CoreSystemMemoryAllocator;
 void* CoreSystemDataTable;
 void* CoreSystemMemoryBuffer;
-void* CoreSystemConfigPrimary;
+void* CoreSystemConfigMain;
 void* CoreSystemConfigSecondary;
 void* CoreSystemConfigTertiary;
 void* CoreSystemConfigQuaternary;
 
 // 渲染系统初始化函数
-void* RenderingSystemEntryPoint;
-void* RenderingSystemData;
+void* GameRenderingSystemEntryPoint;
+void* RenderingSystemContext;
 
 // 网络系统初始化函数
-void* NetworkSystemEntryPoint;
-void* NetworkSystemData;
+void* GameNetworkSystemEntryPoint;
+void* NetworkSystemContext;
 
 // 音频系统初始化函数
-void* AudioSystemEntryPoint;
-void* AudioSystemData;
+void* GameAudioSystemEntryPoint;
+void* AudioSystemContext;
 
 // 输入系统初始化函数和相关数据
 void* InputSystemEntryPoint;
