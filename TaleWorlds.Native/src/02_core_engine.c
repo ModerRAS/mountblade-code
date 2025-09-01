@@ -160,15 +160,15 @@ void* engine_network_stats_ptr;
 void* engine_network_debug_ptr;
 void* engine_system_data_buffer_1;
 char engine_particle_flag;
-engine_memory_data_buffer_1;
-engine_network_flag_4;
-engine_base_data_offset_c0;
-engine_skeleton_data_ptr;
-engine_animation_state_ptr;
+void* engine_memory_data_buffer_1;
+void* engine_network_flag_4;
+void* engine_base_data_offset_c0;
+void* engine_skeleton_data_ptr;
+void* engine_animation_state_ptr;
 
 // engine_initialize_main_system;
-engine_initialize_main_system;
-engine_main_system_ptr;
+void* engine_initialize_main_system;
+void* engine_main_system_ptr;
 
 // engine_setup_core_components;
 engine_setup_core_components;
@@ -23217,7 +23217,7 @@ void engine_process_parameter_validation(int *engine_data_structure_ptr)
   uint32 engine_temp_uint_3;
   longlong engine_temp_long_4;
   uint32_t *engine_temporary_pointer;
-  char *pcVar6;
+  char *engine_temp_char_ptr_6;
   void* current_data_pointer;
   int engine_temp_int_8;
   ulonglong engine_temp_uint_9;
@@ -23287,13 +23287,13 @@ void engine_process_parameter_validation(int *engine_data_structure_ptr)
     current_data_pointer = (void*)(lStack_168 + 8);
     do {
       if (*(int *)(current_data_pointer + 1) == 0x12) {
-        pcVar6 = (char *)*current_data_pointer;
-        engine_temp_long_4 = (longlong)engine_temporary_pointer - (longlong)pcVar6;
+        engine_temp_char_ptr_6 = (char *)*current_data_pointer;
+        engine_temp_long_4 = (longlong)engine_temporary_pointer - (longlong)engine_temp_char_ptr_6;
         do {
-          resource_status_flag = *pcVar6;
-          engine_temp_char_flag = pcVar6[engine_temp_long_4];
+          resource_status_flag = *engine_temp_char_ptr_6;
+          engine_temp_char_flag = engine_temp_char_ptr_6[engine_temp_long_4];
           if (resource_status_flag != engine_temp_char_flag) break;
-          pcVar6 = pcVar6 + 1;
+          engine_temp_char_ptr_6 = engine_temp_char_ptr_6 + 1;
         } while (engine_temp_char_flag != '\0');
         if (resource_status_flag == engine_temp_char_flag) break;
       }
@@ -48348,7 +48348,7 @@ void FUN_18008bb30(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   uint64 engine_temp_uint_3;
   longlong engine_temp_long_4;
   void* engine_temporary_pointer;
-  code *pcVar6;
+  code *engine_temp_char_ptr_6;
   longlong engine_string_length_diff;
   longlong engine_temp_long_8;
   uint8 auStack_288 [32];
@@ -48410,13 +48410,13 @@ void FUN_18008bb30(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   pcStack_228 = (code *)0x0;
   pcStack_220 = _guard_check_icall;
   if (auStack_238 != param_5) {
-    pcVar6 = *(code **)(param_5 + 0x10);
-    if (pcVar6 != (code *)0x0) {
-      (*pcVar6)(auStack_238,param_5);
-      pcVar6 = *(code **)(param_5 + 0x10);
+    engine_temp_char_ptr_6 = *(code **)(param_5 + 0x10);
+    if (engine_temp_char_ptr_6 != (code *)0x0) {
+      (*engine_temp_char_ptr_6)(auStack_238,param_5);
+      engine_temp_char_ptr_6 = *(code **)(param_5 + 0x10);
     }
     pcStack_220 = *(code **)(param_5 + 0x18);
-    pcStack_228 = pcVar6;
+    pcStack_228 = engine_temp_char_ptr_6;
   }
   engine_stack_ptr_1f8 = &engine_base_data_offset_a8;
   engine_stack_ptr_1f0 = auStack_1e0;
@@ -48456,13 +48456,13 @@ void FUN_18008bb30(uint64 engine_data_structure_ptr,longlong engine_result_flag_
     if (pcStack_80 != (code *)0x0) {
       (*pcStack_80)(auStack_90,0,0);
     }
-    pcVar6 = *(code **)(param_6 + 0x10);
-    if (pcVar6 != (code *)0x0) {
-      (*pcVar6)(auStack_90,param_6,1);
-      pcVar6 = *(code **)(param_6 + 0x10);
+    engine_temp_char_ptr_6 = *(code **)(param_6 + 0x10);
+    if (engine_temp_char_ptr_6 != (code *)0x0) {
+      (*engine_temp_char_ptr_6)(auStack_90,param_6,1);
+      engine_temp_char_ptr_6 = *(code **)(param_6 + 0x10);
     }
     pcStack_78 = *(code **)(param_6 + 0x18);
-    pcStack_80 = pcVar6;
+    pcStack_80 = engine_temp_char_ptr_6;
   }
   engine_temp_long_8 = *(longlong *)(_engine_data_40 + 8);
   engine_temp_long_4 = FUN_18006d0b0(engine_temp_long_8 + 200);
@@ -56483,7 +56483,7 @@ uint64 engine_call_numeric_converter(void)
   bool bVar3;
   byte *engine_byte_ptr_4;
   byte *engine_byte_ptr_5;
-  char *pcVar6;
+  char *engine_temp_char_ptr_6;
   uint engine_temp_uint64_value;
   int engine_temp_int_8;
   void* engine_temp_void_pointer;
@@ -56601,12 +56601,12 @@ LAB_180095648:
       engine_data_ptr3 = engine_temp_uint_ptr_9;
     } while (engine_temp_uint_ptr_9 != (void*)0x0);
     if ((engine_data_ptr1 != engine_data_ptr0 + 8) && (*(int *)(engine_data_ptr1 + 6) != 0)) {
-      pcVar6 = (char *)engine_data_ptr1[5];
-      engine_temp_long4 = (longlong)engine_byte_ptr_4 - (longlong)pcVar6;
+      engine_temp_char_ptr_6 = (char *)engine_data_ptr1[5];
+      engine_temp_long4 = (longlong)engine_byte_ptr_4 - (longlong)engine_temp_char_ptr_6;
       do {
-        presource_status_flag = pcVar6 + engine_temp_long4;
-        if (*pcVar6 != *presource_status_flag) break;
-        pcVar6 = pcVar6 + 1;
+        presource_status_flag = engine_temp_char_ptr_6 + engine_temp_long4;
+        if (*engine_temp_char_ptr_6 != *presource_status_flag) break;
+        engine_temp_char_ptr_6 = engine_temp_char_ptr_6 + 1;
       } while (*presource_status_flag != '\0');
     }
   }
@@ -56626,7 +56626,7 @@ uint64 engine_call_coordinate_converter(void)
   bool bVar3;
   byte *engine_byte_ptr_4;
   byte *engine_byte_ptr_5;
-  char *pcVar6;
+  char *engine_temp_char_ptr_6;
   uint engine_temp_uint64_value;
   int engine_temp_int_8;
   void* engine_temp_void_pointer;
@@ -56744,12 +56744,12 @@ LAB_1800958e8:
       engine_data_ptr3 = engine_temp_uint_ptr_9;
     } while (engine_temp_uint_ptr_9 != (void*)0x0);
     if ((engine_data_ptr1 != engine_data_ptr0 + 8) && (*(int *)(engine_data_ptr1 + 6) != 0)) {
-      pcVar6 = (char *)engine_data_ptr1[5];
-      engine_temp_long4 = (longlong)engine_byte_ptr_4 - (longlong)pcVar6;
+      engine_temp_char_ptr_6 = (char *)engine_data_ptr1[5];
+      engine_temp_long4 = (longlong)engine_byte_ptr_4 - (longlong)engine_temp_char_ptr_6;
       do {
-        presource_status_flag = pcVar6 + engine_temp_long4;
-        if (*pcVar6 != *presource_status_flag) break;
-        pcVar6 = pcVar6 + 1;
+        presource_status_flag = engine_temp_char_ptr_6 + engine_temp_long4;
+        if (*engine_temp_char_ptr_6 != *presource_status_flag) break;
+        engine_temp_char_ptr_6 = engine_temp_char_ptr_6 + 1;
       } while (*presource_status_flag != '\0');
     }
   }
