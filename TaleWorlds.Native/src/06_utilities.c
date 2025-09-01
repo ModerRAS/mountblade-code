@@ -19118,7 +19118,7 @@ uint8_t ProcessResourceBufferData(int64_t ResourceContext, int64_t *ResourceData
   int64_t loopCounter;
   uint8_t ResourceValidationResult;
   char UnaffectedRegisterBPL;
-  char in_stack_00000008;
+  char SystemStackRegister;
   
   if (*(uint *)(resourceData + 8) < 0x55) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
