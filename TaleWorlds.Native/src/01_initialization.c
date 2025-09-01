@@ -5108,16 +5108,16 @@ void InitializeSystemMemoryNode(void)
 void InitializeRenderingSystem(void)
 
 {
-  char systemNodeFlag;
-  undefined8 *systemDataTable;
-  int memoryCompareResult;
-  longlong *systemMemoryPointer;
-  longlong systemTimeValue;
-  undefined8 *systemRootNode;
-  undefined8 *systemCurrentNode;
-  undefined8 *systemNextNode;
-  undefined8 *systemPreviousNode;
-  undefined *puStackX_18;
+  bool systemNodeIsActive;
+  void** systemDataTable;
+  int memoryComparisonResult;
+  long long* systemMemoryPointer;
+  long long systemTimeValue;
+  void** systemRootNode;
+  void** systemCurrentNode;
+  void** systemNextNode;
+  void** systemPreviousNode;
+  void* renderingInitializationCallback;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
