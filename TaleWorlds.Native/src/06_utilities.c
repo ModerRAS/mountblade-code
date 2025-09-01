@@ -24792,7 +24792,19 @@ LAB_18089e447:
 
 
 
-ulonglong FUN_18089e297(void)
+/**
+ * @brief 验证和处理资源数据
+ * 
+ * 该函数负责验证资源数据的完整性，包括：
+ * - 检查资源头部信息
+ * - 读取和解析资源数据
+ * - 处理资源元数据
+ * - 计算资源哈希值
+ * - 验证资源格式
+ * 
+ * @return 验证结果，0表示成功，非0表示错误代码
+ */
+ulonglong ValidateAndProcessResourceData(void)
 
 {
   longlong *plVar1;
@@ -24896,7 +24908,18 @@ LAB_18089e447:
 
 
 
-ulonglong FUN_18089e2be(void)
+/**
+ * @brief 验证和处理资源数据（变体B）
+ * 
+ * 该函数是资源验证函数的另一个版本，负责：
+ * - 读取和验证资源数据
+ * - 处理资源哈希计算
+ * - 验证资源完整性
+ * - 执行资源清理操作
+ * 
+ * @return 验证结果，0表示成功，非0表示错误代码
+ */
+ulonglong ValidateAndProcessResourceDataVariantB(void)
 
 {
   longlong *plVar1;
@@ -84553,8 +84576,23 @@ void InitializeSystemDataStructureAH(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941e90(void)
-void FUN_180941e90(void)
+ /**
+ * 初始化系统数据结构AI
+ * 清理和释放内存池资源
+ * 
+ * 功能：
+ * 1. 检查内存池起始地址 _DAT_180c91f18 是否为0
+ * 2. 如果不为0，计算需要释放的内存大小
+ * 3. 验证内存块的完整性，检查是否有溢出
+ * 4. 释放内存块并重置相关指针和计数器
+ * 
+ * 参数说明：
+ * - 使用全局变量 _DAT_180c91f18 作为内存池起始地址
+ * - 使用全局变量 _DAT_180c91f28 作为内存池结束地址
+ * - 使用全局变量 uRam0000000180c91f20 作为内存池计数器
+ */
+void InitializeSystemDataStructureAI(void)
+void InitializeSystemDataStructureAI(void)
 
 {
   longlong lVar1;
@@ -84584,8 +84622,13 @@ void FUN_180941e90(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941f00(void)
-void FUN_180941f00(void)
+ /**
+ * 初始化系统数据结构AJ
+ * 将全局变量 _DAT_180bf91b0 设置为指向 UNK_18098bcb0
+ * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ */
+void InitializeSystemDataStructureAJ(void)
+void InitializeSystemDataStructureAJ(void)
 
 {
   _DAT_180bf91b0 = &UNK_18098bcb0;
