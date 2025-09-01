@@ -38118,7 +38118,21 @@ void CleanupSystemResourcesPhase3(uint8_t ObjectContextParameter, int64_t Valida
 
 
 
-void Unwind_180903c00(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理函数 - 第四阶段
+ * 
+ * 该函数负责在异常处理时清理系统资源的第四阶段操作
+ * 继续清理系统资源处理器模板和数据结构
+ * 
+ * @param ObjectContextParameter 对象上下文参数，标识要清理的对象
+ * @param ValidationContextParameter 验证上下文参数，包含验证信息
+ * @param CleanupOption 清理选项，指定清理方式
+ * @param CleanupFlag 清理标志，指示清理状态
+ * @return 无返回值
+ * @note 此函数通常在异常处理过程中被调用
+ * @warning 清理过程中如果检测到错误会触发系统紧急退出
+ */
+void CleanupSystemResourcesPhase4(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38148,7 +38162,21 @@ void Unwind_180903c00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903c20(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理函数 - 第五阶段
+ * 
+ * 该函数负责在异常处理时清理系统资源的第五阶段操作
+ * 继续清理系统资源处理器模板和数据结构
+ * 
+ * @param ObjectContextParameter 对象上下文参数，标识要清理的对象
+ * @param ValidationContextParameter 验证上下文参数，包含验证信息
+ * @param CleanupOption 清理选项，指定清理方式
+ * @param CleanupFlag 清理标志，指示清理状态
+ * @return 无返回值
+ * @note 此函数通常在异常处理过程中被调用
+ * @warning 清理过程中如果检测到错误会触发系统紧急退出
+ */
+void CleanupSystemResourcesPhase5(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38178,7 +38206,21 @@ void Unwind_180903c20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903c40(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理函数 - 第六阶段
+ * 
+ * 该函数负责在异常处理时清理系统资源的第六阶段操作
+ * 继续清理系统资源处理器模板和数据结构
+ * 
+ * @param ObjectContextParameter 对象上下文参数，标识要清理的对象
+ * @param ValidationContextParameter 验证上下文参数，包含验证信息
+ * @param CleanupOption 清理选项，指定清理方式
+ * @param CleanupFlag 清理标志，指示清理状态
+ * @return 无返回值
+ * @note 此函数通常在异常处理过程中被调用
+ * @warning 清理过程中如果检测到错误会触发系统紧急退出
+ */
+void CleanupSystemResourcesPhase6(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38208,7 +38250,21 @@ void Unwind_180903c40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903c60(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理函数 - 第七阶段
+ * 
+ * 该函数负责在异常处理时清理系统资源的第七阶段操作
+ * 继续清理系统资源处理器模板和数据结构
+ * 
+ * @param ObjectContextParameter 对象上下文参数，标识要清理的对象
+ * @param ValidationContextParameter 验证上下文参数，包含验证信息
+ * @param CleanupOption 清理选项，指定清理方式
+ * @param CleanupFlag 清理标志，指示清理状态
+ * @return 无返回值
+ * @note 此函数通常在异常处理过程中被调用
+ * @warning 清理过程中如果检测到错误会触发系统紧急退出
+ */
+void CleanupSystemResourcesPhase7(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38298,7 +38354,19 @@ void Unwind_180903ca0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903cc0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 释放对象上下文资源
+ * 
+ * 该函数负责释放对象上下文相关的资源
+ * 用于对象销毁时的资源清理工作
+ * 
+ * @param ObjectContextParameter 对象上下文参数，标识要清理的对象
+ * @param ValidationContextParameter 验证上下文参数，包含验证信息
+ * @return 无返回值
+ * @note 此函数在对象销毁时被调用
+ * @warning 清理过程中如果检测到错误会触发系统紧急退出
+ */
+void ReleaseObjectContextResources(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;
@@ -38317,7 +38385,19 @@ void Unwind_180903cc0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903cd0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 释放验证上下文资源
+ * 
+ * 该函数负责释放验证上下文相关的资源
+ * 用于验证上下文销毁时的资源清理工作
+ * 
+ * @param ObjectContextParameter 对象上下文参数，标识要清理的对象
+ * @param ValidationContextParameter 验证上下文参数，包含验证信息
+ * @return 无返回值
+ * @note 此函数在验证上下文销毁时被调用
+ * @warning 清理过程中如果检测到错误会触发系统紧急退出
+ */
+void ReleaseValidationContextResources(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;
@@ -38336,7 +38416,21 @@ void Unwind_180903cd0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903ce0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理内存管理器资源
+ * 
+ * 该函数负责清理内存管理器相关的资源
+ * 用于内存管理器销毁时的资源清理工作
+ * 
+ * @param ObjectContextParameter 对象上下文参数，标识要清理的对象
+ * @param ValidationContextParameter 验证上下文参数，包含验证信息
+ * @param CleanupOption 清理选项，指定清理方式
+ * @param CleanupFlag 清理标志，指示清理状态
+ * @return 无返回值
+ * @note 此函数在内存管理器销毁时被调用
+ * @warning 清理过程中如果检测到错误会触发系统紧急退出
+ */
+void CleanupMemoryManagerResources(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   code *CharPointer;
@@ -38350,7 +38444,21 @@ void Unwind_180903ce0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903cf0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理线程管理器资源
+ * 
+ * 该函数负责清理线程管理器相关的资源
+ * 用于线程管理器销毁时的资源清理工作
+ * 
+ * @param ObjectContextParameter 对象上下文参数，标识要清理的对象
+ * @param ValidationContextParameter 验证上下文参数，包含验证信息
+ * @param CleanupOption 清理选项，指定清理方式
+ * @param CleanupFlag 清理标志，指示清理状态
+ * @return 无返回值
+ * @note 此函数在线程管理器销毁时被调用
+ * @warning 清理过程中如果检测到错误会触发系统紧急退出
+ */
+void CleanupThreadManagerResources(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38404,7 +38512,21 @@ void Unwind_180903cf0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903d10(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理文件系统资源
+ * 
+ * 该函数负责清理文件系统相关的资源
+ * 用于文件系统销毁时的资源清理工作
+ * 
+ * @param ObjectContextParameter 对象上下文参数，标识要清理的对象
+ * @param ValidationContextParameter 验证上下文参数，包含验证信息
+ * @param CleanupOption 清理选项，指定清理方式
+ * @param CleanupFlag 清理标志，指示清理状态
+ * @return 无返回值
+ * @note 此函数在文件系统销毁时被调用
+ * @warning 清理过程中如果检测到错误会触发系统紧急退出
+ */
+void CleanupFileSystemResources(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
