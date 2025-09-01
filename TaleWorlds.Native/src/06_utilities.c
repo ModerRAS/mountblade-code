@@ -3324,26 +3324,27 @@ void ValidateSystemObjects(void)
   uint8_t4 MaximumCapacity;
   ulonglong SecurityValidationHash;
   
-  if (*(longlong *)(systemObjectData + 8) != 0) {
-    objectCollectionArray = &ObjectStackBuffer40;
-    processedObjectCount = 0;
-    collectionSize = 0;
-    maximumCapacity = 0xffffffc0;
-    validationStatusCode = RetrieveSystemObjectCollection(*(uint8_t8 *)(systemContextPointer + 0x90), *(longlong *)(systemObjectData + 8),
+  if (*(longlong *)(SystemObjectContext + 8) != 0) {
+    ObjectCollectionArray = &ObjectStackBuffer40;
+    ProcessedObjectCount = 0;
+    RetrievedObjectCount = 0;
+    MaximumCapacity = 0xffffffc0;
+    ValidationStatus = RetrieveSystemObjectCollection(*(uint8_t8 *)(SystemContextPointer + 0x90), *(longlong *)(SystemObjectContext + 8),
                           &ObjectStackBuffer30);
-    if (validationStatusCode == 0) {
-      if (0 < collectionSize) {
-        objectIndexOffset = 0;
+    if (ValidationStatus == 0) {
+      RetrievedObjectCount = *(int *)(ObjectStackBuffer30 + 4);
+      if (0 < RetrievedObjectCount) {
+        ObjectOffset = 8;
         do {
-          currentObjectHandle = *(uint8_t8 *)(objectCollectionArray + objectIndexOffset);
-          validationStatusCode = ValidateSystemObject(currentObjectHandle);
-          if (validationStatusCode != 2) {
+          SystemObjectHandle = *(uint8_t8 *)(ObjectCollectionArray + ObjectOffset);
+          ValidationStatus = ValidateSystemObject(SystemObjectHandle);
+          if (ValidationStatus != 2) {
                     // WARNING: Subroutine does not return
-            HandleInvalidSystemObject(currentObjectHandle, 1);
+            HandleInvalidSystemObject(SystemObjectHandle, 1);
           }
-          processedObjectCount = processedObjectCount + 1;
-          objectIndexOffset = objectIndexOffset + 8;
-        } while (processedObjectCount < collectionSize);
+          ProcessedObjectCount = ProcessedObjectCount + 1;
+          ObjectOffset = ObjectOffset + 8;
+        } while (ProcessedObjectCount < RetrievedObjectCount);
       }
       ReleaseSystemObjectCollection(&ObjectStackBuffer30);
     }
@@ -3352,7 +3353,7 @@ void ValidateSystemObjects(void)
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityValidation(securityValidationHash ^ (ulonglong)&ObjectStackBuffer00);
+  ExecuteSecurityValidation(SecurityValidationHash ^ (ulonglong)&ObjectStackBuffer00);
 }
 
 
@@ -3367,10 +3368,10 @@ void ValidateSystemObjects(void)
 void TerminateSystemProcess(void)
 
 {
-  ulonglong processSecurityToken;
+  ulonglong SystemTerminationToken;
   
                     // WARNING: Subroutine does not return
-  ExecuteSystemTermination(processSecurityToken ^ (ulonglong)&ObjectStackBuffer00);
+  ExecuteSystemTermination(SystemTerminationToken ^ (ulonglong)&ObjectStackBuffer00);
 }
 
 
@@ -3386,16 +3387,16 @@ void TerminateSystemProcess(void)
 void CheckSystemFlags(void)
 
 {
-  longlong systemContextPointer;
-  ulonglong flagCheckSecurityToken;
+  longlong SystemContextPointer;
+  ulonglong FlagValidationToken;
   
-  if ((*(uint *)(systemContextPointer + 0x2d8) >> 7 & 1) != 0) {
+  if ((*(uint *)(SystemContextPointer + 0x2d8) >> 7 & 1) != 0) {
                     // WARNING: Subroutine does not return
     TriggerSystemFlagHandler();
   }
   ReleaseFlagCheckResources(&ObjectStackBuffer30);
                     // WARNING: Subroutine does not return
-  ExecuteFlagCheckCleanup(flagCheckSecurityToken ^ (ulonglong)&ObjectStackBuffer00);
+  ExecuteFlagCheckCleanup(FlagValidationToken ^ (ulonglong)&ObjectStackBuffer00);
 }
 
 
