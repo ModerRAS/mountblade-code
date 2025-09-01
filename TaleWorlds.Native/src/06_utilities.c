@@ -32403,6 +32403,16 @@ void SystemResourceCleanupHandler(uint8_t ObjectContextParameter,int64_t Validat
 
 
 
+/**
+ * @brief 内存验证清理处理器
+ * 
+ * 该函数负责处理内存验证和清理操作
+ * 主要用于内存块的验证和异常处理时的内存回收
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ */
 void MemoryValidationCleanupHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
