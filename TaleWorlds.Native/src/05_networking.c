@@ -2085,225 +2085,332 @@ void ProcessNetworkConnectionRequest(longlong requestContext, undefined8 connect
 
 
 
-// 函数: void FUN_180842060(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180842060(longlong param_1,undefined8 param_2,undefined4 param_3)
+/**
+ * @brief 处理网络连接响应
+ * 
+ * 该函数负责处理网络连接的响应数据，包括响应解析和状态更新。
+ * 主要用于网络连接响应的生命周期管理。
+ * 
+ * @param responseContext 响应上下文指针
+ * @param responseData 响应数据指针
+ * @param responseFlags 响应标志位
+ */
+void ProcessNetworkConnectionResponse(longlong responseContext, undefined8 responseData, undefined4 responseFlags)
 
 {
-  FUN_18083f8f0(param_2,param_3,&UNK_1809830a0,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18),*(undefined4 *)(param_1 + 0x1c));
+  FUN_18083f8f0(responseData,responseFlags,&UNK_1809830a0,*(undefined4 *)(responseContext + 0x10),
+                *(undefined4 *)(responseContext + 0x18),*(undefined4 *)(responseContext + 0x1c));
   return;
 }
 
 
 
-int FUN_1808420a0(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 序列化网络连接数据
+ * 
+ * 该函数负责将网络连接相关的数据进行序列化处理，
+ * 将数据结构转换为可传输的字节流格式。
+ * 
+ * @param connectionData 连接数据指针
+ * @param outputBuffer 输出缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return 序列化后的数据大小
+ */
+int SerializeNetworkConnectionData(longlong connectionData, longlong outputBuffer, int bufferSize)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  int iVar4;
-  int iVar5;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
+  undefined4 headerField1;
+  undefined4 headerField2;
+  undefined4 headerField3;
+  int bytesProcessed;
+  int currentOffset;
+  undefined4 connectionTimeout;
+  undefined4 connectionPort;
+  undefined4 connectionAddress;
+  undefined4 connectionFlags;
   
-  uStack_28 = *(undefined4 *)(param_1 + 0x1c);
-  uStack_24 = *(undefined4 *)(param_1 + 0x20);
-  uStack_20 = *(undefined4 *)(param_1 + 0x24);
-  uStack_1c = *(undefined4 *)(param_1 + 0x28);
-  uVar1 = *(undefined4 *)(param_1 + 0x2c);
-  uVar2 = *(undefined4 *)(param_1 + 0x18);
-  uVar3 = *(undefined4 *)(param_1 + 0x10);
-  iVar4 = FUN_18074b880(param_2,param_3,&UNK_180983120);
-  iVar5 = FUN_18074b880(param_2 + iVar4,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b7d0(iVar4 + param_2,param_3 - iVar4,uVar2);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b650(iVar4 + param_2,param_3 - iVar4,&uStack_28);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar1);
-  return iVar5 + iVar4;
+  connectionTimeout = *(undefined4 *)(connectionData + 0x1c);
+  connectionPort = *(undefined4 *)(connectionData + 0x20);
+  connectionAddress = *(undefined4 *)(connectionData + 0x24);
+  connectionFlags = *(undefined4 *)(connectionData + 0x28);
+  headerField1 = *(undefined4 *)(connectionData + 0x2c);
+  headerField2 = *(undefined4 *)(connectionData + 0x18);
+  headerField3 = *(undefined4 *)(connectionData + 0x10);
+  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_180983120);
+  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,headerField3);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b7d0(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,headerField2);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = FUN_18074b650(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&connectionTimeout);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,headerField1);
+  return currentOffset + bytesProcessed;
 }
 
 
 
 
-// 函数: void FUN_1808421c0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808421c0(longlong param_1,undefined8 param_2,undefined4 param_3)
+/**
+ * @brief 验证网络连接状态
+ * 
+ * 该函数负责验证网络连接的当前状态，检查连接是否有效
+ * 以及连接参数是否符合要求。
+ * 
+ * @param connectionContext 连接上下文指针
+ * @param validationData 验证数据指针
+ * @param validationFlags 验证标志位
+ */
+void ValidateNetworkConnectionStatus(longlong connectionContext, undefined8 validationData, undefined4 validationFlags)
 
 {
-  FUN_18083f850(param_2,param_3,&UNK_180982ea0,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18));
+  FUN_18083f850(validationData,validationFlags,&UNK_180982ea0,*(undefined4 *)(connectionContext + 0x10),
+                *(undefined4 *)(connectionContext + 0x18));
   return;
 }
 
 
 
 
-// 函数: void FUN_1808421f0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808421f0(longlong param_1,undefined8 param_2,undefined4 param_3)
+/**
+ * @brief 更新网络连接配置
+ * 
+ * 该函数负责更新网络连接的配置参数，包括连接超时、
+ * 重试间隔和其他连接相关的设置。
+ * 
+ * @param configContext 配置上下文指针
+ * @param configData 配置数据指针
+ * @param configFlags 配置标志位
+ */
+void UpdateNetworkConnectionConfig(longlong configContext, undefined8 configData, undefined4 configFlags)
 
 {
-  FUN_18083f8f0(param_2,param_3,&UNK_180982f20,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18),*(undefined4 *)(param_1 + 0x1c));
+  FUN_18083f8f0(configData,configFlags,&UNK_180982f20,*(undefined4 *)(configContext + 0x10),
+                *(undefined4 *)(configContext + 0x18),*(undefined4 *)(configContext + 0x1c));
   return;
 }
 
 
 
-int FUN_180842230(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 序列化网络配置数据
+ * 
+ * 该函数负责将网络配置相关的数据进行序列化处理，
+ * 将配置信息转换为可传输的字节流格式。
+ * 
+ * @param configData 配置数据指针
+ * @param outputBuffer 输出缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return 序列化后的数据大小
+ */
+int SerializeNetworkConfigData(longlong configData, longlong outputBuffer, int bufferSize)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  int iVar4;
-  int iVar5;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
+  undefined4 configField1;
+  undefined4 configField2;
+  undefined4 configField3;
+  int bytesProcessed;
+  int currentOffset;
+  undefined4 configTimeout;
+  undefined4 configPort;
+  undefined4 configAddress;
+  undefined4 configFlags;
   
-  uStack_28 = *(undefined4 *)(param_1 + 0x1c);
-  uStack_24 = *(undefined4 *)(param_1 + 0x20);
-  uStack_20 = *(undefined4 *)(param_1 + 0x24);
-  uStack_1c = *(undefined4 *)(param_1 + 0x28);
-  uVar1 = *(undefined4 *)(param_1 + 0x2c);
-  uVar2 = *(undefined4 *)(param_1 + 0x18);
-  uVar3 = *(undefined4 *)(param_1 + 0x10);
-  iVar4 = FUN_18074b880(param_2,param_3,&UNK_180982fa0);
-  iVar5 = FUN_18074b880(param_2 + iVar4,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b7d0(iVar4 + param_2,param_3 - iVar4,uVar2);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b650(iVar4 + param_2,param_3 - iVar4,&uStack_28);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar1);
-  return iVar5 + iVar4;
+  configTimeout = *(undefined4 *)(configData + 0x1c);
+  configPort = *(undefined4 *)(configData + 0x20);
+  configAddress = *(undefined4 *)(configData + 0x24);
+  configFlags = *(undefined4 *)(configData + 0x28);
+  configField1 = *(undefined4 *)(configData + 0x2c);
+  configField2 = *(undefined4 *)(configData + 0x18);
+  configField3 = *(undefined4 *)(configData + 0x10);
+  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_180982fa0);
+  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,configField3);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b7d0(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,configField2);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = FUN_18074b650(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&configTimeout);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,configField1);
+  return currentOffset + bytesProcessed;
 }
 
 
 
 
-// 函数: void FUN_180842350(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180842350(longlong param_1,undefined8 param_2,undefined4 param_3)
+/**
+ * @brief 初始化网络连接池
+ * 
+ * 该函数负责初始化网络连接池的基本参数和数据结构，
+ * 为后续的网络连接管理做准备。
+ * 
+ * @param poolContext 连接池上下文指针
+ * @param poolData 连接池数据指针
+ * @param poolFlags 连接池标志位
+ */
+void InitializeNetworkPool(longlong poolContext, undefined8 poolData, undefined4 poolFlags)
 
 {
-  FUN_18083f850(param_2,param_3,&UNK_180982c20,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18));
+  FUN_18083f850(poolData,poolFlags,&UNK_180982c20,*(undefined4 *)(poolContext + 0x10),
+                *(undefined4 *)(poolContext + 0x18));
   return;
 }
 
 
 
 
-// 函数: void FUN_180842380(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180842380(longlong param_1,undefined8 param_2,undefined4 param_3)
+/**
+ * @brief 清理网络连接池
+ * 
+ * 该函数负责清理网络连接池中的资源，释放内存和
+ * 其他系统资源。
+ * 
+ * @param poolContext 连接池上下文指针
+ * @param cleanupData 清理数据指针
+ * @param cleanupFlags 清理标志位
+ */
+void CleanupNetworkPool(longlong poolContext, undefined8 cleanupData, undefined4 cleanupFlags)
 
 {
-  FUN_18083f850(param_2,param_3,&UNK_180982ca0,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18));
+  FUN_18083f850(cleanupData,cleanupFlags,&UNK_180982ca0,*(undefined4 *)(poolContext + 0x10),
+                *(undefined4 *)(poolContext + 0x18));
   return;
 }
 
 
 
 
-// 函数: void FUN_1808423b0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808423b0(longlong param_1,undefined8 param_2,undefined4 param_3)
+/**
+ * @brief 重置网络连接池
+ * 
+ * 该函数负责重置网络连接池的状态，清空连接相关的数据。
+ * 主要用于连接池重新初始化或状态恢复。
+ * 
+ * @param poolContext 连接池上下文指针
+ * @param resetData 重置数据指针
+ * @param resetFlags 重置标志位
+ */
+void ResetNetworkPool(longlong poolContext, undefined8 resetData, undefined4 resetFlags)
 
 {
-  FUN_18083f850(param_2,param_3,&UNK_1809831a0,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18));
+  FUN_18083f850(resetData,resetFlags,&UNK_1809831a0,*(undefined4 *)(poolContext + 0x10),
+                *(undefined4 *)(poolContext + 0x18));
   return;
 }
 
 
 
 
-// 函数: void FUN_1808423e0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808423e0(longlong param_1,undefined8 param_2,undefined4 param_3)
+/**
+ * @brief 验证网络连接池
+ * 
+ * 该函数负责验证网络连接池的当前状态，检查连接池
+ * 是否有效以及连接参数是否符合要求。
+ * 
+ * @param poolContext 连接池上下文指针
+ * @param validationData 验证数据指针
+ * @param validationFlags 验证标志位
+ */
+void ValidateNetworkPool(longlong poolContext, undefined8 validationData, undefined4 validationFlags)
 
 {
-  FUN_18083f8f0(param_2,param_3,&UNK_180983220,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18),*(undefined4 *)(param_1 + 0x1c));
+  FUN_18083f8f0(validationData,validationFlags,&UNK_180983220,*(undefined4 *)(poolContext + 0x10),
+                *(undefined4 *)(poolContext + 0x18),*(undefined4 *)(poolContext + 0x1c));
   return;
 }
 
 
 
-int FUN_180842420(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 序列化网络连接池数据
+ * 
+ * 该函数负责将网络连接池相关的数据进行序列化处理，
+ * 将连接池信息转换为可传输的字节流格式。
+ * 
+ * @param poolData 连接池数据指针
+ * @param outputBuffer 输出缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return 序列化后的数据大小
+ */
+int SerializeNetworkPoolData(longlong poolData, longlong outputBuffer, int bufferSize)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  int iVar4;
-  int iVar5;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
+  undefined4 poolField1;
+  undefined4 poolField2;
+  undefined4 poolField3;
+  int bytesProcessed;
+  int currentOffset;
+  undefined4 poolTimeout;
+  undefined4 poolPort;
+  undefined4 poolAddress;
+  undefined4 poolFlags;
   
-  uStack_28 = *(undefined4 *)(param_1 + 0x1c);
-  uStack_24 = *(undefined4 *)(param_1 + 0x20);
-  uStack_20 = *(undefined4 *)(param_1 + 0x24);
-  uStack_1c = *(undefined4 *)(param_1 + 0x28);
-  uVar1 = *(undefined4 *)(param_1 + 0x2c);
-  uVar2 = *(undefined4 *)(param_1 + 0x18);
-  uVar3 = *(undefined4 *)(param_1 + 0x10);
-  iVar4 = FUN_18074b880(param_2,param_3,&UNK_1809832a0);
-  iVar5 = FUN_18074b880(param_2 + iVar4,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b7d0(iVar4 + param_2,param_3 - iVar4,uVar2);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b650(iVar4 + param_2,param_3 - iVar4,&uStack_28);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar1);
-  return iVar5 + iVar4;
+  poolTimeout = *(undefined4 *)(poolData + 0x1c);
+  poolPort = *(undefined4 *)(poolData + 0x20);
+  poolAddress = *(undefined4 *)(poolData + 0x24);
+  poolFlags = *(undefined4 *)(poolData + 0x28);
+  poolField1 = *(undefined4 *)(poolData + 0x2c);
+  poolField2 = *(undefined4 *)(poolData + 0x18);
+  poolField3 = *(undefined4 *)(poolData + 0x10);
+  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_1809832a0);
+  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,poolField3);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b7d0(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,poolField2);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = FUN_18074b650(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&poolTimeout);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,poolField1);
+  return currentOffset + bytesProcessed;
 }
 
 
 
-int FUN_180842540(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 序列化网络状态数据
+ * 
+ * 该函数负责将网络状态相关的数据进行序列化处理，
+ * 将状态信息转换为可传输的字节流格式。
+ * 
+ * @param stateData 状态数据指针
+ * @param outputBuffer 输出缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return 序列化后的数据大小
+ */
+int SerializeNetworkStateData(longlong stateData, longlong outputBuffer, int bufferSize)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined4 stateField;
+  int bytesProcessed;
+  int currentOffset;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982d28);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  stateField = *(undefined4 *)(stateData + 0x10);
+  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_180982d28);
+  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,stateField);
+  return currentOffset + bytesProcessed;
 }
 
 

@@ -309,10 +309,10 @@ int InitializeModuleConfigurationA(void)
 {
   int64_t initializationResult;
   uint64_t configurationFlags;
-  _DAT_180bf6680 = &UNK_1809fdc18;
-  _DAT_180bf6688 = &STRING_PROCESSOR_CONFIG_A;
+  g_stringProcessorDataPointerA = &UNK_1809fdc18;
+  g_stringProcessorConfigPointerA = &STRING_PROCESSOR_CONFIG_A;
   STRING_PROCESSOR_CONFIG_A = 0;
-  _DAT_180bf6690 = 5;
+  g_stringProcessorBufferSizeA = 5;
   strcpy_s(&STRING_PROCESSOR_CONFIG_A,0x10,&UNK_180a00540,in_R9,0xfffffffffffffffe);
   longlong CallbackResult = RegisterSystemModule(FUN_1809418e0);
   return (CallbackResult != 0) - 1;
@@ -327,10 +327,10 @@ int InitializeStringProcessorG(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorGFlags;
-  _DAT_180bf66b0 = &UNK_1809fdc18;
-  _DAT_180bf66b8 = &STRING_PROCESSOR_CONFIG_B;
+  g_stringProcessorDataPointerB = &UNK_1809fdc18;
+  g_stringProcessorConfigPointerB = &STRING_PROCESSOR_CONFIG_B;
   STRING_PROCESSOR_CONFIG_B = 0;
-  _DAT_180bf66c0 = 5;
+  g_stringProcessorBufferSizeB = 5;
   strcpy_s(&STRING_PROCESSOR_CONFIG_B,0x10,&UNK_180a00548,stringProcessorGFlags,0xfffffffffffffffe);
   CallbackResult = RegisterSystemModule(FUN_180941900);
   return (CallbackResult != 0) - 1;
@@ -1664,7 +1664,13 @@ int InitializeStringProcessingSystemAH(void)
   LocalResult = RegisterSystemModule(FUN_180942460);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003c080(void)
+/**
+ * 初始化字符串处理系统模块AI
+ * 设置字符串处理系统模块AI所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemAI(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
@@ -1676,7 +1682,13 @@ int FUN_18003c080(void)
   LocalResult = RegisterSystemModule(FUN_180942480);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003c0f0(void)
+/**
+ * 初始化字符串处理系统模块AJ
+ * 设置字符串处理系统模块AJ所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemAJ(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
@@ -1688,19 +1700,37 @@ int FUN_18003c0f0(void)
   LocalResult = RegisterSystemModule(FUN_1809424a0);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003c160(void)
+/**
+ * 初始化字符串处理系统模块AK
+ * 设置字符串处理系统模块AK所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemAK(void)
 {
   int64_t LocalResult;
   LocalResult = RegisterSystemModule(FUN_1809424c0);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003c180(void)
+/**
+ * 初始化字符串处理系统模块AL
+ * 设置字符串处理系统模块AL所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemAL(void)
 {
   int64_t LocalResult;
   LocalResult = RegisterSystemModule(FUN_180942520);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003c1a0(void)
+/**
+ * 初始化字符串处理系统模块AM
+ * 设置字符串处理系统模块AM所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemAM(void)
 {
   int64_t LocalResult;
   LocalResult = RegisterSystemModule(FUN_180942580);
@@ -1749,7 +1779,13 @@ int ProcessSystemEvent(uint64_t systemId,uint64_t eventType,uint64_t eventData,u
   LocalResult = RegisterSystemModule(&UNK_180942600);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003d690(void)
+/**
+ * 初始化系统事件处理器
+ * 设置系统事件处理所需的数据结构和回调函数
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemEventHandler(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
@@ -1786,7 +1822,13 @@ int FUN_18003d690(void)
   LocalResult = RegisterSystemModule(&UNK_180942620);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003d8c0(void)
+/**
+ * 初始化系统消息处理器
+ * 设置系统消息处理所需的数据结构和回调函数
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemMessageHandler(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
@@ -1823,7 +1865,13 @@ int FUN_18003d8c0(void)
   LocalResult = RegisterSystemModule(&UNK_180942640);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003db40(void)
+/**
+ * 初始化系统配置管理器
+ * 设置系统配置管理所需的数据结构和回调函数
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemConfigurationManager(void)
 {
   int64_t LocalResult;
   _DAT_180bfc150 = 0;
@@ -1834,7 +1882,13 @@ int FUN_18003db40(void)
   LocalResult = RegisterSystemModule(FUN_180942660);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003dba0(void)
+/**
+ * 初始化系统资源管理器
+ * 设置系统资源管理所需的数据结构和回调函数
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemResourceManager(void)
 {
   int64_t LocalResult;
   _DAT_180bfaee8 = 3;
@@ -1857,7 +1911,13 @@ int HandleSystemRequest(uint64_t requestId,uint64_t requestType,uint64_t request
   LocalResult = RegisterSystemModule(FUN_180942790);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003dcc0(void)
+/**
+ * 初始化系统调试管理器
+ * 设置系统调试管理所需的数据结构和回调函数
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemDebugManager(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
@@ -1869,7 +1929,13 @@ int FUN_18003dcc0(void)
   LocalResult = RegisterSystemModule(FUN_1809427d0);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003dd30(void)
+/**
+ * 初始化系统性能监控器
+ * 设置系统性能监控所需的数据结构和回调函数
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemPerformanceMonitor(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
@@ -1881,7 +1947,13 @@ int FUN_18003dd30(void)
   LocalResult = RegisterSystemModule(FUN_1809427f0);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003dda0(void)
+/**
+ * 初始化系统日志管理器
+ * 设置系统日志管理所需的数据结构和回调函数
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemLogManager(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
@@ -1899,7 +1971,13 @@ int FUN_18003dda0(void)
   LocalResult = RegisterSystemModule(FUN_180942a60);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003fb40(void)
+/**
+ * 初始化系统网络管理器
+ * 设置系统网络管理所需的数据结构和回调函数
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemNetworkManager(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
@@ -1917,7 +1995,13 @@ int FUN_18003fb40(void)
   LocalResult = RegisterSystemModule(FUN_180942fa0);
   return (LocalResult != 0) - 1;
 }
-int FUN_180041a80(void)
+/**
+ * 初始化系统安全管理器
+ * 设置系统安全管理所需的数据结构和回调函数
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemSecurityManager(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
