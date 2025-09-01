@@ -21276,7 +21276,7 @@ LAB_180048e20:
       if ((int)(bVar1 - unsignedSystemValue6) < 1) goto LAB_180048e74;
     }
   }
-  FUN_180048ee0(SystemResourcePointer,&plStackX_8,plocalResourceOffset,0,param_5);
+  ExecuteSystemNodeProcessing(SystemResourcePointer,&plStackX_8,plocalResourceOffset,0,param_5);
   plocalBufferAddress = plStackX_8;
 LAB_180048e74:
   *param_2 = plocalBufferAddress;
@@ -21324,7 +21324,7 @@ void ProcessSystemDataTransfer(long long SystemResourcePointer,void* param_2,lon
 LAB_180048f62:
   localSystemPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x68,*(uint8_t *)(SystemResourcePointer + 0x28),param_4,
                         0xfffffffffffffffe);
-  FUN_180627ae0(localSystemPointer + 0x20,param_5);
+  InitializeSystemMemoryAllocator(localSystemPointer + 0x20,param_5);
   punsignedSystemValue4 = (void* *)(localSystemPointer + 0x40);
   *(void* *)(localSystemPointer + 0x50) = 0;
   *(void* *)(localSystemPointer + 0x58) = 0;
@@ -21337,14 +21337,14 @@ LAB_180048f62:
   *(void* *)(localSystemPointer + 0x48) = 0;
   *(uint32_t *)(localSystemPointer + 0x50) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(localSystemPointer,param_3,SystemResourcePointer,unsignedSystemValue6,unsignedSystemValue7,punsignedSystemValue4);
+  InitializeSystemThreadContext(localSystemPointer,param_3,SystemResourcePointer,unsignedSystemValue6,unsignedSystemValue7,punsignedSystemValue4);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void* * FUN_180049010(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
+void* * CreateSystemResourcePointer(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
 
 {
   long long *PrimaryResourcePointer;
@@ -21354,7 +21354,7 @@ void* * FUN_180049010(long long SystemResourcePointer,long long *param_2,void* p
   void* unsignedSystemValue5;
   
   unsignedSystemValue5 = 0xfffffffffffffffe;
-  pointerToUnsigned3 = (void* *)FUN_180049110();
+  pointerToUnsigned3 = (void* *)CreateSystemResourceTemplate();
   if (*param_2 != 0) {
     unsignedSystemValue5 = FUN_180049010(SystemResourcePointer,*param_2,pointerToUnsigned3,param_4,unsignedSystemValue5);
     *pointerToUnsigned3 = unsignedSystemValue5;
@@ -21362,8 +21362,8 @@ void* * FUN_180049010(long long SystemResourcePointer,long long *param_2,void* p
   pointerToUnsigned2 = pointerToUnsigned3;
   for (PrimaryResourcePointer = (long long *)param_2[1]; PrimaryResourcePointer != (long long *)0x0; PrimaryResourcePointer = (long long *)PrimaryResourcePointer[1]) {
     punsignedSystemValue4 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x68,*(uint8_t *)(SystemResourcePointer + 0x28));
-    FUN_180627ae0(punsignedSystemValue4 + 4,PrimaryResourcePointer + 4);
-    FUN_180627ae0(punsignedSystemValue4 + 8,PrimaryResourcePointer + 8);
+    InitializeSystemMemoryAllocator(punsignedSystemValue4 + 4,PrimaryResourcePointer + 4);
+    InitializeSystemMemoryAllocator(punsignedSystemValue4 + 8,PrimaryResourcePointer + 8);
     punsignedSystemValue4[0xc] = PrimaryResourcePointer[0xc];
     *punsignedSystemValue4 = 0;
     punsignedSystemValue4[1] = 0;
@@ -21383,7 +21383,7 @@ void* * FUN_180049010(long long SystemResourcePointer,long long *param_2,void* p
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void* * FUN_180049110(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+void* * CreateSystemResourceTemplate(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
 
 {
   void* *pointerToUnsigned1;
@@ -21391,8 +21391,8 @@ void* * FUN_180049110(long long SystemResourcePointer,long long param_2,void* pa
   pointerToUnsigned1 = (void* *)
            CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x68,*(uint8_t *)(SystemResourcePointer + 0x28),param_4,
                          0xfffffffffffffffe);
-  FUN_180627ae0(pointerToUnsigned1 + 4,param_2 + 0x20);
-  FUN_180627ae0(pointerToUnsigned1 + 8,param_2 + 0x40);
+  InitializeSystemMemoryAllocator(pointerToUnsigned1 + 4,param_2 + 0x20);
+  InitializeSystemMemoryAllocator(pointerToUnsigned1 + 8,param_2 + 0x40);
   pointerToUnsigned1[0xc] = *(void* *)(param_2 + 0x60);
   *pointerToUnsigned1 = 0;
   pointerToUnsigned1[1] = 0;
@@ -24388,18 +24388,31 @@ void ManageSystemResourceReferenceCount(ulong long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_18004c290(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18004c290(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统清理执行器
+ * 
+ * 该函数负责执行系统清理操作，遍历资源指针数组并调用相应的清理函数。
+ * 函数会处理资源释放和系统清理的最后步骤。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组
+ * @param param_2 清理参数2
+ * @param param_3 清理参数3
+ * @param param_4 清理参数4
+ * 
+ * @note 函数使用0xfffffffffffffffe作为清理标志
+ * @note 函数最后调用SystemCleanupFunction()进行最终清理
+ */
+void ExecuteSystemCleanup(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
-  void* *pointerToUnsigned1;
+  void* *cleanupArrayEnd;
   void** systemDataTable;
-  void* unsignedSystemValue3;
+  void* cleanupFlag;
   
-  unsignedSystemValue3 = 0xfffffffffffffffe;
-  pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
-  for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 4) {
-    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,param_3,param_4,unsignedSystemValue3);
+  cleanupFlag = 0xfffffffffffffffe;
+  cleanupArrayEnd = (void* *)SystemResourcePointer[1];
+  for (void* *currentCleanupFunction = (void* *)*SystemResourcePointer; currentCleanupFunction != cleanupArrayEnd; currentCleanupFunction = currentCleanupFunction + 4) {
+    (**(code **)*currentCleanupFunction)(currentCleanupFunction,0,param_3,param_4,cleanupFlag);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -24411,8 +24424,18 @@ void FUN_18004c290(long long *SystemResourcePointer,void* param_2,void* param_3,
 
 
 
-// 函数: void FUN_18004c2b0(long long SystemResourcePointer)
-void FUN_18004c2b0(long long SystemResourcePointer)
+/**
+ * @brief 系统资源状态验证器
+ * 
+ * 该函数负责验证系统资源的状态，检查资源指针的有效性
+ * 并执行相应的状态验证操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * @note 函数首先检查资源指针是否为空
+ * @note 函数使用系统句柄进行状态验证
+ */
+void ValidateSystemResourceStatus(long long SystemResourcePointer)
 
 {
   uint unsignedSystemValue1;
@@ -24420,23 +24443,35 @@ void FUN_18004c2b0(long long SystemResourcePointer)
   
   if (SystemResourcePointer == 0) {
 
-// 函数: void FUN_18004c2c4(long long SystemResourcePointer)
-void FUN_18004c2c4(long long SystemResourcePointer)
+/**
+ * @brief 系统字符串复制处理器
+ * 
+ * 该函数负责计算字符串长度并将字符串复制到系统数据区域。
+ * 函数会计算源字符串的长度，限制最大长度为0x1fff，然后将字符串
+ * 复制到预定义的系统数据地址。
+ * 
+ * @param SystemResourcePointer 源字符串指针
+ * 
+ * @note 函数限制字符串最大长度为8191字节(0x1fff)
+ * @note 函数将字符串复制到DAT_180c84870地址
+ * @note 函数使用do-while循环计算字符串长度
+ */
+void CopySystemStringToDataArea(long long SystemResourcePointer)
 
 {
-  uint unsignedSystemValue1;
-  long long localSystemHandle;
+  uint stringLength;
+  long long charIndex;
   
-  localSystemHandle = -1;
+  charIndex = -1;
   do {
-    localSystemHandle = localSystemHandle + 1;
-  } while (*(char *)(SystemResourcePointer + localSystemHandle) != '\0');
-  unsignedSystemValue1 = (uint)localSystemHandle;
-  if (0x1fff < unsignedSystemValue1) {
-    unsignedSystemValue1 = 0x1fff;
+    charIndex = charIndex + 1;
+  } while (*(char *)(SystemResourcePointer + charIndex) != '\0');
+  stringLength = (uint)charIndex;
+  if (0x1fff < stringLength) {
+    stringLength = 0x1fff;
   }
                     // WARNING: Subroutine does not return
-  memcpy(&DAT_180c84870,SystemResourcePointer,(long long)(int)unsignedSystemValue1);
+  memcpy(&DAT_180c84870,SystemResourcePointer,(long long)(int)stringLength);
 }
 
 
