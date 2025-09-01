@@ -37079,22 +37079,48 @@ void ProcessSystemResourceConfigurationWrapper(long long SystemResourcePointer,v
 
 
 
-// 函数: void FUN_18005d330(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005d330(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 处理系统资源配置包装函数B
+ * 
+ * 该函数是ProcessSystemResourceConfiguration的第二个包装函数，功能与第一个包装函数相同，
+ * 用于处理系统资源指针偏移位置的配置数据。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @note 此函数内部调用ProcessSystemResourceConfiguration处理配置数据
+ * 
+ * 原始函数名为FUN_18005d330，现已重命名为ProcessSystemResourceConfigurationWrapperB
+ */
+void ProcessSystemResourceConfigurationWrapperB(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_18005d260(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ProcessSystemResourceConfiguration(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_18005d360(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005d360(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 处理系统资源配置包装函数C
+ * 
+ * 该函数是ProcessSystemResourceConfiguration的第三个包装函数，功能与前两个包装函数相同，
+ * 用于处理系统资源指针偏移位置的配置数据。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @note 此函数内部调用ProcessSystemResourceConfiguration处理配置数据
+ * 
+ * 原始函数名为FUN_18005d360，现已重命名为ProcessSystemResourceConfigurationWrapperC
+ */
+void ProcessSystemResourceConfigurationWrapperC(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_18005d260(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ProcessSystemResourceConfiguration(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 

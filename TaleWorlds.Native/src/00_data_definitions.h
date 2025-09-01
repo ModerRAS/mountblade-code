@@ -187,19 +187,19 @@ void* SystemMemoryHeap;
 void* SystemMemoryStack;
 void* SystemMemoryPage;
 // 系统引擎内部数据指针 - 用于存储引擎核心内部数据
-void* SystemEngineInternalDataPointer01;
-void* SystemEngineInternalDataPointer02;
-void* SystemEngineInternalDataPointer03;
-void* SystemEngineInternalDataPointer04;
-void* SystemEngineInternalDataPointer05;
-void* SystemEngineInternalDataPointer06;
-void* SystemEngineInternalDataPointer07;
-void* SystemEngineInternalDataPointer08;
-void* SystemEngineInternalDataPointer09;
-void* SystemEngineInternalDataPointer10;
-void* SystemEngineInternalDataPointer11;
-void* SystemEngineInternalDataPointer12;
-void* SystemEngineInternalDataPointer13;
+void* SystemEngineInternalDataRenderContext;
+void* SystemEngineInternalDataPhysicsWorld;
+void* SystemEngineInternalDataAudioSystem;
+void* SystemEngineInternalDataInputManager;
+void* SystemEngineInternalDataSceneManager;
+void* SystemEngineInternalDataResourceManager;
+void* SystemEngineInternalDataNetworkManager;
+void* SystemEngineInternalDataAnimationSystem;
+void* SystemEngineInternalDataParticleEffect;
+void* SystemEngineInternalDataPostProcessing;
+void* SystemEngineInternalDataLightingSystem;
+void* SystemEngineInternalDataShadowMapping;
+void* SystemEngineInternalDataCollisionSystem;
 
 // 系统模块数据指针 - 用于存储模块相关数据
 void* SystemModuleDataPointer01;
@@ -2931,11 +2931,11 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
     SystemDataBufferStatus = 0;
     return;
   }
-  lVar2 = -1;
+  stringLength = -1;
   do {
-    lVar2 = lVar2 + 1;
+    stringLength = stringLength + 1;
   } while (*(char *)(param_1 + lVar2) != '\0');
-  MemoryAddress = (uint)lVar2;
+  MemoryAddress = (uint)stringLength;
   if (0x1fff < MemoryAddress) {
     MemoryAddress = 0x1fff;
   }
@@ -2951,7 +2951,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
           if (pMemoryAddress7 != (void *)0x0) {
             StringSearchResult = -1;
             do {
-              lVar9 = StringSearchResult;
+              stringIndex = StringSearchResult;
               StringSearchResult = lVar9 + 1;
             } while (pMemoryAddress7[StringSearchResult] != '\0');
             if ((int)StringSearchResult != 0) {
@@ -7099,9 +7099,9 @@ FUN_18045d980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
 }
     DAT_180d49c08 = 0;
     if (param_1 != 0) {
-      lVar2 = -1;
+      stringLength = -1;
       do {
-        lVar2 = lVar2 + 1;
+        stringLength = stringLength + 1;
       } while (*(char *)(param_1 + lVar2) != '\0');
       _DAT_180d49c00 = (uint32_t)lVar2;
       strcpy_s(&DAT_180d49c08,0x100,param_1);
@@ -9966,7 +9966,7 @@ int SystemDataCompare(longlong param_1)
           if (*(char *)(*(longlong *)(param_1 + 8) + lVar5 + lVar2) != *(char *)(NetworkRequestResult + lStack_28))
           break;
           NetworkRequestResult = (ulonglong)((int)NetworkRequestResult + 1);
-          lVar2 = lVar2 + 1;
+          stringLength = stringLength + 1;
         } while (lVar2 < iStack_20);
       }
       if ((int)NetworkRequestResult == iStack_20) goto LAB_18062995a;
@@ -10001,7 +10001,7 @@ int SystemDataCompareFunction(longlong param_1,longlong param_2)
           if (*(char *)(*(longlong *)(param_1 + 8) + lVar4 + lVar2) !=
               *(char *)(MemoryAllocationResult + *(longlong *)(param_2 + 8))) break;
           MemoryAllocationResult = (ulonglong)((int)MemoryAllocationResult + 1);
-          lVar2 = lVar2 + 1;
+          stringLength = stringLength + 1;
         } while (lVar2 < LoopCounter);
       }
       if ((int)MemoryAllocationResult == LoopCounter) {
@@ -11239,7 +11239,7 @@ longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong con
       if (lVar3 != 0) {
         pcStack_28[lVar2] = ' ';
       }
-      lVar2 = lVar2 + 1;
+      stringLength = stringLength + 1;
     } while (pcStack_28[lVar2] != '\0');
   }
   pcVar4 = "";
@@ -11515,11 +11515,11 @@ uint32_t SystemGetDeviceParameter(int deviceId)
     DAT_180c8f020 = 0;
     return;
   }
-  lVar2 = -1;
+  stringLength = -1;
   do {
-    lVar2 = lVar2 + 1;
+    stringLength = stringLength + 1;
   } while (*(char *)(param_1 + lVar2) != '\0');
-  MemoryAddress = (uint)lVar2;
+  MemoryAddress = (uint)stringLength;
   if (0x1fff < MemoryAddress) {
     MemoryAddress = 0x1fff;
   }
