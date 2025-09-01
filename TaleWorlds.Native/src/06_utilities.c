@@ -1,5 +1,22 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 对象注册相关的常量定义
+#define OBJECT_CONTEXT_OFFSET 0x10
+#define REGISTRATION_HANDLE_OFFSET 0x48
+#define REGISTRATION_DATA_OFFSET 0x38
+#define REGISTRATION_STATUS_OFFSET 0xe4
+#define REGISTRATION_ARRAY_OFFSET 0x4d8
+#define REGISTRATION_SIZE_OFFSET 0x4e4
+#define REGISTRATION_CAPACITY_OFFSET 0x4e8
+#define REGISTRATION_COUNT_OFFSET 0x4e0
+#define INVALID_REGISTRATION_STATUS -1
+#define REGISTRATION_ARRAY_INITIAL_SIZE 8
+#define REGISTRATION_ARRAY_GROWTH_FACTOR 1.5
+
+// 错误码定义
+#define ERROR_INVALID_OBJECT_HANDLE 0x1c
+#define ERROR_INVALID_REGISTRATION_DATA 0x1f
+
 /**
  * @brief 初始化模块依赖关系
  * 
@@ -3408,19 +3425,19 @@ uint8_t VerifyObjectRegistration(int64_t objectContext)
   int64_t contextStackData;
   char registeredObjectName[16];
   
-  registrationValidationStatus = GetRegistrationContextData(*(uint32_t *)(objectContext + 0x10), &contextStackData);
+  registrationValidationStatus = GetRegistrationContextData(*(uint32_t *)(objectContext + OBJECT_CONTEXT_OFFSET), &contextStackData);
   if ((int)registrationValidationStatus != 0) {
     return registrationValidationStatus;
   }
   registrationObjectHandle = *(int64_t *)(contextStackData + 8);
-  if ((registrationObjectHandle == 0) || (*(int64_t *)(registrationObjectHandle + 0x48) != contextStackData)) {
-    return 0x1c;
+  if ((registrationObjectHandle == 0) || (*(int64_t *)(registrationObjectHandle + REGISTRATION_HANDLE_OFFSET) != contextStackData)) {
+    return ERROR_INVALID_OBJECT_HANDLE;
   }
-  registrationObjectData = *(int64_t *)(registrationObjectHandle + 0x38);
+  registrationObjectData = *(int64_t *)(registrationObjectHandle + REGISTRATION_DATA_OFFSET);
   if (registrationObjectHandle == 0) {
-    return 0x1f;
+    return ERROR_INVALID_REGISTRATION_DATA;
   }
-  if (*(int *)(registrationObjectHandle + 0xe4) == -1) {
+  if (*(int *)(registrationObjectHandle + REGISTRATION_STATUS_OFFSET) == INVALID_REGISTRATION_STATUS) {
     registrationValidationStatus = GetRegisteredObjectName(registrationObjectHandle, registeredObjectName);
     if ((int)registrationValidationStatus != 0) {
       return registrationValidationStatus;
@@ -3431,9 +3448,9 @@ uint8_t VerifyObjectRegistration(int64_t objectContext)
     }
     if ((char)registrationValidationStatus == (char)objectRegistrationStatus) {
       if (registeredObjectName[0] == (char)objectRegistrationStatus) {
-        registrationArrayPointer = (int64_t *)(registrationObjectData + 0x4d8);
+        registrationArrayPointer = (int64_t *)(registrationObjectData + REGISTRATION_ARRAY_OFFSET);
         currentArrayIndex = 0;
-        registrationArraySize = *(int *)(registrationObjectData + 0x4e4);
+        registrationArraySize = *(int *)(registrationObjectData + REGISTRATION_SIZE_OFFSET);
         if (0 < registrationArraySize) {
           objectRegistrationArray = (int64_t *)*registrationArrayPointer;
           objectSearchIndex = currentArrayIndex;
