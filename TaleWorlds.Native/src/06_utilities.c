@@ -84117,7 +84117,7 @@ void InitializeSystemDataStructureH(void)
  /**
  * @brief 初始化系统数据结构I
  * 
- * 该函数负责将全局指针变量SystemDataTablePointer设置为指向UNK_18098bcb0
+ * 该函数负责将全局指针变量SystemDataTablePointer设置为指向SystemDataStructure001
  * 这是系统数据结构初始化的一部分
  */
 void InitializeSystemDataStructureI(void)
@@ -84136,7 +84136,7 @@ void InitializeSystemDataStructureI(void)
  /**
  * @brief 初始化系统数据结构J
  * 
- * 该函数负责将全局指针变量SystemResourcePointer1设置为指向UNK_18098bcb0
+ * 该函数负责将全局指针变量SystemResourcePointer1设置为指向SystemDataStructure001
  * 这是系统数据结构初始化的一部分
  */
 void InitializeSystemDataStructureJ(void)
@@ -84155,7 +84155,7 @@ void InitializeSystemDataStructureJ(void)
  /**
  * @brief 初始化系统数据结构K
  * 
- * 该函数负责将全局指针变量_DAT_180bf6530设置为指向UNK_18098bcb0
+ * 该函数负责将全局指针变量_DAT_180bf6530设置为指向SystemDataStructure001
  * 这是系统数据结构初始化的一部分
  */
 void InitializeSystemDataStructureK(void)
@@ -84174,7 +84174,7 @@ void InitializeSystemDataStructureK(void)
  /**
  * @brief 初始化系统数据结构L
  * 
- * 该函数负责将全局指针变量_DAT_180bf6590设置为指向UNK_18098bcb0
+ * 该函数负责将全局指针变量_DAT_180bf6590设置为指向SystemDataStructure001
  * 这是系统数据结构初始化的一部分
  */
 void InitializeSystemDataStructureL(void)
@@ -84193,7 +84193,7 @@ void InitializeSystemDataStructureL(void)
  /**
  * @brief 初始化系统数据结构M
  * 
- * 该函数负责将全局指针变量_DAT_180bf65c0设置为指向UNK_18098bcb0
+ * 该函数负责将全局指针变量_DAT_180bf65c0设置为指向SystemDataStructure001
  * 这是系统数据结构初始化的一部分
  */
 void InitializeSystemDataStructureM(void)
@@ -84335,7 +84335,7 @@ void ReleaseMemoryResources(undefined8 memoryPointer, undefined8 resourceHandle,
  * 初始化系统数据结构S
  * 
  * 此函数负责初始化系统中的某个关键数据结构S，将全局变量
- * _DAT_180bf52e8设置为指向预定义的数据结构UNK_18098bcb0。
+ * _DAT_180bf52e8设置为指向预定义的数据结构SystemDataStructure001。
  * 这个数据结构可能用于系统启动时的基础配置。
  */
 void InitializeSystemDataStructureS(void)
@@ -84355,7 +84355,7 @@ void InitializeSystemDataStructureS(void)
  * 初始化系统数据结构T
  * 
  * 此函数负责初始化系统中的某个关键数据结构T，将全局变量
- * _DAT_180bf5738设置为指向预定义的数据结构UNK_18098bcb0。
+ * _DAT_180bf5738设置为指向预定义的数据结构SystemDataStructure001。
  * 这个数据结构可能用于系统启动时的基础配置。
  */
 void InitializeSystemDataStructureT(void)
@@ -84520,7 +84520,7 @@ void InitializeSystemDataStructureX(void)
  * 初始化系统数据结构Y
  * 
  * 此函数负责初始化系统中的某个关键数据结构Y，将全局变量
- * _DAT_180bf7250设置为指向预定义的数据结构UNK_18098bcb0。
+ * _DAT_180bf7250设置为指向预定义的数据结构SystemDataStructure001。
  * 这个数据结构可能用于系统启动时的基础配置。
  */
 void InitializeSystemDataStructureY(void)
@@ -84558,7 +84558,7 @@ void InitializeSystemDataPointer(void)
  * 初始化系统数据结构AA
  * 
  * 此函数负责初始化系统中的某个关键数据结构AA，将全局变量
- * _DAT_180bf7310设置为指向预定义的数据结构UNK_18098bcb0。
+ * _DAT_180bf7310设置为指向预定义的数据结构SystemDataStructure001。
  * 这个数据结构可能用于系统启动时的基础配置。
  */
 void InitializeSystemDataStructureAA(void)
@@ -84602,7 +84602,7 @@ void ExecuteSystemStatusCheckAndCleanup(void)
 
  /**
  * 初始化系统数据结构AC
- * 将全局变量 _DAT_180bf90b0 设置为指向 UNK_18098bcb0
+ * 将全局变量 _DAT_180bf90b0 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAC(void)
@@ -84620,7 +84620,7 @@ void InitializeSystemDataStructureAC(void)
 
  /**
  * 初始化系统数据结构AD
- * 将全局变量 _DAT_180bf5b88 设置为指向 UNK_18098bcb0
+ * 将全局变量 _DAT_180bf5b88 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAD(void)
@@ -84644,7 +84644,7 @@ void InitializeSystemDataStructureAD(void)
  * 1. 将 _DAT_180d48db8 设置为指向 UNK_180a3c3e0
  * 2. 检查 _DAT_180d48dc0 是否为0，如果不为0则调用错误处理函数
  * 3. 重置计数器 _DAT_180d48dc0 和 _DAT_180d48dd0 为0
- * 4. 最后将 _DAT_180d48db8 设置为指向 UNK_18098bcb0
+ * 4. 最后将 _DAT_180d48db8 设置为指向 SystemDataStructure001
  */
 void InitializeSystemDataStructureAE(void)
 void InitializeSystemDataStructureAE(void)
@@ -84688,7 +84688,7 @@ void InitializeSystemDataStructureAF(void)
 
  /**
  * 初始化系统数据结构AG
- * 将全局变量 _DAT_180d49730 设置为指向 UNK_18098bcb0
+ * 将全局变量 _DAT_180d49730 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAG(void)
@@ -84713,7 +84713,7 @@ void InitializeSystemDataStructureAG(void)
  * 2. 检查 _DAT_180d49970 是否为0，如果不为0则调用错误处理函数
  * 3. 检查 _DAT_180d49950 是否为0，如果不为0则调用错误处理函数
  * 4. 调用 FUN_180320b20 初始化位于 0x180d498a0 的数据结构
- * 5. 将 _DAT_180d49830 设置为指向 UNK_18098bcb0
+ * 5. 将 _DAT_180d49830 设置为指向 SystemDataStructure001
  */
 void InitializeSystemDataStructureAH(void)
 void InitializeSystemDataStructureAH(void)
@@ -84786,7 +84786,7 @@ void InitializeSystemDataStructureAI(void)
 
  /**
  * 初始化系统数据结构AJ
- * 将全局变量 _DAT_180bf91b0 设置为指向 UNK_18098bcb0
+ * 将全局变量 _DAT_180bf91b0 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAJ(void)
@@ -84804,7 +84804,7 @@ void InitializeSystemDataStructureAJ(void)
 
  /**
  * 初始化系统数据结构AK
- * 将全局变量 _DAT_180bf9210 设置为指向 UNK_18098bcb0
+ * 将全局变量 _DAT_180bf9210 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAK(void)
@@ -84822,7 +84822,7 @@ void InitializeSystemDataStructureAK(void)
 
  /**
  * 初始化系统数据结构AL
- * 将全局变量 _DAT_180bf9270 设置为指向 UNK_18098bcb0
+ * 将全局变量 _DAT_180bf9270 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAL(void)
@@ -84840,7 +84840,7 @@ void InitializeSystemDataStructureAL(void)
 
  /**
  * 初始化系统数据结构AM
- * 将全局变量 _DAT_180bf92d0 设置为指向 UNK_18098bcb0
+ * 将全局变量 _DAT_180bf92d0 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAM(void)
@@ -84858,7 +84858,7 @@ void InitializeSystemDataStructureAM(void)
 
  /**
  * 初始化系统数据结构AN
- * 将全局变量 _DAT_180bf9330 设置为指向 UNK_18098bcb0
+ * 将全局变量 _DAT_180bf9330 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAN(void)
@@ -84876,7 +84876,7 @@ void InitializeSystemDataStructureAN(void)
 
  /**
  * 初始化系统数据结构AO
- * 将全局变量 _DAT_180bf9390 设置为指向 UNK_18098bcb0
+ * 将全局变量 _DAT_180bf9390 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAO(void)
@@ -84894,7 +84894,7 @@ void InitializeSystemDataStructureAO(void)
 
  /**
  * 初始化系统数据结构AP
- * 将全局变量 _DAT_180bf93f0 设置为指向 UNK_18098bcb0
+ * 将全局变量 _DAT_180bf93f0 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAP(void)
