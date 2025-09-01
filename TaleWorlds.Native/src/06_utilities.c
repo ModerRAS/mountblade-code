@@ -1961,8 +1961,14 @@ undefined UNK_1809fc7b8;
 undefined DAT_1809fc7ec;
 undefined DAT_180bf5240;
 
-// 函数: undefined FUN_1809417e0;
-undefined FUN_1809417e0;
+// 函数: void InitializeSystemLogging;
+/**
+ * @brief 初始化系统日志
+ * 
+ * 该函数负责初始化系统的日志记录功能
+ * 设置日志级别、输出目标和格式
+ */
+void InitializeSystemLogging;
 undefined DAT_180d49160;
 undefined DAT_180d49168;
 undefined DAT_180d49170;
@@ -1974,14 +1980,26 @@ undefined UNK_180a00030;
 undefined UNK_180a00100;
 undefined UNK_180a00168;
 
-// 函数: undefined FUN_180941920;
-undefined FUN_180941920;
+// 函数: void ConfigureLogOutput;
+/**
+ * @brief 配置日志输出
+ * 
+ * 该函数负责配置日志的输出方式和目标
+ * 设置日志文件路径和控制台输出
+ */
+void ConfigureLogOutput;
 undefined UNK_180a009a8;
 undefined UNK_180a00a18;
 undefined UNK_180a00ae8;
 
-// 函数: undefined FUN_1809419e0;
-undefined FUN_1809419e0;
+// 函数: void ProcessLogMessage;
+/**
+ * @brief 处理日志消息
+ * 
+ * 该函数负责处理系统生成的日志消息
+ * 格式化消息并输出到配置的目标
+ */
+void ProcessLogMessage;
 undefined UNK_180a015f0;
 undefined UNK_180a015fc;
 undefined UNK_180a01604;
@@ -2008,8 +2026,14 @@ undefined UNK_180a02718;
 undefined UNK_180a02728;
 undefined UNK_180a028c8;
 
-// 函数: undefined FUN_180941a30;
-undefined FUN_180941a30;
+// 函数: void FlushLogBuffer;
+/**
+ * @brief 刷新日志缓冲区
+ * 
+ * 该函数负责刷新日志缓冲区中的内容
+ * 确保所有日志消息都被写入输出目标
+ */
+void FlushLogBuffer;
 undefined DAT_180d49238;
 undefined DAT_180d49250;
 undefined DAT_180d49248;
@@ -2018,8 +2042,14 @@ undefined DAT_180d49258;
 undefined DAT_180d4925c;
 undefined UNK_180a02c10;
 
-// 函数: undefined FUN_180941ad0;
-undefined FUN_180941ad0;
+// 函数: void SetLogLevel;
+/**
+ * @brief 设置日志级别
+ * 
+ * 该函数负责设置系统的日志级别
+ * 控制哪些级别的日志消息会被记录
+ */
+void SetLogLevel;
 undefined UNK_180a07328;
 undefined UNK_180a07370;
 undefined UNK_180a18a00;
