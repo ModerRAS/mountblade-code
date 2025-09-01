@@ -10513,7 +10513,7 @@ LAB_18063182e:
     }
   } while( true );
 }
-int SystemBufferProcessData(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
+int SystemBufferProcessData(uint64_t bufferId, uint64_t processData, uint64_t *resultData)
 {
   char *pcVar1;
   char cVar2;
@@ -10563,7 +10563,7 @@ LAB_18063182e:
     }
   } while( true );
 }
-int SystemBufferVerifyData(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
+int SystemBufferVerifyData(uint64_t bufferId, uint64_t verifyData, uint64_t *resultData)
 {
   char *pcVar1;
   char cVar2;
@@ -10660,7 +10660,7 @@ longlong SystemBufferConfigure(uint64_t bufferId, uint64_t bufferSize, longlong 
   }
   return lVar4;
 }
-longlong SystemBufferSetup(uint64_t param_1,uint64_t param_2,longlong param_3)
+longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong configData)
 {
   int64_t ModuleInitializationResult;
   longlong lVar2;

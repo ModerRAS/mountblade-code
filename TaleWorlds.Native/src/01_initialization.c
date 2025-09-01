@@ -18718,7 +18718,7 @@ uint32_t FinalSystemInitialization(void)
   *(uint8_t *)(SystemManagerPointerStorage[1] + 0x80) = 1;
   while( true ) {
     systemController = *tempManager14[1];
-    if (systemController == (long long **)&UNK_1809ff3f8) {
+    if (systemController == (long long **)&SystemControllerDefaultTable) {
       IsActiveFlag = *(char *)(tempManager14[1] + 2) != '\0';
     }
     else {
@@ -18731,7 +18731,7 @@ uint32_t FinalSystemInitialization(void)
   stackManager8 = SystemManagerPointerStorage;
   if (SystemManagerPointerStorage != (long long ****)0x0) {
     SystemManagerPointer = __RTCastToVoid(SystemManagerPointerStorage);
-    *SystemManagerTable = (long long ***)&UNK_1809fee70;
+    *SystemManagerTable = (long long ***)&SystemManagerCompletionTable;
     PostQueuedCompletionStatus(SystemManagerTable[0x42686],0,0xffffffffffffffff);
     CloseHandle(SystemManagerTable[0x42686]);
     SystemResourcePointer = (long long ***)(SystemManagerTable + 0x42687);
