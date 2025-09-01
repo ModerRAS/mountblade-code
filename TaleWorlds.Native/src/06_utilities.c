@@ -5431,14 +5431,14 @@ int InitializeSystemManager(longlong managerHandle)
 void ProcessSystemMessageQueue(longlong messageQueueHandle, uint8_t8 configurationData)
 
 {
-  uint8_t8 uStackX_8;
-  int aiStack_58 [2];
-  longlong lStack_50;
+  uint8_t8 validationContext;
+  int operationResult [2];
+  longlong messageDataOffset;
   
-  aiStack_58[0] = ValidateObjectContext(*(uint8_t4 *)(messageQueueHandle + 0x10),&uStackX_8);
-  if (aiStack_58[0] == 0) {
-    lStack_50 = messageQueueHandle + 0x18;
-    ProcessResourceOperationEx(configurationData,aiStack_58,*(uint8_t4 *)(messageQueueHandle + 0x14),uStackX_8);
+  operationResult[0] = ValidateObjectContext(*(uint8_t4 *)(messageQueueHandle + 0x10),&validationContext);
+  if (operationResult[0] == 0) {
+    messageDataOffset = messageQueueHandle + 0x18;
+    ProcessResourceOperationEx(configurationData,operationResult,*(uint8_t4 *)(messageQueueHandle + 0x14),validationContext);
   }
   return;
 }
@@ -6380,18 +6380,18 @@ void ProcessDynamicBufferReallocation(void)
   int integerValue2;
   longlong in_RAX;
   longlong resourceIndex;
-  longlong lVar4;
+  longlong bufferPointer;
   uint unsignedValue5;
   longlong unaff_RBX;
   longlong unaff_R14;
   uint8_t8 in_stack_00000060;
   
   resourceIndex = 0;
-  lVar4 = in_RAX + 8;
+  bufferPointer = in_RAX + 8;
   if (in_RAX == 0) {
-    lVar4 = resourceIndex;
+    bufferPointer = resourceIndex;
   }
-  integerValue1 = ValidateBufferContext(lVar4);
+  integerValue1 = ValidateBufferContext(bufferPointer);
   if (integerValue1 != 0) {
     return;
   }
