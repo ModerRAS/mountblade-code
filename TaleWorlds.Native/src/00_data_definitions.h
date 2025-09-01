@@ -1051,26 +1051,29 @@ int InitializeMultiStringProcessorSystem(void)
   SystemConfigDataBufferK = 0;
   SystemConfigDataLengthK = 0x14;
   strcpy_s(&SystemConfigDataBufferK,0x40,&UnknownConfigTemplateG);
+  // 初始化主字符串数据结构
   SystemStringDataPointerPrimary = &SystemMemoryPool;
-  _DAT_180bf8260 = &SystemStringBufferPrimary;
+  SystemStringBufferPointerPrimary = &SystemStringBufferPrimary;
   SystemStringBufferPrimary = 0;
-  _DAT_180bf8268 = 0;
+  SystemStringDataSizePrimary = 0;
   strcpy_s(&SystemStringBufferPrimary,0x40,&SystemConstantStringPrimary);
-  _DAT_180bf82b0 = &SystemMemoryPool;
-  _DAT_180bf82b8 = &DAT_180bf82c8;
-  DAT_180bf82c8 = 0;
-  _DAT_180bf82c0 = 0x1b;
-  strcpy_s(&DAT_180bf82c8,0x40,&UNK_180a0cc48);
-  _DAT_180bf8308 = &SystemMemoryPool;
-  _DAT_180bf8310 = &DAT_180bf8320;
-  DAT_180bf8320 = 0;
-  _DAT_180bf8318 = 7;
-  strcpy_s(&DAT_180bf8320,0x40,&UNK_180a0cc08);
+  // 初始化次级字符串数据结构
+  SystemStringDataPointerSecondary = &SystemMemoryPool;
+  SystemStringBufferPointerSecondary = &SystemStringBufferSecondary;
+  SystemStringBufferSecondary = 0;
+  SystemStringDataSizeSecondary = 0x1b;
+  strcpy_s(&SystemStringBufferSecondary,0x40,&SystemConstantStringSecondary);
+  // 初始化第三级字符串数据结构
+  SystemStringDataPointerTertiary = &SystemMemoryPool;
+  SystemStringBufferPointerTertiary = &SystemStringBufferTertiary;
+  SystemStringBufferTertiary = 0;
+  SystemStringDataSizeTertiary = 7;
+  strcpy_s(&SystemStringBufferTertiary,0x40,&SystemConstantStringTertiary);
   _DAT_180bf8360 = &SystemMemoryPool;
   _DAT_180bf8368 = &DAT_180bf8378;
   DAT_180bf8378 = 0;
   _DAT_180bf8370 = 0x19;
-  strcpy_s(&DAT_180bf8378,0x40,&UNK_180a0cc10);
+  strcpy_s(&DAT_180bf8378,0x40,&SystemConstantStringQuaternary);
   _DAT_180bf83b8 = &SystemMemoryPool;
   _DAT_180bf83c0 = &DAT_180bf83d0;
   DAT_180bf83d0 = 0;
@@ -1159,9 +1162,9 @@ int InitializeMultiStringProcessorSystem(void)
   ModuleInitializationResult = RegisterSystemModule(&SystemModuleEntryPointB);
   return (ModuleInitializationResult != 0) - 1;
 }
-  DAT_180bf90c8 = 0;
-  _DAT_180bf90c0 = 0xd;
-  strcpy_s(&DAT_180bf90c8,0x20,&UNK_180a01300,StringProcessorFlags,SystemMutexFlags);
+  SystemConfigBufferPrimary = 0;
+  SystemConfigDataSizePrimary = 0xd;
+  strcpy_s(&SystemConfigBufferPrimary,0x20,&UNK_180a01300,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializePhysicsSubsystem);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1183,9 +1186,9 @@ int InitializeStringProcessorAD(void)
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorAD_Callback);
   return (CallbackResult != 0) - 1;
 }
-  DAT_180bf91c8 = 0;
-  _DAT_180bf91c0 = 0x10;
-  strcpy_s(&DAT_180bf91c8,0x40,&UNK_180a22b38,StringProcessorFlags,SystemMutexFlags);
+  SystemConfigBufferSecondary = 0;
+  SystemConfigDataSizeSecondary = 0x10;
+  strcpy_s(&SystemConfigBufferSecondary,0x40,&UNK_180a22b38,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeRenderingPipeline);
   return (ModuleInitializationResult != 0) - 1;
 }
