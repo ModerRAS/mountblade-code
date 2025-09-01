@@ -18483,7 +18483,7 @@ uint32_t FinalSystemInitialization(void)
     _Mtx_destroy_in_situ();
     ppplStackX_10 = (long long ***)(pppplVar8 + 0x40070);
     _Mtx_destroy_in_situ();
-    FUN_18006bfe0(pppplVar8);
+    ConfigureSystemBuffer(pppplVar8);
     if (lVar10 != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction(lVar10);
@@ -43674,7 +43674,7 @@ void FUN_18006b940(void* *param_1)
 void* FUN_18006bd20(void* param_1,ulong long param_2)
 
 {
-  FUN_18006bfe0();
+  ConfigureSystemBuffer();
   if ((param_2 & 1) != 0) {
     free(param_1,0x370);
   }
@@ -43853,8 +43853,8 @@ LAB_18006bf7f:
 
 
 
-// 函数: void FUN_18006bfe0(void* *param_1)
-void FUN_18006bfe0(void* *param_1)
+// 函数: void ConfigureSystemBuffer(void* *param_1)
+void ConfigureSystemBuffer(void* *param_1)
 
 {
   *param_1 = &UNK_1809ff498;
