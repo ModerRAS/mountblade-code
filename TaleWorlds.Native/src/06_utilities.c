@@ -8724,8 +8724,15 @@ uint8_t8 GetErrorStatusCode(void)
 
 /**
  * @brief 执行数据验证和处理操作
- * @param data_context 数据上下文指针
- * @param operation_context 操作上下文指针
+ * 
+ * 该函数负责验证数据格式和完整性，并在验证通过后执行相应的数据处理操作。
+ * 首先验证数据格式，然后检查数据完整性，最后执行数据操作。
+ * 
+ * @param data_context 数据上下文指针，包含待处理的数据和相关元信息
+ * @param operation_context 操作上下文指针，包含操作所需的配置和状态信息
+ * @return 无返回值
+ * @note 该函数会在数据验证失败时提前返回
+ * @warning 在数据完整性检查失败时可能触发系统错误处理
  */
 void ExecuteDataValidationAndProcessing(longlong data_context, longlong operation_context)
 
@@ -8801,9 +8808,15 @@ int process_data_block_operation(longlong data_context, longlong operation_conte
 
 /**
  * @brief 处理数据块操作和内存分配
- * @param objectContextParam 数据上下文指针，包含数据块信息
- * @param validationContextParam 系统上下文指针，用于系统级操作
- * @return 操作状态码，0表示成功，非0表示错误
+ * 
+ * 该函数负责处理数据块的相关操作，包括创建资源表、分配内存和复制数据。
+ * 根据不同的操作模式执行相应的数据处理流程，确保数据的完整性和正确性。
+ * 
+ * @param objectContextParam 对象上下文参数，包含待处理的对象信息和元数据
+ * @param validationContextParam 验证上下文参数，用于数据验证和系统操作
+ * @return 操作状态码，0x26表示成功，0x1f表示失败
+ * @note 函数会根据操作模式选择不同的处理路径
+ * @warning 内存分配失败时会导致操作失败
  */
 int ProcessDataBlockOperationAndMemoryAllocation(uint8_t8 objectContextParam, uint8_t8 validationContextParam)
 
@@ -10783,10 +10796,10 @@ void ProcessModuleInitialization(longlong ModuleHandle, void* ModuleContext, int
       iVar3 = (**(code **)(unaff_RDI + 0xc0))
                         (unsignedValue6,unaff_EBX,*(uint8_t4 *)(longValue8 + 0x18),
                          *(uint8_t8 *)(unaff_RDI + 0xb8));
-      param_3 = in_stack_00000048;
+      calculationResult = in_stack_00000048;
       if (iVar3 != 0) goto LAB_180895b69;
     }
-    if ((((cVar2 != '\0') && (iVar3 = *param_3, *param_3 = iVar3 + 1, iVar3 < 10)) &&
+    if ((((cVar2 != '\0') && (iVar3 = *calculationResult, *calculationResult = iVar3 + 1, iVar3 < 10)) &&
         ((*(uint *)(unaff_RDI + 0x6c) >> 0x18 & 1) == 0)) &&
        (((*(uint *)(unaff_RDI + 0x6c) >> 0x19 & 1) != 0 && (iVar4 == *(int *)(unaff_RDI + 0xb0)))))
     {
@@ -10845,8 +10858,8 @@ void FinalizeSecurityOperationWithStack(void)
 
 
 
- void ProcessResourceHashAndIndex(longlong objectContextParam,int validationContextParam,uint8_t8 *param_3)
-void ProcessResourceHashAndIndex(longlong objectContextParam,int validationContextParam,uint8_t8 *param_3)
+ void ProcessResourceHashAndIndex(longlong objectContextParam,int validationContextParam,uint8_t8 *hashOutput)
+void ProcessResourceHashAndIndex(longlong objectContextParam,int validationContextParam,uint8_t8 *hashOutput)
 
 {
   uint8_t8 resourceHash;
@@ -10855,8 +10868,8 @@ void ProcessResourceHashAndIndex(longlong objectContextParam,int validationConte
   longlong lVar4;
   int tableEntry;
   
-  *param_3 = 0;
-  param_3[1] = 0;
+  *hashOutput = 0;
+  hashOutput[1] = 0;
   pintegerValue2 = (int *)(**(code **)(*(longlong *)
                                 ((longlong)
                                  *(int *)(*(longlong *)(objectContextParam + 0x18) + (longlong)validationContextParam * 0xc) +
@@ -10880,8 +10893,8 @@ void ProcessResourceHashAndIndex(longlong objectContextParam,int validationConte
       }
     }
     resourceHash = *(uint8_t8 *)(resourceIndex + 0x18);
-    *param_3 = *(uint8_t8 *)(resourceIndex + 0x10);
-    param_3[1] = resourceHash;
+    *hashOutput = *(uint8_t8 *)(resourceIndex + 0x10);
+    hashOutput[1] = resourceHash;
   }
   return;
 }
@@ -10922,7 +10935,7 @@ uint64_t ProcessParameterizedDataValidationAndOperation(longlong dataContext,int
           if (*(uint *)(resourceTable + resourceIndex * 0x10) == resourceHash) {
             uStackX_1c = (uint)((ulonglong)*(uint8_t8 *)(resourceTable + 8 + resourceIndex * 0x10) >> 0x20);
             if (uStackX_1c != 0) {
-              *param_3 = uStackX_1c;
+              *hashOutput = uStackX_1c;
               return 0;
             }
             goto LAB_180895ccb;
@@ -10938,7 +10951,7 @@ LAB_180895ccb:
       if (punsignedResult4 != (uint8_t8 *)0x0) {
         (**(code **)*punsignedResult4)();
       }
-      *param_3 = uStackX_1c;
+      *hashOutput = uStackX_1c;
       return 0;
     }
   }
@@ -14670,7 +14683,7 @@ uint8_t8 ProcessResourceTimeSynchronization(longlong *objectContextParam,char va
  * @param param_3 输出参数，用于返回找到的资源信息
  * @return 查找状态码，0表示成功，非0表示错误
  */
-uint8_t8 FindResourceHashTableEntry(longlong *objectContextParam,char *validationContextParam,uint8_t8 *param_3)
+uint8_t8 FindResourceHashTableEntry(longlong *objectContextParam,char *validationContextParam,uint8_t8 *hashTableEntry)
 
 {
   char *pcVar1;
@@ -87915,21 +87928,21 @@ void CleanupSystemResources(uint8_t8 resourceType, uint8_t8 resourceInstance, ui
 {
   uint8_t8 *SystemResourceManager;
   
-  ResourceManager = SystemResourceManagerPointer;
+  SystemResourceManager = SystemResourceManagerPointer;
   if (SystemResourceManagerPointer == (uint8_t8 *)0x0) {
     return;
   }
   ReleaseSystemResources(&SystemResourceData, *SystemResourceManagerPointer, cleanupOptions, cleanupFlags, 0xfffffffffffffffe);
-  resourceManager[4] = &ResourceCleanupMarker;
-  if (resourceManager[5] != 0) {
+  SystemResourceManager[4] = &ResourceCleanupMarker;
+  if (SystemResourceManager[5] != 0) {
                     // WARNING: Subroutine does not return
     EmergencyResourceCleanup();
   }
-  resourceManager[5] = 0;
-  *(uint8_t4 *)(resourceManager + 7) = 0;
-  resourceManager[4] = &ResourceResetMarker;
+  SystemResourceManager[5] = 0;
+  *(uint8_t4 *)(SystemResourceManager + 7) = 0;
+  SystemResourceManager[4] = &ResourceResetMarker;
                     // WARNING: Subroutine does not return
-  FinalizeResourceCleanup(resourceManager);
+  FinalizeResourceCleanup(SystemResourceManager);
 }
 
 
