@@ -8225,19 +8225,28 @@ void ProcessObjectContextValidationAndIncrement(longlong param_1,longlong param_
 
 
  void FUN_180893420(longlong param_1,longlong param_2)
-void FUN_180893420(longlong param_1,longlong param_2)
+/**
+ * @brief 处理对象上下文验证并重置状态
+ * 
+ * 该函数验证对象上下文的有效性，并在验证通过后重置相关状态标志
+ * 主要用于对象状态重置和清理操作
+ * 
+ * @param param_1 对象上下文参数，包含对象的基本信息
+ * @param param_2 系统上下文参数，用于系统级操作
+ */
+void ProcessObjectContextValidationAndReset(longlong param_1,longlong param_2)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int validationStatus;
+  longlong contextPointer;
   
-  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if (iVar1 == 0) {
-    if (lStackX_8 != 0) {
-      lStackX_8 = lStackX_8 + -8;
+  validationStatus = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&contextPointer);
+  if (validationStatus == 0) {
+    if (contextPointer != 0) {
+      contextPointer = contextPointer + -8;
     }
-    *(int *)(lStackX_8 + 0x84) = *(int *)(lStackX_8 + 0x84) + 1;
-    *(undefined1 *)(lStackX_8 + 0xbd) = 0;
+    *(int *)(contextPointer + 0x84) = *(int *)(contextPointer + 0x84) + 1;
+    *(undefined1 *)(contextPointer + 0xbd) = 0;
                     // WARNING: Subroutine does not return
     FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
   }
@@ -8285,7 +8294,13 @@ undefined8 FUN_180893480(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180893540(longlong param_1,longlong param_2)
+/**
+ * @brief 处理参数化的浮点数比较操作
+ * @param param_1 对象上下文指针，包含浮点数值和验证信息
+ * @param param_2 系统上下文指针，用于系统级操作
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined8 ProcessParameterizedFloatComparison(longlong param_1, longlong param_2)
 
 {
   longlong lVar1;
@@ -8845,8 +8860,13 @@ undefined8 FUN_180893e94(void)
 
 
 
- void FUN_180893eef(void)
-void FUN_180893eef(void)
+ /**
+ * @brief 空操作函数A
+ * 
+ * 这是一个空操作函数，不执行任何操作
+ * 主要用于占位或作为默认的空实现
+ */
+void EmptyOperationFunctionA(void)
 
 {
   return;
