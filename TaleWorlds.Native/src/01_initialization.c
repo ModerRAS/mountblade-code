@@ -19731,7 +19731,7 @@ void FUN_180046ca0(long long *param_1,void* *param_2)
   plVar1 = (long long *)FUN_18062b1e0(_DAT_180c8ed18,200,8,3,uVar2,uVar3);
   plStackX_8 = plVar1;
   FUN_180049830(plVar1);
-  *plVar1 = (long long)&UNK_1809fcb00;
+  *plVar1 = (long long)&SystemDataTableTemplate;
   plVar1[0x18] = (long long)&UNK_180046dd0;
   plStackX_18 = plVar1;
   (**(code **)(*plVar1 + 0x28))(plVar1);
@@ -19853,7 +19853,7 @@ void InitializeSystemCoreEngine(void)
   ppplVar4 = (long long ***)FUN_18062b1e0(_DAT_180c8ed18,200,8,3);
   ppplStack_590 = ppplVar4;
   FUN_180049830(ppplVar4);
-  *ppplVar4 = (long long **)&UNK_1809fcb00;
+  *ppplVar4 = (long long **)&SystemDataTableTemplate;
   ppplVar4[0x18] = (long long **)&UNK_180047d20;
   pplStack_4f0 = (long long **)ppplVar4;
   (*(code *)(*ppplVar4)[5])(ppplVar4);
@@ -21108,11 +21108,15 @@ FUN_1800491b0(void* *param_1,long long *param_2,long long *param_3,void* *param_
 
 
 
-// 函数: void FUN_180049470(void* *param_1)
-void FUN_180049470(void* *param_1)
+// 函数: void ResetSystemMemoryManager(void* *param_1)
+/**
+ * @brief 重置系统内存管理器
+ * 重置系统内存管理器，销毁互斥锁和条件变量
+ */
+void ResetSystemMemoryManager(void* *param_1)
 
 {
-  *param_1 = &UNK_1809fcb90;
+  *param_1 = &SystemMutexTemplate;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(param_1 + 4);
   *param_1 = &UNK_18098bdc8;
@@ -21136,8 +21140,12 @@ void* FUN_1800494f0(void* param_1,ulong long param_2)
 
 
 
-// 函数: void FUN_180049550(long long param_1,uint8_t param_2)
-void FUN_180049550(long long param_1,uint8_t param_2)
+// 函数: void LockSystemMutex(long long param_1,uint8_t param_2)
+/**
+ * @brief 锁定系统互斥锁
+ * 锁定系统互斥锁，确保线程安全
+ */
+void LockSystemMutex(long long param_1,uint8_t param_2)
 
 {
   int iVar1;
@@ -21313,7 +21321,7 @@ FUN_180049830(void* *param_1,void* param_2,void* param_3,void* param_4)
   *(uint8_t *)(param_1 + 2) = 0;
   UNLOCK();
   param_1[3] = 0xffffffffffffffff;
-  *param_1 = &UNK_1809fcb90;
+  *param_1 = &SystemMutexTemplate;
   _Cnd_init_in_situ(param_1 + 4);
   _Mtx_init_in_situ(param_1 + 0xd,2,param_3,param_4,uVar1);
   *(uint8_t *)(param_1 + 0x17) = 0;
