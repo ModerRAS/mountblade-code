@@ -9147,7 +9147,7 @@ uint8_t8 ProcessDataValidationAndSystemOperation(longlong objectContextParam,lon
   uint8_t8 validationResult;
   longlong resourceIndex;
   uint8_t8 *punsignedResult4;
-  float fVar5;
+  float TertiaryFloatValue;
   uint ArrayUnionStackX8 [2];
   uint8_t4 auStackX_18 [2];
   
@@ -9199,7 +9199,7 @@ uint64_t GetSystemRuntimeStatus(void)
   uint8_t8 *punsignedResult4;
   longlong unaff_RBX;
   longlong unaff_RDI;
-  float fVar5;
+  float TertiaryFloatValue;
   uint8_t4 in_stack_00000040;
   
   resourceTable = func_0x000180867680();
@@ -10513,14 +10513,14 @@ uint8_t8 ExpandResourcePoolCapacitySimple(void)
   int in_EAX;
   uint8_t8 validationResult;
   ulonglong unsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   uint unsignedValue5;
   int *pintegerValue6;
   longlong *unaff_RBX;
   int unaff_EDI;
-  int iVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
+  int ValidationStatus;
+  ulonglong MemorySize;
+  ulonglong AllocationSize;
   
   if (unaff_EDI == in_EAX) {
     iVar7 = unaff_EDI * 2;
@@ -10600,14 +10600,14 @@ void ProcessResourceCalculationAndValidation(longlong objectContextParam,uint8_t
 {
   byte encryptionShiftValue;
   longlong resourceTable;
-  char cVar3;
-  int iVar4;
+  char StatusFlag;
+  int ResultIndex;
   uint8_t8 unsignedValue5;
-  longlong lVar6;
-  longlong lVar7;
-  int iVar8;
-  longlong lVar9;
-  float fVar10;
+  longlong MemoryAddress;
+  longlong BufferPointer;
+  int OperationCounter;
+  longlong ResourceHandle;
+  float ResultFloatValue;
   float fVar11;
   uint8_t1 auStack_738 [68];
   uint8_t4 uStack_6f4;
@@ -10735,11 +10735,11 @@ void ProcessModuleInitialization(longlong ModuleHandle, void* ModuleContext, int
   longlong loopCounter;
   char cVar2;
   int validationStatus;
-  int iVar4;
+  int ResultIndex;
   longlong in_RAX;
   longlong lVar5;
   uint8_t8 unsignedValue6;
-  longlong lVar7;
+  longlong BufferPointer;
   int unaff_EBX;
   uint8_t4 unaff_0000001c;
   longlong unaff_RBP;
@@ -10748,7 +10748,7 @@ void ProcessModuleInitialization(longlong ModuleHandle, void* ModuleContext, int
   uint8_t1 *unaff_R13;
   longlong longValue8;
   float fVar9;
-  float fVar10;
+  float ResultFloatValue;
   uint8_t8 in_stack_00000040;
   int *in_stack_00000048;
   
@@ -10865,7 +10865,7 @@ void ProcessResourceHashAndIndex(longlong objectContextParam,int validationConte
   uint8_t8 resourceHash;
   int *pintegerValue2;
   longlong resourceIndex;
-  longlong lVar4;
+  longlong DataOffset;
   int tableEntry;
   
   *hashOutput = 0;
@@ -10978,7 +10978,7 @@ uint64_t ProcessExtendedParameterizedDataValidation(longlong extendedContext, ui
   longlong loopCounter;
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
-  int iVar4;
+  int ResultIndex;
   int *unaff_RDI;
   longlong in_R10;
   bool in_ZF;
@@ -11267,12 +11267,12 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t8 extendedResourcePool
   int operationResult;
   uint8_t8 validationResult;
   uint8_t8 *punsignedResult3;
-  int iVar4;
+  int ResultIndex;
   uint8_t4 *resourcePointer5;
   uint configurationFlags;
-  int iVar7;
+  int ValidationStatus;
   int *unaff_RBX;
-  int iVar8;
+  int OperationCounter;
   longlong unaff_RDI;
   uint8_t8 *unaff_R14;
   uint8_t4 *unaff_R15;
@@ -11505,7 +11505,7 @@ uint64_t CleanupResourcePoolAndReleaseMemory(uint8_t8 resourcePool, int cleanupF
   int operationResult;
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   uint8_t8 *bytePointer5;
   longlong *unaff_RBX;
   int unaff_EDI;
@@ -11684,10 +11684,10 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
   byte *pencryptionShiftValue;
   uint8_t4 validationResult;
   uint8_t8 unsignedResult3;
-  int iVar4;
+  int ResultIndex;
   longlong lVar5;
   ulonglong unsignedValue6;
-  int iVar7;
+  int ValidationStatus;
   uint uVar8;
   uint uVar9;
   ulonglong resourceHash0;
@@ -12206,7 +12206,7 @@ int ProcessDataBlockOperationWithSimplifiedValidator(longlong objectContextParam
   uint8_t4 resourceHash;
   uint8_t4 validationResult;
   int validationStatus;
-  int iVar4;
+  int ResultIndex;
   
   resourceHash = *(uint8_t4 *)(objectContextParam + 0x14);
   validationResult = *(uint8_t4 *)(objectContextParam + 0x10);
@@ -12261,10 +12261,10 @@ void ProcessComplexResourceOperation(uint8_t8 objectContextParam,longlong valida
   longlong loopCounter;
   longlong resourceTable;
   int validationStatus;
-  int iVar4;
+  int ResultIndex;
   int tableEntry;
   uint8_t **ppunsignedValue6;
-  int iVar7;
+  int ValidationStatus;
   uint8_t1 auStack_328 [32];
   uint8_t4 uStack_308;
   float afStack_304 [3];
@@ -12614,8 +12614,8 @@ void ProcessComplexResourceWithRegisters(void)
   uint8_t4 unsignedResult4;
   uint8_t4 unsignedValue5;
   uint8_t4 unsignedValue6;
-  int iVar7;
-  int iVar8;
+  int ValidationStatus;
+  int OperationCounter;
   int iVar9;
   uint8_t4 unaff_EBX;
   longlong unaff_RBP;
@@ -12630,7 +12630,7 @@ void ProcessComplexResourceWithRegisters(void)
   float extraout_XMM0_Da_04;
   float extraout_XMM0_Da_05;
   float extraout_XMM0_Da_06;
-  float fVar10;
+  float ResultFloatValue;
   uint8_t4 uStackX_20;
   float fStackX_24;
   uint8_t *in_stack_00000030;
@@ -13015,12 +13015,12 @@ void ExecuteSimplifiedContextValidation(void)
   float CalculatedFloatValue;
   longlong resourceTable;
   longlong resourceIndex;
-  longlong lVar4;
+  longlong DataOffset;
   char cVar5;
   int integerValue6;
   uint unsignedValue7;
   longlong longValue8;
-  longlong lVar9;
+  longlong ResourceHandle;
   uint8_t8 resourceHash0;
   uint8_t8 resourceHash1;
   uint8_t *presourceHash2;
@@ -13984,10 +13984,10 @@ LAB_180897af6:
   longlong loopCounter;
   longlong resourceTable;
   int validationStatus;
-  int iVar4;
+  int ResultIndex;
   int tableEntry;
   int integerValue6;
-  int iVar7;
+  int ValidationStatus;
   uint8_t1 auStack_2a8 [32];
   uint8_t4 dataChecksumBuffer8 [2];
   uint8_t *puStack_280;
@@ -14242,12 +14242,12 @@ uint8_t8 ValidateResourceRenderingState(void)
   float CalculatedFloatValue;
   uint8_t8 *pvalidationResult;
   uint8_t4 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   char cVar5;
   int integerValue6;
-  int iVar7;
-  int iVar8;
-  ulonglong uVar9;
+  int ValidationStatus;
+  int OperationCounter;
+  ulonglong AllocationSize;
   longlong *plocalContextPointer0;
   longlong localContextPointer1;
   uint8_t *presourceHash2;
@@ -14549,7 +14549,7 @@ LAB_18089866f:
   int operationResult;
   int integerValue2;
   int validationStatus;
-  int iVar4;
+  int ResultIndex;
   uint unsignedValue5;
   int integerValue6;
   
@@ -14692,7 +14692,7 @@ uint8_t8 FindResourceHashTableEntry(longlong *objectContextParam,char *validatio
   uint8_t8 byteValue4;
   char cVar5;
   char cVar6;
-  int iVar7;
+  int ValidationStatus;
   uint uVar8;
   char *pcVar9;
   int integerValue10;
@@ -14786,11 +14786,11 @@ uint64_t BinarySearchInArray(longlong arrayData,uint *searchKey,uint8_t8 searchC
   uint resourceHash;
   longlong resourceTable;
   int validationStatus;
-  int iVar4;
+  int ResultIndex;
   uint8_t8 unsignedValue5;
   uint *punsignedValue6;
-  int iVar7;
-  int iVar8;
+  int ValidationStatus;
+  int OperationCounter;
   int iVar9;
   
   iVar8 = 0;
@@ -14995,7 +14995,7 @@ uint8_t4 ExtractResourceHashData(uint8_t8 objectContextParam,int validationConte
   uint8_t4 unsignedValue5;
   uint8_t4 unsignedValue6;
   uint unsignedValue7;
-  int iVar8;
+  int OperationCounter;
   int iVar9;
   uint8_t1 *presourceHash0;
   uint8_t1 *presourceHash1;
@@ -15129,7 +15129,7 @@ uint8_t4 ValidateResourceHashIndex(uint8_t8 objectContextParam,ulonglong validat
   uint8_t1 *resourcePointer5;
   uint8_t1 *punsignedValue6;
   uint unaff_EBX;
-  int iVar7;
+  int ValidationStatus;
   longlong unaff_RBP;
   uint8_t1 *unaff_RSI;
   longlong longValue8;
@@ -15239,7 +15239,7 @@ uint8_t4 GetResourceTableStatus(void)
   uint8_t1 *pvalidationResult;
   uint8_t1 *punsignedResult3;
   int unaff_EBX;
-  int iVar4;
+  int ResultIndex;
   longlong unaff_RBP;
   uint8_t1 *unaff_RSI;
   uint8_t1 *resourcePointer5;
@@ -15354,7 +15354,7 @@ uint8_t8 ProcessResourceTableIndex(longlong *objectContextParam,int validationCo
   int operationResult;
   longlong resourceTable;
   uint8_t2 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   uint8_t2 *resourcePointer5;
   
   if (validationContextParam < (int)objectContextParam[1]) {
@@ -15414,7 +15414,7 @@ uint8_t8 ValidateResourceParameters(uint8_t8 objectContextParam,int validationCo
   int operationResult;
   longlong resourceTable;
   uint8_t2 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   uint8_t2 *resourcePointer5;
   longlong *unaff_RBX;
   int unaff_EDI;
@@ -16192,7 +16192,7 @@ uint8_t8 QueryResourceTable(uint8_t8 objectContextParam, longlong *validationCon
   int operationResult;
   uint8_t8 validationResult;
   uint unsignedValue3;
-  longlong lVar4;
+  longlong DataOffset;
   int tableEntry;
   int aiStackX_18 [2];
   
@@ -16244,7 +16244,7 @@ uint8_t8 InitializeResourceBuffer(void)
   uint8_t8 validationResult;
   uint unsignedValue3;
   longlong *unaff_RBX;
-  int iVar4;
+  int ResultIndex;
   int in_stack_00000040;
   
   if (in_stack_00000040 == 0) {
@@ -16300,7 +16300,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
   int operationResult;
   longlong resourceTable;
   uint8_t8 unsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   int aiStackX_8 [2];
   
@@ -16346,7 +16346,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
   longlong lVar5;
   ulonglong unsignedValue6;
   uint8_t4 unsignedValue7;
-  ulonglong uVar8;
+  ulonglong MemorySize;
   uint8_t8 uStackX_8;
   
   uStackX_8 = CONCAT44(uStackX_8._4_4_,*validationContextParam);
@@ -16497,10 +16497,10 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
   longlong unaff_RBP;
   uint unsignedResult4;
   ulonglong unsignedValue5;
-  longlong lVar6;
+  longlong MemoryAddress;
   ulonglong unsignedValue7;
   longlong unaff_R14;
-  ulonglong uVar8;
+  ulonglong MemorySize;
   uint8_t4 extraout_XMM0_Da;
   uint8_t4 extraout_XMM0_Da_00;
   uint8_t4 extraout_XMM0_Da_01;
@@ -16650,15 +16650,15 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
   uint resourceHash;
   uint8_t8 *pvalidationResult;
   int validationStatus;
-  int iVar4;
+  int ResultIndex;
   longlong unaff_RBX;
   longlong unaff_RBP;
   longlong unaff_RSI;
   longlong lVar5;
   longlong unaff_RDI;
-  longlong lVar6;
+  longlong MemoryAddress;
   longlong unaff_R14;
-  longlong lVar7;
+  longlong BufferPointer;
   uint8_t4 extraout_XMM0_Da;
   uint8_t4 extraout_XMM0_Da_00;
   uint8_t4 extraout_XMM0_Da_01;
@@ -17348,8 +17348,8 @@ uint8_t8 ValidateResourceStatusFlags(longlong resourceContext, longlong statusPo
   ushort unsignedResult3;
   uint8_t8 byteValue4;
   ushort unsignedValue5;
-  longlong lVar6;
-  longlong lVar7;
+  longlong MemoryAddress;
+  longlong BufferPointer;
   longlong longValue8;
   int aiStack_48 [4];
   
@@ -17479,7 +17479,7 @@ uint8_t8 InitializeResourceProcessingContext(void)
   longlong unaff_RDI;
   uint8_t8 in_R9;
   longlong unaff_R14;
-  longlong lVar4;
+  longlong DataOffset;
   
   if ((unaff_RSI & 0x10) != 0) {
     integerValue2 = *(int *)(unaff_RDI + 0x260);
@@ -17734,7 +17734,7 @@ ulonglong ValidateResourceHash(longlong resourceContext, uint8_t8 *resourceData)
   ulonglong resourceHash;
   longlong resourceTable;
   int validationStatus;
-  int iVar4;
+  int ResultIndex;
   uint *resourcePointer5;
   int aiStackX_8 [2];
   uint auStackX_10 [2];
@@ -17926,7 +17926,7 @@ a9f0(longlong objectContextParam,int *validationContextParam)
 {
   char *pcVar1;
   code *pcVar2;
-  char cVar3;
+  char StatusFlag;
   uint8_t4 in_EAX;
   uint8_t3 unsignedValue6;
   int tableEntry;
@@ -19429,7 +19429,7 @@ ulonglong ProcessResourceDataA(longlong objectContextParam,longlong *validationC
   ulonglong unsignedValue5;
   ulonglong unsignedValue6;
   uint unsignedValue7;
-  ulonglong uVar8;
+  ulonglong MemorySize;
   char acStackX_18 [8];
   uint auStackX_20 [2];
   uint8_t1 resourceValidationBuffer [32];
@@ -19610,7 +19610,7 @@ ulonglong ProcessResourceDataB(void)
   longlong *unaff_RBX;
   ulonglong unsignedValue7;
   longlong unaff_RSI;
-  ulonglong uVar8;
+  ulonglong MemorySize;
   char in_stack_00000090;
   uint in_stack_00000098;
   
@@ -19781,7 +19781,7 @@ ulonglong ProcessResourceDataC(void)
   longlong *unaff_RBX;
   ulonglong unsignedValue7;
   longlong unaff_RSI;
-  ulonglong uVar8;
+  ulonglong MemorySize;
   char in_stack_00000090;
   uint in_stack_00000098;
   
@@ -19935,7 +19935,7 @@ ulonglong ProcessResourceDataD(void)
   longlong *unaff_RBX;
   ulonglong unsignedValue7;
   longlong unaff_RSI;
-  ulonglong uVar8;
+  ulonglong MemorySize;
   char in_stack_00000090;
   uint in_stack_00000098;
   
@@ -20282,7 +20282,7 @@ ProcessResourceData(longlong ResourceContext, uint8_t8 *ResourceData, int Proces
   int validationStatus;
   uint unsignedResult4;
   uint unsignedValue5;
-  longlong lVar6;
+  longlong MemoryAddress;
   uint unsignedValue7;
   uint ArrayUnionStackX8 [2];
   uint auStackX_20 [2];
@@ -20525,7 +20525,7 @@ ulonglong ProcessResourceDataReadAndValidate(longlong objectContextParam,uint8_t
   ulonglong unsignedResult4;
   uint unsignedValue5;
   uint8_t8 *punsignedValue6;
-  longlong lVar7;
+  longlong BufferPointer;
   int aiStackX_10 [2];
   
   if (*(int *)(resourceData[1] + 0x18) != 0) {
@@ -20849,7 +20849,7 @@ uint8_t8 * GetResourceDataPointerA(void)
   uint8_t4 validationResult;
   uint8_t4 unsignedResult3;
   uint8_t4 unsignedResult4;
-  float fVar5;
+  float TertiaryFloatValue;
   float fVar6;
   float floatValue7;
   uint uVar8;
@@ -21112,7 +21112,7 @@ uint8_t8 * GetResourceDataPointerB(void)
   uint8_t4 validationResult;
   uint8_t4 unsignedResult3;
   uint8_t4 unsignedResult4;
-  float fVar5;
+  float TertiaryFloatValue;
   float fVar6;
   float floatValue7;
   uint uVar8;
@@ -21368,7 +21368,7 @@ ulonglong ResourceProcessingHandler(uint8_t8 objectContextParam)
   uint8_t4 validationResult;
   uint8_t4 unsignedResult3;
   float SecondaryFloatValue;
-  float fVar5;
+  float TertiaryFloatValue;
   float fVar6;
   uint8_t8 unsignedValue7;
   uint in_EAX;
@@ -22352,7 +22352,7 @@ ulonglong ResourceProcessingHandlerAlt2(void)
   uint unsignedResult4;
   ulonglong unsignedValue5;
   ulonglong unsignedValue6;
-  int iVar7;
+  int ValidationStatus;
   longlong *unaff_RBX;
   longlong unaff_RBP;
   uint uVar8;
@@ -22609,7 +22609,7 @@ ulonglong ResourceProcessingHandlerAlt3(void)
   uint unsignedResult4;
   ulonglong unsignedValue5;
   ulonglong unsignedValue6;
-  int iVar7;
+  int ValidationStatus;
   longlong *unaff_RBX;
   longlong unaff_RBP;
   uint8_t4 unaff_ESI;
@@ -22868,7 +22868,7 @@ ulonglong ProcessFloatParameterResourceHash(float objectContextParam)
   uint unsignedResult4;
   ulonglong unsignedValue5;
   ulonglong unsignedValue6;
-  int iVar7;
+  int ValidationStatus;
   longlong *unaff_RBX;
   longlong unaff_RBP;
   uint uVar8;
@@ -23103,7 +23103,7 @@ ulonglong ResourceDataVerifier(longlong objectContextParam,longlong *validationC
   longlong *processPointer;
   uint validationResult;
   ulonglong unsignedResult3;
-  int iVar4;
+  int ResultIndex;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
   uint8_t1 auStack_38 [32];
@@ -23187,7 +23187,7 @@ ulonglong ValidateAndProcessResourceDataIntegrity(void)
   uint validationResult;
   longlong in_RAX;
   ulonglong unsignedResult3;
-  int iVar4;
+  int ResultIndex;
   longlong unaff_RBP;
   longlong *unaff_RSI;
   uint in_stack_00000080;
@@ -25440,7 +25440,7 @@ ulonglong ProcessComplexResourceOperations(longlong objectContextParam,uint8_t8 
   uint unsignedValue3;
   ulonglong unsignedResult4;
   uint8_t4 *resourcePointer5;
-  longlong lVar6;
+  longlong MemoryAddress;
   uint8_t4 *puStack_88;
   uint8_t8 uStack_80;
   uint8_t4 uStack_78;
@@ -25557,8 +25557,8 @@ ulonglong ProcessResourceHashCalculationAndValidation(void)
   uint unsignedValue5;
   int integerValue6;
   uint8_t4 *punsignedValue7;
-  ulonglong uVar8;
-  longlong lVar9;
+  ulonglong MemorySize;
+  longlong ResourceHandle;
   longlong unaff_RBP;
   uint8_t4 *presourceHash0;
   uint8_t8 *unaff_RDI;
@@ -30421,7 +30421,7 @@ void Unwind_180902950(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   ulonglong unsignedValue7;
@@ -30476,7 +30476,7 @@ void Unwind_180902960(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   ulonglong unsignedValue7;
@@ -30579,7 +30579,7 @@ void Unwind_180902a40(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   ulonglong unsignedValue7;
@@ -30634,7 +30634,7 @@ void Unwind_180902a50(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   ulonglong unsignedValue7;
@@ -31929,7 +31929,7 @@ void Unwind_180902e80(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   ulonglong *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   uint8_t8 *bytePointer5;
   ulonglong unsignedValue6;
   
@@ -32034,7 +32034,7 @@ void Unwind_180902ec0(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   ulonglong *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   uint8_t8 *bytePointer5;
   ulonglong unsignedValue6;
   
@@ -39255,7 +39255,7 @@ void Unwind_180904960(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -39317,7 +39317,7 @@ void Unwind_180904970(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -39379,7 +39379,7 @@ void Unwind_180904990(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -39585,7 +39585,7 @@ void Unwind_180904a20(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -39647,7 +39647,7 @@ void Unwind_180904a30(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -39709,7 +39709,7 @@ void Unwind_180904a50(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -40009,11 +40009,11 @@ void Catch_180904b90(uint8_t8 objectContextParam,longlong validationContextParam
   ulonglong resourceHash;
   longlong resourceTable;
   longlong resourceIndex;
-  longlong lVar4;
+  longlong DataOffset;
   ulonglong unsignedValue5;
   ulonglong unsignedValue6;
-  longlong lVar7;
-  ulonglong uVar8;
+  longlong BufferPointer;
+  ulonglong MemorySize;
   
   resourceHash = *(ulonglong *)(validationContextParam + 0x20);
   resourceTable = *(longlong *)(validationContextParam + 0xa0);
@@ -40063,10 +40063,10 @@ void Catch_180904c60(uint8_t8 objectContextParam,longlong validationContextParam
   longlong *presourceIndex;
   ulonglong unsignedResult4;
   ulonglong unsignedValue5;
-  longlong lVar6;
+  longlong MemoryAddress;
   ulonglong unsignedValue7;
-  ulonglong uVar8;
-  longlong lVar9;
+  ulonglong MemorySize;
+  longlong ResourceHandle;
   
   uVar8 = *(ulonglong *)(validationContextParam + 0x20);
   loopCounter = *(longlong *)(validationContextParam + 0x90);
@@ -42878,7 +42878,7 @@ void Unwind_180905940(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   ulonglong *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   uint8_t8 *bytePointer5;
   ulonglong unsignedValue6;
   
@@ -43759,7 +43759,7 @@ void Unwind_180905c50(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -44195,10 +44195,10 @@ void Unwind_180905e40(uint8_t8 objectContextParam,longlong validationContextPara
   longlong *processPointer;
   int *pintegerValue2;
   longlong *presourceIndex;
-  int iVar4;
+  int ResultIndex;
   longlong lVar5;
-  longlong lVar6;
-  longlong lVar7;
+  longlong MemoryAddress;
+  longlong BufferPointer;
   longlong longValue8;
   bool bVar9;
   
@@ -44297,7 +44297,7 @@ void Unwind_180905ea0(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -44608,7 +44608,7 @@ void Unwind_180905fa0(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -55266,7 +55266,7 @@ void Unwind_1809092d0(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   ulonglong *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   ulonglong unsignedValue5;
   ulonglong unsignedValue6;
   
@@ -55309,7 +55309,7 @@ void Unwind_1809092e0(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   ulonglong *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   ulonglong unsignedValue5;
   ulonglong unsignedValue6;
   
@@ -55379,7 +55379,7 @@ void Unwind_180909320(uint8_t8 objectContextParam,longlong validationContextPara
   longlong *processPointer;
   uint8_t8 *pvalidationResult;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -55527,7 +55527,7 @@ void Unwind_1809093b0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong *processPointer;
   uint8_t8 *pvalidationResult;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -55608,7 +55608,7 @@ void Unwind_1809093c0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong *processPointer;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -56370,7 +56370,7 @@ void Unwind_1809096b0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong *processPointer;
   uint8_t8 *pvalidationResult;
   uint8_t8 *punsignedResult3;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -56451,7 +56451,7 @@ void Unwind_1809096c0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong *processPointer;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
-  longlong lVar4;
+  longlong DataOffset;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -72609,7 +72609,7 @@ void Unwind_18090efe0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
-  longlong lVar4;
+  longlong DataOffset;
   longlong *plVar5;
   
   loopCounter = *(longlong *)(validationContextParam + 0x70);
@@ -82105,7 +82105,7 @@ void Unwind_180911de0(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   int integerValue2;
   longlong resourceIndex;
-  longlong lVar4;
+  longlong DataOffset;
   ulonglong unsignedValue5;
   uint configurationFlags;
   ulonglong unsignedValue7;
@@ -86963,7 +86963,7 @@ void ReleaseResourceReferenceWithParameter(void)
   longlong *processPointer;
   int *pintegerValue2;
   int validationStatus;
-  longlong lVar4;
+  longlong DataOffset;
   longlong *unaff_RBX;
   
   LOCK();
@@ -87023,7 +87023,7 @@ void InitializeSystemDataStructureCM(void)
   longlong *processPointer;
   int *pintegerValue2;
   int validationStatus;
-  longlong lVar4;
+  longlong DataOffset;
   longlong *plVar5;
   
   plVar5 = ResourceManagerSecondaryPointer;
@@ -87066,7 +87066,7 @@ void InitializeSystemDataStructureCN(void)
   longlong *processPointer;
   int *pintegerValue2;
   int validationStatus;
-  longlong lVar4;
+  longlong DataOffset;
   longlong *unaff_RBX;
   
   LOCK();
@@ -87120,7 +87120,7 @@ void ExecuteReferenceCountDecrementAndCleanup(void)
   longlong *processPointer;
   int *pintegerValue2;
   int validationStatus;
-  longlong lVar4;
+  longlong DataOffset;
   longlong *plVar5;
   
   plVar5 = ResourceManagerTertiaryPointer;
@@ -87163,7 +87163,7 @@ void InitializeSystemDataStructureCP(void)
   longlong *processPointer;
   int *pintegerValue2;
   int validationStatus;
-  longlong lVar4;
+  longlong DataOffset;
   longlong *unaff_RBX;
   
   LOCK();
