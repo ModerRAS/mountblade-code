@@ -18370,7 +18370,7 @@ LAB_180044db8:
     if (puStack_1d0 != (void* *)0x0) {
       puStack_220 = puStack_1d0;
     }
-    puStack_228 = &UNK_18098bab0;
+    puStack_228 = &SystemConfigurationTemplatePrimary;
     SystemManagerSetFlags(SystemContextManagerPointer,5,0xffffffffffffffff,4);
     puStack_188 = &SystemMemoryTemplateE;
     puStack_180 = auStack_170;
@@ -18382,7 +18382,7 @@ LAB_180044db8:
     if (puStack_180 != (void* *)0x0) {
       puStack_220 = puStack_180;
     }
-    puStack_228 = &UNK_18098bac8;
+    puStack_228 = &SystemConfigurationTemplateSecondary;
     SystemManagerSetFlags(SystemContextManagerPointer,5,0xffffffffffffffff,4);
     uStack_200 = 0;
     puStack_188 = &SystemMemoryAllocatorReference;
