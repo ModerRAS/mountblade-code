@@ -7003,26 +7003,26 @@ LAB_1808477fa:
 void ProcessNetworkDataValidationAndBufferOperations(void)
 
 {
-  int networkStatus1;
-  int networkStatus2;
-  NetworkStatus unaff_EBX;
-  NetworkStatus unaff_EBP;
-  NetworkStatus unaff_ESI;
-  NetworkStatus unaff_R14D;
+  int firstProcessingStatus;
+  int secondProcessingStatus;
+  NetworkStatus networkValidationContext;
+  NetworkStatus networkBufferContext;
+  NetworkStatus networkErrorContext;
+  NetworkStatus networkFinalContext;
   
-  networkStatus1 = ProcessNetworkDataValidation(&stack0x00000040,0x100,unaff_EBX);
-  networkStatus2 = ProcessNetworkBufferData(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
-  networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferCopy(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,unaff_EBP);
-  networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
-  networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferCopy(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,unaff_R14D);
-  networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
-  ProcessNetworkAddressValidation(&stack0x00000040 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
+  firstProcessingStatus = ProcessNetworkDataValidation(&networkDataBuffer,0x100,networkValidationContext);
+  secondProcessingStatus = ProcessNetworkBufferData(&networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,&g_NetworkBufferDataTemplate);
+  firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
+  secondProcessingStatus = ProcessNetworkBufferCopy(&networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,networkBufferContext);
+  firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
+  secondProcessingStatus = ProcessNetworkBufferData(&networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,&g_NetworkBufferDataTemplate);
+  firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
+  secondProcessingStatus = ProcessNetworkBufferCopy(&networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,networkFinalContext);
+  firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
+  secondProcessingStatus = ProcessNetworkBufferData(&networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,&g_NetworkBufferDataTemplate);
+  ProcessNetworkAddressValidation(&networkDataBuffer + (firstProcessingStatus + secondProcessingStatus),0x100 - (firstProcessingStatus + secondProcessingStatus));
                     // WARNING: Subroutine does not return
-  LogNetworkConnectionError(unaff_ESI,0xb);
+  LogNetworkConnectionError(networkErrorContext,0xb);
 }
 
 
@@ -7066,17 +7066,17 @@ NetworkData * GetNetworkDataPointer(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180c4ea90) {
-    FUN_1808fcb90(&DAT_180c4ea90);
-    if (_DAT_180c4ea90 == -1) {
-      _DAT_180c4ea80 = 0;
-      uRam0000000180c4ea84 = 0;
-      uRam0000000180c4ea88 = 0;
-      uRam0000000180c4ea8c = 0;
-      FUN_1808fcb30(&DAT_180c4ea90);
+              0x48) < NetworkDataSizeLimit) {
+    InitializeNetworkDataSizeLimit(&NetworkDataSizeLimit);
+    if (NetworkDataSizeLimit == -1) {
+      NetworkDataBuffer = 0;
+      NetworkDataOffset1 = 0;
+      NetworkDataOffset2 = 0;
+      NetworkDataOffset3 = 0;
+      FinalizeNetworkDataSizeLimit(&NetworkDataSizeLimit);
     }
   }
-  return &DAT_180c4ea80;
+  return &NetworkDataBuffer;
 }
 
 
@@ -7100,8 +7100,8 @@ NetworkData * GetNetworkDataPointer(void)
 void ProcessNetworkPacketTransfer(ulonglong connectionContext,NetworkByte *packetData)
 
 {
-  int networkStatus1;
-  NetworkByte networkStackBuffer [32];
+  int networkInitStatus;
+  NetworkByte networkSecurityBuffer [32];
   NetworkByte *packetBufferPointer;
   NetworkHandle connectionHandle;
   longlong connectionContextData;
@@ -7110,33 +7110,33 @@ void ProcessNetworkPacketTransfer(ulonglong connectionContext,NetworkByte *packe
   NetworkByte dataBuffer [256];
   ulonglong securityGuardValue;
   
-  uStack_18 = NetworkSecurityGuardValue ^ (ulonglong)networkStackBuffer;
+  securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)networkSecurityBuffer;
   if (packetData == (NetworkByte *)0x0) {
     if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCheck(uStack_18 ^ (ulonglong)networkStackBuffer);
+      NetworkSecurityGuardCheck(securityGuardValue ^ (ulonglong)networkSecurityBuffer);
     }
-    ProcessNetworkBufferDataWithSecurity(auStack_118,0x100,0);
-    puStack_148 = auStack_118;
+    ProcessNetworkBufferDataWithSecurity(dataBuffer,0x100,0);
+    packetBufferPointer = dataBuffer;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(0x1f,0xc,connectionContext,&UNK_1809847f8);
+    LogNetworkConnectionError(0x1f,0xc,connectionContext,&NetworkErrorReportTable);
   }
   *packetData = 0;
-  uStack_128 = 0;
-  uStack_138 = 0;
-  lStack_130 = 0;
-  networkStatus1 = NetworkConnectionIdInitialize(0,&lStack_130);
-  if (((networkStatus1 == 0) && (networkStatus1 = NetworkConnectionHandleInitialize(&uStack_138,lStack_130), networkStatus1 == 0)) &&
-     (networkStatus1 = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&lStack_120), networkStatus1 == 0)) {
-    uStack_128 = *(NetworkHandle *)(lStack_120 + 8);
+  connectionHandle = 0;
+  connectionId = 0;
+  connectionContextData = 0;
+  networkInitStatus = NetworkConnectionIdInitialize(0,&connectionContextData);
+  if (((networkInitStatus == 0) && (networkInitStatus = NetworkConnectionHandleInitialize(&connectionId,connectionContextData), networkInitStatus == 0)) &&
+     (networkInitStatus = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&connectionFlags), networkInitStatus == 0)) {
+    connectionHandle = *(NetworkHandle *)(connectionFlags + 8);
   }
-  else if (networkStatus1 != 0) {
+  else if (networkInitStatus != 0) {
                     // WARNING: Subroutine does not return
-    NetworkConnectionHandleRelease(&uStack_138);
+    NetworkConnectionHandleRelease(&connectionId);
   }
-  FUN_1808479d0(uStack_128,*(NetworkHandle *)(lStack_130 + 800),packetData);
+  ProcessNetworkPacketDataTransfer(connectionHandle,*(NetworkHandle *)(connectionContextData + 800),packetData);
                     // WARNING: Subroutine does not return
-  NetworkConnectionHandleRelease(&uStack_138);
+  NetworkConnectionHandleRelease(&connectionId);
 }
 
 
@@ -11550,7 +11550,15 @@ LAB_18084bff4:
 
 
 // 函数: void FUN_18084bfc9(void)
-void FUN_18084bfc9(void)
+/**
+ * @brief 网络缓冲区模板处理器
+ * 
+ * 该函数负责处理网络缓冲区模板，调用模板处理函数
+ * 主要用于网络数据的标准模板化处理
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkBufferTemplateProcessor(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -11561,7 +11569,15 @@ void FUN_18084bfc9(void)
 
 
 // 函数: void FUN_18084bff2(void)
-void FUN_18084bff2(void)
+/**
+ * @brief 网络安全守卫清理器
+ * 
+ * 该函数负责清理网络安全守卫相关的资源和数据
+ * 主要用于网络连接关闭后的安全清理工作
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkSecurityGuardCleanupProcessor(void)
 
 {
   ulonglong in_stack_00000098;
@@ -11671,7 +11687,21 @@ FUN_180848ff1:
 
 
 
-NetworkHandle * FUN_18084c050(NetworkHandle *connectionContext,NetworkHandle packetData,byte dataSize)
+// 函数: NetworkHandle * FUN_18084c050(NetworkHandle *connectionContext,NetworkHandle packetData,byte dataSize)
+/**
+ * @brief 网络连接上下文初始化器
+ * 
+ * 该函数负责初始化网络连接上下文，设置连接参数和状态
+ * 主要用于新网络连接的初始化准备工作
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据
+ * @param dataSize 数据大小
+ * @return 初始化后的网络连接上下文指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle * InitializeNetworkConnectionContext(NetworkHandle *connectionContext,NetworkHandle packetData,byte dataSize)
 
 {
   NetworkHandle primaryNetworkFlag;
@@ -11722,7 +11752,19 @@ NetworkHandle * FUN_18084c050(NetworkHandle *connectionContext,NetworkHandle pac
 // WARNING: Removing unreachable block (ram,0x00018084c55b)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint FUN_18084c150(longlong *connectionContext)
+// 函数: uint FUN_18084c150(longlong *connectionContext)
+/**
+ * @brief 网络连接安全验证器
+ * 
+ * 该函数负责验证网络连接的安全性，检查连接状态和权限
+ * 主要用于确保网络连接的安全性和合法性
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @return 验证结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+uint ValidateNetworkConnectionSecurity(longlong *connectionContext)
 
 {
   int networkStatus1;
@@ -11786,7 +11828,19 @@ uint FUN_18084c150(longlong *connectionContext)
 // WARNING: Removing unreachable block (ram,0x0001807480eb)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint FUN_18084c220(longlong *connectionContext)
+// 函数: uint FUN_18084c220(longlong *connectionContext)
+/**
+ * @brief 网络连接状态清理器
+ * 
+ * 该函数负责清理网络连接状态，重置连接参数
+ * 主要用于连接关闭后的状态重置工作
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @return 清理结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+uint CleanupNetworkConnectionState(longlong *connectionContext)
 
 {
   int networkStatus1;
