@@ -2326,8 +2326,7 @@ uint8_t SystemVideoManagerData;
 uint8_t ResourceSystemConfig;
 uint8_t SystemDatabaseManagerData;
 
- void InitializeMemoryManager(void);
-/**
+ /**
  * @brief 初始化内存管理器
  * 
  * 该函数负责初始化系统的内存管理器
@@ -2545,9 +2544,6 @@ uint8_t ScriptMethodTable;
 uint8_t ScriptObjectTable;
 
  uint8_t InitializeResourceManager;
-uint8_t InitializeResourceManager;
-
- uint8_t ConfigureResourceSettings;
 uint8_t ConfigureResourceSettings;
 uint8_t SystemMemoryConfigDataTemplateSecurepecialB;
 uint8_t ResourceAllocationTable;
@@ -2558,7 +2554,6 @@ uint8_t SystemResourceCache;
 uint8_t SystemResourcePoolManager;
 
  uint8_t ProcessResourceOperations;
-uint8_t ProcessResourceOperations;
 uint8_t SystemResourceValidator;
 uint8_t SystemResourceChecker;
 uint8_t ResourceTrackerTable;
@@ -2573,7 +2568,6 @@ uint8_t ResourcePoolTable;
 uint8_t ResourceQueueTable;
 
  uint8_t ValidateResourceIntegrity;
-uint8_t ValidateResourceIntegrity;
 uint8_t ResourceStackTable;
 uint8_t ResourceAnalyzerTable;
 uint8_t ResourceProfilerTable;
@@ -2845,10 +2839,7 @@ uint8_t SystemConfigurationLogLevel;
 uint8_t SystemConfigurationPerformanceMode;
 
  uint8_t ExecuteResourceCleanup;
-uint8_t ExecuteResourceCleanup;
 uint8_t MemoryPoolStatus;
-
- uint8_t OptimizeResourceUsage;
 uint8_t OptimizeResourceUsage;
 uint8_t SystemEventHandlerInput;
 uint8_t SystemEventHandlerRender;
@@ -6575,7 +6566,12 @@ void SystemInitializationCompleteFlag(void)
  * 该函数负责初始化系统的内存管理器，设置内存分配和释放的基本机制
  * 确保内存管理器能够正确处理内存分配请求
  */
-void InitializeMemoryManager(void)
+/**
+ * @brief 初始化内存管理器
+ * 
+ * 该函数负责初始化系统的内存管理器
+ * 设置内存分配策略和回收机制
+ */
 void InitializeMemoryManager(void)
 
 {
@@ -15063,9 +15059,7 @@ uint64_t BinarySearchInArray(int64_t ArrayData,uint *SearchKey,uint8_t SearchCon
  * @param ProcessedCount 输出参数，返回已处理的资源数量
  * @return 处理状态码，0x1f表示无效索引，0x41表示成功处理
  */
-uint32_t
-HandleResourceHashProcessing(int64_t *ResourceTable, int ResourceIndex, uint32_t *HashDataOutput, uint8_t *ResourceBuffer, int BufferSize,
-             int *ProcessedCount)
+uint32_t HandleResourceHashProcessing(int64_t *ResourceTable, int ResourceIndex, uint32_t *HashDataOutput, uint8_t *ResourceBuffer, int BufferSize, int *ProcessedCount)
 
 {
   uint32_t *HashEntryPointer;
@@ -18471,20 +18465,7 @@ LAB_18089ae18:
 
 
 
- /**
- * @brief 初始化内存管理器
- * 
- * 该函数负责初始化系统的内存管理器
- * 设置内存分配和回收的基础设施
- * 
- * @return 无返回值
- */
-void InitializeMemoryManager(void)
-
-{
-  return;
-}
-
+ 
 
 
 
