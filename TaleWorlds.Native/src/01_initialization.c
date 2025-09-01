@@ -11400,7 +11400,7 @@ void InitializeSystemEventDataNodeManager(void)
 
 
 
-// 函数: void FUN_18003a9b0(void)
+// 函数: void InitializeSystemEventSystem(void)
 /**
  * @brief 初始化系统资源节点
  * 
@@ -11458,7 +11458,7 @@ void InitializeSystemResourceNode(void)
 
 
 
-// 函数: void FUN_18003aab0(void)
+// 函数: void InitializeSystemTimerManager(void)
 /**
  * @brief 初始化系统内存节点管理器
  * 
