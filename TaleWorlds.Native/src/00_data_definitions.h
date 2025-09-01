@@ -3296,21 +3296,21 @@ LAB_18004e062:
         if (10 < *(int *)(_DAT_180c8a9c8 + 0xbd0)) {
           iVar7 = *(int *)(_DAT_180c8a9c8 + 0xbd0);
         }
-        fVar14 = (float)*(double *)(lVar6 + 0x208);
+        FloatCalculationResult = (float)*(double *)(lVar6 + 0x208);
         if (1.0 / (float)iVar7 <= (float)*(double *)(lVar6 + 0x208)) {
-          fVar14 = 1.0 / (float)iVar7;
+          FloatCalculationResult = 1.0 / (float)iVar7;
         }
       }
       else {
-        fVar14 = *(float *)(lVar6 + 0x268);
+        FloatCalculationResult = *(float *)(lVar6 + 0x268);
       }
-      *(float *)(lVar6 + 0x220) = fVar14;
+      *(float *)(lVar6 + 0x220) = FloatCalculationResult;
     }
     else {
       *(uint32_t *)(lVar6 + 0x220) = 0x3d088889;
-      fVar14 = 0.033333335;
+      FloatCalculationResult = 0.033333335;
     }
-    ProcessInputEvent(lVar6,fVar14);
+    ProcessInputEvent(lVar6,FloatCalculationResult);
     MemoryAllocationResult = MemoryManagerDataAddress;
     if ((NetworkModuleDataAddress != 0) &&
        (pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
@@ -3369,11 +3369,11 @@ LAB_18004e062:
       ProcessGameLogic(lVar6,(float)*(double *)(GameEngineDataAddress + 0x1510));
     }
     if (*(char *)(lVar6 + 0x1ee) == '\0') {
-      fVar14 = *(float *)(lVar6 + 0x200);
+      FloatCalculationResult = *(float *)(lVar6 + 0x200);
       dVar15 = *(double *)(lVar6 + 0x218);
       do {
         QueryPerformanceCounter(&lStack_88);
-      } while ((double)lStack_88 * PerformanceCounterFactor < (double)fVar14 + dVar15);
+      } while ((double)lStack_88 * PerformanceCounterFactor < (double)FloatCalculationResult + dVar15);
       QueryPerformanceCounter(&lStack_80);
       lVar8 = lStack_80 - LastPerformanceCounter;
       LastPerformanceCounter = lStack_80;
@@ -5188,27 +5188,27 @@ LAB_180203fb6:
         FUN_180060680(auStack_258,&UNK_180a177f0,&UNK_180a17770,&UNK_180a17798);
         OutputDebugStringA(auStack_258);
       }
-      fVar14 = (float)modff((float)(int)(*(ushort *)((longlong)param_1 + 0x5e) - 1) *
+      FloatCalculationResult = (float)modff((float)(int)(*(ushort *)((longlong)param_1 + 0x5e) - 1) *
                             uStackX_18._4_4_,&uStack_2b0);
       fVar15 = (float)modff();
       fStack_298 = (fStack_28c - fStack_298) * fVar15 + fStack_298;
       fStack_294 = (fStack_288 - fStack_294) * fVar15 + fStack_294;
       fStack_290 = (fStack_284 - fStack_290) * fVar15 + fStack_290;
-      fVar16 = (((fStack_270 - fStack_27c) * fVar15 + fStack_27c) - fStack_294) * fVar14 +
+      fVar16 = (((fStack_270 - fStack_27c) * fVar15 + fStack_27c) - fStack_294) * FloatCalculationResult +
                fStack_294;
-      fVar17 = (((fStack_26c - fStack_278) * fVar15 + fStack_278) - fStack_290) * fVar14 +
+      fVar17 = (((fStack_26c - fStack_278) * fVar15 + fStack_278) - fStack_290) * FloatCalculationResult +
                fStack_290;
-      fVar14 = (((fStack_274 - fStack_280) * fVar15 + fStack_280) - fStack_298) * fVar14 +
+      FloatCalculationResult = (((fStack_274 - fStack_280) * fVar15 + fStack_280) - fStack_298) * FloatCalculationResult +
                fStack_298;
     }
     else {
       fVar16 = (float)uStack_2b0;
       fVar17 = (float)uStack_2b0;
-      fVar14 = (float)uStack_2b0;
+      FloatCalculationResult = (float)uStack_2b0;
     }
     *param_2 = fVar17;
     param_2[1] = fVar16;
-    param_2[2] = fVar14;
+    param_2[2] = FloatCalculationResult;
     param_2[3] = 1.0;
     break;
   case 0x16:
@@ -5232,10 +5232,10 @@ code_r0x0001802a1528:
     puVar8 = (uint16_t *)FUN_1802a4590(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
     fVar16 = (float)ConvertToFloatValue(puVar8[2]);
     fVar17 = (float)ConvertToFloatValue(puVar8[1]);
-    fVar14 = (float)ConvertToFloatValue(*puVar8);
+    FloatCalculationResult = (float)ConvertToFloatValue(*puVar8);
     fVar15 = (float)ConvertToFloatValue(puVar8[3]);
     param_2[3] = fVar15;
-    *param_2 = fVar14;
+    *param_2 = FloatCalculationResult;
     param_2[1] = fVar17;
     param_2[2] = fVar16;
     break;
@@ -5559,7 +5559,7 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
   float fVar11;
   uint8_t aMemoryAddress2 [16];
   float fVar13;
-  float fVar14;
+  float FloatCalculationResult;
   float fVar15;
   switch(*(int *)((longlong)param_1 + 0x54) + -1) {
   case 0:
@@ -5569,15 +5569,15 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     if (0 < (int)pfVar4) {
       uVar8 = (ulonglong)pfVar4 & 0xffffffff;
       do {
-        fVar14 = (float)pbVar9[1] * 0.007843138 - 1.0;
+        FloatCalculationResult = (float)pbVar9[1] * 0.007843138 - 1.0;
         fVar13 = (float)*pbVar9 * 0.007843138 - 1.0;
         fVar15 = (float)pbVar9[2] * 0.007843138 - 1.0;
-        fVar10 = fVar13 * fVar13 + fVar14 * fVar14 + fVar15 * fVar15;
+        fVar10 = fVar13 * fVar13 + FloatCalculationResult * FloatCalculationResult + fVar15 * fVar15;
         aMemoryAddress2 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
         fVar11 = aMemoryAddress2._0_4_;
         fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
         *pbVar9 = (byte)(int)((fVar10 * fVar13 + 1.0) * 127.5);
-        pbVar9[1] = (byte)(int)((fVar10 * fVar14 + 1.0) * 127.5);
+        pbVar9[1] = (byte)(int)((fVar10 * FloatCalculationResult + 1.0) * 127.5);
         StringIndex = (int)((fVar10 * fVar15 + 1.0) * 127.5);
         pbVar9[2] = (byte)StringIndex;
         pbVar9 = pbVar9 + 4;
@@ -5594,15 +5594,15 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     if (0 < (int)pfVar4) {
       uVar8 = (ulonglong)pfVar4 & 0xffffffff;
       do {
-        fVar14 = (float)puVar6[1] * 3.0518044e-05 - 1.0;
+        FloatCalculationResult = (float)puVar6[1] * 3.0518044e-05 - 1.0;
         fVar13 = (float)*puVar6 * 3.0518044e-05 - 1.0;
         fVar15 = (float)puVar6[2] * 3.0518044e-05 - 1.0;
-        fVar10 = fVar13 * fVar13 + fVar14 * fVar14 + fVar15 * fVar15;
+        fVar10 = fVar13 * fVar13 + FloatCalculationResult * FloatCalculationResult + fVar15 * fVar15;
         aMemoryAddress2 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
         fVar11 = aMemoryAddress2._0_4_;
         fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
         *puVar6 = (ushort)(int)((fVar10 * fVar13 + 1.0) * 32767.5);
-        puVar6[1] = (ushort)(int)((fVar10 * fVar14 + 1.0) * 32767.5);
+        puVar6[1] = (ushort)(int)((fVar10 * FloatCalculationResult + 1.0) * 32767.5);
         StringIndex = (int)((fVar10 * fVar15 + 1.0) * 32767.5);
         puVar6[2] = (ushort)StringIndex;
         puVar6 = puVar6 + 4;
@@ -5617,14 +5617,14 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
       uVar8 = (ulonglong)param_1[1] / 0xc & 0xffffffff;
       do {
         fVar13 = (*pfVar4 + *pfVar4) - 1.0;
-        fVar14 = (pfVar4[1] + pfVar4[1]) - 1.0;
+        FloatCalculationResult = (pfVar4[1] + pfVar4[1]) - 1.0;
         fVar15 = (pfVar4[2] + pfVar4[2]) - 1.0;
-        fVar10 = fVar13 * fVar13 + fVar14 * fVar14 + fVar15 * fVar15;
+        fVar10 = fVar13 * fVar13 + FloatCalculationResult * FloatCalculationResult + fVar15 * fVar15;
         aMemoryAddress2 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
         fVar11 = aMemoryAddress2._0_4_;
         fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
         *pfVar4 = (fVar10 * fVar13 + 1.0) * 0.5;
-        pfVar4[1] = (fVar10 * fVar14 + 1.0) * 0.5;
+        pfVar4[1] = (fVar10 * FloatCalculationResult + 1.0) * 0.5;
         pfVar4[2] = (fVar10 * fVar15 + 1.0) * 0.5;
         pfVar4 = pfVar4 + 3;
         uVar8 = uVar8 - 1;
@@ -5640,15 +5640,15 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
       MemoryAllocationResult = (ulonglong)pfVar4 & 0xffffffff;
       do {
         fVar13 = (*pfVar7 + *pfVar7) - 1.0;
-        fVar14 = (pfVar7[1] + pfVar7[1]) - 1.0;
+        FloatCalculationResult = (pfVar7[1] + pfVar7[1]) - 1.0;
         fVar15 = (pfVar7[2] + pfVar7[2]) - 1.0;
-        fVar10 = fVar14 * fVar14 + fVar13 * fVar13 + fVar15 * fVar15;
+        fVar10 = FloatCalculationResult * FloatCalculationResult + fVar13 * fVar13 + fVar15 * fVar15;
         aMemoryAddress2 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
         fVar11 = aMemoryAddress2._0_4_;
         fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
         *pfVar7 = (fVar10 * fVar13 + 1.0) * 0.5;
         pfVar7[2] = (fVar15 * fVar10 + 1.0) * 0.5;
-        pfVar7[1] = (fVar10 * fVar14 + 1.0) * 0.5;
+        pfVar7[1] = (fVar10 * FloatCalculationResult + 1.0) * 0.5;
         pfVar7 = pfVar7 + 4;
         MemoryAllocationResult = MemoryAllocationResult - 1;
       } while (MemoryAllocationResult != 0);
@@ -5664,15 +5664,15 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     if (0 < (int)uVar8) {
       uVar8 = uVar8 & 0xffffffff;
       do {
-        fVar14 = (float)puVar6[1] * 0.007843138 - 1.0;
+        FloatCalculationResult = (float)puVar6[1] * 0.007843138 - 1.0;
         fVar13 = (float)*puVar6 * 0.007843138 - 1.0;
         fVar15 = (float)puVar6[2] * 0.007843138 - 1.0;
-        fVar10 = fVar13 * fVar13 + fVar14 * fVar14 + fVar15 * fVar15;
+        fVar10 = fVar13 * fVar13 + FloatCalculationResult * FloatCalculationResult + fVar15 * fVar15;
         aMemoryAddress2 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
         fVar11 = aMemoryAddress2._0_4_;
         fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
         *puVar6 = (ushort)(int)((fVar13 * fVar10 + 1.0) * 127.5);
-        puVar6[1] = (ushort)(int)((fVar14 * fVar10 + 1.0) * 127.5);
+        puVar6[1] = (ushort)(int)((FloatCalculationResult * fVar10 + 1.0) * 127.5);
         StringIndex = (int)((fVar15 * fVar10 + 1.0) * 127.5);
         puVar6[2] = (ushort)StringIndex;
         puVar6 = puVar6 + 3;
@@ -5691,15 +5691,15 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     if (0 < (int)uVar8) {
       uVar8 = uVar8 & 0xffffffff;
       do {
-        fVar14 = (float)pbVar9[1] * 0.007843138 - 1.0;
+        FloatCalculationResult = (float)pbVar9[1] * 0.007843138 - 1.0;
         fVar13 = (float)*pbVar9 * 0.007843138 - 1.0;
         fVar15 = (float)pbVar9[2] * 0.007843138 - 1.0;
-        fVar10 = fVar13 * fVar13 + fVar14 * fVar14 + fVar15 * fVar15;
+        fVar10 = fVar13 * fVar13 + FloatCalculationResult * FloatCalculationResult + fVar15 * fVar15;
         aMemoryAddress2 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
         fVar11 = aMemoryAddress2._0_4_;
         fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
         *pbVar9 = (byte)(int)((fVar10 * fVar13 + 1.0) * 127.5);
-        pbVar9[1] = (byte)(int)((fVar10 * fVar14 + 1.0) * 127.5);
+        pbVar9[1] = (byte)(int)((fVar10 * FloatCalculationResult + 1.0) * 127.5);
         StringProcessingResult = (uint)((fVar10 * fVar15 + 1.0) * 127.5);
         pfVar4 = (float *)(ulonglong)StringProcessingResult;
         pbVar9[2] = (byte)StringProcessingResult;
@@ -6828,7 +6828,7 @@ uint64_t * BufferAllocateSystem(uint64_t *param_1,int param_2)
   float fVar11;
   float fVar12;
   float fVar13;
-  float fVar14;
+  float FloatCalculationResult;
   float fVar15;
   *param_1 = &UNK_180a1a2f0;
   lVar4 = 0;
@@ -6965,16 +6965,16 @@ uint64_t * BufferAllocateSystem(uint64_t *param_1,int param_2)
         StringIndex = 3;
       }
       fVar15 = (float)StringIndex * 0.33333334;
-      fVar14 = fVar15 * 10.05 + 4.9500003;
+      FloatCalculationResult = fVar15 * 10.05 + 4.9500003;
       fVar9 = fVar15 * 2.9999998 + 4.5;
-      fVar12 = fVar14 + fVar9;
+      fVar12 = FloatCalculationResult + fVar9;
       fVar9 = fVar12 + fVar9;
       fVar13 = fVar15 * 13.5 + 4.5;
       fVar11 = fVar9 + fVar13;
       fVar13 = fVar13 + fVar11;
       fVar10 = fVar15 * 37.5 + 12.5 + fVar13;
       fVar15 = fVar15 * 45.0 + 15.0 + fVar10;
-      *(float *)(param_1 + 0x68) = fVar14 * fVar14;
+      *(float *)(param_1 + 0x68) = FloatCalculationResult * FloatCalculationResult;
       *(float *)((longlong)param_1 + 0x344) = fVar12 * fVar12;
       *(float *)(param_1 + 0x69) = fVar9 * fVar9;
       *(float *)((longlong)param_1 + 0x34c) = fVar11 * fVar11;
@@ -7041,7 +7041,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
   uStack_13c = 0;
   iVar7 = *(char *)(param_1 + 0x858) + -1;
   ModuleInitializationResult1 = (longlong)iVar7;
-  fVar14 = -1e+08;
+  FloatCalculationResult = -1e+08;
   fVar15 = -1e+08;
   fVar16 = -1e+08;
   MemoryAddress7 = 0;
@@ -7064,22 +7064,22 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
       pfVar9 = (float *)(param_2 + ((longlong)cVar1 + 0x40) * 0x10);
       fVar18 = *pfVar9;
       fVar13 = pfVar9[1];
-      fVar14 = pfVar9[2];
+      FloatCalculationResult = pfVar9[2];
       fStack_cc = pfVar9[3];
       fStack_d8 = fVar18;
       fStack_d4 = fVar13;
-      fStack_d0 = fVar14;
+      fStack_d0 = FloatCalculationResult;
       pfVar9 = (float *)FUN_1801c0fb0(&uStack_e8,auStack_c8,ModuleInitializationResult0);
-      fStack_170 = (fVar14 + pfVar9[2]) - fVar6;
+      fStack_170 = (FloatCalculationResult + pfVar9[2]) - fVar6;
       fStack_174 = (fVar13 + pfVar9[1]) - fVar5;
       fStack_178 = (fVar18 + *pfVar9) - fVar4;
       FUN_180285b40(&uStack_118,&fStack_138,&fStack_178);
       pfVar9 = (float *)FUN_1801c0fb0(&uStack_e8,auStack_b8,ModuleInitializationResult0 + 0x10);
-      fStack_160 = (fVar14 + pfVar9[2]) - fVar6;
+      fStack_160 = (FloatCalculationResult + pfVar9[2]) - fVar6;
       fStack_164 = (fVar13 + pfVar9[1]) - fVar5;
       fStack_168 = (fVar18 + *pfVar9) - fVar4;
       FUN_180285b40(&uStack_118,&fStack_128,&fStack_168);
-      fVar14 = *(float *)(ModuleInitializationResult0 + 0x24);
+      FloatCalculationResult = *(float *)(ModuleInitializationResult0 + 0x24);
       fVar18 = fStack_128;
       fStack_198 = fStack_138;
       if (fStack_138 < fStack_128) {
@@ -7098,12 +7098,12 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
         fStack_190 = fStack_120;
         fStack_180 = fStack_130;
       }
-      fStack_190 = fStack_190 + fVar14;
-      fStack_194 = fStack_194 + fVar14;
-      fStack_198 = fStack_198 + fVar14;
-      fStack_180 = fStack_180 - fVar14;
-      fVar13 = fVar13 - fVar14;
-      fVar18 = fVar18 - fVar14;
+      fStack_190 = fStack_190 + FloatCalculationResult;
+      fStack_194 = fStack_194 + FloatCalculationResult;
+      fStack_198 = fStack_198 + FloatCalculationResult;
+      fStack_180 = fStack_180 - FloatCalculationResult;
+      fVar13 = fVar13 - FloatCalculationResult;
+      fVar18 = fVar18 - FloatCalculationResult;
       if (fStack_158 < fVar18) {
         fVar18 = fStack_158;
       }
@@ -7130,7 +7130,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
       uStack_13c = uStack_18c;
       ModuleInitializationResult2 = ModuleInitializationResult2 + -0x30;
       ModuleInitializationResult1 = ModuleInitializationResult1 + -1;
-      fVar14 = fStack_198;
+      FloatCalculationResult = fStack_198;
       fVar15 = fStack_194;
       fVar16 = fStack_190;
       MemoryAddress7 = uStack_18c;
@@ -7175,8 +7175,8 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
   }
   *(ulonglong *)(param_1 + 0x880) = CONCAT44(fStack_194,fStack_198);
   *(ulonglong *)(param_1 + 0x888) = CONCAT44(uStack_18c,fStack_190);
-  fStack_198 = fVar14;
-  if (*(float *)(param_1 + 0x870) < fVar14) {
+  fStack_198 = FloatCalculationResult;
+  if (*(float *)(param_1 + 0x870) < FloatCalculationResult) {
     fStack_198 = *(float *)(param_1 + 0x870);
   }
   fStack_194 = fVar15;
@@ -7189,8 +7189,8 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
   }
   *(ulonglong *)(param_1 + 0x870) = CONCAT44(fStack_194,fStack_198);
   *(ulonglong *)(param_1 + 0x878) = CONCAT44(uStack_18c,fStack_190);
-  fStack_198 = fVar14;
-  if (fVar14 < *(float *)(param_1 + 0x880)) {
+  fStack_198 = FloatCalculationResult;
+  if (FloatCalculationResult < *(float *)(param_1 + 0x880)) {
     fStack_198 = *(float *)(param_1 + 0x880);
   }
   fStack_194 = fVar15;
@@ -7210,13 +7210,13 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
   *(float *)(ModuleInitializationResult1 + 0x21c) = fVar13;
   *(float *)(ModuleInitializationResult1 + 0x220) = fStack_180;
   *(uint32_t *)(ModuleInitializationResult1 + 0x224) = MemoryAddress9;
-  *(float *)(ModuleInitializationResult1 + 0x228) = fVar14;
+  *(float *)(ModuleInitializationResult1 + 0x228) = FloatCalculationResult;
   *(float *)(ModuleInitializationResult1 + 0x22c) = fVar15;
   *(float *)(ModuleInitializationResult1 + 0x230) = fVar16;
   *(uint32_t *)(ModuleInitializationResult1 + 0x234) = MemoryAddress7;
   pfVar9 = *(float **)(param_1 + 0x860);
   if ((pfVar9 != (float *)0x0) && (*(longlong *)(param_1 + 0x868) != 0)) {
-    if ((pfVar9[4] <= fVar14 && fVar14 != pfVar9[4]) ||
+    if ((pfVar9[4] <= FloatCalculationResult && FloatCalculationResult != pfVar9[4]) ||
        ((pfVar9[5] <= fVar15 && fVar15 != pfVar9[5] || (pfVar9[6] <= fVar16 && fVar16 != pfVar9[6]))
        )) {
       do {
@@ -7224,8 +7224,8 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
       LOCK();
       UNLOCK();
       pfVar3 = *(float **)(param_1 + 0x860);
-      fStack_198 = fVar14;
-      if (*pfVar3 < fVar14) {
+      fStack_198 = FloatCalculationResult;
+      if (*pfVar3 < FloatCalculationResult) {
         fStack_198 = *pfVar3;
       }
       fStack_194 = fVar15;
@@ -7238,8 +7238,8 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
       }
       *(ulonglong *)pfVar3 = CONCAT44(fStack_194,fStack_198);
       *(ulonglong *)(pfVar3 + 2) = CONCAT44(uStack_18c,fStack_190);
-      fStack_198 = fVar14;
-      if (fVar14 < pfVar3[4]) {
+      fStack_198 = FloatCalculationResult;
+      if (FloatCalculationResult < pfVar3[4]) {
         fStack_198 = pfVar3[4];
       }
       fStack_194 = fVar15;
@@ -7291,7 +7291,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
       DAT_180d49f6c = '\0';
     }
     pfVar9 = *(float **)(param_1 + 0x868);
-    if (((pfVar9[4] <= fVar14 && fVar14 != pfVar9[4]) ||
+    if (((pfVar9[4] <= FloatCalculationResult && FloatCalculationResult != pfVar9[4]) ||
         (pfVar9[5] <= fVar15 && fVar15 != pfVar9[5])) ||
        (pfVar9[6] <= fVar16 && fVar16 != pfVar9[6])) {
       do {
@@ -7299,8 +7299,8 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
       LOCK();
       UNLOCK();
       pfVar3 = *(float **)(param_1 + 0x868);
-      fStack_198 = fVar14;
-      if (*pfVar3 < fVar14) {
+      fStack_198 = FloatCalculationResult;
+      if (*pfVar3 < FloatCalculationResult) {
         fStack_198 = *pfVar3;
       }
       fStack_194 = fVar15;
@@ -7313,8 +7313,8 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
       }
       *(ulonglong *)pfVar3 = CONCAT44(fStack_194,fStack_198);
       *(ulonglong *)(pfVar3 + 2) = CONCAT44(uStack_18c,fStack_190);
-      fStack_198 = fVar14;
-      if (fVar14 < pfVar3[4]) {
+      fStack_198 = FloatCalculationResult;
+      if (FloatCalculationResult < pfVar3[4]) {
         fStack_198 = pfVar3[4];
       }
       fStack_194 = fVar15;

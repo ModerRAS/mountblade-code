@@ -3431,7 +3431,16 @@ void CheckSystemFlags(void)
 
 
 
-uint8_t ValidateObjectRegistration(int64_t objectContext)
+/**
+ * @brief 验证对象注册
+ * 
+ * 该函数负责验证对象的注册状态
+ * 确保对象已正确注册到系统中
+ * 
+ * @param objectContext 对象上下文，包含对象的注册信息
+ * @return 验证结果，0表示成功，非0表示错误码
+ */
+uint8_t VerifyObjectRegistration(int64_t objectContext)
 
 {
   int64_t registrationObjectData;

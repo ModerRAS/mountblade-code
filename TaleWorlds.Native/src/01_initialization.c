@@ -19904,11 +19904,11 @@ LAB_180046a90:
 
 
 
-// 函数: void InitializeSystemDataBlock(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void InitializeSystemDataBlock(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void InitializeSystemDataBlock(void* *SystemResourcePointer,void* SourceDataPointer,void* MemoryBufferSize,void* AllocationFlags)
+void InitializeSystemDataBlock(void* *SystemResourcePointer,void* SourceDataPointer,void* MemoryBufferSize,void* AllocationFlags)
 
 {
-  InitializeAndCleanupSystemMemoryAllocator(SystemResourcePointer + 0x1a,SystemResourcePointer[0x1c],param_3,param_4,0xfffffffffffffffe);
+  InitializeAndCleanupSystemMemoryAllocator(SystemResourcePointer + 0x1a,SystemResourcePointer[0x1c],MemoryBufferSize,AllocationFlags,0xfffffffffffffffe);
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -19922,7 +19922,7 @@ void InitializeSystemDataBlock(void* *SystemResourcePointer,void* param_2,void* 
 
 
 
-ulong long CompareSystemDataBlocks(long long SystemResourcePointer,long long param_2)
+ulong long CompareSystemDataBlocks(long long SystemResourcePointer,long long ComparisonDataPointer)
 
 {
   byte *pbVar1;
