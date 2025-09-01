@@ -8331,7 +8331,13 @@ undefined8 ProcessParameterizedFloatComparison(longlong param_1, longlong param_
 
 
 
-undefined8 FUN_1808935c0(longlong param_1,longlong param_2)
+/**
+ * @brief 处理简化的参数化浮点数比较操作
+ * @param param_1 对象上下文指针，包含浮点数值和验证信息
+ * @param param_2 系统上下文指针，用于系统级操作
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined8 ProcessSimplifiedParameterizedFloatComparison(longlong param_1, longlong param_2)
 
 {
   longlong lVar1;
@@ -8376,11 +8382,20 @@ undefined8 FUN_1808935c0(longlong param_1,longlong param_2)
 
 
  void FUN_180893640(longlong param_1,longlong param_2)
-void FUN_180893640(longlong param_1,longlong param_2)
+/**
+ * @brief 验证缓冲区上下文并处理
+ * 
+ * 该函数验证缓冲区上下文的有效性，并在验证通过后执行相应处理
+ * 主要用于缓冲区状态验证和管理操作
+ * 
+ * @param param_1 缓冲区上下文参数，包含缓冲区的基本信息
+ * @param param_2 系统上下文参数，用于系统级操作
+ */
+void ValidateAndProcessBufferContext(longlong param_1,longlong param_2)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int validationStatus;
+  undefined8 bufferContext;
   
   iVar1 = FUN_180894860(param_2,param_1 + 0x10,&uStackX_8);
   if (iVar1 == 0) {
@@ -8952,9 +8967,18 @@ undefined8 FUN_180893f64(void)
 
 
 
- void FUN_180893f8e(void)
-void FUN_180893f8e(void)
-
+ /**
+ * @brief 处理浮点数范围限制
+ * 
+ * 该函数负责处理浮点数的范围限制操作
+ * 将输入值限制在指定的最小和最大值之间
+ * 
+ * @param minValue 最小值指针
+ * @param maxValue 最大值指针
+ * @param currentValue 当前值指针
+ * @param context 操作上下文
+ */
+void ProcessFloatRangeClamping(void)
 {
   float fVar1;
   undefined8 *puVar2;
@@ -8986,8 +9010,13 @@ void FUN_180893f8e(void)
 
 
 
- void FUN_180893fed(void)
-void FUN_180893fed(void)
+ /**
+ * @brief 空操作函数B
+ * 
+ * 这是一个空操作函数，不执行任何操作
+ * 主要用于占位或作为默认的空实现
+ */
+void EmptyOperationFunctionB(void)
 
 {
   return;
@@ -82775,8 +82804,8 @@ void FUN_180941fe0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942000(void)
-void FUN_180942000(void)
+ void InitializeGarbageCollectorTable(void)
+void InitializeGarbageCollectorTable(void)
 
 {
   GarbageCollectorTable0 = &UNK_18098bcb0;
