@@ -598,19 +598,22 @@ void* SystemDataNodeLinkageManager;               // 系统数据节点链接管
 void* SystemDataNodeLinkageHandler;               // 系统数据节点链接处理器
 void* SystemConfigurationDataTemplate;  // DAT_180bf52c0
 void* SystemStringTemplate;  // DAT_180a01028
-void* SystemDataComparisonTemplateDuodenary;  // DAT_180a01000
+void* SystemDataTemplate;  // DAT_180a01000
 void* SystemDataNodeLinkageCache;                // 系统数据节点链接缓存
 void* SystemDataNodeLinkageBackup;                // 系统数据节点链接备份
 void* SystemDataNodeLinkagePrimary;               // 系统数据节点链接主表
 void* SystemDataNodeLinkageSecondary;             // 系统数据节点链接次表
-void* SystemDataComparisonTemplateTerdenary;  // DAT_180a00fd8
-void* SystemDataComparisonTemplateQuattuordenary;  // DAT_180a00fb0
+void* SystemComparisonTemplateA;  // DAT_180a00fd8
+void* SystemComparisonTemplateB;  // DAT_180a00fb0
 void* SystemDataNodeLinkageTertiary;              // 系统数据节点链接第三表
 void* SystemDataNodeLinkageQuaternary;            // 系统数据节点链接第四表
 void* SystemDataNodeLinkageQuinary;               // 系统数据节点链接第五表
-void* SystemDataComparisonTemplateQuindenary;  // DAT_180a00bb0
+void* SystemComparisonTemplateC;  // DAT_180a00bb0
 void* SystemConfigDataPointerSeptenary;        // SystemConfigDataPointerG
-void* SystemConfigDataPointerOctonary;        // DAT_180bf6768
+void* SystemConfigDataPointerH;  // DAT_180bf6768
+void* SystemResourceTemplate;  // DAT_180bf5240
+void* SystemDebugFlag;  // DAT_180bf0101
+void* SystemStringBuffer;  // DAT_180c84870
 void* SystemNodeLinkPointerPrimary;        // 系统节点链接指针主表
 void* SystemNodeLinkPointerSecondary;        // 系统节点链接指针次表
 void* SystemRootNodePointer;         // 系统根节点指针
@@ -20283,9 +20286,9 @@ void InitializeSystemCoreEngine(void)
       } while (-1 < localSystemFlags);
     }
     InitializeSystemConfiguration(&puStack_558,&puStack_538,iVar3 + 1,0xffffffff);
-    iVar3 = FindSystemResourceIndex(&DAT_180bf5240,&puStack_538);
+    iVar3 = FindSystemResourceIndex(&SystemResourceTemplate,&puStack_538);
     if (iVar3 == -1) {
-      iVar3 = FindSystemResourceHandle(&DAT_180bf5240,&puStack_538);
+      iVar3 = FindSystemResourceHandle(&SystemResourceTemplate,&puStack_538);
     }
     localSystemFlags = (long long)iVar3 * 0x100;
     ppplStack_590 = (long long ***)(SystemInitializationDataStart + 0x30 + localSystemFlags);
@@ -20478,9 +20481,9 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
   void* uStackX_8;
   
   uStackX_8 = SystemResourcePointer;
-  iVar3 = FindSystemDataIndex(&DAT_180bf5240);
+  iVar3 = FindSystemDataIndex(&SystemResourceTemplate);
   if (iVar3 == -1) {
-    iVar3 = FindSystemDataIndexAlternative(&DAT_180bf5240,param_2);
+    iVar3 = FindSystemDataIndexAlternative(&SystemResourceTemplate,param_2);
   }
   systemPreviousNode = (void* *)(SystemInitializationDataStart + 0xd0 + (long long)iVar3 * 0x100);
   punsignedSystemValue4 = systemPreviousNode;
@@ -20587,7 +20590,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2
   
   localMemoryPointer1 = SystemStatusFlagsPointer;
   unsignedSystemValue12 = 0;
-  if (DAT_180bf5240 == '\0') {
+  if (SystemResourceTemplate == '\0') {
     return;
   }
   puStack_c8 = &SystemGlobalDataReference;
@@ -22919,7 +22922,7 @@ void InitializeSystemDataCleaner(void)
   }
   *pointerToUnsigned2 = 0;
   SystemSecondaryStateStorage = pointerToUnsigned2;
-  if (DAT_180bf0101 != '\0') {
+  if (SystemDebugFlag != '\0') {
     GetLastError();
     systemPreviousNode = &SystemStringTemplate;
     if ((void* *)pointerToUnsigned2[2] != (void* *)0x0) {
@@ -24490,7 +24493,7 @@ void ValidateSystemResourceStatus(long long SystemResourcePointer)
  * @param SystemResourcePointer 源字符串指针
  * 
  * @note 函数限制字符串最大长度为8191字节(0x1fff)
- * @note 函数将字符串复制到DAT_180c84870地址
+ * @note 函数将字符串复制到SystemStringBuffer地址
  * @note 函数使用do-while循环计算字符串长度
  */
 void CopySystemStringToDataArea(long long SystemResourcePointer)
@@ -24508,7 +24511,7 @@ void CopySystemStringToDataArea(long long SystemResourcePointer)
     stringLength = 0x1fff;
   }
                     // WARNING: Subroutine does not return
-  memcpy(&DAT_180c84870,SystemResourcePointer,(long long)(int)stringLength);
+  memcpy(&SystemStringBuffer,SystemResourcePointer,(long long)(int)stringLength);
 }
 
 
@@ -40282,7 +40285,7 @@ void FUN_180063b30(void* SystemResourcePointer,long long param_2)
   } while (*pcVar1 != '\0');
   if (localResourceOffset != 0) {
     fwrite(&DAT_1809fe810,0x30,1,localSystemFlags);
-    fwrite(&DAT_180c84870,localResourceOffset,1,localSystemFlags);
+    fwrite(&SystemStringBuffer,localResourceOffset,1,localSystemFlags);
 
 // 函数: void FUN_180063cf0(void)
 void FUN_180063cf0(void)
@@ -41803,7 +41806,7 @@ void FUN_180066320(void* SystemResourcePointer,void* param_2,char param_3,char p
   cVar1 = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
   iVar4 = 0;
   if (cVar1 != '\0') {
-    FUN_180627910(&puStack_1b8,&DAT_180c84870);
+    FUN_180627910(&puStack_1b8,&SystemStringBuffer);
     FUN_180065f00(&puStack_1b8,0);
     puStack_1b8 = &SystemGlobalDataReference;
     if (lStack_1b0 != 0) {
@@ -42100,7 +42103,7 @@ LAB_180066bf4:
       unsignedSystemValue4 = StartSystemThread(stackParameterB);
       uStack_88 = CONCAT44(uStack_88._4_4_,unsignedSystemValue4);
                     // WARNING: Subroutine does not return
-      memcpy(stackParameterB,&DAT_180c84870,iVar6);
+      memcpy(stackParameterB,&SystemStringBuffer,iVar6);
     }
     stackParameterC = 0;
     FUN_180065f00(&stackParameterA,param_5);
