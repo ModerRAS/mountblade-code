@@ -12514,7 +12514,19 @@ uint64_t FUN_1808fc60c(uint param_1)
   }
   return 1;
 }
-ulonglong FUN_1808fc6e4(longlong param_1)
+/**
+ * @brief 计算内存地址映射
+ * 
+ * 该函数负责计算内存地址的映射关系，遍历映像节头表来找到指定地址
+ * 对应的物理地址和虚拟地址映射。主要用于内存管理和地址转换。
+ * 
+ * @param param_1 输入的内存地址参数
+ * @return 计算后的内存地址映射结果
+ * 
+ * @note 此函数处理PE文件格式的节头映射
+ * @note 地址计算基于0x180000000的基地址偏移
+ */
+ulonglong CalculateMemoryAddressMapping(longlong param_1)
 {
   ulonglong MemoryAddress;
   uint7 BufferSize;
