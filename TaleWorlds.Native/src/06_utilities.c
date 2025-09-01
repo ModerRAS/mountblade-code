@@ -13524,16 +13524,16 @@ void SystemInitializerA(void)
   uint32_t StackParameter1a8;
   
   pResourceValidationResult2 = (uint8_t *)(RegisterR14 + 8);
-  fStack0000000000000048 = UnaffectedRegisterR13D;
-  puStack0000000000000058 = pResourceValidationResult2;
+  StackParameter48 = UnaffectedRegisterR13D;
+  StackParameter58 = pResourceValidationResult2;
   localContextPointer5 = (*(code *)*InputRAX)(pResourceValidationResult2);
   ResourceIndex3 = ValidateBufferContext(*(uint8_t *)(localContextPointer5 + 0xd0),&stack0x00000048);
   if (ResourceIndex3 == 0) {
-    in_stack_00000070 = &SystemResourceTemplateCache;
+    StackParameter70 = &SystemResourceTemplateCache;
     *(uint32_t *)(ExecutionContextPointer + -0xf) = uStackX_20;
-    *(float *)(ExecutionContextPointer + -0x10) = fStack0000000000000048;
-    in_stack_00000078 = UnaffectedRegisterR13D;
-    ResourceIndex3 = GetAndValidateResourceData(extraout_XMM0_Da,&stack0x00000070);
+    *(float *)(ExecutionContextPointer + -0x10) = StackParameter48;
+    StackParameter78 = UnaffectedRegisterR13D;
+    ResourceIndex3 = GetAndValidateResourceData(FloatRegisterValue1,&stack0x00000070);
     if (ResourceIndex3 == 0) {
       StackParameter60 = (int64_t)*(int *)(RegisterR15 + 0x28);
       if (0 < StackParameter60) {
@@ -13544,15 +13544,15 @@ void SystemInitializerA(void)
           resourceTable = *(int64_t *)(ResourceValidationResult0 + 0x10 + localContextPointer5);
           ResourceIndex = *(int64_t *)(ResourceValidationResult0 + 8 + localContextPointer5);
           cVar12 = CheckResourceIndex(resourceTable,1);
-          pResourceValidationResult2 = puStack0000000000000058;
+          pResourceValidationResult2 = StackParameter58;
           if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(ResourceIndex + 0x28))) {
             ResourceValidationResult4 = *(uint32_t *)(ResourceValidationResult0 + 4 + localContextPointer5);
             ExecutionContextPointer[-4] = &SystemResourceTemplateDatabase;
             *(uint32_t *)(ExecutionContextPointer + -2) = uStackX_20;
-            pLoopIncrement = (uint8_t *)*puStack0000000000000058;
+            pLoopIncrement = (uint8_t *)*StackParameter58;
             *(uint32_t *)(ExecutionContextPointer + -1) = ResourceValidationResult4;
             *(uint32_t *)(ExecutionContextPointer + -3) = 0;
-            localContextPointer5 = (*(code *)*pLoopIncrement)(puStack0000000000000058);
+            localContextPointer5 = (*(code *)*pLoopIncrement)(StackParameter58);
             *ExecutionContextPointer = *(uint8_t *)(*(int64_t *)(localContextPointer5 + 0x90) + ResourceValidationResult3 * 8);
             *(uint8_t *)((int64_t)ExecutionContextPointer + -4) = 0;
             if (*(int *)(resourceTable + 0x58) < 1) {
@@ -13568,18 +13568,18 @@ void SystemInitializerA(void)
           UnaffectedRegisterR13D = 0.0;
           ResourceValidationResult3 = ResourceValidationResult3 + 1;
           ResourceValidationResult0 = ResourceValidationResult0 + 0x18;
-          RegisterR14 = in_stack_00000068;
+          RegisterR14 = StackParameter68;
         } while ((int64_t)ResourceValidationResult3 < StackParameter60);
       }
       resourceHash7 = *(uint8_t *)(*(int64_t *)(SystemContextPointer + 8) + 800);
       resourceHash6 = (**(code **)*pResourceValidationResult2)(pResourceValidationResult2);
       ResourceIndex3 = CalculateDataHash(resourceHash6,resourceHash7,acStackX_24);
       if (ResourceIndex3 == 0) {
-        ResourceValidationResult4 = extraout_XMM0_Da_00;
+        ResourceValidationResult4 = FloatRegisterValue2;
         if (acStackX_24[0] != '\0') {
           resourceHash7 = GenerateResourceHash();
           ResourceIndex3 = memcmp(RegisterR15 + 0x38,resourceHash7,0x30);
-          ResourceValidationResult4 = extraout_XMM0_Da_01;
+          ResourceValidationResult4 = FloatRegisterValue3;
           if (ResourceIndex3 != 0) {
             resourceHash7 = *(uint8_t *)(RegisterR15 + 0x38);
             resourceHash6 = *(uint8_t *)(RegisterR15 + 0x40);
