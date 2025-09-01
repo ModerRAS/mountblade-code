@@ -6535,7 +6535,7 @@ void InitializeSystemEventManager(void)
   systemDataTable = (long long *)GetSystemRootPointer();
   systemRootNode = (void* *)*systemDataTable;
   systemNodeFlag = *(char *)((long long)systemRootNode[1] + 0x19);
-  eventHandlerFunction = FUN_18025e330;
+  eventHandlerFunction = SystemEventDispatcher;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (void* *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -11525,7 +11525,7 @@ void InitializeSystemMemoryNodeManager(void)
 
 
 
-// 函数: void FUN_18003abb0(void)
+// 函数: void InitializeSystemCore(void)
 /**
  * @brief 初始化系统设备节点管理器
  * 
@@ -13137,7 +13137,7 @@ void InitializeSystemProcessNodeManager(void)
 
 
 
-// 函数: void FUN_18003e610(void)
+// 函数: void InitializeSystemMemoryManager(void)
 /**
  * @brief 初始化系统事件管理器G
  * 
@@ -13195,7 +13195,7 @@ void InitializeSystemEventManagerG(void)
 
 
 
-// 函数: void FUN_18003e710(void)
+// 函数: void InitializeSystemDataTableManager(void)
 /**
  * @brief 初始化系统事件管理器H
  * 
@@ -13253,7 +13253,7 @@ void InitializeSystemEventManagerH(void)
 
 
 
-// 函数: void FUN_18003e810(void)
+// 函数: void InitializeSystemConfigurationManager(void)
 /**
  * @brief 初始化系统事件管理器I
  * 
@@ -16015,7 +16015,7 @@ int InitializeSystemMutex(void* param_1,void* param_2,void* param_3,void* param_
   long long initializationResult;
   
   _Mtx_init_in_situ(0x180c96690,2,param_3,param_4,0xfffffffffffffffe);
-  initializationResult = InitializeSystemSyncMechanism(FUN_180943070);
+  initializationResult = InitializeSystemSyncMechanism(SystemSyncCallbackFunction);
   return (initializationResult != 0) - 1;
 }
 
@@ -16243,7 +16243,7 @@ void InitializeSystemNodeManager(void)
 
 
 
-// 函数: void FUN_1800423d0(void)
+// 函数: void InitializeSystemSyncMechanism(void)
 /**
  * @brief 初始化系统搜索管理器
  * 
@@ -26255,7 +26255,7 @@ void FUN_180053200(void* param_1,long long param_2)
   
   uStack_1a0 = 0xfffffffffffffffe;
   uStack_18 = _DAT_180bf00a8 ^ (ulong long)auStack_1c8;
-  FUN_180047d40(auStack_e8,
+  CopySystemDataStructure(auStack_e8,
                 (long long)*(int *)(_DAT_180c86938 + 0x1d40) * 0xd0 +
                 *(long long *)(_DAT_180c86938 + 0x1d20));
   FUN_180623de0(&puStack_198);

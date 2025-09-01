@@ -31355,40 +31355,40 @@ void ProcessNetworkConnectionPacket(longlong connectionContext, longlong *packet
   int *networkStatusPointer;
   NetworkHandle *networkBufferPointer;
   longlong packetDataValue;
-  NetworkHandle *networkPointer4;
-  int iVar5;
-  ulonglong uVar6;
-  longlong lStack_78;
-  NetworkByte auStack_70 [40];
-  ulonglong uStack_48;
+  NetworkHandle *networkNodePointer;
+  int connectionCount;
+  ulonglong bufferSize;
+  longlong localStackVariable;
+  NetworkByte localBufferArray [40];
+  ulonglong securityGuardValue;
   
-  uStack_48 = NetworkSecurityGuardValue ^ (ulonglong)&lStack_78;
-  if ((packetData != (longlong *)0x0) && (lVar3 = *packetData, lVar3 != 0)) {
-    pnetworkStatus1 = (int *)(lVar3 + 0xd0);
+  securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)&localStackVariable;
+  if ((packetData != (longlong *)0x0) && (packetDataValue = *packetData, packetDataValue != 0)) {
+    networkStatusPointer = (int *)(packetDataValue + 0xd0);
     connectionIndex = 0;
-    if ((*pnetworkStatus1 == 0) &&
-       (((*(int *)(lVar3 + 0xd4) == 0 && (*(int *)(lVar3 + 0xd8) == 0)) &&
-        (*(int *)(lVar3 + 0xdc) == 0)))) {
-      lStack_78 = 0;
+    if ((*networkStatusPointer == 0) &&
+       (((*(int *)(packetDataValue + 0xd4) == 0 && (*(int *)(packetDataValue + 0xd8) == 0)) &&
+        (*(int *)(packetDataValue + 0xdc) == 0)))) {
+      localStackVariable = 0;
     }
     else {
-      lStack_78 = (**(code **)(**(longlong **)(connectionContext + 0x170) + 0x260))
-                            (*(longlong **)(connectionContext + 0x170),pnetworkStatus1,1);
-      if (lStack_78 == 0) {
+      localStackVariable = (**(code **)(**(longlong **)(connectionContext + 0x170) + 0x260))
+                            (*(longlong **)(connectionContext + 0x170),networkStatusPointer,1);
+      if (localStackVariable == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(pnetworkStatus1,auStack_70,0);
+        ProcessNetworkPacketArray(networkStatusPointer,localBufferArray,0);
       }
     }
-    networkPointer2 = (NetworkHandle *)(lVar3 + 0xb0);
-    for (networkPointer4 = (NetworkHandle *)*networkPointer2; networkPointer4 != networkPointer2; networkPointer4 = (NetworkHandle *)*networkPointer4) {
+    networkBufferPointer = (NetworkHandle *)(packetDataValue + 0xb0);
+    for (networkNodePointer = (NetworkHandle *)*networkBufferPointer; networkNodePointer != networkBufferPointer; networkNodePointer = (NetworkHandle *)*networkNodePointer) {
       connectionIndex = connectionIndex + 1;
     }
-    uVar6 = (longlong)iVar5 * 4 + 0xf;
-    if (uVar6 <= (ulonglong)((longlong)iVar5 * 4)) {
-      uVar6 = 0xffffffffffffff0;
+    bufferSize = (longlong)connectionCount * 4 + 0xf;
+    if (bufferSize <= (ulonglong)((longlong)connectionCount * 4)) {
+      bufferSize = 0xffffffffffffff0;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd200(uVar6 & 0xfffffffffffffff0,networkPointer2,lStack_78);
+    FUN_1808fd200(bufferSize & 0xfffffffffffffff0,networkBufferPointer,localStackVariable);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(NetworkSecurityGuardValue);
