@@ -1110,7 +1110,7 @@ void InitializeMemorySecurity;
 undefined DAT_180bf98d8;
 undefined DAT_180bf98e0;
 undefined DAT_180bf98e8;
-undefined MemorySecurityConfigData;
+void* MemorySecurityConfigData;
 undefined DAT_180bf9930;
 undefined DAT_180bf9938;
 
@@ -1124,7 +1124,7 @@ undefined DAT_180bf9938;
 void ConfigureMemoryIsolation;
 undefined DAT_180bf9940;
 undefined DAT_180bf9948;
-undefined MemoryIsolationConfigData;
+void* MemoryIsolationConfigData;
 undefined DAT_180bf9990;
 undefined DAT_180bf9998;
 undefined DAT_180bf99a0;
@@ -1138,7 +1138,7 @@ undefined DAT_180bf99a0;
  */
 void InitializeMemoryMapping;
 undefined DAT_180bf99a8;
-undefined MemoryMappingConfigData;
+void* MemoryMappingConfigData;
 undefined DAT_180bf99f0;
 undefined DAT_180bf99f8;
 undefined DAT_180bf9a00;
