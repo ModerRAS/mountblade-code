@@ -5098,8 +5098,14 @@ void InitializeSystemMemoryNode(void)
 
 
 
-// 函数: void FUN_180032aa0(void)
-void FUN_180032aa0(void)
+// 函数: void InitializeRenderingSystem(void)
+/**
+ * @brief 初始化渲染系统
+ * 
+ * 该函数负责初始化游戏渲染系统，设置渲染相关的系统节点和数据结构。
+ * 通过遍历系统节点链表来配置渲染系统的初始化参数。
+ */
+void InitializeRenderingSystem(void)
 
 {
   char systemNodeFlag;

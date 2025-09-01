@@ -6799,52 +6799,66 @@ void ValidateBufferContextAndProcess(void)
 
 
 
-undefined8 FUN_180892370(longlong param_1,longlong param_2)
+/**
+ * @brief 复杂的对象上下文验证和处理
+ * 
+ * 该函数执行复杂的对象上下文验证和处理操作，包括：
+ * 1. 验证对象上下文的有效性
+ * 2. 检查对象索引的有效性
+ * 3. 验证缓冲区上下文
+ * 4. 处理系统对象的状态
+ * 5. 执行特定的条件处理逻辑
+ * 
+ * @param ObjectContext 对象上下文指针，包含要处理的对象信息
+ * @param SystemContext 系统上下文指针，包含系统运行环境信息
+ * @return 处理结果状态码，0x1f表示索引无效，0x1e表示对象为空
+ */
+undefined8 ValidateAndProcessComplexObjectContext(longlong ObjectContext, longlong SystemContext)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  longlong lVar3;
-  longlong lStackX_8;
+  int objectIndex;
+  undefined8 processingResult;
+  longlong contextPointer;
+  longlong validationBuffer;
   
-  uVar2 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  processingResult = ValidateObjectContext(*(undefined4 *)(ObjectContext + 0x10), &validationBuffer);
+  if ((int)processingResult != 0) {
+    return processingResult;
   }
-  lVar3 = lStackX_8;
-  if (lStackX_8 != 0) {
-    lVar3 = lStackX_8 + -8;
+  contextPointer = validationBuffer;
+  if (validationBuffer != 0) {
+    contextPointer = validationBuffer + -8;
   }
-  iVar1 = *(int *)(param_1 + 0x18);
-  if ((iVar1 < 0) || (*(int *)(lVar3 + 0x28) <= iVar1)) {
+  objectIndex = *(int *)(ObjectContext + 0x18);
+  if ((objectIndex < 0) || (*(int *)(contextPointer + 0x28) <= objectIndex)) {
     return 0x1f;
   }
-  if (*(longlong *)(*(longlong *)(lVar3 + 0x20) + 0x10 + (longlong)iVar1 * 0x18) == 0) {
+  if (*(longlong *)(*(longlong *)(contextPointer + 0x20) + 0x10 + (longlong)objectIndex * 0x18) == 0) {
     return 0x1e;
   }
-  uVar2 = ValidateBufferContext(*(longlong *)(lVar3 + 0x20) + (longlong)iVar1 * 0x18,param_1 + 0x1c);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  processingResult = ValidateBufferContext(*(longlong *)(contextPointer + 0x20) + (longlong)objectIndex * 0x18, ObjectContext + 0x1c);
+  if ((int)processingResult != 0) {
+    return processingResult;
   }
-  lVar3 = *(longlong *)(param_2 + 0x98);
-  if (*(int *)(lVar3 + 0x200) == 0) {
+  contextPointer = *(longlong *)(SystemContext + 0x98);
+  if (*(int *)(contextPointer + 0x200) == 0) {
     return 0;
   }
-  if ((*(int *)(lVar3 + 0x180) != 0) || (*(int *)(lVar3 + 0x184) != 0)) {
-    lStackX_8 = 0;
-    FUN_180768b50(&lStackX_8);
-    if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar3 + 0x17c) * 8 + 0x180c4f450)) {
-      uVar2 = FUN_18088dd60(lVar3,param_1);
+  if ((*(int *)(contextPointer + 0x180) != 0) || (*(int *)(contextPointer + 0x184) != 0)) {
+    validationBuffer = 0;
+    InitializeProcessingBuffer(&validationBuffer);
+    if (validationBuffer == *(longlong *)((longlong)*(int *)(contextPointer + 0x17c) * 8 + 0x180c4f450)) {
+      processingResult = ProcessSystemObjectWithBuffer(contextPointer, ObjectContext);
       goto LAB_18088d83c;
     }
   }
-  *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-  uVar2 = func_0x0001808e64d0(*(undefined8 *)(lVar3 + 0x1e0));
+  *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + 0xfU & 0xfffffff0;
+  processingResult = ProcessSystemObjectState(*(undefined8 *)(contextPointer + 0x1e0));
 LAB_18088d83c:
-  if ((int)uVar2 == 0) {
+  if ((int)processingResult == 0) {
     return 0;
   }
-  return uVar2;
+  return processingResult;
 }
 
 
