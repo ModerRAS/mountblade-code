@@ -160,17 +160,17 @@ int ValidateNetworkBufferTimeout(longlong bufferData, int timeoutValue, longlong
 int ProcessNetworkBufferWithEncryption(longlong encryptedBuffer, int bufferSize, longlong encryptionKey);
 
 /**
- * @brief 处理网络句柄
+ * @brief 处理网络句柄管理
  * 
- * 该函数负责处理网络通信中的句柄操作。
- * 主要用于网络连接管理和数据传输控制。
+ * 该函数负责处理网络通信中的句柄管理操作
+ * 主要用于网络连接的生命周期管理和资源控制
  * 
  * @param networkHandle 网络句柄指针
  * @param handleSize 句柄大小
  * @param handleContext 句柄上下文指针
  * @return 处理结果状态码
  */
-int NetworkProcessNetworkHandle(longlong networkHandle, int handleSize, longlong handleContext);
+int ManageNetworkHandle(longlong networkHandle, int handleSize, longlong handleContext);
 
 /**
  * @brief 加密网络数据包
