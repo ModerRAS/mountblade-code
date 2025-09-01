@@ -175,11 +175,11 @@ void CloseSystemHandle(void);
  * @warning 调用此函数后，线程资源将被完全释放
  */
 void CleanupThreadResources(void);
-uint32_t ThreadResourceFlag;
-void* CleanupContextPrimaryData;
-void* CleanupContextSecondaryData;
-void* CleanupResourceHandle;
-void* CleanupContextTertiaryData;
+uint32_t threadResourceFlag;
+void* cleanupContextPrimaryData;
+void* cleanupContextSecondaryData;
+void* cleanupResourceHandle;
+void* cleanupContextTertiaryData;
 
  /**
  * @brief 初始化资源管理器

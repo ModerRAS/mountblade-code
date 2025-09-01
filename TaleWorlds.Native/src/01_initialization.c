@@ -367,8 +367,8 @@ void* SystemDataComparisonTemplateE;  // DAT_180a00e28
 void* SystemDataComparisonTemplateF;  // DAT_180a00d48
 void* SystemDataNodePrimaryRoot;       // 系统数据节点主根节点
 void* SystemDataNodeSecondaryRoot;     // 系统数据节点次根节点
-void* SystemDataNodeC;                // UNK_1809ff978
-void* SystemDataNodeD;                // UNK_1809ff990
+void* SystemDataNodeTertiaryRoot;      // 系统数据节点第三根节点
+void* SystemDataNodeQuaternaryRoot;    // 系统数据节点第四根节点
 void* SystemDataNodeE;                // UNK_180a00370
 void* SystemDataNodeF;                // UNK_180a00388
 void* SystemDataNodeG;                // UNK_180a003a0
