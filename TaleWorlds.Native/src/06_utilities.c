@@ -95,8 +95,8 @@ void* AudioSystemModuleHandle;
 void InitializeNetworkSystemModule(void);
 void* NetworkSystemModuleInstance;
 void* NetworkSystemModuleConfiguration;
-uint32_t GlobalModuleNetworkInitializationStatus;
-void* GlobalModuleEHandle;
+uint32_t NetworkSystemInitializationStatus;
+void* NetworkSystemModuleHandle;
 
 
 /**
