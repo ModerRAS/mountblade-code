@@ -30497,8 +30497,14 @@ void FUN_180057556(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180057580(void)
-void FUN_180057580(void)
+// 函数: void SystemCleanupFunction(void)
+/**
+ * @brief 系统清理函数
+ * 
+ * 该函数负责清理系统资源，释放内存和重置系统状态。
+ * 用于系统关闭或重启时的资源清理工作。
+ */
+void SystemCleanupFunction(void)
 
 {
   int *pointerToInteger1;
@@ -30956,7 +30962,13 @@ void SystemResourceRelease(void)
 
 
 // 函数: void FUN_180057814(void)
-void FUN_180057814(void)
+/**
+ * @brief 系统异常处理函数
+ * 
+ * 该函数负责处理系统异常，管理异常列表和异常处理逻辑。
+ * 用于系统运行时的异常情况处理。
+ */
+void SystemExceptionHandler(void)
 
 {
   int *pointerToInteger1;
