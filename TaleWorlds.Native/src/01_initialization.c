@@ -28650,7 +28650,7 @@ LAB_180054ec9:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180055050(void)
+// 函数: void InitializeSystemTables(void)
 /**
  * @brief 系统上下文管理器初始化函数
  * 
@@ -28729,7 +28729,7 @@ void SystemContextManagerInitializer(void)
 
 
 
-// 函数: void FUN_180055e10(long long *SystemResourcePointer)
+// 函数: void InitializeSystemDataPointer(long long *SystemResourcePointer)
 /**
  * @brief 系统资源清理函数
  * 
@@ -28759,7 +28759,7 @@ void SystemResourceCleaner(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180055e30(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ConfigureSystemParameters(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 /**
  * @brief 系统资源处理器包装函数
  * 
@@ -28782,7 +28782,7 @@ void SystemResourceProcessorWrapper(long long SystemResourcePointer,void* param_
 
 
 
-// 函数: void FUN_180055e60(long long SystemResourcePointer)
+// 函数: void SetupSystemState(long long SystemResourcePointer)
 /**
  * @brief 系统资源释放器函数
  * 
@@ -44811,7 +44811,7 @@ void FUN_18006a130(long long SystemResourcePointer)
   FUN_18004c330(auStack_278);
   unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,1000,8,3);
   SystemStatusFlagsPointer = FUN_18004c480(unsignedSystemValue3);
-  FUN_180055050();
+  InitializeSystemTables();
   ProcessSystemResourceAllocation();
   if ((*(char *)(SystemDataManagerPointer + 0x20) == '\0') && (*(char *)(SystemDataManagerPointer + 0x21) == '\0')) {
     unsignedSystemValue3 = FUN_1808fc418(0x428);
