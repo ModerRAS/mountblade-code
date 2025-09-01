@@ -418,7 +418,7 @@ undefined SystemPoolConfig;
 undefined SystemQueueConfig;
 undefined SystemStackConfig;
 undefined* SystemConfigurationTable;
-undefined DAT_180bf7048;
+undefined* SystemStatusTable;
 undefined DAT_180bf7050;
 undefined DAT_180bf7058;
 undefined DAT_180bf7098;
