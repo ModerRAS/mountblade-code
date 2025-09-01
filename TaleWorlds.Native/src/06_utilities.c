@@ -145,8 +145,8 @@ bool SystemStatusFlag4Initialized;
  * 释放相关资源，清理同步状态
  */
 void DestroyThreadSyncObjects(void);
-void* g_threadSyncObjectHandle;
-void* g_threadSyncContext;
+void* ThreadSyncObjectHandle;
+void* ThreadSyncContext;
 
 // 函数: void CloseSystemHandle(void)
 /**
@@ -165,11 +165,11 @@ void CloseSystemHandle(void);
  * 释放内存，关闭句柄，重置状态
  */
 void CleanupThreadResources(void);
-uint32_t g_threadResourceFlag;
-void* g_cleanupContextData1;
-void* g_cleanupContextData2;
-void* g_cleanupResourceHandle;
-void* g_cleanupContextData3;
+uint32_t ThreadResourceFlag;
+void* CleanupContextData1;
+void* CleanupContextData2;
+void* CleanupResourceHandle;
+void* CleanupContextData3;
 
 // 函数: void InitializeResourceManager(void)
 /**
@@ -179,13 +179,13 @@ void* g_cleanupContextData3;
  * 设置资源加载、缓存和释放的相关系统
  */
 void InitializeResourceManager(void);
-void* g_resourceManagerHandle;
-uint32_t g_resourceManagerStatus;
-void* g_resourceContextData1;
-void* g_resourceContextData2;
-void* g_resourceBufferPool1;
-void* g_resourceBufferPool2;
-void* g_resourceBufferPool3;
+void* ResourceManagerHandle;
+uint32_t ResourceManagerStatus;
+void* ResourceContextData1;
+void* ResourceContextData2;
+void* ResourceBufferPool1;
+void* ResourceBufferPool2;
+void* ResourceBufferPool3;
 
 // 函数: void InitializeTextureManager(void)
 /**
@@ -195,12 +195,12 @@ void* g_resourceBufferPool3;
  * 设置纹理加载、缓存和释放的相关数据结构
  */
 void InitializeTextureManager(void);
-void* g_textureManagerInstance;
-void* g_textureSystemData;
-void* g_textureCacheHandle;
-void* g_textureLoaderHandle;
-void* g_textureMemoryPool;
-void* g_textureDescriptorTable;
+void* TextureManagerInstance;
+void* TextureSystemData;
+void* TextureCacheHandle;
+void* TextureLoaderHandle;
+void* TextureMemoryPool;
+void* TextureDescriptorTable;
 
 // 函数: void InitializeAudioSystem(void)
 /**
@@ -210,11 +210,11 @@ void* g_textureDescriptorTable;
  * 设置音效、音乐和语音播放的相关参数
  */
 void InitializeAudioSystem(void);
-void* g_audioSystemInstance;
-void* g_audioDeviceHandle;
-void* g_audioMixerHandle;
-void* g_audioBufferPool;
-void* g_audioStreamManager;
+void* AudioSystemInstance;
+void* AudioDeviceHandle;
+void* AudioMixerHandle;
+void* AudioBufferPool;
+void* AudioStreamManager;
 
 // 函数: void InitializePhysicsEngine(void)
 /**
@@ -331,38 +331,38 @@ void* InitializeFileSystem;
  * 设置数据库连接、查询和事务管理的相关机制
  */
 void* InitializeDatabaseSystem;
-void* g_databaseConnectionPool;
-void* g_databaseQueryCache;
-void* g_databaseTransactionManager;
-void* g_databaseIndexManager;
-void* g_databaseSchemaManager;
-void* g_databaseRecordManager;
-void* g_databaseLockManager;
-void* g_databaseBackupManager;
-void* g_databaseConfigTable;
-void* g_databaseConnectionTable;
-void* g_databaseTransactionTable;
-void* g_databaseIndexTable;
-void* g_databaseSchemaTable;
-void* g_databaseRecordTable;
-void* g_databaseLockTable;
-void* g_databaseBackupTable;
-void* g_databaseStatistics;
-void* g_databaseMetrics;
-void* g_databasePerformance;
-void* g_databaseLogger;
-void* g_databaseCache;
-void* g_databaseBuffer;
-void* g_databaseQueue;
-void* g_databaseEvent;
-void* g_databaseSignal;
-void* g_databaseThread;
-void* g_databaseMutex;
-void* g_databaseSemaphore;
-void* g_databaseCondition;
-void* g_databaseMemory;
-void* g_databaseHeap;
-void* g_databaseStack;
+void* DatabaseConnectionPool;
+void* DatabaseQueryCache;
+void* DatabaseTransactionManager;
+void* DatabaseIndexManager;
+void* DatabaseSchemaManager;
+void* DatabaseRecordManager;
+void* DatabaseLockManager;
+void* DatabaseBackupManager;
+void* DatabaseConfigTable;
+void* DatabaseConnectionTable;
+void* DatabaseTransactionTable;
+void* DatabaseIndexTable;
+void* DatabaseSchemaTable;
+void* DatabaseRecordTable;
+void* DatabaseLockTable;
+void* DatabaseBackupTable;
+void* DatabaseStatistics;
+void* DatabaseMetrics;
+void* DatabasePerformance;
+void* DatabaseLogger;
+void* DatabaseCache;
+void* DatabaseBuffer;
+void* DatabaseQueue;
+void* DatabaseEvent;
+void* DatabaseSignal;
+void* DatabaseThread;
+void* DatabaseMutex;
+void* DatabaseSemaphore;
+void* DatabaseCondition;
+void* DatabaseMemory;
+void* DatabaseHeap;
+void* DatabaseStack;
 void* DatabasePool;
 // 数据库连接池实例
 void* DatabaseConnectionPoolInstance;
