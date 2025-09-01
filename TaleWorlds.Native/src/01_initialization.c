@@ -25427,7 +25427,7 @@ void UpdateSystemRenderManager(long long SystemResourcePointer)
       ProcessNodeManagerOperation(SystemNodeManagerPointer,0);
       ProcessSystemResourceData(*(void* *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,
                     *(uint8_t *)(SystemResourcePointer + 0x3d5));
-      FUN_1800a3880(SystemTextureManagerPointer,*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,1);
+      UpdateTextureManagerSystem(SystemTextureManagerPointer,*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,1);
       ProcessNodeManagerOperation(SystemNodeManagerPointer,unsignedSystemValue2);
       ProcessSystemResourceData(*(void* *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,
                     *(uint8_t *)(SystemResourcePointer + 0x3d5));
@@ -25454,12 +25454,12 @@ void UpdateSystemRenderManager(long long SystemResourcePointer)
   }
   bVar6 = false;
 LAB_18004e721:
-  FUN_1800a3880(SystemTextureManagerPointer,*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,bVar6);
+  UpdateTextureManagerSystem(SystemTextureManagerPointer,*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,bVar6);
   if (!bVar4) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(SystemContextManagerPointer,&UNK_1809fd4d8,*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1);
+  UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fd4d8,*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1);
 }
 
 
@@ -25522,7 +25522,7 @@ uint32_t GetSystemResourceStatus(void)
     uStack_b8 = systemFlag;
     FUN_180628380(&puStack_c8,aunsignedSystemValue1._8_8_ >> 0x20);
     punsignedSystemValue4 = (void* *)FUN_180627ae0(auStack_80,&puStack_c8);
-    FUN_18005c8a0(SystemMemoryManagerPointer + 0xe30,punsignedSystemValue4);
+    ProcessMemoryManagerOperation(SystemMemoryManagerPointer + 0xe30,punsignedSystemValue4);
     *punsignedSystemValue4 = &SystemGlobalDataReference;
     if (punsignedSystemValue4[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -25564,7 +25564,7 @@ uint32_t GetSystemResourceStatus(void)
     uStack_98 = systemFlag;
     FUN_180628380(&puStack_a8,aunsignedSystemValue1._8_8_ >> 0x20);
     punsignedSystemValue4 = (void* *)FUN_180627ae0(auStack_60,&puStack_a8);
-    FUN_18005c8a0(SystemMemoryManagerPointer + 0xef0,punsignedSystemValue4);
+    ProcessMemoryManagerOperation(SystemMemoryManagerPointer + 0xef0,punsignedSystemValue4);
     *punsignedSystemValue4 = &SystemGlobalDataReference;
     if (punsignedSystemValue4[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -26160,7 +26160,7 @@ void SystemDataInitializer(void)
   puStack_78 = &SystemMemoryAllocatorReference;
   puStack_50 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  FUN_180062300(SystemContextManagerPointer,&UNK_1809fd550);
+  UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fd550);
 }
 
 
@@ -32921,6 +32921,18 @@ void FUN_180059000(long long *SystemResourcePointer)
 
 
 
+/**
+ * @brief 系统资源分配器
+ * 
+ * 该函数负责分配和管理系统资源，包括内存分配、资源引用计数管理
+ * 和资源池维护。这是系统资源管理的核心函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 参数2，通常为状态标志
+ * @param param_3 参数3，通常为资源偏移量
+ * @return 返回分配的资源指针
+ * @note 这是资源管理系统的核心分配函数
+ */
 void* * SystemResourceAllocator(void* *SystemResourcePointer,uint8_t *param_2,long long param_3)
 
 {
@@ -35134,7 +35146,7 @@ void FUN_18005c830(uint *SystemResourcePointer)
 
 
 
-void* FUN_18005c8a0(long long SystemResourcePointer,void* param_2)
+void* ProcessMemoryManagerOperation(long long SystemResourcePointer,void* param_2)
 
 {
   char SystemNodeFlag;
@@ -35655,7 +35667,16 @@ long long FUN_18005d190(long long SystemResourcePointer,long long param_2)
 
 
 
-// 函数: void ProcessExtraOutputResource(void* SystemResourcePointer,long long param_2)
+/**
+ * @brief 处理额外输出资源
+ * 
+ * 该函数负责处理系统中的额外输出资源，包括资源初始化、
+ * 内存分配和状态设置。用于系统资源管理的辅助操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 参数2，通常为缓冲区指针
+ * @note 这是资源管理系统的辅助处理函数
+ */
 void ProcessExtraOutputResource(void* SystemResourcePointer,long long param_2)
 
 {
@@ -39977,8 +39998,8 @@ void FUN_1800622d0(void* SystemResourcePointer,void* param_2,uint32_t param_3,vo
 
 
 
-// 函数: void FUN_180062300(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180062300(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void UpdateContextManagerSystem(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void UpdateContextManagerSystem(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   uint64_t systemInitializationFlag;
@@ -42960,7 +42981,7 @@ void FUN_1800672c0(long long SystemResourcePointer)
     FUN_180067480(*(void* *)(SystemResourcePointer + 0x20));
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(SystemContextManagerPointer,&UNK_1809fec50,systemCounter);
+  UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fec50,systemCounter);
 }
 
 
@@ -42981,7 +43002,7 @@ void FUN_180067480(void* SystemResourcePointer,long long param_2)
     pointerToUnsigned2 = pointerToUnsigned1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(SystemContextManagerPointer,&UNK_1809fec70,pointerToUnsigned2);
+  UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fec70,pointerToUnsigned2);
 }
 
 
@@ -43220,7 +43241,7 @@ void FUN_180067f60(long long SystemResourcePointer,long long param_2)
       punsignedSystemValue4 = *(void* **)(param_2 + 8);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(SystemContextManagerPointer,&UNK_1809fecd8,punsignedSystemValue4);
+    UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fecd8,punsignedSystemValue4);
   }
   localResourceOffset = CreateIoCompletionPort(localSystemHandle,*(void* *)(SystemResourcePointer + 0x213430),0,0);
   if (localResourceOffset != *(long long *)(SystemResourcePointer + 0x213430)) {
@@ -43229,7 +43250,7 @@ void FUN_180067f60(long long SystemResourcePointer,long long param_2)
       punsignedSystemValue4 = *(void* **)(param_2 + 8);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(SystemContextManagerPointer,&UNK_1809fed10,punsignedSystemValue4);
+    UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fed10,punsignedSystemValue4);
   }
   localResourceOffset = SystemResourcePointer + 0x2133e0;
   lStack_2a8 = localResourceOffset;
@@ -43333,12 +43354,12 @@ void* FUN_180068250(long long SystemResourcePointer,long long param_2,long long 
                          0);
         if (systemCounter != 0) {
                     // WARNING: Subroutine does not return
-          FUN_180062300(SystemContextManagerPointer,&UNK_1809fed78);
+          UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fed78);
         }
         systemCounter = GetLastError();
         if (systemCounter != 0x3e5) {
                     // WARNING: Subroutine does not return
-          FUN_180062300(SystemContextManagerPointer,&UNK_1809fed40,systemCounter);
+          UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fed40,systemCounter);
         }
         unsignedSystemValue4 = 1;
       }
@@ -45625,7 +45646,7 @@ LAB_18006c852:
             pbVar12 = pbStack_1f0;
           }
                     // WARNING: Subroutine does not return
-          FUN_180062300(SystemContextManagerPointer,&UNK_1809ff390,unsignedSystemValue19,pbVar12);
+          UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ff390,unsignedSystemValue19,pbVar12);
         }
         if (((uStack_258 < localAllocationFlags + unsignedSystemValue19) ||
             ((ulong long)(long long)*(int *)(SystemResourcePointer + 0x3fc) < (long long)systemStatus7 + 1U)) ||
@@ -49354,7 +49375,7 @@ LAB_1800715eb:
   }
   unsignedSystemValue7 = FUN_1800f98e0(pointerToUnsigned18);
                     // WARNING: Subroutine does not return
-  FUN_180062300(SystemContextManagerPointer,&UNK_1809ff6e0,bVar13 ^ 1,unsignedSystemValue7);
+  UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ff6e0,bVar13 ^ 1,unsignedSystemValue7);
 }
 
 
@@ -63807,7 +63828,7 @@ void FUN_18007f4c0(uint8_t *SystemResourcePointer,void* param_2,void* param_3,vo
         punsignedSystemValue8 = *(void* **)(localDataPointer + 0x18);
       }
                     // WARNING: Subroutine does not return
-      FUN_180062300(SystemContextManagerPointer,&UNK_1809ffc28,punsignedSystemValue8,param_4,unsignedSystemValue10);
+      UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ffc28,punsignedSystemValue8,param_4,unsignedSystemValue10);
     }
   }
   localDataPointer = *(long long *)(SystemResourcePointer + 8);
