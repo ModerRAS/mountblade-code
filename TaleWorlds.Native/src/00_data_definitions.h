@@ -164,7 +164,7 @@ int InitializePhysicsEngineSync(uint64_t threadId, uint64_t syncPtr, uint64_t mu
  * 初始化条件变量和互斥锁C
  * 设置线程同步所需的条件变量和互斥锁
  */
-int InitializeConditionMutexC(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
+int InitializeConditionMutexC(uint64_t threadId,uint64_t syncPtr,uint64_t mutexType,uint64_t mutexAttr)
 {
   int64_t result;
   uint64_t ConditionMutexFlags;
@@ -214,7 +214,7 @@ int InitializeStringProcessorA(void)
 int InitializeStringProcessorB(void)
 {
   int64_t result;
-  undefined8 stringProcessorBFlags;
+  uint64_t stringProcessorBFlags;
   StringProcessorB_Base = &UnknownData1809fdc18;
   StringProcessorB_BufferPtr = &StringProcessorB_Buffer;
   StringProcessorB_Buffer = 0;
@@ -230,7 +230,7 @@ int InitializeStringProcessorB(void)
 int InitializeStringProcessorC(void)
 {
   int64_t result;
-  undefined8 stringProcessorCFlags;
+  uint64_t stringProcessorCFlags;
   g_stringProcessorC_Base = &unknownData_1809fdc18;
   g_stringProcessorC_BufferPtr = &g_stringProcessorC_Buffer;
   g_stringProcessorC_Buffer = 0;
@@ -246,7 +246,7 @@ int InitializeStringProcessorC(void)
 int InitializeStringProcessorD(void)
 {
   int64_t result;
-  undefined8 stringProcessorDFlags;
+  uint64_t stringProcessorDFlags;
   g_stringProcessorD_Base = &unknownData_1809fdc18;
   g_stringProcessorD_BufferPtr = &g_stringProcessorD_Buffer;
   g_stringProcessorD_Buffer = 0;
@@ -262,7 +262,7 @@ int InitializeStringProcessorD(void)
 int InitializeStringProcessorE(void)
 {
   int64_t result;
-  undefined8 stringProcessorEFlags;
+  uint64_t stringProcessorEFlags;
   g_stringProcessorE_Base = &unknownData_1809fdc18;
   g_stringProcessorE_BufferPtr = &g_stringProcessorE_Buffer;
   g_stringProcessorE_Buffer = 0;
@@ -278,7 +278,7 @@ int InitializeStringProcessorE(void)
 int InitializeStringProcessorF(void)
 {
   int64_t result;
-  undefined8 stringFlags;
+  uint64_t stringFlags;
   g_stringProcessorF_Base = &unknownData_1809fdc18;
   globalData_180bf6658 = &globalData_180bf6668;
   globalData_180bf6668 = 0;
@@ -296,7 +296,7 @@ int InitializeStringProcessorF(void)
 int InitializeModuleConfigurationA(void)
 {
   int64_t initializationResult;
-  undefined8 configurationFlags;
+  uint64_t configurationFlags;
   _DAT_180bf6680 = &UNK_1809fdc18;
   _DAT_180bf6688 = &DAT_180bf6698;
   DAT_180bf6698 = 0;
@@ -314,7 +314,7 @@ int InitializeModuleConfigurationA(void)
 int InitializeStringProcessorG(void)
 {
   int64_t CallbackResult;
-  undefined8 stringProcessorGFlags;
+  uint64_t stringProcessorGFlags;
   _DAT_180bf66b0 = &UNK_1809fdc18;
   _DAT_180bf66b8 = &DAT_180bf66c8;
   DAT_180bf66c8 = 0;
@@ -332,7 +332,7 @@ int InitializeStringProcessorG(void)
 int InitializeStringProcessorH(void)
 {
   int64_t CallbackResult;
-  undefined8 stringProcessorHFlags;
+  uint64_t stringProcessorHFlags;
   _DAT_180bf52e8 = &UNK_18098bc80;
   _DAT_180bf52f0 = &DAT_180bf5300;
   DAT_180bf5300 = 0;
@@ -350,7 +350,7 @@ int InitializeStringProcessorH(void)
 int InitializeStringProcessorI(void)
 {
   int64_t CallbackResult;
-  undefined8 stringProcessorIFlags;
+  uint64_t stringProcessorIFlags;
   _DAT_180bf5738 = &UNK_18098bc80;
   _DAT_180bf5740 = &DAT_180bf5750;
   DAT_180bf5750 = 0;

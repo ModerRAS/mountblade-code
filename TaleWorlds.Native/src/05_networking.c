@@ -991,11 +991,11 @@ void ProcessNetworkConnectionContext(undefined8 connectionContext, undefined8 pr
   stackParameter2 = 0;
   stackParameter1 = timeoutRegister;
   operationStatus = func_0x00018088c590(contextRegister,&stack0x00000028,param_3,param_4,param_1);
-  if (((iVar3 == 0) && (iVar3 = FUN_18088c740(&stack0x00000020,uStack0000000000000028), iVar3 == 0))
-     && (iVar3 = func_0x00018088c530(unaff_ESI,&stack0x00000070), iVar3 == 0)) {
-    lStack0000000000000030 = *(longlong *)(in_stack_00000070 + 8);
+  if (((operationStatus == 0) && (operationStatus = FUN_18088c740(&stack0x00000020,stackParameter1), operationStatus == 0))
+     && (operationStatus = func_0x00018088c530(connectionFlags,&stack0x00000070), operationStatus == 0)) {
+    stackParameter2 = *(longlong *)(stackParameter3 + 8);
   }
-  else if (iVar3 != 0) goto LAB_1808408dd;
+  else if (operationStatus != 0) goto LAB_1808408dd;
   puVar1 = (undefined8 *)(lStack0000000000000030 + 0xb0);
   puVar5 = &DAT_18098bc73;
   for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
@@ -23452,8 +23452,16 @@ undefined8 * InitializeNetworkConnectionRecord(undefined8 connectionTable, undef
 
 
 
-// 函数: void FUN_18085607b(undefined8 param_1,longlong param_2)
-void FUN_18085607b(undefined8 param_1,longlong param_2)
+/**
+ * 重置网络连接状态
+ * 
+ * 该函数负责重置网络连接的状态，将连接参数设置为默认值。
+ * 主要用于连接清理和状态重置操作。
+ * 
+ * @param connectionContext 连接上下文
+ * @param connectionState 连接状态指针
+ */
+void ResetNetworkConnectionState(undefined8 connectionContext, longlong connectionState)
 
 {
   *(undefined8 *)(param_2 + 8) = 0xffffffffffffffff;
