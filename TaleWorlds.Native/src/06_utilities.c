@@ -2015,7 +2015,7 @@ undefined DAT_180c4ea58;
 undefined DAT_180c4ea60;
 undefined SystemConfigDataE;
 undefined SystemConfigDataF;
-undefined1 DAT_180c82841;
+undefined1 SystemStatusFlagA;
 undefined1 DAT_180c82840;
 undefined DAT_180c82864;
 undefined DAT_180c91048;
