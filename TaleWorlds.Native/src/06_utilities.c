@@ -78,19 +78,19 @@ undefined1 systemStatusFlag4;
 
 // 函数: void DestroyThreadSyncObjects(void)
 void DestroyThreadSyncObjects(void);
-undefined DAT_1809fe0d0;
-undefined UNK_1809fd0d8;
+undefined threadSyncObjectHandle;
+undefined unknownThreadData;
 
 // 函数: void CloseSystemHandle(void)
 void CloseSystemHandle(void);
 
 // 函数: void CleanupThreadResources(void)
 void CleanupThreadResources(void);
-undefined DAT_180c9190c;
-undefined UNK_1809fcc28;
-undefined UNK_1809ffa30;
-undefined DAT_180a010a0;
-undefined UNK_180a00370;
+undefined threadResourceFlag;
+unknown cleanupSystemData1;
+unknown cleanupSystemData2;
+undefined resourceCleanupHandle;
+unknown cleanupSystemData3;
 
 // 函数: void InitializeResourceManager(void)
 void InitializeResourceManager(void);
