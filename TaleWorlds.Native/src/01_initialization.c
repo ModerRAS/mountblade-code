@@ -35723,10 +35723,10 @@ void** InitializeSystemResourcePointer(void** systemResourcePointer)
   systemResourcePointer[1] = 0;
   *(uint32_t *)(systemResourcePointer + 2) = 0;
   systemResourcePointer[4] = &SystemMemoryAllocatorReference;
-  SystemResourcePointer[5] = 0;
-  *(uint32_t *)(SystemResourcePointer + 6) = 0;
-  SystemResourcePointer[4] = &SystemGlobalDataReference;
-  SystemResourcePointer[7] = 0;
+  systemResourcePointer[5] = 0;
+  *(uint32_t *)(systemResourcePointer + 6) = 0;
+  systemResourcePointer[4] = &SystemGlobalDataReference;
+  systemResourcePointer[7] = 0;
   SystemResourcePointer[5] = 0;
   *(uint32_t *)(SystemResourcePointer + 6) = 0;
   SystemResourcePointer[8] = &SystemMemoryAllocatorReference;
