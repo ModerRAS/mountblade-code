@@ -35564,12 +35564,12 @@ void* ManageSystemResource(void* systemResourcePointer, unsigned long long confi
 void CleanupSystemResource(void** systemResourcePointer, void* configurationDataPointer, void* additionalParameter, void* configurationFlag)
 
 {
-  *SystemResourcePointer = &UNK_1809fde10;
+  *systemResourcePointer = &UNK_1809fde10;
   CleanupSystemMemoryAllocation();
   CleanupSystemMemoryAllocation();
-  FUN_18005b7c0(SystemResourcePointer + 0x262);
-  FUN_18005b7c0(SystemResourcePointer + 0x254);
-  FUN_18005b7c0(SystemResourcePointer + 0x246);
+  ExecuteSystemResourceOperation((long long)*systemResourcePointer + 0x262, configurationDataPointer, additionalParameter, configurationFlag);
+  ExecuteSystemResourceOperation((long long)*systemResourcePointer + 0x254, configurationDataPointer, additionalParameter, configurationFlag);
+  ExecuteSystemResourceOperation((long long)*systemResourcePointer + 0x246, configurationDataPointer, additionalParameter, configurationFlag);
   FUN_18005b7c0(SystemResourcePointer + 0x238);
   FUN_18005b7c0(SystemResourcePointer + 0x22a);
   FUN_18005b7c0(SystemResourcePointer + 0x21c);
@@ -35661,8 +35661,20 @@ long long InitializeSystemResourcePointerStructure(long long SystemResourcePoint
 
 
 
-// 函数: void FUN_18005b7c0(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005b7c0(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源执行器函数
+ * 
+ * 该函数负责执行系统资源操作，调用资源指针中的函数指针
+ * 并设置系统全局数据引用和内存分配器引用。
+ * 
+ * @param systemResourcePointer 系统资源指针
+ * @param configurationDataPointer 配置数据指针
+ * @param additionalParameter 额外参数
+ * @param configurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_18005b7c0，现已重命名为ExecuteSystemResourceOperation
+ */
+void ExecuteSystemResourceOperation(long long systemResourcePointer, void* configurationDataPointer, void* additionalParameter, void* configurationFlag)
 
 {
   if (*(code **)(SystemResourcePointer + 0x60) != (code *)0x0) {
