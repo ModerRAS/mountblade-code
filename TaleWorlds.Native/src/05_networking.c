@@ -26390,8 +26390,8 @@ NetworkHandle CleanupNetworkConnection(NetworkHandle *connectionContext)
       puVar6 = (NetworkStatus *)CreateNetworkStatus();
       *(NetworkStatus *)(connectionContext + 0x29) = *puVar6;
       *(NetworkStatus *)(connectionContext + 0x25) = 0;
-      FUN_1808556a0(connectionContext + 0xe);
-      FUN_180855780(connectionContext + 0x10);
+      ConfigureNetworkConnectionEndpoint(connectionContext + 0xe);
+      InitializeNetworkConnectionProtocol(connectionContext + 0x10);
       iVar5 = GetConnectionContext(connectionContext + 0x12);
       if ((iVar5 == 0) && (iVar5 = ValidateNetworkConnectionState(connectionContext + 0x14), iVar5 == 0)) {
         *(NetworkStatus *)(connectionContext + 0x16) = 0xffffffff;
@@ -32127,8 +32127,8 @@ NetworkHandle FUN_18085a980(longlong connectionContext)
   puVar6 = (NetworkStatus *)CreateNetworkStatus();
   *(NetworkStatus *)(connectionContext + 0x148) = *puVar6;
   *(NetworkStatus *)(connectionContext + 0x128) = 0;
-  FUN_1808556a0(connectionContext + 0x70);
-  FUN_180855780(connectionContext + 0x80);
+  ConfigureNetworkConnectionEndpoint(connectionContext + 0x70);
+  InitializeNetworkConnectionProtocol(connectionContext + 0x80);
   networkStatus4 = GetConnectionContext(connectionContext + 0x90);
   if ((networkStatus4 == 0) && (networkStatus4 = ValidateNetworkConnectionState(connectionContext + 0xa0), networkStatus4 == 0)) {
     *(NetworkStatus *)(connectionContext + 0xb0) = 0xffffffff;
@@ -34353,8 +34353,8 @@ void FUN_18085c230(longlong connectionContext,ulonglong packetData)
     uVar7 = (packetData * 48000) / (ulonglong)tertiaryNetworkFlag;
   }
   *(ulonglong *)(connectionContext + 0x18) = uVar7;
-  FUN_1808556a0(connectionContext + 0x70);
-  FUN_180855780(connectionContext + 0x80);
+  ConfigureNetworkConnectionEndpoint(connectionContext + 0x70);
+  InitializeNetworkConnectionProtocol(connectionContext + 0x80);
   iVar5 = GetConnectionContext(connectionContext + 0x90);
   iVar6 = 0;
   if ((iVar5 == 0) && (iVar5 = ValidateNetworkConnectionState(connectionContext + 0xa0), iVar5 == 0)) {
