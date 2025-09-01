@@ -1954,11 +1954,11 @@ int InitializeStringProcessingSystemO(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9ab0 = &SystemMemoryPool;
-  _DAT_180bf9ab8 = &DAT_180bf9ac8;
-  DAT_180bf9ac8 = 0;
-  _DAT_180bf9ac0 = 0x1c;
-  strcpy_s(&DAT_180bf9ac8,0x40,&DAT_180a22d48,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemO_BasePointer = &SystemMemoryPool;
+  StringProcessingSystemO_BufferPointer = &StringProcessingSystemO_DataBuffer;
+  StringProcessingSystemO_DataBuffer = 0;
+  StringProcessingSystemO_BufferSize = 0x1c;
+  strcpy_s(&StringProcessingSystemO_DataBuffer,0x40,&StringProcessingSystemO_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemO);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1972,11 +1972,11 @@ int InitializeStringProcessingSystemP(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9b10 = &SystemMemoryPool;
-  _DAT_180bf9b18 = &DAT_180bf9b28;
-  DAT_180bf9b28 = 0;
-  _DAT_180bf9b20 = 0x17;
-  strcpy_s(&DAT_180bf9b28,0x40,&UNK_180a22e40,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemP_BasePointer = &SystemMemoryPool;
+  StringProcessingSystemP_BufferPointer = &StringProcessingSystemP_DataBuffer;
+  StringProcessingSystemP_DataBuffer = 0;
+  StringProcessingSystemP_BufferSize = 0x17;
+  strcpy_s(&StringProcessingSystemP_DataBuffer,0x40,&StringProcessingSystemP_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemP);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1990,11 +1990,11 @@ int InitializeStringProcessingSystemQ(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9b70 = &SystemMemoryPool;
-  _DAT_180bf9b78 = &DAT_180bf9b88;
-  DAT_180bf9b88 = 0;
-  _DAT_180bf9b80 = 0x1f;
-  strcpy_s(&DAT_180bf9b88,0x40,&UNK_180a22e20,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemQ_BasePointer = &SystemMemoryPool;
+  StringProcessingSystemQ_BufferPointer = &StringProcessingSystemQ_DataBuffer;
+  StringProcessingSystemQ_DataBuffer = 0;
+  StringProcessingSystemQ_BufferSize = 0x1f;
+  strcpy_s(&StringProcessingSystemQ_DataBuffer,0x40,&StringProcessingSystemQ_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemQ);
   return (ModuleInitializationResult != 0) - 1;
 }

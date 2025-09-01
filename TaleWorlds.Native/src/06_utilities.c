@@ -22174,7 +22174,7 @@ uint64_t ResourceProcessingHandlerAlt1(void)
   uint ResourceContextOffset;
   uint configurationFlags;
   uint ResourceCounter;
-  int64_t UnaffectedRegisterR13;
+  int64_t SystemContextBase;
   uint RegisterR14D;
   float extraout_XMM0_Da;
   float extraout_XMM0_Da_00;
@@ -22548,7 +22548,7 @@ uint64_t ResourceProcessingHandlerAlt2(void)
   uint ValidationCounter;
   uint64_t UnaffectedRegisterValue;
   int ResourceIndex0;
-  int64_t UnaffectedRegisterR13;
+  int64_t SystemContextBase;
   int RegisterR14D;
   int ResourceIndex1;
   float extraout_XMM0_Da;
@@ -22806,7 +22806,7 @@ uint64_t ResourceProcessingHandlerAlt3(void)
   uint ValidationCounter;
   uint64_t UnaffectedRegisterValue;
   int ResourceIndex0;
-  int64_t UnaffectedRegisterR13;
+  int64_t SystemContextBase;
   int RegisterR14D;
   int ResourceIndex1;
   float extraout_XMM0_Da;
@@ -23065,7 +23065,7 @@ uint64_t ProcessFloatParameterResourceHash(float ObjectContextParameter)
   uint resourceHash0;
   uint64_t UnaffectedRegisterValue;
   int ResourceIndex1;
-  int64_t UnaffectedRegisterR13;
+  int64_t SystemContextBase;
   int RegisterR14D;
   int ResourceIndex2;
   bool in_CF;
