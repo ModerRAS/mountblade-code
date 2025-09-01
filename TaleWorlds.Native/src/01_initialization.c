@@ -26545,7 +26545,17 @@ void InitializeSystemResourceManager(long long systemResourcePointer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void* * FUN_180051d40(void* *SystemResourcePointer,void* *param_2)
+/**
+ * @brief 系统资源复制器
+ * 
+ * 该函数负责复制系统资源，包括内存分配、数据复制和资源管理。
+ * 它会创建新的系统资源对象，并复制源资源的所有属性和数据。
+ * 
+ * @param SystemResourcePointer 目标资源指针
+ * @param param_2 源资源指针
+ * @return 返回复制后的资源指针
+ */
+void* * SystemResourceCopier(void* *SystemResourcePointer,void* *param_2)
 
 {
   long long *PrimaryResourcePointer;
