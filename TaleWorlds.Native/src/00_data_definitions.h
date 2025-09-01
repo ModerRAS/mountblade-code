@@ -1,14 +1,6 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
-/**
- * @file 00_data_definitions.h
- * @brief Mount & Blade 游戏引擎数据定义和系统初始化函数
- * 
- * 本文件包含游戏引擎的核心数据结构定义、系统模块初始化函数
- * 以及各种配置缓冲区的管理。所有变量和函数都使用语义化的命名
- * 以提高代码的可读性和维护性。
- */
 
 // 全局系统数据指针
 void* GlobalSystemData;
@@ -678,15 +670,15 @@ int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mut
   SystemConfigBufferC = 0;
   SystemConfigDataSizeSecondary = 0x10;
   strcpy_s(&SystemConfigBufferC,0x40,&SystemConfigDataTemplateCBF0);
-  _DAT_180bf69b8 = &SystemMemoryPool;
-  _DAT_180bf69c0 = &SystemConfigBufferD;
+  SystemConfigDataPointerQuinary = &SystemMemoryPool;
+  SystemConfigDataPointerSenary = &SystemConfigBufferD;
   SystemConfigBufferD = 0;
-  _DAT_180bf69c8 = 0x1f;
+  SystemConfigDataSizeTertiary = 0x1f;
   strcpy_s(&SystemConfigBufferD,0x40,&SystemConfigDataTemplateCBA8);
-  _DAT_180bf6a10 = &SystemMemoryPool;
-  _DAT_180bf6a18 = &SystemConfigBufferE;
+  SystemConfigDataPointerSeptenary = &SystemMemoryPool;
+  SystemConfigDataPointerOctonary = &SystemConfigBufferE;
   SystemConfigBufferE = 0;
-  _DAT_180bf6a20 = 0x17;
+  SystemConfigDataSizeQuaternary = 0x17;
   strcpy_s(&SystemConfigBufferE,0x40,&SystemConfigStringTemplateA);
   _DAT_180bf6a68 = &SystemMemoryPool;
   _DAT_180bf6a70 = &SystemConfigBufferF;
