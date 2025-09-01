@@ -86861,7 +86861,7 @@ void InitializeSystemDataStructureCV(void)
       _Mtx_destroy_in_situ();
       _Cnd_destroy_in_situ();
       SystemContextHandler(lVar1 + 0x60);
-      FUN_1804a9e30();
+      SystemContextFinalizer();
                     // WARNING: Subroutine does not return
       ReleaseResourceHandle(lVar1);
     }
@@ -86880,7 +86880,7 @@ void InitializeSystemDataStructureCW(void)
 
 {
   if (DAT_180c961d8 != '\0') {
-    FUN_1804c3730(&DAT_180c961b0);
+    SystemValidationHandler(&DAT_180c961b0);
     FUN_1804c42a0(&DAT_180c961b0);
 
  /**
