@@ -4117,7 +4117,7 @@ uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
           return 0x1c;
         }
         operationResult = ProcessResourceOperation(*(int64_t *)(resultBuffer[0] + 8), *(uint32_t *)(objectContext + 0x20),
-                                      *(uint8_t1 *)(objectContext + 0x24));
+                                      *(uint8_t *)(objectContext + 0x24));
         if ((int)operationResult != 0) {
           return operationResult;
         }
@@ -4162,7 +4162,7 @@ uint8_t ValidateAndProcessObjectStatus(int64_t objectContext)
           return 0x1c;
         }
         resourceHash = ProcessResourceOperation(*(int64_t *)(ValidationStackBuffer8[0] + 8),*(uint32_t *)(objectContextParam + 0x18),
-                              *(uint8_t1 *)(objectContextParam + 0x1c));
+                              *(uint8_t *)(objectContextParam + 0x1c));
         if ((int)resourceHash != 0) {
           return resourceHash;
         }
@@ -4438,7 +4438,7 @@ uint8_t InitializeObjectHandleE(int64_t objectContext)
           if (*(int64_t *)(lStackX_8 + 8) == 0) {
             return 0x1c;
           }
-          resourceHash = ProcessResourceOperation(*(int64_t *)(lStackX_8 + 8),*punsignedResult3,*(uint8_t1 *)(objectContextParam + 0x1c)
+          resourceHash = ProcessResourceOperation(*(int64_t *)(lStackX_8 + 8),*punsignedResult3,*(uint8_t *)(objectContextParam + 0x1c)
                                );
           if ((int)resourceHash != 0) {
             return resourceHash;
@@ -4500,7 +4500,7 @@ uint8_t InitializeObjectHandleF(void)
           return 0x1c;
         }
         resourceHash = ProcessResourceOperation(*(int64_t *)(lStack0000000000000050 + 8),*punsignedResult3,
-                              *(uint8_t1 *)(ExecutionContextPointer + 0x1c));
+                              *(uint8_t *)(ExecutionContextPointer + 0x1c));
         if ((int)resourceHash != 0) {
           return resourceHash;
         }
@@ -5650,7 +5650,7 @@ void ProcessSystemDataPacketTransmission(int64_t packetHandle, int64_t transmiss
       return;
     }
     FinalizeDataStructure((int64_t)*(int *)(objectContextParam + 0x10) * 0x44 +
-                        *(int64_t *)(validationContextParam + 0x90) + 0x554,*(uint8_t1 *)(objectContextParam + 0x50));
+                        *(int64_t *)(validationContextParam + 0x90) + 0x554,*(uint8_t *)(objectContextParam + 0x50));
   }
   return;
 }
@@ -5708,7 +5708,7 @@ uint8_t ValidateSystemDataIntegrity(int64_t dataBuffer, int64_t validationConfig
     do {
       if (((*pintegerValue2 != SystemValidationCodeA) || (pintegerValue2[1] != SystemValidationCodeB)) &&
          (resourceHash = CalculateResourceHash(validationContextParam + 0x60,(int *)(objectContextParam + 0x18) + (int64_t)validationIndex * 2,*punsignedResult3
-                                ,*(uint8_t1 *)(objectContextParam + 0x14)), (int)resourceHash != 0)) {
+                                ,*(uint8_t *)(objectContextParam + 0x14)), (int)resourceHash != 0)) {
         return resourceHash;
       }
       validationIndex = validationIndex + 1;
@@ -6126,7 +6126,7 @@ uint8_t ActivateObjectPropertiesAndDispatch(int64_t objectContext, int64_t sched
   if (*(char *)(propertyBuffer + 0x2c) != '\0') {
     return 0x4e;
   }
-  *(uint8_t1 *)(propertyBuffer + 0x2c) = 1;
+  *(uint8_t *)(propertyBuffer + 0x2c) = 1;
                     // WARNING: Subroutine does not return
   ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),objectContext);
 }
@@ -6151,7 +6151,7 @@ void SetObjectContextByte29(int64_t objectContext, int64_t processContext)
   
   validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&contextBuffer);
   if (validationStatus == 0) {
-    *(uint8_t1 *)(contextBuffer + 0x29) = *(uint8_t1 *)(objectContext + 0x18);
+    *(uint8_t *)(contextBuffer + 0x29) = *(uint8_t *)(objectContext + 0x18);
                     // WARNING: Subroutine does not return
     ProcessContextData(*(uint8_t *)(processContext + 0x98),objectContext);
   }
@@ -6178,7 +6178,7 @@ void SetObjectContextByte28(int64_t objectContext, int64_t processContext)
   
   validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&contextBuffer);
   if (validationStatus == 0) {
-    *(uint8_t1 *)(contextBuffer + 0x28) = *(uint8_t1 *)(objectContext + 0x18);
+    *(uint8_t *)(contextBuffer + 0x28) = *(uint8_t *)(objectContext + 0x18);
                     // WARNING: Subroutine does not return
     ProcessContextData(*(uint8_t *)(processContext + 0x98),objectContext);
   }
