@@ -10,9 +10,9 @@
 #define DATA_DEFINITIONS_H
 
 // 全局系统数据指针
-void* GlobalSystemData;
+void* SystemGlobalData;
 // 系统字符串缓冲区 - 用于存储系统字符串数据
-void* SystemStringBufferPrimary;
+void* SystemStringBufferMain;
 void* SystemStringBufferSecondary;
 void* SystemStringBufferTertiary;
 void* SystemStringBufferQuaternary;
@@ -44,10 +44,10 @@ void* SystemStringBufferNovemvigesimal;
 void* SystemStringBufferTrigesimal;
 
 // 系统内存池 - 用于动态内存分配
-void* SystemMemoryPoolPointer;
+void* SystemMemoryPool;
 
 // 系统内存配置缓冲区 - 用于存储内存配置数据
-void* SystemMemoryConfigBufferPrimary;
+void* SystemMemoryConfigBufferMain;
 void* SystemMemoryConfigBufferSecondary;
 void* SystemMemoryConfigBufferTertiary;
 void* SystemMemoryConfigBufferQuaternary;
@@ -67,33 +67,33 @@ void* SystemMemoryConfigBufferSeptendecenary;
 void* SystemMemoryConfigBufferOctodecenary;
 
 // 系统内存池缓冲区 - 用于存储内存池数据
-void* SystemMemoryPoolBufferPrimary;
+void* SystemMemoryPoolBufferMain;
 void* SystemMemoryPoolBufferSecondary;
 void* SystemMemoryPoolBufferTertiary;
 void* SystemMemoryPoolBufferQuaternary;
 
 // 系统字符串内存缓冲区 - 用于存储字符串内存数据
-void* SystemStringMemoryBufferPrimary;
+void* SystemStringMemoryBufferMain;
 void* SystemStringMemoryBufferSecondary;
 void* SystemStringMemoryBufferTertiary;
 void* SystemStringMemoryBufferQuaternary;
 
 // 系统状态标志 - 用于存储系统运行状态
-char SystemStatusFlagPrimary;
+char SystemStatusFlagMain;
 char SystemStatusFlagSecondary;
 
 // 系统字符串数据缓冲区 - 用于存储字符串处理数据
-void* SystemStringDataBuffer;
+void* SystemStringDataBufferMain;
 void* SystemStringDataBufferSecondary;
 void* SystemStringDataBufferTertiary;
 
 // 系统字符串标志 - 用于存储字符串处理状态
-char SystemStringFlagPrimary;
+char SystemStringFlagMain;
 char SystemStringFlagSecondary;
 char SystemStringFlagTertiary;
 
 // 系统配置缓冲区 - 用于存储系统配置数据
-void* SystemConfigurationBufferPrimary;
+void* SystemConfigurationBufferMain;
 void* SystemConfigurationBufferSecondary;
 
 // 系统配置标志 - 用于存储系统配置状态
@@ -2488,10 +2488,10 @@ int ProcessSystemEvent(uint64_t systemId,uint64_t eventType,uint64_t eventData,u
   _DAT_180bfa490 = 0xb;
   strcpy_s(&SystemPathBufferA,0x80,&UnknownDataPointer180a0f168);
   _DAT_180bfa518 = &SystemMemoryConfigTemplate;
-  _DAT_180bfa520 = &DAT_180bfa530;
-  DAT_180bfa530 = 0;
+  SystemPathBufferInstanceA = &SystemPathBufferB;
+  SystemPathBufferB = 0;
   _DAT_180bfa528 = 7;
-  strcpy_s(&DAT_180bfa530,0x80,&UnknownDataPointer180a0f188);
+  strcpy_s(&SystemPathBufferB,0x80,&UnknownDataPointer180a0f188);
   _DAT_180bfa5b0 = &SystemMemoryConfigTemplate;
   _DAT_180bfa5b8 = &DAT_180bfa5c8;
   DAT_180bfa5c8 = 0;
