@@ -11803,13 +11803,13 @@ uint64_t InitializeResourceTableStructure(int64_t objectContextParam)
             unsignedResult3 = SecurityValidationContext;
             plocalContextPointer3 = DataHandlerContextPointer;
             if ((iVar4 == 0) &&
-               (iVar4 = func_0x0001808c7ed0(SecurityValidationContext), plocalContextPointer3 = DataHandlerContextPointer, 0 < iVar4)) {
+               (iVar4 = ValidateTableEntry(SecurityValidationContext), plocalContextPointer3 = DataHandlerContextPointer, 0 < iVar4)) {
               do {
                 uStack_e0 = *(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10);
                 uStack_e8 = 0;
                 puStack_f0 = &SystemDataBufferA;
                 ParseDataStructure(&puStack_f0,*(uint8_t *)(objectContextParam + 0x58));
-                iVar4 = func_0x0001808c7ed0(unsignedResult3);
+                iVar4 = ValidateTableEntry(unsignedResult3);
               } while (0 < iVar4);
               unsignedValue6 = (uint64_t)auStackX_10[0];
               plocalContextPointer3 = DataHandlerContextPointer;
@@ -12156,7 +12156,7 @@ uint8_t ExpandResourceTableCapacity(int64_t objectContextParam)
   if ((*(int64_t *)(objectContextParam + 8) != 0) && (tableEntry = *(int *)(objectContextParam + 0x30), 0 < tableEntry)) {
     loopCounter = *(int64_t *)(objectContextParam + 0x28);
     if (0x40000 < tableEntry) {
-      resourceTable = func_0x00018076b3e0(localContextPointer + 0x40000,10);
+      resourceTable = AllocateResourceTable(localContextPointer + 0x40000,10);
       if (resourceTable != 0) {
         tableEntry = ((int)resourceTable - (int)localContextPointer) + 1;
       }
@@ -12357,7 +12357,7 @@ void ProcessComplexResourceOperation(uint8_t objectContextParam,int64_t validati
       uStack_270 = 0;
       uStack_264 = 0;
       uStack_268 = CleanupOption;
-      func_0x00018076b450(auStack_260,*(uint8_t *)(validationContextParam + 0x228),0x200);
+      CopySecurityData(auStack_260,*(uint8_t *)(validationContextParam + 0x228),0x200);
       ppunsignedValue6 = &puStack_278;
 LAB_180896ce3:
       iVar3 = GetAndValidateResourceData(objectContextParam,ppunsignedValue6);
@@ -12999,7 +12999,7 @@ void ProcessContextDataValidation(int64_t *objectContext,int64_t *validationCont
   localContextPointer = objectContext[4];
   if (((char)localContextPointer != '\0') || (operationResult = CheckSystemStatus(objectContext,1), operationResult == 0)) {
     operationResult = (**(code **)(*validationContext + 0x10))(validationContext,dataBuffer,0x200);
-    func_0x00018074b7b0(dataBuffer + operationResult,0x200 - operationResult,10);
+    ProcessDataBuffer(dataBuffer + operationResult,0x200 - operationResult,10);
     operationResult = (**(code **)(*objectContext + 8))(objectContext,dataBuffer);
     if ((operationResult == 0) &&
        (((char)localContextPointer == '\0' && (operationResult = (**(code **)(*objectContext + 0x18))(objectContext), operationResult == 0)))) {
@@ -13031,7 +13031,7 @@ void ExecuteSimplifiedContextValidation(void)
   uint64_t stackParameter;
   
   operationResult = (**(code **)(systemContext + 0x10))();
-  func_0x00018074b7b0(validationBuffer + operationResult,0x200 - operationResult,10);
+  ProcessDataBuffer(validationBuffer + operationResult,0x200 - operationResult,10);
   operationResult = (**(code **)(*resourcePointer + 8))();
   if (((operationResult == 0) && (systemFlag == '\0')) &&
      (operationResult = (**(code **)(*resourcePointer + 0x18))(), operationResult == 0)) {
@@ -13171,7 +13171,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
             lVar9 = *(int64_t *)(resourceTable + 0x20);
             resourceIndex = *(int64_t *)(localContextPointer4 + 0x10 + lVar9);
             lVar4 = *(int64_t *)(localContextPointer4 + 8 + lVar9);
-            cVar5 = func_0x000180894c50(resourceIndex,1);
+            cVar5 = CheckResourceIndex(resourceIndex,1);
             presourceHash6 = puStack_190;
             if ((cVar5 == '\0') && (*(float *)(resourceIndex + 0x4c) != *(float *)(lVar4 + 0x28))) {
               uStack_f0 = *(uint32_t *)(localContextPointer4 + 4 + lVar9);
@@ -13187,7 +13187,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
               else {
                 presourceHash2 = *(uint8_t **)(resourceIndex + 0x50);
               }
-              func_0x00018076b450(auStack_e0,presourceHash2,0x80);
+              CopySecurityData(auStack_e0,presourceHash2,0x80);
               integerValue6 = GetAndValidateResourceData(objectContextParam,&pOperationParam38);
               if (integerValue6 != 0) goto HandleMemoryCleanup;
             }
@@ -13201,7 +13201,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
         integerValue6 = CalculateDataHash(resourceHash0,resourceHash1,acStack_1c4);
         if (integerValue6 == 0) {
           if (acStack_1c4[0] != '\0') {
-            resourceHash1 = func_0x00018085fa80();
+            resourceHash1 = GenerateResourceHash();
             integerValue6 = memcmp(resourceTable + 0x38,resourceHash1,0x30);
             if (integerValue6 != 0) {
               OperationParam20 = *(uint8_t *)(resourceTable + 0x38);
@@ -13272,7 +13272,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
               } while ((int)fVar13 < 6);
-              unsignedValue7 = func_0x000180855b70(validationContextParam + 200);
+              unsignedValue7 = CalculateSecurityHash(validationContextParam + 200);
               if ((float)(unsignedValue7 / 0x30) != 0.0) {
                 puStack_1c0 = &SystemResourceTemplateJ;
                 uStack_1b0 = uStack_1c8;
@@ -13432,7 +13432,7 @@ void SystemInitializerA(void)
           localContextPointer5 = *(int64_t *)(unaff_R15 + 0x20);
           resourceTable = *(int64_t *)(validationResult0 + 0x10 + localContextPointer5);
           resourceIndex = *(int64_t *)(validationResult0 + 8 + localContextPointer5);
-          cVar12 = func_0x000180894c50(resourceTable,1);
+          cVar12 = CheckResourceIndex(resourceTable,1);
           pvalidationResult2 = puStack0000000000000058;
           if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(resourceIndex + 0x28))) {
             validationResult4 = *(uint32_t *)(validationResult0 + 4 + localContextPointer5);
@@ -13450,7 +13450,7 @@ void SystemInitializerA(void)
             else {
               presourceHash8 = *(uint8_t **)(resourceTable + 0x50);
             }
-            validationResult4 = func_0x00018076b450(ExecutionContextPointer + 1,presourceHash8,0x80);
+            validationResult4 = CopySecurityData(ExecutionContextPointer + 1,presourceHash8,0x80);
             integerValue13 = GetAndValidateResourceData(validationResult4,ExecutionContextPointer + -4);
             if (integerValue13 != 0) goto ProcessMemoryRelease;
           }
@@ -13466,7 +13466,7 @@ void SystemInitializerA(void)
       if (integerValue13 == 0) {
         validationResult4 = extraout_XMM0_Da_00;
         if (acStackX_24[0] != '\0') {
-          resourceHash7 = func_0x00018085fa80();
+          resourceHash7 = GenerateResourceHash();
           integerValue13 = memcmp(unaff_R15 + 0x38,resourceHash7,0x30);
           validationResult4 = extraout_XMM0_Da_01;
           if (integerValue13 != 0) {
@@ -13553,7 +13553,7 @@ void SystemInitializerA(void)
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
             } while ((int)fVar19 < 6);
-            resourceHash4 = func_0x000180855b70(unaff_R14 + 200);
+            resourceHash4 = CalculateSecurityHash(unaff_R14 + 200);
             validationResult4 = extraout_XMM0_Da_04;
             if ((float)(resourceHash4 / 0x30) != 0.0) {
               in_stack_00000028 = &SystemResourceTemplateJ;
@@ -13693,7 +13693,7 @@ void DataProcessingErrorHandler(void)
       localContextPointer5 = *(int64_t *)(unaff_R15 + 0x20);
       resourceTable = *(int64_t *)(validationResult0 + 0x10 + localContextPointer5);
       resourceIndex = *(int64_t *)(validationResult0 + 8 + localContextPointer5);
-      cVar12 = func_0x000180894c50(resourceTable,1);
+      cVar12 = CheckResourceIndex(resourceTable,1);
       unaff_R12 = in_stack_00000058;
       if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(resourceIndex + 0x28))) {
         validationResult3 = *(uint32_t *)(validationResult0 + 4 + localContextPointer5);
@@ -13711,7 +13711,7 @@ void DataProcessingErrorHandler(void)
         else {
           presourceHash8 = *(uint8_t **)(resourceTable + 0x50);
         }
-        validationResult3 = func_0x00018076b450(ExecutionContextPointer + 1,presourceHash8,0x80);
+        validationResult3 = CopySecurityData(ExecutionContextPointer + 1,presourceHash8,0x80);
         integerValue13 = GetAndValidateResourceData(validationResult3,ExecutionContextPointer + -4);
         if (integerValue13 != 0) goto ExecuteMemoryDeallocation;
       }
@@ -13727,7 +13727,7 @@ void DataProcessingErrorHandler(void)
   if (integerValue13 == 0) {
     validationResult3 = extraout_XMM0_Da;
     if (acStackX_24[0] != '\0') {
-      resourceHash7 = func_0x00018085fa80();
+      resourceHash7 = GenerateResourceHash();
       integerValue13 = memcmp(unaff_R15 + 0x38,resourceHash7,0x30);
       validationResult3 = extraout_XMM0_Da_00;
       if (integerValue13 != 0) {
@@ -13814,7 +13814,7 @@ void DataProcessingErrorHandler(void)
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
         } while ((int)fVar19 < 6);
-        resourceHash4 = func_0x000180855b70(unaff_R14 + 200);
+        resourceHash4 = CalculateSecurityHash(unaff_R14 + 200);
         validationResult3 = extraout_XMM0_Da_03;
         if ((float)(resourceHash4 / 0x30) != 0.0) {
           in_stack_00000028 = &SystemResourceTemplateJ;
@@ -13963,7 +13963,7 @@ void FloatProcessingErrorHandler(void)
       fVar4 = (float)((int)fVar4 + 1);
       pfVar5 = pfVar5 + 1;
     } while ((int)fVar4 < 6);
-    unsignedResult3 = func_0x000180855b70(unaff_R14 + 200);
+    unsignedResult3 = CalculateSecurityHash(unaff_R14 + 200);
     unsignedValue6 = extraout_XMM0_Da_00;
     if ((float)(unsignedResult3 / 0x30) != 0.0) {
       in_stack_00000028 = &SystemResourceTemplateJ;
@@ -14122,7 +14122,7 @@ LAB_180897ce8:
       int resourceValidationResult = GetAndValidateResourceData(objectContextParam,&puStack_268);
       if (resourceValidationResult != 0) goto LAB_180897ce8;
       int processingCounter = 0;
-      int tableEntryIndex = func_0x0001808c7ed0(*(uint8_t *)(localContextPointer + 0xd0));
+      int tableEntryIndex = ValidateTableEntry(*(uint8_t *)(localContextPointer + 0xd0));
       int loopCounter2 = nextResultIndex;
       if (0 < tableEntryIndex) {
         do {
@@ -14133,7 +14133,7 @@ LAB_180897ce8:
           if (((char)resourceTable == '\0') && (int systemStatusResult = CheckSystemStatus(objectContextParam,1), systemStatusResult != 0))
           goto LAB_180897ce8;
           int memoryOperationResult = (**(code **)(memoryTemplatePointer + 0x10))(&memoryTemplatePointer,auStack_238,0x200);
-          func_0x00018074b7b0((int64_t)auStack_238 + (int64_t)memoryOperationResult,0x200 - memoryOperationResult,10);
+          ProcessDataBuffer((int64_t)auStack_238 + (int64_t)memoryOperationResult,0x200 - memoryOperationResult,10);
           int objectOperationResult = (**(code **)(*objectContextParam + 8))(objectContextParam,auStack_238);
           if (objectOperationResult != 0) goto LAB_180897ce8;
           if ((char)resourceTable == '\0') {
@@ -14142,7 +14142,7 @@ LAB_180897ce8:
             *(uint8_t1 *)(objectContextParam + 4) = 0;
           }
           processingCounter = processingCounter + 1;
-          int tableValidationResult = func_0x0001808c7ed0(*(uint8_t *)(localContextPointer + 0xd0));
+          int tableValidationResult = ValidateTableEntry(*(uint8_t *)(localContextPointer + 0xd0));
         } while (processingCounter < tableValidationResult);
       }
     }
@@ -14218,7 +14218,7 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *objectContextParam)
   validationResult = GetAndValidateResourceData(objectContextParam,&puStack_28);
   if ((int)validationResult == 0) {
     loopCounter = *(int64_t *)(objectContextParam[1] + 0x78);
-    resourceIndex = func_0x000180879a40();
+    resourceIndex = GetThreadContext();
     if (resourceIndex == 0) {
       validationResult = 0x1c;
     }
@@ -14294,7 +14294,7 @@ uint8_t ValidateResourceRenderingState(void)
   uint8_t validationResult;
   int64_t *ResourceContextPointer;
   
-  localContextPointer = func_0x000180879a40();
+  localContextPointer = GetThreadContext();
   if (localContextPointer == 0) {
     validationResult = 0x1c;
   }
@@ -14479,7 +14479,7 @@ uint8_t ValidateResourceRenderingState(void)
              (integerValue6 = CheckSystemStatus(objectContextParam,CONCAT71((uint7)(uint3)(uStack_28c >> 8),1)), integerValue6 != 0
              )) goto LAB_18089866f;
           integerValue6 = (**(code **)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
-          func_0x00018074b7b0(auStack_238 + integerValue6,0x200 - integerValue6,10);
+          ProcessDataBuffer(auStack_238 + integerValue6,0x200 - integerValue6,10);
           integerValue6 = (**(code **)(*objectContextParam + 8))(objectContextParam,auStack_238);
           if (integerValue6 != 0) goto LAB_18089866f;
           if ((char)localContextPointer5 == '\0') {
@@ -14494,14 +14494,14 @@ uint8_t ValidateResourceRenderingState(void)
         } while ((int64_t)plocalContextPointer4 < alStack_300[0]);
       }
       localContextPointer5 = objectContextParam[1] + 0x60;
-      integerValue6 = func_0x0001808675f0(localContextPointer5);
+      integerValue6 = AcquireThreadLock(localContextPointer5);
       plocalContextPointer4 = plocalContextPointer6;
       if (0 < integerValue6) {
         do {
           GetResourcePointer(localContextPointer5,auStack_2f0,plocalContextPointer4);
-          func_0x0001808676a0(localContextPointer5,plocalContextPointer4,afStack_348,alStack_300);
+          ReleaseThreadLock(localContextPointer5,plocalContextPointer4,afStack_348,alStack_300);
           localContextPointer1 = LookupResourceIndex(localContextPointer5,plocalContextPointer4);
-          cVar5 = func_0x000180894c50(localContextPointer1,0);
+          cVar5 = CheckResourceIndex(localContextPointer1,0);
           if ((cVar5 == '\0') && (afStack_348[0] != *(float *)(localContextPointer1 + 0x4c))) {
             GraphicsOperationFlag5 = auStack_2f0._0_4_;
             uStack_2bc = auStack_2f0._4_4_;
@@ -14515,7 +14515,7 @@ uint8_t ValidateResourceRenderingState(void)
             else {
               presourceHash2 = *(uint8_t **)(localContextPointer1 + 0x50);
             }
-            func_0x00018076b450(&GraphicsOperationFlag6,presourceHash2,0x80);
+            CopySecurityData(&GraphicsOperationFlag6,presourceHash2,0x80);
             localContextPointer1 = objectContextParam[4];
             if ((char)localContextPointer1 == '\0') {
               *(uint8_t1 *)(objectContextParam + 4) = 1;
@@ -14537,7 +14537,7 @@ uint8_t ValidateResourceRenderingState(void)
               if (iVar7 != 0) goto LAB_18089866f;
             }
             iVar7 = (**(code **)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
-            func_0x00018074b7b0(auStack_238 + iVar7,0x200 - iVar7,10);
+            ProcessDataBuffer(auStack_238 + iVar7,0x200 - iVar7,10);
             iVar7 = (**(code **)(*objectContextParam + 8))(objectContextParam,auStack_238);
             if (iVar7 != 0) goto LAB_18089866f;
             if ((char)localContextPointer1 == '\0') {
@@ -20485,7 +20485,7 @@ LAB_18089bfc7:
     integerValue2 = ValidateResourceStructure(validationContextParam,objectContextParam + 0x40);
   }
   if (integerValue2 == 0) {
-    func_0x000180069ee0(objectContextParam);
+    InitializeSystemContext(objectContextParam);
   }
   return;
 }
@@ -20594,7 +20594,7 @@ LAB_18089bfc7:
     integerValue1 = ValidateResourceStructure();
   }
   if (integerValue1 == 0) {
-    func_0x000180069ee0();
+    InitializeSystemContext();
   }
   return;
 }
@@ -20693,7 +20693,7 @@ LAB_18089c131:
       unsignedResult3 = ReadResourceData(*validationContextParam,objectContextParam + 4,4);
     }
     if (unsignedResult3 == 0) {
-      unsignedResult4 = func_0x000180069ee0(objectContextParam);
+      unsignedResult4 = InitializeSystemContext(objectContextParam);
     }
     else {
       unsignedResult4 = (uint64_t)unsignedResult3;
@@ -31303,7 +31303,18 @@ void ValidationContextCleanupHandler(uint8_t objectContextParam,int64_t validati
 
 
 
-void Unwind_180902950(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 批量释放资源句柄
+ * 
+ * 该函数负责批量释放系统中的资源句柄
+ * 遍历资源表并释放所有有效的资源句柄
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于批量资源清理
+ */
+void ReleaseResourceHandlesBatch(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int *pintegerValue1;
@@ -31358,7 +31369,18 @@ void Unwind_180902950(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902960(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 清理资源表并释放句柄
+ * 
+ * 该函数负责清理资源表并释放所有相关的资源句柄
+ * 重置资源表状态并执行内存清理操作
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于深度资源清理
+ */
+void CleanupResourceTableAndReleaseHandles(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int *pintegerValue1;
@@ -40962,9 +40984,9 @@ void Catch_180904b50(uint8_t objectContextParam,int64_t validationContextParam)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x50);
-  func_0x00018005f320(localContextPointer);
-  func_0x000180060c00(*(int64_t *)(validationContextParam + 0x60) + 8,0);
-  func_0x000180060c10(*(uint8_t *)(localContextPointer + 0x50),*(uint8_t *)(validationContextParam + 0x68));
+  CleanupSystemResources(localContextPointer);
+  ResetSystemMemory(*(int64_t *)(validationContextParam + 0x60) + 8,0);
+  ConfigureSystemParameters(*(uint8_t *)(localContextPointer + 0x50),*(uint8_t *)(validationContextParam + 0x68));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }
@@ -41083,7 +41105,7 @@ void Catch_180904c60(uint8_t objectContextParam,int64_t validationContextParam)
       uVar8 = *(uint64_t *)(validationContextParam + 0x20);
     }
   }
-  func_0x000180060150(*(uint8_t *)(localContextPointer + 0x50),resourceTable);
+  SetupSystemTable(*(uint8_t *)(localContextPointer + 0x50),resourceTable);
   *(uint8_t *)(localContextPointer + 0x40) = *(uint8_t *)(validationContextParam + 0xa8);
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
@@ -45148,9 +45170,9 @@ void Catch_180905e00(uint8_t objectContextParam,int64_t validationContextParam)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x60);
-  func_0x00018005f320(localContextPointer);
-  func_0x000180060c00(*(int64_t *)(validationContextParam + 0x70) + 8,0);
-  func_0x00018006d490(*(uint8_t *)(localContextPointer + 0x50),*(uint8_t *)(validationContextParam + 0x78));
+  CleanupSystemResources(localContextPointer);
+  ResetSystemMemory(*(int64_t *)(validationContextParam + 0x70) + 8,0);
+  FinalizeSystemSetup(*(uint8_t *)(localContextPointer + 0x50),*(uint8_t *)(validationContextParam + 0x78));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }

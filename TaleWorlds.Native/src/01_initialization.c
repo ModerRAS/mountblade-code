@@ -25629,8 +25629,19 @@ uint32_t GetSystemResourceStatus(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004eb00(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_18004eb00(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void SystemResourceInitializer(void* SystemResourcePointer,void* parameter2,void* parameter3,void* parameter4)
+/**
+ * @brief 系统资源初始化器
+ * 
+ * 该函数负责初始化系统资源，包括内存分配、缓冲区设置和系统参数配置。
+ * 这是系统启动过程中的核心初始化函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param parameter2 初始化参数2
+ * @param parameter3 初始化参数3
+ * @param parameter4 初始化参数4
+ */
+void SystemResourceInitializer(void* SystemResourcePointer,void* parameter2,void* parameter3,void* parameter4)
 
 {
   uint unsignedSystemValue1;
@@ -25868,8 +25879,16 @@ void SystemCleanupHandler(void)
 
 
 
-// 函数: void FUN_18004f8e0(long long SystemResourcePointer)
-void FUN_18004f8e0(long long SystemResourcePointer)
+// 函数: void SystemMemoryManager(long long SystemResourcePointer)
+/**
+ * @brief 系统内存管理器
+ * 
+ * 该函数负责管理系统内存资源，包括内存分配、释放和优化。
+ * 这是内存管理系统的核心函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ */
+void SystemMemoryManager(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
