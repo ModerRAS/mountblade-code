@@ -1563,7 +1563,7 @@ void* MemorySegmentDescriptor;
 void* MemorySegmentTable;
 void* MemorySegmentStatus;
 void* MemorySegmentConfig;
-undefined DAT_180a22fa8;
+void* MemorySegmentBuffer;
 
  void ConfigureMemoryFragmentation;
 /**
@@ -1573,9 +1573,9 @@ undefined DAT_180a22fa8;
  * 设置内存碎片检测和整理策略
  */
 void ConfigureMemoryFragmentation;
-undefined DAT_180bfa290;
-undefined DAT_180bfa298;
-undefined DAT_180bfa2a0;
+void* MemoryFragmentationDescriptor;
+void* MemoryFragmentationTable;
+void* MemoryFragmentationStatus;
 void* MemoryBalancingConfigTable;
 void* MemoryBalancingReservedMemory;
 

@@ -374,6 +374,7 @@ void* SystemConfigDataPointerA;        // _DAT_180bf52c0
 void* SystemConfigDataPointerB;        // _DAT_180bf52d8
 void* SystemConfigDataPointerC;        // _DAT_180bf52c8
 void* SystemConfigDataPointerD;        // _DAT_180bf52d0
+void* SystemConfigDataPointerE;        // _DAT_180bf6750
 /**
  * @brief 系统内存分配器函数
  * 
