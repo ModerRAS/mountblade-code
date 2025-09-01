@@ -675,13 +675,13 @@ void InitializeGameCoreSystem(void)
   code *systemInitializationFunction;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   systemInitializationFunction = FUN_18007fcd0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&DAT_1809fc740,0x10);
+    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (systemComparisonResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -693,14 +693,14 @@ void InitializeGameCoreSystem(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x4fc124d23d41985f;
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
-  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = systemInitializationFunction;
   return;
@@ -732,8 +732,8 @@ void initializeSystemDataTable_BaseAllocator(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -752,7 +752,7 @@ void initializeSystemDataTable_BaseAllocator(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4770584fbb1df897;
@@ -787,8 +787,8 @@ void InitializeSystemDataTableAllocator(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -807,7 +807,7 @@ void InitializeSystemDataTableAllocator(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
@@ -842,8 +842,8 @@ void InitializeSystemCoreConfig(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -862,7 +862,7 @@ void InitializeSystemCoreConfig(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
@@ -897,8 +897,8 @@ void InitializeSystemMemoryPool(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -917,7 +917,7 @@ void InitializeSystemMemoryPool(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
@@ -952,8 +952,8 @@ void InitializeSystemThreadPool(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -972,7 +972,7 @@ void InitializeSystemThreadPool(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40ea3a798283cbbb;
@@ -1007,8 +1007,8 @@ void InitializeSystemEventManager(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -1027,7 +1027,7 @@ void InitializeSystemEventManager(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45b8d074df27d12f;
@@ -1062,8 +1062,8 @@ void InitializeSystemResourceManager(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -1082,7 +1082,7 @@ void InitializeSystemResourceManager(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
@@ -1135,7 +1135,7 @@ void initializeSystemCoreData(void)
   }
   if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_18098c8f0,previousNode + 4,0x10), comparisonResult < 0)) {
     memorySize = getSystemMemorySize(systemHandle);
-    FUN_18008f140(systemHandle,&newNode,previousNode,memorySize + 0x20,memorySize);
+    allocateSystemMemory(systemHandle,&newNode,previousNode,memorySize + 0x20,memorySize);
     previousNode = newNode;
   }
   previousNode[6] = 0x421c3cedd07d816d;
@@ -1188,7 +1188,7 @@ void initializeSystemDataTable(void)
   }
   if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_18098c8c8,previousNode + 4,0x10), comparisonResult < 0)) {
     memorySize = getSystemMemorySize(systemHandle);
-    FUN_18008f140(systemHandle,&newNode,previousNode,memorySize + 0x20,memorySize);
+    allocateSystemMemory(systemHandle,&newNode,previousNode,memorySize + 0x20,memorySize);
     previousNode = newNode;
   }
   previousNode[6] = 0x4c22bb0c326587ce;
@@ -1268,7 +1268,7 @@ void InitializeRenderingSystemConfig(void)
   }
   if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_1809fe0d0,previousNode + 4,0x10), comparisonResult < 0)) {
     allocationSize = getSystemMemorySize(systemTablePointer);
-    FUN_18008f140(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
+    allocateSystemMemory(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
     previousNode = allocatedNode;
   }
   previousNode[6] = 0x42bea5b911d9c4bf;
@@ -1356,8 +1356,8 @@ void InitializeSystemMemoryManager(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802281a0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -1376,7 +1376,7 @@ void InitializeSystemMemoryManager(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
@@ -1411,8 +1411,8 @@ void InitializeSystemMemoryAllocator(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802285e0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -1431,7 +1431,7 @@ void InitializeSystemMemoryAllocator(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40afa5469b6ac06d;
@@ -1520,8 +1520,8 @@ void InitializeSystemThreadManager(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -1540,7 +1540,7 @@ void InitializeSystemThreadManager(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -1575,8 +1575,8 @@ void InitializeSystemEventManager(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -1595,7 +1595,7 @@ void InitializeSystemEventManager(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -1651,7 +1651,7 @@ void InitializeSystemConfigurationNode(void)
   }
   if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_180a01050,previousNode + 4,0x10), comparisonResult < 0)) {
     allocationSize = getSystemMemorySize(systemTablePointer);
-    FUN_18008f140(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
+    allocateSystemMemory(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
     previousNode = allocatedNode;
   }
   previousNode[6] = 0x4b2d79e470ee4e2c;
@@ -1707,7 +1707,7 @@ void InitializeSystemResourceNode(void)
   }
   if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_180a01028,previousNode + 4,0x10), comparisonResult < 0)) {
     allocationSize = getSystemMemorySize(systemTablePointer);
-    FUN_18008f140(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
+    allocateSystemMemory(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
     previousNode = allocatedNode;
   }
   previousNode[6] = 0x49086ba08ab981a7;
@@ -1763,7 +1763,7 @@ void InitializeSystemMemoryNode(void)
   }
   if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_180a01000,previousNode + 4,0x10), comparisonResult < 0)) {
     allocationSize = getSystemMemorySize(systemTablePointer);
-    FUN_18008f140(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
+    allocateSystemMemory(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
     previousNode = allocatedNode;
   }
   previousNode[6] = 0x402feffe4481676e;
@@ -1819,7 +1819,7 @@ void InitializeSystemDataTableStructureA(void)
   }
   if ((previousNode == dataTablePointer) || (memoryCompareResult = memcmp(&DAT_180a00fd8,previousNode + 4,0x10), memoryCompareResult < 0)) {
     allocationSize = getSystemMemorySize(systemRootPointer);
-    FUN_18008f140(systemRootPointer,&newNodePointer,previousNode,allocationSize + 0x20,allocationSize);
+    allocateSystemMemory(systemRootPointer,&newNodePointer,previousNode,allocationSize + 0x20,allocationSize);
     previousNode = newNodePointer;
   }
   previousNode[6] = 0x4384dcc4b6d3f417;
@@ -1875,7 +1875,7 @@ void InitializeSystemDataTableStructureB(void)
   }
   if ((previousNode == dataTablePointer) || (memoryCompareResult = memcmp(&DAT_180a00fb0,previousNode + 4,0x10), memoryCompareResult < 0)) {
     allocationSize = getSystemMemorySize(systemRootPointer);
-    FUN_18008f140(systemRootPointer,&newNodePointer,previousNode,allocationSize + 0x20,allocationSize);
+    allocateSystemMemory(systemRootPointer,&newNodePointer,previousNode,allocationSize + 0x20,allocationSize);
     previousNode = newNodePointer;
   }
   previousNode[6] = 0x4140994454d56503;
@@ -1911,8 +1911,8 @@ void InitializeSystemDataTableStructureC(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d510;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -1931,7 +1931,7 @@ void InitializeSystemDataTableStructureC(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00e28,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x449bafe9b77ddd3c;
@@ -1967,8 +1967,8 @@ void InitializeSystemDataTableStructureD(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -1987,7 +1987,7 @@ void InitializeSystemDataTableStructureD(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
@@ -2023,8 +2023,8 @@ void InitializeSystemDataTableStructureE(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802281a0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2043,7 +2043,7 @@ void InitializeSystemDataTableStructureE(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
@@ -2079,8 +2079,8 @@ void InitializeSystemDataTableStructureF(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802285e0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2099,7 +2099,7 @@ void InitializeSystemDataTableStructureF(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40afa5469b6ac06d;
@@ -2135,8 +2135,8 @@ void InitializeSystemDataTableStructureG(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2155,7 +2155,7 @@ void InitializeSystemDataTableStructureG(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42bea5b911d9c4bf;
@@ -2191,8 +2191,8 @@ void InitializeSystemDataTableStructureH(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802633c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2211,7 +2211,7 @@ void InitializeSystemDataTableStructureH(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00bb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40db4257e97d3df8;
@@ -2247,8 +2247,8 @@ void InitializeSystemDataTableStructureI(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_180262b00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2267,7 +2267,7 @@ void InitializeSystemDataTableStructureI(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00b88,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4e33c4803e67a08f;
@@ -2343,8 +2343,8 @@ void InitializeSystemMemoryManager(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2363,7 +2363,7 @@ void InitializeSystemMemoryManager(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -2393,8 +2393,8 @@ void FUN_18002ea70(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2413,7 +2413,7 @@ void FUN_18002ea70(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -2443,8 +2443,8 @@ void FUN_18002eb70(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2463,7 +2463,7 @@ void FUN_18002eb70(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -2493,8 +2493,8 @@ void FUN_18002ec70(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2513,7 +2513,7 @@ void FUN_18002ec70(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -2543,8 +2543,8 @@ void FUN_18002ed70(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2563,7 +2563,7 @@ void FUN_18002ed70(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -2593,8 +2593,8 @@ void FUN_18002ee70(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2613,7 +2613,7 @@ void FUN_18002ee70(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -2643,8 +2643,8 @@ void FUN_18002ef70(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2663,7 +2663,7 @@ void FUN_18002ef70(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -2693,8 +2693,8 @@ void FUN_18002f070(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2713,7 +2713,7 @@ void FUN_18002f070(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
@@ -2743,8 +2743,8 @@ void FUN_18002f170(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2763,7 +2763,7 @@ void FUN_18002f170(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -2793,8 +2793,8 @@ void FUN_18002f270(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2813,7 +2813,7 @@ void FUN_18002f270(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -2843,8 +2843,8 @@ void FUN_18002f370(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2863,7 +2863,7 @@ void FUN_18002f370(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -2893,8 +2893,8 @@ void FUN_18002f470(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2913,7 +2913,7 @@ void FUN_18002f470(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -2943,8 +2943,8 @@ void FUN_18002f570(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -2963,7 +2963,7 @@ void FUN_18002f570(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -2993,8 +2993,8 @@ void FUN_18002f670(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3013,7 +3013,7 @@ void FUN_18002f670(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -3043,8 +3043,8 @@ void FUN_18002f770(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3063,7 +3063,7 @@ void FUN_18002f770(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -3093,8 +3093,8 @@ void FUN_18002f870(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3113,7 +3113,7 @@ void FUN_18002f870(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -3143,8 +3143,8 @@ void FUN_18002f970(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3163,7 +3163,7 @@ void FUN_18002f970(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -3193,8 +3193,8 @@ void FUN_18002fa70(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3213,7 +3213,7 @@ void FUN_18002fa70(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -3243,8 +3243,8 @@ void FUN_18002fb70(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3263,7 +3263,7 @@ void FUN_18002fb70(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -3293,8 +3293,8 @@ void FUN_18002fc70(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3313,7 +3313,7 @@ void FUN_18002fc70(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -3343,8 +3343,8 @@ void FUN_18002fd70(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3363,7 +3363,7 @@ void FUN_18002fd70(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -3393,8 +3393,8 @@ void FUN_18002fe70(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3413,7 +3413,7 @@ void FUN_18002fe70(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -3443,8 +3443,8 @@ void FUN_18002ff70(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3463,7 +3463,7 @@ void FUN_18002ff70(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42bea5b911d9c4bf;
@@ -3493,8 +3493,8 @@ void FUN_180030070(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3513,7 +3513,7 @@ void FUN_180030070(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
@@ -3543,8 +3543,8 @@ void FUN_180030170(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3563,7 +3563,7 @@ void FUN_180030170(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -3593,8 +3593,8 @@ void FUN_180030270(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3613,7 +3613,7 @@ void FUN_180030270(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -3643,8 +3643,8 @@ void FUN_180030370(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3663,7 +3663,7 @@ void FUN_180030370(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -3693,8 +3693,8 @@ void FUN_180030470(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3713,7 +3713,7 @@ void FUN_180030470(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -3743,8 +3743,8 @@ void FUN_180030570(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3763,7 +3763,7 @@ void FUN_180030570(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -3793,8 +3793,8 @@ void FUN_180030670(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3813,7 +3813,7 @@ void FUN_180030670(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -3843,8 +3843,8 @@ void FUN_180030770(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3863,7 +3863,7 @@ void FUN_180030770(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -3927,8 +3927,8 @@ void FUN_180031a10(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802281a0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3947,7 +3947,7 @@ void FUN_180031a10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
@@ -3977,8 +3977,8 @@ void FUN_180031b10(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802285e0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -3997,7 +3997,7 @@ void FUN_180031b10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40afa5469b6ac06d;
@@ -4027,8 +4027,8 @@ void FUN_180031c10(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802281a0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4047,7 +4047,7 @@ void FUN_180031c10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
@@ -4077,8 +4077,8 @@ void FUN_180031d10(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802285e0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4097,7 +4097,7 @@ void FUN_180031d10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40afa5469b6ac06d;
@@ -4127,8 +4127,8 @@ void FUN_180031e10(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4147,7 +4147,7 @@ void FUN_180031e10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -4177,8 +4177,8 @@ void FUN_180031f10(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4197,7 +4197,7 @@ void FUN_180031f10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -4227,8 +4227,8 @@ void FUN_180032010(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4247,7 +4247,7 @@ void FUN_180032010(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -4277,8 +4277,8 @@ void FUN_180032110(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4297,7 +4297,7 @@ void FUN_180032110(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -4327,8 +4327,8 @@ void FUN_180032210(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4347,7 +4347,7 @@ void FUN_180032210(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -4377,8 +4377,8 @@ void FUN_180032310(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4397,7 +4397,7 @@ void FUN_180032310(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -4427,8 +4427,8 @@ void FUN_180032410(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4447,7 +4447,7 @@ void FUN_180032410(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -4501,8 +4501,8 @@ void FUN_1800325a0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4521,7 +4521,7 @@ void FUN_1800325a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -4551,8 +4551,8 @@ void FUN_1800326a0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4571,7 +4571,7 @@ void FUN_1800326a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -4601,8 +4601,8 @@ void FUN_1800327a0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4621,7 +4621,7 @@ void FUN_1800327a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -4651,8 +4651,8 @@ void FUN_1800328a0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4671,7 +4671,7 @@ void FUN_1800328a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -4701,8 +4701,8 @@ void FUN_1800329a0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4721,7 +4721,7 @@ void FUN_1800329a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -4751,8 +4751,8 @@ void FUN_180032aa0(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4771,7 +4771,7 @@ void FUN_180032aa0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -4801,8 +4801,8 @@ void FUN_180032ba0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -4821,7 +4821,7 @@ void FUN_180032ba0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -5003,8 +5003,8 @@ void FUN_180033a50(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802633c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5023,7 +5023,7 @@ void FUN_180033a50(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00bb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40db4257e97d3df8;
@@ -5053,8 +5053,8 @@ void FUN_180033b50(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_180262b00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5073,7 +5073,7 @@ void FUN_180033b50(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00b88,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4e33c4803e67a08f;
@@ -5103,8 +5103,8 @@ void FUN_180033c50(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5123,7 +5123,7 @@ void FUN_180033c50(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -5153,8 +5153,8 @@ void FUN_180033d50(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5173,7 +5173,7 @@ void FUN_180033d50(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -5203,8 +5203,8 @@ void FUN_180033e50(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5223,7 +5223,7 @@ void FUN_180033e50(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -5253,8 +5253,8 @@ void FUN_180033f50(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5273,7 +5273,7 @@ void FUN_180033f50(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -5303,8 +5303,8 @@ void FUN_180034050(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5323,7 +5323,7 @@ void FUN_180034050(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -5353,8 +5353,8 @@ void FUN_180034150(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5373,7 +5373,7 @@ void FUN_180034150(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -5403,8 +5403,8 @@ void FUN_180034250(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5423,7 +5423,7 @@ void FUN_180034250(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -5453,8 +5453,8 @@ void FUN_180034350(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5473,7 +5473,7 @@ void FUN_180034350(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -5503,8 +5503,8 @@ void FUN_180034450(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5523,7 +5523,7 @@ void FUN_180034450(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -5553,8 +5553,8 @@ void FUN_180034550(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5573,7 +5573,7 @@ void FUN_180034550(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -5603,8 +5603,8 @@ void FUN_180034650(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5623,7 +5623,7 @@ void FUN_180034650(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -5653,8 +5653,8 @@ void FUN_180034750(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5673,7 +5673,7 @@ void FUN_180034750(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -5703,8 +5703,8 @@ void FUN_180034850(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5723,7 +5723,7 @@ void FUN_180034850(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -5753,8 +5753,8 @@ void FUN_180034950(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5773,7 +5773,7 @@ void FUN_180034950(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -5860,8 +5860,8 @@ void FUN_180034b40(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5880,7 +5880,7 @@ void FUN_180034b40(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
@@ -5910,8 +5910,8 @@ void FUN_180034c40(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d510;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5930,7 +5930,7 @@ void FUN_180034c40(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00e28,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x449bafe9b77ddd3c;
@@ -5960,8 +5960,8 @@ void FUN_180034d40(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802281a0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -5980,7 +5980,7 @@ void FUN_180034d40(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
@@ -6010,8 +6010,8 @@ void FUN_180034e40(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802285e0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6030,7 +6030,7 @@ void FUN_180034e40(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40afa5469b6ac06d;
@@ -6060,8 +6060,8 @@ void FUN_180034f40(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6080,7 +6080,7 @@ void FUN_180034f40(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -6110,8 +6110,8 @@ void FUN_180035040(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6130,7 +6130,7 @@ void FUN_180035040(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -6160,8 +6160,8 @@ void FUN_180035140(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6180,7 +6180,7 @@ void FUN_180035140(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -6210,8 +6210,8 @@ void FUN_180035240(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6230,7 +6230,7 @@ void FUN_180035240(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -6260,8 +6260,8 @@ void FUN_180035340(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6280,7 +6280,7 @@ void FUN_180035340(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -6310,8 +6310,8 @@ void FUN_180035440(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6330,7 +6330,7 @@ void FUN_180035440(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -6360,8 +6360,8 @@ void FUN_180035540(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6380,7 +6380,7 @@ void FUN_180035540(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -6410,8 +6410,8 @@ void FUN_180035640(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802633c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6430,7 +6430,7 @@ void FUN_180035640(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00bb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40db4257e97d3df8;
@@ -6460,8 +6460,8 @@ void FUN_180035740(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_180262b00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6480,7 +6480,7 @@ void FUN_180035740(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00b88,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4e33c4803e67a08f;
@@ -6510,8 +6510,8 @@ void FUN_180035840(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6530,7 +6530,7 @@ void FUN_180035840(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -6560,8 +6560,8 @@ void FUN_180035940(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6580,7 +6580,7 @@ void FUN_180035940(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -6610,8 +6610,8 @@ void FUN_180035a40(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6630,7 +6630,7 @@ void FUN_180035a40(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -6660,8 +6660,8 @@ void FUN_180035b40(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6680,7 +6680,7 @@ void FUN_180035b40(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -6710,8 +6710,8 @@ void FUN_180035c40(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6730,7 +6730,7 @@ void FUN_180035c40(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -6760,8 +6760,8 @@ void FUN_180035d40(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6780,7 +6780,7 @@ void FUN_180035d40(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -6810,8 +6810,8 @@ void FUN_180035e40(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6830,7 +6830,7 @@ void FUN_180035e40(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -6860,8 +6860,8 @@ void FUN_180035f50(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d510;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6880,7 +6880,7 @@ void FUN_180035f50(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00e28,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x449bafe9b77ddd3c;
@@ -6910,8 +6910,8 @@ void FUN_180036050(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6930,7 +6930,7 @@ void FUN_180036050(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
@@ -6960,8 +6960,8 @@ void FUN_180036150(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802633c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -6980,7 +6980,7 @@ void FUN_180036150(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00bb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40db4257e97d3df8;
@@ -7010,8 +7010,8 @@ void FUN_180036250(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_180262b00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7030,7 +7030,7 @@ void FUN_180036250(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00b88,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4e33c4803e67a08f;
@@ -7060,8 +7060,8 @@ void FUN_180036350(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7080,7 +7080,7 @@ void FUN_180036350(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42bea5b911d9c4bf;
@@ -7110,8 +7110,8 @@ void FUN_180036450(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7130,7 +7130,7 @@ void FUN_180036450(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -7160,8 +7160,8 @@ void FUN_180036550(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7180,7 +7180,7 @@ void FUN_180036550(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -7210,8 +7210,8 @@ void FUN_180036650(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7230,7 +7230,7 @@ void FUN_180036650(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -7260,8 +7260,8 @@ void FUN_180036750(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7280,7 +7280,7 @@ void FUN_180036750(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -7310,8 +7310,8 @@ void FUN_180036850(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7330,7 +7330,7 @@ void FUN_180036850(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -7360,8 +7360,8 @@ void FUN_180036950(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7380,7 +7380,7 @@ void FUN_180036950(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -7410,8 +7410,8 @@ void FUN_180036a50(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7430,7 +7430,7 @@ void FUN_180036a50(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -7540,8 +7540,8 @@ void FUN_180036df0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7560,7 +7560,7 @@ void FUN_180036df0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -7590,8 +7590,8 @@ void FUN_180036ef0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7610,7 +7610,7 @@ void FUN_180036ef0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -7640,8 +7640,8 @@ void FUN_180036ff0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7660,7 +7660,7 @@ void FUN_180036ff0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -7690,8 +7690,8 @@ void FUN_1800370f0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7710,7 +7710,7 @@ void FUN_1800370f0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -7740,8 +7740,8 @@ void FUN_1800371f0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7760,7 +7760,7 @@ void FUN_1800371f0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -7790,8 +7790,8 @@ void FUN_1800372f0(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7810,7 +7810,7 @@ void FUN_1800372f0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -7840,8 +7840,8 @@ void FUN_1800373f0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7860,7 +7860,7 @@ void FUN_1800373f0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -7890,8 +7890,8 @@ void FUN_1800374f0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -7910,7 +7910,7 @@ void FUN_1800374f0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42bea5b911d9c4bf;
@@ -7964,13 +7964,13 @@ void FUN_180037680(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   systemInitializationFunction = FUN_18007fcd0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&DAT_1809fc740,0x10);
+    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (systemComparisonResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -7982,14 +7982,14 @@ void FUN_180037680(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x4fc124d23d41985f;
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
-  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = systemInitializationFunction;
   return;
@@ -8014,8 +8014,8 @@ void FUN_180037780(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8034,7 +8034,7 @@ void FUN_180037780(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4770584fbb1df897;
@@ -8064,8 +8064,8 @@ void FUN_180037880(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8084,7 +8084,7 @@ void FUN_180037880(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
@@ -8114,8 +8114,8 @@ void FUN_180037980(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8134,7 +8134,7 @@ void FUN_180037980(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
@@ -8164,8 +8164,8 @@ void FUN_180037a80(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8184,7 +8184,7 @@ void FUN_180037a80(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
@@ -8214,8 +8214,8 @@ void FUN_180037b80(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8234,7 +8234,7 @@ void FUN_180037b80(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40ea3a798283cbbb;
@@ -8264,8 +8264,8 @@ void FUN_180037c80(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8284,7 +8284,7 @@ void FUN_180037c80(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45b8d074df27d12f;
@@ -8314,8 +8314,8 @@ void FUN_180037d80(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8334,7 +8334,7 @@ void FUN_180037d80(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
@@ -8364,8 +8364,8 @@ void FUN_180037e80(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_180073930;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8384,7 +8384,7 @@ void FUN_180037e80(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x421c3cedd07d816d;
@@ -8414,8 +8414,8 @@ void FUN_180037f80(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8434,7 +8434,7 @@ void FUN_180037f80(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c22bb0c326587ce;
@@ -8464,8 +8464,8 @@ void FUN_180038080(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8484,7 +8484,7 @@ void FUN_180038080(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
@@ -8730,8 +8730,8 @@ void FUN_1800386a0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8750,7 +8750,7 @@ void FUN_1800386a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -8780,8 +8780,8 @@ void FUN_1800387a0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8800,7 +8800,7 @@ void FUN_1800387a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -8830,8 +8830,8 @@ void FUN_1800388a0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8850,7 +8850,7 @@ void FUN_1800388a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -8880,8 +8880,8 @@ void FUN_1800389a0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8900,7 +8900,7 @@ void FUN_1800389a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -8930,8 +8930,8 @@ void FUN_180038aa0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -8950,7 +8950,7 @@ void FUN_180038aa0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -8980,8 +8980,8 @@ void FUN_180038ba0(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9000,7 +9000,7 @@ void FUN_180038ba0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -9030,8 +9030,8 @@ void FUN_180038ca0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9050,7 +9050,7 @@ void FUN_180038ca0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -9080,8 +9080,8 @@ void FUN_180038da0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9100,7 +9100,7 @@ void FUN_180038da0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -9130,8 +9130,8 @@ void FUN_180038ea0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9150,7 +9150,7 @@ void FUN_180038ea0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -9180,8 +9180,8 @@ void FUN_180038fa0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9200,7 +9200,7 @@ void FUN_180038fa0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -9230,8 +9230,8 @@ void FUN_1800390a0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9250,7 +9250,7 @@ void FUN_1800390a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -9280,8 +9280,8 @@ void FUN_1800391a0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9300,7 +9300,7 @@ void FUN_1800391a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -9330,8 +9330,8 @@ void FUN_1800392a0(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9350,7 +9350,7 @@ void FUN_1800392a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -9380,8 +9380,8 @@ void FUN_1800393a0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9400,7 +9400,7 @@ void FUN_1800393a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -9430,8 +9430,8 @@ void FUN_1800394a0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9450,7 +9450,7 @@ void FUN_1800394a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -9480,8 +9480,8 @@ void FUN_1800395a0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9500,7 +9500,7 @@ void FUN_1800395a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -9530,8 +9530,8 @@ void FUN_1800396a0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9550,7 +9550,7 @@ void FUN_1800396a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -9580,8 +9580,8 @@ void FUN_1800397a0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9600,7 +9600,7 @@ void FUN_1800397a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -9630,8 +9630,8 @@ void FUN_1800398a0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9650,7 +9650,7 @@ void FUN_1800398a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -9680,8 +9680,8 @@ void FUN_1800399a0(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9700,7 +9700,7 @@ void FUN_1800399a0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -9730,8 +9730,8 @@ void FUN_180039aa0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9750,7 +9750,7 @@ void FUN_180039aa0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -9780,8 +9780,8 @@ void FUN_180039bb0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9800,7 +9800,7 @@ void FUN_180039bb0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -9830,8 +9830,8 @@ void FUN_180039cb0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9850,7 +9850,7 @@ void FUN_180039cb0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -9880,8 +9880,8 @@ void FUN_180039db0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9900,7 +9900,7 @@ void FUN_180039db0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -9930,8 +9930,8 @@ void FUN_180039eb0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -9950,7 +9950,7 @@ void FUN_180039eb0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -9980,8 +9980,8 @@ void FUN_180039fb0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10000,7 +10000,7 @@ void FUN_180039fb0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -10030,8 +10030,8 @@ void FUN_18003a0b0(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10050,7 +10050,7 @@ void FUN_18003a0b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -10080,8 +10080,8 @@ void FUN_18003a1b0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10100,7 +10100,7 @@ void FUN_18003a1b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -10135,13 +10135,13 @@ void InitializeSystemMemoryAllocatorSetup(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   systemInitializationFunction = FUN_18007fcd0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&DAT_1809fc740,0x10);
+    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (systemComparisonResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -10153,14 +10153,14 @@ void InitializeSystemMemoryAllocatorSetup(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x4fc124d23d41985f;
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
-  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = systemInitializationFunction;
   return;
@@ -10190,8 +10190,8 @@ void InitializeSystemDataTableConfigurator(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10210,7 +10210,7 @@ void InitializeSystemDataTableConfigurator(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4770584fbb1df897;
@@ -10240,8 +10240,8 @@ void FUN_18003a4b0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10260,7 +10260,7 @@ void FUN_18003a4b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
@@ -10290,8 +10290,8 @@ void FUN_18003a5b0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10310,7 +10310,7 @@ void FUN_18003a5b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
@@ -10340,8 +10340,8 @@ void FUN_18003a6b0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10360,7 +10360,7 @@ void FUN_18003a6b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
@@ -10390,8 +10390,8 @@ void FUN_18003a7b0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10410,7 +10410,7 @@ void FUN_18003a7b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40ea3a798283cbbb;
@@ -10440,8 +10440,8 @@ void FUN_18003a8b0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10460,7 +10460,7 @@ void FUN_18003a8b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45b8d074df27d12f;
@@ -10490,8 +10490,8 @@ void FUN_18003a9b0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10510,7 +10510,7 @@ void FUN_18003a9b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
@@ -10540,8 +10540,8 @@ void FUN_18003aab0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_180073930;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10560,7 +10560,7 @@ void FUN_18003aab0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x421c3cedd07d816d;
@@ -10590,8 +10590,8 @@ void FUN_18003abb0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10610,7 +10610,7 @@ void FUN_18003abb0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c22bb0c326587ce;
@@ -10674,13 +10674,13 @@ void FUN_18003c1f0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   systemInitializationFunction = FUN_18007fcd0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&DAT_1809fc740,0x10);
+    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (systemComparisonResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -10692,14 +10692,14 @@ void FUN_18003c1f0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x4fc124d23d41985f;
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
-  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = systemInitializationFunction;
   return;
@@ -10724,8 +10724,8 @@ void FUN_18003c2f0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10744,7 +10744,7 @@ void FUN_18003c2f0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4770584fbb1df897;
@@ -10774,8 +10774,8 @@ void FUN_18003c3f0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10794,7 +10794,7 @@ void FUN_18003c3f0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
@@ -10824,8 +10824,8 @@ void FUN_18003c4f0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10844,7 +10844,7 @@ void FUN_18003c4f0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
@@ -10874,8 +10874,8 @@ void FUN_18003c5f0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10894,7 +10894,7 @@ void FUN_18003c5f0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
@@ -10924,8 +10924,8 @@ void FUN_18003c6f0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10944,7 +10944,7 @@ void FUN_18003c6f0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40ea3a798283cbbb;
@@ -10974,8 +10974,8 @@ void FUN_18003c7f0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -10994,7 +10994,7 @@ void FUN_18003c7f0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45b8d074df27d12f;
@@ -11024,8 +11024,8 @@ void FUN_18003c8f0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11044,7 +11044,7 @@ void FUN_18003c8f0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
@@ -11074,8 +11074,8 @@ void FUN_18003c9f0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_180073930;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11094,7 +11094,7 @@ void FUN_18003c9f0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x421c3cedd07d816d;
@@ -11124,8 +11124,8 @@ void FUN_18003caf0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11144,7 +11144,7 @@ void FUN_18003caf0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c22bb0c326587ce;
@@ -11222,8 +11222,8 @@ void FUN_18003cd10(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11242,7 +11242,7 @@ void FUN_18003cd10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -11272,8 +11272,8 @@ void FUN_18003ce10(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11292,7 +11292,7 @@ void FUN_18003ce10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -11322,8 +11322,8 @@ void FUN_18003cf10(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11342,7 +11342,7 @@ void FUN_18003cf10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -11372,8 +11372,8 @@ void FUN_18003d010(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11392,7 +11392,7 @@ void FUN_18003d010(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -11422,8 +11422,8 @@ void FUN_18003d110(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11442,7 +11442,7 @@ void FUN_18003d110(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -11472,8 +11472,8 @@ void FUN_18003d210(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11492,7 +11492,7 @@ void FUN_18003d210(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -11522,8 +11522,8 @@ void FUN_18003d310(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11542,7 +11542,7 @@ void FUN_18003d310(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -11582,8 +11582,8 @@ void FUN_18003de10(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11602,7 +11602,7 @@ void FUN_18003de10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
@@ -11632,8 +11632,8 @@ void FUN_18003df10(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11652,7 +11652,7 @@ void FUN_18003df10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -11682,8 +11682,8 @@ void FUN_18003e010(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11702,7 +11702,7 @@ void FUN_18003e010(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -11732,8 +11732,8 @@ void FUN_18003e110(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11752,7 +11752,7 @@ void FUN_18003e110(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -11782,8 +11782,8 @@ void FUN_18003e210(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11802,7 +11802,7 @@ void FUN_18003e210(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -11832,8 +11832,8 @@ void FUN_18003e310(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11852,7 +11852,7 @@ void FUN_18003e310(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -11882,8 +11882,8 @@ void FUN_18003e410(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11902,7 +11902,7 @@ void FUN_18003e410(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -11932,8 +11932,8 @@ void FUN_18003e510(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -11952,7 +11952,7 @@ void FUN_18003e510(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -11982,8 +11982,8 @@ void FUN_18003e610(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12002,7 +12002,7 @@ void FUN_18003e610(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -12032,8 +12032,8 @@ void FUN_18003e710(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12052,7 +12052,7 @@ void FUN_18003e710(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -12082,8 +12082,8 @@ void FUN_18003e810(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12102,7 +12102,7 @@ void FUN_18003e810(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -12132,8 +12132,8 @@ void FUN_18003e910(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12152,7 +12152,7 @@ void FUN_18003e910(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -12182,8 +12182,8 @@ void FUN_18003ea10(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12202,7 +12202,7 @@ void FUN_18003ea10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -12232,8 +12232,8 @@ void FUN_18003eb10(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12252,7 +12252,7 @@ void FUN_18003eb10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -12282,8 +12282,8 @@ void FUN_18003ec10(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12302,7 +12302,7 @@ void FUN_18003ec10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -12419,13 +12419,13 @@ void FUN_18003ee90(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   systemInitializationFunction = FUN_18007fcd0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&DAT_1809fc740,0x10);
+    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (systemComparisonResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -12437,14 +12437,14 @@ void FUN_18003ee90(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x4fc124d23d41985f;
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
-  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = systemInitializationFunction;
   return;
@@ -12469,8 +12469,8 @@ void FUN_18003ef90(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12489,7 +12489,7 @@ void FUN_18003ef90(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4770584fbb1df897;
@@ -12519,8 +12519,8 @@ void FUN_18003f090(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12539,7 +12539,7 @@ void FUN_18003f090(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
@@ -12569,8 +12569,8 @@ void FUN_18003f190(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12589,7 +12589,7 @@ void FUN_18003f190(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
@@ -12619,8 +12619,8 @@ void FUN_18003f290(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12639,7 +12639,7 @@ void FUN_18003f290(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
@@ -12669,8 +12669,8 @@ void FUN_18003f390(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12689,7 +12689,7 @@ void FUN_18003f390(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40ea3a798283cbbb;
@@ -12719,8 +12719,8 @@ void FUN_18003f490(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12739,7 +12739,7 @@ void FUN_18003f490(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45b8d074df27d12f;
@@ -12769,8 +12769,8 @@ void FUN_18003f590(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12789,7 +12789,7 @@ void FUN_18003f590(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
@@ -12819,8 +12819,8 @@ void FUN_18003f690(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_180073930;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12839,7 +12839,7 @@ void FUN_18003f690(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x421c3cedd07d816d;
@@ -12869,8 +12869,8 @@ void FUN_18003f790(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -12889,7 +12889,7 @@ void FUN_18003f790(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c22bb0c326587ce;
@@ -13025,8 +13025,8 @@ void FUN_18003fbb0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13045,7 +13045,7 @@ void FUN_18003fbb0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46c54bc98fc3fc2a;
@@ -13075,8 +13075,8 @@ void FUN_18003fcb0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13095,7 +13095,7 @@ void FUN_18003fcb0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x41ffd0b76c1e136f;
@@ -13125,13 +13125,13 @@ void FUN_18003fdb0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   systemInitializationFunction = FUN_18007fcd0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&DAT_1809fc740,0x10);
+    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (systemComparisonResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -13143,14 +13143,14 @@ void FUN_18003fdb0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x4fc124d23d41985f;
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
-  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = systemInitializationFunction;
   return;
@@ -13175,8 +13175,8 @@ void FUN_18003feb0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13195,7 +13195,7 @@ void FUN_18003feb0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4770584fbb1df897;
@@ -13225,8 +13225,8 @@ void FUN_18003ffb0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13245,7 +13245,7 @@ void FUN_18003ffb0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
@@ -13275,8 +13275,8 @@ void FUN_1800400b0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13295,7 +13295,7 @@ void FUN_1800400b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
@@ -13325,8 +13325,8 @@ void FUN_1800401b0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13345,7 +13345,7 @@ void FUN_1800401b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
@@ -13375,8 +13375,8 @@ void FUN_1800402b0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13395,7 +13395,7 @@ void FUN_1800402b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40ea3a798283cbbb;
@@ -13425,8 +13425,8 @@ void FUN_1800403b0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13445,7 +13445,7 @@ void FUN_1800403b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45b8d074df27d12f;
@@ -13475,8 +13475,8 @@ void FUN_1800404b0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13495,7 +13495,7 @@ void FUN_1800404b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
@@ -13525,8 +13525,8 @@ void FUN_1800405b0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_180073930;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13545,7 +13545,7 @@ void FUN_1800405b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x421c3cedd07d816d;
@@ -13575,8 +13575,8 @@ void FUN_1800406b0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13595,7 +13595,7 @@ void FUN_1800406b0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c22bb0c326587ce;
@@ -13625,8 +13625,8 @@ void FUN_1800408d0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13645,7 +13645,7 @@ void FUN_1800408d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46c54bc98fc3fc2a;
@@ -13675,8 +13675,8 @@ void FUN_1800409d0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13695,7 +13695,7 @@ void FUN_1800409d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x41ffd0b76c1e136f;
@@ -13725,8 +13725,8 @@ void FUN_180040ae0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13745,7 +13745,7 @@ void FUN_180040ae0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
@@ -13775,8 +13775,8 @@ void FUN_180040be0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d510;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13795,7 +13795,7 @@ void FUN_180040be0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00e28,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x449bafe9b77ddd3c;
@@ -13825,8 +13825,8 @@ void FUN_180040ce0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802281a0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13845,7 +13845,7 @@ void FUN_180040ce0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
@@ -13875,8 +13875,8 @@ void FUN_180040de0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802285e0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13895,7 +13895,7 @@ void FUN_180040de0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40afa5469b6ac06d;
@@ -13925,8 +13925,8 @@ void FUN_180040ee0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13945,7 +13945,7 @@ void FUN_180040ee0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -13975,8 +13975,8 @@ void FUN_180040fe0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -13995,7 +13995,7 @@ void FUN_180040fe0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -14025,8 +14025,8 @@ void FUN_1800410e0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14045,7 +14045,7 @@ void FUN_1800410e0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -14075,8 +14075,8 @@ void FUN_1800411e0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14095,7 +14095,7 @@ void FUN_1800411e0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -14125,8 +14125,8 @@ void FUN_1800412e0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14145,7 +14145,7 @@ void FUN_1800412e0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -14175,8 +14175,8 @@ void FUN_1800413e0(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14195,7 +14195,7 @@ void FUN_1800413e0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -14225,8 +14225,8 @@ void FUN_1800414e0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14245,7 +14245,7 @@ void FUN_1800414e0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -14275,8 +14275,8 @@ void FUN_1800415e0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14295,7 +14295,7 @@ void FUN_1800415e0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42bea5b911d9c4bf;
@@ -14325,8 +14325,8 @@ void FUN_1800416e0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14345,7 +14345,7 @@ void FUN_1800416e0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46c54bc98fc3fc2a;
@@ -14375,8 +14375,8 @@ void FUN_1800417e0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14395,7 +14395,7 @@ void FUN_1800417e0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x41ffd0b76c1e136f;
@@ -14465,8 +14465,8 @@ void FUN_180041af0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14485,7 +14485,7 @@ void FUN_180041af0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46c54bc98fc3fc2a;
@@ -14515,8 +14515,8 @@ void FUN_180041bf0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14535,7 +14535,7 @@ void FUN_180041bf0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x41ffd0b76c1e136f;
@@ -14565,8 +14565,8 @@ void FUN_180041d10(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14585,7 +14585,7 @@ void FUN_180041d10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46c54bc98fc3fc2a;
@@ -14615,8 +14615,8 @@ void FUN_180041e10(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14635,7 +14635,7 @@ void FUN_180041e10(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x41ffd0b76c1e136f;
@@ -14701,8 +14701,8 @@ void FUN_180041fd0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14721,7 +14721,7 @@ void FUN_180041fd0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46c54bc98fc3fc2a;
@@ -14751,8 +14751,8 @@ void FUN_1800420d0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14771,7 +14771,7 @@ void FUN_1800420d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x41ffd0b76c1e136f;
@@ -14801,8 +14801,8 @@ void FUN_1800421d0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802281a0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14821,7 +14821,7 @@ void FUN_1800421d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
@@ -14851,8 +14851,8 @@ void FUN_1800422d0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_1802285e0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14871,7 +14871,7 @@ void FUN_1800422d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40afa5469b6ac06d;
@@ -14901,8 +14901,8 @@ void FUN_1800423d0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14921,7 +14921,7 @@ void FUN_1800423d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -14951,8 +14951,8 @@ void FUN_1800424d0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -14971,7 +14971,7 @@ void FUN_1800424d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -15001,8 +15001,8 @@ void FUN_1800425d0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15021,7 +15021,7 @@ void FUN_1800425d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -15051,8 +15051,8 @@ void FUN_1800426d0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15071,7 +15071,7 @@ void FUN_1800426d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -15101,8 +15101,8 @@ void FUN_1800427d0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15121,7 +15121,7 @@ void FUN_1800427d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -15151,8 +15151,8 @@ void FUN_1800428d0(void)
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15171,7 +15171,7 @@ void FUN_1800428d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -15201,8 +15201,8 @@ void FUN_1800429d0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15221,7 +15221,7 @@ void FUN_1800429d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -15251,13 +15251,13 @@ void FUN_180042ad0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   systemInitializationFunction = FUN_18007fcd0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&DAT_1809fc740,0x10);
+    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (systemComparisonResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -15269,14 +15269,14 @@ void FUN_180042ad0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x4fc124d23d41985f;
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
-  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = systemInitializationFunction;
   return;
@@ -15301,8 +15301,8 @@ void FUN_180042bd0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15321,7 +15321,7 @@ void FUN_180042bd0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4770584fbb1df897;
@@ -15351,8 +15351,8 @@ void FUN_180042cd0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15371,7 +15371,7 @@ void FUN_180042cd0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
@@ -15401,8 +15401,8 @@ void FUN_180042dd0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15421,7 +15421,7 @@ void FUN_180042dd0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
@@ -15451,8 +15451,8 @@ void FUN_180042ed0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15471,7 +15471,7 @@ void FUN_180042ed0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
@@ -15501,8 +15501,8 @@ void FUN_180042fd0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15521,7 +15521,7 @@ void FUN_180042fd0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x40ea3a798283cbbb;
@@ -15551,8 +15551,8 @@ void FUN_1800430d0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15571,7 +15571,7 @@ void FUN_1800430d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45b8d074df27d12f;
@@ -15601,8 +15601,8 @@ void FUN_1800431d0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15621,7 +15621,7 @@ void FUN_1800431d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
@@ -15651,8 +15651,8 @@ void FUN_1800432d0(void)
   code *pcStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   pcStackX_18 = FUN_180073930;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15671,7 +15671,7 @@ void FUN_1800432d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x421c3cedd07d816d;
@@ -15701,8 +15701,8 @@ void FUN_1800433d0(void)
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootPointer = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  systemRootNode = (undefined8 *)*systemDataTable;
+  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   uStackX_18 = 0;
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
@@ -15721,7 +15721,7 @@ void FUN_1800433d0(void)
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c22bb0c326587ce;
@@ -59418,7 +59418,7 @@ code * FUN_18007eb80(longlong param_1,char param_2)
       pcStack_20 = (code *)&UNK_180083070;
       pcStack_18 = FUN_180082fd0;
       lStack_30 = param_1;
-      (**(code **)(*plVar4 + 0x60))(plVar4,&DAT_1809fc740,param_1 + 0xb8,0,&lStack_30);
+      (**(code **)(*plVar4 + 0x60))(plVar4,&GAME_CORE_SYSTEM_ID,param_1 + 0xb8,0,&lStack_30);
       in_RAX = pcStack_20;
       if (pcStack_20 != (code *)0x0) {
         pcVar3 = (code *)(*pcStack_20)(&lStack_30,0,0);
