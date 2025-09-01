@@ -28536,51 +28536,60 @@ void HandleSystemEmergencyExit(void* exitContext,uint32_t exitCode)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180055fa0(void)
-void FUN_180055fa0(void)
+/**
+ * @brief 初始化系统数据管理器
+ * 
+ * 该函数负责初始化系统数据管理器，设置数据结构和配置参数。
+ * 它会检查系统状态，获取必要的资源，并初始化各种数据字段。
+ * 
+ * @return 无返回值
+ * @note 此函数在系统启动时调用，确保数据管理器正确初始化
+ * @warning 调用此函数前必须确保系统资源管理器已准备好
+ */
+void InitializeSystemDataManager(void)
 
 {
-  void* *pointerToUnsigned1;
-  void* unsignedSystemValue2;
-  char *pcVar3;
-  int iVar4;
-  char *pcVar5;
-  void* in_R9;
-  void* unsignedSystemValue6;
+  void** resourceManagerPointer;
+  void* previousDataHeader;
+  char* systemConfigPointer;
+  int mutexLockResult;
+  char* dataFieldPointer;
+  void* systemRegisterValue;
+  void* systemConfigParameter;
   
-  pcVar3 = _DAT_180c8a9d8;
-  unsignedSystemValue6 = 0xfffffffffffffffe;
-  if (*_DAT_180c8a9d8 != '\0') {
-    pointerToUnsigned1 = (void* *)*SystemResourceManagerPointer;
-    iVar4 = _Mtx_lock(0x180c91970);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+  systemConfigPointer = SystemConfigurationDataPointer;
+  systemConfigParameter = 0xfffffffffffffffe;
+  if (*SystemConfigurationDataPointer != '\0') {
+    resourceManagerPointer = (void**)*SystemResourceManagerPointer;
+    mutexLockResult = _Mtx_lock(0x180c91970);
+    if (mutexLockResult != 0) {
+      __Throw_C_error_std__YAXH_Z(mutexLockResult);
     }
-    unsignedSystemValue2 = SystemDataHeaderStorage;
-    SystemDataHeaderStorage = *pointerToUnsigned1;
-    FUN_1801299b0(&UNK_1809fd9a0,0,0,in_R9,unsignedSystemValue6);
-    FUN_18010f010(&UNK_1809fd9b0,*(uint32_t *)(pcVar3 + 4));
-    FUN_18010f010(&UNK_1809fd9d0,*(uint32_t *)(pcVar3 + 8));
-    FUN_18010f010(&UNK_1809fd9f0,*(uint32_t *)(pcVar3 + 0xc));
-    FUN_18010f010(&UNK_1809fda10,*(uint32_t *)(pcVar3 + 0x10));
-    FUN_18010f010(&UNK_1809fda30,*(uint32_t *)(pcVar3 + 0x14));
-    FUN_18010f010(&UNK_1809fda58,*(uint32_t *)(pcVar3 + 0x18));
-    for (pcVar5 = *(char **)(pcVar3 + 0x28); pcVar5 != pcVar3 + 0x20;
-        pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      FUN_18010f010(&UNK_1809fda80,*(uint32_t *)(pcVar5 + 0x20),*(uint32_t *)(pcVar5 + 0x24));
+    previousDataHeader = SystemDataHeaderStorage;
+    SystemDataHeaderStorage = *resourceManagerPointer;
+    FUN_1801299b0(&UNK_1809fd9a0,0,0,systemRegisterValue,systemConfigParameter);
+    FUN_18010f010(&UNK_1809fd9b0,*(uint32_t *)(systemConfigPointer + 4));
+    FUN_18010f010(&UNK_1809fd9d0,*(uint32_t *)(systemConfigPointer + 8));
+    FUN_18010f010(&UNK_1809fd9f0,*(uint32_t *)(systemConfigPointer + 0xc));
+    FUN_18010f010(&UNK_1809fda10,*(uint32_t *)(systemConfigPointer + 0x10));
+    FUN_18010f010(&UNK_1809fda30,*(uint32_t *)(systemConfigPointer + 0x14));
+    FUN_18010f010(&UNK_1809fda58,*(uint32_t *)(systemConfigPointer + 0x18));
+    for (dataFieldPointer = *(char **)(systemConfigPointer + 0x28); dataFieldPointer != systemConfigPointer + 0x20;
+        dataFieldPointer = (char *)func_0x00018066bd70(dataFieldPointer)) {
+      FUN_18010f010(&UNK_1809fda80,*(uint32_t *)(dataFieldPointer + 0x20),*(uint32_t *)(dataFieldPointer + 0x24));
     }
-    for (pcVar5 = *(char **)(pcVar3 + 0x58); pcVar5 != pcVar3 + 0x50;
-        pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      FUN_18010f010(&UNK_1809fdaa8,*(uint32_t *)(pcVar5 + 0x20),*(uint32_t *)(pcVar5 + 0x24));
+    for (dataFieldPointer = *(char **)(systemConfigPointer + 0x58); dataFieldPointer != systemConfigPointer + 0x50;
+        dataFieldPointer = (char *)func_0x00018066bd70(dataFieldPointer)) {
+      FUN_18010f010(&UNK_1809fdaa8,*(uint32_t *)(dataFieldPointer + 0x20),*(uint32_t *)(dataFieldPointer + 0x24));
     }
-    FUN_18010f010(&UNK_1809fdad0,*(uint32_t *)(pcVar3 + 0x80));
-    FUN_18010f010(&UNK_1809fdaf8,*(uint32_t *)(pcVar3 + 0x84));
-    FUN_18010f010(&UNK_1809fdb20,*(uint32_t *)(pcVar3 + 0x88));
+    FUN_18010f010(&UNK_1809fdad0,*(uint32_t *)(systemConfigPointer + 0x80));
+    FUN_18010f010(&UNK_1809fdaf8,*(uint32_t *)(systemConfigPointer + 0x84));
+    FUN_18010f010(&UNK_1809fdb20,*(uint32_t *)(systemConfigPointer + 0x88));
     FUN_18012cfe0();
-    SystemDataHeaderStorage = unsignedSystemValue2;
-    iVar4 = _Mtx_unlock(0x180c91970);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+    SystemDataHeaderStorage = previousDataHeader;
+    mutexLockResult = _Mtx_unlock(0x180c91970);
+    if (mutexLockResult != 0) {
+      __Throw_C_error_std__YAXH_Z(mutexLockResult);
     }
   }
   return;
