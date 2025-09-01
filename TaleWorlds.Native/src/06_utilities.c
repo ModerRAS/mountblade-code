@@ -50003,7 +50003,7 @@ void Unwind_180907aa0(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_180907ab0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
+void SystemUnwindHandlerA(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
   if (*(code **)(param_2 + 0x1c0) != (code *)0x0) {
@@ -50014,7 +50014,7 @@ void Unwind_180907ab0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 
 
 
-void Unwind_180907ac0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
+void SystemUnwindHandlerB(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
   if (*(code **)(param_2 + 0x1e0) != (code *)0x0) {
@@ -50025,7 +50025,7 @@ void Unwind_180907ac0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 
 
 
-void Unwind_180907ad0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
+void SystemUnwindHandlerC(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
   if (*(code **)(param_2 + 0x200) != (code *)0x0) {
@@ -50036,7 +50036,7 @@ void Unwind_180907ad0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 
 
 
-void Unwind_180907ae0(uint8_t8 param_1,longlong param_2)
+void SystemUnwindDataStructureA(uint8_t8 param_1,longlong param_2)
 
 {
   **(uint8_t8 **)(param_2 + 0x180) = &SystemDataStructure;
@@ -50045,7 +50045,7 @@ void Unwind_180907ae0(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_180907af0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
+void SystemUnwindHandlerD(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
   if (*(code **)(param_2 + 0x260) != (code *)0x0) {
@@ -50056,7 +50056,7 @@ void Unwind_180907af0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 
 
 
-void Unwind_180907b00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
+void SystemUnwindHandlerE(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
   if (*(code **)(param_2 + 0x280) != (code *)0x0) {
@@ -50067,7 +50067,7 @@ void Unwind_180907b00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 
 
 
-void Unwind_180907b10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
+void SystemUnwindHandlerF(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
   if (*(code **)(param_2 + 0x2a0) != (code *)0x0) {
@@ -50078,7 +50078,7 @@ void Unwind_180907b10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 
 
 
-void Unwind_180907b20(uint8_t8 param_1,longlong param_2)
+void SystemUnwindDataStructureB(uint8_t8 param_1,longlong param_2)
 
 {
   *(uint8_t **)(param_2 + 0x230) = &SystemDataStructure;
@@ -50087,7 +50087,7 @@ void Unwind_180907b20(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_180907b30(uint8_t8 param_1,longlong param_2)
+void SystemUnwindDataStructureC(uint8_t8 param_1,longlong param_2)
 
 {
   *(uint8_t **)(param_2 + 400) = &SystemDataStructure;
@@ -50096,7 +50096,7 @@ void Unwind_180907b30(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_180907b40(uint8_t8 param_1,longlong param_2)
+void SystemUnwindDataStructureD(uint8_t8 param_1,longlong param_2)
 
 {
   *(uint8_t **)(param_2 + 0x230) = &SystemDataStructure;
@@ -50105,7 +50105,7 @@ void Unwind_180907b40(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_180907b50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
+void SystemUnwindHandlerG(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
   code *pcVar1;
@@ -50119,21 +50119,21 @@ void Unwind_180907b50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 
 
 
-void Unwind_180907b60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
+void SystemUnwindHandlerH(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  code *pcVar1;
+  code *FunctionPointer;
   
-  pcVar1 = *(code **)(*(longlong *)(param_2 + 0x40) + 0x70);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0x60,0,0,param_4,0xfffffffffffffffe);
+  FunctionPointer = *(code **)(*(longlong *)(param_2 + 0x40) + 0x70);
+  if (FunctionPointer != (code *)0x0) {
+    (*FunctionPointer)(*(longlong *)(param_2 + 0x40) + 0x60,0,0,param_4,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907b70(uint8_t8 param_1,longlong param_2)
+void SystemUnwindResourceHandler(uint8_t8 param_1,longlong param_2)
 
 {
   *(uint8_t **)(param_2 + 0x50) = &SystemDataStructure;
@@ -50150,7 +50150,7 @@ void Unwind_180907b70(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_180907b80(uint8_t8 param_1,longlong param_2)
+void SystemUnwindFinalizer(uint8_t8 param_1,longlong param_2)
 
 {
   *(uint8_t **)(param_2 + 0x50) = &SystemDataStructure;
@@ -50253,32 +50253,32 @@ void SystemUnwindSetDataStructureC(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_180907c10(uint8_t8 param_1,longlong param_2)
+void SystemUnwindResourceHashHandler(uint8_t8 param_1,longlong param_2)
 
 {
-  uint8_t8 *presourceHash;
+  uint8_t8 *ResourceHashPointer;
   
-  presourceHash = *(uint8_t8 **)(param_2 + 600);
-  *presourceHash = &SystemResourceHandlerTemplate;
-  if (presourceHash[1] != 0) {
+  ResourceHashPointer = *(uint8_t8 **)(param_2 + 600);
+  *ResourceHashPointer = &SystemResourceHandlerTemplate;
+  if (ResourceHashPointer[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
-  *presourceHash = &SystemDataStructure;
+  ResourceHashPointer[1] = 0;
+  *(uint8_t4 *)(ResourceHashPointer + 3) = 0;
+  *ResourceHashPointer = &SystemDataStructure;
   return;
 }
 
 
 
-void Unwind_180907c20(uint8_t8 param_1,longlong param_2)
+void SystemUnwindValidationHandler(uint8_t8 param_1,longlong param_2)
 
 {
-  int *piVar1;
-  uint8_t8 *pvalidationResult;
-  longlong resourceIndex;
-  ulonglong uVar4;
+  int *ReferenceCount;
+  uint8_t8 *ValidationResult;
+  longlong ResourceIndex;
+  ulonglong AddressMask;
   
   pvalidationResult = *(uint8_t8 **)(param_2 + 0x230);
   if (pvalidationResult == (uint8_t8 *)0x0) {
@@ -52730,7 +52730,16 @@ void Unwind_1809089e0(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_1809089f0(uint8_t8 param_1,longlong param_2)
+/**
+ * @brief 解锁互斥锁A
+ * 
+ * 该函数用于在异常处理过程中解锁互斥锁A
+ * 确保在异常发生时能够正确释放锁资源
+ * 
+ * @param param_1 异常处理参数
+ * @param param_2 互斥锁上下文指针
+ */
+void UnwindMutexLockA(uint8_t8 param_1,longlong param_2)
 
 {
   int iVar1;
@@ -52744,7 +52753,16 @@ void Unwind_1809089f0(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_180908a00(uint8_t8 param_1,longlong param_2)
+/**
+ * @brief 解锁互斥锁B
+ * 
+ * 该函数用于在异常处理过程中解锁互斥锁B
+ * 确保在异常发生时能够正确释放锁资源
+ * 
+ * @param param_1 异常处理参数
+ * @param param_2 互斥锁上下文指针
+ */
+void UnwindMutexLockB(uint8_t8 param_1,longlong param_2)
 
 {
   int iVar1;
@@ -52758,7 +52776,16 @@ void Unwind_180908a00(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_180908a10(uint8_t8 param_1,longlong param_2)
+/**
+ * @brief 解锁互斥锁C
+ * 
+ * 该函数用于在异常处理过程中解锁互斥锁C
+ * 确保在异常发生时能够正确释放锁资源
+ * 
+ * @param param_1 异常处理参数
+ * @param param_2 互斥锁上下文指针
+ */
+void UnwindMutexLockC(uint8_t8 param_1,longlong param_2)
 
 {
   int iVar1;
@@ -52772,7 +52799,7 @@ void Unwind_180908a10(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_180908a20(uint8_t8 param_1,longlong param_2)
+void UnwindMutexLockD(uint8_t8 param_1,longlong param_2)
 
 {
   int *piVar1;
@@ -56837,7 +56864,7 @@ void Unwind_180909c20(uint8_t8 param_1,longlong param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180909c30(uint8_t8 param_1,longlong param_2)
+void UnwindThreadContextA(uint8_t8 param_1,longlong param_2)
 
 {
   int iVar1;
@@ -56846,14 +56873,14 @@ void Unwind_180909c30(uint8_t8 param_1,longlong param_2)
   iVar1 = *(int *)(**(longlong **)(GlobalThreadManager + 8) + 0x48);
   iVar2 = _Thrd_id();
   if (iVar2 != iVar1) {
-    _DAT_180c9105c = *(uint8_t4 *)(param_2 + 0x90);
+    GlobalThreadContext = *(uint8_t4 *)(param_2 + 0x90);
   }
   return;
 }
 
 
 
-void Unwind_180909c40(void)
+void UnwindMutexDestroyA(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -56862,7 +56889,7 @@ void Unwind_180909c40(void)
 
 
 
-void Unwind_180909c50(void)
+void UnwindMutexDestroyB(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -56871,7 +56898,7 @@ void Unwind_180909c50(void)
 
 
 
-void Unwind_180909c60(void)
+void UnwindMutexDestroyC(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -56880,7 +56907,7 @@ void Unwind_180909c60(void)
 
 
 
-void Unwind_180909c70(uint8_t8 param_1,longlong param_2)
+void UnwindMutexDestroyD(uint8_t8 param_1,longlong param_2)
 
 {
   _Mtx_destroy_in_situ(*(uint8_t8 *)(param_2 + 0xa0));
