@@ -11111,7 +11111,7 @@ longlong SystemMemoryFree(longlong *memoryPtr)
     else {
       lVar3 = func_0x00018064e870(NetworkRequestResult,CONCAT71(0xff000000,
                                                  *(void ***)(NetworkRequestResult + 0x70) == &ExceptionList),
-                                  param_1,NetworkRequestResult,SystemMutexFlags);
+                                  memoryPtr,NetworkRequestResult,SystemMutexFlags);
     }
   }
   return lVar3;
@@ -11308,7 +11308,7 @@ LAB_18076802d:
   }
   return 0;
 }
-uint64_t SystemDataInitialize(int param_1)
+uint64_t SystemDataInitialize(int initFlags)
 {
   byte bVar1;
   int StringIndex;

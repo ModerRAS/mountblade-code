@@ -20943,12 +20943,12 @@ void CleanupSystemResource(long long SystemResourcePointer)
  * 分配和管理系统资源，包括内存和系统对象
  * 
  * @param SystemResourcePointer 资源类型参数
- * @param param_2 资源大小参数
- * @param param_3 资源配置参数
- * @param param_4 资源标志参数
+ * @param resourceSize 资源大小参数
+ * @param resourceConfig 资源配置参数
+ * @param resourceFlags 资源标志参数
  * @return 操作结果状态码
  */
-long long ManageSystemResources(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+long long ManageSystemResources(long long SystemResourcePointer,long long resourceSize,void* resourceConfig,void* resourceFlags)
 
 {
   void* *resourcePointer;
