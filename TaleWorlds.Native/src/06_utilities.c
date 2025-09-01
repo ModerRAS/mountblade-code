@@ -10511,49 +10511,59 @@ uint32_t ValidateAndGetBufferContext(undefined8 bufferContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180895f20(longlong *param_1,int param_2)
+/**
+ * @brief 分配并复制数组数据
+ * 
+ * 该函数负责分配新的数组内存空间，并将现有数据复制到新分配的空间中
+ * 主要用于动态数组的管理和扩容操作
+ * 
+ * @param arrayPointer 数组指针，包含数组的基本信息和容量
+ * @param newSize 新的数组大小，用于确定分配的内存空间
+ * @return uint64_t 操作结果，成功返回0，失败返回错误码
+ */
+uint64_t AllocateAndCopyArrayData(longlong *arrayPointer,int newSize)
 
 {
-  int iVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  undefined8 *puVar5;
+  int oldSize;
+  longlong sourceDataPointer;
+  undefined8 *newArrayBuffer;
+  longlong iterationCounter;
+  undefined8 *destinationPointer;
   
-  if (param_2 < (int)param_1[1]) {
+  if (newSize < (int)arrayPointer[1]) {
     return 0x1c;
   }
-  puVar3 = (undefined8 *)0x0;
-  if (param_2 != 0) {
-    if (param_2 * 0xc - 1U < 0x3fffffff) {
-      puVar3 = (undefined8 *)
-               FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,
+  newArrayBuffer = (undefined8 *)0x0;
+  if (newSize != 0) {
+    if (newSize * 0xc - 1U < 0x3fffffff) {
+      newArrayBuffer = (undefined8 *)
+               FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),newSize * 0xc,&UNK_180957f70,
                              0xf4,0,0,1);
-      if (puVar3 != (undefined8 *)0x0) {
-        iVar1 = (int)param_1[1];
-        lVar4 = (longlong)iVar1;
-        if ((iVar1 != 0) && (lVar2 = *param_1, 0 < iVar1)) {
-          puVar5 = puVar3;
+      if (newArrayBuffer != (undefined8 *)0x0) {
+        oldSize = (int)arrayPointer[1];
+        iterationCounter = (longlong)oldSize;
+        if ((oldSize != 0) && (sourceDataPointer = *arrayPointer, 0 < oldSize)) {
+          destinationPointer = newArrayBuffer;
           do {
-            *puVar5 = *(undefined8 *)((lVar2 - (longlong)puVar3) + (longlong)puVar5);
-            *(undefined4 *)(puVar5 + 1) =
-                 *(undefined4 *)((lVar2 - (longlong)puVar3) + 8 + (longlong)puVar5);
-            puVar5 = (undefined8 *)((longlong)puVar5 + 0xc);
-            lVar4 = lVar4 + -1;
-          } while (lVar4 != 0);
+            *destinationPointer = *(undefined8 *)((sourceDataPointer - (longlong)newArrayBuffer) + (longlong)destinationPointer);
+            *(undefined4 *)(destinationPointer + 1) =
+                 *(undefined4 *)((sourceDataPointer - (longlong)newArrayBuffer) + 8 + (longlong)destinationPointer);
+            destinationPointer = (undefined8 *)((longlong)destinationPointer + 0xc);
+            iterationCounter = iterationCounter + -1;
+          } while (iterationCounter != 0);
         }
-        goto LAB_180895fdc;
+        goto MemoryAllocationComplete;
       }
     }
     return 0x26;
   }
-LAB_180895fdc:
-  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+MemoryAllocationComplete:
+  if ((0 < *(int *)((longlong)arrayPointer + 0xc)) && (*arrayPointer != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*arrayPointer,&UNK_180957f70,0x100,1);
   }
-  *param_1 = (longlong)puVar3;
-  *(int *)((longlong)param_1 + 0xc) = param_2;
+  *arrayPointer = (longlong)newArrayBuffer;
+  *(int *)((longlong)arrayPointer + 0xc) = newSize;
   return 0;
 }
 
