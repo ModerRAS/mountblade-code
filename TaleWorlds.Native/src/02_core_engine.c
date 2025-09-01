@@ -109,18 +109,38 @@ void* engine_debug_info;
 void* engine_log_buffer;
 
 // 资源管理系统函数指针
+/**
+ * @brief 资源管理器设置函数指针
+ * 负责初始化和配置系统资源管理器
+ */
 void* engine_setup_resource_manager;
 
 // 音频系统函数指针
+/**
+ * @brief 音频系统初始化函数指针
+ * 负责初始化音频系统和音频设备
+ */
 void* engine_initialize_audio_system;
 
 // 窗口系统函数指针
+/**
+ * @brief 窗口上下文创建函数指针
+ * 负责创建和管理应用程序窗口
+ */
 void* engine_create_window_context;
 
 // 显示驱动函数指针
+/**
+ * @brief 显示驱动设置函数指针
+ * 负责初始化和配置显示驱动程序
+ */
 void* engine_setup_display_driver;
 
 // 图形API配置函数指针
+/**
+ * @brief 图形API配置函数指针
+ * 负责配置图形API和渲染管线
+ */
 void* engine_configure_graphics_api;
 
 // 渲染管线函数指针
