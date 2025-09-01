@@ -6271,23 +6271,23 @@ longlong SystemModuleInitialize(uint64_t systemId, longlong *moduleArray, longlo
     }
   }
   StringProcessingResult = 0;
-  uVar6 = (uint)(param_2[1] - *param_2 >> 3);
+  uVar6 = (uint)(moduleArray[1] - *moduleArray >> 3);
   if (uVar6 != 0) {
     do {
-      ModuleInitializationResult = *(longlong *)(*param_2 + StringProcessingResult * 8);
-      if (*(int *)(ModuleInitializationResult + 8) == *(int *)(param_3 + 8)) {
+      ModuleInitializationResult = *(longlong *)(*moduleArray + StringProcessingResult * 8);
+      if (*(int *)(ModuleInitializationResult + 8) == *(int *)(moduleData + 8)) {
         return ModuleInitializationResult;
       }
       BufferSize = (int)StringProcessingResult + 1;
       StringProcessingResult = (ulonglong)BufferSize;
     } while (BufferSize < uVar6);
   }
-  (**(code **)(**(longlong **)(&DAT_180d48de0 + (ulonglong)*(uint *)(param_3 + 0x8c) * 8) + 8))();
-  return *(longlong *)(&DAT_180d48de0 + (ulonglong)*(uint *)(param_3 + 0x8c) * 8);
+  (**(code **)(**(longlong **)(&DAT_180d48de0 + (ulonglong)*(uint *)(moduleData + 0x8c) * 8) + 8))();
+  return *(longlong *)(&DAT_180d48de0 + (ulonglong)*(uint *)(moduleData + 0x8c) * 8);
 }
 uint64_t
-FUN_18032bd90(uint64_t param_1,longlong *param_2,uint64_t *param_3,uint32_t param_4,
-             uint32_t param_5,uint8_t param_6)
+FUN_18032bd90(uint64_t systemId, longlong *dataBuffer, uint64_t *dataArray, uint32_t flagsParam4,
+             uint32_t flagsParam5, uint8_t byteParam6)
 {
   int64_t ModuleInitializationResult;
   ulonglong BufferSize;
