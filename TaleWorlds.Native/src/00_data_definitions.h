@@ -314,7 +314,7 @@ int InitializeModuleConfigurationA(void)
   STRING_PROCESSOR_CONFIG_A = 0;
   g_stringProcessorBufferSizeA = 5;
   strcpy_s(&STRING_PROCESSOR_CONFIG_A,0x10,&UNK_180a00540,in_R9,0xfffffffffffffffe);
-  longlong CallbackResult = RegisterSystemModule(FUN_1809418e0);
+  longlong CallbackResult = RegisterSystemModule(InitializeSystemModuleA);
   return (CallbackResult != 0) - 1;
 }
 /**
@@ -391,157 +391,157 @@ int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mut
   CONFIG_DATA_BUFFER_A = 0;
   g_configDataBufferSizeA = 0x13;
   strcpy_s(&CONFIG_DATA_BUFFER_A,0x40,&UNK_180a0cb48,in_R9,0xfffffffffffffffe);
-  g_configDataPointerA = &UNK_1809fcc58;
+  g_configDataPointerA = &SystemMemoryPool;
   g_configDataPointerB = &CONFIG_DATA_BUFFER_B;
   CONFIG_DATA_BUFFER_B = 0;
   g_configDataBufferSizeB = 0xd;
   strcpy_s(&CONFIG_DATA_BUFFER_B,0x40,&UNK_180a0cb80);
-  g_configDataPointerC = &UNK_1809fcc58;
+  g_configDataPointerC = &SystemMemoryPool;
   g_configDataPointerD = &CONFIG_DATA_BUFFER_C;
   CONFIG_DATA_BUFFER_C = 0;
   g_configDataBufferSizeC = 0x17;
   strcpy_s(&CONFIG_DATA_BUFFER_C,0x40,&UNK_180a0cb90);
-  g_configDataPointerE = &UNK_1809fcc58;
+  g_configDataPointerE = &SystemMemoryPool;
   g_configDataPointerF = &CONFIG_DATA_BUFFER_D;
   CONFIG_DATA_BUFFER_D = 0;
   g_configDataBufferSizeD = 0xd;
   strcpy_s(&CONFIG_DATA_BUFFER_D,0x40,&UNK_180a0cb60);
-  g_configDataPointerG = &UNK_1809fcc58;
+  g_configDataPointerG = &SystemMemoryPool;
   g_configDataPointerH = &SystemConfigBufferA;
   SystemConfigBufferA = 0;
   g_configDataBufferSizeE = 0xc;
   strcpy_s(&SystemConfigBufferA,0x40,&UNK_180a0cb70);
-  _DAT_180bf6908 = &UNK_1809fcc58;
+  _DAT_180bf6908 = &SystemMemoryPool;
   _DAT_180bf6910 = &SystemConfigBufferB;
   SystemConfigBufferB = 0;
   _DAT_180bf6918 = 0xc;
   strcpy_s(&SystemConfigBufferB,0x40,&UNK_180a0cbe0);
-  _DAT_180bf6960 = &UNK_1809fcc58;
+  _DAT_180bf6960 = &SystemMemoryPool;
   _DAT_180bf6968 = &SystemConfigBufferC;
   SystemConfigBufferC = 0;
   _DAT_180bf6970 = 0x10;
   strcpy_s(&SystemConfigBufferC,0x40,&UNK_180a0cbf0);
-  _DAT_180bf69b8 = &UNK_1809fcc58;
+  _DAT_180bf69b8 = &SystemMemoryPool;
   _DAT_180bf69c0 = &SystemConfigBufferD;
   SystemConfigBufferD = 0;
   _DAT_180bf69c8 = 0x1f;
   strcpy_s(&SystemConfigBufferD,0x40,&UNK_180a0cba8);
-  _DAT_180bf6a10 = &UNK_1809fcc58;
+  _DAT_180bf6a10 = &SystemMemoryPool;
   _DAT_180bf6a18 = &SystemConfigBufferE;
   SystemConfigBufferE = 0;
   _DAT_180bf6a20 = 0x17;
   strcpy_s(&SystemConfigBufferE,0x40,&UNK_180a05740);
-  _DAT_180bf6a68 = &UNK_1809fcc58;
+  _DAT_180bf6a68 = &SystemMemoryPool;
   _DAT_180bf6a70 = &SystemConfigBufferF;
   SystemConfigBufferF = 0;
   _DAT_180bf6a78 = 0x13;
   strcpy_s(&SystemConfigBufferF,0x40,&UNK_180a0cbc8);
-  _DAT_180bf6ac0 = &UNK_1809fcc58;
+  _DAT_180bf6ac0 = &SystemMemoryPool;
   _DAT_180bf6ac8 = &SystemConfigBufferG;
   SystemConfigBufferG = 0;
   _DAT_180bf6ad0 = 0x14;
   strcpy_s(&SystemConfigBufferG,0x40,&UNK_180a0cc30);
-  _DAT_180bf6b18 = &UNK_1809fcc58;
-  _DAT_180bf6b20 = &DAT_180bf6b30;
-  DAT_180bf6b30 = 0;
+  _DAT_180bf6b18 = &SystemMemoryPool;
+  _DAT_180bf6b20 = &SystemConfigBufferH;
+  SystemConfigBufferH = 0;
   _DAT_180bf6b28 = 0;
-  strcpy_s(&DAT_180bf6b30,0x40,&DAT_18098bc73);
-  _DAT_180bf6b70 = &UNK_1809fcc58;
-  _DAT_180bf6b78 = &DAT_180bf6b88;
-  DAT_180bf6b88 = 0;
+  strcpy_s(&SystemConfigBufferH,0x40,&DAT_18098bc73);
+  _DAT_180bf6b70 = &SystemMemoryPool;
+  _DAT_180bf6b78 = &SystemConfigBufferI;
+  SystemConfigBufferI = 0;
   _DAT_180bf6b80 = 0x1b;
-  strcpy_s(&DAT_180bf6b88,0x40,&UNK_180a0cc48);
-  _DAT_180bf6bc8 = &UNK_1809fcc58;
-  _DAT_180bf6bd0 = &DAT_180bf6be0;
-  DAT_180bf6be0 = 0;
+  strcpy_s(&SystemConfigBufferI,0x40,&UNK_180a0cc48);
+  _DAT_180bf6bc8 = &SystemMemoryPool;
+  _DAT_180bf6bd0 = &SystemConfigBufferJ;
+  SystemConfigBufferJ = 0;
   _DAT_180bf6bd8 = 7;
-  strcpy_s(&DAT_180bf6be0,0x40,&UNK_180a0cc08);
-  _DAT_180bf6c20 = &UNK_1809fcc58;
+  strcpy_s(&SystemConfigBufferJ,0x40,&UNK_180a0cc08);
+  _DAT_180bf6c20 = &SystemMemoryPool;
   _DAT_180bf6c28 = &DAT_180bf6c38;
   DAT_180bf6c38 = 0;
   _DAT_180bf6c30 = 0x19;
   strcpy_s(&DAT_180bf6c38,0x40,&UNK_180a0cc10);
-  _DAT_180bf6c78 = &UNK_1809fcc58;
+  _DAT_180bf6c78 = &SystemMemoryPool;
   _DAT_180bf6c80 = &DAT_180bf6c90;
   DAT_180bf6c90 = 0;
   _DAT_180bf6c88 = 0x12;
   strcpy_s(&DAT_180bf6c90,0x40,&UNK_180a0cca0);
-  _DAT_180bf6cd0 = &UNK_1809fcc58;
+  _DAT_180bf6cd0 = &SystemMemoryPool;
   _DAT_180bf6cd8 = &DAT_180bf6ce8;
   DAT_180bf6ce8 = 0;
   _DAT_180bf6ce0 = 0x12;
   strcpy_s(&DAT_180bf6ce8,0x40,&UNK_180a0ccb8);
-  _DAT_180bf6d28 = &UNK_1809fcc58;
+  _DAT_180bf6d28 = &SystemMemoryPool;
   _DAT_180bf6d30 = &DAT_180bf6d40;
   DAT_180bf6d40 = 0;
   _DAT_180bf6d38 = 0x19;
   strcpy_s(&DAT_180bf6d40,0x40,&UNK_180a0cc68);
-  _DAT_180bf6d80 = &UNK_1809fcc58;
+  _DAT_180bf6d80 = &SystemMemoryPool;
   _DAT_180bf6d88 = &DAT_180bf6d98;
   DAT_180bf6d98 = 0;
   _DAT_180bf6d90 = 0x11;
   strcpy_s(&DAT_180bf6d98,0x40,&UNK_180a0cc88);
-  _DAT_180bf6dd8 = &UNK_1809fcc58;
+  _DAT_180bf6dd8 = &SystemMemoryPool;
   _DAT_180bf6de0 = &DAT_180bf6df0;
   DAT_180bf6df0 = 0;
   _DAT_180bf6de8 = 0x18;
   strcpy_s(&DAT_180bf6df0,0x40,&UNK_180a0cd08);
-  _DAT_180bf6e30 = &UNK_1809fcc58;
+  _DAT_180bf6e30 = &SystemMemoryPool;
   _DAT_180bf6e38 = &DAT_180bf6e48;
   DAT_180bf6e48 = 0;
   _DAT_180bf6e40 = 0x13;
   strcpy_s(&DAT_180bf6e48,0x40,&UNK_180a0cd28);
-  _DAT_180bf6e88 = &UNK_1809fcc58;
+  _DAT_180bf6e88 = &SystemMemoryPool;
   _DAT_180bf6e90 = &DAT_180bf6ea0;
   DAT_180bf6ea0 = 0;
   _DAT_180bf6e98 = 0x19;
   strcpy_s(&DAT_180bf6ea0,0x40,&UNK_180a0ccd0);
-  _DAT_180bf6ee0 = &UNK_1809fcc58;
+  _DAT_180bf6ee0 = &SystemMemoryPool;
   _DAT_180bf6ee8 = &DAT_180bf6ef8;
   DAT_180bf6ef8 = 0;
   _DAT_180bf6ef0 = 0x10;
   strcpy_s(&DAT_180bf6ef8,0x40,&UNK_180a0ccf0);
-  _DAT_180bf6f38 = &UNK_1809fcc58;
+  _DAT_180bf6f38 = &SystemMemoryPool;
   _DAT_180bf6f40 = &DAT_180bf6f50;
   DAT_180bf6f50 = 0;
   _DAT_180bf6f48 = 0x14;
   strcpy_s(&DAT_180bf6f50,0x40,&UNK_180a0cd70);
-  _DAT_180bf6f90 = &UNK_1809fcc58;
+  _DAT_180bf6f90 = &SystemMemoryPool;
   _DAT_180bf6f98 = &DAT_180bf6fa8;
   DAT_180bf6fa8 = 0;
   _DAT_180bf6fa0 = 0xf;
   strcpy_s(&DAT_180bf6fa8,0x40,&UNK_180a0cd88);
-  _DAT_180bf6fe8 = &UNK_1809fcc58;
+  _DAT_180bf6fe8 = &SystemMemoryPool;
   _DAT_180bf6ff0 = &DAT_180bf7000;
   DAT_180bf7000 = 0;
   _DAT_180bf6ff8 = 0x16;
   strcpy_s(&DAT_180bf7000,0x40,&UNK_180a0cd40);
-  _DAT_180bf7040 = &UNK_1809fcc58;
+  _DAT_180bf7040 = &SystemMemoryPool;
   _DAT_180bf7048 = &DAT_180bf7058;
   DAT_180bf7058 = 0;
   _DAT_180bf7050 = 0x12;
   strcpy_s(&DAT_180bf7058,0x40,&UNK_180a0cd58);
-  _DAT_180bf7098 = &UNK_1809fcc58;
+  _DAT_180bf7098 = &SystemMemoryPool;
   _DAT_180bf70a0 = &DAT_180bf70b0;
   DAT_180bf70b0 = 0;
   _DAT_180bf70a8 = 0x14;
   strcpy_s(&DAT_180bf70b0,0x40,&UNK_180a0cdc8);
-  _DAT_180bf70f0 = &UNK_1809fcc58;
+  _DAT_180bf70f0 = &SystemMemoryPool;
   _DAT_180bf70f8 = &DAT_180bf7108;
   DAT_180bf7108 = 0;
   _DAT_180bf7100 = 0x20;
   strcpy_s(&DAT_180bf7108,0x40,&UNK_180a0cde0);
-  _DAT_180bf7148 = &UNK_1809fcc58;
+  _DAT_180bf7148 = &SystemMemoryPool;
   _DAT_180bf7150 = &DAT_180bf7160;
   DAT_180bf7160 = 0;
   _DAT_180bf7158 = 0x13;
   strcpy_s(&DAT_180bf7160,0x40,&UNK_180a0cd98);
-  _DAT_180bf71a0 = &UNK_1809fcc58;
+  _DAT_180bf71a0 = &SystemMemoryPool;
   _DAT_180bf71a8 = &DAT_180bf71b8;
   DAT_180bf71b8 = 0;
   _DAT_180bf71b0 = 0x16;
   strcpy_s(&DAT_180bf71b8,0x40,&UNK_180a0cdb0);
-  _DAT_180bf71f8 = &UNK_1809fcc58;
+  _DAT_180bf71f8 = &SystemMemoryPool;
   _DAT_180bf7200 = &DAT_180bf7210;
   DAT_180bf7210 = 0;
   _DAT_180bf7208 = 0xf;
@@ -732,157 +732,157 @@ int InitializeMultiStringProcessorSystem(void)
   DAT_180bf7ea8 = 0;
   _DAT_180bf7ea0 = 0x13;
   strcpy_s(&DAT_180bf7ea8,0x40,&UNK_180a0cb48,in_R9,0xfffffffffffffffe);
-  _DAT_180bf7ee8 = &UNK_1809fcc58;
+  _DAT_180bf7ee8 = &SystemMemoryPool;
   _DAT_180bf7ef0 = &DAT_180bf7f00;
   DAT_180bf7f00 = 0;
   _DAT_180bf7ef8 = 0xd;
   strcpy_s(&DAT_180bf7f00,0x40,&UNK_180a0cb80);
-  _DAT_180bf7f40 = &UNK_1809fcc58;
+  _DAT_180bf7f40 = &SystemMemoryPool;
   _DAT_180bf7f48 = &DAT_180bf7f58;
   DAT_180bf7f58 = 0;
   _DAT_180bf7f50 = 0x17;
   strcpy_s(&DAT_180bf7f58,0x40,&UNK_180a0cb90);
-  _DAT_180bf7f98 = &UNK_1809fcc58;
+  _DAT_180bf7f98 = &SystemMemoryPool;
   _DAT_180bf7fa0 = &DAT_180bf7fb0;
   DAT_180bf7fb0 = 0;
   _DAT_180bf7fa8 = 0xd;
   strcpy_s(&DAT_180bf7fb0,0x40,&UNK_180a0cb60);
-  _DAT_180bf7ff0 = &UNK_1809fcc58;
+  _DAT_180bf7ff0 = &SystemMemoryPool;
   _DAT_180bf7ff8 = &DAT_180bf8008;
   DAT_180bf8008 = 0;
   _DAT_180bf8000 = 0xc;
   strcpy_s(&DAT_180bf8008,0x40,&UNK_180a0cb70);
-  _DAT_180bf8048 = &UNK_1809fcc58;
+  _DAT_180bf8048 = &SystemMemoryPool;
   _DAT_180bf8050 = &DAT_180bf8060;
   DAT_180bf8060 = 0;
   _DAT_180bf8058 = 0xc;
   strcpy_s(&DAT_180bf8060,0x40,&UNK_180a0cbe0);
-  _DAT_180bf80a0 = &UNK_1809fcc58;
+  _DAT_180bf80a0 = &SystemMemoryPool;
   _DAT_180bf80a8 = &DAT_180bf80b8;
   DAT_180bf80b8 = 0;
   _DAT_180bf80b0 = 0x10;
   strcpy_s(&DAT_180bf80b8,0x40,&UNK_180a0cbf0);
-  _DAT_180bf80f8 = &UNK_1809fcc58;
+  _DAT_180bf80f8 = &SystemMemoryPool;
   _DAT_180bf8100 = &DAT_180bf8110;
   DAT_180bf8110 = 0;
   _DAT_180bf8108 = 0x1f;
   strcpy_s(&DAT_180bf8110,0x40,&UNK_180a0cba8);
-  _DAT_180bf8150 = &UNK_1809fcc58;
+  _DAT_180bf8150 = &SystemMemoryPool;
   _DAT_180bf8158 = &DAT_180bf8168;
   DAT_180bf8168 = 0;
   _DAT_180bf8160 = 0x17;
   strcpy_s(&DAT_180bf8168,0x40,&UNK_180a05740);
-  _DAT_180bf81a8 = &UNK_1809fcc58;
+  _DAT_180bf81a8 = &SystemMemoryPool;
   _DAT_180bf81b0 = &DAT_180bf81c0;
   DAT_180bf81c0 = 0;
   _DAT_180bf81b8 = 0x13;
   strcpy_s(&DAT_180bf81c0,0x40,&UNK_180a0cbc8);
-  _DAT_180bf8200 = &UNK_1809fcc58;
+  _DAT_180bf8200 = &SystemMemoryPool;
   _DAT_180bf8208 = &DAT_180bf8218;
   DAT_180bf8218 = 0;
   _DAT_180bf8210 = 0x14;
   strcpy_s(&DAT_180bf8218,0x40,&UNK_180a0cc30);
-  _DAT_180bf8258 = &UNK_1809fcc58;
+  _DAT_180bf8258 = &SystemMemoryPool;
   _DAT_180bf8260 = &DAT_180bf8270;
   DAT_180bf8270 = 0;
   _DAT_180bf8268 = 0;
   strcpy_s(&DAT_180bf8270,0x40,&DAT_18098bc73);
-  _DAT_180bf82b0 = &UNK_1809fcc58;
+  _DAT_180bf82b0 = &SystemMemoryPool;
   _DAT_180bf82b8 = &DAT_180bf82c8;
   DAT_180bf82c8 = 0;
   _DAT_180bf82c0 = 0x1b;
   strcpy_s(&DAT_180bf82c8,0x40,&UNK_180a0cc48);
-  _DAT_180bf8308 = &UNK_1809fcc58;
+  _DAT_180bf8308 = &SystemMemoryPool;
   _DAT_180bf8310 = &DAT_180bf8320;
   DAT_180bf8320 = 0;
   _DAT_180bf8318 = 7;
   strcpy_s(&DAT_180bf8320,0x40,&UNK_180a0cc08);
-  _DAT_180bf8360 = &UNK_1809fcc58;
+  _DAT_180bf8360 = &SystemMemoryPool;
   _DAT_180bf8368 = &DAT_180bf8378;
   DAT_180bf8378 = 0;
   _DAT_180bf8370 = 0x19;
   strcpy_s(&DAT_180bf8378,0x40,&UNK_180a0cc10);
-  _DAT_180bf83b8 = &UNK_1809fcc58;
+  _DAT_180bf83b8 = &SystemMemoryPool;
   _DAT_180bf83c0 = &DAT_180bf83d0;
   DAT_180bf83d0 = 0;
   _DAT_180bf83c8 = 0x12;
   strcpy_s(&DAT_180bf83d0,0x40,&UNK_180a0cca0);
-  _DAT_180bf8410 = &UNK_1809fcc58;
+  _DAT_180bf8410 = &SystemMemoryPool;
   _DAT_180bf8418 = &DAT_180bf8428;
   DAT_180bf8428 = 0;
   _DAT_180bf8420 = 0x12;
   strcpy_s(&DAT_180bf8428,0x40,&UNK_180a0ccb8);
-  _DAT_180bf8468 = &UNK_1809fcc58;
+  _DAT_180bf8468 = &SystemMemoryPool;
   _DAT_180bf8470 = &DAT_180bf8480;
   DAT_180bf8480 = 0;
   _DAT_180bf8478 = 0x19;
   strcpy_s(&DAT_180bf8480,0x40,&UNK_180a0cc68);
-  _DAT_180bf84c0 = &UNK_1809fcc58;
+  _DAT_180bf84c0 = &SystemMemoryPool;
   _DAT_180bf84c8 = &DAT_180bf84d8;
   DAT_180bf84d8 = 0;
   _DAT_180bf84d0 = 0x11;
   strcpy_s(&DAT_180bf84d8,0x40,&UNK_180a0cc88);
-  _DAT_180bf8518 = &UNK_1809fcc58;
+  _DAT_180bf8518 = &SystemMemoryPool;
   _DAT_180bf8520 = &DAT_180bf8530;
   DAT_180bf8530 = 0;
   _DAT_180bf8528 = 0x18;
   strcpy_s(&DAT_180bf8530,0x40,&UNK_180a0cd08);
-  _DAT_180bf8570 = &UNK_1809fcc58;
+  _DAT_180bf8570 = &SystemMemoryPool;
   _DAT_180bf8578 = &DAT_180bf8588;
   DAT_180bf8588 = 0;
   _DAT_180bf8580 = 0x13;
   strcpy_s(&DAT_180bf8588,0x40,&UNK_180a0cd28);
-  _DAT_180bf85c8 = &UNK_1809fcc58;
+  _DAT_180bf85c8 = &SystemMemoryPool;
   _DAT_180bf85d0 = &DAT_180bf85e0;
   DAT_180bf85e0 = 0;
   _DAT_180bf85d8 = 0x19;
   strcpy_s(&DAT_180bf85e0,0x40,&UNK_180a0ccd0);
-  _DAT_180bf8620 = &UNK_1809fcc58;
+  _DAT_180bf8620 = &SystemMemoryPool;
   _DAT_180bf8628 = &DAT_180bf8638;
   DAT_180bf8638 = 0;
   _DAT_180bf8630 = 0x10;
   strcpy_s(&DAT_180bf8638,0x40,&UNK_180a0ccf0);
-  _DAT_180bf8678 = &UNK_1809fcc58;
+  _DAT_180bf8678 = &SystemMemoryPool;
   _DAT_180bf8680 = &DAT_180bf8690;
   DAT_180bf8690 = 0;
   _DAT_180bf8688 = 0x14;
   strcpy_s(&DAT_180bf8690,0x40,&UNK_180a0cd70);
-  _DAT_180bf86d0 = &UNK_1809fcc58;
+  _DAT_180bf86d0 = &SystemMemoryPool;
   _DAT_180bf86d8 = &DAT_180bf86e8;
   DAT_180bf86e8 = 0;
   _DAT_180bf86e0 = 0xf;
   strcpy_s(&DAT_180bf86e8,0x40,&UNK_180a0cd88);
-  _DAT_180bf8728 = &UNK_1809fcc58;
+  _DAT_180bf8728 = &SystemMemoryPool;
   _DAT_180bf8730 = &DAT_180bf8740;
   DAT_180bf8740 = 0;
   _DAT_180bf8738 = 0x16;
   strcpy_s(&DAT_180bf8740,0x40,&UNK_180a0cd40);
-  _DAT_180bf8780 = &UNK_1809fcc58;
+  _DAT_180bf8780 = &SystemMemoryPool;
   _DAT_180bf8788 = &DAT_180bf8798;
   DAT_180bf8798 = 0;
   _DAT_180bf8790 = 0x12;
   strcpy_s(&DAT_180bf8798,0x40,&UNK_180a0cd58);
-  _DAT_180bf87d8 = &UNK_1809fcc58;
+  _DAT_180bf87d8 = &SystemMemoryPool;
   _DAT_180bf87e0 = &DAT_180bf87f0;
   DAT_180bf87f0 = 0;
   _DAT_180bf87e8 = 0x14;
   strcpy_s(&DAT_180bf87f0,0x40,&UNK_180a0cdc8);
-  _DAT_180bf8830 = &UNK_1809fcc58;
+  _DAT_180bf8830 = &SystemMemoryPool;
   _DAT_180bf8838 = &DAT_180bf8848;
   DAT_180bf8848 = 0;
   _DAT_180bf8840 = 0x20;
   strcpy_s(&DAT_180bf8848,0x40,&UNK_180a0cde0);
-  _DAT_180bf8888 = &UNK_1809fcc58;
+  _DAT_180bf8888 = &SystemMemoryPool;
   _DAT_180bf8890 = &DAT_180bf88a0;
   DAT_180bf88a0 = 0;
   _DAT_180bf8898 = 0x13;
   strcpy_s(&DAT_180bf88a0,0x40,&UNK_180a0cd98);
-  _DAT_180bf88e0 = &UNK_1809fcc58;
+  _DAT_180bf88e0 = &SystemMemoryPool;
   _DAT_180bf88e8 = &DAT_180bf88f8;
   DAT_180bf88f8 = 0;
   _DAT_180bf88f0 = 0x16;
   strcpy_s(&DAT_180bf88f8,0x40,&UNK_180a0cdb0);
-  _DAT_180bf8938 = &UNK_1809fcc58;
+  _DAT_180bf8938 = &SystemMemoryPool;
   _DAT_180bf8940 = &DAT_180bf8950;
   DAT_180bf8950 = 0;
   _DAT_180bf8948 = 0xf;
@@ -1020,7 +1020,7 @@ int InitializeStringProcessorAA(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf93f0 = &UNK_1809fcc58;
+  _DAT_180bf93f0 = &SystemMemoryPool;
   _DAT_180bf93f8 = &DAT_180bf9408;
   DAT_180bf9408 = 0;
   _DAT_180bf9400 = 0x17;
@@ -1182,7 +1182,7 @@ int InitializeStringProcessorS(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9750 = &UNK_1809fcc58;
+  _DAT_180bf9750 = &SystemMemoryPool;
   _DAT_180bf9758 = &DAT_180bf9768;
   DAT_180bf9768 = 0;
   _DAT_180bf9760 = 0x20;
@@ -1194,7 +1194,7 @@ int InitializeStringProcessorT(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf97b0 = &UNK_1809fcc58;
+  _DAT_180bf97b0 = &SystemMemoryPool;
   _DAT_180bf97b8 = &DAT_180bf97c8;
   DAT_180bf97c8 = 0;
   _DAT_180bf97c0 = 0x13;
@@ -1206,7 +1206,7 @@ int InitializeStringProcessorU(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9810 = &UNK_1809fcc58;
+  _DAT_180bf9810 = &SystemMemoryPool;
   _DAT_180bf9818 = &DAT_180bf9828;
   DAT_180bf9828 = 0;
   _DAT_180bf9820 = 0x1e;
@@ -1218,7 +1218,7 @@ int InitializeStringProcessorV(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9870 = &UNK_1809fcc58;
+  _DAT_180bf9870 = &SystemMemoryPool;
   _DAT_180bf9878 = &DAT_180bf9888;
   DAT_180bf9888 = 0;
   _DAT_180bf9880 = 0x1b;
@@ -1236,7 +1236,7 @@ int InitializeSystemModuleB(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf98d0 = &UNK_1809fcc58;
+  _DAT_180bf98d0 = &SystemMemoryPool;
   _DAT_180bf98d8 = &SYSTEM_MODULE_B_BUFFER;
   SYSTEM_MODULE_B_BUFFER = 0;
   _DAT_180bf98e0 = 0x1b;
@@ -1248,7 +1248,7 @@ int InitializeSystemModuleC(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9930 = &UNK_1809fcc58;
+  _DAT_180bf9930 = &SystemMemoryPool;
   _DAT_180bf9938 = &SYSTEM_MODULE_C_BUFFER;
   SYSTEM_MODULE_C_BUFFER = 0;
   _DAT_180bf9940 = 0x1c;
@@ -1260,7 +1260,7 @@ int InitializeSystemModuleD(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9990 = &UNK_1809fcc58;
+  _DAT_180bf9990 = &SystemMemoryPool;
   _DAT_180bf9998 = &DAT_180bf99a8;
   DAT_180bf99a8 = 0;
   _DAT_180bf99a0 = 0x1d;
@@ -1278,7 +1278,7 @@ int InitializeStringProcessingSystemM(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf99f0 = &UNK_1809fcc58;
+  _DAT_180bf99f0 = &SystemMemoryPool;
   _DAT_180bf99f8 = &DAT_180bf9a08;
   DAT_180bf9a08 = 0;
   _DAT_180bf9a00 = 0x20;
@@ -1296,7 +1296,7 @@ int InitializeStringProcessingSystemN(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9a50 = &UNK_1809fcc58;
+  _DAT_180bf9a50 = &SystemMemoryPool;
   _DAT_180bf9a58 = &DAT_180bf9a68;
   DAT_180bf9a68 = 0;
   _DAT_180bf9a60 = 0x1d;
@@ -1314,7 +1314,7 @@ int InitializeStringProcessingSystemO(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9ab0 = &UNK_1809fcc58;
+  _DAT_180bf9ab0 = &SystemMemoryPool;
   _DAT_180bf9ab8 = &DAT_180bf9ac8;
   DAT_180bf9ac8 = 0;
   _DAT_180bf9ac0 = 0x1c;
@@ -1332,7 +1332,7 @@ int InitializeStringProcessingSystemP(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9b10 = &UNK_1809fcc58;
+  _DAT_180bf9b10 = &SystemMemoryPool;
   _DAT_180bf9b18 = &DAT_180bf9b28;
   DAT_180bf9b28 = 0;
   _DAT_180bf9b20 = 0x17;
@@ -1350,7 +1350,7 @@ int InitializeStringProcessingSystemQ(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9b70 = &UNK_1809fcc58;
+  _DAT_180bf9b70 = &SystemMemoryPool;
   _DAT_180bf9b78 = &DAT_180bf9b88;
   DAT_180bf9b88 = 0;
   _DAT_180bf9b80 = 0x1f;
@@ -1368,7 +1368,7 @@ int InitializeStringProcessingSystemR(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9bd0 = &UNK_1809fcc58;
+  _DAT_180bf9bd0 = &SystemMemoryPool;
   _DAT_180bf9bd8 = &DAT_180bf9be8;
   DAT_180bf9be8 = 0;
   _DAT_180bf9be0 = 0x21;
@@ -1386,7 +1386,7 @@ int InitializeStringProcessingSystemS(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9c30 = &UNK_1809fcc58;
+  _DAT_180bf9c30 = &SystemMemoryPool;
   _DAT_180bf9c38 = &DAT_180bf9c48;
   DAT_180bf9c48 = 0;
   _DAT_180bf9c40 = 0x25;
@@ -1404,7 +1404,7 @@ int InitializeStringProcessingSystemT(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9c90 = &UNK_1809fcc58;
+  _DAT_180bf9c90 = &SystemMemoryPool;
   _DAT_180bf9c98 = &DAT_180bf9ca8;
   DAT_180bf9ca8 = 0;
   _DAT_180bf9ca0 = 0x23;
@@ -1422,7 +1422,7 @@ int InitializeStringProcessingSystemU(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9cf0 = &UNK_1809fcc58;
+  _DAT_180bf9cf0 = &SystemMemoryPool;
   _DAT_180bf9cf8 = &DAT_180bf9d08;
   DAT_180bf9d08 = 0;
   _DAT_180bf9d00 = 0x1e;
@@ -1440,7 +1440,7 @@ int InitializeStringProcessingSystemV(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9d50 = &UNK_1809fcc58;
+  _DAT_180bf9d50 = &SystemMemoryPool;
   _DAT_180bf9d58 = &DAT_180bf9d68;
   DAT_180bf9d68 = 0;
   _DAT_180bf9d60 = 0x1e;
@@ -1458,7 +1458,7 @@ int InitializeStringProcessingSystemW(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9db0 = &UNK_1809fcc58;
+  _DAT_180bf9db0 = &SystemMemoryPool;
   _DAT_180bf9db8 = &DAT_180bf9dc8;
   DAT_180bf9dc8 = 0;
   _DAT_180bf9dc0 = 0x12;
@@ -1476,7 +1476,7 @@ int InitializeStringProcessingSystemX(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9e10 = &UNK_1809fcc58;
+  _DAT_180bf9e10 = &SystemMemoryPool;
   _DAT_180bf9e18 = &DAT_180bf9e28;
   DAT_180bf9e28 = 0;
   _DAT_180bf9e20 = 0x13;
@@ -1494,7 +1494,7 @@ int InitializeStringProcessingSystemY(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9e70 = &UNK_1809fcc58;
+  _DAT_180bf9e70 = &SystemMemoryPool;
   _DAT_180bf9e78 = &DAT_180bf9e88;
   DAT_180bf9e88 = 0;
   _DAT_180bf9e80 = 0x13;
@@ -1512,7 +1512,7 @@ int InitializeStringProcessingSystemZ(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9ed0 = &UNK_1809fcc58;
+  _DAT_180bf9ed0 = &SystemMemoryPool;
   _DAT_180bf9ed8 = &DAT_180bf9ee8;
   DAT_180bf9ee8 = 0;
   _DAT_180bf9ee0 = 0x16;
@@ -1530,7 +1530,7 @@ int InitializeStringProcessingSystemAA(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9f30 = &UNK_1809fcc58;
+  _DAT_180bf9f30 = &SystemMemoryPool;
   _DAT_180bf9f38 = &DAT_180bf9f48;
   DAT_180bf9f48 = 0;
   _DAT_180bf9f40 = 0x1a;
@@ -1548,7 +1548,7 @@ int InitializeStringProcessingSystemAB(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9f90 = &UNK_1809fcc58;
+  _DAT_180bf9f90 = &SystemMemoryPool;
   _DAT_180bf9f98 = &DAT_180bf9fa8;
   DAT_180bf9fa8 = 0;
   _DAT_180bf9fa0 = 0x15;
@@ -1566,7 +1566,7 @@ int InitializeStringProcessingSystemAC(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bf9ff0 = &UNK_1809fcc58;
+  _DAT_180bf9ff0 = &SystemMemoryPool;
   _DAT_180bf9ff8 = &DAT_180bfa008;
   DAT_180bfa008 = 0;
   _DAT_180bfa000 = 0x13;
@@ -1584,7 +1584,7 @@ int InitializeStringProcessingSystemAD(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bfa050 = &UNK_1809fcc58;
+  _DAT_180bfa050 = &SystemMemoryPool;
   _DAT_180bfa058 = &DAT_180bfa068;
   DAT_180bfa068 = 0;
   _DAT_180bfa060 = 0x13;
@@ -1602,7 +1602,7 @@ int InitializeStringProcessingSystemAE(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bfa0b0 = &UNK_1809fcc58;
+  _DAT_180bfa0b0 = &SystemMemoryPool;
   _DAT_180bfa0b8 = &DAT_180bfa0c8;
   DAT_180bfa0c8 = 0;
   _DAT_180bfa0c0 = 0x1b;
@@ -1620,7 +1620,7 @@ int InitializeStringProcessingSystemAF(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bfa110 = &UNK_1809fcc58;
+  _DAT_180bfa110 = &SystemMemoryPool;
   _DAT_180bfa118 = &DAT_180bfa128;
   DAT_180bfa128 = 0;
   _DAT_180bfa120 = 0x19;
@@ -1638,7 +1638,7 @@ int InitializeStringProcessingSystemAG(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bfa170 = &UNK_1809fcc58;
+  _DAT_180bfa170 = &SystemMemoryPool;
   _DAT_180bfa178 = &DAT_180bfa188;
   DAT_180bfa188 = 0;
   _DAT_180bfa180 = 0x15;
@@ -1656,7 +1656,7 @@ int InitializeStringProcessingSystemAH(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bfa1d0 = &UNK_1809fcc58;
+  _DAT_180bfa1d0 = &SystemMemoryPool;
   _DAT_180bfa1d8 = &DAT_180bfa1e8;
   DAT_180bfa1e8 = 0;
   _DAT_180bfa1e0 = 0x28;
@@ -1674,7 +1674,7 @@ int InitializeStringProcessingSystemAI(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bfa230 = &UNK_1809fcc58;
+  _DAT_180bfa230 = &SystemMemoryPool;
   _DAT_180bfa238 = &DAT_180bfa248;
   DAT_180bfa248 = 0;
   _DAT_180bfa240 = 0x23;
@@ -1692,7 +1692,7 @@ int InitializeStringProcessingSystemAJ(void)
 {
   int64_t LocalResult;
   uint64_t in_R9;
-  _DAT_180bfa290 = &UNK_1809fcc58;
+  _DAT_180bfa290 = &SystemMemoryPool;
   _DAT_180bfa298 = &DAT_180bfa2a8;
   DAT_180bfa2a8 = 0;
   _DAT_180bfa2a0 = 0x17;
@@ -2873,7 +2873,7 @@ LAB_18004d527:
       uStack_2f0 = uStack_2f0 + 1;
     } while (uStack_2f0 < uStack_150);
   }
-  puStack_98 = &UNK_1809fcc58;
+  puStack_98 = &SystemMemoryPool;
   puStack_90 = auStack_80;
   auStack_80[0] = 0;
   uStack_88 = 0x10;
@@ -3737,7 +3737,7 @@ LAB_1800d37d8:
   if (*(char *)(_DAT_180c86950 + 0x1626) != '\0') {
     uVar14 = *(undefined8 *)(_DAT_180c86870 + 0x138);
     *(undefined8 *)(_DAT_180c86870 + 0x138) = 0;
-    puStack_b8 = &UNK_1809fcc58;
+    puStack_b8 = &SystemMemoryPool;
     puStack_b0 = auStack_a0;
     auStack_a0[0] = 0;
     uStack_a8 = 0x18;
@@ -4026,17 +4026,17 @@ LAB_1800d3d65:
       DAT_180d492a8 = 0;
       _DAT_180d492a0 = 6;
       strcpy_s(&DAT_180d492a8,0x40,&DAT_180a06998,param_4,uVar1);
-      _DAT_180d492e8 = &UNK_1809fcc58;
+      _DAT_180d492e8 = &SystemMemoryPool;
       _DAT_180d492f0 = &DAT_180d49300;
       DAT_180d49300 = 0;
       _DAT_180d492f8 = 4;
       strcpy_s(&DAT_180d49300,0x40,&DAT_180a06990);
-      _DAT_180d49340 = &UNK_1809fcc58;
+      _DAT_180d49340 = &SystemMemoryPool;
       _DAT_180d49348 = &DAT_180d49358;
       DAT_180d49358 = 0;
       _DAT_180d49350 = 6;
       strcpy_s(&DAT_180d49358,0x40,&DAT_180a069a8);
-      _DAT_180d49398 = &UNK_1809fcc58;
+      _DAT_180d49398 = &SystemMemoryPool;
       _DAT_180d493a0 = &DAT_180d493b0;
       DAT_180d493b0 = 0;
       _DAT_180d493a8 = 6;
@@ -5608,7 +5608,7 @@ uint8_t normalize_color_luminance(uint64_t *color_data)
       }
       if ((*(int *)(LocalResult0 + 0x48) < _DAT_180d48e24) &&
          (FUN_1808fcb90(&DAT_180d48e24), _DAT_180d48e24 == -1)) {
-        _DAT_180d48e60 = &UNK_1809fcc58;
+        _DAT_180d48e60 = &SystemMemoryPool;
         _DAT_180d48e68 = &DAT_180d48e78;
         _DAT_180d48e70 = 0;
         DAT_180d48e78 = 0;
@@ -6983,7 +6983,7 @@ undefined8 FUN_1804ca920(undefined8 param_1,ulonglong param_2)
               0x48) < _DAT_180d49fd8) {
     FUN_1808fcb90(&DAT_180d49fd8);
     if (_DAT_180d49fd8 == -1) {
-      _DAT_180d49fe0 = &UNK_1809fcc58;
+      _DAT_180d49fe0 = &SystemMemoryPool;
       _DAT_180d49fe8 = &DAT_180d49ff8;
       DAT_180d49ff8 = 0;
       _DAT_180d49ff0 = 0;

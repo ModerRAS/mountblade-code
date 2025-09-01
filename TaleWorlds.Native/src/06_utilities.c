@@ -509,13 +509,13 @@ undefined DAT_180bf7260;
  * 设置权限验证、数据加密和安全检查等相关组件
  */
 void InitializeSecurityManager(void);
-undefined g_securityManagerInstance;
-undefined g_securityContext;
-undefined g_securityPermissionTable;
-undefined g_securityEncryptionKey;
-undefined g_securityValidationFlags;
-undefined g_securityAuditLog;
-undefined g_securityAccessControl;
+undefined SecurityManagerInstance;
+undefined SecurityContext;
+undefined SecurityPermissionTable;
+undefined SecurityEncryptionKey;
+undefined SecurityValidationFlags;
+undefined SecurityAuditLog;
+undefined SecurityAccessControl;
 
 // 函数: void InitializeLoggingSystem(void)
 /**

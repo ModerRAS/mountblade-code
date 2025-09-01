@@ -1498,7 +1498,18 @@ int FormatNetworkConnectionRequest(longlong requestContext, longlong requestData
 
 
 
-int FUN_180840f80(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 处理网络连接响应
+ * 
+ * 该函数负责处理服务器返回的网络连接响应。
+ * 主要用于解析和处理连接响应数据。
+ * 
+ * @param responseContext 响应上下文指针
+ * @param responseData 响应数据指针
+ * @param responseSize 响应数据大小
+ * @return 处理结果状态码
+ */
+int ProcessNetworkConnectionResponse(longlong responseContext, longlong responseData, int responseSize)
 
 {
   undefined1 uVar1;
