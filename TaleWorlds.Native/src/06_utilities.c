@@ -1147,7 +1147,7 @@ undefined DAT_180bf99a0;
  */
 void InitializeMemoryMapping;
 undefined DAT_180bf99a8;
-undefined UNK_180a22db0;
+undefined MemoryMappingConfigData;
 undefined DAT_180bf99f0;
 undefined DAT_180bf99f8;
 undefined DAT_180bf9a00;
@@ -7501,7 +7501,7 @@ undefined8 ValidateObjectContextAndProcessFloatRange(longlong objectContext, lon
       return 0x1e;
     }
     rangeIndex[0] = 0;
-    validationStatus = FUN_180840950(systemContext, contextPointer, objectContext + 0x28, rangeIndex);
+    validationStatus = ProcessRangeValidation(systemContext, contextPointer, objectContext + 0x28, rangeIndex);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
@@ -7563,7 +7563,7 @@ undefined8 ValidateObjectContextAndProcessComplexFloatOperation(longlong objectC
       return 0x1e;
     }
     indexBuffer[0] = 0;
-    validationStatus = FUN_180840950(systemContext,contextPointer,objectContext + 0x28,indexBuffer);
+    validationStatus = ProcessRangeValidation(systemContext,contextPointer,objectContext + 0x28,indexBuffer);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
@@ -7920,10 +7920,10 @@ void ValidateObjectContextAndProcessOperation(longlong objectContext, undefined8
       allocationSize = 0xffffffffffffff0;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd200(objectSize, allocationSize & 0xfffffffffffffff0);
+    InitializeMemoryAllocation(objectSize, allocationSize & 0xfffffffffffffff0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(securityToken ^ (ulonglong)stackBuffer);
+  FinalizeSecurityOperation(securityToken ^ (ulonglong)stackBuffer);
 }
 
 
@@ -9298,7 +9298,7 @@ void ProcessSystemContextAndDataOperation(longlong param_1,longlong param_2)
   lStack_50 = param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8;
   lStack_40 = param_2;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  InitializeMemoryAllocation();
 }
 
 
@@ -9593,7 +9593,7 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_c8);
+  FinalizeSecurityOperation(uStack_18 ^ (ulonglong)auStack_c8);
 }
 
 
@@ -9615,7 +9615,7 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
   ulonglong in_stack_000000b0;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -9676,7 +9676,7 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_b8);
+  FinalizeSecurityOperation(uStack_10 ^ (ulonglong)auStack_b8);
 }
 
 
@@ -9708,7 +9708,7 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
   *unaff_RSI = resourceTable;
 LAB_180894aca:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -9721,7 +9721,7 @@ LAB_180894aca:
   ulonglong in_stack_000000a8;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -9783,7 +9783,7 @@ LAB_180894aca:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_c8);
+  FinalizeSecurityOperation(uStack_18 ^ (ulonglong)auStack_c8);
 }
 
 
@@ -9815,7 +9815,7 @@ LAB_180894aca:
     *unaff_RDI = lStack0000000000000080;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -10528,7 +10528,7 @@ LAB_18089555d:
   }
 FUN_180895b89:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_738);
+  FinalizeSecurityOperation(uStack_48 ^ (ulonglong)auStack_738);
 }
 
 
@@ -10645,7 +10645,7 @@ LAB_18089555d:
   *unaff_R13 = 0;
 LAB_180895b69:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -10658,7 +10658,7 @@ LAB_180895b69:
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -12384,7 +12384,7 @@ LAB_180896ce3:
 void ModuleProcessErrorHandler(void)
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_328);
+  FinalizeSecurityOperation(uStack_58 ^ (ulonglong)auStack_328);
 }
 
 
@@ -12678,7 +12678,7 @@ void ModuleProcessErrorHandler(void)
   }
 LAB_1808974ec:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -12691,7 +12691,7 @@ LAB_1808974ec:
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -12721,7 +12721,7 @@ LAB_1808974ec:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_248);
+  FinalizeSecurityOperation(uStack_28 ^ (ulonglong)auStack_248);
 }
 
 
@@ -12746,7 +12746,7 @@ LAB_1808974ec:
     *(undefined1 *)(unaff_RDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -12765,7 +12765,7 @@ LAB_1808974ec:
     *(undefined1 *)(unaff_RDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -13027,7 +13027,7 @@ LAB_1808974ec:
 void BufferValidationErrorHandler(void)
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1e8);
+  FinalizeSecurityOperation(uStack_58 ^ (ulonglong)auStack_1e8);
 }
 
 
@@ -13304,7 +13304,7 @@ void BufferValidationErrorHandler(void)
 void DataProcessingErrorHandler(void)
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -13563,7 +13563,7 @@ void DataProcessingErrorHandler(void)
 void FloatProcessingErrorHandler(void)
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -13695,7 +13695,7 @@ void FloatProcessingErrorHandler(void)
   }
 LAB_180897af6:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -13708,7 +13708,7 @@ LAB_180897af6:
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -13721,7 +13721,7 @@ LAB_180897af6:
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -13734,7 +13734,7 @@ LAB_180897af6:
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -13782,7 +13782,7 @@ LAB_180897af6:
       if (iVar3 != 0) {
 LAB_180897ce8:
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_2a8);
+        FinalizeSecurityOperation(uStack_38 ^ (ulonglong)auStack_2a8);
       }
       uStack_24c = *(undefined4 *)(lVar1 + 0x10);
       uStack_248 = *(undefined4 *)(lVar1 + 0x14);
@@ -13846,7 +13846,7 @@ LAB_180897ce8:
   FUN_18076b930(auStack_418,0x400,param_2,&uStackX_18);
   (**(code **)(*param_1 + 8))(param_1,auStack_418);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_438);
+  FinalizeSecurityOperation(uStack_18 ^ (ulonglong)auStack_438);
 }
 
 
