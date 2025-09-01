@@ -86417,8 +86417,8 @@ void InitializeSystemDataStructureCE(void)
  * 执行系统级别的操作，包括资源验证和处理
  * @param objectContextParam 操作参数1
  * @param validationContextParam 操作参数2
- * @param param_3 操作参数3
- * @param param_4 操作参数4
+ * @param processParam 操作参数3
+ * @param cleanupParam 操作参数4
  */
 void ProcessSystemOperationD(uint8_t8 objectContextParam, uint8_t8 validationContextParam, uint8_t8 processParam, uint8_t8 cleanupParam)
 {
@@ -86454,14 +86454,8 @@ void ProcessSystemOperationD(uint8_t8 objectContextParam, uint8_t8 validationCon
  * 设置全局系统数据结构指针，用于系统初始化
  */
 void InitializeSystemDataStructureCF(void)
-/**
- * 初始化系统数据结构CF
- * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureCF(void)
-
 {
-  _DAT_180c92050 = &SystemDataStructure;
+  SystemDataStructurePointerCF = &SystemDataStructure;
                     // WARNING: Could not recover jumptable at 0x0001809427c7. Too many branches
                     // WARNING: Treating indirect jump as call
   _Mtx_destroy_in_situ();
