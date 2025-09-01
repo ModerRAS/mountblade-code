@@ -260,3 +260,18 @@ for old_name in "${!function_mapping[@]}"; do
 done
 
 echo "函数重命名完成！"
+
+# 额外的函数重命名
+sed -i 's/FUN_180049910/RenderMemoryAllocationManager/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/03_rendering.c
+sed -i 's/FUN_1808fc838/InitializeRenderContextStructure/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/03_rendering.c
+sed -i 's/FUN_180049cd0/RenderContextDataProcessor/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/03_rendering.c
+sed -i 's/FUN_180044a30/RenderContextMemoryAllocator/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/03_rendering.c
+sed -i 's/FUN_180241f10/ConfigureRenderContextSettings/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/03_rendering.c
+sed -i 's/FUN_180639bf0/ValidateRenderContextConfiguration/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/03_rendering.c
+sed -i 's/FUN_1808fc050/RenderContextCleanupHandler/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/03_rendering.c
+sed -i 's/FUN_180045f60/ProcessRenderBufferData/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/03_rendering.c
+sed -i 's/FUN_18004b860/InitializeRenderBufferStructure/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/03_rendering.c
+sed -i 's/FUN_1800b5cc0/ActivateRenderPipeline/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/03_rendering.c
+sed -i 's/FUN_1800b55b0/DeactivateRenderPipeline/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/03_rendering.c
+
+echo "额外函数重命名完成！"

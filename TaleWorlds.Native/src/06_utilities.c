@@ -745,9 +745,9 @@ void* SystemLinkedListTable;
 void* SystemHashTable;
 void* SystemDataBufferPool;
 void* SystemDataBufferCache;
-undefined SystemDataBufferQueue69;
-undefined SystemDataBuffer070;
-undefined SystemDataBuffer071;
+void* SystemDataBufferQueuePool;
+void* SystemDataBufferPool070;
+void* SystemDataBufferPool071;
 undefined SystemDataBuffer072;
 undefined SystemDataBuffer073;
 undefined SystemDataBuffer074;
@@ -2358,12 +2358,12 @@ void* SystemMemoryConfigDataTemplateD497D0;
  * 用于内存管理和调试目的
  */
 void GetMemoryBlockSize;
-undefined DAT_180d49990;
-undefined DAT_180d48de0;
-undefined DAT_180d48de8;
-undefined DAT_180d48df0;
+undefined SystemMemoryConfigDataTemplateD49990;
+undefined SystemMemoryConfigDataTemplateD48DE0;
+undefined SystemMemoryConfigDataTemplateD48DE8;
+undefined SystemMemoryConfigDataTemplateD48DF0;
 undefined DAT_180d48df8;
-undefined DAT_180d48e00;
+undefined SystemMemoryConfigDataTemplateD48E00;
 undefined DAT_180d48e08;
 undefined DAT_180c918d8;
 undefined DAT_180d48e10;
@@ -2399,7 +2399,7 @@ undefined WorkerThreadQueueData;
  * 设置线程的执行环境和参数
  */
 void CreateWorkerThread;
-undefined DAT_180c91038;
+undefined SystemMemoryConfigDataTemplateC91038;
 undefined WorkerThreadContextData;
 undefined SystemMemoryConfigDataTemplateA8A0;
 undefined ThreadLocalStorageData;
@@ -2460,7 +2460,7 @@ undefined InitializeResourceManager;
 
  undefined ConfigureResourceSettings;
 undefined ConfigureResourceSettings;
-undefined DAT_180a2de40;
+undefined SystemMemoryConfigDataTemplateA2DE40;
 undefined1 DAT_180d49e30;
 undefined SystemResourceQueue;
 undefined SystemResourceStack;
@@ -3156,7 +3156,7 @@ undefined UNK_180a3e5e8;
 
  undefined MonitorResourcePerformance;
 undefined MonitorResourcePerformance;
-undefined1 DAT_180bf66d8;
+undefined1 SystemMemoryConfigDataTemplateBF66D8;
 undefined DAT_180c96858;
 undefined DAT_180bfbf64;
 undefined DAT_180bfbf7c;
@@ -27751,8 +27751,7 @@ undefined8 ValidateTextureResourceId(undefined8 param_1,longlong param_2)
 
 
 
- void FUN_180901ec0(undefined8 *param_1)
-/**
+ /**
  * @brief 使用参数初始化工具系统
  * 
  * 该函数通过传入的系统参数来初始化工具系统
@@ -27907,7 +27906,7 @@ void Unwind_180901f50(undefined8 param_1,longlong param_2)
 {
   int iVar1;
   
-  _DAT_180c8a9b0 = *(undefined8 *)(param_2 + 0x40);
+  ResourceHandlePointer = *(undefined8 *)(param_2 + 0x40);
   iVar1 = _Mtx_unlock(0x180c91970);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
@@ -27996,7 +27995,7 @@ void Unwind_180901f90(undefined8 param_1,longlong param_2)
 {
   int iVar1;
   
-  _DAT_180c8a9b0 = *(undefined8 *)(param_2 + 0x88);
+  ResourceHandlePointer = *(undefined8 *)(param_2 + 0x88);
   iVar1 = _Mtx_unlock(0x180c91970);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
@@ -28171,7 +28170,7 @@ void Unwind_1809020f0(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49140 = 0;
+  CriticalSectionLock = 0;
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
@@ -32589,7 +32588,7 @@ void Unwind_180903370(undefined8 param_1,longlong param_2)
 void Unwind_1809033b0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0x288,0x58,4,FUN_180044a30);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0x288,0x58,4,SystemMemoryCleanupHandler);
   return;
 }
 
@@ -32598,7 +32597,7 @@ void Unwind_1809033b0(undefined8 param_1,longlong param_2)
 void Unwind_1809033f0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 1000,0x58,4,FUN_180044a30);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 1000,0x58,4,SystemMemoryCleanupHandler);
   return;
 }
 
@@ -39836,7 +39835,7 @@ void Unwind_180904e80(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x40) & 1) != 0) {
     *(uint *)(resourceData + 0x40) = *(uint *)(resourceData + 0x40) & 0xfffffffe;
-    FUN_180044a30(param_2 + 0x70);
+    SystemMemoryCleanupHandler(param_2 + 0x70);
   }
   return;
 }
@@ -40565,7 +40564,7 @@ void Unwind_1809051a0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x58) & 4) != 0) {
     *(uint *)(resourceData + 0x58) = *(uint *)(resourceData + 0x58) & 0xfffffffb;
-    FUN_180044a30(param_2 + 0x2a0);
+    SystemMemoryCleanupHandler(param_2 + 0x2a0);
   }
   return;
 }
@@ -44554,7 +44553,7 @@ void Unwind_1809061f0(undefined8 param_1,longlong param_2)
 void Unwind_180906210(void)
 
 {
-  CloseHandle(_DAT_180c91900);
+  CloseHandle(SystemFileHandle);
   return;
 }
 
@@ -45332,7 +45331,7 @@ void Unwind_180906600(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180044a30(*(undefined8 *)(param_2 + 0x48));
+    SystemMemoryCleanupHandler(*(undefined8 *)(param_2 + 0x48));
   }
   return;
 }
@@ -46340,7 +46339,7 @@ void Unwind_180906c00(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49158 = 0;
+  MemoryAllocationCounter = 0;
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
@@ -46364,7 +46363,7 @@ void Unwind_180906c00(void)
 void Unwind_180906c10(void)
 
 {
-  _DAT_180d49160 = &SystemDataStructure;
+  SystemDataTablePointer = &SystemDataStructure;
   return;
 }
 
@@ -49037,7 +49036,7 @@ void Unwind_180907750(undefined8 param_1,longlong param_2)
 void Unwind_180907770(void)
 
 {
-  _DAT_180bf64d0 = &SystemDataStructure;
+  SystemResourcePointer1 = &SystemDataStructure;
   return;
 }
 
@@ -50492,7 +50491,7 @@ void Unwind_180907d50(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180044a30(param_2 + 0x1f0);
+    SystemMemoryCleanupHandler(param_2 + 0x1f0);
   }
   return;
 }
@@ -50504,7 +50503,7 @@ void Unwind_180907d80(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffd;
-    FUN_180044a30(param_2 + 0x218);
+    SystemMemoryCleanupHandler(param_2 + 0x218);
   }
   return;
 }
@@ -50546,7 +50545,7 @@ void Unwind_180907e00(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 8) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffff7;
-    FUN_180044a30(param_2 + 0x480);
+    SystemMemoryCleanupHandler(param_2 + 0x480);
   }
   return;
 }
@@ -51108,7 +51107,7 @@ void Unwind_180908040(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d491f8 = 0;
+  MemoryOperationFlag = 0;
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
@@ -51134,15 +51133,15 @@ void Unwind_180908050(undefined8 param_1,undefined8 param_2,undefined8 param_3,u
 {
   longlong *plVar1;
   
-  plVar1 = _DAT_180d49200;
-  FUN_18008d1f0(&DAT_180d49200,_DAT_180d49200[1],param_3,param_4,0xfffffffffffffffe);
-  _DAT_180d49200[1] = (longlong)plVar1;
-  *_DAT_180d49200 = (longlong)plVar1;
-  _DAT_180d49200[2] = (longlong)plVar1;
+  plVar1 = _MemoryManagementArray;
+  FUN_18008d1f0(&MemoryManagementArray,_MemoryManagementArray[1],param_3,param_4,0xfffffffffffffffe);
+  _MemoryManagementArray[1] = (longlong)plVar1;
+  *_MemoryManagementArray = (longlong)plVar1;
+  _MemoryManagementArray[2] = (longlong)plVar1;
   _DAT_180d49208 = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,0x58);
+  free(_MemoryManagementArray,0x58);
   return;
 }
 
@@ -51155,7 +51154,7 @@ void Unwind_180908060(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,0x58);
+  free(_MemoryManagementArray,0x58);
   return;
 }
 
@@ -51168,7 +51167,7 @@ void Unwind_180908070(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,0x58);
+  free(_MemoryManagementArray,0x58);
   return;
 }
 
@@ -55390,7 +55389,7 @@ void Unwind_1809095d0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 400) & 1) != 0) {
     *(uint *)(resourceData + 400) = *(uint *)(resourceData + 400) & 0xfffffffe;
-    FUN_180044a30(param_2 + 0x390);
+    SystemMemoryCleanupHandler(param_2 + 0x390);
   }
   return;
 }
@@ -58875,7 +58874,7 @@ void Unwind_18090ab20(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x60) & 2) != 0) {
     *(uint *)(resourceData + 0x60) = *(uint *)(resourceData + 0x60) & 0xfffffffd;
-    FUN_180044a30(param_2 + 0xa0);
+    SystemMemoryCleanupHandler(param_2 + 0xa0);
   }
   return;
 }
@@ -75274,7 +75273,7 @@ void Unwind_180910280(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180044a30(*(undefined8 *)(param_2 + 0x40));
+    SystemMemoryCleanupHandler(*(undefined8 *)(param_2 + 0x40));
   }
   return;
 }
@@ -80699,7 +80698,7 @@ void Unwind_180911960(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x2c) & 1) != 0) {
     *(uint *)(resourceData + 0x2c) = *(uint *)(resourceData + 0x2c) & 0xfffffffe;
-    FUN_180044a30(param_2 + 0x158);
+    SystemMemoryCleanupHandler(param_2 + 0x158);
   }
   return;
 }
@@ -80711,7 +80710,7 @@ void Unwind_180911990(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x2c) & 2) != 0) {
     *(uint *)(resourceData + 0x2c) = *(uint *)(resourceData + 0x2c) & 0xfffffffd;
-    FUN_180044a30(param_2 + 0x120);
+    SystemMemoryCleanupHandler(param_2 + 0x120);
   }
   return;
 }
@@ -80723,7 +80722,7 @@ void Unwind_1809119c0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x2c) & 4) != 0) {
     *(uint *)(resourceData + 0x2c) = *(uint *)(resourceData + 0x2c) & 0xfffffffb;
-    FUN_180044a30(param_2 + 0xe8);
+    SystemMemoryCleanupHandler(param_2 + 0xe8);
   }
   return;
 }
@@ -80735,7 +80734,7 @@ void Unwind_1809119f0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x2c) & 8) != 0) {
     *(uint *)(resourceData + 0x2c) = *(uint *)(resourceData + 0x2c) & 0xfffffff7;
-    FUN_180044a30(param_2 + 0xb0);
+    SystemMemoryCleanupHandler(param_2 + 0xb0);
   }
   return;
 }
@@ -80835,7 +80834,7 @@ void Unwind_180911aa0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180044a30(param_2 + 0xb0);
+    SystemMemoryCleanupHandler(param_2 + 0xb0);
   }
   return;
 }
@@ -80847,7 +80846,7 @@ void Unwind_180911ad0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffd;
-    FUN_180044a30(param_2 + 0x78);
+    SystemMemoryCleanupHandler(param_2 + 0x78);
   }
   return;
 }
@@ -84031,7 +84030,7 @@ void CloseSystemHandle(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001809417b8. Too many branches
                     // WARNING: Treating indirect jump as call
-  CloseHandle(_DAT_180c91900);
+  CloseHandle(SystemFileHandle);
   return;
 }
 
@@ -84062,14 +84061,14 @@ void InitializeSystemDataStructureH(void)
  /**
  * @brief 初始化系统数据结构I
  * 
- * 该函数负责将全局指针变量_DAT_180d49160设置为指向UNK_18098bcb0
+ * 该函数负责将全局指针变量SystemDataTablePointer设置为指向UNK_18098bcb0
  * 这是系统数据结构初始化的一部分
  */
 void InitializeSystemDataStructureI(void)
 void InitializeSystemDataStructureI(void)
 
 {
-  _DAT_180d49160 = &SystemDataStructure;
+  SystemDataTablePointer = &SystemDataStructure;
   return;
 }
 
@@ -84081,14 +84080,14 @@ void InitializeSystemDataStructureI(void)
  /**
  * @brief 初始化系统数据结构J
  * 
- * 该函数负责将全局指针变量_DAT_180bf64d0设置为指向UNK_18098bcb0
+ * 该函数负责将全局指针变量SystemResourcePointer1设置为指向UNK_18098bcb0
  * 这是系统数据结构初始化的一部分
  */
 void InitializeSystemDataStructureJ(void)
 void InitializeSystemDataStructureJ(void)
 
 {
-  _DAT_180bf64d0 = &SystemDataStructure;
+  SystemResourcePointer1 = &SystemDataStructure;
   return;
 }
 
@@ -84265,15 +84264,15 @@ void FreeMemoryResources(undefined8 Param1, undefined8 Param2, undefined8 Param3
 {
   longlong *MemoryPointer;
   
-  MemoryPointer = _DAT_180d49200;
-  FUN_18008d1f0(Param1, _DAT_180d49200[1], Param3, Param4, 0xfffffffffffffffe);
-  _DAT_180d49200[1] = (longlong)MemoryPointer;
-  *_DAT_180d49200 = (longlong)MemoryPointer;
-  _DAT_180d49200[2] = (longlong)MemoryPointer;
+  MemoryPointer = _MemoryManagementArray;
+  FUN_18008d1f0(Param1, _MemoryManagementArray[1], Param3, Param4, 0xfffffffffffffffe);
+  _MemoryManagementArray[1] = (longlong)MemoryPointer;
+  *_MemoryManagementArray = (longlong)MemoryPointer;
+  _MemoryManagementArray[2] = (longlong)MemoryPointer;
   _DAT_180d49208 = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200, 0x58);
+  free(_MemoryManagementArray, 0x58);
   return;
 }
 
@@ -86976,14 +86975,14 @@ void ValidateResourceIntegrity(void)
 
 
 
- void FUN_180943070(void)
+ void DestroyMutexResource(void)
 /**
  * @brief 销毁互斥锁资源
  * 
  * 该函数负责销毁指定的互斥锁资源
  * 释放互斥锁占用的系统资源
  */
-void FUN_180943070(void)
+void DestroyMutexResource(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180943088. Too many branches
