@@ -14556,8 +14556,9 @@ void InitializeSystemThreadComponent(void)
 
 
 
-// 函数: void FUN_1800406b0(void)
-void FUN_1800406b0(void)
+// 函数: InitializeSystemEventComponent
+// 初始化系统事件组件，负责事件处理和分发
+void InitializeSystemEventComponent(void)
 
 {
   char systemNodeFlag;
@@ -14606,8 +14607,9 @@ void FUN_1800406b0(void)
 
 
 
-// 函数: void FUN_1800408d0(void)
-void FUN_1800408d0(void)
+// 函数: InitializeSystemSecurityComponent
+// 初始化系统安全组件，负责系统安全策略
+void InitializeSystemSecurityComponent(void)
 
 {
   char systemNodeFlag;
@@ -14656,8 +14658,9 @@ void FUN_1800408d0(void)
 
 
 
-// 函数: void FUN_1800409d0(void)
-void FUN_1800409d0(void)
+// 函数: InitializeSystemNetworkComponent
+// 初始化系统网络组件，负责网络通信
+void InitializeSystemNetworkComponent(void)
 
 {
   char systemNodeFlag;
