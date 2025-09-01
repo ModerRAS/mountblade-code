@@ -93,6 +93,14 @@ def generate_variable_name(address):
 
 def beautify_file(file_path):
     """美化文件中的函数和变量名"""
+    # 读取文件内容
+    with open(file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # 任务1: 将所有的 "undefined" 类型替换为 "void*"
+    undefined_count = content.count('undefined')
+    content = content.replace('undefined', 'void*')
+    
     # 提取函数和变量名称
     fun_addresses, unk_addresses = extract_function_names(file_path)
     
@@ -110,10 +118,6 @@ def beautify_file(file_path):
         new_name = generate_variable_name(address)
         variable_map[old_name] = new_name
     
-    # 读取文件内容
-    with open(file_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-    
     # 替换函数名
     for old_name, new_name in function_map.items():
         content = content.replace(old_name, new_name)
@@ -126,7 +130,7 @@ def beautify_file(file_path):
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(content)
     
-    return len(function_map), len(variable_map)
+    return len(function_map), len(variable_map), undefined_count
 
 def main():
     file_path = '/dev/shm/mountblade-code/TaleWorlds.Native/src/99_unmatched_functions.c'
@@ -134,9 +138,10 @@ def main():
     print(f"开始美化文件: {file_path}")
     
     # 执行美化
-    fun_count, unk_count = beautify_file(file_path)
+    fun_count, unk_count, undefined_count = beautify_file(file_path)
     
     print(f"替换完成:")
+    print(f"  - undefined 类型替换为 void*: {undefined_count} 个")
     print(f"  - 函数名替换: {fun_count} 个")
     print(f"  - 变量名替换: {unk_count} 个")
 
