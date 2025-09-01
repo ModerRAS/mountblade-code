@@ -6472,19 +6472,19 @@ LAB_180891fc0:
  * @param configIndex 配置索引，标识要更新的配置项
  * @param configSize 配置大小，指定配置数据的尺寸
  */
-void ProcessSystemConfigurationUpdate(int configIndex, int configSize)
+void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationSize)
 
 {
-  int currentConfigValue;
-  int calculatedSize;
+  int CurrentConfigValue;
+  int CalculatedSize;
   int64_t SystemContext;
-  int64_t memoryContext;
-  int newSize;
-  int64_t threadContext;
-  uint8_t stackParameter;
+  int64_t MemoryContext;
+  int NewSize;
+  int64_t ThreadContext;
+  uint8_t StackParameter;
   
-  newSize = configIndex + 1;
-  if (currentConfigValue - configSize < newSize) {
+  NewSize = ConfigurationIndex + 1;
+  if (CurrentConfigValue - ConfigurationSize < NewSize) {
     ResourceIndex = (int)((float)(in_EAX - ValidationContextParameter) * 1.5);
     if (OperationResult <= ResourceIndex) {
       OperationResult = ResourceIndex;

@@ -33654,7 +33654,20 @@ void ConfigureSystemResource(long long SystemResourcePointer,void* Configuration
 
 
 
-long long FUN_180059250(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
+/**
+ * @brief 系统资源数据复制器函数
+ * 
+ * 该函数负责在系统资源之间复制数据，包括配置数据和资源信息的复制。
+ * 它会遍历资源指针数组，并执行相应的复制操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含源资源信息
+ * @param ConfigurationDataPointer 配置数据指针，包含配置信息
+ * @param AdditionalParameter 额外参数，用于控制复制行为
+ * @return 返回处理后的额外参数指针
+ * 
+ * 原始函数名为FUN_180059250，现已重命名为CopySystemResourceData
+ */
+long long CopySystemResourceData(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   uint unsignedSystemValue1;
@@ -33691,7 +33704,20 @@ long long FUN_180059250(long long SystemResourcePointer,long long ConfigurationD
 
 
 
-long long FUN_18005926c(long long SystemResourcePointer,void* ConfigurationDataPointer,long long AdditionalParameter)
+/**
+ * @brief 系统资源数据处理器函数
+ * 
+ * 该函数负责处理系统资源数据，包括数据的复制、移动和配置。
+ * 它会遍历资源指针数组，并执行相应的数据处理操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源信息
+ * @param ConfigurationDataPointer 配置数据指针，包含配置信息
+ * @param AdditionalParameter 额外参数，用于控制处理行为
+ * @return 返回处理后的额外参数指针
+ * 
+ * 原始函数名为FUN_18005926c，现已重命名为ProcessSystemResourceDataInternal
+ */
+long long ProcessSystemResourceDataInternal(long long SystemResourcePointer,void* ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   uint unsignedSystemValue1;
@@ -33890,8 +33916,17 @@ void ConfigureSystemResourceMemoryRegions(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_1800595c0(void* *SystemResourcePointer)
-void FUN_1800595c0(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源初始化器函数
+ * 
+ * 该函数负责初始化系统资源，设置全局数据引用和内存分配器。
+ * 它会启动系统初始化过程，并设置系统资源的基本结构。
+ * 
+ * @param SystemResourcePointer 系统资源指针，用于存储系统资源信息
+ * 
+ * 原始函数名为FUN_1800595c0，现已重命名为InitializeSystemResources
+ */
+void InitializeSystemResources(void* *SystemResourcePointer)
 
 {
   StartSystemInitialization();
@@ -33939,8 +33974,17 @@ void CleanupSystemResources(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180059640(long long *SystemResourcePointer)
-void FUN_180059640(long long *SystemResourcePointer)
+/**
+ * @brief 系统资源遍历清理器函数
+ * 
+ * 该函数负责遍历系统资源并清理每个资源项。
+ * 它会遍历资源指针数组，对每个资源调用清理函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组，包含需要清理的资源
+ * 
+ * 原始函数名为FUN_180059640，现已重命名为CleanupSystemResourcesIterator
+ */
+void CleanupSystemResourcesIterator(long long *SystemResourcePointer)
 
 {
   long long localMemoryPointer;
@@ -33960,8 +34004,17 @@ void FUN_180059640(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_1800596a0(void* *SystemResourcePointer)
-void FUN_1800596a0(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源重置器函数
+ * 
+ * 该函数负责重置系统资源，将资源指针重置为初始状态。
+ * 它会重置全局数据引用和内存分配器，并清理资源状态。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含需要重置的资源信息
+ * 
+ * 原始函数名为FUN_1800596a0，现已重命名为ResetSystemResources
+ */
+void ResetSystemResources(void* *SystemResourcePointer)
 
 {
   SystemResourcePointer[4] = &SystemGlobalDataReference;
@@ -33986,8 +34039,17 @@ void FUN_1800596a0(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180059730(long long SystemResourcePointer)
-void FUN_180059730(long long SystemResourcePointer)
+/**
+ * @brief 系统资源清理验证器函数
+ * 
+ * 该函数负责验证系统资源的清理状态，并在必要时进行清理。
+ * 它会检查资源状态，销毁互斥锁，确保资源被正确清理。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含需要验证的资源信息
+ * 
+ * 原始函数名为FUN_180059730，现已重命名为ValidateSystemResourceCleanup
+ */
+void ValidateSystemResourceCleanup(long long SystemResourcePointer)
 
 {
   if (*(long long *)(SystemResourcePointer + 8) != 0) {
