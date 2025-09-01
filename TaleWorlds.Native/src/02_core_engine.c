@@ -18,13 +18,22 @@
  * - 网络组件处理
  * - UI系统实现
  * 
- * 版本 3.3 更新说明：
- * - 完成变量名深度语义化美化工作
- * - 为所有未定义类型的变量添加适当的类型声明（主要是void*指针类型）
- * - 统一整数类型命名规范（uint32 -> uint32_t, int -> int32_t等）
- * - 为函数指针添加适当的返回类型（主要是void*）
- * - 删除文件头部的不必要注释，保持代码语义不变
- * - 提高代码可读性和维护性
+ * 版本 3.4 更新说明：
+ * - 完成栈变量名深度语义化美化工作
+ * - 将所有未语义化的栈变量名替换为语义化名称：
+ *   - plStackX_18 -> engine_stack_long_pointer_18
+ *   - plStackX_20 -> engine_stack_long_pointer_20
+ *   - pcStack_a0 -> engine_stack_char_pointer_a0
+ *   - pcStack_80 -> engine_stack_char_pointer_80
+ *   - cStack_18 -> engine_stack_char_18
+ *   - auStackX_20 -> engine_stack_uint_array_20
+ *   - uStackX_18 -> engine_stack_uint_18
+ *   - iStack_668 -> engine_stack_int_668
+ *   - iStack_548 -> engine_stack_int_548
+ *   - pcStack_500 -> engine_stack_code_pointer_500
+ *   - 以及其他所有栈变量的语义化替换
+ * - 保持代码语义不变，仅提高代码可读性和维护性
+ * - 统一栈变量命名规范，采用engine_stack_<type>_<size>格式
  */
 
 /**
@@ -29456,7 +29465,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
   uint engine_temp_uint5;
   void* pengine_stack_uint_110;
   void* pengine_stack_uint_108;
-  int iStack_100;
+  int engine_stack_int_100;
   uint64 engine_stack_uint_f8;
   void* engine_stack_pointer_f0;
   engine_undefined_value *engine_stack_pointer_e8;
@@ -29523,7 +29532,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
     }
     engine_handle_input_device(&engine_stack_pointer_f0,&engine_base_data_offset_40,&engine_base_data_zero);
     engine_unnamed_function_770(&pengine_stack_uint_110);
-    if (iStack_100 != 0) {
+    if (engine_stack_int_100 != 0) {
       engine_handle_input_device(&engine_stack_pointer_f0,&engine_data_1809fe62c,&engine_base_data_offset_48);
       temp_data_pointer = (void*)&engine_data_73;
       if (pengine_stack_uint_108 != (void*)0x0) {
@@ -29578,7 +29587,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
     pengine_stack_uint_110 = &engine_system_context_data;
     engine_stack_uint_f8 = 0;
     pengine_stack_uint_108 = (void*)0x0;
-    iStack_100 = 0;
+    engine_stack_int_100 = 0;
     temp_data_pointer = (void*)engine_call_memory_extender(_engine_data_18,0x34,0x13);
     *(uint8*)temp_data_pointer = 0;
     pengine_stack_uint_108 = temp_data_pointer;
@@ -29594,7 +29603,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
     *(uint32*)((longlong)temp_data_pointer + 0x2c) = 0x6c6f4667;
     *(uint32*)(temp_data_pointer + 6) = 0x726564;
     comparison_result_index = 0x33;
-    iStack_100 = 0x33;
+    engine_stack_int_100 = 0x33;
     engine_temp_uint1 = 2;
     engine_temp_uint5 = 2;
     engine_temp_ptr_ptr_uint_7 = &pengine_stack_uint_108;

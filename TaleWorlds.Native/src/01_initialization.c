@@ -18337,7 +18337,7 @@ void system_process_mod_events_ternary(void)
 
 
 
-void system_process_context_data_4(void)
+void system_process_context_data_quaternary(void)
   return;
 }
 
@@ -18368,7 +18368,7 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint64_t syste
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_resource_allocation_4(void)
+void system_handle_resource_allocation_quaternary(void)
   uint64_t *camera_node_current;
   uint8_t* system_stack_buffer_audio_config [32];
   uint8_t *system_stack_byte_pointer;
@@ -18420,7 +18420,7 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint64_t syste
 
 
 
-int system_manage_memory_pool_4(void)
+int system_manage_memory_pool_quaternary(void)
   uint64_t *init_ctx_base;
   
   init_ctx_base = (uint64_t *)system_generic_function();
@@ -18433,7 +18433,7 @@ int system_manage_memory_pool_4(void)
 
 
 
-void system_configure_thread_scheduler_4(void)
+void system_configure_thread_scheduler_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -18441,7 +18441,7 @@ void system_configure_thread_scheduler_4(void)
 
 
 
-void system_initialize_subsystem_component_4(void)
+void system_initialize_subsystem_component_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -18451,7 +18451,7 @@ void system_initialize_subsystem_component_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_validate_system_state_4(void)
+void system_validate_system_state_quaternary(void)
   
   system_global_data_pointer = *system_context_ptr;
   system_result_code = _Mtx_unlock(0x180c91970);
@@ -18464,7 +18464,7 @@ void system_validate_system_state_4(void)
 
 
 
-void system_process_configuration_data_4(void)
+void system_process_configuration_data_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -18472,7 +18472,7 @@ void system_process_configuration_data_4(void)
 
 
 
-void system_handle_module_loading_4(void)
+void system_handle_module_loading_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -18490,7 +18490,7 @@ void system_initialize_system_input_subsystem(int64_t system_context_ptr)
 
 
 
-void system_manage_resource_cache_4(void)
+void system_manage_resource_cache_quaternary(void)
   system_process_context_data(system_context_ptr + 0x60);
   return;
 }
@@ -18500,7 +18500,7 @@ void system_manage_resource_cache_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_event_queue_4(void)
+void system_process_event_queue_quaternary(void)
   uint8_t *system_context_ptr_primary;
   
   system_data_handle = system_global_data_pointer;
@@ -18547,7 +18547,7 @@ void system_process_event_queue_4(void)
 
 
 
-void system_initialize_audio_component_4(void)
+void system_initialize_audio_component_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -18555,7 +18555,7 @@ void system_initialize_audio_component_4(void)
 
 
 
-void system_configure_network_settings_4(void)
+void system_configure_network_settings_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -18606,7 +18606,7 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr)
 
 
 
-void system_setup_render_pipeline_4(void)
+void system_setup_render_pipeline_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t *init_ctx_base;
   
@@ -18625,7 +18625,7 @@ void system_setup_render_pipeline_4(void)
 
 
 
-void system_handle_input_processing_4(void)
+void system_handle_input_processing_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t *init_ctx_base;
   
@@ -18644,7 +18644,7 @@ void system_handle_input_processing_4(void)
 
 
 
-void system_initialize_debug_interface_4(void)
+void system_initialize_debug_interface_quaternary(void)
   
   system_result_code = _Mtx_lock(system_context_ptr + 0x28);
   if (system_result_code != 0) {
@@ -18678,7 +18678,7 @@ void system_initialize_debug_interface_4(void)
 
 
 
-void system_process_performance_metrics_4(void)
+void system_process_performance_metrics_quaternary(void)
   
   system_data_handle = *system_context_ptr;
   if (system_data_handle == 0) {
@@ -18703,7 +18703,7 @@ void system_process_performance_metrics_4(void)
 
 
 
-void system_manage_security_context_4(void)
+void system_manage_security_context_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *camera_node_current;
   
@@ -18751,7 +18751,7 @@ void system_manage_security_context_4(void)
 
 
 
-void system_initialize_plugin_system_4(void)
+void system_initialize_plugin_system_quaternary(void)
   
   system_data_handle = system_context_ptr[1];
   for (system_data_handle = *system_context_ptr; system_data_handle != system_data_handle; system_data_handle = system_data_handle + 0x18) {
@@ -18800,7 +18800,7 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr)
 
 
 
-void system_configure_logging_system_4(void)
+void system_configure_logging_system_quaternary(void)
   
   system_data_handle = system_context_ptr[1];
   for (system_data_handle = *system_context_ptr; system_data_handle != system_data_handle; system_data_handle = system_data_handle + 0x18) {
@@ -18816,7 +18816,7 @@ void system_configure_logging_system_4(void)
 
 
 
-void system_handle_error_processing_4(void)
+void system_handle_error_processing_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *camera_node_current;
   
@@ -18864,7 +18864,7 @@ void system_handle_error_processing_4(void)
 
 
 
-void system_initialize_monitoring_system_4(void)
+void system_initialize_monitoring_system_quaternary(void)
   void* *system_context_ptr_primary;
   uint8_t* system_system_stack_a8_alt [8];
   void* *system_system_stack_context_ptr_a;
@@ -18873,7 +18873,7 @@ void system_initialize_monitoring_system_4(void)
   system_stack_context_hash_value = 0xfffffffffffffffe;
   if (system_context_ptr == 0) {
 
-void system_process_data_synchronization_4(void)
+void system_process_data_synchronization_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *init_ctx_base;
   
@@ -18906,7 +18906,7 @@ void system_process_data_synchronization_4(void)
 
 
 
-void system_manage_thread_pool_4(void)
+void system_manage_thread_pool_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t *init_ctx_base;
   
@@ -18925,11 +18925,11 @@ void system_manage_thread_pool_4(void)
 
 
 
-void system_configure_memory_allocator_4(void)
+void system_configure_memory_allocator_quaternary(void)
   
   if (system_context_ptr == 0) {
 
-void system_initialize_resource_manager_4(void)
+void system_initialize_resource_manager_quaternary(void)
   
   system_data_handle = -1;
   do {
@@ -18946,7 +18946,7 @@ void system_initialize_resource_manager_4(void)
 
 
 
-void system_handle_system_events_4(void)
+void system_handle_system_events_quaternary(void)
   code *system_function_ptr;
   
   system_handle_system_events();
@@ -19257,7 +19257,7 @@ system_label:
 
 
 
-void system_process_configuration_updates_4(void)
+void system_process_configuration_updates_quaternary(void)
   if ((int64_t *)*system_context_ptr != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)*system_context_ptr + 0x38))();
   }
@@ -19284,7 +19284,7 @@ system_process_context_data(uint8_t *system_context_ptr,uint64_t system_config_d
 
 
 
-void system_manage_component_lifecycle_4(void)
+void system_manage_component_lifecycle_quaternary(void)
   if (system_context_ptr[2] != 0) {
                     // WARNING: Subroutine does not return
     system_process_context_data();
@@ -19299,7 +19299,7 @@ void system_manage_component_lifecycle_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_script_engine_4(void)
+void system_initialize_script_engine_quaternary(void)
   float system_temp_float_result;
   float system_temp_float_extended;
   float system_temp_float_factor;
@@ -19339,7 +19339,7 @@ void system_initialize_script_engine_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_physics_system_4(void)
+void system_configure_physics_system_quaternary(void)
   uint8_t *system_context_ptr_primary;
   
   system_context_ptr_primary = (uint8_t *)system_context_ptr[0x7c];
@@ -19526,7 +19526,7 @@ void system_configure_physics_system_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_audio_processing_4(void)
+void system_handle_audio_processing_quaternary(void)
   uint8_t *camera_node_current;
   uint8_t *system_byte_pointer_d;
   char system_temp_char_secondary;
@@ -19632,7 +19632,7 @@ void system_handle_audio_processing_4(void)
         }
         if (system_system_temp_byte_network_flag) {
 
-void system_manage_network_connections_4(void)
+void system_manage_network_connections_quaternary(void)
   int *system_context_int_system_pointer_config;
   bool system_system_temp_byte_connection_flag;
   bool system_system_temp_byte_auth_flag;
@@ -19833,7 +19833,7 @@ uint32_t* system_process_context_data(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_render_commands_4(void)
+void system_process_render_commands_quaternary(void)
   void* *system_stack_byte_pointer;
   
   system_data_handle = system_global_data_pointer;
@@ -19900,7 +19900,7 @@ void system_process_render_commands_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_input_system_4(void)
+void system_initialize_input_system_quaternary(void)
   int *system_int_ptr_input_value;
   uint8_t *buffer_ptr;
   uint32_t* *current_ctx_ptr;
@@ -20042,7 +20042,7 @@ void system_initialize_input_system_4(void)
 
 
 
-void system_configure_display_settings_4(void)
+void system_configure_display_settings_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *camera_node_current;
   
@@ -20090,7 +20090,7 @@ void system_configure_display_settings_4(void)
 
 
 
-void system_handle_file_operations_4(void)
+void system_handle_file_operations_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *camera_node_current;
   
@@ -20140,7 +20140,7 @@ void system_handle_file_operations_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_data_streams_4(void)
+void system_manage_data_streams_quaternary(void)
   uint8_t *system_context_ptr_primary;
   char *system_code_ptr_b;
   int64_t *system_data_pointer;
@@ -20282,7 +20282,7 @@ void system_manage_data_streams_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_animation_data_4(void)
+void system_process_animation_data_quaternary(void)
   int64_t *system_primary_data_ptr;
   uint8_t *init_ctx_base;
   code *psystem_char_result_validation;
@@ -20390,7 +20390,7 @@ void system_process_animation_data_4(void)
       __Throw_C_system_error_varstd__YAXH_Z(system_result_code);
     }
 
-void system_initialize_particle_system_4(void)
+void system_initialize_particle_system_quaternary(void)
   int64_t *system_primary_data_ptr;
   uint8_t *init_ctx_base;
   code *psystem_char_result_validation;
@@ -20492,7 +20492,7 @@ void system_initialize_particle_system_4(void)
       __Throw_C_system_error_varstd__YAXH_Z(system_iteration_counter);
     }
 
-void system_configure_lighting_system_4(void)
+void system_configure_lighting_system_quaternary(void)
   int64_t *system_primary_data_ptr;
   uint8_t* *buffer_ptr;
   uint8_t *current_ctx_ptr;
@@ -20645,7 +20645,7 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint8_t *syste
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_collision_detection_4(void)
+void system_handle_collision_detection_quaternary(void)
   int64_t in_RAX;
   int64_t *unaff_RSI;
   int64_t *system_register_rdi;
@@ -20705,7 +20705,7 @@ void system_handle_collision_detection_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_shader_programs_4(void)
+void system_manage_shader_programs_quaternary(void)
   int64_t unaff_RBP;
   int64_t unaff_RSI;
   int64_t *system_register_rdi;
@@ -20735,7 +20735,7 @@ void system_manage_shader_programs_4(void)
 
 
 
-void system_process_texture_data_4(void)
+void system_process_texture_data_quaternary(void)
   
   system_data_handle = *(int64_t *)(system_register_rdi + 8);
   system_parameter_value_secondary = system_data_handle - system_context_ptr >> 2;
@@ -20764,13 +20764,13 @@ void system_process_texture_data_4(void)
 
 
 
-void system_initialize_ui_system_4(void)
+void system_initialize_ui_system_quaternary(void)
   return;
 }
 
 
 
-bool system_configure_window_manager_4(void)
+bool system_configure_window_manager_quaternary(void)
   uint8_t *system_context_ptr_primary;
   bool system_system_temp_byte_window_flag;
   byte *system_byte_pointer_d;
@@ -20859,7 +20859,7 @@ system_process_context_data(uint8_t system_context_ptr,uint8_t system_config_dat
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_user_input_4(void)
+void system_handle_user_input_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t* system_stack_buffer_input_config [32];
   uint8_t* system_system_stack_a8_alt [128];
@@ -20885,7 +20885,7 @@ void system_handle_user_input_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_state_machine_4(void)
+void system_manage_state_machine_quaternary(void)
   int64_t *system_primary_data_ptr;
   uint8_t *system_byte_pointer_d;
   void* *system_stack_byte_pointer;
@@ -21013,7 +21013,7 @@ uint8_t system_process_context_data(uint8_t system_context_ptr,uint8_t system_co
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_game_logic_4(void)
+void system_process_game_logic_quaternary(void)
   float system_temp_float_primary;
   float system_temp_float_secondary;
   uint8_t in_RDX;
@@ -21185,7 +21185,7 @@ system_label:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_ai_system_4(void)
+void system_initialize_ai_system_quaternary(void)
   int64_t *system_init_config_data_pointer;
   int *system_temp_int_pointer_primary;
   int64_t *system_stack_temp_pointer;
@@ -21303,7 +21303,7 @@ void system_initialize_ai_system_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_pathfinding_4(void)
+void system_configure_pathfinding_quaternary(void)
   uint32_t* *system_context_ptr_primary;
   uint8_t* system_stack_buffer_pathfinding [32];
   void* **system_stack_double_ptr_path_data;
@@ -21509,7 +21509,7 @@ void system_configure_pathfinding_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_entity_management_4(void)
+void system_handle_entity_management_quaternary(void)
   uint8_t* *current_ctx_ptr;
   void* *system_byte_ptr_input;
   uint8_t* system_stack_buffer_entity_data [32];
@@ -21732,7 +21732,7 @@ system_label:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_scene_graph_4(void)
+void system_manage_scene_graph_quaternary(void)
   int64_t *global_ctx_ptr;
   void* *camera_traverse_node_next;
   uint8_t* system_stack_buffer_scene_graph [32];
@@ -21902,7 +21902,7 @@ void system_manage_scene_graph_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_transform_data_4(void)
+void system_process_transform_data_quaternary(void)
   int64_t *system_alternate_data_ptr;
   uint8_t *camera_node_current;
   char system_temp_char_result;
@@ -22270,7 +22270,7 @@ system_label:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_camera_system_4(void)
+void system_initialize_camera_system_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t *init_ctx_base;
   
@@ -22333,7 +22333,7 @@ void system_initialize_camera_system_4(void)
 
 
 
-void system_configure_projection_matrix_4(void)
+void system_configure_projection_matrix_quaternary(void)
   
   system_data_handle = system_context_ptr[1];
   for (system_data_handle = *system_context_ptr; system_data_handle != system_data_handle; system_data_handle = system_data_handle + 0x48) {
@@ -22349,7 +22349,7 @@ void system_configure_projection_matrix_4(void)
 
 
 
-void system_handle_view_frustum_4(void)
+void system_handle_view_frustum_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -22357,7 +22357,7 @@ void system_handle_view_frustum_4(void)
 
 
 
-void system_manage_render_targets_4(void)
+void system_manage_render_targets_quaternary(void)
   
   system_parameter_value_secondary = *(uint64_t *)(system_context_ptr + 0x10);
   system_data_handle = *(int64_t *)(system_context_ptr + 8);
@@ -22402,7 +22402,7 @@ int64_t system_process_context_data(int64_t system_context_ptr)
 
 
 
-void system_process_shadow_mapping_4(void)
+void system_process_shadow_mapping_quaternary(void)
   *(uint8_t *)(system_context_ptr + 8) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -22417,7 +22417,7 @@ void system_process_shadow_mapping_4(void)
 
 
 
-void system_initialize_post_processing_4(void)
+void system_initialize_post_processing_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -22425,7 +22425,7 @@ void system_initialize_post_processing_4(void)
 
 
 
-void system_configure_shader_parameters_4(void)
+void system_configure_shader_parameters_quaternary(void)
   
   system_parameter_value_secondary = *(uint64_t *)(system_context_ptr + 0x10);
   system_data_handle = *(int64_t *)(system_context_ptr + 8);
@@ -22458,7 +22458,7 @@ void system_configure_shader_parameters_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_buffer_operations_4(void)
+void system_handle_buffer_operations_quaternary(void)
   code *system_function_ptr;
   
   if (system_global_data_pointer != 0) {
@@ -22476,7 +22476,7 @@ void system_handle_buffer_operations_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_vertex_data_4(void)
+void system_manage_vertex_data_quaternary(void)
   uint8_t *system_context_ptr_primary;
   char *psystem_char_result_validation;
   char *psystem_char_var;
@@ -22522,7 +22522,7 @@ void system_manage_vertex_data_4(void)
 
 
 
-void system_process_index_buffers_4(void)
+void system_process_index_buffers_quaternary(void)
   uint8_t *system_byte_pointer_d;
   char *psystem_char_var;
   int64_t *system_data_pointer;
@@ -22655,7 +22655,7 @@ system_label:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_texture_manager_4(void)
+void system_initialize_texture_manager_quaternary(void)
   uint64_t *system_context_ptr_primary;
   uint8_t *init_ctx_base;
   
@@ -22732,7 +22732,7 @@ void system_initialize_texture_manager_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_mipmap_generation_4(void)
+void system_configure_mipmap_generation_quaternary(void)
   uint8_t *system_context_ptr_primary;
   code *system_code_ptr_b;
   int64_t *global_ctx_ptr;
@@ -22804,7 +22804,7 @@ uint8_t system_process_context_data(uint8_t system_context_ptr,uint64_t system_c
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_texture_compression_4(void)
+void system_handle_texture_compression_quaternary(void)
   double system_double_var_b;
   uint32_t* *camera_traverse_node_next;
   uint8_t *buffer_ptr;
@@ -22929,7 +22929,7 @@ void system_handle_texture_compression_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_material_system_4(void)
+void system_manage_material_system_quaternary(void)
   uint8_t* system_system_stack_buffer_30 [16];
   void* *system_stack_byte_pointer;
   void* *system_stack_byte_pointer;
@@ -22969,7 +22969,7 @@ void system_manage_material_system_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_lighting_calculations_4(void)
+void system_process_lighting_calculations_quaternary(void)
   void* **system_temp_pointer_secondary;
   uint8_t* system_system_stack_buffer_158 [32];
   void* **psystem_stack_temp_pointer_138;
@@ -23047,7 +23047,7 @@ uint8_t * system_initialize_module_c(uint8_t *system_context_ptr)
 
 
 
-void system_initialize_animation_system_4(void)
+void system_initialize_animation_system_quaternary(void)
   system_process_context_data();
   return;
 }
@@ -23106,7 +23106,7 @@ int64_t * system_process_context_data(int64_t *system_context_ptr,int64_t *syste
 
 
 
-void system_configure_skeletal_animation_4(void)
+void system_configure_skeletal_animation_quaternary(void)
   void* *init_ctx_base;
   
   init_ctx_base = &system_data_value_bc73;
@@ -23138,7 +23138,7 @@ void system_configure_skeletal_animation_4(void)
 
 
 
-void system_handle_bone_transforms_4(void)
+void system_handle_bone_transforms_quaternary(void)
   int64_t *system_primary_data_ptr;
   
   system_primary_data_ptr = system_context_ptr + 3;
@@ -23162,7 +23162,7 @@ void system_handle_bone_transforms_4(void)
 
 
 
-void system_manage_animation_states_4(void)
+void system_manage_animation_states_quaternary(void)
   int64_t *system_register_rdi;
   
   do {
@@ -23184,7 +23184,7 @@ void system_manage_animation_states_4(void)
 
 
 
-void system_process_morph_targets_4(void)
+void system_process_morph_targets_quaternary(void)
   int64_t *system_register_rdi;
   
   *system_register_rdi = unaff_RSI;
@@ -23220,7 +23220,7 @@ system_process_context_data(uint8_t *system_context_ptr,int64_t system_config_da
 
 
 
-void system_initialize_physics_engine_4(void)
+void system_initialize_physics_engine_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t *init_ctx_base;
   
@@ -23241,7 +23241,7 @@ void system_initialize_physics_engine_4(void)
 
 
 
-void system_configure_rigid_body_dynamics_4(void)
+void system_configure_rigid_body_dynamics_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t *init_ctx_base;
   
@@ -23262,7 +23262,7 @@ void system_configure_rigid_body_dynamics_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_collision_response_4(void)
+void system_handle_collision_response_quaternary(void)
   uint32_t* *init_ctx_base;
   uint32_t* *camera_node_current;
   uint32_t* *system_byte_pointer_d;
@@ -23306,7 +23306,7 @@ system_label:
 
 
 
-void system_manage_constraint_system_4(void)
+void system_manage_constraint_system_quaternary(void)
   uint8_t *system_context_ptr_primary;
   
   system_context_ptr_primary = *(uint8_t **)(system_context_ptr + 0x10);
@@ -23326,7 +23326,7 @@ void system_manage_constraint_system_4(void)
 
 
 
-void system_process_force_calculations_4(void)
+void system_process_force_calculations_quaternary(void)
   system_process_context_data();
                     // WARNING: Subroutine does not return
   system_process_context_data();
@@ -23335,7 +23335,7 @@ void system_process_force_calculations_4(void)
 
 
 
-void system_initialize_audio_engine_4(void)
+void system_initialize_audio_engine_quaternary(void)
   int64_t unaff_RBX;
   
   *(int64_t *)unaff_RBX = unaff_RBX;
@@ -23351,7 +23351,7 @@ void system_initialize_audio_engine_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_sound_spatialization_4(void)
+void system_configure_sound_spatialization_quaternary(void)
   
   context_offset = system_context_ptr[1];
   init_ctx_base_value = *system_context_ptr;
@@ -23407,7 +23407,7 @@ void system_configure_sound_spatialization_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_audio_mixing_4(void)
+void system_handle_audio_mixing_quaternary(void)
   int64_t *unaff_RBX;
   
   system_parameter_value_secondary = system_config_data_array - system_context_ptr;
@@ -23455,7 +23455,7 @@ void system_handle_audio_mixing_4(void)
 
 
 
-void system_manage_sound_resources_4(void)
+void system_manage_sound_resources_quaternary(void)
   
   if (unaff_RSI != 0) {
                     // WARNING: Subroutine does not return
@@ -23468,7 +23468,7 @@ void system_manage_sound_resources_4(void)
 
 
 
-void system_process_audio_effects_4(void)
+void system_process_audio_effects_quaternary(void)
   
   *(int64_t *)(unaff_RBX + 8) = system_memory_size_array + system_config_data_array * 8;
   return;
@@ -23477,7 +23477,7 @@ void system_process_audio_effects_4(void)
 
 
 
-void system_initialize_network_layer_4(void)
+void system_initialize_network_layer_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -23485,7 +23485,7 @@ void system_initialize_network_layer_4(void)
 
 
 
-void system_configure_protocol_handlers_4(void)
+void system_configure_protocol_handlers_quaternary(void)
   
   system_data_handle = system_context_ptr[1];
   for (system_data_handle = *system_context_ptr; system_data_handle != system_data_handle; system_data_handle = system_data_handle + 0x48) {
@@ -23501,7 +23501,7 @@ void system_configure_protocol_handlers_4(void)
 
 
 
-void system_handle_data_serialization_4(void)
+void system_handle_data_serialization_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -23509,7 +23509,7 @@ void system_handle_data_serialization_4(void)
 
 
 
-void system_manage_connection_pool_4(void)
+void system_manage_connection_pool_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -23517,7 +23517,7 @@ void system_manage_connection_pool_4(void)
 
 
 
-void system_process_network_events_4(void)
+void system_process_network_events_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *camera_node_current;
   
@@ -23565,7 +23565,7 @@ void system_process_network_events_4(void)
 
 
 
-void system_initialize_security_layer_4(void)
+void system_initialize_security_layer_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *camera_node_current;
   
@@ -23613,7 +23613,7 @@ void system_initialize_security_layer_4(void)
 
 
 
-void system_configure_encryption_system_4(void)
+void system_configure_encryption_system_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *init_ctx_base;
   uint8_t unaff_R15;
@@ -23657,7 +23657,7 @@ void system_configure_encryption_system_4(void)
 
 
 
-void system_handle_authentication_4(void)
+void system_handle_authentication_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *init_ctx_base;
   
@@ -23690,7 +23690,7 @@ void system_handle_authentication_4(void)
 
 
 
-void system_manage_permission_system_4(void)
+void system_manage_permission_system_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *init_ctx_base;
   
@@ -23723,7 +23723,7 @@ void system_manage_permission_system_4(void)
 
 
 
-void system_process_security_events_4(void)
+void system_process_security_events_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -23731,7 +23731,7 @@ void system_process_security_events_4(void)
 
 
 
-void system_initialize_script_runtime_4(void)
+void system_initialize_script_runtime_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t *init_ctx_base;
   
@@ -23750,7 +23750,7 @@ void system_initialize_script_runtime_4(void)
 
 
 
-void system_configure_virtual_machine_4(void)
+void system_configure_virtual_machine_quaternary(void)
   
   system_parameter_value_secondary = *(uint64_t *)(system_context_ptr + 0x10);
   system_data_handle = *(int64_t *)(system_context_ptr + 8);
@@ -23781,7 +23781,7 @@ void system_configure_virtual_machine_4(void)
 
 
 
-void system_handle_script_execution_4(void)
+void system_handle_script_execution_quaternary(void)
   
   system_data_handle = system_context_ptr[1];
   for (system_data_handle = *system_context_ptr; system_data_handle != system_data_handle; system_data_handle = system_data_handle + 0x18) {
@@ -23797,7 +23797,7 @@ void system_handle_script_execution_4(void)
 
 
 
-void system_manage_script_objects_4(void)
+void system_manage_script_objects_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *camera_node_current;
   
@@ -23845,7 +23845,7 @@ void system_manage_script_objects_4(void)
 
 
 
-void system_process_script_events_4(void)
+void system_process_script_events_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *camera_node_current;
   
@@ -23893,7 +23893,7 @@ void system_process_script_events_4(void)
 
 
 
-void system_initialize_resource_pipeline_4(void)
+void system_initialize_resource_pipeline_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *init_ctx_base;
   
@@ -23936,7 +23936,7 @@ void system_initialize_resource_pipeline_4(void)
 
 
 
-void system_configure_asset_loading_4(void)
+void system_configure_asset_loading_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *init_ctx_base;
   
@@ -23969,7 +23969,7 @@ void system_configure_asset_loading_4(void)
 
 
 
-void system_handle_resource_streaming_4(void)
+void system_handle_resource_streaming_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *init_ctx_base;
   
@@ -24002,7 +24002,7 @@ void system_handle_resource_streaming_4(void)
 
 
 
-void system_manage_memory_arena_4(void)
+void system_manage_memory_arena_quaternary(void)
   int64_t *system_primary_data_ptr;
   int64_t *system_alternate_data_ptr;
   
@@ -24024,7 +24024,7 @@ void system_manage_memory_arena_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_resource_requests_4(void)
+void system_process_resource_requests_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *init_ctx_base;
   
@@ -24077,7 +24077,7 @@ void system_process_resource_requests_4(void)
 
 
 
-void system_initialize_job_system_4(void)
+void system_initialize_job_system_quaternary(void)
   char *psystem_char_result_validation;
   char *psystem_char_var;
   void* *system_stack_byte_pointer;
@@ -24182,7 +24182,7 @@ system_label:
 
 
 
-void system_configure_task_scheduler_4(void)
+void system_configure_task_scheduler_quaternary(void)
   if (system_context_ptr == (uint8_t *)0x0) {
     return;
   }
@@ -24237,7 +24237,7 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint system_co
 
 
 
-void system_handle_job_distribution_4(void)
+void system_handle_job_distribution_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t *init_ctx_base;
   
@@ -24277,7 +24277,7 @@ void system_handle_job_distribution_4(void)
 
 
 
-void system_manage_worker_threads_4(void)
+void system_manage_worker_threads_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -24285,7 +24285,7 @@ void system_manage_worker_threads_4(void)
 
 
 
-void system_process_job_completion_4(void)
+void system_process_job_completion_quaternary(void)
   uint8_t *system_context_ptr_primary;
   
   system_context_ptr_primary = *(uint8_t **)(system_context_ptr + 0x10);
@@ -24301,7 +24301,7 @@ void system_process_job_completion_4(void)
 
 
 
-void system_initialize_profiling_system_4(void)
+void system_initialize_profiling_system_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -24309,7 +24309,7 @@ void system_initialize_profiling_system_4(void)
 
 
 
-void system_configure_performance_counters_4(void)
+void system_configure_performance_counters_quaternary(void)
   uint8_t *system_context_ptr_primary;
   
   system_context_ptr_primary = *(uint8_t **)(system_context_ptr + 0x10);
@@ -24325,7 +24325,7 @@ void system_configure_performance_counters_4(void)
 
 
 
-void system_handle_metrics_collection_4(void)
+void system_handle_metrics_collection_quaternary(void)
   uint8_t *system_byte_pointer_d;
   uint8_t *camera_traverse_node_next;
   uint8_t *current_ctx_ptr;
@@ -24358,7 +24358,7 @@ void system_handle_metrics_collection_4(void)
 
 
 
-void system_manage_profiling_data_4(void)
+void system_manage_profiling_data_quaternary(void)
   system_process_context_data(system_context_ptr,*(uint8_t *)(system_context_ptr + 0x10),system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   return;
 }
@@ -24366,7 +24366,7 @@ void system_manage_profiling_data_4(void)
 
 
 
-void system_process_performance_reports_4(void)
+void system_process_performance_reports_quaternary(void)
   uint8_t *system_context_ptr_primary;
   
   system_context_ptr_primary = *(uint8_t **)(system_context_ptr + 0x10);
@@ -24450,7 +24450,7 @@ system_label:
 
 
 
-void system_initialize_debug_renderer_4(void)
+void system_initialize_debug_renderer_quaternary(void)
   int *system_context_int_system_pointer_config;
   uint8_t *system_byte_pointer_d;
   
@@ -24496,7 +24496,7 @@ void system_initialize_debug_renderer_4(void)
 
 
 
-void system_configure_debug_overlay_4(void)
+void system_configure_debug_overlay_quaternary(void)
   if (system_config_data_array != (uint8_t *)0x0) {
     system_process_context_data(system_context_ptr,*system_config_data_array,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
     if ((int64_t *)system_config_data_array[0x17] != (int64_t *)0x0) {
@@ -24512,7 +24512,7 @@ void system_configure_debug_overlay_4(void)
 
 
 
-void system_handle_debug_visualization_4(void)
+void system_handle_debug_visualization_quaternary(void)
   if (system_config_data_array == (uint8_t *)0x0) {
     return;
   }
@@ -24533,7 +24533,7 @@ void system_handle_debug_visualization_4(void)
 
 
 
-void system_manage_debug_context_4(void)
+void system_manage_debug_context_quaternary(void)
   if (system_config_data_array == (uint8_t *)0x0) {
     return;
   }
@@ -24553,7 +24553,7 @@ void system_manage_debug_context_4(void)
 
 
 
-void system_process_debug_commands_4(void)
+void system_process_debug_commands_quaternary(void)
   if (system_config_data_array == (uint8_t *)0x0) {
     return;
   }
@@ -24579,7 +24579,7 @@ void system_process_debug_commands_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_save_system_4(void)
+void system_initialize_save_system_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t *init_ctx_base;
   uint8_t *camera_node_current;
@@ -24698,7 +24698,7 @@ void system_initialize_graphics_manager(int64_t system_context_ptr)
 
 
 
-void system_configure_serialization_format_4(void)
+void system_configure_serialization_format_quaternary(void)
   if (system_config_data_array == (uint8_t *)0x0) {
     return;
   }
@@ -24722,7 +24722,7 @@ void system_configure_serialization_format_4(void)
 
 
 
-void system_handle_data_persistence_4(void)
+void system_handle_data_persistence_quaternary(void)
   if (system_config_data_array != (uint8_t *)0x0) {
     system_process_context_data(system_context_ptr,*system_config_data_array);
     system_process_context_data(system_config_data_array);
@@ -24735,7 +24735,7 @@ void system_handle_data_persistence_4(void)
 
 
 
-void system_manage_save_slots_4(void)
+void system_manage_save_slots_quaternary(void)
   uint8_t *unaff_RBX;
   
   system_process_context_data(system_context_ptr,*unaff_RBX);
@@ -24747,14 +24747,14 @@ void system_manage_save_slots_4(void)
 
 
 
-void system_process_load_operations_4(void)
+void system_process_load_operations_quaternary(void)
   return;
 }
 
 
 
 
-void system_initialize_localization_4(void)
+void system_initialize_localization_quaternary(void)
   if (*(int64_t *)(system_config_data_array + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     system_process_context_data();
@@ -24779,7 +24779,7 @@ void system_initialize_localization_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_language_settings_4(void)
+void system_configure_language_settings_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t *camera_node_current;
   uint8_t *system_byte_pointer_d;
@@ -24842,7 +24842,7 @@ void system_configure_language_settings_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_text_translation_4(void)
+void system_handle_text_translation_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t *camera_node_current;
   int64_t *system_register_rdi;
@@ -24883,7 +24883,7 @@ void system_handle_text_translation_4(void)
 
 
 
-void system_manage_locale_data_4(void)
+void system_manage_locale_data_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t *init_ctx_base;
   int64_t *system_register_rdi;
@@ -24917,7 +24917,7 @@ void system_manage_locale_data_4(void)
 
 
 
-void system_process_string_resources_4(void)
+void system_process_string_resources_quaternary(void)
   uint8_t *init_ctx_base;
   uint8_t *camera_node_current;
   int64_t *system_register_rdi;
@@ -24945,7 +24945,7 @@ void system_process_string_resources_4(void)
 
 
 
-void system_initialize_mod_support_4(void)
+void system_initialize_mod_support_quaternary(void)
   uint8_t *system_context_ptr_primary;
   uint8_t *init_ctx_base;
   uint8_t *system_byte_pointer_d;
@@ -24972,7 +24972,7 @@ void system_initialize_mod_support_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_plugin_interface_4(void)
+void system_configure_plugin_interface_quaternary(void)
   
   if (system_thread_count == system_memory_size_array) {
     return;
@@ -25031,7 +25031,7 @@ void system_configure_plugin_interface_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_mod_loading_4(void)
+void system_handle_mod_loading_quaternary(void)
   
   system_data_handle = system_context_ptr[1];
   system_unsigned_result_value = system_memory_size_array - system_thread_count >> 3;
@@ -25087,7 +25087,7 @@ void system_handle_mod_loading_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_mod_dependencies_4(void)
+void system_manage_mod_dependencies_quaternary(void)
   int64_t *system_register_rdi;
   
   system_context_ptr = system_context_ptr >> 3;
@@ -25116,7 +25116,7 @@ void system_manage_mod_dependencies_4(void)
 
 
 
-void system_process_mod_events_4(void)
+void system_process_mod_events_quaternary(void)
   return;
 }
 
