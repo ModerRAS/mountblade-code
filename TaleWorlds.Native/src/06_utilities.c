@@ -48965,7 +48965,7 @@ void Unwind_180907710(undefined8 param_1,longlong param_2)
   *(undefined4 *)(pvalidationResult + 0x10) = 0;
   pvalidationResult[0xd] = &SystemDataStructure;
   ValidateResourceIntegrity(pvalidationResult + 7,pvalidationResult[9]);
-  *pvalidationResult = &UNK_180a14c60;
+  *pvalidationResult = &ResourceValidationTable002;
   return;
 }
 
@@ -49017,7 +49017,7 @@ void Unwind_180907740(undefined8 param_1,longlong param_2)
   *(undefined4 *)(pvalidationResult + 0x10) = 0;
   pvalidationResult[0xd] = &SystemDataStructure;
   ValidateResourceIntegrity(pvalidationResult + 7,pvalidationResult[9]);
-  *pvalidationResult = &UNK_180a14c60;
+  *pvalidationResult = &ResourceValidationTable002;
   return;
 }
 
@@ -49645,7 +49645,7 @@ void Unwind_180907a00(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x70);
-  *presourceHash = &UNK_180a14d00;
+  *presourceHash = &ResourceValidationTable003;
   if (presourceHash[3] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -83720,8 +83720,7 @@ void Unwind_180912970(undefined8 param_1,longlong param_2)
 
 undefined4 UNK_180d49260;
 
- void FUN_18094136c(undefined8 param_1,longlong param_2)
-void ProcessSystemStateReset(undefined8 systemHandle, longlong contextPointer)
+ void ProcessSystemStateReset(undefined8 systemHandle, longlong contextPointer)
 
 {
   char systemState;
@@ -83742,8 +83741,7 @@ void ProcessSystemStateReset(undefined8 systemHandle, longlong contextPointer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941383(undefined8 param_1,longlong param_2)
-void ProcessSystemStateResetWithCallback(undefined8 systemHandle, longlong contextPointer)
+ void ProcessSystemStateResetWithCallback(undefined8 systemHandle, longlong contextPointer)
 
 {
   char systemState;
