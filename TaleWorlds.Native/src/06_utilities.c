@@ -32712,7 +32712,7 @@ void ExceptionStackManager(uint8_t ObjectContextParameter,int64_t ValidationCont
 
 
 
-void Unwind_180902cd0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void SystemMemoryAllocator(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -32748,7 +32748,7 @@ void Unwind_180902cd0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902ce0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ResourcePoolManager(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
