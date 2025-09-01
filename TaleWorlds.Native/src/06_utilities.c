@@ -45698,7 +45698,19 @@ void Unwind_1809058e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809058f0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 关闭文件句柄并更新资源引用计数
+ * 
+ * 该函数负责关闭已打开的文件句柄，并更新资源引用计数器
+ * 确保系统资源正确释放和线程安全
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含文件句柄和资源引用信息
+ * @return 无返回值
+ * @note 此函数通常在资源清理过程中调用
+ * @warning 调用此函数会修改资源引用计数，需要确保线程安全
+ */
+void CloseFileHandleAndDecrementReferenceCount(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   if (*(int64_t *)(ValidationContextParameter + 0x148) != 0) {
@@ -45733,21 +45745,35 @@ void InitializeSystemResourceBufferB(uint8_t ObjectContextParameter,int64_t Vali
 
 
 
-void Unwind_180905910(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源表并执行回调函数
+ * 
+ * 该函数负责遍历资源表，对每个资源执行清理回调函数
+ * 如果资源表为空，则执行系统紧急退出
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含资源表和哈希信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数通常在系统异常处理时调用
+ * @warning 如果资源表为空，此函数会导致系统紧急退出
+ */
+void CleanupResourceTableAndExecuteCallbacks(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  uint8_t *presourceHash;
-  int64_t *presourceTable;
-  uint8_t *pValidationResult;
+  uint8_t *ResourceHashPointer;
+  int64_t *ResourceTablePointer;
+  uint8_t *ValidationResultPointer;
   uint8_t LoopCondition;
   
-  presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x48) + 8);
+  ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x48) + 8);
   LoopIncrement = 0xfffffffffffffffe;
-  presourceHash = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x48) + 0x10);
-  for (pValidationResult = (uint8_t *)*presourceTable; pValidationResult != presourceHash; pValidationResult = pValidationResult + 4) {
-    (**(code **)*pValidationResult)(pValidationResult,0,CleanupOption,CleanupFlag,LoopIncrement);
+  ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x48) + 0x10);
+  for (ValidationResultPointer = (uint8_t *)*ResourceTablePointer; ValidationResultPointer != ResourceHashPointer; ValidationResultPointer = ValidationResultPointer + 4) {
+    (**(code **)*ValidationResultPointer)(ValidationResultPointer,0,CleanupOption,CleanupFlag,LoopIncrement);
   }
-  if (*presourceTable == 0) {
+  if (*ResourceTablePointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
