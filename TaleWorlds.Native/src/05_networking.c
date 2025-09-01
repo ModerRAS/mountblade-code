@@ -9498,7 +9498,7 @@ void ProcessNetworkConnectionInitializationAndValidation(NetworkHandle connectio
     ProcessNetworkAddressValidation(auStack_118,0x100,packetData);
     puStack_138 = auStack_118;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(networkStatus1,0xb,connectionContext,&UNK_180957208);
+    LogNetworkConnectionError(networkStatus1,0xb,connectionContext,&NetworkConnectionRetryTemplate);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(uStack_18 ^ (ulonglong)auStack_158);
@@ -9805,7 +9805,7 @@ LAB_180849ad3:
   }
   if ((iVar6 == 0) &&
      (iVar5 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(lStack_160 + 0x98),apuStack_158,0x58), iVar5 == 0)) {
-    *apuStack_158[0] = &UNK_1809823f8;
+    *apuStack_158[0] = &NetworkReceiveBufferTemplate;
     *(NetworkStatus *)(apuStack_158[0] + 1) = 0x58;
     *(NetworkStatus *)(apuStack_158[0] + 2) = packetData;
     quaternaryNetworkFlag = dataSize[1];
@@ -9901,7 +9901,7 @@ LAB_180849c22:
   }
   if ((networkStatus2 == 0) &&
      (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(lStack_168 + 0x98),&puStack_160,0x28), networkStatus1 == 0)) {
-    *puStack_160 = &UNK_180983e88;
+    *puStack_160 = &NetworkSendBufferTemplate;
     *(NetworkStatus *)(puStack_160 + 1) = 0x28;
     *(NetworkStatus *)(puStack_160 + 4) = dataSize;
     *(int *)(puStack_160 + 2) = (int)connectionContext;
@@ -101875,7 +101875,7 @@ void FUN_180898040(longlong *connectionContext)
         do {
           lVar15 = connectionContext[1];
           uStack_2d0 = 0;
-          puStack_2d8 = &UNK_1809823f8;
+          puStack_2d8 = &NetworkReceiveBufferTemplate;
           fVar18 = SUB84(plVar13,0);
           plVar13 = (longlong *)(lVar15 + 0xe0 + (longlong)plVar10);
           lVar11 = *plVar13;
