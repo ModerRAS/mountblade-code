@@ -33774,7 +33774,7 @@ void ResourcePoolFinalizer(uint8_t ObjectContextParameter,int64_t ValidationCont
 
 
 
-void Unwind_180903090(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindResourceAllocationHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -33791,7 +33791,7 @@ void Unwind_180903090(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809030a0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindResourceCleanupHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
