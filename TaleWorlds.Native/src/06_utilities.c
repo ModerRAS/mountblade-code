@@ -2418,13 +2418,6 @@ uint8_t WorkerThreadPoolData;
 uint8_t WorkerThreadQueueData;
 
  void CreateWorkerThread(void);
-/**
- * @brief 创建工作线程
- * 
- * 该函数负责创建工作线程来处理任务
- * 设置线程的执行环境和参数
- */
-void CreateWorkerThread(void);
 uint8_t SystemMemoryConfigDataTemplateWorkerMainThread;
 uint8_t WorkerThreadContextData;
 uint8_t SystemMemoryConfigDataTemplateWorkerBackgroundThread;
