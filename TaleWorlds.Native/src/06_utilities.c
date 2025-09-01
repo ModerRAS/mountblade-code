@@ -10853,7 +10853,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
   int64_t ExecutionContextPointer;
   int64_t SavedRegisterValue;
   char InputRegisterByte;
-  uint8_t *UnaffectedRegisterR13;
+  uint8_t *SystemContextPointer;
   int64_t longValue8;
   float RangeValue;
   float ResultFloatValue;
@@ -10920,7 +10920,7 @@ HANDLE_VALIDATION_FAILED:
     if (StatusChar == '\x06') {
       StatusChar = ProcessObjectData(*(uint8_t *)(ObjectContextParameter + 0x58));
       if (StatusChar == '\0') goto HANDLE_VALIDATION_FAILED;
-      *UnaffectedRegisterR13 = 0;
+      *SystemContextPointer = 0;
       goto HANDLE_CONTEXT_ERROR;
     }
     if (StatusChar == '\a') {
@@ -10928,7 +10928,7 @@ HANDLE_VALIDATION_FAILED:
       if (StatusChar == '\0') {
         if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(RegisterRDI + 0x58) + 0x90) + 0x790) +
                     0x1c8) != 0) {
-          *UnaffectedRegisterR13 = 0;
+          *SystemContextPointer = 0;
           goto HANDLE_CONTEXT_ERROR;
         }
         goto HANDLE_VALIDATION_FAILED;
@@ -10944,7 +10944,7 @@ HANDLE_VALIDATION_FAILED:
       goto HANDLE_VALIDATION_FAILED;
     }
   }
-  *UnaffectedRegisterR13 = 0;
+  *SystemContextPointer = 0;
 HANDLE_CONTEXT_ERROR:
                     // WARNING: Subroutine does not return
   FinalizeSecurityOperation(*(uint64_t *)(ExecutionContextPointer + 0x5f0) ^ (uint64_t)&SystemSecurityValidationBuffer);
