@@ -3516,76 +3516,75 @@ ulonglong ProcessSystemRequest(longlong requestParameters,longlong systemContext
   longlong *plVar1;
   longlong *presourceTable;
   longlong *presourceIndex;
-  int iVar4;
-  uint uVar5;
-  ulonglong uVar6;
-  longlong *plVar7;
-  longlong *plVar8;
-  longlong *plVar9;
-  longlong *plVar10;
-  longlong lStackX_8;
-  longlong lStackX_18;
+  int validationStatus;
+  uint processResult;
+  ulonglong operationResult;
+  longlong *resourcePointer;
+  longlong *contextPointer;
+  longlong *cleanupPointer;
+  longlong *nullPointer;
+  longlong memoryContextHandle;
+  longlong validationContext;
   
-  uVar6 = ValidateObjectContext(*(uint8_t4 *)(requestParameters + 0x18),&lStackX_18);
-  iVar4 = (int)uVar6;
-  if (iVar4 == 0) {
-    plVar10 = (longlong *)0x0;
-    plVar9 = plVar10;
-    if (lStackX_18 != 0) {
-      plVar9 = (longlong *)(lStackX_18 + -8);
+  operationResult = ValidateObjectContext(*(uint8_t4 *)(requestParameters + 0x18),&validationContext);
+  validationStatus = (int)operationResult;
+  if (validationStatus == 0) {
+    nullPointer = (longlong *)0x0;
+    cleanupPointer = nullPointer;
+    if (validationContext != 0) {
+      cleanupPointer = (longlong *)(validationContext + -8);
     }
-    uVar6 = ValidateObjectContext(*(uint8_t4 *)(requestParameters + 0x10),&lStackX_18);
-    iVar4 = (int)uVar6;
-    if (iVar4 == 0) {
-      lStackX_8 = 0;
-      uVar5 = ProcessSystemObjectValidation(*(uint8_t8 *)(systemContext + 0x90),*(longlong *)(lStackX_18 + 8) + 0x10,
-                            &lStackX_8);
-      if (uVar5 != 0) {
-        CleanupValidationData(plVar9);
-        return (ulonglong)uVar5;
+    operationResult = ValidateObjectContext(*(uint8_t4 *)(requestParameters + 0x10),&validationContext);
+    validationStatus = (int)operationResult;
+    if (validationStatus == 0) {
+      memoryContextHandle = 0;
+      processResult = ProcessSystemObjectValidation(*(uint8_t8 *)(systemContext + 0x90),*(longlong *)(validationContext + 8) + 0x10,
+                            &memoryContextHandle);
+      if (processResult != 0) {
+        CleanupValidationData(cleanupPointer);
+        return (ulonglong)processResult;
       }
-      if (((*(uint *)(*(longlong *)(lStackX_18 + 8) + 0xf8) >> 2 & 1) == 0) &&
-         (uVar6 = InitializeMemoryContext(lStackX_8), (int)uVar6 != 0)) {
-        return uVar6;
+      if (((*(uint *)(*(longlong *)(validationContext + 8) + 0xf8) >> 2 & 1) == 0) &&
+         (operationResult = InitializeMemoryContext(memoryContextHandle), (int)operationResult != 0)) {
+        return operationResult;
       }
-      plVar1 = (longlong *)(lStackX_8 + 0x240);
-      plVar7 = (longlong *)(*plVar1 + -0x18);
-      if (*plVar1 == 0) {
-        plVar7 = plVar10;
+      presourceTable = (longlong *)(memoryContextHandle + 0x240);
+      resourcePointer = (longlong *)(*presourceTable + -0x18);
+      if (*presourceTable == 0) {
+        resourcePointer = nullPointer;
       }
-      plVar8 = plVar10;
-      presourceTable = plVar10;
-      presourceIndex = plVar10;
-      if (plVar7 != (longlong *)0x0) {
-        plVar8 = plVar7 + 3;
+      contextPointer = nullPointer;
+      presourceIndex = nullPointer;
+      if (resourcePointer != (longlong *)0x0) {
+        contextPointer = resourcePointer + 3;
       }
       while( true ) {
-        if (plVar8 == plVar1) {
-          *(longlong **)(lStackX_8 + 0x80) = plVar9;
-          ProcessMemoryData(lStackX_8,plVar9);
-          plVar9[2] = lStackX_8;
-          uVar6 = ProcessSystemObjectOperation(lStackX_8);
-          if ((int)uVar6 == 0) {
+        if (contextPointer == presourceTable) {
+          *(longlong **)(memoryContextHandle + 0x80) = cleanupPointer;
+          ProcessMemoryData(memoryContextHandle,cleanupPointer);
+          cleanupPointer[2] = memoryContextHandle;
+          operationResult = ProcessSystemObjectOperation(memoryContextHandle);
+          if ((int)operationResult == 0) {
             return 0;
           }
-          return uVar6;
+          return operationResult;
         }
-        if ((int)plVar9[5] <= (int)presourceIndex) {
+        if ((int)cleanupPointer[5] <= (int)presourceIndex) {
           return 0x1c;
         }
-        plVar7 = plVar8 + 4;
-        if (plVar8 == (longlong *)0x0) {
-          plVar7 = (longlong *)0x38;
+        resourcePointer = contextPointer + 4;
+        if (contextPointer == (longlong *)0x0) {
+          resourcePointer = (longlong *)0x38;
         }
-        *(longlong *)(plVar9[4] + 8 + (longlong)presourceTable) = *plVar7;
-        if (plVar8 == plVar1) break;
-        plVar7 = (longlong *)(*plVar8 + -0x18);
-        if (*plVar8 == 0) {
-          plVar7 = plVar10;
+        *(longlong *)(cleanupPointer[4] + 8 + (longlong)presourceTable) = *resourcePointer;
+        if (contextPointer == presourceTable) break;
+        resourcePointer = (longlong *)(*contextPointer + -0x18);
+        if (*contextPointer == 0) {
+          resourcePointer = nullPointer;
         }
-        plVar8 = plVar10;
-        if (plVar7 != (longlong *)0x0) {
-          plVar8 = plVar7 + 3;
+        contextPointer = nullPointer;
+        if (resourcePointer != (longlong *)0x0) {
+          contextPointer = resourcePointer + 3;
         }
         presourceTable = presourceTable + 3;
         presourceIndex = (longlong *)(ulonglong)((int)presourceIndex + 1);
@@ -3593,10 +3592,10 @@ ulonglong ProcessSystemRequest(longlong requestParameters,longlong systemContext
       return 0x1c;
     }
   }
-  if (iVar4 == 0x1e) {
+  if (validationStatus == 0x1e) {
     return 0;
   }
-  return uVar6;
+  return operationResult;
 }
 
 
