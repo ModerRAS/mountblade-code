@@ -25696,7 +25696,7 @@ void SystemCleanupHandler(void)
   punsignedSystemValue6 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
   lStack_1e8 = localSystemHandle + 0x70;
   apuStack_1c8[0] = punsignedSystemValue6;
-  FUN_18020e0e0(punsignedSystemValue6,&puStack_168,3,localSystemHandle + 0x2e0);
+  InitializeSystemMemoryContext(punsignedSystemValue6,&puStack_168,3,localSystemHandle + 0x2e0);
   *punsignedSystemValue6 = &UNK_1809fe220;
   apuStack_1c8[0] = punsignedSystemValue6;
   SetupSystemMemoryAllocator(punsignedSystemValue6);
@@ -25913,7 +25913,7 @@ void SystemDataInitializer(void)
     unsignedSystemValue3 = SystemAllocationFlagsTemplate;
     localMemoryAddress = AllocateSystemMemory(SystemAllocationFlagsTemplate);
     if (localMemoryAddress == 0) break;
-    plocalResourcePointer = (long long *)FUN_18005e890(unsignedSystemValue3);
+    plocalResourcePointer = (long long *)AllocateSystemResourcePointer(unsignedSystemValue3);
     cVar5 = (**(code **)(*plocalResourcePointer + 0x20))(plocalResourcePointer,1);
   } while (cVar5 != '\0');
   InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
@@ -25926,8 +25926,8 @@ void SystemDataInitializer(void)
     }
     ReleaseSystemResource(*(void* *)*pointerToUnsigned1);
     ReleaseSystemResource(*(void* *)pointerToUnsigned1[1]);
-    FUN_180095420(*pointerToUnsigned1);
-    FUN_180095420(pointerToUnsigned1[1]);
+    ReleaseSystemResourceHandle(*pointerToUnsigned1);
+    ReleaseSystemResourceHandle(pointerToUnsigned1[1]);
     *(uint8_t *)(pointerToUnsigned1 + 7) = 0;
     systemFlag = _Mtx_unlock(0x180c91970);
     if (systemFlag != 0) {
@@ -29203,7 +29203,7 @@ void InitializeSystemMemoryResource(long long *SystemResourcePointer)
   plocalBufferAddress = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
   lStack_78 = localResourceOffset + 0x70;
   pplStack_60 = (long long **)plocalBufferAddress;
-  FUN_18020e0e0(plocalBufferAddress,&puStack_50,3,localResourceOffset + 0x2e0);
+  InitializeSystemMemoryContext(plocalBufferAddress,&puStack_50,3,localResourceOffset + 0x2e0);
   *plocalBufferAddress = (long long)&UNK_1809fe220;
   plStack_68 = plocalBufferAddress;
   FUN_18020e840(plocalBufferAddress);
@@ -36825,7 +36825,7 @@ void FUN_18005dbb0(void)
       punsignedSystemValue4 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
       lStack_198 = localAllocationFlags + 0x70;
       uStack_58 = punsignedSystemValue4;
-      FUN_18020e0e0(punsignedSystemValue4,&puStack_160,4,lStack_178 + 0x2e0);
+      InitializeSystemMemoryContext(punsignedSystemValue4,&puStack_160,4,lStack_178 + 0x2e0);
       *punsignedSystemValue4 = &UNK_1809fe258;
       *(void* **)(*PrimaryResourcePointer + unsignedSystemValue14 * 8) = punsignedSystemValue4;
       puStack_160 = &SystemMemoryAllocatorReference;
@@ -37090,7 +37090,7 @@ void* * FUN_18005e4d0(long long SystemResourcePointer,void* ConfigurationDataPoi
   
   pointerToUnsigned1 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
   puStackX_8 = pointerToUnsigned1;
-  FUN_18020e0e0(pointerToUnsigned1,ConfigurationDataPointer,3,SystemResourcePointer + 0x2e0,SystemResourcePointer + 0x70);
+  InitializeSystemMemoryContext(pointerToUnsigned1,ConfigurationDataPointer,3,SystemResourcePointer + 0x2e0,SystemResourcePointer + 0x70);
   *pointerToUnsigned1 = &UNK_1809fe220;
   puStackX_8 = pointerToUnsigned1;
   FUN_18020e840(pointerToUnsigned1);
@@ -37260,7 +37260,7 @@ void FUN_18005e6a0(void* SystemResourcePointer,long long *ConfigurationDataPoint
       cVar3 = (*pcVar1)();
     }
     if (cVar3 != '\0') break;
-    SecondaryResourcePointer = (long long *)FUN_18005e890(SystemResourcePointer);
+    SecondaryResourcePointer = (long long *)AllocateSystemResourcePointer(SystemResourcePointer);
     cVar3 = (**(code **)(*SecondaryResourcePointer + 0x20))(SecondaryResourcePointer,AdditionalParameter,*(code **)(*SecondaryResourcePointer + 0x20),ConfigurationFlag,unsignedSystemValue4);
     if (cVar3 == '\0') {
       pcVar1 = *(code **)(*(long long *)*ConfigurationDataPointer + 0x80);
@@ -37312,7 +37312,7 @@ void FUN_18005e770(void* SystemResourcePointer,long long *ConfigurationDataPoint
       }
       if (cVar7 == '\0') {
         bVar2 = true;
-        plocalResourceOffset = (long long *)FUN_18005e890(SystemResourcePointer);
+        plocalResourceOffset = (long long *)AllocateSystemResourcePointer(SystemResourcePointer);
         if (AdditionalParameter == '\0') {
           cVar7 = (**(code **)(*plocalResourceOffset + 0x20))(plocalResourceOffset,0);
         }
@@ -37340,7 +37340,7 @@ void FUN_18005e770(void* SystemResourcePointer,long long *ConfigurationDataPoint
 
 
 
-long long FUN_18005e890(long long SystemResourcePointer)
+long long AllocateSystemResourcePointer(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
@@ -40030,7 +40030,7 @@ void StartInputSystem(void* SystemResourcePointer,long long ConfigurationDataPoi
   pointerToUnsigned3 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
   lStack_248 = localMemoryPointer + 0x70;
   puStack_238 = pointerToUnsigned3;
-  FUN_18020e0e0(pointerToUnsigned3,&puStack_1a8,3,localMemoryPointer + 0x2e0);
+  InitializeSystemMemoryContext(pointerToUnsigned3,&puStack_1a8,3,localMemoryPointer + 0x2e0);
   *pointerToUnsigned3 = &UNK_1809fe220;
   puStack_238 = pointerToUnsigned3;
   FUN_18020e840(pointerToUnsigned3);

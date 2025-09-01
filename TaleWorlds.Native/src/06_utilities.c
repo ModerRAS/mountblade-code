@@ -45051,7 +45051,7 @@ void ExecuteContext250Callback(uint8_t ObjectContextParameter,int64_t Validation
 
 
 
-void Unwind_180905a80(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void InitializeResourceDescriptor(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   *(uint8_t *)(ValidationContextParameter + 0x68) = &ResourceDescriptorTemplate;
@@ -45067,7 +45067,7 @@ void Unwind_180905a80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180905a90(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void InitializeSystemResourceHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   *(uint8_t *)(ValidationContextParameter + 0x98) = &SystemResourceHandlerTemplate;
@@ -45083,7 +45083,7 @@ void Unwind_180905a90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180905aa0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void InitializeSystemResourceHandlerAlt(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   *(uint8_t *)(ValidationContextParameter + 0xb8) = &SystemResourceHandlerTemplate;
