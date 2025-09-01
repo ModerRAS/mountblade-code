@@ -313,7 +313,7 @@ void InitializeNetworkConnectionState(void)
   longlong systemContext;
   int connectionHandle;
   uint32_t connectionFlags;
-  int sessionID;
+  int sessionId;
   uint64_t *connectionPointer;
   longlong stackParameter;
   
@@ -729,7 +729,7 @@ void SendNetworkPacket(undefined8 packetId,undefined8 connectionId,undefined1 pa
   param_6 = 0;
   param_5 = 0;
   iVar2 = func_0x00018088c590(0,&param_5,param_3,param_4,0);
-  if (((iVar2 == 0) && (iVar2 = FUN_18088c740(&stack0x00000020,param_5), iVar2 == 0)) &&
+  if (((iVar2 == 0) && (iVar2 = ValidateNetworkConnection(&stack0x00000020,param_5), iVar2 == 0)) &&
      (iVar2 = func_0x00018088c530(unaff_EBP,&param_7), iVar2 == 0)) {
     param_6 = *(longlong *)(param_7 + 8);
     if ((-1 < (int)unaff_RSI) && ((int)unaff_RSI < *(int *)(param_6 + 0x88))) {
@@ -738,7 +738,7 @@ void SendNetworkPacket(undefined8 packetId,undefined8 connectionId,undefined1 pa
       lVar3 = (**(code **)(*plVar1 + 0x270))(plVar1,lVar4,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar4,&stack0x00000040);
+        ProcessNetworkPacketArray(lVar4,&stack0x00000040);
       }
       if ((((*(int *)(lVar3 + 0x38) != 0) || (*(int *)(lVar3 + 0x3c) != 0)) ||
           ((*(int *)(lVar3 + 0x40) != 0 || (*(int *)(lVar3 + 0x44) != 0)))) &&

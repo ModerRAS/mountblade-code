@@ -1635,20 +1635,26 @@ void InitializeSystemConfigurationNode(void)
 
 
 
-// 函数: void FUN_18002d8e0(void)
-void FUN_18002d8e0(void)
+// 函数: void InitializeSystemResourceNode(void)
+/**
+ * @brief 初始化系统资源节点
+ * 
+ * 该函数负责初始化系统的资源节点结构
+ * 设置系统资源管理的基本参数和数据结构
+ */
+void InitializeSystemResourceNode(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char nodeFlag;
+  undefined8 *systemRootPointer;
+  int comparisonResult;
+  longlong *systemTablePointer;
+  longlong allocationSize;
+  undefined8 *currentNode;
+  undefined8 *previousNode;
+  undefined8 *nextNode;
+  undefined8 *allocatedNode;
+  undefined8 *initializationCallback;
   
   plVar4 = (longlong *)FUN_18008d070();
   puVar2 = (undefined8 *)*plVar4;

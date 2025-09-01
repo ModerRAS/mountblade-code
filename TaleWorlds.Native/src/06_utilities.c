@@ -83241,26 +83241,26 @@ void ResetThreadLocalStorage(void)
  * @param param_3 参数3，清理选项
  * @param param_4 参数4，清理标志
  */
-void CleanupSystemResources(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void CleanupSystemResources(undefined8 resource_type, undefined8 resource_instance, undefined8 cleanup_options, undefined8 cleanup_flags)
 
 {
-  undefined8 *puVar1;
+  undefined8 *resource_manager;
   
-  puVar1 = _DAT_180c967f0;
-  if (_DAT_180c967f0 == (undefined8 *)0x0) {
+  resource_manager = SystemResourceManagerPointer;
+  if (SystemResourceManagerPointer == (undefined8 *)0x0) {
     return;
   }
-  FUN_180657620(&DAT_180c967e0,*_DAT_180c967f0,param_3,param_4,0xfffffffffffffffe);
-  puVar1[4] = &UNK_180a3c3e0;
-  if (puVar1[5] != 0) {
+  ReleaseSystemResources(&SystemResourceData, *SystemResourceManagerPointer, cleanup_options, cleanup_flags, 0xfffffffffffffffe);
+  resource_manager[4] = &ResourceCleanupMarker;
+  if (resource_manager[5] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    EmergencyResourceCleanup();
   }
-  puVar1[5] = 0;
-  *(undefined4 *)(puVar1 + 7) = 0;
-  puVar1[4] = &UNK_18098bcb0;
+  resource_manager[5] = 0;
+  *(undefined4 *)(resource_manager + 7) = 0;
+  resource_manager[4] = &ResourceResetMarker;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar1);
+  FinalizeResourceCleanup(resource_manager);
 }
 
 
