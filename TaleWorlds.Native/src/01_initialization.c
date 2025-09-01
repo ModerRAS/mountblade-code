@@ -1600,35 +1600,35 @@ void InitializeSystemConfigurationNode(void)
   undefined8 *allocatedNode;
   undefined8 initializationFlag;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  systemTablePointer = (longlong *)FUN_18008d070();
+  systemRootPointer = (undefined8 *)*systemTablePointer;
+  nodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  initializationFlag = 0;
+  previousNode = systemRootPointer;
+  currentNode = (undefined8 *)systemRootPointer[1];
+  while (nodeFlag == '\0') {
+    comparisonResult = memcmp(currentNode + 4,&DAT_180a01050,0x10);
+    if (comparisonResult < 0) {
+      nextNode = (undefined8 *)currentNode[2];
+      currentNode = previousNode;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      nextNode = (undefined8 *)*currentNode;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previousNode = currentNode;
+    currentNode = nextNode;
+    nodeFlag = *(char *)((longlong)nextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_180a01050,previousNode + 4,0x10), comparisonResult < 0)) {
+    allocationSize = FUN_18008f0d0(systemTablePointer);
+    FUN_18008f140(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
+    previousNode = allocatedNode;
   }
-  puVar7[6] = 0x4b2d79e470ee4e2c;
-  puVar7[7] = 0x9c552acd3ed5548d;
-  puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
+  previousNode[6] = 0x4b2d79e470ee4e2c;
+  previousNode[7] = 0x9c552acd3ed5548d;
+  previousNode[8] = &UNK_180a003a0;
+  previousNode[9] = 0;
+  previousNode[10] = initializationFlag;
   return;
 }
 
