@@ -46738,7 +46738,16 @@ void DestroyMutexInPlaceSecondary(void)
 
 
 
-void Unwind_180906050(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 销毁带上下文的互斥锁
+ * 
+ * 该函数负责销毁指定上下文中的互斥锁对象
+ * 释放相关的系统资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ */
+void DestroyMutexWithContext(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   _Mtx_destroy_in_situ(*(uint8_t *)(ValidationContextParameter + 0x80));

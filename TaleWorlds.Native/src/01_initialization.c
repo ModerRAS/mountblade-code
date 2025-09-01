@@ -31516,7 +31516,7 @@ void ReleaseSystemResourcePointer(long long SystemResourcePointer,void* Configur
 void InitializeSystemResourceStream(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_180058710(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ProcessSystemResourceExtension(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -31586,7 +31586,7 @@ void FinalizeSystemResourceCleanup(long long *SystemResourcePointer)
 void ProcessSystemMemoryAllocation(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_180058710(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ProcessSystemResourceExtension(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -31968,7 +31968,7 @@ void ValidateSystemResource(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180058710(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ProcessSystemResourceExtension(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统资源扩展处理器函数
  * 
@@ -31987,7 +31987,7 @@ void ProcessSystemResourceExtension(void* SystemResourcePointer,void* *Configura
   if (ConfigurationDataPointer == (void* *)0x0) {
     return;
   }
-  FUN_180058710(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ProcessSystemResourceExtension(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   if (ConfigurationDataPointer[8] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
@@ -32727,7 +32727,7 @@ void DestroySystemResourceMutex(long long SystemResourcePointer,void* Configurat
   ProcessMemoryBlock(SystemResourcePointer + 0xc0,*(void* *)(SystemResourcePointer + 0xd0));
   ProcessMemoryBlock(SystemResourcePointer + 0x90,*(void* *)(SystemResourcePointer + 0xa0));
   FUN_1800593f0(SystemResourcePointer + 0x60,*(void* *)(SystemResourcePointer + 0x70));
-  FUN_180058710(SystemResourcePointer + 0x30,*(void* *)(SystemResourcePointer + 0x40));
+  ProcessSystemResourceExtension(SystemResourcePointer + 0x30,*(void* *)(SystemResourcePointer + 0x40));
   FUN_1800593f0(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10));
   return;
 }
@@ -34248,8 +34248,17 @@ void CleanupSystemResources(long long *ResourceHandle)
 
 
 
-// 函数: void FUN_180059ee4(long long *SystemResourcePointer)
-void FUN_180059ee4(long long *SystemResourcePointer)
+// 函数: void InitializeSystemDataPointer(long long *SystemResourcePointer)
+/**
+ * @brief 初始化系统数据指针
+ * 
+ * 该函数负责初始化系统数据指针，设置系统资源的内存布局和数据结构。
+ * 这是系统数据管理的重要组成部分，确保数据访问的正确性和效率。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向需要初始化的系统资源
+ * @note 这是系统初始化过程中的关键函数，确保数据管理系统的正常运行
+ */
+void InitializeSystemDataPointer(long long *SystemResourcePointer)
 
 {
   int *pointerToInteger1;
