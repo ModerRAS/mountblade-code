@@ -11463,10 +11463,10 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePool,
   uint32_t *RegisterR15;
   uint8_t uStack0000000000000028;
   
-  iVar8 = *(int *)(RegisterRDI + 0x20);
-  if (iVar8 == -1) {
+  ResourceCount = *(int *)(RegisterRDI + 0x20);
+  if (ResourceCount == -1) {
     uStack0000000000000028 = *RegisterR14;
-    iVar8 = *(int *)(RegisterRDI + 0x18);
+    ResourceCount = *(int *)(RegisterRDI + 0x18);
     CapacityIndex = ResourceCount + 1;
     ContextValidationResult = (int)*(uint *)(RegisterRDI + 0x1c) >> 0x1f;
     ResourceIndex = (*(uint *)(RegisterRDI + 0x1c) ^ ContextValidationResult) - ContextValidationResult;
