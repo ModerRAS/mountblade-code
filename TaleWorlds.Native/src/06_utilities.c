@@ -1531,11 +1531,11 @@ uint8_t GetProtectInfo;
  * 确保内存数据同步到持久存储
  */
 void FlushMemoryCache;
-uint8_t g_flushCacheConfig;
-uint8_t g_flushCacheStatus;
-uint8_t g_flushCacheHandle;
-uint8_t g_flushCacheData;
-uint8_t g_flushCacheContext;
+uint8_t FlushCacheConfig;
+uint8_t FlushCacheStatus;
+uint8_t FlushCacheHandle;
+uint8_t FlushCacheData;
+uint8_t FlushCacheContext;
 
  void InvalidateMemoryCache;
 /**
@@ -1545,10 +1545,10 @@ uint8_t g_flushCacheContext;
  * 清除缓存中的数据，强制重新加载
  */
 void InvalidateMemoryCache;
-uint8_t g_invalidateCacheConfig;
-uint8_t g_invalidateCacheStatus;
-uint8_t g_invalidateCacheHandle;
-uint8_t g_invalidateCacheData;
+uint8_t InvalidateCacheConfig;
+uint8_t InvalidateCacheStatus;
+uint8_t InvalidateCacheHandle;
+uint8_t InvalidateCacheData;
 uint8_t InvalidateCacheTable;
 
  void InitializeMemorySegmentation;

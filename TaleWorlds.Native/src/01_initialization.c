@@ -23641,40 +23641,49 @@ void SystemDataTableProcessorB(long long *dataTablePointer,void* systemContext,v
 
 
 // 函数: void FUN_18004be90(long long param_1)
-void FUN_18004be90(long long param_1)
+/**
+ * @brief 系统互斥锁内存清理器
+ * 
+ * 该函数使用互斥锁保护的方式清理系统内存，遍历内存块并进行安全清理。
+ * 它会锁定互斥锁，清理内存区域，然后解锁互斥锁。
+ * 
+ * @param mutexPointer 互斥锁指针
+ * @note 这是系统内存管理的线程安全函数，确保内存清理操作的原子性
+ */
+void SystemMutexMemoryCleaner(long long mutexPointer)
 
 {
-  int iVar1;
-  long long lVar2;
-  uint uVar3;
-  ulong long uVar5;
-  ulong long uVar4;
+  int lockResult;
+  long long memoryBase;
+  uint entryIndex;
+  ulong long memoryOffset;
+  ulong long entryCounter;
   
-  iVar1 = _Mtx_lock(param_1 + 0x28);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  lockResult = _Mtx_lock(mutexPointer + 0x28);
+  if (lockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(lockResult);
   }
-  uVar4 = 0;
-  lVar2 = *(long long *)(param_1 + 8);
-  uVar5 = uVar4;
-  if (*(long long *)(param_1 + 0x10) - lVar2 >> 3 != 0) {
+  entryCounter = 0;
+  memoryBase = *(long long *)(mutexPointer + 8);
+  memoryOffset = entryCounter;
+  if (*(long long *)(mutexPointer + 0x10) - memoryBase >> 3 != 0) {
     do {
-      if (*(long long *)(uVar5 + lVar2) != 0) {
+      if (*(long long *)(memoryOffset + memoryBase) != 0) {
                     // WARNING: Subroutine does not return
         SystemCleanupFunction();
       }
-      *(void* *)(uVar5 + *(long long *)(param_1 + 8)) = 0;
-      uVar3 = (int)uVar4 + 1;
-      uVar4 = (ulong long)uVar3;
-      lVar2 = *(long long *)(param_1 + 8);
-      uVar5 = uVar5 + 8;
-    } while ((ulong long)(long long)(int)uVar3 <
-             (ulong long)(*(long long *)(param_1 + 0x10) - lVar2 >> 3));
+      *(void* *)(memoryOffset + *(long long *)(mutexPointer + 8)) = 0;
+      entryIndex = (int)entryCounter + 1;
+      entryCounter = (ulong long)entryIndex;
+      memoryBase = *(long long *)(mutexPointer + 8);
+      memoryOffset = memoryOffset + 8;
+    } while ((ulong long)(long long)(int)entryIndex <
+             (ulong long)(*(long long *)(mutexPointer + 0x10) - memoryBase >> 3));
   }
-  *(long long *)(param_1 + 0x10) = lVar2;
-  iVar1 = _Mtx_unlock(param_1 + 0x28);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  *(long long *)(mutexPointer + 0x10) = memoryBase;
+  lockResult = _Mtx_unlock(mutexPointer + 0x28);
+  if (lockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(lockResult);
   }
   return;
 }
