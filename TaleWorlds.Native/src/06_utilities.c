@@ -3794,18 +3794,18 @@ uint8_t InitializeObjectHandleA(int64_t objectContext)
 uint8_t CleanupObjectHandle(void)
 
 {
-  int64_t objectHandle;
-  int64_t adjustedPointer;
+  int64_t ObjectHandle;
+  int64_t AdjustedPointer;
   
-  if (objectHandle == 0) {
-    adjustedPointer = 0;
+  if (ObjectHandle == 0) {
+    AdjustedPointer = 0;
   }
   else {
-    adjustedPointer = objectHandle + -8;
+    AdjustedPointer = ObjectHandle + -8;
   }
-  if (*(int64_t *)(adjustedPointer + 0x10) != 0) {
+  if (*(int64_t *)(AdjustedPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    ExecuteSystemExitOperation(*(int64_t *)(adjustedPointer + 0x10), 1);
+    ExecuteSystemExitOperation(*(int64_t *)(AdjustedPointer + 0x10), 1);
   }
   return 0;
 }
