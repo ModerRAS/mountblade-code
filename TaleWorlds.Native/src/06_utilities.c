@@ -3497,17 +3497,17 @@ uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
 
 {
   int64_t *processResultPointer;
-  int64_t *resourceTablePointer;
-  int64_t *resourceIndexPointer;
-  int validationStatusCode;
-  uint processResult;
-  uint64_t operationResult;
-  int64_t *resourceDataPointer;
-  int64_t *contextDataPointer;
-  int64_t *cleanupDataPointer;
-  int64_t *nullDataPointer;
-  int64_t memoryContextHandle;
-  int64_t validationContext;
+  int64_t *ResourceTablePointer;
+  int64_t *ResourceIndexPointer;
+  int ValidationStatusCode;
+  uint ProcessResult;
+  uint64_t OperationResult;
+  int64_t *ResourceDataPointer;
+  int64_t *ContextDataPointer;
+  int64_t *CleanupDataPointer;
+  int64_t *NullDataPointer;
+  int64_t MemoryContextHandle;
+  int64_t ValidationContext;
   
   operationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x18),&validationContext);
   validationStatusCode = (int)operationResult;

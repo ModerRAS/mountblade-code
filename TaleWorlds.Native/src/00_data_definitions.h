@@ -13202,33 +13202,33 @@ uint64_t SystemAudioCreateChannel(uint param_1)
  * @note 此函数处理PE文件格式的节头映射
  * @note 地址计算基于0x180000000的基地址偏移
  */
-ulonglong CalculateMemoryAddressMapping(longlong param_1)
+ulonglong CalculateMemoryAddressMapping(longlong VirtualAddress)
 {
-  ulonglong MemoryAddress;
-  uint7 BufferSize;
-  IMAGE_SECTION_HEADER *pIVar3;
-  MemoryAddress = 0;
-  for (pIVar3 = &IMAGE_SECTION_HEADER_1800002a0; pIVar3 != (IMAGE_SECTION_HEADER *)&UNK_1800003e0;
-      pIVar3 = pIVar3 + 1) {
-    if (((ulonglong)(uint)pIVar3->VirtualAddress <= param_1 - 0x180000000U) &&
-       (MemoryAddress = (ulonglong)((pIVar3->Misc).PhysicalAddress + pIVar3->VirtualAddress),
-       param_1 - 0x180000000U < MemoryAddress)) goto LAB_1808fc75b;
+  ulonglong MappedMemoryAddress;
+  uint7 SectionBufferSize;
+  IMAGE_SECTION_HEADER *SectionHeaderIterator;
+  MappedMemoryAddress = 0;
+  for (SectionHeaderIterator = &IMAGE_SECTION_HEADER_1800002a0; SectionHeaderIterator != (IMAGE_SECTION_HEADER *)&UNK_1800003e0;
+      SectionHeaderIterator = SectionHeaderIterator + 1) {
+    if (((ulonglong)(uint)SectionHeaderIterator->VirtualAddress <= VirtualAddress - 0x180000000U) &&
+       (MappedMemoryAddress = (ulonglong)((SectionHeaderIterator->Misc).PhysicalAddress + SectionHeaderIterator->VirtualAddress),
+       VirtualAddress - 0x180000000U < MappedMemoryAddress)) goto LAB_1808fc75b;
   }
-  pIVar3 = (IMAGE_SECTION_HEADER *)0x0;
+  SectionHeaderIterator = (IMAGE_SECTION_HEADER *)0x0;
 LAB_1808fc75b:
-  if (pIVar3 == (IMAGE_SECTION_HEADER *)0x0) {
-    MemoryAddress = MemoryAddress & 0xffffffffffffff00;
+  if (SectionHeaderIterator == (IMAGE_SECTION_HEADER *)0x0) {
+    MappedMemoryAddress = MappedMemoryAddress & 0xffffffffffffff00;
   }
   else {
-    BufferSize = (uint7)(MemoryAddress >> 8);
-    if ((int)pIVar3->Characteristics < 0) {
-      MemoryAddress = (ulonglong)BufferSize << 8;
+    SectionBufferSize = (uint7)(MappedMemoryAddress >> 8);
+    if ((int)SectionHeaderIterator->Characteristics < 0) {
+      MappedMemoryAddress = (ulonglong)SectionBufferSize << 8;
     }
     else {
-      MemoryAddress = CONCAT71(BufferSize,1);
+      MappedMemoryAddress = CONCAT71(SectionBufferSize,1);
     }
   }
-  return MemoryAddress;
+  return MappedMemoryAddress;
 }
     DAT_180c91d50 = '\0';
   }
@@ -13318,7 +13318,7 @@ LAB_1808fc75b:
  * @param configData 配置数据指针，包含字符串处理规则
  * @return 处理成功返回0，失败返回-1
  */
-int ProcessSystemStringData(void* targetBuffer, int param1, int param2, void* sourceBuffer, void* configData);
+int ProcessSystemStringData(void* targetBuffer, int bufferSize, int stringLength, void* sourceBuffer, void* configData);
 
 /**
  * 初始化系统缓冲区
