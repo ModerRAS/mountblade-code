@@ -186,7 +186,7 @@ int InitializeConditionMutexD(undefined8 threadId,undefined8 syncPtr,undefined8 
   conditionMutexDFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91288,2,mutexType,mutexAttr,conditionMutexDFlags);
-  g_conditionMutexD_Status = 0;
+  GlobalConditionMutexDStatus = 0;
   result = RegisterSystemCallback(InitializeConditionMutexD_Callback);
   return (result != 0) - 1;
 }
