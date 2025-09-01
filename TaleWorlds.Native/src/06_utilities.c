@@ -1765,7 +1765,7 @@ void ConfigureMemoryRecovery;
 undefined SystemDataPointer;
 undefined SystemMemoryConfigDataTemplate;
 undefined SystemMemoryConfigDataTable;
-undefined DAT_180bfaf08;
+undefined SystemMemoryConfigDataCache;
 
  void SetupMemoryAuditing;
 /**
@@ -86026,7 +86026,7 @@ void InitializeSystemDataStructureCG(void)
 void InitializeSystemDataStructureCG(void)
 
 {
-  _DAT_180bfaef0 = &SystemDataStructure;
+  SystemDataPointer = &SystemDataStructure;
   return;
 }
 
