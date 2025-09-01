@@ -3,10 +3,6 @@
 /**
  * @file 01_initialization.c
  * @brief 系统初始化模块
- * 
- * 该文件包含游戏引擎所有子系统的初始化函数和全局变量定义。
- * 负责管理系统初始化流程，包括核心系统、渲染、网络、音频、
- * 输入、物理和文件系统等各个模块的启动和配置。
  */
 
 // 全局函数指针 - 系统初始化相关
@@ -8379,7 +8375,7 @@ void InitializeSystemSearchManagerD(void)
 
 
 // 函数: void FUN_180036ff0(void)
-void FUN_180036ff0(void)
+void InitializeSystemResourceNode(void)
 
 {
   char systemNodeFlag;
@@ -8428,8 +8424,7 @@ void FUN_180036ff0(void)
 
 
 
-// 函数: void FUN_1800370f0(void)
-void FUN_1800370f0(void)
+void InitializeSystemMemoryNode(void)
 
 {
   char systemNodeFlag;
@@ -8478,8 +8473,8 @@ void FUN_1800370f0(void)
 
 
 
-// 函数: void FUN_1800371f0(void)
-void FUN_1800371f0(void)
+// 函数: void InitializeSystemDataTableNode(void)
+void InitializeSystemDataTableNode(void)
 
 {
   char systemNodeFlag;
@@ -8528,8 +8523,8 @@ void FUN_1800371f0(void)
 
 
 
-// 函数: void FUN_1800372f0(void)
-void FUN_1800372f0(void)
+// 函数: void InitializeSystemConfigurationNode(void)
+void InitializeSystemConfigurationNode(void)
 
 {
   char systemNodeFlag;
@@ -8578,8 +8573,8 @@ void FUN_1800372f0(void)
 
 
 
-// 函数: void FUN_1800373f0(void)
-void FUN_1800373f0(void)
+// 函数: void InitializeSystemEventNode(void)
+void InitializeSystemEventNode(void)
 
 {
   char systemNodeFlag;
@@ -8628,8 +8623,8 @@ void FUN_1800373f0(void)
 
 
 
-// 函数: void FUN_1800374f0(void)
-void FUN_1800374f0(void)
+// 函数: void InitializeSystemThreadNode(void)
+void InitializeSystemThreadNode(void)
 
 {
   char systemNodeFlag;
@@ -8680,8 +8675,8 @@ void FUN_1800374f0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800375f0(void)
-void FUN_1800375f0(void)
+// 函数: void InitializeSystemPerformanceNode(void)
+void InitializeSystemPerformanceNode(void)
 
 {
   undefined8 in_R9;
@@ -8702,8 +8697,8 @@ void FUN_1800375f0(void)
 
 
 
-// 函数: void FUN_180037680(void)
-void FUN_180037680(void)
+// 函数: void InitializeSystemSecurityNode(void)
+void InitializeSystemSecurityNode(void)
 
 {
   char systemNodeFlag;
@@ -8752,8 +8747,8 @@ void FUN_180037680(void)
 
 
 
-// 函数: void FUN_180037780(void)
-void FUN_180037780(void)
+// 函数: void InitializeSystemNetworkNode(void)
+void InitializeSystemNetworkNode(void)
 
 {
   char systemNodeFlag;
@@ -8802,8 +8797,8 @@ void FUN_180037780(void)
 
 
 
-// 函数: void FUN_180037880(void)
-void FUN_180037880(void)
+// 函数: void InitializeSystemAudioNode(void)
+void InitializeSystemAudioNode(void)
 
 {
   char systemNodeFlag;
@@ -8852,8 +8847,8 @@ void FUN_180037880(void)
 
 
 
-// 函数: void FUN_180037980(void)
-void FUN_180037980(void)
+// 函数: void InitializeSystemInputNode(void)
+void InitializeSystemInputNode(void)
 
 {
   char systemNodeFlag;
@@ -8902,8 +8897,8 @@ void FUN_180037980(void)
 
 
 
-// 函数: void FUN_180037a80(void)
-void FUN_180037a80(void)
+// 函数: void InitializeSystemPhysicsNode(void)
+void InitializeSystemPhysicsNode(void)
 
 {
   char systemNodeFlag;
@@ -8952,8 +8947,8 @@ void FUN_180037a80(void)
 
 
 
-// 函数: void FUN_180037b80(void)
-void FUN_180037b80(void)
+// 函数: void InitializeSystemFileSystemNode(void)
+void InitializeSystemFileSystemNode(void)
 
 {
   char systemNodeFlag;
@@ -9002,8 +8997,8 @@ void FUN_180037b80(void)
 
 
 
-// 函数: void FUN_180037c80(void)
-void FUN_180037c80(void)
+// 函数: void InitializeSystemDatabaseNode(void)
+void InitializeSystemDatabaseNode(void)
 
 {
   char systemNodeFlag;
