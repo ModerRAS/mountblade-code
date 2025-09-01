@@ -1643,7 +1643,6 @@ void InitializeSystemDataTable(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 初始化系统全局变量
@@ -1771,7 +1770,6 @@ int InitializeInputSystemResourcePool(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 初始化系统信号量
@@ -1926,7 +1924,6 @@ int InitializeSystemThreadSynchronization(void* threadPool, void* syncConfig, si
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -2737,7 +2734,6 @@ void InitializeSystemDataTableStructureI(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 初始化系统字符串处理全局变量
@@ -4508,7 +4504,6 @@ void InitializeSystemDebugManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemConfigurationManager(void)
@@ -4540,7 +4535,6 @@ void InitializeSystemStringProcessor(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 初始化系统数据管理器
@@ -5199,7 +5193,6 @@ void InitializeSystemMemoryNodeManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemStringConfigurationManager(void)
@@ -5629,7 +5622,6 @@ void InitializeSystemConfigurationManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -5660,7 +5652,6 @@ void InitializeSystemMessageProcessor(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 初始化系统调试管理器
@@ -5708,7 +5699,6 @@ void InitializeSystemLogManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -5739,7 +5729,6 @@ void InitializeSystemPerformanceMonitor(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -5770,7 +5759,6 @@ void InitializeSystemSecurityMonitor(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -5801,7 +5789,6 @@ void InitializeSystemResourceManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -8556,7 +8543,6 @@ void InitializeSystemPluginManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -8587,7 +8573,6 @@ void InitializeSystemConfigurationManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 初始化系统模块加载器
@@ -8629,7 +8614,6 @@ void InitializeSystemExtensionManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemLibraryManager(void)
@@ -9082,7 +9066,6 @@ void InitializeSystemThreadNode(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemPerformanceNode(void)
@@ -9692,7 +9675,6 @@ void InitializeSystemSearchConfigurationManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemConfiguration(void)
@@ -9724,7 +9706,6 @@ void InitializeSystemDebugInfoManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemMemoryAllocator(void)
@@ -9756,7 +9737,6 @@ void InitializeSystemLogManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemStringProcessorA(void)
@@ -9788,7 +9768,6 @@ void InitializeSystemStringProcessorA(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemStringProcessorB(void)
@@ -9820,7 +9799,6 @@ void InitializeSystemStringProcessorB(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemStringProcessorC(void)
@@ -9852,7 +9830,6 @@ void InitializeSystemStringProcessorC(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemStringProcessorA(void)
@@ -9876,7 +9853,6 @@ void InitializeSystemStringProcessorA(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemStringProcessorB(void)
@@ -9900,7 +9876,6 @@ void InitializeSystemStringProcessorB(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemStringProcessorC(void)
@@ -9924,7 +9899,6 @@ void InitializeSystemStringProcessorC(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemStringProcessorD(void)
@@ -11898,7 +11872,6 @@ void InitializeSystemDeviceNodeManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -11929,7 +11902,6 @@ void InitializeSystemStringProcessor(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 初始化系统服务管理器
@@ -12518,7 +12490,6 @@ void InitializeSystemStringProcessor(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemMemoryNodeManager(void)
@@ -12548,7 +12519,6 @@ void InitializeSystemMemoryNodeManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemDeviceNodeManager(void)
@@ -12977,7 +12947,6 @@ void InitializeSystemDeviceDataNodeManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 初始化系统全局数据表
@@ -13834,7 +13803,6 @@ void InitializeSystemEventManagerM(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemEventManagerN(void)
@@ -14448,7 +14416,6 @@ void InitializeSystemResourceManagerJ(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -14475,7 +14442,6 @@ void InitializeSystemResourceManagerK(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -14502,7 +14468,6 @@ void InitializeSystemResourceManagerL(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -14529,7 +14494,6 @@ void InitializeSystemResourceManagerM(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -14556,7 +14520,6 @@ void InitializeSystemResourceManagerN(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int InitializeSystemModuleF(void)
 
@@ -16022,7 +15985,6 @@ void InitializeSystemSubcomponentH(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: int InitializeSystemSynchronizationMechanism(void)
 /**
@@ -16060,7 +16022,6 @@ int InitializeSystemSynchronizationMechanism(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: int InitializeSystemPerformanceMonitor(void)
 /**
@@ -16287,7 +16248,6 @@ void InitializeSystemSubcomponentL(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemSubcomponentM(void)
@@ -17521,7 +17481,6 @@ void SystemResourceTrackerInitializer(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: 系统性能监控器初始化器
@@ -17551,7 +17510,6 @@ void SystemPerformanceMonitorInitializer(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: 系统安全管理器初始化器
@@ -17638,7 +17596,6 @@ int InitializeSystemSemaphore(void* semaphoreParameter1,void* semaphoreParameter
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 初始化系统线程池
@@ -17665,7 +17622,6 @@ int InitializeSystemThreadPool(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: 系统网络管理器初始化器
@@ -17695,7 +17651,6 @@ void SystemNetworkManagerInitializer(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * 初始化线程本地存储的回调函数表
@@ -17741,7 +17696,6 @@ LAB_1808fd14a:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -17768,7 +17722,6 @@ void InitializeEngineModuleA(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -17795,7 +17748,6 @@ void InitializeEngineModuleB(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * 初始化引擎核心系统
@@ -17820,7 +17772,6 @@ int InitializeEngineCoreSystem(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * 初始化系统配置和权限设置
@@ -17866,7 +17817,6 @@ int InitializeEngineModuleB(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -17889,7 +17839,6 @@ void SetSystemPointerA(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -17917,7 +17866,6 @@ void SetSystemPointerB(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -17939,7 +17887,6 @@ void SetRenderSystemPointer(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -17961,7 +17908,6 @@ void SetAudioSystemPointer(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -17983,7 +17929,6 @@ void SetInputSystemPointer(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18005,7 +17950,6 @@ void SetPhysicsSystemPointer(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18059,7 +18003,6 @@ int InitializeVirtualFunctionTableArray(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18081,7 +18024,6 @@ void SetGameLogicSystemPointer(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18319,7 +18261,6 @@ void SetDefaultSystemPointer(void* *systemPointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18477,7 +18418,6 @@ LAB_180044db8:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18675,7 +18615,6 @@ void InitializeThreadManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * 最终系统初始化函数
@@ -19197,7 +19136,6 @@ void ResetSystemBuffer(uint8_t *bufferPointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ConfigureSystemParameters(long long SystemResourcePointer,long long param_2,long long param_3)
@@ -19395,7 +19333,6 @@ long long ProcessSystemNodeConfiguration(uint32_t* nodeConfigPointer, uint32_t* 
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -19588,7 +19525,6 @@ void* * InitializeSystemMemoryAllocatorReference(void* *memoryAllocatorPointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ConfigureSystemBuffers(long long SystemResourcePointer,long long param_2,long long param_3)
@@ -19815,7 +19751,6 @@ void ReleaseMemoryBlockReference(ulong long *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * 系统初始化管理器 - 核心初始化函数
@@ -20062,7 +19997,6 @@ LAB_180046c5e:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -20117,7 +20051,6 @@ void InitializeSystemController(long long *SystemResourcePointer,void* *SystemCo
 
 
 // WARNING: Removing unreachable block (ram,0x0001800472a0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -20461,7 +20394,6 @@ void SetSystemMemoryAllocatorPointer(void* *allocatorPointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -20558,7 +20490,6 @@ LAB_180047f93:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -20981,7 +20912,6 @@ void ProcessSystemExceptionList(ulong long *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void CleanupSystemResource(long long SystemResourcePointer)
@@ -21273,7 +21203,6 @@ LAB_180048e74:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ProcessSystemDataTransfer(long long SystemResourcePointer,void* param_2,long long param_3,void* param_4,
@@ -21330,7 +21259,6 @@ LAB_180048f62:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* * CreateSystemResourcePointer(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
 
@@ -21369,7 +21297,6 @@ void* * CreateSystemResourcePointer(long long SystemResourcePointer,long long *p
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* * CreateSystemResourceTemplate(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
 
@@ -21590,7 +21517,6 @@ void LockSystemMutex(long long SystemResourcePointer,uint8_t param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ProcessSystemTimestampHandler(void* SystemResourcePointer,void* *param_2,long long *param_3)
@@ -21931,7 +21857,6 @@ void* * InitializeMemoryAllocatorStructure(void* *memoryAllocator)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemResource(long long SystemResourcePointer,long long param_2,long long param_3)
@@ -22168,7 +22093,6 @@ void* * InitializeSystemMemoryAllocatorReference(void* *memoryAllocatorPointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -22478,7 +22402,6 @@ void DestroySystemMutex(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统线程对象管理器
@@ -22619,7 +22542,6 @@ void InitializeSystemMutex(void* *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统线程创建器
@@ -22690,7 +22612,6 @@ InitializeDataBufferTemplates(void* *dataBufferRef,ulong long InitializationFlag
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 bool SystemNodeCheckStatus(void)
 
@@ -22754,7 +22675,6 @@ bool SystemNodeCheckStatus(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -22835,7 +22755,6 @@ void InitializeSystemThreadPoolManager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -22862,7 +22781,6 @@ void InitializeSystemConfigurationData(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -23051,7 +22969,6 @@ InitializeSystemPathBuffers(void* *pathBufferRef,void* reservedParam2,void* rese
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统资源初始化与验证函数
@@ -23147,7 +23064,6 @@ void* InitializeSystemResourceValidation(char SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 bool SystemThreadCheckStatus(void)
 
@@ -23167,7 +23083,6 @@ bool SystemThreadCheckStatus(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ConfigureAndInitializeSystemMemoryAllocator(void* *SystemResourcePointer)
@@ -23247,7 +23162,6 @@ void ConfigureAndInitializeSystemMemoryAllocator(void* *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 long long * InitializeGameController(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
@@ -23269,7 +23183,6 @@ long long * InitializeGameController(long long *SystemResourcePointer,void* para
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -23560,7 +23473,6 @@ void* * GetSystemDataBufferTemplateG(void* *SystemResourcePointer,ulong long par
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeGameSettings(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -23705,7 +23617,6 @@ void SystemInitializerB(long long systemContext,void* initParameter,void* initFl
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -23810,7 +23721,6 @@ void SystemMemoryOffsetHandler(long long memoryOffset)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeResourceHandler(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -24621,7 +24531,6 @@ InitializeSystemResourceBuffer(uint8_t *systemResourcePointer, void* reservedPar
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统资源复杂初始化器
@@ -24946,7 +24855,6 @@ void SystemMemoryTemplateCleanup(void* *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -25004,7 +24912,6 @@ void CalculateRenderQualitySettings(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -25201,7 +25108,6 @@ void SystemResourceCleanupManager(long long *SystemResourcePointer)
 // WARNING: Removing unreachable block (ram,0x00018004d35e)
 // WARNING: Removing unreachable block (ram,0x00018004d379)
 // WARNING: Removing unreachable block (ram,0x00018004d4a0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -25464,7 +25370,6 @@ LAB_18004e721:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 获取系统资源状态
@@ -25626,7 +25531,6 @@ uint32_t GetSystemResourceStatus(void)
 // WARNING: Removing unreachable block (ram,0x00018004ec88)
 // WARNING: Removing unreachable block (ram,0x00018004ec90)
 // WARNING: Removing unreachable block (ram,0x00018004eca3)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void SystemResourceInitializer(void* SystemResourcePointer,void* parameter2,void* parameter3,void* parameter4)
@@ -25715,7 +25619,6 @@ void SystemResourceInitializer(void* SystemResourcePointer,void* parameter2,void
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -26004,7 +25907,6 @@ void SystemMemoryCleanup(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -26165,7 +26067,6 @@ void SystemDataInitializer(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(void)
@@ -26543,7 +26444,6 @@ void InitializeSystemResourceManager(long long systemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统资源复制器
@@ -26640,7 +26540,6 @@ void* * SystemResourceCopier(void* *SystemResourcePointer,void* *param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void SystemResourceManager(long long SystemResourcePointer)
@@ -26911,7 +26810,6 @@ LAB_180051fc9:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void*
 /**
@@ -26935,7 +26833,6 @@ void* SystemStatusFlagProcessor(void* SystemResourcePointer,void* param_2,void* 
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void SystemDataProcessor(long long SystemResourcePointer)
@@ -26977,7 +26874,6 @@ void SystemDataProcessor(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void SystemMemoryAllocator(long long SystemResourcePointer,long long parameter2,void* parameter3,void* parameter4)
@@ -27073,7 +26969,6 @@ void SystemMemoryAllocator(long long SystemResourcePointer,long long parameter2,
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统资源分配器
@@ -27146,7 +27041,6 @@ void* SystemResourceAllocator(void* SystemResourcePointer,void* param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void SystemFloatingPointProcessor(long long SystemResourcePointer,float parameter2,void* parameter3,void* parameter4)
@@ -27346,7 +27240,6 @@ LAB_180052de5:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -27489,7 +27382,6 @@ void ProcessSystemResourceAndRenderManagement(long long *SystemResourcePointer,v
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemResource(void* SystemResourcePointer,long long param_2)
@@ -27717,7 +27609,6 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
 // WARNING: Removing unreachable block (ram,0x0001800540b7)
 // WARNING: Removing unreachable block (ram,0x0001800540d9)
 // WARNING: Removing unreachable block (ram,0x0001800540e1)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -27868,7 +27759,6 @@ LAB_18005364c:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统资源节点管理器
@@ -28010,7 +27900,6 @@ LAB_18005419d:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ConfigureSystemResource(long long *SystemResourcePointer,long long param_2)
@@ -28240,7 +28129,6 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long para
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void SetupSystemMemory(void)
@@ -28647,7 +28535,6 @@ LAB_180054ec9:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemTables(void)
@@ -28950,7 +28837,6 @@ void SystemResourceCleaner(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180055f70(void* SystemResourcePointer,uint32_t param_2)
@@ -28982,7 +28868,6 @@ void HandleSystemEmergencyExit(void* exitContext,uint32_t exitCode)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -29204,7 +29089,6 @@ LAB_180056228:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -29303,7 +29187,6 @@ void ManageSystemResourceData(long long SystemResourcePointer,void* param_2,void
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -29406,7 +29289,6 @@ void* ReleaseSystemResourceHandler(void* SystemResourcePointer,ulong long param_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -29553,7 +29435,6 @@ void ProcessSystemConfigurationParameters(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -29609,7 +29490,6 @@ void ManageSystemResourceBuffer(void* SystemResourcePointer,void* param_2,void* 
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -30066,7 +29946,6 @@ void ProcessSystemDataTable(long long *SystemResourcePointer,void* param_2,void*
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -30202,7 +30081,6 @@ void SystemNodeInitializer(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long param_2)
@@ -30268,7 +30146,6 @@ void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void AllocateSystemMemoryBlock(long long SystemResourcePointer,ulong long param_2,void* param_3,long long param_4)
@@ -31117,7 +30994,6 @@ void ReleaseSystemResources(long long *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void DestroyRenderingSystem(void)
@@ -31256,7 +31132,6 @@ void FUN_180057980(long long SystemResourcePointer,long long param_2,void* param
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 long long * FUN_180057b00(long long SystemResourcePointer,long long *param_2,void* param_3)
 
@@ -31339,7 +31214,6 @@ void FUN_180057bf0(void* *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* * FUN_180057cb0(void* *SystemResourcePointer,uint param_2,void* param_3,void* param_4)
 
@@ -31761,7 +31635,6 @@ void ReleaseMemoryRegion(void* SystemResourcePointer,void* *param_2,void* param_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800584e0(void* *SystemResourcePointer,long long param_2)
@@ -31968,7 +31841,6 @@ void FUN_180058830(void* SystemResourcePointer,long long param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800588c0(long long *SystemResourcePointer,long long param_2,long long param_3)
@@ -32038,7 +31910,6 @@ void FUN_1800588c0(long long *SystemResourcePointer,long long param_2,long long 
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800588fc(long long SystemResourcePointer)
@@ -32199,7 +32070,6 @@ void FUN_1800589a3(long long SystemResourcePointer,void* param_2,long long param
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180058a20(long long *SystemResourcePointer,long long param_2,long long param_3,long long param_4)
@@ -32266,7 +32136,6 @@ void FUN_180058a20(long long *SystemResourcePointer,long long param_2,long long 
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180058a31(long long *SystemResourcePointer,long long param_2,long long param_3,long long param_4)
@@ -32330,7 +32199,6 @@ void FUN_180058a31(long long *SystemResourcePointer,long long param_2,long long 
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180058b3e(long long SystemResourcePointer,long long param_2)
@@ -32609,7 +32477,6 @@ void FUN_180058f00(void* SystemResourcePointer,void* *param_2)
 // WARNING: Removing unreachable block (ram,0x00018017741e)
 // WARNING: Removing unreachable block (ram,0x000180177417)
 // WARNING: Removing unreachable block (ram,0x000180177420)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180059000(long long *SystemResourcePointer)
@@ -33562,7 +33429,6 @@ void* * FUN_180059780(void* *SystemResourcePointer,void* *param_2,void* *param_3
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180059820(long long *SystemResourcePointer,void* param_2)
@@ -33701,7 +33567,6 @@ void FUN_180059a04(uint8_t *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180059a20(long long SystemResourcePointer,long long param_2,long long param_3)
@@ -33781,7 +33646,6 @@ void FUN_180059ba0(void* *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180059bc0(void)
@@ -34407,7 +34271,6 @@ void* FUN_18005a1b0(void* SystemResourcePointer,ulong long param_2,void* param_3
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18005a200(void* *SystemResourcePointer)
@@ -34511,7 +34374,6 @@ void* * FUN_18005a420(void* *SystemResourcePointer,ulong long param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18005a500(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -34672,7 +34534,6 @@ void FUN_18005ab50(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18005ac00(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -34941,7 +34802,6 @@ void FUN_18005b960(void* *SystemResourcePointer,void* param_2,void* param_3,void
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18005ba80(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -35026,7 +34886,6 @@ long long FUN_18005c090(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void*
 FUN_18005c1c0(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -35222,7 +35081,6 @@ FUN_18005c590(void* *SystemResourcePointer,void* *param_2,void* param_3,void* pa
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -35315,7 +35173,6 @@ void ProcessSystemResourceData(long long *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18005c830(uint *SystemResourcePointer)
@@ -35368,7 +35225,6 @@ void* ProcessMemoryManagerOperation(long long SystemResourcePointer,void* param_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18005c930(void* *SystemResourcePointer,void* param_2,int *param_3)
@@ -35508,7 +35364,6 @@ long long FUN_18005cb60(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18005cc00(void* **SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -35699,7 +35554,6 @@ uint32_t FUN_18005cf50(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_18005cfc0(void)
 
@@ -35747,7 +35601,6 @@ int FUN_18005cfc0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18005d0e0(ulong long SystemResourcePointer,long long param_2)
@@ -36355,7 +36208,6 @@ void FUN_18005d760(void* *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemLogger(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -36613,7 +36465,6 @@ void FUN_18005db99(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18005dbb0(void)
@@ -36803,7 +36654,6 @@ void FUN_18005dbb0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18005e110(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
@@ -36871,7 +36721,6 @@ void FUN_18005e1d0(long long SystemResourcePointer,long long *param_2,void* para
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18005e250(long long SystemResourcePointer,void* param_2,int param_3)
@@ -37023,7 +36872,6 @@ void FUN_18005e450(long long SystemResourcePointer,long long *param_2,void* para
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* * FUN_18005e4d0(long long SystemResourcePointer,void* param_2)
 
@@ -37156,7 +37004,6 @@ void FUN_18005e5ff(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18005e630(long long SystemResourcePointer)
@@ -37320,7 +37167,6 @@ long long FUN_18005e890(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* * FUN_18005e950(void* *SystemResourcePointer)
 
@@ -37399,7 +37245,6 @@ void* * FUN_18005e950(void* *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemHandle(ulong long *SystemResourcePointer,void* *param_2)
@@ -37450,7 +37295,6 @@ LAB_18005eb20:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 long long FUN_18005eb80(long long SystemResourcePointer)
 
@@ -37587,7 +37431,6 @@ long long FUN_18005eb80(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 long long FUN_18005ec11(void)
 
@@ -37725,7 +37568,6 @@ void* FUN_18005ecfc(void* SystemResourcePointer,void* param_2,long long *param_3
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 long long FUN_18005ed54(void)
 
@@ -37822,7 +37664,6 @@ long long FUN_18005ed54(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* * FUN_18005ee30(long long *SystemResourcePointer,char param_2,uint8_t *param_3)
 
@@ -38076,7 +37917,6 @@ LAB_18005f30a:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* FUN_18005f340(long long SystemResourcePointer,long long param_2)
 
@@ -38128,7 +37968,6 @@ void* FUN_18005f340(long long SystemResourcePointer,long long param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* * FUN_18005f430(long long SystemResourcePointer)
 
@@ -38259,7 +38098,6 @@ void FUN_18005f54c(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulong long FUN_18005f570(long long SystemResourcePointer,long long *param_2,long long param_3)
 
@@ -38556,7 +38394,6 @@ LAB_18005f92b:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulong long FUN_18005fb30(long long SystemResourcePointer,long long *param_2,long long param_3)
 
@@ -38760,7 +38597,6 @@ joined_r0x00018005fdcd:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 long long FUN_18005ff50(long long SystemResourcePointer)
 
@@ -39243,7 +39079,6 @@ int FUN_180060680(void* SystemResourcePointer,void* param_2,void* param_3,void* 
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800606e0(long long *SystemResourcePointer)
@@ -39755,7 +39590,6 @@ bool FUN_180060f50(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180060fc0(long long *SystemResourcePointer,long long *param_2)
@@ -39841,7 +39675,6 @@ void FUN_180060fc0(long long *SystemResourcePointer,long long *param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800611a0(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
@@ -39950,7 +39783,6 @@ FUN_180061300(void* *SystemResourcePointer,ulong long param_2,void* param_3,void
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void StartInputSystem(void* SystemResourcePointer,long long param_2)
@@ -40011,7 +39843,6 @@ void StartInputSystem(void* SystemResourcePointer,long long param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180061be0(long long *SystemResourcePointer)
@@ -40091,7 +39922,6 @@ void FUN_180061be0(long long *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180061db0(long long *SystemResourcePointer)
@@ -40245,7 +40075,6 @@ void SystemManagerSetFlags(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemManager(long long *SystemResourcePointer)
@@ -40288,7 +40117,6 @@ void InitializeSystemManager(long long *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ConfigureInputSystem(void)
@@ -40316,7 +40144,6 @@ void ConfigureInputSystem(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180062920(int *SystemResourcePointer)
@@ -40419,7 +40246,6 @@ void FUN_180062920(int *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* FUN_180062ee0(void* SystemResourcePointer,uint32_t param_2)
 
@@ -40480,7 +40306,6 @@ void* FUN_180062ee0(void* SystemResourcePointer,uint32_t param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180062fd0(long long SystemResourcePointer)
@@ -40817,7 +40642,6 @@ long long FUN_1800637f0(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180063820(void* SystemResourcePointer)
@@ -40841,7 +40665,6 @@ void FUN_180063820(void* SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180063b30(void* SystemResourcePointer,long long param_2)
@@ -41024,7 +40847,6 @@ LAB_180063de9:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180064010(void* SystemResourcePointer)
@@ -41183,7 +41005,6 @@ void FUN_180064400(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulong long FUN_1800649d0(void* SystemResourcePointer)
 
@@ -41303,7 +41124,6 @@ ulong long FUN_1800649d0(void* SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180064c00(long long *SystemResourcePointer,long long param_2,long long param_3)
@@ -41593,7 +41413,6 @@ LAB_180065009:
 
 // WARNING: Removing unreachable block (ram,0x0001800654e7)
 // WARNING: Removing unreachable block (ram,0x0001800654f0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180065160(void* SystemResourcePointer)
@@ -42132,7 +41951,6 @@ LAB_180065a3e:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180065d50(void)
@@ -42174,7 +41992,6 @@ void FUN_180065d50(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180065f00(void* SystemResourcePointer,long long param_2,void* param_3,void* param_4)
@@ -42263,7 +42080,6 @@ void FUN_180065f00(void* SystemResourcePointer,long long param_2,void* param_3,v
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180066140(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -42352,7 +42168,6 @@ void FUN_180066140(long long *SystemResourcePointer,void* param_2,void* param_3,
 
 // WARNING: Removing unreachable block (ram,0x0001800665ec)
 // WARNING: Removing unreachable block (ram,0x0001800665f5)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180066320(void* SystemResourcePointer,void* param_2,char param_3,char param_4,
@@ -42606,7 +42421,6 @@ LAB_180066971:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800669c0(void* SystemResourcePointer,void* param_2,char param_3,void* param_4,
@@ -42730,7 +42544,6 @@ void FUN_180066dd0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180066df0(long long *SystemResourcePointer,long long param_2,void* param_3,void* param_4)
@@ -43087,7 +42900,6 @@ void FUN_1800672b7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800672c0(long long SystemResourcePointer)
@@ -43182,7 +42994,6 @@ void FUN_1800672c0(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180067480(void* SystemResourcePointer,long long param_2)
@@ -43216,7 +43027,6 @@ void FUN_180067810(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180067840(long long *SystemResourcePointer)
@@ -43346,7 +43156,6 @@ void FUN_180067840(long long *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180067bc0(void* *SystemResourcePointer)
@@ -43393,7 +43202,6 @@ void FUN_180067f30(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180067f60(long long SystemResourcePointer,long long param_2)
@@ -43496,7 +43304,6 @@ void FUN_180067f60(long long SystemResourcePointer,long long param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* FUN_180068250(long long SystemResourcePointer,long long param_2,long long param_3)
 
@@ -43741,7 +43548,6 @@ void FUN_1800687d0(long long SystemResourcePointer,void* *param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 long long *
 FUN_180068860(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4,
@@ -44008,7 +43814,6 @@ void* FUN_180068ce0(long long SystemResourcePointer,void* *param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 long long FUN_180068ec0(long long *SystemResourcePointer,long long *param_2,int param_3,void* param_4)
 
@@ -44201,7 +44006,6 @@ void FUN_180069266(uint8_t *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180069280(long long SystemResourcePointer,long long param_2,long long param_3)
@@ -44462,7 +44266,6 @@ LAB_180069842:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* * FUN_180069920(long long *SystemResourcePointer)
 
@@ -44810,7 +44613,6 @@ void* FUN_180069fe0(void* SystemResourcePointer,ulong long param_2,void* param_3
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* FUN_18006a050(int SystemResourcePointer)
 
@@ -44845,7 +44647,6 @@ void* * FUN_18006a090(void* *SystemResourcePointer,ulong long param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18006a130(long long SystemResourcePointer)
@@ -44989,7 +44790,6 @@ void FUN_18006b220(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 long long FUN_18006b350(long long *SystemResourcePointer,long long *param_2,int param_3)
 
@@ -45087,7 +44887,6 @@ void FUN_18006b4c0(long long SystemResourcePointer,uint32_t param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18006b540(void* SystemResourcePointer,uint32_t param_2)
@@ -45209,7 +45008,6 @@ void FUN_18006b760(long long *SystemResourcePointer,void* param_2,void* param_3,
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18006b780(void)
@@ -45241,7 +45039,6 @@ void FUN_18006b8f0(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18006b940(void* *SystemResourcePointer)
@@ -45418,7 +45215,6 @@ void FUN_18006bd80(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void*
 FUN_18006bda0(long long SystemResourcePointer,long long param_2,long long *param_3,long long *param_4,
@@ -45533,7 +45329,6 @@ void ConfigureSystemBuffer(void* *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18006c070(long long SystemResourcePointer)
@@ -46033,7 +45828,6 @@ void FUN_18006cb90(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulong long FUN_18006cc50(long long *SystemResourcePointer,long long param_2)
 
@@ -46125,7 +45919,6 @@ LAB_18006ccef:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18006cc8d(void* SystemResourcePointer,void* param_2,long long param_3)
@@ -46345,7 +46138,6 @@ LAB_18006cfb1:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* * FUN_18006d0b0(long long *SystemResourcePointer)
 
@@ -46774,7 +46566,6 @@ void* FUN_18006d810(long long SystemResourcePointer,void* param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 long long FUN_18006d920(long long SystemResourcePointer)
 
@@ -47217,7 +47008,6 @@ long long FUN_18006e0b0(long long SystemResourcePointer,ulong long param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18006e140(void)
@@ -47801,7 +47591,6 @@ FUN_18006e870(uint32_t *SystemResourcePointer,void* param_2,void* param_3,void* 
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18006e990(void)
@@ -47864,7 +47653,6 @@ LAB_18006f48d:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18006eb30(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -47913,7 +47701,6 @@ void FUN_18006eb30(void* SystemResourcePointer,void* param_2,void* param_3,void*
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18006edf0(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -48242,7 +48029,6 @@ FUN_18006f590(void* *SystemResourcePointer,void* param_2,void* param_3,void* par
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
 
@@ -48353,7 +48139,6 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
 // WARNING: Removing unreachable block (ram,0x00018006fc66)
 // WARNING: Removing unreachable block (ram,0x00018006fc6b)
 // WARNING: Removing unreachable block (ram,0x00018006fe26)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulong long FUN_18006f940(void* SystemResourcePointer,void* param_2,char param_3)
 
@@ -48587,7 +48372,6 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* param_2,char param_3)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulong long FUN_18006ff80(void* SystemResourcePointer,void* param_2,char param_3)
 
@@ -48864,7 +48648,6 @@ LAB_180070230:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180070680(void* SystemResourcePointer,void* param_2)
@@ -48965,7 +48748,6 @@ void FUN_180070680(void* SystemResourcePointer,void* param_2)
 
 // WARNING: Removing unreachable block (ram,0x000180070cdc)
 // WARNING: Removing unreachable block (ram,0x000180070ce2)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180070930(void* SystemResourcePointer,long long param_2,uint32_t param_3,long long param_4,
@@ -49580,7 +49362,6 @@ LAB_1800715eb:
 // WARNING: Removing unreachable block (ram,0x000180071ad3)
 // WARNING: Removing unreachable block (ram,0x000180071a52)
 // WARNING: Removing unreachable block (ram,0x000180071c73)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180071940(void* SystemResourcePointer,long long param_2,uint32_t param_3,long long param_4)
@@ -49870,7 +49651,6 @@ LAB_180071eb0:
 // WARNING: Removing unreachable block (ram,0x0001800724fe)
 // WARNING: Removing unreachable block (ram,0x00018007246a)
 // WARNING: Removing unreachable block (ram,0x0001800726c4)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180072000(void* SystemResourcePointer,long long param_2,uint32_t param_3,long long param_4,
@@ -50463,7 +50243,6 @@ void FUN_180072e80(void* SystemResourcePointer,void* param_2,void* param_3,void*
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 bool FUN_180072f00(void* SystemResourcePointer,void* *param_2)
 
@@ -50754,7 +50533,6 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180073630(void* SystemResourcePointer,void* param_2)
@@ -50793,7 +50571,6 @@ void FUN_180073630(void* SystemResourcePointer,void* param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180073730(void* SystemResourcePointer,void* param_2)
@@ -50832,7 +50609,6 @@ void FUN_180073730(void* SystemResourcePointer,void* param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180073830(void* SystemResourcePointer,uint32_t param_2,void* param_3)
@@ -51745,7 +51521,6 @@ void ProcessSystemResourceOperationB(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long param_2)
@@ -51932,7 +51707,6 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800740a2(long long *SystemResourcePointer)
@@ -52113,7 +51887,6 @@ void FUN_1800740a2(long long *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800740f5(long long SystemResourcePointer)
@@ -52273,7 +52046,6 @@ void FUN_1800740f5(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800742ea(long long SystemResourcePointer)
@@ -52355,7 +52127,6 @@ void FUN_1800742ea(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -52413,7 +52184,6 @@ void InitializeSystemGlobalState(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -52512,7 +52282,6 @@ void ManageSystemResourceTimestamp(long long SystemResourcePointer, long long Ti
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统数据表创建和配置函数
@@ -52562,7 +52331,6 @@ void* * CreateAndConfigureSystemDataTable(void* SystemResourcePointer, long long
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800746c0(long long SystemResourcePointer)
@@ -52830,7 +52598,6 @@ void FUN_180074b30(long long *SystemResourcePointer,ulong long param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180074c20(void* *SystemResourcePointer,ulong long param_2)
@@ -53051,7 +52818,6 @@ FUN_180074fb0(void* SystemResourcePointer,void* *param_2,void* param_3,void* par
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* * FUN_180075030(void* *SystemResourcePointer,char param_2,char param_3)
 
@@ -54060,7 +53826,6 @@ void FUN_180075ff0(long long *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 long long * FUN_1800763c0(long long *SystemResourcePointer,long long *param_2)
 
@@ -54496,7 +54261,6 @@ void* FUN_180076b90(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
 
@@ -54686,7 +54450,6 @@ void FUN_180077020(long long *SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulong long FUN_180077040(long long SystemResourcePointer)
 
@@ -54744,7 +54507,6 @@ ulong long FUN_180077040(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180077150(long long *SystemResourcePointer)
@@ -54850,7 +54612,6 @@ LAB_18007738d:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* FUN_180077420(long long SystemResourcePointer,long long param_2)
 
@@ -55035,7 +54796,6 @@ void FUN_180077710(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulong long FUN_180077750(long long SystemResourcePointer,uint *param_2,float *param_3,long long param_4,
                        long long param_5)
@@ -55431,7 +55191,6 @@ LAB_180077879:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007799c(void)
@@ -55762,7 +55521,6 @@ void FUN_18007799c(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180077ad8(void)
@@ -56027,7 +55785,6 @@ void FUN_180077ad8(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180077c96(void)
@@ -56181,7 +55938,6 @@ void FUN_180077c96(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180077dc6(void)
@@ -56353,7 +56109,6 @@ void FUN_180077dc6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180077dec(void)
@@ -56687,7 +56442,6 @@ void FUN_180078143(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800781e0(long long SystemResourcePointer)
@@ -56790,7 +56544,6 @@ LAB_1800782e0:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800781f4(long long SystemResourcePointer)
@@ -56892,7 +56645,6 @@ LAB_1800782e0:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180078239(float SystemResourcePointer,float param_2,float param_3,float param_4)
@@ -56995,7 +56747,6 @@ LAB_1800782e0:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800782a8(long long SystemResourcePointer)
@@ -57088,7 +56839,6 @@ LAB_1800782e0:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800783b0(void)
@@ -57137,7 +56887,6 @@ void* * FUN_1800784e0(void* *SystemResourcePointer,ulong long param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180078550(void* *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -57219,7 +56968,6 @@ void FUN_180078550(void* *SystemResourcePointer,void* param_2,void* param_3,void
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800786e0(void* *SystemResourcePointer,long long param_2)
@@ -57878,7 +57626,6 @@ void FUN_1800791a0(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180079270(long long SystemResourcePointer,long long param_2)
@@ -58188,7 +57935,6 @@ void FUN_180079270(long long SystemResourcePointer,long long param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180079284(long long SystemResourcePointer)
@@ -58500,7 +58246,6 @@ void FUN_180079284(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800792ea(void)
@@ -58793,7 +58538,6 @@ void FUN_1800792ea(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,float *param_4)
@@ -59082,7 +58826,6 @@ void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,fl
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007940e(void)
@@ -59293,7 +59036,6 @@ void FUN_18007940e(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* * FUN_180079430(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
@@ -59413,7 +59155,6 @@ uint8_t FUN_1800795a4(void)
 
 
 // WARNING: Removing unreachable block (ram,0x000180079699)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 float * FUN_1800795b0(float *SystemResourcePointer)
 
@@ -59671,7 +59412,6 @@ LAB_180075f4f:
 // WARNING: Removing unreachable block (ram,0x0001800797c8)
 // WARNING: Removing unreachable block (ram,0x0001800797cd)
 // WARNING: Removing unreachable block (ram,0x0001800797dd)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_1800796b0(long long SystemResourcePointer)
@@ -60921,7 +60661,6 @@ uint8_t FUN_18007b1e0(long long SystemResourcePointer)
 // WARNING: Removing unreachable block (ram,0x00018007b857)
 // WARNING: Removing unreachable block (ram,0x00018007b868)
 // WARNING: Removing unreachable block (ram,0x00018007b879)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulong long FUN_18007b240(long long SystemResourcePointer,long long *param_2,byte param_3,char param_4)
 
@@ -61266,7 +61005,6 @@ void FUN_18007ba60(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007baa0(long long SystemResourcePointer)
@@ -61303,7 +61041,6 @@ void FUN_18007bb70(long long *SystemResourcePointer)
 
 // WARNING: Removing unreachable block (ram,0x00018007c17d)
 // WARNING: Removing unreachable block (ram,0x00018007c188)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -61913,7 +61650,6 @@ void FUN_18007c860(long long SystemResourcePointer,uint8_t param_2)
 
 
 // WARNING: Removing unreachable block (ram,0x00018007cad0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -62051,7 +61787,6 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param_3,void* param_4)
@@ -62851,7 +62586,6 @@ void FUN_18007df50(long long SystemResourcePointer,long long *param_2,char param
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007e080(long long SystemResourcePointer,ulong long param_2,long long *param_3,long long *param_4)
@@ -63087,7 +62821,6 @@ void FUN_18007e5b0(long long SystemResourcePointer,long long *param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007e880(long long SystemResourcePointer,char param_2,void* param_3)
@@ -63122,7 +62855,6 @@ void FUN_18007e880(long long SystemResourcePointer,char param_2,void* param_3)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007e930(long long SystemResourcePointer)
@@ -63166,7 +62898,6 @@ void FUN_18007e988(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007e990(long long SystemResourcePointer,int param_2)
@@ -63254,7 +62985,6 @@ LAB_18007eb55:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 code * FUN_18007eb80(long long SystemResourcePointer,char param_2)
 
@@ -63359,7 +63089,6 @@ void FUN_18007edd0(long long SystemResourcePointer,char param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007ee70(long long SystemResourcePointer)
@@ -63470,7 +63199,6 @@ void FUN_18007ee70(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007eea1(long long SystemResourcePointer,int param_2,int param_3)
@@ -63674,7 +63402,6 @@ void FUN_18007f0ca(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007f0e0(long long SystemResourcePointer,long long param_2,int param_3)
@@ -63751,7 +63478,6 @@ void FUN_18007f0e0(long long SystemResourcePointer,long long param_2,int param_3
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007f11f(void)
@@ -63981,7 +63707,6 @@ void* * FUN_18007f3b0(void* *SystemResourcePointer,ulong long param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007f4c0(uint8_t *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
@@ -64328,7 +64053,6 @@ uint8_t FUN_18007f8bb(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007f8f0(long long SystemResourcePointer)
@@ -64533,7 +64257,6 @@ void FUN_18007f8f0(long long SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007f90f(uint32_t SystemResourcePointer)
@@ -64738,7 +64461,6 @@ void FUN_18007f90f(uint32_t SystemResourcePointer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007f933(void* SystemResourcePointer,long long param_2)
@@ -64938,7 +64660,6 @@ void FUN_18007f933(void* SystemResourcePointer,long long param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007f976(void)
@@ -65121,7 +64842,6 @@ void FUN_18007f976(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007f983(void)
@@ -65305,7 +65025,6 @@ void FUN_18007f983(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007fb5f(void)
@@ -65531,7 +65250,6 @@ void FUN_18007fca8(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void SystemInitializationFunction(void* SystemResourcePointer,void* param_2,void* param_3)
@@ -65556,7 +65274,6 @@ void SystemInitializationFunction(void* SystemResourcePointer,void* param_2,void
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FUN_18007fd60(void* SystemResourcePointer,long long param_2,void* param_3,long long param_4)
@@ -65596,7 +65313,6 @@ void FUN_18007fd60(void* SystemResourcePointer,long long param_2,void* param_3,l
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**

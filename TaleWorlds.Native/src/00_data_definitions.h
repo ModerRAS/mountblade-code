@@ -2306,7 +2306,7 @@ void InitializeNativeSDLL(uint64_t initFlags)
 }
   DAT_180bf0102 = 0;
   uVar5 = AllocateSystemMemory(_DAT_180c8ed18,0x7b8,8,3);
-  _DAT_180c82868 = InitializeMemoryBlock(uVar5);
+  MemoryManagerDataAddress = InitializeMemoryBlock(uVar5);
   InitializeStackBuffer(&puStack_98,param_1);
   uVar3 = ValidateStackData(&puStack_98,&SystemStackValidationTemplate);
   MemoryAddress4 = (ulonglong)(int)uVar3;
@@ -2341,7 +2341,7 @@ LAB_1800451ca:
       pMemoryAddress3 = puStack_70;
     }
     uVar4 = atoi(pMemoryAddress3);
-    *(uint32_t *)(_DAT_180c82868 + 0x7b4) = uVar4;
+    *(uint32_t *)(MemoryManagerDataAddress + 0x7b4) = uVar4;
     puStack_78 = &UNK_180a3c3e0;
     if (puStack_70 != (void *)0x0) {
       CleanupSystemResources();
@@ -2369,7 +2369,7 @@ LAB_1800451ca:
   plVar6[0x1c] = param_2;
   plStack_48 = plVar6;
   (**(code **)(*plVar6 + 0x28))(plVar6);
-  lVar7 = _DAT_180c82868;
+  lVar7 = MemoryManagerDataAddress;
   pplStackX_18 = &plStackX_10;
   plStackX_10 = plVar6;
   (**(code **)(*plVar6 + 0x28))(plVar6);
@@ -2925,7 +2925,7 @@ LAB_18004dda1:
                       iVar6 = strcmp(pMemoryAddress1);
                       if (iVar6 == 0) {
                         cStack_338 = '\x01';
-                        *(uint8_t *)(_DAT_180c8a9a0 + 0x22) = 1;
+                        *(uint8_t *)(SystemControlDataAddress + 0x22) = 1;
                         goto LAB_18004d527;
                       }
 LAB_18004e25f:
@@ -2944,7 +2944,7 @@ LAB_18004d511:
                       if (uVar8 == 0x1a) {
                         iVar6 = strcmp(pMemoryAddress1);
                         if (iVar6 == 0) {
-                          *(uint8_t *)(_DAT_180c8a9a0 + 0x21) = 1;
+                          *(uint8_t *)(SystemControlDataAddress + 0x21) = 1;
                           goto LAB_18004d527;
                         }
                         goto LAB_18004e25f;
@@ -2969,7 +2969,7 @@ LAB_18004d511:
                       iVar6 = strcmp(pMemoryAddress1);
                       bVar31 = iVar6 == 0;
                     }
-                    lVar24 = _DAT_180c8a9a0;
+                    lVar24 = SystemControlDataAddress;
                     if (bVar31) {
                       InitializeSystemBuffer(&puStack_330,pMemoryAddress7);
                       SystemBufferSetup(&puStack_330);
@@ -3005,8 +3005,8 @@ LAB_18004e2b6:
                       }
                       SystemBufferCleanup(&puStack_330);
                       uVar8 = uStack_320;
-                      lVar24 = _DAT_180c8a9a0;
-                      *(uint8_t *)(_DAT_180c8a9a0 + 0x48) = 1;
+                      lVar24 = SystemControlDataAddress;
+                      *(uint8_t *)(SystemControlDataAddress + 0x48) = 1;
                       BufferSize1 = (ulonglong)uStack_320;
                       if (pcStack_328 != (char *)0x0) {
                         SystemBufferCopy(lVar24 + 0x50,BufferSize1);
@@ -3109,7 +3109,7 @@ LAB_18004e56d:
                     else {
                       cStack_338 = '\0';
                       if (pMemoryAddress1 != (uint8_t *)0x0) {
-                        SystemBufferCopy(_DAT_180c8a9a0 + 0x28,pMemoryAddress4);
+                        SystemBufferCopy(SystemControlDataAddress + 0x28,pMemoryAddress4);
                       }
                       if (uVar8 != 0) {
                         memcpy(*(uint64_t *)(lVar24 + 0x30),pMemoryAddress1,pMemoryAddress4);
@@ -3311,24 +3311,24 @@ LAB_18004e062:
       fVar14 = 0.033333335;
     }
     ProcessInputEvent(lVar6,fVar14);
-    uVar5 = _DAT_180c82868;
-    if ((_DAT_180c8a9c0 != 0) &&
-       (pModuleInitializationResult = *(longlong **)(_DAT_180c8a9c0 + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
+    uVar5 = MemoryManagerDataAddress;
+    if ((NetworkModuleDataAddress != 0) &&
+       (pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
       pplStackX_8 = &plStackX_10;
       plStackX_10 = pModuleInitializationResult;
       (**(code **)(*pModuleInitializationResult + 0x28))();
       ProcessNetworkPacket(uVar5,&plStackX_10);
     }
-    uVar5 = _DAT_180c82868;
-    if (*(char *)(_DAT_180c8a9a0 + 0xa0) == '\0') {
-      if ((_DAT_180c8a9c0 != 0) &&
-         (pModuleInitializationResult = *(longlong **)(_DAT_180c8a9c0 + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
+    uVar5 = MemoryManagerDataAddress;
+    if (*(char *)(SystemControlDataAddress + 0xa0) == '\0') {
+      if ((NetworkModuleDataAddress != 0) &&
+         (pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
         pplStackX_8 = &plStackX_18;
         plStackX_18 = pModuleInitializationResult;
         (**(code **)(*pModuleInitializationResult + 0x28))();
         ProcessNetworkConnection(uVar5,&plStackX_18,0);
-        pModuleInitializationResult = *(longlong **)(_DAT_180c8a9c0 + 0x228);
-        *(uint64_t *)(_DAT_180c8a9c0 + 0x228) = 0;
+        pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228);
+        *(uint64_t *)(NetworkModuleDataAddress + 0x228) = 0;
         if (pModuleInitializationResult != (longlong *)0x0) {
           (**(code **)(*pModuleInitializationResult + 0x38))();
         }
@@ -3420,24 +3420,24 @@ LAB_18004e062:
       fVar13 = 0.033333335;
     }
     ProcessInputEvent(param_1,fVar13);
-    uVar5 = _DAT_180c82868;
-    if ((_DAT_180c8a9c0 != 0) &&
-       (pModuleInitializationResult = *(longlong **)(_DAT_180c8a9c0 + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
+    uVar5 = MemoryManagerDataAddress;
+    if ((NetworkModuleDataAddress != 0) &&
+       (pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
       pplStackX_8 = &plStackX_10;
       plStackX_10 = pModuleInitializationResult;
       (**(code **)(*pModuleInitializationResult + 0x28))();
       ProcessNetworkPacket(uVar5,&plStackX_10);
     }
-    uVar5 = _DAT_180c82868;
-    if (*(char *)(_DAT_180c8a9a0 + 0xa0) == '\0') {
-      if ((_DAT_180c8a9c0 != 0) &&
-         (pModuleInitializationResult = *(longlong **)(_DAT_180c8a9c0 + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
+    uVar5 = MemoryManagerDataAddress;
+    if (*(char *)(SystemControlDataAddress + 0xa0) == '\0') {
+      if ((NetworkModuleDataAddress != 0) &&
+         (pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
         pplStackX_8 = &plStackX_18;
         plStackX_18 = pModuleInitializationResult;
         (**(code **)(*pModuleInitializationResult + 0x28))();
         ProcessNetworkConnection(uVar5,&plStackX_18,0);
-        pModuleInitializationResult = *(longlong **)(_DAT_180c8a9c0 + 0x228);
-        *(uint64_t *)(_DAT_180c8a9c0 + 0x228) = 0;
+        pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228);
+        *(uint64_t *)(NetworkModuleDataAddress + 0x228) = 0;
         if (pModuleInitializationResult != (longlong *)0x0) {
           (**(code **)(*pModuleInitializationResult + 0x38))();
         }
@@ -3717,7 +3717,7 @@ LAB_18005122d:
   FinalizeNetworkSystem();
   if (((*(int *)(param_1 + 0x340) != 0) && (_DAT_180c8f008 != (longlong *)0x0)) &&
      (cVar2 = (**(code **)(*_DAT_180c8f008 + 0x28))(), cVar2 != '\0')) {
-    (**(code **)(_DAT_180c8a9c0 + 0x98))();
+    (**(code **)(NetworkModuleDataAddress + 0x98))();
   }
   (**(code **)(**(longlong **)(param_1 + 0x2b0) + 0x30))(*(longlong **)(param_1 + 0x2b0),param_2);
   if (((*(int *)(param_1 + 0x340) != 0) && (_DAT_180c8f008 != (longlong *)0x0)) &&
@@ -3745,7 +3745,7 @@ LAB_18005122d:
       } while ((ulonglong)(longlong)(int)MemoryAddress0 <
                (ulonglong)(*(longlong *)(_DAT_180c868d0 + 0x2038) - *pModuleInitializationResult4 >> 2));
     }
-    (**(code **)(_DAT_180c8a9c0 + 0xa8))();
+    (**(code **)(NetworkModuleDataAddress + 0xa8))();
   }
   (**(code **)(**(longlong **)(param_1 + 0x2b0) + 0x38))(*(longlong **)(param_1 + 0x2b0),param_2);
   (**(code **)(**(longlong **)(param_1 + 0x2b0) + 0x40))(*(longlong **)(param_1 + 0x2b0),param_2);
@@ -3846,7 +3846,7 @@ uint64_t * InitializeMemoryBuffer(uint64_t *param_1)
   CleanupSystemResources();
 }
   SystemNetworkConnected = 1;
-  InitializeNetworkSystem(_DAT_180c82868);
+  InitializeNetworkSystem(MemoryManagerDataAddress);
   InitializeRenderingSystem();
   InitializeAudioSystem(0);
   if (DAT_180c82853 != '\0') {
@@ -3989,8 +3989,8 @@ LAB_1800d37d8:
     MemoryAddress4 = InitializeSystemMemoryBuffer(ModuleInitializationResult6);
     *(uint64_t *)(_DAT_180c86870 + 0xb0) = MemoryAddress4;
   }
-  pcVar12 = _DAT_180c82868;
-  if (*_DAT_180c82868 != '\0') {
+  pcVar12 = MemoryManagerDataAddress;
+  if (*MemoryManagerDataAddress != '\0') {
     pMemoryAddress5 = (uint64_t *)*_DAT_180c86960;
     LoopCounter3 = _Mtx_lock(SystemMutexAddressA);
     if (LoopCounter3 != 0) {
@@ -4253,9 +4253,9 @@ LAB_1800d3d65:
       lVar3 = _DAT_180c8aa08;
       if ((0 < *(int *)(*(longlong *)(MemoryAddress9 + ModuleInitializationResult6) + 0x124ec)) &&
          ((*(uint *)(*(longlong *)(MemoryAddress9 + ModuleInitializationResult6) + 4) & 0x10000) != 0)) {
-        while (pcVar12 = _DAT_180c82868, ModuleInitializationResult6 = lStack_200, ModuleInitializationResult8 = lStack_1f8,
+        while (pcVar12 = MemoryManagerDataAddress, ModuleInitializationResult6 = lStack_200, ModuleInitializationResult8 = lStack_1f8,
               *(int *)(lVar3 + 0x30c) != 0) {
-          ModuleInitializationResult6 = SystemDataProcessor(_DAT_180c82868);
+          ModuleInitializationResult6 = SystemDataProcessor(MemoryManagerDataAddress);
           if (ModuleInitializationResult6 != 0) {
             pModuleInitializationResult7 = (longlong *)SystemDataProcessor(pcVar12);
             (**(code **)(*pModuleInitializationResult7 + 0x20))(pModuleInitializationResult7,0);
@@ -4273,7 +4273,7 @@ LAB_1800d3d65:
   if (pModuleInitializationResult7 != (longlong *)0x0) {
     (**(code **)(*pModuleInitializationResult7 + 0x28))(pModuleInitializationResult7);
   }
-  pcVar12 = _DAT_180c82868;
+  pcVar12 = MemoryManagerDataAddress;
   pplStack_220 = &plStack_228;
   plStack_228 = pModuleInitializationResult7;
   if (pModuleInitializationResult7 != (longlong *)0x0) {
@@ -4483,7 +4483,7 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
         ppplStack_80 = ppplStack_b8;
         (*(code *)(*ppplStack_b8)[5])(ppplStack_b8);
       }
-      uVar9 = _DAT_180c82868;
+      uVar9 = MemoryManagerDataAddress;
       ppplStack_80 = (longlong ***)0x0;
       if (*(int *)(_DAT_180c8a9c8 + 0x380) == 0) {
         pppplStackX_20 = &ppplStackX_8;
@@ -4507,7 +4507,7 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
       }
     }
     FUN_1801ab660(in_RCX,alStackX_10[0]);
-    uVar9 = _DAT_180c82868;
+    uVar9 = MemoryManagerDataAddress;
     if (((in_RCX[0x89] != (longlong ****)0x0) && (*(char *)(_DAT_180c86870 + 0xfa) != '\0')) &&
        ((*(longlong *)(alStackX_10[0] + 0x3580) != 0 &&
         (*(int *)(*(longlong *)(alStackX_10[0] + 0x3580) + 0x110) != 0)))) {
@@ -4529,9 +4529,9 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
         else {
           cVar6 = (*(code *)ppplVar3[0xd])();
         }
-        uVar9 = _DAT_180c82868;
+        uVar9 = MemoryManagerDataAddress;
         if (cVar6 != '\0') break;
-        ModuleInitializationResult0 = SystemDataProcessor(_DAT_180c82868);
+        ModuleInitializationResult0 = SystemDataProcessor(MemoryManagerDataAddress);
         if (ModuleInitializationResult0 != 0) {
           pModuleInitializationResult1 = (longlong *)SystemDataProcessor(uVar9);
           (**(code **)(*pModuleInitializationResult1 + 0x20))(pModuleInitializationResult1,0);
@@ -4598,7 +4598,7 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
   MemoryAddress2 = (ulonglong)*(uint *)(in_RCX + 0xb5b);
   LOCK();
   *(uint32_t *)(in_RCX + 0xb5b) = 0;
-  uVar9 = _DAT_180c82868;
+  uVar9 = MemoryManagerDataAddress;
   UNLOCK();
   if (ppplStack_b8 != (longlong ***)0x0) {
     ppplStackX_8 = (longlong ***)&ppplStack_b0;
@@ -5019,7 +5019,7 @@ LAB_1801d5c43:
   if (pppppppuStackX_18 != (uint64_t *******)0x0) {
     (*(code *)(*pppppppuStackX_18)[7])();
   }
-  MemoryAddress0 = _DAT_180c82868;
+  MemoryAddress0 = MemoryManagerDataAddress;
   pppppppuStackX_10 = &pppppppuStackX_18;
   pppppppuStackX_18 = *(uint64_t ********)(ModuleInitializationResult9 + 0x40);
   if (pppppppuStackX_18 != (uint64_t *******)0x0) {
@@ -6649,7 +6649,7 @@ FUN_18045d980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   if (pModuleInitializationResult != (longlong *)0x0) {
     (**(code **)(*pModuleInitializationResult + 0x28))(pModuleInitializationResult);
   }
-  uVar3 = _DAT_180c82868;
+  uVar3 = MemoryManagerDataAddress;
   pplStackX_20 = &plStackX_10;
   plStackX_10 = pModuleInitializationResult;
   if (pModuleInitializationResult != (longlong *)0x0) {

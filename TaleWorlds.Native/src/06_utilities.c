@@ -2085,7 +2085,7 @@ uint8_t NetworkQuaternaryConfigDataStream;
 uint8_t NetworkQuinaryConfigDataStream;
 uint8_t NetworkDataStreamTemplatePrimary;
 uint8_t SystemNetworkConfigDataPrimary;
-uint8_t SystemConfigDataTertiary;
+uint8_t SystemTertiaryConfigData;
 uint8_t SystemConfigDataQuaternary;
 uint8_t SystemNetworkConfigDataSecondary;
 uint8_t SystemNetworkConfigDataTertiary;
