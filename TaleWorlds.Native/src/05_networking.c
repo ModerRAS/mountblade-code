@@ -7104,7 +7104,22 @@ void ProcessNetworkPacketTransfer(ulonglong connectionContext,NetworkByte *packe
 
 
 // 函数: void FUN_1808479d0(longlong connectionContext,longlong *packetData,byte *dataSize)
-void FUN_1808479d0(longlong connectionContext,longlong *packetData,byte *dataSize)
+/**
+ * @brief 处理网络连接数据包传输
+ * 
+ * 该函数负责处理网络连接中的数据包传输，包括：
+ * - 连接上下文处理
+ * - 数据包处理和验证
+ * - 数据大小处理
+ * - 网络状态管理
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据大小指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionPacketTransfer(longlong connectionContext,longlong *packetData,byte *dataSize)
 
 {
   char cVar1;
@@ -7195,7 +7210,22 @@ LAB_180847c35:
 
 
 // 函数: void FUN_180847c60(longlong connectionContext,longlong *packetData,byte *dataSize)
-void FUN_180847c60(longlong connectionContext,longlong *packetData,byte *dataSize)
+/**
+ * @brief 处理网络连接数据流传输
+ * 
+ * 该函数负责处理网络连接中的数据流传输，包括：
+ * - 连接上下文处理
+ * - 数据流传输管理
+ * - 数据大小控制
+ * - 网络状态监控
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据大小指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionDataStreamTransfer(longlong connectionContext,longlong *packetData,byte *dataSize)
 
 {
   NetworkHandle *networkPointer1;
