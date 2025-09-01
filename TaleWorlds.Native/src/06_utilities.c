@@ -5387,41 +5387,41 @@ uint64_t ProcessFloatParameterAndUpdateSystem(int64_t parameterObject)
   uint8_t1 VectorData [16];
   int64_t StackOffset;
   
-  processResult = ValidateObjectContext(*(uint32_t *)(parameterObject + 0x10),&stackOffset);
-  if ((int)processResult != 0) {
-    return processResult;
+  ProcessResult = ValidateObjectContext(*(uint32_t *)(parameterObject + 0x10),&StackOffset);
+  if ((int)ProcessResult != 0) {
+    return ProcessResult;
   }
-  systemData = *(int64_t *)(stackOffset + 8);
-  if (systemData != 0) {
-    floatValue = *(float *)(parameterObject + 0x14);
-    for (dataPointer = *(uint8_t **)(systemData + 0x48);
-        (*(uint8_t **)(systemData + 0x48) <= dataPointer &&
-        (dataPointer < *(uint8_t **)(systemData + 0x48) + *(int *)(systemData + 0x50))); dataPointer = dataPointer + 1) {
-      processResult = ProcessDataElement(*dataPointer, floatValue, 0);
-      if ((int)processResult != 0) {
-        return processResult;
+  SystemData = *(int64_t *)(StackOffset + 8);
+  if (SystemData != 0) {
+    FloatValue = *(float *)(parameterObject + 0x14);
+    for (DataPointer = *(uint8_t **)(SystemData + 0x48);
+        (*(uint8_t **)(SystemData + 0x48) <= DataPointer &&
+        (DataPointer < *(uint8_t **)(SystemData + 0x48) + *(int *)(SystemData + 0x50))); DataPointer = DataPointer + 1) {
+      ProcessResult = ProcessDataElement(*DataPointer, FloatValue, 0);
+      if ((int)ProcessResult != 0) {
+        return ProcessResult;
       }
     }
-    if ((*(char *)(systemData + 0x34) == '\0') ||
-       ((*(uint *)(*(int64_t *)(systemData + 0x18) + 0x34) >> 1 & 1) == 0)) {
-      statusFlags2 = *(uint *)(*(int64_t *)(systemData + 0x18) + 0x34);
-      statusFlags1 = statusFlags2 >> 4;
-      if ((statusFlags1 & 1) == 0) {
-        if ((((statusFlags2 >> 3 & 1) != 0) && (intValue = (int)floatValue, intValue != -0x80000000)) &&
-           ((float)intValue != floatValue)) {
-          vectorData._4_4_ = floatValue;
-          vectorData._0_4_ = floatValue;
-          vectorData._8_8_ = 0;
-          statusFlags2 = movmskps(statusFlags1, vectorData);
-          floatValue = (float)(int)(intValue - (statusFlags2 & 1));
+    if ((*(char *)(SystemData + 0x34) == '\0') ||
+       ((*(uint *)(*(int64_t *)(SystemData + 0x18) + 0x34) >> 1 & 1) == 0)) {
+      SecondStatusFlags = *(uint *)(*(int64_t *)(SystemData + 0x18) + 0x34);
+      FirstStatusFlags = SecondStatusFlags >> 4;
+      if ((FirstStatusFlags & 1) == 0) {
+        if ((((SecondStatusFlags >> 3 & 1) != 0) && (IntegerValue = (int)FloatValue, IntegerValue != -0x80000000)) &&
+           ((float)IntegerValue != FloatValue)) {
+          VectorData._4_4_ = FloatValue;
+          VectorData._0_4_ = FloatValue;
+          VectorData._8_8_ = 0;
+          SecondStatusFlags = movmskps(FirstStatusFlags, VectorData);
+          FloatValue = (float)(int)(IntegerValue - (SecondStatusFlags & 1));
         }
-        floatValue = (float)CalculateFloatValue(*(int64_t *)(systemData + 0x18), floatValue);
-        if (((*(char *)(systemData + 0x34) == '\0') ||
-            ((*(uint *)(*(int64_t *)(systemData + 0x18) + 0x34) >> 1 & 1) == 0)) &&
-           (floatValue != *(float *)(systemData + 0x20))) {
-          *(float *)(systemData + 0x20) = floatValue;
-          UpdateSystemData(systemData);
-          *(uint8_t *)(systemData + 0x35) = 0;
+        FloatValue = (float)CalculateFloatValue(*(int64_t *)(SystemData + 0x18), FloatValue);
+        if (((*(char *)(SystemData + 0x34) == '\0') ||
+            ((*(uint *)(*(int64_t *)(SystemData + 0x18) + 0x34) >> 1 & 1) == 0)) &&
+           (FloatValue != *(float *)(SystemData + 0x20))) {
+          *(float *)(SystemData + 0x20) = FloatValue;
+          UpdateSystemData(SystemData);
+          *(uint8_t *)(SystemData + 0x35) = 0;
         }
       }
     }
