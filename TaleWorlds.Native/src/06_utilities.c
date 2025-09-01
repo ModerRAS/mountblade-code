@@ -18789,8 +18789,13 @@ ulonglong GetResourceHashB(void)
 
 
 
- b3d4(void)
-b3d4(void)
+ /**
+ * @brief 清理系统资源数据
+ * 
+ * 该函数负责清理系统资源数据，释放占用的内存
+ * 这是一个不会返回的函数，用于处理系统级别的资源清理
+ */
+void CleanupSystemResourceData(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -18800,8 +18805,13 @@ b3d4(void)
 
 
 
- b3e6(void)
-b3e6(void)
+ /**
+ * @brief 空操作函数
+ * 
+ * 该函数不执行任何操作，直接返回
+ * 用作占位符或空操作
+ */
+void PerformNoOperation(void)
 
 {
   return;
@@ -18810,8 +18820,16 @@ b3e6(void)
 
 
 
- b400(longlong objectContextParam,uint8_t8 validationContextParam)
-b400(longlong objectContextParam,uint8_t8 validationContextParam)
+ /**
+ * @brief 验证和处理对象上下文数据
+ * 
+ * 该函数负责验证对象上下文数据的完整性
+ * 计算数据校验和并进行相应的处理
+ * 
+ * @param objectContextParam 对象上下文参数，包含需要验证的对象信息
+ * @param validationContextParam 验证上下文参数，用于验证过程
+ */
+void ValidateAndProcessObjectContextData(longlong objectContextParam, uint8_t8 validationContextParam)
 
 {
   int operationResult;
@@ -86404,16 +86422,16 @@ void ProcessSystemOperationA(uint8_t8 objectContextParam,uint8_t8 validationCont
   uint8_t8 *pvalidationResult;
   uint8_t8 unsignedResult3;
   
-  presourceHash = _DAT_180bfa2f0;
+  presourceHash = SystemDataHashPointer001;
   unsignedResult3 = 0xfffffffffffffffe;
-  pvalidationResult = _DAT_180bfa2e8;
-  if (_DAT_180bfa2e8 != _DAT_180bfa2f0) {
+  pvalidationResult = SystemDataValidationPointer001;
+  if (SystemDataValidationPointer001 != SystemDataHashPointer001) {
     do {
       (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
       pvalidationResult = pvalidationResult + 0xb;
     } while (pvalidationResult != presourceHash);
   }
-  if (_DAT_180bfa2e8 == (uint8_t8 *)0x0) {
+  if (SystemDataValidationPointer001 == (uint8_t8 *)0x0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -86449,16 +86467,16 @@ void ProcessSystemOperationB(uint8_t8 objectContextParam,uint8_t8 validationCont
   uint8_t8 *pvalidationResult;
   uint8_t8 unsignedResult3;
   
-  presourceHash = _DAT_180bfa310;
+  presourceHash = SystemDataHashPointer002;
   unsignedResult3 = 0xfffffffffffffffe;
-  pvalidationResult = _DAT_180bfa308;
-  if (_DAT_180bfa308 != _DAT_180bfa310) {
+  pvalidationResult = SystemDataValidationPointer002;
+  if (SystemDataValidationPointer002 != SystemDataHashPointer002) {
     do {
       (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
       pvalidationResult = pvalidationResult + 0xb;
     } while (pvalidationResult != presourceHash);
   }
-  if (_DAT_180bfa308 == (uint8_t8 *)0x0) {
+  if (SystemDataValidationPointer002 == (uint8_t8 *)0x0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -86494,16 +86512,16 @@ void ProcessSystemOperationC(uint8_t8 objectContextParam,uint8_t8 validationCont
   uint8_t8 *pvalidationResult;
   uint8_t8 unsignedResult3;
   
-  presourceHash = _DAT_180bfa330;
+  presourceHash = SystemDataHashPointer003;
   unsignedResult3 = 0xfffffffffffffffe;
-  pvalidationResult = _DAT_180bfa328;
-  if (_DAT_180bfa328 != _DAT_180bfa330) {
+  pvalidationResult = SystemDataValidationPointer003;
+  if (SystemDataValidationPointer003 != SystemDataHashPointer003) {
     do {
       (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
       pvalidationResult = pvalidationResult + 0xb;
     } while (pvalidationResult != presourceHash);
   }
-  if (_DAT_180bfa328 == (uint8_t8 *)0x0) {
+  if (SystemDataValidationPointer003 == (uint8_t8 *)0x0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -86588,20 +86606,20 @@ void InitializeSystemDataStructureCC(void)
   longlong loopCounter;
   longlong resourceTable;
   
-  if (0xf < _DAT_180bfc118) {
+  if (0xf < SystemResourceCounter001) {
     localContextPointer = CONCAT71(uRam0000000180bfc101,DAT_180bfc100);
     resourceTable = localContextPointer;
-    if (0xfff < _DAT_180bfc118 + 1) {
+    if (0xfff < SystemResourceCounter001 + 1) {
       resourceTable = *(longlong *)(localContextPointer + -8);
       if (0x1f < (localContextPointer - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localContextPointer - resourceTable,_DAT_180bfc118 + 0x28);
+        _invalid_parameter_noinfo_noreturn(localContextPointer - resourceTable,SystemResourceCounter001 + 0x28);
       }
     }
     free(resourceTable);
   }
-  _DAT_180bfc110 = 0;
-  _DAT_180bfc118 = 0xf;
+  SystemResourceFlag001 = 0;
+  SystemResourceCounter001 = 0xf;
 
  /**
  * 初始化系统数据结构CD
@@ -86700,9 +86718,9 @@ void ProcessSystemOperationD(uint8_t8 objectContextParam,uint8_t8 validationCont
   uint8_t8 *presourceHash;
   uint8_t8 *pvalidationResult;
   
-  ProcessResourceData(&DAT_180bfaec0,_DAT_180bfaed0,param_3,param_4,0xfffffffffffffffe);
-  presourceHash = _DAT_180bfaea8;
-  for (pvalidationResult = _DAT_180bfaea0; pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 7) {
+  ProcessResourceData(&SystemResourceDataBuffer001,SystemResourceDataBuffer002,param_3,param_4,0xfffffffffffffffe);
+  presourceHash = SystemResourceHashPointer004;
+  for (pvalidationResult = SystemResourceValidationPointer001; pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 7) {
     *pvalidationResult = &SystemResourceHandlerTemplate;
     if (pvalidationResult[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -86712,7 +86730,7 @@ void ProcessSystemOperationD(uint8_t8 objectContextParam,uint8_t8 validationCont
     *(uint8_t4 *)(pvalidationResult + 3) = 0;
     *pvalidationResult = &SystemDataStructure;
   }
-  if (_DAT_180bfaea0 != (uint8_t8 *)0x0) {
+  if (SystemResourceValidationPointer001 != (uint8_t8 *)0x0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -86736,7 +86754,7 @@ void InitializeSystemDataStructureCF(void)
 void InitializeSystemDataStructureCF(void)
 
 {
-  _DAT_180c92050 = &SystemDataStructure;
+  SystemDataPointer019 = &SystemDataStructure;
                     // WARNING: Could not recover jumptable at 0x0001809427c7. Too many branches
                     // WARNING: Treating indirect jump as call
   _Mtx_destroy_in_situ();
@@ -86802,7 +86820,7 @@ void InitializeSystemDataStructureCI(void)
 void InitializeSystemDataStructureCI(void)
 
 {
-  _DAT_180bfb730 = &SystemDataStructure;
+  SystemDataPointer020 = &SystemDataStructure;
   return;
 }
 
@@ -86839,7 +86857,7 @@ void InitializeSystemDataStructureCJ(void)
 void InitializeSystemDataStructureCK(void)
 
 {
-  _DAT_180d49bf0 = &SystemDataStructure;
+  SystemDataPointer021 = &SystemDataStructure;
   return;
 }
 
@@ -87162,20 +87180,20 @@ void InitializeSystemDataStructureCR(void)
   longlong loopCounter;
   longlong resourceTable;
   
-  if (0xf < _DAT_180bfc188) {
+  if (0xf < SystemResourceCounter002) {
     localContextPointer = CONCAT71(uRam0000000180bfc171,DAT_180bfc170);
     resourceTable = localContextPointer;
-    if (0xfff < _DAT_180bfc188 + 1) {
+    if (0xfff < SystemResourceCounter002 + 1) {
       resourceTable = *(longlong *)(localContextPointer + -8);
       if (0x1f < (localContextPointer - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localContextPointer - resourceTable,_DAT_180bfc188 + 0x28);
+        _invalid_parameter_noinfo_noreturn(localContextPointer - resourceTable,SystemResourceCounter002 + 0x28);
       }
     }
     free(resourceTable);
   }
-  _DAT_180bfc180 = 0;
-  _DAT_180bfc188 = 0xf;
+  SystemResourceFlag002 = 0;
+  SystemResourceCounter002 = 0xf;
 
  /**
  * @brief 释放资源哈希表
@@ -87815,14 +87833,14 @@ void CleanupMutexResources(void)
 void InitializeSystemContext(uint8_t8 contextPtr, uint8_t8 setupParam, uint8_t8 configParam, uint8_t8 flagsParam)
 
 {
-  uint8_t8 *systemHandler;
+  uint8_t8 *SystemHandler;
   
-  systemHandler = systemContextHandler;
+  SystemHandler = SystemContextHandler;
   if (systemContextHandler != (uint8_t8 *)0x0) {
     InitializeContextData(&systemContextData, *systemContextHandler, configParam, flagsParam, 0xfffffffffffffffe);
-    SetupSystemHandler(systemHandler + 5);
+    SetupSystemHandler(SystemHandler + 5);
                     // WARNING: Subroutine does not return
-    ExecuteSystemHandler(systemHandler);
+    ExecuteSystemHandler(SystemHandler);
   }
   return;
 }
@@ -87842,17 +87860,17 @@ void InitializeSystemContext(uint8_t8 contextPtr, uint8_t8 setupParam, uint8_t8 
 void ResetThreadLocalStorage(void)
 
 {
-  longlong threadData;
+  longlong ThreadData;
   
-  threadData = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  *(uint8_t8 *)(threadData + 0x18) = &threadResourcePointer;
-  if (*(longlong *)(threadData + 0x20) != 0) {
+  ThreadData = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  *(uint8_t8 *)(ThreadData + 0x18) = &threadResourcePointer;
+  if (*(longlong *)(ThreadData + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     CleanupThreadResources();
   }
-  *(uint8_t8 *)(threadData + 0x20) = 0;
-  *(uint8_t4 *)(threadData + 0x30) = 0;
-  *(uint8_t8 *)(threadData + 0x18) = &defaultThreadResource;
+  *(uint8_t8 *)(ThreadData + 0x20) = 0;
+  *(uint8_t4 *)(ThreadData + 0x30) = 0;
+  *(uint8_t8 *)(ThreadData + 0x18) = &defaultThreadResource;
   return;
 }
 
@@ -87876,9 +87894,9 @@ void ResetThreadLocalStorage(void)
 void CleanupSystemResources(uint8_t8 resourceType, uint8_t8 resourceInstance, uint8_t8 cleanupOptions, uint8_t8 cleanupFlags)
 
 {
-  uint8_t8 *resourceManager;
+  uint8_t8 *ResourceManager;
   
-  resourceManager = SystemResourceManagerPointer;
+  ResourceManager = SystemResourceManagerPointer;
   if (SystemResourceManagerPointer == (uint8_t8 *)0x0) {
     return;
   }
