@@ -83668,7 +83668,13 @@ void InitializeSystemDataStructureA(void)
 
 
  void FUN_1809415f0(void)
-void FUN_1809415f0(void)
+/**
+ * @brief 初始化系统数据结构B
+ * 
+ * 该函数负责初始化系统的数据结构B
+ * 设置基础数据结构的默认值和状态
+ */
+void InitializeSystemDataStructureB(void)
 
 {
   _DAT_180bf5bc0 = &UNK_18098bcb0;
