@@ -3359,7 +3359,7 @@ void ValidateSystemObjects(void)
   int64_t SystemContextPointer;
   int64_t ObjectDataOffset;
   int ProcessedObjectCount;
-  uint8_t1 *ObjectCollectionArray;
+  uint8_t *ObjectCollectionArray;
   int RetrievedObjectCount;
   uint32_t MaximumCapacity;
   uint64_t SecurityValidationHash;
@@ -17105,7 +17105,7 @@ uint8_t ProcessResourceDataNormalization(int64_t resourceContext, int64_t dataPo
   float *pfVar2;
   int validationStatus;
   float SecondaryFloatValue;
-  uint8_t2 ArrayUnionStackX8 [4];
+  uint16_t ArrayUnionStackX8 [4];
   
   ArrayUnionStackX8[0] = CONCAT11(ArrayUnionStackX8[0]._1_1_,*(uint8_t1 *)(ValidationContextParameter + 0x104));
   resourceHash = (**(code **)**(uint8_t **)(ObjectContextParameter + 8))(*(uint8_t **)(ObjectContextParameter + 8),ArrayUnionStackX8,1);
@@ -17123,7 +17123,7 @@ uint8_t ProcessResourceDataNormalization(int64_t resourceContext, int64_t dataPo
         else {
           floatValue4 = 0.0;
         }
-        ArrayUnionStackX8[0] = (uint8_t2)(int)(floatValue4 * 65535.0);
+        ArrayUnionStackX8[0] = (uint16_t)(int)(floatValue4 * 65535.0);
         resourceHash = (**(code **)**(uint8_t **)(ObjectContextParameter + 8))
                           (*(uint8_t **)(ObjectContextParameter + 8),ArrayUnionStackX8,2);
         if ((int)resourceHash != 0) {
@@ -17138,7 +17138,7 @@ uint8_t ProcessResourceDataNormalization(int64_t resourceContext, int64_t dataPo
         else {
           floatValue4 = 0.0;
         }
-        ArrayUnionStackX8[0] = (uint8_t2)(int)(floatValue4 * 65535.0);
+        ArrayUnionStackX8[0] = (uint16_t)(int)(floatValue4 * 65535.0);
         resourceHash = (**(code **)**(uint8_t **)(ObjectContextParameter + 8))
                           (*(uint8_t **)(ObjectContextParameter + 8),ArrayUnionStackX8,2);
         if ((int)resourceHash != 0) {
@@ -17173,7 +17173,7 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
   int64_t SystemContextPointer;
   int validationStatus;
   float SecondaryFloatValue;
-  uint8_t2 uStack0000000000000070;
+  uint16_t uStack0000000000000070;
   
   iVar3 = 0;
   if (0 < *(short *)(SystemContextPointer + 0x104)) {
@@ -17188,7 +17188,7 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
       else {
         floatValue4 = 0.0;
       }
-      uStack0000000000000070 = (uint8_t2)(int)(floatValue4 * 65535.0);
+      uStack0000000000000070 = (uint16_t)(int)(floatValue4 * 65535.0);
       resourceHash = (**(code **)**(uint8_t **)(ExecutionContextPointer + 8))
                         (*(uint8_t **)(ExecutionContextPointer + 8),&stack0x00000070,2);
       if ((int)resourceHash != 0) {
@@ -17203,7 +17203,7 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
       else {
         floatValue4 = 0.0;
       }
-      uStack0000000000000070 = (uint8_t2)(int)(floatValue4 * 65535.0);
+      uStack0000000000000070 = (uint16_t)(int)(floatValue4 * 65535.0);
       resourceHash = (**(code **)**(uint8_t **)(ExecutionContextPointer + 8))
                         (*(uint8_t **)(ExecutionContextPointer + 8),&stack0x00000070,2);
       if ((int)resourceHash != 0) {
@@ -18171,7 +18171,7 @@ void ProcessObjectContextValidation(int64_t ObjectContextParameter,int *Validati
   code *CodePointer;
   char StatusFlag;
   uint32_t RegisterEAX;
-  uint8_t3 UnsignedValue6;
+  uint32_t UnsignedValue6;
   int TableEntry;
   uint32_t RegisterParam4;
   uint UnregisterEBP;
@@ -18179,7 +18179,7 @@ void ProcessObjectContextValidation(int64_t ObjectContextParameter,int *Validati
   int *StackPointer8;
   uint32_t UnsignedResult4;
   
-  ContextValidationResult = (uint8_t3)((uint)in_EAX >> 8);
+  ContextValidationResult = (uint32_t)((uint)in_EAX >> 8);
   CharVariable3 = (char)in_EAX + -0x57 + in_CF;
   LoopIncrement = CONCAT31(ContextValidationResult,CharVariable3);
   *(uint32_t *)CONCAT44(in_register_00000004,LoopIncrement) = LoopIncrement;
@@ -22615,7 +22615,7 @@ uint64_t ResourceProcessingHandlerAlt2(void)
 {
   int64_t *processPointer;
   int64_t resourceTable;
-  uint8_t7 ValidationResult;
+  uint64_t ValidationResult;
   uint LoopIncrement;
   uint64_t ResourceContextOffset;
   uint64_t ContextValidationResult;
@@ -22689,7 +22689,7 @@ uint64_t ResourceProcessingHandlerAlt2(void)
   if ((int)ResourceContextOffset != 0) {
     return ResourceContextOffset;
   }
-  ValidationResult = (uint8_t7)(RegisterRDI >> 8);
+  ValidationResult = (uint64_t)(RegisterRDI >> 8);
   iVar7 = 0;
   floatValue12 = extraout_XMM0_Da;
   ResourceIndex1 = iVar7;
@@ -22872,7 +22872,7 @@ uint64_t ResourceProcessingHandlerAlt3(void)
 {
   int64_t *processPointer;
   int64_t resourceTable;
-  uint8_t7 ValidationResult;
+  uint64_t ValidationResult;
   uint LoopIncrement;
   uint64_t ResourceContextOffset;
   uint64_t ContextValidationResult;
@@ -22947,7 +22947,7 @@ uint64_t ResourceProcessingHandlerAlt3(void)
   if ((int)ResourceContextOffset != 0) {
     return ResourceContextOffset;
   }
-  ValidationResult = (uint8_t7)(RegisterRDI >> 8);
+  ValidationResult = (uint64_t)(RegisterRDI >> 8);
   iVar7 = 0;
   floatValue12 = extraout_XMM0_Da;
   ResourceIndex1 = iVar7;
@@ -23131,7 +23131,7 @@ uint64_t ProcessFloatParameterResourceHash(float ObjectContextParameter)
 {
   int64_t *processPointer;
   int64_t resourceTable;
-  uint8_t7 ValidationResult;
+  uint64_t ValidationResult;
   uint LoopIncrement;
   uint64_t ResourceContextOffset;
   uint64_t ContextValidationResult;
@@ -23161,7 +23161,7 @@ uint64_t ProcessFloatParameterResourceHash(float ObjectContextParameter)
   float extraout_XMM0_Da_08;
   
   iVar9 = (int)RegisterRDI;
-  ValidationResult = (uint8_t7)(RegisterRDI >> 8);
+  ValidationResult = (uint64_t)(RegisterRDI >> 8);
   ResourceIndex2 = iVar9;
   ResourceIndex1 = RegisterR14D;
   if (in_CF) {
@@ -27752,8 +27752,8 @@ uint64_t ProcessResourceCertificateValidation(int64_t ObjectContextParameter,int
   uint ResourceValidationResult;
   uint32_t *pValidationResult;
   uint64_t LoopIncrement;
-  uint8_t2 aSecurityValidationContext [4];
-  uint8_t2 auStackX_20 [4];
+  uint16_t aSecurityValidationContext [4];
+  uint16_t auStackX_20 [4];
   uint32_t ResourceOperationBuffer [2];
   uint32_t ResourceFlag11;
   uint32_t ResourceFlag12;
@@ -27788,7 +27788,7 @@ uint64_t ProcessResourceCertificateValidation(int64_t ObjectContextParameter,int
           ResourceValidationResult = (**(code **)**(uint8_t **)(localContextPointer + 8))
                             (*(uint8_t **)(localContextPointer + 8),ResourceOperationBuffer,4);
           if (ResourceValidationResult == 0) {
-            aSecurityValidationContext[0] = (uint8_t2)ResourceFlag12;
+            aSecurityValidationContext[0] = (uint16_t)ResourceFlag12;
             ResourceValidationResult = (**(code **)**(uint8_t **)(localContextPointer + 8))
                               (*(uint8_t **)(localContextPointer + 8),aSecurityValidationContext,2);
             if (ResourceValidationResult == 0) {
@@ -27838,10 +27838,10 @@ uint64_t ValidateResourceCertificateChain(void)
   int64_t *RegisterRDI;
   uint32_t in_stack_00000030;
   uint32_t uStack0000000000000038;
-  uint8_t2 uStack000000000000003c;
-  uint8_t2 uStack000000000000003e;
-  uint8_t2 in_stack_000000a0;
-  uint8_t2 in_stack_000000a8;
+  uint16_t uStack000000000000003c;
+  uint16_t uStack000000000000003e;
+  uint16_t in_stack_000000a0;
+  uint16_t in_stack_000000a8;
   
   if (*(uint *)(InputRAX + 0x18) != RegisterESI) {
     return 0x1c;
@@ -27911,10 +27911,10 @@ uint64_t ProcessResourceCertificateSigning(void)
   int64_t *RegisterRDI;
   uint32_t in_stack_00000030;
   uint32_t uStack0000000000000038;
-  uint8_t2 uStack000000000000003c;
-  uint8_t2 uStack000000000000003e;
-  uint8_t2 in_stack_000000a0;
-  uint8_t2 in_stack_000000a8;
+  uint16_t uStack000000000000003c;
+  uint16_t uStack000000000000003e;
+  uint16_t in_stack_000000a0;
+  uint16_t in_stack_000000a8;
   
   ResourceValidationResult = GetResourceEntry(*RegisterRDI,ExecutionContextPointer + 0x20);
   ValidationResult = (uint64_t)ResourceValidationResult;
@@ -27973,8 +27973,8 @@ uint64_t VerifyResourceCertificateIntegrity(void)
   int64_t ExecutionContextPointer;
   int64_t *RegisterRDI;
   uint8_t in_stack_00000038;
-  uint8_t2 in_stack_000000a0;
-  uint8_t2 in_stack_000000a8;
+  uint16_t in_stack_000000a0;
+  uint16_t in_stack_000000a8;
   
   localContextPointer = *RegisterRDI;
   ResourceValidationResult = (**(code **)**(uint8_t **)(localContextPointer + 8))();

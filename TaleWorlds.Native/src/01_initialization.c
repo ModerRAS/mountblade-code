@@ -21849,7 +21849,7 @@ void SystemStringProcessor(long long SystemResourcePointer,long long SourceStrin
   
   uStack_f8 = 0xfffffffffffffffe;
   uStack_48 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_118;
-  puStack_e8 = &UNK_1809fcc28;
+  puStack_e8 = &SystemResourceTemplatePrimary;
   puStack_e0 = auStack_d0;
   uStack_d8 = 0;
   auStack_d0[0] = 0;
@@ -27294,7 +27294,7 @@ void ProcessSystemResourceAndRenderManagement(long long *SystemResourcePointer,v
     if (systemResourcePointer != (long long *)0x0) {
       (**(code **)(*systemResourcePointer + 0x28))(systemResourcePointer);
     }
-    FUN_18005e370(memoryAllocationHandle,&stackParameter1);
+    SetupMemoryAllocationContext(memoryAllocationHandle,&stackParameter1);
     if (systemResourcePointer != (long long *)0x0) {
       (**(code **)(*systemResourcePointer + 0x38))(systemResourcePointer);
     }
@@ -27642,7 +27642,7 @@ void CreateAndManageSystemThreadObject(void* SystemResourcePointer,void* ThreadC
   *(void*2 *)(bufferOffset + 4 + configValue) = 0x203a;
   *(uint8_t *)(bufferOffset + 6 + configValue) = 0;
   configFlags = 6;
-  FUN_180060680(processNameBuffer,&SystemDataBufferTemplateI,processId);
+  InitializeProcessSystem(processNameBuffer,&SystemDataBufferTemplateI,processId);
   systemHandle = -1;
   do {
     allocationSize = systemHandle;
@@ -27709,7 +27709,7 @@ LAB_1800535b0:
     else {
       if (dataLength <= threadFlags) goto LAB_18005364c;
       bufferFlags = 0x13;
-      threadBuffer = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,threadBuffer,dataLength,0x10);
+      threadBuffer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,threadBuffer,dataLength,0x10);
     }
     threadBufferPointer = threadBuffer;
     processId = StartSystemThread(threadBuffer);
@@ -27771,7 +27771,7 @@ void* SystemResourceManagerNodeHandler(void* SystemResourcePointer,void* Configu
   AllocationSize = 0;
   StackValue40 = 0;
   StackValue38 = 3;
-  FUN_180052200(SystemStatusFlagsPointer,&ResourcePointer1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  InitializeSystemResourceManager(SystemStatusFlagsPointer,&ResourcePointer1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   ResourceEndPointer = ResourcePointer2;
   ResourceStartPointer = ResourcePointer1;
   ResourceCount = (long long)ResourcePointer2 - (long long)ResourcePointer1 >> 5;
@@ -27955,7 +27955,7 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long Conf
   if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
     punsignedSystemValue5 = *(void* **)(ConfigurationDataPointer + 8);
   }
-  FUN_180627c50(&puStack_1c0,punsignedSystemValue5);
+  SetupSystemDataBuffer(&puStack_1c0,punsignedSystemValue5);
   uStack_1a0 = 0;
   uStack_19c = uStack_19c & 0xffffff00;
   unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x60d30,0x10,0x1f);
@@ -28754,7 +28754,7 @@ void SystemResourceHandler(long long SystemResourcePointer,void* ConfigurationDa
 
 
 
-// 函数: void FUN_180055f50(long long SystemResourcePointer)
+// 函数: void CleanupSystemResources(long long SystemResourcePointer)
 /**
  * @brief 系统资源清理器函数
  * 
@@ -28802,7 +28802,7 @@ void SystemResourceCleaner(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180055f70(void* SystemResourcePointer,uint32_t ConfigurationDataPointer)
+// 函数: void HandleSystemEmergencyExit(void* SystemResourcePointer,uint32_t ConfigurationDataPointer)
 /**
  * @brief 系统紧急退出处理器
  * 
@@ -29345,7 +29345,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourcePointer)
     *(void*2 *)(punsignedSystemValue5 + 8) = 0x2072;
     *(uint8_t *)((long long)punsignedSystemValue5 + 0x22) = 0;
     uStack_88 = 0x3e;
-    FUN_180060680(acStack_60,&SystemDataBufferTemplateI,900);
+    InitializeProcessSystem(acStack_60,&SystemDataBufferTemplateI,900);
     unsignedSystemValue3 = uStack_88;
     localBufferAddress = -1;
     do {
@@ -29510,7 +29510,7 @@ void InitializeSystemResource(void* SystemResourcePointer,void* *ConfigurationDa
   if (ppointerToUnsigned2 != (void* **)0x0) {
     (**(code **)(*ppointerToUnsigned2 + 0x28))(ppointerToUnsigned2);
   }
-  FUN_18005e370(unsignedSystemValue1,&ppuStack_138);
+  SetupMemoryAllocationContext(unsignedSystemValue1,&ppuStack_138);
   if (ppointerToUnsigned2 != (void* **)0x0) {
     (**(code **)(*ppointerToUnsigned2 + 0x38))(ppointerToUnsigned2);
   }
@@ -30594,7 +30594,7 @@ void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* Configu
 
 
 
-// 函数: void FUN_180057610(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ProcessResourceArrayCleanup(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 资源数组清理处理函数
  * 
@@ -30629,7 +30629,7 @@ void ProcessResourceArrayCleanup(long long *SystemResourcePointer,void* Configur
 
 
 
-// 函数: void FUN_180057680(long long SystemResourcePointer)
+// 函数: void CleanupSystemResourceHandles(long long SystemResourcePointer)
 /**
  * @brief 系统资源句柄清理器
  * 
@@ -31338,7 +31338,7 @@ void ProcessSystemResourceData(long long *SystemResourcePointer,void* Configurat
 
 
 
-// 函数: void FUN_180057e90(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void InitializeSystemResource(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统资源初始化器函数
  * 
@@ -35363,7 +35363,7 @@ void ProcessSystemResourceData(long long *SystemResourcePointer)
     if (plocalSystemPointer != (long long *)0x0) {
       (**(code **)(*plocalSystemPointer + 0x28))(plocalSystemPointer);
     }
-    FUN_18005e370(localSystemHandle,&plStack_108);
+    SetupMemoryAllocationContext(localSystemHandle,&plStack_108);
     FUN_180046190(alStack_b8);
     if (plocalSystemPointer != (long long *)0x0) {
       (**(code **)(*plocalSystemPointer + 0x38))(plocalSystemPointer);
@@ -36770,7 +36770,7 @@ void FUN_18005dbb0(void)
       auStack_148[0] = 0;
       uStack_150 = 7;
       strcpy_s(auStack_148,0x10,&UNK_1809fe198);
-      FUN_180060680(&uStack_58,&SystemDataBufferTemplateI,systemStatus2 + -1);
+      InitializeProcessSystem(&uStack_58,&SystemDataBufferTemplateI,systemStatus2 + -1);
       localSystemFlags = -1;
       do {
         localSystemPointer = localSystemFlags + 1;
@@ -36811,7 +36811,7 @@ void FUN_18005dbb0(void)
       auStack_148[0] = 0;
       uStack_150 = 10;
       strcpy_s(auStack_148,0x10,&UNK_1809fe1a0);
-      FUN_180060680(acStack_48,&SystemDataBufferTemplateI,unsignedSystemValue8);
+      InitializeProcessSystem(acStack_48,&SystemDataBufferTemplateI,unsignedSystemValue8);
       localSystemFlags = -1;
       do {
         localDataPointer = localSystemFlags;
@@ -36996,8 +36996,8 @@ void SystemManagerInitialize(long long SystemResourcePointer,long long *Configur
 
 
 
-// 函数: void FUN_18005e370(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005e370(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void SetupMemoryAllocationContext(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void SetupMemoryAllocationContext(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -39268,7 +39268,7 @@ void* FUN_180060630(void* SystemResourcePointer,ulong long ConfigurationDataPoin
 
 
 
-int FUN_180060680(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+int InitializeProcessSystem(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
@@ -49135,7 +49135,7 @@ LAB_180070a3f:
         else {
           if (unsignedSystemValue6 <= unsignedSystemValue14) goto LAB_180070b00;
           puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
-          pointerToUnsigned10 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,pointerToUnsigned10,unsignedSystemValue6,0x10);
+          pointerToUnsigned10 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,pointerToUnsigned10,unsignedSystemValue6,0x10);
         }
         puStack_110 = pointerToUnsigned10;
         uStack_100._0_4_ = StartSystemThread(pointerToUnsigned10);
@@ -49234,7 +49234,7 @@ LAB_180070db8:
   else if (unsignedSystemValue5 < 3) {
     puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
     uStack_130 = 1;
-    puStack_138 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_138,3,0x10);
+    puStack_138 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_138,3,0x10);
     goto LAB_180070db8;
   }
   *(void*2 *)(puStack_138 + uStack_130) = 10;
@@ -49263,7 +49263,7 @@ LAB_180070db8:
           if (unsignedSystemValue14 <= (uint)uStack_128) goto LAB_180070e64;
           puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
           uStack_130 = unsignedSystemValue6;
-          puStack_138 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_138,unsignedSystemValue14,0x10);
+          puStack_138 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_138,unsignedSystemValue14,0x10);
         }
         unsignedSystemValue7 = StartSystemThread(puStack_138);
         uStack_128 = CONCAT44(uStack_128._4_4_,unsignedSystemValue7);
@@ -49286,7 +49286,7 @@ LAB_180070ee8:
   else if ((uint)uStack_128 < 4) {
     puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
     uStack_130 = unsignedSystemValue6;
-    puStack_138 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_138,4,0x10);
+    puStack_138 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_138,4,0x10);
     goto LAB_180070ee8;
   }
   *(void*2 *)(puStack_138 + uStack_130) = 0x3a;
@@ -49306,7 +49306,7 @@ LAB_180070ee8:
     else {
       if (unsignedSystemValue14 <= (uint)uStack_128) goto LAB_180070f81;
       puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
-      puStack_138 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_138,unsignedSystemValue14,0x10);
+      puStack_138 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_138,unsignedSystemValue14,0x10);
     }
     unsignedSystemValue7 = StartSystemThread(puStack_138);
     uStack_128 = CONCAT44(uStack_128._4_4_,unsignedSystemValue7);
@@ -49327,7 +49327,7 @@ LAB_180070f81:
     else {
       if (unsignedSystemValue5 <= (uint)uStack_128) goto LAB_180071000;
       puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
-      puStack_138 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_138,unsignedSystemValue5,0x10);
+      puStack_138 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_138,unsignedSystemValue5,0x10);
     }
     unsignedSystemValue7 = StartSystemThread(puStack_138);
     uStack_128 = CONCAT44(uStack_128._4_4_,unsignedSystemValue7);
@@ -49359,7 +49359,7 @@ LAB_180071000:
         else {
           if (unsignedSystemValue6 <= (uint)uStack_128) goto LAB_1800710b8;
           puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
-          puStack_138 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_138,unsignedSystemValue6,0x10);
+          puStack_138 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_138,unsignedSystemValue6,0x10);
         }
         unsignedSystemValue7 = StartSystemThread(puStack_138);
         uStack_128 = CONCAT44(uStack_128._4_4_,unsignedSystemValue7);
@@ -49382,7 +49382,7 @@ LAB_1800710b8:
     else {
       if (unsignedSystemValue6 <= (uint)uStack_128) goto LAB_18007113f;
       puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
-      puStack_138 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_138,unsignedSystemValue6,0x10);
+      puStack_138 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_138,unsignedSystemValue6,0x10);
     }
     unsignedSystemValue7 = StartSystemThread(puStack_138);
     uStack_128 = CONCAT44(uStack_128._4_4_,unsignedSystemValue7);
@@ -49707,7 +49707,7 @@ LAB_180071af3:
   }
   else if (unsignedSystemValue2 < 0x13) {
     uStack_80 = 0x11;
-    puStack_88 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_88,0x13,0x10,0x13);
+    puStack_88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_88,0x13,0x10,0x13);
     goto LAB_180071af3;
   }
   *(void*2 *)(puStack_88 + uStack_80) = 10;
@@ -49723,7 +49723,7 @@ LAB_180071b69:
   }
   else if ((uint)uStack_78 < 0x14) {
     uStack_80 = 0x12;
-    puStack_88 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_88,0x14,0x10,0x13);
+    puStack_88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_88,0x14,0x10,0x13);
     goto LAB_180071b69;
   }
   *(void*2 *)(puStack_88 + uStack_80) = 10;
@@ -49751,7 +49751,7 @@ LAB_180071b69:
           unsignedSystemValue11 = uStack_80;
           if (unsignedSystemValue12 <= (uint)uStack_78) goto LAB_180071c1a;
           uStack_80 = unsignedSystemValue2;
-          puStack_88 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_88,unsignedSystemValue12,0x10,0x13);
+          puStack_88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_88,unsignedSystemValue12,0x10,0x13);
         }
         unsignedSystemValue3 = StartSystemThread(puStack_88);
         uStack_78 = CONCAT44(uStack_78._4_4_,unsignedSystemValue3);
@@ -49773,7 +49773,7 @@ LAB_180071c93:
   }
   else if ((uint)uStack_78 < 0x15) {
     uStack_80 = unsignedSystemValue2;
-    puStack_88 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_88,0x15,0x10,0x13);
+    puStack_88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_88,0x15,0x10,0x13);
     goto LAB_180071c93;
   }
   *(void*2 *)(puStack_88 + uStack_80) = 0x3a;
@@ -49792,7 +49792,7 @@ LAB_180071c93:
     }
     else {
       if (unsignedSystemValue12 <= (uint)uStack_78) goto LAB_180071d1f;
-      puStack_88 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_88,unsignedSystemValue12,0x10,0x13);
+      puStack_88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_88,unsignedSystemValue12,0x10,0x13);
     }
     unsignedSystemValue3 = StartSystemThread(puStack_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,unsignedSystemValue3);
@@ -49812,7 +49812,7 @@ LAB_180071d1f:
     }
     else {
       if (unsignedSystemValue11 <= (uint)uStack_78) goto LAB_180071d94;
-      puStack_88 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_88,unsignedSystemValue11,0x10,0x13);
+      puStack_88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_88,unsignedSystemValue11,0x10,0x13);
     }
     unsignedSystemValue3 = StartSystemThread(puStack_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,unsignedSystemValue3);
@@ -49842,7 +49842,7 @@ LAB_180071d94:
         }
         else {
           if (unsignedSystemValue2 <= (uint)uStack_78) goto LAB_180071e34;
-          puStack_88 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_88,unsignedSystemValue2,0x10,0x13);
+          puStack_88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_88,unsignedSystemValue2,0x10,0x13);
         }
         unsignedSystemValue3 = StartSystemThread(puStack_88);
         uStack_78 = CONCAT44(uStack_78._4_4_,unsignedSystemValue3);
@@ -49863,7 +49863,7 @@ LAB_180071e34:
     }
     else {
       if (unsignedSystemValue11 <= (uint)uStack_78) goto LAB_180071eb0;
-      puStack_88 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_88,unsignedSystemValue11,0x10,0x13);
+      puStack_88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_88,unsignedSystemValue11,0x10,0x13);
     }
     unsignedSystemValue3 = StartSystemThread(puStack_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,unsignedSystemValue3);
@@ -50040,7 +50040,7 @@ LAB_180072120:
         else {
           if (unsignedSystemValue6 <= unsignedSystemValue16) goto LAB_1800721e1;
           puStack_148 = (uint8_t *)CONCAT71(puStack_148._1_7_,0x13);
-          pointerToUnsigned10 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,pointerToUnsigned10,unsignedSystemValue6,0x10);
+          pointerToUnsigned10 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,pointerToUnsigned10,unsignedSystemValue6,0x10);
         }
         puStack_108 = pointerToUnsigned10;
         uStack_f8._0_4_ = StartSystemThread(pointerToUnsigned10);
@@ -50161,7 +50161,7 @@ LAB_180072521:
       else if (unsignedSystemValue6 < 0x16) {
         puStack_148 = (uint8_t *)CONCAT71(puStack_148._1_7_,0x13);
         uStack_128 = 0x14;
-        puStack_130 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_130,0x16,0x10);
+        puStack_130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_130,0x16,0x10);
         goto LAB_180072521;
       }
       *(void*2 *)(puStack_130 + uStack_128) = 10;
@@ -50178,7 +50178,7 @@ LAB_1800725ac:
       else if ((uint)uStack_120 < 0x17) {
         puStack_148 = (uint8_t *)CONCAT71(puStack_148._1_7_,0x13);
         uStack_128 = 0x15;
-        puStack_130 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_130,0x17,0x10);
+        puStack_130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_130,0x17,0x10);
         goto LAB_1800725ac;
       }
       *(void*2 *)(puStack_130 + uStack_128) = 10;
@@ -50207,7 +50207,7 @@ LAB_1800725ac:
               if (unsignedSystemValue16 <= (uint)uStack_120) goto LAB_180072662;
               puStack_148 = (uint8_t *)CONCAT71(puStack_148._1_7_,0x13);
               uStack_128 = unsignedSystemValue6;
-              puStack_130 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_130,unsignedSystemValue16,0x10);
+              puStack_130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_130,unsignedSystemValue16,0x10);
             }
             unsignedSystemValue7 = StartSystemThread(puStack_130);
             uStack_120 = CONCAT44(uStack_120._4_4_,unsignedSystemValue7);
@@ -50230,7 +50230,7 @@ LAB_1800726e7:
       else if ((uint)uStack_120 < 0x18) {
         puStack_148 = (uint8_t *)CONCAT71(puStack_148._1_7_,0x13);
         uStack_128 = unsignedSystemValue6;
-        puStack_130 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_130,0x18,0x10);
+        puStack_130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_130,0x18,0x10);
         goto LAB_1800726e7;
       }
       *(void*2 *)(puStack_130 + uStack_128) = 0x3a;
@@ -50250,7 +50250,7 @@ LAB_1800726e7:
         else {
           if (unsignedSystemValue16 <= (uint)uStack_120) goto LAB_180072780;
           puStack_148 = (uint8_t *)CONCAT71(puStack_148._1_7_,0x13);
-          puStack_130 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_130,unsignedSystemValue16,0x10);
+          puStack_130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_130,unsignedSystemValue16,0x10);
         }
         unsignedSystemValue7 = StartSystemThread(puStack_130);
         uStack_120 = CONCAT44(uStack_120._4_4_,unsignedSystemValue7);
@@ -50271,7 +50271,7 @@ LAB_180072780:
         else {
           if (unsignedSystemValue4 <= (uint)uStack_120) goto LAB_1800727ff;
           puStack_148 = (uint8_t *)CONCAT71(puStack_148._1_7_,0x13);
-          puStack_130 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_130,unsignedSystemValue4,0x10);
+          puStack_130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_130,unsignedSystemValue4,0x10);
         }
         unsignedSystemValue7 = StartSystemThread(puStack_130);
         uStack_120 = CONCAT44(uStack_120._4_4_,unsignedSystemValue7);
@@ -50302,7 +50302,7 @@ LAB_1800727ff:
             else {
               if (unsignedSystemValue6 <= (uint)uStack_120) goto LAB_1800728ad;
               puStack_148 = (uint8_t *)CONCAT71(puStack_148._1_7_,0x13);
-              puStack_130 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_130,unsignedSystemValue6,0x10);
+              puStack_130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_130,unsignedSystemValue6,0x10);
             }
             unsignedSystemValue7 = StartSystemThread(puStack_130);
             uStack_120 = CONCAT44(uStack_120._4_4_,unsignedSystemValue7);
@@ -50325,7 +50325,7 @@ LAB_1800728ad:
         else {
           if (unsignedSystemValue8 <= (uint)uStack_120) goto LAB_180072934;
           puStack_148 = (uint8_t *)CONCAT71(puStack_148._1_7_,0x13);
-          puStack_130 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_130,unsignedSystemValue8,0x10);
+          puStack_130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_130,unsignedSystemValue8,0x10);
         }
         unsignedSystemValue7 = StartSystemThread(puStack_130);
         uStack_120 = CONCAT44(uStack_120._4_4_,unsignedSystemValue7);
@@ -50346,7 +50346,7 @@ LAB_180072934:
         else {
           if (unsignedSystemValue4 <= (uint)uStack_120) goto LAB_1800729bd;
           puStack_148 = (uint8_t *)CONCAT71(puStack_148._1_7_,0x13);
-          puStack_130 = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,puStack_130,unsignedSystemValue4,0x10);
+          puStack_130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryAllocationTemplate,puStack_130,unsignedSystemValue4,0x10);
         }
         unsignedSystemValue7 = StartSystemThread(puStack_130);
         uStack_120 = CONCAT44(uStack_120._4_4_,unsignedSystemValue7);
@@ -62045,7 +62045,7 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
     if (plocalSystemFlags != (long long *)0x0) {
       (**(code **)(*plocalSystemFlags + 0x28))(plocalSystemFlags);
     }
-    FUN_18005e370(SystemAllocationFlagsTemplate,&plStack_b0);
+    SetupMemoryAllocationContext(SystemAllocationFlagsTemplate,&plStack_b0);
     pcVar2 = (char *)(*(long long *)(SystemResourcePointer + 0x1e0) + 0x15 + (ulong long)ConfigurationDataPointer * 0x18);
     LOCK();
     if (*pcVar2 == '\x01') {
