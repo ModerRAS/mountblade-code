@@ -596,7 +596,7 @@ void* SystemDataNodeO;                  // 系统数据节点O
 void* SystemDataNodeLinkageTable;                // 系统数据节点链接表
 void* SystemDataNodeLinkageManager;               // 系统数据节点链接管理器
 void* SystemDataNodeLinkageHandler;               // 系统数据节点链接处理器
-void* SystemDataComparisonTemplateDecenary;  // DAT_180a01050
+void* SystemConfigurationDataTemplate;  // DAT_180bf52c0
 void* SystemDataComparisonTemplateUndenary;  // DAT_180a01028
 void* SystemDataComparisonTemplateDuodenary;  // DAT_180a01000
 void* SystemDataNodeLinkageCache;                // 系统数据节点链接缓存
@@ -24865,7 +24865,15 @@ LAB_18004c7ef:
  * 
  * @param SystemResourcePointer 系统组件指针的指针
  */
-void FUN_18004ca00(long long *SystemResourcePointer)
+/**
+ * @brief 执行系统资源回调函数
+ * 
+ * 该函数负责执行系统资源的回调函数，用于处理系统资源的异步操作。
+ * 当系统资源完成某些操作时，会调用此函数来执行相应的回调处理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ */
+void ExecuteSystemResourceCallback(long long *SystemResourcePointer)
 
 {
   if ((long long *)*callbackParameter != (long long *)0x0) {
@@ -24908,8 +24916,8 @@ SystemMemoryTemplateManager(void* *SystemResourcePointer,ulong long param_2,void
 
 
 
-// 函数: void FUN_18004caa0(void* *SystemResourcePointer)
-void FUN_18004caa0(void* *SystemResourcePointer)
+// 函数: void SystemMemoryTemplateCleanup(void* *SystemResourcePointer)
+void SystemMemoryTemplateCleanup(void* *SystemResourcePointer)
 
 {
   if (SystemResourcePointer[2] != 0) {
@@ -25181,8 +25189,8 @@ void SystemResourceCleanupManager(long long *SystemResourcePointer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004d020(void* SystemResourcePointer,long long param_2)
-void FUN_18004d020(void* SystemResourcePointer,long long param_2)
+// 函数: void ProcessSystemResourceAllocation(void* SystemResourcePointer,long long param_2)
+void ProcessSystemResourceAllocation(void* SystemResourcePointer,long long param_2)
 
 {
   byte bVar1;
@@ -25363,8 +25371,8 @@ void FUN_18004d020(void* SystemResourcePointer,long long param_2)
         }
         if (bVar31) {
 
-// 函数: void FUN_18004e5f0(long long SystemResourcePointer)
-void FUN_18004e5f0(long long SystemResourcePointer)
+// 函数: void UpdateSystemRenderManager(long long SystemResourcePointer)
+void UpdateSystemRenderManager(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
@@ -25428,7 +25436,7 @@ LAB_18004e721:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint32_t FUN_18004e7a0(void)
+uint32_t GetSystemResourceStatus(void)
 
 {
   uint8_t aunsignedSystemValue1 [16];
@@ -26195,7 +26203,7 @@ void InitializeSystemDataStructures(void)
   *(void* *)(SystemRenderManagerPointer + 0x18) = *(void* *)(SystemRenderManagerPointer + 0x10);
   *(uint8_t *)(*(long long *)(*(long long *)(localSystemFlags + 8) + 0x140) + 0x208) = 1;
   if (*(char *)(localSystemFlags + 0x3c8) != '\0') {
-    FUN_18004e5f0(localSystemFlags);
+    UpdateSystemRenderManager(localSystemFlags);
     LOCK();
     *(uint8_t *)(localSystemFlags + 0x3c8) = 0;
     UNLOCK();
@@ -26323,7 +26331,7 @@ void InitializeSystemResourceAllocator(long long systemResourcePointer)
   *(void* *)(SystemRenderManagerPointer + 0x18) = *(void* *)(SystemRenderManagerPointer + 0x10);
   *(uint8_t *)(*(long long *)(*(long long *)(systemResourcePointer + 8) + 0x140) + 0x208) = 1;
   if (*(char *)(systemResourcePointer + 0x3c8) != '\0') {
-    FUN_18004e5f0(systemResourcePointer);
+    UpdateSystemRenderManager(systemResourcePointer);
     LOCK();
     *(uint8_t *)(systemResourcePointer + 0x3c8) = 0;
     UNLOCK();
@@ -44237,7 +44245,7 @@ void FUN_18006a130(long long SystemResourcePointer)
   unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,1000,8,3);
   SystemStatusFlagsPointer = FUN_18004c480(unsignedSystemValue3);
   FUN_180055050();
-  FUN_18004d020();
+  ProcessSystemResourceAllocation();
   if ((*(char *)(SystemDataManagerPointer + 0x20) == '\0') && (*(char *)(SystemDataManagerPointer + 0x21) == '\0')) {
     unsignedSystemValue3 = FUN_1808fc418(0x428);
     plStack_250 = (long long *)FUN_18049d530(unsignedSystemValue3);

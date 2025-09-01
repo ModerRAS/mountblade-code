@@ -3547,81 +3547,81 @@ uint8_t ValidateObjectRegistration(int64_t objectContext)
 uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t systemContext)
 
 {
-  int64_t *processPointer;
-  int64_t *presourceTable;
-  int64_t *presourceIndex;
-  int validationStatus;
-  uint processResult;
-  uint64_t operationResult;
-  int64_t *resourcePointer;
-  int64_t *contextPointer;
-  int64_t *cleanupPointer;
-  int64_t *nullPointer;
+  int64_t *ProcessResultPointer;
+  int64_t *ResourceTablePointer;
+  int64_t *ResourceIndexPointer;
+  int ValidationStatus;
+  uint ProcessResult;
+  uint64_t OperationResult;
+  int64_t *ResourceDataPointer;
+  int64_t *ContextDataPointer;
+  int64_t *CleanupDataPointer;
+  int64_t *NullDataPointer;
   int64_t memoryContextHandle;
   int64_t validationContext;
   
-  operationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x18),&validationContext);
-  validationStatus = (int)operationResult;
-  if (validationStatus == 0) {
-    nullPointer = (int64_t *)0x0;
-    cleanupPointer = nullPointer;
+  OperationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x18),&validationContext);
+  ValidationStatus = (int)OperationResult;
+  if (ValidationStatus == 0) {
+    NullDataPointer = (int64_t *)0x0;
+    CleanupDataPointer = NullDataPointer;
     if (validationContext != 0) {
-      cleanupPointer = (int64_t *)(validationContext + -8);
+      CleanupDataPointer = (int64_t *)(validationContext + -8);
     }
-    operationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x10),&validationContext);
-    validationStatus = (int)operationResult;
-    if (validationStatus == 0) {
+    OperationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x10),&validationContext);
+    ValidationStatus = (int)OperationResult;
+    if (ValidationStatus == 0) {
       memoryContextHandle = 0;
-      processResult = ProcessSystemObjectValidation(*(uint8_t *)(systemContext + 0x90),*(int64_t *)(validationContext + 8) + 0x10,
+      ProcessResult = ProcessSystemObjectValidation(*(uint8_t *)(systemContext + 0x90),*(int64_t *)(validationContext + 8) + 0x10,
                             &memoryContextHandle);
-      if (processResult != 0) {
-        CleanupValidationData(cleanupPointer);
-        return (uint64_t)processResult;
+      if (ProcessResult != 0) {
+        CleanupValidationData(CleanupDataPointer);
+        return (uint64_t)ProcessResult;
       }
       if (((*(uint *)(*(int64_t *)(validationContext + 8) + 0xf8) >> 2 & 1) == 0) &&
-         (operationResult = InitializeMemoryContext(memoryContextHandle), (int)operationResult != 0)) {
-        return operationResult;
+         (OperationResult = InitializeMemoryContext(memoryContextHandle), (int)OperationResult != 0)) {
+        return OperationResult;
       }
-      presourceTable = (int64_t *)(memoryContextHandle + 0x240);
-      resourcePointer = (int64_t *)(*presourceTable + -0x18);
-      if (*presourceTable == 0) {
-        resourcePointer = nullPointer;
+      ResourceTablePointer = (int64_t *)(memoryContextHandle + 0x240);
+      ResourceDataPointer = (int64_t *)(*ResourceTablePointer + -0x18);
+      if (*ResourceTablePointer == 0) {
+        ResourceDataPointer = NullDataPointer;
       }
-      contextPointer = nullPointer;
-      presourceIndex = nullPointer;
-      if (resourcePointer != (int64_t *)0x0) {
-        contextPointer = resourcePointer + 3;
+      ContextDataPointer = NullDataPointer;
+      ResourceIndexPointer = NullDataPointer;
+      if (ResourceDataPointer != (int64_t *)0x0) {
+        ContextDataPointer = ResourceDataPointer + 3;
       }
       while( true ) {
-        if (contextPointer == presourceTable) {
-          *(int64_t **)(memoryContextHandle + 0x80) = cleanupPointer;
-          ProcessMemoryData(memoryContextHandle,cleanupPointer);
-          cleanupPointer[2] = memoryContextHandle;
-          operationResult = ProcessSystemObjectOperation(memoryContextHandle);
-          if ((int)operationResult == 0) {
+        if (ContextDataPointer == ResourceTablePointer) {
+          *(int64_t **)(memoryContextHandle + 0x80) = CleanupDataPointer;
+          ProcessMemoryData(memoryContextHandle,CleanupDataPointer);
+          CleanupDataPointer[2] = memoryContextHandle;
+          OperationResult = ProcessSystemObjectOperation(memoryContextHandle);
+          if ((int)OperationResult == 0) {
             return 0;
           }
-          return operationResult;
+          return OperationResult;
         }
-        if ((int)cleanupPointer[5] <= (int)presourceIndex) {
+        if ((int)CleanupDataPointer[5] <= (int)ResourceIndexPointer) {
           return 0x1c;
         }
-        resourcePointer = contextPointer + 4;
-        if (contextPointer == (int64_t *)0x0) {
-          resourcePointer = (int64_t *)0x38;
+        ResourceDataPointer = ContextDataPointer + 4;
+        if (ContextDataPointer == (int64_t *)0x0) {
+          ResourceDataPointer = (int64_t *)0x38;
         }
-        *(int64_t *)(cleanupPointer[4] + 8 + (int64_t)presourceTable) = *resourcePointer;
-        if (contextPointer == presourceTable) break;
-        resourcePointer = (int64_t *)(*contextPointer + -0x18);
-        if (*contextPointer == 0) {
-          resourcePointer = nullPointer;
+        *(int64_t *)(CleanupDataPointer[4] + 8 + (int64_t)ResourceTablePointer) = *ResourceDataPointer;
+        if (ContextDataPointer == ResourceTablePointer) break;
+        ResourceDataPointer = (int64_t *)(*ContextDataPointer + -0x18);
+        if (*ContextDataPointer == 0) {
+          ResourceDataPointer = NullDataPointer;
         }
-        contextPointer = nullPointer;
-        if (resourcePointer != (int64_t *)0x0) {
-          contextPointer = resourcePointer + 3;
+        ContextDataPointer = NullDataPointer;
+        if (ResourceDataPointer != (int64_t *)0x0) {
+          ContextDataPointer = ResourceDataPointer + 3;
         }
-        presourceTable = presourceTable + 3;
-        presourceIndex = (int64_t *)(uint64_t)((int)presourceIndex + 1);
+        ResourceTablePointer = ResourceTablePointer + 3;
+        ResourceIndexPointer = (int64_t *)(uint64_t)((int)ResourceIndexPointer + 1);
       }
       return 0x1c;
     }
@@ -30105,7 +30105,16 @@ void Unwind_180902600(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902620(void)
+/**
+ * @brief 互斥锁销毁处理器
+ * 
+ * 该函数负责销毁当前线程的互斥锁
+ * 在异常处理栈展开过程中清理互斥锁资源
+ * 
+ * @note 此函数在异常处理过程中被调用
+ * @warning 调用此函数会销毁当前的互斥锁实例
+ */
+void MutexDestroyHandler(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -30114,7 +30123,18 @@ void Unwind_180902620(void)
 
 
 
-void Unwind_180902630(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 上下文互斥锁销毁处理器
+ * 
+ * 该函数负责销毁指定上下文中的互斥锁
+ * 在异常处理过程中根据上下文参数销毁对应的互斥锁
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象状态信息
+ * @param validationContextParam 验证上下文参数，包含互斥锁指针信息
+ * @note 此函数在异常处理过程中被调用
+ * @warning 调用此函数会销毁指定上下文中的互斥锁实例
+ */
+void ContextMutexDestroyHandler(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   _Mtx_destroy_in_situ(*(uint8_t *)(validationContextParam + 0x78));
@@ -30123,20 +30143,31 @@ void Unwind_180902630(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902640(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 资源表验证处理器
+ * 
+ * 该函数负责验证资源表的完整性
+ * 检查资源表中的所有资源项，如果发现异常则触发系统紧急退出
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象状态信息
+ * @param validationContextParam 验证上下文参数，包含资源表信息
+ * @note 此函数在异常处理过程中被调用
+ * @warning 如果资源表验证失败，将触发系统紧急退出
+ */
+void ResourceTableValidationHandler(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   int64_t *processPointer;
   int64_t resourceTable;
   
-  plocalContextPointer = *(int64_t **)(validationContextParam + 0x78);
-  for (resourceTable = *plocalContextPointer; resourceTable != plocalContextPointer[1]; resourceTable = resourceTable + 0x28) {
+  pLocalContextPointer = *(int64_t **)(validationContextParam + 0x78);
+  for (resourceTable = *pLocalContextPointer; resourceTable != pLocalContextPointer[1]; resourceTable = resourceTable + 0x28) {
     if (*(int64_t *)(resourceTable + 8) != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
   }
-  if (*plocalContextPointer == 0) {
+  if (*pLocalContextPointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
