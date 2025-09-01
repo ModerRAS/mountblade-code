@@ -40011,7 +40011,7 @@ void Unwind_180904820(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904830(uint8_t objectContextParam,int64_t validationContextParam)
+void ResetSystemDataStructure(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   **(uint8_t **)(validationContextParam + 0x60) = &SystemDataStructure;
@@ -40020,7 +40020,7 @@ void Unwind_180904830(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904840(uint8_t objectContextParam,int64_t validationContextParam)
+void FreeResourceIndexHandle(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
@@ -40032,7 +40032,7 @@ void Unwind_180904840(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904870(uint8_t objectContextParam,int64_t validationContextParam)
+void ResetSystemResourceHandler(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   *(uint8_t *)(validationContextParam + 0x50) = &SystemResourceHandlerTemplate;
@@ -40048,7 +40048,7 @@ void Unwind_180904870(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904880(uint8_t objectContextParam,int64_t validationContextParam)
+void ResetSystemDataPointer(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x20) = &SystemDataStructure;
@@ -40057,7 +40057,7 @@ void Unwind_180904880(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904890(uint8_t objectContextParam,int64_t validationContextParam)
+void ResetSystemContextPointer(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   **(uint8_t **)(validationContextParam + 0x50) = &SystemDataStructure;
@@ -40066,21 +40066,21 @@ void Unwind_180904890(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809048a0(uint8_t objectContextParam,int64_t validationContextParam)
+void ResetResourceHashTable(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
-  uint8_t *presourceHash;
+  uint8_t *resourceHashPointer;
   
-  presourceHash = *(uint8_t **)(validationContextParam + 0x20);
-  *presourceHash = &ResourceHashTemplate;
-  *presourceHash = &ResourceTableTemplate;
-  *presourceHash = &ResourceCacheTemplate;
+  resourceHashPointer = *(uint8_t **)(validationContextParam + 0x20);
+  *resourceHashPointer = &ResourceHashTemplate;
+  *resourceHashPointer = &ResourceTableTemplate;
+  *resourceHashPointer = &ResourceCacheTemplate;
   return;
 }
 
 
 
-void Unwind_1809048b0(uint8_t objectContextParam,int64_t validationContextParam)
+void ResetSystemDataReference(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   *(uint8_t **)(*(int64_t *)(validationContextParam + 0x20) + 0x20) = &SystemDataStructure;
@@ -40089,7 +40089,7 @@ void Unwind_1809048b0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809048c0(uint8_t objectContextParam,int64_t validationContextParam)
+void ResetSystemContextReference(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   **(uint8_t **)(validationContextParam + 0x28) = &SystemDataStructure;
@@ -40098,7 +40098,7 @@ void Unwind_1809048c0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809048d0(uint8_t objectContextParam,int64_t validationContextParam)
+void ReleaseSystemMutexLock(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int operationResult;
@@ -40112,12 +40112,12 @@ void Unwind_1809048d0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809048e0(uint8_t objectContextParam,int64_t validationContextParam)
+void CleanupSystemResourceContextA(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
-  int64_t loopCounter;
+  int64_t resourceIndex;
   
-  loopCounter = *(int64_t *)(validationContextParam + 0x48);
+  resourceIndex = *(int64_t *)(validationContextParam + 0x48);
   *(uint8_t *)(localContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
