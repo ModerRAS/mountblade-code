@@ -32825,7 +32825,7 @@ void ExceptionFrameHandler(uint8_t ObjectContextParameter,int64_t ValidationCont
 
 
 
-void Unwind_180902d20(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void MemoryContextReset(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -32839,7 +32839,7 @@ void Unwind_180902d20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902d30(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ResourceReferenceCounter(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -32853,7 +32853,7 @@ void Unwind_180902d30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902d40(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void SystemGarbageCollector(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;
