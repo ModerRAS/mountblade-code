@@ -83178,18 +83178,19 @@ void CleanupMutexResources(void)
  * @param param4 参数4
  * 
  * 该函数负责初始化系统上下文，设置必要的参数和回调函数
+ * 配置系统处理程序并初始化相关的数据结构
  */
-void initializeSystemContext(undefined8 context_ptr, undefined8 param2, undefined8 param3, undefined8 param_4)
+void InitializeSystemContext(undefined8 context_ptr, undefined8 param2, undefined8 param3, undefined8 param_4)
 
 {
   undefined8 *system_handler;
   
   system_handler = systemContextHandler;
   if (systemContextHandler != (undefined8 *)0x0) {
-    FUN_180651560(&systemContextData, *systemContextHandler, param3, param_4, 0xfffffffffffffffe);
-    FUN_18063cfe0(system_handler + 5);
+    InitializeContextData(&systemContextData, *systemContextHandler, param3, param_4, 0xfffffffffffffffe);
+    SetupSystemHandler(system_handler + 5);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(system_handler);
+    ExecuteSystemHandler(system_handler);
   }
   return;
 }
@@ -83204,8 +83205,9 @@ void initializeSystemContext(undefined8 context_ptr, undefined8 param2, undefine
  * 
  * 该函数负责重置线程本地存储状态，清理不再需要的资源
  * 并将线程恢复到初始状态
+ * 重置线程数据结构和资源指针
  */
-void resetThreadLocalStorage(void)
+void ResetThreadLocalStorage(void)
 
 {
   longlong thread_data;
@@ -83214,7 +83216,7 @@ void resetThreadLocalStorage(void)
   *(undefined8 *)(thread_data + 0x18) = &threadResourcePointer;
   if (*(longlong *)(thread_data + 0x20) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CleanupThreadResources();
   }
   *(undefined8 *)(thread_data + 0x20) = 0;
   *(undefined4 *)(thread_data + 0x30) = 0;
