@@ -2449,9 +2449,9 @@ void GetMemoryBlockSize;
 uint8_t SystemMemoryConfigDataPrimary;
 uint8_t SystemMemoryConfigDataSecondary;
 uint8_t SystemMemoryConfigDataTertiary;
-uint8_t SystemMemoryConfigDataTemplateQuickuaternary;
+uint8_t SystemMemoryConfigDataTemplateQuaternary;
 uint8_t AudioEffectProcessorTable;
-uint8_t SystemMemoryConfigDataTemplateQuickuinary;
+uint8_t SystemMemoryConfigDataTemplateQuinary;
 uint8_t AudioMixerSettingsTable;
 uint8_t InputDeviceStateTable;
 uint8_t InputEventQueueTable;
@@ -2505,23 +2505,23 @@ uint8_t MemoryTemplateHeader;
 uint8_t MemoryTemplateData;
 uint8_t MemoryTemplateConfig;
 uint8_t SystemMemoryAllocatorHandle;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerPrimary;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerSecondary;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerTertiary;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerQuaternary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerPrimary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerSecondary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerTertiary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerQuaternary;
 uint8_t SystemMemoryManager;
 uint8_t SystemDataStructure;
 uint8_t SystemDataPointer;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerQuinary;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerSenary;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerSeptenary;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerOctonary;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerNonary;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerDenary;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerUndenary;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerDuodenary;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerTerdenary;
-uint8_t SystemMemoryConfigDataTemplateMediumemoryManagerQuattuordenary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerQuinary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerSenary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerSeptenary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerOctonary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerNonary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerDenary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerUndenary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerDuodenary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerTerdenary;
+uint8_t SystemMemoryConfigDataTemplateMemoryManagerQuattuordenary;
 uint8_t AnimationClipTable;
 uint8_t SkeletonTable;
 uint8_t AnimationStateTable;
@@ -2545,7 +2545,7 @@ uint8_t ScriptObjectTable;
 
  uint8_t InitializeResourceManager;
 uint8_t ConfigureResourceSettings;
-uint8_t SystemMemoryConfigDataTemplateSecurepecialB;
+uint8_t SystemMemoryConfigDataTemplateSecureSpecialB;
 uint8_t ResourceAllocationTable;
 uint8_t SystemResourceQueue;
 uint8_t SystemResourceStack;
@@ -3296,40 +3296,40 @@ uint8_t SystemMemoryFlagKernel;
 void ProcessGameDataObjects(int64_t GameContext, int64_t SystemContext)
 
 {
-  uint8_t objectValidationStatus;
-  int operationProcessingStatus;
-  int64_t currentObjectDataPointer;
-  int totalProcessedObjects;
-  uint8_t objectMetadataBuffer[32];
-  int64_t systemContextHandles[2];
-  uint8_t *gameObjectDataList;
-  int listIterationIndex;
-  uint32_t maximumAllowedItems;
-  uint8_t objectProcessingWorkspace[512];
-  uint64_t securityAccessKey;
+  uint8_t ObjectValidationStatus;
+  int OperationProcessingStatus;
+  int64_t CurrentObjectDataPointer;
+  int TotalProcessedObjects;
+  uint8_t ObjectMetadataBuffer[32];
+  int64_t SystemContextHandles[2];
+  uint8_t *GameObjectDataList;
+  int ListIterationIndex;
+  uint32_t MaximumAllowedItems;
+  uint8_t ObjectProcessingWorkspace[512];
+  uint64_t SecurityAccessKey;
   
   SecurityAccessKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
-  OperationStatus = GetContextHandles(*(uint32_t *)(GameObjectContext + 0x10), SystemContextHandles);
-  if ((OperationStatus == 0) && (*(int64_t *)(SystemContextHandles[0] + 8) != 0)) {
+  OperationProcessingStatus = GetContextHandles(*(uint32_t *)(GameObjectContext + 0x10), SystemContextHandles);
+  if ((OperationProcessingStatus == 0) && (*(int64_t *)(SystemContextHandles[0] + 8) != 0)) {
     GameObjectDataList = ObjectProcessingWorkspace;
-    ProcessedObjectCount = 0;
+    TotalProcessedObjects = 0;
     ListIterationIndex = 0;
     MaximumAllowedItems = 0xffffffc0;
-    OperationStatus = RetrieveObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemContextHandles[0] + 8),
+    OperationProcessingStatus = RetrieveObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemContextHandles[0] + 8),
                           &GameObjectDataList);
-    if (OperationStatus == 0) {
+    if (OperationProcessingStatus == 0) {
       if (0 < ListIterationIndex) {
         CurrentObjectDataPointer = 0;
         do {
-          ValidationResult = *(uint8_t *)(GameObjectDataList + CurrentObjectDataPointer);
-          OperationStatus = ValidateObjectStatus(ValidationResult);
-          if (OperationStatus != 2) {
+          ObjectValidationStatus = *(uint8_t *)(GameObjectDataList + CurrentObjectDataPointer);
+          OperationProcessingStatus = ValidateObjectStatus(ObjectValidationStatus);
+          if (OperationProcessingStatus != 2) {
                     // WARNING: Subroutine does not return
-            HandleInvalidObject(ValidationResult, 1);
+            HandleInvalidObject(ObjectValidationStatus, 1);
           }
-          ProcessedObjectCount = ProcessedObjectCount + 1;
+          TotalProcessedObjects = TotalProcessedObjects + 1;
           CurrentObjectDataPointer = CurrentObjectDataPointer + 8;
-        } while (ProcessedObjectCount < ListIterationIndex);
+        } while (TotalProcessedObjects < ListIterationIndex);
       }
       ReleaseObjectListMemory(&GameObjectDataList);
     }
