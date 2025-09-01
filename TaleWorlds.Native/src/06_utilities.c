@@ -1775,7 +1775,7 @@ uint8_t SystemMemoryConfigDataTemplateDuodenary;
 uint8_t SystemMemoryConfigDataTemplateSenary;
 uint8_t SystemMemoryConfigDataTemplateSeptenary;
 uint8_t SystemMemoryConfigDataCore;
-uint8_t SystemMemoryConfigDataTemplateOctonary;
+uint8_t SystemMemoryConfigDataTemplateOptimizedctonary;
 uint8_t SystemMemoryConfigDataTemplateNormalonary;
 uint8_t SystemMemoryConfigDataTemplateDenary;
 uint8_t SystemMemoryConfigDataTemplateUndenary;
@@ -1784,7 +1784,7 @@ uint8_t SystemMemoryConfigDataTemplateQuattuordenary;
 uint8_t SystemMemoryConfigDataTemplateQuindenary;
 uint8_t SystemMemoryConfigDataTemplateSexdenary;
 uint8_t SystemMemoryConfigDataTemplateSeptendenary;
-uint8_t SystemMemoryConfigDataTemplateOctodenary;
+uint8_t SystemMemoryConfigDataTemplateOptimizedctodenary;
 uint8_t SystemMemoryConfigDataTemplateNormalovendenary;
 uint8_t SystemMemoryConfigDataTemplateVigesimal;
 uint8_t SystemMemoryConfigDataTemplateUnvigesimal;
@@ -1861,7 +1861,7 @@ uint8_t SystemMemoryConfigDataCache;
  * 配置内存访问审计和安全检查
  */
 void SetupMemoryAuditing(void);
-uint8_t SystemMemoryConfigDataTemplateO;
+uint8_t SystemMemoryConfigDataTemplateOptimized;
 uint8_t SystemDataStructureInstance;
 uint8_t SystemDataStructureHandle;
 uint8_t SystemDataStructureContext;
@@ -1878,7 +1878,7 @@ uint8_t SystemMemoryConfigDataTemplateP;
 void InitializeMemoryCompliance(void);
 uint8_t SystemMemoryConfigDataTemplateMedium;
 uint8_t SystemMemoryConfigDataTemplateNormal;
-uint8_t SystemMemoryConfigDataTemplateO;
+uint8_t SystemMemoryConfigDataTemplateOptimized;
 uint8_t SystemMemoryConfigDataTemplateP;
 uint8_t SystemMemoryConfigDataTemplateQ;
 
