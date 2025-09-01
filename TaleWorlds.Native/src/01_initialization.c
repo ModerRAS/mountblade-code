@@ -35523,7 +35523,19 @@ void InitializeSystemResourceB(void* SystemResourcePointer,void* ConfigurationDa
 
 
 
-void* FUN_18005b520(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
+/**
+ * @brief 系统资源管理器函数
+ * 
+ * 该函数负责管理系统资源的生命周期，包括资源的创建、使用和释放。
+ * 它会根据配置数据标志决定是否释放资源内存。
+ * 
+ * @param systemResourcePointer 系统资源指针
+ * @param configurationDataPointer 配置数据指针
+ * @return 返回系统资源指针
+ * 
+ * 原始函数名为FUN_18005b520，现已重命名为ManageSystemResource
+ */
+void* ManageSystemResource(void* systemResourcePointer, unsigned long long configurationDataPointer)
 
 {
   FUN_18005b560();
@@ -35536,8 +35548,20 @@ void* FUN_18005b520(void* SystemResourcePointer,ulong long ConfigurationDataPoin
 
 
 
-// 函数: void FUN_18005b560(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005b560(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源清理函数
+ * 
+ * 该函数负责清理系统资源，调用系统内存分配器清理函数
+ * 并对资源指针进行重置和初始化操作。
+ * 
+ * @param systemResourcePointer 系统资源指针的指针
+ * @param configurationDataPointer 配置数据指针
+ * @param additionalParameter 额外参数
+ * @param configurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_18005b560，现已重命名为CleanupSystemResource
+ */
+void CleanupSystemResource(void** systemResourcePointer, void* configurationDataPointer, void* additionalParameter, void* configurationFlag)
 
 {
   *SystemResourcePointer = &UNK_1809fde10;
