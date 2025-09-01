@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# 批量重命名SystemDataBuffer变量
+cd /dev/shm/mountblade-code/TaleWorlds.Native/src
+
+# SystemDataBuffer重命名映射
+sed -i 's/undefined SystemDataBuffer067;/void* SystemDataBufferPool;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer068;/void* SystemDataBufferCache;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer069;/void* SystemDataBufferQueue;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer070;/void* SystemDataBufferStack;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer071;/void* SystemDataBufferHeap;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer072;/void* SystemDataBufferTable;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer073;/void* SystemDataBufferList;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer074;/void* SystemDataBufferArray;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer075;/void* SystemDataBufferVector;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer076;/void* SystemDataBufferMap;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer077;/void* SystemDataBufferSet;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer078;/void* SystemDataBufferTree;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer079;/void* SystemDataBufferGraph;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer080;/void* SystemDataBufferNetwork;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer081;/void* SystemDataBufferDatabase;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer082;/void* SystemDataBufferStorage;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer083;/void* SystemDataBufferMemory;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer084;/void* SystemDataBufferDisk;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer085;/void* SystemDataBufferFile;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer086;/void* SystemDataBufferStream;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer087;/void* SystemDataBufferSocket;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer088;/void* SystemDataBufferPipe;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer089;/void* SystemDataBufferThread;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer090;/void* SystemDataBufferProcess;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer091;/void* SystemDataBufferEvent;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer092;/void* SystemDataBufferSignal;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer093;/void* SystemDataBufferTimer;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer094;/void* SystemDataBufferMutex;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer095;/void* SystemDataBufferSemaphore;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer096;/void* SystemDataBufferLock;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer097;/void* SystemDataBufferBarrier;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer098;/void* SystemDataBufferCondition;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer099;/void* SystemDataBufferAtomic;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer100;/void* SystemDataBufferSync;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer101;/void* SystemDataBufferAsync;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer102;/void* SystemDataBufferCoroutine;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer103;/void* SystemDataBufferFuture;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer104;/void* SystemDataBufferPromise;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer105;/void* SystemDataBufferTask;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer106;/void* SystemDataBufferJob;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer107;/void* SystemDataBufferWorker;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer108;/void* SystemDataBufferScheduler;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer109;/void* SystemDataBufferDispatcher;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer110;/void* SystemDataBufferExecutor;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer111;/void* SystemDataBufferRuntime;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer112;/void* SystemDataBufferEnvironment;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer113;/void* SystemDataBufferContext;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer114;/void* SystemDataBufferSession;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer115;/void* SystemDataBufferTransaction;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer116;/void* SystemDataBufferLog;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer117;/void* SystemDataBufferTrace;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer118;/void* SystemDataBufferProfile;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer119;/void* SystemDataBufferMonitor;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer120;/void* SystemDataBufferMetrics;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer121;/void* SystemDataBufferStatistics;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer122;/void* SystemDataBufferAnalytics;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer123;/void* SystemDataBufferReport;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer124;/void* SystemDataBufferDashboard;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer125;/void* SystemDataBufferVisualization;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer126;/void* SystemDataBufferControl;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer127;/void* SystemDataBufferManagement;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer128;/void* SystemDataBufferAdministration;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer129;/void* SystemDataBufferConfiguration;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer130;/void* SystemDataBufferSettings;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer131;/void* SystemDataBufferPreferences;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer132;/void* SystemDataBufferOptions;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer133;/void* SystemDataBufferParameters;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer134;/void* SystemDataBufferArguments;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer135;/void* SystemDataBufferFlags;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer136;/void* SystemDataBufferAttributes;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer137;/void* SystemDataBufferProperties;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer138;/void* SystemDataBufferMetadata;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer139;/void* SystemDataBufferSchema;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer140;/void* SystemDataBufferStructure;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer141;/void* SystemDataBufferLayout;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer142;/void* SystemDataBufferFormat;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer143;/void* SystemDataBufferEncoding;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer144;/void* SystemDataBufferCompression;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer145;/void* SystemDataBufferEncryption;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer146;/void* SystemDataBufferSecurity;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer147;/void* SystemDataBufferAuthentication;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer148;/void* SystemDataBufferAuthorization;/g' 06_utilities.c
+sed -i 's/undefined SystemDataBuffer149;/void* SystemDataBufferPermission;/g' 06_utilities.c
+
+echo "SystemDataBuffer变量重命名完成"

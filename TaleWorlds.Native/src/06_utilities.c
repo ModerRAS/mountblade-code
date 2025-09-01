@@ -83756,36 +83756,48 @@ void InitializeSystemDataReference(void)
 
 
 
- void FUN_180941650(void)
-void FUN_180941650(void)
+ /**
+ * @brief 初始化系统数据结构E
+ * 
+ * 该函数负责清理线程同步相关的资源，包括销毁互斥锁
+ * 和条件变量，释放系统资源
+ */
+void InitializeSystemDataStructureE(void)
 
 {
-  _Mtx_destroy_in_situ();
-                    // WARNING: Could not recover jumptable at 0x000180941680. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Cnd_destroy_in_situ();
+  SystemMutexDestroy();
+  SystemConditionVariableDestroy();
   return;
 }
 
 
 
 
- void FUN_180941690(void)
-void FUN_180941690(void)
+ /**
+ * @brief 初始化系统数据结构F
+ * 
+ * 该函数负责释放系统同步相关的资源，包括互斥锁和条件变量
+ * 确保系统资源被正确清理
+ */
+void InitializeSystemDataStructureF(void)
 
 {
-  _Mtx_destroy_in_situ();
-                    // WARNING: Could not recover jumptable at 0x0001809416c0. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Cnd_destroy_in_situ();
+  SystemMutexDestroy();
+  SystemConditionVariableDestroy();
   return;
 }
 
 
 
 
- void FUN_1809416d0(void)
-void FUN_1809416d0(void)
+ /**
+ * @brief 初始化系统数据结构G
+ * 
+ * 该函数负责销毁互斥锁和条件变量的内部实现
+ * 用于清理线程同步对象
+ */
+void InitializeSystemDataStructureG(void)
+void InitializeSystemDataStructureG(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -83827,8 +83839,14 @@ void CloseSystemHandle(void)
 
 
 
- void FUN_1809417c0(void)
-void FUN_1809417c0(void)
+ /**
+ * @brief 初始化系统数据结构H
+ * 
+ * 该函数负责销毁指定地址的互斥锁内部实现
+ * 用于清理特定的线程同步对象
+ */
+void InitializeSystemDataStructureH(void)
+void InitializeSystemDataStructureH(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417d8. Too many branches
@@ -83842,8 +83860,14 @@ void FUN_1809417c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809417e0(void)
-void FUN_1809417e0(void)
+ /**
+ * @brief 初始化系统数据结构I
+ * 
+ * 该函数负责将全局指针变量_DAT_180d49160设置为指向UNK_18098bcb0
+ * 这是系统数据结构初始化的一部分
+ */
+void InitializeSystemDataStructureI(void)
+void InitializeSystemDataStructureI(void)
 
 {
   _DAT_180d49160 = &UNK_18098bcb0;
@@ -83855,8 +83879,14 @@ void FUN_1809417e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941800(void)
-void FUN_180941800(void)
+ /**
+ * @brief 初始化系统数据结构J
+ * 
+ * 该函数负责将全局指针变量_DAT_180bf64d0设置为指向UNK_18098bcb0
+ * 这是系统数据结构初始化的一部分
+ */
+void InitializeSystemDataStructureJ(void)
+void InitializeSystemDataStructureJ(void)
 
 {
   _DAT_180bf64d0 = &UNK_18098bcb0;
@@ -83868,8 +83898,14 @@ void FUN_180941800(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941820(void)
-void FUN_180941820(void)
+ /**
+ * @brief 初始化系统数据结构K
+ * 
+ * 该函数负责将全局指针变量_DAT_180bf6530设置为指向UNK_18098bcb0
+ * 这是系统数据结构初始化的一部分
+ */
+void InitializeSystemDataStructureK(void)
+void InitializeSystemDataStructureK(void)
 
 {
   _DAT_180bf6530 = &UNK_18098bcb0;
@@ -83881,8 +83917,14 @@ void FUN_180941820(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941840(void)
-void FUN_180941840(void)
+ /**
+ * @brief 初始化系统数据结构L
+ * 
+ * 该函数负责将全局指针变量_DAT_180bf6590设置为指向UNK_18098bcb0
+ * 这是系统数据结构初始化的一部分
+ */
+void InitializeSystemDataStructureL(void)
+void InitializeSystemDataStructureL(void)
 
 {
   _DAT_180bf6590 = &UNK_18098bcb0;
@@ -83894,8 +83936,13 @@ void FUN_180941840(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941860(void)
-void FUN_180941860(void)
+ /**
+ * @brief 初始化系统数据结构M
+ * 
+ * 该函数负责将全局指针变量_DAT_180bf65c0设置为指向UNK_18098bcb0
+ * 这是系统数据结构初始化的一部分
+ */
+void InitializeSystemDataStructureM(void)
 
 {
   _DAT_180bf65c0 = &UNK_18098bcb0;

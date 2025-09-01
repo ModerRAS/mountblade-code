@@ -14700,7 +14700,20 @@ NetworkHandle GetNetworkConnectionFailureStatus(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_18084d620(longlong *connectionContext,int packetData)
+// 函数: NetworkHandle FUN_18084d620(longlong *connectionContext,int packetData)
+/**
+ * @brief 网络连接上下文初始化器
+ * 
+ * 该函数负责初始化网络连接上下文，设置连接参数
+ * 主要用于新网络连接的初始化准备工作
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据
+ * @return 初始化结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle InitializeNetworkConnectionData(longlong *connectionContext,int packetData)
 
 {
   NetworkHandle *networkPointer1;
@@ -14823,7 +14836,20 @@ LAB_18084d7db:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_18084d644(NetworkHandle connectionContext,int packetData)
+// 函数: NetworkHandle FUN_18084d644(NetworkHandle connectionContext,int packetData)
+/**
+ * @brief 网络连接数据处理器
+ * 
+ * 该函数负责处理网络连接数据，包括数据包的解析和验证
+ * 主要用于网络数据的处理和传输操作
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据
+ * @return 处理结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle ProcessNetworkConnectionDataPacket(NetworkHandle connectionContext,int packetData)
 
 {
   NetworkHandle *networkPointer1;
@@ -28304,8 +28330,17 @@ NetworkHandle FUN_1808577e2(void)
 
 
 
-// 函数: void FUN_18085791f(void)
-void FUN_18085791f(void)
+/**
+ * @brief 网络状态检查占位函数
+ * 
+ * 该函数是一个占位函数，目前不执行任何操作。
+ * 可能在未来的网络状态检查中用于特定的状态验证或监控操作。
+ * 
+ * @return 无返回值
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名为FUN_18085791f
+ */
+void NetworkStatusCheckPlaceholder(void)
 
 {
   return;
@@ -28313,7 +28348,16 @@ void FUN_18085791f(void)
 
 
 
-NetworkHandle FUN_180857928(void)
+/**
+ * @brief 获取网络错误代码
+ * 
+ * 该函数返回一个固定的网络错误代码，用于表示特定的网络错误状态。
+ * 
+ * @return 网络错误代码 0x1c
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名为FUN_180857928
+ */
+NetworkHandle GetNetworkErrorCode(void)
 
 {
   return 0x1c;
