@@ -8,18 +8,18 @@
  */
 void* GameSystemMainEntryPoint;
 void* SystemGlobalDataReference;              // 全局系统数据引用
-void* SystemMainMemoryPool;                    // 主系统内存池
-void* SystemMainDataTable;                     // 系统数据表引用
-void* SystemBackupMemoryPool;                   // 备份系统内存池
-void* SystemBackupDataTable;                    // 备份系统数据表
-void* SystemCacheMemoryPool;                    // 缓存系统内存池
-void* SystemCacheDataTable;                     // 缓存系统数据表
-void* SystemTemporaryMemoryPool;               // 临时系统内存池
-void* SystemTemporaryDataTable;                // 临时系统数据表
-void* SystemReservedMemoryPool;                // 保留系统内存池
-void* SystemReservedDataTable;                 // 保留系统数据表
-void* SystemEmergencyMemoryPool;               // 紧急系统内存池
-void* SystemEmergencyDataTable;                // 紧急系统数据表
+void* SystemPrimaryMemoryPool;                // 主系统内存池
+void* SystemPrimaryDataTable;                 // 系统数据表引用
+void* SystemBackupMemoryPool;                  // 备份系统内存池
+void* SystemBackupDataTable;                   // 备份系统数据表
+void* SystemCacheMemoryPool;                   // 缓存系统内存池
+void* SystemCacheDataTable;                    // 缓存系统数据表
+void* SystemTemporaryMemoryPool;              // 临时系统内存池
+void* SystemTemporaryDataTable;               // 临时系统数据表
+void* SystemReservedMemoryPool;               // 保留系统内存池
+void* SystemReservedDataTable;                // 保留系统数据表
+void* SystemEmergencyMemoryPool;              // 紧急系统内存池
+void* SystemEmergencyDataTable;               // 紧急系统数据表
 
 // 核心系统函数指针和相关数据
 /**
@@ -1026,53 +1026,62 @@ void InitializeGameCoreSystem(void)
  * @note 函数依赖GetSystemRootPointer和GetSystemMemorySize等辅助函数
  * @note 函数会设置BaseAllocatorNodeData相关配置
  */
+/**
+ * @brief 初始化系统数据表基础内存分配器
+ * 
+ * 此函数负责初始化系统数据表的基础内存分配器，为后续的系统组件提供内存管理支持。
+ * 函数会遍历系统节点树，查找或创建基础分配器节点，并配置相关的内存管理参数。
+ * 
+ * @note 函数使用BASE_ALLOCATOR_ID进行分配器识别
+ * @note 函数依赖GetSystemRootPointer和GetSystemMemorySize等辅助函数
+ * @note 函数会设置BaseAllocatorNodeData相关配置
+ */
 void InitializeSystemDataTableBaseAllocator(void)
 {
-  char IsSystemNodeActive;
-  void** SystemRootNodePointer;
-  int MemoryCompareResult;
-  long long* SystemDataTablePointer;
+  bool IsNodeActive;
+  void** RootNodePointer;
+  int MemoryComparisonResult;
+  long long* DataTablePointer;
   long long MemoryAllocationSize;
-  void** CurrentSystemNode;
-  void** PreviousSystemNode;
-  void** NextSystemNode;
-  void** AllocatedSystemNode;
-  void** TempSystemNode;
+  void** CurrentNode;
+  void** PreviousNode;
+  void** NextNode;
+  void** AllocatedNode;
   void* BaseAllocatorFunctionPointer;
   
-  SystemDataTablePointer = (long long*)GetSystemRootPointer();
-  SystemRootNodePointer = (void**)*SystemDataTablePointer;
-  IsSystemNodeActive = *(char*)((long long)SystemRootNodePointer[1] + 0x19);
+  DataTablePointer = (long long*)GetSystemRootPointer();
+  RootNodePointer = (void**)*DataTablePointer;
+  IsNodeActive = *(bool*)((long long)RootNodePointer[1] + 0x19);
   BaseAllocatorFunctionPointer = 0;
-  PreviousSystemNode = SystemRootNodePointer;
-  CurrentSystemNode = (void**)SystemRootNodePointer[1];
+  PreviousNode = RootNodePointer;
+  CurrentNode = (void**)RootNodePointer[1];
   
-  while (IsSystemNodeActive == '\0') {
-    MemoryCompareResult = memcmp(CurrentSystemNode + 4, &BASE_ALLOCATOR_ID, 0x10);
-    if (MemoryCompareResult < 0) {
-      NextSystemNode = (void**)CurrentSystemNode[2];
-      CurrentSystemNode = PreviousSystemNode;
+  while (!IsNodeActive) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4, &BASE_ALLOCATOR_ID, 0x10);
+    if (MemoryComparisonResult < 0) {
+      NextNode = (void**)CurrentNode[2];
+      CurrentNode = PreviousNode;
     }
     else {
-      NextSystemNode = (void**)*CurrentSystemNode;
+      NextNode = (void**)*CurrentNode;
     }
-    PreviousSystemNode = CurrentSystemNode;
-    CurrentSystemNode = NextSystemNode;
-    IsSystemNodeActive = *(char*)((long long)NextSystemNode + 0x19);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    IsNodeActive = *(bool*)((long long)NextNode + 0x19);
   }
   
-  if ((PreviousSystemNode == SystemRootNodePointer) || 
-      (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID, PreviousSystemNode + 4, 0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, MemoryAllocationSize + 0x20, MemoryAllocationSize);
-    PreviousSystemNode = AllocatedSystemNode;
+  if ((PreviousNode == RootNodePointer) || 
+      (MemoryComparisonResult = memcmp(&BASE_ALLOCATOR_ID, PreviousNode + 4, 0x10), MemoryComparisonResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(DataTablePointer);
+    AllocateSystemMemory(DataTablePointer, &AllocatedNode, PreviousNode, MemoryAllocationSize + 0x20, MemoryAllocationSize);
+    PreviousNode = AllocatedNode;
   }
   
-  PreviousSystemNode[6] = 0x4770584fbb1df897;
-  PreviousSystemNode[7] = 0x47f249e43f66f2ab;
-  PreviousSystemNode[8] = &BaseAllocatorNodeData;
-  PreviousSystemNode[9] = 1;
-  PreviousSystemNode[10] = BaseAllocatorFunctionPointer;
+  PreviousNode[6] = 0x4770584fbb1df897;
+  PreviousNode[7] = 0x47f249e43f66f2ab;
+  PreviousNode[8] = &BaseAllocatorNodeData;
+  PreviousNode[9] = 1;
+  PreviousNode[10] = BaseAllocatorFunctionPointer;
   return;
 }
 
@@ -18675,11 +18684,11 @@ uint32_t FinalSystemInitialization(void)
   }
   stackManager8 = SystemManagerPointerStorage;
   if (SystemManagerPointerStorage != (long long ****)0x0) {
-    lVar10 = __RTCastToVoid(SystemManagerPointerStorage);
-    *pppplVar8 = (long long ***)&UNK_1809fee70;
-    PostQueuedCompletionStatus(pppplVar8[0x42686],0,0xffffffffffffffff);
-    CloseHandle(pppplVar8[0x42686]);
-    ppplStackX_10 = (long long ***)(pppplVar8 + 0x42687);
+    SystemManagerPointer = __RTCastToVoid(SystemManagerPointerStorage);
+    *SystemManagerTable = (long long ***)&UNK_1809fee70;
+    PostQueuedCompletionStatus(SystemManagerTable[0x42686],0,0xffffffffffffffff);
+    CloseHandle(SystemManagerTable[0x42686]);
+    SystemResourcePointer = (long long ***)(SystemManagerTable + 0x42687);
     if ((long long ***)*ppplStackX_10 != (long long ***)0x0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
