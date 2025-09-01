@@ -5226,18 +5226,18 @@ void InitializeSystemConfigurationManager(void)
 void InitializeSystemMessageProcessor(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined8 systemParameter;
+  undefined *messageProcessorPointer;
+  undefined1 *messageBufferPointer;
+  uint32_t messageBufferSize;
+  undefined1 messageBuffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 10;
-  strcpy_s(auStack_88,0x80,&UNK_180a13e48,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d5c = FUN_180623800(&puStack_a0);
+  messageProcessorPointer = &SystemMessageProcessorNode;
+  messageBufferPointer = messageBuffer;
+  messageBuffer[0] = 0;
+  messageBufferSize = 10;
+  strcpy_s(messageBuffer,0x80,&SystemMessageProcessorTemplate,systemParameter,0xfffffffffffffffe);
+  SystemMessageProcessorHandle = InitializeMessageProcessorCallback(&messageProcessorPointer);
   return;
 }
 
@@ -5275,18 +5275,18 @@ int InitializeSystemDebugManager(void)
 void InitializeSystemLogManager(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined8 systemParameter;
+  undefined *logManagerPointer;
+  undefined1 *logBufferPointer;
+  uint32_t logBufferSize;
+  undefined1 logBuffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 9;
-  strcpy_s(auStack_88,0x80,&UNK_180a140f8,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d60 = FUN_180623800(&puStack_a0);
+  logManagerPointer = &SystemLogManagerNode;
+  logBufferPointer = logBuffer;
+  logBuffer[0] = 0;
+  logBufferSize = 9;
+  strcpy_s(logBuffer,0x80,&SystemLogManagerTemplate,systemParameter,0xfffffffffffffffe);
+  SystemLogManagerHandle = InitializeLogManagerCallback(&logManagerPointer);
   return;
 }
 
@@ -5307,18 +5307,18 @@ void InitializeSystemLogManager(void)
 void InitializeSystemPerformanceMonitor(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined8 systemParameter;
+  undefined *performanceMonitorPointer;
+  undefined1 *performanceBufferPointer;
+  uint32_t performanceBufferSize;
+  undefined1 performanceBuffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0xf;
-  strcpy_s(auStack_88,0x80,&UNK_180a14290,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d64 = FUN_180623800(&puStack_a0);
+  performanceMonitorPointer = &SystemPerformanceMonitorNode;
+  performanceBufferPointer = performanceBuffer;
+  performanceBuffer[0] = 0;
+  performanceBufferSize = 0xf;
+  strcpy_s(performanceBuffer,0x80,&SystemPerformanceMonitorTemplate,systemParameter,0xfffffffffffffffe);
+  SystemPerformanceMonitorHandle = InitializePerformanceMonitorCallback(&performanceMonitorPointer);
   return;
 }
 
@@ -5339,18 +5339,18 @@ void InitializeSystemPerformanceMonitor(void)
 void InitializeSystemSecurityMonitor(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined8 systemParameter;
+  undefined *securityMonitorPointer;
+  undefined1 *securityBufferPointer;
+  uint32_t securityBufferSize;
+  undefined1 securityBuffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0xc;
-  strcpy_s(auStack_88,0x80,&UNK_180a14668,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d68 = FUN_180623800(&puStack_a0);
+  securityMonitorPointer = &SystemSecurityMonitorNode;
+  securityBufferPointer = securityBuffer;
+  securityBuffer[0] = 0;
+  securityBufferSize = 0xc;
+  strcpy_s(securityBuffer,0x80,&SystemSecurityMonitorTemplate,systemParameter,0xfffffffffffffffe);
+  SystemSecurityMonitorHandle = InitializeSecurityMonitorCallback(&securityMonitorPointer);
   return;
 }
 
@@ -5371,18 +5371,18 @@ void InitializeSystemSecurityMonitor(void)
 void InitializeSystemResourceManager(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined8 systemParameter;
+  undefined *resourceManagerPointer;
+  undefined1 *resourceBufferPointer;
+  uint32_t resourceBufferSize;
+  undefined1 resourceBuffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 7;
-  strcpy_s(auStack_88,0x80,&DAT_180a14640,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d6c = FUN_180623800(&puStack_a0);
+  resourceManagerPointer = &SystemResourceManagerNode;
+  resourceBufferPointer = resourceBuffer;
+  resourceBuffer[0] = 0;
+  resourceBufferSize = 7;
+  strcpy_s(resourceBuffer,0x80,&SystemResourceManagerTemplate,systemParameter,0xfffffffffffffffe);
+  SystemResourceManagerHandle = InitializeResourceManagerCallback(&resourceManagerPointer);
   return;
 }
 
@@ -5403,18 +5403,18 @@ void InitializeSystemResourceManager(void)
 void InitializeSystemNetworkManager(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined8 systemParameter;
+  undefined *networkManagerPointer;
+  undefined1 *networkBufferPointer;
+  uint32_t networkBufferSize;
+  undefined1 networkBuffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x13;
-  strcpy_s(auStack_88,0x80,&UNK_180a14840,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d70 = FUN_180623800(&puStack_a0);
+  networkManagerPointer = &SystemNetworkManagerNode;
+  networkBufferPointer = networkBuffer;
+  networkBuffer[0] = 0;
+  networkBufferSize = 0x13;
+  strcpy_s(networkBuffer,0x80,&SystemNetworkManagerTemplate,systemParameter,0xfffffffffffffffe);
+  SystemNetworkManagerHandle = InitializeNetworkManagerCallback(&networkManagerPointer);
   return;
 }
 
@@ -5442,12 +5442,12 @@ void InitializeSystemStorageManager(void)
   undefined8 *systemCurrentNode;
   undefined8 *systemNextNode;
   undefined8 *systemPreviousNode;
-  code *pcStackX_18;
+  void* storageManagerCallbackPointer;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  systemSearchFunctionPointer = GetSystemSearchFunctionG;
+  storageManagerCallbackPointer = SystemStorageManagerCallback;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -5500,12 +5500,12 @@ void InitializeSystemMemoryManagerNode(void)
   undefined8 *systemCurrentNode;
   undefined8 *systemNextNode;
   undefined8 *systemPreviousNode;
-  code *pcStackX_18;
+  void* memoryManagerCallbackPointer;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_180262b00;
+  memoryManagerCallbackPointer = SystemMemoryManagerCallback;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
