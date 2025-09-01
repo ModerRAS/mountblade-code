@@ -9924,7 +9924,7 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContextParameter,uint32_t *Va
   int64_t *processPointer;
   int OperationResult;
   int64_t ResourceIndex;
-  uint8_t auStack_b8 [32];
+  uint8_t SecurityDataBuffer [32];
   uint ResourceFlag1;
   uint ResourceFlag2;
   uint ResourceFlag3;
@@ -9939,10 +9939,10 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContextParameter,uint32_t *Va
   uint ValidationParam2;
   uint ValidationParam3;
   uint ValidationParam4;
-  uint8_t aEncryptedValue [40];
+  uint8_t EncryptedDataBuffer [40];
   uint64_t OperationParam3;
   
-  OperationParam3 = SecurityEncryptionKey ^ (uint64_t)auStack_b8;
+  OperationParam3 = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
   ResourceContextPointer = *(int64_t **)(ObjectContextParameter + 800);
   if (ResourceContextPointer != (int64_t *)0x0) {
     ValidationParam1 = *ValidationContextParameter;
@@ -12449,19 +12449,19 @@ void ProcessComplexResourceOperation(uint8_t ObjectContextParameter,int64_t Vali
   uint GraphicsOperationFlag8;
   uint8_t *GraphicsDataPointer2;
   int GraphicsDataIndex2;
-  uint uStack_298;
-  uint32_t uStack_294;
-  int iStack_290;
-  uint32_t uStack_28c;
-  uint uStack_288;
-  uint32_t uStack_284;
-  uint32_t uStack_280;
-  uint32_t uStack_27c;
-  uint8_t *puStack_278;
-  uint32_t uStack_270;
-  uint uStack_268;
-  uint32_t uStack_264;
-  uint8_t auStack_260 [520];
+  uint UnsignedStackVar298;
+  uint32_t UnsignedStackVar294;
+  int IntegerStackVar290;
+  uint32_t UnsignedStackVar28c;
+  uint UnsignedStackVar288;
+  uint32_t UnsignedStackVar284;
+  uint32_t UnsignedStackVar280;
+  uint32_t UnsignedStackVar27c;
+  uint8_t *PointerStackVar278;
+  uint32_t UnsignedStackVar270;
+  uint UnsignedStackVar268;
+  uint32_t UnsignedStackVar264;
+  uint8_t ArrayStackVar260 [520];
   uint64_t ResourceFlag9;
   
   ResourceFlag9 = SecurityEncryptionKey ^ (uint64_t)GraphicsDataBuffer;
