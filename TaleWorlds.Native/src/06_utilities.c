@@ -752,12 +752,12 @@ void* SystemHashTable;
 void* SystemDataBufferPool;
 void* SystemDataBufferCache;
 void* SystemDataBufferQueuePool;
-void* SystemDataBufferPool070;
-void* SystemDataBufferPool071;
-void* SystemDataBuffer072;
-void* SystemDataBuffer073;
-void* SystemDataBuffer074;
-void* SystemDataBuffer075;
+void* SystemMemoryPoolBufferA;
+void* SystemMemoryPoolBufferB;
+void* SystemGraphicsTextureBuffer;
+void* SystemAudioSampleBuffer;
+void* SystemPhysicsCollisionBuffer;
+void* SystemNetworkSocketBuffer;
 void* SystemDataBufferRenderQueue;
 void* SystemDataBufferNetworkQueue;
 void* SystemDataBufferAudioQueue;
@@ -82293,7 +82293,7 @@ void Unwind_180912200(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   resourceTable = *(longlong *)(param_2 + 0x70);
   uVar3 = 0xfffffffffffffffe;
-  FUN_180291610();
+  SystemResourceInitializationComplete();
   lVar1 = *(longlong *)(resourceTable + 0x390);
   if (lVar1 != 0) {
     if (_DAT_180c8a9b0 != 0) {
@@ -82560,7 +82560,7 @@ void Unwind_180912320(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   resourceTable = *(longlong *)(param_2 + 0x40);
   uVar3 = 0xfffffffffffffffe;
-  FUN_180291610();
+  SystemResourceInitializationComplete();
   lVar1 = *(longlong *)(resourceTable + 0x390);
   if (lVar1 != 0) {
     if (_DAT_180c8a9b0 != 0) {
@@ -82922,7 +82922,7 @@ void Unwind_1809124f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(param_2 + 0x50);
   validationResult = 0xfffffffffffffffe;
-  FUN_18013ea00(*(uint8_t8 *)(lVar1 + 0x30));
+  SystemResourceCleanupHandler(*(uint8_t8 *)(lVar1 + 0x30));
   *(uint8_t8 *)(lVar1 + 0x30) = 0;
   *(uint8_t8 *)(lVar1 + 0x18) = 0;
   *(uint8_t8 *)(lVar1 + 0x10) = 0;
@@ -83324,7 +83324,7 @@ void Unwind_180912780(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 validationResult;
   
   validationResult = 0xfffffffffffffffe;
-  FUN_18013ea00(*(uint8_t8 *)(param_2 + 0x1d0));
+  SystemResourceCleanupHandler(*(uint8_t8 *)(param_2 + 0x1d0));
   *(uint8_t8 *)(param_2 + 0x1d0) = 0;
   *(uint8_t8 *)(param_2 + 0x1b8) = 0;
   *(uint8_t8 *)(param_2 + 0x1b0) = 0;
@@ -83350,7 +83350,7 @@ void Unwind_180912790(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 validationResult;
   
   validationResult = 0xfffffffffffffffe;
-  FUN_18013ea00(*(uint8_t8 *)(param_2 + 0xc0));
+  SystemResourceCleanupHandler(*(uint8_t8 *)(param_2 + 0xc0));
   *(uint8_t8 *)(param_2 + 0xc0) = 0;
   *(uint8_t8 *)(param_2 + 0xa8) = 0;
   *(uint8_t8 *)(param_2 + 0xa0) = 0;
@@ -83376,7 +83376,7 @@ void Unwind_1809127a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 validationResult;
   
   validationResult = 0xfffffffffffffffe;
-  FUN_18013ea00(*(uint8_t8 *)(param_2 + 0xc0));
+  SystemResourceCleanupHandler(*(uint8_t8 *)(param_2 + 0xc0));
   *(uint8_t8 *)(param_2 + 0xc0) = 0;
   *(uint8_t8 *)(param_2 + 0xa8) = 0;
   *(uint8_t8 *)(param_2 + 0xa0) = 0;
@@ -83402,7 +83402,7 @@ void Unwind_1809127b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 validationResult;
   
   validationResult = 0xfffffffffffffffe;
-  FUN_18013ea00(*(uint8_t8 *)(param_2 + 0x1d0));
+  SystemResourceCleanupHandler(*(uint8_t8 *)(param_2 + 0x1d0));
   *(uint8_t8 *)(param_2 + 0x1d0) = 0;
   *(uint8_t8 *)(param_2 + 0x1b8) = 0;
   *(uint8_t8 *)(param_2 + 0x1b0) = 0;
@@ -83429,7 +83429,7 @@ void Unwind_1809127c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   validationResult = 0xfffffffffffffffe;
-  FUN_18013ea00(*(uint8_t8 *)(lVar1 + 0x30));
+  SystemResourceCleanupHandler(*(uint8_t8 *)(lVar1 + 0x30));
   *(uint8_t8 *)(lVar1 + 0x30) = 0;
   *(uint8_t8 *)(lVar1 + 0x18) = 0;
   *(uint8_t8 *)(lVar1 + 0x10) = 0;
@@ -83896,7 +83896,7 @@ void InitializeResourceTableManager(void)
     ResetResourceSystem();
     lVar1 = _DAT_180bf5250;
     for (resourceTable = _DAT_180bf5248; resourceTable != lVar1; resourceTable = resourceTable + 0x100) {
-      FUN_180046b10(resourceTable);
+      SystemResourceTableCleanup(resourceTable);
     }
     if (_DAT_180bf5248 == 0) {
       return;
@@ -84596,7 +84596,7 @@ void ExecuteSystemStatusCheckAndCleanup(void)
     }
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ();
-    FUN_180059ee0(0x180c919f0);
+    SystemMemoryRegionCleanup(0x180c919f0);
 
  /**
  * 初始化系统数据结构AC
