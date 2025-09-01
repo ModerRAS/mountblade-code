@@ -30503,8 +30503,16 @@ void ReleaseSystemMemoryHandles(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180057556(long long SystemResourcePointer)
-void FUN_180057556(long long SystemResourcePointer)
+/**
+ * @brief 系统资源数组清理器
+ * 
+ * 该函数负责清理系统资源数组，遍历数组中的每个资源并调用清理函数。
+ * 它会确保每个资源都被正确释放，并将数组中的指针设置为0。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源数组信息
+ * @note 这是系统资源管理的重要清理函数，用于释放资源数组中的所有资源
+ */
+void CleanupSystemResourceArray(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;

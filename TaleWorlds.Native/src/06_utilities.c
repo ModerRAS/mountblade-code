@@ -2044,13 +2044,13 @@ uint8_t DataEncryptionInitializationVector;
  * 用于数据完整性验证
  */
 void HashDataBuffer(void);
-uint8_t HashAlgorithm;
-uint8_t HashDigestValue;
-uint8_t HashSaltValue;
-uint8_t HashIterationCount;
-uint8_t HashOutputBufferSize;
-uint8_t RandomSeedValue;
-uint8_t RandomGeneratorState;
+uint8_t DataHashAlgorithm;
+uint8_t DataHashDigestValue;
+uint8_t DataHashSaltValue;
+uint8_t DataHashIterationCount;
+uint8_t DataHashOutputBufferSize;
+uint8_t SecureRandomSeedValue;
+uint8_t SecureRandomGeneratorState;
 
  /**
  * @brief 生成安全随机数
@@ -2076,13 +2076,13 @@ uint8_t SystemEnvironmentDataTemplateBackup;
 uint8_t SystemConfigurationDataTemplateCache;
 uint8_t SystemConfigurationDataTemplateData;
 uint8_t SystemConfigurationDataTemplateExtra;
-uint8_t SystemConfigDataCore;
-uint8_t SystemConfigDataEngine;
-uint8_t NetworkConfigDataStreamPrimary;
-uint8_t NetworkConfigDataStreamSecondary;
-uint8_t NetworkConfigDataStreamTertiary;
-uint8_t NetworkConfigDataStreamQuaternary;
-uint8_t NetworkConfigDataStreamQuinary;
+uint8_t SystemCoreConfigData;
+uint8_t SystemEngineConfigData;
+uint8_t NetworkPrimaryConfigDataStream;
+uint8_t NetworkSecondaryConfigDataStream;
+uint8_t NetworkTertiaryConfigDataStream;
+uint8_t NetworkQuaternaryConfigDataStream;
+uint8_t NetworkQuinaryConfigDataStream;
 uint8_t NetworkDataStreamTemplatePrimary;
 uint8_t SystemNetworkConfigDataPrimary;
 uint8_t SystemConfigDataTertiary;

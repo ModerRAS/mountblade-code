@@ -3365,8 +3365,8 @@ LAB_18004e062:
       _DAT_180d48d18 = dVar15;
       *(float *)(lVar6 + 0x1f8) = (float)(1000.0 / *(double *)(lVar6 + 0x70));
     }
-    if (0.0 < *(double *)(_DAT_180c86890 + 0x1510)) {
-      ProcessGameLogic(lVar6,(float)*(double *)(_DAT_180c86890 + 0x1510));
+    if (0.0 < *(double *)(GameEngineDataAddress + 0x1510)) {
+      ProcessGameLogic(lVar6,(float)*(double *)(GameEngineDataAddress + 0x1510));
     }
     if (*(char *)(lVar6 + 0x1ee) == '\0') {
       fVar14 = *(float *)(lVar6 + 0x200);
@@ -3375,8 +3375,8 @@ LAB_18004e062:
         QueryPerformanceCounter(&lStack_88);
       } while ((double)lStack_88 * PerformanceCounterFactor < (double)fVar14 + dVar15);
       QueryPerformanceCounter(&lStack_80);
-      lVar8 = lStack_80 - _DAT_180c8ed40;
-      _DAT_180c8ed40 = lStack_80;
+      lVar8 = lStack_80 - LastPerformanceCounter;
+      LastPerformanceCounter = lStack_80;
       *(double *)(lVar6 + 0x208) = (double)lVar8 * PerformanceCounterFactor;
       QueryPerformanceCounter(&lStack_78);
       *(double *)(lVar6 + 0x218) = (double)lStack_78 * PerformanceCounterFactor;
@@ -3474,8 +3474,8 @@ LAB_18004e062:
       _DAT_180d48d18 = dVar14;
       *(float *)(param_1 + 0x1f8) = (float)(1000.0 / *(double *)(param_1 + 0x70));
     }
-    if (0.0 < *(double *)(_DAT_180c86890 + 0x1510)) {
-      ProcessGameLogic(param_1,(float)*(double *)(_DAT_180c86890 + 0x1510));
+    if (0.0 < *(double *)(GameEngineDataAddress + 0x1510)) {
+      ProcessGameLogic(param_1,(float)*(double *)(GameEngineDataAddress + 0x1510));
     }
     if (*(char *)(param_1 + 0x1ee) == '\0') {
       fVar13 = *(float *)(param_1 + 0x200);
@@ -3484,8 +3484,8 @@ LAB_18004e062:
         QueryPerformanceCounter(&lStack_88);
       } while ((double)lStack_88 * PerformanceCounterFactor < (double)fVar13 + dVar14);
       QueryPerformanceCounter(&lStack_80);
-      lVar7 = lStack_80 - _DAT_180c8ed40;
-      _DAT_180c8ed40 = lStack_80;
+      lVar7 = lStack_80 - LastPerformanceCounter;
+      LastPerformanceCounter = lStack_80;
       *(double *)(param_1 + 0x208) = (double)lVar7 * PerformanceCounterFactor;
       QueryPerformanceCounter(&lStack_78);
       *(double *)(param_1 + 0x218) = (double)lStack_78 * PerformanceCounterFactor;
@@ -3519,7 +3519,7 @@ LAB_18005122d:
   alStack_90[2] = 0;
   uStack_78 = 3;
   InitializeGameSession(auStack_2a8);
-  ProcessGameData((longlong)_DAT_180c86958 * 0x238 + _DAT_180c86890 + 0x1598,auStack_2a8);
+  ProcessGameData((longlong)_DAT_180c86958 * 0x238 + GameEngineDataAddress + 0x1598,auStack_2a8);
   plStack_2f8 = alStack_90;
   if (alStack_90[0] != 0) {
     CleanupSystemResources();
@@ -4069,9 +4069,9 @@ LAB_1800d37d8:
     *(uint8_t *)(ModuleInitializationResult6 + 0xf18) = 0;
   }
   lVar3 = _DAT_180c86950;
-  ModuleInitializationResult8 = _DAT_180c86890;
+  ModuleInitializationResult8 = GameEngineDataAddress;
   MemoryAddress4 = *(uint64_t *)(_DAT_180c86950 + 0x161c);
-  *(uint64_t *)(_DAT_180c86890 + 0x12d0) = *(uint64_t *)(_DAT_180c86950 + 0x1614);
+  *(uint64_t *)(GameEngineDataAddress + 0x12d0) = *(uint64_t *)(_DAT_180c86950 + 0x1614);
   *(uint64_t *)(ModuleInitializationResult8 + 0x12d8) = MemoryAddress4;
   MemoryAddress4 = *(uint64_t *)(lVar3 + 0x162c);
   *(uint64_t *)(ModuleInitializationResult8 + 0x12e0) = *(uint64_t *)(lVar3 + 0x1624);
@@ -4106,7 +4106,7 @@ LAB_1800d37d8:
   *(uint8_t *)(lVar3 + 0x162c) = 0;
   InitializeNetworkSystem();
   FinalizeNetworkSystem();
-  *(uint *)(_DAT_180c86890 + 0x1590) = _DAT_180c86958;
+  *(uint *)(GameEngineDataAddress + 0x1590) = _DAT_180c86958;
   _DAT_180c86958 = _DAT_180c86958 + 1 & 0x80000001;
   if ((int)_DAT_180c86958 < 0) {
     _DAT_180c86958 = (_DAT_180c86958 - 1 | 0xfffffffe) + 1;
@@ -4119,7 +4119,7 @@ LAB_1800d37d8:
   MemoryAddress4 = _DAT_180c8a9b0;
   pplStack_220 = (longlong **)_DAT_180c8a9b0;
   _DAT_180c8a9b0 = *pMemoryAddress5;
-  ModuleInitializationResult8 = *(longlong *)(_DAT_180c86890 + 0x1a08 + (longlong)(int)_DAT_180c86958 * 8);
+  ModuleInitializationResult8 = *(longlong *)(GameEngineDataAddress + 0x1a08 + (longlong)(int)_DAT_180c86958 * 8);
   if (ModuleInitializationResult8 != 0) {
     MemoryAddress9 = BufferSize0;
     BufferSize2 = BufferSize0;
@@ -4141,7 +4141,7 @@ LAB_1800d37d8:
       CleanupSystemResources();
     }
     *(uint64_t *)(ModuleInitializationResult8 + 8) = 0;
-    puVar4 = *(uint8_t **)(_DAT_180c86890 + 0x1a08 + (longlong)(int)_DAT_180c86958 * 8);
+    puVar4 = *(uint8_t **)(GameEngineDataAddress + 0x1a08 + (longlong)(int)_DAT_180c86958 * 8);
     if (puVar4 != (uint8_t *)0x0) {
       *puVar4 = 0;
       *(uint64_t *)(puVar4 + 8) = 0;
@@ -4151,7 +4151,7 @@ LAB_1800d37d8:
       *(uint64_t *)(puVar4 + 0x1c) = 0;
       CleanupSystemResources();
     }
-    *(uint64_t *)(_DAT_180c86890 + 0x1a08 + (longlong)(int)_DAT_180c86958 * 8) = 0;
+    *(uint64_t *)(GameEngineDataAddress + 0x1a08 + (longlong)(int)_DAT_180c86958 * 8) = 0;
     param_2 = uStack_1c8;
   }
   FUN_180127860();
@@ -4244,7 +4244,7 @@ LAB_1800d3d65:
   lStack_1f8 = 0;
   uStack_1f0 = 0;
   uStack_1e8 = 3;
-  ProcessGameDataStructure(_DAT_180c86890,param_2,&lStack_200);
+  ProcessGameDataStructure(GameEngineDataAddress,param_2,&lStack_200);
   ModuleInitializationResult6 = lStack_200;
   ModuleInitializationResult8 = lStack_1f8;
   MemoryAddress9 = BufferSize0;
