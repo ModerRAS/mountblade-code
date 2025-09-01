@@ -5480,7 +5480,15 @@ void InitializeSystemStorageManager(void)
 
 
 // 函数: void FUN_180033b50(void)
-void FUN_180033b50(void)
+/**
+ * @brief 初始化系统内存管理器节点
+ * 
+ * 该函数负责初始化系统的内存管理器节点，设置内存管理的基础结构。
+ * 它会遍历系统内存节点树，进行内存比较，分配必要的内存，并设置内存管理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保内存管理系统的正常运行
+ */
+void InitializeSystemMemoryManagerNode(void)
 
 {
   char systemNodeFlag;
@@ -5530,7 +5538,15 @@ void FUN_180033b50(void)
 
 
 // 函数: void FUN_180033c50(void)
-void FUN_180033c50(void)
+/**
+ * @brief 初始化系统数据表节点
+ * 
+ * 该函数负责初始化系统的数据表节点，设置数据表操作的基础结构。
+ * 它会遍历系统数据表节点树，进行内存比较，分配必要的内存，并设置数据表节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保数据表系统的正常运行
+ */
+void InitializeSystemDataTableNode(void)
 
 {
   char systemNodeFlag;
@@ -5580,7 +5596,15 @@ void FUN_180033c50(void)
 
 
 // 函数: void FUN_180033d50(void)
-void FUN_180033d50(void)
+/**
+ * @brief 初始化系统配置节点
+ * 
+ * 该函数负责初始化系统的配置节点，设置配置操作的基础结构。
+ * 它会遍历系统配置节点树，进行内存比较，分配必要的内存，并设置配置节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保配置系统的正常运行
+ */
+void InitializeSystemConfigurationNode(void)
 
 {
   char systemNodeFlag;
@@ -5630,7 +5654,15 @@ void FUN_180033d50(void)
 
 
 // 函数: void FUN_180033e50(void)
-void FUN_180033e50(void)
+/**
+ * @brief 初始化系统事件节点
+ * 
+ * 该函数负责初始化系统的事件节点，设置事件处理的基础结构。
+ * 它会遍历系统事件节点树，进行内存比较，分配必要的内存，并设置事件节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保事件系统的正常运行
+ */
+void InitializeSystemEventNode(void)
 
 {
   char systemNodeFlag;
@@ -27831,37 +27863,45 @@ void SystemMemoryCleanup(void)
 
 
 
-// 函数: void FUN_1800577f6(void)
-void FUN_1800577f6(void)
+// 函数: 系统资源释放器 - 负责释放系统资源
+/**
+ * @brief 系统资源释放器
+ * 
+ * 该函数负责释放系统中的资源，包括内存块、文件句柄、网络连接等。
+ * 它会检查资源的使用状态，并安全地释放不再需要的资源。
+ * 
+ * @note 这是系统资源管理的重要组成部分，确保系统资源的正确释放
+ */
+void SystemResourceRelease(void)
 
 {
-  int *piVar1;
+  int *resourceReferenceCount;
   undefined8 *systemDataTable;
-  longlong lVar3;
-  longlong unaff_RBP;
-  ulonglong unaff_RSI;
-  ulonglong uVar4;
-  undefined8 unaff_R15;
+  longlong resourceAddress;
+  longlong resourceBase;
+  ulonglong resourceCount;
+  ulonglong resourceFlags;
+  undefined8 resourceValue;
   
-  *(undefined8 *)(unaff_RBP + 0x18) = unaff_R15;
-  if ((1 < unaff_RSI) && (puVar2 = *(undefined8 **)(unaff_RBP + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
-          FUN_18064d630();
+  *(undefined8 *)(resourceBase + 0x18) = resourceValue;
+  if ((1 < resourceCount) && (systemResource = *(undefined8 **)(resourceBase + 8), systemResource != (undefined8 *)0x0)) {
+    resourceFlags = (ulonglong)systemResource & 0xffffffffffc00000;
+    if (resourceFlags != 0) {
+      resourceAddress = resourceFlags + 0x80 + ((longlong)systemResource - resourceFlags >> 0x10) * 0x50;
+      resourceAddress = resourceAddress - (ulonglong)*(uint *)(resourceAddress + 4);
+      if ((*(void ***)(resourceFlags + 0x70) == &ExceptionList) && (*(char *)(resourceAddress + 0xe) == '\0')) {
+        *systemResource = *(undefined8 *)(resourceAddress + 0x20);
+        *(undefined8 **)(resourceAddress + 0x20) = systemResource;
+        resourceReferenceCount = (int *)(resourceAddress + 0x18);
+        *resourceReferenceCount = *resourceReferenceCount + -1;
+        if (*resourceReferenceCount == 0) {
+          CleanupResourceManager();
           return;
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        ProcessResourceException(resourceFlags,CONCAT71(0xff000000,*(void ***)(resourceFlags + 0x70) == &ExceptionList),
+                            systemResource,resourceFlags,0xfffffffffffffffe);
       }
     }
     return;
