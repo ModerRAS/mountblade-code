@@ -34232,8 +34232,19 @@ void ProcessSystemStringAndInitializeBuffer(long long SystemResourcePointer,long
 
 
 
-// 函数: void FUN_1800599c0(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
-void FUN_1800599c0(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
+/**
+ * @brief 系统缓冲区数据复制函数
+ * 
+ * 该函数负责将配置数据复制到系统缓冲区中，支持不同大小的数据复制。
+ * 当数据大小超过缓冲区容量时，会调用系统内存处理函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含目标缓冲区信息
+ * @param ConfigurationDataPointer 配置数据指针，包含要复制的数据
+ * @param AdditionalParameter 额外参数，指定要复制的数据大小
+ * 
+ * 原始函数名为FUN_1800599c0，现已重命名为CopySystemBufferData
+ */
+void CopySystemBufferData(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
 
 {
   if (AdditionalParameter + 1 < 0x10) {
@@ -34737,7 +34748,17 @@ void CleanupSystemAndProcessBuffers(void)
 
 
 // 函数: void FUN_180059fb0(void* *SystemResourcePointer)
-void FUN_180059fb0(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源指针管理和异常处理函数
+ * 
+ * 该函数负责管理系统资源指针，处理异常列表和内存地址计算。
+ * 涉及系统资源的分配、释放和异常处理机制。
+ * 
+ * @param SystemResourcePointer 系统资源指针的指针
+ * 
+ * 原始函数名为FUN_180059fb0，现已重命名为ManageSystemResourcePointerWithExceptionHandling
+ */
+void ManageSystemResourcePointerWithExceptionHandling(void* *SystemResourcePointer)
 
 {
   int *pointerToInteger1;

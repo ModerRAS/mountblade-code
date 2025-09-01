@@ -226,6 +226,77 @@ def beautify_variable_names(content):
     
     return content
 
+def beautify_unk_variables(content):
+    """美化 UNK_ 变量名"""
+    # UNK_ 变量名映射表 - 根据用户提供的映射
+    unk_variable_mappings = {
+        'UNK_18044f530': 'VertexBufferResourceInstance',
+        'UNK_18044f580': 'IndexBufferResourceInstance',
+        'UNK_18044f5d0': 'ShaderProgramResourceInstance',
+        'UNK_18044f5f0': 'TextureResourceInstance',
+        'UNK_18044f610': 'RenderContextResourceInstance',
+        'UNK_18044f630': 'RenderParametersResourceInstance',
+        'UNK_18044f640': 'RenderDeviceResourceInstance',
+        'UNK_18044f660': 'RenderPropertiesResourceInstance',
+        'UNK_18044f690': 'RenderLockResourceInstance',
+        'UNK_18044f6b0': 'RenderViewportResourceInstance',
+        'UNK_18044f6e0': 'CommandBufferResourceInstance',
+        'UNK_18044f750': 'CommandBufferInitResourceInstance',
+        'UNK_18044f940': 'CommandBufferResetResourceInstance',
+        'UNK_18044f960': 'CommandSubmitResourceInstance',
+        'UNK_18044f980': 'CommandQueueFlushResourceInstance',
+        'UNK_18044f9a0': 'CommandWaitResourceInstance',
+        'UNK_18044f9c0': 'CommandPoolResourceInstance',
+        'UNK_18044f9e0': 'CommandPoolDestroyResourceInstance',
+        'UNK_18044faf0': 'CommandBufferAllocateResourceInstance',
+        'UNK_18044fb20': 'CommandBufferFreeResourceInstance',
+        'UNK_18044fb40': 'CommandRecordingBeginResourceInstance',
+        'UNK_18044fb60': 'CommandRecordingEndResourceInstance',
+        'UNK_18044fb80': 'CommandBufferStateResetResourceInstance',
+        'UNK_18044fba0': 'CommandBufferFlagsResourceInstance',
+        'UNK_18044fbc0': 'CommandBufferOneTimeResourceInstance',
+        'UNK_18044fbe0': 'RenderPassBeginResourceInstance',
+        'UNK_18044fc00': 'RenderPassEndResourceInstance',
+        'UNK_18044fc20': 'PipelineBindResourceInstance',
+        'UNK_18044fc40': 'VertexBufferBindResourceInstance',
+        'UNK_18044fc60': 'PipelineInitResourceInstance',
+        'UNK_18044fc80': 'ShaderResourceBindResourceInstance',
+        'UNK_18044fca0': 'DrawParametersResourceInstance',
+        'UNK_18044fcc0': 'DrawCallResourceInstance',
+        'UNK_18044fce0': 'DrawExecuteResourceInstance',
+        'UNK_18044fd00': 'IndexedDrawExecuteResourceInstance',
+        'UNK_18044fd20': 'InstancedDrawExecuteResourceInstance',
+        'UNK_18044fd40': 'RenderStateSetupResourceInstance',
+        'UNK_18044fd60': 'RenderStateSetResourceInstance',
+        'UNK_18044fd80': 'RenderStateGetResourceInstance',
+        'UNK_18044fda0': 'RenderStateUpdateResourceInstance',
+        'UNK_18044fdc0': 'RenderStateResetResourceInstance',
+        'UNK_18044fde0': 'RenderStateFlushResourceInstance',
+        'UNK_18044fe00': 'RenderStateClearResourceInstance',
+        'UNK_18044fe20': 'RenderStateApplyResourceInstance',
+        'UNK_18044fe40': 'DeviceInitResourceInstance',
+        'UNK_18044fe60': 'SwapChainCreateResourceInstance',
+        'UNK_18044fe80': 'CommandQueueSetupResourceInstance',
+        'UNK_18044fe90': 'RenderTargetsCreateResourceInstance',
+        'UNK_18044fea0': 'PipelineConfigureResourceInstance',
+        'UNK_18044fee0': 'RenderFunctionResourceInstance',
+        'UNK_18044ff00': 'RenderFunction2ResourceInstance',
+        'UNK_18044ff20': 'UniformUpdateResourceInstance',
+        'UNK_18044ff40': 'TargetClearResourceInstance',
+        'UNK_18044ff60': 'RootConstantSetResourceInstance',
+        'UNK_18044ff80': 'RootConstantsSetResourceInstance'
+    }
+    
+    # 应用 UNK_ 变量名替换
+    for old_name, new_name in unk_variable_mappings.items():
+        # 替换 undefined UNK_xxxxx; 形式
+        content = re.sub(rf'undefined\s+{old_name};', f'undefined {new_name};', content)
+        
+        # 替换其他地方引用的 UNK_xxxxx
+        content = re.sub(rf'\b{old_name}\b', new_name, content)
+    
+    return content
+
 def add_function_comments(content):
     """为函数添加文档注释"""
     # 函数注释映射表
@@ -287,6 +358,10 @@ def main():
     content = read_file(file_path)
     if content is None:
         return
+    
+    # 美化 UNK_ 变量名
+    print("正在美化 UNK_ 变量名...")
+    content = beautify_unk_variables(content)
     
     # 美化函数名
     print("正在美化函数名...")
