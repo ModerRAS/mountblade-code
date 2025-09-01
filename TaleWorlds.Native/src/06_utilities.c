@@ -28469,7 +28469,16 @@ void ResetResourceDescriptor(uint8_t8 exceptionCode, longlong exceptionContext)
 
 
 
-void Unwind_180902080(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文中
+ * 用于异常处理时的数据结构恢复
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数，包含系统状态信息
+ */
+void SetSystemDataStructurePointer(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0x68) = &SystemDataStructure;
@@ -87706,10 +87715,10 @@ void CleanupSystemResources(uint8_t8 resourceType, uint8_t8 resourceInstance, ui
     EmergencyResourceCleanup();
   }
   resourceManager[5] = 0;
-  *(uint8_t4 *)(resource_manager + 7) = 0;
-  resource_manager[4] = &ResourceResetMarker;
+  *(uint8_t4 *)(resourceManager + 7) = 0;
+  resourceManager[4] = &ResourceResetMarker;
                     // WARNING: Subroutine does not return
-  FinalizeResourceCleanup(resource_manager);
+  FinalizeResourceCleanup(resourceManager);
 }
 
 
