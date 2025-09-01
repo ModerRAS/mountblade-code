@@ -35014,8 +35014,17 @@ FUN_18005c2a0(void* *SystemResourcePointer,void* *param_2,void* param_3,void* pa
 
 
 
-// 函数: void FUN_18005c380(long long SystemResourcePointer)
-void FUN_18005c380(long long SystemResourcePointer)
+/**
+ * @brief 初始化系统数据引用
+ * 
+ * 该函数负责初始化系统数据的引用，设置系统数据指针和内存分配器引用。
+ * 主要用于系统数据结构的初始化和配置。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向系统资源数据结构
+ * 
+ * 原始函数名为FUN_18005c380，现已重命名为InitializeSystemDataReference
+ */
+void InitializeSystemDataReference(long long SystemResourcePointer)
 
 {
   *(void* *)(SystemResourcePointer + 0x18) = &SystemGlobalDataReference;
@@ -35032,8 +35041,17 @@ void FUN_18005c380(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005c3d0(long long *SystemResourcePointer)
-void FUN_18005c3d0(long long *SystemResourcePointer)
+/**
+ * @brief 清理系统资源指针
+ * 
+ * 该函数负责清理系统资源指针，重置系统数据引用和内存分配器引用。
+ * 主要用于系统资源的清理和释放工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向需要清理的资源数据结构
+ * 
+ * 原始函数名为FUN_18005c3d0，现已重命名为CleanupSystemResourcePointer
+ */
+void CleanupSystemResourcePointer(long long *SystemResourcePointer)
 
 {
   long long localMemoryPointer;
@@ -39984,8 +40002,17 @@ void FUN_180061be0(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180061db0(long long *SystemResourcePointer)
-void FUN_180061db0(long long *SystemResourcePointer)
+/**
+ * @brief 初始化系统上下文管理器
+ * 
+ * 该函数负责初始化系统上下文管理器，分配系统内存并设置上下文管理所需的资源。
+ * 主要用于系统上下文的创建和管理工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向系统资源数据结构
+ * 
+ * 原始函数名为FUN_180061db0，现已重命名为InitializeSystemContextManager
+ */
+void InitializeSystemContextManager(long long *SystemResourcePointer)
 
 {
   void* *pointerToUnsigned1;
@@ -42013,8 +42040,15 @@ LAB_180065a3e:
 
 
 
-// 函数: void FUN_180065d50(void)
-void FUN_180065d50(void)
+/**
+ * @brief 初始化系统资源分配器
+ * 
+ * 该函数负责初始化系统资源分配器，设置资源分配所需的内存和数据结构。
+ * 主要用于系统资源的分配和管理工作。
+ * 
+ * 原始函数名为FUN_180065d50，现已重命名为InitializeSystemResourceAllocator
+ */
+void InitializeSystemResourceAllocator(void)
 
 {
   uint8_t auStack_2c8 [104];
@@ -44978,7 +45012,21 @@ void FUN_18006b540(void* SystemResourcePointer,uint32_t param_2)
 
 
 
-long long FUN_18006b5c0(long long SystemResourcePointer,uint param_2,void* param_3,void* param_4)
+/**
+ * @brief 清理系统资源句柄
+ * 
+ * 该函数负责清理系统资源句柄，释放相关的内存和资源。
+ * 主要用于系统资源的清理和释放工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向需要清理的资源数据结构
+ * @param param_2 清理选项参数，控制清理行为
+ * @param param_3 清理回调函数指针
+ * @param param_4 清理标志参数，指定清理操作的标志位
+ * @return 返回清理后的系统资源指针
+ * 
+ * 原始函数名为FUN_18006b5c0，现已重命名为CleanupSystemResourceHandle
+ */
+long long CleanupSystemResourceHandle(long long SystemResourcePointer,uint param_2,void* param_3,void* param_4)
 
 {
   if (*(code **)(SystemResourcePointer + 0xd0) != (code *)0x0) {
@@ -44993,8 +45041,22 @@ long long FUN_18006b5c0(long long SystemResourcePointer,uint param_2,void* param
 
 
 
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统资源管理器，设置资源管理所需的数据结构和回调函数。
+ * 主要用于系统资源的创建和管理工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向资源管理器数据结构
+ * @param param_2 初始化参数，包含初始化所需的配置信息
+ * @param param_3 初始化回调函数指针
+ * @param param_4 初始化标志参数，指定初始化操作的标志位
+ * @return 返回初始化后的系统资源指针
+ * 
+ * 原始函数名为FUN_18006b640，现已重命名为InitializeSystemResourceManager
+ */
 void* *
-FUN_18006b640(void* *SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+InitializeSystemResourceManager(void* *SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
 
 {
   code *pcVar1;
@@ -47936,8 +47998,17 @@ void FUN_18006f310(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_18006f340(long long *SystemResourcePointer)
-void FUN_18006f340(long long *SystemResourcePointer)
+/**
+ * @brief 处理系统资源队列
+ * 
+ * 该函数负责处理系统资源队列，管理资源的分配和释放。
+ * 主要用于系统资源的队列管理和线程同步。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向资源队列数据结构
+ * 
+ * 原始函数名为FUN_18006f340，现已重命名为ProcessSystemResourceQueue
+ */
+void ProcessSystemResourceQueue(long long *SystemResourcePointer)
 
 {
   char SystemNodeFlag;
@@ -51949,8 +52020,17 @@ void FUN_1800740a2(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_1800740f5(long long SystemResourcePointer)
-void FUN_1800740f5(long long SystemResourcePointer)
+/**
+ * @brief 初始化系统缓冲区管理器
+ * 
+ * 该函数负责初始化系统缓冲区管理器，设置缓冲区的大小和参数。
+ * 主要用于系统缓冲区的创建和管理工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向缓冲区管理器数据结构
+ * 
+ * 原始函数名为FUN_1800740f5，现已重命名为InitializeSystemBufferManager
+ */
+void InitializeSystemBufferManager(long long SystemResourcePointer)
 
 {
   int systemStatus;
@@ -63939,8 +64019,17 @@ void FUN_18007f6a0(char *SystemResourcePointer,void* param_2,void* param_3,void*
 
 
 
-// 函数: void FUN_18007f770(long long *SystemResourcePointer)
-void FUN_18007f770(long long *SystemResourcePointer)
+/**
+ * @brief 初始化系统线程同步器
+ * 
+ * 该函数负责初始化系统线程同步器，设置线程同步所需的锁和计数器。
+ * 主要用于系统线程的同步和管理工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向线程同步器数据结构
+ * 
+ * 原始函数名为FUN_18007f770，现已重命名为InitializeSystemThreadSynchronizer
+ */
+void InitializeSystemThreadSynchronizer(long long *SystemResourcePointer)
 
 {
   long long localMemoryPointer;
