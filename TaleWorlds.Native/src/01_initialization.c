@@ -776,11 +776,11 @@ void InitializeSystemDataTableBaseAllocator(void)
 void InitializeSystemDataTableAllocator(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -831,11 +831,11 @@ void InitializeSystemDataTableAllocator(void)
 void InitializeSystemCoreConfig(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -886,11 +886,11 @@ void InitializeSystemCoreConfig(void)
 void InitializeSystemMemoryPool(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -941,11 +941,11 @@ void InitializeSystemMemoryPool(void)
 void InitializeSystemThreadPool(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -996,11 +996,11 @@ void InitializeSystemThreadPool(void)
 void InitializeSystemEventManager(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -1051,11 +1051,11 @@ void InitializeSystemEventManager(void)
 void InitializeSystemResourceManager(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -1204,10 +1204,17 @@ void initializeSystemDataTable(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18002cd40(void)
+/**
+ * @brief 初始化系统全局变量
+ * 
+ * 该函数负责初始化系统的全局变量和配置参数
+ * 设置各个系统模块的初始状态
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemGlobalVariables(void)
 
 {
-  longlong lVar1;
+  longlong initializationStatus;
   
   _DAT_180bf5268 = 0;
   _DAT_180bf5270 = 0;
@@ -1221,8 +1228,11 @@ int FUN_18002cd40(void)
   _DAT_180bf52d8 = 0;
   _DAT_180bf52c8 = 0;
   _DAT_180bf52d0 = 0;
+  
+  initializationStatus = 0;
+  return initializationStatus;
+}
 
-// 函数: void InitializeCoreEngine(void)
 /**
  * @brief 初始化核心引擎
  * 
@@ -1230,88 +1240,92 @@ int FUN_18002cd40(void)
  * 设置基本的运行环境和管理结构
  */
 void InitializeCoreEngine(void)
+
 /**
- * 初始化渲染系统配置
+ * @brief 初始化渲染系统配置
+ * 
  * 设置渲染系统的基本配置参数和数据结构
  */
 void InitializeRenderingSystemConfig(void)
 
 {
-  char nodeFlag;
+  char systemNodeFlag;
   undefined8 *systemRootPointer;
-  int comparisonResult;
+  int memoryCompareResult;
   longlong *systemTablePointer;
-  longlong allocationSize;
-  undefined8 *currentNode;
-  undefined8 *previousNode;
-  undefined8 *nextNode;
-  undefined8 *allocatedNode;
-  undefined8 initializationFlag;
+  longlong memoryAllocationSize;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemPreviousNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemAllocatedNode;
+  undefined8 renderingInitializationFlag;
   
   systemTablePointer = (longlong *)GetSystemRootPointer();
   systemRootPointer = (undefined8 *)*systemTablePointer;
-  nodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
-  initializationFlag = 0;
-  previousNode = systemRootPointer;
-  currentNode = (undefined8 *)systemRootPointer[1];
-  while (nodeFlag == '\0') {
-    comparisonResult = memcmp(currentNode + 4,&DAT_1809fe0d0,0x10);
-    if (comparisonResult < 0) {
-      nextNode = (undefined8 *)currentNode[2];
-      currentNode = previousNode;
+  systemNodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  renderingInitializationFlag = 0;
+  systemPreviousNode = systemRootPointer;
+  systemCurrentNode = (undefined8 *)systemRootPointer[1];
+  while (systemNodeFlag == '\0') {
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809fe0d0,0x10);
+    if (memoryCompareResult < 0) {
+      systemNextNode = (undefined8 *)systemCurrentNode[2];
+      systemCurrentNode = systemPreviousNode;
     }
     else {
-      nextNode = (undefined8 *)*currentNode;
+      systemNextNode = (undefined8 *)*systemCurrentNode;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeFlag = *(char *)((longlong)nextNode + 0x19);
+    systemPreviousNode = systemCurrentNode;
+    systemCurrentNode = systemNextNode;
+    systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_1809fe0d0,previousNode + 4,0x10), comparisonResult < 0)) {
-    allocationSize = GetSystemMemorySize(systemTablePointer);
-    AllocateSystemMemory(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
-    previousNode = allocatedNode;
+  if ((systemPreviousNode == systemRootPointer) || (memoryCompareResult = memcmp(&DAT_1809fe0d0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+    memoryAllocationSize = GetSystemMemorySize(systemTablePointer);
+    AllocateSystemMemory(systemTablePointer,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    systemPreviousNode = systemAllocatedNode;
   }
-  previousNode[6] = 0x42bea5b911d9c4bf;
-  previousNode[7] = 0x1aa83fc0020dc1b6;
-  previousNode[8] = &UNK_1809fd0d8;
-  previousNode[9] = 0;
-  previousNode[10] = initializationFlag;
+  systemPreviousNode[6] = 0x42bea5b911d9c4bf;
+  systemPreviousNode[7] = 0x1aa83fc0020dc1b6;
+  systemPreviousNode[8] = &UNK_1809fd0d8;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = renderingInitializationFlag;
   return;
 }
 
 
 
 /**
- * 初始化音频系统资源池
+ * @brief 初始化音频系统资源池
+ * 
  * 创建并配置音频系统的资源池，返回初始化状态
  * @return 初始化成功返回0，失败返回-1
  */
 int InitializeAudioSystemResourcePool(void)
 
 {
-  longlong initializationResult;
+  longlong audioInitializationResult;
   
   FUN_1808fc838(0x180c91700,0x20,8,FUN_1800637c0,FUN_18005ab20);
-  initializationResult = FUN_1808fc7d0(&UNK_180941760);
-  return (initializationResult != 0) - 1;
+  audioInitializationResult = FUN_1808fc7d0(&UNK_180941760);
+  return (audioInitializationResult != 0) - 1;
 }
 
 
 
 /**
- * 初始化输入系统资源池
+ * @brief 初始化输入系统资源池
+ * 
  * 创建并配置输入系统的资源池，返回初始化状态
  * @return 初始化成功返回0，失败返回-1
  */
 int InitializeInputSystemResourcePool(void)
 
 {
-  longlong initializationResult;
+  longlong inputInitializationResult;
   
   FUN_1808fc838(0x180c91800,0x20,8,FUN_1800637f0,FUN_18005ab20);
-  initializationResult = FUN_1808fc7d0(&UNK_180941780);
-  return (initializationResult != 0) - 1;
+  inputInitializationResult = FUN_1808fc7d0(&UNK_180941780);
+  return (inputInitializationResult != 0) - 1;
 }
 
 
@@ -1319,18 +1333,19 @@ int InitializeInputSystemResourcePool(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
- * 初始化系统信号量
+ * @brief 初始化系统信号量
+ * 
  * 创建系统级的信号量用于线程同步，返回初始化状态
  * @return 初始化成功返回0，失败返回-1
  */
 int InitializeSystemSemaphore(void)
 
 {
-  longlong initializationResult;
+  longlong semaphoreInitializationResult;
   
   _DAT_180c91900 = CreateSemaphoreW(0,1,0x7fffffff,0,0xfffffffffffffffe);
-  initializationResult = FUN_1808fc7d0(FUN_1809417a0);
-  return (initializationResult != 0) - 1;
+  semaphoreInitializationResult = FUN_1808fc7d0(FUN_1809417a0);
+  return (semaphoreInitializationResult != 0) - 1;
 }
 
 
@@ -1345,11 +1360,11 @@ int InitializeSystemSemaphore(void)
 void InitializeSystemMemoryManager(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -1400,11 +1415,11 @@ void InitializeSystemMemoryManager(void)
 void InitializeSystemMemoryAllocator(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -1509,11 +1524,11 @@ void InitializeSystemStringHandler(void)
 void InitializeSystemThreadManager(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -1564,11 +1579,11 @@ void InitializeSystemThreadManager(void)
 void InitializeSystemEventManager(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -1900,11 +1915,11 @@ void InitializeSystemDataTableStructureB(void)
 void InitializeSystemDataTableStructureC(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -1956,11 +1971,11 @@ void InitializeSystemDataTableStructureC(void)
 void InitializeSystemDataTableStructureD(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2012,11 +2027,11 @@ void InitializeSystemDataTableStructureD(void)
 void InitializeSystemDataTableStructureE(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2068,11 +2083,11 @@ void InitializeSystemDataTableStructureE(void)
 void InitializeSystemDataTableStructureF(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2124,11 +2139,11 @@ void InitializeSystemDataTableStructureF(void)
 void InitializeSystemDataTableStructureG(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2180,11 +2195,11 @@ void InitializeSystemDataTableStructureG(void)
 void InitializeSystemDataTableStructureH(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2236,11 +2251,11 @@ void InitializeSystemDataTableStructureH(void)
 void InitializeSystemDataTableStructureI(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2332,11 +2347,11 @@ void InitializeSystemStringProcessor(void)
 void InitializeSystemMemoryManager(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2435,15 +2450,16 @@ void InitializeSystemDataStructure(void)
 
 
 
-// 函数: void FUN_18002eb70(void)
-void FUN_18002eb70(void)
+// 函数: 初始化系统数据表
+// 负责创建和配置系统的主数据表结构
+void InitializeSystemDataTable(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2485,15 +2501,16 @@ void FUN_18002eb70(void)
 
 
 
-// 函数: void FUN_18002ec70(void)
-void FUN_18002ec70(void)
+// 函数: 初始化系统节点树
+// 负责创建和管理系统的节点树结构
+void InitializeSystemNodeTree(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2535,15 +2552,16 @@ void FUN_18002ec70(void)
 
 
 
-// 函数: void FUN_18002ed70(void)
-void FUN_18002ed70(void)
+// 函数: 初始化内存分配器
+// 负责设置和管理系统的内存分配机制
+void InitializeMemoryAllocator(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2585,15 +2603,16 @@ void FUN_18002ed70(void)
 
 
 
-// 函数: void FUN_18002ee70(void)
-void FUN_18002ee70(void)
+// 函数: 初始化资源池
+// 负责创建和管理系统的资源池结构
+void InitializeResourcePool(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2635,15 +2654,16 @@ void FUN_18002ee70(void)
 
 
 
-// 函数: void FUN_18002ef70(void)
-void FUN_18002ef70(void)
+// 函数: 初始化配置管理器
+// 负责设置和管理系统的配置参数
+void InitializeConfigurationManager(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2685,15 +2705,16 @@ void FUN_18002ef70(void)
 
 
 
-// 函数: void FUN_18002f070(void)
-void FUN_18002f070(void)
+// 函数: 初始化事件系统
+// 负责设置和管理系统的事件处理机制
+void InitializeEventSystem(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2735,15 +2756,20 @@ void FUN_18002f070(void)
 
 
 
-// 函数: void FUN_18002f170(void)
-void FUN_18002f170(void)
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 该函数负责初始化系统的内存管理器，设置内存分配策略
+ * 和内存池管理结构，确保系统内存的有效利用
+ */
+void InitializeSystemMemoryManager(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2785,15 +2811,20 @@ void FUN_18002f170(void)
 
 
 
-// 函数: void FUN_18002f270(void)
-void FUN_18002f270(void)
+/**
+ * @brief 初始化系统线程池管理器
+ * 
+ * 该函数负责初始化系统的线程池管理器，设置线程池的
+ * 基本参数和线程管理策略，优化系统并发处理能力
+ */
+void InitializeSystemThreadPoolManager(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2835,15 +2866,20 @@ void FUN_18002f270(void)
 
 
 
-// 函数: void FUN_18002f370(void)
-void FUN_18002f370(void)
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统的资源管理器，设置资源的分配、
+ * 释放和监控机制，确保系统资源的合理使用
+ */
+void InitializeSystemResourceManager(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2889,11 +2925,11 @@ void FUN_18002f370(void)
 void FUN_18002f470(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2939,11 +2975,11 @@ void FUN_18002f470(void)
 void FUN_18002f570(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -2989,11 +3025,11 @@ void FUN_18002f570(void)
 void FUN_18002f670(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3039,11 +3075,11 @@ void FUN_18002f670(void)
 void FUN_18002f770(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3089,11 +3125,11 @@ void FUN_18002f770(void)
 void FUN_18002f870(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3139,11 +3175,11 @@ void FUN_18002f870(void)
 void FUN_18002f970(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3189,11 +3225,11 @@ void FUN_18002f970(void)
 void FUN_18002fa70(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3239,11 +3275,11 @@ void FUN_18002fa70(void)
 void FUN_18002fb70(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3289,11 +3325,11 @@ void FUN_18002fb70(void)
 void FUN_18002fc70(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3339,11 +3375,11 @@ void FUN_18002fc70(void)
 void FUN_18002fd70(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3389,11 +3425,11 @@ void FUN_18002fd70(void)
 void FUN_18002fe70(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3439,11 +3475,11 @@ void FUN_18002fe70(void)
 void FUN_18002ff70(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3489,11 +3525,11 @@ void FUN_18002ff70(void)
 void FUN_180030070(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3539,11 +3575,11 @@ void FUN_180030070(void)
 void FUN_180030170(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3589,11 +3625,11 @@ void FUN_180030170(void)
 void FUN_180030270(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3639,11 +3675,11 @@ void FUN_180030270(void)
 void FUN_180030370(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3689,11 +3725,11 @@ void FUN_180030370(void)
 void FUN_180030470(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3739,11 +3775,11 @@ void FUN_180030470(void)
 void FUN_180030570(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3789,11 +3825,11 @@ void FUN_180030570(void)
 void FUN_180030670(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3839,11 +3875,11 @@ void FUN_180030670(void)
 void FUN_180030770(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3923,11 +3959,11 @@ int FUN_180030900(void)
 void FUN_180031a10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -3973,11 +4009,11 @@ void FUN_180031a10(void)
 void FUN_180031b10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4023,11 +4059,11 @@ void FUN_180031b10(void)
 void FUN_180031c10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4073,11 +4109,11 @@ void FUN_180031c10(void)
 void FUN_180031d10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4123,11 +4159,11 @@ void FUN_180031d10(void)
 void FUN_180031e10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4173,11 +4209,11 @@ void FUN_180031e10(void)
 void FUN_180031f10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4223,11 +4259,11 @@ void FUN_180031f10(void)
 void FUN_180032010(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4273,11 +4309,11 @@ void FUN_180032010(void)
 void FUN_180032110(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4323,11 +4359,11 @@ void FUN_180032110(void)
 void FUN_180032210(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4373,11 +4409,11 @@ void FUN_180032210(void)
 void FUN_180032310(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4423,11 +4459,11 @@ void FUN_180032310(void)
 void FUN_180032410(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4497,11 +4533,11 @@ void FUN_180032510(void)
 void FUN_1800325a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4547,11 +4583,11 @@ void FUN_1800325a0(void)
 void FUN_1800326a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4597,11 +4633,11 @@ void FUN_1800326a0(void)
 void FUN_1800327a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4647,11 +4683,11 @@ void FUN_1800327a0(void)
 void FUN_1800328a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4697,11 +4733,11 @@ void FUN_1800328a0(void)
 void FUN_1800329a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4747,11 +4783,11 @@ void FUN_1800329a0(void)
 void FUN_180032aa0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4797,11 +4833,11 @@ void FUN_180032aa0(void)
 void FUN_180032ba0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -4999,11 +5035,11 @@ void FUN_1800339c0(void)
 void FUN_180033a50(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5049,11 +5085,11 @@ void FUN_180033a50(void)
 void FUN_180033b50(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5099,11 +5135,11 @@ void FUN_180033b50(void)
 void FUN_180033c50(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5149,11 +5185,11 @@ void FUN_180033c50(void)
 void FUN_180033d50(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5199,11 +5235,11 @@ void FUN_180033d50(void)
 void FUN_180033e50(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5249,11 +5285,11 @@ void FUN_180033e50(void)
 void FUN_180033f50(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5299,11 +5335,11 @@ void FUN_180033f50(void)
 void FUN_180034050(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5349,11 +5385,11 @@ void FUN_180034050(void)
 void FUN_180034150(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5399,11 +5435,11 @@ void FUN_180034150(void)
 void FUN_180034250(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5449,11 +5485,11 @@ void FUN_180034250(void)
 void FUN_180034350(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5499,11 +5535,11 @@ void FUN_180034350(void)
 void FUN_180034450(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5549,11 +5585,11 @@ void FUN_180034450(void)
 void FUN_180034550(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5599,11 +5635,11 @@ void FUN_180034550(void)
 void FUN_180034650(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5649,11 +5685,11 @@ void FUN_180034650(void)
 void FUN_180034750(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5699,11 +5735,11 @@ void FUN_180034750(void)
 void FUN_180034850(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5749,11 +5785,11 @@ void FUN_180034850(void)
 void FUN_180034950(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5801,7 +5837,7 @@ void FUN_180034a50(void)
 {
   ulonglong uVar1;
   float *pfVar2;
-  int iVar3;
+  int memoryCompareResult;
   ulonglong uVar4;
   uint uVar5;
   ulonglong uVar6;
@@ -5856,11 +5892,11 @@ void FUN_180034a50(void)
 void FUN_180034b40(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5906,11 +5942,11 @@ void FUN_180034b40(void)
 void FUN_180034c40(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -5956,11 +5992,11 @@ void FUN_180034c40(void)
 void FUN_180034d40(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6006,11 +6042,11 @@ void FUN_180034d40(void)
 void FUN_180034e40(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6056,11 +6092,11 @@ void FUN_180034e40(void)
 void FUN_180034f40(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6106,11 +6142,11 @@ void FUN_180034f40(void)
 void FUN_180035040(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6156,11 +6192,11 @@ void FUN_180035040(void)
 void FUN_180035140(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6206,11 +6242,11 @@ void FUN_180035140(void)
 void FUN_180035240(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6256,11 +6292,11 @@ void FUN_180035240(void)
 void FUN_180035340(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6306,11 +6342,11 @@ void FUN_180035340(void)
 void FUN_180035440(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6356,11 +6392,11 @@ void FUN_180035440(void)
 void FUN_180035540(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6406,11 +6442,11 @@ void FUN_180035540(void)
 void FUN_180035640(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6456,11 +6492,11 @@ void FUN_180035640(void)
 void FUN_180035740(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6506,11 +6542,11 @@ void FUN_180035740(void)
 void FUN_180035840(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6556,11 +6592,11 @@ void FUN_180035840(void)
 void FUN_180035940(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6606,11 +6642,11 @@ void FUN_180035940(void)
 void FUN_180035a40(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6656,11 +6692,11 @@ void FUN_180035a40(void)
 void FUN_180035b40(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6706,11 +6742,11 @@ void FUN_180035b40(void)
 void FUN_180035c40(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6756,11 +6792,11 @@ void FUN_180035c40(void)
 void FUN_180035d40(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6806,11 +6842,11 @@ void FUN_180035d40(void)
 void FUN_180035e40(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6856,11 +6892,11 @@ void FUN_180035e40(void)
 void FUN_180035f50(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6906,11 +6942,11 @@ void FUN_180035f50(void)
 void FUN_180036050(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -6956,11 +6992,11 @@ void FUN_180036050(void)
 void FUN_180036150(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7006,11 +7042,11 @@ void FUN_180036150(void)
 void FUN_180036250(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7056,11 +7092,11 @@ void FUN_180036250(void)
 void FUN_180036350(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7106,11 +7142,11 @@ void FUN_180036350(void)
 void FUN_180036450(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7156,11 +7192,11 @@ void FUN_180036450(void)
 void FUN_180036550(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7206,11 +7242,11 @@ void FUN_180036550(void)
 void FUN_180036650(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7256,11 +7292,11 @@ void FUN_180036650(void)
 void FUN_180036750(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7306,11 +7342,11 @@ void FUN_180036750(void)
 void FUN_180036850(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7356,11 +7392,11 @@ void FUN_180036850(void)
 void FUN_180036950(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7406,11 +7442,11 @@ void FUN_180036950(void)
 void FUN_180036a50(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7536,11 +7572,11 @@ void FUN_180036d50(void)
 void FUN_180036df0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7586,11 +7622,11 @@ void FUN_180036df0(void)
 void FUN_180036ef0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7636,11 +7672,11 @@ void FUN_180036ef0(void)
 void FUN_180036ff0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7686,11 +7722,11 @@ void FUN_180036ff0(void)
 void FUN_1800370f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7736,11 +7772,11 @@ void FUN_1800370f0(void)
 void FUN_1800371f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7786,11 +7822,11 @@ void FUN_1800371f0(void)
 void FUN_1800372f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7836,11 +7872,11 @@ void FUN_1800372f0(void)
 void FUN_1800373f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7886,11 +7922,11 @@ void FUN_1800373f0(void)
 void FUN_1800374f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -7960,11 +7996,11 @@ void FUN_1800375f0(void)
 void FUN_180037680(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8010,11 +8046,11 @@ void FUN_180037680(void)
 void FUN_180037780(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8060,11 +8096,11 @@ void FUN_180037780(void)
 void FUN_180037880(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8110,11 +8146,11 @@ void FUN_180037880(void)
 void FUN_180037980(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8160,11 +8196,11 @@ void FUN_180037980(void)
 void FUN_180037a80(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8210,11 +8246,11 @@ void FUN_180037a80(void)
 void FUN_180037b80(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8260,11 +8296,11 @@ void FUN_180037b80(void)
 void FUN_180037c80(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8310,11 +8346,11 @@ void FUN_180037c80(void)
 void FUN_180037d80(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8360,11 +8396,11 @@ void FUN_180037d80(void)
 void FUN_180037e80(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8410,11 +8446,11 @@ void FUN_180037e80(void)
 void FUN_180037f80(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8460,11 +8496,11 @@ void FUN_180037f80(void)
 void FUN_180038080(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8726,11 +8762,11 @@ void FUN_180038610(void)
 void FUN_1800386a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8776,11 +8812,11 @@ void FUN_1800386a0(void)
 void FUN_1800387a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8826,11 +8862,11 @@ void FUN_1800387a0(void)
 void FUN_1800388a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8876,11 +8912,11 @@ void FUN_1800388a0(void)
 void FUN_1800389a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8926,11 +8962,11 @@ void FUN_1800389a0(void)
 void FUN_180038aa0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -8976,11 +9012,11 @@ void FUN_180038aa0(void)
 void FUN_180038ba0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9026,11 +9062,11 @@ void FUN_180038ba0(void)
 void FUN_180038ca0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9076,11 +9112,11 @@ void FUN_180038ca0(void)
 void FUN_180038da0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9126,11 +9162,11 @@ void FUN_180038da0(void)
 void FUN_180038ea0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9176,11 +9212,11 @@ void FUN_180038ea0(void)
 void FUN_180038fa0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9226,11 +9262,11 @@ void FUN_180038fa0(void)
 void FUN_1800390a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9276,11 +9312,11 @@ void FUN_1800390a0(void)
 void FUN_1800391a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9326,11 +9362,11 @@ void FUN_1800391a0(void)
 void FUN_1800392a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9376,11 +9412,11 @@ void FUN_1800392a0(void)
 void FUN_1800393a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9426,11 +9462,11 @@ void FUN_1800393a0(void)
 void FUN_1800394a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9476,11 +9512,11 @@ void FUN_1800394a0(void)
 void FUN_1800395a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9526,11 +9562,11 @@ void FUN_1800395a0(void)
 void FUN_1800396a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9576,11 +9612,11 @@ void FUN_1800396a0(void)
 void FUN_1800397a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9626,11 +9662,11 @@ void FUN_1800397a0(void)
 void FUN_1800398a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9676,11 +9712,11 @@ void FUN_1800398a0(void)
 void FUN_1800399a0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9726,11 +9762,11 @@ void FUN_1800399a0(void)
 void FUN_180039aa0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9776,11 +9812,11 @@ void FUN_180039aa0(void)
 void FUN_180039bb0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9826,11 +9862,11 @@ void FUN_180039bb0(void)
 void FUN_180039cb0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9876,11 +9912,11 @@ void FUN_180039cb0(void)
 void FUN_180039db0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9926,11 +9962,11 @@ void FUN_180039db0(void)
 void FUN_180039eb0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -9976,11 +10012,11 @@ void FUN_180039eb0(void)
 void FUN_180039fb0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10026,11 +10062,11 @@ void FUN_180039fb0(void)
 void FUN_18003a0b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10076,11 +10112,11 @@ void FUN_18003a0b0(void)
 void FUN_18003a1b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10131,11 +10167,11 @@ void FUN_18003a1b0(void)
 void InitializeSystemMemoryAllocatorSetup(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10186,11 +10222,11 @@ void InitializeSystemMemoryAllocatorSetup(void)
 void InitializeSystemDataTableConfigurator(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10236,11 +10272,11 @@ void InitializeSystemDataTableConfigurator(void)
 void FUN_18003a4b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10286,11 +10322,11 @@ void FUN_18003a4b0(void)
 void FUN_18003a5b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10336,11 +10372,11 @@ void FUN_18003a5b0(void)
 void FUN_18003a6b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10386,11 +10422,11 @@ void FUN_18003a6b0(void)
 void FUN_18003a7b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10436,11 +10472,11 @@ void FUN_18003a7b0(void)
 void FUN_18003a8b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10486,11 +10522,11 @@ void FUN_18003a8b0(void)
 void FUN_18003a9b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10536,11 +10572,11 @@ void FUN_18003a9b0(void)
 void FUN_18003aab0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10586,11 +10622,11 @@ void FUN_18003aab0(void)
 void FUN_18003abb0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10670,11 +10706,11 @@ int FUN_18003ad40(void)
 void FUN_18003c1f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10720,11 +10756,11 @@ void FUN_18003c1f0(void)
 void FUN_18003c2f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10770,11 +10806,11 @@ void FUN_18003c2f0(void)
 void FUN_18003c3f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10820,11 +10856,11 @@ void FUN_18003c3f0(void)
 void FUN_18003c4f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10870,11 +10906,11 @@ void FUN_18003c4f0(void)
 void FUN_18003c5f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10920,11 +10956,11 @@ void FUN_18003c5f0(void)
 void FUN_18003c6f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -10970,11 +11006,11 @@ void FUN_18003c6f0(void)
 void FUN_18003c7f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11020,11 +11056,11 @@ void FUN_18003c7f0(void)
 void FUN_18003c8f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11070,11 +11106,11 @@ void FUN_18003c8f0(void)
 void FUN_18003c9f0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11120,11 +11156,11 @@ void FUN_18003c9f0(void)
 void FUN_18003caf0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11218,11 +11254,11 @@ void FUN_18003cc80(void)
 void FUN_18003cd10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11268,11 +11304,11 @@ void FUN_18003cd10(void)
 void FUN_18003ce10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11318,11 +11354,11 @@ void FUN_18003ce10(void)
 void FUN_18003cf10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11368,11 +11404,11 @@ void FUN_18003cf10(void)
 void FUN_18003d010(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11418,11 +11454,11 @@ void FUN_18003d010(void)
 void FUN_18003d110(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11468,11 +11504,11 @@ void FUN_18003d110(void)
 void FUN_18003d210(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11518,11 +11554,11 @@ void FUN_18003d210(void)
 void FUN_18003d310(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11578,11 +11614,11 @@ int FUN_18003d410(void)
 void FUN_18003de10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11628,11 +11664,11 @@ void FUN_18003de10(void)
 void FUN_18003df10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11678,11 +11714,11 @@ void FUN_18003df10(void)
 void FUN_18003e010(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11728,11 +11764,11 @@ void FUN_18003e010(void)
 void FUN_18003e110(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11778,11 +11814,11 @@ void FUN_18003e110(void)
 void FUN_18003e210(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11828,11 +11864,11 @@ void FUN_18003e210(void)
 void FUN_18003e310(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11878,11 +11914,11 @@ void FUN_18003e310(void)
 void FUN_18003e410(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11928,11 +11964,11 @@ void FUN_18003e410(void)
 void FUN_18003e510(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -11978,11 +12014,11 @@ void FUN_18003e510(void)
 void FUN_18003e610(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12028,11 +12064,11 @@ void FUN_18003e610(void)
 void FUN_18003e710(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12078,11 +12114,11 @@ void FUN_18003e710(void)
 void FUN_18003e810(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12128,11 +12164,11 @@ void FUN_18003e810(void)
 void FUN_18003e910(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12178,11 +12214,11 @@ void FUN_18003e910(void)
 void FUN_18003ea10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12228,11 +12264,11 @@ void FUN_18003ea10(void)
 void FUN_18003eb10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12278,11 +12314,11 @@ void FUN_18003eb10(void)
 void FUN_18003ec10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12415,11 +12451,11 @@ int FUN_18003ee40(void)
 void FUN_18003ee90(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12465,11 +12501,11 @@ void FUN_18003ee90(void)
 void FUN_18003ef90(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12515,11 +12551,11 @@ void FUN_18003ef90(void)
 void FUN_18003f090(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12565,11 +12601,11 @@ void FUN_18003f090(void)
 void FUN_18003f190(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12615,11 +12651,11 @@ void FUN_18003f190(void)
 void FUN_18003f290(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12665,11 +12701,11 @@ void FUN_18003f290(void)
 void FUN_18003f390(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12715,11 +12751,11 @@ void FUN_18003f390(void)
 void FUN_18003f490(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12765,11 +12801,11 @@ void FUN_18003f490(void)
 void FUN_18003f590(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12815,11 +12851,11 @@ void FUN_18003f590(void)
 void FUN_18003f690(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -12865,11 +12901,11 @@ void FUN_18003f690(void)
 void FUN_18003f790(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13021,11 +13057,11 @@ int FUN_18003fad0(void)
 void FUN_18003fbb0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13071,11 +13107,11 @@ void FUN_18003fbb0(void)
 void FUN_18003fcb0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13121,11 +13157,11 @@ void FUN_18003fcb0(void)
 void FUN_18003fdb0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13171,11 +13207,11 @@ void FUN_18003fdb0(void)
 void FUN_18003feb0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13221,11 +13257,11 @@ void FUN_18003feb0(void)
 void FUN_18003ffb0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13271,11 +13307,11 @@ void FUN_18003ffb0(void)
 void FUN_1800400b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13321,11 +13357,11 @@ void FUN_1800400b0(void)
 void FUN_1800401b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13371,11 +13407,11 @@ void FUN_1800401b0(void)
 void FUN_1800402b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13421,11 +13457,11 @@ void FUN_1800402b0(void)
 void FUN_1800403b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13471,11 +13507,11 @@ void FUN_1800403b0(void)
 void FUN_1800404b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13521,11 +13557,11 @@ void FUN_1800404b0(void)
 void FUN_1800405b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13571,11 +13607,11 @@ void FUN_1800405b0(void)
 void FUN_1800406b0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13621,11 +13657,11 @@ void FUN_1800406b0(void)
 void FUN_1800408d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13671,11 +13707,11 @@ void FUN_1800408d0(void)
 void FUN_1800409d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13721,11 +13757,11 @@ void FUN_1800409d0(void)
 void FUN_180040ae0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13771,11 +13807,11 @@ void FUN_180040ae0(void)
 void FUN_180040be0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13821,11 +13857,11 @@ void FUN_180040be0(void)
 void FUN_180040ce0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13871,11 +13907,11 @@ void FUN_180040ce0(void)
 void FUN_180040de0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13921,11 +13957,11 @@ void FUN_180040de0(void)
 void FUN_180040ee0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -13971,11 +14007,11 @@ void FUN_180040ee0(void)
 void FUN_180040fe0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14021,11 +14057,11 @@ void FUN_180040fe0(void)
 void FUN_1800410e0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14071,11 +14107,11 @@ void FUN_1800410e0(void)
 void FUN_1800411e0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14121,11 +14157,11 @@ void FUN_1800411e0(void)
 void FUN_1800412e0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14171,11 +14207,11 @@ void FUN_1800412e0(void)
 void FUN_1800413e0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14221,11 +14257,11 @@ void FUN_1800413e0(void)
 void FUN_1800414e0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14271,11 +14307,11 @@ void FUN_1800414e0(void)
 void FUN_1800415e0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14321,11 +14357,11 @@ void FUN_1800415e0(void)
 void FUN_1800416e0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14371,11 +14407,11 @@ void FUN_1800416e0(void)
 void FUN_1800417e0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14461,11 +14497,11 @@ int FUN_180041a10(void)
 void FUN_180041af0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14511,11 +14547,11 @@ void FUN_180041af0(void)
 void FUN_180041bf0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14561,11 +14597,11 @@ void FUN_180041bf0(void)
 void FUN_180041d10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14611,11 +14647,11 @@ void FUN_180041d10(void)
 void FUN_180041e10(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14697,11 +14733,11 @@ int FUN_180041fa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 void FUN_180041fd0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14747,11 +14783,11 @@ void FUN_180041fd0(void)
 void FUN_1800420d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14797,11 +14833,11 @@ void FUN_1800420d0(void)
 void FUN_1800421d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14847,11 +14883,11 @@ void FUN_1800421d0(void)
 void FUN_1800422d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14897,11 +14933,11 @@ void FUN_1800422d0(void)
 void FUN_1800423d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14947,11 +14983,11 @@ void FUN_1800423d0(void)
 void FUN_1800424d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -14997,11 +15033,11 @@ void FUN_1800424d0(void)
 void FUN_1800425d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15047,11 +15083,11 @@ void FUN_1800425d0(void)
 void FUN_1800426d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15097,11 +15133,11 @@ void FUN_1800426d0(void)
 void FUN_1800427d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15147,11 +15183,11 @@ void FUN_1800427d0(void)
 void FUN_1800428d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15197,11 +15233,11 @@ void FUN_1800428d0(void)
 void FUN_1800429d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15247,11 +15283,11 @@ void FUN_1800429d0(void)
 void FUN_180042ad0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15297,11 +15333,11 @@ void FUN_180042ad0(void)
 void FUN_180042bd0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15347,11 +15383,11 @@ void FUN_180042bd0(void)
 void FUN_180042cd0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15397,11 +15433,11 @@ void FUN_180042cd0(void)
 void FUN_180042dd0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15447,11 +15483,11 @@ void FUN_180042dd0(void)
 void FUN_180042ed0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15497,11 +15533,11 @@ void FUN_180042ed0(void)
 void FUN_180042fd0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15547,11 +15583,11 @@ void FUN_180042fd0(void)
 void FUN_1800430d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15597,11 +15633,11 @@ void FUN_1800430d0(void)
 void FUN_1800431d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15647,11 +15683,11 @@ void FUN_1800431d0(void)
 void FUN_1800432d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -15697,11 +15733,11 @@ void FUN_1800432d0(void)
 void FUN_1800433d0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined8 *puVar8;
@@ -17299,7 +17335,7 @@ void FUN_180046160(undefined8 *param_1)
 undefined8 FUN_180046190(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   int iVar2;
   longlong lVar3;
   undefined8 uVar4;
@@ -17644,7 +17680,7 @@ void FUN_180046840(longlong *param_1)
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   
   puVar1 = (undefined8 *)param_1[1];
   for (puVar2 = (undefined8 *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 5) {
@@ -17677,7 +17713,7 @@ void FUN_180046860(ulonglong *param_1)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   ulonglong uVar4;
   
@@ -18014,7 +18050,7 @@ void FUN_180046e20(void)
 {
   undefined8 uVar1;
   char cVar2;
-  int iVar3;
+  int memoryCompareResult;
   longlong ***ppplVar4;
   ulonglong uVar5;
   longlong lVar6;
@@ -18318,7 +18354,7 @@ void FUN_180047e70(undefined8 param_1,undefined8 param_2,longlong param_3,undefi
 {
   byte bVar1;
   bool bVar2;
-  int iVar3;
+  int memoryCompareResult;
   undefined8 *puVar4;
   uint uVar5;
   byte *pbVar6;
@@ -18742,7 +18778,7 @@ void FUN_180048980(longlong *param_1)
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   
   puVar1 = (undefined8 *)param_1[1];
   for (puVar2 = (undefined8 *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 5) {
@@ -18770,7 +18806,7 @@ void FUN_180048a20(ulonglong *param_1)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   ulonglong uVar4;
   
@@ -18933,7 +18969,7 @@ FUN_180048cc0(longlong *param_1,undefined8 *param_2,undefined8 param_3,longlong 
   byte bVar1;
   bool bVar2;
   longlong *plVar3;
-  longlong *plVar4;
+  longlong *systemMemoryPointer;
   byte *pbVar5;
   uint uVar6;
   longlong lVar7;
@@ -19069,7 +19105,7 @@ void FUN_180048ee0(longlong param_1,undefined8 param_2,longlong param_3,undefine
   byte *pbVar2;
   uint uVar3;
   undefined8 *puVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   undefined8 uVar6;
   undefined8 uVar7;
   
@@ -19116,7 +19152,7 @@ undefined8 * FUN_180049010(longlong param_1,longlong *param_2,undefined8 param_3
 
 {
   longlong *plVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 *puVar3;
   undefined8 *puVar4;
   undefined8 uVar5;
@@ -20117,7 +20153,7 @@ FUN_18004a4b0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 bool FUN_18004a500(void)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   undefined4 *puVar2;
   undefined *puVar3;
   int iVar4;
@@ -20188,7 +20224,7 @@ bool FUN_18004a500(void)
 void InitializeSystemThreadPoolManager(void)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   undefined4 *puVar2;
   undefined8 *puVar3;
   undefined *puVar4;
@@ -20284,11 +20320,11 @@ void FUN_18004a850(void)
 void FUN_18004adc0(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
+  char systemNodeFlag;
+  undefined8 *systemDataTable;
   char *pcVar3;
   undefined8 uVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong lVar6;
   undefined *puVar7;
   int iVar8;
@@ -20411,8 +20447,8 @@ FUN_18004b100(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 {
   undefined4 *puVar1;
-  undefined8 *puVar2;
-  int iVar3;
+  undefined8 *systemDataTable;
+  int memoryCompareResult;
   int iVar4;
   undefined8 uVar5;
   
@@ -21010,7 +21046,7 @@ void FUN_18004bb90(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 {
   undefined8 *puVar1;
   longlong lVar2;
-  int iVar3;
+  int memoryCompareResult;
   longlong lVar4;
   
   lVar2 = _DAT_180c8a9f0;
@@ -21128,7 +21164,7 @@ void FUN_18004be50(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
@@ -21151,7 +21187,7 @@ void FUN_18004be70(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
@@ -21456,7 +21492,7 @@ void FUN_18004c260(ulonglong *param_1)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   ulonglong uVar4;
   
@@ -21494,7 +21530,7 @@ void FUN_18004c290(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
@@ -21921,7 +21957,7 @@ void FUN_18004caf0(longlong param_1)
 {
   longlong lVar1;
   int iVar2;
-  int iVar3;
+  int memoryCompareResult;
   float fVar4;
   float fVar5;
   float fVar6;
@@ -22340,7 +22376,7 @@ void FUN_18004e5f0(longlong param_1)
 {
   int *piVar1;
   undefined4 uVar2;
-  int iVar3;
+  int memoryCompareResult;
   bool bVar4;
   undefined8 uVar5;
   bool bVar6;
@@ -23066,7 +23102,7 @@ void FUN_180050b00(void)
 
 {
   longlong *plVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   code *pcVar3;
   undefined1 *puVar4;
   undefined8 uVar5;
@@ -23191,7 +23227,7 @@ void FUN_180050b30(longlong param_1)
 
 {
   longlong *plVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   code *pcVar3;
   undefined1 *puVar4;
   undefined8 uVar5;
@@ -23368,7 +23404,7 @@ void FUN_180051d00(longlong param_1)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   ulonglong uVar4;
   
@@ -23501,7 +23537,7 @@ void FUN_180051de4(longlong param_1)
   ulonglong uVar4;
   longlong *unaff_RSI;
   longlong *unaff_RDI;
-  longlong lVar5;
+  longlong systemTimeValue;
   ulonglong uVar6;
   
   lVar1 = unaff_RSI[1];
@@ -23780,7 +23816,7 @@ void FUN_180052200(longlong param_1,longlong param_2,undefined8 param_3,undefine
 {
   longlong *plVar1;
   undefined4 uVar2;
-  int iVar3;
+  int memoryCompareResult;
   undefined8 *puVar4;
   ulonglong uVar5;
   longlong lVar6;
@@ -23863,7 +23899,7 @@ undefined8 FUN_1800524c0(undefined8 param_1,undefined8 param_2)
 {
   longlong lVar1;
   undefined4 uVar2;
-  int iVar3;
+  int memoryCompareResult;
   undefined8 *puVar4;
   undefined *puStack_88;
   undefined8 *puStack_80;
@@ -24248,7 +24284,7 @@ void FUN_180053200(undefined8 param_1,longlong param_2)
 {
   undefined4 *puVar1;
   int iVar2;
-  int iVar3;
+  int memoryCompareResult;
   undefined1 auStack_1c8 [32];
   undefined **ppuStack_1a8;
   undefined8 uStack_1a0;
@@ -24601,7 +24637,7 @@ undefined8
 FUN_180054120(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   char cVar2;
   undefined8 *puVar3;
   undefined8 *puVar4;
@@ -24734,7 +24770,7 @@ void FUN_180054360(longlong *param_1,longlong param_2)
   uint uVar1;
   int iVar2;
   undefined8 uVar3;
-  longlong *plVar4;
+  longlong *systemMemoryPointer;
   undefined *puVar5;
   longlong lVar6;
   ulonglong uVar7;
@@ -25350,7 +25386,7 @@ void FUN_180055050(void)
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uVar3;
   longlong lVar4;
   
@@ -25645,9 +25681,9 @@ void FUN_180055fa0(void)
 void FUN_180056150(longlong param_1)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   char cVar2;
-  int iVar3;
+  int memoryCompareResult;
   undefined8 *puVar4;
   ulonglong uVar5;
   int iVar6;
@@ -25798,7 +25834,7 @@ void FUN_180056410(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 {
   ulonglong *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   ulonglong uVar3;
   ulonglong uVar4;
   ulonglong uVar5;
@@ -25888,7 +25924,7 @@ void FUN_1800565f0(longlong *param_1)
   undefined8 *puVar1;
   code *pcVar2;
   longlong lVar3;
-  longlong *plVar4;
+  longlong *systemMemoryPointer;
   undefined1 auStack_98 [32];
   longlong lStack_78;
   longlong *plStack_68;
@@ -26439,7 +26475,7 @@ void FUN_180057110(longlong *param_1)
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   
   puVar1 = (undefined8 *)param_1[1];
   puVar2 = (undefined8 *)*param_1;
@@ -26463,7 +26499,7 @@ void FUN_180057170(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
@@ -26594,7 +26630,7 @@ void FUN_180057340(longlong *param_1,ulonglong param_2)
   ulonglong uVar2;
   ulonglong uVar3;
   ulonglong uVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong lVar6;
   
   lVar5 = param_1[1];
@@ -26908,7 +26944,7 @@ void FUN_180057580(void)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   longlong unaff_RBP;
   ulonglong unaff_RSI;
@@ -26961,7 +26997,7 @@ void FUN_1800575b6(void)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   longlong unaff_RBP;
   ulonglong unaff_RSI;
@@ -27002,7 +27038,7 @@ void FUN_1800575d4(void)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   longlong unaff_RBP;
   ulonglong uVar4;
@@ -27052,7 +27088,7 @@ void FUN_180057610(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
@@ -27244,7 +27280,7 @@ void FUN_1800577c0(void)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   longlong unaff_RBP;
   ulonglong unaff_RSI;
@@ -27297,7 +27333,7 @@ void FUN_1800577f6(void)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   longlong unaff_RBP;
   ulonglong unaff_RSI;
@@ -27338,7 +27374,7 @@ void FUN_180057814(void)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   longlong unaff_RBP;
   ulonglong uVar4;
@@ -27402,7 +27438,7 @@ void FUN_1800578a0(void)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   ulonglong uVar4;
   
@@ -27459,7 +27495,7 @@ void FUN_1800578a0(void)
 void FUN_180057980(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   longlong lVar2;
   char *pcVar3;
   char *pcVar4;
@@ -27641,7 +27677,7 @@ void FUN_180057d70(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
@@ -28040,10 +28076,10 @@ void FUN_1800584e0(undefined8 *param_1,longlong param_2)
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 *puVar3;
   undefined8 *puVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong lVar6;
   undefined8 *puVar7;
   
@@ -28367,7 +28403,7 @@ void FUN_18005892b(void)
 {
   undefined8 *puVar1;
   longlong unaff_RBX;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong unaff_RSI;
   longlong *unaff_RDI;
   longlong unaff_R12;
@@ -28407,7 +28443,7 @@ void FUN_18005895a(void)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 *puVar3;
   longlong unaff_RSI;
   longlong *unaff_RDI;
@@ -28441,7 +28477,7 @@ void FUN_1800589a3(longlong param_1,undefined8 param_2,longlong param_3)
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uVar3;
   longlong unaff_RBX;
   undefined8 *puVar4;
@@ -28883,7 +28919,7 @@ void FUN_180059000(longlong *param_1)
 
 {
   undefined8 *******pppppppuVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 *puVar3;
   undefined8 *puVar4;
   undefined8 *puVar5;
@@ -29783,7 +29819,7 @@ undefined8 * FUN_180059780(undefined8 *param_1,undefined8 *param_2,undefined8 *p
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   
   if (param_1 != param_2) {
@@ -30458,7 +30494,7 @@ void FUN_18005a010(longlong param_1)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   ulonglong uVar4;
   
@@ -30533,7 +30569,7 @@ void FUN_18005a100(longlong param_1)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   ulonglong uVar4;
   
@@ -30572,7 +30608,7 @@ void FUN_18005a130(longlong param_1)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   ulonglong uVar4;
   
@@ -30611,7 +30647,7 @@ void FUN_18005a170(longlong param_1)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   ulonglong uVar4;
   
@@ -30771,7 +30807,7 @@ void FUN_18005a500(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 {
   undefined4 uVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined *puStack_50;
   undefined8 *puStack_48;
   undefined4 uStack_40;
@@ -31201,7 +31237,7 @@ void FUN_18005ba80(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 {
   undefined4 uVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined *puStack_50;
   undefined8 *puStack_48;
   undefined4 uStack_40;
@@ -31483,7 +31519,7 @@ void FUN_18005c650(longlong *param_1)
 {
   int iVar1;
   longlong lVar2;
-  int iVar3;
+  int memoryCompareResult;
   undefined8 uVar4;
   longlong *plVar5;
   code *pcVar6;
@@ -31588,7 +31624,7 @@ void FUN_18005c830(uint *param_1)
 undefined8 FUN_18005c8a0(longlong param_1,undefined8 param_2)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   undefined *puVar2;
   
   if (*(longlong *)(param_1 + 0xb0) != 0) {
@@ -31668,7 +31704,7 @@ LAB_18005c9be:
 void FUN_18005ca20(longlong param_1,undefined4 param_2)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   undefined *puVar2;
   undefined4 auStackX_10 [6];
   
@@ -31949,7 +31985,7 @@ int FUN_18005cfc0(void)
 {
   longlong lVar1;
   longlong lVar2;
-  int iVar3;
+  int memoryCompareResult;
   int iVar4;
   int iVar5;
   int iVar6;
@@ -31997,11 +32033,11 @@ int FUN_18005cfc0(void)
 void FUN_18005d0e0(ulonglong param_1,longlong param_2)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   uint uVar2;
   ulonglong uVar3;
   ulonglong *puVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong lVar6;
   int iVar7;
   int iVar8;
@@ -32189,7 +32225,7 @@ void FUN_18005d3a0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 {
   undefined8 uVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uStackX_10;
   undefined8 uStackX_18;
   undefined8 uStackX_20;
@@ -32212,7 +32248,7 @@ undefined8 * FUN_18005d400(longlong param_1,char *param_2)
   char cVar2;
   undefined8 *puVar3;
   char *pcVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   char *pcVar6;
   
   if (param_2 == (char *)0x0) {
@@ -32351,7 +32387,7 @@ undefined8 * FUN_18005d4b0(longlong param_1,char *param_2,longlong param_3)
   char cVar2;
   undefined8 *puVar3;
   char *pcVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   
   if (param_2 == (char *)0x0) {
     return *(undefined8 **)(param_1 + 0x30);
@@ -32489,7 +32525,7 @@ void FUN_18005d560(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
@@ -32512,7 +32548,7 @@ void FUN_18005d580(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
@@ -32599,8 +32635,8 @@ void FUN_18005d790(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   longlong *plVar1;
   longlong *plVar2;
   longlong *plVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   int iVar6;
   longlong lVar7;
   
@@ -32732,7 +32768,7 @@ void FUN_18005dab0(longlong param_1)
 {
   longlong lVar1;
   longlong lVar2;
-  int iVar3;
+  int memoryCompareResult;
   longlong lVar4;
   
   lVar2 = GetCurrentThread();
@@ -32793,7 +32829,7 @@ void FUN_18005db30(longlong param_1)
 {
   longlong lVar1;
   longlong lVar2;
-  int iVar3;
+  int memoryCompareResult;
   longlong lVar4;
   
   lVar2 = GetCurrentThread();
@@ -32858,7 +32894,7 @@ void FUN_18005dbb0(void)
   int iVar2;
   undefined8 uVar3;
   undefined8 *puVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong lVar7;
   ulonglong uVar8;
   ulonglong uVar9;
@@ -33285,7 +33321,7 @@ void FUN_18005e570(longlong param_1,longlong *param_2)
   longlong *plVar1;
   ulonglong uVar2;
   longlong lVar3;
-  longlong *plVar4;
+  longlong *systemMemoryPointer;
   int iVar5;
   ulonglong uVar6;
   
@@ -33332,7 +33368,7 @@ void FUN_18005e57a(longlong param_1,longlong *param_2)
   longlong *plVar1;
   ulonglong uVar2;
   longlong lVar3;
-  longlong *plVar4;
+  longlong *systemMemoryPointer;
   int iVar5;
   ulonglong uVar6;
   
@@ -33467,7 +33503,7 @@ void FUN_18005e770(undefined8 param_1,longlong *param_2,char param_3)
   bool bVar2;
   longlong *plVar3;
   ulonglong uVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong lVar6;
   char cVar7;
   
@@ -33641,7 +33677,7 @@ void FUN_18005ea90(ulonglong *param_1,undefined8 *param_2)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 *puVar3;
   undefined8 *puVar4;
   
@@ -34062,7 +34098,7 @@ undefined8 * FUN_18005ee30(longlong *param_1,char param_2,undefined1 *param_3)
 
 {
   longlong *plVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   longlong lVar4;
   undefined8 *puVar5;
@@ -34436,7 +34472,7 @@ undefined8 FUN_18005f490(void)
 {
   ulonglong uVar1;
   longlong in_RAX;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 *puVar3;
   ulonglong uVar4;
   longlong unaff_RBX;
@@ -35156,7 +35192,7 @@ void FUN_180060200(undefined8 *param_1)
 {
   longlong *plVar1;
   int *piVar2;
-  int iVar3;
+  int memoryCompareResult;
   uint uVar4;
   ulonglong uVar5;
   longlong lVar6;
@@ -35410,7 +35446,7 @@ undefined8 * FUN_1800605d0(undefined8 *param_1,ulonglong param_2)
 void FUN_180060610(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   undefined8 uVar2;
   
   uVar2 = 0xfffffffffffffffe;
@@ -35486,7 +35522,7 @@ void FUN_1800606e0(longlong *param_1)
 {
   longlong *plVar1;
   char cVar2;
-  int iVar3;
+  int memoryCompareResult;
   undefined8 uStackX_8;
   longlong *plStack_20;
   char cStack_18;
@@ -35755,7 +35791,7 @@ undefined8 FUN_180060c60(longlong param_1,undefined8 param_2)
   ulonglong *puVar2;
   longlong lVar3;
   ulonglong uVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong lVar6;
   ulonglong uVar7;
   
@@ -35849,8 +35885,8 @@ undefined8 FUN_180060d76(void)
   ulonglong *puVar1;
   ulonglong uVar2;
   longlong lVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   longlong lVar6;
   ulonglong unaff_RSI;
   longlong unaff_RDI;
@@ -35902,10 +35938,10 @@ undefined1 FUN_180060e22(void)
 undefined8 FUN_180060e40(undefined8 *param_1,longlong param_2,undefined8 param_3)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   longlong *plVar2;
   longlong lVar3;
-  longlong *plVar4;
+  longlong *systemMemoryPointer;
   longlong *plVar5;
   longlong *plVar6;
   
@@ -36086,7 +36122,7 @@ void FUN_1800611a0(longlong param_1,longlong *param_2,undefined8 param_3,undefin
   longlong lVar2;
   longlong lVar3;
   int iVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   undefined8 uVar6;
   undefined1 uVar7;
   
@@ -36557,7 +36593,7 @@ void FUN_1800624c0(void)
 void FUN_180062920(int *param_1)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   char cVar2;
   undefined4 uVar3;
   longlong lVar4;
@@ -36880,7 +36916,7 @@ int FUN_1800634b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 
 {
   int iVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uStackX_20;
   
   uStackX_20 = param_4;
@@ -37086,7 +37122,7 @@ void FUN_180063b30(undefined8 param_1,longlong param_2)
   undefined *puVar2;
   longlong lVar3;
   longlong lVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong lVar6;
   undefined8 uStack_48;
   longlong lStack_40;
@@ -37266,7 +37302,7 @@ void FUN_180064010(undefined8 param_1)
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined *puVar3;
   undefined8 *puVar4;
   undefined1 auStack_358 [64];
@@ -37422,11 +37458,11 @@ void FUN_180064400(void)
 ulonglong FUN_1800649d0(undefined8 param_1)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   ulonglong uVar2;
   undefined *puVar3;
   undefined8 *puVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   undefined8 *puVar6;
   undefined8 *puVar7;
   undefined *puStack_b8;
@@ -38594,7 +38630,7 @@ void FUN_180066320(undefined8 param_1,undefined8 param_2,char param_3,char param
                   undefined8 param_5)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   int iVar2;
   undefined4 uVar3;
   int iVar4;
@@ -38850,7 +38886,7 @@ void FUN_1800669c0(undefined8 param_1,undefined8 param_2,char param_3,undefined8
 {
   longlong lVar1;
   char cVar2;
-  int iVar3;
+  int memoryCompareResult;
   undefined4 uVar4;
   undefined8 *puVar5;
   int iVar6;
@@ -38972,7 +39008,7 @@ void FUN_180066df0(longlong *param_1,longlong param_2,undefined8 param_3,undefin
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   undefined8 *puVar4;
   undefined8 *puVar5;
@@ -39051,7 +39087,7 @@ longlong FUN_180066f90(longlong param_1,ulonglong param_2,undefined8 param_3,cha
                       ulonglong param_5)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   int iVar2;
   longlong lVar3;
   longlong lVar4;
@@ -39330,7 +39366,7 @@ void FUN_1800672c0(longlong param_1)
 {
   longlong lVar1;
   longlong lVar2;
-  int iVar3;
+  int memoryCompareResult;
   undefined8 uVar4;
   undefined8 uVar5;
   longlong *plVar6;
@@ -39737,7 +39773,7 @@ undefined8 FUN_180068250(longlong param_1,longlong param_2,longlong param_3)
 {
   ulonglong uVar1;
   char cVar2;
-  int iVar3;
+  int memoryCompareResult;
   undefined8 uVar4;
   ulonglong uVar5;
   undefined8 *puVar6;
@@ -40165,7 +40201,7 @@ undefined8 FUN_180068ce0(longlong param_1,undefined8 *param_2)
   ulonglong *puVar2;
   longlong lVar3;
   ulonglong uVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   ulonglong uVar6;
   
   if (*(char *)(param_1 + 0x48) == '\0') {
@@ -41229,7 +41265,7 @@ longlong FUN_18006b350(longlong *param_1,longlong *param_2,int param_3)
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   
   if (param_3 == 3) {
     return 0x180bfd730;
@@ -41270,7 +41306,7 @@ longlong FUN_18006b350(longlong *param_1,longlong *param_2,int param_3)
 void FUN_18006b440(longlong param_1,undefined4 param_2)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   undefined *puVar2;
   undefined4 auStackX_10 [6];
   
@@ -41298,7 +41334,7 @@ void FUN_18006b440(longlong param_1,undefined4 param_2)
 void FUN_18006b4c0(longlong param_1,undefined4 param_2)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   undefined *puVar2;
   undefined4 auStackX_10 [6];
   
@@ -41403,7 +41439,7 @@ void FUN_18006b6f0(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
@@ -41426,7 +41462,7 @@ void FUN_18006b760(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
@@ -41586,7 +41622,7 @@ void FUN_18006bd60(longlong param_1)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   ulonglong uVar3;
   ulonglong uVar4;
   
@@ -41622,7 +41658,7 @@ void FUN_18006bd80(longlong param_1)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   ulonglong uVar3;
   ulonglong uVar4;
   
@@ -42237,7 +42273,7 @@ void FUN_18006cb90(longlong param_1)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   ulonglong uVar3;
   ulonglong uVar4;
   
@@ -42371,7 +42407,7 @@ void FUN_18006cc8d(undefined8 param_1,undefined8 param_2,longlong param_3)
   longlong in_RAX;
   longlong lVar3;
   longlong lVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong *unaff_RDI;
   longlong in_R10;
   longlong in_stack_00000050;
@@ -42959,7 +42995,7 @@ undefined8 FUN_18006d810(longlong param_1,undefined8 param_2)
   ulonglong *puVar2;
   longlong lVar3;
   ulonglong uVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong lVar6;
   undefined8 uVar7;
   ulonglong uVar8;
@@ -43132,7 +43168,7 @@ ulonglong FUN_18006da90(longlong param_1,undefined8 param_2)
   ulonglong *puVar2;
   uint *puVar3;
   uint uVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   ulonglong uVar6;
   longlong lVar7;
   ulonglong uVar8;
@@ -43221,9 +43257,9 @@ void FUN_18006dc10(longlong *param_1)
 {
   longlong *plVar1;
   int *piVar2;
-  int iVar3;
+  int memoryCompareResult;
   longlong lVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong lVar6;
   longlong lVar7;
   bool bVar8;
@@ -44044,8 +44080,8 @@ void FUN_18006e990(void)
 {
   longlong lVar1;
   char cVar2;
-  int iVar3;
-  longlong *plVar4;
+  int memoryCompareResult;
+  longlong *systemMemoryPointer;
   
   lVar1 = _DAT_180c86948;
   FUN_18006f160(_DAT_180c86948);
@@ -44107,7 +44143,7 @@ void FUN_18006eb30(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 {
   longlong *plVar1;
   longlong lVar2;
-  int iVar3;
+  int memoryCompareResult;
   
   lVar2 = _DAT_180c86948;
   FUN_18005e630(_DAT_180c82868,param_2,param_3,param_4,0xfffffffffffffffe);
@@ -44327,7 +44363,7 @@ void FUN_18006f310(longlong *param_1)
 void FUN_18006f340(longlong *param_1)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   int iVar2;
   longlong *plVar3;
   
@@ -45099,9 +45135,9 @@ void FUN_180070680(undefined8 param_1,undefined8 param_2)
 {
   bool bVar1;
   char cVar2;
-  int iVar3;
+  int memoryCompareResult;
   int iVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   undefined *puVar6;
   undefined8 uVar7;
   undefined *puVar8;
@@ -46106,7 +46142,7 @@ void FUN_180072000(undefined8 param_1,longlong param_2,undefined4 param_3,longlo
 {
   code *pcVar1;
   char cVar2;
-  int iVar3;
+  int memoryCompareResult;
   uint uVar4;
   int iVar5;
   uint uVar6;
@@ -46696,7 +46732,7 @@ bool FUN_180072f00(undefined8 param_1,undefined8 *param_2)
 {
   undefined4 uVar1;
   int iVar2;
-  int iVar3;
+  int memoryCompareResult;
   longlong lVar4;
   undefined8 *puVar5;
   undefined8 *puVar6;
@@ -47576,7 +47612,7 @@ void FUN_180073b64(uint *param_1)
   undefined4 *puVar3;
   uint *puVar4;
   longlong *unaff_RBX;
-  longlong lVar5;
+  longlong systemTimeValue;
   ulonglong uVar6;
   longlong unaff_R12;
   uint unaff_R13D;
@@ -47731,7 +47767,7 @@ void FUN_180073e0b(undefined4 *param_1)
   undefined8 uVar2;
   undefined4 *puVar3;
   uint *puVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong *unaff_RBX;
   ulonglong uVar6;
   undefined4 unaff_R13D;
@@ -47815,7 +47851,7 @@ void FUN_180073e23(void)
   undefined8 uVar2;
   undefined4 *puVar3;
   uint *puVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong *unaff_RBX;
   ulonglong uVar6;
   undefined4 unaff_R13D;
@@ -47938,7 +47974,7 @@ void FUN_180074090(longlong *param_1,longlong param_2)
   int *piVar2;
   uint uVar3;
   int iVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   ulonglong uVar6;
   longlong lVar7;
   longlong lVar8;
@@ -48117,7 +48153,7 @@ void FUN_1800740a2(longlong *param_1)
   uint uVar3;
   int iVar4;
   uint *in_RAX;
-  longlong lVar5;
+  longlong systemTimeValue;
   ulonglong uVar6;
   longlong lVar7;
   longlong lVar8;
@@ -48585,7 +48621,7 @@ void FUN_1800744b0(longlong param_1,longlong param_2)
   int iVar2;
   uint uVar3;
   int *piVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   int iVar6;
   int iVar7;
   int iVar8;
@@ -48665,7 +48701,7 @@ undefined8 * FUN_1800745f0(undefined8 param_1,longlong param_2)
 
 {
   undefined8 uVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   
   puVar2 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x38,8,3,0xfffffffffffffffe);
   *puVar2 = &UNK_1809ffa18;
@@ -48704,7 +48740,7 @@ void FUN_1800746c0(longlong param_1)
   longlong lVar1;
   int iVar2;
   longlong *plVar3;
-  longlong *plVar4;
+  longlong *systemMemoryPointer;
   undefined *puVar5;
   
   if (*(char *)(*(longlong *)(param_1 + 0x20) + 0x28) == '\0') {
@@ -48918,7 +48954,7 @@ void FUN_180074b30(longlong *param_1,ulonglong param_2)
   ulonglong uVar2;
   longlong *plVar3;
   longlong lVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   
   plVar1 = (longlong *)param_1[1];
   lVar5 = *param_1;
@@ -48972,7 +49008,7 @@ void FUN_180074c20(undefined8 *param_1,ulonglong param_2)
   longlong *plVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  longlong *plVar4;
+  longlong *systemMemoryPointer;
   longlong *plVar5;
   ulonglong uVar6;
   undefined8 *puVar7;
@@ -49191,7 +49227,7 @@ undefined8 * FUN_180075030(undefined8 *param_1,char param_2,char param_3)
   longlong *plVar1;
   byte bVar2;
   longlong *plVar3;
-  longlong *plVar4;
+  longlong *systemMemoryPointer;
   
   *param_1 = &UNK_180a21690;
   *param_1 = &UNK_180a21720;
@@ -50547,7 +50583,7 @@ void FUN_180076a80(longlong param_1)
 {
   char *pcVar1;
   longlong *plVar2;
-  int iVar3;
+  int memoryCompareResult;
   bool bVar4;
   
   iVar3 = _Mtx_lock(0x180c91910);
@@ -50796,7 +50832,7 @@ void FUN_180077020(longlong *param_1)
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   
   puVar1 = (undefined8 *)param_1[1];
   for (puVar2 = (undefined8 *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 6) {
@@ -50827,7 +50863,7 @@ ulonglong FUN_180077040(longlong param_1)
   byte bVar2;
   longlong lVar3;
   ulonglong uVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   longlong lVar6;
   
   if (*(longlong *)(param_1 + 0x1b8) != 0) {
@@ -50886,8 +50922,8 @@ void FUN_180077150(longlong *param_1)
   undefined8 uVar1;
   ulonglong *puVar2;
   ulonglong uVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *systemMemoryPointer;
+  longlong systemTimeValue;
   byte bVar6;
   undefined1 auStack_88 [32];
   ulonglong *puStack_68;
@@ -51135,7 +51171,7 @@ void FUN_180077710(longlong param_1)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   longlong lVar3;
   ulonglong uVar4;
   
@@ -55225,7 +55261,7 @@ void FUN_18007940e(void)
   longlong *plVar2;
   byte *pbVar3;
   char cVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   undefined4 uVar6;
   uint uVar7;
   longlong *plVar8;
@@ -55480,7 +55516,7 @@ undefined1 FUN_18007953e(void)
   longlong lVar3;
   longlong unaff_RBX;
   int iVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   
   iVar4 = 0;
   lVar5 = 0;
@@ -57031,7 +57067,7 @@ void FUN_18007b1c0(longlong *param_1)
 undefined1 FUN_18007b1e0(longlong param_1)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   longlong lVar2;
   
   lVar2 = *(longlong *)(param_1 + 0x1b8);
@@ -57060,7 +57096,7 @@ ulonglong FUN_18007b240(longlong param_1,longlong *param_2,byte param_3,char par
 {
   byte *pbVar1;
   char cVar2;
-  int iVar3;
+  int memoryCompareResult;
   int iVar4;
   byte bVar5;
   longlong lVar6;
@@ -57829,7 +57865,7 @@ void FUN_18007c490(longlong *param_1,byte param_2,longlong *param_3,longlong *pa
   char *pcVar1;
   longlong *plVar2;
   longlong *plVar3;
-  longlong *plVar4;
+  longlong *systemMemoryPointer;
   code *pcVar5;
   char cVar6;
   undefined *puVar7;
@@ -58010,7 +58046,7 @@ undefined8 * FUN_18007c7f0(undefined8 *param_1,undefined8 *param_2)
 void FUN_18007c860(longlong param_1,undefined1 param_2)
 
 {
-  char cVar1;
+  char systemNodeFlag;
   longlong lVar2;
   
   lVar2 = param_1;
@@ -58044,7 +58080,7 @@ void FUN_18007c8e0(longlong param_1,byte param_2,longlong *param_3,longlong *par
 {
   longlong lVar1;
   char *pcVar2;
-  int iVar3;
+  int memoryCompareResult;
   int iVar4;
   undefined8 uVar5;
   longlong *plVar6;
@@ -58971,9 +59007,9 @@ void FUN_18007e080(longlong param_1,ulonglong param_2,longlong *param_3,longlong
 {
   longlong lVar1;
   int *piVar2;
-  int iVar3;
+  int memoryCompareResult;
   int iVar4;
-  longlong lVar5;
+  longlong systemTimeValue;
   int iVar6;
   longlong lStack_70;
   undefined4 uStack_68;
@@ -59374,7 +59410,7 @@ code * FUN_18007eb80(longlong param_1,char param_2)
   code *in_RAX;
   undefined8 uVar2;
   code *pcVar3;
-  longlong *plVar4;
+  longlong *systemMemoryPointer;
   longlong lStack_30;
   undefined4 uStack_28;
   code *pcStack_20;
@@ -59590,7 +59626,7 @@ void FUN_18007eea1(longlong param_1,int param_2,int param_3)
 {
   uint uVar1;
   undefined8 uVar2;
-  int iVar3;
+  int memoryCompareResult;
   uint uVar4;
   uint uVar5;
   int iVar6;
@@ -59793,7 +59829,7 @@ void FUN_18007f0e0(longlong param_1,longlong param_2,int param_3)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *systemDataTable;
   undefined8 *puVar3;
   undefined8 *puVar4;
   uint uVar5;
@@ -59944,7 +59980,7 @@ void FUN_18007f176(void)
   int *piVar3;
   longlong lVar4;
   longlong unaff_R14;
-  longlong lVar5;
+  longlong systemTimeValue;
   
   lVar5 = -8 - unaff_RBP;
   lVar4 = (unaff_R14 - 4U >> 2) + 1;
@@ -60271,7 +60307,7 @@ void FUN_18007f770(longlong *param_1)
 {
   longlong lVar1;
   char cVar2;
-  int iVar3;
+  int memoryCompareResult;
   bool bVar4;
   
   lVar1 = *param_1;
@@ -62361,7 +62397,7 @@ undefined8 FUN_180779635(int param_1,undefined8 param_2,undefined8 param_3,float
   float *pfVar2;
   int unaff_EBX;
   longlong unaff_RDI;
-  int iVar3;
+  int memoryCompareResult;
   int in_R9D;
   float *in_R11;
   float unaff_XMM6_Da;
