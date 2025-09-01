@@ -38741,7 +38741,7 @@ void* * FUN_18005ee30(long long *SystemResourcePointer,char ConfigurationDataPoi
         *pointerToUnsigned2 = &UNK_1809fe200;
         pointerToUnsigned2[0xb] = 0x20;
         pointerToUnsigned2[0xc] = 0;
-        FUN_18005f430(pointerToUnsigned2);
+        ExpandSystemResourceAllocator(pointerToUnsigned2);
       }
       else {
         pointerToUnsigned2 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x88,10,0,0xfffffffffffffffe);
@@ -39008,7 +39008,18 @@ void* FUN_18005f340(long long SystemResourcePointer,long long ConfigurationDataP
 
 
 
-void* * FUN_18005f430(long long SystemResourcePointer)
+/**
+ * @brief 系统资源分配器扩展函数
+ * 
+ * 该函数负责扩展系统资源分配器的容量，创建新的线程对象并重新分配资源
+ * 用于系统资源管理中的动态扩容操作
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含当前资源分配器状态
+ * @return 扩展后的资源指针，失败时返回0
+ * 
+ * 原始函数名为FUN_18005f430，现已重命名为ExpandSystemResourceAllocator
+ */
+void* * ExpandSystemResourceAllocator(long long SystemResourcePointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -39075,7 +39086,17 @@ void* * FUN_18005f430(long long SystemResourcePointer)
 
 
 
-void* FUN_18005f490(void)
+/**
+ * @brief 系统资源分配器扩展函数B
+ * 
+ * 该函数负责扩展系统资源分配器的容量，使用寄存器变量进行高效的资源分配
+ * 用于系统资源管理中的动态扩容操作
+ * 
+ * @note 这是一个系统资源分配器扩展函数，使用寄存器变量进行优化
+ * 
+ * 原始函数名为FUN_18005f490，现已重命名为ExpandSystemResourceAllocatorB
+ */
+void* ExpandSystemResourceAllocatorB(void)
 
 {
   ulong long unsignedSystemValue1;
