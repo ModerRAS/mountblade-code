@@ -43521,7 +43521,7 @@ void FUN_180065f00(void* SystemResourcePointer,long long ConfigurationDataPointe
   ppuStack_68 = &puStack_a8;
   pplStack_60 = &plStack_b0;
   FUN_180066140(&ppuStack_68,SystemNodeManagerPointer,&SystemNodeManagerConfig);
-  FUN_180066140(&ppuStack_68,SystemMemoryManagerPointer,&DAT_1809fcfc0);
+  FUN_180066140(&ppuStack_68,SystemMemoryManagerPointer,&SystemMemoryManagerConfig);
   pcVar1 = *(code **)(*plStack_b0 + 0x40);
   unsignedSystemValue3 = CreateSystemObject(&ppuStack_68,SystemContextManagerPointer + 0x28);
   (*pcVar1)(plStack_b0,unsignedSystemValue3);
@@ -43768,7 +43768,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourcePointer,void* Config
   else {
 LAB_18006650a:
     FUN_180052070(&puStack_198);
-    unsignedSystemValue5 = ProcessSystemQueue(&systemMemoryContext,&DAT_1809feb50);
+    unsignedSystemValue5 = ProcessSystemQueue(&systemMemoryContext,&SystemQueueConfigPtr);
     systemIndex = GetSystemCounter(&puStack_198,unsignedSystemValue5);
     systemMemoryContext = &SystemGlobalDataReference;
     if (lStack_130 != 0) {
@@ -43825,7 +43825,7 @@ LAB_18006650a:
     }
     FUN_1800622d0(SystemContextManagerPointer,5,3,&UNK_1809febd8);
     InitializeSystemManager();
-    if (((ConfigurationFlag == '\0') || (DAT_180c82844 != '\0')) || (*(int *)(SystemMemoryManagerPointer + 0x1150) != 0))
+    if (((ConfigurationFlag == '\0') || (SystemDebugFlagPtr != '\0')) || (*(int *)(SystemMemoryManagerPointer + 0x1150) != 0))
     {
       FUN_1800622d0(SystemContextManagerPointer,5,3,&UNK_1809febf0);
       InitializeSystemManager();
@@ -43935,7 +43935,7 @@ void ConfigureSystemDataProcessing(void* SystemResourcePointer,void* Configurati
   
   cVar2 = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
   if (cVar2 == '\0') {
-    if ((DAT_180c82843 == '\0') && (*(int *)(SystemMemoryManagerPointer + 0x10e0) != 1)) {
+    if ((SystemVerboseFlagPtr == '\0') && (*(int *)(SystemMemoryManagerPointer + 0x10e0) != 1)) {
       systemCounter = 0;
       if ((AdditionalParameter != '\0') || (SystemDebugFlag != '\0')) {
 LAB_180066bf4:
@@ -46236,7 +46236,7 @@ void FUN_18006a130(long long SystemResourcePointer)
     iStack_248 = 0;
   }
   else if (SystemGraphicsFlag == '\0') {
-    iStack_248 = (DAT_180c82840 != '\0') + 2;
+    iStack_248 = (SystemLogLevelPtr != '\0') + 2;
   }
   else {
     iStack_248 = 1;
@@ -49575,7 +49575,7 @@ void* *
 FUN_18006f590(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  if (DAT_180c8aa69 == '\0') {
+  if (SystemInitFlagPtr == '\0') {
     *SystemResourcePointer = &SystemMemoryAllocatorReference;
     SystemResourcePointer[1] = 0;
     *(uint32_t *)(SystemResourcePointer + 2) = 0;
@@ -50029,7 +50029,7 @@ ulong long FUN_18006ff80(void* SystemResourcePointer,void* ConfigurationDataPoin
     pointerToUnsigned10 = puStack_a8;
   }
   FUN_180062380(SystemContextManagerPointer,2,0xffffffff00000000,&UNK_1809ff5b0,pointerToUnsigned10);
-  if (DAT_180bf0100 != '\0') {
+  if (SystemResourceFlagPtr != '\0') {
     pointerToUnsigned10 = &SystemStringTemplate;
     if (punsignedSystemValue12 != (void* *)0x0) {
       pointerToUnsigned10 = punsignedSystemValue12;
@@ -50307,7 +50307,7 @@ void FUN_180070680(void* SystemResourcePointer,void* ConfigurationDataPointer)
     unsignedSystemValue7 = func_0x0001800464d0(&puStack_70);
     FUN_1806272a0(unsignedSystemValue7);
   }
-  InitializeSystemData(&DAT_180c91900,1);
+  InitializeSystemData(&SystemInitializationDataPtr,1);
   _Exit(5);
   return;
 }
@@ -50498,7 +50498,7 @@ LAB_180070b00:
   uStack_128 = 0;
   systemMemoryContext = (uint8_t *)0x0;
   uStack_130 = 0;
-  pointerToUnsigned18 = &DAT_1809ff660;
+  pointerToUnsigned18 = &SystemRootDataPtr;
   if (cStack_120 != '\0') {
     pointerToUnsigned18 = &UNK_1809ff648;
   }

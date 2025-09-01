@@ -2573,7 +2573,7 @@ int InitializeSystemMessageHandler(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bfab10 = &SystemMemoryConfigTemplate;
+  SystemMessageConfigTemplateA = &SystemMemoryConfigTemplate;
   _DAT_180bfab18 = &DAT_180bfab28;
   DAT_180bfab28 = 0;
   _DAT_180bfab20 = 0x13;
