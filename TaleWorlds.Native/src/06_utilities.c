@@ -9564,22 +9564,22 @@ int ProcessDataWithExtendedValidator(longlong objectContext,longlong validationC
  * 
  * @param objectContextParam 数据对象指针，包含验证器和数据信息
  * @param validationContextParam 数据缓冲区指针，包含要解析的数据
- * @param param_3 数据长度，表示要解析的数据大小
+ * @param dataLength 数据长度，表示要解析的数据大小
  * @return int 解析结果状态码，0表示成功，非0表示错误
  */
-int ProcessDataWithSimplifiedValidator(longlong objectContextParam,longlong validationContextParam,int param_3)
+int ProcessDataWithSimplifiedValidator(longlong objectContextParam,longlong validationContextParam,int dataLength)
 
 {
   int operationResult;
   int integerValue2;
   
-  integerValue1 = func_0x00018074b7d0(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
-  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = func_0x00018074b7d0(validationContextParam,dataLength,*(uint8_t4 *)(objectContextParam + 0x10));
+  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessStringValidation(integerValue1 + validationContextParam,param_3 - integerValue1,objectContextParam + 0x18,
+  integerValue2 = ProcessStringValidation(integerValue1 + validationContextParam,dataLength - integerValue1,objectContextParam + 0x18,
                         *(uint8_t4 *)(objectContextParam + 0x10));
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
   integerValue2 = ProcessResourceData(integerValue1 + validationContextParam,param_3 - integerValue1,
                         objectContextParam + 0x18 + (longlong)*(int *)(objectContextParam + 0x10) * 8);
@@ -43810,7 +43810,7 @@ void Unwind_180905ca0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180905cb0(void)
+void DestroyConditionVariableInPlace(void)
 
 {
   _Cnd_destroy_in_situ();
