@@ -9507,21 +9507,21 @@ int ProcessDataWithValidator(longlong objectContext,longlong validationContext,i
   int operationResult;
   int integerValue2;
   
-  integerValue1 = func_0x00018074b800(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
-  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,param_3 - integerValue1,&StringProcessingTemplate);
-  integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,param_3 - integerValue1,*(uint8_t4 *)(objectContextParam + 0x18));
-  integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
-  integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessStringEncoding(integerValue1 + validationContextParam,param_3 - integerValue1,objectContextParam + 0x20,
-                        *(uint8_t4 *)(objectContextParam + 0x18));
-  integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
-  integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessResourceData(integerValue1 + validationContextParam,param_3 - integerValue1,
-                        objectContextParam + 0x20 + (longlong)*(int *)(objectContextParam + 0x18) * 4);
-  return integerValue2 + integerValue1;
+  operationResult = func_0x00018074b800(validationContext, dataLength, *(uint8_t4 *)(objectContext + 0x10));
+  integerValue2 = ProcessStringOperation(validationContext + operationResult, dataLength - operationResult, &StringProcessingTemplate);
+  operationResult = operationResult + integerValue2;
+  integerValue2 = func_0x00018074b7d0(operationResult + validationContext, dataLength - operationResult, *(uint8_t4 *)(objectContext + 0x18));
+  operationResult = operationResult + integerValue2;
+  integerValue2 = ProcessStringOperation(operationResult + validationContext, dataLength - operationResult, &StringProcessingTemplate);
+  operationResult = operationResult + integerValue2;
+  integerValue2 = ProcessStringEncoding(operationResult + validationContext, dataLength - operationResult, objectContext + 0x20,
+                        *(uint8_t4 *)(objectContext + 0x18));
+  operationResult = operationResult + integerValue2;
+  integerValue2 = ProcessStringOperation(operationResult + validationContext, dataLength - operationResult, &StringProcessingTemplate);
+  operationResult = operationResult + integerValue2;
+  integerValue2 = ProcessResourceData(operationResult + validationContext, dataLength - operationResult,
+                        objectContext + 0x20 + (longlong)*(int *)(objectContext + 0x18) * 4);
+  return integerValue2 + operationResult;
 }
 
 
@@ -9532,36 +9532,36 @@ int ProcessDataWithValidator(longlong objectContext,longlong validationContext,i
  * 该函数负责解析带有扩展验证器的数据，它会先处理验证器部分，
  * 然后处理数据部分，最后处理扩展结束标记
  * 
- * @param objectContextParam 数据对象指针，包含验证器和数据信息
- * @param validationContextParam 数据缓冲区指针，包含要解析的数据
- * @param param_3 数据长度，表示要解析的数据大小
+ * @param objectContext 数据对象指针，包含验证器和数据信息
+ * @param validationContext 数据缓冲区指针，包含要解析的数据
+ * @param dataLength 数据长度，表示要解析的数据大小
  * @return int 解析结果状态码，0表示成功，非0表示错误
  */
-int ProcessDataWithExtendedValidator(longlong objectContextParam,longlong validationContextParam,int param_3)
+int ProcessDataWithExtendedValidator(longlong objectContext,longlong validationContext,int dataLength)
 
 {
   int operationResult;
   int integerValue2;
   
-  integerValue1 = func_0x00018074b800(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
-  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,param_3 - integerValue1,&StringProcessingTemplate);
-  integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,param_3 - integerValue1,*(uint8_t4 *)(objectContextParam + 0x18));
-  integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
-  integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessStringValidation(integerValue1 + validationContextParam,param_3 - integerValue1,objectContextParam + 0x20,
-                        *(uint8_t4 *)(objectContextParam + 0x18));
-  integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
-  integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessResourceData(integerValue1 + validationContextParam,param_3 - integerValue1,
-                        objectContextParam + 0x20 + (longlong)*(int *)(objectContextParam + 0x18) * 8);
-  integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
-  integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ValidateResourceFormat(integerValue1 + validationContextParam,param_3 - integerValue1,*(uint8_t1 *)(objectContextParam + 0x1c));
-  return integerValue2 + integerValue1;
+  operationResult = func_0x00018074b800(validationContext,dataLength,*(uint8_t4 *)(objectContext + 0x10));
+  integerValue2 = ProcessStringOperation(validationContext + operationResult,dataLength - operationResult,&StringProcessingTemplate);
+  operationResult = operationResult + integerValue2;
+  integerValue2 = func_0x00018074b7d0(operationResult + validationContext,dataLength - operationResult,*(uint8_t4 *)(objectContext + 0x18));
+  operationResult = operationResult + integerValue2;
+  integerValue2 = ProcessStringOperation(operationResult + validationContext,dataLength - operationResult,&StringProcessingTemplate);
+  operationResult = operationResult + integerValue2;
+  integerValue2 = ProcessStringValidation(operationResult + validationContext,dataLength - operationResult,objectContext + 0x20,
+                        *(uint8_t4 *)(objectContext + 0x18));
+  operationResult = operationResult + integerValue2;
+  integerValue2 = ProcessStringOperation(operationResult + validationContext,dataLength - operationResult,&StringProcessingTemplate);
+  operationResult = operationResult + integerValue2;
+  integerValue2 = ProcessResourceData(operationResult + validationContext,dataLength - operationResult,
+                        objectContext + 0x20 + (longlong)*(int *)(objectContext + 0x18) * 8);
+  operationResult = operationResult + integerValue2;
+  integerValue2 = ProcessStringOperation(operationResult + validationContext,dataLength - operationResult,&StringProcessingTemplate);
+  operationResult = operationResult + integerValue2;
+  integerValue2 = ValidateResourceFormat(operationResult + validationContext,dataLength - operationResult,*(uint8_t1 *)(objectContext + 0x1c));
+  return integerValue2 + operationResult;
 }
 
 
