@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-UI系统变量名美化脚本
-用于批量重命名04_ui_system.c文件中的变量名
+UI系统函数和变量名美化脚本
+用于批量重命名04_ui_system.c文件中的FUN_函数和变量名
 """
 
 import re
