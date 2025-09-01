@@ -19839,7 +19839,7 @@ void system_initialize_input_system_4(void)
   char system_status_char;
   float system_float_var_j;
   uint8_t* auStack_208 [32];
-  uint8_t *apuStack_1c8 [10];
+  uint8_t *system_stack_array_1c8 [10];
   uint8_t* system_stack_data_array [8];
   void* *system_stack_byte_ptr;
   uint8_t* *system_stack_byte_ptr;
@@ -19923,12 +19923,12 @@ void system_initialize_input_system_4(void)
   system_strcpy_s(auStack_150,0x10,&system_null_ptr);
   system_buffer_pointer = (uint8_t *)system_process_context_data(system_global_data_ptr,0x208,8,3);
   system_stack_storage = system_context_data_handle + 0x70;
-  apuStack_1c8[0] = system_buffer_pointer;
+  system_stack_array_1c8[0] = system_buffer_pointer;
   system_process_context_data(system_buffer_pointer,&system_stack_byte_ptr,3,system_context_data_handle + 0x2e0);
   *system_buffer_pointer = &system_null_ptr;
-  apuStack_1c8[0] = system_buffer_pointer;
+  system_stack_array_1c8[0] = system_buffer_pointer;
   system_process_context_data(system_buffer_pointer);
-  system_process_context_data(system_context_data_handle + 0x48,apuStack_1c8);
+  system_process_context_data(system_context_data_handle + 0x48,system_stack_array_1c8);
   *(uint8_t **)(system_offset_value + 0x18) = system_buffer_pointer;
   system_stack_byte_ptr = &system_null_ptr;
   system_next_context_ptr = &system_data_value_bc73;
@@ -21237,7 +21237,7 @@ void system_initialize_ai_system_4(void)
 void system_configure_pathfinding_4(void)
   uint32_t* *system_context_ptr_1;
   uint8_t* auStack_1c8 [32];
-  void* **ppuStack_1a8;
+  void* **system_stack_double_ptr_1a8;
   void* *system_stack_byte_ptr;
   uint8_t* auStack_e8 [16];
   void* *system_stack_byte_ptr;
@@ -21285,7 +21285,7 @@ void system_configure_pathfinding_4(void)
   *(void*2 *)((uint64_t)*(uint *)(system_config_array + 0x10) + *(int64_t *)(system_config_array + 8)) = 10;
   *(int *)(system_config_array + 0x10) = system_operation_result + 0xc;
   system_stack_byte_ptr = &system_null_ptr;
-  ppuStack_1a8 = &system_stack_byte_ptr;
+  system_stack_double_ptr_1a8 = &system_stack_byte_ptr;
   system_stack_byte_ptr = &system_null_ptr;
                     // WARNING: Subroutine does not return
   system_internal_func_050(system_stack_uint_value ^ (uint64_t)auStack_1c8);
@@ -21671,7 +21671,7 @@ void system_manage_scene_graph_4(void)
   void* *system_stack_byte_ptr;
   void* *system_stack_byte_ptr;
   void* *system_stack_byte_ptr;
-  void* **ppuStack_170;
+  void* **system_stack_double_ptr_170;
   void* *system_stack_byte_ptr;
   void* **ppuStack_f0;
   void* *system_stack_byte_ptr;
@@ -21698,7 +21698,7 @@ void system_manage_scene_graph_4(void)
   system_stack_uint_value = system_stack_uint_value & 0xffffff00;
   system_parameter_value_secondary = system_process_context_data(system_global_data_ptr,0x60d30,0x10,0x1f);
   system_global_context = (int64_t *)system_process_context_data(system_parameter_value_secondary,&system_stack_byte_ptr);
-  ppuStack_170 = (void* **)system_global_context;
+  system_stack_double_ptr_170 = (void* **)system_global_context;
   if (system_global_context != (int64_t *)0x0) {
     (**(code **)(*system_global_context + 0x28))(system_global_context);
   }
@@ -21815,7 +21815,7 @@ void system_manage_scene_graph_4(void)
   if (system_global_context != (int64_t *)0x0) {
     (**(code **)(*system_global_context + 0x38))(system_global_context);
   }
-  ppuStack_170 = &system_stack_byte_ptr;
+  system_stack_double_ptr_170 = &system_stack_byte_ptr;
   system_stack_byte_ptr = &system_null_ptr;
   if (system_stack_storage != 0) {
                     // WARNING: Subroutine does not return
@@ -28779,7 +28779,7 @@ void system_configure_rigid_body_dynamics_5(void)
   uint8_t *system_byte_pointer_d;
   void* **psystem_context_ptr_15;
   uint8_t* auStack_1b8 [32];
-  void* **ppuStack_170;
+  void* **system_stack_double_ptr_170;
   void* *system_stack_byte_ptr;
   uint8_t* *system_stack_byte_ptr;
   uint8_t* auStack_148 [16];
@@ -28804,7 +28804,7 @@ void system_configure_rigid_body_dynamics_5(void)
   }
   psystem_context_ptr_15 = (void* **)(system_context_data_handle + 8);
   system_context_data_handle = (int64_t)system_operation_result;
-  ppuStack_170 = psystem_context_ptr_15;
+  system_stack_double_ptr_170 = psystem_context_ptr_15;
   system_process_context_data(psystem_context_ptr_15,system_context_data_handle);
   system_parameter_value_secondary = system_process_context_data(system_global_data_ptr,0x208,8,3);
   system_temp_unsigned_value = 0;
@@ -28904,7 +28904,7 @@ void system_configure_rigid_body_dynamics_5(void)
       system_stack_byte_ptr = &system_null_ptr;
       system_temp_byte_primary = (uint64_t)((int)system_temp_byte_primary + 1);
       system_operation_result = system_operation_result + 1;
-      psystem_context_ptr_15 = ppuStack_170;
+      psystem_context_ptr_15 = system_stack_double_ptr_170;
     } while ((int64_t)system_operation_result < system_context_data_handle);
   }
   system_temp_byte_primary = system_temp_unsigned_value;
@@ -28928,7 +28928,7 @@ void system_configure_rigid_body_dynamics_5(void)
     } while ((uint64_t)(int64_t)(int)system_temp_unsigned_value <
              (uint64_t)(*(int64_t *)(system_context_data_handle + 0x30) - *system_primary_data_ptr >> 3));
   }
-  ppuStack_170 = apuStack_108;
+  system_stack_double_ptr_170 = apuStack_108;
   apuStack_108[0] = &system_null_ptr;
                     // WARNING: Subroutine does not return
   system_internal_func_050(system_stack_uint_value ^ (uint64_t)auStack_1b8);

@@ -1,7 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 工具系统版本信息
-#define UTILITY_SYSTEM_VERSION 3.1
+#define UTILITY_SYSTEM_VERSION 3.2
 #define UTILITY_LAST_UPDATED "2025-09-01"
 
 // 工具系统常量定义
@@ -96,7 +96,7 @@
 #define UTILITY_STRUCTURE_OFFSET 0x10                              // 结构体偏移量
 #define UTILITY_LIST_OFFSET 0x14                                    // 列表偏移量
 
-// 全局变量声明 - 语义化美化（版本 3.1）
+// 全局变量声明 - 语义化美化（版本 3.2）
 // 系统核心变量
 static longlong utility_system_resource_handle = 0;               // 系统资源主句柄，用于标识和管理系统资源
 static uint32 utility_stack_processing_buffer[16] = {0};          // 栈处理缓冲区，用于临时数据存储和处理
