@@ -3026,8 +3026,8 @@ LAB_18004d668:
           if (bVar31) {
             InitializeSystemBuffer(&puStack_238,pMemoryAddress7);
             systemMode = InitializeDataBuffer(&puStack_238,&SystemTestModeString);
-            BufferSize1 = (ulonglong)(int)uVar8;
-            if (uVar8 < uStack_228) {
+            BufferSize1 = (ulonglong)(int)systemMode;
+            if (systemMode < uStack_228) {
               pcVar12 = (char *)(lStack_230 + BufferSize1);
               do {
                 LoopCounterValue = (int)BufferSize1;
@@ -3039,8 +3039,8 @@ LAB_18004d668:
             LoopCounterValue = -1;
 LAB_18004d6b7:
             uVar8 = LoopCounterValue + 1;
-            BufferSize1 = (ulonglong)(int)uVar8;
-            if (uVar8 < uStack_228) {
+            BufferSize1 = (ulonglong)(int)systemMode;
+            if (systemMode < uStack_228) {
               pcVar12 = (char *)(lStack_230 + BufferSize1);
               do {
                 if (*pcVar12 == ' ') goto LAB_18004d6dd;
@@ -3097,7 +3097,7 @@ LAB_18004d6dd:
             if (bVar31) {
               InitializeSystemBuffer(&puStack_218,pMemoryAddress7);
               uVar8 = InitializeDataBuffer(&puStack_218,&SystemPerformanceModeString);
-              BufferSize1 = (ulonglong)(int)uVar8;
+              BufferSize1 = (ulonglong)(int)systemMode;
               if (uVar8 < uStack_208) {
                 pcVar12 = (char *)(lStack_210 + BufferSize1);
                 do {
@@ -3110,7 +3110,7 @@ LAB_18004d6dd:
               LoopCounterValue = -1;
 LAB_18004d849:
               uVar8 = LoopCounterValue + 1;
-              BufferSize1 = (ulonglong)(int)uVar8;
+              BufferSize1 = (ulonglong)(int)systemMode;
               if (uVar8 < uStack_208) {
                 pcVar12 = (char *)(lStack_210 + BufferSize1);
                 do {
@@ -3167,7 +3167,7 @@ LAB_18004d876:
               if (bVar31) {
                 InitializeSystemBuffer(&puStack_1f8,pMemoryAddress7);
                 uVar8 = InitializeDataBuffer(&puStack_1f8,&SystemCompatibilityModeString);
-                BufferSize1 = (ulonglong)(int)uVar8;
+                BufferSize1 = (ulonglong)(int)systemMode;
                 if (uVar8 < uStack_1e8) {
                   pcVar12 = (char *)(lStack_1f0 + BufferSize1);
                   do {
@@ -3275,7 +3275,7 @@ LAB_18004dbe3:
                 if (bVar31) {
                   InitializeSystemBuffer(&puStack_1d8,pMemoryAddress7);
                   uVar8 = SystemDataCompare(&puStack_1d8,&SystemEncryptionModeString);
-                  BufferSize1 = (ulonglong)(int)uVar8;
+                  BufferSize1 = (ulonglong)(int)systemMode;
                   if (uVar8 < uStack_1c8) {
                     pcVar12 = (char *)(lStack_1d0 + BufferSize1);
                     do {
