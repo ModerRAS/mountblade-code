@@ -341,6 +341,16 @@ int InitializeStringProcessorI(void)
   callbackResult = FUN_1808fc7d0(FUN_1809419a0);
   return (callbackResult != 0) - 1;
 }
+/**
+ * 初始化配置互斥锁
+ * 设置系统配置所需的互斥锁和同步机制
+ * 
+ * @param threadId 线程ID参数
+ * @param syncPtr 同步对象指针
+ * @param mutexType 互斥锁类型
+ * @param mutexAttr 互斥锁属性
+ * @return 初始化成功返回0，失败返回-1
+ */
 int InitializeConfigurationMutex(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
 {
   longlong callbackResult;

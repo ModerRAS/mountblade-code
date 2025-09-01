@@ -321,7 +321,7 @@ void InitializeNetworkConnectionState(void)
   if (*(int *)(*(longlong *)(systemContext + 0x98) + 0x200) == sessionID) {
     *connectionBuffer = 0;
     *(uint *)(CONCAT44(connectionFlags,connectionHandle) + 8) = ((int)connectionBuffer - connectionHandle) + 4U & 0xfffffffc;
-    networkStatus = func_0x00018088e0d0(*(undefined8 *)(stackParameter + 0x98));
+    networkStatus = InitializeNetworkConnectionContext(*(undefined8 *)(stackParameter + 0x98));
     if (networkStatus == 0) {
       *connectionPointer = (uint64_t)*(uint *)(CONCAT44(connectionFlags,connectionHandle) + 0x20);
     }
