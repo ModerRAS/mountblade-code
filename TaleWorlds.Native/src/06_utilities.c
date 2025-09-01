@@ -1,16 +1,16 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 函数: void InitializeModuleDependencies(longlong moduleHandle, longlong moduleContext)
+// 函数: void InitializeModuleDependencies(longlong ModuleHandle, longlong ModuleContext)
 /**
  * @brief 初始化模块依赖关系
  * 
  * 该函数负责初始化模块间的依赖关系，建立模块间的连接
  * 和通信机制，确保模块能够正确加载和运行
  * 
- * @param moduleHandle 模块句柄，用于标识特定的模块
- * @param moduleContext 模块上下文，包含模块运行的环境信息
+ * @param ModuleHandle 模块句柄，用于标识特定的模块
+ * @param ModuleContext 模块上下文，包含模块运行的环境信息
  */
-void InitializeModuleDependencies(longlong moduleHandle, longlong moduleContext);
+void InitializeModuleDependencies(longlong ModuleHandle, longlong ModuleContext);
 void* ModuleDependencyTable;
 uint32_t ModuleDependencyCount;
 uint32_t ModuleDependencyFlags;
@@ -19,7 +19,7 @@ void* ModuleDependencyLock;
 void* ModuleDependencyMutex;
 bool ModuleDependencyInitialized;
 void* ModuleDependencyContext;
-void* ModuleDependencyConfig;
+void* ModuleDependencyConfiguration;
 bool ModuleDependencyEnabled;
 void* ModuleDependencyData;
 void* ModuleDependencyCache;
@@ -1704,18 +1704,42 @@ undefined UNK_180a2ac10;
 void InitializeSystemConfiguration(void);
 undefined DAT_180c92490;
 
-// 函数: undefined FUN_1809428e0;
-undefined FUN_1809428e0;
+// 函数: void SetupSystemEnvironment(void)
+/**
+ * @brief 设置系统环境
+ * 
+ * 该函数负责设置系统运行的环境参数
+ * 配置系统环境变量和运行时参数
+ */
+void SetupSystemEnvironment(void);
 undefined DAT_180c92480;
 
-// 函数: undefined FUN_180942930;
-undefined FUN_180942930;
+// 函数: void ConfigureSystemParameters(void)
+/**
+ * @brief 配置系统参数
+ * 
+ * 该函数负责配置系统的各项参数
+ * 设置系统运行时的参数和选项
+ */
+void ConfigureSystemParameters(void);
 
-// 函数: undefined FUN_180942a20;
-undefined FUN_180942a20;
+// 函数: void InitializeSystemResources(void)
+/**
+ * @brief 初始化系统资源
+ * 
+ * 该函数负责初始化系统所需的资源
+ * 分配和初始化系统运行所需的资源
+ */
+void InitializeSystemResources(void);
 
-// 函数: undefined FUN_1809429f0;
-undefined FUN_1809429f0;
+// 函数: void InitializeSystemMemoryManager(void)
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 该函数负责初始化系统的内存管理组件
+ * 设置内存分配和回收的机制
+ */
+void InitializeSystemMemoryManager(void);
 undefined DAT_180c924ac;
 undefined UNK_180a2bf10;
 undefined DAT_180c924b0;
@@ -1729,8 +1753,14 @@ undefined DAT_180bf6050;
 undefined DAT_180bf6058;
 undefined DAT_180bf6060;
 
-// 函数: undefined FUN_180942a60;
-undefined FUN_180942a60;
+// 函数: void InitializeSystemThreadManager(void)
+/**
+ * @brief 初始化系统线程管理器
+ * 
+ * 该函数负责初始化系统的线程管理组件
+ * 设置线程创建、调度和同步的机制
+ */
+void InitializeSystemThreadManager(void);
 undefined DAT_180bf6498;
 undefined DAT_180bf64a0;
 undefined DAT_180bf64a8;
@@ -3490,10 +3520,10 @@ undefined8 FUN_1808905ae(void)
  * 
  * 该函数验证输入的字符参数，如果字符不为空则执行相应的系统操作
  */
-undefined8 validateCharacterParameter(char charInput)
+undefined8 ValidateCharacterParameter(char CharInput)
 
 {
-  if (charInput != '\0') {
+  if (CharInput != '\0') {
                     // WARNING: Subroutine does not return
     FUN_180862e00();
   }
