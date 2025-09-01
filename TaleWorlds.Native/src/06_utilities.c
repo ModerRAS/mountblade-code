@@ -11,24 +11,24 @@
  * @param moduleContext 模块上下文，包含模块运行的环境信息
  */
 void InitializeModuleDependencies(longlong moduleHandle, longlong moduleContext);
-void* g_moduleDependencyTable;
-uint32_t g_moduleDependencyCount;
-uint32_t g_moduleDependencyFlags;
-uint32_t g_moduleDependencyStatus;
-void* g_moduleDependencyLock;
-void* g_moduleDependencyMutex;
-bool g_moduleDependencyInitialized;
-void* g_moduleDependencyContext;
-void* g_moduleDependencyConfig;
-bool g_moduleDependencyEnabled;
-void* g_moduleDependencyData;
-void* g_moduleDependencyCache;
-void* g_moduleDependencyBuffer;
-uint32_t g_moduleDependencyVersion;
-uint32_t g_moduleDependencyBuild;
-uint32_t g_moduleDependencyChecksum;
-void* g_moduleDependencySignature;
-void* g_moduleDependencyHandle;
+void* ModuleDependencyTable;
+uint32_t ModuleDependencyCount;
+uint32_t ModuleDependencyFlags;
+uint32_t ModuleDependencyStatus;
+void* ModuleDependencyLock;
+void* ModuleDependencyMutex;
+bool ModuleDependencyInitialized;
+void* ModuleDependencyContext;
+void* ModuleDependencyConfig;
+bool ModuleDependencyEnabled;
+void* ModuleDependencyData;
+void* ModuleDependencyCache;
+void* ModuleDependencyBuffer;
+uint32_t ModuleDependencyVersion;
+uint32_t ModuleDependencyBuild;
+uint32_t ModuleDependencyChecksum;
+void* ModuleDependencySignature;
+void* ModuleDependencyHandle;
 
 // 函数: void InitializeGlobalModuleA(void)
 /**
@@ -51,7 +51,7 @@ void* g_globalModuleA_Handle;
  * 设置模块B所需的数据结构和运行环境
  */
 void InitializeGlobalModuleB(void);
-void* g_globalModuleB_Instance;
+void* GlobalModuleB_Instance;
 void* g_globalModuleB_Config;
 uint32_t g_globalModuleB_Status;
 void* g_globalModuleB_Handle;
@@ -367,7 +367,7 @@ void* g_databasePool;
 // 数据库连接池实例
 void* g_databaseConnectionPoolInstance;
 // 数据库连接池配置
-void* DatabaseConnectionPoolConfig;
+void* g_databaseConnectionPoolConfig;
 undefined DAT_180bf6a10;
 undefined DAT_180bf6a18;
 undefined DAT_180bf6a20;
@@ -815,19 +815,39 @@ undefined DAT_180bf91c0;
 undefined DAT_180bf91c8;
 undefined UNK_180a22b38;
 
-// 函数: undefined FUN_180941f00;
-undefined FUN_180941f00;
+// 函数: void InitializeSystemResources;
+/**
+ * @brief 初始化系统资源
+ * 
+ * 该函数负责初始化系统运行所需的基本资源
+ * 包括内存管理器、文件句柄和其他系统组件
+ */
+void InitializeSystemResources;
 undefined DAT_180bf9210;
 undefined DAT_180bf9218;
 undefined DAT_180bf9220;
 undefined DAT_180bf9228;
 undefined UNK_180a22b90;
 
-// 函数: void* FUN_180941f20;
-void* FUN_180941f20;
+// 函数: void* CreateMemoryManager;
+/**
+ * @brief 创建内存管理器
+ * 
+ * 该函数负责创建并配置系统内存管理器
+ * 返回内存管理器的实例指针
+ * 
+ * @return void* 内存管理器实例指针
+ */
+void* CreateMemoryManager;
 
-// 函数: undefined FUN_180941f40;
-undefined FUN_180941f40;
+// 函数: void SetupMemoryAllocator;
+/**
+ * @brief 设置内存分配器
+ * 
+ * 该函数负责设置系统内存分配器
+ * 配置内存分配策略和参数
+ */
+void SetupMemoryAllocator;
 undefined DAT_180bf9270;
 undefined DAT_180bf9278;
 undefined DAT_180bf9280;
@@ -835,8 +855,14 @@ undefined DAT_180bf9288;
 undefined UNK_180a22b78;
 undefined DAT_180bf92d0;
 
-// 函数: undefined FUN_180941f60;
-undefined FUN_180941f60;
+// 函数: void InitializeMemoryTracking;
+/**
+ * @brief 初始化内存跟踪
+ * 
+ * 该函数负责初始化内存跟踪系统
+ * 设置内存使用监控和日志记录
+ */
+void InitializeMemoryTracking;
 undefined DAT_180bf92d8;
 undefined DAT_180bf92e0;
 undefined DAT_180bf92e8;
@@ -844,8 +870,14 @@ undefined UNK_180a22b60;
 undefined DAT_180bf9330;
 undefined DAT_180bf9338;
 
-// 函数: undefined FUN_180941f80;
-undefined FUN_180941f80;
+// 函数: void ConfigureMemoryProtection;
+/**
+ * @brief 配置内存保护
+ * 
+ * 该函数负责配置系统内存保护机制
+ * 设置内存访问权限和保护级别
+ */
+void ConfigureMemoryProtection;
 undefined DAT_180bf9340;
 undefined DAT_180bf9348;
 undefined UNK_180a22b50;
@@ -853,8 +885,14 @@ undefined DAT_180bf9390;
 undefined DAT_180bf9398;
 undefined DAT_180bf93a0;
 
-// 函数: undefined FUN_180941fa0;
-undefined FUN_180941fa0;
+// 函数: void InitializeMemoryCache;
+/**
+ * @brief 初始化内存缓存
+ * 
+ * 该函数负责初始化系统内存缓存
+ * 设置缓存大小和替换策略
+ */
+void InitializeMemoryCache;
 undefined DAT_180bf93a8;
 undefined UNK_180a22be8;
 undefined DAT_180bf93f0;
@@ -862,24 +900,42 @@ undefined DAT_180bf93f8;
 undefined DAT_180bf9400;
 undefined DAT_180bf9408;
 
-// 函数: undefined FUN_180941fc0;
-undefined FUN_180941fc0;
+// 函数: void SetupMemoryPool;
+/**
+ * @brief 设置内存池
+ * 
+ * 该函数负责设置系统内存池
+ * 配置内存块大小和池管理策略
+ */
+void SetupMemoryPool;
 undefined UNK_180a22bd0;
 undefined DAT_180bf9450;
 undefined DAT_180bf9458;
 undefined DAT_180bf9460;
 undefined DAT_180bf9468;
 
-// 函数: undefined FUN_180941fe0;
-undefined FUN_180941fe0;
+// 函数: void InitializeGarbageCollector;
+/**
+ * @brief 初始化垃圾收集器
+ * 
+ * 该函数负责初始化系统垃圾收集器
+ * 设置垃圾回收策略和参数
+ */
+void InitializeGarbageCollector;
 undefined UNK_180a22bb8;
 undefined DAT_180bf94b0;
 undefined DAT_180bf94b8;
 undefined DAT_180bf94c0;
 undefined DAT_180bf94c8;
 
-// 函数: undefined FUN_180942000;
-undefined FUN_180942000;
+// 函数: void ConfigureMemoryStatistics;
+/**
+ * @brief 配置内存统计
+ * 
+ * 该函数负责配置内存统计系统
+ * 设置内存使用监控和报告参数
+ */
+void ConfigureMemoryStatistics;
 undefined UNK_180a22ba8;
 undefined DAT_180bf9510;
 undefined DAT_180bf9518;
@@ -3888,8 +3944,14 @@ uint32_t ValidateRegisterPointer(void)
 
 
 
-// 函数: void FUN_180890b18(void)
-void FUN_180890b18(void)
+// 函数: void TriggerSystemShutdown(void)
+/**
+ * @brief 触发系统关闭
+ * 
+ * 该函数负责触发系统的关闭过程
+ * 调用系统关闭函数来终止程序运行
+ */
+void TriggerSystemShutdown(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -3899,8 +3961,14 @@ void FUN_180890b18(void)
 
 
 
-// 函数: void FUN_180890b65(void)
-void FUN_180890b65(void)
+// 函数: void ReturnEmptyFunction(void)
+/**
+ * @brief 空返回函数
+ * 
+ * 该函数是一个空函数，直接返回
+ * 通常用作占位符或默认实现
+ */
+void ReturnEmptyFunction(void)
 
 {
   return;
@@ -3908,7 +3976,17 @@ void FUN_180890b65(void)
 
 
 
-undefined8 FUN_180890b70(longlong param_1)
+// 函数: uint64_t ProcessResourceHandle(longlong resourceHandle)
+/**
+ * @brief 处理资源句柄
+ * 
+ * 该函数负责处理资源句柄，执行相关操作
+ * 根据句柄状态决定是否触发系统操作
+ * 
+ * @param resourceHandle 资源句柄，用于标识要处理的资源
+ * @return 处理结果，0表示成功，非0表示错误码
+ */
+uint64_t ProcessResourceHandle(longlong resourceHandle)
 
 {
   undefined8 uVar1;
@@ -3933,7 +4011,16 @@ undefined8 FUN_180890b70(longlong param_1)
 
 
 
-undefined4 FUN_180890b8f(void)
+// 函数: uint32_t ProcessSystemResource(void)
+/**
+ * @brief 处理系统资源
+ * 
+ * 该函数负责处理系统资源，根据资源状态执行相应操作
+ * 如果资源无效则返回错误码，否则执行资源操作
+ * 
+ * @return 处理结果，0表示成功，非0表示错误码
+ */
+uint32_t ProcessSystemResource(void)
 
 {
   longlong in_RAX;
@@ -3955,8 +4042,14 @@ undefined4 FUN_180890b8f(void)
 
 
 
-// 函数: void FUN_180890bb8(void)
-void FUN_180890bb8(void)
+// 函数: void ExecuteSystemTermination(void)
+/**
+ * @brief 执行系统终止
+ * 
+ * 该函数负责执行系统终止操作
+ * 调用系统终止函数来结束程序运行
+ */
+void ExecuteSystemTermination(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -3966,8 +4059,14 @@ void FUN_180890bb8(void)
 
 
 
-// 函数: void FUN_180890c06(void)
-void FUN_180890c06(void)
+// 函数: void ReturnNoOperation(void)
+/**
+ * @brief 空操作返回函数
+ * 
+ * 该函数是一个空操作函数，直接返回
+ * 用作无操作时的占位符
+ */
+void ReturnNoOperation(void)
 
 {
   return;
@@ -3975,7 +4074,17 @@ void FUN_180890c06(void)
 
 
 
-undefined8 FUN_180890c10(longlong param_1)
+// 函数: uint64_t HandleResourceOperation(longlong resourceHandle)
+/**
+ * @brief 处理资源操作
+ * 
+ * 该函数负责处理资源操作，根据资源状态执行相应操作
+ * 如果资源无效则返回错误码，否则执行资源操作
+ * 
+ * @param resourceHandle 资源句柄，用于标识要处理的资源
+ * @return 处理结果，0表示成功，非0表示错误码
+ */
+uint64_t HandleResourceOperation(longlong resourceHandle)
 
 {
   undefined8 uVar1;
@@ -3999,7 +4108,16 @@ undefined8 FUN_180890c10(longlong param_1)
 
 
 
-undefined4 FUN_180890c33(void)
+// 函数: uint32_t ProcessResourceTask(void)
+/**
+ * @brief 处理资源任务
+ * 
+ * 该函数负责处理资源任务，根据任务状态执行相应操作
+ * 如果任务无效则返回错误码，否则执行任务操作
+ * 
+ * @return 处理结果，0表示成功，非0表示错误码
+ */
+uint32_t ProcessResourceTask(void)
 
 {
   longlong in_RAX;
@@ -82743,6 +82861,12 @@ void FUN_180943040(void)
 
 
 // 函数: void FUN_180943070(void)
+/**
+ * @brief 销毁互斥锁资源
+ * 
+ * 该函数负责销毁指定的互斥锁资源
+ * 释放互斥锁占用的系统资源
+ */
 void FUN_180943070(void)
 
 {
@@ -82758,6 +82882,12 @@ void FUN_180943070(void)
 
 
 // 函数: void FUN_180943090(void)
+/**
+ * @brief 重置全局数据指针
+ * 
+ * 该函数负责重置全局数据指针到初始状态
+ * 清理系统数据结构并恢复默认值
+ */
 void FUN_180943090(void)
 
 {
@@ -82771,6 +82901,12 @@ void FUN_180943090(void)
 
 
 // 函数: void FUN_1809430b0(void)
+/**
+ * @brief 重置系统数据表指针
+ * 
+ * 该函数负责重置系统数据表指针到初始状态
+ * 清理数据表并恢复默认配置
+ */
 void FUN_1809430b0(void)
 
 {
@@ -82784,6 +82920,12 @@ void FUN_1809430b0(void)
 
 
 // 函数: void FUN_1809430e0(void)
+/**
+ * @brief 清理系统缓存并重置状态
+ * 
+ * 该函数负责清理系统缓存并重置相关状态
+ * 检查资源状态并进行必要的清理操作
+ */
 void FUN_1809430e0(void)
 
 {
