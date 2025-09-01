@@ -1562,8 +1562,7 @@ uint8_t MemoryProtectionGetData;
 uint8_t MemoryProtectionGetBuffer;
 uint8_t MemoryProtectionGetInfo;
 
- void FlushMemoryCache(void);
-/**
+ /**
  * @brief 刷新内存缓存
  * 
  * 该函数负责刷新系统内存缓存
@@ -1576,8 +1575,7 @@ uint8_t MemoryCacheFlushHandle;
 uint8_t MemoryCacheFlushData;
 uint8_t MemoryCacheFlushContext;
 
- void InvalidateMemoryCache(void);
-/**
+ /**
  * @brief 使内存缓存失效
  * 
  * 该函数负责使系统内存缓存失效
@@ -1590,8 +1588,7 @@ uint8_t MemoryCacheInvalidateHandle;
 uint8_t MemoryCacheInvalidateData;
 uint8_t MemoryCacheInvalidateTable;
 
- void InitializeMemorySegmentation(void);
-/**
+ /**
  * @brief 初始化内存分段
  * 
  * 该函数负责初始化内存分段系统
@@ -1604,8 +1601,7 @@ void* MemorySegmentStatus;
 void* MemorySegmentConfig;
 void* MemorySegmentBuffer;
 
- void ConfigureMemoryFragmentation(void);
-/**
+ /**
  * @brief 配置内存碎片化
  * 
  * 该函数负责配置内存碎片化管理
@@ -1618,8 +1614,7 @@ void* MemoryFragmentationStatus;
 void* MemoryBalancingConfigTable;
 void* MemoryBalancingReservedMemory;
 
- void InitializeMemoryBalancing(void);
-/**
+ /**
  * @brief 初始化内存平衡
  * 
  * 该函数负责初始化内存平衡系统
@@ -1627,7 +1622,6 @@ void* MemoryBalancingReservedMemory;
  */
 void InitializeMemoryBalancing(void);
 
- void SetupMemoryOptimization(void);
 /**
  * @brief 设置内存优化
  * 
@@ -1636,7 +1630,6 @@ void InitializeMemoryBalancing(void);
  */
 void SetupMemoryOptimization(void);
 
- void InitializeMemoryMonitoring(void);
 /**
  * @brief 初始化内存监控
  * 
@@ -1645,8 +1638,7 @@ void SetupMemoryOptimization(void);
  */
 void InitializeMemoryMonitoring(void);
 
- void ConfigureMemoryLogging(void);
-/**
+ /**
  * @brief 配置内存日志
  * 
  * 该函数负责配置内存日志系统
@@ -1654,7 +1646,6 @@ void InitializeMemoryMonitoring(void);
  */
 void ConfigureMemoryLogging(void);
 
- void InitializeMemoryProfiling(void);
 /**
  * @brief 初始化内存性能分析
  * 
