@@ -1,22 +1,6 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
-/**
- * @file 00_data_definitions.h
- * @brief 系统数据定义头文件
- * 
- * 本文件定义了系统运行所需的各种常量、偏移量和全局变量。
- * 简化实现：提供基本的常量定义和变量声明。
- * 原本实现：包含完整的系统数据结构定义和初始化逻辑。
- * 
- * 美化实现（2025年8月31日最新批次完成）：
- * - 美化常量命名，使用更具语义化的名称
- * - 删除重复的常量定义
- * - 优化常量组织结构，按功能分组
- * - 为常量添加详细的功能说明注释
- * - 保持代码语义不变，这是简化实现
- */
-
 // 线程栈配置偏移量常量定义
 #define SYSTEM_OFFSET_THREAD_STACK_CONFIG    0x3088
 #define SYSTEM_OFFSET_THREAD_STACK_SIZE      0x3089
