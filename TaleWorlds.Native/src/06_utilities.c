@@ -470,72 +470,71 @@ void* SystemConfigurationTable;
 void* SystemStatusTable;
 void* SystemResourceTable;
 void* SystemDataBuffer001;
-undefined SystemDataBuffer002;
-undefined SystemDataBuffer003;
-undefined SystemDataBuffer004;
-undefined SystemDataBuffer005;
-undefined SystemDataBuffer006;
-undefined SystemDataBuffer007;
-undefined SystemDataBuffer008;
-undefined SystemDataBuffer009;
-undefined SystemDataBuffer010;
-undefined SystemDataBuffer011;
-undefined SystemDataBuffer012;
-undefined SystemDataBuffer013;
-undefined SystemDataBuffer014;
-undefined SystemDataBuffer015;
-undefined SystemDataBuffer016;
-undefined SystemDataBuffer017;
-undefined SystemDataBuffer018;
-undefined SystemDataBuffer019;
-undefined SystemDataBuffer020;
-undefined SystemDataBuffer021;
-undefined SystemResourceDataTable;
-undefined SystemStatusDataTable;
-undefined SystemConfigurationDataTable;
-undefined SystemInstancePointerTable;
-undefined SystemDataBuffer022;
-undefined SystemDataBuffer023;
-undefined SystemDataBuffer024;
-undefined SystemFunctionPointerTable;
-undefined SystemMemoryAllocationTable;
-undefined SystemThreadControlTable;
-undefined SystemEventDispatcherTable;
-undefined SystemTimerReferenceTable;
-undefined SystemSynchronizationTable;
-undefined SystemLockManagerTable;
-undefined SystemSemaphoreControlTable;
-undefined SystemMutexHandleTable;
-undefined SystemConditionVariableTable;
-undefined SystemBarrierManagerTable;
-undefined SystemMemoryPoolTable;
-undefined SystemTaskQueueTable;
-undefined SystemStackManagerTable;
-undefined SystemLinkedListTable;
-undefined SystemHashTable;
-undefined SystemTreeStructureTable;
-undefined SystemGraphDataStructure;
-undefined SystemCacheManagerTable;
-undefined SystemNetworkConfigurationTable;
-undefined SystemGraphicsSettingsTable;
-undefined SystemAudioSettingsTable;
-undefined SystemInputConfigurationTable;
-undefined SystemPhysicsSettingsTable;
-undefined SystemAnimationSettingsTable;
-undefined SystemScriptingSettingsTable;
-undefined SystemFileSystemSettingsTable;
-undefined SystemDatabaseSettingsTable;
-undefined SystemSecuritySettingsTable;
-undefined SystemLoggingSettingsTable;
-undefined SystemMonitoringSettingsTable;
-undefined SystemLocalizationSettingsTable;
-undefined SystemModdingSettingsTable;
-undefined SystemDebugSettingsTable;
-undefined SystemDataBuffer025;
-undefined SystemDataBuffer026;
-undefined SystemDataBuffer027;
+void* SystemDataBuffer002;
+void* SystemDataBuffer003;
+void* SystemDataBuffer004;
+void* SystemDataBuffer005;
+void* SystemDataBuffer006;
+void* SystemDataBuffer007;
+void* SystemDataBuffer008;
+void* SystemDataBuffer009;
+void* SystemDataBuffer010;
+void* SystemDataBuffer011;
+void* SystemDataBuffer012;
+void* SystemDataBuffer013;
+void* SystemDataBuffer014;
+void* SystemDataBuffer015;
+void* SystemDataBuffer016;
+void* SystemDataBuffer017;
+void* SystemDataBuffer018;
+void* SystemDataBuffer019;
+void* SystemDataBuffer020;
+void* SystemDataBuffer021;
+void* SystemResourceDataTable;
+void* SystemStatusDataTable;
+void* SystemConfigurationDataTable;
+void* SystemInstancePointerTable;
+void* SystemDataBuffer022;
+void* SystemDataBuffer023;
+void* SystemDataBuffer024;
+void* SystemFunctionPointerTable;
+void* SystemMemoryAllocationTable;
+void* SystemThreadControlTable;
+void* SystemEventDispatcherTable;
+void* SystemTimerReferenceTable;
+void* SystemSynchronizationTable;
+void* SystemLockManagerTable;
+void* SystemSemaphoreControlTable;
+void* SystemMutexHandleTable;
+void* SystemConditionVariableTable;
+void* SystemBarrierManagerTable;
+void* SystemMemoryPoolTable;
+void* SystemTaskQueueTable;
+void* SystemStackManagerTable;
+void* SystemLinkedListTable;
+void* SystemHashTable;
+void* SystemTreeStructureTable;
+void* SystemGraphDataStructure;
+void* SystemCacheManagerTable;
+void* SystemNetworkConfigurationTable;
+void* SystemGraphicsSettingsTable;
+void* SystemAudioSettingsTable;
+void* SystemInputConfigurationTable;
+void* SystemPhysicsSettingsTable;
+void* SystemAnimationSettingsTable;
+void* SystemScriptingSettingsTable;
+void* SystemFileSystemSettingsTable;
+void* SystemDatabaseSettingsTable;
+void* SystemSecuritySettingsTable;
+void* SystemLoggingSettingsTable;
+void* SystemMonitoringSettingsTable;
+void* SystemLocalizationSettingsTable;
+void* SystemModdingSettingsTable;
+void* SystemDebugSettingsTable;
+void* SystemDataBuffer025;
+void* SystemDataBuffer026;
+void* SystemDataBuffer027;
 
- void InitializeSecurityManager(void)
 /**
  * @brief 初始化安全管理器
  * 
@@ -543,112 +542,110 @@ undefined SystemDataBuffer027;
  * 设置权限验证、数据加密和安全检查等相关组件
  */
 void InitializeSecurityManager(void);
-undefined SecurityManagerInstance;
-undefined SecurityContext;
-undefined SecurityPermissionTable;
-undefined SecurityEncryptionKey;
-undefined SecurityValidationFlags;
-undefined SecurityAuditLog;
-undefined SecurityAccessControl;
+void* SecurityManagerInstance;
+void* SecurityContext;
+void* SecurityPermissionTable;
+void* SecurityEncryptionKey;
+uint32_t SecurityValidationFlags;
+void* SecurityAuditLog;
+void* SecurityAccessControl;
 
- void InitializeLoggingSystem(void)
-/**
+ /**
  * @brief 初始化日志系统
  * 
  * 该函数负责初始化游戏日志系统
  * 设置日志记录、错误跟踪和调试信息输出
  */
 void InitializeLoggingSystem(void);
-undefined LoggingSystemInstance;
-undefined LogFileHandle;
-undefined LogLevelConfig;
-undefined LogOutputBuffer;
-undefined LogRotationManager;
+void* LoggingSystemInstance;
+void* LogFileHandle;
+uint32_t LogLevelConfig;
+void* LogOutputBuffer;
+void* LogRotationManager;
 
- void InitializePerformanceMonitor(void)
-/**
+ /**
  * @brief 初始化性能监控器
  * 
  * 该函数负责初始化游戏性能监控器
  * 设置性能指标收集、分析和报告机制
  */
 void InitializePerformanceMonitor(void);
-undefined PerformanceMonitorInstance;
-undefined PerformanceCounterArray;
-undefined PerformanceMetricsTable;
-undefined ProfilingDataBuffer;
-undefined FpsCounter;
-undefined MemoryUsageTracker;
-undefined CpuUsageMonitor;
-undefined GpuPerformanceTracker;
-undefined FrameTimeAnalyzer;
-undefined NetworkLatencyMonitor;
-undefined DiskIOPerformanceTracker;
-undefined ThreadPerformanceProfiler;
-undefined SystemResourceMonitor;
-undefined PerformanceReportGenerator;
-undefined OptimizationSuggestionEngine;
-undefined BenchmarkingTool;
-undefined PerformanceThresholdManager;
-undefined AlertSystem;
-undefined DataCollector;
-undefined AnalyticsEngine;
-undefined VisualizationTool;
-undefined HistoricalDataStorage;
-undefined SystemDataBuffer028;
-undefined SystemDataBuffer029;
-undefined SystemDataBuffer030;
-undefined SystemDataBuffer031;
-undefined SystemDataBuffer032;
-undefined SystemDataBuffer033;
-undefined SystemDataBuffer034;
-undefined SystemDataBuffer035;
-undefined SystemDataBuffer036;
-undefined SystemDataBuffer037;
-undefined SystemDataBuffer038;
-undefined SystemDataBuffer039;
-undefined SystemDataBuffer040;
-undefined SystemDataBuffer041;
-undefined SystemDataBuffer042;
-undefined SystemDataBuffer043;
-undefined SystemDataBuffer044;
-undefined SystemDataBuffer045;
-undefined SystemDataBuffer046;
-undefined SystemDataBuffer047;
-undefined SystemDataBuffer048;
-undefined SystemDataBuffer049;
-undefined SystemDataBuffer050;
-undefined SystemDataBuffer051;
-undefined SystemDataBuffer052;
-undefined SystemDataBuffer053;
-undefined SystemDataBuffer054;
-undefined SystemDataBuffer055;
-undefined SystemDataBuffer056;
-undefined SystemDataBuffer057;
-undefined SystemDataBuffer058;
-undefined SystemDataBuffer059;
-undefined SystemDataBuffer060;
-undefined SystemDataBuffer061;
-undefined SystemDataBuffer062;
-undefined SystemDataBuffer063;
-undefined SystemDataBuffer064;
-undefined SystemDataBuffer065;
-undefined SystemDataBuffer066;
-undefined SystemThreadConfigurationTable;
-undefined SystemProcessControlTable;
-undefined SystemEventHandlerTable;
-undefined SystemTimerManagerTable;
-undefined SystemSyncControlTable;
-undefined SystemLockManagerTable;
-undefined SystemSemaphoreManagerTable;
-undefined SystemMutexManagerTable;
-undefined SystemConditionManagerTable;
-undefined SystemBarrierManagerTable;
-undefined SystemPoolManagerTable;
-undefined SystemQueueManagerTable;
-undefined SystemStackManagerTable;
-undefined SystemLinkedListTable;
-undefined SystemHashTable;
+void* PerformanceMonitorInstance;
+void* PerformanceCounterArray;
+void* PerformanceMetricsTable;
+void* ProfilingDataBuffer;
+uint32_t FpsCounter;
+void* MemoryUsageTracker;
+void* CpuUsageMonitor;
+void* GpuPerformanceTracker;
+void* FrameTimeAnalyzer;
+void* NetworkLatencyMonitor;
+void* DiskIOPerformanceTracker;
+void* ThreadPerformanceProfiler;
+void* SystemResourceMonitor;
+void* PerformanceReportGenerator;
+void* OptimizationSuggestionEngine;
+void* BenchmarkingTool;
+void* PerformanceThresholdManager;
+void* AlertSystem;
+void* DataCollector;
+void* AnalyticsEngine;
+void* VisualizationTool;
+void* HistoricalDataStorage;
+void* SystemDataBuffer028;
+void* SystemDataBuffer029;
+void* SystemDataBuffer030;
+void* SystemDataBuffer031;
+void* SystemDataBuffer032;
+void* SystemDataBuffer033;
+void* SystemDataBuffer034;
+void* SystemDataBuffer035;
+void* SystemDataBuffer036;
+void* SystemDataBuffer037;
+void* SystemDataBuffer038;
+void* SystemDataBuffer039;
+void* SystemDataBuffer040;
+void* SystemDataBuffer041;
+void* SystemDataBuffer042;
+void* SystemDataBuffer043;
+void* SystemDataBuffer044;
+void* SystemDataBuffer045;
+void* SystemDataBuffer046;
+void* SystemDataBuffer047;
+void* SystemDataBuffer048;
+void* SystemDataBuffer049;
+void* SystemDataBuffer050;
+void* SystemDataBuffer051;
+void* SystemDataBuffer052;
+void* SystemDataBuffer053;
+void* SystemDataBuffer054;
+void* SystemDataBuffer055;
+void* SystemDataBuffer056;
+void* SystemDataBuffer057;
+void* SystemDataBuffer058;
+void* SystemDataBuffer059;
+void* SystemDataBuffer060;
+void* SystemDataBuffer061;
+void* SystemDataBuffer062;
+void* SystemDataBuffer063;
+void* SystemDataBuffer064;
+void* SystemDataBuffer065;
+void* SystemDataBuffer066;
+void* SystemThreadConfigurationTable;
+void* SystemProcessControlTable;
+void* SystemEventHandlerTable;
+void* SystemTimerManagerTable;
+void* SystemSyncControlTable;
+void* SystemLockManagerTable;
+void* SystemSemaphoreManagerTable;
+void* SystemMutexManagerTable;
+void* SystemConditionManagerTable;
+void* SystemBarrierManagerTable;
+void* SystemPoolManagerTable;
+void* SystemQueueManagerTable;
+void* SystemStackManagerTable;
+void* SystemLinkedListTable;
+void* SystemHashTable;
 undefined SystemDataBuffer067;
 undefined SystemDataBuffer068;
 undefined SystemDataBuffer069;
@@ -849,7 +846,7 @@ void* MemoryAllocatorFunction;
  * 该函数负责初始化系统运行所需的基本资源
  * 包括内存管理器、文件句柄和其他系统组件
  */
-void InitializeSystemResources;
+void InitializeSystemResources(void);
 void* SystemPoolConfigTable2;
 void* SystemCacheConfigTable2;
 void* SystemBufferConfigTable2;
@@ -872,7 +869,7 @@ void* CreateMemoryManager;
  * 该函数负责设置系统内存分配器
  * 配置内存分配策略和参数
  */
-void SetupMemoryAllocator;
+void SetupMemoryAllocator(void);
 void* SystemResourceConfigTable2;
 void* SystemFileSystemConfigTable2;
 void* SystemThreadingConfigTable3;
@@ -880,14 +877,14 @@ void* SystemProcessConfigTable4;
 void* MemoryPoolFunction;
 void* SystemEventConfigTable6;
 
- void InitializeMemoryTracking;
+ void InitializeMemoryTracking(void);
 /**
  * @brief 初始化内存跟踪
  * 
  * 该函数负责初始化内存跟踪系统
  * 设置内存使用监控和日志记录
  */
-void InitializeMemoryTracking;
+void InitializeMemoryTracking(void);
 void* SystemLoggingConfigTable5;
 void* SystemAuditConfigTable3;
 void* SystemDiagnosticsConfigTable3;
@@ -895,14 +892,14 @@ void* SystemMemoryTracker;
 void* SystemPerformanceMonitor;
 void* SystemDebugLogger;
 
- void ConfigureMemoryProtection;
+ void ConfigureMemoryProtection(void);
 /**
  * @brief 配置内存保护
  * 
  * 该函数负责配置系统内存保护机制
  * 设置内存访问权限和保护级别
  */
-void ConfigureMemoryProtection;
+void ConfigureMemoryProtection(void);
 void* SystemThreadingConfigTable4;
 void* SystemProcessConfigTable5;
 void* SystemMemoryAllocator;
@@ -910,14 +907,14 @@ void* SystemSecurityConfigTable4;
 void* SystemNetworkConfigTable3;
 void* SystemEventConfigTable7;
 
- void InitializeMemoryCache;
+ void InitializeMemoryCache(void);
 /**
  * @brief 初始化内存缓存
  * 
  * 该函数负责初始化系统内存缓存
  * 设置缓存大小和替换策略
  */
-void InitializeMemoryCache;
+void InitializeMemoryCache(void);
 void* SystemLoggingConfigTable6;
 void* SystemMemoryCache;
 void* SystemFileSystemConfigTable3;
@@ -925,42 +922,42 @@ void* SystemThreadingConfigTable5;
 void* SystemProcessConfigTable6;
 void* SystemSecurityConfigTable5;
 
- void SetupMemoryPool;
+ void SetupMemoryPool(void);
 /**
  * @brief 设置内存池
  * 
  * 该函数负责设置系统内存池
  * 配置内存块大小和池管理策略
  */
-void SetupMemoryPool;
+void SetupMemoryPool(void);
 void* SystemMemoryPool;
 void* SystemNetworkConfigTable4;
 void* SystemEventConfigTable8;
 void* SystemLoggingConfigTable7;
 void* SystemAuditConfigTable4;
 
- void InitializeGarbageCollector;
+ void InitializeGarbageCollector(void);
 /**
  * @brief 初始化垃圾收集器
  * 
  * 该函数负责初始化系统垃圾收集器
  * 设置垃圾回收策略和参数
  */
-void InitializeGarbageCollector;
+void InitializeGarbageCollector(void);
 undefined GarbageCollectorConfigData;
 undefined GarbageCollectorTable0;
 undefined GarbageCollectorTable1;
 undefined GarbageCollectorTable2;
 undefined GarbageCollectorTable3;
 
- void ConfigureMemoryStatistics;
+ void ConfigureMemoryStatistics(void);
 /**
  * @brief 配置内存统计
  * 
  * 该函数负责配置内存统计系统
  * 设置内存使用监控和报告参数
  */
-void ConfigureMemoryStatistics;
+void ConfigureMemoryStatistics(void);
 undefined MemoryStatisticsConfigData;
 undefined MemoryStatisticsTable0;
 undefined MemoryStatisticsTable1;
@@ -968,28 +965,28 @@ undefined MemoryStatisticsTable2;
 undefined MemoryStatisticsTable3;
 undefined MemoryStatisticsExtendedData;
 
- void InitializeMemoryDebugger;
+ void InitializeMemoryDebugger(void);
 /**
  * @brief 初始化内存调试器
  * 
  * 该函数负责初始化内存调试系统
  * 设置内存调试和错误检测功能
  */
-void InitializeMemoryDebugger;
+void InitializeMemoryDebugger(void);
 undefined MemoryDebuggerTable0;
 undefined MemoryDebuggerTable1;
 undefined MemoryDebuggerTable2;
 undefined MemoryDebuggerTable3;
 undefined MemoryDebuggerConfigData;
 
- void SetupMemoryAlignment;
+ void SetupMemoryAlignment(void);
 /**
  * @brief 设置内存对齐
  * 
  * 该函数负责设置内存对齐参数
  * 配置内存地址对齐和边界检查
  */
-void SetupMemoryAlignment;
+void SetupMemoryAlignment(void);
 uint32_t MemoryAlignmentConfigData1;
 uint32_t MemoryAlignmentConfigData2;
 uint32_t MemoryAlignmentConfigData3;
@@ -1001,21 +998,21 @@ void* MemoryAlignmentReservedMemory;
  * 该函数负责初始化内存压缩系统
  * 设置内存压缩算法和参数
  */
-void InitializeMemoryCompression;
+void InitializeMemoryCompression(void);
 uint32_t MemoryCompressionConfigData1;
 uint32_t MemoryCompressionConfigData2;
 uint32_t MemoryCompressionConfigData3;
 uint32_t MemoryCompressionConfigData4;
 void* MemoryCompressionReservedMemory;
 
- void ConfigureMemoryEncryption;
+ void ConfigureMemoryEncryption(void);
 /**
  * @brief 配置内存加密
  * 
  * 该函数负责配置内存加密系统
  * 设置加密算法和密钥管理
  */
-void ConfigureMemoryEncryption;
+void ConfigureMemoryEncryption(void);
 uint32_t MemoryEncryptionConfigData1;
 uint32_t MemoryEncryptionConfigData2;
 uint32_t MemoryEncryptionConfigData3;
@@ -1580,7 +1577,7 @@ undefined DAT_180bfaa88;
 undefined DAT_180bfaa90;
 undefined UNK_180942620;
 undefined UNK_180a24bd0;
-undefined UNK_180a24bf0;
+undefined SystemMemoryConfigDataTemplateA;
 undefined UNK_180a24c10;
 undefined UNK_180a24c30;
 undefined UNK_180a24d58;
@@ -15856,7 +15853,17 @@ LAB_1808996c5:
 
 
 
-undefined8 FUN_180899740(undefined8 param_1,undefined4 *param_2)
+/**
+ * @brief 处理资源哈希计算
+ * 
+ * 该函数负责计算资源的哈希值
+ * 用于资源标识和验证
+ * 
+ * @param param_1 资源数据指针
+ * @param param_2 哈希计算参数
+ * @return 计算得到的哈希值
+ */
+undefined8 CalculateResourceHash(undefined8 param_1, undefined4 *param_2)
 
 {
   undefined8 resourceHash;
@@ -15871,7 +15878,15 @@ undefined8 FUN_180899740(undefined8 param_1,undefined4 *param_2)
 
 
 
-undefined8 FUN_180899763(void)
+/**
+ * @brief 处理资源哈希验证
+ * 
+ * 该函数负责验证资源的哈希值
+ * 确保资源数据的完整性和一致性
+ * 
+ * @return 验证结果，0表示验证通过
+ */
+undefined8 ValidateResourceHash(void)
 
 {
   undefined8 resourceHash;
@@ -15923,7 +15938,17 @@ undefined8 FUN_180899763(void)
 
 
 
-undefined8 FUN_1808997f0(undefined8 param_1,longlong *param_2)
+/**
+ * @brief 处理资源表查询操作
+ * 
+ * 该函数负责查询资源表中的条目
+ * 根据给定的参数查找匹配的资源
+ * 
+ * @param param_1 查询参数指针
+ * @param param_2 资源表指针
+ * @return 查询结果，0表示未找到
+ */
+undefined8 QueryResourceTable(undefined8 param_1, longlong *param_2)
 
 {
   int iVar1;
@@ -15966,7 +15991,15 @@ undefined8 FUN_1808997f0(undefined8 param_1,longlong *param_2)
 
 
 
-undefined8 FUN_180899816(void)
+/**
+ * 初始化资源缓冲区
+ * 
+ * 此函数负责初始化资源缓冲区，包括内存分配和初始化操作。
+ * 它会检查缓冲区大小，必要时进行扩展，并设置初始状态。
+ * 
+ * @return 成功返回0，失败返回错误代码
+ */
+undefined8 InitializeResourceBuffer(void)
 
 {
   int iVar1;
@@ -16013,7 +16046,17 @@ undefined8 FUN_180899816(void)
 
 
 
-undefined8 FUN_1808998a0(longlong param_1,longlong *param_2)
+/**
+ * 处理资源表条目
+ * 
+ * 此函数遍历资源表中的所有条目，对每个条目调用处理函数。
+ * 它处理资源表中的每个资源，确保所有资源都被正确处理。
+ * 
+ * @param param_1 资源管理器上下文
+ * @param param_2 资源表指针
+ * @return 成功返回0，失败返回错误代码
+ */
+undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
 
 {
   int iVar1;
