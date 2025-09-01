@@ -17636,7 +17636,7 @@ void InitializeEngineModuleB(void)
 int InitializeEngineCoreSystem(void)
 
 {
-  uint64_t result;
+  uint64_t InitializationResult;
   
   SystemPerformanceTimestamp = 3;
   SystemPerformanceCounterE = &DAT_180c967e0;
@@ -17644,8 +17644,8 @@ int InitializeEngineCoreSystem(void)
   _DAT_180c967f0 = 0;
   _DAT_180c967f8 = 0;
   _DAT_180c96800 = 0;
-  result = ValidateSystemConfiguration(SystemConfigValidatorNonary);
-  return (result != 0) - 1;
+  InitializationResult = ValidateSystemConfiguration(SystemConfigValidatorNonary);
+  return (InitializationResult != 0) - 1;
 }
 
 
