@@ -26,6 +26,12 @@ void* CoreSystemBackupConfiguration;            // 核心系统备份配置
 void* CoreSystemCacheConfiguration;             // 核心系统缓存配置
 void* CoreSystemEmergencyConfiguration;         // 核心系统紧急配置
 
+// 系统指针变量
+void* PhysicsSystemPointer;                     // 物理系统指针
+void* NetworkSystemPointer;                     // 网络系统指针
+void* GameLogicSystemPointer;                   // 游戏逻辑系统指针
+void* UISystemPointer;                          // UI系统指针
+
 // 渲染系统初始化函数
 void* GameRenderingMainEntryPoint;                  // 游戏渲染系统入口点
 void* RenderingSystemContext;                   // 渲染系统上下文
@@ -17667,9 +17673,9 @@ void SetPhysicsSystemPointer(void)
   int systemStatus;
   
   systemStatus = GetSystemStatus(0);
-  _DAT_180c2bca0 = 0x180be4710;
+  PhysicsSystemPointer = 0x180be4710;
   if (systemStatus != 0) {
-    _DAT_180c2bca0 = 0x180be4728;
+    PhysicsSystemPointer = 0x180be4728;
   }
   return;
 }
@@ -17691,13 +17697,13 @@ void SetNetworkSystemPointer(void)
   
   systemStatus = GetSystemStatus(1);
   if (systemStatus != 0) {
-    _DAT_180c31148 = 0x180be6078;
+    NetworkSystemPointer = 0x180be6078;
     return;
   }
   systemStatus = GetSystemStatus(0);
-  _DAT_180c31148 = 0x180be6068;
+  NetworkSystemPointer = 0x180be6068;
   if (systemStatus != 0) {
-    _DAT_180c31148 = 0x180be6070;
+    NetworkSystemPointer = 0x180be6070;
   }
   return;
 }
@@ -17743,9 +17749,9 @@ void SetGameLogicSystemPointer(void)
   int systemStatus;
   
   systemStatus = GetSystemStatus(0);
-  _DAT_180c4ea58 = 0x180bebac8;
+  GameLogicSystemPointer = 0x180bebac8;
   if (systemStatus != 0) {
-    _DAT_180c4ea58 = 0x180bebad8;
+    GameLogicSystemPointer = 0x180bebad8;
   }
   return;
 }
@@ -17767,12 +17773,12 @@ void SetUISystemPointer(void)
   
   systemStatus = GetSystemStatus(3);
   if (systemStatus != 0) {
-    _DAT_180c4ea60 = 0x180bebc10;
+    UISystemPointer = 0x180bebc10;
     return;
   }
   systemStatus = GetSystemStatus(2);
   if (systemStatus != 0) {
-    _DAT_180c4ea60 = 0x180bebbb0;
+    UISystemPointer = 0x180bebbb0;
     return;
   }
   systemStatus = GetSystemStatus(0);
