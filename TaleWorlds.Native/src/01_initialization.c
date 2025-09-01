@@ -25254,7 +25254,7 @@ void system_manage_resource_cache_5(void)
 
 
 void system_process_event_queue_5(void)
-  uint8_t *******ppppppsystem_context_ptr_1;
+  uint8_t *******system_context_sextuple_ptr_1;
   uint8_t *system_context_base;
   uint8_t *system_byte_system_pointer_c;
   uint8_t *system_byte_pointer_d;
@@ -25262,10 +25262,10 @@ void system_process_event_queue_5(void)
   uint8_t *system_buffer_pointer;
   uint8_t* *system_context_ptr_11;
   void* *system_context_ptr_13;
-  uint8_t *******ppppppsystem_context_ptr_14;
+  uint8_t *******system_context_sextuple_ptr_14;
   int64_t *system_extended_data_ptr;
   void* *system_context_ptr_17;
-  uint8_t ******pppppsystem_context_ptr_19;
+  uint8_t ******system_context_quintuple_ptr_19;
   uint *system_ptr_var_21;
   bool system_boolean_flag_26;
   uint8_t* system_stack_buffer_3b8 [32];
@@ -25450,36 +25450,36 @@ void system_process_event_queue_5(void)
             memcpy(system_stack_byte_ptr,&system_stack_uint_value,system_operation_result);
           }
           system_stack_uint_value = 0;
-          ppppppsystem_context_ptr_14 = &pppppsystem_stack_ptr_360;
-          for (ppppppsystem_context_ptr_1 = (uint8_t *******)pppppsystem_stack_ptr_350;
-              ppppppsystem_context_ptr_1 != (uint8_t *******)0x0;
-              ppppppsystem_context_ptr_1 = (uint8_t *******)ppppppsystem_context_ptr_1[1]) {
-            ppppppsystem_context_ptr_14 = ppppppsystem_context_ptr_1;
+          system_context_sextuple_ptr_14 = &pppppsystem_stack_ptr_360;
+          for (system_context_sextuple_ptr_1 = (uint8_t *******)pppppsystem_stack_ptr_350;
+              system_context_sextuple_ptr_1 != (uint8_t *******)0x0;
+              system_context_sextuple_ptr_1 = (uint8_t *******)system_context_sextuple_ptr_1[1]) {
+            system_context_sextuple_ptr_14 = system_context_sextuple_ptr_1;
           }
-          if ((ppppppsystem_context_ptr_14 == &pppppsystem_stack_ptr_360) ||
-             (system_context_data_handle = system_context_data_handle, *(int *)(ppppppsystem_context_ptr_14 + 6) != 0)) {
-            if ((ppppppsystem_context_ptr_14 != (uint8_t *******)pppppsystem_stack_ptr_360) &&
-               (ppppppsystem_context_ptr_14 != &pppppsystem_stack_ptr_360)) {
-              system_generic_function(ppppppsystem_context_ptr_14);
+          if ((system_context_sextuple_ptr_14 == &pppppsystem_stack_ptr_360) ||
+             (system_context_data_handle = system_context_data_handle, *(int *)(system_context_sextuple_ptr_14 + 6) != 0)) {
+            if ((system_context_sextuple_ptr_14 != (uint8_t *******)pppppsystem_stack_ptr_360) &&
+               (system_context_sextuple_ptr_14 != &pppppsystem_stack_ptr_360)) {
+              system_generic_function(system_context_sextuple_ptr_14);
             }
             system_boolean_flag_26 = true;
-            ppppppsystem_context_ptr_14 = &pppppsystem_stack_ptr_360;
-            ppppppsystem_context_ptr_1 = (uint8_t *******)pppppsystem_stack_ptr_350;
-            while (ppppppsystem_context_ptr_1 != (uint8_t *******)0x0) {
-              system_boolean_flag_26 = *(int *)(ppppppsystem_context_ptr_1 + 6) != 0;
-              ppppppsystem_context_ptr_14 = ppppppsystem_context_ptr_1;
+            system_context_sextuple_ptr_14 = &pppppsystem_stack_ptr_360;
+            system_context_sextuple_ptr_1 = (uint8_t *******)pppppsystem_stack_ptr_350;
+            while (system_context_sextuple_ptr_1 != (uint8_t *******)0x0) {
+              system_boolean_flag_26 = *(int *)(system_context_sextuple_ptr_1 + 6) != 0;
+              system_context_sextuple_ptr_14 = system_context_sextuple_ptr_1;
               if (system_boolean_flag_26) {
-                ppppppsystem_context_ptr_1 = (uint8_t *******)ppppppsystem_context_ptr_1[1];
+                system_context_sextuple_ptr_1 = (uint8_t *******)system_context_sextuple_ptr_1[1];
               }
               else {
-                ppppppsystem_context_ptr_1 = (uint8_t *******)*ppppppsystem_context_ptr_1;
+                system_context_sextuple_ptr_1 = (uint8_t *******)*system_context_sextuple_ptr_1;
               }
             }
             system_context_data_handle = system_stack_storage;
             system_temp_int_primary = system_stack_varint_var;
             if (system_boolean_flag_26) {
-              if (ppppppsystem_context_ptr_14 == (uint8_t *******)pppppsystem_stack_ptr_358) {
-                if ((ppppppsystem_context_ptr_14 != &pppppsystem_stack_ptr_360) && (*(int *)(ppppppsystem_context_ptr_14 + 6) == 0)) {
+              if (system_context_sextuple_ptr_14 == (uint8_t *******)pppppsystem_stack_ptr_358) {
+                if ((system_context_sextuple_ptr_14 != &pppppsystem_stack_ptr_360) && (*(int *)(system_context_sextuple_ptr_14 + 6) == 0)) {
                   system_byte_operation_result = 1;
                 }
                 system_context_data_handle = system_process_context_data(system_global_data_ptr,0x60,(uint8_t*)system_stack_uint_value);
@@ -25502,9 +25502,9 @@ void system_process_event_queue_5(void)
                 *(uint8_t *)(system_context_data_handle + 0x48) = 0;
                 *(uint32_t* *)(system_context_data_handle + 0x50) = 0;
                     // WARNING: Subroutine does not return
-                system_process_context_data(system_context_data_handle,ppppppsystem_context_ptr_14,&pppppsystem_stack_ptr_360,system_byte_operation_result);
+                system_process_context_data(system_context_data_handle,system_context_sextuple_ptr_14,&pppppsystem_stack_ptr_360,system_byte_operation_result);
               }
-              ppppppsystem_context_ptr_14 = (uint8_t *******)system_generic_function(ppppppsystem_context_ptr_14);
+              system_context_sextuple_ptr_14 = (uint8_t *******)system_generic_function(system_context_sextuple_ptr_14);
               system_context_data_handle = system_stack_storage;
               system_temp_int_primary = system_stack_varint_var;
             }
@@ -25512,17 +25512,17 @@ void system_process_event_queue_5(void)
           system_temp_unsigned_value = *(uint *)(system_context_base + system_context_data_handle * 4 + 2);
           system_temp_unsigned_value = (uint64_t)system_temp_unsigned_value;
           if (system_context_base[system_context_data_handle * 4 + 1] != 0) {
-            system_process_context_data(ppppppsystem_context_ptr_14 + 8,system_temp_unsigned_value);
+            system_process_context_data(system_context_sextuple_ptr_14 + 8,system_temp_unsigned_value);
           }
           if (system_temp_unsigned_value != 0) {
                     // WARNING: Subroutine does not return
-            memcpy(ppppppsystem_context_ptr_14[9],system_context_base[system_context_data_handle * 4 + 1],system_temp_unsigned_value);
+            memcpy(system_context_sextuple_ptr_14[9],system_context_base[system_context_data_handle * 4 + 1],system_temp_unsigned_value);
           }
-          *(uint32_t* *)(ppppppsystem_context_ptr_14 + 10) = 0;
-          if (ppppppsystem_context_ptr_14[9] != (uint8_t ******)0x0) {
-            *(uint8_t* *)(system_temp_unsigned_value + (int64_t)ppppppsystem_context_ptr_14[9]) = 0;
+          *(uint32_t* *)(system_context_sextuple_ptr_14 + 10) = 0;
+          if (system_context_sextuple_ptr_14[9] != (uint8_t ******)0x0) {
+            *(uint8_t* *)(system_temp_unsigned_value + (int64_t)system_context_sextuple_ptr_14[9]) = 0;
           }
-          *(uint32_t* *)((int64_t)ppppppsystem_context_ptr_14 + 0x5c) =
+          *(uint32_t* *)((int64_t)system_context_sextuple_ptr_14 + 0x5c) =
                *(uint32_t* *)((int64_t)system_context_base + system_context_data_handle * 0x20 + 0x1c);
           system_stack_byte_ptr = (void* *)0x0;
           system_stack_uint_value = system_stack_uint_value & 0xffffffff00000000;
@@ -25575,11 +25575,11 @@ void system_process_event_queue_5(void)
   system_stack_uint_value = 0;
   if ((uint8_t *******)pppppsystem_stack_ptr_358 != &pppppsystem_stack_ptr_360) {
     system_context_data_handle = system_stack_storage + 0x150;
-    ppppppsystem_context_ptr_14 = (uint8_t *******)pppppsystem_stack_ptr_358;
+    system_context_sextuple_ptr_14 = (uint8_t *******)pppppsystem_stack_ptr_358;
     system_context_data_handle = system_stack_storage;
     system_stack_storage = system_context_data_handle;
     do {
-      system_extended_data_ptr = (int64_t *)system_process_context_data(system_context_data_handle,&system_stack_byte_ptr,ppppppsystem_context_ptr_14 + 4);
+      system_extended_data_ptr = (int64_t *)system_process_context_data(system_context_data_handle,&system_stack_byte_ptr,system_context_sextuple_ptr_14 + 4);
       if (*system_extended_data_ptr != system_context_data_handle) {
         system_boolean_flag_26 = false;
         system_temp_unsigned_value = 0;
@@ -25652,7 +25652,7 @@ void system_process_event_queue_5(void)
             system_stack_byte_ptr = &system_null_ptr;
             system_context_data_handle = system_stack_storage;
             system_context_data_handle = system_stack_storage;
-            if (*(int *)(ppppppsystem_context_ptr_14 + 6) == 0) {
+            if (*(int *)(system_context_sextuple_ptr_14 + 6) == 0) {
               system_boolean_flag_26 = true;
               break;
             }
@@ -25664,14 +25664,14 @@ void system_process_event_queue_5(void)
                    (uint64_t)(*(int64_t *)(system_stack_storage + 200) - system_context_data_handle >> 3));
         }
         if (!system_boolean_flag_26) {
-          system_temp_unsigned_value = system_process_context_data(&system_stack_uint_value,ppppppsystem_context_ptr_14 + 8);
+          system_temp_unsigned_value = system_process_context_data(&system_stack_uint_value,system_context_sextuple_ptr_14 + 8);
           system_process_context_data(&system_stack_byte_ptr,system_temp_unsigned_value);
           system_stack_uint_value = &system_null_ptr;
-          pppppsystem_context_ptr_19 = (uint8_t ******)&system_data_value_bc73;
-          if (ppppppsystem_context_ptr_14[5] != (uint8_t ******)0x0) {
-            pppppsystem_context_ptr_19 = ppppppsystem_context_ptr_14[5];
+          system_context_quintuple_ptr_19 = (uint8_t ******)&system_data_value_bc73;
+          if (system_context_sextuple_ptr_14[5] != (uint8_t ******)0x0) {
+            system_context_quintuple_ptr_19 = system_context_sextuple_ptr_14[5];
           }
-          system_process_context_data(&system_stack_byte_ptr,pppppsystem_context_ptr_19);
+          system_process_context_data(&system_stack_byte_ptr,system_context_quintuple_ptr_19);
           system_context_ptr_17 = &system_data_value_bc73;
           if (system_stack_byte_ptr != (void* *)0x0) {
             system_context_ptr_17 = system_stack_byte_ptr;
@@ -25704,8 +25704,8 @@ void system_process_event_queue_5(void)
           system_stack_byte_ptr = &system_null_ptr;
         }
       }
-      ppppppsystem_context_ptr_14 = (uint8_t *******)system_generic_function(ppppppsystem_context_ptr_14);
-    } while (ppppppsystem_context_ptr_14 != &pppppsystem_stack_ptr_360);
+      system_context_sextuple_ptr_14 = (uint8_t *******)system_generic_function(system_context_sextuple_ptr_14);
+    } while (system_context_sextuple_ptr_14 != &pppppsystem_stack_ptr_360);
   }
   system_process_context_data(&pppppsystem_stack_ptr_360);
                     // WARNING: Subroutine does not return
@@ -28777,7 +28777,7 @@ void system_initialize_physics_engine_5(void)
 void system_configure_rigid_body_dynamics_5(void)
   int64_t *system_primary_data_ptr;
   uint8_t *system_byte_pointer_d;
-  void* **psystem_context_ptr_15;
+  void* **system_context_double_ptr_15;
   uint8_t* system_stack_buffer_1b8 [32];
   void* **system_stack_double_ptr_170;
   void* *system_stack_byte_ptr;
@@ -28802,10 +28802,10 @@ void system_configure_rigid_body_dynamics_5(void)
   if (3 < system_operation_result) {
     system_operation_result = system_operation_result;
   }
-  psystem_context_ptr_15 = (void* **)(system_context_data_handle + 8);
+  system_context_double_ptr_15 = (void* **)(system_context_data_handle + 8);
   system_context_data_handle = (int64_t)system_operation_result;
-  system_stack_double_ptr_170 = psystem_context_ptr_15;
-  system_process_context_data(psystem_context_ptr_15,system_context_data_handle);
+  system_stack_double_ptr_170 = system_context_double_ptr_15;
+  system_process_context_data(system_context_double_ptr_15,system_context_data_handle);
   system_parameter_value_secondary = system_process_context_data(system_global_data_ptr,0x208,8,3);
   system_temp_unsigned_value = 0;
   system_stack_byte_ptr = &system_null_ptr;
@@ -28817,7 +28817,7 @@ void system_configure_rigid_body_dynamics_5(void)
   system_stack_storage = system_context_data_handle + 0x548;
   system_stack_storage = system_context_data_handle + 0x68;
   system_parameter_value_secondary = system_process_context_data(system_parameter_value_secondary,&system_stack_byte_ptr,0,0);
-  *(uint8_t *)*psystem_context_ptr_15 = system_parameter_value_secondary;
+  *(uint8_t *)*system_context_double_ptr_15 = system_parameter_value_secondary;
   system_stack_byte_ptr = &system_null_ptr;
   system_byte_pointer_d = (uint8_t *)system_process_context_data(system_global_data_ptr,0x208,8,3);
   system_stack_byte_ptr = &system_null_ptr;
@@ -28831,7 +28831,7 @@ void system_configure_rigid_body_dynamics_5(void)
   system_stack_storage = system_context_data_handle + 0x68;
   system_process_context_data(system_byte_pointer_d,&system_stack_byte_ptr,1);
   *system_byte_pointer_d = &system_internal_output_buffer_ptr;
-  *(uint8_t **)((int64_t)*psystem_context_ptr_15 + 8) = system_byte_pointer_d;
+  *(uint8_t **)((int64_t)*system_context_double_ptr_15 + 8) = system_byte_pointer_d;
   system_stack_byte_ptr = &system_null_ptr;
   system_operation_result = 2;
   *(uint32_t* *)(system_stack_storage + 0x7b0) = 2;
@@ -28860,7 +28860,7 @@ void system_configure_rigid_body_dynamics_5(void)
       system_stack_storage = system_stack_storage + 0x548;
       system_stack_storage = system_stack_storage + 0x78;
       system_parameter_value_secondary = system_process_context_data(system_parameter_value_secondary,&system_stack_byte_ptr,2,system_operation_result);
-      *(uint8_t *)((int64_t)*psystem_context_ptr_15 + system_context_data_handle * 8) = system_parameter_value_secondary;
+      *(uint8_t *)((int64_t)*system_context_double_ptr_15 + system_context_data_handle * 8) = system_parameter_value_secondary;
       system_stack_byte_ptr = &system_null_ptr;
       system_operation_result = system_operation_result + 1;
       system_context_data_handle = system_context_data_handle + 1;
@@ -28904,19 +28904,19 @@ void system_configure_rigid_body_dynamics_5(void)
       system_stack_byte_ptr = &system_null_ptr;
       system_temp_byte_primary = (uint64_t)((int)system_temp_byte_primary + 1);
       system_operation_result = system_operation_result + 1;
-      psystem_context_ptr_15 = system_stack_double_ptr_170;
+      system_context_double_ptr_15 = system_stack_double_ptr_170;
     } while ((int64_t)system_operation_result < system_context_data_handle);
   }
   system_temp_byte_primary = system_temp_unsigned_value;
   system_operation_result = system_temp_unsigned_value;
-  if (((int64_t *)psystem_context_ptr_15)[1] - (int64_t)*psystem_context_ptr_15 >> 3 != 0) {
+  if (((int64_t *)system_context_double_ptr_15)[1] - (int64_t)*system_context_double_ptr_15 >> 3 != 0) {
     do {
-      system_process_context_data(*(uint8_t *)((int64_t)*psystem_context_ptr_15 + system_temp_byte_primary));
+      system_process_context_data(*(uint8_t *)((int64_t)*system_context_double_ptr_15 + system_temp_byte_primary));
       system_temp_unsigned_value = (int)system_operation_result + 1;
       system_temp_byte_primary = system_temp_byte_primary + 8;
       system_operation_result = (uint64_t)system_temp_unsigned_value;
     } while ((uint64_t)(int64_t)(int)system_temp_unsigned_value <
-             (uint64_t)(((int64_t *)psystem_context_ptr_15)[1] - (int64_t)*psystem_context_ptr_15 >> 3));
+             (uint64_t)(((int64_t *)system_context_double_ptr_15)[1] - (int64_t)*system_context_double_ptr_15 >> 3));
   }
   system_temp_byte_primary = system_temp_unsigned_value;
   if (*(int64_t *)(system_context_data_handle + 0x30) - *system_primary_data_ptr >> 3 != 0) {
@@ -40542,7 +40542,7 @@ system_label:
 void system_handle_data_serialization_6(void)
   code *system_function_ptr;
   uint8_t* *system_context_ptr_10;
-  void* **psystem_context_ptr_11;
+  void* **system_context_double_ptr_11;
   uint32_t* *system_context_ptr_12;
   uint8_t *system_context_ptr_13;
   uint8_t* *system_context_ptr_14;
@@ -41004,17 +41004,17 @@ system_label:
           *(uint32_t* *)((int64_t)system_context_ptr_13 + 0x2c) = 0x6c6f4667;
           *(uint32_t* *)(system_context_ptr_13 + 6) = 0x726564;
           system_stack_uint_value = 0x33;
-          psystem_context_ptr_11 = &system_stack_byte_ptr;
+          system_context_double_ptr_11 = &system_stack_byte_ptr;
           system_iteration_counter_value = 2;
           system_stack_uint_value = 2;
         }
         else {
-          psystem_context_ptr_11 = (void* **)system_process_context_data(&system_stack_byte_ptr,system_global_data_ptr + 0x148);
+          system_context_double_ptr_11 = (void* **)system_process_context_data(&system_stack_byte_ptr,system_global_data_ptr + 0x148);
           system_iteration_counter_value = 1;
           system_stack_uint_value = 1;
           system_context_ptr_13 = system_stack_byte_ptr;
         }
-        system_byte_operation_result = system_process_context_data(&system_stack_byte_ptr,psystem_context_ptr_11);
+        system_byte_operation_result = system_process_context_data(&system_stack_byte_ptr,system_context_double_ptr_11);
         if ((system_iteration_counter_value & 2) != 0) {
           system_iteration_counter_value = system_iteration_counter_value & 0xfffffffd;
           system_stack_byte_ptr = &system_null_ptr;
