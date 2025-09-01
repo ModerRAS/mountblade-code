@@ -15,10 +15,10 @@ void* GlobalUnknownData;
 int InitializeRenderingSystem(void)
 {
   longlong callbackResult;
-  RenderingSystemEnabled = 1;
-  RenderingSystemFlags = 0;
-  RenderingSystemMaxValue = 0x7fffffffffffffff;
-  RenderingSystemStatus = 0;
+  GlobalRenderingSystemEnabled = 1;
+  GlobalRenderingSystemFlags = 0;
+  GlobalRenderingSystemMaxValue = 0x7fffffffffffffff;
+  GlobalRenderingSystemStatus = 0;
   callbackResult = RegisterSystemCallback(RenderingSystemCallback);
   return (callbackResult != 0) - 1;
 }
@@ -31,10 +31,10 @@ int InitializeRenderingSystem(void)
 int InitializePhysicsEngine(void)
 {
   longlong callbackResult;
-  PhysicsEngineData = &UnknownGlobalData;
-  PhysicsEngineConfig = &PhysicsEngineState;
-  PhysicsEngineFlags = 0;
-  PhysicsEngineState = 0;
+  GlobalPhysicsEngineData = &GlobalUnknownData;
+  GlobalPhysicsEngineConfig = &GlobalPhysicsEngineState;
+  GlobalPhysicsEngineFlags = 0;
+  GlobalPhysicsEngineState = 0;
   callbackResult = RegisterSystemCallback(PhysicsEngineCallback);
   return (callbackResult != 0) - 1;
 }
@@ -47,10 +47,10 @@ int InitializePhysicsEngine(void)
 int InitializeAudioSystem(void)
 {
   longlong callbackResult;
-  AudioSystemData = &UnknownGlobalData;
-  AudioSystemConfig = &AudioSystemState;
-  AudioSystemFlags = 0;
-  AudioSystemState = 0;
+  GlobalAudioSystemData = &GlobalUnknownData;
+  GlobalAudioSystemConfig = &GlobalAudioSystemState;
+  GlobalAudioSystemFlags = 0;
+  GlobalAudioSystemState = 0;
   callbackResult = RegisterSystemCallback(AudioSystemCallback);
   return (callbackResult != 0) - 1;
 }
@@ -63,10 +63,10 @@ int InitializeAudioSystem(void)
 int InitializeInputSystem(void)
 {
   longlong callbackResult;
-  InputSystemData = &UnknownInputData;
-  InputSystemConfig = &InputSystemState;
-  InputSystemFlags = 0;
-  InputSystemState = 0;
+  GlobalInputSystemData = &GlobalUnknownInputData;
+  GlobalInputSystemConfig = &GlobalInputSystemState;
+  GlobalInputSystemFlags = 0;
+  GlobalInputSystemState = 0;
   callbackResult = RegisterSystemCallback(InputSystemCallback);
   return (callbackResult != 0) - 1;
 }
@@ -79,10 +79,10 @@ int InitializeInputSystem(void)
 int InitializeNetworkSystem(void)
 {
   longlong callbackResult;
-  NetworkSystemData = &UnknownNetworkData;
-  NetworkSystemConfig = &NetworkSystemState;
-  NetworkSystemFlags = 0;
-  NetworkSystemState = 0;
+  GlobalNetworkSystemData = &GlobalUnknownNetworkData;
+  GlobalNetworkSystemConfig = &GlobalNetworkSystemState;
+  GlobalNetworkSystemFlags = 0;
+  GlobalNetworkSystemState = 0;
   callbackResult = RegisterSystemCallback(NetworkSystemCallback);
   return (callbackResult != 0) - 1;
 }
@@ -95,10 +95,10 @@ int InitializeNetworkSystem(void)
 int InitializeFileSystem(void)
 {
   longlong callbackResult;
-  FileSystemData = &UnknownGlobalData;
-  FileSystemConfig = &FileSystemState;
-  FileSystemFlags = 0;
-  FileSystemState = 0;
+  GlobalFileSystemData = &GlobalUnknownData;
+  GlobalFileSystemConfig = &GlobalFileSystemState;
+  GlobalFileSystemFlags = 0;
+  GlobalFileSystemState = 0;
   callbackResult = RegisterSystemCallback(FileSystemCallback);
   return (callbackResult != 0) - 1;
 }
@@ -111,10 +111,10 @@ int InitializeFileSystem(void)
 int InitializeMemoryManager(void)
 {
   longlong callbackResult;
-  MemoryManagerData = &UnknownGlobalData;
-  MemoryManagerConfig = &MemoryManagerState;
-  MemoryManagerFlags = 0;
-  MemoryManagerState = 0;
+  GlobalMemoryManagerData = &GlobalUnknownData;
+  GlobalMemoryManagerConfig = &GlobalMemoryManagerState;
+  GlobalMemoryManagerFlags = 0;
+  GlobalMemoryManagerState = 0;
   callbackResult = RegisterSystemCallback(MemoryManagerCallback);
   return (callbackResult != 0) - 1;
 }
@@ -171,7 +171,7 @@ int InitializeConditionMutexC(undefined8 threadId,undefined8 syncPtr,undefined8 
   conditionMutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c911e8,2,mutexType,mutexAttr,conditionMutexFlags);
-  g_conditionMutexC_Status = 0;
+  GlobalConditionMutexCStatus = 0;
   result = RegisterSystemCallback(InitializeConditionMutexC_Callback);
   return (result != 0) - 1;
 }
@@ -199,11 +199,11 @@ int InitializeStringProcessorA(void)
 {
   longlong result;
   undefined8 stringProcessorAFlags;
-  g_stringProcessorA_Base = &unknownData_1809fdc18;
-  g_stringProcessorA_BufferPtr = &g_stringProcessorA_Buffer;
-  g_stringProcessorA_Buffer = 0;
-  g_stringProcessorA_Length = 0xd;
-  strcpy_s(&g_stringProcessorA_Buffer,0x10,&unknownData_180a004e8,stringProcessorAFlags,0xfffffffffffffffe);
+  StringProcessorA_Base = &UnknownData1809fdc18;
+  StringProcessorA_BufferPtr = &StringProcessorA_Buffer;
+  StringProcessorA_Buffer = 0;
+  StringProcessorA_Length = 0xd;
+  strcpy_s(&StringProcessorA_Buffer,0x10,&UnknownData180a004e8,stringProcessorAFlags,0xfffffffffffffffe);
   result = RegisterSystemCallback(InitializeStringProcessorA_Callback);
   return (result != 0) - 1;
 }
@@ -215,11 +215,11 @@ int InitializeStringProcessorB(void)
 {
   longlong result;
   undefined8 stringProcessorBFlags;
-  g_stringProcessorB_Base = &unknownData_1809fdc18;
-  g_stringProcessorB_BufferPtr = &g_stringProcessorB_Buffer;
-  g_stringProcessorB_Buffer = 0;
-  g_stringProcessorB_Length = 0xf;
-  strcpy_s(&g_stringProcessorB_Buffer,0x10,&unknownData_180a004f8,stringProcessorBFlags,0xfffffffffffffffe);
+  StringProcessorB_Base = &UnknownData1809fdc18;
+  StringProcessorB_BufferPtr = &StringProcessorB_Buffer;
+  StringProcessorB_Buffer = 0;
+  StringProcessorB_Length = 0xf;
+  strcpy_s(&StringProcessorB_Buffer,0x10,&UnknownData180a004f8,stringProcessorBFlags,0xfffffffffffffffe);
   result = RegisterSystemCallback(InitializeStringProcessorB_Callback);
   return (result != 0) - 1;
 }

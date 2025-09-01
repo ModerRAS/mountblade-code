@@ -266,12 +266,24 @@ void* SystemMemoryRegion404;
 void* SystemMemoryRegion405;
 void* SystemDataTableEntryH;
 
-// 函数: undefined FUN_18004c030;
-undefined FUN_18004c030;
-undefined UNK_180a02b98;
+// 函数: 系统初始化入口点B
+/**
+ * @brief 系统初始化入口点B
+ * 
+ * 该函数是系统初始化的另一个入口点，负责处理特定的系统组件
+ * 初始化任务，与入口点A协同工作
+ */
+void* SystemInitializationEntryPointB;
+void* SystemMemoryRegion406;
 
-// 函数: undefined FUN_180056e10;
-undefined FUN_180056e10;
+// 函数: 系统初始化入口点C
+/**
+ * @brief 系统初始化入口点C
+ * 
+ * 该函数负责系统初始化过程中的特定任务，通常与内存管理
+ * 或资源分配相关
+ */
+void* SystemInitializationEntryPointC;
 
 // 函数: undefined FUN_180051cc0;
 undefined FUN_180051cc0;
