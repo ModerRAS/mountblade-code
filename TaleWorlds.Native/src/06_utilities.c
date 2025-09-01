@@ -37797,7 +37797,19 @@ void CleanupDualResourceHandlers(uint8_t ObjectContextParameter,int64_t Validati
 
 
 
-void Unwind_180903b20(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理系统资源清理操作1
+ * 
+ * 该函数负责清理系统资源，包括内存管理器和系统数据结构的重置
+ * 主要用于系统关闭或重置时的资源释放
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ */
+void ProcessSystemResourceCleanup1(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -37827,7 +37839,19 @@ void Unwind_180903b20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903b40(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理系统资源清理操作2
+ * 
+ * 该函数负责清理系统资源，处理不同的内存区域和系统数据结构
+ * 主要用于系统关闭或重置时的资源释放
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ */
+void ProcessSystemResourceCleanup2(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -37857,7 +37881,19 @@ void Unwind_180903b40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903b60(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理系统资源清理操作3
+ * 
+ * 该函数负责清理系统资源，处理更深层的内存区域和系统数据结构
+ * 主要用于系统关闭或重置时的资源释放
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ */
+void ProcessSystemResourceCleanup3(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -37887,7 +37923,19 @@ void Unwind_180903b60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903b80(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理系统资源清理操作4
+ * 
+ * 该函数负责清理系统资源，处理特定的内存区域和系统数据结构
+ * 主要用于系统关闭或重置时的资源释放
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ */
+void ProcessSystemResourceCleanup4(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -45885,7 +45933,7 @@ void ProcessResourceValidationAndCleanup(uint8_t ObjectContextParameter,int64_t 
       }
       else {
         ValidateMemoryAccess(ContextValidationResult,CONCAT71(0xff000000,*(void ***)(ContextValidationResult + 0x70) == &ExceptionList),
-                            pResourceValidationResult,ContextValidationResult,0xfffffffffffffffe);
+                            ResourceValidationResultPointer,ContextValidationResult,0xfffffffffffffffe);
       }
     }
     return;
