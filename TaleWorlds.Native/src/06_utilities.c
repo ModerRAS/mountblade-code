@@ -1005,8 +1005,7 @@ void* SystemLoggingConfigTableQuaternary;
 void* SystemAuditConfigTableSecondary;
 void* SystemDiagnosticsConfigTableSecondary;
 
- void InitializeLocalizationSystem(void)
-/**
+ /**
  * @brief 初始化本地化系统
  * 
  * 该函数负责初始化游戏本地化系统
@@ -1018,8 +1017,7 @@ void* LanguagePackManager;
 void* TextTranslationEngine;
 void* CulturalAdaptationManager;
 
- void InitializeModdingSystem(void)
-/**
+ /**
  * @brief 初始化模组系统
  * 
  * 该函数负责初始化游戏模组系统
@@ -1065,8 +1063,7 @@ void* SystemDataBufferConfigTableSecondary;
 void* SystemMemoryConfigTableQuaternary;
 void* MemoryManagerInstance;
 
- void* CreateMemoryManagerPointer;
-/**
+ /**
  * @brief 创建内存管理器
  * 
  * 该函数负责创建并配置系统内存管理器
@@ -1074,6 +1071,8 @@ void* MemoryManagerInstance;
  * 
  * @return void* 内存管理器实例指针
  */
+void* CreateMemoryManagerPointer;
+
 /**
  * @brief 设置内存分配器
  * 
@@ -85103,7 +85102,7 @@ void InitializeSystemDataStructureJ(void)
  /**
  * @brief 初始化系统数据结构K
  * 
- * 该函数负责将全局指针变量_DAT_180bf6530设置为指向SystemDataStructure001
+ * 该函数负责初始化系统数据结构指针K
  * 这是系统数据结构初始化的一部分
  */
 void InitializeSystemDataStructureK(void)
@@ -85121,7 +85120,7 @@ void InitializeSystemDataStructureK(void)
  /**
  * @brief 初始化系统数据结构L
  * 
- * 该函数负责将全局指针变量_DAT_180bf6590设置为指向SystemDataStructure001
+ * 该函数负责初始化系统数据结构指针L
  * 这是系统数据结构初始化的一部分
  */
 void InitializeSystemDataStructureL(void)
@@ -85139,7 +85138,7 @@ void InitializeSystemDataStructureL(void)
  /**
  * @brief 初始化系统数据结构M
  * 
- * 该函数负责将全局指针变量_DAT_180bf65c0设置为指向SystemDataStructure001
+ * 该函数负责初始化系统数据结构指针M
  * 这是系统数据结构初始化的一部分
  */
 void InitializeSystemDataStructureM(void)
@@ -85278,13 +85277,11 @@ void ReleaseMemoryResources(uint8_t8 memoryPointer, uint8_t8 resourceHandle, uin
 
 
  /**
- * 初始化系统数据结构S
+ * @brief 初始化系统数据结构S
  * 
- * 此函数负责初始化系统中的某个关键数据结构S，将全局变量
- * _DAT_180bf52e8设置为指向预定义的数据结构SystemDataStructure001。
- * 这个数据结构可能用于系统启动时的基础配置。
+ * 该函数负责初始化系统数据结构指针S
+ * 这是系统数据结构初始化的一部分
  */
-void InitializeSystemDataStructureS(void)
 void InitializeSystemDataStructureS(void)
 
 {
@@ -85298,13 +85295,11 @@ void InitializeSystemDataStructureS(void)
 
 
  /**
- * 初始化系统数据结构T
+ * @brief 初始化系统数据结构T
  * 
- * 此函数负责初始化系统中的某个关键数据结构T，将全局变量
- * _DAT_180bf5738设置为指向预定义的数据结构SystemDataStructure001。
- * 这个数据结构可能用于系统启动时的基础配置。
+ * 该函数负责初始化系统数据结构指针T
+ * 这是系统数据结构初始化的一部分
  */
-void InitializeSystemDataStructureT(void)
 void InitializeSystemDataStructureT(void)
 
 {
@@ -85315,7 +85310,12 @@ void InitializeSystemDataStructureT(void)
 
 
 
- void DestroySpecificMutex(void)
+ /**
+ * @brief 销毁特定的互斥锁
+ * 
+ * 该函数负责销毁系统中特定的互斥锁对象
+ * 释放相关资源并清理同步状态
+ */
 void DestroySpecificMutex(void)
 
 {
@@ -87446,12 +87446,9 @@ void InitializeSystemDataStructureCQ(void)
 
 
  /**
- * 初始化系统数据结构CR
- * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureCR(void)
-/**
- * 初始化系统数据结构CR
+ * @brief 初始化系统数据结构CR
+ * 
+ * 该函数负责初始化系统数据结构CR
  * 设置全局系统数据结构指针，用于系统初始化
  */
 void InitializeSystemDataStructureCR(void)
@@ -87461,7 +87458,7 @@ void InitializeSystemDataStructureCR(void)
   longlong resourceTable;
   
   if (0xf < SystemResourceCounter002) {
-    LocalContextPointer = CONCAT71(uRam0000000180bfc171,DAT_180bfc170);
+    LocalContextPointer = CONCAT71(uRam0000000180bfc171,SystemDataTablePointer);
     resourceTable = localContextPointer;
     if (0xfff < SystemResourceCounter002 + 1) {
       resourceTable = *(longlong *)(localContextPointer + -8);
