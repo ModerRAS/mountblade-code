@@ -2,8 +2,8 @@
 
 // 06_utilities.c - 473 个函数
 
-// 函数: undefined FUN_1809414f0;
-undefined FUN_1809414f0;
+// 函数: void InitializeModuleDependencies(longlong moduleHandle, longlong moduleContext)
+void InitializeModuleDependencies(longlong moduleHandle, longlong moduleContext);
 undefined DAT_180bf5290;
 undefined DAT_180bf52a0;
 undefined DAT_180bf52c0;
@@ -2391,93 +2391,107 @@ undefined UNK_180a3d970;
 undefined UNK_180a3db60;
 undefined DAT_180bfbd80;
 
-// 函数: void FUN_1808900e0(longlong param_1,longlong param_2)
-void FUN_1808900e0(longlong param_1,longlong param_2)
+// 函数: void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
+/**
+ * @brief 处理游戏数据对象
+ * @param gameContext 游戏上下文指针
+ * @param systemContext 系统上下文指针
+ * 
+ * 该函数负责处理和验证游戏中的数据对象，确保数据完整性
+ * 并对不符合要求的数据对象进行相应处理
+ */
+void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
 
 {
-  undefined8 uVar1;
-  int iVar2;
-  longlong lVar3;
-  int iVar4;
-  undefined1 auStack_278 [32];
-  longlong alStack_258 [2];
-  undefined1 *puStack_248;
-  int iStack_240;
-  undefined4 uStack_23c;
-  undefined1 auStack_238 [512];
-  ulonglong uStack_38;
+  undefined8 resultValue;
+  int status;
+  longlong objectPointer;
+  int objectCount;
+  undefined1 objectBuffer[32];
+  longlong handleArray[2];
+  undefined1 *objectList;
+  int listIndex;
+  undefined4 maxItems;
+  undefined1 tempBuffer[512];
+  ulonglong securityToken;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_278;
-  iVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStack_258);
-  if ((iVar2 == 0) && (*(longlong *)(alStack_258[0] + 8) != 0)) {
-    puStack_248 = auStack_238;
-    iVar4 = 0;
-    iStack_240 = 0;
-    uStack_23c = 0xffffffc0;
-    iVar2 = FUN_1808bf350(*(undefined8 *)(param_2 + 0x90),*(longlong *)(alStack_258[0] + 8),
-                          &puStack_248);
-    if (iVar2 == 0) {
-      if (0 < iStack_240) {
-        lVar3 = 0;
+  securityToken = _DAT_180bf00a8 ^ (ulonglong)objectBuffer;
+  status = func_0x00018088c530(*(undefined4 *)(gameContext + 0x10), handleArray);
+  if ((status == 0) && (*(longlong *)(handleArray[0] + 8) != 0)) {
+    objectList = tempBuffer;
+    objectCount = 0;
+    listIndex = 0;
+    maxItems = 0xffffffc0;
+    status = FUN_1808bf350(*(undefined8 *)(systemContext + 0x90), *(longlong *)(handleArray[0] + 8),
+                          &objectList);
+    if (status == 0) {
+      if (0 < listIndex) {
+        objectPointer = 0;
         do {
-          uVar1 = *(undefined8 *)(puStack_248 + lVar3);
-          iVar2 = FUN_1808605e0(uVar1);
-          if (iVar2 != 2) {
+          resultValue = *(undefined8 *)(objectList + objectPointer);
+          status = FUN_1808605e0(resultValue);
+          if (status != 2) {
                     // WARNING: Subroutine does not return
-            FUN_180862e00(uVar1,1);
+            FUN_180862e00(resultValue, 1);
           }
-          iVar4 = iVar4 + 1;
-          lVar3 = lVar3 + 8;
-        } while (iVar4 < iStack_240);
+          objectCount = objectCount + 1;
+          objectPointer = objectPointer + 8;
+        } while (objectCount < listIndex);
       }
-      FUN_18085dbf0(&puStack_248);
+      FUN_18085dbf0(&objectList);
     }
     else {
-      FUN_18085dbf0(&puStack_248);
+      FUN_18085dbf0(&objectList);
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_278);
+  FUN_1808fc050(securityToken ^ (ulonglong)objectBuffer);
 }
 
 
 
 
-// 函数: void FUN_18089011d(void)
-void FUN_18089011d(void)
+// 函数: void ValidateSystemObjects(void)
+/**
+ * @brief 验证系统对象
+ * 
+ * 该函数用于验证系统中的对象状态，确保所有对象都处于有效状态
+ * 对无效对象进行相应处理，维护系统稳定性
+ */
+void ValidateSystemObjects(void)
 
 {
-  undefined8 uVar1;
-  int iVar2;
-  longlong in_RAX;
-  longlong unaff_RBX;
-  longlong lVar3;
-  int iVar4;
-  undefined1 *in_stack_00000030;
-  int iStack0000000000000038;
-  undefined4 uStack000000000000003c;
-  ulonglong in_stack_00000240;
+  undefined8 objectHandle;
+  int validationResult;
+  longlong objectData;
+  longlong systemContext;
+  longlong objectOffset;
+  int objectCounter;
+  undefined1 *objectArray;
+  int arraySize;
+  undefined4 maxCapacity;
+  ulonglong securityHash;
   
-  if (*(longlong *)(in_RAX + 8) != 0) {
-    in_stack_00000030 = &stack0x00000040;
-    iVar4 = 0;
-    iStack0000000000000038 = 0;
-    uStack000000000000003c = 0xffffffc0;
-    iVar2 = FUN_1808bf350(*(undefined8 *)(unaff_RBX + 0x90),*(longlong *)(in_RAX + 8),
+  if (*(longlong *)(objectData + 8) != 0) {
+    objectArray = &stack0x00000040;
+    objectCounter = 0;
+    arraySize = 0;
+    maxCapacity = 0xffffffc0;
+    validationResult = FUN_1808bf350(*(undefined8 *)(systemContext + 0x90), *(longlong *)(objectData + 8),
                           &stack0x00000030);
-    if (iVar2 == 0) {
-      if (0 < iStack0000000000000038) {
-        lVar3 = 0;
+    if (validationResult == 0) {
+      if (0 < arraySize) {
+        objectOffset = 0;
         do {
-          uVar1 = *(undefined8 *)(in_stack_00000030 + lVar3);
-          iVar2 = FUN_1808605e0(uVar1);
-          if (iVar2 != 2) {
+          objectHandle = *(undefined8 *)(objectArray + objectOffset);
+          validationResult = FUN_1808605e0(objectHandle);
+          if (validationResult != 2) {
                     // WARNING: Subroutine does not return
-            FUN_180862e00(uVar1,1);
+            FUN_180862e00(objectHandle, 1);
           }
-          iVar4 = iVar4 + 1;
-          lVar3 = lVar3 + 8;
-        } while (iVar4 < iStack0000000000000038);
+          objectCounter = objectCounter + 1;
+          objectOffset = objectOffset + 8;
+        } while (objectCounter < arraySize);
       }
       FUN_18085dbf0(&stack0x00000030);
     }
@@ -2486,70 +2500,81 @@ void FUN_18089011d(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(securityHash ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
-// 函数: void FUN_18089022b(void)
-void FUN_18089022b(void)
+// 函数: void TerminateSystemProcess(void)
+/**
+ * @brief 终止系统进程
+ * 
+ * 该函数用于安全终止系统进程，确保系统资源正确释放
+ */
+void TerminateSystemProcess(void)
 
 {
-  ulonglong in_stack_00000240;
+  ulonglong securityToken;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(securityToken ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
-// 函数: void FUN_180890246(void)
-void FUN_180890246(void)
+// 函数: void CheckSystemFlags(void)
+/**
+ * @brief 检查系统标志
+ * 
+ * 该函数检查系统标志状态，根据标志位执行相应操作
+ * 确保系统在正确的状态下运行
+ */
+void CheckSystemFlags(void)
 
 {
-  longlong unaff_RBX;
-  ulonglong in_stack_00000240;
+  longlong systemContext;
+  ulonglong securityToken;
   
-  if ((*(uint *)(unaff_RBX + 0x2d8) >> 7 & 1) != 0) {
+  if ((*(uint *)(systemContext + 0x2d8) >> 7 & 1) != 0) {
                     // WARNING: Subroutine does not return
     FUN_180862e00();
   }
   FUN_18085dbf0(&stack0x00000030);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(securityToken ^ (ulonglong)&stack0x00000000);
 }
 
 
 
-undefined8 FUN_180890270(longlong param_1)
+undefined8 ValidateObjectRegistration(longlong objectContext)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  int iVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  longlong *plVar6;
-  int iVar7;
-  ulonglong uVar8;
-  int iVar9;
-  ulonglong uVar10;
-  longlong *plVar11;
-  longlong in_stack_00000008;
-  char acStackX_18 [16];
+  longlong objectData;
+  longlong objectHandle;
+  int resizeCount;
+  undefined8 validationStatus;
+  undefined8 objectStatus;
+  longlong *objectArray;
+  int arraySize;
+  ulonglong currentIndex;
+  int newSize;
+  ulonglong searchIndex;
+  longlong *arrayPointer;
+  longlong stackData;
+  char objectName[16];
   
-  uVar4 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&stack0x00000008);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  validationStatus = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10), &stackData);
+  if ((int)validationStatus != 0) {
+    return validationStatus;
   }
-  lVar2 = *(longlong *)(in_stack_00000008 + 8);
-  if ((lVar2 == 0) || (*(longlong *)(lVar2 + 0x48) != in_stack_00000008)) {
+  objectHandle = *(longlong *)(stackData + 8);
+  if ((objectHandle == 0) || (*(longlong *)(objectHandle + 0x48) != stackData)) {
     return 0x1c;
   }
-  lVar1 = *(longlong *)(lVar2 + 0x38);
-  if (lVar2 == 0) {
+  objectData = *(longlong *)(objectHandle + 0x38);
+  if (objectHandle == 0) {
     return 0x1f;
   }
   if (*(int *)(lVar2 + 0xe4) == -1) {
