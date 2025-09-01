@@ -11691,17 +11691,17 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
               uStack_d0 = 0;
               uStack_c0 = 0x3f800000;
               CompressData(&puStack_d8,*(undefined8 *)(param_1 + 0x58));
-              puStack_98 = &UNK_180984358;
+              puStack_98 = &DecompressionTemplate;
               uStack_88 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_90 = 0;
               uStack_80 = 0;
               DecompressData(&puStack_98,*(undefined8 *)(param_1 + 0x58));
-              puStack_b8 = &UNK_1809843d0;
+              puStack_b8 = &EncodingTemplate;
               uStack_a8 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = uStack_a0 & 0xffffff00;
               EncodeData(&puStack_b8,*(undefined8 *)(param_1 + 0x58));
-              puStack_f0 = &UNK_1809841e0;
+              puStack_f0 = &DecodingTemplate;
               uStack_e0 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_e8 = 0;
               DecodeData(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
@@ -11712,7 +11712,7 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
             iVar4 = ValidateObjectContext(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),auStack_70);
             plVar13 = plStack_108;
             if (iVar4 == 0) {
-              puStack_b8 = &UNK_1809844c8;
+              puStack_b8 = &TransformationTemplate;
               uStack_a8 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = 0x3f800000;
@@ -12200,7 +12200,7 @@ void ProcessComplexResourceOperation(undefined8 param_1,longlong param_2,uint pa
   if (param_3 != 0) {
     iVar3 = *(int *)(param_2 + 0x220);
     if (iVar3 == 0) {
-      puStack_278 = &UNK_180982508;
+      puStack_278 = &BufferTemplate1;
       uStack_270 = 0;
       uStack_264 = 0;
       uStack_268 = param_3;
@@ -12212,7 +12212,7 @@ LAB_180896ce3:
     else {
       iStack_2f0 = 0;
       if (1 < iVar3 - 1U) {
-        puStack_2f8 = &UNK_180982608;
+        puStack_2f8 = &BufferTemplate2;
         ppuVar6 = &puStack_2f8;
         uStack_2b0 = 0;
         uStack_2e8 = 0;
@@ -12225,7 +12225,7 @@ LAB_180896ce3:
         uStack_2ac = param_3;
         goto LAB_180896ce3;
       }
-      puStack_2f8 = &UNK_180982588;
+      puStack_2f8 = &BufferTemplate3;
       lStack_2d8 = (ulonglong)param_3 << 0x20;
       uStack_2e8 = *(undefined8 *)(param_2 + 0x228);
       uStack_2e0 = (ulonglong)CONCAT14(iVar3 != 1,*(undefined4 *)(param_2 + 0x230));
@@ -12237,7 +12237,7 @@ LAB_180896ce3:
     iStack_290 = *(int *)(param_2 + 0x18);
     uStack_28c = *(undefined4 *)(param_2 + 0x1c);
     iStack_2a0 = 0;
-    puStack_2a8 = &UNK_180985a80;
+    puStack_2a8 = &BufferTemplate4;
     uStack_284 = 0;
     uStack_288 = param_3;
     iVar3 = GetAndValidateResourceData(param_1,&puStack_2a8);
@@ -12247,7 +12247,7 @@ LAB_180896ce3:
     if (0 < iVar3) {
       do {
         iStack_2f0 = 0;
-        puStack_2f8 = &UNK_180982cc0;
+        puStack_2f8 = &BufferTemplate5;
         uStack_2e8 = CONCAT44(uStack_2e8._4_4_,param_3);
         iVar4 = GetAndValidateResourceData(param_1,&puStack_2f8);
         if (iVar4 != 0) goto ResourceErrorHandler;
