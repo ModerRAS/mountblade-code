@@ -352,27 +352,27 @@ void* SystemDataNodeSecondaryRoot;     // 系统数据节点次根节点
 void* SystemDataNodeTertiaryRoot;      // 系统数据节点第三根节点
 void* SystemDataNodeQuaternaryRoot;    // 系统数据节点第四根节点
 void* SystemDataNodeQuinaryRoot;       // 系统数据节点第五根节点
-void* SystemDataNodeF;                // UNK_180a00388
-void* SystemDataNodeG;                // UNK_180a003a0
-void* SystemDataNodeH;                // UNK_180a003b8
+void* SystemDataNodeLinkageTable;                // 系统数据节点链接表
+void* SystemDataNodeLinkageManager;               // 系统数据节点链接管理器
+void* SystemDataNodeLinkageHandler;               // 系统数据节点链接处理器
 void* SystemDataComparisonTemplateJ;  // DAT_180a01050
 void* SystemDataComparisonTemplateK;  // DAT_180a01028
 void* SystemDataComparisonTemplateL;  // DAT_180a01000
-void* SystemDataNodeI;                // UNK_180a003d0
-void* SystemDataNodeJ;                // UNK_1800868c0
-void* SystemDataNodeK;                // UNK_180a003e8
-void* SystemDataNodeL;                // UNK_180a00400
+void* SystemDataNodeLinkageCache;                // 系统数据节点链接缓存
+void* SystemDataNodeLinkageBackup;                // 系统数据节点链接备份
+void* SystemDataNodeLinkagePrimary;               // 系统数据节点链接主表
+void* SystemDataNodeLinkageSecondary;             // 系统数据节点链接次表
 void* SystemDataComparisonTemplateM;  // DAT_180a00fd8
 void* SystemDataComparisonTemplateN;  // DAT_180a00fb0
-void* SystemDataNodeM;                // UNK_180a00460
-void* SystemDataNodeN;                // UNK_180a004a8
-void* SystemDataNodeO;                // UNK_180a004c0
+void* SystemDataNodeLinkageTertiary;              // 系统数据节点链接第三表
+void* SystemDataNodeLinkageQuaternary;            // 系统数据节点链接第四表
+void* SystemDataNodeLinkageQuinary;               // 系统数据节点链接第五表
 void* SystemDataComparisonTemplateO;  // DAT_180a00bb0
 void* SystemConfigDataPointerG;        // SystemConfigDataPointerG
 void* SystemConfigDataPointerH;        // DAT_180bf6768
-void* SystemNodeLinkPointerA;        // UNK_18098c880
-void* SystemNodeLinkPointerB;        // UNK_18098c898
-void* SystemRootNodePointer;         // UNK_18098c870
+void* SystemNodeLinkPointerPrimary;        // 系统节点链接指针主表
+void* SystemNodeLinkPointerSecondary;        // 系统节点链接指针次表
+void* SystemRootNodePointer;         // 系统根节点指针
 
 // 系统初始化状态变量
 uint32_t SystemInitializationStatusCode;      // 系统初始化状态码
@@ -60016,33 +60016,33 @@ void FUN_18007bb70(long long *param_1)
 void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceObjectPointer,long long transformDataSource)
 
 {
-  int iVar1;
-  uint32_t uVar2;
-  uint32_t uVar3;
-  uint32_t uVar4;
-  void* uVar5;
-  long long *plVar6;
-  long long lVar7;
-  long long *plVar8;
-  void* *puVar9;
-  uint *puVar10;
-  uint uVar11;
-  void* *puVar12;
-  uint uVar13;
-  uint uVar14;
-  ulong long uVar15;
-  uint uVar16;
-  uint uVar17;
-  uint8_t auStack_68 [32];
-  void* uStack_48;
-  long long *plStack_40;
-  void* uStack_38;
-  long long *plStack_30;
-  long long lStack_28;
-  ulong long uStack_20;
+  int TransformCompareResult;
+  uint32_t SourceFlags;
+  uint32_t TargetFlags;
+  uint32_t TransformFlags;
+  void* TransformDataPointer;
+  long long *ObjectMatrixPointer;
+  long long TransformOffset;
+  long long *SourceMatrixPointer;
+  void* *TargetObjectPointer;
+  uint *ObjectFlagsPointer;
+  uint BitPosition;
+  void* *SourceObjectPointer;
+  uint SourceObjectFlags;
+  uint TargetObjectFlags;
+  ulong long StackGuardValue;
+  uint BitMask;
+  uint CurrentBit;
+  uint8_t StackBuffer [32];
+  void* StackParameter;
+  long long *MatrixStackPointer;
+  void* ObjectPointer;
+  long long *OffsetPointer;
+  long long AlignmentValue;
+  ulong long ChecksumValue;
   
-  uStack_48 = 0xfffffffffffffffe;
-  uStack_20 = _DAT_180bf00a8 ^ (ulong long)auStack_68;
+  StackParameter = 0xfffffffffffffffe;
+  ChecksumValue = SystemSecurityKey ^ (ulong long)StackBuffer;
   if ((param_2 == 0) ||
      (((*(float *)(param_1 + 0x238) == *(float *)(param_2 + 0x44) &&
        (*(float *)(param_1 + 0x23c) == *(float *)(param_2 + 0x48))) &&
@@ -60612,33 +60612,44 @@ void FUN_18007c860(long long param_1,uint8_t param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18007c8e0(long long param_1,byte param_2,long long *param_3,long long *param_4)
-void FUN_18007c8e0(long long param_1,byte param_2,long long *param_3,long long *param_4)
+/**
+ * @brief 系统线程状态管理器
+ * 
+ * 该函数负责管理系统线程的状态，包括线程ID验证、线程安全锁定、
+ * 状态标志设置和线程相关回调函数的调用。它确保多线程环境下的
+ * 数据一致性和线程安全。
+ * 
+ * @param systemContext 系统上下文指针
+ * @param threadStatus 线程状态标志
+ * @param threadCallback1 线程回调函数指针1
+ * @param threadCallback2 线程回调函数指针2
+ */
+void SystemThreadStatusManager(long long systemContext,byte threadStatus,long long *threadCallback1,long long *threadCallback2)
 
 {
-  long long lVar1;
-  char *pcVar2;
-  int memoryCompareResult;
-  int iVar4;
-  void* uVar5;
-  long long *plVar6;
-  long long *plStack_b8;
-  long long *plStack_b0;
-  long long *plStack_a8;
-  long long **pplStack_a0;
-  long long lStack_98;
-  byte bStack_90;
-  long long *plStack_88;
-  long long *plStack_80;
-  long long lStack_78;
-  byte bStack_70;
-  long long *plStack_68;
-  long long *plStack_60;
-  long long *aplStack_58 [2];
-  code *pcStack_48;
-  code *pcStack_40;
-  void* uStack_38;
-  long long *plStack_30;
+  long long ThreadDataOffset;
+  char *ThreadStatusPointer;
+  int ThreadCompareResult;
+  int CurrentThreadId;
+  void* ThreadObjectPointer;
+  long long *ThreadContextPointer;
+  long long *SecondaryThreadStack;
+  long long *PrimaryThreadStack;
+  long long *ThreadDataStack;
+  long long **ThreadStackPointer;
+  long long ThreadTimeoutValue;
+  byte ThreadLockStatus;
+  long long *ThreadQueuePointer;
+  long long *ThreadSyncPointer;
+  long long ThreadSyncValue;
+  byte ThreadPriority;
+  long long *ThreadMessagePointer;
+  long long *ThreadEventPointer;
+  long long *ThreadHandleArray [2];
+  code *ThreadCallbackFunction1;
+  code *ThreadCallbackFunction2;
+  void* StackGuardParameter;
+  long long *ThreadStackPointer;
   
   uStack_38 = 0xfffffffffffffffe;
   iVar3 = *(int *)(*(long long *)(*(long long *)(_DAT_180c82868 + 8) + 8) + 0x48);
