@@ -53498,7 +53498,7 @@ void Unwind_180908d30(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49210 = 0;
+  SystemEventCleanupFlag = 0;
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();

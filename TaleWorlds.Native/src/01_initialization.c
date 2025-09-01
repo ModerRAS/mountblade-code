@@ -17357,8 +17357,8 @@ int InitializeSystemThreadPool(void)
   SystemGlobalDataReferenceD = &SystemGlobalDataBufferD;
   SystemPerformanceCounterA = &DAT_180c96790;
   SystemPerformanceCounterB = 0;
-  _DAT_180c967a8 = 0;
-  _DAT_180c967b0 = 0;
+  SystemPerformanceCounterC = 0;
+  SystemPerformanceCounterD = 0;
   initializationStatus = ValidateSystemConfiguration(SystemConfigValidatorOctonary);
   return (initializationStatus != 0) - 1;
 }
