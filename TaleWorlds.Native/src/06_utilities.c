@@ -365,7 +365,7 @@ void* g_databaseHeap;
 void* g_databaseStack;
 void* g_databasePool;
 // 数据库连接池实例
-void* DatabaseConnectionPoolInstance;
+void* g_databaseConnectionPoolInstance;
 // 数据库连接池配置
 void* DatabaseConnectionPoolConfig;
 undefined DAT_180bf6a10;
