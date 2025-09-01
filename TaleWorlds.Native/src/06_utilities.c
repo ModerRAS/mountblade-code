@@ -1562,7 +1562,7 @@ void InitializeMemorySegmentation;
 void* MemorySegmentDescriptor;
 void* MemorySegmentTable;
 void* MemorySegmentStatus;
-undefined DAT_180bfa248;
+void* MemorySegmentConfig;
 undefined DAT_180a22fa8;
 
  void ConfigureMemoryFragmentation;

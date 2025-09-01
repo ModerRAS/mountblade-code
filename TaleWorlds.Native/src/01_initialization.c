@@ -1307,7 +1307,7 @@ int InitializeSystemGlobalVariables(void)
   SystemConfigDataPointerA = &SystemGlobalDataPointerA;
   SystemConfigDataPointerB = 0;
   SystemConfigDataPointerC = 0;
-  _DAT_180bf52d0 = 0;
+  SystemConfigDataPointerD = 0;
   
   initializationStatus = 0;
   return initializationStatus;
@@ -4196,7 +4196,7 @@ int InitializeSystemDataManager(void)
   longlong systemDataOffset;
   undefined8 systemParameter;
   
-  _DAT_180bf6750 = &UNK_1809fcc58;
+  SystemConfigDataPointerE = &SystemGlobalDataPointerB;
   _DAT_180bf6758 = &DAT_180bf6768;
 
 // 函数: void InitializeSystemEventManager(void)
