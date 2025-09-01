@@ -20012,10 +20012,10 @@ LAB_180046c5e:
  * 初始化系统控制器
  * 设置系统控制器并分配必要的内存资源
  * 
- * @param systemParameter 系统参数指针
- * @param param_2 系统配置指针
+ * @param SystemResourcePointer 系统资源指针
+ * @param SystemConfigurationPointer 系统配置指针
  */
-void InitializeSystemController(long long *SystemResourcePointer,void* *param_2)
+void InitializeSystemController(long long *SystemResourcePointer,void* *SystemConfigurationPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -21625,7 +21625,6 @@ uint8_t SystemInitializationProcessData(long long SystemResourcePointer,void* pa
 
 
 
-// 函数: void FUN_180049770(void)
 /**
  * @brief 销毁系统条件变量
  * 
@@ -21644,16 +21643,6 @@ void DestroySystemConditionVariable(void)
 
 
 
-// 函数: 销毁条件变量
-/**
- * @brief 销毁系统条件变量
- * 
- * 该函数负责销毁系统中的条件变量，释放相关资源。
- * 这是线程同步清理工作的一部分。
- * 
- * @note 这是系统资源清理的重要函数，确保条件变量正确销毁
- */
-void DestroySystemConditionVariable(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -22780,7 +22769,6 @@ void InitializeSystemThreadPoolManager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004a850(void)
 /**
  * @brief 初始化系统配置数据结构
  * 
