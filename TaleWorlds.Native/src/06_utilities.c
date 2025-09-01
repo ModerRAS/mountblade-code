@@ -29136,7 +29136,18 @@ void ResetAuxiliarySystemResourcePointer(uint8_t8 objectContextParam, longlong v
 
 
 
-void Unwind_180902380(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 释放扩展标志位资源并清除状态
+ * 
+ * 该函数负责检查并释放特定标志位(0x100)对应的系统资源
+ * 清除资源状态标志位，确保资源能够被正确释放
+ * 
+ * @param objectContextParam 对象上下文参数，用于标识当前处理的对象
+ * @param validationContextParam 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数处理资源状态标志位0x100的清理工作
+ */
+void ReleaseExtendedFlaggedResourceAndClearState(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   if ((*(uint *)(resourceData + 0x30) & 0x100) != 0) {
@@ -29148,7 +29159,18 @@ void Unwind_180902380(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_1809023b0(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 重置主系统资源处理器指针
+ * 
+ * 该函数负责在异常处理时重置主系统资源处理器指针
+ * 将主资源处理器指针指向系统数据结构，确保资源管理的正确性
+ * 
+ * @param objectContextParam 对象上下文参数，用于标识当前处理的对象
+ * @param validationContextParam 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在异常处理的展开阶段调用
+ */
+void ResetMainSystemResourceHandlerPointer(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0x180) = &SystemDataStructure;
