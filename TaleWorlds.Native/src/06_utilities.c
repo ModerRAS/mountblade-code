@@ -84874,7 +84874,7 @@ void InitializeSystemDataStructureW(void)
  * 初始化系统数据结构X
  * 
  * 此函数负责初始化系统中的某个关键数据结构X，将全局变量
- * _DAT_180d49638设置为指向预定义的数据结构SystemMemoryStructure001。
+ * SystemMemoryAllocator设置为指向预定义的数据结构SystemMemoryStructure001。
  * 如果相关状态变量不为0，则调用错误处理函数。
  * 最后重置相关状态变量并将指针设置为指向默认数据结构。
  */
@@ -84882,14 +84882,14 @@ void InitializeSystemDataStructureX(void)
 void InitializeSystemDataStructureX(void)
 
 {
-  _DAT_180d49638 = &SystemResourceHandlerTemplate;
-  if (_DAT_180d49640 != 0) {
+  SystemMemoryAllocator = &SystemResourceHandlerTemplate;
+  if (SystemMemoryAllocatorFlag != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  _DAT_180d49640 = 0;
-  _DAT_180d49650 = 0;
-  _DAT_180d49638 = &SystemDataStructure;
+  SystemMemoryAllocatorFlag = 0;
+  SystemMemoryAllocatorLock = 0;
+  SystemMemoryAllocator = &SystemDataStructure;
   return;
 }
 
@@ -84902,14 +84902,14 @@ void InitializeSystemDataStructureX(void)
  * 初始化系统数据结构Y
  * 
  * 此函数负责初始化系统中的某个关键数据结构Y，将全局变量
- * _DAT_180bf7250设置为指向预定义的数据结构SystemDataStructure001。
+ * SystemDataStructurePointerA设置为指向预定义的数据结构SystemDataStructure001。
  * 这个数据结构可能用于系统启动时的基础配置。
  */
 void InitializeSystemDataStructureY(void)
 void InitializeSystemDataStructureY(void)
 
 {
-  _DAT_180bf7250 = &SystemDataStructure;
+  SystemDataStructurePointerA = &SystemDataStructure;
   return;
 }
 
@@ -84940,14 +84940,14 @@ void InitializeSystemDataPointer(void)
  * 初始化系统数据结构AA
  * 
  * 此函数负责初始化系统中的某个关键数据结构AA，将全局变量
- * _DAT_180bf7310设置为指向预定义的数据结构SystemDataStructure001。
+ * SystemDataStructurePointerB设置为指向预定义的数据结构SystemDataStructure001。
  * 这个数据结构可能用于系统启动时的基础配置。
  */
 void InitializeSystemDataStructureAA(void)
 void InitializeSystemDataStructureAA(void)
 
 {
-  _DAT_180bf7310 = &SystemDataStructure;
+  SystemDataStructurePointerB = &SystemDataStructure;
   return;
 }
 
@@ -84965,14 +84965,14 @@ void InitializeSystemDataStructureAA(void)
 void ExecuteSystemStatusCheckAndCleanup(void)
 
 {
-  if (DAT_180c91d50 != '\0') {
+  if (SystemInitializationFlag != '\0') {
     CleanupResourceSystem();
-    if ((1 < _DAT_180c91d30) && (_DAT_180c91d28 != 0)) {
+    if ((1 < SystemInitializationCounter) && (SystemInitializationDataPointer != 0)) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    if (_DAT_180c91d18 != (longlong *)0x0) {
-      (**(code **)(*_DAT_180c91d18 + 0x38))();
+    if (SystemInitializationManager != (longlong *)0x0) {
+      (**(code **)(*SystemInitializationManager + 0x38))();
     }
     if (_DAT_180c91cf0 != 0) {
                     // WARNING: Subroutine does not return
