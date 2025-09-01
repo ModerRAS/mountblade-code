@@ -444,7 +444,7 @@ void* SystemMemoryRegionTwoHundredSix;
 char SystemStatusFlagEighth;
 void* SystemMemoryRegionTwoHundredSeven;
 void* SystemMemoryRegionTwoHundredEight;
-void* SystemDataTableEntryDuodecary;
+void* SystemDataTableEntryTwelfth;
 void* SystemMemoryRegionTwoHundredNine;
 void* SystemMemoryRegionThreeHundred;
 void* SystemMemoryRegionThreeHundredOne;
