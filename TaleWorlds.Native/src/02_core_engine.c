@@ -33409,8 +33409,8 @@ int engine_unnamed_function_1260(longlong engine_data_structure_ptr,longlong *en
   uint64 engine_temp_uint6;
   ulonglong *pengine_stack_value_80;
   longlong *pengine_stack_long_78;
-  code *pcStack_70;
-  code *pcStack_68;
+  code *engine_stack_code_pointer_70;
+  code *engine_stack_code_pointer_68;
   uint64 engine_stack_value_60;
   uint64 engine_stack_value_58;
   uint64 engine_stack_uint_50;
@@ -33428,11 +33428,11 @@ int engine_unnamed_function_1260(longlong engine_data_structure_ptr,longlong *en
       if ((char)engine_result_flag_ptr[2] != '\0') {
         pengine_stack_value_80 = (ulonglong *)0x0;
         pengine_stack_long_78 = (longlong *)0x0;
-        pcStack_70 = (code *)0x0;
-        pcStack_68 = _guard_check_icall;
+        engine_stack_code_pointer_70 = (code *)0x0;
+        engine_stack_code_pointer_68 = _guard_check_icall;
         engine_unnamed_function_5160(extraout_XMM0_Da,engine_data_structure_ptr,&pengine_stack_value_80);
-        if (pcStack_70 != (code *)0x0) {
-          (*pcStack_70)(&pengine_stack_value_80,0,0);
+        if (engine_stack_code_pointer_70 != (code *)0x0) {
+          (*engine_stack_code_pointer_70)(&pengine_stack_value_80,0,0);
         }
       }
       engine_temp_char_4 = engine_unnamed_function_1250(engine_data_structure_ptr);
