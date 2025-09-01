@@ -23422,7 +23422,12 @@ ulonglong ValidateResourceFileIntegrity(longlong param_1,undefined8 *param_2)
 
 
 
-ulonglong FUN_18089d171(void)
+/**
+ * 获取资源哈希值并验证
+ * 该函数负责获取资源哈希值并进行验证，确保资源数据的完整性
+ * @return 验证状态码：0表示成功，其他值表示错误
+ */
+ulonglong GetResourceHashAndValidate(void)
 
 {
   uint resourceHash;
