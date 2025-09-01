@@ -30,6 +30,42 @@ char SystemConfigBufferH[0x40];
 char SystemConfigBufferI[0x40];
 char SystemConfigBufferJ[0x40];
 
+// 系统配置字符串模板 - 用于系统初始化和配置
+char SystemConfigDataTemplate5740[] = "SystemConfigTemplateE";
+char SystemConfigDataTemplateCBC8[] = "SystemConfigTemplateF";
+char SystemConfigDataTemplateCC30[] = "SystemConfigTemplateG";
+char SystemConfigDataTemplateCC48[] = "SystemConfigTemplateI";
+char SystemConfigDataTemplateCC08[] = "SystemConfigTemplateJ";
+char SystemConfigDataTemplateCC10[] = "SystemConfigTemplateK";
+char SystemConfigDataTemplateCCA0[] = "SystemConfigTemplateL";
+char SystemConfigDataTemplateCCB8[] = "SystemConfigTemplateM";
+char SystemConfigDataTemplateCC68[] = "SystemConfigTemplateN";
+char SystemConfigDataTemplateCC88[] = "SystemConfigTemplateO";
+char SystemConfigDataTemplateCD08[] = "SystemConfigTemplateP";
+char SystemConfigDataTemplateCD28[] = "SystemConfigTemplateQ";
+char SystemConfigDataTemplateCCD0[] = "SystemConfigTemplateR";
+char SystemConfigDataTemplateCCF0[] = "SystemConfigTemplateS";
+char SystemConfigDataTemplateCD70[] = "SystemConfigTemplateT";
+char SystemConfigDataTemplateCD88[] = "SystemConfigTemplateU";
+char SystemConfigDataTemplateCD40[] = "SystemConfigTemplateV";
+char SystemConfigDataTemplateCD58[] = "SystemConfigTemplateW";
+char SystemConfigDataTemplateCDC8[] = "SystemConfigTemplateX";
+char SystemConfigDataTemplateCDE0[] = "SystemConfigTemplateY";
+char SystemConfigDataTemplateCD98[] = "SystemConfigTemplateZ";
+char SystemConfigDataTemplateCDB0[] = "SystemConfigTemplateAA";
+char SystemConfigDataTemplateCE40[] = "SystemConfigTemplateBB";
+char SystemConfigDataTemplateCB48[] = "SystemConfigTemplateCC";
+char SystemConfigDataTemplateCB80[] = "SystemConfigTemplateDD";
+char SystemConfigDataTemplateCB90[] = "SystemConfigTemplateEE";
+char SystemConfigDataTemplateCB60[] = "SystemConfigTemplateFF";
+char SystemConfigDataTemplateCB70[] = "SystemConfigTemplateGG";
+char SystemConfigDataTemplateCBE0[] = "SystemConfigTemplateHH";
+char SystemConfigDataTemplateCBF0[] = "SystemConfigTemplateII";
+char SystemConfigDataTemplateCBA8[] = "SystemConfigTemplateJJ";
+char SystemConfigDataTemplate01300[] = "SystemConfigTemplateKK";
+char SystemConfigDataTemplate01330[] = "SystemConfigTemplateLL";
+char SystemConfigDataTemplate22B38[] = "SystemConfigTemplateMM";
+
 /**
  * 初始化渲染系统模块
  * 设置渲染系统所需的全局数据结构和状态标志
@@ -1576,7 +1612,7 @@ int InitializeStringProcessingSystemAB(void)
   _DAT_180bf9f98 = &DAT_180bf9fa8;
   DAT_180bf9fa8 = 0;
   _DAT_180bf9fa0 = 0x15;
-  strcpy_s(&DAT_180bf9fa8,0x40,&UNK_180a22f90,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9fa8,0x40,&SystemModuleConfigTemplate22F90,in_R9,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAB);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1594,7 +1630,7 @@ int InitializeStringProcessingSystemAC(void)
   _DAT_180bf9ff8 = &DAT_180bfa008;
   DAT_180bfa008 = 0;
   _DAT_180bfa000 = 0x13;
-  strcpy_s(&DAT_180bfa008,0x40,&UNK_180a22f78,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa008,0x40,&SystemModuleConfigTemplate22F78,in_R9,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAC);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1612,7 +1648,7 @@ int InitializeStringProcessingSystemAD(void)
   _DAT_180bfa058 = &DAT_180bfa068;
   DAT_180bfa068 = 0;
   _DAT_180bfa060 = 0x13;
-  strcpy_s(&DAT_180bfa068,0x40,&UNK_180a22f60,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa068,0x40,&SystemModuleConfigTemplate22F60,in_R9,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAD);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1630,7 +1666,7 @@ int InitializeStringProcessingSystemAE(void)
   _DAT_180bfa0b8 = &DAT_180bfa0c8;
   DAT_180bfa0c8 = 0;
   _DAT_180bfa0c0 = 0x1b;
-  strcpy_s(&DAT_180bfa0c8,0x40,&UNK_180a22f40,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa0c8,0x40,&SystemModuleConfigTemplate22F40,in_R9,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAE);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1648,7 +1684,7 @@ int InitializeStringProcessingSystemAF(void)
   _DAT_180bfa118 = &DAT_180bfa128;
   DAT_180bfa128 = 0;
   _DAT_180bfa120 = 0x19;
-  strcpy_s(&DAT_180bfa128,0x40,&UNK_180a23018,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa128,0x40,&SystemModuleConfigTemplate23018,in_R9,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAF);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1666,7 +1702,7 @@ int InitializeStringProcessingSystemAG(void)
   _DAT_180bfa178 = &DAT_180bfa188;
   DAT_180bfa188 = 0;
   _DAT_180bfa180 = 0x15;
-  strcpy_s(&DAT_180bfa188,0x40,&UNK_180a23000,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa188,0x40,&SystemModuleConfigTemplate23000,in_R9,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAG);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1720,7 +1756,7 @@ int InitializeStringProcessingSystemAJ(void)
   _DAT_180bfa298 = &DAT_180bfa2a8;
   DAT_180bfa2a8 = 0;
   _DAT_180bfa2a0 = 0x17;
-  strcpy_s(&DAT_180bfa2a8,0x40,&UNK_180a23068,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa2a8,0x40,&SystemModuleConfigTemplate23068,in_R9,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAJ);
   return (ModuleInitializationResult != 0) - 1;
 }

@@ -11647,7 +11647,7 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
     uStack_110 = 0;
     uStack_100 = 0xffffffffffffffff;
     aiStack_f8[0] = -1;
-    FUN_1807d1650(plStack_108,&uStack_100,aiStack_f8);
+    SetupResourceHandlers(plStack_108,&uStack_100,aiStack_f8);
     aiStackX_8[0] = aiStack_f8[0];
     if (aiStack_f8[0] != -1) {
       plVar13 = plStack_108;
@@ -11900,7 +11900,7 @@ LAB_18089638e:
 LAB_1808963ec:
   if ((uVar8 >> 0x19 & 1) != 0) {
     lVar5 = *(longlong *)(param_1 + 0xa0);
-    uVar6 = FUN_18073c4c0(*(undefined8 *)(param_1 + 0x60),param_1 + 0xa0,0);
+    uVar6 = SetupResourceEnvironment(*(undefined8 *)(param_1 + 0x60),param_1 + 0xa0,0);
     if ((int)uVar6 != 0) {
       return uVar6;
     }
@@ -14308,8 +14308,8 @@ undefined8 ValidateResourceRenderingState(void)
             lVar11 = param_1[4];
             if ((char)lVar11 == '\0') {
               *(undefined1 *)(param_1 + 4) = 1;
-              iVar7 = FUN_18073a200(*(undefined8 *)(param_1[1] + 0x78),auStack_2e8);
-              if (((iVar7 != 0) || (iVar7 = FUN_18073c4c0(auStack_2e8[0],&lStack_320,0), iVar7 != 0)
+              iVar7 = InitializeResourceContext(*(undefined8 *)(param_1[1] + 0x78),auStack_2e8);
+              if (((iVar7 != 0) || (iVar7 = SetupResourceEnvironment(auStack_2e8[0],&lStack_320,0), iVar7 != 0)
                   ) || (iVar7 = (**(code **)(*param_1 + 0x10))(param_1), iVar7 != 0))
               goto LAB_18089866f;
               uVar9 = (ulonglong)(lStack_320 * 48000) /
@@ -14342,7 +14342,7 @@ undefined8 ValidateResourceRenderingState(void)
       uStack_310 = 0xffffffffffffffff;
       afStack_308[0] = -NAN;
       plStack_318 = (longlong *)(*(longlong *)(param_1[1] + 0x90) + 0x38);
-      FUN_1808741f0(plStack_318,&uStack_310,afStack_308);
+      ConfigureResourceSettings(plStack_318,&uStack_310,afStack_308);
       afStack_348[0] = afStack_308[0];
       if (afStack_308[0] != -NAN) {
         plVar16 = plStack_318;
@@ -14354,7 +14354,7 @@ undefined8 ValidateResourceRenderingState(void)
             aplStack_330[0] = (longlong *)CONCAT44(aplStack_330[0]._4_4_,0xffffffff);
             plStack_340 = *(longlong **)(plVar16[2] + 0x18 + lVar15);
             lStack_320 = lVar15;
-            FUN_1807d1650(plStack_340,&uStack_338,aplStack_330);
+            SetupResourceHandlers(plStack_340,&uStack_338,aplStack_330);
             plVar14 = plStack_340;
             if ((int)aplStack_330[0] != -1) {
               iVar6 = (int)aplStack_330[0];
@@ -14534,8 +14534,8 @@ undefined8 ProcessResourceTimeSynchronization(longlong *param_1,char param_2)
   ulonglong uStack_18;
   
   *(undefined1 *)(param_1 + 4) = 1;
-  uVar2 = FUN_18073a200(*(undefined8 *)(param_1[1] + 0x78),&uStackX_8);
-  if ((((int)uVar2 == 0) && (uVar2 = FUN_18073c4c0(uStackX_8,alStackX_18,0), (int)uVar2 == 0)) &&
+  uVar2 = InitializeResourceContext(*(undefined8 *)(param_1[1] + 0x78),&uStackX_8);
+  if ((((int)uVar2 == 0) && (uVar2 = SetupResourceEnvironment(uStackX_8,alStackX_18,0), (int)uVar2 == 0)) &&
      (uVar2 = (**(code **)(*param_1 + 0x10))(param_1), (int)uVar2 == 0)) {
     uVar3 = (ulonglong)(alStackX_18[0] * 48000) / (ulonglong)*(uint *)((longlong)param_1 + 0x1c);
     lVar1 = param_1[2];
@@ -14725,28 +14725,42 @@ uint64_t BinarySearchInArray(longlong arrayData,uint *searchKey,undefined8 searc
 
 
 
+/**
+ * @brief 处理资源哈希数据
+ * 
+ * 该函数负责处理资源哈希数据，包括提取、复制和整理资源信息
+ * 支持批量处理和缓冲区管理，确保数据完整性
+ * 
+ * @param ResourceTable 资源表指针，包含资源哈希数据
+ * @param ResourceIndex 资源索引，指定要处理的资源条目
+ * @param HashDataOutput 输出缓冲区，用于返回处理后的哈希数据
+ * @param ResourceBuffer 资源缓冲区，用于临时存储资源数据
+ * @param BufferSize 缓冲区大小，限制处理的数据量
+ * @param ProcessedCount 输出参数，返回已处理的资源数量
+ * @return 处理状态码，0x1f表示无效索引，0x41表示成功处理
+ */
 undefined4
-FUN_180898b40(longlong *param_1,int param_2,undefined4 *param_3,undefined1 *param_4,int param_5,
-             int *param_6)
+ProcessResourceHashData(longlong *ResourceTable,int ResourceIndex,undefined4 *HashDataOutput,undefined1 *ResourceBuffer,int BufferSize,
+             int *ProcessedCount)
 
 {
-  undefined4 *presourceHash;
-  undefined1 uVar2;
-  uint uVar3;
-  uint3 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  uint uVar7;
-  int iVar8;
-  int iVar9;
-  undefined1 *presourceHash0;
-  undefined1 *presourceHash1;
-  uint resourceHash2;
-  longlong lVar13;
-  undefined1 *presourceHash4;
-  int iVar15;
-  undefined4 resourceHash6;
-  int iVar17;
+  undefined4 *HashEntryPointer;
+  undefined1 DataByte;
+  uint HashValue;
+  uint3 HashIndex;
+  undefined4 HashComponent1;
+  undefined4 HashComponent2;
+  uint EntryIndex;
+  int DataLength;
+  int CopyLength;
+  undefined1 *SourceBuffer;
+  undefined1 *DestBuffer;
+  uint ProcessedBytes;
+  longlong ResourceOffset;
+  undefined1 *ResourceData;
+  int RemainingLength;
+  undefined4 StatusFlag;
+  int TotalProcessed;
   
   if ((-1 < param_2) && (param_2 < (int)param_1[3])) {
     if (param_3 != (undefined4 *)0x0) {

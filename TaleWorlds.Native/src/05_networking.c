@@ -17636,7 +17636,18 @@ void ProcessNetworkProtocolInitializer(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18084fcd0(longlong *connectionContext)
+/**
+ * @brief 验证网络连接数据
+ * 
+ * 该函数负责验证网络连接的数据完整性和有效性。
+ * 主要用于网络连接建立前的数据验证和安全检查。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @return 验证结果，0表示成功
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+int ValidateNetworkConnectionData(longlong *connectionContext)
 
 {
   uint primaryNetworkFlag;
@@ -17870,7 +17881,18 @@ LAB_18084fe67:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18084fce0(longlong *connectionContext)
+/**
+ * @brief 处理网络连接信息
+ * 
+ * 该函数负责处理网络连接的相关信息，包括连接参数、
+ * 状态信息等。主要用于网络连接的信息管理和处理。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @return 处理结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+int ProcessNetworkConnectionInfo(longlong *connectionContext)
 
 {
   uint primaryNetworkFlag;
