@@ -1839,8 +1839,14 @@ void DecryptDataBuffer;
 undefined DAT_180c96790;
 undefined DAT_180c96798;
 
-// 函数: undefined FUN_180943180;
-undefined FUN_180943180;
+// 函数: void HashDataBuffer;
+/**
+ * @brief 哈希数据缓冲区
+ * 
+ * 该函数负责计算数据缓冲区的哈希值
+ * 用于数据完整性验证
+ */
+void HashDataBuffer;
 undefined DAT_180c967a0;
 undefined DAT_180c967a8;
 undefined DAT_180c967b0;
@@ -1849,8 +1855,14 @@ undefined DAT_180c967d0;
 undefined UNK_180a3def0;
 undefined UNK_18098bcb0;
 
-// 函数: undefined FUN_1809431a0;
-undefined FUN_1809431a0;
+// 函数: void GenerateSecureRandom;
+/**
+ * @brief 生成安全随机数
+ * 
+ * 该函数负责生成安全的随机数
+ * 用于加密和安全相关操作
+ */
+void GenerateSecureRandom;
 undefined _tls_index;
 void *ThreadLocalStoragePointer;
 undefined DAT_180c967d4;
