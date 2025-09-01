@@ -1049,7 +1049,7 @@ void* SystemTaskConfigTableSecondary;
 void* SystemJobConfigTableSecondary;
 void* SystemWorkConfigTableSecondary;
 void* SystemQueueConfigTableSecondary;
-void* MemoryAllocatorFunctionPointer;
+void* MemoryAllocatorInstance;
 /**
  * @brief 初始化系统资源
  * 
@@ -1071,7 +1071,7 @@ void* MemoryManagerInstance;
  * 
  * @return void* 内存管理器实例指针
  */
-void* CreateMemoryManagerPointer;
+void* CreateMemoryManagerInstance;
 
 /**
  * @brief 设置内存分配器
@@ -1084,7 +1084,7 @@ void* SystemResourceConfigTableSecondary;
 void* SystemFileSystemConfigTableSecondary;
 void* SystemThreadingConfigTableTertiary;
 void* SystemProcessConfigTableQuaternary;
-void* MemoryPoolFunction;
+void* MemoryPoolManagerInstance;
 void* SystemEventConfigTableSenary;
 
  /**
@@ -1600,12 +1600,12 @@ uint8_t MemoryProtectionBuffer;
  * 查询内存区域的访问权限和保护状态
  */
 void GetMemoryProtection(void);
-uint8_t GetProtectContext;
-uint8_t GetProtectConfig;
-uint8_t GetProtectStatus;
-uint8_t GetProtectData;
-uint8_t GetProtectBuffer;
-uint8_t GetProtectInfo;
+uint8_t MemoryProtectionGetContext;
+uint8_t MemoryProtectionGetConfig;
+uint8_t MemoryProtectionGetStatus;
+uint8_t MemoryProtectionGetData;
+uint8_t MemoryProtectionGetBuffer;
+uint8_t MemoryProtectionGetInfo;
 
  void FlushMemoryCache(void);
 /**
@@ -1615,11 +1615,11 @@ uint8_t GetProtectInfo;
  * 确保内存数据同步到持久存储
  */
 void FlushMemoryCache(void);
-uint8_t FlushCacheConfig;
-uint8_t FlushCacheStatus;
-uint8_t FlushCacheHandle;
-uint8_t FlushCacheData;
-uint8_t FlushCacheContext;
+uint8_t MemoryCacheFlushConfig;
+uint8_t MemoryCacheFlushStatus;
+uint8_t MemoryCacheFlushHandle;
+uint8_t MemoryCacheFlushData;
+uint8_t MemoryCacheFlushContext;
 
  void InvalidateMemoryCache(void);
 /**
@@ -1629,11 +1629,11 @@ uint8_t FlushCacheContext;
  * 清除缓存中的数据，强制重新加载
  */
 void InvalidateMemoryCache(void);
-uint8_t InvalidateCacheConfig;
-uint8_t InvalidateCacheStatus;
-uint8_t InvalidateCacheHandle;
-uint8_t InvalidateCacheData;
-uint8_t InvalidateCacheTable;
+uint8_t MemoryCacheInvalidateConfig;
+uint8_t MemoryCacheInvalidateStatus;
+uint8_t MemoryCacheInvalidateHandle;
+uint8_t MemoryCacheInvalidateData;
+uint8_t MemoryCacheInvalidateTable;
 
  void InitializeMemorySegmentation(void);
 /**
@@ -4471,14 +4471,14 @@ uint8_t InitializeObjectHandleF(void)
   int64_t ExecutionContextPointer;
   uint32_t *punsignedResult3;
   uint unsignedResult4;
-  uint64_t unsignedValue6;
+  uint64_t ContextValidationResult;
   int64_t StackBufferPointer;
-  uint64_t unsignedValue5;
+  uint64_t LoopCounter;
   
-  unsignedValue5 = 0;
-  unsignedValue6 = in_RAX - 8;
-  if (in_RAX == 0) {
-    unsignedValue6 = unsignedValue5;
+  LoopCounter = 0;
+  ContextValidationResult = InputRAX - 8;
+  if (InputRAX == 0) {
+    ContextValidationResult = LoopCounter;
   }
   punsignedResult3 = (uint32_t *)(ExecutionContextPointer + 0x20 + (int64_t)*(int *)(ExecutionContextPointer + 0x18) * 8);
   pintegerValue2 = (int *)(ExecutionContextPointer + 0x20);
