@@ -1651,16 +1651,28 @@ undefined DAT_180bfb320;
 undefined DAT_180bfb328;
 undefined UNK_180a27a6c;
 
-// 函数: undefined FUN_1809427f0;
-undefined FUN_1809427f0;
+// 函数: void InitializeMemoryCompliance;
+/**
+ * @brief 初始化内存合规性
+ * 
+ * 该函数负责初始化内存合规性系统
+ * 设置内存使用合规性检查和报告
+ */
+void InitializeMemoryCompliance;
 undefined DAT_180bfb730;
 undefined DAT_180bfb738;
 undefined DAT_180bfb740;
 undefined DAT_180bfb748;
 undefined UNK_180a27a70;
 
-// 函数: undefined FUN_180942810;
-undefined FUN_180942810;
+// 函数: void ConfigureMemoryDiagnostics;
+/**
+ * @brief 配置内存诊断
+ * 
+ * 该函数负责配置内存诊断系统
+ * 设置内存故障诊断和排除工具
+ */
+void ConfigureMemoryDiagnostics;
 undefined DAT_180c9246c;
 undefined UNK_180a2ac10;
 

@@ -366,7 +366,7 @@ int InitializeStringProcessorI(void)
   g_stringProcessorDataPointerD = &UNK_18098bc80;
   g_stringProcessorConfigPointerD = &STRING_PROCESSOR_CONFIG_D;
   STRING_PROCESSOR_CONFIG_D = 0;
-  _DAT_180bf5748 = 9;
+  g_stringProcessorBufferSizeD = 9;
   strcpy_s(&STRING_PROCESSOR_CONFIG_D,0x20,&UNK_180a01330,stringProcessorIFlags,0xfffffffffffffffe);
   CallbackResult = RegisterSystemModule(FUN_1809419a0);
   return (CallbackResult != 0) - 1;
@@ -389,7 +389,7 @@ int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mut
   return (CallbackResult != 0) - 1;
 }
   CONFIG_DATA_BUFFER_A = 0;
-  _DAT_180bf6760 = 0x13;
+  g_configDataBufferSizeA = 0x13;
   strcpy_s(&CONFIG_DATA_BUFFER_A,0x40,&UNK_180a0cb48,in_R9,0xfffffffffffffffe);
   _DAT_180bf67a8 = &UNK_1809fcc58;
   _DAT_180bf67b0 = &CONFIG_DATA_BUFFER_B;
