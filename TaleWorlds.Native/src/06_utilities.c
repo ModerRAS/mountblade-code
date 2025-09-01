@@ -3212,11 +3212,11 @@ uint8_t SystemThreadFlagGlobal;
 uint8_t SystemResourceFlagHighPriority;
 uint8_t SystemProcessFlagInteractive;
 char SystemStatusCharJournal;
-uint8_t SystemDataBuffer003;
-uint8_t SystemDataBuffer004;
-uint8_t SystemDataBuffer005;
-uint8_t SystemDataBuffer006;
-uint8_t SystemDataBuffer007;
+uint8_t SystemDataBufferTertiary;
+uint8_t SystemDataBufferQuaternary;
+uint8_t SystemDataBufferQuinary;
+uint8_t SystemDataBufferSenary;
+uint8_t SystemDataBufferSeptenary;
 uint8_t SystemMemoryFlagKernel;
 
  /**
@@ -6415,7 +6415,7 @@ void ProcessDynamicBufferReallocation(void)
   uint ResourceContextOffset;
   int64_t ResourceContextPointer;
   int64_t ResourceContextData;
-  uint8_t StackParameterContext60;
+  uint8_t StackParameterContextSixty;
   
   ResourceIndex = 0;
   bufferPointer = InputRAX + 8;
@@ -10909,7 +10909,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
   int64_t longValue8;
   float RangeValue;
   float ResultFloatValue;
-  uint8_t StackParameterContext40;
+  uint8_t StackParameterContextForty;
   int *StackParameterContext48;
   
   ResourceTablePointer = CONCAT44(UnaffectedRegisterValue1c,RegisterEBX) + CONCAT44(UnaffectedRegisterValue1c,RegisterEBX) * 2;
