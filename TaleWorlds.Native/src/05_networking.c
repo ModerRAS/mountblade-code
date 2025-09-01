@@ -466,59 +466,71 @@ cleanup:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180840490(undefined8 param_1,ulonglong *param_2)
-void FUN_180840490(undefined8 param_1,ulonglong *param_2)
+// 函数: void ValidateNetworkConnection(undefined8 connectionId,ulonglong *connectionStatus)
+/**
+ * 验证网络连接状态
+ * 
+ * 验证指定ID的网络连接状态并返回连接状态信息。
+ * 检查连接的有效性、状态标志，并获取连接的详细信息。
+ * 
+ * @param connectionId 要验证的连接ID
+ * @param connectionStatus 用于返回连接状态的指针
+ * @return 无返回值，结果通过connectionStatus返回
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ValidateNetworkConnection(undefined8 connectionId,ulonglong *connectionStatus)
 
 {
-  int iVar1;
-  int iVar2;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  longlong alStack_148 [2];
-  undefined8 *apuStack_138 [2];
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
+  int validationStatus;
+  int connectionStatus;
+  undefined1 securityBuffer [32];
+  undefined1 *errorMessage;
+  longlong connectionInfo [2];
+  undefined8 *connectionDetails [2];
+  undefined1 errorBuffer [256];
+  ulonglong stackGuard;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (ulonglong *)0x0) {
+  stackGuard = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  if (connectionStatus == (ulonglong *)0x0) {
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      FUN_1808fc050(stackGuard ^ (ulonglong)securityBuffer);
     }
-    func_0x00018074bda0(auStack_128,0x100,0);
-    puStack_158 = auStack_128;
+    func_0x00018074bda0(errorBuffer,0x100,0);
+    errorMessage = errorBuffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_180983320);
+    FUN_180749ef0(0x1f,0xc,connectionId,&UNK_180983320);
   }
-  *param_2 = 0;
-  alStack_148[1] = 0;
-  iVar1 = func_0x00018088c590(param_1,alStack_148);
-  if (iVar1 == 0) {
-    if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_1808404f2;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
-    if (iVar2 == 0) goto LAB_18084055a;
+  *connectionStatus = 0;
+  connectionInfo[1] = 0;
+  validationStatus = func_0x00018088c590(connectionId,connectionInfo);
+  if (validationStatus == 0) {
+    if ((*(uint *)(connectionInfo[0] + 0x24) >> 1 & 1) == 0) goto cleanup;
+    connectionStatus = FUN_18088c740(connectionInfo + 1);
+    if (connectionStatus == 0) goto validation_failed;
   }
   else {
-LAB_18084055a:
-    iVar2 = iVar1;
+validation_failed:
+    connectionStatus = validationStatus;
   }
-  if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+  if ((connectionStatus == 0) &&
+     (validationStatus = FUN_18088dec0(*(undefined8 *)(connectionInfo[0] + 0x98),connectionDetails,0x20), validationStatus == 0))
   {
-    *apuStack_138[0] = &UNK_1809832b8;
-    *(undefined4 *)(apuStack_138[0] + 3) = 0;
-    *(undefined4 *)(apuStack_138[0] + 1) = 0x20;
-    *(int *)(apuStack_138[0] + 2) = (int)param_1;
-    iVar1 = func_0x00018088e0d0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138[0]);
-    if (iVar1 == 0) {
-      *param_2 = (ulonglong)*(uint *)(apuStack_138[0] + 3);
+    *connectionDetails[0] = &UNK_1809832b8;
+    *(undefined4 *)(connectionDetails[0] + 3) = 0;
+    *(undefined4 *)(connectionDetails[0] + 1) = 0x20;
+    *(int *)(connectionDetails[0] + 2) = (int)connectionId;
+    validationStatus = func_0x00018088e0d0(*(undefined8 *)(connectionInfo[0] + 0x98),connectionDetails[0]);
+    if (validationStatus == 0) {
+      *connectionStatus = (ulonglong)*(uint *)(connectionDetails[0] + 3);
                     // WARNING: Subroutine does not return
-      FUN_18088c790(alStack_148 + 1);
+      FUN_18088c790(connectionInfo + 1);
     }
   }
-LAB_1808404f2:
+cleanup:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_148 + 1);
+  FUN_18088c790(connectionInfo + 1);
 }
 
 

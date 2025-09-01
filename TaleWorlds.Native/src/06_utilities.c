@@ -3002,30 +3002,40 @@ undefined8 validateObjectHandle(longlong objectPointer)
 
 
 
-undefined4 FUN_180890673(void)
+/**
+ * @brief 从寄存器验证对象句柄
+ * @return 返回验证结果，0表示成功，0x1c表示错误
+ * 
+ * 该函数从RAX寄存器获取对象指针，验证其有效性并执行相应操作
+ */
+undefined4 validateObjectHandleFromRegister(void)
 
 {
-  longlong in_RAX;
-  longlong lVar1;
+  longlong registerValue;
+  longlong adjustedPointer;
   
-  if (in_RAX == 0) {
-    lVar1 = 0;
+  if (registerValue == 0) {
+    adjustedPointer = 0;
   }
   else {
-    lVar1 = in_RAX + -8;
+    adjustedPointer = registerValue + -8;
   }
-  if (*(longlong *)(lVar1 + 0x10) == 0) {
+  if (*(longlong *)(adjustedPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+  FUN_180862e00(*(longlong *)(adjustedPointer + 0x10), 1);
 }
 
 
 
 
-// 函数: void FUN_18089069c(void)
-void FUN_18089069c(void)
+/**
+ * @brief 触发系统异常处理
+ * 
+ * 该函数用于触发系统异常处理流程，通常在遇到严重错误时调用
+ */
+void triggerSystemException(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -3035,8 +3045,12 @@ void FUN_18089069c(void)
 
 
 
-// 函数: void FUN_1808906f0(void)
-void FUN_1808906f0(void)
+/**
+ * @brief 清理系统资源
+ * 
+ * 该函数负责清理系统资源，释放不再使用的内存和对象
+ */
+void cleanupSystemResources(void)
 
 {
   return;
