@@ -65576,45 +65576,54 @@ void FUN_18007f820(void)
 
 
 
-// 函数: void FUN_18007f840(long long *SystemResourcePointer)
-void FUN_18007f840(long long *SystemResourcePointer)
+/**
+ * @brief 系统资源句柄处理函数
+ * 
+ * 该函数负责处理系统资源句柄的操作，包括句柄的验证、索引和状态检查。
+ * 它会遍历资源句柄数组，检查每个句柄的有效性，并进行相应的处理。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源句柄信息
+ * 
+ * 原始函数名为FUN_18007f840，现已重命名为ProcessSystemResourceHandle
+ */
+void ProcessSystemResourceHandle(long long *SystemResourcePointer)
 
 {
-  int *pointerToInteger1;
-  long long localSystemHandle;
-  char cVar3;
-  int systemIndex;
-  bool bVar5;
+  int *ResourceIndexPointer;
+  long long SystemHandle;
+  char SystemStatus;
+  int ResourceIndex;
+  bool IsHandleAvailable;
   
-  localSystemHandle = *SystemResourcePointer;
-  if (localSystemHandle != 0) {
+  SystemHandle = *SystemResourcePointer;
+  if (SystemHandle != 0) {
     while( true ) {
       LOCK();
-      cVar3 = *(char *)(localSystemHandle + 0xec);
-      bVar5 = cVar3 == '\0';
-      if (bVar5) {
-        *(char *)(localSystemHandle + 0xec) = '\x01';
-        cVar3 = '\0';
+      SystemStatus = *(char *)(SystemHandle + 0xec);
+      IsHandleAvailable = SystemStatus == '\0';
+      if (IsHandleAvailable) {
+        *(char *)(SystemHandle + 0xec) = '\x01';
+        SystemStatus = '\0';
       }
       UNLOCK();
-      if (bVar5) break;
-      systemIndex = _Thrd_id();
-      if ((*(int *)(localSystemHandle + 0xf0) == systemIndex) || (*(int *)(localSystemHandle + 0xf0) != 0)) goto LAB_18007f89f;
+      if (IsHandleAvailable) break;
+      ResourceIndex = _Thrd_id();
+      if ((*(int *)(SystemHandle + 0xf0) == ResourceIndex) || (*(int *)(SystemHandle + 0xf0) != 0)) goto LAB_18007f89f;
       Sleep();
     }
-    cVar3 = '\0';
+    SystemStatus = '\0';
 LAB_18007f89f:
     LOCK();
-    pointerToInteger1 = (int *)(localSystemHandle + 0xe8);
-    systemIndex = *pointerToInteger1;
-    *pointerToInteger1 = *pointerToInteger1 + -1;
+    ResourceIndexPointer = (int *)(SystemHandle + 0xe8);
+    ResourceIndex = *ResourceIndexPointer;
+    *ResourceIndexPointer = *ResourceIndexPointer + -1;
     UNLOCK();
-    if (cVar3 == '\0') {
-      if (systemIndex == 1) {
+    if (SystemStatus == '\0') {
+      if (ResourceIndex == 1) {
         FUN_18007edd0(*SystemResourcePointer,0);
       }
       LOCK();
-      *(uint8_t *)(localSystemHandle + 0xec) = 0;
+      *(uint8_t *)(SystemHandle + 0xec) = 0;
       UNLOCK();
     }
     *SystemResourcePointer = 0;
@@ -66918,35 +66927,47 @@ void SystemInitializationFunction(void* SystemResourcePointer,void* Configuratio
 
 
 
-// 函数: void FUN_18007fd60(void* SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,long long ConfigurationFlag)
-void FUN_18007fd60(void* SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,long long ConfigurationFlag)
+/**
+ * @brief 系统资源数据加密处理函数
+ * 
+ * 该函数负责处理系统资源数据的加密操作，包括配置数据的处理和加密密钥的应用。
+ * 它会调用系统资源分配函数，并对资源数据进行加密处理。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含需要处理的资源信息
+ * @param ConfigurationDataPointer 配置数据指针，包含配置参数和数据
+ * @param AdditionalParameter 额外参数，用于扩展功能
+ * @param ConfigurationFlag 配置标志，用于控制处理流程
+ * 
+ * 原始函数名为FUN_18007fd60，现已重命名为ProcessSystemResourceDataWithEncryption
+ */
+void ProcessSystemResourceDataWithEncryption(void* SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,long long ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
   int systemResult;
-  uint8_t auStack_338 [32];
-  long long *plStack_318;
-  long long *aplStack_310 [2];
-  void* uStack_300;
-  ulong long uStack_58;
+  uint8_t EncryptionKeyBuffer [32];
+  long long *ResourceHandlePointer;
+  long long *ResourceArrayPointer [2];
+  void* EncryptionFlag;
+  ulong long EncryptedKey;
   
-  uStack_300 = 0xfffffffffffffffe;
-  uStack_58 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_338;
+  EncryptionFlag = 0xfffffffffffffffe;
+  EncryptedKey = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionKeyBuffer;
   *(long long *)(ConfigurationFlag + 8) = *(long long *)(ConfigurationFlag + 8) + 4;
   systemResult = *(int *)(ConfigurationDataPointer + 0x14) * *(int *)(ConfigurationDataPointer + 0x10);
-  PrimaryResourcePointer = (long long *)FUN_180081590(SystemResourcePointer,aplStack_310,systemResult);
+  PrimaryResourcePointer = (long long *)FUN_180081590(SystemResourcePointer,ResourceArrayPointer,systemResult);
   PrimaryResourcePointer = (long long *)*PrimaryResourcePointer;
   if (PrimaryResourcePointer != (long long *)0x0) {
-    plStack_318 = PrimaryResourcePointer;
+    ResourceHandlePointer = PrimaryResourcePointer;
     (**(code **)(*PrimaryResourcePointer + 0x28))(PrimaryResourcePointer);
   }
-  plStack_318 = *(long long **)(ConfigurationDataPointer + 0x20);
+  ResourceHandlePointer = *(long long **)(ConfigurationDataPointer + 0x20);
   *(long long **)(ConfigurationDataPointer + 0x20) = PrimaryResourcePointer;
-  if (plStack_318 != (long long *)0x0) {
-    (**(code **)(*plStack_318 + 0x38))();
+  if (ResourceHandlePointer != (long long *)0x0) {
+    (**(code **)(*ResourceHandlePointer + 0x38))();
   }
-  if (aplStack_310[0] != (long long *)0x0) {
-    (**(code **)(*aplStack_310[0] + 0x38))();
+  if (ResourceArrayPointer[0] != (long long *)0x0) {
+    (**(code **)(*ResourceArrayPointer[0] + 0x38))();
   }
                     // WARNING: Subroutine does not return
   memcpy(*(void* *)(*(long long *)(ConfigurationDataPointer + 0x20) + 0x10),*(void* *)(ConfigurationFlag + 8),
