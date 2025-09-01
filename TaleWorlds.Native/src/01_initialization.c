@@ -19461,39 +19461,39 @@ void* * InitializeSystemMemoryAllocatorReference(void* *memoryAllocatorPointer)
 void ProcessSystemThreeParameterData(long long param1,long long param2,long long param3)
 
 {
-  long long lVar1;
-  long long lVar2;
-  long long lVar3;
-  uint8_t auStack_a8 [32];
-  void* uStack_88;
-  void* *puStack_80;
-  uint8_t *puStack_78;
-  uint32_t uStack_70;
-  uint8_t auStack_68 [32];
-  ulong long uStack_48;
+  long long StringSearchResult;
+  long long SourceStringLength;
+  long long TargetStringLength;
+  uint8_t StackSecurityBuffer [32];
+  void* SecurityFlags;
+  void* *MemoryReference;
+  uint8_t *DataBuffer;
+  uint32_t BufferLength;
+  uint8_t TempDataBuffer [32];
+  ulong long ChecksumValue;
   
-  uStack_88 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulong long)auStack_a8;
-  puStack_80 = &SystemMemoryTemplateE;
-  puStack_78 = auStack_68;
-  uStack_70 = 0;
-  auStack_68[0] = 0;
-  lVar1 = strstr(*(void* *)(param_1 + 8));
-  if (lVar1 != 0) {
-    lVar2 = -1;
-    lVar3 = -1;
+  SecurityFlags = 0xfffffffffffffffe;
+  ChecksumValue = _DAT_180bf00a8 ^ (ulong long)StackSecurityBuffer;
+  MemoryReference = &SystemMemoryTemplateE;
+  DataBuffer = TempDataBuffer;
+  BufferLength = 0;
+  TempDataBuffer[0] = 0;
+  StringSearchResult = strstr(*(void* *)(param1 + 8));
+  if (StringSearchResult != 0) {
+    SourceStringLength = -1;
+    TargetStringLength = -1;
     do {
-      lVar3 = lVar3 + 1;
-    } while (*(char *)(param_2 + lVar3) != '\0');
+      TargetStringLength = TargetStringLength + 1;
+    } while (*(char *)(param2 + TargetStringLength) != '\0');
     do {
-      lVar2 = lVar2 + 1;
-    } while (*(char *)(lVar2 + param_3) != '\0');
+      SourceStringLength = SourceStringLength + 1;
+    } while (*(char *)(SourceStringLength + param3) != '\0');
                     // WARNING: Subroutine does not return
-    memcpy(puStack_78,*(long long *)(param_1 + 8),lVar1 - *(long long *)(param_1 + 8));
+    memcpy(DataBuffer,*(long long *)(param1 + 8),StringSearchResult - *(long long *)(param1 + 8));
   }
-  puStack_80 = &SystemMemoryAllocatorReference;
+  MemoryReference = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_a8);
+  ValidateSystemChecksum(ChecksumValue ^ (ulong long)StackSecurityBuffer);
 }
 
 
@@ -19512,14 +19512,14 @@ void* * GetSystemMemoryAllocatorReference(void* *MemoryAllocatorPointer,ulong lo
 
 
 // 函数: void UnlockSystemMutex(void* *param_1)
-void UnlockSystemMutex(void* *param_1)
+void UnlockSystemMutex(void* *MutexHandle)
 
 {
-  int iVar1;
+  int UnlockResult;
   
-  iVar1 = _Mtx_unlock(*param_1);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  UnlockResult = _Mtx_unlock(*MutexHandle);
+  if (UnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(UnlockResult);
   }
   return;
 }
