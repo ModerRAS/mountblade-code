@@ -2023,11 +2023,11 @@ uint8_t EncryptionIV;
  */
 void HashDataBuffer;
 uint8_t HashAlgorithm;
-uint8_t HashDigest;
-uint8_t HashSalt;
-uint8_t HashIterations;
-uint8_t HashOutputSize;
-uint8_t RandomSeed;
+uint8_t HashDigestBuffer;
+uint8_t HashSaltBuffer;
+uint8_t HashIterationCount;
+uint8_t HashOutputBufferSize;
+uint8_t RandomSeedBuffer;
 uint8_t RandomGenerator;
 
  void GenerateSecureRandom;
