@@ -1,7 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 05_networking.c - 908 个函数
-
 /**
  * 比较网络连接时间戳
  * 
@@ -99,6 +97,141 @@ void AcceptNetworkConnection(void);
  * 释放相关资源，清理连接状态和数据
  */
 void CloseNetworkConnection(void);
+
+/**
+ * @brief 验证网络连接ID
+ * 
+ * 该函数负责验证网络连接ID的有效性和正确性。
+ * 主要用于网络连接的身份验证和安全性检查。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param validationResult 验证结果输出指针
+ * @return 验证状态码，0表示成功
+ */
+int NetworkValidateConnectionId(longlong connectionContext, longlong packetData, longlong validationResult);
+
+/**
+ * @brief 网络安全守卫检查
+ * 
+ * 该函数负责执行网络安全守卫检查，确保网络操作的合法性。
+ * 主要用于防止恶意网络攻击和未授权访问。
+ * 
+ * @param securityValue 安全检查值
+ * @return 检查结果，通常不返回（直接退出）
+ */
+void NetworkSecurityGuardCheck(ulonglong securityValue);
+
+/**
+ * @brief 清理网络连接上下文
+ * 
+ * 该函数负责清理网络连接相关的上下文数据和资源。
+ * 主要用于连接关闭后的资源释放和内存清理。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @return 清理结果状态码
+ */
+int NetworkCleanupConnectionContext(longlong connectionContext);
+
+/**
+ * @brief 处理网络缓冲区数据
+ * 
+ * 该函数负责处理网络数据缓冲区中的数据。
+ * 主要用于网络数据包的解析和处理。
+ * 
+ * @param bufferData 缓冲区数据指针
+ * @param bufferSize 缓冲区大小
+ * @param bufferTemplate 缓冲区模板指针
+ * @return 处理的数据大小
+ */
+int NetworkProcessBufferData(longlong bufferData, int bufferSize, longlong bufferTemplate);
+
+/**
+ * @brief 处理网络缓冲区句柄
+ * 
+ * 该函数负责处理网络缓冲区的句柄操作。
+ * 主要用于缓冲区管理和数据访问控制。
+ * 
+ * @param bufferHandle 缓冲区句柄
+ * @param handleSize 句柄大小
+ * @param networkBuffer 网络缓冲区指针
+ * @return 处理结果状态码
+ */
+int NetworkProcessBufferHandle(longlong bufferHandle, int handleSize, longlong networkBuffer);
+
+/**
+ * @brief 处理网络句柄
+ * 
+ * 该函数负责处理网络通信中的句柄操作。
+ * 主要用于网络连接管理和数据传输控制。
+ * 
+ * @param networkHandle 网络句柄指针
+ * @param handleSize 句柄大小
+ * @param handleContext 句柄上下文指针
+ * @return 处理结果状态码
+ */
+int NetworkProcessNetworkHandle(longlong networkHandle, int handleSize, longlong handleContext);
+
+/**
+ * @brief 加密网络数据包
+ * 
+ * 该函数负责对网络数据包进行加密处理。
+ * 主要用于网络通信的数据安全保障。
+ * 
+ * @param packetData 数据包数据指针
+ * @param packetSize 数据包大小
+ * @param encryptionKey 加密密钥
+ * @return 加密结果状态码
+ */
+int NetworkEncryptPacketData(longlong packetData, int packetSize, longlong encryptionKey);
+
+/**
+ * @brief 处理网络安全上下文
+ * 
+ * 该函数负责处理网络安全相关的上下文数据。
+ * 主要用于网络连接的安全验证和权限控制。
+ * 
+ * @param securityContext 安全上下文指针
+ * @param contextSize 上下文大小
+ * @param contextData 上下文数据指针
+ * @return 处理结果状态码
+ */
+int NetworkProcessSecurityContext(longlong securityContext, int contextSize, longlong contextData);
+
+/**
+ * @brief 获取网络连接数量
+ * 
+ * 该函数负责获取当前活跃的网络连接数量。
+ * 主要用于连接池管理和资源分配。
+ * 
+ * @param connectionContext 连接上下文指针
+ * @return 连接数量
+ */
+int NetworkGetConnectionCount(longlong connectionContext);
+
+/**
+ * @brief 根据索引获取网络连接
+ * 
+ * 该函数负责根据指定的索引获取对应的网络连接。
+ * 主要用于连接遍历和特定连接的访问。
+ * 
+ * @param connectionContext 连接上下文指针
+ * @param connectionIndex 连接索引
+ * @return 网络连接指针
+ */
+longlong NetworkGetConnectionByIndex(longlong connectionContext, int connectionIndex);
+
+/**
+ * @brief 验证网络连接协议
+ * 
+ * 该函数负责验证网络连接所使用的协议是否有效。
+ * 主要用于协议兼容性检查和安全性验证。
+ * 
+ * @param networkData 网络数据指针
+ * @param packetData 数据包数据指针
+ * @return 验证结果状态码，0表示成功
+ */
+int NetworkValidateConnectionProtocol(longlong networkData, longlong packetData);
 
 // 函数: uint32_t NetworkConnectionEventHandler;
 /**
@@ -1268,7 +1401,7 @@ void FindNetworkConnectionIndex(longlong connectionContext, longlong searchKey, 
       networkStatus2 = NetworkGetConnectionCount(connectionContext);
       if (0 < networkStatus2) {
         do {
-          lVar3 = NetworkGetConnectionByIndex(connectionContext,iVar5);
+          connectionEntry = NetworkGetConnectionByIndex(connectionContext,connectionIndex);
           if ((*(longlong *)(lVar3 + 0x10) == lStack_38) &&
              (*(longlong *)(lVar3 + 0x18) == lStack_30)) goto LAB_180840bf9;
           connectionIndex = connectionIndex + 1;
@@ -1281,7 +1414,7 @@ void FindNetworkConnectionIndex(longlong connectionContext, longlong searchKey, 
       networkStatus2 = NetworkGetConnectionCount(connectionContext);
       if (0 < networkStatus2) {
         do {
-          lVar3 = NetworkGetConnectionByIndex(connectionContext,iVar5);
+          connectionEntry = NetworkGetConnectionByIndex(connectionContext,connectionIndex);
           if (*(int *)(lVar3 + 0x58) < 1) {
             networkPointer4 = &g_NetworkConnectionDataDefault;
           }

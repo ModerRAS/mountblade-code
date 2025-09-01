@@ -555,46 +555,46 @@ undefined SystemDataBuffer153;
 
 // 函数: 系统初始化协调器 - 负责协调各个子系统的初始化顺序
 undefined SystemInitializationCoordinator;
-undefined UNK_180a25980;
-undefined DAT_180bfc170;
-undefined UNK_180a258e0;
-undefined UNK_180a258ec;
-undefined UNK_180a258f8;
-undefined UNK_180a259c0;
-undefined UNK_180a259c8;
-undefined UNK_180a259e0;
-undefined UNK_180a25a10;
-undefined DAT_180a0af70;
-undefined UNK_180a25998;
-undefined UNK_180a259a8;
-undefined UNK_180a25a74;
-undefined UNK_180a25a28;
-undefined UNK_180a25a80;
-undefined UNK_180a25a98;
-undefined DAT_180c92498;
-undefined UNK_180a25a50;
-undefined UNK_180a25a60;
-undefined UNK_180a25aa0;
-undefined UNK_180a25ab0;
-undefined UNK_180a25ae8;
-undefined UNK_180a25af0;
-undefined UNK_180a25b00;
-undefined UNK_180a25ab8;
-undefined UNK_180a25ac8;
-undefined UNK_180a25b10;
-undefined UNK_180a25b20;
-undefined UNK_180a25b30;
-undefined UNK_180a25b40;
-undefined UNK_180a25b48;
-undefined UNK_180a25b60;
-undefined UNK_180a25b6c;
-undefined UNK_180a25b80;
-undefined UNK_180a25b88;
-undefined UNK_180a25bc8;
-undefined UNK_180a25bd4;
-undefined UNK_180a25be0;
-undefined UNK_180a25c58;
-undefined UNK_180a25c84;
+undefined SystemDataBuffer154;
+undefined SystemDataBuffer155;
+undefined SystemDataBuffer156;
+undefined SystemDataBuffer157;
+undefined SystemDataBuffer158;
+undefined SystemDataBuffer159;
+undefined SystemDataBuffer160;
+undefined SystemDataBuffer161;
+undefined SystemDataBuffer162;
+undefined SystemDataBuffer163;
+undefined SystemDataBuffer164;
+undefined SystemDataBuffer165;
+undefined SystemDataBuffer166;
+undefined SystemDataBuffer167;
+undefined SystemDataBuffer168;
+undefined SystemDataBuffer169;
+undefined SystemDataBuffer170;
+undefined SystemDataBuffer171;
+undefined SystemDataBuffer172;
+undefined SystemDataBuffer173;
+undefined SystemDataBuffer174;
+undefined SystemDataBuffer175;
+undefined SystemDataBuffer176;
+undefined SystemDataBuffer177;
+undefined SystemDataBuffer178;
+undefined SystemDataBuffer179;
+undefined SystemDataBuffer180;
+undefined SystemDataBuffer181;
+undefined SystemDataBuffer182;
+undefined SystemDataBuffer183;
+undefined SystemDataBuffer184;
+undefined SystemDataBuffer185;
+undefined SystemDataBuffer186;
+undefined SystemDataBuffer187;
+undefined SystemDataBuffer188;
+undefined SystemDataBuffer189;
+undefined SystemDataBuffer190;
+undefined SystemDataBuffer191;
+undefined SystemDataBuffer192;
+undefined SystemDataBuffer193;
 undefined UNK_180a25c90;
 undefined UNK_180a2b468;
 undefined UNK_180a25c04;
@@ -659,6 +659,15 @@ undefined GetSystemInitializationFunction;
  * 设置系统根节点和数据结构，为游戏运行提供基础支持。
  * 
  * @note 该函数在游戏启动时被调用，是系统初始化流程的关键部分
+ */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 该函数负责初始化游戏的核心系统组件，包括系统数据表的设置、
+ * 节点管理和内存分配。它会遍历系统节点树，查找核心系统节点，
+ * 如果找不到合适的节点，则分配新的内存空间并初始化核心系统数据。
+ * 
+ * @note 这是系统启动过程中的关键步骤，确保核心系统正确初始化
  */
 void InitializeGameCoreSystem(void)
 
