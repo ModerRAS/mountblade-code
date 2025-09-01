@@ -3479,11 +3479,11 @@ undefined8 ValidateSystemAccess(longlong param_1,longlong param_2)
                             *(undefined8 *)(param_2 + 800));
       if (iVar2 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088c790(alStackX_8);
+        ReleaseValidationResources(alStackX_8);
       }
     }
                     // WARNING: Subroutine does not return
-    FUN_18088c790(alStackX_8);
+    ReleaseValidationResources(alStackX_8);
   }
   return 0;
 }
@@ -3560,19 +3560,19 @@ undefined8 DecrementSystemResourceCounter(longlong systemContext, undefined8 res
     return 0;
   }
   alStackX_8[0] = 0;
-  iVar3 = FUN_18088c740(alStackX_8);
+  iVar3 = ValidateSystemObjectConfiguration(alStackX_8);
   if (iVar3 == 0) {
-    iVar3 = FUN_1808c7dc0(lVar1,0);
+    iVar3 = ProcessSystemObjectOperation(lVar1,0);
     if (iVar3 == 0) {
       iVar3 = FUN_18088ac50(param_2);
       if (iVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088c790(alStackX_8);
+        ReleaseValidationResources(alStackX_8);
       }
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStackX_8);
+  ReleaseValidationResources(alStackX_8);
 }
 
 
@@ -10699,7 +10699,18 @@ LAB_180895b69:
 
 
 
-undefined8 FUN_180895c60(longlong param_1,int param_2,uint *param_3)
+/**
+ * @brief 处理参数化数据验证和操作
+ * 
+ * 该函数用于处理参数化数据的验证和相关操作
+ * 主要用于数据验证和参数处理阶段
+ * 
+ * @param dataContext 数据上下文参数，包含数据的基本信息
+ * @param operationType 操作类型，指定要执行的操作
+ * @param validationFlags 验证标志，控制验证过程的选项
+ * @return uint64_t 操作结果，成功返回0，失败返回错误码
+ */
+uint64_t ProcessParameterizedDataValidationAndOperation(longlong dataContext,int operationType,uint *validationFlags)
 
 {
   uint uVar1;
