@@ -4273,7 +4273,7 @@ uint8_t8 InitializeObjectHandleD(void)
 {
   longlong loopCounter;
   int integerValue2;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   uint8_t8 unsignedResult3;
   uint8_t4 *punsignedResult4;
   ulonglong unsignedValue5;
@@ -4419,7 +4419,7 @@ uint8_t8 InitializeObjectHandleE(longlong objectContext)
 uint8_t8 InitializeObjectHandleF(void)
 
 {
-  longlong in_RAX;
+  longlong InputRegisterValue;
   uint8_t8 resourceHash;
   int *pintegerValue2;
   longlong unaff_RBP;
@@ -4638,7 +4638,7 @@ uint64_t ProcessResourceHandle(longlong resourceHandle)
 uint32_t ProcessSystemResource(void)
 
 {
-  longlong in_RAX;
+  longlong InputRegisterValue;
   longlong loopCounter;
   
   if (in_RAX == 0) {
@@ -4735,7 +4735,7 @@ uint64_t HandleResourceOperation(longlong resourceHandle)
 uint32_t ProcessResourceTask(void)
 
 {
-  longlong in_RAX;
+  longlong InputRegisterValue;
   longlong loopCounter;
   
   localContextPointer = in_RAX + -8;
@@ -5507,10 +5507,10 @@ ulonglong ProcessSystemResourceAllocation(longlong resourceHandle, uint8_t8 oper
 int ValidateSystemConfigurationParameter(uint8_t4 configParameter)
 
 {
-  int in_EAX;
+  int InputRegisterResult;
   int operationResult;
   longlong resourceTable;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   uint8_t4 unsignedResult3;
   longlong StackMemoryOffset;
   uint8_t4 StackValidationBuffer;
@@ -6371,7 +6371,7 @@ void ProcessDynamicBufferReallocation(void)
 {
   int operationResult;
   int integerValue2;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   longlong resourceIndex;
   longlong bufferPointer;
   uint unsignedValue5;
@@ -8677,7 +8677,7 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(longlong objectContextPa
 {
   int operationResult;
   longlong resourceTable;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   longlong unaff_R15;
   longlong in_stack_00000060;
   
@@ -8821,10 +8821,10 @@ int process_data_block_operation(longlong data_context, longlong operation_conte
 int ProcessDataBlockOperationAndMemoryAllocation(uint8_t8 objectContextParam, uint8_t8 validationContextParam)
 
 {
-  int in_EAX;
+  int InputRegisterResult;
   int operationResult;
   longlong resourceTable;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   longlong unaff_R15;
   longlong in_stack_00000060;
   
@@ -9049,7 +9049,7 @@ uint8_t8 ValidateFloatDataAndExecute(void)
   float CalculatedFloatValue;
   longlong resourceTable;
   uint8_t8 unsignedResult3;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   longlong unaff_R14;
   uint8_t4 in_stack_00000048;
   
@@ -9091,7 +9091,7 @@ uint8_t8 ValidateFloatDataAndExecuteSimple(void)
   float CalculatedFloatValue;
   uint8_t8 validationResult;
   longlong unaff_RBX;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   longlong unaff_R14;
   uint8_t4 in_stack_00000048;
   
@@ -9198,7 +9198,7 @@ uint64_t GetSystemRuntimeStatus(void)
   uint8_t8 unsignedResult3;
   uint8_t8 *punsignedResult4;
   longlong unaff_RBX;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   float TertiaryFloatValue;
   uint8_t4 in_stack_00000040;
   
@@ -9245,7 +9245,7 @@ void ProcessFloatRangeClamping(void)
   int validationStatus;
   uint8_t4 in_register_00000004;
   longlong unaff_RBX;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   float SecondaryFloatValue;
   uint8_t4 in_stack_00000040;
   
@@ -9348,7 +9348,7 @@ uint8_t8 ProcessFloatRangeValidationAndDataHandlingNoParams(void)
   longlong resourceTable;
   uint8_t8 unsignedResult3;
   uint8_t8 *punsignedResult4;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   longlong unaff_R14;
   uint8_t4 in_stack_00000050;
   
@@ -9394,7 +9394,7 @@ uint64_t ProcessFloatDataValidation(void)
   uint8_t8 validationResult;
   uint8_t8 *punsignedResult3;
   longlong unaff_RBX;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   longlong unaff_R14;
   uint8_t4 in_stack_00000050;
   
@@ -9850,10 +9850,10 @@ ValidateResourceTableAccess(ulonglong resource_handle)
 
 {
   int operationResult;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   longlong resourceTable;
   longlong *unaff_RSI;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   ulonglong StackSecurityToken;
   ulonglong in_stack_000000a8;
   
@@ -10510,7 +10510,7 @@ uint8_t8 ExpandResourcePoolCapacitySimple(void)
 
 {
   longlong loopCounter;
-  int in_EAX;
+  int InputRegisterResult;
   uint8_t8 validationResult;
   ulonglong unsignedResult3;
   longlong DataOffset;
@@ -10736,14 +10736,14 @@ void ProcessModuleInitialization(longlong ModuleHandle, void* ModuleContext, int
   char cVar2;
   int validationStatus;
   int ResultIndex;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   longlong lVar5;
   uint8_t8 unsignedValue6;
   longlong BufferPointer;
   int unaff_EBX;
   uint8_t4 unaff_0000001c;
   longlong unaff_RBP;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   char in_R11B;
   uint8_t1 *unaff_R13;
   longlong longValue8;
@@ -11273,7 +11273,7 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t8 extendedResourcePool
   int ValidationStatus;
   int *unaff_RBX;
   int OperationCounter;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   uint8_t8 *unaff_R14;
   uint8_t4 *unaff_R15;
   uint8_t8 uStack0000000000000028;
@@ -11364,7 +11364,7 @@ uint64_t ValidateAndProcessParameters(int minValue,int maxValue,uint8_t8 systemC
   uint8_t8 *pvalidationResult;
   uint8_t4 *unaff_RBX;
   uint8_t4 unaff_EBP;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   uint8_t8 uStackX_20;
   
   if (maxValue < minValue) {
@@ -13563,7 +13563,7 @@ void DataProcessingErrorHandler(void)
   char cVar12;
   int integerValue13;
   uint resourceHash4;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   longlong localContextPointer5;
   uint8_t8 resourceHash6;
   uint8_t8 resourceHash7;
@@ -16655,7 +16655,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
   longlong unaff_RBP;
   longlong unaff_RSI;
   longlong lVar5;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   longlong MemoryAddress;
   longlong unaff_R14;
   longlong BufferPointer;
@@ -16802,7 +16802,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
 {
   int operationResult;
   longlong unaff_RBX;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   uint8_t4 in_stack_00000030;
   
   integerValue1 = ValidateResourceEntry();
@@ -17476,7 +17476,7 @@ uint8_t8 InitializeResourceProcessingContext(void)
   uint8_t8 unsignedResult3;
   longlong unaff_RBX;
   ulonglong unaff_RSI;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   uint8_t8 in_R9;
   longlong unaff_R14;
   longlong DataOffset;
@@ -18112,10 +18112,10 @@ uint8_t8 ValidateResourceTableEntry(longlong resourceContext, uint8_t8 *resource
 uint8_t8 GetResourceTableStatus(void)
 
 {
-  longlong in_RAX;
+  longlong InputRegisterValue;
   uint8_t8 resourceHash;
   uint8_t8 *unaff_RBX;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   
   if (*(int *)(in_RAX + 0x18) == 0) {
     resourceHash = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x60,0x25);
@@ -18192,12 +18192,12 @@ uint8_t8 InitializeResourceTableCache(void)
 
 {
   float CalculatedFloatValue;
-  int in_EAX;
+  int InputRegisterResult;
   uint8_t8 validationResult;
   uint8_t8 *punsignedResult3;
   longlong unaff_RBX;
   uint8_t8 unaff_RBP;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   
   if (in_EAX == 0x1b) {
     if (*(uint *)(unaff_RBX + 0x40) < 0x3b) {
@@ -18341,7 +18341,7 @@ ulonglong ValidateAndProcessResourceData(void)
 {
   longlong *processPointer;
   uint validationResult;
-  uint in_EAX;
+  uint InputRegisterResult;
   uint unsignedValue3;
   ulonglong unsignedResult4;
   ulonglong unsignedValue5;
@@ -18670,7 +18670,7 @@ ulonglong ExecuteResourceDataValidation(void)
 
 {
   uint8_t8 resourceHash;
-  int in_EAX;
+  int InputRegisterResult;
   ulonglong validationResult;
   uint8_t8 *unaff_RBX;
   longlong unaff_RBP;
@@ -18732,7 +18732,7 @@ ulonglong GetResourceHashA(void)
   ulonglong unsignedResult3;
   uint8_t8 *unaff_RBX;
   longlong unaff_RBP;
-  ulonglong unaff_RDI;
+  ulonglong UnaffectedRegisterValue;
   uint8_t1 auStackX_20 [4];
   uint8_t1 auStackX_24 [2];
   uint8_t1 auStackX_26 [2];
@@ -18780,7 +18780,7 @@ ulonglong GetResourceHashB(void)
   ulonglong validationResult;
   uint8_t8 *unaff_RBX;
   longlong unaff_RBP;
-  ulonglong unaff_RDI;
+  ulonglong UnaffectedRegisterValue;
   
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
     validationResult = GetResourceHashValue(*unaff_RBX,unaff_RBP + 0x30);
@@ -18994,11 +18994,11 @@ uint8_t8 GetResourcePoolInfo(void)
 {
   longlong loopCounter;
   longlong *presourceTable;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   uint8_t8 unsignedResult3;
   longlong *unaff_RBX;
   uint8_t8 unaff_RBP;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   bool in_CF;
   char cStack0000000000000030;
   uint in_stack_00000040;
@@ -19083,7 +19083,7 @@ uint8_t8 ValidateResourceTableIntegrity(void)
   uint8_t8 unsignedResult3;
   longlong *unaff_RBX;
   char unaff_BPL;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   uint in_stack_00000040;
   
   localContextPointer = *unaff_RBX;
@@ -19155,7 +19155,7 @@ uint8_t8 InitializeSystemResourceCheck(int ResourceCheckFlag)
   longlong *processPointer;
   uint8_t8 validationResult;
   longlong *unaff_RBX;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   char in_stack_00000030;
   uint8_t8 in_stack_00000038;
   uint uStack0000000000000040;
@@ -19604,7 +19604,7 @@ ulonglong ProcessResourceDataB(void)
   longlong resourceTable;
   uint unsignedValue3;
   uint unsignedResult4;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   ulonglong unsignedValue5;
   uint configurationFlags;
   longlong *unaff_RBX;
@@ -20389,7 +20389,7 @@ LAB_18089bfc7:
 ValidateResourceIntegrity(void)
 
 {
-  uint in_EAX;
+  uint InputRegisterResult;
   int operationResult;
   int integerValue2;
   uint unsignedValue3;
@@ -20855,7 +20855,7 @@ uint8_t8 * GetResourceDataPointerA(void)
   uint uVar8;
   uint uVar9;
   uint resourceHash0;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   uint8_t8 *presourceHash1;
   uint8_t4 *presourceHash2;
   uint8_t8 *presourceHash3;
@@ -21371,7 +21371,7 @@ ulonglong ResourceProcessingHandler(uint8_t8 objectContextParam)
   float TertiaryFloatValue;
   float fVar6;
   uint8_t8 unsignedValue7;
-  uint in_EAX;
+  uint InputRegisterResult;
   uint uVar8;
   uint uVar9;
   uint resourceHash0;
@@ -21977,7 +21977,7 @@ ulonglong ResourceProcessingHandlerAlt1(void)
 {
   longlong *processPointer;
   longlong resourceTable;
-  int in_EAX;
+  int InputRegisterResult;
   uint unsignedValue3;
   ulonglong unsignedResult4;
   longlong *unaff_RBX;
@@ -22357,7 +22357,7 @@ ulonglong ResourceProcessingHandlerAlt2(void)
   longlong unaff_RBP;
   uint uVar8;
   uint uVar9;
-  ulonglong unaff_RDI;
+  ulonglong UnaffectedRegisterValue;
   int integerValue10;
   longlong unaff_R13;
   int unaff_R14D;
@@ -22615,7 +22615,7 @@ ulonglong ResourceProcessingHandlerAlt3(void)
   uint8_t4 unaff_ESI;
   uint uVar8;
   uint uVar9;
-  ulonglong unaff_RDI;
+  ulonglong UnaffectedRegisterValue;
   int integerValue10;
   longlong unaff_R13;
   int unaff_R14D;
@@ -22874,7 +22874,7 @@ ulonglong ProcessFloatParameterResourceHash(float objectContextParam)
   uint uVar8;
   int iVar9;
   uint resourceHash0;
-  ulonglong unaff_RDI;
+  ulonglong UnaffectedRegisterValue;
   int integerValue11;
   longlong unaff_R13;
   int unaff_R14D;
@@ -23185,7 +23185,7 @@ ulonglong ValidateAndProcessResourceDataIntegrity(void)
 {
   longlong *processPointer;
   uint validationResult;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   ulonglong unsignedResult3;
   int ResultIndex;
   longlong unaff_RBP;
@@ -23429,7 +23429,7 @@ ulonglong ExecuteResourceDataIntegrityValidation(void)
 
 {
   longlong *processPointer;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   ulonglong validationResult;
   uint unsignedValue3;
   longlong *unaff_RDI;
@@ -23554,7 +23554,7 @@ ulonglong ProcessResourceDataValidationFlow(void)
 
 {
   longlong *processPointer;
-  uint in_EAX;
+  uint InputRegisterResult;
   uint validationResult;
   ulonglong unaff_RBX;
   longlong *unaff_RDI;
@@ -23704,7 +23704,7 @@ ulonglong GetResourceHashAndValidate(void)
 
 {
   uint resourceHash;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   ulonglong validationResult;
   uint8_t8 *unaff_RBX;
   longlong unaff_RSI;
@@ -24150,7 +24150,7 @@ d557(uint8_t4 objectContextParam)
 {
   int operationResult;
   uint8_t8 *unaff_RBX;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   uint8_t4 extraout_XMM0_Da;
   
   integerValue1 = ComputeDataChecksum(objectContextParam,&ObjectStackBuffer30,0);
@@ -24315,7 +24315,7 @@ ulonglong ValidateAndAllocateResourceData(void)
 {
   uint8_t8 resourceHash;
   uint validationResult;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   ulonglong unsignedResult3;
   uint8_t8 *unaff_RBX;
   longlong unaff_RSI;
@@ -24741,10 +24741,10 @@ uint8_t8 ResourceDataProcessor(void)
 
 {
   uint8_t8 resourceHash;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   uint8_t8 validationResult;
   uint8_t8 *unaff_RBX;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
@@ -24795,7 +24795,7 @@ uint8_t8 ResourceDataManager(void)
   uint8_t8 resourceHash;
   uint8_t8 validationResult;
   uint8_t8 *unaff_RBX;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   
   resourceHash = *unaff_RBX;
   validationResult = ReadResourceData(resourceHash,unaff_RDI + 0x4c,4);
@@ -24847,7 +24847,7 @@ uint8_t8 ResourceHandler(void)
 {
   uint8_t8 resourceHash;
   uint8_t8 *unaff_RBX;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
@@ -25082,7 +25082,7 @@ ulonglong ValidateAndProcessResourceData(void)
 
 {
   longlong *processPointer;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   ulonglong validationResult;
   ulonglong unsignedResult3;
   longlong *unaff_RBX;
@@ -25686,7 +25686,7 @@ ulonglong ProcessResourceValidationAndMemoryAllocation(void)
   uint8_t8 unaff_RBX;
   longlong unaff_RBP;
   uint8_t4 *punsignedValue7;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   longlong unaff_R15;
   
   if (*(uint *)(unaff_RDI + 0x40) < 0x84) {
@@ -26094,7 +26094,7 @@ ulonglong ProcessResourceTableValidationAndOperations(void)
   longlong loopCounter;
   longlong *presourceTable;
   uint unsignedValue3;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   ulonglong unsignedResult4;
   ulonglong unsignedValue5;
   longlong unaff_RBP;
@@ -26401,7 +26401,7 @@ ulonglong ProcessResourceDataValidationAndAllocation(uint8_t8 objectContextParam
 {
   longlong *processPointer;
   longlong resourceTable;
-  uint in_EAX;
+  uint InputRegisterResult;
   uint unsignedValue3;
   ulonglong unsignedResult4;
   ulonglong unsignedValue5;
@@ -26764,10 +26764,10 @@ uint8_t8 DataCleanupHandler(void)
 
 {
   uint8_t8 resourceHash;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   uint8_t8 validationResult;
   uint8_t8 *unaff_RBX;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
@@ -26800,7 +26800,7 @@ ee87(void)
   uint8_t8 resourceHash;
   int integerValue2;
   uint8_t8 *unaff_RBX;
-  longlong unaff_RDI;
+  longlong UnaffectedRegisterValue;
   
   resourceHash = *unaff_RBX;
   integerValue2 = ReadResourceData(resourceHash,unaff_RDI + 0xdc,4);
@@ -27074,7 +27074,7 @@ uint8_t8 ResourceIdentifierProcessor(longlong objectContextParam,longlong *valid
 uint8_t8 ResourceValidationService(void)
 
 {
-  longlong in_RAX;
+  longlong InputRegisterValue;
   uint8_t8 resourceHash;
   longlong *unaff_RBX;
   longlong unaff_RSI;
@@ -27222,7 +27222,7 @@ uint8_t8 ResourceValidationService(void)
 f31e(void)
 
 {
-  int in_EAX;
+  int InputRegisterResult;
   int operationResult;
   int integerValue2;
   longlong *unaff_RBX;
@@ -27512,7 +27512,7 @@ ulonglong ValidateResourceCertificateChain(void)
 {
   longlong loopCounter;
   uint validationResult;
-  longlong in_RAX;
+  longlong InputRegisterValue;
   ulonglong unsignedResult3;
   longlong unaff_RBP;
   uint unaff_ESI;
