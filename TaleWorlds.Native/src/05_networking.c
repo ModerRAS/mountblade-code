@@ -10220,8 +10220,18 @@ LAB_18084a986:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084aa10(NetworkHandle connectionContext,NetworkStatus packetData)
-void FUN_18084aa10(NetworkHandle connectionContext,NetworkStatus packetData)
+/**
+ * @brief 网络状态信息广播器
+ * 
+ * 该函数负责广播网络状态信息。
+ * 它通过连接发送状态数据，确保信息能够传递到相关的网络节点。
+ * 
+ * @param connectionContext 网络连接句柄
+ * @param packetData 状态数据包
+ * @return void
+ * @note 该函数用于网络状态信息的广播和分发
+ */
+void NetworkStatusBroadcaster(NetworkHandle connectionContext,NetworkStatus packetData)
 
 {
   int networkStatus1;
@@ -10263,8 +10273,18 @@ LAB_18084aad6:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084ab60(NetworkHandle connectionContext,NetworkStatus packetData)
-void FUN_18084ab60(NetworkHandle connectionContext,NetworkStatus packetData)
+/**
+ * @brief 网络连接状态同步器
+ * 
+ * 该函数负责同步网络连接状态。
+ * 它确保连接状态在不同节点间保持一致，并处理状态同步的相关操作。
+ * 
+ * @param connectionContext 网络连接句柄
+ * @param packetData 状态数据包
+ * @return void
+ * @note 该函数用于网络连接状态的同步和维护
+ */
+void NetworkConnectionStatusSynchronizer(NetworkHandle connectionContext,NetworkStatus packetData)
 
 {
   int networkStatus1;
