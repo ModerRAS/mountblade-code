@@ -5568,24 +5568,33 @@ undefined8 ValidateSystemConfiguration(longlong configHandle)
 
 
 
- void FUN_180891890(longlong param_1,longlong param_2)
-void FUN_180891890(longlong param_1,longlong param_2)
+ /**
+ * @brief 验证对象状态并执行调度操作
+ * 
+ * 该函数检查对象的状态标志，如果状态为0则进行验证处理。
+ * 验证通过后调用调度函数处理对象。如果验证失败或状态不为0，
+ * 则执行错误处理流程。
+ * 
+ * @param objectContext 对象上下文指针，包含对象的状态信息
+ * @param schedulerContext 调度器上下文，包含调度相关的配置信息
+ */
+void ValidateObjectStateAndDispatch(longlong objectContext, longlong schedulerContext)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int validationStatus;
+  undefined8 validationBuffer;
   
-  if (*(int *)(param_1 + 0x2c) == 0) {
-    iVar1 = FUN_180894860(param_2,param_1 + 0x1c,&uStackX_8);
-    if (iVar1 == 0) {
-      iVar1 = func_0x00018088c500(uStackX_8,param_1 + 0x2c);
-      if (iVar1 == 0) goto LAB_1808918d2;
+  if (*(int *)(objectContext + 0x2c) == 0) {
+    validationStatus = FUN_180894860(schedulerContext,objectContext + 0x1c,&validationBuffer);
+    if (validationStatus == 0) {
+      validationStatus = func_0x00018088c500(validationBuffer,objectContext + 0x2c);
+      if (validationStatus == 0) goto LAB_1808918d2;
     }
     return;
   }
 LAB_1808918d2:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+  FUN_18088d720(*(undefined8 *)(schedulerContext + 0x98),objectContext);
 }
 
 
