@@ -525,11 +525,11 @@ undefined SecurityAccessControl;
  * 设置日志记录、错误跟踪和调试信息输出
  */
 void InitializeLoggingSystem(void);
-undefined g_loggingSystemInstance;
-undefined g_logFileHandle;
-undefined g_logLevelConfig;
-undefined g_logOutputBuffer;
-undefined g_logRotationManager;
+undefined LoggingSystemInstance;
+undefined LogFileHandle;
+undefined LogLevelConfig;
+undefined LogOutputBuffer;
+undefined LogRotationManager;
 
 // 函数: void InitializePerformanceMonitor(void)
 /**
@@ -539,19 +539,19 @@ undefined g_logRotationManager;
  * 设置性能指标收集、分析和报告机制
  */
 void InitializePerformanceMonitor(void);
-undefined g_performanceMonitorInstance;
-undefined g_performanceCounterArray;
-undefined g_performanceMetricsTable;
-undefined g_profilingDataBuffer;
-undefined g_fpsCounter;
-undefined g_memoryUsageTracker;
-undefined g_cpuUsageMonitor;
-undefined g_gpuPerformanceTracker;
-undefined g_frameTimeAnalyzer;
-undefined g_networkLatencyMonitor;
-undefined g_diskIOPerformanceTracker;
-undefined g_threadPerformanceProfiler;
-undefined g_systemResourceMonitor;
+undefined PerformanceMonitorInstance;
+undefined PerformanceCounterArray;
+undefined PerformanceMetricsTable;
+undefined ProfilingDataBuffer;
+undefined FpsCounter;
+undefined MemoryUsageTracker;
+undefined CpuUsageMonitor;
+undefined GpuPerformanceTracker;
+undefined FrameTimeAnalyzer;
+undefined NetworkLatencyMonitor;
+undefined DiskIOPerformanceTracker;
+undefined ThreadPerformanceProfiler;
+undefined SystemResourceMonitor;
 undefined g_performanceReportGenerator;
 undefined g_optimizationSuggestionEngine;
 undefined g_benchmarkingTool;

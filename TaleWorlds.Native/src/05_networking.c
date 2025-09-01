@@ -436,15 +436,15 @@ void ProcessNetworkPacket(uint64_t packetHandle)
   processStatus = func_0x00018088c590(packetHandle,networkContext);
   if ((((processStatus != 0) ||
        (((*(uint *)(networkContext[0] + 0x24) >> 1 & 1) != 0 &&
-        (validationStatus = FUN_18088c740(networkContext + 1), validationStatus == 0)))) && (processStatus == 0)) &&
-     (processStatus = FUN_18088dec0(*(undefined8 *)(networkContext[0] + 0x98),&packetData,0x18), processStatus == 0))
+        (validationStatus = ValidateNetworkConnection(networkContext + 1), validationStatus == 0)))) && (processStatus == 0)) &&
+     (processStatus = ProcessNetworkPacketData(*(undefined8 *)(networkContext[0] + 0x98),&packetData,0x18), processStatus == 0))
   {
     *packetData = &UNK_180982dc0;
     *(uint32_t *)(packetData + 1) = 0x18;
     *(int *)(packetData + 2) = (int)packetHandle;
-    func_0x00018088e0d0(*(undefined8 *)(networkContext[0] + 0x98));
+    SendNetworkPacket(*(undefined8 *)(networkContext[0] + 0x98));
   }
-  FUN_18088c790(networkContext + 1);
+  CleanupNetworkConnection(networkContext + 1);
 }
 
 
@@ -478,7 +478,7 @@ uint64_t CleanupNetworkConnectionResources(longlong *connectionContext)
     }
     if ((0 < (int)validationRange) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     validationRange = 0;
@@ -2599,8 +2599,17 @@ void ProcessNetworkHandshake(longlong handshakeContext, undefined8 handshakeData
 
 
 
-// 函数: void FUN_1808427f0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808427f0(longlong param_1,undefined8 param_2,undefined4 param_3)
+/**
+ * @brief 初始化网络握手协议
+ * 
+ * 该函数负责初始化网络握手协议，设置握手参数。
+ * 主要用于建立安全网络连接的初始握手过程。
+ * 
+ * @param handshakeContext 握手上下文指针
+ * @param handshakeData 握手数据指针
+ * @param handshakeFlags 握手标志位
+ */
+void InitializeNetworkHandshakeProtocol(longlong handshakeContext, undefined8 handshakeData, undefined4 handshakeFlags)
 
 {
   FUN_18083f9b0(param_2,param_3,&UNK_1809843c0,*(undefined4 *)(param_1 + 0x10),

@@ -123,8 +123,8 @@ int SystemStatusFlag;
 long long SystemTimestamp;
 void* SystemMemoryRegionTrevigintary;
 
-// 函数: 系统初始化函数D
-void* SystemInitializationFunctionD;
+// 函数: 系统初始化函数D - 数据表管理器初始化
+void* DataTableManagerInitializer;
 void* SystemMemoryRegionQuattuorvigintary;
 void* SystemMemoryRegionQuinvigintary;
 void* SystemDataTableQuinary;
@@ -345,11 +345,11 @@ undefined DAT_180a069a0;
 undefined DAT_180a069a8;
 undefined UNK_18014f7f0;
 
-// 函数: undefined FUN_180049b30;
-undefined FUN_180049b30;
+// 函数: 系统内存分配器 - 负责动态内存分配和管理
+undefined SystemMemoryAllocator;
 
-// 函数: undefined FUN_18004ca00;
-undefined FUN_18004ca00;
+// 函数: 系统数据初始化器 - 负责初始化系统核心数据结构
+undefined SystemDataInitializer;
 undefined UNK_180a08fd0;
 undefined UNK_180a09008;
 undefined UNK_180a09048;
@@ -382,8 +382,8 @@ undefined UNK_1800830b0;
 undefined UNK_1800830c0;
 undefined UNK_180083130;
 
-// 函数: undefined FUN_18004a130;
-undefined FUN_18004a130;
+// 函数: 系统配置加载器 - 负责加载系统配置参数
+undefined SystemConfigurationLoader;
 undefined UNK_180a0c9a0;
 undefined UNK_180a0cb40;
 undefined UNK_180a0c808;
