@@ -1050,8 +1050,7 @@ void* SystemProcessConfigTableQuaternary;
 void* MemoryPoolFunction;
 void* SystemEventConfigTableSenary;
 
- void InitializeMemoryTracking(void);
-/**
+ /**
  * @brief 初始化内存跟踪
  * 
  * 该函数负责初始化内存跟踪系统
@@ -1065,8 +1064,7 @@ void* SystemMemoryTracker;
 void* SystemPerformanceMonitor;
 void* SystemDebugLogger;
 
- void ConfigureMemoryProtection(void);
-/**
+ /**
  * @brief 配置内存保护
  * 
  * 该函数负责配置系统内存保护机制
