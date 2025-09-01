@@ -850,7 +850,7 @@ undefined DAT_180bf91c0;
 undefined DAT_180bf91c8;
 void* MemoryAllocatorFunction;
 
- void InitializeSystemResources;
+ void InitializeSystemResources(void);
 /**
  * @brief 初始化系统资源
  * 
@@ -6517,17 +6517,25 @@ void ProcessObjectContextRelease(longlong ObjectHandle, longlong SystemContext)
 
 
 
- void FUN_1808920e0(longlong param_1,longlong param_2)
-void FUN_1808920e0(longlong param_1,longlong param_2)
+ /**
+ * @brief 处理对象验证操作
+ * 
+ * 该函数验证对象上下文的有效性，如果验证失败则调用相应的处理函数
+ * 主要用于对象的验证和错误处理流程
+ * 
+ * @param ObjectContext 对象上下文指针，包含要验证的对象信息
+ * @param SystemContext 系统上下文指针，包含系统运行环境信息
+ */
+void ProcessObjectValidation(longlong ObjectContext, longlong SystemContext)
 
 {
-  int iVar1;
-  undefined1 auStackX_8 [8];
+  int validationStatus;
+  undefined1 validationBuffer [8];
   
-  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),auStackX_8);
-  if (iVar1 == 0) {
+  validationStatus = ValidateObjectContext(*(undefined4 *)(ObjectContext + 0x10), validationBuffer);
+  if (validationStatus == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    ProcessSystemObject(*(undefined8 *)(SystemContext + 0x98), ObjectContext);
   }
   return;
 }
@@ -6535,19 +6543,27 @@ void FUN_1808920e0(longlong param_1,longlong param_2)
 
 
 
- void FUN_180892120(longlong param_1,longlong param_2)
-void FUN_180892120(longlong param_1,longlong param_2)
+ /**
+ * @brief 执行双重验证的对象处理
+ * 
+ * 该函数执行两阶段的验证过程，首先验证对象上下文，然后验证处理结果
+ * 如果任一验证失败，则调用相应的错误处理函数
+ * 
+ * @param ObjectContext 对象上下文指针，包含要验证的对象信息
+ * @param SystemContext 系统上下文指针，包含系统运行环境信息
+ */
+void ExecuteDualValidationObjectProcessing(longlong ObjectContext, longlong SystemContext)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int primaryValidationStatus;
+  undefined8 processingResult;
   
-  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = func_0x0001808c7d30(uStackX_8);
-    if (iVar1 == 0) {
+  primaryValidationStatus = ValidateObjectContext(*(undefined4 *)(ObjectContext + 0x10), &processingResult);
+  if (primaryValidationStatus == 0) {
+    primaryValidationStatus = ProcessValidationResult(processingResult);
+    if (primaryValidationStatus == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      ProcessSystemObject(*(undefined8 *)(SystemContext + 0x98), ObjectContext);
     }
   }
   return;
@@ -6555,25 +6571,35 @@ void FUN_180892120(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180892170(longlong param_1,longlong param_2)
+/**
+ * @brief 验证并处理对象属性设置
+ * 
+ * 该函数验证对象上下文的有效性，检查对象的特定条件，
+ * 如果条件满足则设置对象的属性值并调用处理函数
+ * 
+ * @param ObjectContext 对象上下文指针，包含要处理的对象信息
+ * @param SystemContext 系统上下文指针，包含系统运行环境信息
+ * @return 处理结果状态码，0x4c表示特定错误状态
+ */
+undefined8 ValidateAndProcessObjectAttributeSetting(longlong ObjectContext, longlong SystemContext)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 processingResult;
+  longlong objectContextBuffer;
   
-  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 == 0) {
-    if (lStackX_8 != 0) {
-      lStackX_8 = lStackX_8 + -8;
+  processingResult = ValidateObjectContext(*(undefined4 *)(ObjectContext + 0x10), &objectContextBuffer);
+  if ((int)processingResult == 0) {
+    if (objectContextBuffer != 0) {
+      objectContextBuffer = objectContextBuffer + -8;
     }
-    if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+    if (*(longlong *)(objectContextBuffer + 0x10) == 0) {
       return 0x4c;
     }
-    *(undefined8 *)(param_1 + 0x18) =
-         *(undefined8 *)(*(longlong *)(*(longlong *)(lStackX_8 + 0x10) + 0x2b0) + 0x78);
-    uVar1 = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+    *(undefined8 *)(ObjectContext + 0x18) =
+         *(undefined8 *)(*(longlong *)(*(longlong *)(objectContextBuffer + 0x10) + 0x2b0) + 0x78);
+    processingResult = ProcessSystemObjectWithCleanup(*(undefined8 *)(SystemContext + 0x98), ObjectContext);
   }
-  return uVar1;
+  return processingResult;
 }
 
 
