@@ -308,12 +308,12 @@ void* g_memoryDebugger;
  * 该函数负责初始化游戏脚本系统
  * 设置脚本引擎、编译器和虚拟机等相关组件
  */
-undefined InitializeScriptingSystem;
-undefined g_scriptingContext;
-undefined g_scriptingEngineInstance;
-undefined g_scriptCompiler;
-undefined g_scriptVirtualMachine;
-undefined g_scriptDebugger;
+void* InitializeScriptingSystem;
+void* g_scriptingContext;
+void* g_scriptingEngineInstance;
+void* g_scriptCompiler;
+void* g_scriptVirtualMachine;
+void* g_scriptDebugger;
 
 // 函数: undefined InitializeFileSystem;
 /**
