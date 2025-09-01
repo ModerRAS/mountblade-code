@@ -14516,7 +14516,7 @@ LAB_18084d4b4:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_18084d414(NetworkHandle connectionContext,int packetData)
+NetworkHandle ProcessNetworkConnectionValidation(NetworkHandle connectionContext,int packetData)
 
 {
   NetworkStatus *networkPointer1;
