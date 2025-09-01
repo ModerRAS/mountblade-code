@@ -2412,7 +2412,7 @@ uint8_t SystemMemoryStack;
  * 保留原有数据并调整内存空间
  */
 void ReallocateMemoryBlock(void);
-void* SystemMemoryConfigurationDataTemplateD497D0;
+void* SystemMemoryConfigurationDataTemplateSpecialA;
 
 void GetMemoryBlockSize(void);
 /**
@@ -2524,7 +2524,7 @@ uint8_t InitializeResourceManager;
 
  uint8_t ConfigureResourceSettings;
 uint8_t ConfigureResourceSettings;
-uint8_t SystemMemoryConfigDataTemplateA2DE40;
+uint8_t SystemMemoryConfigDataTemplateSpecialB;
 uint8_t1 ResourceAllocationTable;
 uint8_t SystemResourceQueue;
 uint8_t SystemResourceStack;
@@ -2560,16 +2560,16 @@ void* ResourceNetworkManager;
 void* ResourceDatabaseManager;
 void* SystemConfigTable;
 void* SystemMemoryConfig;
-uint8_t SystemConfigurationEntry03;
-uint8_t SystemConfigurationEntry04;
-uint8_t SystemConfigurationEntry05;
-uint8_t SystemConfigurationEntry06;
-uint8_t SystemConfigurationEntry07;
-uint8_t SystemConfigurationEntry08;
-uint8_t SystemConfigurationEntry09;
-uint8_t SystemConfigurationEntry10;
-uint8_t SystemConfigurationEntry11;
-uint8_t SystemConfigurationEntry12;
+uint8_t SystemConfigurationEntryTertiary;
+uint8_t SystemConfigurationEntryQuaternary;
+uint8_t SystemConfigurationEntryQuinary;
+uint8_t SystemConfigurationEntrySenary;
+uint8_t SystemConfigurationEntrySeptenary;
+uint8_t SystemConfigurationEntryOctonary;
+uint8_t SystemConfigurationEntryNonary;
+uint8_t SystemConfigurationEntryDenary;
+uint8_t SystemConfigurationEntryUndenary;
+uint8_t SystemConfigurationEntryDuodenary;
 uint8_t ThreadConfigTable;
 uint8_t ThreadPriorityTable;
 uint8_t ThreadAffinityTable;
@@ -2801,18 +2801,18 @@ uint8_t SystemResourceCreator;
 uint8_t SystemResourceMaker;
 uint8_t SystemResourceProducer;
 uint8_t SystemResourceGenerator;
-uint8_t SystemConfigurationEntry01;
-uint8_t SystemConfigurationEntry02;
-uint8_t SystemConfigurationEntry03;
-uint8_t SystemConfigurationEntry04;
-uint8_t SystemConfigurationEntry05;
-uint8_t SystemConfigurationEntry06;
-uint8_t SystemConfigurationEntry07;
-uint8_t SystemConfigurationEntry08;
-uint8_t SystemConfigurationEntry09;
-uint8_t SystemConfigurationEntry10;
-uint8_t SystemConfigurationEntry11;
-uint8_t SystemConfigurationEntry12;
+uint8_t SystemConfigurationEntryPrimary;
+uint8_t SystemConfigurationEntrySecondary;
+uint8_t SystemConfigurationEntryTertiary;
+uint8_t SystemConfigurationEntryQuaternary;
+uint8_t SystemConfigurationEntryQuinary;
+uint8_t SystemConfigurationEntrySenary;
+uint8_t SystemConfigurationEntrySeptenary;
+uint8_t SystemConfigurationEntryOctonary;
+uint8_t SystemConfigurationEntryNonary;
+uint8_t SystemConfigurationEntryDenary;
+uint8_t SystemConfigurationEntryUndenary;
+uint8_t SystemConfigurationEntryDuodenary;
 byte SystemConfigurationFlag;
 uint8_t SystemStatusIndicator;
 uint8_t SystemConfigurationEntry13;
@@ -3220,7 +3220,7 @@ uint8_t SystemDataBuffer002;
 
  uint8_t MonitorResourcePerformance;
 uint8_t MonitorResourcePerformance;
-uint8_t1 SystemMemoryConfigDataTemplateBF66D8;
+uint8_t1 SystemMemoryConfigDataTemplateSpecialC;
 uint8_t SystemControlByteC;
 uint8_t SystemDataBufferD;
 uint8_t SystemMemoryFlagE;
@@ -6651,7 +6651,7 @@ void ProcessObjectContextRelease(longlong ObjectHandle, longlong SystemContext)
   
   validationStatus = ValidateObjectContext(*(uint8_t4 *)(ObjectHandle + 0x10), &contextBuffer);
   if (validationStatus == 0) {
-    validationStatus = func_0x0001808c8470(contextBuffer);
+    validationStatus = ProcessSystemValidation(contextBuffer);
     if (validationStatus == 0) {
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(uint8_t8 *)(SystemContext + 0x98), ObjectHandle);
@@ -7255,7 +7255,7 @@ uint8_t8 ValidateMatrixTransformationData(longlong matrixDataPointer,longlong co
       }
     }
     *(uint *)(objectContextParam + 8) = *(int *)(objectContextParam + 8) + 0xfU & 0xfffffff0;
-    unsignedValue5 = func_0x0001808e64d0(*(uint8_t8 *)(localContextPointer0 + 0x1e0));
+    unsignedValue5 = ExecuteSystemOperation(*(uint8_t8 *)(localContextPointer0 + 0x1e0));
     if ((int)unsignedValue5 == 0) {
       return 0;
     }
@@ -7817,7 +7817,7 @@ uint8_t8 ValidateObjectContextAndProcessParameterizedComplexFloatOperation(longl
       }
     }
     *(uint *)(objectContextParam + 8) = *(int *)(objectContextParam + 8) + 0xfU & 0xfffffff0;
-    unsignedResult4 = func_0x0001808e64d0(*(uint8_t8 *)(lVar5 + 0x1e0));
+    unsignedResult4 = ExecuteSystemOperation(*(uint8_t8 *)(lVar5 + 0x1e0));
     if ((int)byteValue4 == 0) {
       return 0;
     }
@@ -8159,7 +8159,7 @@ uint8_t8 ValidateAndProcessObjectContextWithParameters(longlong objectContext,lo
     }
   }
   *(uint *)(objectContextParam + 8) = *(int *)(objectContextParam + 8) + 0xfU & 0xfffffff0;
-  validationResult = func_0x0001808e64d0(*(uint8_t8 *)(contextPointer + 0x1e0));
+  validationResult = ExecuteSystemOperation(*(uint8_t8 *)(contextPointer + 0x1e0));
   if ((int)validationResult == 0) {
     return 0;
   }
@@ -8234,7 +8234,7 @@ code_r0x00018089322c:
     }
   }
   *(uint *)(objectContextParam + 8) = *(int *)(objectContextParam + 8) + 0xfU & 0xfffffff0;
-  validationResult = func_0x0001808e64d0(*(uint8_t8 *)(resourceIndex + 0x1e0));
+  validationResult = ExecuteSystemOperation(*(uint8_t8 *)(resourceIndex + 0x1e0));
   if ((int)validationResult == 0) {
     return 0;
   }
@@ -8288,7 +8288,7 @@ uint8_t8 ValidateObjectContextAndProcessFloatComparison(longlong objectContextPa
     }
   }
   *(uint *)(objectContextParam + 8) = *(int *)(objectContextParam + 8) + 0xfU & 0xfffffff0;
-  resourceHash = func_0x0001808e64d0(*(uint8_t8 *)(resourceTable + 0x1e0));
+  resourceHash = ExecuteSystemOperation(*(uint8_t8 *)(resourceTable + 0x1e0));
   if ((int)resourceHash == 0) {
     return 0;
   }
@@ -8506,7 +8506,7 @@ uint8_t8 ProcessSimplifiedParameterizedFloatComparison(longlong objectContextPar
        (InitializeSecurityContext(&stack0x00000008),
        *(longlong *)((longlong)*(int *)(localContextPointer + 0x17c) * 8 + 0x180c4f450) != 0)) {
       *(uint *)(objectContextParam + 8) = *(int *)(objectContextParam + 8) + 0xfU & 0xfffffff0;
-      validationResult = func_0x0001808e64d0(*(uint8_t8 *)(localContextPointer + 0x1e0));
+      validationResult = ExecuteSystemOperation(*(uint8_t8 *)(localContextPointer + 0x1e0));
     }
     else {
       validationResult = ProcessResourceValidation(localContextPointer,objectContextParam);
@@ -8768,35 +8768,35 @@ void ExecuteDataValidationAndProcessing(longlong data_context, longlong operatio
 int process_data_block_operation(longlong data_context, longlong operation_context)
 
 {
-  uint operation_mode;
-  int result_status;
-  longlong allocated_buffer;
-  longlong temp_stack_buffer;
+  uint OperationMode;
+  int ResultStatus;
+  longlong AllocatedBuffer;
+  longlong TempStackBuffer;
   
-  operation_mode = *(uint *)(data_context + 0x1c);
-  if ((((operation_mode != 1) || ((*(byte *)(data_context + 0x10) & 0x1f) == 0)) && (0 < *(int *)(data_context + 0x18))
-      ) && (operation_mode < 2)) {
-    if (operation_mode == 0) {
-      allocated_buffer = allocate_buffer_memory(*(uint8_t8 *)(SystemContextPointer + 0x1a0), *(int *)(data_context + 0x18), 0x20,
+  OperationMode = *(uint *)(data_context + 0x1c);
+  if ((((OperationMode != 1) || ((*(byte *)(data_context + 0x10) & 0x1f) == 0)) && (0 < *(int *)(data_context + 0x18))
+      ) && (OperationMode < 2)) {
+    if (OperationMode == 0) {
+      AllocatedBuffer = allocate_buffer_memory(*(uint8_t8 *)(SystemContextPointer + 0x1a0), *(int *)(data_context + 0x18), 0x20,
                             &ResourceTableTemplate, 0xdd, 0, 0);
-      if (allocated_buffer != 0) {
+      if (AllocatedBuffer != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(allocated_buffer, *(uint8_t8 *)(data_context + 0x10), (longlong)*(int *)(data_context + 0x18));
+        memcpy(AllocatedBuffer, *(uint8_t8 *)(data_context + 0x10), (longlong)*(int *)(data_context + 0x18));
       }
-      result_status = 0x26;
+      ResultStatus = 0x26;
     }
     else {
-      result_status = validate_data_format(operation_context, data_context + 0x24);
-      if ((result_status == 0) &&
-         (result_status = check_data_integrity(*(uint8_t4 *)(data_context + 0x24), &temp_stack_buffer), result_status == 0)) {
-        if (*(int *)(temp_stack_buffer + 0x30) == 1) {
-          *(uint8_t4 *)(temp_stack_buffer + 0x30) = 2;
+      ResultStatus = validate_data_format(operation_context, data_context + 0x24);
+      if ((ResultStatus == 0) &&
+         (ResultStatus = check_data_integrity(*(uint8_t4 *)(data_context + 0x24), &TempStackBuffer), ResultStatus == 0)) {
+        if (*(int *)(TempStackBuffer + 0x30) == 1) {
+          *(uint8_t4 *)(TempStackBuffer + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
         execute_data_operation(*(uint8_t8 *)(operation_context + 0x98), data_context);
       }
     }
-    return result_status;
+    return ResultStatus;
   }
   return 0x1f;
 }
@@ -8834,12 +8834,12 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t8 objectContextParam, ui
                     // WARNING: Subroutine does not return
       memcpy(resourceTable,*(uint8_t8 *)(unaff_RDI + 0x10),(longlong)*(int *)(unaff_RDI + 0x18));
     }
-    integerValue1 = 0x26;
+    OperationStatus = 0x26;
   }
   else {
-    integerValue1 = ProcessDataValidation();
-    if ((integerValue1 == 0) &&
-       (integerValue1 = ValidateObjectContext(*(uint8_t4 *)(unaff_RDI + 0x24),&stack0x00000060), integerValue1 == 0)
+    OperationStatus = ProcessDataValidation();
+    if ((OperationStatus == 0) &&
+       (OperationStatus = ValidateObjectContext(*(uint8_t4 *)(unaff_RDI + 0x24),&stack0x00000060), OperationStatus == 0)
        ) {
       if (*(int *)(in_stack_00000060 + 0x30) == 1) {
         *(uint8_t4 *)(in_stack_00000060 + 0x30) = 2;
@@ -8848,7 +8848,7 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t8 objectContextParam, ui
       ReleaseSystemContextResources(*(uint8_t8 *)(unaff_R15 + 0x98));
     }
   }
-  return integerValue1;
+  return OperationStatus;
 }
 
 
@@ -8886,7 +8886,7 @@ uint8_t8 ProcessFloatDataValidationAndConversion(longlong objectContextParam, lo
   auStackX_18[0] = 0;
   validationResult = ProcessDataHashing(validationContextParam + 0x60,objectContextParam + 0x10,auStackX_18);
   if ((int)validationResult == 0) {
-    resourceIndex = func_0x000180867680(validationContextParam + 0x60,auStackX_18[0]);
+    resourceIndex = LookupResourceIndex(validationContextParam + 0x60,auStackX_18[0]);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
@@ -8897,7 +8897,7 @@ uint8_t8 ProcessFloatDataValidationAndConversion(longlong objectContextParam, lo
       fVar4 = fVar1;
     }
     *(float *)(objectContextParam + 0x18) = fVar4;
-    validationResult = func_0x000180867960(validationContextParam + 0x60,auStackX_18[0],fVar4);
+    validationResult = ValidateResourceParameters(validationContextParam + 0x60,auStackX_18[0],fVar4);
     if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(uint8_t8 *)(validationContextParam + 0x98),objectContextParam);
@@ -8928,7 +8928,7 @@ uint8_t8 ProcessFloatDataValidationAndConversionNoParams(uint8_t8 objectContextP
   uStack0000000000000040 = 0;
   validationResult = ProcessDataHashing(unaff_RSI + 0x60,validationContextParam,&ObjectStackBuffer40);
   if ((int)validationResult == 0) {
-    resourceIndex = func_0x000180867680(unaff_RSI + 0x60,uStack0000000000000040);
+    resourceIndex = LookupResourceIndex(unaff_RSI + 0x60,uStack0000000000000040);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
@@ -8939,7 +8939,7 @@ uint8_t8 ProcessFloatDataValidationAndConversionNoParams(uint8_t8 objectContextP
       fVar4 = fVar1;
     }
     *(float *)(unaff_RBX + 0x18) = fVar4;
-    validationResult = func_0x000180867960(unaff_RSI + 0x60,uStack0000000000000040,fVar4);
+    validationResult = ValidateResourceParameters(unaff_RSI + 0x60,uStack0000000000000040,fVar4);
     if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(uint8_t8 *)(unaff_RSI + 0x98));
@@ -8979,7 +8979,7 @@ void ProcessObjectContextFloatRangeValidationAndClamping(void)
     rangeMinValue = inputValue;
   }
   *(float *)(contextPointer + 0x18) = rangeMinValue;
-  validationStatus = func_0x000180867960(systemPointer + 0x60,stackParameter,rangeMinValue);
+  validationStatus = ValidateResourceParameters(systemPointer + 0x60,stackParameter,rangeMinValue);
   if (validationStatus == 0) {
                     // WARNING: Subroutine does not return
     ReleaseSystemContextResources(*(uint8_t8 *)(systemPointer + 0x98));
@@ -9005,12 +9005,12 @@ uint8_t8 ProcessFloatDataValidationAndConversion(longlong objectContextParam,lon
   float CalculatedFloatValue;
   uint8_t8 validationResult;
   longlong resourceIndex;
-  uint8_t4 auStackX_10 [2];
+  uint8_t4 ArrayStackBuffer [2];
   
   auStackX_10[0] = 0;
   validationResult = ProcessDataHashing(validationContextParam + 0x60,objectContextParam + 0x10,auStackX_10);
   if ((int)validationResult == 0) {
-    resourceIndex = func_0x000180867680(validationContextParam + 0x60,auStackX_10[0]);
+    resourceIndex = LookupResourceIndex(validationContextParam + 0x60,auStackX_10[0]);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
@@ -9022,7 +9022,7 @@ uint8_t8 ProcessFloatDataValidationAndConversion(longlong objectContextParam,lon
         validationResult = 0x1c;
       }
       else {
-        validationResult = func_0x000180867960(validationContextParam + 0x60,auStackX_10[0]);
+        validationResult = ValidateResourceParameters(validationContextParam + 0x60,auStackX_10[0]);
         if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
           ReleaseSystemContextResources(*(uint8_t8 *)(validationContextParam + 0x98),objectContextParam);
@@ -9053,7 +9053,7 @@ uint8_t8 ValidateFloatDataAndExecute(void)
   longlong unaff_R14;
   uint8_t4 in_stack_00000048;
   
-  resourceTable = func_0x000180867680();
+  resourceTable = LookupResourceIndex();
   if ((*(uint *)(resourceTable + 0x34) >> 4 & 1) != 0) {
     return 0x1f;
   }
@@ -9065,7 +9065,7 @@ uint8_t8 ValidateFloatDataAndExecute(void)
       unsignedResult3 = 0x1c;
     }
     else {
-      unsignedResult3 = func_0x000180867960(unaff_R14 + 0x60,in_stack_00000048);
+      unsignedResult3 = ValidateResourceParameters(unaff_R14 + 0x60,in_stack_00000048);
       if ((int)unsignedResult3 == 0) {
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(uint8_t8 *)(unaff_R14 + 0x98));
@@ -9103,7 +9103,7 @@ uint8_t8 ValidateFloatDataAndExecuteSimple(void)
       validationResult = 0x1c;
     }
     else {
-      validationResult = func_0x000180867960(unaff_R14 + 0x60,in_stack_00000048);
+      validationResult = ValidateResourceParameters(unaff_R14 + 0x60,in_stack_00000048);
       if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(uint8_t8 *)(unaff_R14 + 0x98));
@@ -9158,7 +9158,7 @@ uint8_t8 ProcessDataValidationAndSystemOperation(longlong objectContextParam,lon
   auStackX_18[0] = 0;
   validationResult = ProcessDataValidationAdvanced(validationContextParam,objectContextParam + 0x20,auStackX_18);
   if ((int)validationResult == 0) {
-    resourceIndex = func_0x000180867680(validationContextParam + 0x60,auStackX_18[0]);
+    resourceIndex = LookupResourceIndex(validationContextParam + 0x60,auStackX_18[0]);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
@@ -9169,9 +9169,9 @@ uint8_t8 ProcessDataValidationAndSystemOperation(longlong objectContextParam,lon
       fVar5 = fVar1;
     }
     *(float *)(objectContextParam + 0x10) = fVar5;
-    validationResult = func_0x000180867960(validationContextParam + 0x60,auStackX_18[0],fVar5);
+    validationResult = ValidateResourceParameters(validationContextParam + 0x60,auStackX_18[0],fVar5);
     if ((int)validationResult == 0) {
-      punsignedResult4 = (uint8_t8 *)func_0x000180867660(validationContextParam + 0x60,ArrayUnionStackX8,auStackX_18[0]);
+      punsignedResult4 = (uint8_t8 *)GetResourcePointer(validationContextParam + 0x60,ArrayUnionStackX8,auStackX_18[0]);
       *(uint8_t8 *)(objectContextParam + 0x18) = *punsignedResult4;
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(uint8_t8 *)(validationContextParam + 0x98),objectContextParam);
@@ -9202,7 +9202,7 @@ uint64_t GetSystemRuntimeStatus(void)
   float TertiaryFloatValue;
   uint8_t4 in_stack_00000040;
   
-  resourceTable = func_0x000180867680();
+  resourceTable = LookupResourceIndex();
   if ((*(uint *)(resourceTable + 0x34) >> 4 & 1) != 0) {
     return 0x1f;
   }
@@ -9213,9 +9213,9 @@ uint64_t GetSystemRuntimeStatus(void)
     fVar5 = fVar1;
   }
   *(float *)(unaff_RBX + 0x10) = fVar5;
-  unsignedResult3 = func_0x000180867960(unaff_RDI + 0x60,in_stack_00000040,fVar5);
+  unsignedResult3 = ValidateResourceParameters(unaff_RDI + 0x60,in_stack_00000040,fVar5);
   if ((int)unsignedResult3 == 0) {
-    punsignedResult4 = (uint8_t8 *)func_0x000180867660(unaff_RDI + 0x60,&ObjectStackBuffer30,in_stack_00000040);
+    punsignedResult4 = (uint8_t8 *)GetResourcePointer(unaff_RDI + 0x60,&ObjectStackBuffer30,in_stack_00000040);
     *(uint8_t8 *)(unaff_RBX + 0x18) = *punsignedResult4;
                     // WARNING: Subroutine does not return
     ReleaseSystemContextResources(*(uint8_t8 *)(unaff_RDI + 0x98));
@@ -9256,9 +9256,9 @@ void ProcessFloatRangeClamping(void)
     fVar4 = fVar1;
   }
   *(float *)(unaff_RBX + 0x10) = fVar4;
-  iVar3 = func_0x000180867960(unaff_RDI + 0x60,in_stack_00000040,fVar4);
+  iVar3 = ValidateResourceParameters(unaff_RDI + 0x60,in_stack_00000040,fVar4);
   if (iVar3 == 0) {
-    pvalidationResult = (uint8_t8 *)func_0x000180867660(unaff_RDI + 0x60,&ObjectStackBuffer30,in_stack_00000040);
+    pvalidationResult = (uint8_t8 *)GetResourcePointer(unaff_RDI + 0x60,&ObjectStackBuffer30,in_stack_00000040);
     *(uint8_t8 *)(unaff_RBX + 0x18) = *pvalidationResult;
                     // WARNING: Subroutine does not return
     ReleaseSystemContextResources(*(uint8_t8 *)(unaff_RDI + 0x98));
@@ -9306,7 +9306,7 @@ uint8_t8 ProcessFloatRangeValidationAndDataHandling(longlong objectContextParam,
   auStackX_18[0] = 0;
   validationResult = ProcessDataValidationAdvanced(validationContextParam,objectContextParam + 0x20,auStackX_18);
   if ((int)validationResult == 0) {
-    resourceIndex = func_0x000180867680(validationContextParam + 0x60,auStackX_18[0]);
+    resourceIndex = LookupResourceIndex(validationContextParam + 0x60,auStackX_18[0]);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
@@ -9318,9 +9318,9 @@ uint8_t8 ProcessFloatRangeValidationAndDataHandling(longlong objectContextParam,
         validationResult = 0x1c;
       }
       else {
-        validationResult = func_0x000180867960(validationContextParam + 0x60,auStackX_18[0]);
+        validationResult = ValidateResourceParameters(validationContextParam + 0x60,auStackX_18[0]);
         if ((int)validationResult == 0) {
-          punsignedResult4 = (uint8_t8 *)func_0x000180867660(validationContextParam + 0x60,ArrayUnionStackX8,auStackX_18[0]);
+          punsignedResult4 = (uint8_t8 *)GetResourcePointer(validationContextParam + 0x60,ArrayUnionStackX8,auStackX_18[0]);
           *(uint8_t8 *)(objectContextParam + 0x18) = *punsignedResult4;
                     // WARNING: Subroutine does not return
           ReleaseSystemContextResources(*(uint8_t8 *)(validationContextParam + 0x98),objectContextParam);
@@ -9352,7 +9352,7 @@ uint8_t8 ProcessFloatRangeValidationAndDataHandlingNoParams(void)
   longlong unaff_R14;
   uint8_t4 in_stack_00000050;
   
-  resourceTable = func_0x000180867680();
+  resourceTable = LookupResourceIndex();
   if ((*(uint *)(resourceTable + 0x34) >> 4 & 1) != 0) {
     return 0x1f;
   }
@@ -9364,10 +9364,10 @@ uint8_t8 ProcessFloatRangeValidationAndDataHandlingNoParams(void)
       unsignedResult3 = 0x1c;
     }
     else {
-      unsignedResult3 = func_0x000180867960(unaff_R14 + 0x60,in_stack_00000050);
+      unsignedResult3 = ValidateResourceParameters(unaff_R14 + 0x60,in_stack_00000050);
       if ((int)unsignedResult3 == 0) {
         punsignedResult4 = (uint8_t8 *)
-                 func_0x000180867660(unaff_R14 + 0x60,&ObjectStackBuffer40,in_stack_00000050);
+                 GetResourcePointer(unaff_R14 + 0x60,&ObjectStackBuffer40,in_stack_00000050);
         *(uint8_t8 *)(unaff_RDI + 0x18) = *punsignedResult4;
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(uint8_t8 *)(unaff_R14 + 0x98));
@@ -9406,10 +9406,10 @@ uint64_t ProcessFloatDataValidation(void)
       validationResult = 0x1c;
     }
     else {
-      validationResult = func_0x000180867960(unaff_R14 + 0x60,in_stack_00000050);
+      validationResult = ValidateResourceParameters(unaff_R14 + 0x60,in_stack_00000050);
       if ((int)validationResult == 0) {
         punsignedResult3 = (uint8_t8 *)
-                 func_0x000180867660(unaff_R14 + 0x60,&ObjectStackBuffer40,in_stack_00000050);
+                 GetResourcePointer(unaff_R14 + 0x60,&ObjectStackBuffer40,in_stack_00000050);
         *(uint8_t8 *)(unaff_RDI + 0x18) = *punsignedResult3;
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(uint8_t8 *)(unaff_R14 + 0x98));
@@ -9509,10 +9509,10 @@ int ProcessDataWithValidator(longlong objectContext,longlong validationContext,i
   int operationResult;
   int integerValue2;
   
-  operationResult = func_0x00018074b800(validationContext, dataLength, *(uint8_t4 *)(objectContext + 0x10));
+  operationResult = ValidateDataFormat(validationContext, dataLength, *(uint8_t4 *)(objectContext + 0x10));
   integerValue2 = ProcessStringOperation(validationContext + operationResult, dataLength - operationResult, &StringProcessingTemplate);
   operationResult = operationResult + integerValue2;
-  integerValue2 = func_0x00018074b7d0(operationResult + validationContext, dataLength - operationResult, *(uint8_t4 *)(objectContext + 0x18));
+  integerValue2 = ParseDataContent(operationResult + validationContext, dataLength - operationResult, *(uint8_t4 *)(objectContext + 0x18));
   operationResult = operationResult + integerValue2;
   integerValue2 = ProcessStringOperation(operationResult + validationContext, dataLength - operationResult, &StringProcessingTemplate);
   operationResult = operationResult + integerValue2;
@@ -9545,10 +9545,10 @@ int ProcessDataWithExtendedValidator(longlong objectContext,longlong validationC
   int operationResult;
   int integerValue2;
   
-  operationResult = func_0x00018074b800(validationContext,dataLength,*(uint8_t4 *)(objectContext + 0x10));
+  operationResult = ValidateDataFormat(validationContext,dataLength,*(uint8_t4 *)(objectContext + 0x10));
   integerValue2 = ProcessStringOperation(validationContext + operationResult,dataLength - operationResult,&StringProcessingTemplate);
   operationResult = operationResult + integerValue2;
-  integerValue2 = func_0x00018074b7d0(operationResult + validationContext,dataLength - operationResult,*(uint8_t4 *)(objectContext + 0x18));
+  integerValue2 = ParseDataContent(operationResult + validationContext,dataLength - operationResult,*(uint8_t4 *)(objectContext + 0x18));
   operationResult = operationResult + integerValue2;
   integerValue2 = ProcessStringOperation(operationResult + validationContext,dataLength - operationResult,&StringProcessingTemplate);
   operationResult = operationResult + integerValue2;
@@ -9585,7 +9585,7 @@ int ProcessDataWithSimplifiedValidator(longlong objectContextParam,longlong vali
   int operationResult;
   int integerValue2;
   
-  integerValue1 = func_0x00018074b7d0(validationContextParam,dataLength,*(uint8_t4 *)(objectContextParam + 0x10));
+  integerValue1 = ParseDataContent(validationContextParam,dataLength,*(uint8_t4 *)(objectContextParam + 0x10));
   integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
   integerValue2 = ProcessStringValidation(integerValue1 + validationContextParam,dataLength - integerValue1,objectContextParam + 0x18,
@@ -9624,7 +9624,7 @@ int ProcessDataWithBuffer(longlong *objectContextParam,longlong validationContex
   integerValue1 = ProcessStringOperation(validationContextParam,dataLength,&SystemStringBufferA);
   integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,dataLength - integerValue1,(int)objectContextParam[3] * 8 + 0x20);
+  integerValue2 = ParseDataContent(integerValue1 + validationContextParam,dataLength - integerValue1,(int)objectContextParam[3] * 8 + 0x20);
   integerValue1 = integerValue1 + integerValue2;
   integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
@@ -9654,7 +9654,7 @@ int ProcessDataWithQueue(longlong *objectContextParam,longlong validationContext
   integerValue1 = ProcessStringOperation(validationContextParam,dataLength,&SystemStringBufferB);
   integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,dataLength - integerValue1,(int)objectContextParam[3] * 0xc + 0x20);
+  integerValue2 = ParseDataContent(integerValue1 + validationContextParam,dataLength - integerValue1,(int)objectContextParam[3] * 0xc + 0x20);
   integerValue1 = integerValue1 + integerValue2;
   integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
@@ -9684,7 +9684,7 @@ int ProcessDataWithStack(longlong *objectContextParam,longlong validationContext
   integerValue1 = ProcessStringOperation(validationContextParam,dataLength,&SystemStringBufferC);
   integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,dataLength - integerValue1,((int)objectContextParam[2] + 2) * 0xc);
+  integerValue2 = ParseDataContent(integerValue1 + validationContextParam,dataLength - integerValue1,((int)objectContextParam[2] + 2) * 0xc);
   integerValue1 = integerValue1 + integerValue2;
   integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
@@ -12154,10 +12154,10 @@ int ProcessDataBlockOperationWithBasicValidator(longlong objectContextParam,long
   int validationStatus;
   
   resourceHash = *(uint8_t4 *)(objectContextParam + 0x14);
-  integerValue2 = func_0x00018074b7d0(validationContextParam,validationFlag,*(uint8_t4 *)(objectContextParam + 0x10));
+  integerValue2 = ParseDataContent(validationContextParam,validationFlag,*(uint8_t4 *)(objectContextParam + 0x10));
   iVar3 = ProcessStringOperation(validationContextParam + integerValue2,validationFlag - integerValue2,&StringProcessingTemplate);
   integerValue2 = integerValue2 + iVar3;
-  iVar3 = func_0x00018074b800(integerValue2 + validationContextParam,validationFlag - integerValue2,resourceHash);
+  iVar3 = ValidateDataFormat(integerValue2 + validationContextParam,validationFlag - integerValue2,resourceHash);
   return iVar3 + integerValue2;
 }
 
@@ -12213,11 +12213,11 @@ int ProcessDataBlockOperationWithSimplifiedValidator(longlong objectContextParam
   iVar3 = ProcessStringOperation(validationContextParam,param_3,&StringProcessingTemplate);
   iVar4 = ProcessStringOperation(iVar3 + validationContextParam,param_3 - iVar3,&StringProcessingTemplate);
   iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b7d0(iVar3 + validationContextParam,param_3 - iVar3,validationResult);
+  iVar4 = ParseDataContent(iVar3 + validationContextParam,param_3 - iVar3,validationResult);
   iVar3 = iVar3 + iVar4;
   iVar4 = ProcessStringOperation(iVar3 + validationContextParam,param_3 - iVar3,&StringProcessingTemplate);
   iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + validationContextParam,param_3 - iVar3,resourceHash);
+  iVar4 = ValidateDataFormat(iVar3 + validationContextParam,param_3 - iVar3,resourceHash);
   return iVar4 + iVar3;
 }
 
@@ -14399,9 +14399,9 @@ uint8_t8 ValidateResourceRenderingState(void)
       plocalContextPointer4 = plocalContextPointer6;
       if (0 < integerValue6) {
         do {
-          func_0x000180867660(localContextPointer5,auStack_2f0,plocalContextPointer4);
+          GetResourcePointer(localContextPointer5,auStack_2f0,plocalContextPointer4);
           func_0x0001808676a0(localContextPointer5,plocalContextPointer4,afStack_348,alStack_300);
-          localContextPointer1 = func_0x000180867680(localContextPointer5,plocalContextPointer4);
+          localContextPointer1 = LookupResourceIndex(localContextPointer5,plocalContextPointer4);
           cVar5 = func_0x000180894c50(localContextPointer1,0);
           if ((cVar5 == '\0') && (afStack_348[0] != *(float *)(localContextPointer1 + 0x4c))) {
             uStack_2c0 = auStack_2f0._0_4_;
@@ -15662,7 +15662,7 @@ uint8_t8 ProcessResourceDataParsing(longlong *dataContext,uint8_t4 *dataBuffer)
 {
   int operationResult;
   uint8_t4 ArrayUnionStackX8 [2];
-  uint8_t4 auStackX_10 [2];
+  uint8_t4 ArrayStackBuffer [2];
   uint8_t4 auStackX_18 [2];
   
   ArrayUnionStackX8[0] = *validationContextParam;
