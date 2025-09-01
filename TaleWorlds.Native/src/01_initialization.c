@@ -3663,8 +3663,15 @@ void InitializeSystemDebugManager(void)
 
 
 
-// 函数: void FUN_180030170(void)
-void FUN_180030170(void)
+/**
+ * @brief 初始化系统事件处理器
+ * 
+ * 初始化游戏引擎的事件处理器，设置事件处理的基础设施。
+ * 该函数负责创建事件处理的基本结构，为系统事件的管理和分发做准备。
+ * 
+ * @note 该函数在系统初始化阶段被调用，用于建立事件处理的基础
+ */
+void InitializeSystemEventHandler(void)
 
 {
   char systemNodeFlag;
@@ -3713,8 +3720,15 @@ void FUN_180030170(void)
 
 
 
-// 函数: void FUN_180030270(void)
-void FUN_180030270(void)
+/**
+ * @brief 初始化系统网络管理器
+ * 
+ * 初始化游戏引擎的网络管理器，设置网络通信的基础设施。
+ * 该函数负责创建网络管理的基本结构，为系统网络通信做准备。
+ * 
+ * @note 该函数在系统初始化阶段被调用，用于建立网络管理的基础
+ */
+void InitializeSystemNetworkManager(void)
 
 {
   char systemNodeFlag;
@@ -3763,8 +3777,15 @@ void FUN_180030270(void)
 
 
 
-// 函数: void FUN_180030370(void)
-void FUN_180030370(void)
+/**
+ * @brief 初始化系统安全管理器
+ * 
+ * 初始化游戏引擎的安全管理器，设置系统安全的基础设施。
+ * 该函数负责创建安全管理的基本结构，为系统安全验证和权限控制做准备。
+ * 
+ * @note 该函数在系统初始化阶段被调用，用于建立安全管理的基础
+ */
+void InitializeSystemSecurityManager(void)
 
 {
   char systemNodeFlag;
