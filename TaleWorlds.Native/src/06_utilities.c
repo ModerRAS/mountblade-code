@@ -8730,15 +8730,15 @@ uint8_t8 GetErrorStatusCode(void)
 void ExecuteDataValidationAndProcessing(longlong data_context, longlong operation_context)
 
 {
-  int validation_result;
-  longlong temp_buffer;
+  int DataValidationResult;
+  longlong TemporaryBuffer;
   
-  validation_result = validate_data_format(operation_context, data_context + 0x10);
-  if (validation_result == 0) {
-    validation_result = check_data_integrity(*(uint8_t4 *)(data_context + 0x10), &temp_buffer);
-    if (validation_result == 0) {
-      if (*(int *)(temp_buffer + 0x30) == 1) {
-        *(uint8_t4 *)(temp_buffer + 0x30) = 2;
+  DataValidationResult = validate_data_format(operation_context, data_context + 0x10);
+  if (DataValidationResult == 0) {
+    DataValidationResult = check_data_integrity(*(uint8_t4 *)(data_context + 0x10), &TemporaryBuffer);
+    if (DataValidationResult == 0) {
+      if (*(int *)(TemporaryBuffer + 0x30) == 1) {
+        *(uint8_t4 *)(TemporaryBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
       execute_data_operation(*(uint8_t8 *)(operation_context + 0x98), data_context);
@@ -9733,7 +9733,7 @@ int ProcessDataWithStack(longlong *objectContextParam,longlong validationContext
     if (((*(byte *)(resourceIndex + 0xc4) & 1) != 0) &&
        ((lStack_48 = *(longlong *)(resourceIndex + 0x68), lStack_48 != 0 ||
         (integerValue2 = ValidateResourceAccess(objectContextParam,resourceIndex,&lStack_48), integerValue2 == 0)))) {
-      *param_3 = lStack_48;
+      *resourceIndexOutput = lStack_48;
     }
   }
                     // WARNING: Subroutine does not return
@@ -9766,8 +9766,8 @@ int ProcessDataWithStack(longlong *objectContextParam,longlong validationContext
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessResourceIndexAndSecurity(longlong objectContextParam,uint8_t4 *validationContextParam,longlong *param_3)
-void ProcessResourceIndexAndSecurity(longlong objectContextParam,uint8_t4 *validationContextParam,longlong *param_3)
+ void ProcessResourceIndexAndSecurity(longlong objectContextParam,uint8_t4 *validationContextParam,longlong *resourceIndexOutput)
+void ProcessResourceIndexAndSecurity(longlong objectContextParam,uint8_t4 *validationContextParam,longlong *resourceIndexOutput)
 
 {
   longlong *processPointer;
@@ -9815,7 +9815,7 @@ void ProcessResourceIndexAndSecurity(longlong objectContextParam,uint8_t4 *valid
     }
     if ((**(int **)(resourceIndex + 0xd0) != 0) ||
        (integerValue2 = CheckResourceAvailability(*(uint8_t4 *)(objectContextParam + 0x18)), integerValue2 == 0)) {
-      *param_3 = resourceIndex;
+      *resourceIndexOutput = resourceIndex;
     }
   }
                     // WARNING: Subroutine does not return
@@ -9943,7 +9943,7 @@ ProcessResourceIndexOperation(longlong resource_handle, uint8_t4 *resource_data,
     }
     lStack_48 = *(longlong *)(resourceIndex + 0x48);
     if ((lStack_48 != 0) || (integerValue2 = AcquireResourceLock(objectContextParam,resourceIndex,&lStack_48), integerValue2 == 0)) {
-      *param_3 = lStack_48;
+      *resourceIndexOutput = lStack_48;
     }
   }
                     // WARNING: Subroutine does not return
@@ -10581,8 +10581,8 @@ uint8_t8 ReturnResourcePoolErrorCode(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessResourceCalculationAndValidation(longlong objectContextParam,uint8_t1 *validationContextParam,int *param_3)
-void ProcessResourceCalculationAndValidation(longlong objectContextParam,uint8_t1 *validationContextParam,int *param_3)
+ void ProcessResourceCalculationAndValidation(longlong objectContextParam,uint8_t1 *validationContextParam,int *calculationResult)
+void ProcessResourceCalculationAndValidation(longlong objectContextParam,uint8_t1 *validationContextParam,int *calculationResult)
 
 {
   byte encryptionShiftValue;
@@ -87913,7 +87913,7 @@ void ResetThreadLocalStorage(void)
 void CleanupSystemResources(uint8_t8 resourceType, uint8_t8 resourceInstance, uint8_t8 cleanupOptions, uint8_t8 cleanupFlags)
 
 {
-  uint8_t8 *ResourceManager;
+  uint8_t8 *SystemResourceManager;
   
   ResourceManager = SystemResourceManagerPointer;
   if (SystemResourceManagerPointer == (uint8_t8 *)0x0) {
