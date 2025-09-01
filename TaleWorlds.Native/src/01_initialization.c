@@ -25658,7 +25658,7 @@ void SystemCleanupHandler(void)
   uStack_178 = 0xfffffffffffffffe;
   uStack_48 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_208;
   if (*(void* **)*SystemMemoryBlockStorage == &UNK_18098bb88) {
-    cVar9 = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
+    cVar9 = *(int *)(SystemStatusFlags + 0xe0) != 0;
   }
   else {
     cVar9 = (**(code **)(*(void* **)*SystemMemoryBlockStorage + 0x48))();
@@ -35231,7 +35231,7 @@ void FUN_18005c830(uint *SystemResourcePointer)
   char cVar2;
   
   if (*(void* **)*SystemMemoryBlockStorage == &UNK_18098bb88) {
-    cVar2 = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
+    cVar2 = *(int *)(SystemStatusFlags + 0xe0) != 0;
   }
   else {
     cVar2 = (**(code **)(*(void* **)*SystemMemoryBlockStorage + 0x48))();
@@ -40460,7 +40460,7 @@ code_r0x0001800630e9:
       break;
     case 5:
       systemCode = *(int *)(SystemResourcePointer + 0x58);
-      if ((*(int *)(_DAT_180c8a9c8 + 0x150) <= systemCode) &&
+      if ((*(int *)(SystemStatusFlags + 0x150) <= systemCode) &&
          (punsignedSystemValue5 = *(void* **)(SystemResourcePointer + 0x20),
          (*(ulong long *)(SystemResourcePointer + 0x60) & punsignedSystemValue5[2]) != 0)) {
         unsignedSystemValue2 = *(uint *)(SystemResourcePointer + 0x40);
@@ -50599,7 +50599,7 @@ void FUN_180073630(void* SystemResourcePointer,void* param_2)
     ProcessSystemQueue(&puStack_30,param_2);
     pointerToUnsigned1 = *(void* **)*SystemMemoryBlockStorage;
     if (pointerToUnsigned1 == &UNK_18098bb88) {
-      cVar2 = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
+      cVar2 = *(int *)(SystemStatusFlags + 0xc40) != 0;
     }
     else {
       cVar2 = (**(code **)(pointerToUnsigned1 + 0x50))((void* *)*SystemMemoryBlockStorage);
@@ -50637,7 +50637,7 @@ void FUN_180073730(void* SystemResourcePointer,void* param_2)
     ProcessSystemQueue(&puStack_30,param_2);
     pointerToUnsigned1 = *(void* **)*SystemMemoryBlockStorage;
     if (pointerToUnsigned1 == &UNK_18098bb88) {
-      cVar2 = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
+      cVar2 = *(int *)(SystemStatusFlags + 0xc40) != 0;
     }
     else {
       cVar2 = (**(code **)(pointerToUnsigned1 + 0x50))((void* *)*SystemMemoryBlockStorage);
@@ -50675,7 +50675,7 @@ void FUN_180073830(void* SystemResourcePointer,uint32_t param_2,void* param_3)
     ProcessSystemQueue(&puStack_30,param_3);
     pointerToUnsigned1 = *(void* **)*SystemMemoryBlockStorage;
     if (pointerToUnsigned1 == &UNK_18098bb88) {
-      cVar2 = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
+      cVar2 = *(int *)(SystemStatusFlags + 0xc40) != 0;
     }
     else {
       cVar2 = (**(code **)(pointerToUnsigned1 + 0x50))((void* *)*SystemMemoryBlockStorage);
