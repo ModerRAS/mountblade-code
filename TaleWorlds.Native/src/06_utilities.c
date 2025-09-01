@@ -11670,12 +11670,12 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
             iVar4 = ValidateObjectContext(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),auStackX_20);
             plVar13 = plStack_108;
             if (iVar4 == 0) {
-              puStack_d8 = &UNK_180983b68;
+              puStack_d8 = &SerializationTemplate;
               uStack_c8 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 1;
               SerializeData(&puStack_d8,*(undefined8 *)(param_1 + 0x58));
-              puStack_f0 = &UNK_180983cf8;
+              puStack_f0 = &DeserializationTemplate;
               uStack_e0 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_e8 = 0;
               DeserializeData(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
@@ -11686,7 +11686,7 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
             iVar4 = ValidateObjectContext(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),auStack_78);
             plVar13 = plStack_108;
             if (iVar4 == 0) {
-              puStack_d8 = &UNK_1809842e0;
+              puStack_d8 = &CompressionTemplate;
               uStack_c8 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 0x3f800000;
@@ -11935,7 +11935,7 @@ LAB_1808963ec:
  */
 undefined8 * InitializeDataStructure(undefined8 *dataPointer, ulonglong flags)
 {
-  *dataPointer = &UNK_180986350;
+  *dataPointer = &DataStructureDefaultTemplate;
   if ((flags & 1) != 0) {
     free(dataPointer,0x28);
   }
@@ -11956,9 +11956,9 @@ undefined8 * InitializeDataStructure(undefined8 *dataPointer, ulonglong flags)
  */
 undefined8 * InitializeAlternativeDataStructure(undefined8 *dataPointer, ulonglong flags)
 {
-  *dataPointer = &UNK_180986370;
+  *dataPointer = &AlternativeDataStructureTemplate;
   FreeMemoryResource(dataPointer + 5);
-  *dataPointer = &UNK_180986350;
+  *dataPointer = &DataStructureDefaultTemplate;
   if ((flags & 1) != 0) {
     free(dataPointer,0x38);
   }
@@ -12080,7 +12080,7 @@ int ProcessDataBlockOperationWithExtendedValidator(longlong param_1,longlong par
   int iVar3;
   
   resourceHash = *(undefined8 *)(param_1 + 0x10);
-  iVar2 = ProcessStringOperation(param_2,param_3,&UNK_1809863f8);
+  iVar2 = ProcessStringOperation(param_2,param_3,&StringOperationTemplate);
   iVar3 = ProcessStringOperation(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074be80(iVar2 + param_2,param_3 - iVar2,resourceHash);
@@ -12109,7 +12109,7 @@ int ProcessDataBlockOperationWithSimplifiedValidator(longlong param_1,longlong p
   
   resourceHash = *(undefined4 *)(param_1 + 0x14);
   validationResult = *(undefined4 *)(param_1 + 0x10);
-  iVar3 = ProcessStringOperation(param_2,param_3,&UNK_180986470);
+  iVar3 = ProcessStringOperation(param_2,param_3,&StringProcessingTemplate);
   iVar4 = ProcessStringOperation(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,validationResult);
@@ -18038,15 +18038,15 @@ undefined8 InitializeResourceTableCache(void)
           if (puVar3 != (undefined8 *)0x0) {
             (**(code **)*puVar3)(puVar3,0);
                     // WARNING: Subroutine does not return
-            ProcessResourceAllocation(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puVar3,&UNK_1809869a0,0x130,1);
+            ProcessResourceAllocation(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puVar3,&MemoryAllocationTemplate,0x130,1);
           }
           puVar3 = (undefined8 *)
-                   AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_1809869a0,0x119);
+                   AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&MemoryAllocationTemplate,0x119);
           if (puVar3 == (undefined8 *)0x0) {
             return 0x26;
           }
           puVar3[1] = unaff_RBP;
-          *puVar3 = &UNK_180986940;
+          *puVar3 = &ResourceDataTemplate;
           *(undefined4 *)(puVar3 + 2) = 1;
           *(int *)(puVar3 + 3) = (int)unaff_RBP;
           **(undefined8 **)(unaff_RDI + 0x48) = puVar3;
@@ -25215,7 +25215,7 @@ LAB_18089e70b:
         if ((int)uStack_80 != 0) {
           for (; (puStack_88 <= puVar5 && (puVar5 < puStack_88 + (int)uStack_80));
               puVar5 = puVar5 + 1) {
-            lVar6 = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,
+            lVar6 = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&MemoryBlockTemplate,0xc1c,
                                   0,0,1);
             if (lVar6 == 0) {
               uVar4 = 0x26;
@@ -25339,7 +25339,7 @@ LAB_18089e70b:
         puVar7 = *(undefined4 **)(unaff_RBP + -0x29);
         for (presourceHash0 = puVar7; (puVar7 <= presourceHash0 && (presourceHash0 < puVar7 + iVar6));
             presourceHash0 = presourceHash0 + 1) {
-          lVar9 = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,0)
+          lVar9 = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&MemoryBlockTemplate,0xc1c,0)
           ;
           if (lVar9 == 0) {
             uVar8 = 0x26;
@@ -25421,7 +25421,7 @@ LAB_18089e70b:
     if (iVar3 != 0) {
       puVar6 = *(undefined4 **)(unaff_RBP + -0x29);
       for (puVar7 = puVar6; (puVar6 <= puVar7 && (puVar7 < puVar6 + iVar3)); puVar7 = puVar7 + 1) {
-        lVar5 = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c);
+        lVar5 = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&MemoryBlockTemplate,0xc1c);
         if (lVar5 == 0) {
           uVar4 = 0x26;
           goto LAB_18089e70b;
