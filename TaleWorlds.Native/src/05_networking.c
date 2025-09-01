@@ -185,16 +185,16 @@ uint32_t NetworkSessionTimeout;
 uint32_t NetworkPortRangeStart;
 uint32_t NetworkPortRangeEnd;
 uint32_t NetworkConnectionFlagsExtended;
-undefined g_NetworkKeepAliveInterval;
-undefined g_NetworkRetryInterval;
-undefined g_NetworkTimeoutInterval;
-undefined g_NetworkHandshakeTimeout;
-undefined g_NetworkConnectionStateMachine;
-undefined g_NetworkProtocolVersion;
-undefined g_NetworkEventQueue;
-undefined g_NetworkCallbackHandler;
+uint32_t NetworkKeepAliveInterval;
+uint32_t NetworkRetryInterval;
+uint32_t NetworkTimeoutInterval;
+uint32_t NetworkHandshakeTimeout;
+uint32_t NetworkConnectionStateMachine;
+uint32_t NetworkProtocolVersion;
+uint32_t NetworkEventQueue;
+uint32_t NetworkCallbackHandler;
 
-// 函数: undefined ProcessNetworkTimeout;
+// 函数: uint32_t NetworkProcessTimeout;
 /**
  * 处理网络超时
  * 
@@ -1054,14 +1054,19 @@ undefined4 FUN_1808408ec(void)
 
 
 
-// 函数: void FUN_18084090e(void)
-void FUN_18084090e(void)
+/**
+ * @brief 清理网络连接资源
+ * 
+ * 该函数负责清理网络连接相关的资源，释放内存和
+ * 其他系统资源
+ */
+void CleanupNetworkConnectionResources(void)
 
 {
-  undefined1 auStackX_20 [8];
+  uint8_t resourceBuffer[8];
   
                     // WARNING: Subroutine does not return
-  FUN_18088c790(auStackX_20);
+  FUN_18088c790(resourceBuffer);
 }
 
 
@@ -1069,64 +1074,74 @@ void FUN_18084090e(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180840950(undefined8 param_1,longlong param_2,longlong param_3,int *param_4)
-void FUN_180840950(undefined8 param_1,longlong param_2,longlong param_3,int *param_4)
+/**
+ * @brief 验证网络连接数据包
+ * 
+ * 该函数负责验证网络连接中传输的数据包的完整性
+ * 和有效性，确保数据包符合网络协议要求
+ * 
+ * @param connectionHandle 连接句柄
+ * @param packetData 数据包数据指针
+ * @param packetSize 数据包大小
+ * @param validationResult 验证结果输出参数
+ */
+void ValidateNetworkPacketData(uint64_t connectionHandle, int64_t packetData, int64_t packetSize, int *validationResult)
 
 {
-  longlong lVar1;
-  int iVar2;
-  int iVar3;
-  undefined8 uVar4;
-  int *piVar5;
-  undefined *puVar6;
-  ulonglong uVar7;
-  ulonglong uVar8;
-  longlong lVar9;
-  undefined1 auStack_68 [32];
-  undefined8 uStack_48;
-  undefined1 auStack_40 [16];
-  ulonglong uStack_30;
+  int64_t tempOffset;
+  int32_t validationStatus;
+  int32_t processingStatus;
+  uint64_t packetHash;
+  int *hashTableEntry;
+  uint8_t *packetBuffer;
+  uint64_t tableIndex;
+  uint64_t maxEntries;
+  int64_t connectionInfo;
+  uint8_t securityBuffer[32];
+  uint64_t securityContext;
+  uint8_t packetHeader[16];
+  uint64_t stackGuard;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
-  if (param_3 != 0) {
-    iVar2 = FUN_18076b6f0(param_3,&UNK_180984620,10);
-    if (iVar2 == 0) {
-      iVar2 = FUN_180881fa0(param_1,param_3,auStack_40);
-      if (iVar2 == 0) {
-        lVar9 = *(longlong *)(param_2 + 0x18);
-        uVar4 = FUN_18084dc20(auStack_40);
-        iVar2 = *(int *)(lVar9 + 0x98);
-        uVar7 = 0;
-        if (0 < iVar2) {
-          uStack_48._4_4_ = (int)((ulonglong)uVar4 >> 0x20);
-          piVar5 = *(int **)(lVar9 + 0x90);
-          uVar8 = uVar7;
+  stackGuard = _DAT_180bf00a8 ^ (uint64_t)securityBuffer;
+  if (packetSize != 0) {
+    validationStatus = FUN_18076b6f0(packetSize,&UNK_180984620,10);
+    if (validationStatus == 0) {
+      validationStatus = FUN_180881fa0(connectionHandle,packetSize,packetHeader);
+      if (validationStatus == 0) {
+        connectionInfo = *(int64_t *)(packetData + 0x18);
+        packetHash = FUN_18084dc20(packetHeader);
+        validationStatus = *(int32_t *)(connectionInfo + 0x98);
+        tableIndex = 0;
+        if (0 < validationStatus) {
+          securityContext._4_4_ = (int)((uint64_t)packetHash >> 0x20);
+          hashTableEntry = *(int **)(connectionInfo + 0x90);
+          maxEntries = tableIndex;
           do {
-            iVar3 = (int)uVar8;
-            if ((*piVar5 == (int)uVar4) && (piVar5[1] == uStack_48._4_4_)) goto LAB_180840a03;
-            uVar8 = (ulonglong)(iVar3 + 1);
-            uVar7 = uVar7 + 1;
-            piVar5 = piVar5 + 2;
-          } while ((longlong)uVar7 < (longlong)iVar2);
+            processingStatus = (int32_t)maxEntries;
+            if ((*hashTableEntry == (int32_t)packetHash) && (hashTableEntry[1] == securityContext._4_4_)) goto LAB_180840a03;
+            maxEntries = (uint64_t)(processingStatus + 1);
+            tableIndex = tableIndex + 1;
+            hashTableEntry = hashTableEntry + 2;
+          } while ((int64_t)tableIndex < (int64_t)validationStatus);
         }
-        iVar3 = -1;
+        processingStatus = -1;
 LAB_180840a03:
-        *param_4 = iVar3;
-        uStack_48 = uVar4;
+        *validationResult = processingStatus;
+        securityContext = packetHash;
       }
     }
     else {
-      iVar2 = 0;
-      if (0 < *(int *)(param_2 + 0x28)) {
-        lVar9 = 0;
+      validationStatus = 0;
+      if (0 < *(int32_t *)(packetData + 0x28)) {
+        connectionInfo = 0;
         do {
-          lVar1 = *(longlong *)(lVar9 + 0x10 + *(longlong *)(param_2 + 0x20));
-          if (lVar1 == 0) break;
-          if (*(int *)(lVar1 + 0x58) < 1) {
-            puVar6 = &DAT_18098bc73;
+          tempOffset = *(int64_t *)(connectionInfo + 0x10 + *(int64_t *)(packetData + 0x20));
+          if (tempOffset == 0) break;
+          if (*(int32_t *)(tempOffset + 0x58) < 1) {
+            packetBuffer = &DAT_18098bc73;
           }
           else {
-            puVar6 = *(undefined **)(lVar1 + 0x50);
+            packetBuffer = *(uint8_t **)(tempOffset + 0x50);
           }
           iVar3 = func_0x00018076b630(puVar6,param_3);
           if (iVar3 == 0) {

@@ -94,10 +94,10 @@ void* g_globalModuleD_Handle;
  * 设置模块E所需的数据结构和运行环境
  */
 void InitializeGlobalModuleE(void);
-undefined g_globalModuleE_Instance;
-undefined g_globalModuleE_Config;
-undefined g_globalModuleE_Status;
-undefined g_globalModuleE_Handle;
+void* g_globalModuleE_Instance;
+void* g_globalModuleE_Config;
+uint32_t g_globalModuleE_Status;
+void* g_globalModuleE_Handle;
 
 // 函数: undefined GetSystemStatusFlag1;
 /**
@@ -106,8 +106,8 @@ undefined g_globalModuleE_Handle;
  * 该函数负责获取系统的第一个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-undefined GetSystemStatusFlag1;
-undefined1 g_systemStatusFlag1;
+uint32_t GetSystemStatusFlag1;
+bool g_systemStatusFlag1;
 
 // 函数: undefined GetSystemStatusFlag2;
 /**
@@ -116,8 +116,8 @@ undefined1 g_systemStatusFlag1;
  * 该函数负责获取系统的第二个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-undefined GetSystemStatusFlag2;
-undefined1 g_systemStatusFlag2;
+uint32_t GetSystemStatusFlag2;
+bool g_systemStatusFlag2;
 
 // 函数: undefined GetSystemStatusFlag3;
 /**
@@ -126,8 +126,8 @@ undefined1 g_systemStatusFlag2;
  * 该函数负责获取系统的第三个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-undefined GetSystemStatusFlag3;
-undefined1 g_systemStatusFlag3;
+uint32_t GetSystemStatusFlag3;
+bool g_systemStatusFlag3;
 
 // 函数: undefined GetSystemStatusFlag4;
 /**
@@ -136,8 +136,8 @@ undefined1 g_systemStatusFlag3;
  * 该函数负责获取系统的第四个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-undefined GetSystemStatusFlag4;
-undefined1 g_systemStatusFlag4;
+uint32_t GetSystemStatusFlag4;
+bool g_systemStatusFlag4;
 
 // 函数: void DestroyThreadSyncObjects(void)
 /**
@@ -147,8 +147,8 @@ undefined1 g_systemStatusFlag4;
  * 释放相关资源，清理同步状态
  */
 void DestroyThreadSyncObjects(void);
-undefined g_threadSyncObjectHandle;
-undefined g_threadSyncContext;
+void* g_threadSyncObjectHandle;
+void* g_threadSyncContext;
 
 // 函数: void CloseSystemHandle(void)
 /**
@@ -167,11 +167,11 @@ void CloseSystemHandle(void);
  * 释放内存，关闭句柄，重置状态
  */
 void CleanupThreadResources(void);
-undefined g_threadResourceFlag;
-unknown g_cleanupContextData1;
-unknown g_cleanupContextData2;
-undefined g_cleanupResourceHandle;
-unknown g_cleanupContextData3;
+uint32_t g_threadResourceFlag;
+void* g_cleanupContextData1;
+void* g_cleanupContextData2;
+void* g_cleanupResourceHandle;
+void* g_cleanupContextData3;
 
 // 函数: void InitializeResourceManager(void)
 /**
@@ -181,13 +181,13 @@ unknown g_cleanupContextData3;
  * 设置资源加载、缓存和释放的相关系统
  */
 void InitializeResourceManager(void);
-undefined g_resourceManagerHandle;
-undefined g_resourceManagerStatus;
-unknown g_resourceContextData1;
-unknown g_resourceContextData2;
-undefined g_resourceBufferPool1;
-undefined g_resourceBufferPool2;
-undefined g_resourceBufferPool3;
+void* g_resourceManagerHandle;
+uint32_t g_resourceManagerStatus;
+void* g_resourceContextData1;
+void* g_resourceContextData2;
+void* g_resourceBufferPool1;
+void* g_resourceBufferPool2;
+void* g_resourceBufferPool3;
 
 // 函数: void InitializeTextureManager(void)
 /**
@@ -3225,7 +3225,7 @@ undefined8 validateCharacterParameter(char charInput)
  * 
  * 该函数负责初始化系统所需的资源，为后续操作做准备
  */
-void initializeSystemResources(void)
+void InitializeSystemResources(void)
 
 {
   return;
@@ -3240,7 +3240,7 @@ void initializeSystemResources(void)
  * 
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
  */
-undefined8 validateObjectHandle(longlong objectPointer)
+undefined8 ValidateObjectHandle(longlong objectPointer)
 
 {
   undefined8 validationResult;
@@ -3271,7 +3271,7 @@ undefined8 validateObjectHandle(longlong objectPointer)
  * 
  * 该函数从RAX寄存器获取对象指针，验证其有效性并执行相应操作
  */
-undefined4 validateObjectHandleFromRegister(void)
+undefined4 ValidateObjectHandleFromRegister(void)
 
 {
   longlong registerValue;
@@ -3298,7 +3298,7 @@ undefined4 validateObjectHandleFromRegister(void)
  * 
  * 该函数用于触发系统异常处理流程，通常在遇到严重错误时调用
  */
-void triggerSystemException(void)
+void TriggerSystemException(void)
 
 {
                     // WARNING: Subroutine does not return

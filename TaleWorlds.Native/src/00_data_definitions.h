@@ -135,7 +135,7 @@ int InitializeRenderingThreadSync(undefined8 threadId,undefined8 syncPtr,undefin
   renderingMutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(RENDER_MUTEX_ADDRESS,2,mutexType,mutexAttr,renderingMutexFlags);
-  g_renderingSyncState = 0;
+  RenderingSyncState = 0;
   callbackResult = RegisterSystemCallback(RenderingThreadSyncCallback);
   return (callbackResult != 0) - 1;
 }
@@ -156,7 +156,7 @@ int InitializePhysicsEngineSync(undefined8 threadId,undefined8 syncPtr,undefined
   physicsMutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(PHYSICS_MUTEX_ADDRESS,2,mutexType,mutexAttr,physicsMutexFlags);
-  g_physicsSyncState = 0;
+  PhysicsSyncState = 0;
   callbackResult = RegisterSystemCallback(PhysicsEngineSyncCallback);
   return (callbackResult != 0) - 1;
 }

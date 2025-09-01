@@ -1272,8 +1272,13 @@ int InitializeSystemSemaphore(void)
 
 
 
-// 函数: void FUN_18002d320(void)
-void FUN_18002d320(void)
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 该函数负责初始化系统内存管理器，设置内存分配策略
+ * 和管理机制，确保系统内存资源的有效利用。
+ */
+void InitializeSystemMemoryManager(void)
 
 {
   char cVar1;
@@ -1322,8 +1327,13 @@ void FUN_18002d320(void)
 
 
 
-// 函数: void FUN_18002d420(void)
-void FUN_18002d420(void)
+/**
+ * @brief 初始化系统内存分配器
+ * 
+ * 该函数负责初始化系统内存分配器，设置内存分配策略
+ * 和管理机制，为系统提供高效的内存分配服务。
+ */
+void InitializeSystemMemoryAllocator(void)
 
 {
   char cVar1;
@@ -19730,7 +19740,11 @@ void FUN_18004a180(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18004a200(void)
+/**
+ * 互斥锁销毁器 - 清理系统互斥锁资源
+ * 负责销毁系统中的互斥锁对象，释放相关资源
+ * 
+ */
 void FUN_18004a200(void)
 
 {
@@ -21635,7 +21649,12 @@ LAB_18004c7ef:
 
 
 
-// 函数: void FUN_18004ca00(longlong *param_1)
+/**
+ * 系统组件初始化器 - 初始化核心系统组件
+ * 负责调用系统组件的初始化函数指针
+ * 
+ * @param param_1 系统组件指针的指针
+ */
 void FUN_18004ca00(longlong *param_1)
 
 {
@@ -22401,7 +22420,11 @@ void FUN_18004eb00(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004ef60(void)
+/**
+ * 系统清理器 - 执行系统清理操作
+ * 负责在系统关闭时清理内存和资源
+ * 
+ */
 void FUN_18004ef60(void)
 
 {
