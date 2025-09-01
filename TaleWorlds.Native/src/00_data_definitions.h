@@ -216,17 +216,21 @@ int initializeStringProcessorC(void)
   result = registerSystemCallback(initializeStringProcessorC_Callback);
   return (result != 0) - 1;
 }
-int FUN_18002e5a0(void)
+/**
+ * 初始化字符串处理器D
+ * 设置字符串处理所需的数据结构和回调
+ */
+int initializeStringProcessorD(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf65f0 = &UNK_1809fdc18;
-  _DAT_180bf65f8 = &DAT_180bf6608;
-  DAT_180bf6608 = 0;
-  _DAT_180bf6600 = 0xd;
-  strcpy_s(&DAT_180bf6608,0x10,&UNK_180a00518,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941880);
-  return (lVar1 != 0) - 1;
+  longlong result;
+  undefined8 stringFlags;
+  globalData_180bf65f0 = &unknownData_1809fdc18;
+  globalData_180bf65f8 = &globalData_180bf6608;
+  globalData_180bf6608 = 0;
+  globalData_180bf6600 = 0xd;
+  strcpy_s(&globalData_180bf6608,0x10,&unknownData_180a00518,stringFlags,0xfffffffffffffffe);
+  result = registerSystemCallback(initializeStringProcessorD_Callback);
+  return (result != 0) - 1;
 }
 int FUN_18002e610(void)
 {

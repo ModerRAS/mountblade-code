@@ -6855,7 +6855,11 @@ int FUN_180893964(undefined8 param_1,undefined8 param_2)
 
 
 
-undefined8 FUN_180893a63(void)
+/**
+ * @brief 获取默认错误状态码
+ * @return 固定错误状态码 0x1f
+ */
+undefined8 get_default_error_status(void)
 
 {
   return 0x1f;
