@@ -86416,38 +86416,28 @@ void InitializeSystemDataStructureCE(void)
  * 处理系统操作D
  * 执行系统级别的操作，包括资源验证和处理
  * @param objectContextParam 操作参数1
- * @param param_2 操作参数2
- * @param param_3 操作参数3
- * @param param_4 操作参数4
+ * @param resourceValidationParam 操作参数2
+ * @param resourceProcessParam 操作参数3
+ * @param resourceCleanupParam 操作参数4
  */
-void ProcessSystemOperationD(uint8_t8 objectContextParam,uint8_t8 param_2,uint8_t8 param_3,uint8_t8 param_4)
-/**
- * 处理系统操作D
- * 执行系统级别的操作，包括资源验证和处理
- * @param objectContextParam 操作参数1
- * @param param_2 操作参数2
- * @param param_3 操作参数3
- * @param param_4 操作参数4
- */
-void ProcessSystemOperationD(uint8_t8 objectContextParam,uint8_t8 param_2,uint8_t8 param_3,uint8_t8 param_4)
-
+void ProcessSystemOperationD(uint8_t8 objectContextParam, uint8_t8 resourceValidationParam, uint8_t8 resourceProcessParam, uint8_t8 resourceCleanupParam)
 {
-  uint8_t8 *presourceHash;
-  uint8_t8 *pvalidationResult;
+  uint8_t8 *resourceHashPointer;
+  uint8_t8 *validationResultPointer;
   
-  ProcessResourceData(&DAT_180bfaec0,_DAT_180bfaed0,param_3,param_4,0xfffffffffffffffe);
-  presourceHash = _DAT_180bfaea8;
-  for (pvalidationResult = _DAT_180bfaea0; pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 7) {
-    *pvalidationResult = &SystemResourceHandlerTemplate;
-    if (pvalidationResult[1] != 0) {
+  ProcessResourceData(&SystemResourceDataTable, SystemResourceDataPointer, resourceProcessParam, resourceCleanupParam, 0xfffffffffffffffe);
+  resourceHashPointer = SystemResourceHashPointer;
+  for (validationResultPointer = SystemValidationResultPointer; validationResultPointer != resourceHashPointer; validationResultPointer = validationResultPointer + 7) {
+    *validationResultPointer = &SystemResourceHandlerTemplate;
+    if (validationResultPointer[1] != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    pvalidationResult[1] = 0;
-    *(uint8_t4 *)(pvalidationResult + 3) = 0;
-    *pvalidationResult = &SystemDataStructure;
+    validationResultPointer[1] = 0;
+    *(uint8_t4 *)(validationResultPointer + 3) = 0;
+    *validationResultPointer = &SystemDataStructure;
   }
-  if (_DAT_180bfaea0 != (uint8_t8 *)0x0) {
+  if (SystemValidationResultPointer != (uint8_t8 *)0x0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
