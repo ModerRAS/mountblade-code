@@ -12315,7 +12315,7 @@ int engine_validate_render_state(longlong engine_engine_param_1,longlong engine_
   pppuStackX_8 = &pppuStack_68;
   pppuStack_68 = &pppuStack_68;
   pppuStack_60 = &pppuStack_68;
-  FUN_180627c50(&puStack_138,engine_data_ptr_3);
+  engine_initialize_input_system(&puStack_138,engine_data_ptr_3);
   uStack_118 = 0;
   uStack_110 = 0;
   uStack_c0 = 0;
@@ -12513,7 +12513,7 @@ void engine_setup_render_target(longlong *engine_engine_param_1,uint64_t *engine
   engine_call_data_converter(engine_temp_uint_3,&plStackX_8);
   (**(code **)(*pengine_temp_long + 0x38))(pengine_temp_long);
   _engine_data_b0 = (longlong)*(int *)(_engine_data_70 + 0x224);
-  FUN_180627be0(&engine_control_data,engine_engine_param_2);
+  engine_setup_control_system(&engine_control_data,engine_engine_param_2);
   *engine_engine_param_2 = &engine_system_context_data;
   if (engine_engine_param_2[1] != 0) {
                     // WARNING: Subroutine does not return
