@@ -224,11 +224,11 @@ void* AudioStreamManager;
  * 设置碰撞检测、重力模拟和物理计算的相关系统
  */
 void InitializePhysicsEngine(void);
-void* g_physicsEngineInstance;
-void* g_physicsWorldHandle;
-void* g_collisionSystemHandle;
-void* g_rigidBodyManager;
-void* g_physicsConstraintSolver;
+void* PhysicsEngineInstance;
+void* PhysicsWorldHandle;
+void* CollisionSystemHandle;
+void* RigidBodyManager;
+void* PhysicsConstraintSolver;
 
 // 函数: void InitializeInputManager(void)
 /**
@@ -238,12 +238,12 @@ void* g_physicsConstraintSolver;
  * 设置键盘、鼠标和手柄输入的处理机制
  */
 void InitializeInputManager(void);
-void* g_inputSystemInstance;
-void* g_inputDeviceManager;
-void* g_keyboardHandler;
-void* g_mouseHandler;
-void* g_controllerManager;
-void* g_inputEventQueue;
+void* InputSystemInstance;
+void* InputDeviceManager;
+void* KeyboardHandler;
+void* MouseHandler;
+void* ControllerManager;
+void* InputEventQueue;
 
 // 函数: void InitializeNetworkManager(void)
 /**
