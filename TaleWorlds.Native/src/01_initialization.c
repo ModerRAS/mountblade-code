@@ -1,7 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization.c - 901 个函数
-
 // 全局函数指针 - 系统初始化相关
 undefined systemInitializationFunction_18007fcd0;
 undefined globalDataPointer_1809fc768;
@@ -15721,22 +15719,28 @@ int InitializeEngineCoreSystem(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180043960(void)
+/**
+ * 初始化系统配置和权限设置
+ * 设置系统标志位、初始化权限配置，并注册系统回调
+ * 
+ * @return 成功返回0，失败返回-1
+ */
+int InitializeSystemConfiguration(void)
 
 {
-  longlong lVar1;
-  int iVar2;
+  longlong callbackResult;
+  int configIndex;
   
   _DAT_180c0c6c0 = 0x100;
-  iVar2 = 0;
+  configIndex = 0;
   do {
-    FUN_180767e20(iVar2,0x4000000000000000,0xffff7fff,0);
-    iVar2 = iVar2 + 1;
-  } while (iVar2 < 0xd);
+    FUN_180767e20(configIndex,0x4000000000000000,0xffff7fff,0);
+    configIndex = configIndex + 1;
+  } while (configIndex < 0xd);
   *(uint *)(_DAT_180be14a0 + 0x330) = *(uint *)(_DAT_180be14a0 + 0x330) | 4;
   _DAT_180be1324 = 0xffffffff;
-  lVar1 = FUN_1808fc7d0(&UNK_180943250);
-  return (lVar1 != 0) - 1;
+  callbackResult = FUN_1808fc7d0(&UNK_180943250);
+  return (callbackResult != 0) - 1;
 }
 
 

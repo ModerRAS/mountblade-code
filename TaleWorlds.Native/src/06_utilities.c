@@ -131,16 +131,28 @@ undefined DAT_180bf65c8;
 undefined DAT_180bf65d0;
 undefined DAT_180bf65d8;
 
-// 函数: undefined FUN_180941860;
-undefined FUN_180941860;
+// 函数: void InitializePhysicsEngine(void)
+/**
+ * @brief 初始化物理引擎
+ * 
+ * 该函数负责初始化游戏物理引擎
+ * 设置碰撞检测、重力模拟和物理计算的相关系统
+ */
+void InitializePhysicsEngine(void);
 undefined UNK_180a00508;
 undefined DAT_180bf65f0;
 undefined DAT_180bf65f8;
 undefined DAT_180bf6600;
 undefined DAT_180bf6608;
 
-// 函数: undefined FUN_180941880;
-undefined FUN_180941880;
+// 函数: void InitializeInputManager(void)
+/**
+ * @brief 初始化输入管理器
+ * 
+ * 该函数负责初始化游戏输入管理系统
+ * 设置键盘、鼠标和手柄输入的处理机制
+ */
+void InitializeInputManager(void);
 undefined UNK_180a00518;
 undefined DAT_180bf6620;
 undefined DAT_180bf6628;
@@ -148,8 +160,14 @@ undefined DAT_180bf6630;
 undefined DAT_180bf6638;
 undefined UNK_180a00528;
 
-// 函数: undefined FUN_1809418a0;
-undefined FUN_1809418a0;
+// 函数: void InitializeNetworkManager(void)
+/**
+ * @brief 初始化网络管理器
+ * 
+ * 该函数负责初始化游戏网络管理系统
+ * 设置网络连接、数据传输和通信协议
+ */
+void InitializeNetworkManager(void);
 undefined DAT_180bf6650;
 undefined DAT_180bf6658;
 undefined DAT_180bf6660;
