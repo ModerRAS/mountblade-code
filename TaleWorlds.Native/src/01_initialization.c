@@ -13554,7 +13554,7 @@ void InitializeSystemEventManagerN(void)
   stackBuffer[0] = 0;
   stackParameterC = 0x1b;
   strcpy_s(stackBuffer,0x80,&SystemStringTemplateC,in_R9,0xfffffffffffffffe);
-  _DAT_180c9246c = SystemMemoryAllocationFunction(&stackParameterA);
+  SystemMemoryAllocationTableEntry014 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
 
@@ -14168,7 +14168,7 @@ void InitializeSystemResourceManagerK(void)
   stackParameterB = stackBuffer;
   stackBuffer[0] = 0;
   stackParameterC = 0x10;
-  strcpy_s(stackBuffer,0x80,&UNK_180a2bf10,in_R9,0xfffffffffffffffe);
+  strcpy_s(stackBuffer,0x80,&SystemStringTemplateD,in_R9,0xfffffffffffffffe);
   _DAT_180c924ac = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
