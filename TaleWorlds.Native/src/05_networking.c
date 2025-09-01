@@ -59,7 +59,7 @@ uint32_t NetworkConnectionPoolData;
  * 该函数负责创建网络通信所需的套接字
  * 设置套接字参数和选项，为网络数据传输做准备
  */
-void CreateNetworkSocket(void);
+void InitializeNetworkSocketHandle(void);
 
 // 函数: void BindNetworkSocket(void)
 /**
@@ -4724,26 +4724,26 @@ int ProcessNetworkPacketWithHandleBuffer(longlong connectionContext,longlong pac
   int additionalSize;
   NetworkHandle networkHandle;
   
-  uStackX_8 = *(NetworkHandle *)(connectionContext + 0x10);
-  uVar1 = *(NetworkByte *)(connectionContext + 0x1c);
-  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809821b0);
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkHandleBuffer(networkStatus2 + packetData,dataSize - networkStatus2,&uStackX_8);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0x1d);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = NetworkBufferEncryptData(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  return networkStatus3 + networkStatus2;
+  networkHandle = *(NetworkHandle *)(connectionContext + 0x10);
+  encryptionKey = *(NetworkByte *)(connectionContext + 0x1c);
+  processedSize = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809821b0);
+  additionalSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  processedSize = processedSize + additionalSize;
+  additionalSize = ProcessNetworkHandleBuffer(processedSize + packetData,dataSize - processedSize,&networkHandle);
+  processedSize = processedSize + additionalSize;
+  additionalSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  processedSize = processedSize + additionalSize;
+  additionalSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,connectionContext + 0x1d);
+  processedSize = processedSize + additionalSize;
+  additionalSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  processedSize = processedSize + additionalSize;
+  additionalSize = NetworkBufferEncryptData(processedSize + packetData,dataSize - processedSize,encryptionKey);
+  return additionalSize + processedSize;
 }
 
 
 
-int FUN_180844c00(longlong connectionContext,longlong packetData,int dataSize)
+int ProcessNetworkPacketWithContextValidation(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;
