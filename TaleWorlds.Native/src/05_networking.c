@@ -773,7 +773,7 @@ void ValidateNetworkConnection(NetworkHandle connectionId,ulonglong *connectionS
 
 {
   int validationStatus;
-  int localConnectionStatus;
+  int networkConnectionStatus;
   NetworkByte securityBuffer [32];
   NetworkByte *errorMessage;
   longlong connectionInfo [2];
@@ -787,7 +787,7 @@ void ValidateNetworkConnection(NetworkHandle connectionId,ulonglong *connectionS
                     // WARNING: Subroutine does not return
       CleanupNetworkSecurityBuffer(stackGuard ^ (ulonglong)securityBuffer);
     }
-    func_0x00018074bda0(errorBuffer,0x100,0);
+    FormatNetworkErrorDetails(errorBuffer,0x100,0);
     errorMessage = errorBuffer;
                     // WARNING: Subroutine does not return
     LogNetworkConnectionError(0x1f,0xc,connectionId,&NetworkReservedMemoryRegion3320);
@@ -4858,8 +4858,21 @@ int FUN_180844e90(longlong connectionContext,longlong packetData,int dataSize)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180844f40(ulonglong connectionContext,NetworkHandle *packetData)
-void FUN_180844f40(ulonglong connectionContext,NetworkHandle *packetData)
+// 函数: void InitializeNetworkConnectionSession(ulonglong connectionContext,NetworkHandle *packetData)
+/**
+ * @brief 初始化网络连接会话
+ * 
+ * 该函数负责初始化网络连接会话，包括：
+ * - 验证连接参数的有效性
+ * - 设置安全守卫值
+ * - 初始化连接缓冲区
+ * - 处理连接错误情况
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据指针
+ * @return void
+ */
+void InitializeNetworkConnectionSession(ulonglong connectionContext,NetworkHandle *packetData)
 
 {
   NetworkStatus uVar1;
