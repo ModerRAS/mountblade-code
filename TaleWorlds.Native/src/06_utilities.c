@@ -28772,7 +28772,13 @@ void RestoreSystemDataStructureToContext138(uint8_t8 objectContextParam, longlon
 
 
 
-void Unwind_1809021e0(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时释放验证上下文0x78偏移位置的特定系统资源
+ * 检查资源数据的第2位状态标志，如果需要则释放特定位置的系统资源
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void ReleaseSpecificSystemResourceAtContext78(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
@@ -28931,11 +28937,19 @@ void Unwind_1809023c0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_1809023d0(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
+/**
+ * 在异常处理时执行资源清理循环操作
+ * 遍历验证结果链表，对每个结果执行清理操作，处理异常情况
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 清理参数3
+ * @param param_4 清理参数4
+ */
+void ExecuteResourceCleanupLoop(uint8_t8 objectContextParam, longlong validationContextParam, uint8_t8 param_3, uint8_t8 param_4)
 
 {
-  uint8_t8 *presourceHash;
-  uint8_t8 *pvalidationResult;
+  uint8_t8 *resourceHashPointer;
+  uint8_t8 *validationResultPointer;
   uint8_t8 cleanupFlag;
   
   cleanupFlag = 0xfffffffffffffffe;

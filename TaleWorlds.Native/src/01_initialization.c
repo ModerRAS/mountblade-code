@@ -423,12 +423,12 @@ void* SystemInitializationEntryPointDelta;
  * 该函数负责系统初始化过程中的网络组件配置
  */
 void* SystemInitializationEntryPointEpsilon;
-void* SystemMemoryRegionCentumSeptem;
-void* SystemMemoryRegionCentumOcto;
-void* SystemMemoryRegionCentumNovem;
-void* SystemMemoryRegionDucenti;
-void* SystemMemoryRegionDucentiUnus;
-void* SystemMemoryRegionDucentiDuo;
+void* SystemMemoryRegionHundredSeven;
+void* SystemMemoryRegionHundredEight;
+void* SystemMemoryRegionHundredNine;
+void* SystemMemoryRegionTwoHundred;
+void* SystemMemoryRegionTwoHundredOne;
+void* SystemMemoryRegionTwoHundredTwo;
 
 // 函数: 系统初始化入口点F
 /**
@@ -437,13 +437,13 @@ void* SystemMemoryRegionDucentiDuo;
  * 该函数负责系统初始化过程中的音频组件配置
  */
 void* SystemInitializationEntryPointZeta;
-void* SystemMemoryRegionDucentiTres;
-void* SystemMemoryRegionDucentiQuattuor;
-void* SystemMemoryRegionDucentiQuinque;
-void* SystemMemoryRegionDucentiSex;
+void* SystemMemoryRegionTwoHundredThree;
+void* SystemMemoryRegionTwoHundredFour;
+void* SystemMemoryRegionTwoHundredFive;
+void* SystemMemoryRegionTwoHundredSix;
 char SystemStatusFlagOctonary;
-void* SystemMemoryRegionDucentiSeptem;
-void* SystemMemoryRegionDucentiOcto;
+void* SystemMemoryRegionTwoHundredSeven;
+void* SystemMemoryRegionTwoHundredEight;
 void* SystemDataTableEntryDuodecary;
 void* SystemMemoryRegionDucentiNovem;
 void* SystemMemoryRegionTrecenti;
