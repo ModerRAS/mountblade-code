@@ -24,9 +24,9 @@ void* SystemSenaryDataTable;                   // 第六级系统数据表
 // 核心系统函数指针和相关数据
 void* GameCoreSystemMainEntryPoint;                 // 游戏核心系统入口点
 void* CoreSystemMainMemoryAllocator;                // 核心系统内存分配器
-void* CoreSystemDataTable;                     // 核心系统数据表
-void* CoreSystemMemoryBuffer;                  // 核心系统内存缓冲区
-void* CoreSystemConfigMain;                    // 核心系统主配置
+void* CoreSystemMainDataTable;                     // 核心系统数据表
+void* CoreSystemMainMemoryBuffer;                  // 核心系统内存缓冲区
+void* CoreSystemPrimaryConfig;                    // 核心系统主配置
 void* CoreSystemConfigSecondary;                // 核心系统次级配置
 void* CoreSystemConfigTertiary;                 // 核心系统第三级配置
 void* CoreSystemConfigQuaternary;               // 核心系统第四级配置

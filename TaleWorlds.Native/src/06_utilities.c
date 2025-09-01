@@ -2447,11 +2447,11 @@ undefined SystemResourceTracker;
 undefined4 SystemResourceFlags;
 undefined4 SystemResourceState;
 undefined SystemResourceHandler;
-undefined DAT_180c8ecd4;
+undefined ScriptFunctionTable;
 undefined SystemResourceManager;
 undefined SystemResourcePool;
-undefined DAT_180bfbb50;
-undefined DAT_180bfbb60;
+undefined ScriptVariableTable;
+undefined ScriptClassTable;
 undefined DAT_180bfbb70;
 undefined DAT_180bfbb80;
 
