@@ -20330,13 +20330,13 @@ void* *
  * 它会递归地复制复杂的数据结构，确保数据的完整性和一致性。
  * 
  * @param SystemResourcePointer 目标数据结构指针
- * @param param_2 源数据结构指针
- * @param param_3 复制标志参数
- * @param param_4 附加参数
+ * @param sourceDataPointer 源数据结构指针
+ * @param copyFlags 复制标志参数
+ * @param additionalParams 附加参数
  * @return 返回复制后的目标数据结构指针
  * @note 这是系统数据管理的重要组成部分，确保数据复制的正确性
  */
-void* CopySystemDataStructure(void* *SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+void* CopySystemDataStructure(void* *SystemResourcePointer,void* *sourceDataPointer,void* copyFlags,void* additionalParams)
 
 {
   *SystemResourcePointer = *param_2;

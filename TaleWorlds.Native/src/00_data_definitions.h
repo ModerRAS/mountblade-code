@@ -3890,16 +3890,16 @@ uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
  * @return 返回处理后的内存地址指针
  */
 uint64_t *
-ProcessMemoryAllocation(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+ProcessMemoryAllocation(uint64_t *memoryPtr, ulonglong controlFlags, uint64_t memoryParam3, uint64_t memoryParam4)
 {
   uint64_t MemoryAddress;
   MemoryAddress = SystemMutexFlags;
-  *param_1 = &UNK_1809ff2f8;
+  *memoryPtr = &UNK_1809ff2f8;
   InitializeSystemMemory();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0xc0,param_3,param_4,MemoryAddress);
+  if ((controlFlags & 1) != 0) {
+    free(memoryPtr, 0xc0, memoryParam3, memoryParam4, MemoryAddress);
   }
-  return param_1;
+  return memoryPtr;
 }
       SystemSemaphoreStatus = '\x01';
       do {
@@ -6238,7 +6238,7 @@ LAB_18032bb25:
   FUN_180320e20(0x180d497e0);
   return 0x180d497e0;
 }
-longlong SystemModuleInitialize(uint64_t param_1,longlong *param_2,longlong param_3)
+longlong SystemModuleInitialize(uint64_t systemId, longlong *moduleArray, longlong moduleData)
 {
   int64_t ModuleInitializationResult;
   uint BufferSize;
