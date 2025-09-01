@@ -1621,7 +1621,7 @@ void InitializeSystemMemoryAllocator(void)
   }
   systemPreviousNode[6] = 0x40afa5469b6ac06d;
   systemPreviousNode[7] = 0x2f4bab01d34055a5;
-  systemPreviousNode[8] = &SystemDataNodeD;
+  systemPreviousNode[8] = &SystemDataNodeQuaternaryRoot;
   systemPreviousNode[9] = 3;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -1730,7 +1730,7 @@ void InitializeSystemThreadManager(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -2289,7 +2289,7 @@ void InitializeSystemDataTableStructureF(void)
   }
   systemPreviousNode[6] = 0x40afa5469b6ac06d;
   systemPreviousNode[7] = 0x2f4bab01d34055a5;
-  systemPreviousNode[8] = &SystemDataNodeD;
+  systemPreviousNode[8] = &SystemDataNodeQuaternaryRoot;
   systemPreviousNode[9] = 3;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -2564,7 +2564,7 @@ void InitializeSystemMemoryManager(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -2982,7 +2982,7 @@ void InitializeSystemMemoryManager(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -3371,7 +3371,7 @@ void InitializeSystemSecurityManager(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -3880,7 +3880,7 @@ void InitializeSystemEventHandler(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -4398,7 +4398,7 @@ void InitializeSystemNetworkManager(void)
   }
   previousNode[6] = 0x40afa5469b6ac06d;
   previousNode[7] = 0x2f4bab01d34055a5;
-  previousNode[8] = &SystemDataNodeD;
+  previousNode[8] = &SystemDataNodeQuaternaryRoot;
   previousNode[9] = 3;
   previousNode[10] = networkCallbackPointer;
   return;
@@ -5008,7 +5008,7 @@ void InitializeSystemConfigurationNodeManager(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -5727,7 +5727,7 @@ void InitializeSystemDataTableNode(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -6133,7 +6133,7 @@ void InitializeSystemEventHandler(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -6777,7 +6777,7 @@ void InitializeSystemCacheManager(void)
   }
   systemPreviousNode[6] = 0x40afa5469b6ac06d;
   systemPreviousNode[7] = 0x2f4bab01d34055a5;
-  systemPreviousNode[8] = &SystemDataNodeD;
+  systemPreviousNode[8] = &SystemDataNodeQuaternaryRoot;
   systemPreviousNode[9] = 3;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -6835,7 +6835,7 @@ void InitializeSystemLogManager(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -7357,7 +7357,7 @@ void InitializeSystemThreadManager(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -7970,7 +7970,7 @@ void InitializeSystemProcessManager(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -8425,7 +8425,7 @@ void InitializeSystemFrameworkManager(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -9718,7 +9718,7 @@ void InitializeSystemStringProcessorE(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -10068,7 +10068,7 @@ void InitializeSystemStringProcessorL(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -10418,7 +10418,7 @@ void InitializeSystemStringProcessorS(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -10768,7 +10768,7 @@ void InitializeSystemStringProcessorZ(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -12355,7 +12355,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -12830,7 +12830,7 @@ void InitializeSystemDebugNodeManager(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -13230,7 +13230,7 @@ void InitializeSystemEventManagerG(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -15224,7 +15224,7 @@ void InitializeSystemDiagnosticComponent(void)
   }
   systemPreviousNode[6] = 0x40afa5469b6ac06d;
   systemPreviousNode[7] = 0x2f4bab01d34055a5;
-  systemPreviousNode[8] = &SystemDataNodeD;
+  systemPreviousNode[8] = &SystemDataNodeQuaternaryRoot;
   systemPreviousNode[9] = 3;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -15275,7 +15275,7 @@ void InitializeSystemDebugComponent(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -16278,7 +16278,7 @@ void InitializeSystemNodeManager(void)
   }
   systemPreviousNode[6] = 0x40afa5469b6ac06d;
   systemPreviousNode[7] = 0x2f4bab01d34055a5;
-  systemPreviousNode[8] = &SystemDataNodeD;
+  systemPreviousNode[8] = &SystemDataNodeQuaternaryRoot;
   systemPreviousNode[9] = 3;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -16337,7 +16337,7 @@ void InitializeSystemSearchManager(void)
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   systemPreviousNode[7] = 0xdcfdc333a769ec93;
-  systemPreviousNode[8] = &SystemDataNodeE;
+  systemPreviousNode[8] = &SystemDataNodeQuinaryRoot;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
