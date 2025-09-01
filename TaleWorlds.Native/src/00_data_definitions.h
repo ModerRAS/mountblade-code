@@ -1,6 +1,13 @@
+/**
+ * @file 00_data_definitions.h
+ * @brief 游戏引擎数据定义头文件
+ * 
+ * 该文件定义了游戏引擎中使用的全局数据结构、变量和常量。
+ * 包含系统配置、内存管理、字符串处理、模块初始化等核心数据定义。
+ */
+
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
-
 
 // 全局系统数据指针
 void* GlobalSystemData;
@@ -11,79 +18,93 @@ void* GlobalUnknownData;
 void* SystemMemoryPool;
 
 // 字符串处理器数据基址 - 用于存储字符串处理器的数据结构
-void* StringProcessorDataBasePrimary;
-void* StringProcessorDataBaseSecondary;
-void* StringProcessorDataBaseTertiary;
-void* StringProcessorDataBaseQuaternary;
-void* StringProcessorDataBaseQuinary;
-void* StringProcessorDataBaseSenary;
-void* StringProcessorDataBaseSeptenary;
-void* StringProcessorDataBaseOctonary;
-void* StringProcessorDataBaseNonary;
-void* StringProcessorDataBaseDenary;
-void* StringProcessorDataBaseUndenary;
-void* StringProcessorDataBaseDuodenary;
-void* StringProcessorDataBaseTerdenary;
-void* StringProcessorDataBaseQuaternarySecondary;
-void* StringProcessorDataBaseQuinarySecondary;
-void* StringProcessorDataBaseSenarySecondary;
-void* StringProcessorDataBaseSeptenarySecondary;
-void* StringProcessorDataBaseOctonarySecondary;
-void* StringProcessorDataBaseNonarySecondary;
-void* StringProcessorDataBaseDenarySecondary;
-void* StringProcessorDataBaseUndenarySecondary;
-void* StringProcessorDataBaseDuodenarySecondary;
-void* StringProcessorDataBaseTerdenarySecondary;
-void* StringProcessorDataBaseQuaternaryTertiary;
-void* StringProcessorDataBaseQuinaryTertiary;
-void* StringProcessorDataBaseSenaryTertiary;
-void* StringProcessorDataBaseSeptenaryTertiary;
-void* StringProcessorDataBaseOctonaryTertiary;
-void* StringProcessorDataBaseNonaryTertiary;
-void* StringProcessorDataBaseDenaryTertiary;
-void* StringProcessorDataBaseUndenaryTertiary;
-void* StringProcessorDataBaseDuodenaryTertiary;
-void* StringProcessorDataBaseTerdenaryTertiary;
+void* StringProcessorDataBaseMain;
+void* StringProcessorDataBaseBackup;
+void* StringProcessorDataBaseCache;
+void* StringProcessorDataBaseTemp;
+void* StringProcessorDataBaseReserved;
+void* StringProcessorDataBaseSecure;
+void* StringProcessorDataBaseDebug;
+void* StringProcessorDataBaseLog;
+void* StringProcessorDataBaseConfig;
+void* StringProcessorDataBaseState;
+void* StringProcessorDataBaseEvent;
+void* StringProcessorDataBaseCallback;
+void* StringProcessorDataBaseHandler;
+void* StringProcessorDataBaseManager;
+void* StringProcessorDataBaseController;
+void* StringProcessorDataBaseProcessor;
+void* StringProcessorDataBaseEncoder;
+void* StringProcessorDataBaseDecoder;
+void* StringProcessorDataBaseValidator;
+void* StringProcessorDataBaseFormatter;
+void* StringProcessorDataBaseParser;
+void* StringProcessorDataBaseOptimizer;
+void* StringProcessorDataBaseCompressor;
+void* StringProcessorDataBaseEncryptor;
+void* StringProcessorDataBaseDecryptor;
+void* StringProcessorDataBaseHasher;
+void* StringProcessorDataBaseSigner;
+void* StringProcessorDataBaseVerifier;
+void* StringProcessorDataBaseConverter;
+void* StringProcessorDataBaseTransformer;
+void* StringProcessorDataBaseNormalizer;
+void* StringProcessorDataBaseSanitizer;
+void* StringProcessorDataBaseSerializer;
+void* StringProcessorDataBaseDeserializer;
+void* StringProcessorDataBaseMarshaller;
+void* StringProcessorDataBaseUnmarshaller;
+void* StringProcessorDataBaseAllocator;
+void* StringProcessorDataBaseDeallocator;
+void* StringProcessorDataBaseCollector;
+void* StringProcessorDataBaseCleaner;
 
 // 字符串处理器数据模板 - 用于存储字符串处理器的模板数据
-void* StringProcessorDataTemplatePrimary;
-void* StringProcessorDataTemplateSecondary;
-void* StringProcessorDataTemplateTertiary;
-void* StringProcessorDataTemplateQuaternary;
-void* StringProcessorDataTemplateQuinary;
-void* StringProcessorDataTemplateSenary;
-void* StringProcessorDataTemplateSeptenary;
-void* StringProcessorDataTemplateOctonary;
-void* StringProcessorDataTemplateNonary;
-void* StringProcessorDataTemplateDenary;
-void* StringProcessorDataTemplateUndenary;
-void* StringProcessorDataTemplateDuodenary;
-void* StringProcessorDataTemplateTerdenary;
-void* StringProcessorDataTemplateQuaternarySecondary;
-void* StringProcessorDataTemplateQuinarySecondary;
-void* StringProcessorDataTemplateSenarySecondary;
-void* StringProcessorDataTemplateSeptenarySecondary;
-void* StringProcessorDataTemplateOctonarySecondary;
-void* StringProcessorDataTemplateNonarySecondary;
-void* StringProcessorDataTemplateDenarySecondary;
-void* StringProcessorDataTemplateUndenarySecondary;
-void* StringProcessorDataTemplateDuodenarySecondary;
-void* StringProcessorDataTemplateTerdenarySecondary;
-void* StringProcessorDataTemplateQuaternaryTertiary;
-void* StringProcessorDataTemplateQuinaryTertiary;
-void* StringProcessorDataTemplateSenaryTertiary;
-void* StringProcessorDataTemplateSeptenaryTertiary;
-void* StringProcessorDataTemplateOctonaryTertiary;
-void* StringProcessorDataTemplateNonaryTertiary;
-void* StringProcessorDataTemplateDenaryTertiary;
-void* StringProcessorDataTemplateUndenaryTertiary;
-void* StringProcessorDataTemplateDuodenaryTertiary;
-void* StringProcessorDataTemplateTerdenaryTertiary;
+void* StringProcessorDataTemplateMain;
+void* StringProcessorDataTemplateBackup;
+void* StringProcessorDataTemplateCache;
+void* StringProcessorDataTemplateTemp;
+void* StringProcessorDataTemplateReserved;
+void* StringProcessorDataTemplateSecure;
+void* StringProcessorDataTemplateDebug;
+void* StringProcessorDataTemplateLog;
+void* StringProcessorDataTemplateConfig;
+void* StringProcessorDataTemplateState;
+void* StringProcessorDataTemplateEvent;
+void* StringProcessorDataTemplateCallback;
+void* StringProcessorDataTemplateHandler;
+void* StringProcessorDataTemplateManager;
+void* StringProcessorDataTemplateController;
+void* StringProcessorDataTemplateProcessor;
+void* StringProcessorDataTemplateEncoder;
+void* StringProcessorDataTemplateDecoder;
+void* StringProcessorDataTemplateValidator;
+void* StringProcessorDataTemplateFormatter;
+void* StringProcessorDataTemplateParser;
+void* StringProcessorDataTemplateOptimizer;
+void* StringProcessorDataTemplateCompressor;
+void* StringProcessorDataTemplateEncryptor;
+void* StringProcessorDataTemplateDecryptor;
+void* StringProcessorDataTemplateHasher;
+void* StringProcessorDataTemplateSigner;
+void* StringProcessorDataTemplateVerifier;
+void* StringProcessorDataTemplateConverter;
+void* StringProcessorDataTemplateTransformer;
+void* StringProcessorDataTemplateNormalizer;
+void* StringProcessorDataTemplateSanitizer;
+void* StringProcessorDataTemplateSerializer;
+void* StringProcessorDataTemplateDeserializer;
+void* StringProcessorDataTemplateMarshaller;
+void* StringProcessorDataTemplateUnmarshaller;
+void* StringProcessorDataTemplateAllocator;
+void* StringProcessorDataTemplateDeallocator;
+void* StringProcessorDataTemplateCollector;
+void* StringProcessorDataTemplateCleaner;
 
 // 全局字符串数据指针和缓冲区 - 用于存储全局字符串数据
-void* GlobalStringDataPointerPrimary;
-void* GlobalStringDataBufferPrimary;
-void* GlobalStringDataLengthPrimary;
+void* GlobalStringDataPointerMain;
+void* GlobalStringDataBufferMain;
+void* GlobalStringDataLengthMain;
 
 // 系统配置数据指针和缓冲区 - 用于存储系统配置数据
 void* SystemConfigDataPointerPrimary;

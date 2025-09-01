@@ -546,7 +546,7 @@ void* SystemConfigDataTertiary;        // SystemConfigDataPointerC
 void* SystemConfigDataQuaternary;        // SystemConfigDataPointerD
 void* SystemConfigDataQuinary;        // SystemConfigDataSecondary
 void* SystemConfigDataSenary;        // SystemConfigDataTertiary
-void* SystemSemaphoreHandle;            // SystemSemaphoreInstance
+void* SystemSemaphoreInstance;            // SystemSemaphoreInstance
 /**
  * @brief 系统内存分配器函数
  * 

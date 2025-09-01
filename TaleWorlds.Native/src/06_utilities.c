@@ -28757,7 +28757,13 @@ void RestoreSystemResourceHandlerTemplateToContext180(uint8_t8 objectContextPara
 
 
 
-void Unwind_1809021d0(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时恢复系统数据结构指针到验证上下文的0x138偏移位置
+ * 用于系统异常处理过程中的状态恢复
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void RestoreSystemDataStructureToContext138(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0x138) = &SystemDataStructure;
