@@ -10427,8 +10427,18 @@ LAB_18084ae98:
 
 
 
-// 函数: void FUN_18084af10(NetworkStatus connectionContext,NetworkStatus *packetData)
-void FUN_18084af10(NetworkStatus connectionContext,NetworkStatus *packetData)
+/**
+ * @brief 网络状态验证器
+ * 
+ * 该函数负责验证网络状态的有效性。
+ * 它检查状态数据的完整性，并确保状态信息符合预期格式。
+ * 
+ * @param connectionContext 连接状态标识符
+ * @param packetData 状态数据包指针
+ * @return void
+ * @note 该函数用于网络状态数据的验证和检查
+ */
+void NetworkStatusValidator(NetworkStatus connectionContext,NetworkStatus *packetData)
 
 {
   NetworkStatus primaryNetworkFlag;
@@ -10555,8 +10565,16 @@ void EmptyNetworkOperation(void)
 
 
 
-// 函数: void FUN_18084b0a6(void)
-void FUN_18084b0a6(void)
+/**
+ * @brief 网络连接句柄释放器
+ * 
+ * 该函数负责释放网络连接句柄。
+ * 它清理连接资源，确保系统资源的正确释放。
+ * 
+ * @return void
+ * @note 该函数用于网络连接资源的清理和释放
+ */
+void NetworkConnectionHandleReleaser(void)
 
 {
                     // WARNING: Subroutine does not return
