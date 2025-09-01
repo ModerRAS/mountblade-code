@@ -2926,16 +2926,16 @@ undefined SystemEventManager47;
 undefined SystemEventManager48;
 undefined SystemEventManager49;
 undefined SystemEventManager50;
-undefined UNK_180a399c0;
-undefined UNK_180a399e0;
-undefined UNK_180a399f0;
-undefined UNK_180a39a18;
-undefined UNK_180a39a28;
-undefined UNK_180a39a40;
-undefined UNK_180a39a60;
-undefined UNK_180a39a70;
-undefined UNK_180a39a88;
-undefined UNK_180a39aa0;
+undefined SystemVariable01;
+undefined SystemVariable02;
+undefined SystemVariable03;
+undefined SystemVariable04;
+undefined SystemVariable05;
+undefined SystemVariable06;
+undefined SystemVariable07;
+undefined SystemVariable08;
+undefined SystemVariable09;
+undefined SystemVariable10;
 undefined UNK_180a39ab8;
 undefined UNK_180a39ad8;
 undefined UNK_180a39af0;
@@ -20462,7 +20462,7 @@ LAB_18089c40a:
       uVar6 = (int)*(uint *)(param_1 + 0x54) >> 0x1f;
       presourceHash0 = puStack_88;
       if ((int)((*(uint *)(param_1 + 0x54) ^ uVar6) - uVar6) < (int)uStack_80) {
-        uVar6 = FUN_180883750(param_1 + 0x48,uStack_80 & 0xffffffff);
+        uVar6 = CalculateResourceHash(param_1 + 0x48,uStack_80 & 0xffffffff);
         uVar7 = (ulonglong)uVar6;
         presourceHash0 = puStack_88;
         if (uVar6 != 0) goto LAB_18089c40a;
@@ -20716,7 +20716,7 @@ LAB_18089c40a:
     else {
       uVar9 = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
       if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uVar9) - uVar9) < iVar19) {
-        uVar9 = FUN_180883750(unaff_RSI + 0x48,iVar19);
+        uVar9 = CalculateResourceHash(unaff_RSI + 0x48,iVar19);
         presourceHash3 = (undefined8 *)(ulonglong)uVar9;
         if (uVar9 != 0) goto LAB_18089c40a;
         iVar19 = *(int *)(unaff_RBP + -0x21);
@@ -20971,7 +20971,7 @@ LAB_18089c40a:
     else {
       uVar9 = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
       if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uVar9) - uVar9) < iVar19) {
-        uVar9 = FUN_180883750(unaff_RSI + 0x48,iVar19);
+        uVar9 = CalculateResourceHash(unaff_RSI + 0x48,iVar19);
         presourceHash2 = (undefined8 *)(ulonglong)uVar9;
         if (uVar9 != 0) goto LAB_18089c40a;
         iVar19 = *(int *)(unaff_RBP + -0x21);
@@ -21192,7 +21192,7 @@ LAB_18089c40a:
     else {
       uVar9 = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
       if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uVar9) - uVar9) < iVar18) {
-        uVar9 = FUN_180883750(unaff_RSI + 0x48,iVar18);
+        uVar9 = CalculateResourceHash(unaff_RSI + 0x48,iVar18);
         resourceHash1 = (ulonglong)uVar9;
         if (uVar9 != 0) goto LAB_18089c40a;
         iVar18 = *(int *)(unaff_RBP + -0x21);
@@ -25236,12 +25236,12 @@ LAB_18089e70b:
         ReleaseResourceBuffer(&puStack_88);
       }
       else {
-        uVar4 = FUN_1808a71c0(param_2,param_1 + 0x58);
+        uVar4 = GetResourceIdentifier(param_2,param_1 + 0x58);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
       }
-      uVar4 = FUN_1808ad9d0(param_2,dataContext + 0x78,0);
+      uVar4 = ProcessResourceData(param_2,dataContext + 0x78,0);
       if (((int)uVar4 == 0) && (uVar4 = CheckResourceFinalization(param_2,param_1 + 0x88,0), (int)uVar4 == 0)) {
                     // WARNING: Subroutine does not return
         CleanupResourceData(param_2,auStack_58);
@@ -25362,7 +25362,7 @@ LAB_18089e70b:
       resourceHash1 = ReleaseResourceBuffer(unaff_RBP + -0x29);
     }
     else {
-      uVar8 = FUN_1808a71c0(extraout_XMM0_Da_01,unaff_R15 + 0x58);
+      uVar8 = GetResourceIdentifier(extraout_XMM0_Da_01,unaff_R15 + 0x58);
       resourceHash1 = extraout_XMM0_Da_02;
       if ((int)uVar8 != 0) {
         return uVar8;

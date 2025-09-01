@@ -12654,7 +12654,16 @@ void InitializeSystemDeviceDataNodeManager(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18003d410(void)
+/**
+ * @brief 初始化系统全局数据表
+ * 
+ * 该函数负责初始化系统的全局数据表指针，设置系统数据访问的入口点。
+ * 它会配置全局数据表的引用，确保其他系统组件可以正确访问系统数据。
+ * 
+ * @return 返回初始化状态码
+ * @note 这是系统初始化的基础步骤，为后续的系统组件初始化提供数据访问支持
+ */
+int InitializeSystemGlobalDataTable(void)
 
 {
   long long lVar1;
@@ -18539,8 +18548,14 @@ void ResetSystemBuffer(uint8_t *bufferPointer)
 
 
 
-// 函数: void FUN_180045c00(void)
-void FUN_180045c00(void)
+/**
+ * @brief 系统初始化完成处理函数
+ * 
+ * 该函数在系统初始化完成后执行，调用系统的完成处理函数。
+ * 
+ * @note 这是一个系统完成处理函数，通常在初始化过程结束时调用
+ */
+void FinalizeSystemInitialization(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -18974,8 +18989,14 @@ void FUN_180046400(long long param_1,void* param_2,int param_3)
 
 
 
-// 函数: void FUN_18004641f(void)
-void FUN_18004641f(void)
+/**
+ * @brief 系统内存复制操作
+ * 
+ * 该函数执行系统内存复制操作，用于初始化过程中的数据复制。
+ * 
+ * @note 这是一个低级别的系统操作函数
+ */
+void ExecuteSystemMemoryCopy(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -18985,30 +19006,46 @@ void FUN_18004641f(void)
 
 
 
-// 函数: void FUN_180046444(uint8_t *param_1)
-void FUN_180046444(uint8_t *param_1)
+/**
+ * @brief 重置系统数据缓冲区
+ * 
+ * 该函数负责重置系统数据缓冲区，将缓冲区内容清零，
+ * 并重置相关的偏移量计数器。
+ * 
+ * @param dataBufferPointer 指向需要重置的数据缓冲区的指针
+ */
+void ResetSystemDataBuffer(uint8_t *dataBufferPointer)
 
 {
-  long long unaff_RDI;
+  long long bufferOffset;
   
-  *param_1 = 0;
-  *(uint32_t *)(unaff_RDI + 0x10) = 0;
+  *dataBufferPointer = 0;
+  *(uint32_t *)(bufferOffset + 0x10) = 0;
   return;
 }
 
 
 
-void* * FUN_180046480(void* *param_1)
+/**
+ * @brief 初始化系统内存分配器引用
+ * 
+ * 该函数负责初始化系统内存分配器的引用，设置内存分配器的
+ * 基础结构和相关参数。这是内存管理系统的重要组成部分。
+ * 
+ * @param memoryAllocatorPointer 内存分配器指针的指针
+ * @return 返回初始化后的内存分配器指针
+ */
+void* * InitializeSystemMemoryAllocatorReference(void* *memoryAllocatorPointer)
 
 {
-  *param_1 = &SystemMemoryAllocatorReference;
-  param_1[1] = 0;
-  *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_18098bc80;
-  param_1[1] = param_1 + 3;
-  *(uint32_t *)(param_1 + 2) = 0;
-  *(uint8_t *)(param_1 + 3) = 0;
-  return param_1;
+  *memoryAllocatorPointer = &SystemMemoryAllocatorReference;
+  memoryAllocatorPointer[1] = 0;
+  *(uint32_t *)(memoryAllocatorPointer + 2) = 0;
+  *memoryAllocatorPointer = &UNK_18098bc80;
+  memoryAllocatorPointer[1] = memoryAllocatorPointer + 3;
+  *(uint32_t *)(memoryAllocatorPointer + 2) = 0;
+  *(uint8_t *)(memoryAllocatorPointer + 3) = 0;
+  return memoryAllocatorPointer;
 }
 
 
