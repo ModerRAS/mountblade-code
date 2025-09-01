@@ -6111,7 +6111,6 @@ LAB_180891fc0:
  * 不执行任何操作，仅作为初始化流程的结束标记
  */
 void SystemInitializationCompleteFlag(void)
-void SystemInitializationCompleteFlag(void)
 
 {
   return;
@@ -6130,8 +6129,13 @@ void FUN_180891fd9(void)
 
 
 
- void FUN_180891fde(void)
-void FUN_180891fde(void)
+ /**
+ * @brief 系统资源清理完成标志
+ * 
+ * 该函数表示系统资源清理完成的标志函数
+ * 不执行任何操作，仅作为资源清理流程的结束标记
+ */
+void SystemResourceCleanupCompleteFlag(void)
 
 {
   return;
