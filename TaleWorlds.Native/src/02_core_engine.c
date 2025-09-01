@@ -1,25 +1,13 @@
 /**
- * @brief 核心引擎系统
  * @file 02_core_engine.c
- * @version 2.6
- * 
- * 包含引擎核心系统的常量定义、全局变量声明和函数实现。
- * 简化实现：保留核心功能，精简代码体积，提高可读性。
- * 
- * 本文件包含2355个函数，涵盖引擎的各个子系统：
- * - 初始化系统
- * - 渲染系统
- * - 输入处理系统
- * - 游戏逻辑系统
- * - 音频系统
- * - 网络系统
- * - UI系统
- * - 资源管理系统
+ * @brief 核心引擎系统实现
+ * @version 3.0
+ * @date 2025-09-01
+ *
+ * 核心引擎系统的主要实现文件，包含系统初始化、配置和主要功能函数。
  */
 
 #include "TaleWorlds.Native.Split.h"
-
-// 02_core_engine.c - 2355 个函数
 
 // 函数: engine_initialize_core_system;
 engine_initialize_core_system;
