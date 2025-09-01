@@ -60,13 +60,13 @@ undefined DAT_180bf6088;
 undefined DAT_180bf6090;
 undefined DAT_180bf6098;
 
-// 函数: undefined FUN_180941630;
-undefined FUN_180941630;
-undefined1 DAT_180c910f8;
+// 函数: undefined GetSystemStatusFlag1;
+undefined GetSystemStatusFlag1;
+undefined1 systemStatusFlag1;
 
-// 函数: undefined FUN_180941650;
-undefined FUN_180941650;
-undefined1 DAT_180c91198;
+// 函数: undefined GetSystemStatusFlag2;
+undefined GetSystemStatusFlag2;
+undefined1 systemStatusFlag2;
 
 // 函数: undefined FUN_180941690;
 undefined FUN_180941690;
@@ -3058,55 +3058,75 @@ void cleanupSystemResources(void)
 
 
 
-undefined8 FUN_180890700(longlong param_1)
+/**
+ * @brief 验证并处理对象句柄（版本2）
+ * @param objectHandle 对象句柄
+ * @return 返回操作结果，0表示成功，非0表示错误代码
+ * 
+ * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
+ * 这是validateObjectHandle函数的另一个版本
+ */
+undefined8 validateAndProcessObjectHandle(longlong objectHandle)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 operationResult;
+  longlong handleBuffer;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  operationResult = func_0x00018088c530(*(undefined4 *)(objectHandle + 0x10), &handleBuffer);
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  if (lStackX_8 == 0) {
-    lStackX_8 = 0;
+  if (handleBuffer == 0) {
+    handleBuffer = 0;
   }
   else {
-    lStackX_8 = lStackX_8 + -8;
+    handleBuffer = handleBuffer + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(longlong *)(handleBuffer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(longlong *)(handleBuffer + 0x10), 1);
 }
 
 
 
-undefined4 FUN_180890723(void)
+/**
+ * @brief 从寄存器验证对象句柄（版本2）
+ * @return 返回验证结果，0表示成功，0x1c表示错误
+ * 
+ * 该函数从RAX寄存器获取对象指针，验证其有效性并执行相应操作
+ * 这是validateObjectHandleFromRegister函数的另一个版本
+ */
+undefined4 validateObjectHandleFromRegisterV2(void)
 
 {
-  longlong in_RAX;
-  longlong lVar1;
+  longlong registerValue;
+  longlong adjustedPointer;
   
-  if (in_RAX == 0) {
-    lVar1 = 0;
+  if (registerValue == 0) {
+    adjustedPointer = 0;
   }
   else {
-    lVar1 = in_RAX + -8;
+    adjustedPointer = registerValue + -8;
   }
-  if (*(longlong *)(lVar1 + 0x10) == 0) {
+  if (*(longlong *)(adjustedPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+  FUN_180862e00(*(longlong *)(adjustedPointer + 0x10), 1);
 }
 
 
 
 
-// 函数: void FUN_18089074c(void)
-void FUN_18089074c(void)
+/**
+ * @brief 触发系统异常处理（版本2）
+ * 
+ * 该函数用于触发系统异常处理流程，通常在遇到严重错误时调用
+ * 这是triggerSystemException函数的另一个版本
+ */
+void triggerSystemExceptionV2(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -3116,8 +3136,12 @@ void FUN_18089074c(void)
 
 
 
-// 函数: void FUN_18089079f(void)
-void FUN_18089079f(void)
+/**
+ * @brief 重置系统状态
+ * 
+ * 该函数负责重置系统状态，将系统恢复到初始状态
+ */
+void resetSystemState(void)
 
 {
   return;
@@ -3125,38 +3149,45 @@ void FUN_18089079f(void)
 
 
 
-undefined8 FUN_1808907b0(longlong param_1)
+/**
+ * @brief 处理复杂对象句柄验证和操作
+ * @param objectContext 对象上下文指针
+ * @return 返回操作结果，0表示成功，非0表示错误代码
+ * 
+ * 该函数执行复杂的对象句柄验证流程，包括句柄调整、子对象获取和验证
+ */
+undefined8 processComplexObjectHandle(longlong objectContext)
 
 {
-  undefined8 uVar1;
-  longlong alStackX_8 [2];
-  longlong alStackX_18 [2];
+  undefined8 operationResult;
+  longlong resultBuffer[2];
+  longlong handleBuffer[2];
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_18);
-  if ((int)uVar1 == 0) {
-    if (alStackX_18[0] == 0) {
-      alStackX_18[0] = 0;
+  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10), handleBuffer);
+  if ((int)operationResult == 0) {
+    if (handleBuffer[0] == 0) {
+      handleBuffer[0] = 0;
     }
     else {
-      alStackX_18[0] = alStackX_18[0] + -8;
+      handleBuffer[0] = handleBuffer[0] + -8;
     }
-    alStackX_8[0] = 0;
-    uVar1 = FUN_1808681d0(alStackX_18[0],param_1 + 0x18,alStackX_8);
-    if ((int)uVar1 == 0) {
-      if (alStackX_8[0] != 0) {
-        if (*(longlong *)(alStackX_8[0] + 8) == 0) {
+    resultBuffer[0] = 0;
+    operationResult = FUN_1808681d0(handleBuffer[0], objectContext + 0x18, resultBuffer);
+    if ((int)operationResult == 0) {
+      if (resultBuffer[0] != 0) {
+        if (*(longlong *)(resultBuffer[0] + 8) == 0) {
           return 0x1c;
         }
-        uVar1 = FUN_1808d73b0(*(longlong *)(alStackX_8[0] + 8),*(undefined4 *)(param_1 + 0x20),
-                              *(undefined1 *)(param_1 + 0x24));
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        operationResult = FUN_1808d73b0(*(longlong *)(resultBuffer[0] + 8), *(undefined4 *)(objectContext + 0x20),
+                                      *(undefined1 *)(objectContext + 0x24));
+        if ((int)operationResult != 0) {
+          return operationResult;
         }
       }
-      uVar1 = 0;
+      operationResult = 0;
     }
   }
-  return uVar1;
+  return operationResult;
 }
 
 
@@ -80601,8 +80632,9 @@ void FUN_1809419a0(void)
 
 
 
-// 函数: void FUN_1809419c0(void)
-void FUN_1809419c0(void)
+// 函数: void DestroySpecificMutex(void)
+// 销毁特定的互斥锁对象，清理线程同步资源
+void DestroySpecificMutex(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809419d8. Too many branches
