@@ -1001,7 +1001,7 @@ engine_render_state_buffer;
 engine_display_config_buffer;
 engine_input_config_buffer;
 engine_audio_config_buffer;
-uint32 DAT_180a02618;
+uint32 engine_data_180a02618;
 engine_base_data_offset_70;
 engine_base_data_offset_80;
 engine_base_data_offset_a0;
@@ -11640,7 +11640,7 @@ engine_core_handle_events(uint64 engine_engine_param_1,ulonglong engine_engine_p
 
 
 
-undefined8 * engine_core_process_messages(uint64 engine_engine_param_1,uint engine_engine_param_2)
+uint64_t * engine_core_process_messages(uint64 engine_engine_param_1,uint engine_engine_param_2)
 
 {
   *engine_engine_param_1 = &engine_base_data_offset_70;
@@ -11669,8 +11669,8 @@ void _guard_check_icall(void)
 
 
 
-undefined8 *
-engine_core_update_system(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+engine_core_update_system(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &UNK_18098bcb0;
@@ -11741,8 +11741,8 @@ void engine_core_cleanup_operations_2(void)
 
 
 
-// 函数: void engine_core_reset_operations_2(undefined1 *engine_engine_param_1)
-void engine_core_reset_operations_2(undefined1 *engine_engine_param_1)
+// 函数: void engine_core_reset_operations_2(uint8_t *engine_engine_param_1)
+void engine_core_reset_operations_2(uint8_t *engine_engine_param_1)
 
 {
   longlong unaff_RDI;
@@ -11799,8 +11799,8 @@ void engine_core_string_search(longlong engine_engine_param_1,longlong engine_en
 
 
 
-// 函数: void engine_core_semaphore_operations(undefined8 *engine_engine_param_1,undefined4 engine_engine_param_2)
-void engine_core_semaphore_operations(undefined8 *engine_engine_param_1,undefined4 engine_engine_param_2)
+// 函数: void engine_core_semaphore_operations(uint64_t *engine_engine_param_1,uint32_t engine_engine_param_2)
+void engine_core_semaphore_operations(uint64_t *engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   int engine_temp_int;
@@ -11814,8 +11814,8 @@ void engine_core_semaphore_operations(undefined8 *engine_engine_param_1,undefine
 
 
 
-// 函数: void engine_core_mutex_operations(undefined8 *engine_engine_param_1)
-void engine_core_mutex_operations(undefined8 *engine_engine_param_1)
+// 函数: void engine_core_mutex_operations(uint64_t *engine_engine_param_1)
+void engine_core_mutex_operations(uint64_t *engine_engine_param_1)
 
 {
   int engine_temp_int;
@@ -11867,7 +11867,7 @@ uint64 engine_core_condition_operations(longlong engine_engine_param_1,uint64 en
 
 
 
-longlong engine_core_thread_operations(undefined4 *engine_engine_param_1,undefined4 *engine_engine_param_2)
+longlong engine_core_thread_operations(uint32_t *engine_engine_param_1,uint32_t *engine_engine_param_2)
 
 {
   uint32 engine_temp_uint;
@@ -11898,14 +11898,14 @@ longlong engine_core_thread_operations(undefined4 *engine_engine_param_1,undefin
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_registry_operations(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
-void engine_core_registry_operations(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+// 函数: void engine_core_registry_operations(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
+void engine_core_registry_operations(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   longlong engine_temp_long;
   char engine_temp_char_flag;
   void* engine_data_ptr_3;
-  undefined4 auStackX_10 [6];
+  uint32_t auStackX_10 [6];
   
   engine_temp_long = _engine_data_20;
   if ((*(longlong *)(_engine_data_20 + 0x22f0) != 0) &&
@@ -11927,8 +11927,8 @@ void engine_core_registry_operations(uint64 engine_engine_param_1,undefined4 eng
 
 
 
-undefined8 *
-engine_core_cleanup_operations_3(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+engine_core_cleanup_operations_3(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &UNK_18098bcb0;
@@ -11999,8 +11999,8 @@ void engine_swap_buffers(void)
 
 
 
-// 函数: void engine_clear_screen(undefined1 *engine_engine_param_1)
-void engine_clear_screen(undefined1 *engine_engine_param_1)
+// 函数: void engine_clear_screen(uint8_t *engine_engine_param_1)
+void engine_clear_screen(uint8_t *engine_engine_param_1)
 
 {
   longlong unaff_RDI;
@@ -12012,7 +12012,7 @@ void engine_clear_screen(undefined1 *engine_engine_param_1)
 
 
 
-undefined8 * engine_configure_keyboard_input(undefined8 *engine_engine_param_1)
+uint64_t * engine_configure_keyboard_input(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = &UNK_18098bcb0;
@@ -12071,7 +12071,7 @@ void engine_setup_viewport(longlong engine_engine_param_1,longlong engine_engine
 
 
 
-undefined8 * engine_create_render_context(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2)
+uint64_t * engine_create_render_context(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2)
 
 {
   *engine_engine_param_1 = &UNK_18098bcb0;
@@ -12084,8 +12084,8 @@ undefined8 * engine_create_render_context(undefined8 *engine_engine_param_1,ulon
 
 
 
-// 函数: void engine_destroy_render_context(undefined8 *engine_engine_param_1)
-void engine_destroy_render_context(undefined8 *engine_engine_param_1)
+// 函数: void engine_destroy_render_context(uint64_t *engine_engine_param_1)
+void engine_destroy_render_context(uint64_t *engine_engine_param_1)
 
 {
   int engine_temp_int;
@@ -12125,8 +12125,8 @@ void engine_bind_render_context(longlong engine_engine_param_1)
 
 
 
-// 函数: void engine_configure_render_settings(undefined8 *engine_engine_param_1)
-void engine_configure_render_settings(undefined8 *engine_engine_param_1)
+// 函数: void engine_configure_render_settings(uint64_t *engine_engine_param_1)
+void engine_configure_render_settings(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = &UNK_18098bdc8;
@@ -12137,8 +12137,8 @@ void engine_configure_render_settings(undefined8 *engine_engine_param_1)
 
 
 
-undefined8 *
-FUN_180046790(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180046790(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &UNK_18098bdc8;
@@ -12244,7 +12244,7 @@ void engine_initialize_render_pipeline(ulonglong *engine_engine_param_1)
 int engine_validate_render_state(longlong engine_engine_param_1,longlong engine_engine_param_2)
 
 {
-  undefined8 ***ppengine_data_ptr;
+  uint64_t ***ppengine_data_ptr;
   longlong engine_temp_long_2;
   void* engine_data_ptr_3;
   longlong lVar4;
@@ -12252,8 +12252,8 @@ int engine_validate_render_state(longlong engine_engine_param_1,longlong engine_
   longlong lVar6;
   longlong lVar7;
   ulonglong uVar8;
-  undefined8 ****ppppuVar9;
-  undefined8 ***pppuStackX_8;
+  uint64_t ****ppppuVar9;
+  uint64_t ***pppuStackX_8;
   void* puStack_138;
   longlong lStack_130;
   uint32 uStack_128;
@@ -12280,8 +12280,8 @@ int engine_validate_render_state(longlong engine_engine_param_1,longlong engine_
   uint64 uStack_80;
   uint64 uStack_78;
   uint64 uStack_70;
-  undefined8 ***pppuStack_68;
-  undefined8 ***pppuStack_60;
+  uint64_t ***pppuStack_68;
+  uint64_t ***pppuStack_60;
   uint64 uStack_58;
   uint64 uStack_50;
   uint64 uStack_48;
@@ -12332,7 +12332,7 @@ int engine_validate_render_state(longlong engine_engine_param_1,longlong engine_
   if (uVar8 < *(ulonglong *)(engine_engine_param_1 + 0x18)) {
     *(ulonglong *)(engine_engine_param_1 + 0x10) = uVar8 + 0x100;
     engine_set_memory_protection(uVar8,&puStack_138);
-    ppppuVar9 = *(undefined8 *****)(engine_engine_param_1 + 0x10);
+    ppppuVar9 = *(uint64_t *****)(engine_engine_param_1 + 0x10);
     goto LAB_180046a90;
   }
   lVar4 = *(longlong *)(engine_engine_param_1 + 8);
@@ -12351,7 +12351,7 @@ LAB_1800469fd:
   engine_setup_memory_mapping(&pppuStackX_8,lVar4,uVar8,engine_temp_long_2);
   ppengine_data_ptr = pppuStackX_8;
   engine_set_memory_protection(pppuStackX_8,&puStack_138);
-  ppppuVar9 = (undefined8 ****)(ppengine_data_ptr + 0x20);
+  ppppuVar9 = (uint64_t ****)(ppengine_data_ptr + 0x20);
   lVar4 = *(longlong *)(engine_engine_param_1 + 0x10);
   lVar6 = *(longlong *)(engine_engine_param_1 + 8);
   if (lVar6 != lVar4) {
@@ -12366,14 +12366,14 @@ LAB_1800469fd:
     engine_call_cleanup_routine(lVar6);
   }
   *(longlong *)(engine_engine_param_1 + 8) = engine_temp_long_2;
-  *(undefined8 *****)(engine_engine_param_1 + 0x10) = ppppuVar9;
+  *(uint64_t *****)(engine_engine_param_1 + 0x10) = ppppuVar9;
   *(longlong *)(engine_engine_param_1 + 0x18) = lVar7 * 0x100 + engine_temp_long_2;
 LAB_180046a90:
   iVar5 = (int)((ulonglong)((longlong)ppppuVar9 - *(longlong *)(engine_engine_param_1 + 8)) >> 8) + -1;
   *(int *)(engine_engine_param_1 + 0x68) = iVar5;
   pppuStackX_8 = &pppuStack_68;
-  FUN_180049fd0(&pppuStack_68,uStack_58);
-  pppuStackX_8 = (undefined8 ***)&puStack_138;
+  engine_configure_system_component(&pppuStack_68,uStack_58);
+  pppuStackX_8 = (uint64_t ***)&puStack_138;
   puStack_138 = (void*)&UNK_180a3c3e0;
   if (lStack_130 == 0) {
     return iVar5;
@@ -12385,11 +12385,11 @@ LAB_180046a90:
 
 
 
-// 函数: void engine_draw_primitive(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void engine_draw_primitive(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_draw_primitive(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_draw_primitive(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
-  FUN_180049fd0(engine_engine_param_1 + 0x1a,engine_engine_param_1[0x1c],engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_configure_system_component(engine_engine_param_1 + 0x1a,engine_engine_param_1[0x1c],engine_param_3,engine_param_4,0xfffffffffffffffe);
   *engine_engine_param_1 = &UNK_180a3c3e0;
   if (engine_engine_param_1[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -12481,8 +12481,8 @@ LAB_180046c5e:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_setup_render_target(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2)
-void engine_setup_render_target(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2)
+// 函数: void engine_setup_render_target(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2)
+void engine_setup_render_target(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   longlong *pengine_temp_long;
@@ -12541,7 +12541,7 @@ void engine_initialize_render_system(void)
   ulonglong uVar5;
   longlong lVar6;
   void* engine_current_data_ptr;
-  undefined4 *engine_next_data_ptr;
+  uint32_t *engine_next_data_ptr;
   uint8* puVar9;
   uint32 engine_temp_uint0;
   float fVar11;
@@ -12787,8 +12787,8 @@ void engine_initialize_render_system(void)
 
 
 
-undefined8 *
-engine_allocate_memory(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+engine_allocate_memory(uint64_t *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = *engine_engine_param_2;
@@ -12821,8 +12821,8 @@ void engine_free_memory(longlong engine_engine_param_1)
 
 
 
-// 函数: void engine_reallocate_memory(undefined8 *engine_engine_param_1)
-void engine_reallocate_memory(undefined8 *engine_engine_param_1)
+// 函数: void engine_reallocate_memory(uint64_t *engine_engine_param_1)
+void engine_reallocate_memory(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = &UNK_18098bcb0;
@@ -12931,7 +12931,7 @@ void engine_initialize_memory_manager(uint64 engine_engine_param_1,uint64 engine
   void* engine_temporary_ptr;
   longlong lVar6;
   longlong lVar7;
-  undefined4 *engine_next_data_ptr;
+  uint32_t *engine_next_data_ptr;
   void* puVar9;
   ulonglong engine_temp_uint0;
   longlong engine_temp_long1;
@@ -12975,7 +12975,7 @@ void engine_initialize_memory_manager(uint64 engine_engine_param_1,uint64 engine
   if (puStack_c0 != (void*)0x0) {
     puStack_c0[engine_temp_uint0] = 0;
   }
-  uStack_b0 = CONCAT44(*(uint32*)(engine_temp_long1 + 0x18c),(undefined4)uStack_b0);
+  uStack_b0 = CONCAT44(*(uint32*)(engine_temp_long1 + 0x18c),(uint32_t)uStack_b0);
   uStack_b8 = engine_temp_uint6;
   engine_call_array_builder(&puStack_c8,5);
   *(uint32*)(puStack_c0 + uStack_b8) = 0x73676f6c;
@@ -13447,8 +13447,8 @@ uint64 engine_query_memory_info(uint64 engine_engine_param_1,ulonglong engine_en
 
 
 
-undefined8 *
-engine_map_memory_region(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
+uint64_t *
+engine_map_memory_region(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
              longlong param_5)
 
 {
@@ -13634,7 +13634,7 @@ LAB_180048f62:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * engine_reserve_memory_address(longlong engine_engine_param_1,longlong *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t * engine_reserve_memory_address(longlong engine_engine_param_1,longlong *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   longlong *pengine_temp_long;
@@ -13673,7 +13673,7 @@ undefined8 * engine_reserve_memory_address(longlong engine_engine_param_1,longlo
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * engine_commit_memory_pages(longlong engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t * engine_commit_memory_pages(longlong engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   void* engine_data_ptr;
@@ -13693,8 +13693,8 @@ undefined8 * engine_commit_memory_pages(longlong engine_engine_param_1,longlong 
 
 
 
-undefined8 *
-engine_setup_memory_mapping(undefined8 *engine_engine_param_1,longlong *engine_engine_param_2,longlong *engine_param_3,undefined8 *engine_param_4)
+uint64_t *
+engine_setup_memory_mapping(uint64_t *engine_engine_param_1,longlong *engine_engine_param_2,longlong *engine_param_3,uint64_t *engine_param_4)
 
 {
   longlong *pengine_temp_long;
@@ -13816,8 +13816,8 @@ engine_setup_memory_mapping(undefined8 *engine_engine_param_1,longlong *engine_e
 
 
 
-// 函数: void engine_call_system_validator(undefined8 *engine_engine_param_1)
-void engine_call_system_validator(undefined8 *engine_engine_param_1)
+// 函数: void engine_call_system_validator(uint64_t *engine_engine_param_1)
+void engine_call_system_validator(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = &UNK_1809fcb90;
@@ -13915,7 +13915,7 @@ void engine_process_resource_allocation(uint64 engine_engine_param_1,void* engin
 
 
 
-undefined1 FUN_1800496b0(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint8_t FUN_1800496b0(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   uint8 engine_temp_uint;
@@ -13967,8 +13967,8 @@ void engine_cleanup_condition_variable(void)
 
 
 
-// 函数: void FUN_180049790(void)
-void FUN_180049790(void)
+// 函数: void engine_initialize_resource_system(void)
+void engine_initialize_resource_system(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -13978,8 +13978,8 @@ void FUN_180049790(void)
 
 
 
-// 函数: void FUN_1800497b0(void)
-void FUN_1800497b0(void)
+// 函数: void engine_initialize_thread_system(void)
+void engine_initialize_thread_system(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -13989,8 +13989,8 @@ void FUN_1800497b0(void)
 
 
 
-// 函数: void FUN_1800497d0(void)
-void FUN_1800497d0(void)
+// 函数: void engine_initialize_event_system(void)
+void engine_initialize_event_system(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -14000,8 +14000,8 @@ void FUN_1800497d0(void)
 
 
 
-// 函数: void FUN_1800497f0(uint64 engine_engine_param_1)
-void FUN_1800497f0(uint64 engine_engine_param_1)
+// 函数: void engine_initialize_configuration_system(uint64 engine_engine_param_1)
+void engine_initialize_configuration_system(uint64 engine_engine_param_1)
 
 {
   _Mtx_destroy_in_situ();
@@ -14011,8 +14011,8 @@ void FUN_1800497f0(uint64 engine_engine_param_1)
 
 
 
-undefined8 *
-engine_call_data_processor(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+engine_call_data_processor(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   uint64 engine_temp_uint;
@@ -14035,8 +14035,8 @@ engine_call_data_processor(undefined8 *engine_engine_param_1,uint64 engine_engin
 
 
 
-undefined8 *
-FUN_1800498d0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_1800498d0(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &UNK_18098bcb0;
@@ -14049,8 +14049,8 @@ FUN_1800498d0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,
 
 
 
-// 函数: void FUN_180049910(longlong engine_engine_param_1,uint64 engine_engine_param_2,int engine_param_3)
-void FUN_180049910(longlong engine_engine_param_1,uint64 engine_engine_param_2,int engine_param_3)
+// 函数: void engine_process_system_request(longlong engine_engine_param_1,uint64 engine_engine_param_2,int engine_param_3)
+void engine_process_system_request(longlong engine_engine_param_1,uint64 engine_engine_param_2,int engine_param_3)
 
 {
   if (engine_param_3 + 1 < 0x80) {
@@ -14065,8 +14065,8 @@ void FUN_180049910(longlong engine_engine_param_1,uint64 engine_engine_param_2,i
 
 
 
-// 函数: void FUN_180049931(void)
-void FUN_180049931(void)
+// 函数: void engine_validate_system_state(void)
+void engine_validate_system_state(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -14076,8 +14076,8 @@ void FUN_180049931(void)
 
 
 
-// 函数: void FUN_180049956(undefined1 *engine_engine_param_1)
-void FUN_180049956(undefined1 *engine_engine_param_1)
+// 函数: void engine_handle_system_event(uint8_t *engine_engine_param_1)
+void engine_handle_system_event(uint8_t *engine_engine_param_1)
 
 {
   longlong unaff_RDI;
@@ -14089,7 +14089,7 @@ void FUN_180049956(undefined1 *engine_engine_param_1)
 
 
 
-undefined8 * engine_create_ui_manager(undefined8 *engine_engine_param_1)
+uint64_t * engine_create_ui_manager(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = &UNK_18098bcb0;
@@ -14107,8 +14107,8 @@ undefined8 * engine_create_ui_manager(undefined8 *engine_engine_param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800499c0(longlong engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
-void FUN_1800499c0(longlong engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
+// 函数: void engine_execute_system_command(longlong engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
+void engine_execute_system_command(longlong engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
 
 {
   longlong engine_temp_long;
@@ -14148,8 +14148,8 @@ void FUN_1800499c0(longlong engine_engine_param_1,longlong engine_engine_param_2
 
 
 
-undefined8 *
-engine_setup_animation_system(undefined8 *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+engine_setup_animation_system(uint64_t *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   void* engine_data_ptr;
@@ -14172,8 +14172,8 @@ engine_setup_animation_system(undefined8 *engine_engine_param_1,longlong engine_
 
 
 
-undefined8 *
-FUN_180049bb0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180049bb0(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &UNK_18098bcb0;
@@ -14186,8 +14186,8 @@ FUN_180049bb0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,
 
 
 
-// 函数: void FUN_180049bf0(longlong engine_engine_param_1,longlong engine_engine_param_2)
-void FUN_180049bf0(longlong engine_engine_param_1,longlong engine_engine_param_2)
+// 函数: void engine_process_system_operation(longlong engine_engine_param_1,longlong engine_engine_param_2)
+void engine_process_system_operation(longlong engine_engine_param_1,longlong engine_engine_param_2)
 
 {
   longlong engine_temp_long;
@@ -14217,8 +14217,8 @@ void FUN_180049bf0(longlong engine_engine_param_1,longlong engine_engine_param_2
 
 
 
-// 函数: void FUN_180049c70(longlong engine_engine_param_1,uint64 engine_engine_param_2,int engine_param_3)
-void FUN_180049c70(longlong engine_engine_param_1,uint64 engine_engine_param_2,int engine_param_3)
+// 函数: void engine_handle_system_callback(longlong engine_engine_param_1,uint64 engine_engine_param_2,int engine_param_3)
+void engine_handle_system_callback(longlong engine_engine_param_1,uint64 engine_engine_param_2,int engine_param_3)
 
 {
   if (engine_param_3 + 1 < 0x40) {
@@ -14233,8 +14233,8 @@ void FUN_180049c70(longlong engine_engine_param_1,uint64 engine_engine_param_2,i
 
 
 
-// 函数: void FUN_180049c8f(void)
-void FUN_180049c8f(void)
+// 函数: void engine_check_system_status(void)
+void engine_check_system_status(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -14244,8 +14244,8 @@ void FUN_180049c8f(void)
 
 
 
-// 函数: void FUN_180049cb4(undefined1 *engine_engine_param_1)
-void FUN_180049cb4(undefined1 *engine_engine_param_1)
+// 函数: void engine_update_system_state(uint8_t *engine_engine_param_1)
+void engine_update_system_state(uint8_t *engine_engine_param_1)
 
 {
   longlong unaff_RDI;
@@ -14257,7 +14257,7 @@ void FUN_180049cb4(undefined1 *engine_engine_param_1)
 
 
 
-undefined8 * engine_initialize_ui_system(undefined8 *engine_engine_param_1)
+uint64_t * engine_initialize_ui_system(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = &UNK_18098bcb0;
@@ -14275,8 +14275,8 @@ undefined8 * engine_initialize_ui_system(undefined8 *engine_engine_param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180049d20(longlong engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
-void FUN_180049d20(longlong engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
+// 函数: void engine_execute_system_task(longlong engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
+void engine_execute_system_task(longlong engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
 
 {
   longlong engine_temp_long;
@@ -14316,8 +14316,8 @@ void FUN_180049d20(longlong engine_engine_param_1,longlong engine_engine_param_2
 
 
 
-undefined8 *
-FUN_180049eb0(undefined8 *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180049eb0(uint64_t *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   longlong engine_temp_long;
@@ -14343,8 +14343,8 @@ FUN_180049eb0(undefined8 *engine_engine_param_1,longlong engine_engine_param_2,u
 
 
 
-// 函数: void FUN_180049f30(undefined8 *engine_engine_param_1)
-void FUN_180049f30(undefined8 *engine_engine_param_1)
+// 函数: void engine_initialize_system_object(uint64_t *engine_engine_param_1)
+void engine_initialize_system_object(uint64_t *engine_engine_param_1)
 
 {
   engine_engine_param_1[4] = &UNK_180a3c3e0;
@@ -14369,14 +14369,14 @@ void FUN_180049f30(undefined8 *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180049fd0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180049fd0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_configure_system_component(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_configure_system_component(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   if (engine_engine_param_2 == (void*)0x0) {
     return;
   }
-  FUN_180049fd0(engine_engine_param_1,*engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_configure_system_component(engine_engine_param_1,*engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
   engine_engine_param_2[8] = &UNK_180a3c3e0;
   if (engine_engine_param_2[9] != 0) {
                     // WARNING: Subroutine does not return
@@ -14436,7 +14436,7 @@ void engine_call_system_cleanup(void)
   lVar8 = _engine_input_config_data;
   lVar6 = _engine_data_70;
   if (engine_data_60 != '\0') {
-    FUN_180050b30();
+    engine_process_system_message();
     return;
   }
   uStack_68 = 0xfffffffffffffffe;
@@ -14501,8 +14501,8 @@ void engine_call_system_cleanup(void)
   *(void*)(_engine_graphics_buffer_ptr + 4) = 0;
   *(void*)(lVar8 + 0xc) = 0;
   *(void*)(lVar8 + 0x14) = 0;
-  FUN_1800572d0(lVar8 + 0x20);
-  FUN_1800572d0(lVar8 + 0x50);
+  engine_process_system_io_operation(lVar8 + 0x20);
+  engine_process_system_io_operation(lVar8 + 0x50);
   LOCK();
   *(uint32*)(lVar8 + 0x80) = 0;
   UNLOCK();
@@ -14525,8 +14525,8 @@ void engine_call_system_cleanup(void)
       __Throw_C_error_std__YAXH_Z(iVar7);
     }
 
-// 函数: void FUN_180050b30(longlong engine_engine_param_1)
-void FUN_180050b30(longlong engine_engine_param_1)
+// 函数: void engine_process_system_message(longlong engine_engine_param_1)
+void engine_process_system_message(longlong engine_engine_param_1)
 
 {
   longlong *pengine_temp_long;
@@ -14620,8 +14620,8 @@ void FUN_180050b30(longlong engine_engine_param_1)
   *(void*)(_engine_graphics_buffer_ptr + 4) = 0;
   *(void*)(lVar7 + 0xc) = 0;
   *(void*)(lVar7 + 0x14) = 0;
-  FUN_1800572d0(lVar7 + 0x20);
-  FUN_1800572d0(lVar7 + 0x50);
+  engine_process_system_io_operation(lVar7 + 0x20);
+  engine_process_system_io_operation(lVar7 + 0x50);
   LOCK();
   *(uint32*)(lVar7 + 0x80) = 0;
   UNLOCK();
@@ -14644,8 +14644,8 @@ void FUN_180050b30(longlong engine_engine_param_1)
       __Throw_C_error_std__YAXH_Z(iVar6);
     }
 
-// 函数: void FUN_180051150(longlong engine_engine_param_1,uint64 engine_engine_param_2)
-void FUN_180051150(longlong engine_engine_param_1,uint64 engine_engine_param_2)
+// 函数: void engine_handle_system_notification(longlong engine_engine_param_1,uint64 engine_engine_param_2)
+void engine_handle_system_notification(longlong engine_engine_param_1,uint64 engine_engine_param_2)
 
 {
   longlong *pengine_temp_long;
@@ -14677,7 +14677,7 @@ void FUN_180051150(longlong engine_engine_param_1,uint64 engine_engine_param_2)
   void* puStack_2e0;
   uint32 uStack_2d8;
   uint64 uStack_2d0;
-  undefined4 auStack_2c8 [2];
+  uint32_t auStack_2c8 [2];
   longlong *plStack_2c0;
   uint64 uStack_2b8;
   uint64 auStack_2a8 [67];
@@ -14741,7 +14741,7 @@ void engine_shutdown_system(longlong engine_engine_param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180051d40(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_2)
+uint64_t * FUN_180051d40(uint64_t *engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   longlong *pengine_temp_long;
@@ -14829,8 +14829,8 @@ undefined8 * FUN_180051d40(undefined8 *engine_engine_param_1,undefined8 *engine_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180051de4(longlong engine_engine_param_1)
-void FUN_180051de4(longlong engine_engine_param_1)
+// 函数: void engine_execute_system_function(longlong engine_engine_param_1)
+void engine_execute_system_function(longlong engine_engine_param_1)
 
 {
   longlong engine_temp_long;
@@ -14898,8 +14898,8 @@ void FUN_180051de4(longlong engine_engine_param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180051e13(void)
-void FUN_180051e13(void)
+// 函数: void engine_check_system_readiness(void)
+void engine_check_system_readiness(void)
 
 {
   longlong engine_temp_long;
@@ -14933,8 +14933,8 @@ void FUN_180051e13(void)
 
 
 
-// 函数: void FUN_180051e74(longlong engine_engine_param_1)
-void FUN_180051e74(longlong engine_engine_param_1)
+// 函数: void engine_initialize_system_service(longlong engine_engine_param_1)
+void engine_initialize_system_service(longlong engine_engine_param_1)
 
 {
   longlong engine_temp_long;
@@ -14972,8 +14972,8 @@ void FUN_180051e74(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_180051eef(void)
-void FUN_180051eef(void)
+// 函数: void engine_validate_system_configuration(void)
+void engine_validate_system_configuration(void)
 
 {
   return;
@@ -15066,7 +15066,7 @@ LAB_180051fc9:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8
+uint64_t
 FUN_180052020(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
@@ -15079,8 +15079,8 @@ FUN_180052020(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint64 e
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180052070(longlong engine_engine_param_1)
-void FUN_180052070(longlong engine_engine_param_1)
+// 函数: void engine_process_system_data_request(longlong engine_engine_param_1)
+void engine_process_system_data_request(longlong engine_engine_param_1)
 
 {
   void* engine_data_ptr;
@@ -15113,8 +15113,8 @@ void FUN_180052070(longlong engine_engine_param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180052200(longlong engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180052200(longlong engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_handle_system_data_operation(longlong engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_handle_system_data_operation(longlong engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   longlong *pengine_temp_long;
@@ -15137,7 +15137,7 @@ void FUN_180052200(longlong engine_engine_param_1,longlong engine_engine_param_2
   pengine_temp_long = (longlong *)(engine_engine_param_1 + 0xd8);
   lVar6 = 0;
   if ((*(longlong *)(engine_engine_param_1 + 0xe0) - *pengine_temp_long & 0xffffffffffffffe0U) != 0) {
-    FUN_180057110(engine_engine_param_2);
+    engine_process_system_request_queue(engine_engine_param_2);
     uVar5 = *(longlong *)(engine_engine_param_1 + 0xe0) - *pengine_temp_long >> 5;
     if (0 < (int)uVar5) {
       uVar5 = uVar5 & 0xffffffff;
@@ -15261,8 +15261,8 @@ uint64 FUN_1800524c0(uint64 engine_engine_param_1,uint64 engine_engine_param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180052940(longlong engine_engine_param_1,float engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180052940(longlong engine_engine_param_1,float engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_process_system_calculation(longlong engine_engine_param_1,float engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_process_system_calculation(longlong engine_engine_param_1,float engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   ulonglong engine_temp_uint;
@@ -15450,8 +15450,8 @@ LAB_180052de5:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180052ef0(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,undefined1 engine_param_4)
-void FUN_180052ef0(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,undefined1 engine_param_4)
+// 函数: void engine_execute_system_validation(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint8_t engine_param_4)
+void engine_execute_system_validation(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint8_t engine_param_4)
 
 {
   int engine_temp_int;
@@ -15581,11 +15581,11 @@ void FUN_180052ef0(longlong *engine_engine_param_1,uint64 engine_engine_param_2,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180053200(uint64 engine_engine_param_1,longlong engine_engine_param_2)
-void FUN_180053200(uint64 engine_engine_param_1,longlong engine_engine_param_2)
+// 函数: void engine_handle_system_resource(uint64 engine_engine_param_1,longlong engine_engine_param_2)
+void engine_handle_system_resource(uint64 engine_engine_param_1,longlong engine_engine_param_2)
 
 {
-  undefined4 *engine_data_ptr;
+  uint32_t *engine_data_ptr;
   int engine_temp_int_2;
   int engine_loop_counter;
   uint8 auStack_1c8 [32];
@@ -15798,8 +15798,8 @@ void FUN_180053200(uint64 engine_engine_param_1,longlong engine_engine_param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800533d0(uint64 engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3)
-void FUN_1800533d0(uint64 engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3)
+// 函数: void engine_process_system_allocation(uint64 engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3)
+void engine_process_system_allocation(uint64 engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3)
 
 {
   longlong engine_temp_long;
@@ -15907,7 +15907,7 @@ LAB_1800535b0:
     engine_current_data_ptr[uVar8] = 0;
   }
   uStack_1f4 = *(uint32*)(engine_param_3 + 0x1c);
-  uStack_198 = CONCAT44(uStack_1f4,(undefined4)uStack_198);
+  uStack_198 = CONCAT44(uStack_1f4,(uint32_t)uStack_198);
   uStack_1a0 = uVar6;
   if (uVar6 != 0xfffffffa) {
     uVar6 = uVar6 + 7;
@@ -15936,7 +15936,7 @@ LAB_18005364c:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8
+uint64_t
 FUN_180054120(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
@@ -15971,7 +15971,7 @@ FUN_180054120(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint64 e
   engine_temp_uint7 = 0;
   uStack_40 = 0;
   uStack_38 = 3;
-  FUN_180052200(_engine_data_70,&puStack_50,engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_handle_system_data_operation(_engine_data_70,&puStack_50,engine_param_3,engine_param_4,0xfffffffffffffffe);
   engine_temporary_ptr = puStack_48;
   engine_data_ptr_4 = puStack_50;
   engine_temp_uint1 = (longlong)puStack_48 - (longlong)puStack_50 >> 5;
@@ -16066,8 +16066,8 @@ LAB_18005419d:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180054360(longlong *engine_engine_param_1,longlong engine_engine_param_2)
-void FUN_180054360(longlong *engine_engine_param_1,longlong engine_engine_param_2)
+// 函数: void engine_manage_system_memory(longlong *engine_engine_param_1,longlong engine_engine_param_2)
+void engine_manage_system_memory(longlong *engine_engine_param_1,longlong engine_engine_param_2)
 
 {
   uint engine_temp_uint;
@@ -16225,7 +16225,7 @@ void FUN_180054360(longlong *engine_engine_param_1,longlong engine_engine_param_
   if (lStack_200 != 0) {
     *(uint8*)(uVar7 + lStack_200) = 0;
   }
-  uStack_1f0 = CONCAT44(*(uint *)(lVar6 + 0x1c),(undefined4)uStack_1f0);
+  uStack_1f0 = CONCAT44(*(uint *)(lVar6 + 0x1c),(uint32_t)uStack_1f0);
   if (0 < iStack_180) {
     uStack_1f8 = engine_temp_uint;
     engine_call_array_builder(&puStack_208,iStack_180);
@@ -16233,7 +16233,7 @@ void FUN_180054360(longlong *engine_engine_param_1,longlong engine_engine_param_
     memcpy((ulonglong)uStack_1f8 + lStack_200,lStack_188,(longlong)(iStack_180 + 1));
   }
   lStack_1d8 = lStack_200;
-  uStack_1c8._0_4_ = (undefined4)uStack_1f0;
+  uStack_1c8._0_4_ = (uint32_t)uStack_1f0;
   uStack_1f8 = 0;
   uStack_1e8 = 0;
   lStack_200 = 0;
@@ -16286,8 +16286,8 @@ void FUN_180054360(longlong *engine_engine_param_1,longlong engine_engine_param_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800547b0(void)
-void FUN_1800547b0(void)
+// 函数: void engine_cleanup_system_resources(void)
+void engine_cleanup_system_resources(void)
 
 {
   uint engine_temp_uint;
@@ -16296,7 +16296,7 @@ void FUN_1800547b0(void)
   char cVar4;
   void* engine_temporary_ptr;
   uint8* engine_temporary_data_ptr;
-  undefined4 *engine_current_data_ptr;
+  uint32_t *engine_current_data_ptr;
   int iVar8;
   int iVar9;
   longlong engine_temp_long0;
@@ -16560,7 +16560,7 @@ LAB_180054d28:
                 iVar9 = -1;
 LAB_180054d57:
                 engine_call_data_iterator(engine_data_ptr_3 + (longlong)engine_temp_int3 * 4,&puStack_98,iVar9 + 1,0xffffffff);
-                engine_temp_uint7 = FUN_180054360(pengine_temp_long_2,&puStack_98);
+                engine_temp_uint7 = engine_manage_system_memory(pengine_temp_long_2,&puStack_98);
                 if (_engine_data_54 != 0) {
                   FUN_18005c1c0(engine_temp_uint7,&puStack_78);
                   puStack_f0 = &UNK_180a3c3e0;
@@ -16684,8 +16684,8 @@ LAB_180054ec9:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180055050(void)
-void FUN_180055050(void)
+// 函数: void engine_finalize_system_initialization(void)
+void engine_finalize_system_initialization(void)
 
 {
   void* engine_data_ptr;
@@ -16752,8 +16752,8 @@ void FUN_180055050(void)
 
 
 
-// 函数: void FUN_180055e10(longlong *engine_engine_param_1)
-void FUN_180055e10(longlong *engine_engine_param_1)
+// 函数: void engine_initialize_system_context(longlong *engine_engine_param_1)
+void engine_initialize_system_context(longlong *engine_engine_param_1)
 
 {
   longlong engine_temp_long;
@@ -16773,19 +16773,19 @@ void FUN_180055e10(longlong *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180055e30(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180055e30(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_configure_system_settings(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_configure_system_settings(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
-  FUN_180058210(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_configure_system_io_settings_queue(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_180055e60(longlong engine_engine_param_1)
-void FUN_180055e60(longlong engine_engine_param_1)
+// 函数: void engine_validate_system_parameters(longlong engine_engine_param_1)
+void engine_validate_system_parameters(longlong engine_engine_param_1)
 
 {
   longlong engine_temp_long;
@@ -16855,19 +16855,19 @@ void engine_configure_network_protocol(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_180055f20(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180055f20(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_process_system_configuration(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_process_system_configuration(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
-  FUN_180058210(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_configure_system_io_settings_queue(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_180055f50(longlong engine_engine_param_1)
-void FUN_180055f50(longlong engine_engine_param_1)
+// 函数: void engine_check_system_compatibility(longlong engine_engine_param_1)
+void engine_check_system_compatibility(longlong engine_engine_param_1)
 
 {
   longlong engine_temp_long;
@@ -16906,8 +16906,8 @@ void FUN_180055f50(longlong engine_engine_param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180055f70(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
-void FUN_180055f70(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+// 函数: void engine_apply_system_settings(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
+void engine_apply_system_settings(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   code *pengine_status_flag;
@@ -16927,8 +16927,8 @@ void FUN_180055f70(uint64 engine_engine_param_1,undefined4 engine_engine_param_2
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180055fa0(void)
-void FUN_180055fa0(void)
+// 函数: void engine_confirm_system_readiness(void)
+void engine_confirm_system_readiness(void)
 
 {
   void* engine_data_ptr;
@@ -16980,8 +16980,8 @@ void FUN_180055fa0(void)
 
 
 
-// 函数: void FUN_180056150(longlong engine_engine_param_1)
-void FUN_180056150(longlong engine_engine_param_1)
+// 函数: void engine_start_system_operation(longlong engine_engine_param_1)
+void engine_start_system_operation(longlong engine_engine_param_1)
 
 {
   char engine_status_flag;
@@ -17070,13 +17070,13 @@ LAB_180056228:
           } while (plVar8 != *(longlong **)(*(longlong *)(engine_temp_long2 + engine_temp_long4 * 8) + 0x50));
         }
         lVar9 = *(longlong *)(engine_temp_long2 + engine_temp_long4 * 8);
-        FUN_180058a20(*(longlong *)(engine_temp_uint8 + engine_temp_long2) + 0x48,
+        engine_execute_system_io_response_task(*(longlong *)(engine_temp_uint8 + engine_temp_long2) + 0x48,
                       *(void*)(*(longlong *)(engine_temp_uint8 + engine_temp_long2) + 0x50),
                       *(void*)(lVar9 + 0x48),*(void*)(lVar9 + 0x50));
         lVar9 = *(longlong *)(*(longlong *)(engine_engine_param_1 + 0x48) + engine_temp_long4 * 8);
         *(void*)(lVar9 + 0x50) = *(void*)(lVar9 + 0x48);
-        FUN_180056150(*(void*)(engine_temp_uint8 + *(longlong *)(engine_engine_param_1 + 0x48)));
-        FUN_180056410(*(void*)(*(longlong *)(engine_engine_param_1 + 0x48) + engine_temp_long4 * 8));
+        engine_start_system_operation(*(void*)(engine_temp_uint8 + *(longlong *)(engine_engine_param_1 + 0x48)));
+        engine_execute_system_process(*(void*)(*(longlong *)(engine_engine_param_1 + 0x48) + engine_temp_long4 * 8));
         engine_data_ptr_4 = *(void**)(*(longlong *)(engine_engine_param_1 + 0x48) + engine_temp_long4 * 8);
         if (engine_data_ptr_4 != (void*)0x0) {
           if (engine_data_ptr_4[9] != 0) {
@@ -17132,8 +17132,8 @@ LAB_180056228:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180056410(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180056410(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_execute_system_process(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_execute_system_process(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   ulonglong *engine_data_ptr;
@@ -17155,7 +17155,7 @@ void FUN_180056410(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
   uVar8 = engine_temp_uint_3;
   if ((longlong)(*(longlong *)(engine_engine_param_1 + 0x50) - uVar4) >> 3 != 0) {
     do {
-      FUN_180056410(*(void*)(uVar4 + uVar5));
+      engine_execute_system_process(*(void*)(uVar4 + uVar5));
       engine_structure_data_ptr = *(void**)(*engine_data_ptr + uVar5);
       if (engine_structure_data_ptr != (void*)0x0) {
         if (engine_structure_data_ptr[9] != 0) {
@@ -17189,7 +17189,7 @@ void FUN_180056410(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
     } while ((ulonglong)(longlong)(int)uVar7 <
              (ulonglong)((longlong)(*(longlong *)(engine_engine_param_1 + 0x50) - uVar4) >> 3));
   }
-  FUN_180057340(engine_data_ptr,0);
+  engine_handle_system_io_request(engine_data_ptr,0);
   uVar4 = *(ulonglong *)(engine_engine_param_1 + 0x50);
   uVar5 = *engine_data_ptr;
   uVar7 = *(uint *)(engine_engine_param_1 + 0x60);
@@ -17220,8 +17220,8 @@ void FUN_180056410(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800565f0(longlong *engine_engine_param_1)
-void FUN_1800565f0(longlong *engine_engine_param_1)
+// 函数: void engine_manage_system_thread(longlong *engine_engine_param_1)
+void engine_manage_system_thread(longlong *engine_engine_param_1)
 
 {
   void* engine_data_ptr;
@@ -17302,15 +17302,15 @@ uint64 FUN_1800567c0(uint64 engine_engine_param_1,ulonglong engine_engine_param_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180056810(longlong engine_engine_param_1)
-void FUN_180056810(longlong engine_engine_param_1)
+// 函数: void engine_handle_system_interruption(longlong engine_engine_param_1)
+void engine_handle_system_interruption(longlong engine_engine_param_1)
 
 {
   uint engine_temp_uint;
   double dVar2;
   uint engine_temp_uint_3;
   longlong lVar4;
-  undefined4 *engine_temporary_ptr;
+  uint32_t *engine_temporary_ptr;
   void* engine_temporary_data_ptr;
   int engine_animation_frame_count;
   longlong lVar8;
@@ -17441,8 +17441,8 @@ void FUN_180056810(longlong engine_engine_param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180056b30(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180056b30(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_process_system_event_queue(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_process_system_event_queue(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   longlong engine_temp_long;
@@ -17486,8 +17486,8 @@ void FUN_180056b30(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uin
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180056c50(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,undefined4 engine_param_3)
-void FUN_180056c50(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,undefined4 engine_param_3)
+// 函数: void engine_handle_system_data_transfer(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint32_t engine_param_3)
+void engine_handle_system_data_transfer(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint32_t engine_param_3)
 
 {
   uint64 engine_temp_uint;
@@ -17551,7 +17551,7 @@ void FUN_180056c50(uint64 engine_engine_param_1,undefined8 *engine_engine_param_
 
 
 
-undefined8 * engine_setup_mouse_input(undefined8 *engine_engine_param_1)
+uint64_t * engine_setup_mouse_input(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = 0;
@@ -17563,7 +17563,7 @@ undefined8 * engine_setup_mouse_input(undefined8 *engine_engine_param_1)
 
 
 
-undefined8 * engine_update_game_state(undefined8 *engine_engine_param_1)
+uint64_t * engine_update_game_state(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = 0;
@@ -17576,17 +17576,17 @@ undefined8 * engine_update_game_state(undefined8 *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180056e40(void)
-void FUN_180056e40(void)
+// 函数: void engine_complete_system_setup(void)
+void engine_complete_system_setup(void)
 
 {
-  FUN_180057010();
+  engine_initialize_system_handler();
   return;
 }
 
 
 
-undefined8 * FUN_180056e60(undefined8 *engine_engine_param_1)
+uint64_t * FUN_180056e60(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = 0;
@@ -17598,7 +17598,7 @@ undefined8 * FUN_180056e60(undefined8 *engine_engine_param_1)
 
 
 
-undefined8 * FUN_180056e90(undefined8 *engine_engine_param_1)
+uint64_t * FUN_180056e90(uint64_t *engine_engine_param_1)
 
 {
   void* engine_data_ptr;
@@ -17641,8 +17641,8 @@ longlong * FUN_180056f10(longlong *engine_engine_param_1,longlong *engine_engine
 
 
 
-// 函数: void FUN_180056f70(longlong engine_engine_param_1,longlong engine_engine_param_2)
-void FUN_180056f70(longlong engine_engine_param_1,longlong engine_engine_param_2)
+// 函数: void engine_validate_system_operation(longlong engine_engine_param_1,longlong engine_engine_param_2)
+void engine_validate_system_operation(longlong engine_engine_param_1,longlong engine_engine_param_2)
 
 {
   longlong engine_temp_long;
@@ -17677,8 +17677,8 @@ void FUN_180056f70(longlong engine_engine_param_1,longlong engine_engine_param_2
 
 
 
-// 函数: void FUN_180057010(longlong *engine_engine_param_1)
-void FUN_180057010(longlong *engine_engine_param_1)
+// 函数: void engine_initialize_system_handler(longlong *engine_engine_param_1)
+void engine_initialize_system_handler(longlong *engine_engine_param_1)
 
 {
   longlong *pengine_temp_long;
@@ -17705,8 +17705,8 @@ void FUN_180057010(longlong *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180057029(longlong engine_engine_param_1)
-void FUN_180057029(longlong engine_engine_param_1)
+// 函数: void engine_start_system_service(longlong engine_engine_param_1)
+void engine_start_system_service(longlong engine_engine_param_1)
 
 {
   longlong unaff_RSI;
@@ -17731,8 +17731,8 @@ void FUN_180057029(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_180057062(void)
-void FUN_180057062(void)
+// 函数: void engine_check_system_availability(void)
+void engine_check_system_availability(void)
 
 {
   longlong unaff_RSI;
@@ -17746,8 +17746,8 @@ void FUN_180057062(void)
 
 
 
-undefined8 *
-FUN_180057090(undefined8 *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180057090(uint64_t *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   longlong engine_temp_long;
@@ -17773,8 +17773,8 @@ FUN_180057090(undefined8 *engine_engine_param_1,longlong engine_engine_param_2,u
 
 
 
-// 函数: void FUN_180057110(longlong *engine_engine_param_1)
-void FUN_180057110(longlong *engine_engine_param_1)
+// 函数: void engine_process_system_request_queue(longlong *engine_engine_param_1)
+void engine_process_system_request_queue(longlong *engine_engine_param_1)
 
 {
   void* engine_data_ptr;
@@ -17797,8 +17797,8 @@ void FUN_180057110(longlong *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180057170(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180057170(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_handle_system_data_processing(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_handle_system_data_processing(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   void* engine_data_ptr;
@@ -17822,14 +17822,14 @@ void FUN_180057170(longlong *engine_engine_param_1,uint64 engine_engine_param_2,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800571e0(longlong *engine_engine_param_1,undefined4 *engine_engine_param_2)
-void FUN_1800571e0(longlong *engine_engine_param_1,undefined4 *engine_engine_param_2)
+// 函数: void engine_manage_system_buffer(longlong *engine_engine_param_1,uint32_t *engine_engine_param_2)
+void engine_manage_system_buffer(longlong *engine_engine_param_1,uint32_t *engine_engine_param_2)
 
 {
   longlong engine_temp_long;
-  undefined4 *engine_structure_data_ptr;
-  undefined4 *engine_data_ptr_3;
-  undefined4 *engine_data_ptr_4;
+  uint32_t *engine_structure_data_ptr;
+  uint32_t *engine_data_ptr_3;
+  uint32_t *engine_data_ptr_4;
   
   engine_data_ptr_4 = (uint32*)engine_engine_param_1[1];
   if (engine_data_ptr_4 < (uint32*)engine_engine_param_1[2]) {
@@ -17871,8 +17871,8 @@ LAB_18005726e:
 
 
 
-// 函数: void FUN_1800572d0(longlong engine_engine_param_1)
-void FUN_1800572d0(longlong engine_engine_param_1)
+// 函数: void engine_process_system_io_operation(longlong engine_engine_param_1)
+void engine_process_system_io_operation(longlong engine_engine_param_1)
 
 {
   void* engine_data_ptr;
@@ -17894,8 +17894,8 @@ void FUN_1800572d0(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_1800572e6(void)
-void FUN_1800572e6(void)
+// 函数: void engine_check_system_io_status(void)
+void engine_check_system_io_status(void)
 
 {
   FUN_18004b790();
@@ -17906,8 +17906,8 @@ void FUN_1800572e6(void)
 
 
 
-// 函数: void FUN_180057314(void)
-void FUN_180057314(void)
+// 函数: void engine_validate_system_io_operation(void)
+void engine_validate_system_io_operation(void)
 
 {
   longlong unaff_RBX;
@@ -17925,8 +17925,8 @@ void FUN_180057314(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180057340(longlong *engine_engine_param_1,ulonglong engine_engine_param_2)
-void FUN_180057340(longlong *engine_engine_param_1,ulonglong engine_engine_param_2)
+// 函数: void engine_handle_system_io_request(longlong *engine_engine_param_1,ulonglong engine_engine_param_2)
+void engine_handle_system_io_request(longlong *engine_engine_param_1,ulonglong engine_engine_param_2)
 
 {
   longlong engine_temp_long;
@@ -17990,8 +17990,8 @@ void FUN_180057340(longlong *engine_engine_param_1,ulonglong engine_engine_param
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18005736b(longlong engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,longlong engine_param_4)
-void FUN_18005736b(longlong engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,longlong engine_param_4)
+// 函数: void engine_process_system_io_data(longlong engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,longlong engine_param_4)
+void engine_process_system_io_data(longlong engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,longlong engine_param_4)
 
 {
   longlong in_RAX;
@@ -18046,8 +18046,8 @@ void FUN_18005736b(longlong engine_engine_param_1,ulonglong engine_engine_param_
 
 
 
-// 函数: void FUN_180057446(void)
-void FUN_180057446(void)
+// 函数: void engine_complete_system_io_operation(void)
+void engine_complete_system_io_operation(void)
 
 {
   longlong unaff_RBX;
@@ -18065,8 +18065,8 @@ void FUN_180057446(void)
 
 
 
-// 函数: void FUN_180057479(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,longlong engine_param_4)
-void FUN_180057479(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,longlong engine_param_4)
+// 函数: void engine_handle_system_io_completion(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,longlong engine_param_4)
+void engine_handle_system_io_completion(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,longlong engine_param_4)
 
 {
   longlong unaff_RBX;
@@ -18078,19 +18078,19 @@ void FUN_180057479(uint64 engine_engine_param_1,longlong engine_engine_param_2,u
 
 
 
-// 函数: void FUN_180057490(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180057490(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_process_system_io_result(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_process_system_io_result(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
-  FUN_180058210(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_configure_system_io_settings_queue(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_1800574b0(longlong *engine_engine_param_1)
-void FUN_1800574b0(longlong *engine_engine_param_1)
+// 函数: void engine_manage_system_io_handler(longlong *engine_engine_param_1)
+void engine_manage_system_io_handler(longlong *engine_engine_param_1)
 
 {
   longlong engine_temp_long;
@@ -18110,85 +18110,30 @@ void FUN_1800574b0(longlong *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180057510(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180057510(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_execute_system_io_task(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_execute_system_io_task(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
-  FUN_1800582b0(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_process_system_io_configuration_queue(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_180057530(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180057530(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_process_system_io_command(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_process_system_io_command(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
-  FUN_180058370(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_handle_system_io_data_queue(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_180057550(longlong engine_engine_param_1)
-void FUN_180057550(longlong engine_engine_param_1)
-
-{
-  int *pengine_temp_int;
-  longlong engine_temp_long_2;
-  void* engine_data_ptr_3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong engine_temp_index_6;
-  
-  uVar6 = *(ulonglong *)(engine_engine_param_1 + 0x10);
-  lVar4 = *(longlong *)(engine_engine_param_1 + 8);
-  uVar5 = 0;
-  if (uVar6 != 0) {
-    do {
-      engine_temp_long_2 = *(longlong *)(lVar4 + uVar5 * 8);
-      if (engine_temp_long_2 != 0) {
-                    // WARNING: Subroutine does not return
-        engine_call_cleanup_routine(engine_temp_long_2);
-      }
-      *(void*)(lVar4 + uVar5 * 8) = 0;
-      uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar6);
-    uVar6 = *(ulonglong *)(engine_engine_param_1 + 0x10);
-  }
-  *(void*)(engine_engine_param_1 + 0x18) = 0;
-  if ((1 < uVar6) && (engine_data_ptr_3 = *(void**)(engine_engine_param_1 + 8), engine_data_ptr_3 != (void*)0x0)) {
-    uVar6 = (ulonglong)engine_data_ptr_3 & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)engine_data_ptr_3 - uVar6 >> 0x10) * 0x50;
-      lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *engine_data_ptr_3 = *(void*)(lVar4 + 0x20);
-        *(void**)(lVar4 + 0x20) = engine_data_ptr_3;
-        pengine_temp_int = (int *)(lVar4 + 0x18);
-        *pengine_temp_int = *pengine_temp_int + -1;
-        if (*pengine_temp_int == 0) {
-          FUN_18064d630();
-          return;
-        }
-      }
-      else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            engine_data_ptr_3,uVar6,0xfffffffffffffffe);
-      }
-    }
-    return;
-  }
-  return;
-}
-
-
-
-
-// 函数: void FUN_180057556(longlong engine_engine_param_1)
-void FUN_180057556(longlong engine_engine_param_1)
+// 函数: void engine_handle_system_io_event(longlong engine_engine_param_1)
+void engine_handle_system_io_event(longlong engine_engine_param_1)
 
 {
   int *pengine_temp_int;
@@ -18242,8 +18187,63 @@ void FUN_180057556(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_180057580(void)
-void FUN_180057580(void)
+// 函数: void engine_validate_system_io_state(longlong engine_engine_param_1)
+void engine_validate_system_io_state(longlong engine_engine_param_1)
+
+{
+  int *pengine_temp_int;
+  longlong engine_temp_long_2;
+  void* engine_data_ptr_3;
+  longlong lVar4;
+  ulonglong uVar5;
+  ulonglong engine_temp_index_6;
+  
+  uVar6 = *(ulonglong *)(engine_engine_param_1 + 0x10);
+  lVar4 = *(longlong *)(engine_engine_param_1 + 8);
+  uVar5 = 0;
+  if (uVar6 != 0) {
+    do {
+      engine_temp_long_2 = *(longlong *)(lVar4 + uVar5 * 8);
+      if (engine_temp_long_2 != 0) {
+                    // WARNING: Subroutine does not return
+        engine_call_cleanup_routine(engine_temp_long_2);
+      }
+      *(void*)(lVar4 + uVar5 * 8) = 0;
+      uVar5 = uVar5 + 1;
+    } while (uVar5 < uVar6);
+    uVar6 = *(ulonglong *)(engine_engine_param_1 + 0x10);
+  }
+  *(void*)(engine_engine_param_1 + 0x18) = 0;
+  if ((1 < uVar6) && (engine_data_ptr_3 = *(void**)(engine_engine_param_1 + 8), engine_data_ptr_3 != (void*)0x0)) {
+    uVar6 = (ulonglong)engine_data_ptr_3 & 0xffffffffffc00000;
+    if (uVar6 != 0) {
+      lVar4 = uVar6 + 0x80 + ((longlong)engine_data_ptr_3 - uVar6 >> 0x10) * 0x50;
+      lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
+      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
+        *engine_data_ptr_3 = *(void*)(lVar4 + 0x20);
+        *(void**)(lVar4 + 0x20) = engine_data_ptr_3;
+        pengine_temp_int = (int *)(lVar4 + 0x18);
+        *pengine_temp_int = *pengine_temp_int + -1;
+        if (*pengine_temp_int == 0) {
+          FUN_18064d630();
+          return;
+        }
+      }
+      else {
+        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
+                            engine_data_ptr_3,uVar6,0xfffffffffffffffe);
+      }
+    }
+    return;
+  }
+  return;
+}
+
+
+
+
+// 函数: void engine_complete_system_io_processing(void)
+void engine_complete_system_io_processing(void)
 
 {
   int *pengine_temp_int;
@@ -18295,8 +18295,8 @@ void FUN_180057580(void)
 
 
 
-// 函数: void FUN_1800575b6(void)
-void FUN_1800575b6(void)
+// 函数: void engine_check_system_io_completion(void)
+void engine_check_system_io_completion(void)
 
 {
   int *pengine_temp_int;
@@ -18336,8 +18336,8 @@ void FUN_1800575b6(void)
 
 
 
-// 函数: void FUN_1800575d4(void)
-void FUN_1800575d4(void)
+// 函数: void engine_finalize_system_io_operation(void)
+void engine_finalize_system_io_operation(void)
 
 {
   int *pengine_temp_int;
@@ -18375,19 +18375,19 @@ void FUN_1800575d4(void)
 
 
 
-// 函数: void FUN_1800575f0(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_1800575f0(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_initialize_system_io_component(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_initialize_system_io_component(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
-  FUN_180058420(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_execute_system_io_validation_queue(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_180057610(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180057610(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_configure_system_io_settings(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_configure_system_io_settings(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   void* engine_data_ptr;
@@ -18409,8 +18409,8 @@ void FUN_180057610(longlong *engine_engine_param_1,uint64 engine_engine_param_2,
 
 
 
-// 函数: void FUN_180057680(longlong engine_engine_param_1)
-void FUN_180057680(longlong engine_engine_param_1)
+// 函数: void engine_validate_system_io_configuration(longlong engine_engine_param_1)
+void engine_validate_system_io_configuration(longlong engine_engine_param_1)
 
 {
   longlong engine_temp_long;
@@ -18447,8 +18447,8 @@ void FUN_180057680(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_180057730(longlong *engine_engine_param_1)
-void FUN_180057730(longlong *engine_engine_param_1)
+// 函数: void engine_start_system_io_operation(longlong *engine_engine_param_1)
+void engine_start_system_io_operation(longlong *engine_engine_param_1)
 
 {
   longlong engine_temp_long;
@@ -18468,8 +18468,8 @@ void FUN_180057730(longlong *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180057790(longlong engine_engine_param_1)
-void FUN_180057790(longlong engine_engine_param_1)
+// 函数: void engine_process_system_io_request_queue(longlong engine_engine_param_1)
+void engine_process_system_io_request_queue(longlong engine_engine_param_1)
 
 {
   int *pengine_temp_int;
@@ -18523,8 +18523,8 @@ void FUN_180057790(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_180057796(longlong engine_engine_param_1)
-void FUN_180057796(longlong engine_engine_param_1)
+// 函数: void engine_handle_system_io_data_transfer(longlong engine_engine_param_1)
+void engine_handle_system_io_data_transfer(longlong engine_engine_param_1)
 
 {
   int *pengine_temp_int;
@@ -18578,8 +18578,8 @@ void FUN_180057796(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_1800577c0(void)
-void FUN_1800577c0(void)
+// 函数: void engine_complete_system_io_initialization(void)
+void engine_complete_system_io_initialization(void)
 
 {
   int *pengine_temp_int;
@@ -18631,8 +18631,8 @@ void FUN_1800577c0(void)
 
 
 
-// 函数: void FUN_1800577f6(void)
-void FUN_1800577f6(void)
+// 函数: void engine_check_system_io_readiness(void)
+void engine_check_system_io_readiness(void)
 
 {
   int *pengine_temp_int;
@@ -18672,8 +18672,8 @@ void FUN_1800577f6(void)
 
 
 
-// 函数: void FUN_180057814(void)
-void FUN_180057814(void)
+// 函数: void engine_validate_system_io_status(void)
+void engine_validate_system_io_status(void)
 
 {
   int *pengine_temp_int;
@@ -18711,8 +18711,8 @@ void FUN_180057814(void)
 
 
 
-// 函数: void FUN_180057830(longlong *engine_engine_param_1)
-void FUN_180057830(longlong *engine_engine_param_1)
+// 函数: void engine_manage_system_io_resources(longlong *engine_engine_param_1)
+void engine_manage_system_io_resources(longlong *engine_engine_param_1)
 
 {
   longlong *pengine_temp_long;
@@ -18736,8 +18736,8 @@ void FUN_180057830(longlong *engine_engine_param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800578a0(void)
-void FUN_1800578a0(void)
+// 函数: void engine_finalize_system_io_setup(void)
+void engine_finalize_system_io_setup(void)
 
 {
   int *pengine_temp_int;
@@ -18749,7 +18749,7 @@ void FUN_1800578a0(void)
   if (engine_data_pointer_50 == (void*)0x0) {
     return;
   }
-  FUN_180057830();
+  engine_manage_system_io_resources();
   if ((longlong *)engine_structure_data_ptr[0x30b] != (longlong *)0x0) {
     (**(code **)(*(longlong *)engine_structure_data_ptr[0x30b] + 0x38))();
   }
@@ -18794,8 +18794,8 @@ void FUN_1800578a0(void)
 
 
 
-// 函数: void FUN_180057980(longlong engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180057980(longlong engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_execute_system_io_process(longlong engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_execute_system_io_process(longlong engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   char engine_status_flag;
@@ -18916,8 +18916,8 @@ LAB_180057ba2:
 
 
 
-// 函数: void FUN_180057bf0(undefined8 *engine_engine_param_1)
-void FUN_180057bf0(undefined8 *engine_engine_param_1)
+// 函数: void engine_initialize_system_io_object(uint64_t *engine_engine_param_1)
+void engine_initialize_system_io_object(uint64_t *engine_engine_param_1)
 
 {
   if (engine_engine_param_1 == (void*)0x0) {
@@ -18951,7 +18951,7 @@ void FUN_180057bf0(undefined8 *engine_engine_param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180057cb0(undefined8 *engine_engine_param_1,uint engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t * FUN_180057cb0(uint64_t *engine_engine_param_1,uint engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &engine_base_data_offset_b0;
@@ -18975,8 +18975,8 @@ undefined8 * FUN_180057cb0(undefined8 *engine_engine_param_1,uint engine_engine_
 
 
 
-// 函数: void FUN_180057d70(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180057d70(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_configure_system_io_component(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_configure_system_io_component(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   void* engine_data_ptr;
@@ -18984,8 +18984,8 @@ void FUN_180057d70(longlong *engine_engine_param_1,uint64 engine_engine_param_2,
   uint64 engine_temp_uint_3;
   
   engine_temp_uint_3 = 0xfffffffffffffffe;
-  FUN_180058020();
-  FUN_180058020();
+  engine_execute_system_io_process_queue();
+  engine_execute_system_io_process_queue();
   engine_engine_param_1[0x123] = (longlong)&UNK_180a3c3e0;
   if (engine_engine_param_1[0x124] != 0) {
                     // WARNING: Subroutine does not return
@@ -18994,11 +18994,11 @@ void FUN_180057d70(longlong *engine_engine_param_1,uint64 engine_engine_param_2,
   engine_engine_param_1[0x124] = 0;
   *(uint32*)(engine_engine_param_1 + 0x126) = 0;
   engine_engine_param_1[0x123] = (longlong)&UNK_18098bcb0;
-  FUN_180058370(engine_engine_param_1 + 0x11d,engine_engine_param_1[0x11f],engine_param_3,engine_param_4,engine_temp_uint_3);
+  engine_handle_system_io_data_queue(engine_engine_param_1 + 0x11d,engine_engine_param_1[0x11f],engine_param_3,engine_param_4,engine_temp_uint_3);
   if (engine_engine_param_1[0x119] == 0) {
     FUN_18005d580();
     FUN_18005d580();
-    FUN_180058710(engine_engine_param_1 + 0x10b,engine_engine_param_1[0x10d]);
+    engine_process_system_io_request_queue(engine_engine_param_1 + 0x10b,engine_engine_param_1[0x10d]);
     engine_engine_param_1[0x87] = (longlong)&UNK_18098bcb0;
     engine_engine_param_1[4] = (longlong)&UNK_18098bcb0;
     engine_temp_uint_3 = 0xfffffffffffffffe;
@@ -19019,26 +19019,26 @@ void FUN_180057d70(longlong *engine_engine_param_1,uint64 engine_engine_param_2,
 
 
 
-// 函数: void FUN_180057e90(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180057e90(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_process_system_io_operation_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_process_system_io_operation_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
-  FUN_180058710(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_process_system_io_request_queue(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_180057ec0(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180057ec0(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_handle_system_io_event_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_handle_system_io_event_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   void* engine_data_ptr;
   
   engine_data_ptr = *(void**)(engine_engine_param_1 + 0x10);
   if (engine_data_ptr != (void*)0x0) {
-    FUN_1800587d0(engine_engine_param_1,*engine_data_ptr,engine_param_3,engine_param_4,0xfffffffffffffffe);
+    engine_handle_system_io_response_queue(engine_engine_param_1,*engine_data_ptr,engine_param_3,engine_param_4,0xfffffffffffffffe);
     FUN_18005cb60(engine_data_ptr);
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_data_ptr);
@@ -19049,26 +19049,26 @@ void FUN_180057ec0(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
 
 
 
-// 函数: void FUN_180057ee0(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180057ee0(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_execute_system_io_task_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_execute_system_io_task_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
-  FUN_180058710(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_process_system_io_request_queue(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_180057f10(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180057f10(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_process_system_io_command_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_process_system_io_command_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   void* engine_data_ptr;
   
   engine_data_ptr = *(void**)(engine_engine_param_1 + 0x10);
   if (engine_data_ptr != (void*)0x0) {
-    FUN_1800587d0(engine_engine_param_1,*engine_data_ptr,engine_param_3,engine_param_4,0xfffffffffffffffe);
+    engine_handle_system_io_response_queue(engine_engine_param_1,*engine_data_ptr,engine_param_3,engine_param_4,0xfffffffffffffffe);
     FUN_18005cb60(engine_data_ptr);
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_data_ptr);
@@ -19079,8 +19079,8 @@ void FUN_180057f10(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
 
 
 
-// 函数: void FUN_180057f30(longlong *engine_engine_param_1)
-void FUN_180057f30(longlong *engine_engine_param_1)
+// 函数: void engine_manage_system_io_handler_queue(longlong *engine_engine_param_1)
+void engine_manage_system_io_handler_queue(longlong *engine_engine_param_1)
 
 {
   longlong engine_temp_long;
@@ -19091,7 +19091,7 @@ void FUN_180057f30(longlong *engine_engine_param_1)
   longlong lVar6;
   void* engine_current_data_ptr;
   
-  FUN_180057110();
+  engine_process_system_request_queue();
   engine_temp_long = *engine_engine_param_1;
   *engine_engine_param_1 = 0;
   engine_temp_long_2 = engine_engine_param_1[1];
@@ -19119,26 +19119,26 @@ void FUN_180057f30(longlong *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180058000(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180058000(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_start_system_io_operation_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_start_system_io_operation_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
-  FUN_180058710(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_process_system_io_request_queue(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_180058020(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180058020(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_execute_system_io_process_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_execute_system_io_process_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   void* engine_data_ptr;
   
   engine_data_ptr = *(void**)(engine_engine_param_1 + 0x10);
   if (engine_data_ptr != (void*)0x0) {
-    FUN_1800587d0(engine_engine_param_1,*engine_data_ptr,engine_param_3,engine_param_4,0xfffffffffffffffe);
+    engine_handle_system_io_response_queue(engine_engine_param_1,*engine_data_ptr,engine_param_3,engine_param_4,0xfffffffffffffffe);
     FUN_18005cb60(engine_data_ptr);
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_data_ptr);
@@ -19148,7 +19148,7 @@ void FUN_180058020(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
 
 
 
-undefined8 * FUN_180058080(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_2,longlong engine_param_3)
+uint64_t * FUN_180058080(uint64_t *engine_engine_param_1,uint64_t *engine_engine_param_2,longlong engine_param_3)
 
 {
   byte engine_temp_byte;
@@ -19225,8 +19225,8 @@ LAB_180058138:
 
 
 
-// 函数: void FUN_180058160(ulonglong *engine_engine_param_1)
-void FUN_180058160(ulonglong *engine_engine_param_1)
+// 函数: void engine_initialize_system_io_context(ulonglong *engine_engine_param_1)
+void engine_initialize_system_io_context(ulonglong *engine_engine_param_1)
 
 {
   int *pengine_temp_int;
@@ -19279,12 +19279,12 @@ void FUN_180058160(ulonglong *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180058210(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180058210(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_configure_system_io_settings_queue(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_configure_system_io_settings_queue(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   if (engine_engine_param_2 != (void*)0x0) {
-    FUN_180058210(engine_engine_param_1,*engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
+    engine_configure_system_io_settings_queue(engine_engine_param_1,*engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
     if ((longlong *)engine_engine_param_2[0x17] != (longlong *)0x0) {
       (**(code **)(*(longlong *)engine_engine_param_2[0x17] + 0x38))();
     }
@@ -19298,15 +19298,15 @@ void FUN_180058210(uint64 engine_engine_param_1,undefined8 *engine_engine_param_
 
 
 
-// 函数: void FUN_1800582b0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_1800582b0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_process_system_io_configuration_queue(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_process_system_io_configuration_queue(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   if (engine_engine_param_2 == (void*)0x0) {
     return;
   }
-  FUN_1800582b0(engine_engine_param_1,*engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
-  FUN_180058db0(engine_engine_param_2 + 8);
+  engine_process_system_io_configuration_queue(engine_engine_param_1,*engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_execute_system_io_response_process(engine_engine_param_2 + 8);
   engine_engine_param_2[4] = &UNK_180a3c3e0;
   if (engine_engine_param_2[5] != 0) {
                     // WARNING: Subroutine does not return
@@ -19322,14 +19322,14 @@ void FUN_1800582b0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_
 
 
 
-// 函数: void FUN_180058370(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180058370(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_handle_system_io_data_queue(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_handle_system_io_data_queue(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   if (engine_engine_param_2 == (void*)0x0) {
     return;
   }
-  FUN_180058370(engine_engine_param_1,*engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_handle_system_io_data_queue(engine_engine_param_1,*engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
   engine_engine_param_2[4] = &UNK_180a3c3e0;
   if (engine_engine_param_2[5] != 0) {
                     // WARNING: Subroutine does not return
@@ -19345,14 +19345,14 @@ void FUN_180058370(uint64 engine_engine_param_1,undefined8 *engine_engine_param_
 
 
 
-// 函数: void FUN_180058420(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180058420(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_execute_system_io_validation_queue(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_execute_system_io_validation_queue(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   if (engine_engine_param_2 == (void*)0x0) {
     return;
   }
-  FUN_180058420(engine_engine_param_1,*engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_execute_system_io_validation_queue(engine_engine_param_1,*engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
   if (engine_engine_param_2[8] != 0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
@@ -19374,8 +19374,8 @@ void FUN_180058420(uint64 engine_engine_param_1,undefined8 *engine_engine_param_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800584e0(undefined8 *engine_engine_param_1,longlong engine_engine_param_2)
-void FUN_1800584e0(undefined8 *engine_engine_param_1,longlong engine_engine_param_2)
+// 函数: void engine_manage_system_io_memory_queue(uint64_t *engine_engine_param_1,longlong engine_engine_param_2)
+void engine_manage_system_io_memory_queue(uint64_t *engine_engine_param_1,longlong engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -19485,14 +19485,14 @@ void engine_setup_ui_renderer(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_180058710(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180058710(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_process_system_io_request_queue(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_process_system_io_request_queue(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   if (engine_engine_param_2 == (void*)0x0) {
     return;
   }
-  FUN_180058710(engine_engine_param_1,*engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
+  engine_process_system_io_request_queue(engine_engine_param_1,*engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
   if (engine_engine_param_2[8] != 0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
@@ -19512,12 +19512,12 @@ void FUN_180058710(uint64 engine_engine_param_1,undefined8 *engine_engine_param_
 
 
 
-// 函数: void FUN_1800587d0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2)
-void FUN_1800587d0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2)
+// 函数: void engine_handle_system_io_response_queue(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2)
+void engine_handle_system_io_response_queue(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   if (engine_engine_param_2 != (void*)0x0) {
-    FUN_1800587d0(engine_engine_param_1,*engine_engine_param_2);
+    engine_handle_system_io_response_queue(engine_engine_param_1,*engine_engine_param_2);
     FUN_18005cb60(engine_engine_param_2);
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_engine_param_2);
@@ -19528,13 +19528,13 @@ void FUN_1800587d0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_
 
 
 
-// 函数: void FUN_1800587e2(uint64 engine_engine_param_1)
-void FUN_1800587e2(uint64 engine_engine_param_1)
+// 函数: void engine_check_system_io_response_status(uint64 engine_engine_param_1)
+void engine_check_system_io_response_status(uint64 engine_engine_param_1)
 
 {
   void* unaff_RBX;
   
-  FUN_1800587d0(engine_engine_param_1,*unaff_RBX);
+  engine_handle_system_io_response_queue(engine_engine_param_1,*unaff_RBX);
   FUN_18005cb60();
                     // WARNING: Subroutine does not return
   engine_call_cleanup_routine();
@@ -19543,8 +19543,8 @@ void FUN_1800587e2(uint64 engine_engine_param_1)
 
 
 
-// 函数: void FUN_180058826(void)
-void FUN_180058826(void)
+// 函数: void engine_complete_system_io_response_processing(void)
+void engine_complete_system_io_response_processing(void)
 
 {
   return;
@@ -19553,8 +19553,8 @@ void FUN_180058826(void)
 
 
 
-// 函数: void FUN_180058830(uint64 engine_engine_param_1,longlong engine_engine_param_2)
-void FUN_180058830(uint64 engine_engine_param_1,longlong engine_engine_param_2)
+// 函数: void engine_validate_system_io_response_data(uint64 engine_engine_param_1,longlong engine_engine_param_2)
+void engine_validate_system_io_response_data(uint64 engine_engine_param_1,longlong engine_engine_param_2)
 
 {
   if (*(longlong *)(engine_engine_param_2 + 0x40) != 0) {
@@ -19581,8 +19581,8 @@ void FUN_180058830(uint64 engine_engine_param_1,longlong engine_engine_param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800588c0(longlong *engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
-void FUN_1800588c0(longlong *engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
+// 函数: void engine_process_system_io_response_operation(longlong *engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
+void engine_process_system_io_response_operation(longlong *engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
 
 {
   void* engine_data_ptr;
@@ -19630,12 +19630,12 @@ void FUN_1800588c0(longlong *engine_engine_param_1,longlong engine_engine_param_
     uVar5 = engine_engine_param_1[1] - *engine_engine_param_1 >> 5;
     if (uVar5 < uVar6) {
       engine_temp_long_2 = uVar5 * 0x20 + engine_engine_param_2;
-      FUN_180059250(engine_engine_param_2,engine_temp_long_2);
+      engine_get_system_data_pointer(engine_engine_param_2,engine_temp_long_2);
       engine_temp_long_2 = FUN_180059300(engine_temp_long_2,engine_param_3,engine_engine_param_1[1]);
       engine_engine_param_1[1] = engine_temp_long_2;
     }
     else {
-      engine_data_ptr_3 = (void*)FUN_180059250(engine_engine_param_2,engine_param_3);
+      engine_data_ptr_3 = (void*)engine_get_system_data_pointer(engine_engine_param_2,engine_param_3);
       engine_data_ptr = (void*)engine_engine_param_1[1];
       for (engine_data_ptr_4 = engine_data_ptr_3; engine_data_ptr_4 != engine_data_ptr; engine_data_ptr_4 = engine_data_ptr_4 + 4) {
         (**(code **)*engine_data_ptr_4)(engine_data_ptr_4,0);
@@ -19651,8 +19651,8 @@ void FUN_1800588c0(longlong *engine_engine_param_1,longlong engine_engine_param_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800588fc(longlong engine_engine_param_1)
-void FUN_1800588fc(longlong engine_engine_param_1)
+// 函数: void engine_handle_system_io_response_event(longlong engine_engine_param_1)
+void engine_handle_system_io_response_event(longlong engine_engine_param_1)
 
 {
   void* engine_data_ptr;
@@ -19700,8 +19700,8 @@ void FUN_1800588fc(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_18005892b(void)
-void FUN_18005892b(void)
+// 函数: void engine_check_system_io_response_completion(void)
+void engine_check_system_io_response_completion(void)
 
 {
   void* engine_data_ptr;
@@ -19741,8 +19741,8 @@ void FUN_18005892b(void)
 
 
 
-// 函数: void FUN_18005895a(void)
-void FUN_18005895a(void)
+// 函数: void engine_finalize_system_io_response_operation(void)
+void engine_finalize_system_io_response_operation(void)
 
 {
   longlong engine_temp_long;
@@ -19775,8 +19775,8 @@ void FUN_18005895a(void)
 
 
 
-// 函数: void FUN_1800589a3(longlong engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3)
-void FUN_1800589a3(longlong engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3)
+// 函数: void engine_process_system_io_response_validation(longlong engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3)
+void engine_process_system_io_response_validation(longlong engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3)
 
 {
   void* engine_data_ptr;
@@ -19790,12 +19790,12 @@ void FUN_1800589a3(longlong engine_engine_param_1,uint64 engine_engine_param_2,l
   
   uVar5 = *(longlong *)(engine_engine_param_1 + 8) - engine_param_3 >> 5;
   if (uVar5 < unaff_RSI) {
-    FUN_180059250();
+    engine_get_system_data_pointer();
     engine_temp_uint_3 = FUN_180059300(uVar5 * 0x20 + unaff_RBX);
     *(void*)(unaff_RDI + 8) = engine_temp_uint_3;
   }
   else {
-    engine_structure_data_ptr = (void*)FUN_180059250();
+    engine_structure_data_ptr = (void*)engine_get_system_data_pointer();
     engine_data_ptr = *(void**)(unaff_RDI + 8);
     for (engine_data_ptr_4 = engine_structure_data_ptr; engine_data_ptr_4 != engine_data_ptr; engine_data_ptr_4 = engine_data_ptr_4 + 4) {
       (**(code **)*engine_data_ptr_4)(engine_data_ptr_4,0);
@@ -19810,8 +19810,8 @@ void FUN_1800589a3(longlong engine_engine_param_1,uint64 engine_engine_param_2,l
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180058a20(longlong *engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3,longlong engine_param_4)
-void FUN_180058a20(longlong *engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3,longlong engine_param_4)
+// 函数: void engine_execute_system_io_response_task(longlong *engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3,longlong engine_param_4)
+void engine_execute_system_io_response_task(longlong *engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3,longlong engine_param_4)
 
 {
   uint64 engine_temp_uint;
@@ -19877,8 +19877,8 @@ void FUN_180058a20(longlong *engine_engine_param_1,longlong engine_engine_param_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180058a31(longlong *engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3,longlong engine_param_4)
-void FUN_180058a31(longlong *engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3,longlong engine_param_4)
+// 函数: void engine_handle_system_io_response_callback(longlong *engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3,longlong engine_param_4)
+void engine_handle_system_io_response_callback(longlong *engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3,longlong engine_param_4)
 
 {
   uint64 engine_temp_uint;
@@ -19941,8 +19941,8 @@ void FUN_180058a31(longlong *engine_engine_param_1,longlong engine_engine_param_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180058b3e(longlong engine_engine_param_1,longlong engine_engine_param_2)
-void FUN_180058b3e(longlong engine_engine_param_1,longlong engine_engine_param_2)
+// 函数: void engine_manage_system_io_response_handler(longlong engine_engine_param_1,longlong engine_engine_param_2)
+void engine_manage_system_io_response_handler(longlong engine_engine_param_1,longlong engine_engine_param_2)
 
 {
   uint64 engine_temp_uint;
@@ -19977,8 +19977,8 @@ void FUN_180058b3e(longlong engine_engine_param_1,longlong engine_engine_param_2
 
 
 
-// 函数: void FUN_180058bfa(void)
-void FUN_180058bfa(void)
+// 函数: void engine_complete_system_io_response_setup(void)
+void engine_complete_system_io_response_setup(void)
 
 {
   return;
@@ -19987,8 +19987,8 @@ void FUN_180058bfa(void)
 
 
 
-// 函数: void FUN_180058c16(void)
-void FUN_180058c16(void)
+// 函数: void engine_check_system_io_response_readiness(void)
+void engine_check_system_io_response_readiness(void)
 
 {
   return;
@@ -20016,8 +20016,8 @@ void engine_create_network_manager(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_180058c80(undefined8 *engine_engine_param_1)
-void FUN_180058c80(undefined8 *engine_engine_param_1)
+// 函数: void engine_initialize_system_io_response_object(uint64_t *engine_engine_param_1)
+void engine_initialize_system_io_response_object(uint64_t *engine_engine_param_1)
 
 {
   if ((longlong *)engine_engine_param_1[0x13] != (longlong *)0x0) {
@@ -20030,11 +20030,11 @@ void FUN_180058c80(undefined8 *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180058cc0(undefined8 *engine_engine_param_1)
-void FUN_180058cc0(undefined8 *engine_engine_param_1)
+// 函数: void engine_configure_system_io_response_settings(uint64_t *engine_engine_param_1)
+void engine_configure_system_io_response_settings(uint64_t *engine_engine_param_1)
 
 {
-  FUN_180058db0(engine_engine_param_1 + 4);
+  engine_execute_system_io_response_process(engine_engine_param_1 + 4);
   *engine_engine_param_1 = &UNK_180a3c3e0;
   if (engine_engine_param_1[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -20049,8 +20049,8 @@ void FUN_180058cc0(undefined8 *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180058d20(undefined8 *engine_engine_param_1)
-void FUN_180058d20(undefined8 *engine_engine_param_1)
+// 函数: void engine_process_system_io_response_configuration(uint64_t *engine_engine_param_1)
+void engine_process_system_io_response_configuration(uint64_t *engine_engine_param_1)
 
 {
   if (engine_engine_param_1[4] != 0) {
@@ -20071,8 +20071,8 @@ void FUN_180058d20(undefined8 *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180058d90(longlong *engine_engine_param_1)
-void FUN_180058d90(longlong *engine_engine_param_1)
+// 函数: void engine_handle_system_io_response_data_operation(longlong *engine_engine_param_1)
+void engine_handle_system_io_response_data_operation(longlong *engine_engine_param_1)
 
 {
   longlong engine_temp_long;
@@ -20092,19 +20092,19 @@ void FUN_180058d90(longlong *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180058db0(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180058db0(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_execute_system_io_response_process(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_execute_system_io_response_process(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   uint64 engine_temp_uint;
   
   engine_temp_uint = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(engine_engine_param_1 + 0xf0,*(void*)(engine_engine_param_1 + 0x100),engine_param_3,engine_param_4,engine_temp_uint);
-  FUN_180058370(engine_engine_param_1 + 0xc0,*(void*)(engine_engine_param_1 + 0xd0));
-  FUN_180058370(engine_engine_param_1 + 0x90,*(void*)(engine_engine_param_1 + 0xa0));
+  engine_handle_system_io_data_queue(engine_engine_param_1 + 0xf0,*(void*)(engine_engine_param_1 + 0x100),engine_param_3,engine_param_4,engine_temp_uint);
+  engine_handle_system_io_data_queue(engine_engine_param_1 + 0xc0,*(void*)(engine_engine_param_1 + 0xd0));
+  engine_handle_system_io_data_queue(engine_engine_param_1 + 0x90,*(void*)(engine_engine_param_1 + 0xa0));
   FUN_1800593f0(engine_engine_param_1 + 0x60,*(void*)(engine_engine_param_1 + 0x70));
-  FUN_180058710(engine_engine_param_1 + 0x30,*(void*)(engine_engine_param_1 + 0x40));
+  engine_process_system_io_request_queue(engine_engine_param_1 + 0x30,*(void*)(engine_engine_param_1 + 0x40));
   FUN_1800593f0(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10));
   return;
 }
@@ -20112,8 +20112,8 @@ void FUN_180058db0(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
 
 
 
-// 函数: void FUN_180058e60(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180058e60(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_process_system_io_response_event_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_process_system_io_response_event_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   FUN_1800593f0(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
@@ -20123,8 +20123,8 @@ void FUN_180058e60(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
 
 
 
-// 函数: void FUN_180058e90(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180058e90(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void engine_handle_system_io_response_command_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void engine_handle_system_io_response_command_queue(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   FUN_1800593f0(engine_engine_param_1,*(void*)(engine_engine_param_1 + 0x10),engine_param_3,engine_param_4,0xfffffffffffffffe);
@@ -20134,8 +20134,8 @@ void FUN_180058e90(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
 
 
 
-// 函数: void FUN_180058f00(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2)
-void FUN_180058f00(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2)
+// 函数: void FUN_180058f00(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2)
+void FUN_180058f00(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   (*(code *)*engine_engine_param_2)();
@@ -20221,7 +20221,7 @@ void FUN_180058f00(uint64 engine_engine_param_1,undefined8 *engine_engine_param_
 void FUN_180059000(longlong *engine_engine_param_1)
 
 {
-  undefined8 *******ppppppengine_data_ptr;
+  uint64_t *******ppppppengine_data_ptr;
   void* engine_structure_data_ptr;
   void* engine_data_ptr_3;
   void* engine_data_ptr_4;
@@ -20234,12 +20234,12 @@ void FUN_180059000(longlong *engine_engine_param_1)
   uint8* engine_data_ptr1;
   longlong engine_temp_long2;
   void* engine_data_ptr3;
-  undefined8 *******ppppppengine_data_ptr4;
+  uint64_t *******ppppppengine_data_ptr4;
   longlong *pengine_temp_long5;
   uint engine_temp_uint6;
   void* engine_data_ptr7;
   longlong engine_temp_long8;
-  undefined8 ******pppppengine_data_ptr9;
+  uint64_t ******pppppengine_data_ptr9;
   int engine_temp_int_20;
   uint *engine_data_ptr_21;
   ulonglong engine_temp_uint_22;
@@ -20256,9 +20256,9 @@ void FUN_180059000(longlong *engine_engine_param_1)
   int iStack_374;
   int iStack_370;
   longlong lStack_368;
-  undefined8 ******ppppppuStack_360;
-  undefined8 ******ppppppuStack_358;
-  undefined8 ******ppppppuStack_350;
+  uint64_t ******ppppppuStack_360;
+  uint64_t ******ppppppuStack_358;
+  uint64_t ******ppppppuStack_350;
   uint64 uStack_348;
   uint64 uStack_340;
   uint32 uStack_338;
@@ -20310,7 +20310,7 @@ void FUN_180059000(longlong *engine_engine_param_1)
   uStack_338 = 3;
   ppppppuStack_360 = &ppppppuStack_360;
   ppppppuStack_358 = &ppppppuStack_360;
-  ppppppuStack_350 = (undefined8 *******)0x0;
+  ppppppuStack_350 = (uint64_t *******)0x0;
   uStack_348 = 0;
   uStack_340 = 0;
   lStack_2b8 = *_engine_data_70;
@@ -20457,38 +20457,38 @@ void FUN_180059000(longlong *engine_engine_param_1)
           }
           uStack_320 = 0;
           ppppppengine_data_ptr4 = &ppppppuStack_360;
-          for (ppppppengine_data_ptr = (undefined8 *******)ppppppuStack_350;
-              ppppppengine_data_ptr != (undefined8 *******)0x0;
-              ppppppengine_data_ptr = (undefined8 *******)ppppppengine_data_ptr[1]) {
+          for (ppppppengine_data_ptr = (uint64_t *******)ppppppuStack_350;
+              ppppppengine_data_ptr != (uint64_t *******)0x0;
+              ppppppengine_data_ptr = (uint64_t *******)ppppppengine_data_ptr[1]) {
             ppppppengine_data_ptr4 = ppppppengine_data_ptr;
           }
           if ((ppppppengine_data_ptr4 == &ppppppuStack_360) ||
              (engine_temp_long2 = engine_temp_long0, *(int *)(ppppppengine_data_ptr4 + 6) != 0)) {
-            if ((ppppppengine_data_ptr4 != (undefined8 *******)ppppppuStack_360) &&
+            if ((ppppppengine_data_ptr4 != (uint64_t *******)ppppppuStack_360) &&
                (ppppppengine_data_ptr4 != &ppppppuStack_360)) {
               func_0x00018066bd70(ppppppengine_data_ptr4);
             }
             bVar26 = true;
             ppppppengine_data_ptr4 = &ppppppuStack_360;
-            ppppppengine_data_ptr = (undefined8 *******)ppppppuStack_350;
-            while (ppppppengine_data_ptr != (undefined8 *******)0x0) {
+            ppppppengine_data_ptr = (uint64_t *******)ppppppuStack_350;
+            while (ppppppengine_data_ptr != (uint64_t *******)0x0) {
               bVar26 = *(int *)(ppppppengine_data_ptr + 6) != 0;
               ppppppengine_data_ptr4 = ppppppengine_data_ptr;
               if (bVar26) {
-                ppppppengine_data_ptr = (undefined8 *******)ppppppengine_data_ptr[1];
+                ppppppengine_data_ptr = (uint64_t *******)ppppppengine_data_ptr[1];
               }
               else {
-                ppppppengine_data_ptr = (undefined8 *******)*ppppppengine_data_ptr;
+                ppppppengine_data_ptr = (uint64_t *******)*ppppppengine_data_ptr;
               }
             }
             engine_temp_long2 = lStack_2c8;
             iVar8 = iStack_374;
             if (bVar26) {
-              if (ppppppengine_data_ptr4 == (undefined8 *******)ppppppuStack_358) {
+              if (ppppppengine_data_ptr4 == (uint64_t *******)ppppppuStack_358) {
                 if ((ppppppengine_data_ptr4 != &ppppppuStack_360) && (*(int *)(ppppppengine_data_ptr4 + 6) == 0)) {
                   uVar7 = 1;
                 }
-                engine_temp_long0 = engine_call_memory_extender(_engine_data_18,0x60,(undefined1)uStack_338);
+                engine_temp_long0 = engine_call_memory_extender(_engine_data_18,0x60,(uint8_t)uStack_338);
                 puStack_2b0 = (void*)(engine_temp_long0 + 0x20);
                 *puStack_2b0 = &UNK_18098bcb0;
                 *(void*)(engine_temp_long0 + 0x28) = 0;
@@ -20510,7 +20510,7 @@ void FUN_180059000(longlong *engine_engine_param_1)
                     // WARNING: Subroutine does not return
                 engine_call_system_controller(engine_temp_long0,ppppppengine_data_ptr4,&ppppppuStack_360,uVar7);
               }
-              ppppppengine_data_ptr4 = (undefined8 *******)func_0x00018066b9a0(ppppppengine_data_ptr4);
+              ppppppengine_data_ptr4 = (uint64_t *******)func_0x00018066b9a0(ppppppengine_data_ptr4);
               engine_temp_long2 = lStack_2c8;
               iVar8 = iStack_374;
             }
@@ -20525,7 +20525,7 @@ void FUN_180059000(longlong *engine_engine_param_1)
             memcpy(ppppppengine_data_ptr4[9],engine_structure_data_ptr[engine_temp_long0 * 4 + 1],engine_temp_uint_22);
           }
           *(uint32*)(ppppppengine_data_ptr4 + 10) = 0;
-          if (ppppppengine_data_ptr4[9] != (undefined8 ******)0x0) {
+          if (ppppppengine_data_ptr4[9] != (uint64_t ******)0x0) {
             *(uint8*)(engine_temp_uint_22 + (longlong)ppppppengine_data_ptr4[9]) = 0;
           }
           *(uint32*)((longlong)ppppppengine_data_ptr4 + 0x5c) =
@@ -20579,9 +20579,9 @@ void FUN_180059000(longlong *engine_engine_param_1)
   uStack_48 = 0x3f8000003f800000;
   uStack_40 = 0x3f000000;
   uStack_3c = 0;
-  if ((undefined8 *******)ppppppuStack_358 != &ppppppuStack_360) {
+  if ((uint64_t *******)ppppppuStack_358 != &ppppppuStack_360) {
     engine_temp_long0 = lStack_310 + 0x150;
-    ppppppengine_data_ptr4 = (undefined8 *******)ppppppuStack_358;
+    ppppppengine_data_ptr4 = (uint64_t *******)ppppppuStack_358;
     engine_temp_long2 = lStack_310;
     lStack_368 = engine_temp_long0;
     do {
@@ -20673,8 +20673,8 @@ void FUN_180059000(longlong *engine_engine_param_1)
           uVar9 = FUN_180624440(&uStack_268,ppppppengine_data_ptr4 + 8);
           FUN_1806279c0(&puStack_330,uVar9);
           uStack_268 = &UNK_18098bcb0;
-          pppppengine_data_ptr9 = (undefined8 ******)&engine_data_73;
-          if (ppppppengine_data_ptr4[5] != (undefined8 ******)0x0) {
+          pppppengine_data_ptr9 = (uint64_t ******)&engine_data_73;
+          if (ppppppengine_data_ptr4[5] != (uint64_t ******)0x0) {
             pppppengine_data_ptr9 = ppppppengine_data_ptr4[5];
           }
           FUN_180627910(&puStack_308,pppppengine_data_ptr9);
@@ -20710,17 +20710,17 @@ void FUN_180059000(longlong *engine_engine_param_1)
           puStack_330 = &UNK_18098bcb0;
         }
       }
-      ppppppengine_data_ptr4 = (undefined8 *******)func_0x00018066bd70(ppppppengine_data_ptr4);
+      ppppppengine_data_ptr4 = (uint64_t *******)func_0x00018066bd70(ppppppengine_data_ptr4);
     } while (ppppppengine_data_ptr4 != &ppppppuStack_360);
   }
-  FUN_180058020(&ppppppuStack_360);
+  engine_execute_system_io_process_queue(&ppppppuStack_360);
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(uStack_38 ^ (ulonglong)auStack_3b8);
 }
 
 
 
-undefined8 * FUN_1800590b0(undefined8 *engine_engine_param_1,undefined1 *engine_engine_param_2,longlong engine_param_3)
+uint64_t * FUN_1800590b0(uint64_t *engine_engine_param_1,uint8_t *engine_engine_param_2,longlong engine_param_3)
 
 {
   byte engine_temp_byte;
@@ -20822,7 +20822,7 @@ void FUN_180059230(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
 
 
 
-longlong FUN_180059250(longlong engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
+longlong engine_get_system_data_pointer(longlong engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
 
 {
   uint engine_temp_uint;
@@ -20934,8 +20934,8 @@ void FUN_180059350(longlong engine_engine_param_1,longlong engine_engine_param_2
 
 
 
-// 函数: void FUN_180059380(undefined8 *engine_engine_param_1)
-void FUN_180059380(undefined8 *engine_engine_param_1)
+// 函数: void FUN_180059380(uint64_t *engine_engine_param_1)
+void FUN_180059380(uint64_t *engine_engine_param_1)
 
 {
   if (engine_engine_param_1[4] != 0) {
@@ -20956,8 +20956,8 @@ void FUN_180059380(undefined8 *engine_engine_param_1)
 
 
 
-// 函数: void FUN_1800593f0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_1800593f0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void FUN_1800593f0(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void FUN_1800593f0(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   if (engine_engine_param_2 == (void*)0x0) {
@@ -20980,8 +20980,8 @@ void FUN_1800593f0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_
 
 
 
-// 函数: void FUN_1800594b0(undefined8 *engine_engine_param_1)
-void FUN_1800594b0(undefined8 *engine_engine_param_1)
+// 函数: void FUN_1800594b0(uint64_t *engine_engine_param_1)
+void FUN_1800594b0(uint64_t *engine_engine_param_1)
 
 {
   FUN_1808fc8a8(engine_engine_param_1 + 0x7d,0x58,4,engine_configure_display_settings,0xfffffffffffffffe);
@@ -21017,8 +21017,8 @@ void FUN_1800594b0(undefined8 *engine_engine_param_1)
 
 
 
-// 函数: void FUN_1800595c0(undefined8 *engine_engine_param_1)
-void FUN_1800595c0(undefined8 *engine_engine_param_1)
+// 函数: void FUN_1800595c0(uint64_t *engine_engine_param_1)
+void FUN_1800595c0(uint64_t *engine_engine_param_1)
 
 {
   FUN_18004b730();
@@ -21078,8 +21078,8 @@ void FUN_180059640(longlong *engine_engine_param_1)
 
 
 
-// 函数: void engine_setup_physics_system(undefined8 *engine_engine_param_1)
-void engine_setup_physics_system(undefined8 *engine_engine_param_1)
+// 函数: void engine_setup_physics_system(uint64_t *engine_engine_param_1)
+void engine_setup_physics_system(uint64_t *engine_engine_param_1)
 
 {
   engine_engine_param_1[4] = &UNK_180a3c3e0;
@@ -21118,7 +21118,7 @@ void FUN_180059730(longlong engine_engine_param_1)
 
 
 
-undefined8 * FUN_180059780(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_2,undefined8 *engine_param_3)
+uint64_t * FUN_180059780(uint64_t *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64_t *engine_param_3)
 
 {
   void* engine_data_ptr;
@@ -21207,8 +21207,8 @@ LAB_180059885:
 
 
 
-undefined8 *
-FUN_180059900(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180059900(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &UNK_18098bcb0;
@@ -21279,8 +21279,8 @@ void FUN_1800599df(void)
 
 
 
-// 函数: void FUN_180059a04(undefined1 *engine_engine_param_1)
-void FUN_180059a04(undefined1 *engine_engine_param_1)
+// 函数: void FUN_180059a04(uint8_t *engine_engine_param_1)
+void FUN_180059a04(uint8_t *engine_engine_param_1)
 
 {
   longlong unaff_RDI;
@@ -21337,8 +21337,8 @@ void FUN_180059a20(longlong engine_engine_param_1,longlong engine_engine_param_2
 
 
 
-// 函数: void engine_initialize_main_system(undefined8 *engine_engine_param_1)
-void engine_initialize_main_system(undefined8 *engine_engine_param_1)
+// 函数: void engine_initialize_main_system(uint64_t *engine_engine_param_1)
+void engine_initialize_main_system(uint64_t *engine_engine_param_1)
 
 {
   int *pengine_temp_int;
@@ -21689,8 +21689,8 @@ void FUN_180059f4f(void)
 
 
 
-// 函数: void FUN_180059fb0(undefined8 *engine_engine_param_1)
-void FUN_180059fb0(undefined8 *engine_engine_param_1)
+// 函数: void FUN_180059fb0(uint64_t *engine_engine_param_1)
+void FUN_180059fb0(uint64_t *engine_engine_param_1)
 
 {
   int *pengine_temp_int;
@@ -21785,8 +21785,8 @@ void FUN_180059fc0(longlong *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180060200(undefined8 *engine_engine_param_1)
-void FUN_180060200(undefined8 *engine_engine_param_1)
+// 函数: void FUN_180060200(uint64_t *engine_engine_param_1)
+void FUN_180060200(uint64_t *engine_engine_param_1)
 
 {
   longlong *pengine_temp_long;
@@ -21919,8 +21919,8 @@ uint64 FUN_1800603e0(uint64 engine_engine_param_1,ulonglong engine_engine_param_
 
 
 
-// 函数: void FUN_180060420(undefined8 *engine_engine_param_1)
-void FUN_180060420(undefined8 *engine_engine_param_1)
+// 函数: void FUN_180060420(uint64_t *engine_engine_param_1)
+void FUN_180060420(uint64_t *engine_engine_param_1)
 
 {
   int *pengine_temp_int;
@@ -22028,7 +22028,7 @@ LAB_1800604d1:
 
 
 
-undefined8 * FUN_1800605d0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2)
+uint64_t * FUN_1800605d0(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2)
 
 {
   *engine_engine_param_1 = &UNK_1809fe210;
@@ -22041,8 +22041,8 @@ undefined8 * FUN_1800605d0(undefined8 *engine_engine_param_1,ulonglong engine_en
 
 
 
-// 函数: void FUN_180060610(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180060610(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void FUN_180060610(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void FUN_180060610(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   char engine_status_flag;
@@ -22520,7 +22520,7 @@ uint64 FUN_180060d76(void)
 
 
 
-undefined1 FUN_180060e22(void)
+uint8_t FUN_180060e22(void)
 
 {
   longlong unaff_RSI;
@@ -22534,7 +22534,7 @@ undefined1 FUN_180060e22(void)
 
 
 
-uint64 FUN_180060e40(undefined8 *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3)
+uint64 FUN_180060e40(uint64_t *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3)
 
 {
   char engine_status_flag;
@@ -22756,8 +22756,8 @@ void FUN_1800611a0(longlong engine_engine_param_1,longlong *engine_engine_param_
 
 
 
-// 函数: void FUN_180061290(undefined8 *engine_engine_param_1)
-void FUN_180061290(undefined8 *engine_engine_param_1)
+// 函数: void FUN_180061290(uint64_t *engine_engine_param_1)
+void FUN_180061290(uint64_t *engine_engine_param_1)
 
 {
   CloseHandle(*engine_engine_param_1);
@@ -22767,8 +22767,8 @@ void FUN_180061290(undefined8 *engine_engine_param_1)
 
 
 
-// 函数: void FUN_1800612b0(undefined8 *engine_engine_param_1)
-void FUN_1800612b0(undefined8 *engine_engine_param_1)
+// 函数: void FUN_1800612b0(uint64_t *engine_engine_param_1)
+void FUN_1800612b0(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = &engine_network_protocol_ptr;
@@ -22798,8 +22798,8 @@ void FUN_1800612b0(undefined8 *engine_engine_param_1)
 
 
 
-undefined8 *
-FUN_180061300(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180061300(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   uint64 engine_temp_uint;
@@ -23052,8 +23052,8 @@ void FUN_180061f80(void)
 
 
 
-// 函数: void FUN_1800622d0(uint64 engine_engine_param_1,uint64 engine_engine_param_2,undefined4 engine_param_3,uint64 engine_param_4)
-void FUN_1800622d0(uint64 engine_engine_param_1,uint64 engine_engine_param_2,undefined4 engine_param_3,uint64 engine_param_4)
+// 函数: void FUN_1800622d0(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint32_t engine_param_3,uint64 engine_param_4)
+void FUN_1800622d0(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint32_t engine_param_3,uint64 engine_param_4)
 
 {
   FUN_180061f80(engine_engine_param_1,engine_engine_param_2,0xffffffff00000000,engine_param_3,engine_param_4,&stack0x00000028);
@@ -23196,7 +23196,7 @@ void FUN_180062920(int *engine_engine_param_1)
   char engine_temp_char_flag;
   uint32 engine_temp_uint_3;
   longlong lVar4;
-  undefined4 *engine_temporary_ptr;
+  uint32_t *engine_temporary_ptr;
   char *pcVar6;
   void* engine_current_data_ptr;
   int iVar8;
@@ -23204,7 +23204,7 @@ void FUN_180062920(int *engine_engine_param_1)
   uint8 auStack_1f8 [64];
   undefined2 auStack_1b8 [4];
   void* puStack_1b0;
-  undefined4 *puStack_1a8;
+  uint32_t *puStack_1a8;
   uint32 uStack_1a0;
   uint64 uStack_198;
   uint32 uStack_190;
@@ -23235,7 +23235,7 @@ void FUN_180062920(int *engine_engine_param_1)
   uStack_190 = 1;
   auStack_1b8[0] = 0x20;
   if (*(longlong *)(lVar4 + 8) != 0) {
-    FUN_180057980(lVar4,&lStack_168,auStack_1b8);
+    engine_execute_system_io_process(lVar4,&lStack_168,auStack_1b8);
   }
   uStack_190 = 0;
   puStack_188 = &UNK_180a3c3e0;
@@ -23290,7 +23290,7 @@ void FUN_180062920(int *engine_engine_param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_180062ee0(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+uint64 FUN_180062ee0(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   undefined2 engine_temp_uint;
@@ -23608,8 +23608,8 @@ int FUN_1800635e0(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint
 
 
 
-undefined8 *
-FUN_180063650(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180063650(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   engine_engine_param_1[6] = &UNK_180a3c3e0;
@@ -23631,8 +23631,8 @@ FUN_180063650(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,
 
 
 
-undefined8 *
-engine_call_memory_configurator(undefined8 *engine_engine_param_1,undefined4 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+engine_call_memory_configurator(uint64_t *engine_engine_param_1,uint32_t engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   longlong *pengine_temp_long;
@@ -24228,7 +24228,7 @@ void FUN_180064c00(longlong *engine_engine_param_1,longlong engine_engine_param_
   uStack_d8 = 0xfffffffffffffffe;
   uStack_48 = _engine_data_a8 ^ (ulonglong)auStack_138;
   uStack_e8 = 0;
-  FUN_180057110();
+  engine_process_system_request_queue();
   engine_temporary_data_ptr = &engine_data_73;
   if (*(undefined **)(engine_engine_param_2 + 8) != (void*)0x0) {
     engine_temporary_data_ptr = *(undefined **)(engine_engine_param_2 + 8);
@@ -24381,7 +24381,7 @@ void FUN_180064c00(longlong *engine_engine_param_1,longlong engine_engine_param_
     *(uint32*)(engine_data_ptr_4 + 2) = 0;
     engine_data_ptr_4[1] = puStack_100;
     *(uint32*)((longlong)engine_data_ptr_4 + 0x1c) = uStack_f0._4_4_;
-    *(uint32*)(engine_data_ptr_4 + 3) = (undefined4)uStack_f0;
+    *(uint32*)(engine_data_ptr_4 + 3) = (uint32_t)uStack_f0;
     uStack_f8 = 0;
     puStack_100 = (uint8*)0x0;
     uStack_f0 = 0;
@@ -24412,7 +24412,7 @@ LAB_180064eed:
     *(uint32*)(puStack_d0 + 2) = uStack_f8;
     puStack_d0[1] = puStack_100;
     *(uint32*)((longlong)puStack_d0 + 0x1c) = uStack_f0._4_4_;
-    *(uint32*)(puStack_d0 + 3) = (undefined4)uStack_f0;
+    *(uint32*)(puStack_d0 + 3) = (uint32_t)uStack_f0;
     uStack_f8 = 0;
     puStack_100 = (uint8*)0x0;
     uStack_f0 = 0;
@@ -24565,7 +24565,7 @@ void FUN_180065160(uint64 engine_engine_param_1)
   void* puStack_c0;
   uint32 uStack_b8;
   uint32 auStack_b0 [40];
-  undefined4 auStack_88 [14];
+  uint32_t auStack_88 [14];
   ulonglong uStack_50;
   ulonglong uStack_38;
   
@@ -24774,7 +24774,7 @@ void FUN_180065160(uint64 engine_engine_param_1)
     uStack_248 = 3;
     auStack_338[0] = 10;
     if (lStack_238 != 0) {
-      FUN_180057980(&puStack_240,&puStack_260,auStack_338);
+      engine_execute_system_io_process(&puStack_240,&puStack_260,auStack_338);
     }
     engine_temp_uint2 = (longlong)puStack_258 - (longlong)puStack_260 >> 5;
     engine_data_ptr9 = puStack_260;
@@ -24789,7 +24789,7 @@ void FUN_180065160(uint64 engine_engine_param_1)
         uStack_128 = 3;
         auStack_334[0] = 0x23;
         if (engine_data_ptr9[1] != 0) {
-          FUN_180057980(engine_data_ptr9,&puStack_140,auStack_334);
+          engine_execute_system_io_process(engine_data_ptr9,&puStack_140,auStack_334);
         }
         engine_temporary_ptr = puStack_138;
         engine_data_ptr7 = puStack_140;
@@ -25268,7 +25268,7 @@ void FUN_180066320(uint64 engine_engine_param_1,uint64 engine_engine_param_2,cha
   uint32 uStack_b8;
   uint64 uStack_b0;
   undefined **ppuStack_a8;
-  undefined4 auStack_98 [14];
+  uint32_t auStack_98 [14];
   ulonglong uStack_60;
   ulonglong uStack_48;
   
@@ -25329,7 +25329,7 @@ void FUN_180066320(uint64 engine_engine_param_1,uint64 engine_engine_param_2,cha
   }
   else {
 LAB_18006650a:
-    FUN_180052070(&puStack_198);
+    engine_process_system_data_request(&puStack_198);
     uVar5 = FUN_180627910(&puStack_138,&engine_data_50);
     iVar4 = FUN_180628d60(&puStack_198,uVar5);
     puStack_138 = &UNK_180a3c3e0;
@@ -25502,7 +25502,7 @@ void FUN_1800669c0(uint64 engine_engine_param_1,uint64 engine_engine_param_2,cha
       engine_loop_counter = 0;
       if ((engine_param_3 != '\0') || (engine_graphics_flag != '\0')) {
 LAB_180066bf4:
-        FUN_180052070(auStack_80);
+        engine_process_system_data_request(auStack_80);
         engine_stack_parameter_a0 = &UNK_180a3c3e0;
         uStack_88 = 0;
         puStack_98 = (void*)0x0;
@@ -25852,8 +25852,8 @@ void FUN_180067170(longlong engine_engine_param_1,ulonglong engine_engine_param_
 
 
 
-// 函数: void FUN_1800671b0(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,ulonglong engine_param_3)
-void FUN_1800671b0(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,ulonglong engine_param_3)
+// 函数: void FUN_1800671b0(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,ulonglong engine_param_3)
+void FUN_1800671b0(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,ulonglong engine_param_3)
 
 {
   ulonglong engine_temp_uint;
@@ -26008,10 +26008,10 @@ void FUN_1800672c0(longlong engine_engine_param_1)
         plStackX_20 = (longlong *)&uStack_60;
         puStack_50 = &engine_base_data_offset_70;
         puStack_48 = &engine_base_data_offset_60;
-        uStack_70 = (undefined4)uVar4;
-        uStack_6c = (undefined4)((ulonglong)uVar4 >> 0x20);
-        uStack_68 = (undefined4)engine_temp_long_2;
-        uStack_64 = (undefined4)((ulonglong)engine_temp_long_2 >> 0x20);
+        uStack_70 = (uint32_t)uVar4;
+        uStack_6c = (uint32_t)((ulonglong)uVar4 >> 0x20);
+        uStack_68 = (uint32_t)engine_temp_long_2;
+        uStack_64 = (uint32_t)((ulonglong)engine_temp_long_2 >> 0x20);
         uStack_60 = uStack_70;
         uStack_5c = uStack_6c;
         uStack_58 = uStack_68;
@@ -26218,8 +26218,8 @@ void FUN_180067840(longlong *engine_engine_param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180067bc0(undefined8 *engine_engine_param_1)
-void FUN_180067bc0(undefined8 *engine_engine_param_1)
+// 函数: void FUN_180067bc0(uint64_t *engine_engine_param_1)
+void FUN_180067bc0(uint64_t *engine_engine_param_1)
 
 {
   uint8 auStack_b8 [48];
@@ -26498,8 +26498,8 @@ longlong FUN_180068490(longlong engine_engine_param_1,longlong engine_engine_par
 
 
 
-// 函数: void FUN_180068620(longlong engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180068620(longlong engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void FUN_180068620(longlong engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void FUN_180068620(longlong engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   int engine_temp_int;
@@ -26588,8 +26588,8 @@ void FUN_1800686b0(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_1800687d0(longlong engine_engine_param_1,undefined8 *engine_engine_param_2)
-void FUN_1800687d0(longlong engine_engine_param_1,undefined8 *engine_engine_param_2)
+// 函数: void FUN_1800687d0(longlong engine_engine_param_1,uint64_t *engine_engine_param_2)
+void FUN_1800687d0(longlong engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   int engine_temp_int;
@@ -26657,7 +26657,7 @@ FUN_180068860(longlong engine_engine_param_1,longlong *engine_engine_param_2,uin
 
 
 
-uint64 FUN_180068a90(ulonglong *engine_engine_param_1,undefined8 *engine_engine_param_2)
+uint64 FUN_180068a90(ulonglong *engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   longlong *pengine_temp_long;
@@ -26793,7 +26793,7 @@ LAB_180068c94:
 
 
 
-uint64 FUN_180068ce0(longlong engine_engine_param_1,undefined8 *engine_engine_param_2)
+uint64 FUN_180068ce0(longlong engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   longlong *pengine_temp_long;
@@ -26934,8 +26934,8 @@ longlong FUN_180068ec0(longlong *engine_engine_param_1,longlong *engine_engine_p
 
 
 
-undefined8 *
-FUN_180068ff0(undefined8 *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180068ff0(uint64_t *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   void* engine_data_ptr;
@@ -26958,7 +26958,7 @@ FUN_180068ff0(undefined8 *engine_engine_param_1,longlong engine_engine_param_2,u
 
 
 
-undefined8 * FUN_180069070(undefined8 *engine_engine_param_1)
+uint64_t * FUN_180069070(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = &UNK_18098bcb0;
@@ -27016,8 +27016,8 @@ longlong FUN_180069190(longlong engine_engine_param_1,ulonglong engine_engine_pa
 
 
 
-undefined8 *
-FUN_1800691e0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_1800691e0(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &UNK_18098bcb0;
@@ -27057,8 +27057,8 @@ void FUN_180069241(void)
 
 
 
-// 函数: void FUN_180069266(undefined1 *engine_engine_param_1)
-void FUN_180069266(undefined1 *engine_engine_param_1)
+// 函数: void FUN_180069266(uint8_t *engine_engine_param_1)
+void FUN_180069266(uint8_t *engine_engine_param_1)
 
 {
   longlong unaff_RDI;
@@ -27158,8 +27158,8 @@ longlong FUN_180069470(longlong engine_engine_param_1,ulonglong engine_engine_pa
 
 
 
-// 函数: void FUN_180069530(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180069530(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void FUN_180069530(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void FUN_180069530(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   if ((code *)engine_engine_param_1[0x2f] != (code *)0x0) {
@@ -27185,8 +27185,8 @@ void FUN_1800695a0(longlong engine_engine_param_1)
 
 
 
-undefined8 *
-FUN_1800696d0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_1800696d0(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &UNK_18098bdc8;
@@ -27200,7 +27200,7 @@ FUN_1800696d0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,
 
 
 
-undefined8 * FUN_180069720(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2)
+uint64_t * FUN_180069720(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2)
 
 {
   *engine_engine_param_1 = &engine_base_data_offset_b8;
@@ -27225,8 +27225,8 @@ uint64 FUN_180069760(uint64 engine_engine_param_1,ulonglong engine_engine_param_
 
 
 
-// 函数: void FUN_1800697a0(undefined8 *engine_engine_param_1)
-void FUN_1800697a0(undefined8 *engine_engine_param_1)
+// 函数: void FUN_1800697a0(uint64_t *engine_engine_param_1)
+void FUN_1800697a0(uint64_t *engine_engine_param_1)
 
 {
   int *pengine_temp_int;
@@ -27333,7 +27333,7 @@ LAB_180069842:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180069920(longlong *engine_engine_param_1)
+uint64_t * FUN_180069920(longlong *engine_engine_param_1)
 
 {
   longlong *pengine_temp_long;
@@ -27531,7 +27531,7 @@ LAB_180069c2b:
 
 
 
-ulonglong FUN_180069cc0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2)
+ulonglong FUN_180069cc0(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   ulonglong engine_temp_uint;
@@ -27592,8 +27592,8 @@ LAB_180069dda:
 
 
 
-undefined8 *
-FUN_180069e10(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180069e10(uint64_t *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   code *pengine_status_flag;
@@ -27626,7 +27626,7 @@ FUN_180069e10(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_
 
 
 
-undefined8
+uint64_t
 FUN_180069f00(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
@@ -27643,7 +27643,7 @@ FUN_180069f00(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint64 e
 
 
 
-undefined8 * FUN_180069f60(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2)
+uint64_t * FUN_180069f60(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   *engine_engine_param_2 = 0;
@@ -27655,7 +27655,7 @@ undefined8 * FUN_180069f60(uint64 engine_engine_param_1,undefined8 *engine_engin
 
 
 
-undefined8 * FUN_180069fb0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2)
+uint64_t * FUN_180069fb0(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   *engine_engine_param_2 = 0;
@@ -27693,7 +27693,7 @@ uint64 FUN_18006a050(int engine_engine_param_1)
 
 
 
-undefined8 * FUN_18006a090(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2)
+uint64_t * FUN_18006a090(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2)
 
 {
   *engine_engine_param_1 = &engine_base_data_offset_40;
@@ -27818,8 +27818,8 @@ void FUN_180070680(uint64 engine_engine_param_1,uint64 engine_engine_param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180070930(uint64 engine_engine_param_1,longlong engine_engine_param_2,undefined4 engine_param_3,longlong engine_param_4,
-void FUN_180070930(uint64 engine_engine_param_1,longlong engine_engine_param_2,undefined4 engine_param_3,longlong engine_param_4,
+// 函数: void FUN_180070930(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint32_t engine_param_3,longlong engine_param_4,
+void FUN_180070930(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint32_t engine_param_3,longlong engine_param_4,
                   char param_5,char param_6)
 
 {
@@ -28364,7 +28364,7 @@ LAB_18007113f:
       engine_temp_char_flag_2 = *(char *)(_engine_data_70 + 0x29);
     }
     if (cStack_147 != '\0') {
-      FUN_180055f70(engine_temp_char_flag_2,5);
+      engine_apply_system_settings(engine_temp_char_flag_2,5);
       pengine_status_flag = (code *)swi(3);
       (*pengine_status_flag)();
       return;
@@ -28433,8 +28433,8 @@ LAB_1800715eb:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180071940(uint64 engine_engine_param_1,longlong engine_engine_param_2,undefined4 engine_param_3,longlong engine_param_4)
-void FUN_180071940(uint64 engine_engine_param_1,longlong engine_engine_param_2,undefined4 engine_param_3,longlong engine_param_4)
+// 函数: void FUN_180071940(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint32_t engine_param_3,longlong engine_param_4)
+void FUN_180071940(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint32_t engine_param_3,longlong engine_param_4)
 
 {
   int engine_temp_int;
@@ -28442,7 +28442,7 @@ void FUN_180071940(uint64 engine_engine_param_1,longlong engine_engine_param_2,u
   uint32 engine_temp_uint_3;
   longlong lVar4;
   void* engine_temporary_ptr;
-  undefined4 *engine_temporary_data_ptr;
+  uint32_t *engine_temporary_data_ptr;
   void* engine_current_data_ptr;
   uint8* engine_next_data_ptr;
   void* puVar9;
@@ -28723,9 +28723,9 @@ LAB_180071eb0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180072000(uint64 engine_engine_param_1,longlong engine_engine_param_2,undefined4 engine_param_3,longlong engine_param_4,
-void FUN_180072000(uint64 engine_engine_param_1,longlong engine_engine_param_2,undefined4 engine_param_3,longlong engine_param_4,
-                  undefined1 param_5,char param_6)
+// 函数: void FUN_180072000(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint32_t engine_param_3,longlong engine_param_4,
+void FUN_180072000(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint32_t engine_param_3,longlong engine_param_4,
+                  uint8_t param_5,char param_6)
 
 {
   code *pengine_status_flag;
@@ -28739,7 +28739,7 @@ void FUN_180072000(uint64 engine_engine_param_1,longlong engine_engine_param_2,u
   longlong lVar9;
   uint8* engine_data_ptr0;
   undefined **pengine_data_ptr1;
-  undefined4 *engine_data_ptr2;
+  uint32_t *engine_data_ptr2;
   void* engine_data_ptr3;
   uint8* engine_data_ptr4;
   void* engine_data_ptr5;
@@ -29315,7 +29315,7 @@ void FUN_180072e80(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uin
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-bool FUN_180072f00(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2)
+bool FUN_180072f00(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   uint32 engine_temp_uint;
@@ -29324,7 +29324,7 @@ bool FUN_180072f00(uint64 engine_engine_param_1,undefined8 *engine_engine_param_
   longlong lVar4;
   void* engine_temporary_ptr;
   void* engine_temporary_data_ptr;
-  undefined8 **ppuVar7;
+  uint64_t **ppuVar7;
   uint8* engine_next_data_ptr;
   uint64 uVar9;
   undefined2 *engine_data_ptr0;
@@ -29613,7 +29613,7 @@ void FUN_180073630(uint64 engine_engine_param_1,uint64 engine_engine_param_2)
 {
   void* engine_data_ptr;
   char engine_temp_char_flag;
-  undefined4 auStackX_18 [4];
+  uint32_t auStackX_18 [4];
   void* puStack_30;
   longlong lStack_28;
   
@@ -29652,7 +29652,7 @@ void FUN_180073730(uint64 engine_engine_param_1,uint64 engine_engine_param_2)
 {
   void* engine_data_ptr;
   char engine_temp_char_flag;
-  undefined4 auStackX_18 [4];
+  uint32_t auStackX_18 [4];
   void* puStack_30;
   longlong lStack_28;
   
@@ -29685,13 +29685,13 @@ void FUN_180073730(uint64 engine_engine_param_1,uint64 engine_engine_param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180073830(uint64 engine_engine_param_1,undefined4 engine_engine_param_2,uint64 engine_param_3)
-void FUN_180073830(uint64 engine_engine_param_1,undefined4 engine_engine_param_2,uint64 engine_param_3)
+// 函数: void FUN_180073830(uint64 engine_engine_param_1,uint32_t engine_engine_param_2,uint64 engine_param_3)
+void FUN_180073830(uint64 engine_engine_param_1,uint32_t engine_engine_param_2,uint64 engine_param_3)
 
 {
   void* engine_data_ptr;
   char engine_temp_char_flag;
-  undefined4 auStackX_20 [2];
+  uint32_t auStackX_20 [2];
   void* puStack_30;
   longlong lStack_28;
   
@@ -29766,8 +29766,8 @@ void engine_initialize_core_system(uint64 engine_engine_param_1,uint64 engine_en
 
 
 
-// 函数: void FUN_1800739f0(undefined8 *engine_engine_param_1)
-void FUN_1800739f0(undefined8 *engine_engine_param_1)
+// 函数: void FUN_1800739f0(uint64_t *engine_engine_param_1)
+void FUN_1800739f0(uint64_t *engine_engine_param_1)
 
 {
   if (*(longlong *)((longlong)engine_engine_param_1 + 0x52) != 0) {
@@ -29855,7 +29855,7 @@ void FUN_180073ad0(longlong engine_engine_param_1,longlong *engine_engine_param_
   ushort engine_temp_uint;
   uint64 engine_temp_uint_2;
   int *pengine_temp_int_3;
-  undefined4 *engine_data_ptr_4;
+  uint32_t *engine_data_ptr_4;
   uint *engine_temporary_ptr;
   longlong lVar6;
   longlong lVar7;
@@ -30026,7 +30026,7 @@ void FUN_180073adc(longlong engine_engine_param_1)
   ushort engine_temp_uint;
   uint64 engine_temp_uint_2;
   int *pengine_temp_int_3;
-  undefined4 *engine_data_ptr_4;
+  uint32_t *engine_data_ptr_4;
   uint *engine_temporary_ptr;
   longlong lVar6;
   longlong *unaff_RBX;
@@ -30197,7 +30197,7 @@ void FUN_180073b64(uint *engine_engine_param_1)
 {
   ushort engine_temp_uint;
   uint64 engine_temp_uint_2;
-  undefined4 *engine_data_ptr_3;
+  uint32_t *engine_data_ptr_3;
   uint *engine_data_ptr_4;
   longlong *unaff_RBX;
   longlong engine_result_value;
@@ -30347,13 +30347,13 @@ void FUN_180073b64(uint *engine_engine_param_1)
 
 
 
-// 函数: void FUN_180073e0b(undefined4 *engine_engine_param_1)
-void FUN_180073e0b(undefined4 *engine_engine_param_1)
+// 函数: void FUN_180073e0b(uint32_t *engine_engine_param_1)
+void FUN_180073e0b(uint32_t *engine_engine_param_1)
 
 {
   ushort engine_temp_uint;
   uint64 engine_temp_uint_2;
-  undefined4 *engine_data_ptr_3;
+  uint32_t *engine_data_ptr_3;
   uint *engine_data_ptr_4;
   longlong engine_result_value;
   longlong *unaff_RBX;
@@ -30437,7 +30437,7 @@ void FUN_180073e23(void)
 {
   ushort engine_temp_uint;
   uint64 engine_temp_uint_2;
-  undefined4 *engine_data_ptr_3;
+  uint32_t *engine_data_ptr_3;
   uint *engine_data_ptr_4;
   longlong engine_result_value;
   longlong *unaff_RBX;
@@ -31217,7 +31217,7 @@ void FUN_1800744b0(longlong engine_engine_param_1,longlong engine_engine_param_2
   uint32 engine_temp_uint0;
   uint32 engine_temp_uint1;
   uint8* engine_data_ptr2;
-  undefined4 *engine_data_ptr3;
+  uint32_t *engine_data_ptr3;
   uint8 auStack_f8 [32];
   uint64 uStack_d8;
   void* puStack_c8;
@@ -31242,7 +31242,7 @@ void FUN_1800744b0(longlong engine_engine_param_1,longlong engine_engine_param_2
   *(uint8**)(engine_engine_param_2 + 8) = engine_data_ptr2;
   *(uint8*)(engine_engine_param_1 + 0x28) = *engine_data_ptr2;
   engine_result_value = *(longlong *)(engine_engine_param_2 + 8);
-  *(undefined4 **)(engine_engine_param_2 + 8) = (uint32*)(engine_result_value + 1);
+  *(uint32_t **)(engine_engine_param_2 + 8) = (uint32*)(engine_result_value + 1);
   if (engine_temp_int_2 == 0) {
     puStack_c8 = &UNK_1809fcc28;
     puStack_c0 = auStack_b0;
@@ -31252,11 +31252,11 @@ void FUN_1800744b0(longlong engine_engine_param_1,longlong engine_engine_param_2
     engine_data_ptr = *(uint **)(engine_engine_param_2 + 8) + 1;
     *(uint **)(engine_engine_param_2 + 8) = engine_data_ptr;
     if (engine_temp_uint_3 != 0) {
-      FUN_180049910(&puStack_c8,engine_data_ptr,engine_temp_uint_3);
+      engine_process_system_request(&puStack_c8,engine_data_ptr,engine_temp_uint_3);
       *(longlong *)(engine_engine_param_2 + 8) = *(longlong *)(engine_engine_param_2 + 8) + (ulonglong)engine_temp_uint_3;
     }
     puStack_c8 = &UNK_18098bcb0;
-    engine_data_ptr3 = *(undefined4 **)(engine_engine_param_2 + 8);
+    engine_data_ptr3 = *(uint32_t **)(engine_engine_param_2 + 8);
   }
   else {
     uVar9 = *(uint32*)(engine_result_value + 5);
@@ -31267,14 +31267,14 @@ void FUN_1800744b0(longlong engine_engine_param_1,longlong engine_engine_param_2
     *(uint32*)(engine_engine_param_1 + 0x10) = engine_temp_uint0;
     *(uint32*)(engine_engine_param_1 + 0x14) = engine_temp_uint1;
     *(longlong *)(engine_engine_param_2 + 8) = *(longlong *)(engine_engine_param_2 + 8) + 0x10;
-    engine_data_ptr3 = *(undefined4 **)(engine_engine_param_2 + 8);
+    engine_data_ptr3 = *(uint32_t **)(engine_engine_param_2 + 8);
   }
   *(uint32*)(engine_engine_param_1 + 0x2c) = *engine_data_ptr3;
   engine_data_ptr3 = (uint32*)(*(longlong *)(engine_engine_param_2 + 8) + 4);
-  *(undefined4 **)(engine_engine_param_2 + 8) = engine_data_ptr3;
+  *(uint32_t **)(engine_engine_param_2 + 8) = engine_data_ptr3;
   *(uint32*)(engine_engine_param_1 + 0x30) = *engine_data_ptr3;
   engine_data_ptr3 = (uint32*)(*(longlong *)(engine_engine_param_2 + 8) + 4);
-  *(undefined4 **)(engine_engine_param_2 + 8) = engine_data_ptr3;
+  *(uint32_t **)(engine_engine_param_2 + 8) = engine_data_ptr3;
   *(uint32*)(engine_engine_param_1 + 0x34) = *engine_data_ptr3;
   *(longlong *)(engine_engine_param_2 + 8) = *(longlong *)(engine_engine_param_2 + 8) + 4;
                     // WARNING: Subroutine does not return
@@ -31285,7 +31285,7 @@ void FUN_1800744b0(longlong engine_engine_param_1,longlong engine_engine_param_2
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_1800745f0(uint64 engine_engine_param_1,longlong engine_engine_param_2)
+uint64_t * FUN_1800745f0(uint64 engine_engine_param_1,longlong engine_engine_param_2)
 
 {
   uint64 engine_temp_uint;
@@ -31415,7 +31415,7 @@ void FUN_1800748d0(longlong engine_engine_param_1,longlong *engine_engine_param_
   uint32 engine_temp_uint_2;
   uint32 engine_temp_uint_3;
   uint32 uVar4;
-  undefined4 *engine_temporary_ptr;
+  uint32_t *engine_temporary_ptr;
   uint8* engine_temporary_data_ptr;
   
   engine_temporary_ptr = (uint32*)engine_engine_param_2[1];
@@ -31589,8 +31589,8 @@ void FUN_180074b30(longlong *engine_engine_param_1,ulonglong engine_engine_param
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180074c20(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2)
-void FUN_180074c20(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2)
+// 函数: void FUN_180074c20(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2)
+void FUN_180074c20(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2)
 
 {
   longlong *pengine_temp_long;
@@ -31765,8 +31765,8 @@ void FUN_180074ed0(longlong *engine_engine_param_1)
 
 
 
-undefined8 *
-FUN_180074f20(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180074f20(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &engine_base_data_offset_18;
@@ -31778,7 +31778,7 @@ FUN_180074f20(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,
 
 
 
-undefined8 * FUN_180074f70(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2)
+uint64_t * FUN_180074f70(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2)
 
 {
   *engine_engine_param_1 = &engine_base_data_offset_18;
@@ -31790,8 +31790,8 @@ undefined8 * FUN_180074f70(undefined8 *engine_engine_param_1,ulonglong engine_en
 
 
 
-undefined8 *
-FUN_180074fb0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180074fb0(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_2 = &UNK_18098bcb0;
@@ -31809,7 +31809,7 @@ FUN_180074fb0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uin
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180075030(undefined8 *engine_engine_param_1,char engine_engine_param_2,char engine_param_3)
+uint64_t * FUN_180075030(uint64_t *engine_engine_param_1,char engine_engine_param_2,char engine_param_3)
 
 {
   longlong *pengine_temp_long;
@@ -32025,7 +32025,7 @@ uint64 FUN_180075580(uint64 engine_engine_param_1,ulonglong engine_engine_param_
 
 
 
-undefined1 FUN_1800755c0(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint8_t FUN_1800755c0(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   uint8 engine_temp_uint;
@@ -32049,8 +32049,8 @@ undefined1 FUN_1800755c0(longlong engine_engine_param_1,uint64 engine_engine_par
 // WARNING: Removing unreachable block (ram,0x000180276fbd)
 
 
-// 函数: void FUN_180075630(longlong engine_engine_param_1,undefined8 *engine_engine_param_2)
-void FUN_180075630(longlong engine_engine_param_1,undefined8 *engine_engine_param_2)
+// 函数: void FUN_180075630(longlong engine_engine_param_1,uint64_t *engine_engine_param_2)
+void FUN_180075630(longlong engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -32224,8 +32224,8 @@ void FUN_180075630(longlong engine_engine_param_1,undefined8 *engine_engine_para
 
 
 
-// 函数: void FUN_1800756e0(undefined8 *engine_engine_param_1)
-void FUN_1800756e0(undefined8 *engine_engine_param_1)
+// 函数: void FUN_1800756e0(uint64_t *engine_engine_param_1)
+void FUN_1800756e0(uint64_t *engine_engine_param_1)
 
 {
   byte *pbVar1;
@@ -32915,7 +32915,7 @@ longlong * FUN_1800763c0(longlong *engine_engine_param_1,longlong *engine_engine
   *(uint32*)(engine_temp_long_3 + 0x2c4) = uVar4;
   *(int *)(*engine_engine_param_2 + 0x108) = (int)engine_engine_param_1[0x21];
   if ((longlong *)(*engine_engine_param_2 + 0x218) != engine_engine_param_1 + 0x43) {
-    FUN_1800588c0((longlong *)(*engine_engine_param_2 + 0x218),engine_engine_param_1[0x43],engine_engine_param_1[0x44]);
+    engine_process_system_io_response_operation((longlong *)(*engine_engine_param_2 + 0x218),engine_engine_param_1[0x43],engine_engine_param_1[0x44]);
   }
   engine_data_ptr_20 = &engine_data_73;
   if ((void*)engine_engine_param_1[3] != (void*)0x0) {
@@ -33825,7 +33825,7 @@ ulonglong FUN_180077750(longlong engine_engine_param_1,uint *engine_engine_param
   void* engine_data_ptr_26;
   longlong engine_temp_long_27;
   longlong engine_temp_long_28;
-  undefined4 *engine_data_ptr_29;
+  uint32_t *engine_data_ptr_29;
   uint *engine_data_ptr_30;
   byte bVar31;
   char *pengine_temp_char_flag_22;
@@ -33833,13 +33833,13 @@ ulonglong FUN_180077750(longlong engine_engine_param_1,uint *engine_engine_param
   ulonglong engine_temp_uint_34;
   uint *engine_data_ptr_35;
   bool bVar36;
-  undefined4 auStackX_8 [2];
+  uint32_t auStackX_8 [2];
   uint *engine_stack_variable_10;
   float *pfStackX_18;
   longlong lStackX_20;
-  undefined4 auStack_138 [2];
+  uint32_t auStack_138 [2];
   ulonglong uStack_130;
-  undefined8 *apuStack_128 [2];
+  uint64_t *apuStack_128 [2];
   longlong lStack_118;
   uint64 uStack_108;
   uint64 uStack_100;
@@ -34055,7 +34055,7 @@ LAB_180077879:
             *(uint32*)(apuStack_128[0] + 4) = engine_temp_uint_23;
             *(byte *)((longlong)apuStack_128[0] + 0x4e) = *(byte *)(engine_engine_param_1 + 0xfe) >> 3 & 1;
             if (*(int *)(engine_engine_param_1 + 0x108) != -1) {
-              engine_data_ptr_29 = *(undefined4 **)(engine_engine_param_1 + 0x2d0);
+              engine_data_ptr_29 = *(uint32_t **)(engine_engine_param_1 + 0x2d0);
               engine_temp_uint_23 = engine_data_ptr_29[1];
               uVar7 = engine_data_ptr_29[2];
               uVar8 = engine_data_ptr_29[3];
@@ -34228,7 +34228,7 @@ void FUN_18007799c(void)
   ulonglong engine_temp_uint_32;
   longlong engine_temp_long_33;
   longlong engine_temp_long_34;
-  undefined4 *engine_data_ptr_35;
+  uint32_t *engine_data_ptr_35;
   longlong unaff_RBX;
   uint *engine_data_ptr_36;
   char *pengine_temp_char_flag_27;
@@ -34380,7 +34380,7 @@ void FUN_18007799c(void)
   *(uint32*)(in_stack_00000040 + 4) = engine_temp_uint_31;
   *(byte *)((longlong)in_stack_00000040 + 0x4e) = *(byte *)(unaff_RBX + 0xfe) >> 3 & 1;
   if (*(int *)(unaff_RBX + 0x108) != -1) {
-    engine_data_ptr_35 = *(undefined4 **)(unaff_RBX + 0x2d0);
+    engine_data_ptr_35 = *(uint32_t **)(unaff_RBX + 0x2d0);
     engine_temp_uint_31 = engine_data_ptr_35[1];
     uVar7 = engine_data_ptr_35[2];
     uVar8 = engine_data_ptr_35[3];
@@ -34558,7 +34558,7 @@ void FUN_180077ad8(void)
   byte bVar31;
   uint32 engine_temp_uint_32;
   longlong engine_temp_long_33;
-  undefined4 *engine_data_ptr_34;
+  uint32_t *engine_data_ptr_34;
   longlong unaff_RBX;
   void* unaff_RDI;
   longlong engine_temp_long_35;
@@ -34645,7 +34645,7 @@ void FUN_180077ad8(void)
   *(uint32*)(in_stack_00000040 + 0x20) = engine_temp_uint_32;
   *(byte *)(in_stack_00000040 + 0x4e) = *(byte *)(unaff_RBX + 0xfe) >> 3 & 1;
   if (*(int *)(unaff_RBX + 0x108) != -1) {
-    engine_data_ptr_34 = *(undefined4 **)(unaff_RBX + 0x2d0);
+    engine_data_ptr_34 = *(uint32_t **)(unaff_RBX + 0x2d0);
     engine_temp_uint_32 = engine_data_ptr_34[1];
     uVar7 = engine_data_ptr_34[2];
     uVar8 = engine_data_ptr_34[3];
@@ -35186,7 +35186,7 @@ void FUN_180077dec(void)
 
 
 
-undefined1 FUN_180077ef9(void)
+uint8_t FUN_180077ef9(void)
 
 {
   return 0;
@@ -35194,8 +35194,8 @@ undefined1 FUN_180077ef9(void)
 
 
 
-ulonglong FUN_180077f20(longlong engine_engine_param_1,uint64 engine_engine_param_2,undefined4 engine_param_3,float *engine_param_4,
-                       undefined4 param_5,undefined4 param_6)
+ulonglong FUN_180077f20(longlong engine_engine_param_1,uint64 engine_engine_param_2,uint32_t engine_param_3,float *engine_param_4,
+                       uint32_t param_5,uint32_t param_6)
 
 {
   float engine_temp_float;
@@ -35876,7 +35876,7 @@ void FUN_1800783b0(void)
 
 
 
-undefined8 * FUN_1800784e0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2)
+uint64_t * FUN_1800784e0(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2)
 
 {
   uint64 engine_temp_uint;
@@ -35896,8 +35896,8 @@ undefined8 * FUN_1800784e0(undefined8 *engine_engine_param_1,ulonglong engine_en
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180078550(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_180078550(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void FUN_180078550(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void FUN_180078550(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   longlong *pengine_temp_long;
@@ -35978,8 +35978,8 @@ void FUN_180078550(undefined8 *engine_engine_param_1,uint64 engine_engine_param_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800786e0(undefined8 *engine_engine_param_1,longlong engine_engine_param_2)
-void FUN_1800786e0(undefined8 *engine_engine_param_1,longlong engine_engine_param_2)
+// 函数: void FUN_1800786e0(uint64_t *engine_engine_param_1,longlong engine_engine_param_2)
+void FUN_1800786e0(uint64_t *engine_engine_param_1,longlong engine_engine_param_2)
 
 {
   longlong engine_temp_long;
@@ -36078,9 +36078,9 @@ void FUN_1800786e0(undefined8 *engine_engine_param_1,longlong engine_engine_para
   *(uint32*)(engine_engine_param_1 + 0x23) = engine_temp_uint_2;
   if ((*(char *)(engine_engine_param_2 + 0x2f0) == '\0') && (*(longlong *)(engine_engine_param_2 + 0x3c8) != 0)) {
     FUN_1801fca40(*(longlong *)(engine_engine_param_2 + 0x3c8),&uStack_58);
-    engine_temp_uint_2 = (undefined4)uStack_58;
+    engine_temp_uint_2 = (uint32_t)uStack_58;
     engine_temp_uint1 = uStack_58._4_4_;
-    engine_temp_uint2 = (undefined4)uStack_50;
+    engine_temp_uint2 = (uint32_t)uStack_50;
     engine_temp_uint3 = uStack_50._4_4_;
   }
   else {
@@ -36412,12 +36412,12 @@ void FUN_180078c10(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_180078c70(undefined4 *engine_engine_param_1,longlong *engine_engine_param_2)
-void FUN_180078c70(undefined4 *engine_engine_param_1,longlong *engine_engine_param_2)
+// 函数: void FUN_180078c70(uint32_t *engine_engine_param_1,longlong *engine_engine_param_2)
+void FUN_180078c70(uint32_t *engine_engine_param_1,longlong *engine_engine_param_2)
 
 {
   uint32 engine_temp_uint;
-  undefined4 *engine_structure_data_ptr;
+  uint32_t *engine_structure_data_ptr;
   
   engine_temp_uint = *engine_engine_param_1;
   engine_structure_data_ptr = (uint32*)engine_engine_param_2[1];
@@ -36686,7 +36686,7 @@ void FUN_180079270(longlong engine_engine_param_1,longlong engine_engine_param_2
   int iVar43;
   int iVar44;
   int iVar45;
-  undefined4 *engine_data_ptr_46;
+  uint32_t *engine_data_ptr_46;
   uint *engine_data_ptr_47;
   ulonglong uVar48;
   ulonglong uVar49;
@@ -36916,7 +36916,7 @@ void FUN_180079270(longlong engine_engine_param_1,longlong engine_engine_param_2
             } while (engine_temp_long_33 != 0);
           }
         }
-        engine_data_ptr_46 = *(undefined4 **)(engine_temp_long7 + 0x38);
+        engine_data_ptr_46 = *(uint32_t **)(engine_temp_long7 + 0x38);
         engine_temp_uint_38 = engine_temp_uint_36 >> 0xb;
         *(uint *)(engine_temp_long7 + 0x2c) = engine_temp_uint_36;
         if (engine_temp_uint_38 == (int)engine_status_flag6 + engine_temp_uint_36 >> 0xb) {
@@ -36997,7 +36997,7 @@ void FUN_180079284(longlong engine_engine_param_1)
   longlong unaff_RDI;
   int iVar44;
   int iVar45;
-  undefined4 *engine_data_ptr_46;
+  uint32_t *engine_data_ptr_46;
   uint *engine_data_ptr_47;
   ulonglong uVar48;
   ulonglong uVar49;
@@ -37228,7 +37228,7 @@ void FUN_180079284(longlong engine_engine_param_1)
             } while (engine_temp_long_33 != 0);
           }
         }
-        engine_data_ptr_46 = *(undefined4 **)(engine_temp_long7 + 0x38);
+        engine_data_ptr_46 = *(uint32_t **)(engine_temp_long7 + 0x38);
         engine_temp_uint_38 = engine_temp_uint_36 >> 0xb;
         *(uint *)(engine_temp_long7 + 0x2c) = engine_temp_uint_36;
         if (engine_temp_uint_38 == (int)engine_status_flag6 + engine_temp_uint_36 >> 0xb) {
@@ -37308,7 +37308,7 @@ void FUN_1800792ea(void)
   int iVar41;
   int iVar42;
   longlong lVar43;
-  undefined4 *engine_data_ptr_44;
+  uint32_t *engine_data_ptr_44;
   uint *engine_data_ptr_45;
   ulonglong uVar46;
   ulonglong uVar47;
@@ -37521,7 +37521,7 @@ void FUN_1800792ea(void)
             } while (engine_temp_long_31 != 0);
           }
         }
-        engine_data_ptr_44 = *(undefined4 **)(engine_temp_long6 + 0x38);
+        engine_data_ptr_44 = *(uint32_t **)(engine_temp_long6 + 0x38);
         engine_temp_uint_35 = engine_temp_uint_33 >> 0xb;
         *(uint *)(engine_temp_long6 + 0x2c) = engine_temp_uint_33;
         if (engine_temp_uint_35 == (int)engine_status_flag4 + engine_temp_uint_33 >> 0xb) {
@@ -37600,7 +37600,7 @@ void FUN_180079309(longlong engine_engine_param_1,uint engine_engine_param_2,uin
   longlong unaff_RDI;
   int iVar41;
   int iVar42;
-  undefined4 *engine_data_ptr_43;
+  uint32_t *engine_data_ptr_43;
   uint *engine_data_ptr_44;
   ulonglong uVar45;
   ulonglong uVar46;
@@ -37810,7 +37810,7 @@ void FUN_180079309(longlong engine_engine_param_1,uint engine_engine_param_2,uin
             } while (engine_temp_long_31 != 0);
           }
         }
-        engine_data_ptr_43 = *(undefined4 **)(engine_temp_long5 + 0x38);
+        engine_data_ptr_43 = *(uint32_t **)(engine_temp_long5 + 0x38);
         engine_temp_uint_30 = uVar40 >> 0xb;
         *(uint *)(engine_temp_long5 + 0x2c) = uVar40;
         if (engine_temp_uint_30 == (int)engine_status_flag4 + uVar40 >> 0xb) {
@@ -37865,7 +37865,7 @@ void FUN_18007940e(void)
   uint engine_temp_uint7;
   int engine_temp_int8;
   int engine_temp_int9;
-  undefined4 *engine_data_ptr_20;
+  uint32_t *engine_data_ptr_20;
   uint *engine_data_ptr_21;
   ulonglong engine_temp_uint_22;
   ulonglong engine_temp_uint_23;
@@ -38021,7 +38021,7 @@ void FUN_18007940e(void)
             } while (engine_temp_long2 != 0);
           }
         }
-        engine_data_ptr_20 = *(undefined4 **)(engine_result_value + 0x38);
+        engine_data_ptr_20 = *(uint32_t **)(engine_result_value + 0x38);
         uVar7 = engine_temp_uint7 >> 0xb;
         *(uint *)(engine_result_value + 0x2c) = engine_temp_uint7;
         if (uVar7 == (int)cVar4 + engine_temp_uint7 >> 0xb) {
@@ -38096,7 +38096,7 @@ void FUN_180079520(longlong engine_engine_param_1)
 
 
 
-undefined1 FUN_18007953e(void)
+uint8_t FUN_18007953e(void)
 
 {
   uint8* engine_data_ptr;
@@ -38137,7 +38137,7 @@ void FUN_18007959e(void)
 
 
 
-undefined1 FUN_1800795a4(void)
+uint8_t FUN_1800795a4(void)
 
 {
   uint8* engine_data_ptr;
@@ -38462,20 +38462,20 @@ void FUN_1800796b0(longlong engine_engine_param_1)
   int *pengine_temp_int_26;
   int engine_temp_int_27;
   ulonglong engine_temp_uint_28;
-  undefined4 *engine_data_ptr_29;
+  uint32_t *engine_data_ptr_29;
   ulonglong engine_temp_uint_30;
   longlong engine_temp_long_31;
   uint *engine_data_ptr_32;
   uint engine_temp_uint_33;
   int *pengine_temp_int_34;
-  undefined1 (*paengine_temp_uint_35) [16];
+  uint8_t (*paengine_temp_uint_35) [16];
   ulonglong engine_temp_uint_36;
-  undefined1 (*paengine_temp_uint_37) [16];
+  uint8_t (*paengine_temp_uint_37) [16];
   ulonglong engine_temp_uint_38;
   longlong *pengine_temp_long_39;
   longlong lVar40;
   ulonglong uVar41;
-  undefined1 (*pauVar42) [16];
+  uint8_t (*pauVar42) [16];
   longlong lVar43;
   bool bVar44;
   float fVar45;
@@ -38497,7 +38497,7 @@ void FUN_1800796b0(longlong engine_engine_param_1)
   int *piStack_1f8;
   int *piStack_1f0;
   int iStack_1e8;
-  undefined1 (*pauStack_1e0) [16];
+  uint8_t (*pauStack_1e0) [16];
   ulonglong uStack_1d8;
   longlong lStack_1d0;
   uint uStack_1c8;
@@ -38520,7 +38520,7 @@ void FUN_1800796b0(longlong engine_engine_param_1)
   uint8 auStack_150 [16];
   uint64 uStack_140;
   uint32 uStack_138;
-  undefined4 *puStack_130;
+  uint32_t *puStack_130;
   uint64 uStack_128;
   uint64 uStack_120;
   uint32 uStack_118;
@@ -38569,7 +38569,7 @@ void FUN_1800796b0(longlong engine_engine_param_1)
     FUN_180082290(auStack_150,engine_temp_long_21);
     engine_temp_long_21 = auStack_150._0_8_;
   }
-  pauStack_1e0 = (undefined1 (*) [16])(ulonglong)*(ushort *)(engine_engine_param_1 + 0xc0);
+  pauStack_1e0 = (uint8_t (*) [16])(ulonglong)*(ushort *)(engine_engine_param_1 + 0xc0);
   engine_temp_long_23 = -1;
   do {
     engine_temp_long_31 = engine_temp_long_23 + 1;
@@ -38993,7 +38993,7 @@ LAB_18007a5ac:
                   engine_temp_long_24 = engine_temp_long_24 + -1;
                 } while (engine_temp_long_24 != 0);
               }
-              pauVar42 = (undefined1 (*) [16])0x0;
+              pauVar42 = (uint8_t (*) [16])0x0;
               if (engine_temp_long_21 < engine_temp_long7) {
                 engine_temp_long_31 = engine_temp_long_21 * 0x14;
                 engine_temp_long7 = engine_temp_long7 - engine_temp_long_21;
@@ -39021,32 +39021,32 @@ LAB_18007a5ac:
                 uStack_1b8._4_4_ = *(uint32*)(engine_temp_long_23 + 8 + engine_temp_long_21);
                 uStack_1b8._0_4_ = *(uint32*)(engine_temp_long_23 + 4 + engine_temp_long_21);
                 uStack_1bc = *(uint32*)(engine_temp_long_23 + engine_temp_long_21);
-                uStack_1a0 = (int *)CONCAT44((undefined4)uStack_1b8,uStack_1bc);
+                uStack_1a0 = (int *)CONCAT44((uint32_t)uStack_1b8,uStack_1bc);
                 uStack_198 = (int *)CONCAT44(0x7f7fffff,uStack_1b8._4_4_);
                 piStack_1b0 = (int *)CONCAT44(piStack_1b0._4_4_,0x7f7fffff);
                 uVar41 = (ulonglong)*engine_data_ptr_32;
-                paengine_temp_uint_37 = *(undefined1 (**) [16])(piStack_218 + uVar41 * 8 + 2);
+                paengine_temp_uint_37 = *(uint8_t (**) [16])(piStack_218 + uVar41 * 8 + 2);
                 uStack_1c0 = engine_temp_uint9;
-                if (paengine_temp_uint_37 < *(undefined1 (**) [16])(piStack_218 + uVar41 * 8 + 4)) {
+                if (paengine_temp_uint_37 < *(uint8_t (**) [16])(piStack_218 + uVar41 * 8 + 4)) {
                   *(uint8**)(piStack_218 + uVar41 * 8 + 2) = paengine_temp_uint_37[1] + 4;
                   auVar8._4_4_ = uStack_1bc;
                   auVar8._0_4_ = engine_temp_uint9;
-                  auVar8._8_4_ = (undefined4)uStack_1b8;
+                  auVar8._8_4_ = (uint32_t)uStack_1b8;
                   auVar8._12_4_ = uStack_1b8._4_4_;
                   *paengine_temp_uint_37 = auVar8;
                   *(uint32*)paengine_temp_uint_37[1] = 0x7f7fffff;
                 }
                 else {
-                  paengine_temp_uint_35 = *(undefined1 (**) [16])(piStack_218 + uVar41 * 8);
+                  paengine_temp_uint_35 = *(uint8_t (**) [16])(piStack_218 + uVar41 * 8);
                   engine_temp_long_21 = ((longlong)paengine_temp_uint_37 - (longlong)paengine_temp_uint_35) / 0x14;
                   if (engine_temp_long_21 == 0) {
                     uStackX_20 = 1;
 LAB_18007ac04:
-                    pauVar42 = (undefined1 (*) [16])
+                    pauVar42 = (uint8_t (*) [16])
                                engine_call_memory_extender(_engine_data_18,uStackX_20 * 0x14,
                                              (char)piStack_218[uVar41 * 8 + 6]);
-                    paengine_temp_uint_37 = *(undefined1 (**) [16])(pengine_temp_int + uVar41 * 8 + 2);
-                    paengine_temp_uint_35 = *(undefined1 (**) [16])(pengine_temp_int + uVar41 * 8);
+                    paengine_temp_uint_37 = *(uint8_t (**) [16])(pengine_temp_int + uVar41 * 8 + 2);
+                    paengine_temp_uint_35 = *(uint8_t (**) [16])(pengine_temp_int + uVar41 * 8);
                   }
                   else {
                     uStackX_20 = engine_temp_long_21 * 2;
@@ -39059,7 +39059,7 @@ LAB_18007ac04:
                   }
                   auVar47._4_4_ = uStack_1bc;
                   auVar47._0_4_ = uStack_1c0;
-                  auVar47._8_4_ = (undefined4)uStack_1b8;
+                  auVar47._8_4_ = (uint32_t)uStack_1b8;
                   auVar47._12_4_ = uStack_1b8._4_4_;
                   *pauVar42 = auVar47;
                   *(uint32*)pauVar42[1] = piStack_1b0._0_4_;
@@ -39067,7 +39067,7 @@ LAB_18007ac04:
                     // WARNING: Subroutine does not return
                     engine_call_cleanup_routine();
                   }
-                  *(undefined1 (**) [16])(pengine_temp_int + uVar41 * 8) = pauVar42;
+                  *(uint8_t (**) [16])(pengine_temp_int + uVar41 * 8) = pauVar42;
                   *(uint8**)(pengine_temp_int + uVar41 * 8 + 2) = pauVar42[1] + 4;
                   *(ulonglong *)(pengine_temp_int + uVar41 * 8 + 4) = (longlong)pauVar42 + uStackX_20 * 0x14;
                 }
@@ -39098,7 +39098,7 @@ LAB_18007ac04:
               fVar51 = *(float *)(engine_temp_long2 + 0xc + engine_temp_long_24);
               fVar45 = fVar52 * fVar52 + fVar48 * fVar48 + fVar51 * fVar51;
               if (SQRT(fVar45) == 0.0) {
-                *(undefined1 (*) [16])(engine_temp_long2 + 4 + engine_temp_long_24) = _engine_data_d0;
+                *(uint8_t (*) [16])(engine_temp_long2 + 4 + engine_temp_long_24) = _engine_data_d0;
               }
               else {
                 auVar47 = rsqrtss(ZEXT416((uint)fVar45),ZEXT416((uint)fVar45));
@@ -39220,9 +39220,9 @@ LAB_18007ac04:
               } while (engine_temp_long_24 < engine_temp_long_22);
             }
             engine_temp_long_24 = *(longlong *)(piStack_218 + engine_temp_long2 * 8);
-            auVar47 = *(undefined1 (*) [16])(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
+            auVar47 = *(uint8_t (*) [16])(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
             if (uStackX_18 == -1) {
-              *(undefined1 (*) [16])(lVar43 + 4 + *(longlong *)(engine_engine_param_1 + 0x68)) = auVar47;
+              *(uint8_t (*) [16])(lVar43 + 4 + *(longlong *)(engine_engine_param_1 + 0x68)) = auVar47;
               engine_data_ptr_3 = (void*)(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
               uVar6 = engine_data_ptr_3[1];
               engine_data_ptr_4 = (void*)
@@ -39232,7 +39232,7 @@ LAB_18007ac04:
               engine_data_ptr_4[1] = uVar6;
             }
             else {
-              *(undefined1 (*) [16])
+              *(uint8_t (*) [16])
                (*(longlong *)(*(longlong *)(engine_engine_param_1 + 0xb0) + 0x30 + uStackX_18 * 0x50) +
                lVar40 * 0x10) = auVar47;
             }
@@ -39256,7 +39256,7 @@ LAB_18007ac04:
   }
   lStack_1d0 = 0;
 LAB_180079e40:
-  pauVar42 = (undefined1 (*) [16])(lStack_1d0 * 0x20);
+  pauVar42 = (uint8_t (*) [16])(lStack_1d0 * 0x20);
   pengine_temp_int_20 = *(int **)(*pauVar42 + lStack_170);
   uVar41 = *(longlong *)(*pauVar42 + lStack_170 + 8) - (longlong)pengine_temp_int_20 >> 2;
   pauStack_1e0 = pauVar42;
@@ -39390,7 +39390,7 @@ LAB_18007a203:
                   engine_call_cleanup_routine(pengine_temp_int_25);
                 }
                 uStack_1c0 = (uint)pengine_temp_int6;
-                uStack_1bc = (undefined4)((ulonglong)pengine_temp_int6 >> 0x20);
+                uStack_1bc = (uint32_t)((ulonglong)pengine_temp_int6 >> 0x20);
                 pengine_temp_int3 = pengine_temp_int6 + engine_temp_long_21;
                 piStack_1b0 = pengine_temp_int3;
                 pengine_temp_int_26 = pengine_temp_int6;
@@ -39451,9 +39451,9 @@ LAB_18007a142:
         }
         pengine_temp_long_39 = plStack_168;
         uStack_1c0 = (uint)piStack_218;
-        uStack_1bc = (undefined4)((ulonglong)piStack_218 >> 0x20);
+        uStack_1bc = (uint32_t)((ulonglong)piStack_218 >> 0x20);
         uStack_1b8._0_4_ = SUB84(piStack_1f8,0);
-        uStack_1b8._4_4_ = (undefined4)((ulonglong)piStack_1f8 >> 0x20);
+        uStack_1b8._4_4_ = (uint32_t)((ulonglong)piStack_1f8 >> 0x20);
         piStack_1b0 = piStack_208;
         uStack_200 = 3;
         uStack_1a8 = 3;
@@ -39721,8 +39721,8 @@ LAB_1800802aa:
 
 
 
-// 函数: void FUN_1800802e0(longlong engine_engine_param_1,uint engine_engine_param_2,undefined8 *engine_param_3,uint engine_param_4)
-void FUN_1800802e0(longlong engine_engine_param_1,uint engine_engine_param_2,undefined8 *engine_param_3,uint engine_param_4)
+// 函数: void FUN_1800802e0(longlong engine_engine_param_1,uint engine_engine_param_2,uint64_t *engine_param_3,uint engine_param_4)
+void FUN_1800802e0(longlong engine_engine_param_1,uint engine_engine_param_2,uint64_t *engine_param_3,uint engine_param_4)
 
 {
   void* engine_data_ptr;
@@ -40103,8 +40103,8 @@ void FUN_1800805f0(void)
 
 
 
-// 函数: void FUN_180080610(undefined8 *engine_engine_param_1)
-void FUN_180080610(undefined8 *engine_engine_param_1)
+// 函数: void FUN_180080610(uint64_t *engine_engine_param_1)
+void FUN_180080610(uint64_t *engine_engine_param_1)
 
 {
   FUN_180085530(*engine_engine_param_1);
@@ -40160,7 +40160,7 @@ void FUN_1800806e0(int *engine_engine_param_1,longlong *engine_engine_param_2)
 {
   longlong engine_temp_long;
   longlong engine_temp_long_2;
-  undefined4 *engine_data_ptr_3;
+  uint32_t *engine_data_ptr_3;
   int *piVar4;
   int iVar5;
   longlong lVar6;
@@ -40214,8 +40214,8 @@ void FUN_1800806e0(int *engine_engine_param_1,longlong *engine_engine_param_2)
 
 
 
-// 函数: void FUN_180080779(undefined4 *engine_engine_param_1)
-void FUN_180080779(undefined4 *engine_engine_param_1)
+// 函数: void FUN_180080779(uint32_t *engine_engine_param_1)
+void FUN_180080779(uint32_t *engine_engine_param_1)
 
 {
   longlong engine_temp_long;
@@ -40328,7 +40328,7 @@ void FUN_180080870(longlong *engine_engine_param_1)
     if (plStackX_18 != (longlong *)0x0) {
       (**(code **)(*plStackX_18 + 0x38))();
     }
-    FUN_1800571e0(engine_temp_long_3 + 0x100,&plStackX_8);
+    engine_manage_system_buffer(engine_temp_long_3 + 0x100,&plStackX_8);
     *(uint32*)((longlong)engine_engine_param_1 + 0xc) = 0xffffffff;
     ReleaseSRWLockExclusive(engine_temp_long);
     *(uint32*)((longlong)engine_engine_param_1 + 0xc) = 0xffffffff;
@@ -40368,7 +40368,7 @@ void FUN_1800809a0(longlong *engine_engine_param_1)
     **(uint8**)(*(longlong *)(engine_structure_data_ptr + 0x140) + engine_temp_long_3 * 8) = 0;
     *(void*)(*(longlong *)(*(longlong *)(engine_structure_data_ptr + 0x140) + engine_temp_long_3 * 8) + 0x1a8) = 0;
     FUN_1800f8a50(*(longlong *)(*(longlong *)(engine_structure_data_ptr + 0x140) + engine_temp_long_3 * 8) + 8);
-    FUN_1800571e0(engine_structure_data_ptr + 0xc0,aiStackX_8);
+    engine_manage_system_buffer(engine_structure_data_ptr + 0xc0,aiStackX_8);
     *(uint32*)((longlong)engine_engine_param_1 + 0xc) = 0xffffffff;
     ReleaseSRWLockExclusive(engine_data_ptr);
     *(uint32*)((longlong)engine_engine_param_1 + 0xc) = 0xffffffff;
@@ -40524,8 +40524,8 @@ void FUN_180080be0(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_180080c10(int *engine_engine_param_1,undefined8 *engine_engine_param_2)
-void FUN_180080c10(int *engine_engine_param_1,undefined8 *engine_engine_param_2)
+// 函数: void FUN_180080c10(int *engine_engine_param_1,uint64_t *engine_engine_param_2)
+void FUN_180080c10(int *engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   uint64 engine_temp_uint;
@@ -40897,7 +40897,7 @@ void FUN_1800810b0(longlong *engine_engine_param_1)
 // WARNING: Removing unreachable block (ram,0x0001800811eb)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180081120(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_2)
+uint64_t * FUN_180081120(uint64_t *engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   uint8 engine_temp_uint;
@@ -41024,8 +41024,8 @@ void FUN_180081350(uint64 engine_engine_param_1,longlong *engine_engine_param_2,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180081480(uint64 engine_engine_param_1,longlong *engine_engine_param_2,undefined4 engine_param_3)
-void FUN_180081480(uint64 engine_engine_param_1,longlong *engine_engine_param_2,undefined4 engine_param_3)
+// 函数: void FUN_180081480(uint64 engine_engine_param_1,longlong *engine_engine_param_2,uint32_t engine_param_3)
+void FUN_180081480(uint64 engine_engine_param_1,longlong *engine_engine_param_2,uint32_t engine_param_3)
 
 {
   uint64 engine_temp_uint;
@@ -41066,8 +41066,8 @@ void FUN_180081480(uint64 engine_engine_param_1,longlong *engine_engine_param_2,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180081590(uint64 engine_engine_param_1,longlong *engine_engine_param_2,undefined4 engine_param_3)
-void FUN_180081590(uint64 engine_engine_param_1,longlong *engine_engine_param_2,undefined4 engine_param_3)
+// 函数: void FUN_180081590(uint64 engine_engine_param_1,longlong *engine_engine_param_2,uint32_t engine_param_3)
+void FUN_180081590(uint64 engine_engine_param_1,longlong *engine_engine_param_2,uint32_t engine_param_3)
 
 {
   uint64 engine_temp_uint;
@@ -41831,18 +41831,18 @@ void FUN_1800824a0(longlong *engine_engine_param_1,ulonglong engine_engine_param
 void FUN_1800826b0(longlong *engine_engine_param_1,longlong *engine_engine_param_2)
 
 {
-  undefined4 *engine_data_ptr;
+  uint32_t *engine_data_ptr;
   uint32 engine_temp_uint_2;
   uint engine_temp_uint_3;
   uint64 uVar4;
   void* engine_temporary_ptr;
-  undefined4 *engine_temporary_data_ptr;
+  uint32_t *engine_temporary_data_ptr;
   void* engine_current_data_ptr;
   void* engine_next_data_ptr;
   longlong *plVar9;
   longlong engine_temp_long0;
   longlong engine_temp_long1;
-  undefined4 *engine_data_ptr2;
+  uint32_t *engine_data_ptr2;
   uint64 engine_temp_uint3;
   
   engine_temp_uint3 = 0xfffffffffffffffe;
@@ -41948,7 +41948,7 @@ void FUN_180082880(longlong *engine_engine_param_1,longlong *engine_engine_param
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_1800828d0(longlong engine_engine_param_1,undefined8 *engine_engine_param_2)
+uint64_t * FUN_1800828d0(longlong engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   longlong engine_temp_long;
@@ -42020,7 +42020,7 @@ void FUN_180082a50(longlong engine_engine_param_1,longlong engine_engine_param_2
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180082aa0(longlong engine_engine_param_1,undefined8 *engine_engine_param_2)
+uint64_t * FUN_180082aa0(longlong engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   longlong engine_temp_long;
@@ -42078,7 +42078,7 @@ undefined8 * FUN_180082aa0(longlong engine_engine_param_1,undefined8 *engine_eng
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180082c20(longlong engine_engine_param_1,undefined8 *engine_engine_param_2)
+uint64_t * FUN_180082c20(longlong engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   longlong engine_temp_long;
@@ -42134,7 +42134,7 @@ undefined8 * FUN_180082c20(longlong engine_engine_param_1,undefined8 *engine_eng
 
 
 
-undefined1 engine_setup_network_components(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint8_t engine_setup_network_components(longlong *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   uint8* engine_data_ptr;
@@ -42263,7 +42263,7 @@ void engine_setup_ui_system(longlong engine_engine_param_1,uint64 engine_engine_
   FUN_180080650(engine_temp_long_3 + 0x10);
   FUN_180080650(engine_temp_long_3 + 0x38,engine_engine_param_1);
   *(uint8*)(engine_temp_long_3 + 0x80) = *(uint8*)(engine_engine_param_1 + 0x1a);
-  *(uint32*)(engine_temp_long_3 + 0x60) = **(undefined4 **)(engine_engine_param_1 + 8);
+  *(uint32*)(engine_temp_long_3 + 0x60) = **(uint32_t **)(engine_engine_param_1 + 8);
   *(longlong *)(engine_engine_param_1 + 8) = *(longlong *)(engine_engine_param_1 + 8) + 4;
   engine_temp_int = *(int *)(engine_temp_long_3 + 0x60);
   engine_temp_int_2 = *(int *)(engine_temp_long_3 + 100);
@@ -42288,7 +42288,7 @@ void engine_setup_ui_system(longlong engine_engine_param_1,uint64 engine_engine_
 
 
 
-int engine_setup_keyframe_system(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,undefined8 *engine_param_4)
+int engine_setup_keyframe_system(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64_t *engine_param_4)
 
 {
   int engine_temp_int;
@@ -42484,7 +42484,7 @@ void FUN_1800834f0(ulonglong *engine_engine_param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180083520(longlong engine_engine_param_1,undefined8 *engine_engine_param_2)
+uint64_t * FUN_180083520(longlong engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   longlong engine_temp_long;
@@ -42542,7 +42542,7 @@ undefined8 * FUN_180083520(longlong engine_engine_param_1,undefined8 *engine_eng
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_1800836a0(longlong engine_engine_param_1,undefined8 *engine_engine_param_2)
+uint64_t * FUN_1800836a0(longlong engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   longlong engine_temp_long;
@@ -42600,7 +42600,7 @@ undefined8 * FUN_1800836a0(longlong engine_engine_param_1,undefined8 *engine_eng
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180083820(longlong engine_engine_param_1,undefined8 *engine_engine_param_2)
+uint64_t * FUN_180083820(longlong engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   longlong engine_temp_long;
@@ -42658,7 +42658,7 @@ undefined8 * FUN_180083820(longlong engine_engine_param_1,undefined8 *engine_eng
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_1800839a0(longlong engine_engine_param_1,undefined8 *engine_engine_param_2)
+uint64_t * FUN_1800839a0(longlong engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   longlong engine_temp_long;
@@ -42753,8 +42753,8 @@ uint64 FUN_180083bf0(longlong engine_engine_param_1)
 
 
 
-undefined8 *
-FUN_180083c60(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180083c60(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &engine_base_data_offset_88;
@@ -42768,8 +42768,8 @@ FUN_180083c60(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,
 
 
 
-undefined8 *
-FUN_180083cb0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180083cb0(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &engine_base_data_offset_f0;
@@ -42783,8 +42783,8 @@ FUN_180083cb0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,
 
 
 
-undefined8 *
-FUN_180083d00(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180083d00(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &engine_base_data_offset_58;
@@ -42798,8 +42798,8 @@ FUN_180083d00(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,
 
 
 
-undefined8 *
-FUN_180083d50(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180083d50(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &engine_base_data_offset_c0;
@@ -42813,8 +42813,8 @@ FUN_180083d50(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,
 
 
 
-undefined8 *
-FUN_180083da0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180083da0(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &engine_base_data_offset_28;
@@ -42828,8 +42828,8 @@ FUN_180083da0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,
 
 
 
-undefined8 *
-FUN_180083df0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180083df0(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &engine_base_data_offset_90;
@@ -42843,8 +42843,8 @@ FUN_180083df0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,
 
 
 
-undefined8 *
-FUN_180083e40(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180083e40(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &engine_base_data_offset_f8;
@@ -42859,8 +42859,8 @@ FUN_180083e40(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,
 
 
 
-// 函数: void FUN_180083e90(undefined8 *engine_engine_param_1)
-void FUN_180083e90(undefined8 *engine_engine_param_1)
+// 函数: void FUN_180083e90(uint64_t *engine_engine_param_1)
+void FUN_180083e90(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = &UNK_180a21720;
@@ -42870,8 +42870,8 @@ void FUN_180083e90(undefined8 *engine_engine_param_1)
 
 
 
-undefined8 *
-FUN_180083ec0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180083ec0(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &UNK_180a21720;
@@ -42982,7 +42982,7 @@ void FUN_180084000(float *engine_engine_param_1)
 
 
 
-undefined8 * FUN_180084180(undefined8 *engine_engine_param_1)
+uint64_t * FUN_180084180(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = 0;
@@ -43002,8 +43002,8 @@ undefined8 * FUN_180084180(undefined8 *engine_engine_param_1)
 
 
 
-undefined8 *
-FUN_1800841c0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_1800841c0(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   uint64 engine_temp_uint;
@@ -43022,7 +43022,7 @@ FUN_1800841c0(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,
 
 
 
-undefined8 * FUN_180084230(undefined8 *engine_engine_param_1,uint engine_engine_param_2)
+uint64_t * FUN_180084230(uint64_t *engine_engine_param_1,uint engine_engine_param_2)
 
 {
   FUN_1808fc8a8(engine_engine_param_1 + 3,8,0x10,engine_update_game_state,0xfffffffffffffffe);
@@ -43036,7 +43036,7 @@ undefined8 * FUN_180084230(undefined8 *engine_engine_param_1,uint engine_engine_
 
 
 
-undefined8 * FUN_1800842a0(undefined8 *engine_engine_param_1)
+uint64_t * FUN_1800842a0(uint64_t *engine_engine_param_1)
 
 {
   *engine_engine_param_1 = &UNK_180a21690;
@@ -43055,8 +43055,8 @@ undefined8 * FUN_1800842a0(undefined8 *engine_engine_param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180084320(undefined8 *engine_engine_param_1,uint engine_engine_param_2)
-void FUN_180084320(undefined8 *engine_engine_param_1,uint engine_engine_param_2)
+// 函数: void FUN_180084320(uint64_t *engine_engine_param_1,uint engine_engine_param_2)
+void FUN_180084320(uint64_t *engine_engine_param_1,uint engine_engine_param_2)
 
 {
   uint64 engine_temp_uint;
@@ -43120,8 +43120,8 @@ void FUN_180084320(undefined8 *engine_engine_param_1,uint engine_engine_param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800844c0(undefined8 *engine_engine_param_1,uint engine_engine_param_2)
-void FUN_1800844c0(undefined8 *engine_engine_param_1,uint engine_engine_param_2)
+// 函数: void FUN_1800844c0(uint64_t *engine_engine_param_1,uint engine_engine_param_2)
+void FUN_1800844c0(uint64_t *engine_engine_param_1,uint engine_engine_param_2)
 
 {
   uint64 engine_temp_uint;
@@ -43487,7 +43487,7 @@ void FUN_180084c70(float *engine_engine_param_1,float *engine_engine_param_2,flo
 
 
 
-undefined8 * FUN_180084ea0(undefined8 *engine_engine_param_1)
+uint64_t * FUN_180084ea0(uint64_t *engine_engine_param_1)
 
 {
   uint64 engine_temp_uint;
@@ -43579,8 +43579,8 @@ float * FUN_180085020(float *engine_engine_param_1,float *engine_engine_param_2)
 
 
 
-// 函数: void FUN_180085190(float *engine_engine_param_1,longlong engine_engine_param_2,char engine_param_3,undefined8 *engine_param_4)
-void FUN_180085190(float *engine_engine_param_1,longlong engine_engine_param_2,char engine_param_3,undefined8 *engine_param_4)
+// 函数: void FUN_180085190(float *engine_engine_param_1,longlong engine_engine_param_2,char engine_param_3,uint64_t *engine_param_4)
+void FUN_180085190(float *engine_engine_param_1,longlong engine_engine_param_2,char engine_param_3,uint64_t *engine_param_4)
 
 {
   uint64 engine_temp_uint;
@@ -43726,7 +43726,7 @@ void FUN_18008520c(float *engine_engine_param_1,longlong engine_engine_param_2,u
   float fVar10;
   float fVar11;
   
-  uVar4 = (undefined4)((ulonglong)engine_param_4 >> 0x20);
+  uVar4 = (uint32_t)((ulonglong)engine_param_4 >> 0x20);
   fVar9 = (float)((ulonglong)in_XMM0_Qa >> 0x20);
   fVar10 = (float)in_XMM0_Qa;
   engine_engine_param_1[8] = fVar10;
@@ -43898,8 +43898,8 @@ FUN_1800855e0(ulonglong engine_engine_param_1,uint64 engine_engine_param_2,uint6
 void FUN_180085680(longlong *engine_engine_param_1,longlong *engine_engine_param_2)
 
 {
-  undefined4 *engine_data_ptr;
-  undefined4 *engine_structure_data_ptr;
+  uint32_t *engine_data_ptr;
+  uint32_t *engine_structure_data_ptr;
   uint engine_temp_uint_3;
   uint32 uVar4;
   uint32 uVar5;
@@ -44025,8 +44025,8 @@ void FUN_180085680(longlong *engine_engine_param_1,longlong *engine_engine_param
 void FUN_1800856c7(void)
 
 {
-  undefined4 *engine_data_ptr;
-  undefined4 *engine_structure_data_ptr;
+  uint32_t *engine_data_ptr;
+  uint32_t *engine_structure_data_ptr;
   ushort engine_temp_uint_3;
   uint uVar4;
   uint32 uVar5;
@@ -44148,8 +44148,8 @@ void FUN_1800856c7(void)
 void FUN_180085714(void)
 
 {
-  undefined4 *engine_data_ptr;
-  undefined4 *engine_structure_data_ptr;
+  uint32_t *engine_data_ptr;
+  uint32_t *engine_structure_data_ptr;
   uint engine_temp_uint_3;
   uint uVar4;
   uint32 uVar5;
@@ -44283,8 +44283,8 @@ longlong FUN_180085900(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_180085970(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
-void FUN_180085970(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+// 函数: void FUN_180085970(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
+void FUN_180085970(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
                     // WARNING: Subroutine does not return
@@ -44294,8 +44294,8 @@ void FUN_180085970(uint64 engine_engine_param_1,undefined4 engine_engine_param_2
 
 
 
-// 函数: void FUN_180085ac0(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
-void FUN_180085ac0(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+// 函数: void FUN_180085ac0(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
+void FUN_180085ac0(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
                     // WARNING: Subroutine does not return
@@ -44305,8 +44305,8 @@ void FUN_180085ac0(uint64 engine_engine_param_1,undefined4 engine_engine_param_2
 
 
 
-// 函数: void FUN_180085c10(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
-void FUN_180085c10(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+// 函数: void FUN_180085c10(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
+void FUN_180085c10(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
                     // WARNING: Subroutine does not return
@@ -44626,7 +44626,7 @@ void FUN_1800860f0(int *engine_engine_param_1,int *engine_engine_param_2)
 
 
 
-undefined1 FUN_1800861a0(float *engine_engine_param_1)
+uint8_t FUN_1800861a0(float *engine_engine_param_1)
 
 {
   char engine_status_flag;
@@ -44649,15 +44649,15 @@ undefined1 FUN_1800861a0(float *engine_engine_param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180086270(ulonglong *engine_engine_param_1,undefined8 *engine_engine_param_2)
-void FUN_180086270(ulonglong *engine_engine_param_1,undefined8 *engine_engine_param_2)
+// 函数: void FUN_180086270(ulonglong *engine_engine_param_1,uint64_t *engine_engine_param_2)
+void FUN_180086270(ulonglong *engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   uint32 engine_temp_uint;
   uint32 engine_temp_uint_2;
   uint32 engine_temp_uint_3;
   uint64 uVar4;
-  undefined4 *engine_temporary_ptr;
+  uint32_t *engine_temporary_ptr;
   longlong lVar6;
   void* engine_current_data_ptr;
   void* engine_next_data_ptr;
@@ -44721,9 +44721,9 @@ void FUN_1800862bb(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
   uint32 engine_temp_uint;
   uint32 engine_temp_uint_2;
   uint32 engine_temp_uint_3;
-  undefined4 *engine_data_ptr_4;
+  uint32_t *engine_data_ptr_4;
   longlong *unaff_RBX;
-  undefined4 *unaff_RBP;
+  uint32_t *unaff_RBP;
   longlong engine_result_value;
   longlong unaff_RDI;
   
@@ -44777,15 +44777,15 @@ void thunk_engine_call_cleanup_routine(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800863a0(ulonglong *engine_engine_param_1,undefined8 *engine_engine_param_2)
-void FUN_1800863a0(ulonglong *engine_engine_param_1,undefined8 *engine_engine_param_2)
+// 函数: void FUN_1800863a0(ulonglong *engine_engine_param_1,uint64_t *engine_engine_param_2)
+void FUN_1800863a0(ulonglong *engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   uint32 engine_temp_uint;
   uint32 engine_temp_uint_2;
   uint32 engine_temp_uint_3;
   uint64 uVar4;
-  undefined4 *engine_temporary_ptr;
+  uint32_t *engine_temporary_ptr;
   void* engine_temporary_data_ptr;
   longlong lVar7;
   void* engine_next_data_ptr;
@@ -44837,8 +44837,8 @@ LAB_18008642b:
 
 
 
-undefined8 *
-FUN_180086490(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180086490(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   engine_engine_param_1[4] = &UNK_180a3c3e0;
@@ -44872,8 +44872,8 @@ void FUN_180086530(longlong *engine_engine_param_1)
 
 
 
-undefined8 *
-FUN_180086570(undefined8 *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180086570(uint64_t *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   longlong engine_temp_long;
@@ -44900,7 +44900,7 @@ FUN_180086570(undefined8 *engine_engine_param_1,longlong engine_engine_param_2,u
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * engine_process_input_events(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+uint64_t * engine_process_input_events(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -44916,7 +44916,7 @@ undefined8 * engine_process_input_events(uint64 engine_engine_param_1,undefined4
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * engine_handle_keyboard_input(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+uint64_t * engine_handle_keyboard_input(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -44946,7 +44946,7 @@ uint64 FUN_1800866f0(uint64 engine_engine_param_1,ulonglong engine_engine_param_
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * engine_handle_mouse_input(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+uint64_t * engine_handle_mouse_input(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -44980,7 +44980,7 @@ longlong FUN_1800867d0(longlong engine_engine_param_1,ulonglong engine_engine_pa
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * engine_update_game_state(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+uint64_t * engine_update_game_state(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -44996,7 +44996,7 @@ undefined8 * engine_update_game_state(uint64 engine_engine_param_1,undefined4 en
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * engine_process_physics_simulation(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+uint64_t * engine_process_physics_simulation(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -45012,7 +45012,7 @@ undefined8 * engine_process_physics_simulation(uint64 engine_engine_param_1,unde
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * engine_render_frame(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+uint64_t * engine_render_frame(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -45028,7 +45028,7 @@ undefined8 * engine_render_frame(uint64 engine_engine_param_1,undefined4 engine_
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * engine_update_audio_system(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+uint64_t * engine_update_audio_system(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -45044,7 +45044,7 @@ undefined8 * engine_update_audio_system(uint64 engine_engine_param_1,undefined4 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * engine_process_network_events(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+uint64_t * engine_process_network_events(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -45060,7 +45060,7 @@ undefined8 * engine_process_network_events(uint64 engine_engine_param_1,undefine
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * engine_process_graphics_buffer(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+uint64_t * engine_process_graphics_buffer(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -45115,7 +45115,7 @@ void FUN_180086bd0(longlong engine_engine_param_1,uint64 engine_engine_param_2,l
 
 
 
-undefined8 * FUN_180086ca0(undefined8 *engine_engine_param_1)
+uint64_t * FUN_180086ca0(uint64_t *engine_engine_param_1)
 
 {
   void* engine_data_ptr;
@@ -45534,7 +45534,7 @@ LAB_18008733a:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_1800873b0(int engine_engine_param_1,longlong *engine_engine_param_2,undefined1 *engine_param_3)
+uint64 FUN_1800873b0(int engine_engine_param_1,longlong *engine_engine_param_2,uint8_t *engine_param_3)
 
 {
   char engine_status_flag;
@@ -45711,16 +45711,16 @@ void FUN_180087630(uint64 engine_engine_param_1,longlong engine_engine_param_2,l
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180087700(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_2,undefined8 *engine_param_3,uint64 engine_param_4,
-void FUN_180087700(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_2,undefined8 *engine_param_3,uint64 engine_param_4,
-                  undefined1 param_5)
+// 函数: void FUN_180087700(uint64_t *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64_t *engine_param_3,uint64 engine_param_4,
+void FUN_180087700(uint64_t *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64_t *engine_param_3,uint64 engine_param_4,
+                  uint8_t param_5)
 
 {
   int *pengine_temp_int;
-  undefined4 *engine_structure_data_ptr;
+  uint32_t *engine_structure_data_ptr;
   uint engine_temp_uint_3;
   uint64 uVar4;
-  undefined4 *engine_temporary_ptr;
+  uint32_t *engine_temporary_ptr;
   uint32 uVar6;
   uint32 uVar7;
   uint32 uVar8;
@@ -46193,8 +46193,8 @@ LAB_180088131:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180088160(uint64 engine_engine_param_1,undefined1 engine_engine_param_2)
-void FUN_180088160(uint64 engine_engine_param_1,undefined1 engine_engine_param_2)
+// 函数: void FUN_180088160(uint64 engine_engine_param_1,uint8_t engine_engine_param_2)
+void FUN_180088160(uint64 engine_engine_param_1,uint8_t engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -46750,7 +46750,7 @@ void FUN_180089420(void)
       if (lStack_90 != 0) {
         *(uint8*)(uVar7 + lStack_90) = 0;
       }
-      uStack_80 = CONCAT44(*(uint32*)(lVar8 + 0x1c),(undefined4)uStack_80);
+      uStack_80 = CONCAT44(*(uint32*)(lVar8 + 0x1c),(uint32_t)uStack_80);
       uStack_88 = engine_temp_uint;
       iStack_3c = (int)uVar6;
       cVar4 = FUN_1800873b0(uVar6,&puStack_78,auStack_40);
@@ -46790,8 +46790,8 @@ void FUN_180089420(void)
 
 
 
-// 函数: void FUN_180089640(undefined8 *engine_engine_param_1)
-void FUN_180089640(undefined8 *engine_engine_param_1)
+// 函数: void FUN_180089640(uint64_t *engine_engine_param_1)
+void FUN_180089640(uint64_t *engine_engine_param_1)
 
 {
   engine_engine_param_1[4] = &UNK_18098bcb0;
@@ -47469,13 +47469,13 @@ void FUN_18008a480(uint64 engine_engine_param_1,longlong engine_engine_param_2,u
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008a620(undefined8 *engine_engine_param_1)
-void FUN_18008a620(undefined8 *engine_engine_param_1)
+// 函数: void FUN_18008a620(uint64_t *engine_engine_param_1)
+void FUN_18008a620(uint64_t *engine_engine_param_1)
 
 {
   void* engine_data_ptr;
   void* engine_structure_data_ptr;
-  undefined8 **pengine_data_ptr_3;
+  uint64_t **pengine_data_ptr_3;
   uint8 uVar4;
   ulonglong *engine_temporary_ptr;
   bool bVar6;
@@ -47506,7 +47506,7 @@ void FUN_18008a620(undefined8 *engine_engine_param_1)
   uint8 auStack_5d8 [32];
   void* puStack_5b8;
   uint32 uStack_5a8;
-  undefined8 **ppuStack_5a0;
+  uint64_t **ppuStack_5a0;
   void* puStack_598;
   void* puStack_590;
   uint uStack_588;
@@ -47532,7 +47532,7 @@ void FUN_18008a620(undefined8 *engine_engine_param_1)
   uint64 uStack_4e8;
   uint32 uStack_4e0;
   uint8 uStack_4dc;
-  undefined8 *apuStack_4d8 [2];
+  uint64_t *apuStack_4d8 [2];
   code *pcStack_4c8;
   code *pcStack_4c0;
   uint64 auStack_4b8 [2];
@@ -48091,8 +48091,8 @@ ulonglong FUN_18008b250(uint64 engine_engine_param_1,uint64 engine_engine_param_
 
 
 
-// 函数: void FUN_18008b390(ulonglong engine_engine_param_1,int engine_engine_param_2,undefined8 *engine_param_3)
-void FUN_18008b390(ulonglong engine_engine_param_1,int engine_engine_param_2,undefined8 *engine_param_3)
+// 函数: void FUN_18008b390(ulonglong engine_engine_param_1,int engine_engine_param_2,uint64_t *engine_param_3)
+void FUN_18008b390(ulonglong engine_engine_param_1,int engine_engine_param_2,uint64_t *engine_param_3)
 
 {
   void* engine_data_ptr;
@@ -48320,7 +48320,7 @@ LAB_18008b7ea:
 
 // 函数: void FUN_18008bb30(uint64 engine_engine_param_1,longlong engine_engine_param_2,longlong *engine_param_3,longlong *engine_param_4,
 void FUN_18008bb30(uint64 engine_engine_param_1,longlong engine_engine_param_2,longlong *engine_param_3,longlong *engine_param_4,
-                  undefined1 *param_5,undefined1 *param_6)
+                  uint8_t *param_5,uint8_t *param_6)
 
 {
   char engine_status_flag;
@@ -48385,7 +48385,7 @@ void FUN_18008bb30(uint64 engine_engine_param_1,longlong engine_engine_param_2,l
       lVar7 = *engine_param_4;
     }
   }
-  uStack_250 = (undefined4)engine_param_3[8];
+  uStack_250 = (uint32_t)engine_param_3[8];
   puStack_258 = (void*)auStack_238;
   pcStack_228 = (code *)0x0;
   pcStack_220 = _guard_check_icall;
@@ -48699,9 +48699,9 @@ void FUN_18008c320(longlong engine_engine_param_1,longlong *engine_engine_param_
   }
   engine_data_ptr = engine_temporary_ptr + 6;
   uStack_8b0 = *(uint32*)((longlong)engine_engine_param_2 + 0xc);
-  uStack_8ac = (undefined4)engine_engine_param_2[2];
+  uStack_8ac = (uint32_t)engine_engine_param_2[2];
   uStack_8a8 = *(uint32*)((longlong)engine_engine_param_2 + 0x14);
-  uStack_8a4 = (undefined4)engine_engine_param_2[3];
+  uStack_8a4 = (uint32_t)engine_engine_param_2[3];
   lVar6 = engine_call_memory_extender(_engine_data_18,0x38,*(uint8*)(engine_temporary_ptr + 0xb));
   *(uint32*)(lVar6 + 0x20) = uStack_8b0;
   *(uint32*)(lVar6 + 0x24) = uStack_8ac;
@@ -48755,14 +48755,14 @@ void FUN_18008c9f0(longlong engine_engine_param_1,longlong *engine_engine_param_
   void* engine_data_ptr;
   byte bVar2;
   uint32 engine_temp_uint_3;
-  undefined8 ****pppengine_data_ptr_4;
+  uint64_t ****pppengine_data_ptr_4;
   longlong *plVar5;
   int iVar6;
   uint64 uVar7;
   longlong lVar8;
-  undefined8 *****pppppuVar9;
-  undefined8 *****ppppengine_data_ptr0;
-  undefined8 ****pppengine_data_ptr1;
+  uint64_t *****pppppuVar9;
+  uint64_t *****ppppengine_data_ptr0;
+  uint64_t ****pppengine_data_ptr1;
   byte *pbVar12;
   longlong *pengine_temp_long3;
   int engine_temp_int4;
@@ -48776,16 +48776,16 @@ void FUN_18008c9f0(longlong engine_engine_param_1,longlong *engine_engine_param_
   longlong engine_temp_long_22;
   longlong *pengine_temp_long_23;
   bool bVar24;
-  undefined8 ****ppppuStackX_10;
-  undefined8 ****ppppuStackX_18;
+  uint64_t ****ppppuStackX_10;
+  uint64_t ****ppppuStackX_18;
   longlong lStackX_20;
   longlong *plStack_90;
   longlong *plStack_88;
   longlong *plStack_80;
   uint32 uStack_78;
-  undefined8 ****ppppuStack_70;
-  undefined8 ****ppppuStack_68;
-  undefined8 ****ppppuStack_60;
+  uint64_t ****ppppuStack_70;
+  uint64_t ****ppppuStack_68;
+  uint64_t ****ppppuStack_60;
   uint64 uStack_58;
   longlong lStack_50;
   uint32 uStack_48;
@@ -48793,10 +48793,10 @@ void FUN_18008c9f0(longlong engine_engine_param_1,longlong *engine_engine_param_
   uStack_48 = 3;
   ppppuStack_70 = &ppppuStack_70;
   ppppuStack_68 = &ppppuStack_70;
-  ppppuStack_60 = (undefined8 *****)0x0;
+  ppppuStack_60 = (uint64_t *****)0x0;
   uStack_58 = 0;
   lStack_50 = 0;
-  ppppuStackX_10 = (undefined8 ****)((ulonglong)ppppuStackX_10 & 0xffffffff00000000);
+  ppppuStackX_10 = (uint64_t ****)((ulonglong)ppppuStackX_10 & 0xffffffff00000000);
   engine_data_ptr7 = (void*)*engine_engine_param_2;
   if (engine_engine_param_2[1] - (longlong)engine_data_ptr7 >> 3 == 0) {
     engine_temp_int4 = (int)(engine_engine_param_2[1] - (longlong)engine_data_ptr7 >> 3);
@@ -48805,28 +48805,28 @@ void FUN_18008c9f0(longlong engine_engine_param_1,longlong *engine_engine_param_
     if (0 < engine_temp_int4) {
       engine_temp_long_22 = 0;
       do {
-        pppengine_data_ptr_4 = *(undefined8 *****)(*engine_engine_param_2 + engine_temp_long_22 * 8);
+        pppengine_data_ptr_4 = *(uint64_t *****)(*engine_engine_param_2 + engine_temp_long_22 * 8);
         ppppengine_data_ptr0 = &ppppuStack_70;
-        pppppuVar9 = (undefined8 *****)ppppuStack_60;
-        if ((undefined8 *****)ppppuStack_60 == (undefined8 *****)0x0) {
+        pppppuVar9 = (uint64_t *****)ppppuStack_60;
+        if ((uint64_t *****)ppppuStack_60 == (uint64_t *****)0x0) {
 LAB_18008cc42:
           ppppengine_data_ptr0 = &ppppuStack_70;
         }
         else {
           do {
             if (pppppuVar9[4] < pppengine_data_ptr_4) {
-              pppppuVar9 = (undefined8 *****)*pppppuVar9;
+              pppppuVar9 = (uint64_t *****)*pppppuVar9;
             }
             else {
               ppppengine_data_ptr0 = pppppuVar9;
-              pppppuVar9 = (undefined8 *****)pppppuVar9[1];
+              pppppuVar9 = (uint64_t *****)pppppuVar9[1];
             }
-          } while (pppppuVar9 != (undefined8 *****)0x0);
+          } while (pppppuVar9 != (uint64_t *****)0x0);
           if ((ppppengine_data_ptr0 == &ppppuStack_70) || (pppengine_data_ptr_4 < ppppengine_data_ptr0[4])) goto LAB_18008cc42;
         }
         engine_temp_uint_3 = *(uint32*)(ppppengine_data_ptr0 + 5);
-        for (pppengine_data_ptr1 = (undefined8 ****)pppengine_data_ptr_4[8]; pppengine_data_ptr1 != pppengine_data_ptr_4 + 7;
-            pppengine_data_ptr1 = (undefined8 ****)func_0x00018066bd70(pppengine_data_ptr1)) {
+        for (pppengine_data_ptr1 = (uint64_t ****)pppengine_data_ptr_4[8]; pppengine_data_ptr1 != pppengine_data_ptr_4 + 7;
+            pppengine_data_ptr1 = (uint64_t ****)func_0x00018066bd70(pppengine_data_ptr1)) {
           FUN_18008b390(pppengine_data_ptr1[4],engine_temp_uint_3,&ppppuStack_70);
         }
         engine_temp_long_22 = engine_temp_long_22 + 1;
@@ -48948,7 +48948,7 @@ LAB_18008ce85:
                     // WARNING: Subroutine does not return
       engine_call_cleanup_routine(plVar5);
     }
-    if ((undefined8 *****)ppppuStack_60 != (undefined8 *****)0x0) {
+    if ((uint64_t *****)ppppuStack_60 != (uint64_t *****)0x0) {
       FUN_18004b790(&ppppuStack_70,*ppppuStack_60);
                     // WARNING: Subroutine does not return
       engine_call_cleanup_routine(pppengine_data_ptr_4);
@@ -48982,34 +48982,34 @@ LAB_18008caf0:
   if (engine_data_ptr7 != engine_data_ptr) {
     engine_temp_int4 = *(int *)(engine_data_ptr7 + 6);
   }
-  pppengine_data_ptr_4 = *(undefined8 *****)*engine_engine_param_2;
-  lVar8 = engine_call_memory_extender(_engine_data_18,0x30,(undefined1)uStack_48);
-  *(undefined8 *****)(lVar8 + 0x20) = pppengine_data_ptr_4;
+  pppengine_data_ptr_4 = *(uint64_t *****)*engine_engine_param_2;
+  lVar8 = engine_call_memory_extender(_engine_data_18,0x30,(uint8_t)uStack_48);
+  *(uint64_t *****)(lVar8 + 0x20) = pppengine_data_ptr_4;
   *(int *)(lVar8 + 0x28) = engine_temp_int4 << 0x10;
   bVar24 = true;
   ppppengine_data_ptr0 = &ppppuStack_70;
-  pppppuVar9 = (undefined8 *****)ppppuStack_60;
-  while (pppppuVar9 != (undefined8 *****)0x0) {
+  pppppuVar9 = (uint64_t *****)ppppuStack_60;
+  while (pppppuVar9 != (uint64_t *****)0x0) {
     bVar24 = pppengine_data_ptr_4 < pppppuVar9[4];
     ppppengine_data_ptr0 = pppppuVar9;
     if (bVar24) {
-      pppppuVar9 = (undefined8 *****)pppppuVar9[1];
+      pppppuVar9 = (uint64_t *****)pppppuVar9[1];
     }
     else {
-      pppppuVar9 = (undefined8 *****)*pppppuVar9;
+      pppppuVar9 = (uint64_t *****)*pppppuVar9;
     }
   }
   pppppuVar9 = ppppengine_data_ptr0;
   if (bVar24) {
-    if (ppppengine_data_ptr0 == (undefined8 *****)ppppuStack_68) goto LAB_18008cb7e;
-    pppppuVar9 = (undefined8 *****)func_0x00018066b9a0(ppppengine_data_ptr0);
+    if (ppppengine_data_ptr0 == (uint64_t *****)ppppuStack_68) goto LAB_18008cb7e;
+    pppppuVar9 = (uint64_t *****)func_0x00018066b9a0(ppppengine_data_ptr0);
   }
-  if (*(undefined8 *****)(lVar8 + 0x20) <= pppppuVar9[4]) {
+  if (*(uint64_t *****)(lVar8 + 0x20) <= pppppuVar9[4]) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(lVar8);
   }
 LAB_18008cb7e:
-  if ((ppppengine_data_ptr0 == &ppppuStack_70) || (*(undefined8 *****)(lVar8 + 0x20) < ppppengine_data_ptr0[4])) {
+  if ((ppppengine_data_ptr0 == &ppppuStack_70) || (*(uint64_t *****)(lVar8 + 0x20) < ppppengine_data_ptr0[4])) {
     uVar7 = 0;
   }
   else {
@@ -49269,8 +49269,8 @@ void FUN_18008d1f0(uint64 engine_engine_param_1,longlong *engine_engine_param_2)
 
 
 
-undefined8 *
-FUN_18008d320(undefined8 *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_18008d320(uint64_t *engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   void* engine_data_ptr;
@@ -49314,7 +49314,7 @@ void FUN_18008d3a0(longlong *engine_engine_param_1)
 
 
 
-undefined8 * FUN_18008d400(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3)
+uint64_t * FUN_18008d400(uint64_t *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3)
 
 {
   int engine_temp_int;
@@ -49347,7 +49347,7 @@ undefined8 * FUN_18008d400(undefined8 *engine_engine_param_1,undefined8 *engine_
 
 
 
-undefined8 * FUN_18008d4a0(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_2,longlong engine_param_3)
+uint64_t * FUN_18008d4a0(uint64_t *engine_engine_param_1,uint64_t *engine_engine_param_2,longlong engine_param_3)
 
 {
   byte engine_temp_byte;
@@ -49422,8 +49422,8 @@ LAB_18008d56b:
 
 
 
-// 函数: void FUN_18008d4c6(undefined8 *engine_engine_param_1)
-void FUN_18008d4c6(undefined8 *engine_engine_param_1)
+// 函数: void FUN_18008d4c6(uint64_t *engine_engine_param_1)
+void FUN_18008d4c6(uint64_t *engine_engine_param_1)
 
 {
   byte engine_temp_byte;
@@ -49544,7 +49544,7 @@ void FUN_18008d5a0(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
 
 
 
-undefined8 * FUN_18008d5c0(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3)
+uint64_t * FUN_18008d5c0(uint64_t *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3)
 
 {
   int engine_temp_int;
@@ -49577,7 +49577,7 @@ undefined8 * FUN_18008d5c0(undefined8 *engine_engine_param_1,undefined8 *engine_
 
 
 
-undefined8 * FUN_18008d660(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2)
+uint64_t * FUN_18008d660(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -49610,8 +49610,8 @@ undefined8 * FUN_18008d660(undefined8 *engine_engine_param_1,uint64 engine_engin
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008d710(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,ulonglong *engine_param_3)
-void FUN_18008d710(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,ulonglong *engine_param_3)
+// 函数: void FUN_18008d710(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,ulonglong *engine_param_3)
+void FUN_18008d710(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,ulonglong *engine_param_3)
 
 {
   ulonglong engine_temp_uint;
@@ -49660,14 +49660,14 @@ LAB_18008d7a0:
 
 
 
-// 函数: void FUN_18008d810(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
-void FUN_18008d810(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+// 函数: void FUN_18008d810(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+void FUN_18008d810(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   if (engine_engine_param_2 != (void*)0x0) {
     FUN_18008d810(engine_engine_param_1,*engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
     FUN_18004b730();
-    FUN_180058370(engine_engine_param_2 + 0xc,engine_engine_param_2[0xe]);
+    engine_handle_system_io_data_queue(engine_engine_param_2 + 0xc,engine_engine_param_2[0xe]);
     FUN_18004b730(engine_engine_param_2 + 6);
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_engine_param_2);
@@ -49677,8 +49677,8 @@ void FUN_18008d810(uint64 engine_engine_param_1,undefined8 *engine_engine_param_
 
 
 
-undefined8 *
-FUN_18008d8c0(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
+uint64_t *
+FUN_18008d8c0(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
              uint64 param_5)
 
 {
@@ -49749,9 +49749,9 @@ LAB_18008d9f7:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_18008da10(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
-             undefined4 *param_5)
+uint64_t *
+FUN_18008da10(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
+             uint32_t *param_5)
 
 {
   uint32 engine_temp_uint;
@@ -49836,8 +49836,8 @@ FUN_18008db2a:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008db2a(undefined4 engine_engine_param_1)
-void FUN_18008db2a(undefined4 engine_engine_param_1)
+// 函数: void FUN_18008db2a(uint32_t engine_engine_param_1)
+void FUN_18008db2a(uint32_t engine_engine_param_1)
 
 {
   uint32 engine_temp_uint;
@@ -49845,7 +49845,7 @@ void FUN_18008db2a(undefined4 engine_engine_param_1)
   uint32 engine_temp_uint_3;
   longlong lVar4;
   longlong unaff_RBX;
-  undefined4 *unaff_RBP;
+  uint32_t *unaff_RBP;
   longlong unaff_RSI;
   
   if (unaff_RBX != unaff_RSI) {
@@ -50117,7 +50117,7 @@ LAB_18008dde0:
 
 // 函数: void FUN_18008dfa0(longlong engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3,char engine_param_4,
 void FUN_18008dfa0(longlong engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3,char engine_param_4,
-                  undefined4 *param_5)
+                  uint32_t *param_5)
 
 {
   longlong engine_temp_long;
@@ -50147,7 +50147,7 @@ void FUN_18008dfa0(longlong engine_engine_param_1,uint64 engine_engine_param_2,l
 
 // 函数: void FUN_18008e0f0(longlong engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3,char engine_param_4,
 void FUN_18008e0f0(longlong engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3,char engine_param_4,
-                  undefined4 *param_5)
+                  uint32_t *param_5)
 
 {
   uint32 engine_temp_uint;
@@ -50184,8 +50184,8 @@ LAB_18008e13f:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008e1a0(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2,longlong *engine_param_3,longlong *engine_param_4)
-void FUN_18008e1a0(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2,longlong *engine_param_3,longlong *engine_param_4)
+// 函数: void FUN_18008e1a0(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2,longlong *engine_param_3,longlong *engine_param_4)
+void FUN_18008e1a0(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2,longlong *engine_param_3,longlong *engine_param_4)
 
 {
   uint32 engine_temp_uint;
@@ -50198,11 +50198,11 @@ void FUN_18008e1a0(longlong *engine_engine_param_1,undefined8 *engine_engine_par
   void* engine_next_data_ptr;
   void* puVar9;
   void* engine_data_ptr0;
-  undefined4 *engine_data_ptr1;
-  undefined4 *engine_data_ptr2;
+  uint32_t *engine_data_ptr1;
+  uint32_t *engine_data_ptr2;
   ulonglong engine_temp_uint3;
-  undefined4 *engine_data_ptr4;
-  undefined4 *engine_data_ptr5;
+  uint32_t *engine_data_ptr4;
+  uint32_t *engine_data_ptr5;
   longlong lStackX_10;
   longlong alStackX_18 [2];
   
@@ -50374,16 +50374,16 @@ void FUN_18008e1c7(void)
   void* engine_next_data_ptr;
   longlong lVar9;
   void* engine_data_ptr0;
-  undefined4 *engine_data_ptr1;
+  uint32_t *engine_data_ptr1;
   void* unaff_RBX;
   longlong *unaff_RBP;
-  undefined4 *engine_data_ptr2;
+  uint32_t *engine_data_ptr2;
   ulonglong engine_temp_uint3;
   longlong unaff_RDI;
   longlong *unaff_R12;
   longlong *unaff_R13;
-  undefined4 *engine_data_ptr4;
-  undefined4 *engine_data_ptr5;
+  uint32_t *engine_data_ptr4;
+  uint32_t *engine_data_ptr5;
   longlong in_stack_00000068;
   longlong in_stack_00000070;
   
@@ -50929,7 +50929,7 @@ void FUN_18008e5f0(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
   
   engine_temp_uint_2 = 0xfffffffffffffffe;
   FUN_18004b730();
-  FUN_180058370(engine_engine_param_1 + 0x40,*(void*)(engine_engine_param_1 + 0x50),engine_param_3,engine_param_4,engine_temp_uint_2);
+  engine_handle_system_io_data_queue(engine_engine_param_1 + 0x40,*(void*)(engine_engine_param_1 + 0x50),engine_param_3,engine_param_4,engine_temp_uint_2);
   engine_data_ptr = *(void**)(engine_engine_param_1 + 0x20);
   if (engine_data_ptr != (void*)0x0) {
     FUN_18004b790(engine_engine_param_1 + 0x10,*engine_data_ptr,engine_param_3,engine_param_4,0xfffffffffffffffe);
@@ -50951,7 +50951,7 @@ void FUN_18008e640(longlong engine_engine_param_1,uint64 engine_engine_param_2,u
   
   engine_temp_uint_2 = 0xfffffffffffffffe;
   FUN_18004b730();
-  FUN_180058370(engine_engine_param_1 + 0x30,*(void*)(engine_engine_param_1 + 0x40),engine_param_3,engine_param_4,engine_temp_uint_2);
+  engine_handle_system_io_data_queue(engine_engine_param_1 + 0x30,*(void*)(engine_engine_param_1 + 0x40),engine_param_3,engine_param_4,engine_temp_uint_2);
   engine_data_ptr = *(void**)(engine_engine_param_1 + 0x10);
   if (engine_data_ptr != (void*)0x0) {
     FUN_18004b790(engine_engine_param_1,*engine_data_ptr,engine_param_3,engine_param_4,0xfffffffffffffffe);
@@ -51029,7 +51029,7 @@ longlong engine_process_frame_update(longlong *engine_engine_param_1,longlong *e
 
 
 
-ulonglong FUN_18008e820(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2)
+ulonglong FUN_18008e820(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   longlong *pengine_temp_long;
@@ -51051,8 +51051,8 @@ ulonglong FUN_18008e820(uint64 engine_engine_param_1,undefined8 *engine_engine_p
 
 
 
-undefined8 *
-FUN_18008e9e0(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_18008e9e0(uint64_t *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   code *pengine_status_flag;
@@ -51098,7 +51098,7 @@ void FUN_18008ea80(uint64 engine_engine_param_1,longlong engine_engine_param_2)
 
 
 
-undefined8 * FUN_18008eaf0(longlong *engine_engine_param_1,longlong *engine_engine_param_2,undefined8 *engine_param_3)
+uint64_t * FUN_18008eaf0(longlong *engine_engine_param_1,longlong *engine_engine_param_2,uint64_t *engine_param_3)
 
 {
   longlong engine_temp_long;
@@ -51118,8 +51118,8 @@ undefined8 * FUN_18008eaf0(longlong *engine_engine_param_1,longlong *engine_engi
 
 
 
-// 函数: void FUN_18008eb40(longlong *engine_engine_param_1,longlong *engine_engine_param_2,longlong engine_param_3,undefined1 engine_param_4)
-void FUN_18008eb40(longlong *engine_engine_param_1,longlong *engine_engine_param_2,longlong engine_param_3,undefined1 engine_param_4)
+// 函数: void FUN_18008eb40(longlong *engine_engine_param_1,longlong *engine_engine_param_2,longlong engine_param_3,uint8_t engine_param_4)
+void FUN_18008eb40(longlong *engine_engine_param_1,longlong *engine_engine_param_2,longlong engine_param_3,uint8_t engine_param_4)
 
 {
   byte engine_temp_byte;
@@ -51330,8 +51330,8 @@ void FUN_18008ed49(void)
 
 
 
-// 函数: void FUN_18008edc0(longlong *engine_engine_param_1,longlong *engine_engine_param_2,longlong engine_param_3,undefined1 engine_param_4)
-void FUN_18008edc0(longlong *engine_engine_param_1,longlong *engine_engine_param_2,longlong engine_param_3,undefined1 engine_param_4)
+// 函数: void FUN_18008edc0(longlong *engine_engine_param_1,longlong *engine_engine_param_2,longlong engine_param_3,uint8_t engine_param_4)
+void FUN_18008edc0(longlong *engine_engine_param_1,longlong *engine_engine_param_2,longlong engine_param_3,uint8_t engine_param_4)
 
 {
   byte engine_temp_byte;
@@ -51501,8 +51501,8 @@ LAB_18008efb7:
 
 
 
-// 函数: void FUN_18008edcf(longlong *engine_engine_param_1,longlong *engine_engine_param_2,longlong engine_param_3,undefined1 engine_param_4)
-void FUN_18008edcf(longlong *engine_engine_param_1,longlong *engine_engine_param_2,longlong engine_param_3,undefined1 engine_param_4)
+// 函数: void FUN_18008edcf(longlong *engine_engine_param_1,longlong *engine_engine_param_2,longlong engine_param_3,uint8_t engine_param_4)
+void FUN_18008edcf(longlong *engine_engine_param_1,longlong *engine_engine_param_2,longlong engine_param_3,uint8_t engine_param_4)
 
 {
   byte engine_temp_byte;
@@ -51943,8 +51943,8 @@ void engine_allocate_memory_block(uint64 engine_engine_param_1,uint64 engine_eng
 
 
 
-undefined8 *
-engine_initialize_memory_block(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2,longlong *engine_param_3,uint64 engine_param_4,
+uint64_t *
+engine_initialize_memory_block(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2,longlong *engine_param_3,uint64 engine_param_4,
              uint64 param_5)
 
 {
@@ -52050,8 +52050,8 @@ engine_initialize_memory_block(longlong *engine_engine_param_1,undefined8 *engin
 
 
 
-// 函数: void FUN_18008f430(undefined8 *engine_engine_param_1)
-void FUN_18008f430(undefined8 *engine_engine_param_1)
+// 函数: void FUN_18008f430(uint64_t *engine_engine_param_1)
+void FUN_18008f430(uint64_t *engine_engine_param_1)
 
 {
   void* engine_data_ptr;
@@ -52065,8 +52065,8 @@ void FUN_18008f430(undefined8 *engine_engine_param_1)
 
 
 
-undefined8 *
-FUN_18008f470(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2,char engine_param_3,undefined8 *engine_param_4,
+uint64_t *
+FUN_18008f470(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2,char engine_param_3,uint64_t *engine_param_4,
              uint64 param_5,longlong *param_6)
 
 {
@@ -52200,8 +52200,8 @@ LAB_18008f669:
 
 
 
-undefined8 *
-FUN_18008f6a0(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2,char engine_param_3,uint64 engine_param_4,
+uint64_t *
+FUN_18008f6a0(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2,char engine_param_3,uint64 engine_param_4,
              uint64 param_5)
 
 {
@@ -52690,8 +52690,8 @@ void FUN_18008fbc0(longlong engine_engine_param_1,longlong engine_engine_param_2
 
 
 
-undefined8 *
-FUN_18008fd70(undefined8 *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_18008fd70(uint64_t *engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   *engine_engine_param_1 = &UNK_18098bcb0;
@@ -52762,8 +52762,8 @@ void FUN_18008fe51(void)
 
 
 
-// 函数: void FUN_18008fe76(undefined1 *engine_engine_param_1)
-void FUN_18008fe76(undefined1 *engine_engine_param_1)
+// 函数: void FUN_18008fe76(uint8_t *engine_engine_param_1)
+void FUN_18008fe76(uint8_t *engine_engine_param_1)
 
 {
   longlong unaff_RDI;
@@ -52821,7 +52821,7 @@ void FUN_18008fe90(longlong engine_engine_param_1,longlong engine_engine_param_2
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * engine_initialize_rendering_context(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+uint64_t * engine_initialize_rendering_context(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -52837,7 +52837,7 @@ undefined8 * engine_initialize_rendering_context(uint64 engine_engine_param_1,un
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * engine_setup_display_manager(uint64 engine_engine_param_1,undefined4 engine_engine_param_2)
+uint64_t * engine_setup_display_manager(uint64 engine_engine_param_1,uint32_t engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -52853,7 +52853,7 @@ undefined8 * engine_setup_display_manager(uint64 engine_engine_param_1,undefined
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180090130(undefined8 *engine_engine_param_1)
+uint64_t * FUN_180090130(uint64_t *engine_engine_param_1)
 
 {
   longlong *pengine_temp_long;
@@ -52987,8 +52987,8 @@ void FUN_1800904f0(longlong engine_engine_param_1)
 
 
 
-// 函数: void FUN_180090520(undefined8 *engine_engine_param_1)
-void FUN_180090520(undefined8 *engine_engine_param_1)
+// 函数: void FUN_180090520(uint64_t *engine_engine_param_1)
+void FUN_180090520(uint64_t *engine_engine_param_1)
 
 {
   int engine_temp_int;
@@ -53013,7 +53013,7 @@ void FUN_180090520(undefined8 *engine_engine_param_1)
     engine_data_ptr_4 = engine_data_ptr_4 + 1;
     engine_temp_long_2 = engine_temp_long_2 + -1;
   } while (engine_temp_long_2 != 0);
-  FUN_180057110(engine_engine_param_1 + 0x71);
+  engine_process_system_request_queue(engine_engine_param_1 + 0x71);
   engine_temp_int = _Mtx_unlock(engine_engine_param_1 + 0x106);
   if (engine_temp_int != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temp_int);
@@ -53084,8 +53084,8 @@ void FUN_1800905f0(float *engine_engine_param_1,float engine_engine_param_2)
 // WARNING: Removing unreachable block (ram,0x0001800909ad)
 
 
-// 函数: void FUN_180090710(float *engine_engine_param_1,uint64 engine_engine_param_2,undefined4 *engine_param_3)
-void FUN_180090710(float *engine_engine_param_1,uint64 engine_engine_param_2,undefined4 *engine_param_3)
+// 函数: void FUN_180090710(float *engine_engine_param_1,uint64 engine_engine_param_2,uint32_t *engine_param_3)
+void FUN_180090710(float *engine_engine_param_1,uint64 engine_engine_param_2,uint32_t *engine_param_3)
 
 {
   float engine_temp_float;
@@ -53152,7 +53152,7 @@ void FUN_180090710(float *engine_engine_param_1,uint64 engine_engine_param_2,und
     lVar6 = (longlong)(int)uVar4;
     if (engine_engine_param_1[lVar6 + 0x82] < 10.0) {
       fVar10 = fVar10 + engine_engine_param_1[lVar6 + 0xa2];
-      uStack_d8 = CONCAT44(fVar10,(undefined4)uStack_d8);
+      uStack_d8 = CONCAT44(fVar10,(uint32_t)uStack_d8);
       engine_temp_float = engine_engine_param_1[lVar6 + 0xc2];
       fVar9 = engine_engine_param_1[lVar6 + 0x82] - 6.0;
       if (fVar9 <= 0.0) {
@@ -53332,8 +53332,8 @@ longlong * FUN_180090c80(longlong *engine_engine_param_1)
 
 
 
-undefined8 *
-FUN_180090e40(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint64_t *
+FUN_180090e40(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   longlong *pengine_temp_long;
@@ -53562,7 +53562,7 @@ void FUN_180091430(void)
   longlong *plStack_130;
   longlong **pplStack_128;
   void* puStack_118;
-  undefined4 *puStack_110;
+  uint32_t *puStack_110;
   uint32 uStack_108;
   uint64 uStack_100;
   uint32 uStack_e8;
@@ -53825,7 +53825,7 @@ void FUN_180091970(ulonglong engine_engine_param_1)
   uint8 auStack_2b8 [32];
   longlong **pplStack_298;
   longlong *plStack_290;
-  undefined4 auStack_288 [2];
+  uint32_t auStack_288 [2];
   longlong *plStack_280;
   longlong *plStack_278;
   longlong *plStack_270;
@@ -54391,9 +54391,9 @@ void FUN_180091970(ulonglong engine_engine_param_1)
   pplStack_298 = (longlong **)&uStack_1a0;
   puStack_190 = &engine_base_data_offset_d0;
   puStack_188 = &engine_base_data_offset_c0;
-  uStack_1b0._0_4_ = (undefined4)engine_temp_long_20;
-  uStack_1b0._4_4_ = (undefined4)((ulonglong)engine_temp_long_20 >> 0x20);
-  uStack_1a0 = (undefined4)uStack_1b0;
+  uStack_1b0._0_4_ = (uint32_t)engine_temp_long_20;
+  uStack_1b0._4_4_ = (uint32_t)((ulonglong)engine_temp_long_20 >> 0x20);
+  uStack_1a0 = (uint32_t)uStack_1b0;
   uStack_19c = uStack_1b0._4_4_;
   uStack_194 = uStack_1a4;
   uStack_1b0 = engine_temp_long_20;
@@ -54448,7 +54448,7 @@ void FUN_180091970(ulonglong engine_engine_param_1)
       (**(code **)(*pengine_temp_long3 + 0x70))();
     }
   }
-  FUN_180055fa0();
+  engine_confirm_system_readiness();
   (**(code **)(**(longlong **)(_engine_data_70 + 0x2b0) + 0xa8))();
   uVar9 = FUN_1801b5480(_engine_data_90 + 0xb8);
   if (*(char *)(_engine_data_90 + 0x12dc) != '\0') {
@@ -54697,7 +54697,7 @@ float FUN_1800929a0(float *engine_engine_param_1,float *engine_engine_param_2,fl
 void FUN_180092b20(longlong engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
-  undefined4 *engine_data_ptr;
+  uint32_t *engine_data_ptr;
   void* engine_structure_data_ptr;
   float fVar3;
   uint32 uVar4;
@@ -55485,8 +55485,8 @@ void FUN_180093af0(longlong engine_engine_param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180093bf0(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2)
-void FUN_180093bf0(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2)
+// 函数: void FUN_180093bf0(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2)
+void FUN_180093bf0(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2)
 
 {
   void* engine_data_ptr;
@@ -55591,7 +55591,7 @@ LAB_180093cb6:
 void FUN_180093d90(longlong *engine_engine_param_1,uint64 engine_engine_param_2)
 
 {
-  undefined4 *engine_data_ptr;
+  uint32_t *engine_data_ptr;
   uint32 engine_temp_uint_2;
   uint32 engine_temp_uint_3;
   uint32 uVar4;
@@ -55683,7 +55683,7 @@ LAB_180093e1b:
 
 
 
-undefined1 * FUN_180094010(undefined1 *engine_engine_param_1,undefined1 *engine_engine_param_2)
+uint8_t * FUN_180094010(uint8_t *engine_engine_param_1,uint8_t *engine_engine_param_2)
 
 {
   uint64 engine_temp_uint;
@@ -55715,8 +55715,8 @@ undefined1 * FUN_180094010(undefined1 *engine_engine_param_1,undefined1 *engine_
 
 
 
-undefined1 *
-FUN_1800940b0(undefined1 *engine_engine_param_1,undefined1 *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
+uint8_t *
+FUN_1800940b0(uint8_t *engine_engine_param_1,uint8_t *engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
   uint32 engine_temp_uint;
@@ -55956,7 +55956,7 @@ void FUN_180094b30(longlong engine_engine_param_1,longlong engine_engine_param_2
     do {
       engine_temp_long = engine_temp_long + 1;
     } while (*(char *)(engine_engine_param_2 + engine_temp_long) != '\0');
-    uStack_68 = (undefined4)engine_temp_long;
+    uStack_68 = (uint32_t)engine_temp_long;
     strcpy_s(auStack_60,0x40,engine_engine_param_2);
   }
   *(uint32*)(engine_engine_param_1 + 0x3530) = uStack_68;
@@ -56110,7 +56110,7 @@ void FUN_180094e80(uint64 engine_engine_param_1,uint64 engine_engine_param_2,lon
     do {
       engine_temp_long_2 = engine_temp_long_2 + 1;
     } while (*(char *)(engine_param_3 + engine_temp_long_2) != '\0');
-    uStack_78 = (undefined4)engine_temp_long_2;
+    uStack_78 = (uint32_t)engine_temp_long_2;
     strcpy_s(auStack_70,0x40);
   }
   uStack_b8 = 0;
@@ -56140,8 +56140,8 @@ void engine_create_controller_system(longlong engine_engine_param_1,uint engine_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180095000(uint64 engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3,undefined1 engine_param_4)
-void FUN_180095000(uint64 engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3,undefined1 engine_param_4)
+// 函数: void FUN_180095000(uint64 engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3,uint8_t engine_param_4)
+void FUN_180095000(uint64 engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3,uint8_t engine_param_4)
 
 {
   uint64 engine_temp_uint;
@@ -56170,7 +56170,7 @@ void FUN_180095000(uint64 engine_engine_param_1,uint64 engine_engine_param_2,lon
     do {
       engine_temp_long_2 = engine_temp_long_2 + 1;
     } while (*(char *)(engine_param_3 + engine_temp_long_2) != '\0');
-    uStack_78 = (undefined4)engine_temp_long_2;
+    uStack_78 = (uint32_t)engine_temp_long_2;
     strcpy_s(auStack_70,0x40);
   }
   FUN_1800b30d0(engine_temp_uint,engine_engine_param_2,&puStack_88,engine_param_4);
@@ -56398,7 +56398,7 @@ void FUN_180095323(longlong engine_engine_param_1)
 
 
 
-undefined8 * FUN_180095350(undefined8 *engine_engine_param_1,uint64 engine_engine_param_2)
+uint64_t * FUN_180095350(uint64_t *engine_engine_param_1,uint64 engine_engine_param_2)
 
 {
   engine_engine_param_1[2] = 0;
@@ -56742,15 +56742,15 @@ LAB_1800958e8:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180095bf0(uint64 engine_engine_param_1,undefined4 engine_engine_param_2,undefined4 engine_param_3)
-void FUN_180095bf0(uint64 engine_engine_param_1,undefined4 engine_engine_param_2,undefined4 engine_param_3)
+// 函数: void FUN_180095bf0(uint64 engine_engine_param_1,uint32_t engine_engine_param_2,uint32_t engine_param_3)
+void FUN_180095bf0(uint64 engine_engine_param_1,uint32_t engine_engine_param_2,uint32_t engine_param_3)
 
 {
   void* engine_data_ptr;
   int engine_temp_int_2;
   uint64 engine_temp_uint_3;
   ulonglong engine_temp_counter_4;
-  undefined4 *engine_temporary_ptr;
+  uint32_t *engine_temporary_ptr;
   uint64 uVar6;
   
   engine_data_ptr = _engine_data_60;
@@ -56823,7 +56823,7 @@ void FUN_180095da0(uint64 engine_engine_param_1,longlong engine_engine_param_2,l
   float *pfVar6;
   char *pcVar7;
   undefined2 *engine_next_data_ptr;
-  undefined4 *puVar9;
+  uint32_t *puVar9;
   void* engine_data_ptr0;
   uint64 engine_temp_uint1;
   longlong engine_temp_long2;
@@ -56997,7 +56997,7 @@ LAB_18009611a:
         __Throw_C_error_std__YAXH_Z(engine_loop_counter);
       }
       engine_next_data_ptr = engine_current_data_ptr + 0x1a;
-      FUN_180058370(engine_next_data_ptr,engine_current_data_ptr[0x1c]);
+      engine_handle_system_io_data_queue(engine_next_data_ptr,engine_current_data_ptr[0x1c]);
       *engine_next_data_ptr = engine_next_data_ptr;
       engine_current_data_ptr[0x1b] = engine_next_data_ptr;
       engine_current_data_ptr[0x1c] = 0;
@@ -57018,7 +57018,7 @@ LAB_18009611a:
       *(uint8*)(engine_current_data_ptr + 0x17) = 0;
       engine_current_data_ptr[0x18] = 0;
       engine_next_data_ptr = engine_current_data_ptr + 0xe;
-      FUN_180058710(engine_next_data_ptr,engine_current_data_ptr[0x10]);
+      engine_process_system_io_request_queue(engine_next_data_ptr,engine_current_data_ptr[0x10]);
       *engine_next_data_ptr = engine_next_data_ptr;
       engine_current_data_ptr[0xf] = engine_next_data_ptr;
       engine_current_data_ptr[0x10] = 0;
@@ -57040,8 +57040,8 @@ LAB_18009611a:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180096240(uint64 engine_engine_param_1,longlong engine_engine_param_2,undefined8 *engine_param_3)
-void FUN_180096240(uint64 engine_engine_param_1,longlong engine_engine_param_2,undefined8 *engine_param_3)
+// 函数: void FUN_180096240(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint64_t *engine_param_3)
+void FUN_180096240(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint64_t *engine_param_3)
 
 {
   byte engine_temp_byte;
@@ -57463,7 +57463,7 @@ void FUN_180096b60(uint64 engine_engine_param_1,longlong engine_engine_param_2,l
   uint32 uVar8;
   longlong lVar9;
   longlong *pengine_temp_long0;
-  undefined4 *engine_data_ptr1;
+  uint32_t *engine_data_ptr1;
   void* engine_data_ptr2;
   longlong engine_temp_long3;
   void* engine_data_ptr4;
@@ -57475,7 +57475,7 @@ void FUN_180096b60(uint64 engine_engine_param_1,longlong engine_engine_param_2,l
   longlong alStack_8c0 [5];
   uint8 auStack_898 [8];
   void* puStack_890;
-  undefined4 *puStack_888;
+  uint32_t *puStack_888;
   uint32 uStack_880;
   uint64 uStack_878;
   uint8 auStack_870 [8];
@@ -57534,7 +57534,7 @@ void FUN_180096b60(uint64 engine_engine_param_1,longlong engine_engine_param_2,l
   if (iVar7 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar7);
   }
-  FUN_180056150(engine_param_3);
+  engine_start_system_operation(engine_param_3);
   if (*(char *)(lVar9 + 0x124) != '\0') {
     *(float *)(lVar9 + 0x120) = (float)*(double *)(engine_param_3 + 0x40);
   }
@@ -57637,7 +57637,7 @@ LAB_180096e94:
     engine_data_ptr_4[4] = engine_temp_uint_3 - 4;
     engine_call_buffer_allocator(&engine_base_data_offset_c0);
     fStack_8f8 = (float)_engine_data_10;
-    FUN_1800571e0(engine_data_ptr_4 + 3,&fStack_8f8);
+    engine_manage_system_buffer(engine_data_ptr_4 + 3,&fStack_8f8);
     puStack_548 = &engine_base_data_offset_a8;
     uStack_3a8 = 0x3f4ccccd3e4ccccd;
     uStack_3a0 = 0x3f8000003f000000;
@@ -57664,7 +57664,7 @@ LAB_180096e94:
   }
   if ((char)engine_temp_uint5 != '\0') {
     engine_temp_long_2 = lVar9 + 0x90;
-    FUN_180058370(engine_temp_long_2,*(void*)(lVar9 + 0xa0));
+    engine_handle_system_io_data_queue(engine_temp_long_2,*(void*)(lVar9 + 0xa0));
     *(longlong *)engine_temp_long_2 = engine_temp_long_2;
     *(longlong *)(lVar9 + 0x98) = engine_temp_long_2;
     *(void*)(lVar9 + 0xa0) = 0;
@@ -57684,8 +57684,8 @@ LAB_180096e94:
     *(void*)(lVar9 + 0x20) = 0;
   }
 LAB_180097ca1:
-  FUN_180056410(engine_param_3);
-  FUN_180057bf0(engine_param_3);
+  engine_execute_system_process(engine_param_3);
+  engine_initialize_system_io_object(engine_param_3);
   *(int *)(lVar9 + 0x178) = *(int *)(lVar9 + 0x178) + 1;
   iVar7 = _Mtx_unlock(0x180c91970);
   if (iVar7 != 0) {
@@ -57764,8 +57764,8 @@ LAB_180098960:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_render_frame(undefined1 *engine_engine_param_1)
-void engine_handle_render_frame(undefined1 *engine_engine_param_1)
+// 函数: void engine_handle_render_frame(uint8_t *engine_engine_param_1)
+void engine_handle_render_frame(uint8_t *engine_engine_param_1)
 
 {
   longlong engine_temp_long;
@@ -58215,9 +58215,9 @@ void FUN_180099100(longlong engine_engine_param_1)
   engine_temp_long = plStackX_10[0x2b7];
   pplStackX_20 = &plStack_a8;
   plStack_a8 = plStack_118;
-  uStack_a0 = (undefined4)uStack_110;
+  uStack_a0 = (uint32_t)uStack_110;
   uStack_9c = uStack_110._4_4_;
-  uStack_98 = (undefined4)uStack_108;
+  uStack_98 = (uint32_t)uStack_108;
   uStack_94 = uStack_108._4_4_;
   uStack_90 = uStack_100;
   plStack_88 = plStack_f8;
@@ -58237,9 +58237,9 @@ void FUN_180099100(longlong engine_engine_param_1)
   *(void*)(engine_engine_param_1 + 0x68) = uVar4;
   engine_temp_long = plStackX_18[0x2b7];
   pplStackX_20 = &plStack_a8;
-  uStack_170 = (undefined4)uVar5;
-  uStack_16c = (undefined4)((ulonglong)uVar5 >> 0x20);
-  uStack_164 = (undefined4)(CONCAT26(uStack_aa,engine_temp_uint_2) >> 0x20);
+  uStack_170 = (uint32_t)uVar5;
+  uStack_16c = (uint32_t)((ulonglong)uVar5 >> 0x20);
+  uStack_164 = (uint32_t)(CONCAT26(uStack_aa,engine_temp_uint_2) >> 0x20);
   plStack_88 = (longlong *)0x0;
   uStack_90 = 2;
   uStack_94 = uStack_164;
@@ -58247,9 +58247,9 @@ void FUN_180099100(longlong engine_engine_param_1)
   uStack_9c = uStack_16c;
   uStack_a0 = uStack_170;
   engine_call_data_writer(auStack_80,&puStack_150);
-  uStack_60 = (undefined4)uStack_130;
+  uStack_60 = (uint32_t)uStack_130;
   uStack_5c = uStack_130._4_4_;
-  uStack_58 = (undefined4)uStack_128;
+  uStack_58 = (uint32_t)uStack_128;
   uStack_54 = uStack_128._4_4_;
   plStack_50 = plStack_120;
   if (plStack_120 != (longlong *)0x0) {
@@ -58326,14 +58326,14 @@ void FUN_180099430(longlong engine_engine_param_1,longlong engine_engine_param_2
   ulonglong engine_temp_uint_20;
   uint32 engine_temp_uint_21;
   longlong *pengine_temp_long_22;
-  undefined4 *engine_data_ptr_23;
+  uint32_t *engine_data_ptr_23;
   longlong engine_temp_long_24;
   int engine_temp_int_25;
   longlong engine_temp_long_26;
   longlong engine_temp_long_27;
-  undefined4 *engine_data_ptr_28;
+  uint32_t *engine_data_ptr_28;
   longlong engine_temp_long_29;
-  undefined4 *engine_data_ptr_30;
+  uint32_t *engine_data_ptr_30;
   uint engine_temp_uint_31;
   longlong engine_temp_long_32;
   int engine_temp_int_33;
@@ -58436,10 +58436,10 @@ void FUN_180099430(longlong engine_engine_param_1,longlong engine_engine_param_2
       pcStack_2d8 = (code *)&uStack_268;
       FUN_1802072b0(pcStack_2d8,*(void*)(*(longlong *)(engine_engine_param_1 + 0x18) + 0x18));
       pengine_temp_long9 = plStack_2b0;
-      engine_data_ptr_28 = *(undefined4 **)(auStack_238[*(int *)(_engine_data_38 + 0x8c)] + 0x10);
-      engine_data_ptr_30 = *(undefined4 **)(auStack_238[*(int *)(_engine_data_38 + 0x80)] + 0x10);
+      engine_data_ptr_28 = *(uint32_t **)(auStack_238[*(int *)(_engine_data_38 + 0x8c)] + 0x10);
+      engine_data_ptr_30 = *(uint32_t **)(auStack_238[*(int *)(_engine_data_38 + 0x80)] + 0x10);
       engine_temp_uint_20 = auStack_238[*(int *)(_engine_data_38 + 0x78)];
-      engine_data_ptr_23 = *(undefined4 **)(engine_temp_uint_20 + 0x10);
+      engine_data_ptr_23 = *(uint32_t **)(engine_temp_uint_20 + 0x10);
       lStack_2a0 = plStack_2b0[2];
       engine_temp_int_33 = 0;
       iStack_2c8 = 0;
@@ -58801,7 +58801,7 @@ engine_process_input_events(uint64 engine_engine_param_1,uint64 engine_engine_pa
 
 
 
-undefined1 FUN_18009a080(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,undefined8 *engine_param_4)
+uint8_t FUN_18009a080(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3,uint64_t *engine_param_4)
 
 {
   uint8 engine_temp_uint;
@@ -59024,8 +59024,8 @@ void FUN_18009a4b0(uint64 engine_engine_param_1,uint64 engine_engine_param_2,lon
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18009a7c0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,longlong engine_param_3,longlong *engine_param_4,
-void FUN_18009a7c0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,longlong engine_param_3,longlong *engine_param_4,
+// 函数: void FUN_18009a7c0(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,longlong engine_param_3,longlong *engine_param_4,
+void FUN_18009a7c0(uint64 engine_engine_param_1,uint64_t *engine_engine_param_2,longlong engine_param_3,longlong *engine_param_4,
                   int param_5)
 
 {
@@ -59283,7 +59283,7 @@ LAB_18009ac35:
             } while (engine_next_data_ptr != (void*)0x0);
             if ((engine_temporary_data_ptr != engine_current_data_ptr + 8) && (*(int *)(engine_temporary_data_ptr + 4) <= param_5)) goto LAB_18009ac35;
           }
-          FUN_180057bf0(engine_temporary_ptr,pbVar12);
+          engine_initialize_system_io_object(engine_temporary_ptr,pbVar12);
         }
       }
       engine_stack_parameter_a0 = &UNK_180a3c3e0;
@@ -59445,8 +59445,8 @@ float FUN_18009aee2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18009af00(undefined8 *engine_engine_param_1)
-void FUN_18009af00(undefined8 *engine_engine_param_1)
+// 函数: void FUN_18009af00(uint64_t *engine_engine_param_1)
+void FUN_18009af00(uint64_t *engine_engine_param_1)
 
 {
   longlong *pengine_temp_long;
@@ -59779,8 +59779,8 @@ void FUN_18009b216(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18009b220(undefined4 *engine_engine_param_1)
-void FUN_18009b220(undefined4 *engine_engine_param_1)
+// 函数: void FUN_18009b220(uint32_t *engine_engine_param_1)
+void FUN_18009b220(uint32_t *engine_engine_param_1)
 
 {
   uint32 engine_temp_uint;
@@ -59901,7 +59901,7 @@ void FUN_18009b386(void)
 
 
 
-undefined8 * FUN_18009b3a0(undefined8 *engine_engine_param_1,longlong engine_engine_param_2)
+uint64_t * FUN_18009b3a0(uint64_t *engine_engine_param_1,longlong engine_engine_param_2)
 
 {
   byte engine_temp_byte;
@@ -59977,8 +59977,8 @@ LAB_18009b467:
 
 
 
-undefined8 *
-FUN_18009b3bc(uint64 engine_engine_param_1,longlong engine_engine_param_2,undefined8 *engine_param_3,undefined8 *engine_param_4)
+uint64_t *
+FUN_18009b3bc(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint64_t *engine_param_3,uint64_t *engine_param_4)
 
 {
   byte engine_temp_byte;
@@ -60083,7 +60083,7 @@ LAB_18009b467:
 
 
 
-undefined8 * FUN_18009b4a0(undefined8 *engine_engine_param_1,longlong engine_engine_param_2)
+uint64_t * FUN_18009b4a0(uint64_t *engine_engine_param_1,longlong engine_engine_param_2)
 
 {
   byte engine_temp_byte;
@@ -60159,8 +60159,8 @@ LAB_18009b567:
 
 
 
-undefined8 *
-FUN_18009b4bc(uint64 engine_engine_param_1,longlong engine_engine_param_2,undefined8 *engine_param_3,undefined8 *engine_param_4)
+uint64_t *
+FUN_18009b4bc(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint64_t *engine_param_3,uint64_t *engine_param_4)
 
 {
   byte engine_temp_byte;
@@ -60533,7 +60533,7 @@ LAB_18009b94b:
 
 
 
-undefined8 * FUN_18009b960(undefined8 *engine_engine_param_1,longlong engine_engine_param_2)
+uint64_t * FUN_18009b960(uint64_t *engine_engine_param_1,longlong engine_engine_param_2)
 
 {
   byte engine_temp_byte;
@@ -60609,8 +60609,8 @@ LAB_18009ba27:
 
 
 
-undefined8 *
-FUN_18009b97c(uint64 engine_engine_param_1,longlong engine_engine_param_2,undefined8 *engine_param_3,undefined8 *engine_param_4)
+uint64_t *
+FUN_18009b97c(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint64_t *engine_param_3,uint64_t *engine_param_4)
 
 {
   byte engine_temp_byte;
@@ -60715,7 +60715,7 @@ LAB_18009ba27:
 
 
 
-undefined8 * FUN_18009ba60(undefined8 *engine_engine_param_1,longlong engine_engine_param_2)
+uint64_t * FUN_18009ba60(uint64_t *engine_engine_param_1,longlong engine_engine_param_2)
 
 {
   byte engine_temp_byte;
@@ -60791,8 +60791,8 @@ LAB_18009bb27:
 
 
 
-undefined8 *
-FUN_18009ba7c(uint64 engine_engine_param_1,longlong engine_engine_param_2,undefined8 *engine_param_3,undefined8 *engine_param_4)
+uint64_t *
+FUN_18009ba7c(uint64 engine_engine_param_1,longlong engine_engine_param_2,uint64_t *engine_param_3,uint64_t *engine_param_4)
 
 {
   byte engine_temp_byte;
@@ -60899,14 +60899,14 @@ LAB_18009bb27:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_18009bb60(uint64 engine_engine_param_1,longlong *engine_engine_param_2,uint64 engine_param_3,undefined4 engine_param_4)
+longlong * FUN_18009bb60(uint64 engine_engine_param_1,longlong *engine_engine_param_2,uint64 engine_param_3,uint32_t engine_param_4)
 
 {
   uint64 engine_temp_uint;
   uint32 engine_temp_uint_2;
-  undefined4 *engine_data_ptr_3;
+  uint32_t *engine_data_ptr_3;
   void* puStack_48;
-  undefined4 *puStack_40;
+  uint32_t *puStack_40;
   uint32 uStack_38;
   uint64 uStack_30;
   
@@ -60949,8 +60949,8 @@ longlong * FUN_18009bb60(uint64 engine_engine_param_1,longlong *engine_engine_pa
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_18009bcb0(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
+uint64_t *
+FUN_18009bcb0(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
              longlong param_5)
 
 {
@@ -61107,8 +61107,8 @@ LAB_18009bed0:
 
 
 
-undefined8 *
-FUN_18009bf40(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
+uint64_t *
+FUN_18009bf40(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
              longlong param_5)
 
 {
@@ -61181,8 +61181,8 @@ LAB_18009c054:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_18009c090(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
+uint64_t *
+FUN_18009c090(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
              longlong param_5)
 
 {
@@ -61341,8 +61341,8 @@ LAB_18009c2b0:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_18009c320(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
+uint64_t *
+FUN_18009c320(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
              longlong param_5)
 
 {
@@ -61501,8 +61501,8 @@ LAB_18009c540:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_18009c5b0(longlong *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
+uint64_t *
+FUN_18009c5b0(longlong *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,longlong *engine_param_4,
              int *param_5)
 
 {
@@ -61586,7 +61586,7 @@ void FUN_18009c68a(void)
 
 {
   longlong engine_temp_long;
-  undefined4 *unaff_RSI;
+  uint32_t *unaff_RSI;
   longlong unaff_RDI;
   
   engine_temp_long = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(unaff_RDI + 0x28));
@@ -61606,7 +61606,7 @@ void FUN_18009c6a1(void)
 
 {
   longlong engine_temp_long;
-  undefined4 *unaff_RSI;
+  uint32_t *unaff_RSI;
   longlong unaff_RDI;
   
   engine_temp_long = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(unaff_RDI + 0x28));
@@ -61626,7 +61626,7 @@ void FUN_18009c6a5(void)
 
 {
   longlong engine_temp_long;
-  undefined4 *unaff_RSI;
+  uint32_t *unaff_RSI;
   longlong unaff_RDI;
   
   engine_temp_long = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(unaff_RDI + 0x28));
@@ -61653,8 +61653,8 @@ void FUN_18009c6e7(void)
 
 
 
-// 函数: void FUN_18009c700(int *engine_engine_param_1,int *engine_engine_param_2,undefined8 *engine_param_3)
-void FUN_18009c700(int *engine_engine_param_1,int *engine_engine_param_2,undefined8 *engine_param_3)
+// 函数: void FUN_18009c700(int *engine_engine_param_1,int *engine_engine_param_2,uint64_t *engine_param_3)
+void FUN_18009c700(int *engine_engine_param_1,int *engine_engine_param_2,uint64_t *engine_param_3)
 
 {
   int engine_temp_int;
@@ -61743,8 +61743,8 @@ LAB_18009c82a:
 
 
 
-// 函数: void FUN_18009c718(longlong engine_engine_param_1,int *engine_engine_param_2,undefined8 *engine_param_3)
-void FUN_18009c718(longlong engine_engine_param_1,int *engine_engine_param_2,undefined8 *engine_param_3)
+// 函数: void FUN_18009c718(longlong engine_engine_param_1,int *engine_engine_param_2,uint64_t *engine_param_3)
+void FUN_18009c718(longlong engine_engine_param_1,int *engine_engine_param_2,uint64_t *engine_param_3)
 
 {
   int engine_temp_int;
@@ -61980,8 +61980,8 @@ LAB_18009c8d4:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_18009c940(undefined8 *engine_engine_param_1,undefined8 *engine_engine_param_2,uint64 engine_param_3,longlong engine_param_4)
+uint64_t *
+FUN_18009c940(uint64_t *engine_engine_param_1,uint64_t *engine_engine_param_2,uint64 engine_param_3,longlong engine_param_4)
 
 {
   byte engine_temp_byte;
