@@ -2029,37 +2029,50 @@ int ProcessNetworkPacketPhaseFour(longlong connectionContext, longlong packetDat
 
 
 
-int FUN_180841a90(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * 处理网络数据包第一阶段
+ * 
+ * 该函数处理网络数据包的第一个阶段，包括数据包的初步解析和处理。
+ * 它会依次处理数据包的各个部分，包括头部、负载和尾部数据。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 网络数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理后的数据包总大小
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+int ProcessNetworkPacketPhaseOne(longlong connectionContext, longlong packetData, int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkStatus uVar2;
-  NetworkStatus uVar3;
-  NetworkStatus uVar4;
-  int iVar5;
-  int iVar6;
+  NetworkStatus fourthProcessingStatus;
+  NetworkStatus thirdProcessingStatus;
+  NetworkStatus secondProcessingStatus;
+  NetworkStatus firstProcessingStatus;
+  int currentOffset;
+  int processedBytes;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x24);
-  uVar2 = *(NetworkStatus *)(connectionContext + 0x20);
-  uVar3 = *(NetworkStatus *)(connectionContext + 0x1c);
-  uVar4 = *(NetworkStatus *)(connectionContext + 0x18);
-  iVar5 = func_0x00018074bda0(packetData,dataSize,*(NetworkHandle *)(connectionContext + 0x10));
-  iVar6 = FUN_18074b880(packetData + iVar5,dataSize - iVar5,&g_NetworkBufferDataTemplate);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = func_0x00018074b7d0(iVar5 + packetData,dataSize - iVar5,uVar4);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = FUN_18074b880(iVar5 + packetData,dataSize - iVar5,&g_NetworkBufferDataTemplate);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = func_0x00018074b7d0(iVar5 + packetData,dataSize - iVar5,uVar3);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = FUN_18074b880(iVar5 + packetData,dataSize - iVar5,&g_NetworkBufferDataTemplate);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = func_0x00018074b800(iVar5 + packetData,dataSize - iVar5,uVar2);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = FUN_18074b880(iVar5 + packetData,dataSize - iVar5,&g_NetworkBufferDataTemplate);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = func_0x00018074b800(iVar5 + packetData,dataSize - iVar5,uVar1);
-  return iVar6 + iVar5;
+  fourthProcessingStatus = *(NetworkStatus *)(connectionContext + 0x24);
+  thirdProcessingStatus = *(NetworkStatus *)(connectionContext + 0x20);
+  secondProcessingStatus = *(NetworkStatus *)(connectionContext + 0x1c);
+  firstProcessingStatus = *(NetworkStatus *)(connectionContext + 0x18);
+  currentOffset = func_0x00018074bda0(packetData, dataSize, *(NetworkHandle *)(connectionContext + 0x10));
+  processedBytes = FUN_18074b880(packetData + currentOffset, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  currentOffset = currentOffset + processedBytes;
+  processedBytes = func_0x00018074b7d0(currentOffset + packetData, dataSize - currentOffset, firstProcessingStatus);
+  currentOffset = currentOffset + processedBytes;
+  processedBytes = FUN_18074b880(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  currentOffset = currentOffset + processedBytes;
+  processedBytes = func_0x00018074b7d0(currentOffset + packetData, dataSize - currentOffset, secondProcessingStatus);
+  currentOffset = currentOffset + processedBytes;
+  processedBytes = FUN_18074b880(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  currentOffset = currentOffset + processedBytes;
+  processedBytes = func_0x00018074b800(currentOffset + packetData, dataSize - currentOffset, thirdProcessingStatus);
+  currentOffset = currentOffset + processedBytes;
+  processedBytes = FUN_18074b880(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  currentOffset = currentOffset + processedBytes;
+  processedBytes = func_0x00018074b800(currentOffset + packetData, dataSize - currentOffset, fourthProcessingStatus);
+  return processedBytes + currentOffset;
 }
 
 
