@@ -3512,12 +3512,12 @@ void InitializeSystemResourceManager(void)
   undefined8 *systemCurrentNode;
   undefined8 *systemNextNode;
   undefined8 *systemPreviousNode;
-  undefined8 uStackX_18;
+  undefined8 *resourceInitializationCallback;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  uStackX_18 = 0;
+  resourceInitializationCallback = 0;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
