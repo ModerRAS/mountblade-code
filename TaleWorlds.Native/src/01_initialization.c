@@ -1915,7 +1915,7 @@ void system_initialize_resource_manager(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -1927,7 +1927,7 @@ void system_initialize_resource_manager(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -2720,7 +2720,7 @@ void system_handle_module_loading(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -2732,7 +2732,7 @@ void system_handle_module_loading(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -3069,7 +3069,7 @@ void system_process_performance_metrics(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -3081,7 +3081,7 @@ void system_process_performance_metrics(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -3374,7 +3374,7 @@ void system_manage_thread_pool(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -3386,7 +3386,7 @@ void system_manage_thread_pool(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -3766,7 +3766,7 @@ void system_manage_network_connections(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -3778,7 +3778,7 @@ void system_manage_network_connections(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -4272,7 +4272,7 @@ void system_configure_window_manager(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -4284,7 +4284,7 @@ void system_configure_window_manager(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -4596,7 +4596,7 @@ void system_process_transform_data(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -4608,7 +4608,7 @@ void system_process_transform_data(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -4715,7 +4715,7 @@ void system_initialize_post_processing(void)
   system_system_stack_context_ptr_b = system_system_stack_data_array;
   system_system_stack_data_array[0] = 0;
   system_stack_context_hash_value = 7;
-  system_strcpy_s(system_system_stack_data_array,0x80,&system_data_value_a14640,system_cpu_register_r9,0xfffffffffffffffe);
+  system_strcpy_s(system_system_stack_data_array,0x80,&system_data_value_constants,system_cpu_register_r9,0xfffffffffffffffe);
   system_global_data_pointer = system_process_context_data(&system_system_stack_context_ptr_a);
   return;
 }
@@ -5107,7 +5107,7 @@ void system_initialize_animation_system(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -5119,7 +5119,7 @@ void system_initialize_animation_system(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -5412,7 +5412,7 @@ void system_handle_collision_response(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -5424,7 +5424,7 @@ void system_handle_collision_response(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -5958,7 +5958,7 @@ void system_process_network_events(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -5970,7 +5970,7 @@ void system_process_network_events(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -6351,7 +6351,7 @@ void system_manage_script_objects(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -6363,7 +6363,7 @@ void system_manage_script_objects(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -6875,7 +6875,7 @@ void system_initialize_profiling_system(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -6887,7 +6887,7 @@ void system_initialize_profiling_system(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -7241,7 +7241,7 @@ void system_configure_serialization_format(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -7253,7 +7253,7 @@ void system_configure_serialization_format(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -8255,7 +8255,7 @@ void system_process_performance_metrics_secondary(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -8267,7 +8267,7 @@ void system_process_performance_metrics_secondary(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -8560,7 +8560,7 @@ void system_manage_thread_pool_secondary(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -8572,7 +8572,7 @@ void system_manage_thread_pool_secondary(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -8865,7 +8865,7 @@ void system_configure_physics_system_secondary(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -8877,7 +8877,7 @@ void system_configure_physics_system_secondary(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -9170,7 +9170,7 @@ void system_manage_data_streams_secondary(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -9182,7 +9182,7 @@ void system_manage_data_streams_secondary(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -10402,7 +10402,7 @@ void system_process_lighting_calculations_secondary(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -10414,7 +10414,7 @@ void system_process_lighting_calculations_secondary(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -10757,7 +10757,7 @@ void system_manage_constraint_system_secondary(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -10769,7 +10769,7 @@ void system_manage_constraint_system_secondary(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -11062,7 +11062,7 @@ void system_initialize_network_layer_secondary(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -11074,7 +11074,7 @@ void system_initialize_network_layer_secondary(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -12728,7 +12728,7 @@ void system_configure_plugin_interface_secondary(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -12740,7 +12740,7 @@ void system_configure_plugin_interface_secondary(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
@@ -13571,7 +13571,7 @@ void system_initialize_plugin_system_ternary(void)
   current_ctx_ptr = init_ctx_base;
   buffer_ptr = (uint8_t *)init_ctx_base[1];
   while (memory_init_status == '\0') {
-    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_metadata_ptrool_ptranager_ptr,0x10);
+    memory_compare_result = memcmp(buffer_ptr + 4,&system_data_resource_manager_ptr,0x10);
     if (memory_compare_result < 0) {
       next_ctx_ptr = (uint8_t *)buffer_ptr[2];
       buffer_ptr = current_ctx_ptr;
@@ -13583,7 +13583,7 @@ void system_initialize_plugin_system_ternary(void)
     buffer_ptr = next_ctx_ptr;
     memory_init_status = *(char *)((int64_t)next_ctx_ptr + 0x19);
   }
-  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_metadata_ptrool_ptranager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((current_ctx_ptr == init_ctx_base) || (memory_compare_result = memcmp(&system_data_resource_manager_ptr,current_ctx_ptr + 4,0x10), memory_compare_result < 0)) {
     context_offset = allocate_memory(global_ctx_ptr);
     system_initialize_context_function(global_ctx_ptr,&stack_ctx_result,current_ctx_ptr,context_offset + 0x20,context_offset);
     current_ctx_ptr = stack_ctx_result;
