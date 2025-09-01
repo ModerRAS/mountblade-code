@@ -57395,7 +57395,7 @@ void Unwind_18090a170(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a1a0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x60) + 8,0x98,9,FUN_1802ab7f0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x60) + 8,0x98,9,ResourceTypeHandler098b);
   return;
 }
 
@@ -68358,9 +68358,9 @@ void Unwind_18090d660(uint8_t8 param_1,longlong param_2)
   RegisterResourceHandler(lVar1 + 0xea0,8,2,ProcessResourceOperation,validationResult);
   RegisterResourceHandler(lVar1 + 0xe90,8,2,ProcessResourceOperation);
   RegisterResourceHandler(lVar1 + 0xe80,8,2,ProcessResourceOperation);
-  RegisterResourceHandler(lVar1 + 0xc28,0x128,2,FUN_1801b9690);
-  RegisterResourceHandler(lVar1 + 0x9d0,0x128,2,FUN_1801b9690);
-  RegisterResourceHandler(lVar1 + 0xb8,0x488,2,FUN_1800e7ca0);
+  RegisterResourceHandler(lVar1 + 0xc28,0x128,2,ResourceTypeHandler128);
+  RegisterResourceHandler(lVar1 + 0x9d0,0x128,2,ResourceTypeHandler128);
+  RegisterResourceHandler(lVar1 + 0xb8,0x488,2,ResourceTypeHandler488);
   return;
 }
 
@@ -68369,7 +68369,7 @@ void Unwind_18090d660(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d680(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0xee8,0x18,2,FUN_1800e7f20,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0xee8,0x18,2,ResourceTypeHandler018,0xfffffffffffffffe);
   return;
 }
 
@@ -68698,7 +68698,7 @@ void Unwind_18090d9c0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d9e0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x1598,0x238,2,FUN_180051d00);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x1598,0x238,2,ResourceTypeHandler238);
   return;
 }
 
@@ -68707,7 +68707,7 @@ void Unwind_18090d9e0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090da20(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x1a18,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x1a18,0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
   return;
 }
 
@@ -68716,7 +68716,7 @@ void Unwind_18090da20(uint8_t8 param_1,longlong param_2)
 void Unwind_18090da40(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x2378,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x2378,0x248,2,ResourceTypeHandler248,0xfffffffffffffffe);
   return;
 }
 
@@ -68725,7 +68725,7 @@ void Unwind_18090da40(uint8_t8 param_1,longlong param_2)
 void Unwind_18090da60(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x2810,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x2810,0x248,2,ResourceTypeHandler248,0xfffffffffffffffe);
   return;
 }
 
@@ -68748,7 +68748,7 @@ void Unwind_18090da80(uint8_t8 param_1,longlong param_2)
 void Unwind_18090daa0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x3d38,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x3d38,0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
   return;
 }
 
@@ -68757,7 +68757,7 @@ void Unwind_18090daa0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dac0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 18000,0x908,2,FUN_1800e7d00,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 18000,0x908,2,ResourceTypeHandler908,0xfffffffffffffffe);
   return;
 }
 
@@ -68766,7 +68766,7 @@ void Unwind_18090dac0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dae0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x5868,0x908,2,FUN_1800e7d00,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x5868,0x908,2,ResourceTypeHandler908,0xfffffffffffffffe);
   return;
 }
 
@@ -68775,7 +68775,7 @@ void Unwind_18090dae0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090db00(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x6a80,0x50,2,FUN_1800e7c40,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x6a80,0x50,2,ResourceTypeHandler050,0xfffffffffffffffe);
   return;
 }
 
@@ -68784,7 +68784,7 @@ void Unwind_18090db00(uint8_t8 param_1,longlong param_2)
 void Unwind_18090db20(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x6b28,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x6b28,0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
   return;
 }
 
@@ -68793,7 +68793,7 @@ void Unwind_18090db20(uint8_t8 param_1,longlong param_2)
 void Unwind_18090db40(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x7440,0x50,2,FUN_1800e7c40,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x7440,0x50,2,ResourceTypeHandler050,0xfffffffffffffffe);
   return;
 }
 
@@ -68802,7 +68802,7 @@ void Unwind_18090db40(uint8_t8 param_1,longlong param_2)
 void Unwind_18090db60(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x74e8,0x98,2,FUN_1800e7be0,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x74e8,0x98,2,ResourceTypeHandler098,0xfffffffffffffffe);
   return;
 }
 
@@ -68811,7 +68811,7 @@ void Unwind_18090db60(uint8_t8 param_1,longlong param_2)
 void Unwind_18090db80(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x7620,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x7620,0x248,2,ResourceTypeHandler248,0xfffffffffffffffe);
   return;
 }
 
@@ -68820,7 +68820,7 @@ void Unwind_18090db80(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dba0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x48),0x248,2,FUN_1800e7b80);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x48),0x248,2,ResourceTypeHandler248);
   return;
 }
 
@@ -68829,7 +68829,7 @@ void Unwind_18090dba0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dbd0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x48),0x98,2,FUN_1800e7be0);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x48),0x98,2,ResourceTypeHandler098);
   return;
 }
 
@@ -68838,7 +68838,7 @@ void Unwind_18090dbd0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dc00(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x48),0x50,2,FUN_1800e7c40);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x48),0x50,2,ResourceTypeHandler050);
   return;
 }
 
@@ -68847,7 +68847,7 @@ void Unwind_18090dc00(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dc30(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x48),0x488,2,FUN_1800e7ca0);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x48),0x488,2,ResourceTypeHandler488);
   return;
 }
 
@@ -68856,7 +68856,7 @@ void Unwind_18090dc30(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dc60(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x48),0x908,2,FUN_1800e7d00);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x48),0x908,2,ResourceTypeHandler908);
   return;
 }
 
@@ -68879,7 +68879,7 @@ void Unwind_18090dc90(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dca0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x48) + 8,0x18,2,FUN_1800e7f20);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x48) + 8,0x18,2,ResourceTypeHandler018);
   return;
 }
 
@@ -68888,7 +68888,7 @@ void Unwind_18090dca0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dcd0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 8,0x18,2,FUN_1800e7f20);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 8,0x18,2,ResourceTypeHandler018);
   return;
 }
 
@@ -68953,7 +68953,7 @@ void Unwind_18090dd10(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dd20(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x488,2,FUN_1800e7ca0);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x488,2,ResourceTypeHandler488);
   return;
 }
 
@@ -68962,7 +68962,7 @@ void Unwind_18090dd20(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dd50(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x248,2,FUN_1800e7b80);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x248,2,ResourceTypeHandler248);
   return;
 }
 
@@ -68971,7 +68971,7 @@ void Unwind_18090dd50(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dd80(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x908,2,FUN_1800e7d00);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x908,2,ResourceTypeHandler908);
   return;
 }
 
@@ -68980,7 +68980,7 @@ void Unwind_18090dd80(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ddb0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x50,2,FUN_1800e7c40);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x50,2,ResourceTypeHandler050);
   return;
 }
 
@@ -68989,7 +68989,7 @@ void Unwind_18090ddb0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dde0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x98,2,FUN_1800e7be0);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x98,2,ResourceTypeHandler098);
   return;
 }
 
@@ -69132,9 +69132,9 @@ void Unwind_18090de80(uint8_t8 param_1,longlong param_2)
   RegisterResourceHandler(lVar1 + 0xea0,8,2,ProcessResourceOperation,validationResult);
   RegisterResourceHandler(lVar1 + 0xe90,8,2,ProcessResourceOperation);
   RegisterResourceHandler(lVar1 + 0xe80,8,2,ProcessResourceOperation);
-  RegisterResourceHandler(lVar1 + 0xc28,0x128,2,FUN_1801b9690);
-  RegisterResourceHandler(lVar1 + 0x9d0,0x128,2,FUN_1801b9690);
-  RegisterResourceHandler(lVar1 + 0xb8,0x488,2,FUN_1800e7ca0);
+  RegisterResourceHandler(lVar1 + 0xc28,0x128,2,ResourceTypeHandler128);
+  RegisterResourceHandler(lVar1 + 0x9d0,0x128,2,ResourceTypeHandler128);
+  RegisterResourceHandler(lVar1 + 0xb8,0x488,2,ResourceTypeHandler488);
   return;
 }
 
@@ -69143,7 +69143,7 @@ void Unwind_18090de80(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dea0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0xee8,0x18,2,FUN_1800e7f20,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0xee8,0x18,2,ResourceTypeHandler018,0xfffffffffffffffe);
   return;
 }
 
@@ -69472,7 +69472,7 @@ void Unwind_18090e1e0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e200(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x1598,0x238,2,FUN_180051d00);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x1598,0x238,2,ResourceTypeHandler238);
   return;
 }
 
@@ -69481,7 +69481,7 @@ void Unwind_18090e200(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e240(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x1a18,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x1a18,0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
   return;
 }
 
@@ -69490,7 +69490,7 @@ void Unwind_18090e240(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e260(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x2378,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x2378,0x248,2,ResourceTypeHandler248,0xfffffffffffffffe);
   return;
 }
 
@@ -69499,7 +69499,7 @@ void Unwind_18090e260(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e280(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x2810,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x2810,0x248,2,ResourceTypeHandler248,0xfffffffffffffffe);
   return;
 }
 
@@ -69522,7 +69522,7 @@ void Unwind_18090e2a0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e2c0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x3d38,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x3d38,0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
   return;
 }
 
@@ -69531,7 +69531,7 @@ void Unwind_18090e2c0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e2e0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 18000,0x908,2,FUN_1800e7d00,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 18000,0x908,2,ResourceTypeHandler908,0xfffffffffffffffe);
   return;
 }
 
@@ -69540,7 +69540,7 @@ void Unwind_18090e2e0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e300(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x5868,0x908,2,FUN_1800e7d00,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x5868,0x908,2,ResourceTypeHandler908,0xfffffffffffffffe);
   return;
 }
 
@@ -69549,7 +69549,7 @@ void Unwind_18090e300(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e320(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x6a80,0x50,2,FUN_1800e7c40,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x6a80,0x50,2,ResourceTypeHandler050,0xfffffffffffffffe);
   return;
 }
 
@@ -69558,7 +69558,7 @@ void Unwind_18090e320(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e340(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x6b28,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x6b28,0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
   return;
 }
 
@@ -69567,7 +69567,7 @@ void Unwind_18090e340(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e360(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x7440,0x50,2,FUN_1800e7c40,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x7440,0x50,2,ResourceTypeHandler050,0xfffffffffffffffe);
   return;
 }
 
@@ -69576,7 +69576,7 @@ void Unwind_18090e360(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e380(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x74e8,0x98,2,FUN_1800e7be0,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x74e8,0x98,2,ResourceTypeHandler098,0xfffffffffffffffe);
   return;
 }
 
@@ -69585,7 +69585,7 @@ void Unwind_18090e380(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e3a0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x7620,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x7620,0x248,2,ResourceTypeHandler248,0xfffffffffffffffe);
   return;
 }
 
@@ -69707,7 +69707,7 @@ void Unwind_18090e400(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e410(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x30),0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x30),0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
   return;
 }
 
@@ -69716,7 +69716,7 @@ void Unwind_18090e410(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e420(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 0x918,0x128,2,FUN_1801b9690,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 0x918,0x128,2,ResourceTypeHandler128,0xfffffffffffffffe);
   return;
 }
 
@@ -69725,7 +69725,7 @@ void Unwind_18090e420(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e440(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 0xb70,0x128,2,FUN_1801b9690,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 0xb70,0x128,2,ResourceTypeHandler128,0xfffffffffffffffe);
   return;
 }
 
@@ -69812,7 +69812,7 @@ void Unwind_18090e5a0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e5c0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0xe8),0x488,2,FUN_1800e7ca0);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0xe8),0x488,2,ResourceTypeHandler488);
   return;
 }
 
@@ -69821,7 +69821,7 @@ void Unwind_18090e5c0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e5f0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0xe8),0x128,2,FUN_1801b9690);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0xe8),0x128,2,ResourceTypeHandler128);
   return;
 }
 
@@ -69830,7 +69830,7 @@ void Unwind_18090e5f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e620(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 8,0x18,2,FUN_1800e7f20);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 8,0x18,2,ResourceTypeHandler018);
   return;
 }
 
@@ -69867,7 +69867,7 @@ void Unwind_18090e660(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e670(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0xe8),0x248,2,FUN_1800e7b80);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0xe8),0x248,2,ResourceTypeHandler248);
   return;
 }
 
@@ -69876,7 +69876,7 @@ void Unwind_18090e670(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e6a0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0xe8),0x908,2,FUN_1800e7d00);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0xe8),0x908,2,ResourceTypeHandler908);
   return;
 }
 
@@ -69885,7 +69885,7 @@ void Unwind_18090e6a0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e6d0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0xe8),0x50,2,FUN_1800e7c40);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0xe8),0x50,2,ResourceTypeHandler050);
   return;
 }
 
@@ -69894,7 +69894,7 @@ void Unwind_18090e6d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e700(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0xe8),0x98,2,FUN_1800e7be0);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0xe8),0x98,2,ResourceTypeHandler098);
   return;
 }
 
@@ -71873,7 +71873,7 @@ void Unwind_18090ef80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090ef90(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x70) + 0x30,0x30,0xe,FUN_1800edc10);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x70) + 0x30,0x30,0xe,ResourceTypeHandler030);
   return;
 }
 
@@ -71882,7 +71882,7 @@ void Unwind_18090ef90(uint8_t8 param_1,longlong param_2)
 void Unwind_18090efc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  FUN_1800ee130(*(longlong *)(param_2 + 0x70) + 0x2d0,
+  ResourceProcessingHandler(*(longlong *)(param_2 + 0x70) + 0x2d0,
                 *(uint8_t8 *)(*(longlong *)(param_2 + 0x70) + 0x2e0),param_3,param_4,
                 0xfffffffffffffffe);
   return;
@@ -71906,7 +71906,7 @@ void Unwind_18090efe0(uint8_t8 param_1,longlong param_2)
   plVar5 = *(longlong **)(lVar1 + 0x328);
   if (resourceIndex != *(longlong *)(lVar1 + 0x330)) {
     do {
-      FUN_1800edd10(resourceIndex);
+      ResourceCleanupHandler(resourceIndex);
       resourceIndex = resourceIndex + 0x78;
       if (resourceIndex == lVar4) {
         plVar5 = plVar5 + 1;
@@ -71971,7 +71971,7 @@ void Unwind_18090f000(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f020(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  FUN_1800ee130(*(longlong *)(param_2 + 0x78),*(uint8_t8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
+  ResourceProcessingHandler(*(longlong *)(param_2 + 0x78),*(uint8_t8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -71981,7 +71981,7 @@ void Unwind_18090f020(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090f030(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  FUN_1800ee130(*(longlong *)(param_2 + 0x78),*(uint8_t8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
+  ResourceProcessingHandler(*(longlong *)(param_2 + 0x78),*(uint8_t8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -72002,7 +72002,7 @@ void Unwind_18090f040(uint8_t8 param_1,longlong param_2)
   plVar4 = (longlong *)plVar1[5];
   if (resourceTable != plVar1[6]) {
     do {
-      FUN_1800edd10(resourceTable);
+      ResourceCleanupHandler(resourceTable);
       resourceTable = resourceTable + 0x78;
       if (resourceTable == resourceIndex) {
         plVar4 = plVar4 + 1;
@@ -72114,7 +72114,7 @@ void Unwind_18090f070(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f080(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  FUN_1800ee080(*(longlong *)(param_2 + 0x40),*(uint8_t8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
+  ResourceOperationHandler(*(longlong *)(param_2 + 0x40),*(uint8_t8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -72124,7 +72124,7 @@ void Unwind_18090f080(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090f090(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  FUN_1800ee080(*(longlong *)(param_2 + 0x40),*(uint8_t8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
+  ResourceOperationHandler(*(longlong *)(param_2 + 0x40),*(uint8_t8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -72134,7 +72134,7 @@ void Unwind_18090f090(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090f0a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  FUN_1800ee130(*(longlong *)(param_2 + 0x40),*(uint8_t8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
+  ResourceProcessingHandler(*(longlong *)(param_2 + 0x40),*(uint8_t8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -72144,7 +72144,7 @@ void Unwind_18090f0a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090f0b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  FUN_1800ee130(*(longlong *)(param_2 + 0x40),*(uint8_t8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
+  ResourceProcessingHandler(*(longlong *)(param_2 + 0x40),*(uint8_t8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -72165,7 +72165,7 @@ void Unwind_18090f0c0(uint8_t8 param_1,longlong param_2)
   plVar4 = (longlong *)plVar1[5];
   if (resourceTable != plVar1[6]) {
     do {
-      FUN_1800edd10(resourceTable);
+      ResourceCleanupHandler(resourceTable);
       resourceTable = resourceTable + 0x78;
       if (resourceTable == resourceIndex) {
         plVar4 = plVar4 + 1;
@@ -72244,7 +72244,7 @@ void Unwind_18090f0e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090f0f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  FUN_1800ee080(*(longlong *)(param_2 + 0x20),*(uint8_t8 *)(*(longlong *)(param_2 + 0x20) + 0x10),
+  ResourceOperationHandler(*(longlong *)(param_2 + 0x20),*(uint8_t8 *)(*(longlong *)(param_2 + 0x20) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -72254,7 +72254,7 @@ void Unwind_18090f0f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090f100(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  FUN_1800ee080(*(longlong *)(param_2 + 0x20),*(uint8_t8 *)(*(longlong *)(param_2 + 0x20) + 0x10),
+  ResourceOperationHandler(*(longlong *)(param_2 + 0x20),*(uint8_t8 *)(*(longlong *)(param_2 + 0x20) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -75129,7 +75129,7 @@ void Unwind_180910160(uint8_t8 param_1,longlong param_2)
 void Unwind_180910190(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x58,2,FUN_1800f88f0);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x58,2,ResourceTypeHandler058);
   return;
 }
 
@@ -81072,7 +81072,7 @@ void Unwind_180911b90(uint8_t8 param_1,longlong param_2)
 void Unwind_180911bb0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0xb8,0x10,2,FUN_18011d900,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0xb8,0x10,2,ResourceTypeHandler010,0xfffffffffffffffe);
   return;
 }
 
@@ -81081,7 +81081,7 @@ void Unwind_180911bb0(uint8_t8 param_1,longlong param_2)
 void Unwind_180911bd0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x58),0x10,2,FUN_18011d900);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x58),0x10,2,ResourceTypeHandler010);
   return;
 }
 
@@ -81090,7 +81090,7 @@ void Unwind_180911bd0(uint8_t8 param_1,longlong param_2)
 void Unwind_180911c00(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x10,2,FUN_18011d900);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x40),0x10,2,ResourceTypeHandler010);
   return;
 }
 
@@ -83289,7 +83289,7 @@ void Unwind_180912710(uint8_t8 param_1,longlong param_2)
 void Unwind_180912740(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(param_2 + 0x98,0x10,2,FUN_18011d900);
+  RegisterResourceHandler(param_2 + 0x98,0x10,2,ResourceTypeHandler010);
   return;
 }
 
@@ -83553,7 +83553,7 @@ void Unwind_180912810(uint8_t8 param_1,longlong param_2)
 void Unwind_180912830(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0xb8,0x10,2,FUN_18011d900,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0xb8,0x10,2,ResourceTypeHandler010,0xfffffffffffffffe);
   return;
 }
 
@@ -83562,7 +83562,7 @@ void Unwind_180912830(uint8_t8 param_1,longlong param_2)
 void Unwind_180912850(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x48),0x10,2,FUN_18011d900);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x48),0x10,2,ResourceTypeHandler010);
   return;
 }
 
@@ -83610,7 +83610,7 @@ void Unwind_1809128b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809128e0(uint8_t8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x80),0x48,7,FUN_1800596a0);
+  RegisterResourceHandler(*(uint8_t8 *)(param_2 + 0x80),0x48,7,ResourceTypeHandler048);
   return;
 }
 
@@ -84707,17 +84707,17 @@ void InitializeSystemDataStructureAG(void)
  * 初始化系统数据结构并进行完整性检查
  * 
  * 功能：
- * 1. 调用 FUN_180320e20 初始化位于 0x180d497e0 的数据结构
+ * 1. 调用 SystemDataStructureInitializer 初始化位于 0x180d497e0 的数据结构
  * 2. 检查 _DAT_180d49970 是否为0，如果不为0则调用错误处理函数
  * 3. 检查 _DAT_180d49950 是否为0，如果不为0则调用错误处理函数
- * 4. 调用 FUN_180320b20 初始化位于 0x180d498a0 的数据结构
+ * 4. 调用 SecondaryDataStructureInitializer 初始化位于 0x180d498a0 的数据结构
  * 5. 将 _DAT_180d49830 设置为指向 SystemDataStructure001
  */
 void InitializeSystemDataStructureAH(void)
 void InitializeSystemDataStructureAH(void)
 
 {
-  FUN_180320e20(0x180d497e0);
+  SystemDataStructureInitializer(0x180d497e0);
   if (_DAT_180d49970 != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -84726,7 +84726,7 @@ void InitializeSystemDataStructureAH(void)
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  FUN_180320b20(0x180d498a0);
+  SecondaryDataStructureInitializer(0x180d498a0);
   _DAT_180d49830 = &SystemDataStructure;
   return;
 }
@@ -86558,7 +86558,7 @@ void ReleaseResourceHashTable(void)
     uRam0000000180d49d70 = 0;
     lRam0000000180d49d78 = 0;
   }
-  FUN_1803f33b0(&uRam0000000180d49d58);
+  SystemConfigurationHandler(&uRam0000000180d49d58);
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
   free(uRam0000000180d49d58,0x40);
@@ -86588,7 +86588,7 @@ void ReleaseValidationResultTable(void)
   ulonglong validationResult;
   
   if (lRam0000000180d49d90 != 0) {
-    FUN_180477be0(lRam0000000180d49d90,uRam0000000180d49d98);
+    SystemMemoryAllocator(lRam0000000180d49d90,uRam0000000180d49d98);
     validationResult = lRam0000000180d49da0 - lRam0000000180d49d90 & 0xfffffffffffffff0;
     lVar1 = lRam0000000180d49d90;
     if (0xfff < validationResult) {
@@ -86687,7 +86687,7 @@ void ProcessNetworkDataPacket(uint8_t8 param_1,uint8_t8 param_2,uint8_t8 param_3
   
   networkDataPointer = _DAT_180d49e18;
   if (_DAT_180d49e18 != (uint8_t8 *)0x0) {
-    FUN_1804a9b80(param_1,*_DAT_180d49e18,param_3,param_4,0xfffffffffffffffe);
+    SystemResourceManager(param_1,*_DAT_180d49e18,param_3,param_4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(networkDataPointer);
   }
@@ -86708,7 +86708,7 @@ void ValidateSystemConfiguration(void)
 
 {
   if (DAT_180c95ef0 != '\0') {
-    FUN_1804a6ec0();
+    SystemCleanupHandler();
 
  /**
  * @brief 清理网络资源
@@ -86721,7 +86721,7 @@ void CleanupNetworkResources(void)
 
 {
   if (DAT_180c96008 != '\0') {
-    FUN_180552e70(_DAT_180c95ff0);
+    SystemModuleInitializer(_DAT_180c95ff0);
     _DAT_180c95ff0 = 0;
 
  /**
@@ -86758,7 +86758,7 @@ void ExecuteSystemCleanupOperation1(void)
 
 {
   if (DAT_180c96048 != '\0') {
-    FUN_180555430(_DAT_180c96030);
+    SystemModuleConfigurator(_DAT_180c96030);
     _DAT_180c96030 = 0;
 
  /**
@@ -86778,7 +86778,7 @@ void ExecuteSystemCleanupOperation2(void)
 
 {
   if (DAT_180c96068 != '\0') {
-    FUN_180555430(_DAT_180c96050);
+    SystemModuleConfigurator(_DAT_180c96050);
     _DAT_180c96050 = 0;
 
  /**
@@ -86798,7 +86798,7 @@ void ExecuteSystemCleanupOperation3(void)
 
 {
   if (DAT_180c96098 != '\0') {
-    FUN_180057830();
+    SystemOperationHandler();
     if (_DAT_180c96070 != (longlong *)0x0) {
       (**(code **)(*_DAT_180c96070 + 0x38))();
     }
@@ -86816,7 +86816,7 @@ void InitializeSystemDataStructureCT(void)
 
 {
   if (DAT_180c960b8 != '\0') {
-    FUN_18055a350(_DAT_180c960a0);
+    SystemStateInitializer(_DAT_180c960a0);
     _DAT_180c960a0 = 0;
 
  /**
@@ -86832,8 +86832,8 @@ void InitializeSystemDataStructureCU(void)
 
 {
   if (DAT_180c96100 != '\0') {
-    FUN_1804a5b60();
-    FUN_1804a5b00(&DAT_180c960c0);
+    SystemFinalizer();
+    SystemShutdownHandler(&DAT_180c960c0);
 
  /**
  * 初始化系统数据结构CV
@@ -86857,10 +86857,10 @@ void InitializeSystemDataStructureCV(void)
     }
     _DAT_180c96120 = 0;
     if (_DAT_180c96138 != 0) {
-      RegisterResourceHandler(_DAT_180c96138 + 0x360,0xcc8,8,FUN_1804aa030,0xfffffffffffffffe);
+      RegisterResourceHandler(_DAT_180c96138 + 0x360,0xcc8,8,ResourceTypeHandlerCC8,0xfffffffffffffffe);
       _Mtx_destroy_in_situ();
       _Cnd_destroy_in_situ();
-      FUN_1804a9f00(lVar1 + 0x60);
+      SystemContextHandler(lVar1 + 0x60);
       FUN_1804a9e30();
                     // WARNING: Subroutine does not return
       ReleaseResourceHandle(lVar1);
