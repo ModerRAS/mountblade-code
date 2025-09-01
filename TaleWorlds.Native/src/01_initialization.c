@@ -23551,7 +23551,17 @@ void* * InitializeSystemReferencePointer(void* *referencePointer,ulong long memo
 
 
 
-void* * FUN_18004b820(void* *SystemResourcePointer,ulong long param_2)
+/**
+ * @brief 系统数据缓冲区模板获取函数
+ * 
+ * 该函数用于获取系统数据缓冲区模板G的引用，并根据标志位决定是否释放内存。
+ * 这是内存管理系统中的一个辅助函数，用于数据缓冲区的初始化和管理。
+ * 
+ * @param SystemResourcePointer 输出参数，用于返回数据缓冲区模板的引用
+ * @param param_2 控制标志位，如果第0位为1则释放内存
+ * @return 返回系统数据缓冲区模板的引用
+ */
+void* * GetSystemDataBufferTemplateG(void* *SystemResourcePointer,ulong long param_2)
 
 {
   *SystemResourcePointer = &SystemDataBufferTemplateG;
@@ -23606,7 +23616,17 @@ void InitializeGameSettings(long long SystemResourcePointer,void* param_2,void* 
 
 
 
-void* * FUN_18004b920(void* *SystemResourcePointer,ulong long param_2)
+/**
+ * @brief 系统数据缓冲区模板获取函数F
+ * 
+ * 该函数用于获取系统数据缓冲区模板F的引用，并根据标志位决定是否释放内存。
+ * 这是内存管理系统中的一个辅助函数，用于数据缓冲区的初始化和管理。
+ * 
+ * @param SystemResourcePointer 输出参数，用于返回数据缓冲区模板的引用
+ * @param param_2 控制标志位，如果第0位为1则释放内存
+ * @return 返回系统数据缓冲区模板的引用
+ */
+void* * GetSystemDataBufferTemplateF(void* *SystemResourcePointer,ulong long param_2)
 
 {
   *SystemResourcePointer = &SystemDataBufferTemplateF;
@@ -23618,7 +23638,17 @@ void* * FUN_18004b920(void* *SystemResourcePointer,ulong long param_2)
 
 
 
-void* * FUN_18004b960(void* *SystemResourcePointer,ulong long param_2)
+/**
+ * @brief 系统数据缓冲区模板获取函数D
+ * 
+ * 该函数用于获取系统数据缓冲区模板D的引用，并根据标志位决定是否释放内存。
+ * 这是内存管理系统中的一个辅助函数，用于数据缓冲区的初始化和管理。
+ * 
+ * @param SystemResourcePointer 输出参数，用于返回数据缓冲区模板的引用
+ * @param param_2 控制标志位，如果第0位为1则释放内存
+ * @return 返回系统数据缓冲区模板的引用
+ */
+void* * GetSystemDataBufferTemplateD(void* *SystemResourcePointer,ulong long param_2)
 
 {
   *SystemResourcePointer = &SystemDataBufferTemplateD;
@@ -24241,7 +24271,17 @@ void SystemDataStructureProcess(long long *SystemResourcePointer)
 
 
 
-void* * FUN_18004c050(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源指针初始化器
+ * 
+ * 该函数负责初始化系统资源指针，将其设置为初始状态。
+ * 它会清空指针的各个字段，并设置初始化标志位。
+ * 
+ * @param SystemResourcePointer 要初始化的系统资源指针
+ * @return 返回初始化后的系统资源指针
+ * @note 这是系统资源管理的基础初始化函数
+ */
+void* * SystemResourcePointerInitializer(void* *SystemResourcePointer)
 
 {
   *SystemResourcePointer = 0;
@@ -24596,7 +24636,17 @@ InitializeSystemResourceBuffer(uint8_t *systemResourcePointer, void* reservedPar
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void* * FUN_18004c480(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源复杂初始化器
+ * 
+ * 该函数负责对系统资源指针进行复杂的初始化操作，包括设置多个内存分配器引用、
+ * 全局数据引用和各种配置参数。这是系统初始化过程中的核心函数。
+ * 
+ * @param SystemResourcePointer 要初始化的系统资源指针
+ * @return 返回初始化后的系统资源指针
+ * @note 这是一个复杂的初始化函数，涉及多个系统组件的配置
+ */
+void* * SystemResourceComplexInitializer(void* *SystemResourcePointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -24852,8 +24902,21 @@ void FUN_18004ca00(long long *SystemResourcePointer)
 
 
 
+/**
+ * @brief 系统内存模板管理器
+ * 
+ * 该函数管理系统内存模板的设置和清理。它会检查系统资源指针的状态，
+ * 在需要时进行清理操作，然后设置相应的内存模板引用。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 控制标志位，第0位为1时释放内存
+ * @param param_3 内存释放参数1
+ * @param param_4 内存释放参数2
+ * @return 返回处理后的系统资源指针
+ * @note 这是内存管理系统的核心函数之一
+ */
 void* *
-FUN_18004ca30(void* *SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+SystemMemoryTemplateManager(void* *SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
 
 {
   if (SystemResourcePointer[2] != 0) {

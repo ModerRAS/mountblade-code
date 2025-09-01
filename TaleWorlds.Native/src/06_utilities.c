@@ -2845,9 +2845,9 @@ uint8_t SystemConfigurationEntryUndenary;
 uint8_t SystemConfigurationEntryDuodenary;
 byte SystemConfigurationFlag;
 uint8_t SystemStatusIndicator;
-uint8_t SystemConfigurationEntry13;
-uint8_t SystemConfigurationEntry14;
-uint8_t SystemConfigurationEntry15;
+uint8_t SystemConfigurationDebugMode;
+uint8_t SystemConfigurationLogLevel;
+uint8_t SystemConfigurationPerformanceMode;
 
  uint8_t ExecuteResourceCleanup;
 uint8_t ExecuteResourceCleanup;
@@ -2855,31 +2855,31 @@ uint8_t MemoryPoolStatus;
 
  uint8_t OptimizeResourceUsage;
 uint8_t OptimizeResourceUsage;
-uint8_t SystemEventHandlerSlot01;
-uint8_t SystemEventHandlerSlot02;
-uint8_t SystemEventHandlerSlot03;
-uint8_t SystemEventHandlerSlot04;
-uint8_t SystemEventHandlerSlot05;
-uint8_t SystemEventHandlerSlot06;
-uint8_t SystemEventHandlerSlot07;
-uint8_t SystemEventHandlerSlot08;
-uint8_t SystemEventHandlerSlot09;
-uint8_t SystemEventHandlerSlot10;
-uint8_t SystemEventHandlerSlot11;
-uint8_t SystemEventHandlerSlot12;
-uint8_t SystemEventHandlerSlot13;
-uint8_t SystemEventHandlerSlot14;
-uint8_t SystemEventHandlerSlot15;
-uint8_t SystemEventHandlerSlot16;
-uint8_t SystemEventHandlerSlot17;
-uint8_t SystemEventHandlerSlot18;
-uint8_t SystemEventHandlerSlot19;
-uint8_t SystemEventHandlerSlot20;
-uint8_t SystemEventHandlerSlot21;
-uint8_t SystemEventHandlerSlot22;
-uint8_t SystemEventHandlerSlot23;
-uint8_t SystemEventHandlerSlot24;
-uint8_t SystemEventHandlerSlot25;
+uint8_t SystemEventHandlerInput;
+uint8_t SystemEventHandlerRender;
+uint8_t SystemEventHandlerAudio;
+uint8_t SystemEventHandlerNetwork;
+uint8_t SystemEventHandlerPhysics;
+uint8_t SystemEventHandlerAnimation;
+uint8_t SystemEventHandlerUI;
+uint8_t SystemEventHandlerScript;
+uint8_t SystemEventHandlerResource;
+uint8_t SystemEventHandlerMemory;
+uint8_t SystemEventHandlerThread;
+uint8_t SystemEventHandlerFile;
+uint8_t SystemEventHandlerDatabase;
+uint8_t SystemEventHandlerSecurity;
+uint8_t SystemEventHandlerCustom01;
+uint8_t SystemEventHandlerCustom02;
+uint8_t SystemEventHandlerCustom03;
+uint8_t SystemEventHandlerCustom04;
+uint8_t SystemEventHandlerCustom05;
+uint8_t SystemEventHandlerCustom06;
+uint8_t SystemEventHandlerCustom07;
+uint8_t SystemEventHandlerCustom08;
+uint8_t SystemEventHandlerCustom09;
+uint8_t SystemEventHandlerCustom10;
+uint8_t SystemEventHandlerCustom11;
 uint8_t SystemEventHandlerSlot26;
 uint8_t SystemEventHandlerSlot27;
 uint8_t SystemEventHandlerSlot28;
@@ -14155,23 +14155,32 @@ LAB_180897ce8:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- 7d20(int64_t *objectContextParam,uint8_t validationContextParam,uint8_t param_3,uint8_t param_4)
-7d20(int64_t *objectContextParam,uint8_t validationContextParam,uint8_t param_3,uint8_t param_4)
-
+ /**
+ * @brief 处理资源数据验证操作
+ * 
+ * 该函数负责处理资源数据的验证和安全操作
+ * 包括数据加密、验证和缓冲区处理
+ * 
+ * @param objectContext 对象上下文指针
+ * @param validationContext 验证上下文参数
+ * @param resourceDataParam 资源数据参数
+ * @param validationFlagsParam 验证标志参数
+ */
+void ProcessResourceDataValidationOperation(int64_t *objectContext,uint8_t validationContext,uint8_t resourceDataParam,uint8_t validationFlagsParam)
 {
-  uint8_t SecurityValidationContext;
-  uint8_t uStackX_20;
-  uint8_t1 auStack_438 [32];
-  uint8_t1 auStack_418 [1024];
-  uint64_t OperationParam1;
+  uint8_t securityValidationContext;
+  uint8_t stackVarX20;
+  uint8_t1 securityBuffer [32];
+  uint8_t1 dataBuffer [1024];
+  uint64_t operationParam1;
   
-  OperationParam1 = SecurityEncryptionKey ^ (uint64_t)auStack_438;
-  SecurityValidationContext = param_3;
-  uStackX_20 = param_4;
-  ProcessDataBuffer(auStack_418,0x400,validationContextParam,&SecurityValidationContext);
-  (**(code **)(*objectContextParam + 8))(objectContextParam,auStack_418);
+  operationParam1 = SecurityEncryptionKey ^ (uint64_t)securityBuffer;
+  securityValidationContext = resourceDataParam;
+  stackVarX20 = validationFlagsParam;
+  ProcessDataBuffer(dataBuffer,0x400,validationContext,&securityValidationContext);
+  (**(code **)(*objectContext + 8))(objectContext,dataBuffer);
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(OperationParam1 ^ (uint64_t)auStack_438);
+  FinalizeSecurityOperation(operationParam1 ^ (uint64_t)securityBuffer);
 }
 
 
@@ -15075,7 +15084,7 @@ ProcessResourceHashData(int64_t *ResourceTable,int ResourceIndex,uint32_t *HashD
  * @param param_3 输出参数，用于返回提取的哈希数据
  * @return 操作状态码，0表示成功，非0表示错误
  */
-uint32_t ExtractResourceHashData(uint8_t objectContextParam,int validationContextParam,uint32_t *param_3)
+uint32_t ExtractResourceHashData(uint8_t resourceTableHandle,int resourceIndex,uint32_t *outputHashData)
 
 {
   uint32_t *presourceHash;
@@ -26505,7 +26514,7 @@ LAB_18089ed1b:
 
 
 
-uint64_t ProcessResourceDataValidationAndAllocation(uint8_t objectContextParam,uint8_t validationContextParam,uint64_t param_3)
+uint64_t ProcessResourceDataValidationAndAllocation(uint8_t objectContext,uint8_t validationContext,uint64_t allocationSize)
 
 {
   int64_t *processPointer;
@@ -29740,7 +29749,17 @@ void ResetSystemStateOnException(uint8_t objectContextParam, int64_t validationC
 
 
 
-void Unwind_180902530(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 在异常处理时验证系统状态
+ * 
+ * 该函数负责在异常处理过程中验证系统状态
+ * 检查系统关键参数并确保系统处于安全状态
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数会验证系统状态并执行必要的检查
+ */
+void ValidateSystemStateOnException(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0x100) = &SystemDataStructure;
@@ -29749,7 +29768,17 @@ void Unwind_180902530(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902540(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 在异常处理时清理系统数据
+ * 
+ * 该函数负责在异常处理过程中清理系统数据
+ * 释放数据结构并重置数据指针
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数会清理系统数据并重置相关指针
+ */
+void CleanupSystemDataOnException(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   int64_t loopCounter;
@@ -29782,7 +29811,17 @@ void Unwind_180902540(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902550(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 在异常处理时重置资源管理器
+ * 
+ * 该函数负责在异常处理过程中重置资源管理器状态
+ * 清理资源管理器数据并恢复初始状态
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数会重置资源管理器并清理相关数据
+ */
+void ResetResourceManagerOnException(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   int64_t loopCounter;
@@ -29815,7 +29854,17 @@ void Unwind_180902550(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902570(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 在异常处理时清理缓存数据
+ * 
+ * 该函数负责在异常处理过程中清理系统缓存数据
+ * 释放缓存内存并重置缓存指针
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数会清理系统缓存并释放相关内存
+ */
+void CleanupCacheDataOnException(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   uint8_t *presourceHash;
@@ -29848,7 +29897,17 @@ void Unwind_180902570(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902580(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 在异常处理时重置内存管理器
+ * 
+ * 该函数负责在异常处理过程中重置内存管理器状态
+ * 清理内存分配记录并恢复内存管理器到初始状态
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数会重置内存管理器并清理内存分配记录
+ */
+void ResetMemoryManagerOnException(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   uint8_t *presourceHash;
@@ -29877,7 +29936,19 @@ void Unwind_180902580(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902590(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 在异常处理时执行资源清理
+ * 
+ * 该函数负责在异常处理过程中执行资源清理操作
+ * 根据传入的参数执行不同类型的资源清理任务
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 清理类型参数
+ * @param param_4 清理选项参数
+ * @note 此函数会根据参数执行相应的资源清理操作
+ */
+void ExecuteResourceCleanupOnException(uint8_t objectContextParam, int64_t validationContextParam, uint8_t param_3, uint8_t param_4)
 
 {
   ProcessDataStream(*(int64_t *)(validationContextParam + 0x70),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x10),
@@ -29887,7 +29958,19 @@ void Unwind_180902590(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809025a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 在异常处理时清理数据流
+ * 
+ * 该函数负责在异常处理过程中清理数据流
+ * 处理数据流中的异常数据并恢复数据流状态
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 数据流处理参数
+ * @param param_4 数据流清理选项
+ * @note 此函数会清理数据流并处理异常数据
+ */
+void CleanupDataStreamOnException(uint8_t objectContextParam, int64_t validationContextParam, uint8_t param_3, uint8_t param_4)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
@@ -29897,7 +29980,19 @@ void Unwind_1809025a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809025b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 在异常处理时执行资源操作
+ * 
+ * 该函数负责在异常处理过程中执行资源操作
+ * 处理资源相关的异常操作并恢复资源状态
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 资源操作类型
+ * @param param_4 资源操作参数
+ * @note 此函数会执行资源操作并处理异常情况
+ */
+void ExecuteResourceOperationOnException(uint8_t objectContextParam, int64_t validationContextParam, uint8_t param_3, uint8_t param_4)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
@@ -29907,7 +30002,15 @@ void Unwind_1809025b0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809025c0(void)
+/**
+ * @brief 在异常处理时重置全局状态
+ * 
+ * 该函数负责在异常处理过程中重置全局系统状态
+ * 清理全局变量并恢复系统到初始状态
+ * 
+ * @note 此函数会重置全局状态并清理全局变量
+ */
+void ResetGlobalStateOnException(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -29916,7 +30019,15 @@ void Unwind_1809025c0(void)
 
 
 
-void Unwind_1809025d0(void)
+/**
+ * @brief 在异常处理时清理线程资源
+ * 
+ * 该函数负责在异常处理过程中清理线程相关资源
+ * 释放线程占用的内存并重置线程状态
+ * 
+ * @note 此函数会清理线程资源并释放相关内存
+ */
+void CleanupThreadResourcesOnException(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -29925,7 +30036,17 @@ void Unwind_1809025d0(void)
 
 
 
-void Unwind_1809025e0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 在异常处理时重置系统上下文
+ * 
+ * 该函数负责在异常处理过程中重置系统上下文
+ * 清理上下文数据并恢复系统上下文到安全状态
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数会重置系统上下文并清理相关数据
+ */
+void ResetSystemContextOnException(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   int64_t *processPointer;
@@ -49833,7 +49954,17 @@ void Unwind_1809075f0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180907600(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 在异常处理时重置数据处理器
+ * 
+ * 该函数负责在异常处理过程中重置数据处理器状态
+ * 清理数据处理器并恢复到初始状态
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数会重置数据处理器状态
+ */
+void ResetDataProcessorOnException(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   int64_t *processPointer;
