@@ -10021,14 +10021,19 @@ LAB_180894aca:
  * 
  * 该函数负责执行安全操作的终结处理
  * 清理安全上下文并释放相关资源
+ * 
+ * @param SecurityContext 安全上下文参数，包含安全操作的上下文信息
+ * @return 无返回值
+ * @note 此函数不会返回，会直接调用终结操作
+ * @warning 调用此函数后，系统将执行安全清理操作
  */
-ExecuteSecurityFinalization(void)
+void FinalizeSecurityOperationHandler(uint64_t SecurityContext)
 
 {
-  uint64_t in_stack_000000a8;
+  uint64_t SecurityContextParameter;
   
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(in_stack_000000a8 ^ (uint64_t)&SystemSecurityValidationBuffer);
+  FinalizeSecurityOperation(SecurityContextParameter ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -10042,34 +10047,37 @@ ExecuteSecurityFinalization(void)
  * 该函数负责处理资源索引的相关操作
  * 包括资源的查找、验证和索引管理
  * 
- * @param resource_handle 资源句柄，用于标识要操作的资源
- * @param resource_data 资源数据指针，包含资源的具体信息
- * @param resource_index 资源索引指针，用于返回资源索引信息
+ * @param ResourceHandle 资源句柄，用于标识要操作的资源
+ * @param ResourceDataPointer 资源数据指针，包含资源的具体信息
+ * @param ResourceIndexPointer 资源索引指针，用于返回资源索引信息
+ * @return 处理结果状态码，0表示成功，非零表示错误
+ * @note 此函数会执行安全验证和资源锁定操作
+ * @warning 调用此函数可能触发安全操作，不会在正常情况下返回
  */
-ProcessResourceIndexOperation(int64_t resource_handle, uint32_t *resource_data, int64_t *resource_index)
+uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *ResourceDataPointer, int64_t *ResourceIndexPointer)
 
 {
-  int64_t *processPointer;
-  int OperationResult;
-  int64_t resourceIndex;
-  uint8_t1 SecurityDataBuffer [32];
-  uint resourceFlagHigh;
-  uint resourceFlagLow;
-  uint ResourceFlag1;
-  uint ResourceFlag2;
-  uint ResourceFlag3;
-  uint ResourceFlag4;
-  uint ResourceFlag5;
-  uint ResourceFlag6;
-  uint ResourceFlag7;
-  uint ResourceFlag8;
-  uint32_t ResourceFlag9;
-  uint ResourceFlag10;
-  uint ResourceFlag11;
-  uint ResourceFlag12;
+  int64_t *ProcessContext;
+  int32_t OperationStatus;
+  int64_t ResourceIndex;
+  uint8_t SecurityDataBuffer [32];
+  uint32_t ResourceFlagHigh;
+  uint32_t ResourceFlagLow;
+  uint32_t ResourceFlagPart1;
+  uint32_t ResourceFlagPart2;
+  uint32_t ResourceFlagPart3;
+  uint32_t ResourceFlagPart4;
+  uint32_t ResourceFlagPart5;
+  uint32_t ResourceFlagPart6;
+  uint32_t ResourceFlagPart7;
+  uint32_t ResourceFlagPart8;
+  uint32_t ResourceFlagPrimary;
+  uint32_t ResourceFlagSecondary;
+  uint32_t ResourceFlagTertiary;
+  uint32_t ResourceFlagQuaternary;
   int64_t ResourceHandleBackup;
-  uint8_t1 ResourceDataBuffer [40];
-  uint64_t OperationParam1;
+  uint8_t ResourceDataBuffer [40];
+  uint64_t SecurityContextParameter;
   
   OperationParam1 = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
   plocalContextPointer = *(int64_t **)(ObjectContextParameter + 800);
@@ -10105,8 +10113,18 @@ ProcessResourceIndexOperation(int64_t resource_handle, uint32_t *resource_data, 
 
 
 
- void ExecuteSecurityOperationFunction(void)
-void ExecuteSecurityOperationFunction(void)
+ /**
+ * @brief 执行安全操作函数
+ * 
+ * 该函数负责执行系统的安全操作
+ * 这是一个不会返回的函数，会直接调用安全操作
+ * 
+ * @return 无返回值
+ * @note 此函数不会返回，会直接调用安全操作
+ * @warning 调用此函数将触发安全操作，程序不会继续执行
+ */
+void ExecuteSecurityOperationHandler(void)
+void ExecuteSecurityOperationHandler(void)
 
 {
                     // WARNING: Subroutine does not return
