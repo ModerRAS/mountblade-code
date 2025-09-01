@@ -1091,9 +1091,9 @@ void InitializeMemoryCache(void);
 void* SystemLoggingConfigTableSenary;
 void* SystemMemoryCache;
 void* SystemFileSystemConfigTableTertiary;
-void* SystemThreadingConfigTable5;
-void* SystemProcessConfigTable6;
-void* SystemSecurityConfigTable5;
+void* SystemThreadingConfigTableQuinary;
+void* SystemProcessConfigTableSenary;
+void* SystemSecurityConfigTableQuinary;
 
  void SetupMemoryPool(void);
 /**
