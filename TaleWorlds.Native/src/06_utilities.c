@@ -9009,14 +9009,15 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t ObjectContextPar
 
 {
   float InputFloatValue;
-  uint8_t ValidationResult;
-  int64_t ResourceIndex;
-  int64_t ResourceContextPointer;
-  int64_t SystemContextPointer;
-  float RangeMinValue;
-  float RangeMaxValue;
-  float ClampedFloatValue;
-  uint32_t SecurityValidationBuffer;
+  uint8_t ValidationResult = 0;
+  int64_t ResourceIndex = 0;
+  int64_t ResourceContextPointer = 0;
+  int64_t SystemContextPointer = 0;
+  float RangeMinValue = 0.0f;
+  float RangeMaxValue = 0.0f;
+  float ClampedFloatValue = 0.0f;
+  uint32_t SecurityValidationBuffer = 0;
+  int ValidationStatusCode = 0;
   
   SecurityValidationBuffer = 0;
   ValidationStatusCode = ProcessDataHashing(SystemContextPointer + 0x60,ValidationContextParameter,&SecurityValidationBuffer);
