@@ -144,34 +144,34 @@ void* SystemConfigDataBufferState;
 void* SystemConfigDataBufferEvent;
 
 // 系统配置数据长度 - 用于存储系统配置数据的长度
-void* SystemConfigDataLengthPrimary;
-void* SystemConfigDataLengthSecondary;
-void* SystemConfigDataLengthTertiary;
-void* SystemConfigDataLengthQuaternary;
-void* SystemConfigDataLengthQuinary;
-void* SystemConfigDataLengthSenary;
-void* SystemConfigDataLengthSeptenary;
-void* SystemConfigDataLengthOctonary;
-void* SystemConfigDataLengthNonary;
-void* SystemConfigDataLengthDenary;
-void* SystemConfigDataLengthUndenary;
+void* SystemConfigDataLengthMain;
+void* SystemConfigDataLengthBackup;
+void* SystemConfigDataLengthCache;
+void* SystemConfigDataLengthTemp;
+void* SystemConfigDataLengthReserved;
+void* SystemConfigDataLengthSecure;
+void* SystemConfigDataLengthDebug;
+void* SystemConfigDataLengthLog;
+void* SystemConfigDataLengthConfig;
+void* SystemConfigDataLengthState;
+void* SystemConfigDataLengthEvent;
 
 // 系统配置缓冲区组 - 用于存储各种系统配置数据
-char SystemConfigBufferPrimary[0x40];
-char SystemConfigBufferSecondary[0x40];
-char SystemConfigBufferTertiary[0x40];
-char SystemConfigBufferQuaternary[0x40];
-char SystemConfigBufferQuinary[0x40];
-char SystemConfigBufferSenary[0x40];
-char SystemConfigBufferSeptenary[0x40];
-char SystemConfigBufferOctonary[0x40];
-char SystemConfigBufferNonary[0x40];
-char SystemConfigBufferDenary[0x40];
+char SystemConfigBufferMain[0x40];
+char SystemConfigBufferBackup[0x40];
+char SystemConfigBufferCache[0x40];
+char SystemConfigBufferTemp[0x40];
+char SystemConfigBufferReserved[0x40];
+char SystemConfigBufferSecure[0x40];
+char SystemConfigBufferDebug[0x40];
+char SystemConfigBufferLog[0x40];
+char SystemConfigBufferConfig[0x40];
+char SystemConfigBufferState[0x40];
 
 // 系统地址常量定义
-#define ConditionMutexAddressPrimary 0x180c911e8
-#define ConditionMutexAddressSecondary 0x180c91288
-#define SystemMutexAddressPrimary 0x180c91970
+#define ConditionMutexAddressMain 0x180c911e8
+#define ConditionMutexAddressBackup 0x180c91288
+#define SystemMutexAddressMain 0x180c91970
 #define EventMutexAddress 0x180c91f70
 #define RequestMutexAddress 0x180c91ff0
 #define SystemMutexFlags 0xfffffffffffffffe

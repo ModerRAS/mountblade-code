@@ -441,13 +441,13 @@ void* SystemMemoryRegionTwoHundredThree;
 void* SystemMemoryRegionTwoHundredFour;
 void* SystemMemoryRegionTwoHundredFive;
 void* SystemMemoryRegionTwoHundredSix;
-char SystemStatusFlagOctonary;
+char SystemStatusFlagEighth;
 void* SystemMemoryRegionTwoHundredSeven;
 void* SystemMemoryRegionTwoHundredEight;
 void* SystemDataTableEntryDuodecary;
-void* SystemMemoryRegionDucentiNovem;
-void* SystemMemoryRegionTrecenti;
-void* SystemMemoryRegionTrecentiUnus;
+void* SystemMemoryRegionTwoHundredNine;
+void* SystemMemoryRegionThreeHundred;
+void* SystemMemoryRegionThreeHundredOne;
 // 系统全局数据常量块
 // 系统配置和状态数据块
 void* SystemGlobalDataConfigBlockPrimary;
