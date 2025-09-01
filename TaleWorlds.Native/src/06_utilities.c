@@ -1747,27 +1747,27 @@ uint8_t SystemMemoryConfigDataS;
 uint8_t SystemMemoryConfigDataT;
 uint8_t SystemMemoryConfigDataU;
 uint8_t SystemMemoryConfigDataV;
-uint8_t SystemMemoryConfigDataTemplateL;
-uint8_t SystemMemoryConfigDataTemplateF;
-uint8_t SystemMemoryConfigDataTemplateG;
-uint8_t SystemMemoryConfigDataTemplateA;
-uint8_t SystemMemoryConfigDataTemplateH;
-uint8_t SystemMemoryConfigDataTemplateI;
-uint8_t SystemMemoryConfigDataTemplateJ;
-uint8_t SystemMemoryConfigDataTemplateK;
-uint8_t SystemMemoryConfigDataTemplateM;
-uint8_t SystemMemoryConfigDataTemplateN;
-uint8_t SystemMemoryConfigDataTemplateO;
-uint8_t SystemMemoryConfigDataTemplateP;
-uint8_t SystemMemoryConfigDataTemplateQ;
-uint8_t SystemMemoryConfigDataTemplateR;
-uint8_t SystemMemoryConfigDataTemplateS;
-uint8_t SystemMemoryConfigDataTemplateT;
-uint8_t SystemMemoryConfigDataTemplateU;
-uint8_t SystemMemoryConfigDataTemplateV;
-uint8_t SystemMemoryConfigDataTemplateW;
-uint8_t SystemMemoryConfigDataTemplateX;
-uint8_t SystemMemoryConfigDataTemplateA;
+uint8_t SystemMemoryConfigDataTemplateDuodenary;
+uint8_t SystemMemoryConfigDataTemplateSixth;
+uint8_t SystemMemoryConfigDataTemplateSeventh;
+uint8_t SystemMemoryConfigDataTemplatePrimary;
+uint8_t SystemMemoryConfigDataTemplateEighth;
+uint8_t SystemMemoryConfigDataTemplateNinth;
+uint8_t SystemMemoryConfigDataTemplateTenth;
+uint8_t SystemMemoryConfigDataTemplateEleventh;
+uint8_t SystemMemoryConfigDataTemplateThirteenth;
+uint8_t SystemMemoryConfigDataTemplateFourteenth;
+uint8_t SystemMemoryConfigDataTemplateFifteenth;
+uint8_t SystemMemoryConfigDataTemplateSixteenth;
+uint8_t SystemMemoryConfigDataTemplateSeventeenth;
+uint8_t SystemMemoryConfigDataTemplateEighteenth;
+uint8_t SystemMemoryConfigDataTemplateNineteenth;
+uint8_t SystemMemoryConfigDataTemplateTwentieth;
+uint8_t SystemMemoryConfigDataTemplateTwentyFirst;
+uint8_t SystemMemoryConfigDataTemplateTwentySecond;
+uint8_t SystemMemoryConfigDataTemplateTwentyThird;
+uint8_t SystemMemoryConfigDataTemplateTwentyFourth;
+uint8_t SystemMemoryConfigDataTemplateAlternate;
 uint8_t SystemMemoryBufferPool;
 uint8_t SystemMemoryCachePool;
 uint8_t SystemMemoryDescriptorPool;
@@ -2082,28 +2082,27 @@ bool SystemStatusFlagB;
 uint8_t SystemStatusFlagC;
 uint8_t SystemStatusFlagD;
 uint8_t ResourceBufferPool;
-uint8_t ResourceBufferConfigA;
-uint8_t ResourceBufferConfigB;
-uint8_t ResourceBufferConfigC;
-uint8_t SystemConfigDataG;
-uint8_t SystemConfigDataH;
-uint8_t SystemMemoryConfigDataTemplateL;
-uint8_t SystemMemoryConfigDataTemplateM;
-uint8_t SystemMemoryConfigDataTemplateN;
+uint8_t ResourceBufferConfigPrimary;
+uint8_t ResourceBufferConfigSecondary;
+uint8_t ResourceBufferConfigTertiary;
+uint8_t SystemConfigDataEighth;
+uint8_t SystemConfigDataNinth;
+uint8_t SystemMemoryConfigDataTemplateTwelfth;
+uint8_t SystemMemoryConfigDataTemplateThirteenth;
+uint8_t SystemMemoryConfigDataTemplateFourteenth;
 uint8_t SecurityEncryptionKey;
-uint8_t SystemMemoryConfigDataTemplateN2;
-uint8_t SystemMemoryConfigDataTemplateO;
-uint8_t SystemMemoryConfigDataTemplateP;
-uint8_t SystemMemoryConfigDataTemplateQ;
-uint8_t SystemMemoryConfigDataTemplateR;
-uint8_t SystemMemoryConfigDataTemplateS;
-uint8_t SystemMemoryConfigDataTemplateT;
-uint8_t SystemMemoryConfigDataTemplateU;
-uint8_t SystemMemoryConfigDataTemplateU2;
-uint8_t SystemMemoryConfigDataTemplateV;
-uint8_t SystemMemoryConfigDataTemplateW;
-uint8_t SystemMemoryConfigDataTemplateW2;
-uint8_t SystemMemoryConfigDataTemplateW3;
+uint8_t SystemMemoryConfigDataTemplateFourteenthAlt;
+uint8_t SystemMemoryConfigDataTemplateFifteenth;
+uint8_t SystemMemoryConfigDataTemplateSixteenth;
+uint8_t SystemMemoryConfigDataTemplateSeventeenth;
+uint8_t SystemMemoryConfigDataTemplateEighteenth;
+uint8_t SystemMemoryConfigDataTemplateNineteenth;
+uint8_t SystemMemoryConfigDataTemplateTwentieth;
+uint8_t SystemMemoryConfigDataTemplateTwentyFirstAlt;
+uint8_t SystemMemoryConfigDataTemplateTwentySecond;
+uint8_t SystemMemoryConfigDataTemplateTwentyThird;
+uint8_t SystemMemoryConfigDataTemplateTwentyThirdAlt;
+uint8_t SystemMemoryConfigDataTemplateTwentyThirdExtra;
 uint8_t GlobalSystemMemoryPool;
 uint8_t SystemResourceAllocator;
 char SystemMemoryConfigFlag;
@@ -2111,20 +2110,20 @@ uint8_t SystemMemoryConfigData;
 uint8_t SystemResourceCache;
 uint8_t SystemMemoryBuffer;
 uint8_t SystemMemoryAllocator;
-uint8_t SystemMemoryConfigDataTemplateX;
-uint8_t SystemMemoryConfigDataTemplateY;
-uint8_t SystemMemoryConfigDataTemplateZ;
-uint8_t SystemMemoryConfigDataTemplateAA;
-uint8_t SystemMemoryConfigDataTemplateBB;
-uint8_t SystemMemoryConfigDataTemplateCC;
+uint8_t SystemMemoryConfigDataTemplateTwentyFourth;
+uint8_t SystemMemoryConfigDataTemplateTwentyFifth;
+uint8_t SystemMemoryConfigDataTemplateTwentySixth;
+uint8_t SystemMemoryConfigDataTemplateTwentySeventh;
+uint8_t SystemMemoryConfigDataTemplateTwentyEighth;
+uint8_t SystemMemoryConfigDataTemplateTwentyNinth;
 uint8_t SystemConfigDataTemplate;
-uint8_t SystemConfigDataJ;
+uint8_t SystemConfigDataTenth;
 char SystemConfigStatusFlag;
-uint8_t SystemConfigDataK;
+uint8_t SystemConfigDataEleventh;
 uint8_t SystemResourceTracker;
 void *SystemExceptionList;
-uint8_t SystemMemoryConfigDataTemplateFF;
-uint8_t SystemMemoryConfigDataTemplateGG;
+uint8_t SystemMemoryConfigDataTemplateThirtieth;
+uint8_t SystemMemoryConfigDataTemplateThirtyFirst;
 uint8_t SystemPerformanceMonitor;
 uint8_t SystemThreadManager;
 uint8_t SystemSecurityManager;
@@ -49997,52 +49996,98 @@ void Unwind_180907a90(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_180907aa0(uint8_t8 param_1,longlong param_2)
-
+/**
+ * @brief 系统数据结构解包处理器
+ * 
+ * 该函数负责在系统解包过程中设置数据结构指针
+ * 将系统数据结构指针存储到指定的上下文位置
+ * 
+ * @param unwindContext 解包上下文，包含系统状态信息
+ * @param contextPointer 上下文指针，用于存储数据结构引用
+ */
+void SystemDataStructureUnwindHandler(uint8_t8 unwindContext, longlong contextPointer)
 {
-  **(uint8_t8 **)(param_2 + 0x178) = &SystemDataStructure;
+  **(uint8_t8 **)(contextPointer + 0x178) = &SystemDataStructure;
   return;
 }
 
 
 
-void SystemUnwindHandlerA(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
-
+/**
+ * @brief 系统解包处理器A
+ * 
+ * 该函数负责处理系统解包过程中的第一个处理阶段
+ * 检查并调用相应的回调函数来处理解包事件
+ * 
+ * @param unwindContext 解包上下文，包含系统状态信息
+ * @param handlerContext 处理器上下文，包含回调函数指针
+ * @param eventFlags 事件标志，用于标识解包事件类型
+ * @param eventParameters 事件参数，传递给回调函数的参数
+ */
+void SystemUnwindHandlerA(uint8_t8 unwindContext, longlong handlerContext, uint8_t8 eventFlags, uint8_t8 eventParameters)
 {
-  if (*(code **)(param_2 + 0x1c0) != (code *)0x0) {
-    (**(code **)(param_2 + 0x1c0))(param_2 + 0x1b0,0,0,param_4,0xfffffffffffffffe);
+  if (*(code **)(handlerContext + 0x1c0) != (code *)0x0) {
+    (**(code **)(handlerContext + 0x1c0))(handlerContext + 0x1b0, 0, 0, eventParameters, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void SystemUnwindHandlerB(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
-
+/**
+ * @brief 系统解包处理器B
+ * 
+ * 该函数负责处理系统解包过程中的第二个处理阶段
+ * 检查并调用相应的回调函数来处理解包事件
+ * 
+ * @param unwindContext 解包上下文，包含系统状态信息
+ * @param handlerContext 处理器上下文，包含回调函数指针
+ * @param eventFlags 事件标志，用于标识解包事件类型
+ * @param eventParameters 事件参数，传递给回调函数的参数
+ */
+void SystemUnwindHandlerB(uint8_t8 unwindContext, longlong handlerContext, uint8_t8 eventFlags, uint8_t8 eventParameters)
 {
-  if (*(code **)(param_2 + 0x1e0) != (code *)0x0) {
-    (**(code **)(param_2 + 0x1e0))(param_2 + 0x1d0,0,0,param_4,0xfffffffffffffffe);
+  if (*(code **)(handlerContext + 0x1e0) != (code *)0x0) {
+    (**(code **)(handlerContext + 0x1e0))(handlerContext + 0x1d0, 0, 0, eventParameters, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void SystemUnwindHandlerC(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
-
+/**
+ * @brief 系统解包处理器C
+ * 
+ * 该函数负责处理系统解包过程中的第三个处理阶段
+ * 检查并调用相应的回调函数来处理解包事件
+ * 
+ * @param unwindContext 解包上下文，包含系统状态信息
+ * @param handlerContext 处理器上下文，包含回调函数指针
+ * @param eventFlags 事件标志，用于标识解包事件类型
+ * @param eventParameters 事件参数，传递给回调函数的参数
+ */
+void SystemUnwindHandlerC(uint8_t8 unwindContext, longlong handlerContext, uint8_t8 eventFlags, uint8_t8 eventParameters)
 {
-  if (*(code **)(param_2 + 0x200) != (code *)0x0) {
-    (**(code **)(param_2 + 0x200))(param_2 + 0x1f0,0,0,param_4,0xfffffffffffffffe);
+  if (*(code **)(handlerContext + 0x200) != (code *)0x0) {
+    (**(code **)(handlerContext + 0x200))(handlerContext + 0x1f0, 0, 0, eventParameters, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void SystemUnwindDataStructureA(uint8_t8 param_1,longlong param_2)
-
+/**
+ * @brief 系统数据结构解包处理器A
+ * 
+ * 该函数负责在系统解包过程中设置数据结构指针
+ * 将系统数据结构指针存储到指定的上下文位置
+ * 
+ * @param unwindContext 解包上下文，包含系统状态信息
+ * @param dataStructurePointer 数据结构指针，用于存储系统数据结构引用
+ */
+void SystemUnwindDataStructureA(uint8_t8 unwindContext, longlong dataStructurePointer)
 {
-  **(uint8_t8 **)(param_2 + 0x180) = &SystemDataStructure;
+  **(uint8_t8 **)(dataStructurePointer + 0x180) = &SystemDataStructure;
   return;
 }
 
