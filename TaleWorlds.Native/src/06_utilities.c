@@ -1874,10 +1874,10 @@ undefined SystemMemoryManagerConfigTemplateK;
  * 设置线程创建、调度和同步的机制
  */
 void InitializeSystemThreadManager(void);
-undefined DAT_180bf6498;
-undefined DAT_180bf64a0;
-undefined DAT_180bf64a8;
-undefined DAT_180bf64b0;
+undefined SystemDataStructurePointer;
+undefined SystemDataTable;
+undefined SystemDataBuffer;
+undefined SystemDataCache;
 
  undefined CleanupMemoryBlock;
 /**
@@ -2322,23 +2322,22 @@ undefined MemoryAllocationRegion;
 undefined MemoryAllocationZone;
 undefined MemoryAllocationCache;
 undefined MemoryAllocationBuffer;
-undefined UNK_180a18bb0;
-undefined UNK_180a18bc4;
-undefined UNK_180a18bc8;
-undefined UNK_180a18c08;
-undefined UNK_180a18c20;
-undefined UNK_180a18c78;
-undefined UNK_180a18ca0;
-undefined UNK_180a18cd8;
-undefined UNK_180a18d20;
-undefined UNK_180a18d48;
-undefined UNK_180a18d00;
-undefined UNK_180a18d10;
-undefined UNK_180a18d68;
-undefined UNK_180a18e08;
-undefined UNK_180a18de8;
-undefined UNK_180a18df8;
-undefined UNK_180a18e20;
+undefined MemoryAllocationDescriptor;
+undefined MemoryAllocationSize;
+undefined MemoryAllocationFlags;
+undefined MemoryAllocationTable;
+undefined MemoryAllocationQueue;
+undefined MemoryAllocationStack;
+undefined MemoryAllocationList;
+undefined MemoryAllocationArray;
+undefined MemoryAllocationVector;
+undefined MemoryAllocationMatrix;
+undefined MemoryAllocationMap;
+undefined MemoryAllocationSet;
+undefined MemoryAllocationCollection;
+undefined MemoryAllocationTree;
+undefined MemoryAllocationGraph;
+undefined MemoryAllocationNetwork;
 
  void FreeMemoryBlock;
 /**
@@ -86449,8 +86448,20 @@ void InitializeSystemDataStructureCR(void)
   _DAT_180bfc180 = 0;
   _DAT_180bfc188 = 0xf;
 
- void FUN_1809429f0(void)
-void FUN_1809429f0(void)
+ /**
+ * @brief 释放资源哈希表
+ * 
+ * 该函数负责释放资源哈希表占用的内存
+ * 并重置相关的全局变量，确保资源正确清理
+ */
+void ReleaseResourceHashTable(void)
+/**
+ * @brief 释放资源哈希表
+ * 
+ * 该函数负责释放资源哈希表占用的内存
+ * 并重置相关的全局变量，确保资源正确清理
+ */
+void ReleaseResourceHashTable(void)
 
 {
   ulonglong resourceHash;
@@ -86483,8 +86494,20 @@ void FUN_1809429f0(void)
 
 
 
- void FUN_180942a20(void)
-void FUN_180942a20(void)
+ /**
+ * @brief 释放验证结果表
+ * 
+ * 该函数负责释放验证结果表占用的内存
+ * 并重置相关的全局变量，确保验证资源正确清理
+ */
+void ReleaseValidationResultTable(void)
+/**
+ * @brief 释放验证结果表
+ * 
+ * 该函数负责释放验证结果表占用的内存
+ * 并重置相关的全局变量，确保验证资源正确清理
+ */
+void ReleaseValidationResultTable(void)
 
 {
   longlong lVar1;
@@ -86644,24 +86667,60 @@ void TerminateSystemProcess(void)
     }
     _DAT_180c96010 = 0;
 
- void FUN_180942bf0(void)
-void FUN_180942bf0(void)
+ /**
+ * @brief 执行系统清理操作1
+ * 
+ * 该函数负责执行系统清理操作1
+ * 检查系统状态并执行相应的清理任务
+ */
+void ExecuteSystemCleanupOperation1(void)
+/**
+ * @brief 执行系统清理操作1
+ * 
+ * 该函数负责执行系统清理操作1
+ * 检查系统状态并执行相应的清理任务
+ */
+void ExecuteSystemCleanupOperation1(void)
 
 {
   if (DAT_180c96048 != '\0') {
     FUN_180555430(_DAT_180c96030);
     _DAT_180c96030 = 0;
 
- void FUN_180942c20(void)
-void FUN_180942c20(void)
+ /**
+ * @brief 执行系统清理操作2
+ * 
+ * 该函数负责执行系统清理操作2
+ * 检查系统状态并执行相应的清理任务
+ */
+void ExecuteSystemCleanupOperation2(void)
+/**
+ * @brief 执行系统清理操作2
+ * 
+ * 该函数负责执行系统清理操作2
+ * 检查系统状态并执行相应的清理任务
+ */
+void ExecuteSystemCleanupOperation2(void)
 
 {
   if (DAT_180c96068 != '\0') {
     FUN_180555430(_DAT_180c96050);
     _DAT_180c96050 = 0;
 
- void FUN_180942c50(void)
-void FUN_180942c50(void)
+ /**
+ * @brief 执行系统清理操作3
+ * 
+ * 该函数负责执行系统清理操作3
+ * 检查系统状态并执行相应的清理任务
+ */
+void ExecuteSystemCleanupOperation3(void)
+/**
+ * @brief 执行系统清理操作3
+ * 
+ * 该函数负责执行系统清理操作3
+ * 检查系统状态并执行相应的清理任务
+ */
+void ExecuteSystemCleanupOperation3(void)
 
 {
   if (DAT_180c96098 != '\0') {
@@ -86670,24 +86729,48 @@ void FUN_180942c50(void)
       (**(code **)(*_DAT_180c96070 + 0x38))();
     }
 
- void FUN_180942cb0(void)
-void FUN_180942cb0(void)
+ /**
+ * 初始化系统数据结构CT
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCT(void)
+/**
+ * 初始化系统数据结构CT
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCT(void)
 
 {
   if (DAT_180c960b8 != '\0') {
     FUN_18055a350(_DAT_180c960a0);
     _DAT_180c960a0 = 0;
 
- void FUN_180942ce0(void)
-void FUN_180942ce0(void)
+ /**
+ * 初始化系统数据结构CU
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCU(void)
+/**
+ * 初始化系统数据结构CU
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCU(void)
 
 {
   if (DAT_180c96100 != '\0') {
     FUN_1804a5b60();
     FUN_1804a5b00(&DAT_180c960c0);
 
- void FUN_180942d30(void)
-void FUN_180942d30(void)
+ /**
+ * 初始化系统数据结构CV
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCV(void)
+/**
+ * 初始化系统数据结构CV
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCV(void)
 
 {
   longlong lVar1;
