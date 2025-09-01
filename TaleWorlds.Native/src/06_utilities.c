@@ -140,7 +140,7 @@ static uint64 utility_file_position_offset = 0;                   // 文件位�
 // 数据处理变量
 static float utility_resource_data_buffer_position = 0.0f;        // 资源数据缓冲区位置，用于缓冲区位置管理
 static longlong utility_primary_data_buffer = 0;                    // 主要数据缓冲区，用于主要数据存储
-static uint32 utility_local_integer_value = 0;                    // 本地整数值，用于本地计算和存储
+static uint32 utility_calculation_result_value = 0;              // 计算结果值，用于存储本地计算结果
 static longlong utility_buffer_position = 0;                      // 缓冲区位置，用于缓冲区位置管理
 static uint64 utility_result = 0;                                  // 操作结果，用于存储操作结果
 static uint32 utility_thread_offset = 0;                           // 线程偏移量，用于线程相关操作
