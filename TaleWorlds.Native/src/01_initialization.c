@@ -32496,8 +32496,15 @@ void DestroySystemResource(long long SystemResourcePointer)
 
 
 // 函数: void FUN_180058c80(void* *SystemResourcePointer)
-void FUN_180058c80(void* *SystemResourcePointer)
-
+/**
+ * @brief 释放系统资源指针
+ * 
+ * 该函数负责释放系统资源指针，调用相关的清理函数
+ * 并将资源指针重置为系统内存分配器引用
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ */
+void ReleaseSystemResourcePointer(void* *SystemResourcePointer)
 {
   if ((long long *)SystemResourcePointer[0x13] != (long long *)0x0) {
     (**(code **)(*(long long *)SystemResourcePointer[0x13] + 0x38))();
