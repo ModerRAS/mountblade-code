@@ -30176,19 +30176,30 @@ void ResourceTableValidationHandler(uint8_t objectContextParam, int64_t validati
 
 
 
-void Unwind_180902650(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 资源表清理处理器
+ * 
+ * 该函数负责清理资源表中的所有资源句柄
+ * 遍历资源表并调用资源清理函数，确保资源被正确释放
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象状态信息
+ * @param validationContextParam 验证上下文参数，包含资源表信息
+ * @note 此函数在异常处理过程中被调用
+ * @warning 如果资源表异常，将触发系统紧急退出
+ */
+void ResourceTableCleanupHandler(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   int64_t loopCounter;
-  int64_t *presourceTable;
+  int64_t *pResourceTable;
   int64_t resourceIndex;
   
-  presourceTable = (int64_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x50);
+  pResourceTable = (int64_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x50);
   loopCounter = *(int64_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x58);
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x48) {
+  for (resourceIndex = *pResourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x48) {
     CleanupResourceHandle(resourceIndex);
   }
-  if (*presourceTable == 0) {
+  if (*pResourceTable == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -30197,19 +30208,30 @@ void Unwind_180902650(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902660(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 资源循环清理处理器
+ * 
+ * 该函数负责通过循环方式清理资源表中的资源
+ * 使用资源表中的上下文指针来确定清理范围
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象状态信息
+ * @param validationContextParam 验证上下文参数，包含资源表信息
+ * @note 此函数在异常处理过程中被调用
+ * @warning 如果资源表异常，将触发系统紧急退出
+ */
+void ResourceLoopCleanupHandler(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   int64_t loopCounter;
-  int64_t *presourceTable;
+  int64_t *pResourceTable;
   int64_t resourceIndex;
   
-  presourceTable = *(int64_t **)(validationContextParam + 0x78);
-  localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x48) {
+  pResourceTable = *(int64_t **)(validationContextParam + 0x78);
+  localContextPointer = pResourceTable[1];
+  for (resourceIndex = *pResourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x48) {
     CleanupResourceHandle(resourceIndex);
   }
-  if (*presourceTable == 0) {
+  if (*pResourceTable == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
