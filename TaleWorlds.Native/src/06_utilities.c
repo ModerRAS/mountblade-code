@@ -49990,7 +49990,12 @@ void Unwind_1809077d0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809077e0(void)
+/**
+ * @brief 清理系统数据指针1809077e0
+ * 
+ * 该函数负责清理系统数据指针，释放相关资源
+ */
+void CleanupSystemDataPointer1809077e0(void)
 
 {
   SystemDataPointer007 = &SystemDataStructure;
@@ -50001,7 +50006,12 @@ void Unwind_1809077e0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809077f0(void)
+/**
+ * @brief 清理系统数据指针1809077f0
+ * 
+ * 该函数负责清理系统数据指针，释放相关资源
+ */
+void CleanupSystemDataPointer1809077f0(void)
 
 {
   SystemDataPointer008 = &SystemDataStructure;
@@ -50010,7 +50020,15 @@ void Unwind_1809077f0(void)
 
 
 
-void Unwind_180907800(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 验证资源版本180907800
+ * 
+ * 该函数负责验证资源的版本信息，确保资源兼容性
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void ValidateResourceVersion180907800(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   longlong loopCounter;
@@ -50031,7 +50049,17 @@ void Unwind_180907800(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180907810(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
+/**
+ * @brief 处理资源哈希验证180907810
+ * 
+ * 该函数负责处理资源的哈希验证，确保数据完整性
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 参数3
+ * @param param_4 参数4
+ */
+void ProcessResourceHashValidation180907810(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
 
 {
   uint8_t8 *presourceHash;
@@ -50054,7 +50082,17 @@ void Unwind_180907810(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180907820(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
+/**
+ * @brief 处理资源数据180907820
+ * 
+ * 该函数负责处理资源数据，执行必要的数据操作
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 参数3
+ * @param param_4 参数4
+ */
+void ProcessResourceData180907820(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
 
 {
   ProcessResourceData(*(longlong *)(validationContextParam + 0x20) + 0x48,
@@ -50065,7 +50103,17 @@ void Unwind_180907820(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180907830(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
+/**
+ * @brief 处理资源验证180907830
+ * 
+ * 该函数负责处理资源验证，确保资源数据的正确性
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 参数3
+ * @param param_4 参数4
+ */
+void ProcessResourceValidation180907830(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
 
 {
   ProcessResourceValidation(*(longlong *)(validationContextParam + 0x20) + 0x78,
@@ -50076,7 +50124,17 @@ void Unwind_180907830(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180907840(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
+/**
+ * @brief 执行资源命令180907840
+ * 
+ * 该函数负责执行资源命令，管理资源句柄的释放
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 参数3
+ * @param param_4 参数4
+ */
+void ExecuteResourceCommand180907840(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
 
 {
   uint8_t8 *presourceHash;
