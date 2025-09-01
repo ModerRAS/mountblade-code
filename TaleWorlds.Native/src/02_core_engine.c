@@ -1,7 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 核心引擎系统版本信息
-#define ENGINE_SYSTEM_VERSION 3.0
+#define ENGINE_SYSTEM_VERSION 3.2
 #define ENGINE_LAST_UPDATED "2025-09-01"
 
 // void engine_initialize_core_system(void);
