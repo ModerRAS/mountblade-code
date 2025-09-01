@@ -748,7 +748,10 @@ uint32_t SystemDeviceStatusFlag;           // 系统设备状态标志
 void* SystemDisplayContextA;               // 系统显示上下文A
 void* SystemDisplayContextB;               // 系统显示上下文B
 void* SystemAudioContextA;                 // 系统音频上下文A
+void* SystemAudioContextB;                 // 系统音频上下文B
 void* SystemInputContextA;                 // 系统输入上下文A
+void* SystemInputContextB;                 // 系统输入上下文B
+void* SystemNetworkContextA;                // 系统网络上下文A
 
 // 函数: 系统启动验证器 - 负责验证系统启动条件
 void* SystemStartupValidator;
@@ -17655,7 +17658,7 @@ void SetRenderSystemPointer(void)
   int systemStatus;
   
   systemStatus = GetSystemStatus(0);
-  _DAT_180c0d100 = 0x180be1c00;
+  SystemAudioContextA = 0x180be1c00;
   if (systemStatus != 0) {
     _DAT_180c0d100 = 0x180be1c08;
   }
