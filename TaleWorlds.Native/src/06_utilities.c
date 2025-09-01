@@ -3,85 +3,160 @@
 // 06_utilities.c - 473 个函数
 
 // 函数: void InitializeModuleDependencies(longlong moduleHandle, longlong moduleContext)
+/**
+ * @brief 初始化模块依赖关系
+ * 
+ * 该函数负责初始化模块间的依赖关系，建立模块间的连接
+ * 和通信机制，确保模块能够正确加载和运行
+ * 
+ * @param moduleHandle 模块句柄，用于标识特定的模块
+ * @param moduleContext 模块上下文，包含模块运行的环境信息
+ */
 void InitializeModuleDependencies(longlong moduleHandle, longlong moduleContext);
 undefined g_moduleDependencyTable;
-undefined DAT_180bf52a0;
-undefined DAT_180bf52c0;
-undefined DAT_180bf52c8;
-undefined DAT_180bf52d0;
-undefined DAT_180bf52d8;
-undefined1 DAT_180bf5240;
-undefined DAT_180bf52a8;
-undefined DAT_180bf52b0;
-undefined1 DAT_180bf52e0;
-undefined UNK_180a3c3e0;
-undefined8 UNK_180bf5278;
-undefined8 UNK_180bf5298;
-undefined DAT_180bf5320;
-undefined DAT_180bf5328;
-undefined DAT_180bf5330;
-undefined DAT_180bf5338;
-undefined UNK_18098bb30;
+undefined g_moduleDependencyCount;
+undefined g_moduleDependencyFlags;
+undefined g_moduleDependencyStatus;
+undefined g_moduleDependencyLock;
+undefined g_moduleDependencyMutex;
+undefined1 g_moduleDependencyInitialized;
+undefined g_moduleDependencyContext;
+undefined g_moduleDependencyConfig;
+undefined1 g_moduleDependencyEnabled;
+undefined ModuleDependencyData;
+undefined8 ModuleDependencyPointer1;
+undefined8 ModuleDependencyPointer2;
+undefined g_moduleDependencyVersion;
+undefined g_moduleDependencyBuild;
+undefined g_moduleDependencyChecksum;
+undefined g_moduleDependencySignature;
+undefined g_moduleDependencyHandle;
 
 // 函数: void InitializeGlobalModuleA(void)
+/**
+ * @brief 初始化全局模块A
+ * 
+ * 该函数负责初始化游戏引擎的全局模块A
+ * 设置模块A所需的数据结构和运行环境
+ */
 void InitializeGlobalModuleA(void);
-undefined DAT_180bf5770;
-undefined DAT_180bf5778;
-undefined DAT_180bf5780;
-undefined DAT_180bf5788;
+undefined GlobalModuleA_Instance;
+undefined GlobalModuleA_Config;
+undefined GlobalModuleA_Status;
+undefined GlobalModuleA_Handle;
 
 // 函数: void InitializeGlobalModuleB(void)
+/**
+ * @brief 初始化全局模块B
+ * 
+ * 该函数负责初始化游戏引擎的全局模块B
+ * 设置模块B所需的数据结构和运行环境
+ */
 void InitializeGlobalModuleB(void);
-undefined DAT_180bf5208;
-undefined DAT_180bf5210;
-undefined DAT_180bf5218;
-undefined DAT_180bf5220;
-undefined UNK_18098bc80;
+undefined g_globalModuleB_Instance;
+undefined g_globalModuleB_Config;
+undefined g_globalModuleB_Status;
+undefined g_globalModuleB_Handle;
+undefined g_globalModuleB_Context;
 
 // 函数: void InitializeGlobalModuleC(void)
+/**
+ * @brief 初始化全局模块C
+ * 
+ * 该函数负责初始化游戏引擎的全局模块C
+ * 设置模块C所需的数据结构和运行环境
+ */
 void InitializeGlobalModuleC(void);
-undefined DAT_180bf5bc0;
-undefined DAT_180bf5bc8;
-undefined DAT_180bf5bd0;
-undefined DAT_180bf5bd8;
-undefined UNK_1809fcc58;
+undefined g_globalModuleC_Instance;
+undefined g_globalModuleC_Config;
+undefined g_globalModuleC_Status;
+undefined g_globalModuleC_Handle;
+undefined g_globalModuleC_Context;
 
 // 函数: void InitializeGlobalModuleD(void)
+/**
+ * @brief 初始化全局模块D
+ * 
+ * 该函数负责初始化游戏引擎的全局模块D
+ * 设置模块D所需的数据结构和运行环境
+ */
 void InitializeGlobalModuleD(void);
-undefined DAT_180bf5c30;
-undefined DAT_180bf5c38;
-undefined DAT_180bf5c40;
-undefined DAT_180bf5c48;
+undefined g_globalModuleD_Instance;
+undefined g_globalModuleD_Config;
+undefined g_globalModuleD_Status;
+undefined g_globalModuleD_Handle;
 
 // 函数: void InitializeGlobalModuleE(void)
+/**
+ * @brief 初始化全局模块E
+ * 
+ * 该函数负责初始化游戏引擎的全局模块E
+ * 设置模块E所需的数据结构和运行环境
+ */
 void InitializeGlobalModuleE(void);
-undefined DAT_180bf6080;
-undefined DAT_180bf6088;
-undefined DAT_180bf6090;
-undefined DAT_180bf6098;
+undefined g_globalModuleE_Instance;
+undefined g_globalModuleE_Config;
+undefined g_globalModuleE_Status;
+undefined g_globalModuleE_Handle;
 
 // 函数: undefined GetSystemStatusFlag1;
+/**
+ * @brief 获取系统状态标志1
+ * 
+ * 该函数负责获取系统的第一个状态标志
+ * 用于判断系统是否处于特定的运行状态
+ */
 undefined GetSystemStatusFlag1;
-undefined1 systemStatusFlag1;
+undefined1 g_systemStatusFlag1;
 
 // 函数: undefined GetSystemStatusFlag2;
+/**
+ * @brief 获取系统状态标志2
+ * 
+ * 该函数负责获取系统的第二个状态标志
+ * 用于判断系统是否处于特定的运行状态
+ */
 undefined GetSystemStatusFlag2;
-undefined1 systemStatusFlag2;
+undefined1 g_systemStatusFlag2;
 
 // 函数: undefined GetSystemStatusFlag3;
+/**
+ * @brief 获取系统状态标志3
+ * 
+ * 该函数负责获取系统的第三个状态标志
+ * 用于判断系统是否处于特定的运行状态
+ */
 undefined GetSystemStatusFlag3;
-undefined1 systemStatusFlag3;
+undefined1 g_systemStatusFlag3;
 
 // 函数: undefined GetSystemStatusFlag4;
+/**
+ * @brief 获取系统状态标志4
+ * 
+ * 该函数负责获取系统的第四个状态标志
+ * 用于判断系统是否处于特定的运行状态
+ */
 undefined GetSystemStatusFlag4;
-undefined1 systemStatusFlag4;
+undefined1 g_systemStatusFlag4;
 
 // 函数: void DestroyThreadSyncObjects(void)
+/**
+ * @brief 销毁线程同步对象
+ * 
+ * 该函数负责销毁系统中所有的线程同步对象
+ * 释放相关资源，清理同步状态
+ */
 void DestroyThreadSyncObjects(void);
-undefined threadSyncObjectHandle;
-undefined unknownThreadData;
+undefined g_threadSyncObjectHandle;
+undefined g_threadSyncContext;
 
 // 函数: void CloseSystemHandle(void)
+/**
+ * @brief 关闭系统句柄
+ * 
+ * 该函数负责关闭系统的句柄资源
+ * 释放句柄占用的系统资源
+ */
 void CloseSystemHandle(void);
 
 // 函数: void CleanupThreadResources(void)
