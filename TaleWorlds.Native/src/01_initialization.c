@@ -17850,7 +17850,7 @@ void WotsMainSDLL(void* param_1)
  * 初始化主系统控制器
  * 初始化游戏主系统控制器，处理系统状态和事件管理
  * 
- * @param param_1 系统参数
+ * @param systemParameter 系统参数
  */
 void InitializeMainSystemController(long long systemParameter)
 
@@ -18529,14 +18529,14 @@ void WotsMain(void* param_1)
  * 
  * 该函数负责执行系统的回调函数，检查参数指针是否有效，然后调用相应的回调函数。
  * 
- * @param param_1 指向回调函数参数的指针
+ * @param callbackParameter 指向回调函数参数的指针
  * @note 这是系统回调机制的重要组成部分，确保回调函数的正确执行
  */
-void ExecuteSystemCallback(long long *param_1)
+void ExecuteSystemCallback(long long *callbackParameter)
 
 {
-  if ((long long *)*param_1 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_1 + 0x38))();
+  if ((long long *)*callbackParameter != (long long *)0x0) {
+    (**(code **)(*(long long *)*callbackParameter + 0x38))();
   }
   return;
 }
@@ -18551,34 +18551,34 @@ void ExecuteSystemCallback(long long *param_1)
  * 该函数负责处理系统字符串的复制操作，检查源字符串长度，执行字符串复制，
  * 并设置相应的长度标志。
  * 
- * @param param_1 目标缓冲区指针
- * @param param_2 源字符串指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param sourceString 源字符串指针
  * @note 这是系统字符串处理的重要组成部分，确保字符串复制的安全性
  */
-void ProcessSystemStringCopy(long long param_1,long long param_2)
+void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
 
 {
   long long stringLength;
   
-  if (param_2 == 0) {
-    *(uint32_t *)(param_1 + 0x10) = 0;
-    **(uint8_t **)(param_1 + 8) = 0;
+  if (sourceString == 0) {
+    *(uint32_t *)(targetBuffer + 0x10) = 0;
+    **(uint8_t **)(targetBuffer + 8) = 0;
     return;
   }
   stringLength = -1;
   do {
     stringLength = stringLength + 1;
-  } while (*(char *)(param_2 + stringLength) != '\0');
+  } while (*(char *)(sourceString + stringLength) != '\0');
   if ((int)stringLength < 0x1000) {
-    *(int *)(param_1 + 0x10) = (int)stringLength;
+    *(int *)(targetBuffer + 0x10) = (int)stringLength;
                     // WARNING: Could not recover jumptable at 0x000180045b59. Too many branches
                     // WARNING: Treating indirect jump as call
     strcpy_s(*(void* *)(param_1 + 8),0x1000);
     return;
   }
   ProcessSystemStringAllocation(&UNK_18098bc48,0x1000,param_2);
-  *(uint32_t *)(param_1 + 0x10) = 0;
-  **(uint8_t **)(param_1 + 8) = 0;
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
   return;
 }
 
@@ -18604,8 +18604,8 @@ void ProcessSystemMemoryCopy(long long param_1,void* param_2,int param_3)
                     // WARNING: Subroutine does not return
     memcpy(*(uint8_t **)(param_1 + 8),param_2,(long long)param_3);
   }
-  **(uint8_t **)(param_1 + 8) = 0;
-  *(uint32_t *)(param_1 + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
   return;
 }
 
@@ -19147,9 +19147,9 @@ void ProcessSystemStringCopyWithLimit(long long param_1,long long param_2)
 {
   long long lVar1;
   
-  if (param_2 == 0) {
-    *(uint32_t *)(param_1 + 0x10) = 0;
-    **(uint8_t **)(param_1 + 8) = 0;
+  if (sourceString == 0) {
+    *(uint32_t *)(targetBuffer + 0x10) = 0;
+    **(uint8_t **)(targetBuffer + 8) = 0;
     return;
   }
   lVar1 = -1;
@@ -19164,8 +19164,8 @@ void ProcessSystemStringCopyWithLimit(long long param_1,long long param_2)
     return;
   }
   FUN_180626f80(&UNK_18098bc48,0x20,param_2);
-  *(uint32_t *)(param_1 + 0x10) = 0;
-  **(uint8_t **)(param_1 + 8) = 0;
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
   return;
 }
 
@@ -19189,8 +19189,8 @@ void ExecuteSystemMemoryCopyWithLimit(long long targetBuffer,void* sourceData,in
                     // WARNING: Subroutine does not return
     memcpy(*(uint8_t **)(param_1 + 8),param_2,(long long)param_3);
   }
-  **(uint8_t **)(param_1 + 8) = 0;
-  *(uint32_t *)(param_1 + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
   return;
 }
 
@@ -19739,7 +19739,7 @@ LAB_180046c5e:
  * 初始化系统控制器
  * 设置系统控制器并分配必要的内存资源
  * 
- * @param param_1 系统参数指针
+ * @param systemParameter 系统参数指针
  * @param param_2 系统配置指针
  */
 void InitializeSystemController(long long *param_1,void* *param_2)
@@ -21724,9 +21724,9 @@ void ProcessSystemStringCopySmall(long long targetBuffer,long long sourceString)
 {
   long long lVar1;
   
-  if (param_2 == 0) {
-    *(uint32_t *)(param_1 + 0x10) = 0;
-    **(uint8_t **)(param_1 + 8) = 0;
+  if (sourceString == 0) {
+    *(uint32_t *)(targetBuffer + 0x10) = 0;
+    **(uint8_t **)(targetBuffer + 8) = 0;
     return;
   }
   lVar1 = -1;
@@ -21741,8 +21741,8 @@ void ProcessSystemStringCopySmall(long long targetBuffer,long long sourceString)
     return;
   }
   FUN_180626f80(&UNK_18098bc48,0x40,param_2);
-  *(uint32_t *)(param_1 + 0x10) = 0;
-  **(uint8_t **)(param_1 + 8) = 0;
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
   return;
 }
 
@@ -21769,8 +21769,8 @@ void ProcessSystemMemoryCopySmall(long long targetBuffer,void* sourceData,int co
                     // WARNING: Subroutine does not return
     memcpy(*(uint8_t **)(param_1 + 8),param_2,(long long)param_3);
   }
-  **(uint8_t **)(param_1 + 8) = 0;
-  *(uint32_t *)(param_1 + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
   return;
 }
 
@@ -22007,7 +22007,7 @@ void InitializeAndCleanupSystemMemoryAllocator(void* param_1,void* *param_2,void
  * 
  * 该函数是系统数据处理的包装函数，负责调用底层数据处理函数。
  * 
- * @param param_1 系统参数1
+ * @param systemParameter 系统参数1
  * @param param_2 系统参数2
  * @param param_3 系统参数3
  * @param param_4 系统参数4
@@ -22028,7 +22028,7 @@ void SystemDataProcessorA(long long param_1,void* param_2,void* param_3,void* pa
  * 
  * 该函数是系统数据处理的包装函数，负责调用底层数据处理函数。
  * 
- * @param param_1 系统参数1
+ * @param systemParameter 系统参数1
  * @param param_2 系统参数2
  * @param param_3 系统参数3
  * @param param_4 系统参数4
@@ -22049,7 +22049,7 @@ void SystemDataProcessorB(long long param_1,void* param_2,void* param_3,void* pa
  * 
  * 该函数是系统数据处理的包装函数，负责调用底层数据处理函数。
  * 
- * @param param_1 系统参数1
+ * @param systemParameter 系统参数1
  * @param param_2 系统参数2
  * @param param_3 系统参数3
  * @param param_4 系统参数4
@@ -24028,8 +24028,13 @@ void FUN_18004c2c4(long long param_1)
 
 
 
-// 函数: void FUN_18004c31f(void)
-void FUN_18004c31f(void)
+/**
+ * @brief 系统事件处理器
+ * 
+ * 处理系统级事件并执行相应的软件中断操作。
+ * 该函数负责事件处理流程的核心调度。
+ */
+void SystemEventHandler(void)
 
 {
   code *pcVar1;
@@ -24355,8 +24360,8 @@ LAB_18004c7ef:
 void FUN_18004ca00(long long *param_1)
 
 {
-  if ((long long *)*param_1 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_1 + 0x38))();
+  if ((long long *)*callbackParameter != (long long *)0x0) {
+    (**(code **)(*(long long *)*callbackParameter + 0x38))();
   }
   return;
 }
@@ -25122,7 +25127,7 @@ void FUN_18004eb00(void* param_1,void* param_2,void* param_3,void* param_4)
  * 负责在系统关闭时清理内存和资源
  * 
  */
-void FUN_18004ef60(void)
+void SystemCleanupHandler(void)
 
 {
   int iVar1;
@@ -25390,8 +25395,13 @@ void FUN_18004f900(long long param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004f920(void)
-void FUN_18004f920(void)
+/**
+ * @brief 系统数据初始化器
+ * 
+ * 负责初始化系统的基础数据结构和配置信息。
+ * 该函数在系统启动早期阶段被调用。
+ */
+void SystemDataInitializer(void)
 
 {
   void* *puVar1;
@@ -28807,8 +28817,8 @@ void FUN_180056f70(long long param_1,long long param_2)
     puVar2 = *(void* **)(param_2 + 8);
   }
   if (puVar2 == (void* *)0x0) {
-    *(uint32_t *)(param_1 + 0x10) = 0;
-    **(uint8_t **)(param_1 + 8) = 0;
+    *(uint32_t *)(targetBuffer + 0x10) = 0;
+    **(uint8_t **)(targetBuffer + 8) = 0;
     return;
   }
   lVar1 = -1;
@@ -28823,8 +28833,8 @@ void FUN_180056f70(long long param_1,long long param_2)
     return;
   }
   FUN_180626f80(&UNK_18098bc48,0x400);
-  *(uint32_t *)(param_1 + 0x10) = 0;
-  **(uint8_t **)(param_1 + 8) = 0;
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
   return;
 }
 
@@ -32397,9 +32407,9 @@ void FUN_180059940(long long param_1,long long param_2)
 {
   long long lVar1;
   
-  if (param_2 == 0) {
-    *(uint32_t *)(param_1 + 0x10) = 0;
-    **(uint8_t **)(param_1 + 8) = 0;
+  if (sourceString == 0) {
+    *(uint32_t *)(targetBuffer + 0x10) = 0;
+    **(uint8_t **)(targetBuffer + 8) = 0;
     return;
   }
   lVar1 = -1;
@@ -32414,8 +32424,8 @@ void FUN_180059940(long long param_1,long long param_2)
     return;
   }
   FUN_180626f80(&UNK_18098bc48,0x10,param_2);
-  *(uint32_t *)(param_1 + 0x10) = 0;
-  **(uint8_t **)(param_1 + 8) = 0;
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
   return;
 }
 
@@ -32430,8 +32440,8 @@ void FUN_1800599c0(long long param_1,void* param_2,int param_3)
                     // WARNING: Subroutine does not return
     memcpy(*(uint8_t **)(param_1 + 8),param_2,(long long)param_3);
   }
-  **(uint8_t **)(param_1 + 8) = 0;
-  *(uint32_t *)(param_1 + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
   return;
 }
 
@@ -34601,7 +34611,7 @@ long long FUN_18005d190(long long param_1,long long param_2)
   }
   *(void* *)(param_1 + 0x18) = 0;
   *(void* *)(param_1 + 8) = 0;
-  *(uint32_t *)(param_1 + 0x10) = 0;
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
   *(uint32_t *)(param_1 + 0x10) = *(uint32_t *)(param_2 + 0x10);
   *(void* *)(param_1 + 8) = *(void* *)(param_2 + 8);
   *(uint32_t *)(param_1 + 0x1c) = *(uint32_t *)(param_2 + 0x1c);
@@ -40978,7 +40988,7 @@ void FUN_180065f00(void* param_1,long long param_2,void* param_3,void* param_4)
   lStack_80 = 0;
   uStack_70 = 0;
   puStack_88 = &SystemMemoryAllocatorReference;
-  if (param_2 == 0) {
+  if (sourceString == 0) {
     lVar4 = FUN_18005e890(_DAT_180c82868);
     (**(code **)(*plStack_b0 + 8))(plStack_b0,param_1,*(uint32_t *)(lVar4 + 0x38));
   }
@@ -42912,8 +42922,8 @@ void FUN_180069220(long long param_1,void* param_2,int param_3)
                     // WARNING: Subroutine does not return
     memcpy(*(uint8_t **)(param_1 + 8),param_2,(long long)param_3);
   }
-  **(uint8_t **)(param_1 + 8) = 0;
-  *(uint32_t *)(param_1 + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
   return;
 }
 
@@ -42995,9 +43005,9 @@ void FUN_1800693f0(long long param_1,long long param_2)
 {
   long long lVar1;
   
-  if (param_2 == 0) {
-    *(uint32_t *)(param_1 + 0x10) = 0;
-    **(uint8_t **)(param_1 + 8) = 0;
+  if (sourceString == 0) {
+    *(uint32_t *)(targetBuffer + 0x10) = 0;
+    **(uint8_t **)(targetBuffer + 8) = 0;
     return;
   }
   lVar1 = -1;
@@ -43012,8 +43022,8 @@ void FUN_1800693f0(long long param_1,long long param_2)
     return;
   }
   FUN_180626f80(&UNK_18098bc48,0x100,param_2);
-  *(uint32_t *)(param_1 + 0x10) = 0;
-  **(uint8_t **)(param_1 + 8) = 0;
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
   return;
 }
 
@@ -59953,8 +59963,8 @@ void FUN_18007bb70(long long *param_1)
   if ((long long *)param_1[1] != (long long *)0x0) {
     (**(code **)(*(long long *)param_1[1] + 0x38))();
   }
-  if ((long long *)*param_1 != (long long *)0x0) {
-    (**(code **)(*(long long *)*param_1 + 0x38))();
+  if ((long long *)*callbackParameter != (long long *)0x0) {
+    (**(code **)(*(long long *)*callbackParameter + 0x38))();
   }
   return;
 }
@@ -60029,7 +60039,7 @@ void FUN_18007bbb0(long long param_1,long long param_2,long long param_3)
     *(void* *)(param_1 + 0x2b8) = *(void* *)(param_3 + 0x74);
     *(void* *)(param_1 + 0x2c0) = uVar5;
   }
-  if (param_2 == 0) {
+  if (sourceString == 0) {
     *(uint32_t *)(param_1 + 0x100) = *(uint32_t *)(param_3 + 0x30);
   }
   else {

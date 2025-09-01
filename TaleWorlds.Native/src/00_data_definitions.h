@@ -157,77 +157,76 @@ char SystemConfigBufferNonary[0x40];
 char SystemConfigBufferDenary[0x40];
 
 // 系统地址常量定义
-#define ConditionMutexAddressA 0x180c911e8
-#define ConditionMutexAddressB 0x180c91288
-#define SystemMutexAddressA 0x180c91970
+#define ConditionMutexAddressPrimary 0x180c911e8
+#define ConditionMutexAddressSecondary 0x180c91288
+#define SystemMutexAddressPrimary 0x180c91970
 #define EventMutexAddress 0x180c91f70
 #define RequestMutexAddress 0x180c91ff0
 #define SystemMutexFlags 0xfffffffffffffffe
 
 // 未知数据模板常量定义
-#define UnknownConfigTemplateA UNK_180a0cb70
-#define UnknownConfigTemplateB UNK_180a0cbe0
-#define UnknownConfigTemplateC UNK_180a0cbf0
-#define UnknownConfigTemplateD UNK_180a0cba8
-#define UnknownConfigTemplateE UNK_180a05740
-#define UnknownConfigTemplateF UNK_180a0cbc8
-#define UnknownConfigTemplateG UNK_180a0cc30
-#define UnknownConfigTemplateH UNK_180a0cc48
-#define UnknownConfigTemplateI UNK_180a0cc08
-#define UnknownConfigTemplateJ UNK_180a0cc10
-#define UnknownConfigTemplateK UNK_180a0cca0
-#define UnknownConfigTemplateL UNK_180a0ccb8
-#define UnknownConfigTemplateM UNK_180a0cc68
-#define UnknownConfigTemplateN UNK_180a0cc88
-#define UnknownConfigTemplateO UNK_180a0cd08
-#define UnknownConfigTemplateP UNK_180a0cd28
-#define UnknownConfigTemplateQ UNK_180a0ccd0
-#define UnknownConfigTemplateR UNK_180a0ccf0
-#define UnknownConfigTemplateS UNK_180a0cd70
-#define UnknownConfigTemplateT UNK_180a0cd88
-#define UnknownConfigTemplateU UNK_180a0cd40
-#define UnknownConfigTemplateV UNK_180a0cd58
-#define UnknownConfigTemplateW UNK_180a0cdc8
-#define UnknownConfigTemplateX UNK_180a0cde0
-#define UnknownConfigTemplateY UNK_180a0cd98
-#define UnknownConfigTemplateZ UNK_180a0cdb0
-#define UnknownConfigTemplateAA UNK_180a0ce40
+#define UnknownConfigTemplatePrimary UNK_180a0cb70
+#define UnknownConfigTemplateSecondary UNK_180a0cbe0
+#define UnknownConfigTemplateTertiary UNK_180a0cbf0
+#define UnknownConfigTemplateQuaternary UNK_180a0cba8
+#define UnknownConfigTemplateQuinary UNK_180a05740
+#define UnknownConfigTemplateSenary UNK_180a0cbc8
+#define UnknownConfigTemplateSeptenary UNK_180a0cc30
+#define UnknownConfigTemplateOctonary UNK_180a0cc48
+#define UnknownConfigTemplateNonary UNK_180a0cc08
+#define UnknownConfigTemplateDenary UNK_180a0cc10
+#define UnknownConfigTemplateUndenary UNK_180a0cca0
+#define UnknownConfigTemplateDuodenary UNK_180a0ccb8
+#define UnknownConfigTemplateTerdenary UNK_180a0cc68
+#define UnknownConfigTemplateQuaternarySecondary UNK_180a0cc88
+#define UnknownConfigTemplateQuinarySecondary UNK_180a0cd08
+#define UnknownConfigTemplateSenarySecondary UNK_180a0cd28
+#define UnknownConfigTemplateSeptenarySecondary UNK_180a0ccd0
+#define UnknownConfigTemplateOctonarySecondary UNK_180a0ccf0
+#define UnknownConfigTemplateNonarySecondary UNK_180a0cd70
+#define UnknownConfigTemplateDenarySecondary UNK_180a0cd88
+#define UnknownConfigTemplateUndenarySecondary UNK_180a0cd40
+#define UnknownConfigTemplateDuodenarySecondary UNK_180a0cd58
+#define UnknownConfigTemplateTerdenarySecondary UNK_180a0cdc8
+#define UnknownConfigTemplateQuaternaryTertiary UNK_180a0cde0
+#define UnknownConfigTemplateQuinaryTertiary UNK_180a0cd98
+#define UnknownConfigTemplateSenaryTertiary UNK_180a0cdb0
+#define UnknownConfigTemplateSeptenaryTertiary UNK_180a0ce40
 
 // 系统配置字符串模板 - 用于系统初始化和配置
-char SystemConfigDataTemplate5740[] = "SystemConfigTemplateE";
-char SystemConfigDataTemplateCBC8[] = "SystemConfigTemplateF";
-char SystemConfigDataTemplateCC30[] = "SystemConfigTemplateG";
-char SystemConfigDataTemplateCC48[] = "SystemConfigTemplateI";
-char SystemConfigDataTemplateCC08[] = "SystemConfigTemplateJ";
-char SystemConfigDataTemplateCC10[] = "SystemConfigTemplateK";
-char SystemConfigDataTemplateCCA0[] = "SystemConfigTemplateL";
-char SystemConfigDataTemplateCCB8[] = "SystemConfigTemplateM";
-char SystemConfigDataTemplateCC68[] = "SystemConfigTemplateN";
-char SystemConfigDataTemplateCC88[] = "SystemConfigTemplateO";
-char SystemConfigDataTemplateCD08[] = "SystemConfigTemplateP";
-char SystemConfigDataTemplateCD28[] = "SystemConfigTemplateQ";
-char SystemConfigDataTemplateCCD0[] = "SystemConfigTemplateR";
-char SystemConfigDataTemplateCCF0[] = "SystemConfigTemplateS";
-char SystemConfigDataTemplateCD70[] = "SystemConfigTemplateT";
-char SystemConfigDataTemplateCD88[] = "SystemConfigTemplateU";
-char SystemConfigDataTemplateCD40[] = "SystemConfigTemplateV";
-char SystemConfigDataTemplateCD58[] = "SystemConfigTemplateW";
-char SystemConfigDataTemplateCDC8[] = "SystemConfigTemplateX";
-char SystemConfigDataTemplateCDE0[] = "SystemConfigTemplateY";
-char SystemConfigDataTemplateCD98[] = "SystemConfigTemplateZ";
-char SystemConfigDataTemplateCDB0[] = "SystemConfigTemplateAA";
-char SystemConfigDataTemplateCE40[] = "SystemConfigTemplateBB";
-char SystemConfigDataTemplateCB48[] = "SystemConfigTemplateCC";
-char SystemConfigDataTemplateCB80[] = "SystemConfigTemplateDD";
-char SystemConfigDataTemplateCB90[] = "SystemConfigTemplateEE";
-char SystemConfigDataTemplateCB60[] = "SystemConfigTemplateFF";
-char SystemConfigDataTemplateCB70[] = "SystemConfigTemplateGG";
-char SystemConfigDataTemplateCBE0[] = "SystemConfigTemplateHH";
-char SystemConfigDataTemplateCBF0[] = "SystemConfigTemplateII";
-char SystemConfigDataTemplateCBA8[] = "SystemConfigTemplateJJ";
-char SystemConfigDataTemplate01300[] = "SystemConfigTemplateKK";
-char SystemConfigDataTemplate01330[] = "SystemConfigTemplateLL";
-char SystemConfigDataTemplate22B38[] = "SystemConfigTemplateMM";
+char SystemConfigDataTemplatePrimary[] = "SystemConfigTemplatePrimary";
+char SystemConfigDataTemplateSecondary[] = "SystemConfigTemplateSecondary";
+char SystemConfigDataTemplateTertiary[] = "SystemConfigTemplateTertiary";
+char SystemConfigDataTemplateQuaternary[] = "SystemConfigTemplateQuaternary";
+char SystemConfigDataTemplateQuinary[] = "SystemConfigTemplateQuinary";
+char SystemConfigDataTemplateSenary[] = "SystemConfigTemplateSenary";
+char SystemConfigDataTemplateSeptenary[] = "SystemConfigTemplateSeptenary";
+char SystemConfigDataTemplateOctonary[] = "SystemConfigTemplateOctonary";
+char SystemConfigDataTemplateNonary[] = "SystemConfigTemplateNonary";
+char SystemConfigDataTemplateDenary[] = "SystemConfigTemplateDenary";
+char SystemConfigDataTemplateUndenary[] = "SystemConfigTemplateUndenary";
+char SystemConfigDataTemplateDuodenary[] = "SystemConfigTemplateDuodenary";
+char SystemConfigDataTemplateTerdenary[] = "SystemConfigTemplateTerdenary";
+char SystemConfigDataTemplateQuaternarySecondary[] = "SystemConfigTemplateQuaternarySecondary";
+char SystemConfigDataTemplateQuinarySecondary[] = "SystemConfigTemplateQuinarySecondary";
+char SystemConfigDataTemplateSenarySecondary[] = "SystemConfigTemplateSenarySecondary";
+char SystemConfigDataTemplateSeptenarySecondary[] = "SystemConfigTemplateSeptenarySecondary";
+char SystemConfigDataTemplateOctonarySecondary[] = "SystemConfigTemplateOctonarySecondary";
+char SystemConfigDataTemplateNonarySecondary[] = "SystemConfigTemplateNonarySecondary";
+char SystemConfigDataTemplateDenarySecondary[] = "SystemConfigTemplateDenarySecondary";
+char SystemConfigDataTemplateUndenarySecondary[] = "SystemConfigTemplateUndenarySecondary";
+char SystemConfigDataTemplateDuodenarySecondary[] = "SystemConfigTemplateDuodenarySecondary";
+char SystemConfigDataTemplateTerdenarySecondary[] = "SystemConfigTemplateTerdenarySecondary";
+char SystemConfigDataTemplateQuaternaryTertiary[] = "SystemConfigTemplateQuaternaryTertiary";
+char SystemConfigDataTemplateQuinaryTertiary[] = "SystemConfigTemplateQuinaryTertiary";
+char SystemConfigDataTemplateSenaryTertiary[] = "SystemConfigTemplateSenaryTertiary";
+char SystemConfigDataTemplateSeptenaryTertiary[] = "SystemConfigTemplateSeptenaryTertiary";
+char SystemConfigDataTemplateOctonaryTertiary[] = "SystemConfigTemplateOctonaryTertiary";
+char SystemConfigDataTemplateNonaryTertiary[] = "SystemConfigTemplateNonaryTertiary";
+char SystemConfigDataTemplateDenaryTertiary[] = "SystemConfigTemplateDenaryTertiary";
+char SystemConfigDataTemplateUndenaryTertiary[] = "SystemConfigTemplateUndenaryTertiary";
+char SystemConfigDataTemplateDuodenaryTertiary[] = "SystemConfigTemplateDuodenaryTertiary";
+char SystemConfigDataTemplateTerdenaryTertiary[] = "SystemConfigTemplateTerdenaryTertiary";
 
 // 系统模块配置字符串模板 - 用于模块初始化和配置
 char SystemModuleConfigTemplate22C70[] = "SystemModuleConfigA";
