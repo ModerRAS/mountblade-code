@@ -16061,7 +16061,7 @@ LAB_18084e8ab:
 
 
 
-NetworkHandle FUN_18084e8f0(longlong connectionContext,NetworkHandle *packetData,NetworkHandle *dataSize,int *param_4)
+NetworkHandle ProcessNetworkDataStream(longlong connectionContext,NetworkHandle *packetData,NetworkHandle *dataSize,int *param_4)
 
 {
   NetworkHandle primaryNetworkFlag;
@@ -16121,7 +16121,7 @@ NetworkHandle FUN_18084e8f0(longlong connectionContext,NetworkHandle *packetData
 
 
 
-NetworkHandle FUN_18084e9e0(longlong connectionContext)
+NetworkHandle ValidateNetworkConnection(longlong connectionContext)
 
 {
   NetworkStatus primaryNetworkFlag;
@@ -16174,7 +16174,7 @@ NetworkHandle FUN_18084e9e0(longlong connectionContext)
 
 
 
-NetworkHandle FUN_18084ea8c(void)
+NetworkHandle GetNetworkConnectionDefaultStatus(void)
 
 {
   NetworkHandle primaryNetworkFlag;
@@ -16189,7 +16189,7 @@ NetworkHandle FUN_18084ea8c(void)
 
 
 
-NetworkHandle FUN_18084eab7(void)
+NetworkHandle GetNetworkConnectionReadyStatus(void)
 
 {
   return 0;
@@ -16197,7 +16197,7 @@ NetworkHandle FUN_18084eab7(void)
 
 
 
-NetworkHandle FUN_18084ead0(longlong connectionContext,char packetData)
+NetworkHandle SendNetworkPacket(longlong connectionContext,char packetData)
 
 {
   char cVar1;
@@ -16267,7 +16267,7 @@ joined_r0x00018084ebb8:
 
 
 
-NetworkHandle FUN_18084ec10(longlong connectionContext)
+NetworkHandle ProcessNetworkConnectionEvent(longlong connectionContext)
 
 {
   longlong lVar1;
@@ -16346,7 +16346,7 @@ LAB_180853ee2:
 
 
 
-NetworkHandle FUN_18084ec60(longlong connectionContext)
+NetworkHandle HandleNetworkConnectionError(longlong connectionContext)
 
 {
   NetworkHandle *networkPointer1;
@@ -16384,7 +16384,7 @@ NetworkHandle FUN_18084ec60(longlong connectionContext)
 
 
 
-NetworkHandle FUN_18084ed10(longlong connectionContext)
+NetworkHandle ManageNetworkConnectionState(longlong connectionContext)
 
 {
   NetworkHandle *networkPointer1;
@@ -16551,7 +16551,7 @@ void InitializeNetworkEventSystem(void)
 
 
 
-NetworkHandle FUN_18084efe0(longlong connectionContext,NetworkHandle packetData)
+NetworkHandle TransferNetworkData(longlong connectionContext,NetworkHandle packetData)
 
 {
   NetworkHandle *networkPointer1;
@@ -16575,7 +16575,7 @@ NetworkHandle FUN_18084efe0(longlong connectionContext,NetworkHandle packetData)
 
 
 
-NetworkHandle FUN_18084f001(void)
+NetworkHandle GetNetworkTransferCompleteStatus(void)
 
 {
   NetworkHandle *networkPointer1;
@@ -16876,7 +16876,7 @@ void ProcessNetworkSystemInitializer(void)
 
 
 
-NetworkStatus FUN_18084f2ae(void)
+NetworkStatus GetNetworkSystemStatus(void)
 
 {
   longlong unaff_RBP;
@@ -16894,7 +16894,7 @@ NetworkStatus FUN_18084f2ae(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18084f2d0(longlong *connectionContext)
+ulonglong ProcessNetworkSystemOperation(longlong *connectionContext)
 
 {
   uint *networkPointer1;
@@ -17010,7 +17010,7 @@ LAB_18084f513:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18084f2da(longlong *connectionContext)
+ulonglong HandleNetworkSystemRequest(longlong *connectionContext)
 
 {
   uint *networkPointer1;
@@ -17141,7 +17141,7 @@ void ProcessNetworkConnectionInitializer(void)
 
 
 
-NetworkStatus FUN_18084f53e(void)
+NetworkStatus GetNetworkProtocolStatus(void)
 
 {
   longlong unaff_RBP;
@@ -17159,7 +17159,7 @@ NetworkStatus FUN_18084f53e(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18084f560(longlong *connectionContext)
+ulonglong ProcessNetworkProtocolOperation(longlong *connectionContext)
 
 {
   uint *networkPointer1;
@@ -17275,7 +17275,7 @@ LAB_18084f7a3:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18084f56a(longlong *connectionContext)
+ulonglong HandleNetworkProtocolRequest(longlong *connectionContext)
 
 {
   uint *networkPointer1;
@@ -17406,7 +17406,7 @@ void ProcessNetworkConfigurationInitializer(void)
 
 
 
-NetworkStatus FUN_18084f7ce(void)
+NetworkStatus GetNetworkSecurityStatus(void)
 
 {
   longlong unaff_RBP;
@@ -17424,7 +17424,7 @@ NetworkStatus FUN_18084f7ce(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18084f7f0(longlong *connectionContext)
+int ValidateNetworkSecurityContext(longlong *connectionContext)
 
 {
   uint primaryNetworkFlag;
@@ -17658,7 +17658,7 @@ LAB_18084f987:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18084f800(longlong *connectionContext)
+int ProcessNetworkSecurityOperation(longlong *connectionContext)
 
 {
   uint primaryNetworkFlag;

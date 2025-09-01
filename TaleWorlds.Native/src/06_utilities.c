@@ -760,7 +760,7 @@ void* SystemLinkedListTable;
 void* SystemHashTable;
 void* SystemDataBufferPool;
 void* SystemDataBufferCache;
-undefined SystemDataBuffer069;
+undefined SystemDataBufferQueue69;
 undefined SystemDataBuffer070;
 undefined SystemDataBuffer071;
 undefined SystemDataBuffer072;
