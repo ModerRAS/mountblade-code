@@ -1548,8 +1548,7 @@ uint8_t MemoryProtectionStatus;
 uint8_t MemoryProtectionData;
 uint8_t MemoryProtectionBuffer;
 
- void GetMemoryProtection(void);
-/**
+ /**
  * @brief 获取内存保护信息
  * 
  * 该函数负责获取内存保护属性
