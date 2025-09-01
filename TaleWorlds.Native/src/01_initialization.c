@@ -26864,31 +26864,31 @@ void SystemResourceManager(long long SystemResourcePointer)
 void SystemMemoryConfigurator(void)
 
 {
-  long long localMemoryPointer;
-  long long localSystemHandle;
-  long long unaff_RBP;
-  long long unaff_RSI;
-  long long *unaff_RDI;
-  long long unaff_R14;
+  long long MemoryBufferPointer;
+  long long SystemHandle;
+  long long StackBasePointer;
+  long long MemorySizePointer;
+  long long *ResourceArrayPointer;
+  long long AllocationSize;
   
-  if (unaff_R14 == 0) {
-    localSystemHandle = 0;
+  if (AllocationSize == 0) {
+    SystemHandle = 0;
   }
   else {
-    localSystemHandle = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unaff_R14 * 4,(char)unaff_RDI[3]);
+    SystemHandle = CreateSystemThreadObject(SystemMemoryAllocationTemplate,AllocationSize * 4,(char)ResourceArrayPointer[3]);
   }
-  if (unaff_RSI != unaff_RBP) {
+  if (MemorySizePointer != StackBasePointer) {
                     // WARNING: Subroutine does not return
-    memmove(localSystemHandle);
+    memmove(SystemHandle);
   }
-  if (*unaff_RDI != 0) {
+  if (*ResourceArrayPointer != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  localMemoryPointer = localSystemHandle + unaff_R14 * 4;
-  *unaff_RDI = localSystemHandle;
-  unaff_RDI[1] = localMemoryPointer;
-  unaff_RDI[2] = localMemoryPointer;
+  MemoryBufferPointer = SystemHandle + AllocationSize * 4;
+  *ResourceArrayPointer = SystemHandle;
+  ResourceArrayPointer[1] = MemoryBufferPointer;
+  ResourceArrayPointer[2] = MemoryBufferPointer;
   return;
 }
 
