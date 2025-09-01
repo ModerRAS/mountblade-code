@@ -24313,6 +24313,14 @@ undefined8 ResourceValidationHandler(longlong param_1,undefined8 *param_2)
 
 
 
+/**
+ * @brief 资源数据处理器
+ * 
+ * 该函数用于处理资源数据，包括资源读取、哈希计算和验证操作。
+ * 它是一个无参数的函数，使用全局寄存器变量来访问资源数据。
+ * 
+ * @return undefined8 返回处理结果状态码，0表示成功，非0表示错误
+ */
 undefined8 ResourceDataProcessor(void)
 
 {
@@ -24357,7 +24365,15 @@ undefined8 ResourceDataProcessor(void)
 
 
 
-undefined8 FUN_18089dfe4(void)
+/**
+ * @brief 资源数据管理器
+ * 
+ * 该函数用于管理资源数据的生命周期，包括资源的读取、验证和清理操作。
+ * 它是一个无参数的函数，使用全局寄存器变量来访问和管理资源数据。
+ * 
+ * @return undefined8 返回管理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ResourceDataManager(void)
 
 {
   undefined8 resourceHash;
@@ -24402,7 +24418,15 @@ undefined8 FUN_18089dfe4(void)
 
 
 
-undefined8 FUN_18089e043(void)
+/**
+ * @brief 资源处理器
+ * 
+ * 该函数用于处理资源数据的通用操作，包括资源加载、验证和状态管理。
+ * 它是一个无参数的函数，使用全局寄存器变量来访问资源数据。
+ * 
+ * @return undefined8 返回处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ResourceHandler(void)
 
 {
   undefined8 resourceHash;
