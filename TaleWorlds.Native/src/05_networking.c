@@ -684,13 +684,13 @@ void ProcessNetworkPacket(undefined4 packetId,int packetIndex,longlong packetDat
   stackGuard = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
   if (packetData == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(stackGuard ^ (ulonglong)securityBuffer);
+    CleanupNetworkSecurityBuffer(stackGuard ^ (ulonglong)securityBuffer);
   }
   packetTable = 0;
   connectionHandle = 0;
   networkContext = 0;
   processingStatus = func_0x00018088c590(0,&networkContext);
-  if ((((processingStatus == 0) && (processingStatus = FUN_18088c740(&connectionHandle,networkContext), processingStatus == 0)) &&
+  if ((((processingStatus == 0) && (processingStatus = ValidateNetworkConnection(&connectionHandle,networkContext), processingStatus == 0)) &&
       (processingStatus = func_0x00018088c530(packetId,&packetInfo), processingStatus == 0)) &&
      ((packetTable = *(longlong *)(packetInfo + 8), -1 < packetIndex &&
       (packetIndex < *(int *)(packetTable + 0x88))))) {

@@ -4378,8 +4378,14 @@ undefined4 FUN_180890d83(void)
 
 
 
-// 函数: void FUN_180890dac(void)
-void FUN_180890dac(void)
+// 函数: void ExecuteSystemTermination(void)
+/**
+ * @brief 执行系统终止
+ * 
+ * 该函数负责执行系统的终止操作，清理系统资源
+ * 确保系统能够安全地关闭
+ */
+void ExecuteSystemTermination(void)
 
 {
                     // WARNING: Subroutine does not return
