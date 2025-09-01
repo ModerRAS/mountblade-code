@@ -17215,6 +17215,20 @@ void system_manage_memory_arena_3(void)
 
 
 
+/**
+ * @brief 内存管理器初始化函数
+ * 
+ * 该函数负责初始化系统的内存管理器，包括：
+ * - 内存池分配器初始化
+ * - 内存块管理系统设置
+ * - 内存垃圾回收器配置
+ * 
+ * @param system_context_ptr 系统上下文指针，用于存储内存管理器的状态信息
+ * @return uint8_t* 返回初始化后的内存管理器上下文指针
+ * 
+ * @note 这是简化实现，主要处理内存管理器的基本初始化工作
+ * @warning 调用此函数前，系统上下文必须已经正确初始化
+ */
 uint8_t * system_initialize_memory_manager(uint8_t *system_context_ptr)
 
 {
@@ -24612,6 +24626,20 @@ system_label:
 
 
 
+/**
+ * @brief 图形管理器初始化函数
+ * 
+ * 该函数负责初始化系统的图形管理器，包括：
+ * - 图形设备初始化
+ * - 渲染管线设置
+ * - 纹理管理系统配置
+ * - 着色器编译器初始化
+ * 
+ * @param system_context_ptr 系统上下文指针，用于存储图形管理器的状态信息
+ * 
+ * @note 这是简化实现，主要处理图形管理器的基本初始化工作
+ * @warning 调用此函数前，系统上下文必须已经正确初始化
+ */
 void system_initialize_graphics_manager(int64_t system_context_ptr)
 
 {
