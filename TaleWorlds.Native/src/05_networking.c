@@ -11117,7 +11117,22 @@ LAB_18084bb9a:
 
 
 // 函数: void FUN_18084bbd0(longlong connectionContext,longlong packetData)
-void FUN_18084bbd0(longlong connectionContext,longlong packetData)
+/**
+ * @brief 处理网络连接数据包验证和状态设置
+ * 
+ * 该函数负责处理网络连接中的数据包验证和状态设置，包括：
+ * - 浮点数值检查和比较
+ * - 数据包遍历和验证
+ * - 数据包字段提取
+ * - 连接状态设置
+ * - 错误处理和状态管理
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkPacketValidationAndStatusSetting(longlong connectionContext,longlong packetData)
 
 {
   int networkStatus1;
