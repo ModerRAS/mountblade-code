@@ -11,11 +11,140 @@
 
 // 全局系统数据指针
 void* GlobalSystemData;
-// 未知全局数据指针
-void* GlobalUnknownDataPointer;
+// 系统字符串缓冲区 - 用于存储系统字符串数据
+void* SystemStringBufferPrimary;
+void* SystemStringBufferSecondary;
+void* SystemStringBufferTertiary;
+void* SystemStringBufferQuaternary;
+void* SystemStringBufferQuinary;
+void* SystemStringBufferSenary;
+void* SystemStringBufferSeptenary;
+void* SystemStringBufferOctonary;
+void* SystemStringBufferNonary;
+void* SystemStringBufferDenary;
+void* SystemStringBufferUndenary;
+void* SystemStringBufferDuodenary;
+void* SystemStringBufferTredecenary;
+void* SystemStringBufferQuattuordecenary;
+void* SystemStringBufferQuindecenary;
+void* SystemStringBufferSexdecenary;
+void* SystemStringBufferSeptendecenary;
+void* SystemStringBufferOctodecenary;
+void* SystemStringBufferNovemdecenary;
+void* SystemStringBufferVigesimal;
+void* SystemStringBufferUnvigesimal;
+void* SystemStringBufferDuovigesimal;
+void* SystemStringBufferTrevigesimal;
+void* SystemStringBufferQuattuorvigesimal;
+void* SystemStringBufferQuinvigesimal;
+void* SystemStringBufferSexvigesimal;
+void* SystemStringBufferSeptenvigesimal;
+void* SystemStringBufferOctovigesimal;
+void* SystemStringBufferNovemvigesimal;
+void* SystemStringBufferTrigesimal;
 
 // 系统内存池 - 用于动态内存分配
 void* SystemMemoryPoolPointer;
+
+// 系统内存配置缓冲区 - 用于存储内存配置数据
+void* SystemMemoryConfigBufferPrimary;
+void* SystemMemoryConfigBufferSecondary;
+void* SystemMemoryConfigBufferTertiary;
+void* SystemMemoryConfigBufferQuaternary;
+void* SystemMemoryConfigBufferQuinary;
+void* SystemMemoryConfigBufferSenary;
+void* SystemMemoryConfigBufferSeptenary;
+void* SystemMemoryConfigBufferOctonary;
+void* SystemMemoryConfigBufferNonary;
+void* SystemMemoryConfigBufferDenary;
+void* SystemMemoryConfigBufferUndenary;
+void* SystemMemoryConfigBufferDuodenary;
+void* SystemMemoryConfigBufferTredecenary;
+void* SystemMemoryConfigBufferQuattuordecenary;
+void* SystemMemoryConfigBufferQuindecenary;
+void* SystemMemoryConfigBufferSexdecenary;
+void* SystemMemoryConfigBufferSeptendecenary;
+void* SystemMemoryConfigBufferOctodecenary;
+
+// 系统内存池缓冲区 - 用于存储内存池数据
+void* SystemMemoryPoolBufferPrimary;
+void* SystemMemoryPoolBufferSecondary;
+void* SystemMemoryPoolBufferTertiary;
+void* SystemMemoryPoolBufferQuaternary;
+
+// 系统字符串内存缓冲区 - 用于存储字符串内存数据
+void* SystemStringMemoryBufferPrimary;
+void* SystemStringMemoryBufferSecondary;
+void* SystemStringMemoryBufferTertiary;
+void* SystemStringMemoryBufferQuaternary;
+
+// 系统状态标志 - 用于存储系统运行状态
+char SystemStatusFlagPrimary;
+char SystemStatusFlagSecondary;
+
+// 系统字符串数据缓冲区 - 用于存储字符串处理数据
+void* SystemStringDataBuffer;
+void* SystemStringDataBufferSecondary;
+void* SystemStringDataBufferTertiary;
+
+// 系统字符串标志 - 用于存储字符串处理状态
+char SystemStringFlagPrimary;
+char SystemStringFlagSecondary;
+char SystemStringFlagTertiary;
+
+// 系统配置缓冲区 - 用于存储系统配置数据
+void* SystemConfigurationBufferPrimary;
+void* SystemConfigurationBufferSecondary;
+
+// 系统配置标志 - 用于存储系统配置状态
+char SystemConfigurationFlagPrimary;
+
+// 系统常量字符串 - 用于存储系统常量字符串数据
+char* SystemConstantStringPrimary;
+
+// 系统模块缓冲区 - 用于存储系统模块数据
+char* SystemModuleBBBuffer;
+char* SystemModuleCBuffer;
+
+// 字符串处理器标志 - 用于字符串处理操作
+uint32_t StringProcessorFlags;
+uint32_t SystemMutexFlags;
+
+// 系统内存配置模板 - 用于内存配置操作
+void* SystemMemoryConfigTemplate;
+
+// 系统内存池模板 - 用于内存池操作
+void* SystemMemoryPoolTemplate;
+
+// 系统字符串内存模板 - 用于字符串内存操作
+void* SystemStringMemoryTemplate;
+
+// 系统常量 - 用于系统常量定义
+void* SystemConstantEE;
+void* SystemConstantFF;
+
+// 未知数据指针 - 需要根据具体用途确定语义
+void* UnknownDataPointer180a22c70;
+void* UnknownDataPointer180a22c58;
+void* UnknownDataPointer180a22d28;
+void* UnknownDataPointer180a22d08;
+void* UnknownDataPointer180a22ce8;
+void* UnknownDataPointer180a22cc8;
+void* UnknownDataPointer180a22db0;
+void* UnknownDataPointer180a22d88;
+void* UnknownDataPointer180a22d68;
+void* UnknownDataPointer180a22e40;
+void* UnknownDataPointer180a22e20;
+void* UnknownDataPointer180a22df8;
+void* UnknownDataPointer180a22dd0;
+void* UnknownDataPointer180a22eb0;
+void* UnknownDataPointer180a22e90;
+void* UnknownDataPointer180a22e70;
+void* UnknownDataPointer180a22e58;
+void* UnknownDataPointer180a22f28;
+void* UnknownDataPointer180a22f10;
+void* UnknownDataPointer180a22ef8;
+void* UnknownDataPointer180a22ed8;
 
 // 字符串处理器数据基址 - 用于存储字符串处理器的数据结构
 void* StringProcessorDatabaseMain;
