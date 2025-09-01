@@ -7441,21 +7441,39 @@ LAB_180848016:
 
 
 // 函数: void FUN_180848090(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize,NetworkHandle *param_4)
-void FUN_180848090(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize,NetworkHandle *param_4)
+/**
+ * @brief 处理网络连接状态和数据包传输
+ * 
+ * 该函数负责处理网络连接状态和数据包传输，包括：
+ * - 连接上下文验证
+ * - 数据包参数验证
+ * - 网络状态检查
+ * - 连接句柄初始化
+ * - 数据传输处理
+ * - 错误处理和日志记录
+ * 
+ * @param connectionContext 网络连接上下文标识符
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @param param_4 输出参数，用于返回处理结果
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionStatusAndPacketTransfer(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize,NetworkHandle *param_4)
 
 {
-  NetworkStatus primaryNetworkFlag;
-  int networkStatus2;
-  int networkStatus3;
-  int networkStatus4;
-  NetworkByte auStack_1a8 [32];
-  NetworkByte *puStack_188;
-  NetworkStatus uStack_178;
-  NetworkHandle uStack_170;
-  longlong lStack_168;
-  NetworkHandle *puStack_160;
-  NetworkByte auStack_158 [256];
-  ulonglong uStack_58;
+  NetworkStatus networkPrimaryFlag;
+  int networkValidationStatus;
+  int networkHandleStatus;
+  int networkConnectionStatus;
+  NetworkByte networkSecurityBuffer [32];
+  NetworkByte *networkErrorBuffer;
+  NetworkStatus networkDataSize;
+  NetworkHandle networkConnectionHandle;
+  longlong networkConnectionId;
+  NetworkHandle *networkPacketPointer;
+  NetworkByte networkDataBuffer [256];
+  ulonglong securityGuardValue;
   
   uStack_58 = NetworkSecurityGuardValue ^ (ulonglong)auStack_1a8;
   uStack_178 = dataSize;
