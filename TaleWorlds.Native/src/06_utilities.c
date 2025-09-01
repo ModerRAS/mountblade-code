@@ -3418,31 +3418,31 @@ uint8_t VerifyObjectRegistration(int64_t objectContext)
               break;
             }
             ObjectSearchIndex = (uint64_t)((int)ObjectSearchIndex + 1);
-            currentArrayIndex = currentArrayIndex + 1;
+            CurrentArrayIndex = CurrentArrayIndex + 1;
             ObjectRegistrationArray = ObjectRegistrationArray + 1;
-          } while ((int64_t)currentArrayIndex < (int64_t)registrationArraySize);
+          } while ((int64_t)CurrentArrayIndex < (int64_t)RegistrationArraySize);
         }
-        registrationCounter = registrationCounter + 1;
-        if (*(int *)(registrationObjectData + REGISTRATION_CAPACITY_OFFSET) < registrationCounter) {
-          newSizeCalculation = (int)((float)*(int *)(registrationObjectData + REGISTRATION_CAPACITY_OFFSET) * REGISTRATION_ARRAY_GROWTH_FACTOR);
-          targetSize = registrationCounter;
-          if (registrationCounter <= newSizeCalculation) {
-            targetSize = newSizeCalculation;
+        RegistrationCounter = RegistrationCounter + 1;
+        if (*(int *)(RegistrationObjectData + REGISTRATION_CAPACITY_OFFSET) < RegistrationCounter) {
+          NewSizeCalculation = (int)((float)*(int *)(RegistrationObjectData + REGISTRATION_CAPACITY_OFFSET) * REGISTRATION_ARRAY_GROWTH_FACTOR);
+          TargetSize = RegistrationCounter;
+          if (RegistrationCounter <= NewSizeCalculation) {
+            TargetSize = NewSizeCalculation;
           }
-          if (targetSize < REGISTRATION_ARRAY_INITIAL_SIZE) {
-            newSizeCalculation = REGISTRATION_ARRAY_INITIAL_SIZE;
+          if (TargetSize < REGISTRATION_ARRAY_INITIAL_SIZE) {
+            NewSizeCalculation = REGISTRATION_ARRAY_INITIAL_SIZE;
           }
-          else if (newSizeCalculation < registrationCounter) {
-            newSizeCalculation = registrationCounter;
+          else if (NewSizeCalculation < RegistrationCounter) {
+            NewSizeCalculation = RegistrationCounter;
           }
-          registrationCounter = ResizeRegistrationArray(registrationArrayPointer,newSizeCalculation);
-          if (registrationCounter != 0) {
+          RegistrationCounter = ResizeRegistrationArray(RegistrationArrayPointer,NewSizeCalculation);
+          if (RegistrationCounter != 0) {
             return 0;
           }
         }
-        *(int64_t *)(*registrationArrayPointer + (int64_t)*(int *)(registrationObjectData + REGISTRATION_SIZE_OFFSET) * 8) = registrationObjectHandle;
-        *(int *)(registrationObjectData + REGISTRATION_SIZE_OFFSET) = *(int *)(registrationObjectData + REGISTRATION_SIZE_OFFSET) + 1;
-        *(int *)(registrationObjectData + REGISTRATION_COUNT_OFFSET) = *(int *)(registrationObjectData + REGISTRATION_COUNT_OFFSET) + 1;
+        *(int64_t *)(*RegistrationArrayPointer + (int64_t)*(int *)(RegistrationObjectData + REGISTRATION_SIZE_OFFSET) * 8) = registrationObjectHandle;
+        *(int *)(RegistrationObjectData + REGISTRATION_SIZE_OFFSET) = *(int *)(RegistrationObjectData + REGISTRATION_SIZE_OFFSET) + 1;
+        *(int *)(RegistrationObjectData + REGISTRATION_COUNT_OFFSET) = *(int *)(RegistrationObjectData + REGISTRATION_COUNT_OFFSET) + 1;
       }
       else {
         registrationStatus = ValidateObjectRegistrationData(registrationObjectData + REGISTRATION_VALIDATION_DATA_OFFSET,registrationObjectHandle);
