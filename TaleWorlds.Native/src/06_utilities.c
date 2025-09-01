@@ -45231,7 +45231,18 @@ void ExecuteDataValidationCallback(uint8_t ObjectContextParameter,int64_t Valida
 
 
 
-void Unwind_1809056a0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数负责设置系统数据结构的指针
+ * 将指定位置的数据结构指针设置为系统默认数据结构
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含需要设置的数据结构指针位置
+ * @note 此函数在系统初始化时调用
+ * @warning 调用此函数会覆盖原有的数据结构指针
+ */
+void SetSystemDataStructurePointer(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 8) = &SystemDataStructure;
