@@ -7849,7 +7849,7 @@ uint8_t ValidateObjectContextAndProcessParameterizedComplexFloatOperation(int64_
     lVar5 = *(int64_t *)(validationContextParam + 0x98);
     if ((*(int *)(lVar5 + 0x180) != 0) || (*(int *)(lVar5 + 0x184) != 0)) {
       securityContextBuffer = 0;
-      InitializeSecurityContext(&securityContextBuffer,objectContextParam,param_3,param_4,unaff_RDI);
+      InitializeSecurityContext(&securityContextBuffer,objectContextParam,parameter3,parameter4,unaff_RDI);
       if (securityContextBuffer == *(int64_t *)((int64_t)*(int *)(lVar5 + 0x17c) * 8 + 0x180c4f450)) {
         unsignedResult4 = ProcessResourceValidation(lVar5,objectContextParam);
         if ((int)byteValue4 == 0) {
@@ -8191,7 +8191,7 @@ uint8_t ValidateAndProcessObjectContextWithParameters(int64_t objectContext,int6
   contextPointer = *(int64_t *)(validationContextParam + 0x98);
   if ((*(int *)(contextPointer + 0x180) != 0) || (*(int *)(contextPointer + 0x184) != 0)) {
     stackBuffer = 0;
-    InitializeSecurityContext(&stackBuffer,objectContextParam,param_3,param_4,unaff_RDI);
+    InitializeSecurityContext(&stackBuffer,objectContextParam,securityFlags,operationMode,unaff_RDI);
     if (stackBuffer == *(int64_t *)((int64_t)*(int *)(contextPointer + 0x17c) * 8 + 0x180c4f450)) {
       validationResult = ProcessResourceValidation(contextPointer,objectContextParam);
       if ((int)validationResult == 0) {
@@ -10189,21 +10189,21 @@ uint32_t ProcessSystemConfigurationAndValidation(int64_t systemContext,uint8_t c
   uint8_t uStackX_20;
   uint8_t dataChecksumBuffer [2];
   
-  if (param_4 == 0) {
+  if (resultBuffer == 0) {
     return 0x1f;
   }
   tableEntry = 0;
-  validationResult = *(uint *)(objectContextParam + 0x20);
+  validationResult = *(uint *)(systemContext + 0x20);
   dataChecksumBuffer[0] = 0;
-  iVar3 = InitializeProcessingQueue(dataChecksumBuffer,objectContextParam);
+  iVar3 = InitializeProcessingQueue(dataChecksumBuffer,systemContext);
   if (iVar3 == 0) {
     uStackX_20 = 0;
-    unsignedValue6 = param_3 | 0x10000000;
+    unsignedValue6 = validationFlags | 0x10000000;
     if ((validationResult & 1) == 0) {
-      unsignedValue6 = param_3;
+      unsignedValue6 = validationFlags;
     }
-    iVar3 = ProcessConfigurationData(objectContextParam,validationContextParam,unsignedValue6,&uStackX_20);
-    if ((iVar3 == 0) && (plocalContextPointer = (int64_t *)(param_4 + 8), plocalContextPointer != (int64_t *)0x0)) {
+    iVar3 = ProcessConfigurationData(systemContext,configurationData,unsignedValue6,&uStackX_20);
+    if ((iVar3 == 0) && (plocalContextPointer = (int64_t *)(resultBuffer + 8), plocalContextPointer != (int64_t *)0x0)) {
       plVar4 = (int64_t *)*plocalContextPointer;
       if (plVar4 != plocalContextPointer) {
         do {
@@ -10212,12 +10212,12 @@ uint32_t ProcessSystemConfigurationAndValidation(int64_t systemContext,uint8_t c
         } while (plVar4 != plocalContextPointer);
         if (tableEntry != 0) goto LAB_180894ebf;
       }
-      *(uint8_t *)(param_4 + 0x10) = *(uint8_t *)(objectContextParam + 0x58);
-      *plocalContextPointer = objectContextParam + 0x50;
-      *(int64_t **)(objectContextParam + 0x58) = plocalContextPointer;
-      **(int64_t **)(param_4 + 0x10) = (int64_t)plocalContextPointer;
-      func_0x0001808ded80(param_4,uStackX_20);
-      ProcessDataBlockOperation(objectContextParam,uStackX_20);
+      *(uint8_t *)(resultBuffer + 0x10) = *(uint8_t *)(systemContext + 0x58);
+      *plocalContextPointer = systemContext + 0x50;
+      *(int64_t **)(systemContext + 0x58) = plocalContextPointer;
+      **(int64_t **)(resultBuffer + 0x10) = (int64_t)plocalContextPointer;
+      func_0x0001808ded80(resultBuffer,uStackX_20);
+      ProcessDataBlockOperation(systemContext,uStackX_20);
     }
   }
 LAB_180894ebf:
@@ -29362,8 +29362,14 @@ void ResetAuxiliaryResourceHandlerPointer(uint8_t objectContextParam, int64_t va
 
 
 
-void Unwind_180902410(uint8_t objectContextParam,int64_t validationContextParam)
-
+/**
+ * @brief 在异常处理时调用验证上下文中的清理函数
+ * 该函数检查验证上下文中是否存在清理函数指针，如果存在则调用该函数
+ * 用于在异常处理过程中执行必要的资源清理操作
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数，包含清理函数指针
+ */
+void InvokeCleanupFunctionInValidationContext(uint8_t objectContextParam, int64_t validationContextParam)
 {
   if (*(int64_t **)(validationContextParam + 200) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 200) + 0x38))();
@@ -29373,8 +29379,14 @@ void Unwind_180902410(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902420(uint8_t objectContextParam,int64_t validationContextParam)
-
+/**
+ * @brief 在异常处理时重置验证上下文0x150位置的系统数据结构
+ * 该函数将验证上下文中0x150偏移位置的指针重置为系统数据结构
+ * 用于在异常处理过程中恢复系统数据结构的引用
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void ResetSystemDataStructureAtContextOffset150(uint8_t objectContextParam, int64_t validationContextParam)
 {
   *(uint8_t **)(validationContextParam + 0x150) = &SystemDataStructure;
   return;
@@ -29382,8 +29394,14 @@ void Unwind_180902420(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902430(uint8_t objectContextParam,int64_t validationContextParam)
-
+/**
+ * @brief 在异常处理时恢复验证上下文0xa8位置的系统资源处理器
+ * 该函数将验证上下文中0xa8位置的系统资源处理器恢复为默认模板
+ * 检查并重置相关状态标志，如果发现异常状态则执行紧急退出
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void RestoreSystemResourceHandlerAtContextOffsetA8(uint8_t objectContextParam, int64_t validationContextParam)
 {
   *(uint8_t *)(validationContextParam + 0xa8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(validationContextParam + 0xb0) != 0) {
@@ -29398,8 +29416,14 @@ void Unwind_180902430(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902440(uint8_t objectContextParam,int64_t validationContextParam)
-
+/**
+ * @brief 在异常处理时恢复验证上下文0xd0位置的系统资源处理器
+ * 该函数将验证上下文中0xd0位置的系统资源处理器恢复为默认模板
+ * 检查并重置相关状态标志，如果发现异常状态则执行紧急退出
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void RestoreSystemResourceHandlerAtContextOffsetD0(uint8_t objectContextParam, int64_t validationContextParam)
 {
   *(uint8_t *)(validationContextParam + 0xd0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(validationContextParam + 0xd8) != 0) {
@@ -29414,8 +29438,14 @@ void Unwind_180902440(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902450(uint8_t objectContextParam,int64_t validationContextParam)
-
+/**
+ * @brief 在异常处理时恢复验证上下文0x78位置的系统资源处理器
+ * 该函数将验证上下文中0x78位置的系统资源处理器恢复为默认模板
+ * 检查并重置相关状态标志，如果发现异常状态则执行紧急退出
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void RestoreSystemResourceHandlerAtContextOffset78(uint8_t objectContextParam, int64_t validationContextParam)
 {
   *(uint8_t *)(validationContextParam + 0x78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(validationContextParam + 0x80) != 0) {
@@ -29430,8 +29460,14 @@ void Unwind_180902450(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902460(uint8_t objectContextParam,int64_t validationContextParam)
-
+/**
+ * @brief 在异常处理时重置验证上下文0x148位置的间接系统数据结构引用
+ * 该函数将验证上下文中0x148位置的间接指针重置为系统数据结构
+ * 用于在异常处理过程中恢复间接引用的系统数据结构
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void ResetIndirectSystemDataStructureAtContextOffset148(uint8_t objectContextParam, int64_t validationContextParam)
 {
   **(uint8_t **)(validationContextParam + 0x148) = &SystemDataStructure;
   return;
@@ -29439,8 +29475,14 @@ void Unwind_180902460(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902470(uint8_t objectContextParam,int64_t validationContextParam)
-
+/**
+ * @brief 在异常处理时重置验证上下文0xd0位置的系统数据结构
+ * 该函数将验证上下文中0xd0位置的指针重置为系统数据结构
+ * 用于在异常处理过程中恢复系统数据结构的引用
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void ResetSystemDataStructureAtContextOffsetD0(uint8_t objectContextParam, int64_t validationContextParam)
 {
   *(uint8_t **)(validationContextParam + 0xd0) = &SystemDataStructure;
   return;
@@ -29448,8 +29490,14 @@ void Unwind_180902470(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902480(uint8_t objectContextParam,int64_t validationContextParam)
-
+/**
+ * @brief 在异常处理时释放验证上下文0x30位置的系统资源
+ * 该函数检查资源数据的状态标志，如果需要则释放验证上下文中0x30位置的系统资源
+ * 用于在异常处理过程中清理系统资源
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void ReleaseSystemResourceAtContextOffset30(uint8_t objectContextParam, int64_t validationContextParam)
 {
   if ((*(uint *)(resourceData + 0x50) & 1) != 0) {
     *(uint *)(resourceData + 0x50) = *(uint *)(resourceData + 0x50) & 0xfffffffe;
@@ -29460,8 +29508,14 @@ void Unwind_180902480(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809024b0(uint8_t objectContextParam,int64_t validationContextParam)
-
+/**
+ * @brief 在异常处理时重置验证上下文0xa8位置的系统数据结构
+ * 该函数将验证上下文中0xa8位置的指针重置为系统数据结构
+ * 用于在异常处理过程中恢复系统数据结构的引用
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void ResetSystemDataStructureAtContextOffsetA8(uint8_t objectContextParam, int64_t validationContextParam)
 {
   *(uint8_t **)(validationContextParam + 0xa8) = &SystemDataStructure;
   return;
@@ -29469,8 +29523,14 @@ void Unwind_1809024b0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809024c0(uint8_t objectContextParam,int64_t validationContextParam)
-
+/**
+ * @brief 在异常处理时重置验证上下文200位置的间接系统数据结构引用
+ * 该函数将验证上下文中200位置的间接指针重置为系统数据结构
+ * 用于在异常处理过程中恢复间接引用的系统数据结构
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void ResetIndirectSystemDataStructureAtContextOffset200(uint8_t objectContextParam, int64_t validationContextParam)
 {
   **(uint8_t **)(validationContextParam + 200) = &SystemDataStructure;
   return;
@@ -29478,8 +29538,16 @@ void Unwind_1809024c0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809024d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
-
+/**
+ * @brief 在异常处理时执行资源哈希表的清理回调函数
+ * 该函数遍历验证上下文中的资源哈希表，为每个条目调用清理回调函数
+ * 用于在异常处理过程中执行资源清理操作
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数，包含资源哈希表指针
+ * @param param_3 清理参数3
+ * @param param_4 清理参数4
+ */
+void ExecuteResourceHashCleanupCallbacks(uint8_t objectContextParam, int64_t validationContextParam, uint8_t param_3, uint8_t param_4)
 {
   uint8_t *presourceHash;
   uint8_t *pvalidationResult;
@@ -29499,8 +29567,14 @@ void Unwind_1809024d0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809024e0(uint8_t objectContextParam,int64_t validationContextParam)
-
+/**
+ * @brief 在异常处理时恢复验证上下文0x100位置的系统资源处理器
+ * 该函数将验证上下文中0x100位置的系统资源处理器恢复为默认模板
+ * 检查并重置相关状态标志，如果发现异常状态则执行紧急退出
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void RestoreSystemResourceHandlerAtContextOffset100(uint8_t objectContextParam, int64_t validationContextParam)
 {
   *(uint8_t *)(validationContextParam + 0x100) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(validationContextParam + 0x108) != 0) {
@@ -29515,8 +29589,14 @@ void Unwind_1809024e0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809024f0(uint8_t objectContextParam,int64_t validationContextParam)
-
+/**
+ * @brief 在异常处理时恢复验证上下文0x88位置的系统资源处理器
+ * 该函数将验证上下文中0x88位置的系统资源处理器恢复为默认模板
+ * 检查并重置相关状态标志，如果发现异常状态则执行紧急退出
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void RestoreSystemResourceHandlerAtContextOffset88(uint8_t objectContextParam, int64_t validationContextParam)
 {
   *(uint8_t *)(validationContextParam + 0x88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(validationContextParam + 0x90) != 0) {
@@ -30586,7 +30666,7 @@ void Unwind_180902900(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902920(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void UnwindResourceLockHandler(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   ProcessSpecialData(*(int64_t *)(validationContextParam + 0x70) + 0x28,
@@ -34820,7 +34900,19 @@ void Unwind_1809038e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809038f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 系统资源处理器的解卷处理函数
+ * 
+ * 该函数负责处理系统资源处理器的解卷操作
+ * 管理资源分配和释放的生命周期
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 附加参数3
+ * @param param_4 附加参数4
+ * @return 无返回值
+ */
+void UnwindSystemResourceHandler(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   int64_t loopCounter;
@@ -34850,7 +34942,19 @@ void Unwind_1809038f0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903910(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 系统数据结构的解卷处理函数
+ * 
+ * 该函数负责处理系统数据结构的解卷操作
+ * 管理数据结构的初始化和清理过程
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 附加参数3
+ * @param param_4 附加参数4
+ * @return 无返回值
+ */
+void UnwindSystemDataStructureHandler(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   int64_t loopCounter;
