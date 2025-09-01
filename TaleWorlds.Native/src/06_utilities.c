@@ -1283,7 +1283,7 @@ void* MemoryValidationHandle;
  * 管理内存池和分配策略
  */
 void ProcessMemoryAllocation;
-void* g_memoryAllocationContext;
+void* MemoryAllocationContext;
 void* g_memoryAllocationTable;
 void* g_memoryAllocationStatus;
 void* g_memoryAllocationConfig;
