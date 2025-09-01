@@ -1,7 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 工具系统版本信息
-#define UTILITY_SYSTEM_VERSION 3.4
+#define UTILITY_SYSTEM_VERSION 3.5
 #define UTILITY_LAST_UPDATED "2025-09-01"
 
 // 工具系统常量定义
@@ -96,66 +96,68 @@
 #define UTILITY_STRUCTURE_OFFSET 0x10                              // 结构体偏移量
 #define UTILITY_LIST_OFFSET 0x14                                    // 列表偏移量
 
-// 全局变量声明 - 语义化美化（版本 3.4）
+// 全局变量声明 - 语义化美化（版本 3.5）
 // 系统核心变量
 static longlong utility_system_resource_primary_handle = 0;               // 系统资源主句柄，用于标识和管理系统资源
-static uint32 utility_stack_processing_workspace[16] = {0};          // 栈处理工作区，用于临时数据存储和处理
-static uint32 utility_stack_operation_array[16] = {0};                // 栈操作数组，用于多级栈操作
-static uint32 utility_stack_data_workspace[16] = {0};                        // 栈数据工作区，存储栈操作的基本数据
-static float utility_system_primary_float_value = 0.0f;                   // 系统主要浮点数值，用于浮点运算和计算
+static uint32 utility_stack_processing_workspace[16] = {0};               // 栈处理工作区，用于临时数据存储和处理
+static uint32 utility_stack_operation_array[16] = {0};                   // 栈操作数组，用于多级栈操作
+static uint32 utility_stack_data_workspace[16] = {0};                    // 栈数据工作区，存储栈操作的基本数据
+static float utility_system_primary_float_value = 0.0f;                  // 系统主要浮点数值，用于浮点运算和计算
 
 // 系统状态变量
-static uint32 utility_system_runtime_state = 0;                     // 系统运行时状态，记录当前系统运行状态
+static uint32 utility_system_runtime_state = 0;                          // 系统运行时状态，记录当前系统运行状态
 static int utility_system_operation_counter = 0;                          // 系统操作计数器，用于循环和计数操作
-static uint32 utility_system_state_machine_status = 0;                        // 系统状态机状态，用于状态机管理
+static uint32 utility_system_state_machine_status = 0;                    // 系统状态机状态，用于状态机管理
 
 // 指针和引用变量
-static uint32 *utility_pointer_workspace = NULL;                      // 指针工作区，用于动态指针管理
-static longlong utility_system_intermediate_cache = 0;           // 系统中间缓存，用于临时数据保存和处理
-static uint32 *utility_system_data_pointer = NULL;                // 系统数据指针，用于系统数据访问和操作
-static int *utility_operation_result_storage = NULL;               // 操作结果存储，指向操作结果的存储位置
-static uint32 *utility_cpu_register_rax = NULL;            // CPU寄存器RAX，用于底层寄存器操作
-static longlong utility_system_extended_data_pointer = 0;         // 系统扩展数据指针，用于扩展数据访问
-static uint32 *utility_system_memory_pointer = NULL;        // 系统内存指针，用于内存管理
-static longlong utility_system_resource_cache = 0;                // 系统资源缓存，用于缓存系统资源数据
+static uint32 *utility_pointer_workspace = NULL;                          // 指针工作区，用于动态指针管理
+static longlong utility_system_intermediate_cache = 0;                   // 系统中间缓存，用于临时数据保存和处理
+static uint32 *utility_system_data_pointer = NULL;                      // 系统数据指针，用于系统数据访问和操作
+static int *utility_operation_result_storage = NULL;                     // 操作结果存储，指向操作结果的存储位置
+static uint32 *utility_cpu_register_rax = NULL;                          // CPU寄存器RAX，用于底层寄存器操作
+static longlong utility_system_extended_data_pointer = 0;                 // 系统扩展数据指针，用于扩展数据访问
+static uint32 *utility_system_memory_pointer = NULL;                      // 系统内存指针，用于内存管理
+static longlong utility_system_resource_cache = 0;                        // 系统资源缓存，用于缓存系统资源数据
 
 // 缓冲区变量
-static uint32 utility_system_main_buffer[1024] = {0};                     // 系统主缓冲区，用于数据存储和处理
-static uint32 utility_data_processing_workspace[1024] = {0};     // 数据处理工作区，用于数据处理操作
-static uint32 utility_system_resource_max_size = 1024;                  // 系统资源最大大小，控制资源分配的最大大小
+static uint32 utility_system_main_buffer[1024] = {0};                      // 系统主缓冲区，用于数据存储和处理
+static uint32 utility_data_processing_workspace[1024] = {0};              // 数据处理工作区，用于数据处理操作
+static uint32 utility_system_resource_max_size = 1024;                    // 系统资源最大大小，控制资源分配的最大大小
 
 // 资源管理变量
-static longlong utility_system_resource_context = 0;               // 系统资源上下文，用于资源上下文管理
-static uint32 utility_system_resource_buffer = 0;                    // 系统资源缓冲区，用于资源数据的临时存储
-static uint32 utility_system_boundary_value = 2;                     // 系统边界值，用于边界检查和验证
-static uint32 utility_system_resource_config_offset = 0;             // 系统资源配置偏移量，用于资源配置数据访问
-static uint32 utility_system_resource_table_offset = 0;              // 系统资源表偏移量，用于资源表数据访问
+static longlong utility_system_resource_context = 0;                      // 系统资源上下文，用于资源上下文管理
+static uint32 utility_system_resource_buffer = 0;                         // 系统资源缓冲区，用于资源数据的临时存储
+static uint32 utility_system_boundary_value = 2;                          // 系统边界值，用于边界检查和验证
+static uint32 utility_system_resource_config_offset = 0;                  // 系统资源配置偏移量，用于资源配置数据访问
+static uint32 utility_system_resource_table_offset = 0;                   // 系统资源表偏移量，用于资源表数据访问
 
 // 文件系统变量
-static longlong utility_system_stack_frame = 0;                   // 系统栈帧，用于栈帧管理和调试
-static longlong utility_system_file_data_offset = 0;               // 系统文件数据偏移量，用于文件数据访问
-static uint32 utility_system_file_handle_offset = 0;                 // 系统文件句柄偏移量，用于文件句柄管理
-static uint64 utility_system_file_position_offset = 0;               // 系统文件位置偏移量，用于文件位置管理
+static longlong utility_system_stack_frame = 0;                           // 系统栈帧，用于栈帧管理和调试
+static longlong utility_system_file_data_offset = 0;                      // 系统文件数据偏移量，用于文件数据访问
+static uint32 utility_system_file_handle_offset = 0;                      // 系统文件句柄偏移量，用于文件句柄管理
+static uint64 utility_system_file_position_offset = 0;                    // 系统文件位置偏移量，用于文件位置管理
 
 // 数据处理变量
-static float utility_system_buffer_position_float = 0.0f;           // 系统缓冲区位置浮点值，用于浮点精度缓冲区位置管理
-static longlong utility_system_primary_data = 0;                  // 系统主要数据，用于主要数据存储
+static float utility_system_buffer_position_float = 0.0f;                 // 系统缓冲区位置浮点值，用于浮点精度缓冲区位置管理
+static longlong utility_system_primary_data = 0;                          // 系统主要数据，用于主要数据存储
 static uint32 utility_system_calculation_result = 0;                      // 系统计算结果，用于存储本地计算结果
-static longlong utility_system_buffer_position = 0;                  // 系统缓冲区位置，用于缓冲区位置管理
+static longlong utility_system_buffer_position = 0;                       // 系统缓冲区位置，用于缓冲区位置管理
 static uint64 utility_system_operation_result = 0;                        // 系统操作结果，用于存储操作结果
 static uint32 utility_system_thread_data_offset = 0;                       // 系统线程数据偏移量，用于线程相关操作
-static uint64 utility_system_file_size = 0;                          // 系统文件大小，用于文件大小管理
+static uint64 utility_system_file_size = 0;                               // 系统文件大小，用于文件大小管理
 static ulonglong utility_system_extended_data_pointer = 0;                // 系统扩展数据指针，用于扩展数据访问
 
 /**
  * @brief 系统初始化空函数
- * @return 无返回值
+ * @return void 无返回值
  *
  * 系统初始化过程中的占位符函数，在系统启动时被调用。
  * 提供基本的函数框架，确保系统初始化流程的完整性。
  * 
  * 简化实现：仅返回，作为初始化流程的占位符。
  * 原本实现：可能包含复杂的初始化逻辑。
+ * 
+ * 该函数在系统启动时被调用，确保初始化流程的完整性。
  */
 void utility_initialize_empty_function(void)
 {
@@ -164,7 +166,7 @@ void utility_initialize_empty_function(void)
 
 /**
  * @brief 系统内存清理处理函数
- * @return 无返回值
+ * @return void 无返回值
  * 
  * 清理系统内存资源，释放不再使用的内存空间。
  * 在系统关闭或资源不再需要时被调用。
@@ -172,6 +174,8 @@ void utility_initialize_empty_function(void)
  * 
  * 简化实现：仅返回，作为内存清理流程的占位符。
  * 原本实现：可能包含复杂的内存清理和资源释放逻辑。
+ * 
+ * 该函数负责清理系统内存资源，防止内存泄漏。
  */
 void utility_memory_cleanup_handler(void)
 {

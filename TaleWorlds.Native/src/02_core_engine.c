@@ -1,5 +1,31 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 资源管理器魔法数字常量
+#define RESOURCE_MANAGER_MAGIC_ID_1 0x43330a43fcdb3653
+#define RESOURCE_MANAGER_MAGIC_ID_2 0xdcfdc333a769ec93
+#define RESOURCE_MANAGER_MAGIC_ID_3 0x431d7c8d7c475be2
+#define RESOURCE_MANAGER_MAGIC_ID_4 0xb97f048d2153e1b0
+#define RESOURCE_MANAGER_MAGIC_ID_5 0x4b2d79e470ee4e2c
+#define RESOURCE_MANAGER_MAGIC_ID_6 0x9c552acd3ed5548d
+#define RESOURCE_MANAGER_MAGIC_ID_7 0x49086ba08ab981a7
+#define RESOURCE_MANAGER_MAGIC_ID_8 0xa9191d34ad910696
+#define RESOURCE_MANAGER_MAGIC_ID_9 0x402feffe4481676e
+#define RESOURCE_MANAGER_MAGIC_ID_10 0xd4c2151109de93a0
+#define RESOURCE_MANAGER_MAGIC_ID_11 0x40db4257e97d3df8
+#define RESOURCE_MANAGER_MAGIC_ID_12 0x81d539e33614429f
+
+// 内存分配偏移量常量
+#define MEMORY_OFFSET_0x19 0x19
+#define MEMORY_OFFSET_0x20 0x20
+#define MEMORY_COMPARE_SIZE_0x10 0x10
+
+// 资源类型常量
+#define RESOURCE_TYPE_TEXTURE 0
+#define RESOURCE_TYPE_MESH 1
+#define RESOURCE_TYPE_SHADER 2
+#define RESOURCE_TYPE_AUDIO 4
+
+
 // 核心引擎系统版本信息
 #define ENGINE_SYSTEM_VERSION 3.4
 #define ENGINE_LAST_UPDATED "2025-09-01"
@@ -1479,12 +1505,12 @@ void engine_register_texture_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_resource_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_system_magic_header,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_system_magic_header,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1494,11 +1520,11 @@ void engine_register_texture_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_system_magic_header,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_system_magic_header,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = TEXTURE_RESOURCE_MAGIC_ID;
@@ -1529,12 +1555,12 @@ void engine_process_data_structure_alt(void)
   
   engine_structure_ptr = (longlong *)engine_get_structure_base();
   engine_data_pointer = (uint8 *)*engine_structure_ptr;
-  resource_status_flag = *(char *)((longlong)engine_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)engine_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_function_ptr = engine_data_processor_alt_function;
   engine_current_ptr = engine_data_pointer;
   engine_node_ptr = (uint8 *)engine_data_pointer[1];
   while (resource_status_flag == '\0') {
-    engine_comparison_result = memcmp(engine_node_ptr + 4,&engine_data_structure_alt_reference,0x10);
+    engine_comparison_result = memcmp(engine_node_ptr + 4,&engine_data_structure_alt_reference,MEMORY_COMPARE_SIZE_0x10);
     if (engine_comparison_result < 0) {
       engine_next_ptr = (uint8 *)engine_node_ptr[2];
       engine_node_ptr = engine_current_ptr;
@@ -1544,15 +1570,15 @@ void engine_process_data_structure_alt(void)
     }
     engine_current_ptr = engine_node_ptr;
     engine_node_ptr = engine_next_ptr;
-    resource_status_flag = *(char *)((longlong)engine_next_ptr + 0x19);
+    resource_status_flag = *(char *)((longlong)engine_next_ptr + MEMORY_OFFSET_0x19);
   }
-  if ((engine_current_ptr == engine_data_pointer) || (engine_comparison_result = memcmp(&engine_data_structure_alt_reference,engine_current_ptr + 4,0x10), engine_comparison_result < 0)) {
+  if ((engine_current_ptr == engine_data_pointer) || (engine_comparison_result = memcmp(&engine_data_structure_alt_reference,engine_current_ptr + 4,MEMORY_COMPARE_SIZE_0x10), engine_comparison_result < 0)) {
     engine_data_offset = engine_allocate_structure_space(engine_structure_ptr);
-    engine_insert_structure_node(engine_structure_ptr,&engine_stack_temp_ptr,engine_current_ptr,engine_data_offset + 0x20,engine_data_offset);
+    engine_insert_structure_node(engine_structure_ptr,&engine_stack_temp_ptr,engine_current_ptr,engine_data_offset + MEMORY_OFFSET_0x20,engine_data_offset);
     engine_current_ptr = engine_stack_temp_ptr;
   }
-  engine_current_ptr[6] = 0x43330a43fcdb3653;
-  engine_current_ptr[7] = 0xdcfdc333a769ec93;
+  engine_current_ptr[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  engine_current_ptr[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   engine_current_ptr[8] = &engine_global_data_structure_alt_ptr;
   engine_current_ptr[9] = 1;
   engine_current_ptr[10] = engine_function_ptr;
@@ -1579,12 +1605,12 @@ void engine_register_shader_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1594,15 +1620,15 @@ void engine_register_shader_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -1629,12 +1655,12 @@ void engine_register_mesh_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1644,15 +1670,15 @@ void engine_register_mesh_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -1679,12 +1705,12 @@ void engine_register_animation_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1694,15 +1720,15 @@ void engine_register_animation_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -1729,12 +1755,12 @@ void engine_register_audio_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1744,15 +1770,15 @@ void engine_register_audio_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -1779,12 +1805,12 @@ void engine_register_ui_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1794,11 +1820,11 @@ void engine_register_ui_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -1829,12 +1855,12 @@ void engine_register_script_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1844,11 +1870,11 @@ void engine_register_script_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -1913,12 +1939,12 @@ void engine_setup_texture_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = void engine_process_main_loop(void);
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_input_state,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_input_state,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1928,11 +1954,11 @@ void engine_setup_texture_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_input_state,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_input_state,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x406be72011d07d37;
@@ -1963,12 +1989,12 @@ void engine_setup_shader_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = void engine_handle_input_events(void);
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_mouse_position,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_mouse_position,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1978,11 +2004,11 @@ void engine_setup_shader_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_mouse_position,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_mouse_position,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x40afa5469b6ac06d;
@@ -2013,12 +2039,12 @@ void engine_setup_mesh_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = void engine_process_main_loop(void);
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_input_state,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_input_state,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2028,11 +2054,11 @@ void engine_setup_mesh_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_input_state,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_input_state,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x406be72011d07d37;
@@ -2063,12 +2089,12 @@ void engine_setup_animation_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = void engine_handle_input_events(void);
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_mouse_position,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_mouse_position,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2078,11 +2104,11 @@ void engine_setup_animation_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_mouse_position,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_mouse_position,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x40afa5469b6ac06d;
@@ -2113,12 +2139,12 @@ void engine_setup_audio_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2128,15 +2154,15 @@ void engine_setup_audio_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -2163,12 +2189,12 @@ void engine_setup_ui_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2178,15 +2204,15 @@ void engine_setup_ui_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -2213,12 +2239,12 @@ void engine_setup_script_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2228,15 +2254,15 @@ void engine_setup_script_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -2263,12 +2289,12 @@ void engine_configure_texture_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2278,15 +2304,15 @@ void engine_configure_texture_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -2313,12 +2339,12 @@ void engine_configure_shader_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2328,15 +2354,15 @@ void engine_configure_shader_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -2363,12 +2389,12 @@ void engine_process_buffer_allocation(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2378,11 +2404,11 @@ void engine_process_buffer_allocation(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -2413,12 +2439,12 @@ void engine_configure_animation_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2428,11 +2454,11 @@ void engine_configure_animation_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -2487,12 +2513,12 @@ void engine_setup_asset_loader(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2502,15 +2528,15 @@ void engine_setup_asset_loader(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -2537,12 +2563,12 @@ void engine_configure_asset_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2552,15 +2578,15 @@ void engine_configure_asset_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -2595,12 +2621,12 @@ void engine_register_audio_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2610,15 +2636,15 @@ void engine_register_audio_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -2645,12 +2671,12 @@ void engine_setup_asset_streaming(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2660,15 +2686,15 @@ void engine_setup_asset_streaming(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -2695,12 +2721,12 @@ void engine_initialize_shader_program(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2710,15 +2736,15 @@ void engine_initialize_shader_program(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -2745,12 +2771,12 @@ void engine_initialize_asset_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2760,11 +2786,11 @@ void engine_initialize_asset_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -2795,12 +2821,12 @@ void engine_setup_asset_database(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2810,11 +2836,11 @@ void engine_setup_asset_database(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -2997,12 +3023,12 @@ void engine_setup_font_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_initialize_network_context;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00bb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00bb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3012,15 +3038,15 @@ void engine_setup_font_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00bb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00bb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x40db4257e97d3df8;
-  current_data_pointer[7] = 0x81d539e33614429f;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_11;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_12;
   current_data_pointer[8] = &engine_base_data_offset_a8;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -3047,12 +3073,12 @@ void engine_setup_localization_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_setup_audio_driver;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_88,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_88,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3062,11 +3088,11 @@ void engine_setup_localization_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_88,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_88,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4e33c4803e67a08f;
@@ -3097,12 +3123,12 @@ void engine_process_depth_buffer(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3112,15 +3138,15 @@ void engine_process_depth_buffer(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -3147,12 +3173,12 @@ void engine_setup_stencil_buffer(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3162,15 +3188,15 @@ void engine_setup_stencil_buffer(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -3197,12 +3223,12 @@ void engine_setup_database_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3212,15 +3238,15 @@ void engine_setup_database_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -3247,12 +3273,12 @@ void engine_configure_font_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3262,15 +3288,15 @@ void engine_configure_font_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -3297,12 +3323,12 @@ void engine_configure_localization_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3312,15 +3338,15 @@ void engine_configure_localization_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -3347,12 +3373,12 @@ void engine_configure_config_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3362,11 +3388,11 @@ void engine_configure_config_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -3397,12 +3423,12 @@ void engine_configure_save_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3412,11 +3438,11 @@ void engine_configure_save_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -3447,12 +3473,12 @@ void engine_configure_database_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3462,15 +3488,15 @@ void engine_configure_database_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -3497,12 +3523,12 @@ void engine_create_font_cache(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3512,15 +3538,15 @@ void engine_create_font_cache(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -3547,12 +3573,12 @@ void engine_create_localization_cache(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3562,15 +3588,15 @@ void engine_create_localization_cache(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -3597,12 +3623,12 @@ void engine_create_config_cache(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3612,15 +3638,15 @@ void engine_create_config_cache(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -3647,12 +3673,12 @@ void engine_create_save_cache(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3662,15 +3688,15 @@ void engine_create_save_cache(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -3697,12 +3723,12 @@ void engine_create_database_cache(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3712,11 +3738,11 @@ void engine_create_database_cache(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -3747,12 +3773,12 @@ void engine_initialize_text_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3762,11 +3788,11 @@ void engine_initialize_text_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -3854,12 +3880,12 @@ void engine_configure_graphics_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_resource_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_system_magic_header,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_system_magic_header,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3869,11 +3895,11 @@ void engine_configure_graphics_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_system_magic_header,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_system_magic_header,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = TEXTURE_RESOURCE_MAGIC_ID;
@@ -3904,12 +3930,12 @@ void engine_create_text_buffer(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_configure_render_pipeline;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00e28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00e28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3919,11 +3945,11 @@ void engine_create_text_buffer(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00e28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00e28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x449bafe9b77ddd3c;
@@ -3954,12 +3980,12 @@ void engine_setup_text_layout(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = void engine_process_main_loop(void);
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_input_state,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_input_state,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3969,11 +3995,11 @@ void engine_setup_text_layout(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_input_state,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_input_state,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x406be72011d07d37;
@@ -4004,12 +4030,12 @@ void engine_configure_text_formatting(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = void engine_handle_input_events(void);
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_mouse_position,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_mouse_position,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4019,11 +4045,11 @@ void engine_configure_text_formatting(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_mouse_position,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_mouse_position,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x40afa5469b6ac06d;
@@ -4054,12 +4080,12 @@ void engine_create_text_atlas(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4069,15 +4095,15 @@ void engine_create_text_atlas(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -4104,12 +4130,12 @@ void engine_setup_text_streaming(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4119,15 +4145,15 @@ void engine_setup_text_streaming(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -4154,12 +4180,12 @@ void engine_configure_text_cache(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4169,15 +4195,15 @@ void engine_configure_text_cache(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -4204,12 +4230,12 @@ void engine_initialize_text_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4219,15 +4245,15 @@ void engine_initialize_text_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -4254,12 +4280,12 @@ void engine_setup_text_database(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4269,15 +4295,15 @@ void engine_setup_text_database(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -4304,12 +4330,12 @@ void engine_create_text_index(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4319,11 +4345,11 @@ void engine_create_text_index(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -4354,12 +4380,12 @@ void engine_configure_text_compression(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4369,11 +4395,11 @@ void engine_configure_text_compression(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -4404,12 +4430,12 @@ void engine_register_video_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_initialize_network_context;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00bb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00bb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4419,15 +4445,15 @@ void engine_register_video_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00bb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00bb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x40db4257e97d3df8;
-  current_data_pointer[7] = 0x81d539e33614429f;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_11;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_12;
   current_data_pointer[8] = &engine_base_data_offset_a8;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -4454,12 +4480,12 @@ void engine_register_stream_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_setup_audio_driver;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_88,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_88,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4469,11 +4495,11 @@ void engine_register_stream_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_88,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_88,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4e33c4803e67a08f;
@@ -4504,12 +4530,12 @@ void engine_register_effect_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4519,15 +4545,15 @@ void engine_register_effect_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -4554,12 +4580,12 @@ void engine_register_post_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4569,15 +4595,15 @@ void engine_register_post_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -4604,12 +4630,12 @@ void engine_register_cubemap_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4619,15 +4645,15 @@ void engine_register_cubemap_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -4654,12 +4680,12 @@ void engine_register_render_target_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4669,15 +4695,15 @@ void engine_register_render_target_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -4704,12 +4730,12 @@ void engine_register_buffer_resource(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4719,15 +4745,15 @@ void engine_register_buffer_resource(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -4754,12 +4780,12 @@ void engine_setup_input_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4769,11 +4795,11 @@ void engine_setup_input_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -4804,12 +4830,12 @@ void engine_configure_audio_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4819,11 +4845,11 @@ void engine_configure_audio_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -4854,12 +4880,12 @@ void engine_initialize_network_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_configure_render_pipeline;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00e28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00e28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4869,11 +4895,11 @@ void engine_initialize_network_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00e28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00e28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x449bafe9b77ddd3c;
@@ -4904,12 +4930,12 @@ void engine_setup_stream_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_resource_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_system_magic_header,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_system_magic_header,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4919,11 +4945,11 @@ void engine_setup_stream_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_system_magic_header,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_system_magic_header,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = TEXTURE_RESOURCE_MAGIC_ID;
@@ -4954,12 +4980,12 @@ void engine_setup_effect_manager(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_initialize_network_context;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00bb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00bb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4969,15 +4995,15 @@ void engine_setup_effect_manager(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00bb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00bb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x40db4257e97d3df8;
-  current_data_pointer[7] = 0x81d539e33614429f;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_11;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_12;
   current_data_pointer[8] = &engine_base_data_offset_a8;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -5004,12 +5030,12 @@ void engine_setup_physics_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_setup_audio_driver;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_88,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_88,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5019,11 +5045,11 @@ void engine_setup_physics_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_88,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_88,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4e33c4803e67a08f;
@@ -5054,12 +5080,12 @@ void engine_configure_ui_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_d0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_d0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5069,11 +5095,11 @@ void engine_configure_ui_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_d0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_d0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x42bea5b911d9c4bf;
@@ -5104,12 +5130,12 @@ void engine_initialize_script_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5119,15 +5145,15 @@ void engine_initialize_script_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -5154,12 +5180,12 @@ void engine_setup_file_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5169,15 +5195,15 @@ void engine_setup_file_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -5204,12 +5230,12 @@ void engine_configure_database_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5219,15 +5245,15 @@ void engine_configure_database_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -5254,12 +5280,12 @@ void engine_setup_security_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5269,15 +5295,15 @@ void engine_setup_security_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -5304,12 +5330,12 @@ void engine_initialize_logging_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5319,15 +5345,15 @@ void engine_initialize_logging_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -5354,12 +5380,12 @@ void engine_configure_performance_monitor(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5369,11 +5395,11 @@ void engine_configure_performance_monitor(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -5404,12 +5430,12 @@ void engine_setup_debug_system(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5419,11 +5445,11 @@ void engine_setup_debug_system(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -5534,12 +5560,12 @@ void engine_initialize_structure_data(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5549,15 +5575,15 @@ void engine_initialize_structure_data(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -5584,12 +5610,12 @@ void engine_process_structure_loop(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5599,15 +5625,15 @@ void engine_process_structure_loop(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -5634,12 +5660,12 @@ void engine_validate_structure_data(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5649,15 +5675,15 @@ void engine_validate_structure_data(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -5684,12 +5710,12 @@ void engine_cleanup_structure_resources(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5699,15 +5725,15 @@ void engine_cleanup_structure_resources(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -5734,12 +5760,12 @@ void engine_allocate_structure_memory(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5749,15 +5775,15 @@ void engine_allocate_structure_memory(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -5784,12 +5810,12 @@ void engine_configure_structure_parameters(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5799,11 +5825,11 @@ void engine_configure_structure_parameters(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -5834,12 +5860,12 @@ void engine_update_structure_state(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5849,11 +5875,11 @@ void engine_update_structure_state(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -5884,12 +5910,12 @@ void engine_process_structure_events(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_d0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_d0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5899,11 +5925,11 @@ void engine_process_structure_events(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_d0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_d0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x42bea5b911d9c4bf;
@@ -5958,12 +5984,12 @@ void engine_validate_structure_handles(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_initialize_system_context;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_40,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_40,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5973,11 +5999,11 @@ void engine_validate_structure_handles(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_40,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_40,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4fc124d23d41985f;
@@ -6008,12 +6034,12 @@ void engine_cleanup_structure_handles(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_68,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_68,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6023,11 +6049,11 @@ void engine_cleanup_structure_handles(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_68,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_68,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4770584fbb1df897;
@@ -6058,12 +6084,12 @@ void engine_initialize_structure_handles(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_b8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_b8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6073,11 +6099,11 @@ void engine_initialize_structure_handles(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_b8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_b8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4666df49b97e0f10;
@@ -6108,12 +6134,12 @@ void engine_process_structure_requests(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_40,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_40,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6123,11 +6149,11 @@ void engine_process_structure_requests(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_40,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_40,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x46ecbd4daf41613e;
@@ -6158,12 +6184,12 @@ void engine_handle_structure_requests(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_18,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_18,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6173,11 +6199,11 @@ void engine_handle_structure_requests(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_18,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_18,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4c868a42644030f6;
@@ -6208,12 +6234,12 @@ void engine_validate_structure_requests(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_68,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_68,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6223,11 +6249,11 @@ void engine_validate_structure_requests(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_68,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_68,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x40ea3a798283cbbb;
@@ -6258,12 +6284,12 @@ void engine_cleanup_structure_requests(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6273,11 +6299,11 @@ void engine_cleanup_structure_requests(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x45b8d074df27d12f;
@@ -6308,12 +6334,12 @@ void engine_initialize_structure_requests(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_e0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_e0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6323,11 +6349,11 @@ void engine_initialize_structure_requests(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_e0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_e0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x42d293584c8cf3e5;
@@ -6358,12 +6384,12 @@ void engine_process_structure_operations(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = void engine_initialize_core_system(void);
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_f0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_f0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6373,11 +6399,11 @@ void engine_process_structure_operations(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_f0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_f0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x421c3cedd07d816d;
@@ -6408,12 +6434,12 @@ void engine_handle_structure_operations(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_config_data,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_config_data,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6423,11 +6449,11 @@ void engine_handle_structure_operations(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_config_data,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_config_data,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4c22bb0c326587ce;
@@ -6458,12 +6484,12 @@ void engine_validate_structure_operations(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_resource_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_system_magic_header,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_system_magic_header,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6473,11 +6499,11 @@ void engine_validate_structure_operations(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_system_magic_header,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_system_magic_header,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = TEXTURE_RESOURCE_MAGIC_ID;
@@ -6724,12 +6750,12 @@ void engine_handle_structure_buffers(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6739,15 +6765,15 @@ void engine_handle_structure_buffers(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -6774,12 +6800,12 @@ void engine_validate_structure_buffers(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6789,15 +6815,15 @@ void engine_validate_structure_buffers(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -6824,12 +6850,12 @@ void engine_cleanup_structure_buffers(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6839,15 +6865,15 @@ void engine_cleanup_structure_buffers(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -6874,12 +6900,12 @@ void engine_initialize_structure_buffers(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6889,15 +6915,15 @@ void engine_initialize_structure_buffers(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -6924,12 +6950,12 @@ void engine_process_structure_memory(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6939,15 +6965,15 @@ void engine_process_structure_memory(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -6974,12 +7000,12 @@ void engine_handle_structure_memory(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6989,11 +7015,11 @@ void engine_handle_structure_memory(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -7024,12 +7050,12 @@ void engine_validate_structure_memory(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7039,11 +7065,11 @@ void engine_validate_structure_memory(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -7074,12 +7100,12 @@ void engine_cleanup_structure_memory(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7089,15 +7115,15 @@ void engine_cleanup_structure_memory(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -7124,12 +7150,12 @@ void engine_initialize_structure_memory(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7139,15 +7165,15 @@ void engine_initialize_structure_memory(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -7174,12 +7200,12 @@ void engine_process_structure_pointers(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7189,15 +7215,15 @@ void engine_process_structure_pointers(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -7224,12 +7250,12 @@ void engine_handle_structure_pointers(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7239,15 +7265,15 @@ void engine_handle_structure_pointers(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -7274,12 +7300,12 @@ void engine_validate_structure_pointers(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7289,15 +7315,15 @@ void engine_validate_structure_pointers(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -7324,12 +7350,12 @@ void engine_cleanup_structure_pointers(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7339,11 +7365,11 @@ void engine_cleanup_structure_pointers(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -7374,12 +7400,12 @@ void engine_initialize_structure_pointers(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7389,11 +7415,11 @@ void engine_initialize_structure_pointers(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -7424,12 +7450,12 @@ void engine_process_structure_arrays(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7439,15 +7465,15 @@ void engine_process_structure_arrays(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -7474,12 +7500,12 @@ void engine_handle_structure_arrays(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7489,15 +7515,15 @@ void engine_handle_structure_arrays(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -7524,12 +7550,12 @@ void engine_validate_structure_arrays(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7539,15 +7565,15 @@ void engine_validate_structure_arrays(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -7574,12 +7600,12 @@ void engine_cleanup_structure_arrays(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7589,15 +7615,15 @@ void engine_cleanup_structure_arrays(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -7624,12 +7650,12 @@ void engine_initialize_structure_arrays(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7639,15 +7665,15 @@ void engine_initialize_structure_arrays(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -7674,12 +7700,12 @@ void engine_process_structure_lists(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7689,11 +7715,11 @@ void engine_process_structure_lists(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -7724,12 +7750,12 @@ void engine_handle_structure_lists(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7739,11 +7765,11 @@ void engine_handle_structure_lists(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -7774,12 +7800,12 @@ void engine_validate_structure_lists(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7789,15 +7815,15 @@ void engine_validate_structure_lists(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -7824,12 +7850,12 @@ void engine_cleanup_structure_lists(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7839,15 +7865,15 @@ void engine_cleanup_structure_lists(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -7874,12 +7900,12 @@ void engine_initialize_structure_lists(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7889,15 +7915,15 @@ void engine_initialize_structure_lists(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -7924,12 +7950,12 @@ void engine_process_structure_queues(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7939,15 +7965,15 @@ void engine_process_structure_queues(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -7974,12 +8000,12 @@ void engine_handle_structure_queues(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7989,15 +8015,15 @@ void engine_handle_structure_queues(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -8024,12 +8050,12 @@ void engine_core_initialize_updates(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_40,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_40,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8039,11 +8065,11 @@ void engine_core_initialize_updates(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_40,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_40,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x46ecbd4daf41613e;
@@ -8074,12 +8100,12 @@ void engine_core_setup_updatesystem(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_18,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_18,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8089,11 +8115,11 @@ void engine_core_setup_updatesystem(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_18,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_18,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4c868a42644030f6;
@@ -8124,12 +8150,12 @@ void engine_core_initialize_drm(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_68,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_68,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8139,11 +8165,11 @@ void engine_core_initialize_drm(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_68,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_68,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x40ea3a798283cbbb;
@@ -8174,12 +8200,12 @@ void engine_core_setup_drmsystem(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8189,11 +8215,11 @@ void engine_core_setup_drmsystem(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x45b8d074df27d12f;
@@ -8224,12 +8250,12 @@ void engine_core_initialize_anticheat(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_e0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_e0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8239,11 +8265,11 @@ void engine_core_initialize_anticheat(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_e0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_e0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x42d293584c8cf3e5;
@@ -8274,12 +8300,12 @@ void engine_core_setup_anticheatsystem(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = void engine_initialize_core_system(void);
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_f0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_f0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8289,11 +8315,11 @@ void engine_core_setup_anticheatsystem(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_f0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_f0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x421c3cedd07d816d;
@@ -8324,12 +8350,12 @@ void engine_core_initialize_social(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_config_data,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_config_data,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8339,11 +8365,11 @@ void engine_core_initialize_social(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_config_data,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_config_data,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4c22bb0c326587ce;
@@ -8374,12 +8400,12 @@ void engine_core_setup_socialsystem(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8389,11 +8415,11 @@ void engine_core_setup_socialsystem(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x46c54bc98fc3fc2a;
@@ -8424,12 +8450,12 @@ void engine_core_initialize_community(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8439,11 +8465,11 @@ void engine_core_initialize_community(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x41ffd0b76c1e136f;
@@ -8474,12 +8500,12 @@ void engine_core_setup_communitysystem(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_resource_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_system_magic_header,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_system_magic_header,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8489,11 +8515,11 @@ void engine_core_setup_communitysystem(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_system_magic_header,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_system_magic_header,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = TEXTURE_RESOURCE_MAGIC_ID;
@@ -8524,12 +8550,12 @@ void engine_core_initialize_content(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_configure_render_pipeline;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00e28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00e28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8539,11 +8565,11 @@ void engine_core_initialize_content(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00e28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00e28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x449bafe9b77ddd3c;
@@ -8574,12 +8600,12 @@ void engine_core_setup_contentsystem(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = void engine_process_main_loop(void);
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_input_state,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_input_state,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8589,11 +8615,11 @@ void engine_core_setup_contentsystem(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_input_state,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_input_state,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x406be72011d07d37;
@@ -8624,12 +8650,12 @@ void engine_core_initialize_marketplace(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = void engine_handle_input_events(void);
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_mouse_position,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_mouse_position,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8639,11 +8665,11 @@ void engine_core_initialize_marketplace(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_mouse_position,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_mouse_position,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x40afa5469b6ac06d;
@@ -8674,12 +8700,12 @@ void engine_core_setup_marketplacesystem(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8689,15 +8715,15 @@ void engine_core_setup_marketplacesystem(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -8724,12 +8750,12 @@ void engine_core_initialize_monetization(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8739,15 +8765,15 @@ void engine_core_initialize_monetization(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -8774,12 +8800,12 @@ void engine_core_setup_monetizationsystem(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8789,15 +8815,15 @@ void engine_core_setup_monetizationsystem(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -8824,12 +8850,12 @@ void engine_core_initialize_advertising(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8839,15 +8865,15 @@ void engine_core_initialize_advertising(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -8874,12 +8900,12 @@ void engine_core_setup_advertisingsystem(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8889,15 +8915,15 @@ void engine_core_setup_advertisingsystem(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -8924,12 +8950,12 @@ void engine_core_initialize_partnerships(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8939,11 +8965,11 @@ void engine_core_initialize_partnerships(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -8974,12 +9000,12 @@ void engine_core_setup_partnershipsystem(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8989,11 +9015,11 @@ void engine_core_setup_partnershipsystem(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -9024,12 +9050,12 @@ void engine_core_initialize_branding(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_d0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_d0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9039,11 +9065,11 @@ void engine_core_initialize_branding(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_d0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_d0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x42bea5b911d9c4bf;
@@ -9074,12 +9100,12 @@ void engine_core_setup_brandingsystem(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9089,11 +9115,11 @@ void engine_core_setup_brandingsystem(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x46c54bc98fc3fc2a;
@@ -9124,12 +9150,12 @@ void engine_core_initialize_licensing(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9139,11 +9165,11 @@ void engine_core_initialize_licensing(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x41ffd0b76c1e136f;
@@ -9214,12 +9240,12 @@ void engine_core_start_main_loop(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9229,11 +9255,11 @@ void engine_core_start_main_loop(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x46c54bc98fc3fc2a;
@@ -9264,12 +9290,12 @@ void engine_core_process_frame(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9279,11 +9305,11 @@ void engine_core_process_frame(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x41ffd0b76c1e136f;
@@ -9314,12 +9340,12 @@ void engine_core_update_physics(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9329,11 +9355,11 @@ void engine_core_update_physics(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x46c54bc98fc3fc2a;
@@ -9364,12 +9390,12 @@ void engine_core_update_animations(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9379,11 +9405,11 @@ void engine_core_update_animations(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x41ffd0b76c1e136f;
@@ -9450,12 +9476,12 @@ void engine_core_update_ui(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9465,11 +9491,11 @@ void engine_core_update_ui(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x46c54bc98fc3fc2a;
@@ -9500,12 +9526,12 @@ void engine_core_update_audio(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9515,11 +9541,11 @@ void engine_core_update_audio(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x41ffd0b76c1e136f;
@@ -9550,12 +9576,12 @@ void engine_core_update_input(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = void engine_process_main_loop(void);
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_input_state,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_input_state,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9565,11 +9591,11 @@ void engine_core_update_input(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_input_state,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_input_state,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x406be72011d07d37;
@@ -9600,12 +9626,12 @@ void engine_core_update_camera(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = void engine_handle_input_events(void);
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_mouse_position,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_mouse_position,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9615,11 +9641,11 @@ void engine_core_update_camera(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_mouse_position,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_mouse_position,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x40afa5469b6ac06d;
@@ -9650,12 +9676,12 @@ void engine_core_update_lighting(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_buffer_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_a0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9665,15 +9691,15 @@ void engine_core_update_lighting(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_a0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x43330a43fcdb3653;
-  current_data_pointer[7] = 0xdcfdc333a769ec93;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_1;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_2;
   current_data_pointer[8] = &engine_base_data_offset_70;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = resource_handler_function;
@@ -9700,12 +9726,12 @@ void engine_core_update_weather(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_texture_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_78,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9715,15 +9741,15 @@ void engine_core_update_weather(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_78,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x431d7c8d7c475be2;
-  current_data_pointer[7] = 0xb97f048d2153e1b0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_3;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_4;
   current_data_pointer[8] = &engine_base_data_offset_88;
   current_data_pointer[9] = 4;
   current_data_pointer[10] = resource_handler_function;
@@ -9750,12 +9776,12 @@ void engine_core_update_particles(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9765,15 +9791,15 @@ void engine_core_update_particles(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x4b2d79e470ee4e2c;
-  current_data_pointer[7] = 0x9c552acd3ed5548d;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_5;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_6;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -9800,12 +9826,12 @@ void engine_core_update_terrain(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_process_shader_manager;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9815,15 +9841,15 @@ void engine_core_update_terrain(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x49086ba08ab981a7;
-  current_data_pointer[7] = 0xa9191d34ad910696;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_7;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_8;
   current_data_pointer[8] = &engine_base_data_offset_b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -9850,12 +9876,12 @@ void engine_core_update_time(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9865,15 +9891,15 @@ void engine_core_update_time(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
-  current_data_pointer[6] = 0x402feffe4481676e;
-  current_data_pointer[7] = 0xd4c2151109de93a0;
+  current_data_pointer[6] = RESOURCE_MANAGER_MAGIC_ID_9;
+  current_data_pointer[7] = RESOURCE_MANAGER_MAGIC_ID_10;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
@@ -9900,12 +9926,12 @@ void engine_core_update_debug(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9915,11 +9941,11 @@ void engine_core_update_debug(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4384dcc4b6d3f417;
@@ -9950,12 +9976,12 @@ void engine_core_update_profiling(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9965,11 +9991,11 @@ void engine_core_update_profiling(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4140994454d56503;
@@ -10000,12 +10026,12 @@ void engine_core_update_logging(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = engine_initialize_system_context;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_40,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_40,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -10015,11 +10041,11 @@ void engine_core_update_logging(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_40,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_40,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4fc124d23d41985f;
@@ -10050,12 +10076,12 @@ void engine_core_update_config(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_68,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_68,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -10065,11 +10091,11 @@ void engine_core_update_config(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_68,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_68,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4770584fbb1df897;
@@ -10100,12 +10126,12 @@ void engine_core_update_localization(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_b8,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_b8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -10115,11 +10141,11 @@ void engine_core_update_localization(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_b8,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_b8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4666df49b97e0f10;
@@ -10150,12 +10176,12 @@ void engine_core_update_modding(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_40,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_40,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -10165,11 +10191,11 @@ void engine_core_update_modding(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_40,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_40,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x46ecbd4daf41613e;
@@ -10200,12 +10226,12 @@ void engine_core_update_multiplayer(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_18,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_18,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -10215,11 +10241,11 @@ void engine_core_update_multiplayer(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_18,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_18,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4c868a42644030f6;
@@ -10250,12 +10276,12 @@ void engine_core_update_achievements(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_68,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_68,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -10265,11 +10291,11 @@ void engine_core_update_achievements(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_68,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_68,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x40ea3a798283cbbb;
@@ -10300,12 +10326,12 @@ void engine_core_update_leaderboards(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_90,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -10315,11 +10341,11 @@ void engine_core_update_leaderboards(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_90,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x45b8d074df27d12f;
@@ -10350,12 +10376,12 @@ void engine_core_update_statistics(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_e0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_e0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -10365,11 +10391,11 @@ void engine_core_update_statistics(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_e0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_e0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x42d293584c8cf3e5;
@@ -10400,12 +10426,12 @@ void engine_core_update_analytics(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   resource_handler_function = void engine_initialize_core_system(void);
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_f0,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_f0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -10415,11 +10441,11 @@ void engine_core_update_analytics(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_f0,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_f0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x421c3cedd07d816d;
@@ -10450,12 +10476,12 @@ void engine_core_update_telemetry(void)
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
-  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + MEMORY_OFFSET_0x19);
   engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_config_data,0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_config_data,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -10465,11 +10491,11 @@ void engine_core_update_telemetry(void)
     }
     current_data_pointer = temp_data_pointer;
     temp_data_pointer = next_data_pointer;
-    resource_status_flag = *(char *)((longlong)next_data_pointer + 0x19);
+    resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_config_data,current_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_config_data,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
-    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + 0x20,memory_allocation_result);
+    engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4c22bb0c326587ce;
@@ -10608,11 +10634,11 @@ uint64 engine_core_update_marketplace(void)
   
   engine_temporary_long = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
   *(void*)(engine_temporary_long + 0x18) = &engine_data_18098bcb0;
-  *(void*)(engine_temporary_long + 0x20) = 0;
+  *(void*)(engine_temporary_long + MEMORY_OFFSET_0x20) = 0;
   *(uint32*)(engine_temporary_long + 0x28) = 0;
   *(void*)(engine_temporary_long + 0x18) = &engine_system_context_data;
   *(void*)(engine_temporary_long + 0x30) = 0;
-  *(void*)(engine_temporary_long + 0x20) = 0;
+  *(void*)(engine_temporary_long + MEMORY_OFFSET_0x20) = 0;
   *(uint32*)(engine_temporary_long + 0x28) = 0;
   engine_temporary_long = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
   pengine_temp_int_2 = *(int **)(engine_temporary_long + 0x50);
@@ -11037,7 +11063,7 @@ void engine_core_initialize_dll(longlong engine_data_structure_ptr)
     (**(code **)(*pengine_temp_long_2 + 0x38))();
   }
 LAB_180043e47:
-  engine_bind_render_context(*(void*)(engine_data_structure_ptr + 0x20));
+  engine_bind_render_context(*(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20));
   if (*(char *)(_engine_data_70 + 0x1ed) != '\0') {
     pengine_temp_long_2 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x28,8,3);
     *pengine_temp_long_2 = (longlong)&engine_data_180a21690;
@@ -11183,7 +11209,7 @@ void engine_core_start_rendering(void)
     engine_stack_uint_1e0 = 0;
     engine_stack_ptr_1f0 = (void*)0x0;
     engine_stack_uint_1e8 = 0;
-    engine_stack_ptr_208 = (longlong *)CONCAT44(engine_stack_ptr_208._4_4_,0x10);
+    engine_stack_ptr_208 = (longlong *)CONCAT44(engine_stack_ptr_208._4_4_,MEMORY_COMPARE_SIZE_0x10);
     engine_temp_int_4 = GetComputerNameA(engine_stack_ptr_array_150,&engine_stack_ptr_208);
     if (engine_temp_int_4 == 0) {
       engine_call_data_initializer(&engine_data_180a3c110);
@@ -11193,7 +11219,7 @@ void engine_core_start_rendering(void)
       *(uint8*)((longlong)engine_stack_ptr_array_150 + ((ulonglong)engine_stack_ptr_208 & 0xffffffff)) = 0;
       (**(code **)(engine_stack_ptr_1d8 + 0x10))(&engine_stack_ptr_1d8,engine_stack_ptr_array_150);
     }
-    engine_stack_ptr_208 = (longlong *)CONCAT44(engine_stack_ptr_208._4_4_,0x101);
+    engine_stack_ptr_208 = (longlong *)CONCAT44(engine_stack_ptr_208._4_4_,MEMORY_COMPARE_SIZE_0x101);
     engine_temp_int_4 = GetUserNameA(engine_stack_buffer_138,&engine_stack_ptr_208);
     if (engine_temp_int_4 == 0) {
       engine_call_data_initializer(&engine_data_180a3c138);
@@ -11433,7 +11459,7 @@ void engine_core_initialize_graphics(void)
   engine_stack_uint_50 = 0;
   pengine_stack_uint_60 = (void*)0x0;
   engine_stack_value_58 = 0;
-  engine_current_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,0x10,0x13,engine_register_r9,0xfffffffffffffffe);
+  engine_current_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13,engine_register_r9,0xfffffffffffffffe);
   *(uint8*)engine_current_node_ptr = 0;
   pengine_stack_uint_60 = engine_current_node_ptr;
   engine_temp_uint_2 = engine_call_resource_validator(engine_current_node_ptr);
@@ -11651,10 +11677,10 @@ void engine_core_string_operations(longlong engine_data_structure_ptr,longlong e
     *(int *)(engine_data_structure_ptr + 0x10) = (int)engine_temporary_long;
                     // WARNING: Could not recover jumptable at 0x000180045b59. Too many branches
                     // WARNING: Treating indirect jump as call
-    strcpy_s(*(void*)(engine_data_structure_ptr + 8),0x1000);
+    strcpy_s(*(void*)(engine_data_structure_ptr + 8),MEMORY_COMPARE_SIZE_0x1000);
     return;
   }
-  engine_call_buffer_allocator(&engine_data_18098bc48,0x1000,engine_result_flag_ptr);
+  engine_call_buffer_allocator(&engine_data_18098bc48,MEMORY_COMPARE_SIZE_0x1000,engine_result_flag_ptr);
   *(uint32*)(engine_data_structure_ptr + 0x10) = 0;
   **(uint8**)(engine_data_structure_ptr + 8) = 0;
   return;
@@ -11729,7 +11755,7 @@ engine_core_handle_events(uint64 engine_data_structure_ptr,ulonglong engine_resu
 {
   *engine_data_structure_ptr = &engine_data_18098bcb0;
   if ((engine_result_flag_ptr & 1) != 0) {
-    free(engine_data_structure_ptr,0x1018,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+    free(engine_data_structure_ptr,MEMORY_COMPARE_SIZE_0x1018,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
   return engine_data_structure_ptr;
 }
@@ -12325,8 +12351,8 @@ void engine_initialize_render_pipeline(ulonglong *engine_data_structure_ptr)
     engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -12445,7 +12471,7 @@ int engine_validate_render_state(longlong engine_data_structure_ptr,longlong eng
   if (engine_temp_long_7 == 0) {
     engine_temp_long_7 = 1;
 LAB_1800469fd:
-    engine_temp_long_2 = engine_call_memory_extender(_engine_data_18,engine_temp_long_7 << 8,*(uint8*)(engine_data_structure_ptr + 0x20));
+    engine_temp_long_2 = engine_call_memory_extender(_engine_data_18,engine_temp_long_7 << 8,*(uint8*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20));
     engine_temp_uint_8 = *(ulonglong *)(engine_data_structure_ptr + 0x10);
     engine_temp_long_4 = *(longlong *)(engine_data_structure_ptr + 8);
   }
@@ -12456,7 +12482,7 @@ LAB_1800469fd:
   engine_setup_memory_mapping(&engine_temp_ptr_ptr_ptr_stack_8,engine_temp_long_4,engine_temp_uint_8,engine_temp_long_2);
   ppengine_data_ptr = engine_temp_ptr_ptr_ptr_stack_8;
   engine_set_memory_protection(engine_temp_ptr_ptr_ptr_stack_8,&engine_stack_pointer_138);
-  engine_temp_ptr_ptr_ptr_ptr_9 = (uint64_t ****)(ppengine_data_ptr + 0x20);
+  engine_temp_ptr_ptr_ptr_ptr_9 = (uint64_t ****)(ppengine_data_ptr + MEMORY_OFFSET_0x20);
   engine_temp_long_4 = *(longlong *)(engine_data_structure_ptr + 0x10);
   engine_temp_long_6 = *(longlong *)(engine_data_structure_ptr + 8);
   if (engine_temp_long_6 != engine_temp_long_4) {
@@ -12815,7 +12841,7 @@ void engine_initialize_render_system(void)
     *(double *)(engine_temp_long_6 + 0xb8 + _engine_data_48) = (double)(1.0 / engine_temp_float_11);
     *(int *)(engine_temp_long_6 + 0xb0 + _engine_data_48) = (int)(longlong)_engine_data_b8;
     *(int *)(engine_temp_long_6 + 200 + _engine_data_48) = (int)(longlong)_engine_data_bc;
-    *(double *)(engine_temp_long_6 + 0x20 + _engine_data_48) = (double)(engine_temp_index >> 0x14);
+    *(double *)(engine_temp_long_6 + MEMORY_OFFSET_0x20 + _engine_data_48) = (double)(engine_temp_index >> 0x14);
     pengine_stack_uint_538 = &engine_system_context_data;
     if (engine_stack_long_530 != 0) {
                     // WARNING: Subroutine does not return
@@ -12904,7 +12930,7 @@ engine_allocate_memory(uint64_t *engine_data_structure_ptr,uint64_t *engine_resu
   engine_data_structure_ptr[0x16] = engine_result_flag_ptr[0x16];
   engine_data_structure_ptr[0x17] = engine_result_flag_ptr[0x17];
   engine_data_structure_ptr[0x18] = engine_result_flag_ptr[0x18];
-  *(uint8*)(engine_data_structure_ptr + 0x19) = *(uint8*)(engine_result_flag_ptr + 0x19);
+  *(uint8*)(engine_data_structure_ptr + MEMORY_OFFSET_0x19) = *(uint8*)(engine_result_flag_ptr + MEMORY_OFFSET_0x19);
   *(uint8*)((longlong)engine_data_structure_ptr + 0xc9) = *(uint8*)((longlong)engine_result_flag_ptr + 0xc9);
   *(uint8*)((longlong)engine_data_structure_ptr + 0xca) = *(uint8*)((longlong)engine_result_flag_ptr + 0xca);
   *(uint8*)((longlong)engine_data_structure_ptr + 0xcb) = *(uint8*)((longlong)engine_result_flag_ptr + 0xcb);
@@ -13155,7 +13181,7 @@ void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 en
       if (engine_temp_double != 0.0) {
         engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,&engine_data_1809fc940,engine_temp_double);
       }
-      engine_temp_double = *(double *)(engine_temp_long3 + 0x20 + engine_temp_uint0);
+      engine_temp_double = *(double *)(engine_temp_long3 + MEMORY_OFFSET_0x20 + engine_temp_uint0);
       if (engine_temp_double != 0.0) {
         engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,&engine_data_1809fc958,engine_temp_double);
       }
@@ -13317,7 +13343,7 @@ void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 en
       if (engine_temp_uint_ptr_9 != (void*)0x0) {
         engine_data_ptr5 = engine_temp_uint_ptr_9;
       }
-      engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,engine_data_ptr5,*(void*)(_engine_render_state + 0x20 + engine_temp_long1));
+      engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,engine_data_ptr5,*(void*)(_engine_render_state + MEMORY_OFFSET_0x20 + engine_temp_long1));
       engine_temp_int7 = engine_temp_int7 + 1;
       engine_temp_long1 = engine_temp_long1 + 0x28;
     } while ((ulonglong)(longlong)engine_temp_int7 < (ulonglong)((_engine_frame_counter - _engine_render_state) / 0x28));
@@ -13410,8 +13436,8 @@ void engine_defragment_memory(ulonglong *engine_data_structure_ptr)
     engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -13468,7 +13494,7 @@ longlong engine_set_memory_protection(longlong engine_data_structure_ptr,longlon
   
   engine_temp_uint0 = 0xfffffffffffffffe;
   engine_call_data_writer();
-  *(void*)(engine_data_structure_ptr + 0x20) = *(void*)(engine_result_flag_ptr + 0x20);
+  *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = *(void*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20);
   *(void*)(engine_data_structure_ptr + 0x28) = *(void*)(engine_result_flag_ptr + 0x28);
   engine_temp_index = *(void*)(engine_result_flag_ptr + 0x38);
   *(void*)(engine_data_structure_ptr + 0x30) = *(void*)(engine_result_flag_ptr + 0x30);
@@ -13719,7 +13745,7 @@ void engine_unmap_memory_region(longlong engine_data_structure_ptr,uint64 engine
 LAB_180048f62:
   memory_allocation_result = engine_call_memory_extender(_engine_data_18,0x68,*(uint8*)(engine_data_structure_ptr + 0x28),engine_system_parameter_4,
                         0xfffffffffffffffe);
-  engine_call_data_writer(memory_allocation_result + 0x20,engine_param_5);
+  engine_call_data_writer(memory_allocation_result + MEMORY_OFFSET_0x20,engine_param_5);
   engine_next_node_ptr = (void*)(memory_allocation_result + 0x40);
   *(void*)(memory_allocation_result + 0x50) = 0;
   *(void*)(memory_allocation_result + 0x58) = 0;
@@ -13786,7 +13812,7 @@ uint64_t * engine_commit_memory_pages(longlong engine_data_structure_ptr,longlon
   engine_data_pointer = (void*)
            engine_call_memory_extender(_engine_data_18,0x68,*(uint8*)(engine_data_structure_ptr + 0x28),engine_system_parameter_4,
                          0xfffffffffffffffe);
-  engine_call_data_writer(engine_data_pointer + 4,engine_result_flag_ptr + 0x20);
+  engine_call_data_writer(engine_data_pointer + 4,engine_result_flag_ptr + MEMORY_OFFSET_0x20);
   engine_call_data_writer(engine_data_pointer + 8,engine_result_flag_ptr + 0x40);
   engine_data_pointer[0xc] = *(void*)(engine_result_flag_ptr + 0x60);
   *engine_data_pointer = 0;
@@ -13853,7 +13879,7 @@ engine_setup_memory_mapping(uint64_t *engine_data_structure_ptr,longlong *engine
       *(uint32*)((longlong)engine_system_parameter_4 + 0xb4) = *(uint32*)((longlong)engine_temp_ptr_5 + -0x24);
       engine_system_parameter_4[0x17] = engine_temp_ptr_5[-4];
       engine_system_parameter_4[0x18] = engine_temp_ptr_5[-3];
-      *(int *)(engine_system_parameter_4 + 0x19) = (int)engine_temp_ptr_5[-2];
+      *(int *)(engine_system_parameter_4 + MEMORY_OFFSET_0x19) = (int)engine_temp_ptr_5[-2];
       *(uint32*)((longlong)engine_system_parameter_4 + 0xcc) = *(uint32*)((longlong)engine_temp_ptr_5 + -0xc);
       pengine_temp_long_2 = engine_system_parameter_4 + 0x1a;
       *pengine_temp_long_2 = 0;
@@ -13909,10 +13935,10 @@ engine_setup_memory_mapping(uint64_t *engine_data_structure_ptr,longlong *engine
         *(longlong **)(engine_system_parameter_4[0x1c] + 0x10) = pengine_temp_long_2;
         *(longlong **)(engine_temp_ptr_5[1] + 0x10) = pengine_temp_long;
       }
-      engine_system_parameter_4 = engine_system_parameter_4 + 0x20;
+      engine_system_parameter_4 = engine_system_parameter_4 + MEMORY_OFFSET_0x20;
       *engine_data_structure_ptr = engine_system_parameter_4;
       pengine_temp_long_2 = engine_temp_ptr_5 + 5;
-      engine_temp_ptr_5 = engine_temp_ptr_5 + 0x20;
+      engine_temp_ptr_5 = engine_temp_ptr_5 + MEMORY_OFFSET_0x20;
     } while (pengine_temp_long_2 != engine_comparison_params);
   }
   return engine_data_structure_ptr;
@@ -14545,7 +14571,7 @@ void engine_call_system_cleanup(void)
     return;
   }
   engine_stack_uint_68 = 0xfffffffffffffffe;
-  *(void*)(_engine_input_config_data + 0x2038) = *(void*)(_engine_input_config_data + 0x2030);
+  *(void*)(_engine_input_config_data + MEMORY_OFFSET_0x2038) = *(void*)(_engine_input_config_data + MEMORY_OFFSET_0x2030);
   engine_data_ptr0 = (uint16*)(engine_temp_long_8 + 0x14);
   engine_temp_long_8 = 0x100;
   engine_temp_uint2 = 0;
@@ -14595,7 +14621,7 @@ void engine_call_system_cleanup(void)
     } while ((ulonglong)(longlong)(int)engine_temp_uint1 < (ulonglong)(engine_temp_long_8 / 0x1c));
   }
   *(void*)(engine_data_pointer_50 + 0x18) = *(void*)(engine_data_pointer_50 + 0x10);
-  *(uint8*)(*(longlong *)(*(longlong *)(engine_temp_long_6 + 8) + 0x140) + 0x208) = 1;
+  *(uint8*)(*(longlong *)(*(longlong *)(engine_temp_long_6 + 8) + 0x140) + MEMORY_OFFSET_0x208) = 1;
   if (*(char *)(engine_temp_long_6 + 0x3c8) != '\0') {
     engine_release_resource_context(engine_temp_long_6);
     LOCK();
@@ -14606,7 +14632,7 @@ void engine_call_system_cleanup(void)
   *(void*)(_engine_graphics_buffer_ptr + 4) = 0;
   *(void*)(engine_temp_long_8 + 0xc) = 0;
   *(void*)(engine_temp_long_8 + 0x14) = 0;
-  engine_process_system_io_operation(engine_temp_long_8 + 0x20);
+  engine_process_system_io_operation(engine_temp_long_8 + MEMORY_OFFSET_0x20);
   engine_process_system_io_operation(engine_temp_long_8 + 0x50);
   LOCK();
   *(uint32*)(engine_temp_long_8 + 0x80) = 0;
@@ -14664,7 +14690,7 @@ void engine_process_system_message(longlong engine_data_structure_ptr)
   
   engine_temp_long_7 = _engine_input_config_data;
   engine_stack_uint_68 = 0xfffffffffffffffe;
-  *(void*)(_engine_input_config_data + 0x2038) = *(void*)(_engine_input_config_data + 0x2030);
+  *(void*)(_engine_input_config_data + MEMORY_OFFSET_0x2038) = *(void*)(_engine_input_config_data + MEMORY_OFFSET_0x2030);
   engine_temp_uint_ptr_9 = (uint16*)(engine_temp_long_7 + 0x14);
   engine_temp_long_7 = 0x100;
   engine_temp_uint1 = 0;
@@ -14714,7 +14740,7 @@ void engine_process_system_message(longlong engine_data_structure_ptr)
     } while ((ulonglong)(longlong)(int)engine_temp_uint0 < (ulonglong)(engine_temp_long_7 / 0x1c));
   }
   *(void*)(engine_data_pointer_50 + 0x18) = *(void*)(engine_data_pointer_50 + 0x10);
-  *(uint8*)(*(longlong *)(*(longlong *)(engine_data_structure_ptr + 8) + 0x140) + 0x208) = 1;
+  *(uint8*)(*(longlong *)(*(longlong *)(engine_data_structure_ptr + 8) + 0x140) + MEMORY_OFFSET_0x208) = 1;
   if (*(char *)(engine_data_structure_ptr + 0x3c8) != '\0') {
     engine_release_resource_context(engine_data_structure_ptr);
     LOCK();
@@ -14725,7 +14751,7 @@ void engine_process_system_message(longlong engine_data_structure_ptr)
   *(void*)(_engine_graphics_buffer_ptr + 4) = 0;
   *(void*)(engine_temp_long_7 + 0xc) = 0;
   *(void*)(engine_temp_long_7 + 0x14) = 0;
-  engine_process_system_io_operation(engine_temp_long_7 + 0x20);
+  engine_process_system_io_operation(engine_temp_long_7 + MEMORY_OFFSET_0x20);
   engine_process_system_io_operation(engine_temp_long_7 + 0x50);
   LOCK();
   *(uint32*)(engine_temp_long_7 + 0x80) = 0;
@@ -14825,8 +14851,8 @@ void engine_shutdown_system(longlong engine_data_structure_ptr)
     engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -14872,7 +14898,7 @@ uint64_t * engine_process_data_structure(uint64_t *engine_data_structure_ptr,uin
     current_data_pointer = current_data_pointer + 2;
     engine_temp_long_6 = engine_temp_long_6 + -1;
   } while (engine_temp_long_6 != 0);
-  *(uint8*)((longlong)engine_data_structure_ptr + 0x20f) = *(uint8*)((longlong)engine_result_flag_ptr + 0x20f);
+  *(uint8*)((longlong)engine_data_structure_ptr + MEMORY_OFFSET_0x20f) = *(uint8*)((longlong)engine_result_flag_ptr + MEMORY_OFFSET_0x20f);
   pengine_temp_long = engine_data_structure_ptr + 0x43;
   *(uint8*)(engine_data_structure_ptr + 0x42) = *(uint8*)(engine_result_flag_ptr + 0x42);
   *(uint8*)((longlong)engine_data_structure_ptr + 0x211) = *(uint8*)((longlong)engine_result_flag_ptr + 0x211);
@@ -15248,13 +15274,13 @@ void engine_handle_system_data_operation(longlong engine_data_structure_ptr,long
       engine_temp_index = engine_temp_index & 0xffffffff;
       do {
         if (*(ulonglong *)(engine_result_flag_ptr + 8) < *(ulonglong *)(engine_result_flag_ptr + 0x10)) {
-          *(ulonglong *)(engine_result_flag_ptr + 8) = *(ulonglong *)(engine_result_flag_ptr + 8) + 0x20;
+          *(ulonglong *)(engine_result_flag_ptr + 8) = *(ulonglong *)(engine_result_flag_ptr + 8) + MEMORY_OFFSET_0x20;
           engine_call_data_writer();
         }
         else {
           engine_update_system_state(engine_result_flag_ptr,*pengine_temp_long + engine_temp_long_6);
         }
-        engine_temp_long_6 = engine_temp_long_6 + 0x20;
+        engine_temp_long_6 = engine_temp_long_6 + MEMORY_OFFSET_0x20;
         engine_temp_index = engine_temp_index - 1;
       } while (engine_temp_index != 0);
     }
@@ -15264,7 +15290,7 @@ void engine_handle_system_data_operation(longlong engine_data_structure_ptr,long
   engine_stack_value_58 = 0;
   engine_stack_pointer_68 = (void*)0x0;
   engine_stack_value_60 = 0;
-  engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,0x10,0x13,engine_system_parameter_4,0xfffffffffffffffe);
+  engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13,engine_system_parameter_4,0xfffffffffffffffe);
   *(uint8*)engine_next_node_ptr = 0;
   engine_stack_pointer_68 = engine_next_node_ptr;
   engine_temp_uint_2 = engine_call_resource_validator(engine_next_node_ptr);
@@ -15279,7 +15305,7 @@ void engine_handle_system_data_operation(longlong engine_data_structure_ptr,long
     engine_stack_value_78 = 0;
     engine_stack_pointer_88 = (void*)0x0;
     engine_stack_value_80 = 0;
-    engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,0x10,0x13,engine_system_parameter_4,engine_temp_uint64_value);
+    engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13,engine_system_parameter_4,engine_temp_uint64_value);
     *(uint8*)engine_next_node_ptr = 0;
     engine_stack_pointer_88 = engine_next_node_ptr;
     engine_temp_uint_2 = engine_call_resource_validator(engine_next_node_ptr);
@@ -15327,7 +15353,7 @@ uint64 engine_calculate_system_metrics(uint64 engine_data_structure_ptr,uint64 e
   engine_stack_uint_50 = 0;
   pengine_stack_uint_60 = (void*)0x0;
   engine_stack_value_58 = 0;
-  engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
+  engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
   *(uint8*)engine_next_node_ptr = 0;
   pengine_stack_uint_60 = engine_next_node_ptr;
   engine_temp_uint_2 = engine_call_resource_validator(engine_next_node_ptr);
@@ -15342,7 +15368,7 @@ uint64 engine_calculate_system_metrics(uint64 engine_data_structure_ptr,uint64 e
     engine_stack_value_70 = 0;
     pengine_stack_value_80 = (void*)0x0;
     engine_stack_value_78 = 0;
-    engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
+    engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
     *(uint8*)engine_next_node_ptr = 0;
     pengine_stack_value_80 = engine_next_node_ptr;
     engine_temp_uint_2 = engine_call_resource_validator(engine_next_node_ptr);
@@ -15468,7 +15494,7 @@ void engine_process_system_calculation(longlong engine_data_structure_ptr,float 
   }
   if ((*(longlong *)(_engine_data_90 + 0x7ab8) == 0) || (*(int *)(engine_temp_long_8 + 0x540) < 1)) {
     if (*(int *)(engine_temp_long_8 + 0x2140) == 0) {
-      engine_temp_float_15 = *(float *)(engine_temp_long_8 + 0x20d0);
+      engine_temp_float_15 = *(float *)(engine_temp_long_8 + MEMORY_OFFSET_0x20d0);
     }
     else {
       engine_temp_float_15 = 100.0;
@@ -15640,7 +15666,7 @@ void engine_execute_system_validation(longlong *engine_data_structure_ptr,uint64
   engine_temp_long_3 = _engine_data_20;
   if ((*(longlong *)(_engine_data_90 + 0x7ab8) == 0) || (*(int *)(_engine_data_20 + 0x540) < 1)) {
     if (*(int *)(_engine_data_20 + 0x2140) == 0) {
-      engine_temp_float_11 = *(float *)(_engine_data_20 + 0x20d0);
+      engine_temp_float_11 = *(float *)(_engine_data_20 + MEMORY_OFFSET_0x20d0);
     }
     else {
       engine_temp_float_11 = 100.0;
@@ -16026,7 +16052,7 @@ LAB_1800535b0:
     else {
       if (engine_temp_uint_6 <= engine_temp_uint1) goto LAB_18005364c;
       engine_stack_uint_208 = 0x13;
-      current_data_pointer = (uint8*)engine_update_system_data(_engine_data_18,current_data_pointer,engine_temp_uint_6,0x10);
+      current_data_pointer = (uint8*)engine_update_system_data(_engine_data_18,current_data_pointer,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
     }
     pengine_stack_uint_1a8 = current_data_pointer;
     engine_temp_uint_3 = engine_call_resource_validator(current_data_pointer);
@@ -16254,7 +16280,7 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
   engine_prepare_system_context(&engine_stack_pointer_1c0,engine_temporary_pointer);
   engine_stack_uint_1a0 = 0;
   engine_stack_uint_19c = engine_stack_uint_19c & 0xffffff00;
-  engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x60d30,0x10,0x1f);
+  engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x60d30,MEMORY_COMPARE_SIZE_0x10,0x1f);
   main_context_pointer = (longlong *)engine_create_main_structure(engine_temp_uint_3,&engine_stack_pointer_1c0);
   ppengine_stack_uint_170 = (undefined **)main_context_pointer;
   if (main_context_pointer != (longlong *)0x0) {
@@ -16810,7 +16836,7 @@ void engine_finalize_system_initialization(void)
   engine_call_authenticator(engine_data_pointer);
   *engine_data_pointer = &engine_network_protocol_ptr;
   *(uint16*)(structure_data_pointer + 0x31) = 1;
-  *(uint32*)(structure_data_pointer + 0x20) = 0;
+  *(uint32*)(structure_data_pointer + MEMORY_OFFSET_0x20) = 0;
   *(uint8*)((longlong)structure_data_pointer + 0x10c) = 0;
   *engine_data_pointer = &engine_network_socket_ptr;
   *structure_data_pointer = 0;
@@ -16820,10 +16846,10 @@ void engine_finalize_system_initialization(void)
   _engine_data_28 = structure_data_pointer;
   engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x480,8,3);
   _engine_audio_device_ptr = engine_initialize_audio_device(engine_temp_uint_3);
-  engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x10420,8,3);
+  engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x10420,8,3);
   _engine_sound_buffer_ptr = engine_create_sound_buffer(engine_temp_uint_3);
   _engine_music_buffer_ptr = engine_call_memory_allocator(_engine_data_18,0x30,8,3);
-  *(uint32*)(_engine_music_buffer_ptr + 0x19) = 0;
+  *(uint32*)(_engine_music_buffer_ptr + MEMORY_OFFSET_0x19) = 0;
   *(uint16*)(_engine_music_buffer_ptr + 0x1d) = 0;
   *(uint8*)(_engine_music_buffer_ptr + 0x1f) = 0;
   *(uint32*)(_engine_music_buffer_ptr + 0x28) = 3;
@@ -16831,7 +16857,7 @@ void engine_finalize_system_initialization(void)
   *(longlong *)(_engine_music_buffer_ptr + 8) = _engine_music_buffer_ptr;
   *(void*)(_engine_music_buffer_ptr + 0x10) = 0;
   *(uint8*)(_engine_music_buffer_ptr + 0x18) = 0;
-  *(void*)(_engine_music_buffer_ptr + 0x20) = 0;
+  *(void*)(_engine_music_buffer_ptr + MEMORY_OFFSET_0x20) = 0;
   _engine_display_buffer_ptr = engine_call_memory_allocator(_engine_data_18,8,4,3);
   *(uint32*)(_engine_display_buffer_ptr + 4) = 0;
   engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x80,8,3);
@@ -16933,7 +16959,7 @@ longlong engine_process_memory_allocation(longlong engine_data_structure_ptr)
   *(void*)(engine_data_structure_ptr + 0x10) = 0;
   *(uint32*)(engine_data_structure_ptr + 0x18) = 0;
   *(void*)(engine_data_structure_ptr + 8) = &engine_system_context_data;
-  *(void*)(engine_data_structure_ptr + 0x20) = 0;
+  *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = 0;
   *(void*)(engine_data_structure_ptr + 0x10) = 0;
   *(uint32*)(engine_data_structure_ptr + 0x18) = 0;
   return engine_data_structure_ptr;
@@ -16952,7 +16978,7 @@ void engine_configure_network_protocol(longlong engine_data_structure_ptr)
     engine_call_cleanup_routine();
   }
   *(void*)(engine_data_structure_ptr + 0x10) = 0;
-  *(uint32*)(engine_data_structure_ptr + 0x20) = 0;
+  *(uint32*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = 0;
   *(void*)(engine_data_structure_ptr + 8) = &engine_data_18098bcb0;
   return;
 }
@@ -17061,13 +17087,13 @@ void engine_confirm_system_readiness(void)
     engine_setup_network_component(&engine_network_packet_ptr,*(uint32*)(pengine_temp_char_flag_2 + 0x10));
     engine_setup_network_component(&engine_network_stream_ptr,*(uint32*)(pengine_temp_char_flag_2 + 0x14));
     engine_setup_network_component(&engine_network_event_ptr,*(uint32*)(pengine_temp_char_flag_2 + 0x18));
-    for (engine_temp_char_ptr_5 = *(char **)(pengine_temp_char_flag_2 + 0x28); engine_temp_char_ptr_5 != pengine_temp_char_flag_2 + 0x20;
+    for (engine_temp_char_ptr_5 = *(char **)(pengine_temp_char_flag_2 + 0x28); engine_temp_char_ptr_5 != pengine_temp_char_flag_2 + MEMORY_OFFSET_0x20;
         engine_temp_char_ptr_5 = (char *)func_0x00018066bd70(engine_temp_char_ptr_5)) {
-      engine_setup_network_component(&engine_network_callback_ptr,*(uint32*)(engine_temp_char_ptr_5 + 0x20),*(uint32*)(engine_temp_char_ptr_5 + 0x24));
+      engine_setup_network_component(&engine_network_callback_ptr,*(uint32*)(engine_temp_char_ptr_5 + MEMORY_OFFSET_0x20),*(uint32*)(engine_temp_char_ptr_5 + 0x24));
     }
     for (engine_temp_char_ptr_5 = *(char **)(pengine_temp_char_flag_2 + 0x58); engine_temp_char_ptr_5 != pengine_temp_char_flag_2 + 0x50;
         engine_temp_char_ptr_5 = (char *)func_0x00018066bd70(engine_temp_char_ptr_5)) {
-      engine_setup_network_component(&engine_network_handler_ptr,*(uint32*)(engine_temp_char_ptr_5 + 0x20),*(uint32*)(engine_temp_char_ptr_5 + 0x24));
+      engine_setup_network_component(&engine_network_handler_ptr,*(uint32*)(engine_temp_char_ptr_5 + MEMORY_OFFSET_0x20),*(uint32*)(engine_temp_char_ptr_5 + 0x24));
     }
     engine_setup_network_component(&engine_network_state_ptr,*(uint32*)(pengine_temp_char_flag_2 + 0x80));
     engine_setup_network_component(&engine_network_config_ptr,*(uint32*)(pengine_temp_char_flag_2 + 0x84));
@@ -17351,7 +17377,7 @@ void engine_manage_system_thread(longlong *engine_data_structure_ptr)
   engine_call_data_processor(main_context_pointer);
   *main_context_pointer = (longlong)&engine_system_data_buffer_1;
   main_context_pointer[0x18] = 0;
-  *(uint32*)(main_context_pointer + 0x19) = 0;
+  *(uint32*)(main_context_pointer + MEMORY_OFFSET_0x19) = 0;
   pengine_stack_long_68 = main_context_pointer;
   (**(code **)(*main_context_pointer + 0x28))(main_context_pointer);
   pengine_stack_long_68 = (longlong *)*engine_data_structure_ptr;
@@ -17364,7 +17390,7 @@ void engine_manage_system_thread(longlong *engine_data_structure_ptr)
   pengine_stack_uint_48 = aengine_stack_uint_38;
   aengine_stack_uint_38[0] = 0;
   engine_stack_uint_40 = 0xc;
-  strcpy_s(aengine_stack_uint_38,0x10,&engine_network_debug_ptr);
+  strcpy_s(aengine_stack_uint_38,MEMORY_COMPARE_SIZE_0x10,&engine_network_debug_ptr);
   main_context_pointer = (longlong *)engine_call_memory_allocator(_engine_data_18,0x208,8,3);
   engine_stack_long_78 = engine_temp_long_3 + 0x70;
   ppengine_stack_long_60 = (longlong **)main_context_pointer;
@@ -17524,7 +17550,7 @@ void engine_handle_system_interruption(longlong engine_data_structure_ptr)
     engine_stack_value_a0 = 0;
     engine_stack_uint_a8 = 0;
     engine_stack_value_88 = engine_temp_uint_3 + 0x2b;
-    (**(code **)(*(longlong *)*_engine_data_08 + 0x20))
+    (**(code **)(*(longlong *)*_engine_data_08 + MEMORY_OFFSET_0x20))
               ((longlong *)*_engine_data_08,&engine_memory_data_buffer_1,0x175c,engine_temp_uint_ptr_9);
     *(double *)(engine_data_structure_ptr + 0xc0) = engine_temp_double2;
     engine_stack_pointer_98 = &engine_system_context_data;
@@ -17624,7 +17650,7 @@ void engine_handle_system_data_transfer(uint64 engine_data_structure_ptr,uint64_
   engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,0x20,8,3);
   engine_stack_value_58 = engine_call_data_writer(engine_temporary_uint,engine_result_flag_ptr);
   engine_stack_uint_50 = engine_comparison_params;
-  engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,0x100,8,3);
+  engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x100,8,3);
   pengine_data_ptr_2 = (undefined **)engine_allocate_temporary_memory(engine_temporary_uint,&pengine_stack_uint_108);
   ppengine_stack_uint_118 = pengine_data_ptr_2;
   if (pengine_data_ptr_2 != (undefined **)0x0) {
@@ -17870,7 +17896,7 @@ engine_validate_data_integrity(uint64_t *engine_data_structure_ptr,longlong engi
       engine_temporary_long = engine_temporary_long + 1;
     } while (*(char *)(engine_result_flag_ptr + engine_temporary_long) != '\0');
     *(int *)(engine_data_structure_ptr + 2) = (int)engine_temporary_long;
-    strcpy_s(engine_data_structure_ptr[1],0x10,engine_result_flag_ptr,engine_system_parameter_4,0xfffffffffffffffe);
+    strcpy_s(engine_data_structure_ptr[1],MEMORY_COMPARE_SIZE_0x10,engine_result_flag_ptr,engine_system_parameter_4,0xfffffffffffffffe);
   }
   return engine_data_structure_ptr;
 }
@@ -17991,7 +18017,7 @@ void engine_process_system_io_operation(longlong engine_data_structure_ptr)
   *(longlong *)engine_data_structure_ptr = engine_data_structure_ptr;
   *(void*)(engine_data_structure_ptr + 0x10) = 0;
   *(uint8*)(engine_data_structure_ptr + 0x18) = 0;
-  *(void*)(engine_data_structure_ptr + 0x20) = 0;
+  *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = 0;
   *(longlong *)(engine_data_structure_ptr + 8) = engine_data_structure_ptr;
   return;
 }
@@ -18020,7 +18046,7 @@ void engine_validate_system_io_operation(void)
   *(longlong *)engine_register_rbx = engine_register_rbx;
   *(void*)(engine_register_rbx + 0x10) = 0;
   *(uint8*)(engine_register_rbx + 0x18) = 0;
-  *(void*)(engine_register_rbx + 0x20) = 0;
+  *(void*)(engine_register_rbx + MEMORY_OFFSET_0x20) = 0;
   *(longlong *)(engine_register_rbx + 8) = engine_register_rbx;
   return;
 }
@@ -18270,8 +18296,8 @@ void engine_handle_system_io_event(longlong engine_data_structure_ptr)
       engine_temp_long_4 = engine_temp_uint_6 + 0x80 + ((longlong)engine_current_node_ptr - engine_temp_uint_6 >> 0x10) * 0x50;
       engine_temp_long_4 = engine_temp_long_4 - (ulonglong)*(uint *)(engine_temp_long_4 + 4);
       if ((*(void ***)(engine_temp_uint_6 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_4 + 0xe) == '\0')) {
-        *engine_current_node_ptr = *(void*)(engine_temp_long_4 + 0x20);
-        *(void**)(engine_temp_long_4 + 0x20) = engine_current_node_ptr;
+        *engine_current_node_ptr = *(void*)(engine_temp_long_4 + MEMORY_OFFSET_0x20);
+        *(void**)(engine_temp_long_4 + MEMORY_OFFSET_0x20) = engine_current_node_ptr;
         pengine_temp_int = (int *)(engine_temp_long_4 + 0x18);
         *pengine_temp_int = *pengine_temp_int + -1;
         if (*pengine_temp_int == 0) {
@@ -18325,8 +18351,8 @@ void engine_validate_system_io_state(longlong engine_data_structure_ptr)
       engine_temp_long_4 = engine_temp_uint_6 + 0x80 + ((longlong)engine_current_node_ptr - engine_temp_uint_6 >> 0x10) * 0x50;
       engine_temp_long_4 = engine_temp_long_4 - (ulonglong)*(uint *)(engine_temp_long_4 + 4);
       if ((*(void ***)(engine_temp_uint_6 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_4 + 0xe) == '\0')) {
-        *engine_current_node_ptr = *(void*)(engine_temp_long_4 + 0x20);
-        *(void**)(engine_temp_long_4 + 0x20) = engine_current_node_ptr;
+        *engine_current_node_ptr = *(void*)(engine_temp_long_4 + MEMORY_OFFSET_0x20);
+        *(void**)(engine_temp_long_4 + MEMORY_OFFSET_0x20) = engine_current_node_ptr;
         pengine_temp_int = (int *)(engine_temp_long_4 + 0x18);
         *pengine_temp_int = *pengine_temp_int + -1;
         if (*pengine_temp_int == 0) {
@@ -18378,8 +18404,8 @@ void engine_complete_system_io_processing(void)
       engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
       engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
       if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-        *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
-        *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
+        *structure_data_pointer = *(void*)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
+        *(void**)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = structure_data_pointer;
         pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
         *pengine_temp_int = *pengine_temp_int + -1;
         if (*pengine_temp_int == 0) {
@@ -18419,8 +18445,8 @@ void engine_check_system_io_completion(void)
       engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
       engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
       if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-        *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
-        *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
+        *structure_data_pointer = *(void*)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
+        *(void**)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = structure_data_pointer;
         pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
         *pengine_temp_int = *pengine_temp_int + -1;
         if (*pengine_temp_int == 0) {
@@ -18460,8 +18486,8 @@ void engine_finalize_system_io_operation(void)
     engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -18606,8 +18632,8 @@ void engine_process_system_io_request_queue(longlong engine_data_structure_ptr)
       engine_temp_long_4 = engine_temp_uint_6 + 0x80 + ((longlong)engine_current_node_ptr - engine_temp_uint_6 >> 0x10) * 0x50;
       engine_temp_long_4 = engine_temp_long_4 - (ulonglong)*(uint *)(engine_temp_long_4 + 4);
       if ((*(void ***)(engine_temp_uint_6 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_4 + 0xe) == '\0')) {
-        *engine_current_node_ptr = *(void*)(engine_temp_long_4 + 0x20);
-        *(void**)(engine_temp_long_4 + 0x20) = engine_current_node_ptr;
+        *engine_current_node_ptr = *(void*)(engine_temp_long_4 + MEMORY_OFFSET_0x20);
+        *(void**)(engine_temp_long_4 + MEMORY_OFFSET_0x20) = engine_current_node_ptr;
         pengine_temp_int = (int *)(engine_temp_long_4 + 0x18);
         *pengine_temp_int = *pengine_temp_int + -1;
         if (*pengine_temp_int == 0) {
@@ -18661,8 +18687,8 @@ void engine_handle_system_io_data_transfer(longlong engine_data_structure_ptr)
       engine_temp_long_4 = engine_temp_uint_6 + 0x80 + ((longlong)engine_current_node_ptr - engine_temp_uint_6 >> 0x10) * 0x50;
       engine_temp_long_4 = engine_temp_long_4 - (ulonglong)*(uint *)(engine_temp_long_4 + 4);
       if ((*(void ***)(engine_temp_uint_6 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_4 + 0xe) == '\0')) {
-        *engine_current_node_ptr = *(void*)(engine_temp_long_4 + 0x20);
-        *(void**)(engine_temp_long_4 + 0x20) = engine_current_node_ptr;
+        *engine_current_node_ptr = *(void*)(engine_temp_long_4 + MEMORY_OFFSET_0x20);
+        *(void**)(engine_temp_long_4 + MEMORY_OFFSET_0x20) = engine_current_node_ptr;
         pengine_temp_int = (int *)(engine_temp_long_4 + 0x18);
         *pengine_temp_int = *pengine_temp_int + -1;
         if (*pengine_temp_int == 0) {
@@ -18714,8 +18740,8 @@ void engine_complete_system_io_initialization(void)
       engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
       engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
       if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-        *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
-        *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
+        *structure_data_pointer = *(void*)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
+        *(void**)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = structure_data_pointer;
         pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
         *pengine_temp_int = *pengine_temp_int + -1;
         if (*pengine_temp_int == 0) {
@@ -18755,8 +18781,8 @@ void engine_check_system_io_readiness(void)
       engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
       engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
       if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-        *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
-        *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
+        *structure_data_pointer = *(void*)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
+        *(void**)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = structure_data_pointer;
         pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
         *pengine_temp_int = *pengine_temp_int + -1;
         if (*pengine_temp_int == 0) {
@@ -18796,8 +18822,8 @@ void engine_validate_system_io_status(void)
     engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -18879,8 +18905,8 @@ void engine_finalize_system_io_setup(void)
     engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -18928,7 +18954,7 @@ void engine_execute_system_io_process(longlong engine_data_structure_ptr,longlon
         engine_copy_memory_data(&pengine_stack_uint_50,engine_temp_char_ptr_4,(int)pengine_temp_char_flag_2 - (int)engine_temp_char_ptr_4,engine_system_parameter_4,engine_temp_index);
         engine_temp_char_ptr_4 = pengine_temp_char_flag_2 + 1;
         if (*(ulonglong *)(engine_result_flag_ptr + 8) < *(ulonglong *)(engine_result_flag_ptr + 0x10)) {
-          *(ulonglong *)(engine_result_flag_ptr + 8) = *(ulonglong *)(engine_result_flag_ptr + 8) + 0x20;
+          *(ulonglong *)(engine_result_flag_ptr + 8) = *(ulonglong *)(engine_result_flag_ptr + 8) + MEMORY_OFFSET_0x20;
           engine_call_data_writer();
         }
         else {
@@ -18953,7 +18979,7 @@ void engine_execute_system_io_process(longlong engine_data_structure_ptr,longlon
       engine_stack_uint_40 = 0;
       engine_copy_memory_data(&pengine_stack_uint_50,engine_temp_char_ptr_4,(int)pengine_temp_char_flag_2 - (int)engine_temp_char_ptr_4,engine_system_parameter_4,engine_temp_index);
       if (*(ulonglong *)(engine_result_flag_ptr + 8) < *(ulonglong *)(engine_result_flag_ptr + 0x10)) {
-        *(ulonglong *)(engine_result_flag_ptr + 8) = *(ulonglong *)(engine_result_flag_ptr + 8) + 0x20;
+        *(ulonglong *)(engine_result_flag_ptr + 8) = *(ulonglong *)(engine_result_flag_ptr + 8) + MEMORY_OFFSET_0x20;
         engine_call_data_writer();
       }
       else {
@@ -18986,8 +19012,8 @@ longlong * engine_process_buffer_operation(longlong engine_data_structure_ptr,lo
   char acStackX_8 [8];
   
   engine_temp_long_3 = engine_call_memory_extender(_engine_data_18,0x40,*(uint8*)(engine_data_structure_ptr + 0x28));
-  engine_call_data_writer(engine_temp_long_3 + 0x20,engine_comparison_params);
-  engine_temp_long_4 = engine_process_data_structure_comparison(engine_data_structure_ptr,acStackX_8,engine_temp_long_3 + 0x20);
+  engine_call_data_writer(engine_temp_long_3 + MEMORY_OFFSET_0x20,engine_comparison_params);
+  engine_temp_long_4 = engine_process_data_structure_comparison(engine_data_structure_ptr,acStackX_8,engine_temp_long_3 + MEMORY_OFFSET_0x20);
   if (acStackX_8[0] == '\0') {
     engine_setup_data_manager();
     *engine_result_flag_ptr = engine_temp_long_4;
@@ -19364,8 +19390,8 @@ void engine_initialize_system_io_context(ulonglong *engine_data_structure_ptr)
     engine_temp_long_6 = engine_temp_uint64_value + 0x80 + ((longlong)engine_next_node_ptr - engine_temp_uint64_value >> 0x10) * 0x50;
     engine_temp_long_6 = engine_temp_long_6 - (ulonglong)*(uint *)(engine_temp_long_6 + 4);
     if ((*(void ***)(engine_temp_uint64_value + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_6 + 0xe) == '\0')) {
-      *engine_next_node_ptr = *(void*)(engine_temp_long_6 + 0x20);
-      *(void**)(engine_temp_long_6 + 0x20) = engine_next_node_ptr;
+      *engine_next_node_ptr = *(void*)(engine_temp_long_6 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_6 + MEMORY_OFFSET_0x20) = engine_next_node_ptr;
       pengine_temp_int = (int *)(engine_temp_long_6 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -19547,7 +19573,7 @@ LAB_18005856a:
   *(uint32*)(engine_result_flag_ptr + 0x10) = 0;
   *(void*)(engine_result_flag_ptr + 8) = 0;
   *(void*)(engine_result_flag_ptr + 0x18) = 0;
-  *(uint32*)(engine_current_node_ptr + 4) = *(uint32*)(engine_result_flag_ptr + 0x20);
+  *(uint32*)(engine_current_node_ptr + 4) = *(uint32*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20);
   current_data_pointer = (void*)engine_data_structure_ptr[1];
   engine_next_node_ptr = (void*)*engine_data_structure_ptr;
   if (engine_next_node_ptr != current_data_pointer) {
@@ -19666,14 +19692,14 @@ void engine_validate_system_io_response_data(uint64 engine_data_structure_ptr,lo
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
   }
-  *(void*)(engine_result_flag_ptr + 0x20) = &engine_system_context_data;
+  *(void*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20) = &engine_system_context_data;
   if (*(longlong *)(engine_result_flag_ptr + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
   }
   *(void*)(engine_result_flag_ptr + 0x28) = 0;
   *(uint32*)(engine_result_flag_ptr + 0x38) = 0;
-  *(void*)(engine_result_flag_ptr + 0x20) = &engine_data_18098bcb0;
+  *(void*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20) = &engine_data_18098bcb0;
   if (engine_result_flag_ptr != 0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_result_flag_ptr);
@@ -19710,7 +19736,7 @@ void engine_process_system_io_response_operation(longlong *engine_data_structure
       engine_temp_long_7 = engine_temp_long_2 - engine_result_flag_ptr;
       do {
         engine_call_data_writer(engine_temp_long_7 + engine_result_flag_ptr,engine_result_flag_ptr);
-        engine_result_flag_ptr = engine_result_flag_ptr + 0x20;
+        engine_result_flag_ptr = engine_result_flag_ptr + MEMORY_OFFSET_0x20;
       } while (engine_result_flag_ptr != engine_comparison_params);
     }
     engine_data_pointer = (void*)engine_data_structure_ptr[1];
@@ -19779,7 +19805,7 @@ void engine_handle_system_io_response_event(longlong engine_data_structure_ptr)
     engine_temp_long_4 = engine_temp_long_2 - engine_register_rbx;
     do {
       engine_call_data_writer(engine_temp_long_4 + engine_register_rbx,engine_register_rbx);
-      engine_register_rbx = engine_register_rbx + 0x20;
+      engine_register_rbx = engine_register_rbx + MEMORY_OFFSET_0x20;
     } while (engine_register_rbx != unaff_R15);
   }
   engine_data_pointer = (void*)unaff_RDI[1];
@@ -19821,7 +19847,7 @@ void engine_check_system_io_response_completion(void)
   engine_temp_long_3 = unaff_R12 - engine_register_rbx;
   do {
     engine_call_data_writer(engine_temp_long_3 + engine_register_rbx,engine_register_rbx);
-    engine_register_rbx = engine_register_rbx + 0x20;
+    engine_register_rbx = engine_register_rbx + MEMORY_OFFSET_0x20;
   } while (engine_register_rbx != unaff_R15);
   engine_data_pointer = (void*)unaff_RDI[1];
   structure_data_pointer = (void*)*unaff_RDI;
@@ -20113,7 +20139,7 @@ void engine_create_network_manager(longlong engine_data_structure_ptr)
     engine_call_cleanup_routine();
   }
   *(void*)(engine_data_structure_ptr + 0x10) = 0;
-  *(uint32*)(engine_data_structure_ptr + 0x20) = 0;
+  *(uint32*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = 0;
   *(void*)(engine_data_structure_ptr + 8) = &engine_data_18098bcb0;
   return;
 }
@@ -20469,7 +20495,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
       pengine_stack_uint_288 = aengine_stack_uint_278;
       aengine_stack_uint_278[0] = 0;
       engine_stack_uint_280 = 4;
-      strcpy_s(aengine_stack_uint_278,0x10,&engine_main_system_ptr);
+      strcpy_s(aengine_stack_uint_278,MEMORY_COMPARE_SIZE_0x10,&engine_main_system_ptr);
       engine_unnamed_function_6370(&pengine_stack_uint_2e8,&pengine_stack_uint_308,&pengine_stack_uint_290);
       pengine_stack_uint_290 = &engine_data_18098bcb0;
       engine_stack_int_374 = 0;
@@ -20594,7 +20620,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
                   engine_temp_uint64_value = 1;
                 }
                 engine_temp_long0 = engine_call_memory_extender(_engine_data_18,0x60,(uint8_t)engine_stack_uint_338);
-                pengine_stack_uint_2b0 = (void*)(engine_temp_long0 + 0x20);
+                pengine_stack_uint_2b0 = (void*)(engine_temp_long0 + MEMORY_OFFSET_0x20);
                 *pengine_stack_uint_2b0 = &engine_data_18098bcb0;
                 *(void*)(engine_temp_long0 + 0x28) = 0;
                 *(uint32*)(engine_temp_long0 + 0x30) = 0;
@@ -20955,7 +20981,7 @@ longlong engine_get_system_data_pointer(longlong engine_data_structure_ptr,longl
       }
       engine_temp_long_3 = engine_temp_long_3 + -1;
       *(uint32*)(engine_data_structure_ptr + 0x14 + (longlong)pengine_temp_long_2) = *(uint32*)((longlong)pengine_temp_long_2 + 0x14);
-      engine_comparison_params = engine_comparison_params + 0x20;
+      engine_comparison_params = engine_comparison_params + MEMORY_OFFSET_0x20;
       pengine_temp_long_2 = pengine_temp_long_2 + 4;
     } while (0 < engine_temp_long_3);
   }
@@ -20991,7 +21017,7 @@ longlong engine_validate_resource_access(longlong engine_data_structure_ptr,uint
     }
     unaff_RBP = unaff_RBP + -1;
     *(uint32*)(engine_comparison_params + 0x14 + (longlong)pengine_temp_long_2) = *(uint32*)((longlong)pengine_temp_long_2 + 0x14);
-    unaff_RSI = unaff_RSI + 0x20;
+    unaff_RSI = unaff_RSI + MEMORY_OFFSET_0x20;
     pengine_temp_long_2 = pengine_temp_long_2 + 4;
   } while (0 < unaff_RBP);
   return unaff_RSI;
@@ -21022,8 +21048,8 @@ longlong engine_copy_data_block_32byte(longlong source_start,longlong source_end
   if (source_start != source_end) {
     do {
       engine_call_data_writer(destination,source_start);
-      source_start = source_start + 0x20;
-      destination = destination + 0x20;
+      source_start = source_start + MEMORY_OFFSET_0x20;
+      destination = destination + MEMORY_OFFSET_0x20;
     } while (source_start != source_end);
   }
   return destination;
@@ -21115,7 +21141,7 @@ void engine_initialize_display_and_core_config(uint64_t *config_ptr)
 {
   engine_configure_system_buffers(config_ptr + 0x7d,0x58,4,engine_configure_display_settings,0xfffffffffffffffe);
   engine_configure_system_buffers(config_ptr + 0x51,0x58,4,engine_configure_display_settings);
-  engine_configure_system_buffers(config_ptr + 0x11,0x20,0x10,engine_setup_core_components);
+  engine_configure_system_buffers(config_ptr + 0x11,0x20,MEMORY_COMPARE_SIZE_0x10,engine_setup_core_components);
   config_ptr[8] = &engine_global_data_buffer;
   if (config_ptr[9] != 0) {
                     // WARNING: Subroutine does not return
@@ -21327,7 +21353,7 @@ LAB_180059885:
   if (engine_temporary_pointer == (void*)0x0) {
     *engine_data_structure_ptr = engine_temp_long_2;
     engine_data_structure_ptr[2] = engine_temp_long_6 * 0x20 + engine_temp_long_2;
-    engine_data_structure_ptr[1] = engine_temp_long_3 + 0x20;
+    engine_data_structure_ptr[1] = engine_temp_long_3 + MEMORY_OFFSET_0x20;
     return;
   }
                     // WARNING: Subroutine does not return
@@ -21369,10 +21395,10 @@ void engine_process_system_request(longlong engine_data_structure_ptr,longlong e
     *(int *)(engine_data_structure_ptr + 0x10) = (int)engine_temporary_long;
                     // WARNING: Could not recover jumptable at 0x000180059977. Too many branches
                     // WARNING: Treating indirect jump as call
-    strcpy_s(*(void*)(engine_data_structure_ptr + 8),0x10);
+    strcpy_s(*(void*)(engine_data_structure_ptr + 8),MEMORY_COMPARE_SIZE_0x10);
     return;
   }
-  engine_call_buffer_allocator(&engine_data_18098bc48,0x10,engine_result_flag_ptr);
+  engine_call_buffer_allocator(&engine_data_18098bc48,MEMORY_COMPARE_SIZE_0x10,engine_result_flag_ptr);
   *(uint32*)(engine_data_structure_ptr + 0x10) = 0;
   **(uint8**)(engine_data_structure_ptr + 8) = 0;
   return;
@@ -21482,8 +21508,8 @@ void engine_initialize_main_system(uint64_t *engine_data_structure_ptr)
     engine_temp_long_2 = engine_temp_uint_3 + 0x80 + ((longlong)engine_data_structure_ptr - engine_temp_uint_3 >> 0x10) * 0x50;
     engine_temp_long_2 = engine_temp_long_2 - (ulonglong)*(uint *)(engine_temp_long_2 + 4);
     if ((*(void ***)(engine_temp_uint_3 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_2 + 0xe) == '\0')) {
-      *engine_data_structure_ptr = *(void*)(engine_temp_long_2 + 0x20);
-      *(void**)(engine_temp_long_2 + 0x20) = engine_data_structure_ptr;
+      *engine_data_structure_ptr = *(void*)(engine_temp_long_2 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_2 + MEMORY_OFFSET_0x20) = engine_data_structure_ptr;
       pengine_temp_int = (int *)(engine_temp_long_2 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -21609,11 +21635,11 @@ void engine_finalize_system_initialization(void)
   *(uint32*)(engine_temporary_long + 0x1840) = 0;
   *(void*)(engine_temporary_long + 0x1848) = 0;
   *(uint16*)(engine_temporary_long + 0x1850) = 0x100;
-  *(void*)(engine_temporary_long + 0x1958) = 0;
-  *(void*)(engine_temporary_long + 0x1960) = 0;
-  *(uint32*)(engine_temporary_long + 0x1988) = 0;
-  *(void*)(engine_temporary_long + 0x1990) = 0;
-  *(uint16*)(engine_temporary_long + 0x1998) = 0x100;
+  *(void*)(engine_temporary_long + MEMORY_OFFSET_0x1958) = 0;
+  *(void*)(engine_temporary_long + MEMORY_OFFSET_0x1960) = 0;
+  *(uint32*)(engine_temporary_long + MEMORY_OFFSET_0x1988) = 0;
+  *(void*)(engine_temporary_long + MEMORY_OFFSET_0x1990) = 0;
+  *(uint16*)(engine_temporary_long + MEMORY_OFFSET_0x1998) = 0x100;
   *(void*)(engine_temporary_long + 0x1aa0) = 0;
   *(void*)(engine_temporary_long + 0x1aa8) = 0;
   *(uint32*)(engine_temporary_long + 0x1ad0) = 0;
@@ -21666,8 +21692,8 @@ void engine_process_system_event(longlong *engine_data_structure_ptr)
     engine_temp_long_4 = engine_temp_index + 0x80 + ((longlong)engine_current_node_ptr - engine_temp_index >> 0x10) * 0x50;
     engine_temp_long_4 = engine_temp_long_4 - (ulonglong)*(uint *)(engine_temp_long_4 + 4);
     if ((*(void ***)(engine_temp_index + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_4 + 0xe) == '\0')) {
-      *engine_current_node_ptr = *(void*)(engine_temp_long_4 + 0x20);
-      *(void**)(engine_temp_long_4 + 0x20) = engine_current_node_ptr;
+      *engine_current_node_ptr = *(void*)(engine_temp_long_4 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_4 + MEMORY_OFFSET_0x20) = engine_current_node_ptr;
       pengine_temp_int = (int *)(engine_temp_long_4 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -21727,8 +21753,8 @@ void engine_handle_system_notification(longlong *engine_data_structure_ptr)
     engine_temp_long_4 = engine_temp_index + 0x80 + ((longlong)engine_current_node_ptr - engine_temp_index >> 0x10) * 0x50;
     engine_temp_long_4 = engine_temp_long_4 - (ulonglong)*(uint *)(engine_temp_long_4 + 4);
     if ((*(void ***)(engine_temp_index + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_4 + 0xe) == '\0')) {
-      *engine_current_node_ptr = *(void*)(engine_temp_long_4 + 0x20);
-      *(void**)(engine_temp_long_4 + 0x20) = engine_current_node_ptr;
+      *engine_current_node_ptr = *(void*)(engine_temp_long_4 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_4 + MEMORY_OFFSET_0x20) = engine_current_node_ptr;
       pengine_temp_int = (int *)(engine_temp_long_4 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -21796,8 +21822,8 @@ void engine_cleanup_system_status(void)
       engine_temp_long_4 = engine_temp_index + 0x80 + ((longlong)engine_current_node_ptr - engine_temp_index >> 0x10) * 0x50;
       engine_temp_long_4 = engine_temp_long_4 - (ulonglong)*(uint *)(engine_temp_long_4 + 4);
       if ((*(void ***)(engine_temp_index + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_4 + 0xe) == '\0')) {
-        *engine_current_node_ptr = *(void*)(engine_temp_long_4 + 0x20);
-        *(void**)(engine_temp_long_4 + 0x20) = engine_current_node_ptr;
+        *engine_current_node_ptr = *(void*)(engine_temp_long_4 + MEMORY_OFFSET_0x20);
+        *(void**)(engine_temp_long_4 + MEMORY_OFFSET_0x20) = engine_current_node_ptr;
         pengine_temp_int = (int *)(engine_temp_long_4 + 0x18);
         *pengine_temp_int = *pengine_temp_int + -1;
         if (*pengine_temp_int == 0) {
@@ -21831,8 +21857,8 @@ void engine_initialize_system_monitor(uint64_t *engine_data_structure_ptr)
     engine_temp_long_2 = engine_temp_uint_3 + 0x80 + ((longlong)engine_data_structure_ptr - engine_temp_uint_3 >> 0x10) * 0x50;
     engine_temp_long_2 = engine_temp_long_2 - (ulonglong)*(uint *)(engine_temp_long_2 + 4);
     if ((*(void ***)(engine_temp_uint_3 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_2 + 0xe) == '\0')) {
-      *engine_data_structure_ptr = *(void*)(engine_temp_long_2 + 0x20);
-      *(void**)(engine_temp_long_2 + 0x20) = engine_data_structure_ptr;
+      *engine_data_structure_ptr = *(void*)(engine_temp_long_2 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_2 + MEMORY_OFFSET_0x20) = engine_data_structure_ptr;
       pengine_temp_int = (int *)(engine_temp_long_2 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -21894,8 +21920,8 @@ void engine_setup_system_monitor(longlong *engine_data_structure_ptr)
     engine_temp_long_4 = engine_temp_index + 0x80 + ((longlong)engine_current_node_ptr - engine_temp_index >> 0x10) * 0x50;
     engine_temp_long_4 = engine_temp_long_4 - (ulonglong)*(uint *)(engine_temp_long_4 + 4);
     if ((*(void ***)(engine_temp_index + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_4 + 0xe) == '\0')) {
-      *engine_current_node_ptr = *(void*)(engine_temp_long_4 + 0x20);
-      *(void**)(engine_temp_long_4 + 0x20) = engine_current_node_ptr;
+      *engine_current_node_ptr = *(void*)(engine_temp_long_4 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_4 + MEMORY_OFFSET_0x20) = engine_current_node_ptr;
       pengine_temp_int = (int *)(engine_temp_long_4 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -21939,7 +21965,7 @@ void engine_process_system_metrics(uint64_t *engine_data_structure_ptr)
       engine_temp_index = engine_data_structure_ptr[0xd] - 1;
       while( true ) {
         engine_temp_uint0 = engine_temp_uint0 & engine_temp_index;
-        if ((ulonglong)((*(longlong *)(engine_data_structure_ptr[0xf] + engine_temp_uint0 * 0x10) + 0x20) - engine_data_structure_ptr[5]) <
+        if ((ulonglong)((*(longlong *)(engine_data_structure_ptr[0xf] + engine_temp_uint0 * 0x10) + MEMORY_OFFSET_0x20) - engine_data_structure_ptr[5]) <
             0x8000000000000001) break;
         engine_temp_index = engine_temp_uint0 + 1;
         engine_temp_uint0 = engine_data_structure_ptr[0xd] - 1;
@@ -22258,7 +22284,7 @@ void engine_cleanup_performance_handler(longlong *engine_data_structure_ptr)
   if ((char)engine_data_structure_ptr[0xb] != '\0') {
     pengine_temp_long = (longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
     do {
-      engine_temp_char_flag = (**(code **)(*engine_data_structure_ptr + 0x20))(engine_data_structure_ptr,1);
+      engine_temp_char_flag = (**(code **)(*engine_data_structure_ptr + MEMORY_OFFSET_0x20))(engine_data_structure_ptr,1);
       if (engine_temp_char_flag == '\0') {
         engine_unnamed_function_6490(*(void*)(*pengine_temp_long + 0x10),0);
         pengine_stack_long_20 = engine_data_structure_ptr + 0x33;
@@ -22526,7 +22552,7 @@ uint64 engine_validate_memory_operation(longlong engine_data_structure_ptr,uint6
   if (*(char *)(engine_data_structure_ptr + 0x48) == '\0') {
     if ((ulonglong)
         ((*(longlong *)(engine_data_structure_ptr + 0x30) - *(longlong *)(engine_data_structure_ptr + 0x38)) -
-        *(longlong *)(engine_data_structure_ptr + 0x20)) < 0x8000000000000001) {
+        *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20)) < 0x8000000000000001) {
       return 0;
     }
     LOCK();
@@ -22535,7 +22561,7 @@ uint64 engine_validate_memory_operation(longlong engine_data_structure_ptr,uint6
     *pengine_temp_long = *pengine_temp_long + 1;
     UNLOCK();
     if (0x8000000000000000 <
-        (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_data_structure_ptr + 0x20)) - *(longlong *)(engine_data_structure_ptr + 0x38))) {
+        (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20)) - *(longlong *)(engine_data_structure_ptr + 0x38))) {
       LOCK();
       structure_data_pointer = (ulonglong *)(engine_data_structure_ptr + 0x28);
       engine_temp_uint_4 = *structure_data_pointer;
@@ -22568,7 +22594,7 @@ uint64 engine_validate_memory_operation(longlong engine_data_structure_ptr,uint6
   else {
     if ((ulonglong)
         ((*(longlong *)(engine_data_structure_ptr + 0x30) - *(longlong *)(engine_data_structure_ptr + 0x38)) -
-        *(longlong *)(engine_data_structure_ptr + 0x20)) < 0x8000000000000001) {
+        *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20)) < 0x8000000000000001) {
       return 0;
     }
     LOCK();
@@ -22577,7 +22603,7 @@ uint64 engine_validate_memory_operation(longlong engine_data_structure_ptr,uint6
     *pengine_temp_long = *pengine_temp_long + 1;
     UNLOCK();
     if (0x8000000000000000 <
-        (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_data_structure_ptr + 0x20)) - *(longlong *)(engine_data_structure_ptr + 0x38))) {
+        (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20)) - *(longlong *)(engine_data_structure_ptr + 0x38))) {
       LOCK();
       structure_data_pointer = (ulonglong *)(engine_data_structure_ptr + 0x28);
       engine_temp_uint_4 = *structure_data_pointer;
@@ -22816,7 +22842,7 @@ void engine_handle_memory_callback(longlong *engine_data_structure_ptr,longlong 
       engine_data_structure_ptr[7] = engine_temp_long_7;
       engine_data_structure_ptr[8] = engine_temp_long_7 + 0x100;
     }
-    engine_temp_uint0 = engine_call_memory_extender(_engine_data_18,0x100,(char)engine_data_structure_ptr[10]);
+    engine_temp_uint0 = engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x100,(char)engine_data_structure_ptr[10]);
     *(void*)(engine_data_structure_ptr[9] + 8) = engine_temp_uint0;
     *(longlong **)engine_data_structure_ptr[6] = engine_result_flag_ptr;
     engine_temp_long_7 = engine_data_structure_ptr[9];
@@ -22983,7 +23009,7 @@ void engine_call_input_processor(uint64 engine_data_structure_ptr,longlong engin
   pengine_stack_uint_1a0 = aengine_stack_uint_190;
   aengine_stack_uint_190[0] = 0;
   engine_stack_value_198 = 6;
-  strcpy_s(aengine_stack_uint_190,0x10,&engine_base_data_offset_c0);
+  strcpy_s(aengine_stack_uint_190,MEMORY_COMPARE_SIZE_0x10,&engine_base_data_offset_c0);
   engine_current_node_ptr = (void*)engine_call_memory_allocator(_engine_data_18,0x208,8,3);
   engine_stack_long_248 = engine_temporary_long + 0x70;
   pengine_stack_uint_238 = engine_current_node_ptr;
@@ -23004,7 +23030,7 @@ void engine_call_input_processor(uint64 engine_data_structure_ptr,longlong engin
   engine_unnamed_function_6340(aengine_stack_uint_208,aengine_stack_uint_230);
   engine_call_data_validator(aengine_stack_uint_208,1);
                     // WARNING: Subroutine does not return
-  memset(engine_stack_buffer_138,0,0x100);
+  memset(engine_stack_buffer_138,0,MEMORY_COMPARE_SIZE_0x100);
 }
 
 
@@ -23512,16 +23538,16 @@ void engine_handle_system_data(longlong engine_data_structure_ptr)
       if (*(undefined **)(engine_data_structure_ptr + 0x38) != (void*)0x0) {
         engine_temp_uint_ptr_9 = *(undefined **)(engine_data_structure_ptr + 0x38);
       }
-      engine_unnamed_function_6420(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20,engine_temp_uint_ptr_9,auStackX_8);
-      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20);
+      engine_unnamed_function_6420(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + MEMORY_OFFSET_0x20,engine_temp_uint_ptr_9,auStackX_8);
+      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + MEMORY_OFFSET_0x20);
       (**(code **)(*pengine_temp_long_7 + 0x108))(pengine_temp_long_7,1);
-      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20);
+      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + MEMORY_OFFSET_0x20);
       (**(code **)(*pengine_temp_long_7 + 0x70))(pengine_temp_long_7,&engine_base_data_offset_c0);
       engine_stack_pointer_70 = &engine_system_context_data;
       engine_stack_value_58 = 0;
       engine_stack_pointer_68 = (void*)0x0;
       engine_stack_value_60 = 0;
-      engine_temporary_pointer = (void*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
+      engine_temporary_pointer = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
       *(uint8*)engine_temporary_pointer = 0;
       engine_stack_pointer_68 = engine_temporary_pointer;
       engine_temp_uint_3 = engine_call_resource_validator(engine_temporary_pointer);
@@ -23544,13 +23570,13 @@ code_r0x0001800630e9:
                     // WARNING: Subroutine does not return
       engine_call_cleanup_routine(engine_temporary_pointer);
     case 2:
-      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
+      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0xd8);
       (**(code **)(*pengine_temp_long_7 + 0x70))(pengine_temp_long_7,&engine_base_data_offset_f0);
-      engine_unnamed_function_6430(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
-      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20);
+      engine_unnamed_function_6430(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0xd8);
+      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + MEMORY_OFFSET_0x20);
       (**(code **)(*pengine_temp_long_7 + 0x70))(pengine_temp_long_7,&engine_base_data_offset_f0);
-      engine_unnamed_function_6430(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20);
-      if (((*(byte *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 8) & 2) != 0) &&
+      engine_unnamed_function_6430(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + MEMORY_OFFSET_0x20);
+      if (((*(byte *)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 8) & 2) != 0) &&
          (iRam0000000180c912e0 = iRam0000000180c912e0 + -1, iRam0000000180c912e0 == 0)) {
         _engine_data_f0 = 0;
         lRam0000000180c912e8 = 0;
@@ -23559,34 +23585,34 @@ code_r0x0001800630e9:
         UNLOCK();
         FreeConsole();
       }
-      *(uint32*)(*(longlong *)(engine_data_structure_ptr + 0x20) + 8) = 0xe;
-      *(void*)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x10) = 0xffffffff00000000;
-      *(uint8*)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x18) = 0;
-      **(void**)(engine_data_structure_ptr + 0x20) = 0;
+      *(uint32*)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 8) = 0xe;
+      *(void*)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0x10) = 0xffffffff00000000;
+      *(uint8*)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0x18) = 0;
+      **(void**)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = 0;
       break;
     case 3:
-      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
+      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0xd8);
       (**(code **)(*pengine_temp_long_7 + 0x70))(pengine_temp_long_7,&engine_base_data_offset_f0);
-      engine_unnamed_function_6430(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
-      engine_unnamed_function_6380(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xe0);
+      engine_unnamed_function_6430(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0xd8);
+      engine_unnamed_function_6380(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0xe0);
       break;
     case 4:
       engine_stack_array_18[0] = 0;
-      engine_temp_uint_ptr_9 = *(undefined **)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xe8);
+      engine_temp_uint_ptr_9 = *(undefined **)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0xe8);
       engine_data_ptr0 = &engine_data_73;
       if (engine_temp_uint_ptr_9 != (void*)0x0) {
         engine_data_ptr0 = engine_temp_uint_ptr_9;
       }
-      engine_unnamed_function_6420(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8,engine_data_ptr0,engine_stack_array_18);
-      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
+      engine_unnamed_function_6420(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0xd8,engine_data_ptr0,engine_stack_array_18);
+      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0xd8);
       (**(code **)(*pengine_temp_long_7 + 0x108))(pengine_temp_long_7,1);
-      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
+      pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0xd8);
       (**(code **)(*pengine_temp_long_7 + 0x70))(pengine_temp_long_7,&engine_base_data_offset_c0);
       break;
     case 5:
       engine_temp_int_8 = *(int *)(engine_data_structure_ptr + 0x58);
       if ((*(int *)(_engine_data_c8 + 0x150) <= engine_temp_int_8) &&
-         (engine_temporary_pointer = *(void**)(engine_data_structure_ptr + 0x20),
+         (engine_temporary_pointer = *(void**)(engine_data_structure_ptr + MEMORY_OFFSET_0x20),
          (*(ulonglong *)(engine_data_structure_ptr + 0x60) & engine_temporary_pointer[2]) != 0)) {
         engine_temp_uint_2 = *(uint *)(engine_data_structure_ptr + 0x40);
         engine_temp_uint_ptr_9 = &engine_data_73;
@@ -23617,13 +23643,13 @@ code_r0x0001800630e9:
       }
       break;
     case 6:
-      if ((*(byte *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 8) & 8) != 0) {
-        (**(code **)(*(longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20) + 0x118))();
-        (**(code **)(*(longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8) + 0x118))();
+      if ((*(byte *)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 8) & 8) != 0) {
+        (**(code **)(*(longlong *)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + MEMORY_OFFSET_0x20) + 0x118))();
+        (**(code **)(*(longlong *)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0xd8) + 0x118))();
       }
       break;
     case 7:
-      *(void*)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x10) = *(void*)(engine_data_structure_ptr + 0x60);
+      *(void*)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0x10) = *(void*)(engine_data_structure_ptr + 0x60);
       break;
     case 8:
       if ((_engine_data_f0 != 0) && (lRam0000000180c912e8 != 0)) {
@@ -23701,7 +23727,7 @@ LAB_18006357e:
       }
       else if (engine_temp_uint_3 == 0) goto LAB_18006357e;
       engine_temp_int_9 = engine_temp_int_9 + 1;
-      engine_temp_long0 = engine_temp_long0 + 0x20;
+      engine_temp_long0 = engine_temp_long0 + MEMORY_OFFSET_0x20;
       in_RAX = (ulonglong)engine_temp_int_9;
     } while (in_RAX < engine_temp_uint64_value);
   }
@@ -23976,7 +24002,7 @@ LAB_180063de9:
       }
       engine_temp_uint0 = (int)engine_temp_uint1 + 1;
       engine_temp_uint1 = (ulonglong)engine_temp_uint0;
-      engine_temp_uint3 = engine_temp_uint3 + 0x20;
+      engine_temp_uint3 = engine_temp_uint3 + MEMORY_OFFSET_0x20;
     } while (engine_temp_uint0 < engine_temp_uint6);
     engine_current_node_ptr = pengine_stack_uint_2d0;
     engine_data_ptr2 = pengine_stack_uint_2b0;
@@ -24731,7 +24757,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
     engine_data_pointer_6 = &engine_base_data_offset_28;
   }
   else {
-    engine_temp_long_9 = (**(code **)(_engine_input_buffer_ptr + 0x20))();
+    engine_temp_long_9 = (**(code **)(_engine_input_buffer_ptr + MEMORY_OFFSET_0x20))();
     engine_data_pointer_6 = &engine_data_73;
     if (*(undefined **)(engine_temp_long_9 + 8) != (void*)0x0) {
       engine_data_pointer_6 = *(undefined **)(engine_temp_long_9 + 8);
@@ -24860,7 +24886,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   engine_stack_pointer_e8 = aengine_stack_uint_d8;
   aengine_stack_uint_d8[0] = 0;
   engine_stack_uint_e0 = 9;
-  strcpy_s(aengine_stack_uint_d8,0x10,&engine_base_data_offset_a8);
+  strcpy_s(aengine_stack_uint_d8,MEMORY_COMPARE_SIZE_0x10,&engine_base_data_offset_a8);
   engine_process_data_structure_operations(&pengine_stack_uint_160,&pengine_stack_uint_200,&engine_stack_pointer_f0);
   engine_data_ptr8 = engine_stack_pointer_158;
   engine_data_ptr9 = pengine_stack_uint_160;
@@ -24869,7 +24895,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
     pengine_stack_uint_110 = aengine_stack_uint_100;
     aengine_stack_uint_100[0] = 0;
     engine_stack_uint_108 = 1;
-    strcpy_s(aengine_stack_uint_100,0x10,&engine_data_28);
+    strcpy_s(aengine_stack_uint_100,MEMORY_COMPARE_SIZE_0x10,&engine_data_28);
     engine_process_data_structure_operations(&engine_stack_pointer_220,engine_data_ptr9 + 4,&pengine_stack_uint_118);
     pengine_stack_uint_118 = &engine_data_18098bcb0;
   }
@@ -25636,7 +25662,7 @@ LAB_180066bf4:
         engine_stack_value_88 = 0;
         engine_stack_pointer_98 = (void*)0x0;
         engine_stack_uint_90 = 0;
-        engine_temporary_pointer = (void*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
+        engine_temporary_pointer = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
         *(uint8*)engine_temporary_pointer = 0;
         engine_stack_pointer_98 = engine_temporary_pointer;
         engine_temp_uint_4 = engine_call_resource_validator(engine_temporary_pointer);
@@ -26147,7 +26173,7 @@ void engine_unnamed_function_330(longlong engine_data_structure_ptr)
            *(longlong *)(lStackX_10 + 0x1c8) - (ulonglong)auStackX_8[0];
       engine_temp_uint_4 = _engine_data_40;
       if (*(longlong *)(lStackX_10 + 0x1c8) < 1) {
-        engine_temporary_long = *(longlong *)(engine_data_structure_ptr + 0x20);
+        engine_temporary_long = *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20);
         engine_temp_index = engine_call_memory_allocator(_engine_data_18,0x40,8,10);
         engine_stack_long_pointer_20 = (longlong *)&engine_stack_value_60;
         pengine_stack_uint_50 = &engine_base_data_offset_70;
@@ -26187,7 +26213,7 @@ void engine_unnamed_function_330(longlong engine_data_structure_ptr)
       return;
     }
     if (lStackX_10 == 0) break;
-    engine_unnamed_function_340(*(void*)(engine_data_structure_ptr + 0x20));
+    engine_unnamed_function_340(*(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20));
   }
                     // WARNING: Subroutine does not return
   engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_50,comparison_result_index);
@@ -26267,7 +26293,7 @@ void engine_unnamed_function_360(longlong *engine_data_structure_ptr)
     lStackX_8 = *(longlong *)(engine_temp_long_3 + 0x140);
     engine_temp_long_3 = *(longlong *)(engine_temp_long_3 + 0x1f0);
     if (engine_temp_long_4 - 2U < 2) {
-      pengine_temp_long_8 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x10,8,3);
+      pengine_temp_long_8 = (longlong *)engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,8,3);
       *pengine_temp_long_8 = (longlong)&engine_base_data_offset_e0;
       *(bool *)(pengine_temp_long_8 + 1) = engine_temp_long_4 == 3;
     }
@@ -26335,7 +26361,7 @@ void engine_unnamed_function_360(longlong *engine_data_structure_ptr)
   UNLOCK();
   engine_temp_long_4 = *engine_data_structure_ptr;
   current_data_pointer = (void*)engine_data_structure_ptr[1];
-  engine_temp_long_3 = engine_temp_long_4 + 0x200380;
+  engine_temp_long_3 = engine_temp_long_4 + MEMORY_OFFSET_0x200380;
   engine_stack_uint_40 = 0x180068808;
   lStackX_8 = engine_temp_long_3;
   local_resource_node = current_data_pointer;
@@ -26346,8 +26372,8 @@ void engine_unnamed_function_360(longlong *engine_data_structure_ptr)
   }
   engine_stack_uint_40 = 0x18006881f;
   engine_unnamed_function_590(current_data_pointer + 4);
-  *current_data_pointer = *(void*)(engine_temp_long_4 + 0x200378);
-  *(void**)(engine_temp_long_4 + 0x200378) = current_data_pointer;
+  *current_data_pointer = *(void*)(engine_temp_long_4 + MEMORY_OFFSET_0x200378);
+  *(void**)(engine_temp_long_4 + MEMORY_OFFSET_0x200378) = current_data_pointer;
   engine_stack_uint_40 = 0x18006883a;
   engine_temp_int_9 = _Mtx_unlock(engine_temp_long_3);
   if (engine_temp_int_9 != 0) {
@@ -26480,7 +26506,7 @@ void engine_unnamed_function_400(longlong engine_data_structure_ptr,longlong eng
       if (*(undefined **)(engine_result_flag_ptr + 8) != (void*)0x0) {
         engine_next_node_ptr = *(undefined **)(engine_result_flag_ptr + 8);
       }
-      strcpy_s(engine_system_buffer_data,0x100,engine_next_node_ptr);
+      strcpy_s(engine_system_buffer_data,MEMORY_COMPARE_SIZE_0x100,engine_next_node_ptr);
       engine_temp_uint_8 = engine_temp_uint_6;
       if (0 < *(int *)(engine_result_flag_ptr + 0x10)) {
         do {
@@ -26497,7 +26523,7 @@ void engine_unnamed_function_400(longlong engine_data_structure_ptr,longlong eng
                     // WARNING: Subroutine does not return
       engine_call_data_hasher(engine_stack_uint_48 ^ (ulonglong)aengine_stack_uint_2e8);
     }
-    engine_temporary_pointer = (void*)(engine_temp_uint_8 * 0x130 + engine_data_structure_ptr + 0x2003d0);
+    engine_temporary_pointer = (void*)(engine_temp_uint_8 * 0x130 + engine_data_structure_ptr + MEMORY_OFFSET_0x2003d0);
     *(ulonglong *)(engine_data_structure_ptr + 0x2133d0) = engine_temp_uint_8 + 1;
   }
   else {
@@ -26526,15 +26552,15 @@ uint64 engine_unnamed_function_410(longlong engine_data_structure_ptr,longlong e
   engine_temp_uint_8 = *(ulonglong *)(engine_comparison_params + 0x118) & 0xfffffffffffff000;
   engine_temp_index = (*(longlong *)(engine_comparison_params + 0x120) - engine_temp_uint_8) + *(ulonglong *)(engine_comparison_params + 0x118);
   engine_temp_uint64_value = (ulonglong)(-(uint)((engine_temp_index & 0xfff) != 0) & 0x1000) + (engine_temp_index & 0xfffffffffffff000);
-  comparison_result_index = _Mtx_lock(engine_data_structure_ptr + 0x200380);
+  comparison_result_index = _Mtx_lock(engine_data_structure_ptr + MEMORY_OFFSET_0x200380);
   if (comparison_result_index != 0) {
     __Throw_C_error_std__YAXH_Z(comparison_result_index);
   }
-  temp_data_pointer = *(void**)(engine_data_structure_ptr + 0x200378);
+  temp_data_pointer = *(void**)(engine_data_structure_ptr + MEMORY_OFFSET_0x200378);
   if (temp_data_pointer == (void*)0x0) {
-    engine_temporary_uint = *(ulonglong *)(engine_data_structure_ptr + 0x200370);
+    engine_temporary_uint = *(ulonglong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x200370);
     if (0xfff < engine_temporary_uint) {
-      comparison_result_index = _Mtx_unlock(engine_data_structure_ptr + 0x200380);
+      comparison_result_index = _Mtx_unlock(engine_data_structure_ptr + MEMORY_OFFSET_0x200380);
       if (comparison_result_index != 0) {
         __Throw_C_error_std__YAXH_Z(comparison_result_index);
       }
@@ -26575,10 +26601,10 @@ uint64 engine_unnamed_function_410(longlong engine_data_structure_ptr,longlong e
       return engine_temp_uint_4;
     }
     temp_data_pointer = (void*)(engine_temporary_uint * 0x200 + engine_data_structure_ptr + 0x370);
-    *(ulonglong *)(engine_data_structure_ptr + 0x200370) = engine_temporary_uint + 1;
+    *(ulonglong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x200370) = engine_temporary_uint + 1;
   }
   else {
-    *(void*)(engine_data_structure_ptr + 0x200378) = *temp_data_pointer;
+    *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x200378) = *temp_data_pointer;
     *temp_data_pointer = 0;
   }
                     // WARNING: Subroutine does not return
@@ -26599,7 +26625,7 @@ longlong engine_unnamed_function_420(longlong engine_data_structure_ptr,longlong
   if (*(undefined **)(engine_result_flag_ptr + 8) != (void*)0x0) {
     engine_current_node_ptr = *(undefined **)(engine_result_flag_ptr + 8);
   }
-  strcpy_s(*(void*)(engine_data_structure_ptr + 8),0x100,engine_current_node_ptr);
+  strcpy_s(*(void*)(engine_data_structure_ptr + 8),MEMORY_COMPARE_SIZE_0x100,engine_current_node_ptr);
   *(void*)(engine_data_structure_ptr + 0x118) = *(void*)(engine_result_flag_ptr + 0x118);
   engine_temporary_long = engine_data_structure_ptr + 0x148;
   *(void*)(engine_data_structure_ptr + 0x120) = *(void*)(engine_result_flag_ptr + 0x120);
@@ -26634,7 +26660,7 @@ longlong engine_unnamed_function_420(longlong engine_data_structure_ptr,longlong
   }
   *(void*)(engine_data_structure_ptr + 0x188) = *(void*)(engine_result_flag_ptr + 0x188);
   *(void*)(engine_data_structure_ptr + 400) = *(void*)(engine_result_flag_ptr + 400);
-  *(void*)(engine_data_structure_ptr + 0x198) = *(void*)(engine_result_flag_ptr + 0x198);
+  *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x198) = *(void*)(engine_result_flag_ptr + MEMORY_OFFSET_0x198);
   *(void*)(engine_data_structure_ptr + 0x1a0) = *(void*)(engine_result_flag_ptr + 0x1a0);
   return engine_data_structure_ptr;
 }
@@ -26738,14 +26764,14 @@ void engine_unnamed_function_450(longlong engine_data_structure_ptr,uint64_t *en
 {
   int engine_temporary_int;
   
-  engine_temporary_int = _Mtx_lock(engine_data_structure_ptr + 0x200010);
+  engine_temporary_int = _Mtx_lock(engine_data_structure_ptr + MEMORY_OFFSET_0x200010);
   if (engine_temporary_int != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temporary_int);
   }
   engine_unnamed_function_590(engine_result_flag_ptr + 4);
-  *engine_result_flag_ptr = *(void*)(engine_data_structure_ptr + 0x200008);
-  *(void**)(engine_data_structure_ptr + 0x200008) = engine_result_flag_ptr;
-  engine_temporary_int = _Mtx_unlock(engine_data_structure_ptr + 0x200010);
+  *engine_result_flag_ptr = *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x200008);
+  *(void**)(engine_data_structure_ptr + MEMORY_OFFSET_0x200008) = engine_result_flag_ptr;
+  engine_temporary_int = _Mtx_unlock(engine_data_structure_ptr + MEMORY_OFFSET_0x200010);
   if (engine_temporary_int != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temporary_int);
   }
@@ -26770,7 +26796,7 @@ engine_unnamed_function_460(longlong engine_data_structure_ptr,longlong *engine_
   engine_temp_long_3 = func_0x0001800694c0(engine_data_structure_ptr,*(void*)(*(longlong *)(engine_data_structure_ptr + 8) + engine_temp_uint_2 * 8),
                               engine_system_parameter_4);
   if (engine_temp_long_3 == 0) {
-    engine_unnamed_function_6510(engine_data_structure_ptr + 0x20,&engine_param_5,*(uint32*)(engine_data_structure_ptr + 0x10),
+    engine_unnamed_function_6510(engine_data_structure_ptr + MEMORY_OFFSET_0x20,&engine_param_5,*(uint32*)(engine_data_structure_ptr + 0x10),
                   *(uint32*)(engine_data_structure_ptr + 0x18),1);
     engine_temp_long_3 = engine_call_memory_extender(_engine_data_18,0x128,*(uint8*)(engine_data_structure_ptr + 0x2c));
     engine_compress_data_buffer(engine_temp_long_3,engine_system_parameter_4);
@@ -26827,8 +26853,8 @@ uint64 engine_unnamed_function_470(ulonglong *engine_data_structure_ptr,uint64_t
   do {
     engine_temp_uint_9 = engine_temp_uint_8;
     if (engine_temp_uint1 == 0) break;
-    engine_temp_uint64_value = *(longlong *)(engine_temp_uint1 + 0x20) - *(longlong *)(engine_temp_uint1 + 0x28);
-    if ((ulonglong)(*(longlong *)(engine_temp_uint1 + 0x28) - *(longlong *)(engine_temp_uint1 + 0x20)) <
+    engine_temp_uint64_value = *(longlong *)(engine_temp_uint1 + MEMORY_OFFSET_0x20) - *(longlong *)(engine_temp_uint1 + 0x28);
+    if ((ulonglong)(*(longlong *)(engine_temp_uint1 + 0x28) - *(longlong *)(engine_temp_uint1 + MEMORY_OFFSET_0x20)) <
         0x8000000000000001) {
       engine_temp_uint64_value = engine_temp_uint0;
     }
@@ -26855,14 +26881,14 @@ uint64 engine_unnamed_function_470(ulonglong *engine_data_structure_ptr,uint64_t
       if (engine_temp_uint1 != engine_temp_uint_9) {
         engine_temp_long_4 = *(longlong *)(engine_temp_uint1 + 0x38);
         if (*(char *)(engine_temp_uint1 + 0x48) == '\0') {
-          if ((ulonglong)((*(longlong *)(engine_temp_uint1 + 0x30) - engine_temp_long_4) - *(longlong *)(engine_temp_uint1 + 0x20)) <
+          if ((ulonglong)((*(longlong *)(engine_temp_uint1 + 0x30) - engine_temp_long_4) - *(longlong *)(engine_temp_uint1 + MEMORY_OFFSET_0x20)) <
               0x8000000000000001) goto LAB_180068c92;
           LOCK();
           pengine_temp_long = (longlong *)(engine_temp_uint1 + 0x30);
           engine_temp_long_3 = *pengine_temp_long;
           *pengine_temp_long = *pengine_temp_long + 1;
           UNLOCK();
-          if ((ulonglong)((engine_temp_long_3 - *(longlong *)(engine_temp_uint1 + 0x20)) - engine_temp_long_4) < 0x8000000000000001)
+          if ((ulonglong)((engine_temp_long_3 - *(longlong *)(engine_temp_uint1 + MEMORY_OFFSET_0x20)) - engine_temp_long_4) < 0x8000000000000001)
           goto LAB_180068c87;
           LOCK();
           structure_data_pointer = (ulonglong *)(engine_temp_uint1 + 0x28);
@@ -26889,13 +26915,13 @@ uint64 engine_unnamed_function_470(ulonglong *engine_data_structure_ptr,uint64_t
         }
         else {
           if (0x8000000000000000 <
-              (ulonglong)((*(longlong *)(engine_temp_uint1 + 0x30) - engine_temp_long_4) - *(longlong *)(engine_temp_uint1 + 0x20))) {
+              (ulonglong)((*(longlong *)(engine_temp_uint1 + 0x30) - engine_temp_long_4) - *(longlong *)(engine_temp_uint1 + MEMORY_OFFSET_0x20))) {
             LOCK();
             pengine_temp_long = (longlong *)(engine_temp_uint1 + 0x30);
             engine_temp_long_3 = *pengine_temp_long;
             *pengine_temp_long = *pengine_temp_long + 1;
             UNLOCK();
-            if (0x8000000000000000 < (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_temp_uint1 + 0x20)) - engine_temp_long_4)) {
+            if (0x8000000000000000 < (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_temp_uint1 + MEMORY_OFFSET_0x20)) - engine_temp_long_4)) {
               LOCK();
               structure_data_pointer = (ulonglong *)(engine_temp_uint1 + 0x28);
               engine_temp_uint_8 = *structure_data_pointer;
@@ -26950,7 +26976,7 @@ uint64 engine_unnamed_function_480(longlong engine_data_structure_ptr,uint64_t *
   if (*(char *)(engine_data_structure_ptr + 0x48) == '\0') {
     if ((ulonglong)
         ((*(longlong *)(engine_data_structure_ptr + 0x30) - *(longlong *)(engine_data_structure_ptr + 0x38)) -
-        *(longlong *)(engine_data_structure_ptr + 0x20)) < 0x8000000000000001) {
+        *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20)) < 0x8000000000000001) {
       return 0;
     }
     LOCK();
@@ -26959,7 +26985,7 @@ uint64 engine_unnamed_function_480(longlong engine_data_structure_ptr,uint64_t *
     *pengine_temp_long = *pengine_temp_long + 1;
     UNLOCK();
     if (0x8000000000000000 <
-        (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_data_structure_ptr + 0x20)) - *(longlong *)(engine_data_structure_ptr + 0x38))) {
+        (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20)) - *(longlong *)(engine_data_structure_ptr + 0x38))) {
       LOCK();
       structure_data_pointer = (ulonglong *)(engine_data_structure_ptr + 0x28);
       engine_temp_uint_4 = *structure_data_pointer;
@@ -26987,7 +27013,7 @@ uint64 engine_unnamed_function_480(longlong engine_data_structure_ptr,uint64_t *
   else {
     if ((ulonglong)
         ((*(longlong *)(engine_data_structure_ptr + 0x30) - *(longlong *)(engine_data_structure_ptr + 0x38)) -
-        *(longlong *)(engine_data_structure_ptr + 0x20)) < 0x8000000000000001) {
+        *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20)) < 0x8000000000000001) {
       return 0;
     }
     LOCK();
@@ -26996,7 +27022,7 @@ uint64 engine_unnamed_function_480(longlong engine_data_structure_ptr,uint64_t *
     *pengine_temp_long = *pengine_temp_long + 1;
     UNLOCK();
     if (0x8000000000000000 <
-        (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_data_structure_ptr + 0x20)) - *(longlong *)(engine_data_structure_ptr + 0x38))) {
+        (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20)) - *(longlong *)(engine_data_structure_ptr + 0x38))) {
       LOCK();
       structure_data_pointer = (ulonglong *)(engine_data_structure_ptr + 0x28);
       engine_temp_uint_4 = *structure_data_pointer;
@@ -27096,7 +27122,7 @@ engine_compress_data_buffer(uint64_t *engine_data_structure_ptr,longlong engine_
   if (*(undefined **)(engine_result_flag_ptr + 8) != (void*)0x0) {
     engine_data_pointer = *(undefined **)(engine_result_flag_ptr + 8);
   }
-  strcpy_s(engine_data_structure_ptr[1],0x100,engine_data_pointer,engine_system_parameter_4,0xfffffffffffffffe);
+  strcpy_s(engine_data_structure_ptr[1],MEMORY_COMPARE_SIZE_0x100,engine_data_pointer,engine_system_parameter_4,0xfffffffffffffffe);
   return engine_data_structure_ptr;
 }
 
@@ -27278,10 +27304,10 @@ void engine_unnamed_function_570(longlong engine_data_structure_ptr,longlong eng
     *(int *)(engine_data_structure_ptr + 0x10) = (int)engine_temporary_long;
                     // WARNING: Could not recover jumptable at 0x000180069429. Too many branches
                     // WARNING: Treating indirect jump as call
-    strcpy_s(*(void*)(engine_data_structure_ptr + 8),0x100);
+    strcpy_s(*(void*)(engine_data_structure_ptr + 8),MEMORY_COMPARE_SIZE_0x100);
     return;
   }
-  engine_call_buffer_allocator(&engine_data_18098bc48,0x100,engine_result_flag_ptr);
+  engine_call_buffer_allocator(&engine_data_18098bc48,MEMORY_COMPARE_SIZE_0x100,engine_result_flag_ptr);
   *(uint32*)(engine_data_structure_ptr + 0x10) = 0;
   **(uint8**)(engine_data_structure_ptr + 8) = 0;
   return;
@@ -27689,7 +27715,7 @@ ulonglong engine_unnamed_function_650(uint64 engine_data_structure_ptr,uint64_t 
   if (engine_temp_long_4 == 0) {
     return 0;
   }
-  engine_temporary_uint = *(ulonglong *)(engine_temp_long_4 + 0x20);
+  engine_temporary_uint = *(ulonglong *)(engine_temp_long_4 + MEMORY_OFFSET_0x20);
   if ((engine_temporary_uint & 0x1f) == 0) {
     engine_temp_index = (*(longlong *)(engine_temp_long_4 + 0x28) - engine_temporary_uint) - 0x20;
     if ((0x8000000000000000 < engine_temp_index) &&
@@ -27728,7 +27754,7 @@ LAB_180069dc3:
 LAB_180069dda:
     engine_temp_uint_3 = *engine_result_flag_ptr;
     *(void*)(*(longlong *)(engine_temp_long_4 + 0x40) + (ulonglong)((uint)engine_temporary_uint & 0x1f) * 8) = engine_temp_uint_3;
-    *(ulonglong *)(engine_temp_long_4 + 0x20) = engine_temporary_uint + 1;
+    *(ulonglong *)(engine_temp_long_4 + MEMORY_OFFSET_0x20) = engine_temporary_uint + 1;
     engine_temp_index = CONCAT71((int7)((ulonglong)engine_temp_uint_3 >> 8),1);
   }
   return engine_temp_index;
@@ -27939,7 +27965,7 @@ void engine_unnamed_function_780(uint64 engine_data_structure_ptr,uint64 engine_
   OutputDebugStringA(next_data_pointer);
   memory_allocation_result = engine_data_pointer_50;
   if (((engine_temp_byte9) && (engine_data_pointer_50 != 0)) && (*(char *)(engine_data_pointer_50 + 0x1609) != '\x01')) {
-    engine_unnamed_function_5600(*(void*)(_engine_data_70 + 8),*(char *)(_engine_input_config_data + 0x2028) != '\0',
+    engine_unnamed_function_5600(*(void*)(_engine_data_70 + 8),*(char *)(_engine_input_config_data + MEMORY_OFFSET_0x2028) != '\0',
                   *(uint32*)(engine_data_pointer_50 + 0x160c));
     *(uint8*)(memory_allocation_result + 0x1609) = 1;
   }
@@ -28029,7 +28055,7 @@ void engine_unnamed_function_790(uint64 engine_data_structure_ptr,longlong engin
   engine_stack_uint_50 = 0;
   engine_stack_uint_98 = engine_comparison_params;
   engine_stack_long_88 = engine_system_parameter_4;
-  engine_initialize_component(&engine_stack_value_58,0x10,&engine_magic_header_data,engine_comparison_params);
+  engine_initialize_component(&engine_stack_value_58,MEMORY_COMPARE_SIZE_0x10,&engine_magic_header_data,engine_comparison_params);
   engine_temp_long_9 = engine_process_system_configuration(&pengine_stack_uint_d8,engine_system_parameter_4);
   pengine_stack_uint_118 = &engine_system_context_data;
   engine_stack_uint_100 = 0;
@@ -28085,7 +28111,7 @@ LAB_180070a3f:
         else {
           if (engine_temp_uint_6 <= engine_temp_uint4) goto LAB_180070b00;
           engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
-          engine_data_ptr0 = (uint8*)engine_update_system_data(_engine_data_18,engine_data_ptr0,engine_temp_uint_6,0x10);
+          engine_data_ptr0 = (uint8*)engine_update_system_data(_engine_data_18,engine_data_ptr0,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
         }
         pengine_stack_uint_110 = engine_data_ptr0;
         engine_stack_uint_100._0_4_ = engine_call_resource_validator(engine_data_ptr0);
@@ -28166,7 +28192,7 @@ LAB_180070b00:
                     // WARNING: Subroutine does not return
     memcpy(engine_stack_pointer_138 + engine_stack_uint_130,engine_data_ptr8,(longlong)((int)engine_temp_long6 + 2));
   }
-  engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
+  engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
   *engine_stack_pointer_138 = 0;
   engine_temp_index = engine_call_resource_validator(engine_stack_pointer_138);
   engine_stack_uint_128 = CONCAT44(engine_stack_uint_128._4_4_,engine_temp_index);
@@ -28175,7 +28201,7 @@ LAB_180070b00:
   engine_temp_uint_6 = 2;
   if (engine_stack_pointer_138 == (uint8*)0x0) {
     engine_stack_uint_130 = 1;
-    engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
+    engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
     *engine_stack_pointer_138 = 0;
 LAB_180070db8:
     engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
@@ -28184,7 +28210,7 @@ LAB_180070db8:
   else if (engine_temp_index < 3) {
     engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
     engine_stack_uint_130 = 1;
-    engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,3,0x10);
+    engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,3,MEMORY_COMPARE_SIZE_0x10);
     goto LAB_180070db8;
   }
   *(uint16*)(engine_stack_pointer_138 + engine_stack_uint_130) = 10;
@@ -28213,7 +28239,7 @@ LAB_180070db8:
           if (engine_temp_uint4 <= (uint)engine_stack_uint_128) goto LAB_180070e64;
           engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
           engine_stack_uint_130 = engine_temp_uint_6;
-          engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint4,0x10);
+          engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint4,MEMORY_COMPARE_SIZE_0x10);
         }
         engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
         engine_stack_uint_128 = CONCAT44(engine_stack_uint_128._4_4_,engine_temp_uint64_value);
@@ -28227,7 +28253,7 @@ LAB_180070e64:
   }
   if (engine_stack_pointer_138 == (uint8*)0x0) {
     engine_stack_uint_130 = engine_temp_uint_6;
-    engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
+    engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
     *engine_stack_pointer_138 = 0;
 LAB_180070ee8:
     engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
@@ -28236,7 +28262,7 @@ LAB_180070ee8:
   else if ((uint)engine_stack_uint_128 < 4) {
     engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
     engine_stack_uint_130 = engine_temp_uint_6;
-    engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,4,0x10);
+    engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,4,MEMORY_COMPARE_SIZE_0x10);
     goto LAB_180070ee8;
   }
   *(uint16*)(engine_stack_pointer_138 + engine_stack_uint_130) = 0x3a;
@@ -28256,7 +28282,7 @@ LAB_180070ee8:
     else {
       if (engine_temp_uint4 <= (uint)engine_stack_uint_128) goto LAB_180070f81;
       engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
-      engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint4,0x10);
+      engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint4,MEMORY_COMPARE_SIZE_0x10);
     }
     engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
     engine_stack_uint_128 = CONCAT44(engine_stack_uint_128._4_4_,engine_temp_uint64_value);
@@ -28277,7 +28303,7 @@ LAB_180070f81:
     else {
       if (engine_temp_index <= (uint)engine_stack_uint_128) goto LAB_180071000;
       engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
-      engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_index,0x10);
+      engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_index,MEMORY_COMPARE_SIZE_0x10);
     }
     engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
     engine_stack_uint_128 = CONCAT44(engine_stack_uint_128._4_4_,engine_temp_uint64_value);
@@ -28309,7 +28335,7 @@ LAB_180071000:
         else {
           if (engine_temp_uint_6 <= (uint)engine_stack_uint_128) goto LAB_1800710b8;
           engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
-          engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint_6,0x10);
+          engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
         }
         engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
         engine_stack_uint_128 = CONCAT44(engine_stack_uint_128._4_4_,engine_temp_uint64_value);
@@ -28332,7 +28358,7 @@ LAB_1800710b8:
     else {
       if (engine_temp_uint_6 <= (uint)engine_stack_uint_128) goto LAB_18007113f;
       engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
-      engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint_6,0x10);
+      engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
     }
     engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
     engine_stack_uint_128 = CONCAT44(engine_stack_uint_128._4_4_,engine_temp_uint64_value);
@@ -28365,7 +28391,7 @@ LAB_18007113f:
   engine_temp_long_9 = engine_data_pointer_50;
   if ((engine_physics_flag == '\0') && (engine_comparison_result)) {
     if ((engine_data_pointer_50 != 0) && (*(char *)(engine_data_pointer_50 + 0x1609) != '\x01')) {
-      engine_unnamed_function_5600(*(void*)(_engine_data_70 + 8),*(char *)(_engine_input_config_data + 0x2028) != '\0',
+      engine_unnamed_function_5600(*(void*)(_engine_data_70 + 8),*(char *)(_engine_input_config_data + MEMORY_OFFSET_0x2028) != '\0',
                     *(uint32*)(engine_data_pointer_50 + 0x160c));
       *(uint8*)(engine_temp_long_9 + 0x1609) = 1;
     }
@@ -28658,7 +28684,7 @@ LAB_180071af3:
   }
   else if (engine_temp_uint_2 < 0x13) {
     engine_stack_value_80 = 0x11;
-    engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,0x13,0x10,0x13);
+    engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,0x13,MEMORY_COMPARE_SIZE_0x10,0x13);
     goto LAB_180071af3;
   }
   *(uint16*)(engine_stack_pointer_88 + engine_stack_value_80) = 10;
@@ -28674,7 +28700,7 @@ LAB_180071b69:
   }
   else if ((uint)engine_stack_value_78 < 0x14) {
     engine_stack_value_80 = 0x12;
-    engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,0x14,0x10,0x13);
+    engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,0x14,MEMORY_COMPARE_SIZE_0x10,0x13);
     goto LAB_180071b69;
   }
   *(uint16*)(engine_stack_pointer_88 + engine_stack_value_80) = 10;
@@ -28702,7 +28728,7 @@ LAB_180071b69:
           engine_temp_uint1 = engine_stack_value_80;
           if (engine_temp_uint2 <= (uint)engine_stack_value_78) goto LAB_180071c1a;
           engine_stack_value_80 = engine_temp_uint_2;
-          engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint2,0x10,0x13);
+          engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint2,MEMORY_COMPARE_SIZE_0x10,0x13);
         }
         engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
         engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
@@ -28724,7 +28750,7 @@ LAB_180071c93:
   }
   else if ((uint)engine_stack_value_78 < 0x15) {
     engine_stack_value_80 = engine_temp_uint_2;
-    engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,0x15,0x10,0x13);
+    engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,0x15,MEMORY_COMPARE_SIZE_0x10,0x13);
     goto LAB_180071c93;
   }
   *(uint16*)(engine_stack_pointer_88 + engine_stack_value_80) = 0x3a;
@@ -28743,7 +28769,7 @@ LAB_180071c93:
     }
     else {
       if (engine_temp_uint2 <= (uint)engine_stack_value_78) goto LAB_180071d1f;
-      engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint2,0x10,0x13);
+      engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint2,MEMORY_COMPARE_SIZE_0x10,0x13);
     }
     engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
     engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
@@ -28763,7 +28789,7 @@ LAB_180071d1f:
     }
     else {
       if (engine_temp_uint1 <= (uint)engine_stack_value_78) goto LAB_180071d94;
-      engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint1,0x10,0x13);
+      engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint1,MEMORY_COMPARE_SIZE_0x10,0x13);
     }
     engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
     engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
@@ -28793,7 +28819,7 @@ LAB_180071d94:
         }
         else {
           if (engine_temp_uint_2 <= (uint)engine_stack_value_78) goto LAB_180071e34;
-          engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint_2,0x10,0x13);
+          engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint_2,MEMORY_COMPARE_SIZE_0x10,0x13);
         }
         engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
         engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
@@ -28814,7 +28840,7 @@ LAB_180071e34:
     }
     else {
       if (engine_temp_uint1 <= (uint)engine_stack_value_78) goto LAB_180071eb0;
-      engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint1,0x10,0x13);
+      engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint1,MEMORY_COMPARE_SIZE_0x10,0x13);
     }
     engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
     engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
@@ -28935,7 +28961,7 @@ void engine_unnamed_function_810(uint64 engine_data_structure_ptr,longlong engin
   if ((engine_data_60 != '\0') || (engine_render_flag != '\0')) goto LAB_180072d7b;
   engine_stack_value_58 = 0;
   engine_stack_uint_50 = 0;
-  engine_initialize_component(&engine_stack_value_58,0x10,&engine_magic_header_data,engine_comparison_params);
+  engine_initialize_component(&engine_stack_value_58,MEMORY_COMPARE_SIZE_0x10,&engine_magic_header_data,engine_comparison_params);
   engine_temp_long_9 = engine_process_system_configuration(&engine_stack_pointer_f0,engine_system_parameter_4);
   pengine_stack_uint_110 = &engine_system_context_data;
   engine_temp_uint6 = 0;
@@ -28992,7 +29018,7 @@ LAB_180072120:
         else {
           if (engine_temp_uint_6 <= engine_temp_uint6) goto LAB_1800721e1;
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
-          engine_data_ptr0 = (uint8*)engine_update_system_data(_engine_data_18,engine_data_ptr0,engine_temp_uint_6,0x10);
+          engine_data_ptr0 = (uint8*)engine_update_system_data(_engine_data_18,engine_data_ptr0,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
         }
         pengine_stack_uint_108 = engine_data_ptr0;
         engine_stack_uint_f8._0_4_ = engine_call_resource_validator(engine_data_ptr0);
@@ -29042,7 +29068,7 @@ LAB_1800722f5:
         engine_temp_long_9 = engine_data_pointer_50;
         if ((engine_data_pointer_50 != 0) && (*(char *)(engine_data_pointer_50 + 0x1609) != '\x01')) {
           engine_unnamed_function_5600(*(void*)(_engine_data_70 + 8),
-                        *(char *)(_engine_input_config_data + 0x2028) != '\0',
+                        *(char *)(_engine_input_config_data + MEMORY_OFFSET_0x2028) != '\0',
                         *(uint32*)(engine_data_pointer_50 + 0x160c));
           *(uint8*)(engine_temp_long_9 + 0x1609) = 1;
         }
@@ -29113,7 +29139,7 @@ LAB_180072521:
       else if (engine_temp_uint_6 < 0x16) {
         pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
         engine_stack_uint_128 = 0x14;
-        pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,0x16,0x10);
+        pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,0x16,MEMORY_COMPARE_SIZE_0x10);
         goto LAB_180072521;
       }
       *(uint16*)(pengine_stack_uint_130 + engine_stack_uint_128) = 10;
@@ -29130,7 +29156,7 @@ LAB_1800725ac:
       else if ((uint)engine_stack_uint_120 < 0x17) {
         pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
         engine_stack_uint_128 = 0x15;
-        pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,0x17,0x10);
+        pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,0x17,MEMORY_COMPARE_SIZE_0x10);
         goto LAB_1800725ac;
       }
       *(uint16*)(pengine_stack_uint_130 + engine_stack_uint_128) = 10;
@@ -29159,7 +29185,7 @@ LAB_1800725ac:
               if (engine_temp_uint6 <= (uint)engine_stack_uint_120) goto LAB_180072662;
               pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
               engine_stack_uint_128 = engine_temp_uint_6;
-              pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint6,0x10);
+              pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint6,MEMORY_COMPARE_SIZE_0x10);
             }
             engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
             engine_stack_uint_120 = CONCAT44(engine_stack_uint_120._4_4_,engine_temp_uint64_value);
@@ -29182,7 +29208,7 @@ LAB_1800726e7:
       else if ((uint)engine_stack_uint_120 < 0x18) {
         pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
         engine_stack_uint_128 = engine_temp_uint_6;
-        pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,0x18,0x10);
+        pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,0x18,MEMORY_COMPARE_SIZE_0x10);
         goto LAB_1800726e7;
       }
       *(uint16*)(pengine_stack_uint_130 + engine_stack_uint_128) = 0x3a;
@@ -29202,7 +29228,7 @@ LAB_1800726e7:
         else {
           if (engine_temp_uint6 <= (uint)engine_stack_uint_120) goto LAB_180072780;
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
-          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint6,0x10);
+          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint6,MEMORY_COMPARE_SIZE_0x10);
         }
         engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
         engine_stack_uint_120 = CONCAT44(engine_stack_uint_120._4_4_,engine_temp_uint64_value);
@@ -29223,7 +29249,7 @@ LAB_180072780:
         else {
           if (engine_temp_uint_4 <= (uint)engine_stack_uint_120) goto LAB_1800727ff;
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
-          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint_4,0x10);
+          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint_4,MEMORY_COMPARE_SIZE_0x10);
         }
         engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
         engine_stack_uint_120 = CONCAT44(engine_stack_uint_120._4_4_,engine_temp_uint64_value);
@@ -29254,7 +29280,7 @@ LAB_1800727ff:
             else {
               if (engine_temp_uint_6 <= (uint)engine_stack_uint_120) goto LAB_1800728ad;
               pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
-              pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint_6,0x10);
+              pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
             }
             engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
             engine_stack_uint_120 = CONCAT44(engine_stack_uint_120._4_4_,engine_temp_uint64_value);
@@ -29277,7 +29303,7 @@ LAB_1800728ad:
         else {
           if (engine_temp_uint_8 <= (uint)engine_stack_uint_120) goto LAB_180072934;
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
-          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint_8,0x10);
+          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint_8,MEMORY_COMPARE_SIZE_0x10);
         }
         engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
         engine_stack_uint_120 = CONCAT44(engine_stack_uint_120._4_4_,engine_temp_uint64_value);
@@ -29298,7 +29324,7 @@ LAB_180072934:
         else {
           if (engine_temp_uint_4 <= (uint)engine_stack_uint_120) goto LAB_1800729bd;
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
-          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint_4,0x10);
+          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint_4,MEMORY_COMPARE_SIZE_0x10);
         }
         engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
         engine_stack_uint_120 = CONCAT44(engine_stack_uint_120._4_4_,engine_temp_uint64_value);
@@ -29516,7 +29542,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
   engine_stack_uint_d8 = 0;
   engine_stack_pointer_e8 = (uint16*)0x0;
   engine_stack_uint_e0 = 0;
-  engine_stack_pointer_e8 = (uint16*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
+  engine_stack_pointer_e8 = (uint16*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
   *(uint8*)engine_stack_pointer_e8 = 0;
   engine_temporary_uint = engine_call_resource_validator(engine_stack_pointer_e8);
   engine_stack_uint_d8 = CONCAT44(engine_stack_uint_d8._4_4_,engine_temporary_uint);
@@ -29761,7 +29787,7 @@ void engine_unnamed_function_840(uint64 engine_data_structure_ptr,uint64 engine_
   void* pengine_stack_uint_30;
   longlong engine_stack_long_28;
   
-  engine_call_buffer_manager(_engine_data_28,0,0x100000000,0,&engine_base_data_offset_18,engine_result_flag_ptr,0xfffffffffffffffe);
+  engine_call_buffer_manager(_engine_data_28,0,MEMORY_COMPARE_SIZE_0x100000000,0,&engine_base_data_offset_18,engine_result_flag_ptr,0xfffffffffffffffe);
   if (engine_data_60 == '\0') {
     engine_stack_array_18[0] = 0xffff0000;
     engine_process_system_configuration(&pengine_stack_uint_30,engine_result_flag_ptr);
@@ -29800,7 +29826,7 @@ void engine_unnamed_function_850(uint64 engine_data_structure_ptr,uint64 engine_
   void* pengine_stack_uint_30;
   longlong engine_stack_long_28;
   
-  engine_call_buffer_manager(_engine_data_28,0,0x100000000,1,&engine_base_data_offset_38,engine_result_flag_ptr,0xfffffffffffffffe);
+  engine_call_buffer_manager(_engine_data_28,0,MEMORY_COMPARE_SIZE_0x100000000,1,&engine_base_data_offset_38,engine_result_flag_ptr,0xfffffffffffffffe);
   if (engine_data_60 == '\0') {
     engine_stack_array_18[0] = 0xff00ff00;
     engine_process_system_configuration(&pengine_stack_uint_30,engine_result_flag_ptr);
@@ -29839,7 +29865,7 @@ void engine_unnamed_function_860(uint64 engine_data_structure_ptr,uint32_t engin
   void* pengine_stack_uint_30;
   longlong engine_stack_long_28;
   
-  engine_call_buffer_manager(_engine_data_28,0,0x100000000,0xc,&engine_base_data_offset_58,engine_comparison_params,0xfffffffffffffffe);
+  engine_call_buffer_manager(_engine_data_28,0,MEMORY_COMPARE_SIZE_0x100000000,0xc,&engine_base_data_offset_58,engine_comparison_params,0xfffffffffffffffe);
   if (engine_data_60 == '\0') {
     engine_stack_uint_array_20[0] = engine_result_flag_ptr;
     engine_process_system_configuration(&pengine_stack_uint_30,engine_comparison_params);
@@ -30008,7 +30034,7 @@ void engine_unnamed_function_890(longlong engine_data_structure_ptr,longlong *en
   longlong engine_temp_long0;
   
   engine_unnamed_function_6460(engine_result_flag_ptr,engine_data_structure_ptr);
-  engine_temp_long_6 = *(longlong *)(engine_data_structure_ptr + 0x28) - *(longlong *)(engine_data_structure_ptr + 0x20);
+  engine_temp_long_6 = *(longlong *)(engine_data_structure_ptr + 0x28) - *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20);
   pengine_temp_int_3 = (int *)engine_result_flag_ptr[1];
   engine_temp_long_6 = engine_temp_long_6 / 0x12 + (engine_temp_long_6 >> 0x3f);
   engine_temp_int_8 = (int)(engine_temp_long_6 >> 1) - (int)(engine_temp_long_6 >> 0x3f);
@@ -30023,7 +30049,7 @@ void engine_unnamed_function_890(longlong engine_data_structure_ptr,longlong *en
   if (0 < engine_temp_int_8) {
     engine_temp_long0 = 0;
     do {
-      engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + 0x20) + engine_temp_long0;
+      engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + engine_temp_long0;
       if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) < 5) {
         engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
         engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
@@ -30056,7 +30082,7 @@ void engine_unnamed_function_890(longlong engine_data_structure_ptr,longlong *en
                     // WARNING: Subroutine does not return
         memcpy(engine_next_node_ptr,engine_temp_uint_2,engine_temp_uint_9);
       }
-      engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + 0x20) + engine_temp_long0;
+      engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + engine_temp_long0;
       if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) < 5) {
         engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
         engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
@@ -30180,7 +30206,7 @@ void engine_unnamed_function_89c(longlong engine_data_structure_ptr)
   longlong engine_temp_long0;
   
   engine_unnamed_function_6460();
-  engine_temp_long_6 = *(longlong *)(engine_data_structure_ptr + 0x28) - *(longlong *)(engine_data_structure_ptr + 0x20);
+  engine_temp_long_6 = *(longlong *)(engine_data_structure_ptr + 0x28) - *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20);
   pengine_temp_int_3 = (int *)engine_register_rbx[1];
   engine_temp_long_6 = engine_temp_long_6 / 0x12 + (engine_temp_long_6 >> 0x3f);
   engine_temp_int_8 = (int)(engine_temp_long_6 >> 1) - (int)(engine_temp_long_6 >> 0x3f);
@@ -30195,7 +30221,7 @@ void engine_unnamed_function_89c(longlong engine_data_structure_ptr)
   if (0 < engine_temp_int_8) {
     engine_temp_long0 = 0;
     do {
-      engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + 0x20) + engine_temp_long0;
+      engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + engine_temp_long0;
       if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
         engine_unnamed_function_6440();
         engine_next_node_ptr = (uint32*)engine_register_rbx[1];
@@ -30228,7 +30254,7 @@ void engine_unnamed_function_89c(longlong engine_data_structure_ptr)
                     // WARNING: Subroutine does not return
         memcpy(engine_next_node_ptr,engine_temp_uint_2,engine_temp_uint_9);
       }
-      engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + 0x20) + engine_temp_long0;
+      engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + engine_temp_long0;
       if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
         engine_unnamed_function_6440();
         engine_next_node_ptr = (uint32*)engine_register_rbx[1];
@@ -30352,7 +30378,7 @@ void engine_unnamed_function_904(uint *engine_data_structure_ptr)
   
   engine_temp_uint_6 = (ulonglong)unaff_R13D;
   do {
-    memory_allocation_result = *(longlong *)(unaff_R15 + 0x20) + engine_temp_uint_6;
+    memory_allocation_result = *(longlong *)(unaff_R15 + MEMORY_OFFSET_0x20) + engine_temp_uint_6;
     if ((ulonglong)((*engine_register_rbx - (longlong)engine_data_structure_ptr) + engine_register_rbx[2]) < 5) {
       engine_unnamed_function_6440();
       engine_data_structure_ptr = (uint *)engine_register_rbx[1];
@@ -30385,7 +30411,7 @@ void engine_unnamed_function_904(uint *engine_data_structure_ptr)
                     // WARNING: Subroutine does not return
       memcpy(engine_next_node_ptr,engine_temp_uint_2,engine_temp_uint_6);
     }
-    memory_allocation_result = *(longlong *)(unaff_R15 + 0x20) + engine_temp_uint_6;
+    memory_allocation_result = *(longlong *)(unaff_R15 + MEMORY_OFFSET_0x20) + engine_temp_uint_6;
     if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
       engine_unnamed_function_6440();
       engine_next_node_ptr = (uint *)engine_register_rbx[1];
@@ -31146,8 +31172,8 @@ void engine_unnamed_function_965(longlong engine_data_structure_ptr)
     unaff_R13 = unaff_R13 + -1;
     engine_data_structure_ptr = engine_temp_long_3 + 0x18;
   } while (unaff_R13 != 0);
-  *(int **)(unaff_RDI + 8) = (int *)(engine_temp_long_3 + 0x20);
-  engine_temporary_int = *(int *)(engine_temp_long_3 + 0x20);
+  *(int **)(unaff_RDI + 8) = (int *)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
+  engine_temporary_int = *(int *)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
   *(longlong *)(unaff_RDI + 8) = engine_temp_long_3 + 0x24;
   if (engine_temporary_int < 1) {
     *(int **)(unaff_RDI + 8) = (int *)(engine_temp_long_3 + 0x2c);
@@ -31380,7 +31406,7 @@ void engine_unnamed_function_990(longlong engine_data_structure_ptr,longlong eng
   engine_temp_int_8 = pengine_temp_int_4[4];
   *(int *)(engine_data_structure_ptr + 0x18) = pengine_temp_int_4[1];
   *(int *)(engine_data_structure_ptr + 0x1c) = engine_temp_int_6;
-  *(int *)(engine_data_structure_ptr + 0x20) = engine_temp_int_7;
+  *(int *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = engine_temp_int_7;
   *(int *)(engine_data_structure_ptr + 0x24) = engine_temp_int_8;
   engine_data_ptr2 = (uint8*)(*(longlong *)(engine_result_flag_ptr + 8) + 0x10);
   *(uint8**)(engine_result_flag_ptr + 8) = engine_data_ptr2;
@@ -31449,7 +31475,7 @@ uint64_t * engine_unnamed_function_1000(uint64 engine_data_structure_ptr,longlon
     engine_temporary_uint = *(void*)(engine_result_flag_ptr + 0x10);
     structure_data_pointer[1] = *(void*)(engine_result_flag_ptr + 8);
     structure_data_pointer[2] = engine_temporary_uint;
-    engine_temporary_uint = *(void*)(engine_result_flag_ptr + 0x20);
+    engine_temporary_uint = *(void*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20);
     structure_data_pointer[3] = *(void*)(engine_result_flag_ptr + 0x18);
     structure_data_pointer[4] = engine_temporary_uint;
     *(uint8*)(structure_data_pointer + 5) = *(uint8*)(engine_result_flag_ptr + 0x28);
@@ -31475,8 +31501,8 @@ void engine_unnamed_function_1010(longlong engine_data_structure_ptr)
   longlong *main_context_pointer;
   void* engine_temporary_pointer;
   
-  if (*(char *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x28) == '\0') {
-    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_data_18,0xc0,0x10,4,0xfffffffffffffffe);
+  if (*(char *)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0x28) == '\0') {
+    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_data_18,0xc0,MEMORY_COMPARE_SIZE_0x10,4,0xfffffffffffffffe);
     *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
     *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
@@ -31575,7 +31601,7 @@ void engine_unnamed_function_1030(longlong engine_data_structure_ptr,longlong *e
     engine_temporary_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   engine_temp_uint_2 = *(uint32*)(engine_data_structure_ptr + 0x1c);
-  engine_temp_uint_3 = *(uint32*)(engine_data_structure_ptr + 0x20);
+  engine_temp_uint_3 = *(uint32*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20);
   engine_temp_uint_4 = *(uint32*)(engine_data_structure_ptr + 0x24);
   *engine_temporary_pointer = *(uint32*)(engine_data_structure_ptr + 0x18);
   engine_temporary_pointer[1] = engine_temp_uint_2;
@@ -31977,7 +32003,7 @@ uint64_t * engine_unnamed_function_1110(uint64_t *engine_data_structure_ptr,char
   *(uint16*)(engine_data_structure_ptr + 0x16) = 0;
   engine_data_structure_ptr[0x15] = 0;
   *engine_data_structure_ptr = &engine_base_data_offset_70;
-  func_0x000180086550(engine_data_structure_ptr + 0x19);
+  func_0x000180086550(engine_data_structure_ptr + MEMORY_OFFSET_0x19);
   *(uint32*)(engine_data_structure_ptr + 0x1e) = 0;
   LOCK();
   *(uint32*)(engine_data_structure_ptr + 0x1d) = 0;
@@ -32041,7 +32067,7 @@ uint64_t * engine_unnamed_function_1110(uint64_t *engine_data_structure_ptr,char
     (**(code **)(*main_context_pointer + 0x38))();
   }
   *(uint8*)((longlong)engine_data_structure_ptr + 0xf4) = 0;
-  *(uint32*)(engine_data_structure_ptr + 0x20) = 0;
+  *(uint32*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = 0;
   *(uint8*)((longlong)engine_data_structure_ptr + 0xf7) = 0;
   *(byte *)((longlong)engine_data_structure_ptr + 0xfd) = *(byte *)((longlong)engine_data_structure_ptr + 0xfd) & 0x6d;
   pengine_temp_long_3 = (longlong *)engine_data_structure_ptr[0x38];
@@ -32078,7 +32104,7 @@ uint64_t * engine_unnamed_function_1110(uint64_t *engine_data_structure_ptr,char
   *(uint32*)((longlong)engine_data_structure_ptr + 0x104) = 0x80;
   *(uint8*)((longlong)engine_data_structure_ptr + 0xf6) = 0;
   *(uint16*)((longlong)engine_data_structure_ptr + 0xfa) = 0;
-  *(void*)((longlong)engine_data_structure_ptr + 0x204) = 0;
+  *(void*)((longlong)engine_data_structure_ptr + MEMORY_OFFSET_0x204) = 0;
   engine_data_structure_ptr[0x3f] = 0;
   *(uint32*)(engine_data_structure_ptr + 0x40) = 0;
   *(uint32*)(engine_data_structure_ptr + 0x5b) = 0xbf800000;
@@ -32087,7 +32113,7 @@ uint64_t * engine_unnamed_function_1110(uint64_t *engine_data_structure_ptr,char
   engine_data_structure_ptr[0x56] = 0;
   engine_data_structure_ptr[0x57] = 0;
   engine_data_structure_ptr[0x58] = 0;
-  *(uint32*)(engine_data_structure_ptr + 0x19) = 0;
+  *(uint32*)(engine_data_structure_ptr + MEMORY_OFFSET_0x19) = 0;
   *(uint32*)((longlong)engine_data_structure_ptr + 0xcc) = 0;
   *(uint32*)(engine_data_structure_ptr + 0x1a) = 0;
   *(uint32*)((longlong)engine_data_structure_ptr + 0xd4) = 0x7f7fffff;
@@ -32447,7 +32473,7 @@ void engine_unnamed_function_1150(uint64_t *engine_data_structure_ptr)
   }
   engine_temp_long_3 = engine_data_structure_ptr[0x3c];
   if (engine_temp_long_3 != 0) {
-    engine_unnamed_function_6548(engine_temp_long_3,0x18,0x10,engine_unnamed_function_1670,engine_temp_uint_4,engine_temp_long_3);
+    engine_unnamed_function_6548(engine_temp_long_3,0x18,MEMORY_COMPARE_SIZE_0x10,engine_unnamed_function_1670,engine_temp_uint_4,engine_temp_long_3);
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_temp_long_3);
   }
@@ -32506,7 +32532,7 @@ void engine_unnamed_function_1160(longlong engine_data_structure_ptr,longlong *e
       engine_stack_uint_18 = 0;
       engine_stack_long_20 = engine_data_structure_ptr;
       engine_unnamed_function_1730(aengine_stack_uint_28);
-      if ((*(int *)(engine_data_structure_ptr + 0x208) != 0) || (*(int *)(engine_data_structure_ptr + 0x204) != 0)) {
+      if ((*(int *)(engine_data_structure_ptr + MEMORY_OFFSET_0x208) != 0) || (*(int *)(engine_data_structure_ptr + MEMORY_OFFSET_0x204) != 0)) {
         engine_stack_uint_40 = *(void*)(engine_data_structure_ptr + 0x1b0);
         engine_stack_uint_38 = 0;
         engine_unnamed_function_1750(&engine_stack_uint_40);
@@ -32515,7 +32541,7 @@ void engine_unnamed_function_1160(longlong engine_data_structure_ptr,longlong *e
         engine_unnamed_function_2900(pengine_temp_long + 7,engine_stack_long_30 + 0x38);
         engine_unnamed_function_2890(pengine_temp_long + 0xc,engine_stack_long_30 + 0x60);
         engine_unnamed_function_2850(pengine_temp_long + 0x11,engine_stack_long_30 + 0x88);
-        engine_unnamed_function_2810(pengine_temp_long + 0x19,engine_stack_long_30 + 200);
+        engine_unnamed_function_2810(pengine_temp_long + MEMORY_OFFSET_0x19,engine_stack_long_30 + 200);
         engine_unnamed_function_1760(&engine_stack_uint_40);
       }
       engine_unnamed_function_1740(aengine_stack_uint_28);
@@ -32551,7 +32577,7 @@ longlong engine_unnamed_function_1170(longlong engine_data_structure_ptr)
     engine_temporary_long = func_0x000180085de0(*(void*)(engine_data_structure_ptr + 0x1b0));
   }
   engine_temp_long_2 = 2;
-  if (0xffff < *(int *)(engine_temporary_long + 0x200)) {
+  if (0xffff < *(int *)(engine_temporary_long + MEMORY_OFFSET_0x200)) {
     engine_temp_long_2 = 4;
   }
   if (engine_temp_byte3 == 0) {
@@ -32990,7 +33016,7 @@ longlong * engine_unnamed_function_1200(longlong *engine_data_structure_ptr,long
   uint32 engine_temp_uint_21;
   
   engine_stack_long_ptr_10 = engine_result_flag_ptr;
-  engine_temp_uint8 = engine_call_memory_allocator(_engine_data_18,0x300,0x10,9,0,0xfffffffffffffffe);
+  engine_temp_uint8 = engine_call_memory_allocator(_engine_data_18,0x300,MEMORY_COMPARE_SIZE_0x10,9,0,0xfffffffffffffffe);
   pengine_temp_long9 = (longlong *)engine_unnamed_function_1110(engine_temp_uint8,0,0);
   *engine_result_flag_ptr = (longlong)pengine_temp_long9;
   if (pengine_temp_long9 != (longlong *)0x0) {
@@ -33107,9 +33133,9 @@ longlong * engine_unnamed_function_1200(longlong *engine_data_structure_ptr,long
   engine_temp_long5 = engine_data_structure_ptr[0x31];
   engine_temp_uint_4 = *(uint32*)((longlong)engine_data_structure_ptr + 0x18c);
   engine_temp_long6 = engine_data_structure_ptr[0x32];
-  engine_temp_index = *(uint32*)((longlong)engine_data_structure_ptr + 0x194);
+  engine_temp_index = *(uint32*)((longlong)engine_data_structure_ptr + MEMORY_OFFSET_0x194);
   engine_temp_long7 = engine_data_structure_ptr[0x33];
-  engine_temp_uint_6 = *(uint32*)((longlong)engine_data_structure_ptr + 0x19c);
+  engine_temp_uint_6 = *(uint32*)((longlong)engine_data_structure_ptr + MEMORY_OFFSET_0x19c);
   engine_temp_long_3 = *engine_result_flag_ptr;
   *(longlong *)(engine_temp_long_3 + 0x160) = engine_data_structure_ptr[0x2c];
   *(longlong *)(engine_temp_long_3 + 0x168) = engine_temp_long1;
@@ -33120,17 +33146,17 @@ longlong * engine_unnamed_function_1200(longlong *engine_data_structure_ptr,long
   *(int *)(engine_temp_long_3 + 0x188) = (int)engine_temp_long5;
   *(uint32*)(engine_temp_long_3 + 0x18c) = engine_temp_uint_4;
   *(int *)(engine_temp_long_3 + 400) = (int)engine_temp_long6;
-  *(uint32*)(engine_temp_long_3 + 0x194) = engine_temp_index;
-  *(int *)(engine_temp_long_3 + 0x198) = (int)engine_temp_long7;
-  *(uint32*)(engine_temp_long_3 + 0x19c) = engine_temp_uint_6;
+  *(uint32*)(engine_temp_long_3 + MEMORY_OFFSET_0x194) = engine_temp_index;
+  *(int *)(engine_temp_long_3 + MEMORY_OFFSET_0x198) = (int)engine_temp_long7;
+  *(uint32*)(engine_temp_long_3 + MEMORY_OFFSET_0x19c) = engine_temp_uint_6;
   engine_byte_ptr_1 = (byte *)(*engine_result_flag_ptr + 0xfd);
   *engine_byte_ptr_1 = *engine_byte_ptr_1 ^ (*(byte *)(*engine_result_flag_ptr + 0xfd) ^ *(byte *)((longlong)engine_data_structure_ptr + 0xfd)) & 1;
   *(uint8*)(*engine_result_flag_ptr + 0xf7) = *(uint8*)((longlong)engine_data_structure_ptr + 0xf7);
-  *(int *)(*engine_result_flag_ptr + 0x208) = (int)engine_data_structure_ptr[0x41];
+  *(int *)(*engine_result_flag_ptr + MEMORY_OFFSET_0x208) = (int)engine_data_structure_ptr[0x41];
   *(int *)(*engine_result_flag_ptr + 0x1f8) = (int)engine_data_structure_ptr[0x3f];
   *(uint32*)(*engine_result_flag_ptr + 0x1fc) = *(uint32*)((longlong)engine_data_structure_ptr + 0x1fc);
-  *(int *)(*engine_result_flag_ptr + 0x200) = (int)engine_data_structure_ptr[0x40];
-  *(uint32*)(*engine_result_flag_ptr + 0x204) = *(uint32*)((longlong)engine_data_structure_ptr + 0x204);
+  *(int *)(*engine_result_flag_ptr + MEMORY_OFFSET_0x200) = (int)engine_data_structure_ptr[0x40];
+  *(uint32*)(*engine_result_flag_ptr + MEMORY_OFFSET_0x204) = *(uint32*)((longlong)engine_data_structure_ptr + MEMORY_OFFSET_0x204);
   *(int *)(*engine_result_flag_ptr + 0x2d8) = (int)engine_data_structure_ptr[0x5b];
   engine_temp_uint_2 = *(uint32*)((longlong)engine_data_structure_ptr + 0x2dc);
   *(uint32*)(*engine_result_flag_ptr + 0x2dc) = engine_temp_uint_2;
@@ -33195,7 +33221,7 @@ void engine_unnamed_function_1210(longlong *engine_data_structure_ptr,uint64 eng
     pengine_stack_long_38[0x17] = 0;
     engine_unnamed_function_2680(pengine_stack_long_38[0x16]);
     pengine_temp_long[0x16] = 0;
-    *(uint32*)(pengine_temp_long + 0x19) = 0;
+    *(uint32*)(pengine_temp_long + MEMORY_OFFSET_0x19) = 0;
     engine_stack_uint_10 = 0x101;
     if ((pengine_stack_long_40 != (longlong *)0x0) && (pengine_stack_long_38 != (longlong *)0x0)) {
       if (engine_stack_char_e != '\0') {
@@ -33375,7 +33401,7 @@ uint64 engine_unnamed_function_1250(longlong engine_data_structure_ptr)
   if ((engine_temp_byte3 & 0x20) == 0) {
     engine_temp_long_2 = func_0x000180085de0(*(void*)(engine_data_structure_ptr + 0x1b0));
   }
-  if (0 < *(int *)(engine_temp_long_2 + 0x200)) {
+  if (0 < *(int *)(engine_temp_long_2 + MEMORY_OFFSET_0x200)) {
     engine_temp_long_2 = *(longlong *)(engine_data_structure_ptr + 0x1b8);
     engine_temp_byte = *(byte *)(engine_temp_long_2 + 0x38c);
     if (engine_temp_byte == 9) {
@@ -33542,7 +33568,7 @@ int engine_unnamed_function_1260(longlong engine_data_structure_ptr,longlong *en
   engine_data_ptr2 = (ulonglong *)(*pengine_temp_long + engine_temp_uint0);
   *engine_data_ptr2 = engine_temp_uint1;
   engine_data_ptr2[1] = 0;
-  engine_unnamed_function_6510(engine_temp_long_9 + 0x20,&uStackX_8,*(uint32*)(engine_temp_long_9 + 0x10),*(uint32*)(engine_temp_long_9 + 0x18),
+  engine_unnamed_function_6510(engine_temp_long_9 + MEMORY_OFFSET_0x20,&uStackX_8,*(uint32*)(engine_temp_long_9 + 0x10),*(uint32*)(engine_temp_long_9 + 0x18),
                 1);
   if ((char)uStackX_8 != '\0') {
     engine_temp_uint4 = engine_temp_uint1 % (ulonglong)uStackX_8._4_4_;
@@ -33688,7 +33714,7 @@ void engine_unnamed_function_1290(longlong *engine_data_structure_ptr)
       if (engine_temp_byte6 == 0) {
         main_context_pointer = (longlong *)func_0x000180085de0(engine_data_structure_ptr[0x36]);
       }
-      if (((*(uint *)(main_context_pointer + 0x20) & 0x8000000) == 0) && (engine_temp_byte6 != 0)) {
+      if (((*(uint *)(main_context_pointer + MEMORY_OFFSET_0x20) & 0x8000000) == 0) && (engine_temp_byte6 != 0)) {
         engine_stack_pointer_68 = (ulonglong *)engine_data_structure_ptr;
         (**(code **)(*engine_data_structure_ptr + 0x28))(engine_data_structure_ptr);
         engine_stack_pointer_58 = (void*)0x0;
@@ -33710,7 +33736,7 @@ void engine_unnamed_function_1290(longlong *engine_data_structure_ptr)
     if ((*(byte *)((longlong)engine_data_structure_ptr + 0xfd) & 0x20) == 0) {
       main_context_pointer = (longlong *)func_0x000180085de0(engine_data_structure_ptr[0x36]);
     }
-    if ((*(uint *)(main_context_pointer + 0x20) & 0x8000000) != 0) {
+    if ((*(uint *)(main_context_pointer + MEMORY_OFFSET_0x20) & 0x8000000) != 0) {
       engine_stack_pointer_68 = (ulonglong *)engine_data_structure_ptr;
       (**(code **)(*engine_data_structure_ptr + 0x28))(engine_data_structure_ptr);
       engine_stack_pointer_58 = (void*)0x0;
@@ -33916,8 +33942,8 @@ void engine_unnamed_function_1310(longlong engine_data_structure_ptr)
     engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -34041,7 +34067,7 @@ ulonglong engine_unnamed_function_1320(longlong engine_data_structure_ptr,uint *
   if (engine_temp_byte31 == 0) {
     engine_temp_long_27 = func_0x000180085de0(*(void*)(engine_data_structure_ptr + 0x1b0));
   }
-  if (*(int *)(engine_temp_long_27 + 0x200) == 0) {
+  if (*(int *)(engine_temp_long_27 + MEMORY_OFFSET_0x200) == 0) {
 LAB_180077847:
     if ((*(byte *)(engine_data_structure_ptr + 0x100) & 4) != 0) goto LAB_180077879;
     engine_temp_long_27 = *(longlong *)(engine_data_structure_ptr + 0x1b8);
@@ -34310,7 +34336,7 @@ LAB_180077879:
       *(void*)(engine_data_structure_ptr + 0x180) = engine_stack_uint_e8;
       *(void*)(engine_data_structure_ptr + 0x188) = engine_stack_uint_e0;
       *(void*)(engine_data_structure_ptr + 400) = engine_stack_uint_d8;
-      *(void*)(engine_data_structure_ptr + 0x198) = engine_stack_uint_d0;
+      *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x198) = engine_stack_uint_d0;
     }
     engine_temp_uint_25 = engine_unnamed_function_6000(engine_result_flag_ptr,engine_data_structure_ptr,&engine_stack_uint_108,engine_system_parameter_4,engine_param_5);
     *(byte *)(engine_data_structure_ptr + 0xfd) = *(byte *)(engine_data_structure_ptr + 0xfd) & 0xfe;
@@ -34323,7 +34349,7 @@ LAB_180077879:
       *(void*)(engine_data_structure_ptr + 0x180) = engine_stack_uint_e8;
       *(void*)(engine_data_structure_ptr + 0x188) = engine_stack_uint_e0;
       *(void*)(engine_data_structure_ptr + 400) = engine_stack_uint_d8;
-      *(void*)(engine_data_structure_ptr + 0x198) = engine_stack_uint_d0;
+      *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x198) = engine_stack_uint_d0;
     }
   }
   return engine_temp_uint_25;
@@ -34642,7 +34668,7 @@ void engine_unnamed_function_133c(void)
     *(void*)(engine_register_rbx + 0x180) = in_stack_00000080;
     *(void*)(engine_register_rbx + 0x188) = in_stack_00000088;
     *(void*)(engine_register_rbx + 400) = in_stack_00000090;
-    *(void*)(engine_register_rbx + 0x198) = in_stack_00000098;
+    *(void*)(engine_register_rbx + MEMORY_OFFSET_0x198) = in_stack_00000098;
   }
   engine_unnamed_function_6000(engine_temp_long_34);
   *(byte *)(engine_register_rbx + 0xfd) = *(byte *)(engine_register_rbx + 0xfd) & 0xfe;
@@ -34655,7 +34681,7 @@ void engine_unnamed_function_133c(void)
     *(void*)(engine_register_rbx + 0x180) = engine_temp_uint_25;
     *(void*)(engine_register_rbx + 0x188) = engine_temp_uint_26;
     *(void*)(engine_register_rbx + 400) = engine_temp_uint_27;
-    *(void*)(engine_register_rbx + 0x198) = engine_temp_uint_28;
+    *(void*)(engine_register_rbx + MEMORY_OFFSET_0x198) = engine_temp_uint_28;
   }
   return;
 }
@@ -34786,7 +34812,7 @@ void engine_unnamed_function_1348(void)
   else {
     engine_temp_uint_32 = *(uint32*)(engine_register_rbx + 0x110);
   }
-  *(uint32*)(in_stack_00000040 + 0x20) = engine_temp_uint_32;
+  *(uint32*)(in_stack_00000040 + MEMORY_OFFSET_0x20) = engine_temp_uint_32;
   *(byte *)(in_stack_00000040 + 0x4e) = *(byte *)(engine_register_rbx + 0xfe) >> 3 & 1;
   if (*(int *)(engine_register_rbx + 0x108) != -1) {
     engine_current_node_ptr4 = *(uint32_t **)(engine_register_rbx + 0x2d0);
@@ -34907,7 +34933,7 @@ void engine_unnamed_function_1348(void)
     *(void*)(engine_register_rbx + 0x180) = in_stack_00000080;
     *(void*)(engine_register_rbx + 0x188) = in_stack_00000088;
     *(void*)(engine_register_rbx + 400) = in_stack_00000090;
-    *(void*)(engine_register_rbx + 0x198) = in_stack_00000098;
+    *(void*)(engine_register_rbx + MEMORY_OFFSET_0x198) = in_stack_00000098;
   }
   engine_unnamed_function_6000(engine_temp_long_29);
   *(byte *)(engine_register_rbx + 0xfd) = *(byte *)(engine_register_rbx + 0xfd) & 0xfe;
@@ -34920,7 +34946,7 @@ void engine_unnamed_function_1348(void)
     *(void*)(engine_register_rbx + 0x180) = engine_temp_uint_25;
     *(void*)(engine_register_rbx + 0x188) = engine_temp_uint_26;
     *(void*)(engine_register_rbx + 400) = engine_temp_uint_27;
-    *(void*)(engine_register_rbx + 0x198) = engine_temp_uint_28;
+    *(void*)(engine_register_rbx + MEMORY_OFFSET_0x198) = engine_temp_uint_28;
   }
   return;
 }
@@ -35061,7 +35087,7 @@ void engine_unnamed_function_1356(void)
     *(void*)(engine_register_rbx + 0x180) = in_stack_00000080;
     *(void*)(engine_register_rbx + 0x188) = in_stack_00000088;
     *(void*)(engine_register_rbx + 400) = in_stack_00000090;
-    *(void*)(engine_register_rbx + 0x198) = in_stack_00000098;
+    *(void*)(engine_register_rbx + MEMORY_OFFSET_0x198) = in_stack_00000098;
   }
   engine_unnamed_function_6000();
   *(byte *)(engine_register_rbx + 0xfd) = *(byte *)(engine_register_rbx + 0xfd) & 0xfe;
@@ -35074,7 +35100,7 @@ void engine_unnamed_function_1356(void)
     *(void*)(engine_register_rbx + 0x180) = engine_temp_uint_23;
     *(void*)(engine_register_rbx + 0x188) = engine_temp_uint_24;
     *(void*)(engine_register_rbx + 400) = engine_temp_uint_25;
-    *(void*)(engine_register_rbx + 0x198) = engine_temp_uint_26;
+    *(void*)(engine_register_rbx + MEMORY_OFFSET_0x198) = engine_temp_uint_26;
   }
   return;
 }
@@ -35233,7 +35259,7 @@ void engine_unnamed_function_1366(void)
     *(void*)(engine_register_rbx + 0x180) = in_stack_00000080;
     *(void*)(engine_register_rbx + 0x188) = in_stack_00000088;
     *(void*)(engine_register_rbx + 400) = in_stack_00000090;
-    *(void*)(engine_register_rbx + 0x198) = in_stack_00000098;
+    *(void*)(engine_register_rbx + MEMORY_OFFSET_0x198) = in_stack_00000098;
   }
   engine_unnamed_function_6000();
   *(byte *)(engine_register_rbx + 0xfd) = *(byte *)(engine_register_rbx + 0xfd) & 0xfe;
@@ -35246,7 +35272,7 @@ void engine_unnamed_function_1366(void)
     *(void*)(engine_register_rbx + 0x180) = engine_temp_uint_23;
     *(void*)(engine_register_rbx + 0x188) = engine_temp_uint_24;
     *(void*)(engine_register_rbx + 400) = engine_temp_uint_25;
-    *(void*)(engine_register_rbx + 0x198) = engine_temp_uint_26;
+    *(void*)(engine_register_rbx + MEMORY_OFFSET_0x198) = engine_temp_uint_26;
   }
   return;
 }
@@ -35310,7 +35336,7 @@ void engine_unnamed_function_137c(void)
     *(void*)(engine_register_rbx + 0x180) = in_stack_00000080;
     *(void*)(engine_register_rbx + 0x188) = in_stack_00000088;
     *(void*)(engine_register_rbx + 400) = in_stack_00000090;
-    *(void*)(engine_register_rbx + 0x198) = in_stack_00000098;
+    *(void*)(engine_register_rbx + MEMORY_OFFSET_0x198) = in_stack_00000098;
   }
   engine_unnamed_function_6000();
   *(byte *)(engine_register_rbx + 0xfd) = *(byte *)(engine_register_rbx + 0xfd) & 0xfe;
@@ -35323,7 +35349,7 @@ void engine_unnamed_function_137c(void)
     *(void*)(engine_register_rbx + 0x180) = engine_temp_uint_6;
     *(void*)(engine_register_rbx + 0x188) = engine_temp_uint64_value;
     *(void*)(engine_register_rbx + 400) = engine_temp_uint_8;
-    *(void*)(engine_register_rbx + 0x198) = engine_temp_uint_9;
+    *(void*)(engine_register_rbx + MEMORY_OFFSET_0x198) = engine_temp_uint_9;
   }
   return;
 }
@@ -35384,7 +35410,7 @@ ulonglong engine_unnamed_function_1390(longlong engine_data_structure_ptr,uint64
     if (engine_comparison_result3 == 0) {
       engine_temp_long_20 = func_0x000180085de0(*(void*)(engine_data_structure_ptr + 0x1b0));
     }
-    if (*(int *)(engine_temp_long_20 + 0x200) != 0) {
+    if (*(int *)(engine_temp_long_20 + MEMORY_OFFSET_0x200) != 0) {
       engine_temp_long_20 = engine_data_structure_ptr;
       if (engine_comparison_result3 == 0) {
         engine_temp_long_20 = func_0x000180085de0(*(void*)(engine_data_structure_ptr + 0x1b0));
@@ -36233,7 +36259,7 @@ void engine_unnamed_function_1490(uint64_t *engine_data_structure_ptr,longlong e
     engine_temp_uint2 = *(uint32*)(engine_result_flag_ptr + 0x2d8);
     engine_temp_uint3 = *(uint32*)(engine_result_flag_ptr + 0x2dc);
   }
-  *(uint32*)(engine_data_structure_ptr + 0x20) = engine_temp_uint_2;
+  *(uint32*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = engine_temp_uint_2;
   *(uint32*)((longlong)engine_data_structure_ptr + 0x104) = engine_temp_uint1;
   *(uint32*)(engine_data_structure_ptr + 0x21) = engine_temp_uint2;
   *(uint32*)((longlong)engine_data_structure_ptr + 0x10c) = engine_temp_uint3;
@@ -36389,7 +36415,7 @@ void engine_unnamed_function_1490(uint64_t *engine_data_structure_ptr,longlong e
     engine_temp_float_15 = pengine_temp_float_5[1];
     *(uint32*)((longlong)engine_data_structure_ptr + 0xcc) = 0;
     engine_temp_float_31 = engine_temp_float_18 * engine_temp_float_15 - engine_temp_float_23 * engine_temp_float_16;
-    *(float *)(engine_data_structure_ptr + 0x19) = engine_temp_float_31;
+    *(float *)(engine_data_structure_ptr + MEMORY_OFFSET_0x19) = engine_temp_float_31;
     engine_temp_float_14 = engine_temp_float_18 * pengine_temp_float_5[8] - engine_temp_float_25 * pengine_temp_float_5[4];
     *(float *)(engine_data_structure_ptr + 0x1a) = engine_temp_float_14;
     engine_temp_float_27 = engine_temp_float_25 * *pengine_temp_float_5 - engine_temp_float_23 * pengine_temp_float_5[8];
@@ -36423,7 +36449,7 @@ void engine_unnamed_function_1490(uint64_t *engine_data_structure_ptr,longlong e
       *(float *)(engine_data_structure_ptr + 0x1c) = engine_temp_float_15 * engine_temp_float_18;
       *(float *)(engine_data_structure_ptr + 0x18) = engine_temp_float_29 * engine_temp_float_18;
       *(float *)((longlong)engine_data_structure_ptr + 0xc4) = engine_temp_float_30 * engine_temp_float_18;
-      *(float *)(engine_data_structure_ptr + 0x19) = engine_temp_float_31 * engine_temp_float_18;
+      *(float *)(engine_data_structure_ptr + MEMORY_OFFSET_0x19) = engine_temp_float_31 * engine_temp_float_18;
       *(float *)((longlong)engine_data_structure_ptr + 0xd4) = engine_temp_float_27 * engine_temp_float_18;
       *(float *)(engine_data_structure_ptr + 0x1b) = engine_temp_float_26 * engine_temp_float_18;
       *(float *)((longlong)engine_data_structure_ptr + 0xe4) = engine_temp_float_10 * engine_temp_float_18;
@@ -36762,17 +36788,17 @@ void engine_unnamed_function_1520(longlong engine_data_structure_ptr)
   engine_temp_long_2 = *(longlong *)(engine_data_structure_ptr + 0x210);
   *(uint32*)(engine_data_structure_ptr + 0x1f8) = *(uint32*)(engine_temp_long_2 + 0x10);
   *(uint32*)(engine_data_structure_ptr + 0x1fc) = *(uint32*)(engine_temp_long_2 + 0x88);
-  *(uint32*)(engine_data_structure_ptr + 0x200) = *(uint32*)(engine_temp_long_2 + 0x60);
+  *(uint32*)(engine_data_structure_ptr + MEMORY_OFFSET_0x200) = *(uint32*)(engine_temp_long_2 + 0x60);
   engine_temp_byte3 = *(byte *)(engine_data_structure_ptr + 0xfd) & 0x40;
   if ((((engine_temp_byte3 != 0) && (engine_temp_long_2 != 0)) || (*(longlong *)(engine_data_structure_ptr + 0x1b0) == 0)) ||
      (engine_temporary_long = engine_get_render_context(), engine_data_structure_ptr == engine_temporary_long)) {
-    *(uint32*)(engine_data_structure_ptr + 0x204) = *(uint32*)(engine_temp_long_2 + 200);
+    *(uint32*)(engine_data_structure_ptr + MEMORY_OFFSET_0x204) = *(uint32*)(engine_temp_long_2 + 200);
   }
   if (((engine_temp_byte3 == 0) || (engine_temp_long_2 == 0)) &&
      ((*(longlong *)(engine_data_structure_ptr + 0x1b0) != 0 && (engine_temporary_long = engine_get_render_context(), engine_data_structure_ptr != engine_temporary_long)))) {
     return;
   }
-  *(uint *)(engine_data_structure_ptr + 0x208) = (uint)*(ushort *)(engine_temp_long_2 + 0xc0);
+  *(uint *)(engine_data_structure_ptr + MEMORY_OFFSET_0x208) = (uint)*(ushort *)(engine_temp_long_2 + 0xc0);
   return;
 }
 
@@ -36844,11 +36870,11 @@ void engine_unnamed_function_1530(longlong engine_data_structure_ptr,longlong en
   LOCK();
   pengine_temp_int_2 = (int *)(engine_temp_long7 + 0xed8);
   engine_temp_int_43 = *pengine_temp_int_2;
-  *pengine_temp_int_2 = *pengine_temp_int_2 + *(int *)(engine_temp_long_33 + 0x200);
+  *pengine_temp_int_2 = *pengine_temp_int_2 + *(int *)(engine_temp_long_33 + MEMORY_OFFSET_0x200);
   UNLOCK();
   engine_temp_long7 = *(longlong *)(engine_data_structure_ptr + 600);
   engine_temp_uint5 = *(uint8*)(engine_result_flag_ptr + 0x24);
-  engine_temp_uint_32 = *(uint32*)(engine_result_flag_ptr + 0x20);
+  engine_temp_uint_32 = *(uint32*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20);
   resource_status_flag6 = *(char *)(engine_result_flag_ptr + 0xd);
   *(uint32*)(engine_temp_long7 + 0x48) = *(uint32*)(engine_temp_long7 + 0x2c);
   *(uint32*)(engine_temp_long7 + 0x50) = *(uint32*)(engine_temp_long7 + 0x4c);
@@ -36870,7 +36896,7 @@ void engine_unnamed_function_1530(longlong engine_data_structure_ptr,longlong en
     engine_temp_uint_31 = engine_temporary_pointer[1];
     *(void*)(pengine_temp_float_18 + 4) = *engine_temporary_pointer;
     *(void*)(pengine_temp_float_18 + 6) = engine_temp_uint_31;
-    engine_temporary_pointer = (void*)(engine_temp_long7 + 0x20 + engine_temp_long_33);
+    engine_temporary_pointer = (void*)(engine_temp_long7 + MEMORY_OFFSET_0x20 + engine_temp_long_33);
     engine_temp_uint_31 = engine_temporary_pointer[1];
     *(void*)(pengine_temp_float_18 + 8) = *engine_temporary_pointer;
     *(void*)(pengine_temp_float_18 + 10) = engine_temp_uint_31;
@@ -37156,11 +37182,11 @@ void engine_unnamed_function_1544(longlong engine_data_structure_ptr)
   LOCK();
   pengine_temp_int_2 = (int *)(engine_temp_long7 + 0xed8);
   engine_temp_int_43 = *pengine_temp_int_2;
-  *pengine_temp_int_2 = *pengine_temp_int_2 + *(int *)(engine_temp_long_33 + 0x200);
+  *pengine_temp_int_2 = *pengine_temp_int_2 + *(int *)(engine_temp_long_33 + MEMORY_OFFSET_0x200);
   UNLOCK();
   engine_temp_long7 = *(longlong *)(engine_data_structure_ptr + 600);
   engine_temp_uint5 = *(uint8*)(unaff_RDI + 0x24);
-  engine_temp_uint_32 = *(uint32*)(unaff_RDI + 0x20);
+  engine_temp_uint_32 = *(uint32*)(unaff_RDI + MEMORY_OFFSET_0x20);
   resource_status_flag6 = *(char *)(unaff_RDI + 0xd);
   *(uint32*)(engine_temp_long7 + 0x48) = *(uint32*)(engine_temp_long7 + 0x2c);
   *(uint32*)(engine_temp_long7 + 0x50) = *(uint32*)(engine_temp_long7 + 0x4c);
@@ -37182,7 +37208,7 @@ void engine_unnamed_function_1544(longlong engine_data_structure_ptr)
     engine_temp_uint_31 = engine_temporary_pointer[1];
     *(void*)(pengine_temp_float_18 + 4) = *engine_temporary_pointer;
     *(void*)(pengine_temp_float_18 + 6) = engine_temp_uint_31;
-    engine_temporary_pointer = (void*)(engine_temp_long7 + 0x20 + engine_temp_long_33);
+    engine_temporary_pointer = (void*)(engine_temp_long7 + MEMORY_OFFSET_0x20 + engine_temp_long_33);
     engine_temp_uint_31 = engine_temporary_pointer[1];
     *(void*)(pengine_temp_float_18 + 8) = *engine_temporary_pointer;
     *(void*)(pengine_temp_float_18 + 10) = engine_temp_uint_31;
@@ -37475,7 +37501,7 @@ void engine_unnamed_function_155a(void)
   engine_temp_uint_29 = engine_next_node_ptr[1];
   *(void*)(pengine_temp_float_15 + 4) = *engine_next_node_ptr;
   *(void*)(pengine_temp_float_15 + 6) = engine_temp_uint_29;
-  engine_next_node_ptr = (void*)(engine_temp_long6 + 0x20 + engine_temp_long_31);
+  engine_next_node_ptr = (void*)(engine_temp_long6 + MEMORY_OFFSET_0x20 + engine_temp_long_31);
   engine_temp_uint_29 = engine_next_node_ptr[1];
   *(void*)(pengine_temp_float_15 + 8) = *engine_next_node_ptr;
   *(void*)(pengine_temp_float_15 + 10) = engine_temp_uint_29;
@@ -37764,7 +37790,7 @@ void engine_unnamed_function_1569(longlong engine_data_structure_ptr,uint engine
   engine_temp_uint_28 = engine_next_node_ptr[1];
   *(void*)(engine_system_parameter_4 + 4) = *engine_next_node_ptr;
   *(void*)(engine_system_parameter_4 + 6) = engine_temp_uint_28;
-  engine_next_node_ptr = (void*)(engine_temp_long5 + 0x20 + engine_temp_long_31);
+  engine_next_node_ptr = (void*)(engine_temp_long5 + MEMORY_OFFSET_0x20 + engine_temp_long_31);
   engine_temp_uint_28 = engine_next_node_ptr[1];
   *(void*)(engine_system_parameter_4 + 8) = *engine_next_node_ptr;
   *(void*)(engine_system_parameter_4 + 10) = engine_temp_uint_28;
@@ -38634,8 +38660,8 @@ void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
   int iStackX_10;
   ulonglong engine_stack_uint_18;
   ulonglong engine_stack_uint_20;
-  int *piStack_218;
-  int *piStack_210;
+  int *engine_stack_int_pointer_218;
+  int *engine_stack_int_pointer_210;
   int *pengine_stack_int_208;
   uint32 engine_stack_uint_200;
   int *piStack_1f8;
@@ -38973,16 +38999,16 @@ LAB_18007a5ac:
     engine_stack_uint_1d8 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0xc0);
     engine_stack_uint_18 = -1;
     do {
-      piStack_218 = (int *)0x0;
-      piStack_210 = (int *)0x0;
+      engine_stack_int_pointer_218 = (int *)0x0;
+      engine_stack_int_pointer_210 = (int *)0x0;
       pengine_stack_int_208 = (int *)0x0;
       engine_stack_uint_200 = 3;
       if (engine_temp_long_21 == 0) {
         engine_unnamed_function_2250(0);
-        piStack_210 = piStack_218;
+        engine_stack_int_pointer_210 = engine_stack_int_pointer_218;
       }
       else {
-        engine_unnamed_function_2230(&piStack_218,engine_temp_long_21);
+        engine_unnamed_function_2230(&engine_stack_int_pointer_218,engine_temp_long_21);
       }
       pengine_temp_long_39 = (longlong *)((engine_stack_uint_18 + 1) * 0x20 + aengine_stack_uint_150._0_8_);
       engine_temp_long_23 = 0;
@@ -39052,28 +39078,28 @@ LAB_18007a5ac:
           else {
             engine_stack_long_1d0 = 0;
             do {
-              pengine_temp_int = piStack_218;
+              pengine_temp_int = engine_stack_int_pointer_218;
               engine_temp_long_31 = 0;
               engine_current_node_ptr2 = (uint *)((longlong)*(int *)(engine_stack_uint_180 + engine_stack_long_1d0 * 4) * 0x5c +
                                 *(longlong *)(engine_data_structure_ptr + 0x68));
               engine_temp_byte44 = false;
               engine_temp_long7 = (longlong)
-                       (int)((*(longlong *)((longlong)(piStack_218 + (ulonglong)*engine_current_node_ptr2 * 8) + 8) -
-                             *(longlong *)(piStack_218 + (ulonglong)*engine_current_node_ptr2 * 8)) / 0x14);
+                       (int)((*(longlong *)((longlong)(engine_stack_int_pointer_218 + (ulonglong)*engine_current_node_ptr2 * 8) + 8) -
+                             *(longlong *)(engine_stack_int_pointer_218 + (ulonglong)*engine_current_node_ptr2 * 8)) / 0x14);
               engine_temp_long_21 = engine_temp_long_31;
               if (3 < engine_temp_long7) {
                 engine_temp_long_24 = (engine_temp_long7 - 4U >> 2) + 1;
                 engine_temp_long_21 = engine_temp_long_24 * 4;
                 do {
                   engine_temp_uint_33 = *engine_current_node_ptr2;
-                  if ((*(uint *)(*(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8) + engine_temp_long_31) &
+                  if ((*(uint *)(*(longlong *)(engine_stack_int_pointer_218 + (ulonglong)engine_temp_uint_33 * 8) + engine_temp_long_31) &
                       engine_temp_uint9) != 0) {
-                    structure_data_pointer = (uint *)(engine_temp_long_31 + *(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8));
+                    structure_data_pointer = (uint *)(engine_temp_long_31 + *(longlong *)(engine_stack_int_pointer_218 + (ulonglong)engine_temp_uint_33 * 8));
                     *structure_data_pointer = *structure_data_pointer | engine_temp_uint9;
                     engine_temp_long_22 = *pengine_temp_long_39;
                     engine_temp_float_48 = *(float *)(engine_temp_long_23 + 8 + engine_temp_long_22);
                     engine_temp_float_52 = *(float *)(engine_temp_long_23 + 4 + engine_temp_long_22);
-                    engine_temp_long2 = *(longlong *)(piStack_218 + (ulonglong)*engine_current_node_ptr2 * 8);
+                    engine_temp_long2 = *(longlong *)(engine_stack_int_pointer_218 + (ulonglong)*engine_current_node_ptr2 * 8);
                     *(float *)(engine_temp_long2 + 4 + engine_temp_long_31) =
                          *(float *)(engine_temp_long2 + 4 + engine_temp_long_31) + *(float *)(engine_temp_long_23 + engine_temp_long_22);
                     *(float *)(engine_temp_long2 + 8 + engine_temp_long_31) = engine_temp_float_52 + *(float *)(engine_temp_long2 + 8 + engine_temp_long_31);
@@ -39081,33 +39107,33 @@ LAB_18007a5ac:
                     engine_temp_byte44 = true;
                     engine_temp_uint_33 = *engine_current_node_ptr2;
                   }
-                  if ((*(uint *)(*(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x14 + engine_temp_long_31)
+                  if ((*(uint *)(*(longlong *)(engine_stack_int_pointer_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x14 + engine_temp_long_31)
                       & engine_temp_uint9) != 0) {
-                    structure_data_pointer = (uint *)(*(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x14 +
+                    structure_data_pointer = (uint *)(*(longlong *)(engine_stack_int_pointer_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x14 +
                                      engine_temp_long_31);
                     *structure_data_pointer = *structure_data_pointer | engine_temp_uint9;
                     engine_temp_long_22 = *pengine_temp_long_39;
                     engine_temp_float_48 = *(float *)(engine_temp_long_23 + 8 + engine_temp_long_22);
                     engine_temp_float_52 = *(float *)(engine_temp_long_23 + 4 + engine_temp_long_22);
-                    engine_temp_long2 = *(longlong *)(piStack_218 + (ulonglong)*engine_current_node_ptr2 * 8);
+                    engine_temp_long2 = *(longlong *)(engine_stack_int_pointer_218 + (ulonglong)*engine_current_node_ptr2 * 8);
                     *(float *)(engine_temp_long2 + 0x18 + engine_temp_long_31) =
                          *(float *)(engine_temp_long2 + 0x18 + engine_temp_long_31) + *(float *)(engine_temp_long_23 + engine_temp_long_22);
                     *(float *)(engine_temp_long2 + 0x1c + engine_temp_long_31) = engine_temp_float_52 + *(float *)(engine_temp_long2 + 0x1c + engine_temp_long_31)
                     ;
-                    *(float *)(engine_temp_long2 + 0x20 + engine_temp_long_31) = engine_temp_float_48 + *(float *)(engine_temp_long2 + 0x20 + engine_temp_long_31)
+                    *(float *)(engine_temp_long2 + MEMORY_OFFSET_0x20 + engine_temp_long_31) = engine_temp_float_48 + *(float *)(engine_temp_long2 + MEMORY_OFFSET_0x20 + engine_temp_long_31)
                     ;
                     engine_temp_byte44 = true;
                     engine_temp_uint_33 = *engine_current_node_ptr2;
                   }
-                  if ((*(uint *)(*(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x28 + engine_temp_long_31)
+                  if ((*(uint *)(*(longlong *)(engine_stack_int_pointer_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x28 + engine_temp_long_31)
                       & engine_temp_uint9) != 0) {
-                    structure_data_pointer = (uint *)(*(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x28 +
+                    structure_data_pointer = (uint *)(*(longlong *)(engine_stack_int_pointer_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x28 +
                                      engine_temp_long_31);
                     *structure_data_pointer = *structure_data_pointer | engine_temp_uint9;
                     engine_temp_long_22 = *pengine_temp_long_39;
                     engine_temp_float_48 = *(float *)(engine_temp_long_23 + 8 + engine_temp_long_22);
                     engine_temp_float_52 = *(float *)(engine_temp_long_23 + 4 + engine_temp_long_22);
-                    engine_temp_long2 = *(longlong *)(piStack_218 + (ulonglong)*engine_current_node_ptr2 * 8);
+                    engine_temp_long2 = *(longlong *)(engine_stack_int_pointer_218 + (ulonglong)*engine_current_node_ptr2 * 8);
                     *(float *)(engine_temp_long2 + 0x2c + engine_temp_long_31) =
                          *(float *)(engine_temp_long2 + 0x2c + engine_temp_long_31) + *(float *)(engine_temp_long_23 + engine_temp_long_22);
                     *(float *)(engine_temp_long2 + 0x30 + engine_temp_long_31) = engine_temp_float_52 + *(float *)(engine_temp_long2 + 0x30 + engine_temp_long_31)
@@ -39117,14 +39143,14 @@ LAB_18007a5ac:
                     engine_temp_byte44 = true;
                   }
                   engine_temp_uint_33 = *(uint *)(engine_temp_long_31 + 0x3c +
-                                    *(longlong *)(piStack_218 + (ulonglong)*engine_current_node_ptr2 * 8));
+                                    *(longlong *)(engine_stack_int_pointer_218 + (ulonglong)*engine_current_node_ptr2 * 8));
                   if ((engine_temp_uint9 & engine_temp_uint_33) != 0) {
-                    *(uint *)(*(longlong *)(piStack_218 + (ulonglong)*engine_current_node_ptr2 * 8) + 0x3c + engine_temp_long_31)
+                    *(uint *)(*(longlong *)(engine_stack_int_pointer_218 + (ulonglong)*engine_current_node_ptr2 * 8) + 0x3c + engine_temp_long_31)
                          = engine_temp_uint_33 | engine_temp_uint9;
                     engine_temp_long_22 = *pengine_temp_long_39;
                     engine_temp_float_48 = *(float *)(engine_temp_long_23 + 8 + engine_temp_long_22);
                     engine_temp_float_52 = *(float *)(engine_temp_long_23 + 4 + engine_temp_long_22);
-                    engine_temp_long2 = *(longlong *)(piStack_218 + (ulonglong)*engine_current_node_ptr2 * 8);
+                    engine_temp_long2 = *(longlong *)(engine_stack_int_pointer_218 + (ulonglong)*engine_current_node_ptr2 * 8);
                     *(float *)(engine_temp_long2 + 0x40 + engine_temp_long_31) =
                          *(float *)(engine_temp_long2 + 0x40 + engine_temp_long_31) + *(float *)(engine_temp_long_23 + engine_temp_long_22);
                     *(float *)(engine_temp_long2 + 0x44 + engine_temp_long_31) = engine_temp_float_52 + *(float *)(engine_temp_long2 + 0x44 + engine_temp_long_31)
@@ -39142,14 +39168,14 @@ LAB_18007a5ac:
                 engine_temp_long_31 = engine_temp_long_21 * 0x14;
                 engine_temp_long7 = engine_temp_long7 - engine_temp_long_21;
                 do {
-                  engine_temp_uint_33 = *(uint *)(engine_temp_long_31 + *(longlong *)(piStack_218 + (ulonglong)*engine_current_node_ptr2 * 8));
+                  engine_temp_uint_33 = *(uint *)(engine_temp_long_31 + *(longlong *)(engine_stack_int_pointer_218 + (ulonglong)*engine_current_node_ptr2 * 8));
                   if ((engine_temp_uint9 & engine_temp_uint_33) != 0) {
-                    *(uint *)(engine_temp_long_31 + *(longlong *)(piStack_218 + (ulonglong)*engine_current_node_ptr2 * 8)) =
+                    *(uint *)(engine_temp_long_31 + *(longlong *)(engine_stack_int_pointer_218 + (ulonglong)*engine_current_node_ptr2 * 8)) =
                          engine_temp_uint_33 | engine_temp_uint9;
                     engine_temp_long_21 = *pengine_temp_long_39;
                     engine_temp_float_48 = *(float *)(engine_temp_long_23 + 8 + engine_temp_long_21);
                     engine_temp_float_52 = *(float *)(engine_temp_long_23 + 4 + engine_temp_long_21);
-                    engine_temp_long_24 = *(longlong *)(piStack_218 + (ulonglong)*engine_current_node_ptr2 * 8);
+                    engine_temp_long_24 = *(longlong *)(engine_stack_int_pointer_218 + (ulonglong)*engine_current_node_ptr2 * 8);
                     *(float *)(engine_temp_long_31 + 4 + engine_temp_long_24) =
                          *(float *)(engine_temp_long_31 + 4 + engine_temp_long_24) + *(float *)(engine_temp_long_23 + engine_temp_long_21);
                     *(float *)(engine_temp_long_31 + 8 + engine_temp_long_24) = engine_temp_float_52 + *(float *)(engine_temp_long_31 + 8 + engine_temp_long_24);
@@ -39169,10 +39195,10 @@ LAB_18007a5ac:
                 engine_stack_value_198 = (int *)CONCAT44(0x7f7fffff,engine_stack_uint_1b8._4_4_);
                 piStack_1b0 = (int *)CONCAT44(piStack_1b0._4_4_,0x7f7fffff);
                 engine_temp_uint_41 = (ulonglong)*engine_current_node_ptr2;
-                paengine_temp_uint_37 = *(uint8_t (**) [16])(piStack_218 + engine_temp_uint_41 * 8 + 2);
+                paengine_temp_uint_37 = *(uint8_t (**) [16])(engine_stack_int_pointer_218 + engine_temp_uint_41 * 8 + 2);
                 engine_stack_uint_1c0 = engine_temp_uint9;
-                if (paengine_temp_uint_37 < *(uint8_t (**) [16])(piStack_218 + engine_temp_uint_41 * 8 + 4)) {
-                  *(uint8**)(piStack_218 + engine_temp_uint_41 * 8 + 2) = paengine_temp_uint_37[1] + 4;
+                if (paengine_temp_uint_37 < *(uint8_t (**) [16])(engine_stack_int_pointer_218 + engine_temp_uint_41 * 8 + 4)) {
+                  *(uint8**)(engine_stack_int_pointer_218 + engine_temp_uint_41 * 8 + 2) = paengine_temp_uint_37[1] + 4;
                   aengine_temp_uint_8._4_4_ = engine_stack_uint_1bc;
                   aengine_temp_uint_8._0_4_ = engine_temp_uint9;
                   aengine_temp_uint_8._8_4_ = (uint32_t)engine_stack_uint_1b8;
@@ -39181,14 +39207,14 @@ LAB_18007a5ac:
                   *(uint32*)paengine_temp_uint_37[1] = 0x7f7fffff;
                 }
                 else {
-                  paengine_temp_uint_35 = *(uint8_t (**) [16])(piStack_218 + engine_temp_uint_41 * 8);
+                  paengine_temp_uint_35 = *(uint8_t (**) [16])(engine_stack_int_pointer_218 + engine_temp_uint_41 * 8);
                   engine_temp_long_21 = ((longlong)paengine_temp_uint_37 - (longlong)paengine_temp_uint_35) / 0x14;
                   if (engine_temp_long_21 == 0) {
                     engine_stack_uint_20 = 1;
 LAB_18007ac04:
                     paengine_temp_uint_42 = (uint8_t (*) [16])
                                engine_call_memory_extender(_engine_data_18,engine_stack_uint_20 * 0x14,
-                                             (char)piStack_218[engine_temp_uint_41 * 8 + 6]);
+                                             (char)engine_stack_int_pointer_218[engine_temp_uint_41 * 8 + 6]);
                     paengine_temp_uint_37 = *(uint8_t (**) [16])(pengine_temp_int + engine_temp_uint_41 * 8 + 2);
                     paengine_temp_uint_35 = *(uint8_t (**) [16])(pengine_temp_int + engine_temp_uint_41 * 8);
                   }
@@ -39230,13 +39256,13 @@ LAB_18007ac04:
       engine_temp_long_31 = engine_temp_long_21;
       if (0 < engine_temp_long_21) {
         do {
-          engine_temp_int_27 = (int)((*(longlong *)(engine_temp_long_23 + 8 + (longlong)piStack_218) -
-                         *(longlong *)(engine_temp_long_23 + (longlong)piStack_218)) / 0x14);
+          engine_temp_int_27 = (int)((*(longlong *)(engine_temp_long_23 + 8 + (longlong)engine_stack_int_pointer_218) -
+                         *(longlong *)(engine_temp_long_23 + (longlong)engine_stack_int_pointer_218)) / 0x14);
           engine_temp_long_22 = (longlong)engine_temp_int_27;
           engine_temp_long_24 = engine_temp_long7;
           if (0 < engine_temp_int_27) {
             do {
-              engine_temp_long2 = *(longlong *)(engine_temp_long_23 + (longlong)piStack_218);
+              engine_temp_long2 = *(longlong *)(engine_temp_long_23 + (longlong)engine_stack_int_pointer_218);
               engine_temp_float_48 = *(float *)(engine_temp_long2 + 8 + engine_temp_long_24);
               engine_temp_float_52 = *(float *)(engine_temp_long2 + 4 + engine_temp_long_24);
               engine_temp_float_51 = *(float *)(engine_temp_long2 + 0xc + engine_temp_long_24);
@@ -39257,7 +39283,7 @@ LAB_18007ac04:
             } while (engine_temp_long_22 != 0);
           }
           engine_temp_long_31 = engine_temp_long_31 + -1;
-          engine_temp_long_23 = engine_temp_long_23 + 0x20;
+          engine_temp_long_23 = engine_temp_long_23 + MEMORY_OFFSET_0x20;
         } while (engine_temp_long_31 != 0);
       }
       engine_temp_long_23 = engine_temp_long7;
@@ -39269,11 +39295,11 @@ LAB_18007ac04:
             engine_temp_long2 = (longlong)*(int *)(engine_temp_long7 + engine_temp_long_21) * 0x5c;
             engine_temp_long_22 = (longlong)*(int *)(*(longlong *)(engine_data_structure_ptr + 0x68) + engine_temp_long2);
             engine_temp_long_24 = 0;
-            engine_temp_int_27 = (int)((*(longlong *)(piStack_218 + engine_temp_long_22 * 8 + 2) -
-                           *(longlong *)(piStack_218 + engine_temp_long_22 * 8)) / 0x14);
+            engine_temp_int_27 = (int)((*(longlong *)(engine_stack_int_pointer_218 + engine_temp_long_22 * 8 + 2) -
+                           *(longlong *)(engine_stack_int_pointer_218 + engine_temp_long_22 * 8)) / 0x14);
             engine_temp_long_31 = -1;
             if (0 < engine_temp_int_27) {
-              engine_current_node_ptr2 = *(uint **)(piStack_218 + engine_temp_long_22 * 8);
+              engine_current_node_ptr2 = *(uint **)(engine_stack_int_pointer_218 + engine_temp_long_22 * 8);
               do {
                 engine_temp_long_31 = engine_temp_long_24;
                 if ((*engine_current_node_ptr2 & engine_temp_uint9) != 0) break;
@@ -39282,7 +39308,7 @@ LAB_18007ac04:
                 engine_temp_long_31 = -1;
               } while (engine_temp_long_24 < engine_temp_int_27);
             }
-            engine_temp_long_24 = *(longlong *)(piStack_218 + engine_temp_long_22 * 8);
+            engine_temp_long_24 = *(longlong *)(engine_stack_int_pointer_218 + engine_temp_long_22 * 8);
             engine_current_node_ptr = (void*)(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
             engine_temp_uint_6 = *engine_current_node_ptr;
             engine_temp_uint64_value = engine_current_node_ptr[1];
@@ -39309,11 +39335,11 @@ LAB_18007ac04:
             engine_temp_long2 = engine_temp_long_40 * 0x5c;
             engine_temp_long_22 = (longlong)*(int *)(*(longlong *)(engine_data_structure_ptr + 0x68) + engine_temp_long2);
             engine_temp_long_24 = 0;
-            engine_temp_int_27 = (int)((*(longlong *)(piStack_218 + engine_temp_long_22 * 8 + 2) -
-                           *(longlong *)(piStack_218 + engine_temp_long_22 * 8)) / 0x14);
+            engine_temp_int_27 = (int)((*(longlong *)(engine_stack_int_pointer_218 + engine_temp_long_22 * 8 + 2) -
+                           *(longlong *)(engine_stack_int_pointer_218 + engine_temp_long_22 * 8)) / 0x14);
             engine_temp_long_31 = -1;
             if (0 < engine_temp_int_27) {
-              engine_current_node_ptr2 = *(uint **)(piStack_218 + engine_temp_long_22 * 8);
+              engine_current_node_ptr2 = *(uint **)(engine_stack_int_pointer_218 + engine_temp_long_22 * 8);
               do {
                 engine_temp_long_31 = engine_temp_long_24;
                 if ((*engine_current_node_ptr2 & engine_temp_uint9) != 0) break;
@@ -39322,7 +39348,7 @@ LAB_18007ac04:
                 engine_temp_long_31 = -1;
               } while (engine_temp_long_24 < engine_temp_int_27);
             }
-            engine_temp_long_24 = *(longlong *)(piStack_218 + engine_temp_long_22 * 8);
+            engine_temp_long_24 = *(longlong *)(engine_stack_int_pointer_218 + engine_temp_long_22 * 8);
             engine_current_node_ptr = (void*)(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
             engine_temp_uint_6 = *engine_current_node_ptr;
             engine_temp_uint64_value = engine_current_node_ptr[1];
@@ -39350,11 +39376,11 @@ LAB_18007ac04:
             engine_temp_long2 = (longlong)*(int *)(engine_temp_long_43 + *(longlong *)(engine_data_structure_ptr + 0x68));
             engine_temp_long_24 = 0;
             engine_temp_long_22 = (longlong)
-                     (int)((*(longlong *)(piStack_218 + engine_temp_long2 * 8 + 2) -
-                           *(longlong *)(piStack_218 + engine_temp_long2 * 8)) / 0x14);
+                     (int)((*(longlong *)(engine_stack_int_pointer_218 + engine_temp_long2 * 8 + 2) -
+                           *(longlong *)(engine_stack_int_pointer_218 + engine_temp_long2 * 8)) / 0x14);
             engine_temp_long_31 = -1;
             if (0 < engine_temp_long_22) {
-              engine_current_node_ptr2 = *(uint **)(piStack_218 + engine_temp_long2 * 8);
+              engine_current_node_ptr2 = *(uint **)(engine_stack_int_pointer_218 + engine_temp_long2 * 8);
               do {
                 engine_temp_long_31 = engine_temp_long_24;
                 if ((*engine_current_node_ptr2 & engine_temp_uint9) != 0) break;
@@ -39363,7 +39389,7 @@ LAB_18007ac04:
                 engine_temp_long_31 = -1;
               } while (engine_temp_long_24 < engine_temp_long_22);
             }
-            engine_temp_long_24 = *(longlong *)(piStack_218 + engine_temp_long2 * 8);
+            engine_temp_long_24 = *(longlong *)(engine_stack_int_pointer_218 + engine_temp_long2 * 8);
             aengine_temp_uint_47 = *(uint8_t (*) [16])(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
             if (engine_stack_uint_18 == -1) {
               *(uint8_t (*) [16])(engine_temp_long_43 + 4 + *(longlong *)(engine_data_structure_ptr + 0x68)) = aengine_temp_uint_47;
@@ -39386,7 +39412,7 @@ LAB_18007ac04:
         } while (engine_temp_long_23 < (longlong)engine_temp_uint_28);
         engine_temp_long_21 = (longlong)iStack_1e8;
       }
-      engine_unnamed_function_2090(&piStack_218);
+      engine_unnamed_function_2090(&engine_stack_int_pointer_218);
       engine_stack_uint_18 = engine_stack_uint_18 + 1;
       if ((longlong)engine_stack_uint_1d8 <= (longlong)engine_stack_uint_18) {
         engine_unnamed_function_2070(aengine_stack_uint_150);
@@ -39428,8 +39454,8 @@ LAB_180079e40:
       pengine_temp_int4 = (int *)engine_call_memory_extender(_engine_data_18,4,CONCAT71((uint7)(uint3)(engine_stack_uint_18 >> 8),3));
       *pengine_temp_int4 = *pengine_temp_int_20;
       pengine_temp_int_20 = pengine_temp_int4 + 1;
-      piStack_218 = (int *)0x0;
-      piStack_210 = (int *)0x0;
+      engine_stack_int_pointer_218 = (int *)0x0;
+      engine_stack_int_pointer_210 = (int *)0x0;
       pengine_temp_int3 = (int *)0x0;
       pengine_stack_int_208 = (int *)0x0;
       engine_stack_uint_200 = 3;
@@ -39443,14 +39469,14 @@ LAB_180079e40:
         engine_stack_uint_20 = 4;
         pengine_temp_int_25 = (int *)0x0;
         do {
-          pengine_temp_int_26 = piStack_210;
+          pengine_temp_int_26 = engine_stack_int_pointer_210;
           pengine_temp_int6 = (int *)0x0;
-          if (piStack_210 < pengine_temp_int3) {
-            *piStack_210 = *(int *)(engine_stack_uint_20 + (longlong)piStack_1f8);
+          if (engine_stack_int_pointer_210 < pengine_temp_int3) {
+            *engine_stack_int_pointer_210 = *(int *)(engine_stack_uint_20 + (longlong)piStack_1f8);
             pengine_temp_int6 = pengine_temp_int_25;
           }
           else {
-            engine_stack_uint_1d8 = (longlong)piStack_210 - (longlong)pengine_temp_int_25;
+            engine_stack_uint_1d8 = (longlong)engine_stack_int_pointer_210 - (longlong)pengine_temp_int_25;
             if ((longlong)engine_stack_uint_1d8 >> 2 == 0) {
               piStack_1f0 = (int *)0x1;
 LAB_180079fb3:
@@ -39472,11 +39498,11 @@ LAB_180079fb3:
             }
             pengine_temp_int3 = pengine_temp_int6 + (longlong)piStack_1f0;
             paengine_temp_uint_42 = paengine_stack_uint_1e0;
-            piStack_218 = pengine_temp_int6;
+            engine_stack_int_pointer_218 = pengine_temp_int6;
             pengine_stack_int_208 = pengine_temp_int3;
-            piStack_210 = pengine_temp_int6;
+            engine_stack_int_pointer_210 = pengine_temp_int6;
           }
-          piStack_210 = piStack_210 + 1;
+          engine_stack_int_pointer_210 = engine_stack_int_pointer_210 + 1;
           iStackX_10 = iStackX_10 + 1;
           engine_stack_uint_20 = engine_stack_uint_20 + 4;
           piStack_1f8 = *(int **)(*paengine_temp_uint_42 + engine_stack_long_170);
@@ -39495,13 +39521,13 @@ LAB_180079fb3:
         engine_temp_byte44 = false;
         engine_temp_byte9 = false;
         engine_temp_uint_33 = 0;
-        engine_stack_uint_180 = (longlong)piStack_210 - (longlong)piStack_218 >> 2;
+        engine_stack_uint_180 = (longlong)engine_stack_int_pointer_210 - (longlong)engine_stack_int_pointer_218 >> 2;
         pengine_temp_int_26 = (int *)0x0;
         pengine_temp_int_25 = (int *)0x0;
         pengine_temp_int6 = pengine_temp_int_25;
         pengine_temp_int_34 = pengine_temp_int3;
-        pengine_temp_int0 = piStack_218;
-        piStack_1f8 = piStack_210;
+        pengine_temp_int0 = engine_stack_int_pointer_218;
+        piStack_1f8 = engine_stack_int_pointer_210;
         if (engine_stack_uint_180 != 0) {
           do {
             piStack_1f0 = pengine_temp_int0;
@@ -39594,20 +39620,20 @@ LAB_18007a142:
           } while ((ulonglong)(longlong)(int)engine_temp_uint_33 < engine_stack_uint_180);
         }
         pengine_temp_long_39 = pengine_stack_long_168;
-        engine_stack_uint_1c0 = (uint)piStack_218;
-        engine_stack_uint_1bc = (uint32_t)((ulonglong)piStack_218 >> 0x20);
+        engine_stack_uint_1c0 = (uint)engine_stack_int_pointer_218;
+        engine_stack_uint_1bc = (uint32_t)((ulonglong)engine_stack_int_pointer_218 >> 0x20);
         engine_stack_uint_1b8._0_4_ = SUB84(piStack_1f8,0);
         engine_stack_uint_1b8._4_4_ = (uint32_t)((ulonglong)piStack_1f8 >> 0x20);
         piStack_1b0 = pengine_stack_int_208;
         engine_stack_uint_200 = 3;
         engine_stack_uint_1a8 = 3;
-        piStack_210 = pengine_temp_int_26;
+        engine_stack_int_pointer_210 = pengine_temp_int_26;
         pengine_stack_int_208 = pengine_temp_int3;
         piStack_1f8 = pengine_temp_int_26;
         if ((((longlong)pengine_temp_int_26 - (longlong)pengine_temp_int6 & 0xfffffffffffffffcU) == 0) || (!engine_temp_byte44))
         goto LAB_18007a312;
-        engine_temp_byte44 = piStack_218 != (int *)0x0;
-        piStack_218 = pengine_temp_int6;
+        engine_temp_byte44 = engine_stack_int_pointer_218 != (int *)0x0;
+        engine_stack_int_pointer_218 = pengine_temp_int6;
         if (engine_temp_byte44) {
                     // WARNING: Subroutine does not return
           engine_call_cleanup_routine();
@@ -39617,13 +39643,13 @@ LAB_18007a142:
   }
   goto LAB_18007a58b;
 LAB_18007a312:
-  if (piStack_218 != (int *)0x0) {
-    piStack_218 = pengine_temp_int6;
+  if (engine_stack_int_pointer_218 != (int *)0x0) {
+    engine_stack_int_pointer_218 = pengine_temp_int6;
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
   }
   pengine_temp_int3 = *(int **)(*paengine_stack_uint_1e0 + engine_stack_long_170);
-  piStack_218 = pengine_temp_int6;
+  engine_stack_int_pointer_218 = pengine_temp_int6;
   if (((*(longlong *)(*paengine_stack_uint_1e0 + engine_stack_long_170 + 8) - (longlong)pengine_temp_int3 ^
        (longlong)pengine_temp_int_20 - (longlong)pengine_temp_int4) & 0xfffffffffffffffcU) != 0) {
     *(int **)(*paengine_stack_uint_1e0 + engine_stack_long_170) = pengine_temp_int4;
@@ -39655,9 +39681,9 @@ LAB_18007a312:
       pengine_temp_long_39[1] = *pengine_temp_long_39;
     }
     else {
-      engine_unnamed_function_2240(&engine_stack_long_170,&piStack_218);
-      pengine_temp_int_26 = piStack_210;
-      pengine_temp_int6 = piStack_218;
+      engine_unnamed_function_2240(&engine_stack_long_170,&engine_stack_int_pointer_218);
+      pengine_temp_int_26 = engine_stack_int_pointer_210;
+      pengine_temp_int6 = engine_stack_int_pointer_218;
     }
     engine_temp_long_23 = engine_stack_long_1d0;
     engine_temp_int_27 = *pengine_temp_int;
@@ -39668,7 +39694,7 @@ LAB_18007a312:
     engine_current_node_ptr = (void*)(engine_temp_long_31 + 0x10 + engine_temp_long_21);
     engine_stack_uint_f8 = *engine_current_node_ptr;
     engine_stack_uint_f0 = engine_current_node_ptr[1];
-    engine_current_node_ptr = (void*)(engine_temp_long_31 + 0x20 + engine_temp_long_21);
+    engine_current_node_ptr = (void*)(engine_temp_long_31 + MEMORY_OFFSET_0x20 + engine_temp_long_21);
     engine_stack_uint_e8 = *engine_current_node_ptr;
     engine_stack_uint_e0 = engine_current_node_ptr[1];
     engine_current_node_ptr = (void*)(engine_temp_long_31 + 0x30 + engine_temp_long_21);
@@ -39796,7 +39822,7 @@ void engine_unnamed_function_1780(longlong *engine_data_structure_ptr)
     }
     engine_temporary_long = *engine_data_structure_ptr;
     if (engine_temporary_long != 0) {
-      if ((*(uint *)(*(longlong *)(engine_temporary_long + 0x20) + 0x100) >> 6 & 1) != 0) goto LAB_1800802aa;
+      if ((*(uint *)(*(longlong *)(engine_temporary_long + MEMORY_OFFSET_0x20) + 0x100) >> 6 & 1) != 0) goto LAB_1800802aa;
       LOCK();
       *(int *)(engine_temporary_long + 0x14) = *(int *)(engine_temporary_long + 0x14) + 1;
       UNLOCK();
@@ -39807,7 +39833,7 @@ void engine_unnamed_function_1780(longlong *engine_data_structure_ptr)
       aengine_stack_uint_1e0[0] = 0;
       engine_stack_uint_160 = 0x24;
       engine_stack_long_158 = engine_temporary_long;
-      engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,0x100,8,3);
+      engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x100,8,3);
       pengine_current_node_ptr = (undefined **)engine_allocate_temporary_memory(engine_temp_uint_2,&engine_stack_ptr_1f8);
       ppengine_stack_uint_208 = pengine_current_node_ptr;
       if (pengine_current_node_ptr != (undefined **)0x0) {
@@ -39834,7 +39860,7 @@ void engine_unnamed_function_1780(longlong *engine_data_structure_ptr)
       engine_stack_uint_108 = 0;
       aengine_stack_uint_100[0] = 0;
       engine_stack_value_80 = 0x26;
-      engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,0x100,8,3);
+      engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x100,8,3);
       main_context_pointer = (longlong *)engine_allocate_temporary_memory(engine_temp_uint_2,&pengine_stack_uint_118);
       pengine_stack_long_200 = main_context_pointer;
       if (main_context_pointer != (longlong *)0x0) {
@@ -39918,7 +39944,7 @@ void engine_unnamed_function_1790(longlong engine_data_structure_ptr,uint engine
       engine_data_pointer = (void*)(engine_temp_long_2 + 0x10 + engine_temp_long2);
       *engine_data_pointer = engine_temp_uint_6;
       engine_data_pointer[1] = engine_temp_uint64_value;
-      engine_data_pointer = (void*)(engine_temp_long_2 + 0x20 + engine_temp_long2);
+      engine_data_pointer = (void*)(engine_temp_long_2 + MEMORY_OFFSET_0x20 + engine_temp_long2);
       *engine_data_pointer = engine_temp_uint_8;
       engine_data_pointer[1] = engine_temp_uint_9;
       engine_data_pointer = (void*)(engine_temp_long_2 + 0x30 + engine_temp_long2);
@@ -40460,7 +40486,7 @@ void engine_unnamed_function_1940(longlong *engine_data_structure_ptr)
     AcquireSRWLockExclusive(engine_temporary_long);
     *(uint8*)(engine_temp_long_3 + 2) = 1;
     **(uint8**)(*(longlong *)(engine_temp_long_3 + 0x160) + engine_temp_long_4 * 8) = 0;
-    *(void*)(*(longlong *)(*(longlong *)(engine_temp_long_3 + 0x160) + engine_temp_long_4 * 8) + 0x20) = 0;
+    *(void*)(*(longlong *)(*(longlong *)(engine_temp_long_3 + 0x160) + engine_temp_long_4 * 8) + MEMORY_OFFSET_0x20) = 0;
     engine_temp_long_4 = *(longlong *)(*(longlong *)(engine_temp_long_3 + 0x160) + engine_temp_long_4 * 8);
     engine_stack_long_ptr_10 = *(longlong **)(engine_temp_long_4 + 0x10);
     *(void*)(engine_temp_long_4 + 0x10) = 0;
@@ -41107,12 +41133,12 @@ void engine_unnamed_function_2110(uint64 engine_data_structure_ptr,longlong *eng
   strcpy_s(aengine_stack_value_70,0x40,&engine_data_60);
   engine_unnamed_function_5770();
   engine_stack_pointer_88 = &engine_data_18098bcb0;
-  engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,0x10,3);
+  engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,3);
   engine_unnamed_function_2280(engine_temporary_uint,engine_result_flag_ptr);
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_temp_uint_2;
   *(int *)(*engine_result_flag_ptr + 0x18) = engine_comparison_params;
   *(int *)(*engine_result_flag_ptr + 0x1c) = engine_comparison_params;
-  *(uint8*)(*engine_result_flag_ptr + 0x20) = 0;
+  *(uint8*)(*engine_result_flag_ptr + MEMORY_OFFSET_0x20) = 0;
   engine_stack_uint_a8 = 1;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_28 ^ (ulonglong)aengine_stack_uint_c8);
@@ -41152,12 +41178,12 @@ void engine_unnamed_function_2120(uint64 engine_data_structure_ptr,longlong *eng
   strcpy_s(aengine_stack_value_70,0x40,&engine_data_60);
   engine_unnamed_function_5770();
   engine_stack_pointer_88 = &engine_data_18098bcb0;
-  engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,0x10,3);
+  engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,3);
   engine_unnamed_function_2290(engine_temporary_uint,engine_result_flag_ptr);
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_temp_uint_2;
   *(int *)(*engine_result_flag_ptr + 0x18) = engine_comparison_params;
   *(int *)(*engine_result_flag_ptr + 0x1c) = engine_comparison_params;
-  *(uint8*)(*engine_result_flag_ptr + 0x20) = 0;
+  *(uint8*)(*engine_result_flag_ptr + MEMORY_OFFSET_0x20) = 0;
   engine_stack_uint_a8 = 1;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_28 ^ (ulonglong)aengine_stack_uint_c8);
@@ -41194,13 +41220,13 @@ void engine_unnamed_function_2130(uint64 engine_data_structure_ptr,longlong *eng
   strcpy_s(aengine_stack_value_70,0x40,&engine_data_60);
   engine_unnamed_function_5770();
   engine_stack_pointer_88 = &engine_data_18098bcb0;
-  engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,0x10,3);
+  engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,3);
   engine_unnamed_function_2260(engine_data_structure_ptr,engine_result_flag_ptr);
   engine_stack_uint_a8 = 1;
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_temporary_uint;
   *(uint32*)(*engine_result_flag_ptr + 0x18) = engine_comparison_params;
   *(uint32*)(*engine_result_flag_ptr + 0x1c) = engine_comparison_params;
-  *(uint8*)(*engine_result_flag_ptr + 0x20) = 0;
+  *(uint8*)(*engine_result_flag_ptr + MEMORY_OFFSET_0x20) = 0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_28 ^ (ulonglong)aengine_stack_uint_c8);
 }
@@ -41238,12 +41264,12 @@ void engine_unnamed_function_2140(uint64 engine_data_structure_ptr,longlong *eng
   strcpy_s(aengine_stack_value_70,0x40,&engine_data_60);
   engine_unnamed_function_5770();
   engine_stack_pointer_88 = &engine_data_18098bcb0;
-  engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,0x10,0x20);
+  engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,0x20);
   engine_unnamed_function_2260(engine_temporary_uint,engine_result_flag_ptr);
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_temp_uint_2;
   *(uint32*)(*engine_result_flag_ptr + 0x18) = engine_comparison_params;
   *(uint32*)(*engine_result_flag_ptr + 0x1c) = engine_comparison_params;
-  *(uint8*)(*engine_result_flag_ptr + 0x20) = 0;
+  *(uint8*)(*engine_result_flag_ptr + MEMORY_OFFSET_0x20) = 0;
   engine_stack_uint_a8 = 1;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_28 ^ (ulonglong)aengine_stack_uint_c8);
@@ -41288,7 +41314,7 @@ void engine_unnamed_function_2150(longlong engine_data_structure_ptr,longlong *e
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,0x10,0x1e);
+    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2310(engine_temp_uint_2,&pengine_stack_long_b0);
     pengine_temp_long_3 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_4;
@@ -41358,7 +41384,7 @@ void engine_unnamed_function_2160(longlong engine_data_structure_ptr,longlong *e
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,0x10,0x1e);
+    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2320(engine_temp_uint_2,&pengine_stack_long_b0);
     pengine_temp_long_3 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_4;
@@ -41428,7 +41454,7 @@ void engine_unnamed_function_2170(longlong engine_data_structure_ptr,longlong *e
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_3 = engine_call_memory_allocator(_engine_data_18,engine_temp_int_4,0x10,0x1e);
+    engine_temp_long_3 = engine_call_memory_allocator(_engine_data_18,engine_temp_int_4,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2330(engine_temporary_uint,&pengine_stack_long_b0);
     pengine_temp_long_2 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_3;
@@ -41498,7 +41524,7 @@ void engine_unnamed_function_2180(longlong engine_data_structure_ptr,longlong *e
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,0x10,0x1e);
+    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2340(engine_temp_uint_2,&pengine_stack_long_b0);
     pengine_temp_long_3 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_4;
@@ -41568,7 +41594,7 @@ void engine_unnamed_function_2190(longlong engine_data_structure_ptr,longlong *e
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,0x10,0x1e);
+    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2280(engine_temp_uint_2,&pengine_stack_long_b0);
     pengine_temp_long_3 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_4;
@@ -41637,7 +41663,7 @@ void engine_unnamed_function_2200(longlong engine_data_structure_ptr,longlong *e
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,0x10,0x1e);
+    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2260(engine_temp_uint_2,&pengine_stack_long_b0);
     pengine_temp_long_3 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_4;
@@ -41707,7 +41733,7 @@ void engine_unnamed_function_2210(longlong engine_data_structure_ptr,longlong *e
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,0x10,0x1e);
+    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2290(engine_temp_uint_2,&pengine_stack_long_b0);
     pengine_temp_long_3 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_4;
@@ -42607,8 +42633,8 @@ void engine_unnamed_function_2300(ulonglong *engine_data_structure_ptr)
     engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + MEMORY_OFFSET_0x20);
+      *(void**)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -43169,7 +43195,7 @@ engine_unnamed_function_2490(uint64_t *engine_data_structure_ptr,ulonglong engin
 uint64_t * engine_unnamed_function_2500(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
 
 {
-  engine_unnamed_function_6548(engine_data_structure_ptr + 3,8,0x10,engine_update_game_state,0xfffffffffffffffe);
+  engine_unnamed_function_6548(engine_data_structure_ptr + 3,8,MEMORY_COMPARE_SIZE_0x10,engine_update_game_state,0xfffffffffffffffe);
   *engine_data_structure_ptr = &engine_data_180a21720;
   *engine_data_structure_ptr = &engine_data_180a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
@@ -43187,7 +43213,7 @@ uint64_t * engine_unnamed_function_2510(uint64_t *engine_data_structure_ptr)
   *engine_data_structure_ptr = &engine_data_180a21720;
   *(uint32*)(engine_data_structure_ptr + 1) = 0;
   *engine_data_structure_ptr = &engine_base_data_offset_98;
-  engine_call_framework_initializer(engine_data_structure_ptr + 3,8,0x10,&engine_calculate_frame_time,engine_update_game_state);
+  engine_call_framework_initializer(engine_data_structure_ptr + 3,8,MEMORY_COMPARE_SIZE_0x10,&engine_calculate_frame_time,engine_update_game_state);
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
   *(uint8*)((longlong)engine_data_structure_ptr + 0x14) = 9;
   *(byte *)(engine_data_structure_ptr + 0x13) = *(byte *)(engine_data_structure_ptr + 0x13) | 1;
@@ -43231,7 +43257,7 @@ void engine_unnamed_function_2520(uint64_t *engine_data_structure_ptr,uint engin
     aengine_stack_uint_f0[0] = 0;
     engine_stack_value_70 = 0x25;
     engine_stack_uint_68 = engine_data_structure_ptr[3];
-    engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,0x100,8,3);
+    engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x100,8,3);
     pengine_data_ptr_2 = (undefined **)engine_allocate_temporary_memory(engine_temporary_uint,&pengine_stack_uint_108);
     ppengine_stack_uint_118 = pengine_data_ptr_2;
     if (pengine_data_ptr_2 != (undefined **)0x0) {
@@ -43296,7 +43322,7 @@ void engine_unnamed_function_2530(uint64_t *engine_data_structure_ptr,uint engin
     aengine_stack_uint_f0[0] = 0;
     engine_stack_value_70 = 0x23;
     engine_stack_uint_68 = engine_data_structure_ptr[3];
-    engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,0x100,8,3);
+    engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x100,8,3);
     pengine_data_ptr_2 = (undefined **)engine_allocate_temporary_memory(engine_temporary_uint,&pengine_stack_uint_108);
     ppengine_stack_uint_118 = pengine_data_ptr_2;
     if (pengine_data_ptr_2 != (undefined **)0x0) {
@@ -43741,8 +43767,8 @@ void engine_unnamed_function_2650(float *engine_data_structure_ptr,longlong engi
   float engine_temp_float_12;
   float engine_temp_float_13;
   float engine_stack_float_68;
-  float fStack_64;
-  float fStack_60;
+  float engine_stack_float_64;
+  float engine_stack_float_60;
   
   if (engine_comparison_params == '\0') {
     engine_temporary_uint = engine_system_parameter_4[1];
@@ -43830,12 +43856,12 @@ void engine_unnamed_function_2650(float *engine_data_structure_ptr,longlong engi
   engine_data_structure_ptr[1] = engine_stack_float_68 * engine_data_structure_ptr[1];
   *engine_data_structure_ptr = engine_stack_float_68 * *engine_data_structure_ptr;
   engine_data_structure_ptr[2] = engine_stack_float_68 * engine_data_structure_ptr[2];
-  engine_data_structure_ptr[4] = fStack_64 * engine_data_structure_ptr[4];
-  engine_data_structure_ptr[5] = fStack_64 * engine_data_structure_ptr[5];
-  engine_data_structure_ptr[6] = fStack_64 * engine_data_structure_ptr[6];
-  engine_data_structure_ptr[8] = fStack_60 * engine_data_structure_ptr[8];
-  engine_data_structure_ptr[9] = fStack_60 * engine_data_structure_ptr[9];
-  engine_data_structure_ptr[10] = fStack_60 * engine_data_structure_ptr[10];
+  engine_data_structure_ptr[4] = engine_stack_float_64 * engine_data_structure_ptr[4];
+  engine_data_structure_ptr[5] = engine_stack_float_64 * engine_data_structure_ptr[5];
+  engine_data_structure_ptr[6] = engine_stack_float_64 * engine_data_structure_ptr[6];
+  engine_data_structure_ptr[8] = engine_stack_float_60 * engine_data_structure_ptr[8];
+  engine_data_structure_ptr[9] = engine_stack_float_60 * engine_data_structure_ptr[9];
+  engine_data_structure_ptr[10] = engine_stack_float_60 * engine_data_structure_ptr[10];
   engine_data_structure_ptr[3] = 0.0;
   engine_data_structure_ptr[7] = 0.0;
   engine_data_structure_ptr[0xb] = 0.0;
@@ -45294,7 +45320,7 @@ uint64_t * engine_unnamed_function_3010(uint64_t *engine_data_structure_ptr)
   *engine_data_pointer = engine_data_pointer;
   engine_data_structure_ptr[0x17] = engine_data_pointer;
   engine_data_structure_ptr[0x18] = 0;
-  *(uint8*)(engine_data_structure_ptr + 0x19) = 0;
+  *(uint8*)(engine_data_structure_ptr + MEMORY_OFFSET_0x19) = 0;
   engine_data_structure_ptr[0x1a] = 0;
   engine_data_pointer = engine_data_structure_ptr + 0x1c;
   engine_data_structure_ptr[0x1f] = 0;
@@ -45472,7 +45498,7 @@ uint64 engine_unnamed_function_3060(longlong engine_data_structure_ptr,longlong 
     engine_next_node_ptr = *(void**)(engine_temp_long_2 + 0x40);
     if (*(void**)(engine_temp_long_2 + 0x40) != (void*)0x0) {
       do {
-        engine_temporary_int = memcmp(engine_next_node_ptr + 4,engine_comparison_params,0x10);
+        engine_temporary_int = memcmp(engine_next_node_ptr + 4,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10);
         if (engine_temporary_int < 0) {
           engine_temporary_pointer = (void*)*engine_next_node_ptr;
         }
@@ -45483,7 +45509,7 @@ uint64 engine_unnamed_function_3060(longlong engine_data_structure_ptr,longlong 
         engine_next_node_ptr = engine_temporary_pointer;
       } while (engine_temporary_pointer != (void*)0x0);
       if ((engine_current_node_ptr != (void*)(engine_temp_long_2 + 0x30)) &&
-         (engine_temporary_int = memcmp(engine_comparison_params,engine_current_node_ptr + 4,0x10), -1 < engine_temporary_int)) {
+         (engine_temporary_int = memcmp(engine_comparison_params,engine_current_node_ptr + 4,MEMORY_COMPARE_SIZE_0x10), -1 < engine_temporary_int)) {
         return engine_current_node_ptr[6];
       }
     }
@@ -45538,7 +45564,7 @@ uint64 engine_unnamed_function_3090(longlong engine_data_structure_ptr,uint64 en
     engine_next_node_ptr = *(void**)(engine_temp_long_2 + 0x40);
     if (*(void**)(engine_temp_long_2 + 0x40) != (void*)0x0) {
       do {
-        engine_temporary_int = memcmp(engine_next_node_ptr + 4,engine_result_flag_ptr,0x10);
+        engine_temporary_int = memcmp(engine_next_node_ptr + 4,engine_result_flag_ptr,MEMORY_COMPARE_SIZE_0x10);
         if (engine_temporary_int < 0) {
           engine_temporary_pointer = (void*)*engine_next_node_ptr;
         }
@@ -45549,7 +45575,7 @@ uint64 engine_unnamed_function_3090(longlong engine_data_structure_ptr,uint64 en
         engine_next_node_ptr = engine_temporary_pointer;
       } while (engine_temporary_pointer != (void*)0x0);
       if ((engine_current_node_ptr != (void*)(engine_temp_long_2 + 0x30)) &&
-         (engine_temporary_int = memcmp(engine_result_flag_ptr,engine_current_node_ptr + 4,0x10), -1 < engine_temporary_int)) {
+         (engine_temporary_int = memcmp(engine_result_flag_ptr,engine_current_node_ptr + 4,MEMORY_COMPARE_SIZE_0x10), -1 < engine_temporary_int)) {
         return engine_current_node_ptr[6];
       }
     }
@@ -45943,7 +45969,7 @@ void engine_unnamed_function_3130(uint64_t *engine_data_structure_ptr,uint64_t *
   if (pengine_stack_uint_120 != (uint8*)0x0) {
     engine_data_ptr1 = pengine_stack_uint_120;
   }
-  engine_temp_char_9 = engine_unnamed_function_6480(aengine_stack_long_108,engine_data_ptr1,5,0x105);
+  engine_temp_char_9 = engine_unnamed_function_6480(aengine_stack_long_108,engine_data_ptr1,5,MEMORY_COMPARE_SIZE_0x105);
   pengine_temp_long_20 = pengine_temp_long8;
   engine_temp_long5 = aengine_stack_long_108[0];
   if (engine_temp_char_9 == '\0') {
@@ -45968,7 +45994,7 @@ void engine_unnamed_function_3130(uint64_t *engine_data_structure_ptr,uint64_t *
     if (pengine_stack_uint_120 != (uint8*)0x0) {
       engine_data_ptr1 = pengine_stack_uint_120;
     }
-    engine_temp_char_9 = engine_unnamed_function_6480(aengine_stack_long_108,engine_data_ptr1,5,0x105);
+    engine_temp_char_9 = engine_unnamed_function_6480(aengine_stack_long_108,engine_data_ptr1,5,MEMORY_COMPARE_SIZE_0x105);
     engine_temp_long5 = aengine_stack_long_108[0];
     if (engine_temp_char_9 != '\0') goto LAB_1800878e0;
     engine_data_ptr1 = &engine_data_73;
@@ -46107,7 +46133,7 @@ LAB_18008807f:
         *pengine_temp_long_21 = 0;
         *(void*)(engine_data_ptr1 + 0x188) = 0;
         *(void*)(engine_data_ptr1 + 400) = 0;
-        *(uint32*)(engine_data_ptr1 + 0x198) = 0x1a;
+        *(uint32*)(engine_data_ptr1 + MEMORY_OFFSET_0x198) = 0x1a;
         pengine_stack_long_e8 = pengine_temp_long_21;
         engine_unnamed_function_3000(engine_data_ptr_24,engine_data_ptr1 + 0x18,engine_data_ptr1 + 0x38);
         engine_stack_uint_f0 = 0;
@@ -46136,7 +46162,7 @@ LAB_180087f81:
               engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_80);
             }
             do {
-              engine_temp_int0 = memcmp(engine_data_ptr7 + 4,&engine_stack_value_70,0x10);
+              engine_temp_int0 = memcmp(engine_data_ptr7 + 4,&engine_stack_value_70,MEMORY_COMPARE_SIZE_0x10);
               if (engine_temp_int0 < 0) {
                 engine_data_ptr_22 = (void*)*engine_data_ptr7;
               }
@@ -46146,7 +46172,7 @@ LAB_180087f81:
               }
               engine_data_ptr7 = engine_data_ptr_22;
             } while (engine_data_ptr_22 != (void*)0x0);
-            if ((engine_data_ptr9 == engine_data_ptr_24) || (engine_temp_int0 = memcmp(&engine_stack_value_70,engine_data_ptr9 + 4,0x10), engine_temp_int0 < 0))
+            if ((engine_data_ptr9 == engine_data_ptr_24) || (engine_temp_int0 = memcmp(&engine_stack_value_70,engine_data_ptr9 + 4,MEMORY_COMPARE_SIZE_0x10), engine_temp_int0 < 0))
             goto LAB_180087f81;
             pengine_temp_long2 = (longlong *)(*(code *)engine_data_ptr9[6])(&engine_stack_value_60,pengine_temp_long2);
             if (pengine_temp_long2 != (longlong *)0x0) {
@@ -46229,7 +46255,7 @@ LAB_180087f81:
                   engine_temp_uint_6 = engine_temporary_pointer[1];
                   engine_temp_uint64_value = engine_temporary_pointer[2];
                   engine_temp_uint_8 = engine_temporary_pointer[3];
-                  structure_data_pointer = (uint32*)(*pengine_temp_long4 + 0x20 + (longlong)pengine_temp_long6);
+                  structure_data_pointer = (uint32*)(*pengine_temp_long4 + MEMORY_OFFSET_0x20 + (longlong)pengine_temp_long6);
                   *structure_data_pointer = *engine_temporary_pointer;
                   structure_data_pointer[1] = engine_temp_uint_6;
                   structure_data_pointer[2] = engine_temp_uint64_value;
@@ -46821,7 +46847,7 @@ void engine_unnamed_function_3170(longlong engine_data_structure_ptr,uint64 engi
     (**(code **)(engine_data_structure_ptr + 0x50))(engine_data_structure_ptr + 0x40,0,0);
   }
   if (*(code **)(engine_data_structure_ptr + 0x30) != (code *)0x0) {
-    (**(code **)(engine_data_structure_ptr + 0x30))(engine_data_structure_ptr + 0x20,0,0);
+    (**(code **)(engine_data_structure_ptr + 0x30))(engine_data_structure_ptr + MEMORY_OFFSET_0x20,0,0);
   }
   return;
 }
@@ -46904,7 +46930,7 @@ void engine_unnamed_function_3180(void)
           *(ulonglong *)(engine_temp_long_3 + 0x10) = engine_temp_uint64_value + 0x60;
           ppengine_stack_uint_a8 = (undefined **)engine_temp_uint64_value;
           engine_call_data_writer(engine_temp_uint64_value);
-          engine_unnamed_function_10(engine_temp_uint64_value + 0x20,&engine_stack_pointer_78);
+          engine_unnamed_function_10(engine_temp_uint64_value + MEMORY_OFFSET_0x20,&engine_stack_pointer_78);
           *(uint8*)(engine_temp_uint64_value + 0x58) = aengine_stack_uint_40[0];
           *(int *)(engine_temp_uint64_value + 0x5c) = iStack_3c;
         }
@@ -46924,7 +46950,7 @@ void engine_unnamed_function_3180(void)
       engine_stack_pointer_98 = &engine_data_18098bcb0;
       engine_temp_uint_6 = (ulonglong)((int)engine_temp_uint_6 + 1);
       engine_temp_long0 = engine_temp_long0 + -1;
-      engine_temp_uint_9 = engine_temp_uint_9 + 0x20;
+      engine_temp_uint_9 = engine_temp_uint_9 + MEMORY_OFFSET_0x20;
     } while (engine_temp_long0 != 0);
   }
                     // WARNING: Subroutine does not return
@@ -47146,7 +47172,7 @@ LAB_180089891:
       pengine_stack_uint_1a0 = aengine_stack_uint_190;
       aengine_stack_uint_190[0] = 0;
       engine_stack_value_198 = 0;
-      strcpy_s(aengine_stack_uint_190,0x10,&engine_data_73);
+      strcpy_s(aengine_stack_uint_190,MEMORY_COMPARE_SIZE_0x10,&engine_data_73);
       pengine_data_ptr0 = &pengine_stack_uint_1a8;
       engine_temp_uint_26 = (uint)engine_temp_uint_27 | 2;
     }
@@ -47480,8 +47506,8 @@ LAB_180089891:
       if (engine_stack_long_1e0 - engine_stack_long_1e8 >> 3 != 0) {
         engine_temp_long1 = engine_temp_long6 + 0x48;
         engine_temp_long_28 = engine_call_memory_extender(_engine_data_18,0x40,*(uint8*)(engine_temp_long6 + 0x70));
-        engine_call_data_writer(engine_temp_long_28 + 0x20,&pengine_stack_uint_330);
-        engine_temp_long_9 = engine_process_data_structure_comparison(engine_temp_long1,acStack_3e8,engine_temp_long_28 + 0x20);
+        engine_call_data_writer(engine_temp_long_28 + MEMORY_OFFSET_0x20,&pengine_stack_uint_330);
+        engine_temp_long_9 = engine_process_data_structure_comparison(engine_temp_long1,acStack_3e8,engine_temp_long_28 + MEMORY_OFFSET_0x20);
         if (acStack_3e8[0] != '\0') {
           if (engine_temp_long_9 == engine_temp_long1) goto LAB_18008a32f;
           if (*(int *)(engine_temp_long_9 + 0x30) == 0) goto LAB_18008a327;
@@ -47767,7 +47793,7 @@ LAB_18008a753:
           pengine_stack_uint_3e0 = aengine_stack_uint_3d0;
           aengine_stack_uint_3d0[0] = 0;
           engine_stack_uint_3d8 = 6;
-          strcpy_s(aengine_stack_uint_3d0,0x10,&engine_data_180a3c07c);
+          strcpy_s(aengine_stack_uint_3d0,MEMORY_COMPARE_SIZE_0x10,&engine_data_180a3c07c);
           if (*(uint *)(engine_data_ptr_27 + 2) < engine_stack_uint_3d8) {
 LAB_18008a841:
             engine_temp_byte6 = false;
@@ -47792,7 +47818,7 @@ LAB_18008a841:
             pengine_stack_uint_3b8 = aengine_stack_uint_3a8;
             aengine_stack_uint_3a8[0] = 0;
             engine_stack_uint_3b0 = 6;
-            strcpy_s(aengine_stack_uint_3a8,0x10,&engine_data_180a3c07c);
+            strcpy_s(aengine_stack_uint_3a8,MEMORY_COMPARE_SIZE_0x10,&engine_data_180a3c07c);
             pengine_stack_uint_3c0 = &engine_data_18098bcb0;
             engine_temp_uint_25 = engine_stack_uint_3b0;
           }
@@ -47842,7 +47868,7 @@ LAB_18008a841:
           engine_data_ptr_21 = pengine_stack_uint_590;
         }
         engine_stack_value_148 = engine_stack_uint_588;
-        strcpy_s(aengine_stack_uint_140,0x100,engine_data_ptr_21);
+        strcpy_s(aengine_stack_uint_140,MEMORY_COMPARE_SIZE_0x100,engine_data_ptr_21);
         engine_stack_uint_5a8 = 0xc;
         engine_temp_uint_26 = engine_stack_uint_588 - 1;
         if (-1 < (int)engine_temp_uint_26) {
@@ -47868,7 +47894,7 @@ LAB_18008a841:
         if (pengine_stack_uint_150 != (void*)0x0) {
           engine_data_ptr_21 = pengine_stack_uint_150;
         }
-        strcpy_s(pengine_stack_uint_390,0x100,engine_data_ptr_21);
+        strcpy_s(pengine_stack_uint_390,MEMORY_COMPARE_SIZE_0x100,engine_data_ptr_21);
         engine_stack_pointer_158 = &engine_data_18098bcb0;
         engine_stack_uint_5a8 = 0;
         pengine_stack_uint_598 = &engine_system_context_data;
@@ -48269,7 +48295,7 @@ LAB_18008b3e2:
   }
   for (engine_temp_long_2 = *(longlong *)(engine_data_structure_ptr + 0x40); engine_temp_long_2 != engine_data_structure_ptr + 0x38;
       engine_temp_long_2 = func_0x00018066bd70(engine_temp_long_2)) {
-    engine_unnamed_function_3240(*(void*)(engine_temp_long_2 + 0x20),engine_temp_index,engine_comparison_params);
+    engine_unnamed_function_3240(*(void*)(engine_temp_long_2 + MEMORY_OFFSET_0x20),engine_temp_index,engine_comparison_params);
   }
   return;
 }
@@ -48318,7 +48344,7 @@ ulonglong engine_unnamed_function_3250(longlong engine_data_structure_ptr,longlo
   else {
     engine_unnamed_function_6080(lStackX_10);
     engine_temp_long_7 = *(longlong *)(engine_temp_long_2 + 0x188) - *(longlong *)(engine_temp_long_2 + 0x180) >> 3;
-    engine_stack_uint_38 = *(uint *)(engine_temp_long_2 + 0x198);
+    engine_stack_uint_38 = *(uint *)(engine_temp_long_2 + MEMORY_OFFSET_0x198);
     engine_temp_long_6 = 0;
     engine_stack_long_50 = engine_temp_long_6;
     if (engine_temp_long_7 != 0) {
@@ -48339,7 +48365,7 @@ ulonglong engine_unnamed_function_3250(longlong engine_data_structure_ptr,longlo
     if (0 < comparison_result_index) {
       do {
         pengine_temp_long = *(longlong **)(*(longlong *)(engine_data_structure_ptr + 0x110) + engine_temp_long_6);
-        (**(code **)(*pengine_temp_long + 0x20))
+        (**(code **)(*pengine_temp_long + MEMORY_OFFSET_0x20))
                   (pengine_temp_long,*(void*)(*(longlong *)(engine_data_structure_ptr + 0x110) + 8 + engine_temp_long_6));
         engine_temp_long_6 = engine_temp_long_6 + 0x10;
         engine_temp_long_7 = engine_temp_long_7 + -1;
@@ -48426,7 +48452,7 @@ void engine_unnamed_function_3260(longlong engine_data_structure_ptr,longlong *e
   engine_stack_long_88 = engine_stack_long_80;
   engine_stack_uint_68 = engine_temp_uint_2;
   engine_temp_long_8 = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(engine_data_structure_ptr + 0xd8));
-  *(ulonglong *)(engine_temp_long_8 + 0x20) = engine_temp_uint_2;
+  *(ulonglong *)(engine_temp_long_8 + MEMORY_OFFSET_0x20) = engine_temp_uint_2;
   engine_temp_byte9 = true;
   engine_current_node_ptr = engine_data_pointer;
   engine_temporary_pointer = *(void**)(engine_data_structure_ptr + 0xc0);
@@ -48445,12 +48471,12 @@ void engine_unnamed_function_3260(longlong engine_data_structure_ptr,longlong *e
     if (engine_current_node_ptr == *(void**)(engine_data_structure_ptr + 0xb8)) goto LAB_18008b7ea;
     engine_temporary_pointer = (void*)func_0x00018066b9a0(engine_current_node_ptr);
   }
-  if (*(ulonglong *)(engine_temp_long_8 + 0x20) <= (ulonglong)engine_temporary_pointer[4]) {
+  if (*(ulonglong *)(engine_temp_long_8 + MEMORY_OFFSET_0x20) <= (ulonglong)engine_temporary_pointer[4]) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_temp_long_8);
   }
 LAB_18008b7ea:
-  if ((engine_current_node_ptr == engine_data_pointer) || (engine_temp_long_7 = 1, *(ulonglong *)(engine_temp_long_8 + 0x20) < (ulonglong)engine_current_node_ptr[4])) {
+  if ((engine_current_node_ptr == engine_data_pointer) || (engine_temp_long_7 = 1, *(ulonglong *)(engine_temp_long_8 + MEMORY_OFFSET_0x20) < (ulonglong)engine_current_node_ptr[4])) {
     engine_temp_long_7 = engine_temp_long_6;
   }
                     // WARNING: Subroutine does not return
@@ -48670,7 +48696,7 @@ void engine_unnamed_function_3290(uint64 engine_data_structure_ptr,longlong engi
     engine_temporary_pointer = *(undefined **)(engine_result_flag_ptr + 0x60);
   }
   engine_stack_long_2e0 = engine_result_flag_ptr;
-  resource_status_flag = engine_unnamed_function_6480(aengine_stack_long_2f0,engine_temporary_pointer,5,0x105);
+  resource_status_flag = engine_unnamed_function_6480(aengine_stack_long_2f0,engine_temporary_pointer,5,MEMORY_COMPARE_SIZE_0x105);
   engine_temp_long_6 = aengine_stack_long_2f0[0];
   if (resource_status_flag == '\0') {
     if (aengine_stack_long_2f0[0] != -1) {
@@ -48827,7 +48853,7 @@ void engine_unnamed_function_3300(longlong engine_data_structure_ptr,longlong *e
   engine_temporary_pointer = engine_data_pointer;
   structure_data_pointer = *(void**)(engine_data_structure_ptr + 0x88);
   while (structure_data_pointer != (void*)0x0) {
-    comparison_result_index = memcmp(structure_data_pointer + 4,engine_temp_uint_4,0x10);
+    comparison_result_index = memcmp(structure_data_pointer + 4,engine_temp_uint_4,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       structure_data_pointer = (void*)*structure_data_pointer;
     }
@@ -48836,7 +48862,7 @@ void engine_unnamed_function_3300(longlong engine_data_structure_ptr,longlong *e
       structure_data_pointer = (void*)structure_data_pointer[1];
     }
   }
-  if ((engine_temporary_pointer == engine_data_pointer) || (comparison_result_index = memcmp(engine_temp_uint_4,engine_temporary_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((engine_temporary_pointer == engine_data_pointer) || (comparison_result_index = memcmp(engine_temp_uint_4,engine_temporary_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     engine_stack_uint_8c8 = engine_temp_uint_4;
     engine_temporary_pointer = (void*)engine_unnamed_function_3510(engine_data_pointer,aengine_stack_uint_890);
     engine_temporary_pointer = (void*)*engine_temporary_pointer;
@@ -48847,7 +48873,7 @@ void engine_unnamed_function_3300(longlong engine_data_structure_ptr,longlong *e
   engine_stack_uint_8a8 = *(uint32*)((longlong)engine_result_flag_ptr + 0x14);
   engine_stack_uint_8a4 = (uint32_t)engine_result_flag_ptr[3];
   engine_temp_long_6 = engine_call_memory_extender(_engine_data_18,0x38,*(uint8*)(engine_temporary_pointer + 0xb));
-  *(uint32*)(engine_temp_long_6 + 0x20) = engine_stack_uint_8b0;
+  *(uint32*)(engine_temp_long_6 + MEMORY_OFFSET_0x20) = engine_stack_uint_8b0;
   *(uint32*)(engine_temp_long_6 + 0x24) = engine_stack_uint_8ac;
   *(uint32*)(engine_temp_long_6 + 0x28) = engine_stack_uint_8a8;
   *(uint32*)(engine_temp_long_6 + 0x2c) = engine_stack_uint_8a4;
@@ -48856,7 +48882,7 @@ void engine_unnamed_function_3300(longlong engine_data_structure_ptr,longlong *e
   structure_data_pointer = engine_data_pointer;
   current_data_pointer = (void*)engine_temporary_pointer[8];
   while (current_data_pointer != (void*)0x0) {
-    comparison_result_index = memcmp(engine_temp_long_6 + 0x20,current_data_pointer + 4,0x10);
+    comparison_result_index = memcmp(engine_temp_long_6 + MEMORY_OFFSET_0x20,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10);
     engine_temp_byte12 = comparison_result_index < 0;
     structure_data_pointer = current_data_pointer;
     if (engine_temp_byte12) {
@@ -48871,13 +48897,13 @@ void engine_unnamed_function_3300(longlong engine_data_structure_ptr,longlong *e
     if (structure_data_pointer == (void*)engine_temporary_pointer[7]) goto LAB_18008c531;
     current_data_pointer = (void*)func_0x00018066b9a0(structure_data_pointer);
   }
-  comparison_result_index = memcmp(current_data_pointer + 4,engine_temp_long_6 + 0x20,0x10);
+  comparison_result_index = memcmp(current_data_pointer + 4,engine_temp_long_6 + MEMORY_OFFSET_0x20,MEMORY_COMPARE_SIZE_0x10);
   if (-1 < comparison_result_index) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_temp_long_6);
   }
 LAB_18008c531:
-  if ((structure_data_pointer == engine_data_pointer) || (comparison_result_index = memcmp(engine_temp_long_6 + 0x20,structure_data_pointer + 4,0x10), comparison_result_index < 0)) {
+  if ((structure_data_pointer == engine_data_pointer) || (comparison_result_index = memcmp(engine_temp_long_6 + MEMORY_OFFSET_0x20,structure_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     engine_temp_uint_4 = 0;
   }
   else {
@@ -49110,7 +49136,7 @@ LAB_18008caf0:
   }
   else {
     do {
-      engine_temp_int_6 = memcmp(engine_data_ptr9 + 4,engine_temp_uint64_value,0x10);
+      engine_temp_int_6 = memcmp(engine_data_ptr9 + 4,engine_temp_uint64_value,MEMORY_COMPARE_SIZE_0x10);
       if (engine_temp_int_6 < 0) {
         engine_data_ptr_20 = (void*)*engine_data_ptr9;
       }
@@ -49120,7 +49146,7 @@ LAB_18008caf0:
       }
       engine_data_ptr9 = engine_data_ptr_20;
     } while (engine_data_ptr_20 != (void*)0x0);
-    if ((engine_data_ptr7 == engine_data_pointer) || (engine_temp_int_6 = memcmp(engine_temp_uint64_value,engine_data_ptr7 + 4,0x10), engine_temp_int_6 < 0))
+    if ((engine_data_ptr7 == engine_data_pointer) || (engine_temp_int_6 = memcmp(engine_temp_uint64_value,engine_data_ptr7 + 4,MEMORY_COMPARE_SIZE_0x10), engine_temp_int_6 < 0))
     goto LAB_18008caf0;
   }
   if (engine_data_ptr7 != engine_data_pointer) {
@@ -49128,7 +49154,7 @@ LAB_18008caf0:
   }
   pppengine_next_node_ptr = *(uint64_t *****)*engine_result_flag_ptr;
   engine_temp_long_8 = engine_call_memory_extender(_engine_data_18,0x30,(uint8_t)engine_stack_uint_48);
-  *(uint64_t *****)(engine_temp_long_8 + 0x20) = pppengine_next_node_ptr;
+  *(uint64_t *****)(engine_temp_long_8 + MEMORY_OFFSET_0x20) = pppengine_next_node_ptr;
   *(int *)(engine_temp_long_8 + 0x28) = engine_temp_int4 << 0x10;
   engine_comparison_result4 = true;
   ppppengine_data_ptr0 = &ppppengine_stack_value_70;
@@ -49148,12 +49174,12 @@ LAB_18008caf0:
     if (ppppengine_data_ptr0 == (uint64_t *****)ppppengine_stack_uint_68) goto LAB_18008cb7e;
     pengine_temp_ptr_ptr_ptr_ptr_9 = (uint64_t *****)func_0x00018066b9a0(ppppengine_data_ptr0);
   }
-  if (*(uint64_t *****)(engine_temp_long_8 + 0x20) <= pengine_temp_ptr_ptr_ptr_ptr_9[4]) {
+  if (*(uint64_t *****)(engine_temp_long_8 + MEMORY_OFFSET_0x20) <= pengine_temp_ptr_ptr_ptr_ptr_9[4]) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_temp_long_8);
   }
 LAB_18008cb7e:
-  if ((ppppengine_data_ptr0 == &ppppengine_stack_value_70) || (*(uint64_t *****)(engine_temp_long_8 + 0x20) < ppppengine_data_ptr0[4])) {
+  if ((ppppengine_data_ptr0 == &ppppengine_stack_value_70) || (*(uint64_t *****)(engine_temp_long_8 + MEMORY_OFFSET_0x20) < ppppengine_data_ptr0[4])) {
     engine_temp_uint64_value = 0;
   }
   else {
@@ -49400,13 +49426,13 @@ void engine_unnamed_function_3400(uint64 engine_data_structure_ptr,longlong *eng
   char resource_status_flag;
   longlong *pengine_temp_long_2;
   
-  resource_status_flag = *(char *)((longlong)engine_result_flag_ptr + 0x19);
+  resource_status_flag = *(char *)((longlong)engine_result_flag_ptr + MEMORY_OFFSET_0x19);
   while (resource_status_flag == '\0') {
     engine_unnamed_function_3400(&engine_data_00,engine_result_flag_ptr[2]);
     pengine_temp_long_2 = (longlong *)*engine_result_flag_ptr;
     free(engine_result_flag_ptr,0x58);
     engine_result_flag_ptr = pengine_temp_long_2;
-    resource_status_flag = *(char *)((longlong)pengine_temp_long_2 + 0x19);
+    resource_status_flag = *(char *)((longlong)pengine_temp_long_2 + MEMORY_OFFSET_0x19);
   }
   return;
 }
@@ -49470,7 +49496,7 @@ uint64_t * engine_update_render_state(uint64_t *engine_data_structure_ptr,uint64
   engine_current_node_ptr = (void*)engine_data_structure_ptr[2];
   if ((void*)engine_data_structure_ptr[2] != (void*)0x0) {
     do {
-      engine_temporary_int = memcmp(engine_current_node_ptr + 4,engine_comparison_params,0x10);
+      engine_temporary_int = memcmp(engine_current_node_ptr + 4,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10);
       if (engine_temporary_int < 0) {
         engine_next_node_ptr = (void*)*engine_current_node_ptr;
       }
@@ -49480,7 +49506,7 @@ uint64_t * engine_update_render_state(uint64_t *engine_data_structure_ptr,uint64
       }
       engine_current_node_ptr = engine_next_node_ptr;
     } while (engine_next_node_ptr != (void*)0x0);
-    if ((structure_data_pointer != engine_data_structure_ptr) && (engine_temporary_int = memcmp(engine_comparison_params,structure_data_pointer + 4,0x10), -1 < engine_temporary_int)) {
+    if ((structure_data_pointer != engine_data_structure_ptr) && (engine_temporary_int = memcmp(engine_comparison_params,structure_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), -1 < engine_temporary_int)) {
       *engine_result_flag_ptr = structure_data_pointer;
       return engine_result_flag_ptr;
     }
@@ -49700,7 +49726,7 @@ uint64_t * engine_unnamed_function_3470(uint64_t *engine_data_structure_ptr,uint
   engine_next_node_ptr = engine_data_structure_ptr;
   if ((void*)engine_data_structure_ptr[2] != (void*)0x0) {
     do {
-      engine_temporary_int = memcmp(structure_data_pointer + 4,engine_comparison_params,0x10);
+      engine_temporary_int = memcmp(structure_data_pointer + 4,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10);
       if (engine_temporary_int < 0) {
         engine_current_node_ptr = (void*)*structure_data_pointer;
       }
@@ -49710,7 +49736,7 @@ uint64_t * engine_unnamed_function_3470(uint64_t *engine_data_structure_ptr,uint
       }
       structure_data_pointer = engine_current_node_ptr;
     } while (engine_current_node_ptr != (void*)0x0);
-    if ((engine_next_node_ptr != engine_data_structure_ptr) && (engine_temporary_int = memcmp(engine_comparison_params,engine_next_node_ptr + 4,0x10), -1 < engine_temporary_int)) {
+    if ((engine_next_node_ptr != engine_data_structure_ptr) && (engine_temporary_int = memcmp(engine_comparison_params,engine_next_node_ptr + 4,MEMORY_COMPARE_SIZE_0x10), -1 < engine_temporary_int)) {
       *engine_result_flag_ptr = engine_next_node_ptr;
       return engine_result_flag_ptr;
     }
@@ -49733,7 +49759,7 @@ uint64_t * engine_unnamed_function_3480(uint64_t *engine_data_structure_ptr,uint
   structure_data_pointer = (void*)engine_data_structure_ptr[2];
   engine_next_node_ptr = engine_data_structure_ptr;
   while (engine_data_pointer = structure_data_pointer, engine_data_pointer != (void*)0x0) {
-    comparison_result_index = memcmp(engine_data_pointer + 4,engine_result_flag_ptr,0x10);
+    comparison_result_index = memcmp(engine_data_pointer + 4,engine_result_flag_ptr,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       structure_data_pointer = (void*)*engine_data_pointer;
     }
@@ -49742,7 +49768,7 @@ uint64_t * engine_unnamed_function_3480(uint64_t *engine_data_structure_ptr,uint
       engine_next_node_ptr = engine_data_pointer;
     }
   }
-  if ((engine_next_node_ptr == engine_data_structure_ptr) || (comparison_result_index = memcmp(engine_result_flag_ptr,engine_next_node_ptr + 4,0x10), comparison_result_index < 0)) {
+  if ((engine_next_node_ptr == engine_data_structure_ptr) || (comparison_result_index = memcmp(engine_result_flag_ptr,engine_next_node_ptr + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     engine_next_node_ptr = (void*)engine_unnamed_function_3520(engine_data_structure_ptr,auStackX_8);
     engine_next_node_ptr = (void*)*engine_next_node_ptr;
   }
@@ -49768,7 +49794,7 @@ void engine_unnamed_function_3490(uint64_t *engine_data_structure_ptr,uint64 eng
   engine_temp_long_3 = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(engine_data_structure_ptr + 5));
   engine_temporary_uint = *engine_comparison_params;
   engine_temp_byte6 = true;
-  *(ulonglong *)(engine_temp_long_3 + 0x20) = engine_temporary_uint;
+  *(ulonglong *)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = engine_temporary_uint;
   engine_next_node_ptr = (void*)engine_data_structure_ptr[2];
   structure_data_pointer = engine_data_structure_ptr;
   while (engine_next_node_ptr != (void*)0x0) {
@@ -49786,12 +49812,12 @@ void engine_unnamed_function_3490(uint64_t *engine_data_structure_ptr,uint64 eng
     if (structure_data_pointer == (void*)engine_data_structure_ptr[1]) goto LAB_18008d7a0;
     engine_next_node_ptr = (void*)func_0x00018066b9a0(structure_data_pointer);
   }
-  if (*(ulonglong *)(engine_temp_long_3 + 0x20) <= (ulonglong)engine_next_node_ptr[4]) {
+  if (*(ulonglong *)(engine_temp_long_3 + MEMORY_OFFSET_0x20) <= (ulonglong)engine_next_node_ptr[4]) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_temp_long_3);
   }
 LAB_18008d7a0:
-  if ((structure_data_pointer == engine_data_structure_ptr) || (*(ulonglong *)(engine_temp_long_3 + 0x20) < (ulonglong)structure_data_pointer[4])) {
+  if ((structure_data_pointer == engine_data_structure_ptr) || (*(ulonglong *)(engine_temp_long_3 + MEMORY_OFFSET_0x20) < (ulonglong)structure_data_pointer[4])) {
     engine_temp_index = 0;
   }
   else {
@@ -49835,7 +49861,7 @@ engine_unnamed_function_3510(longlong *engine_data_structure_ptr,uint64_t *engin
   
   pengine_temp_long_3 = (longlong *)*engine_data_structure_ptr;
   if ((engine_system_parameter_4 == pengine_temp_long_3) || (engine_system_parameter_4 == engine_data_structure_ptr)) {
-    if ((engine_data_structure_ptr[4] != 0) && (engine_temp_int_2 = memcmp(pengine_temp_long_3 + 4,engine_param_5,0x10), engine_system_parameter_4 = pengine_temp_long_3, engine_temp_int_2 < 0))
+    if ((engine_data_structure_ptr[4] != 0) && (engine_temp_int_2 = memcmp(pengine_temp_long_3 + 4,engine_param_5,MEMORY_COMPARE_SIZE_0x10), engine_system_parameter_4 = pengine_temp_long_3, engine_temp_int_2 < 0))
     {
 LAB_18008d951:
       engine_temp_uint_4 = 0;
@@ -49844,8 +49870,8 @@ LAB_18008d951:
   }
   else {
     pengine_temp_long_3 = (longlong *)func_0x00018066bd70(engine_system_parameter_4);
-    engine_temp_int_2 = memcmp(engine_system_parameter_4 + 4,engine_param_5,0x10);
-    if ((engine_temp_int_2 < 0) && (engine_temp_int_2 = memcmp(engine_param_5,pengine_temp_long_3 + 4,0x10), engine_temp_int_2 < 0)) {
+    engine_temp_int_2 = memcmp(engine_system_parameter_4 + 4,engine_param_5,MEMORY_COMPARE_SIZE_0x10);
+    if ((engine_temp_int_2 < 0) && (engine_temp_int_2 = memcmp(engine_param_5,pengine_temp_long_3 + 4,MEMORY_COMPARE_SIZE_0x10), engine_temp_int_2 < 0)) {
       if (*engine_system_parameter_4 == 0) goto LAB_18008d951;
       engine_temp_uint_4 = 1;
       engine_system_parameter_4 = pengine_temp_long_3;
@@ -49860,7 +49886,7 @@ LAB_18008d954:
   pengine_temp_long_3 = (longlong *)engine_data_structure_ptr[2];
   pengine_temp_long = engine_data_structure_ptr;
   while (pengine_temp_long_3 != (longlong *)0x0) {
-    engine_temp_int_2 = memcmp(engine_param_5,pengine_temp_long_3 + 4,0x10);
+    engine_temp_int_2 = memcmp(engine_param_5,pengine_temp_long_3 + 4,MEMORY_COMPARE_SIZE_0x10);
     engine_temp_byte5 = engine_temp_int_2 < 0;
     pengine_temp_long = pengine_temp_long_3;
     if (engine_temp_byte5) {
@@ -49879,7 +49905,7 @@ LAB_18008d954:
   }
   else {
 LAB_18008d9c4:
-    engine_temp_int_2 = memcmp(pengine_temp_long_3 + 4,engine_param_5,0x10);
+    engine_temp_int_2 = memcmp(pengine_temp_long_3 + 4,engine_param_5,MEMORY_COMPARE_SIZE_0x10);
     if (-1 < engine_temp_int_2) goto LAB_18008d9f7;
   }
   engine_unnamed_function_3570(engine_data_structure_ptr,&engine_stack_long_pointer_8,pengine_temp_long,0,engine_param_5);
@@ -49910,7 +49936,7 @@ engine_unnamed_function_3520(longlong *engine_data_structure_ptr,uint64_t *engin
   
   engine_temp_ptr_array_6 = (longlong *)*engine_data_structure_ptr;
   if ((engine_system_parameter_4 == engine_temp_ptr_array_6) || (engine_system_parameter_4 == engine_data_structure_ptr)) {
-    if ((engine_data_structure_ptr[4] != 0) && (engine_temp_int_5 = memcmp(engine_temp_ptr_array_6 + 4,engine_param_5,0x10), engine_system_parameter_4 = engine_temp_ptr_array_6, engine_temp_int_5 < 0))
+    if ((engine_data_structure_ptr[4] != 0) && (engine_temp_int_5 = memcmp(engine_temp_ptr_array_6 + 4,engine_param_5,MEMORY_COMPARE_SIZE_0x10), engine_system_parameter_4 = engine_temp_ptr_array_6, engine_temp_int_5 < 0))
     {
 LAB_18008daa1:
       engine_temp_uint_8 = 0;
@@ -49919,8 +49945,8 @@ LAB_18008daa1:
   }
   else {
     engine_temp_ptr_array_6 = (longlong *)func_0x00018066bd70(engine_system_parameter_4);
-    engine_temp_int_5 = memcmp(engine_system_parameter_4 + 4,engine_param_5,0x10);
-    if ((engine_temp_int_5 < 0) && (engine_temp_int_5 = memcmp(engine_param_5,engine_temp_ptr_array_6 + 4,0x10), engine_temp_int_5 < 0)) {
+    engine_temp_int_5 = memcmp(engine_system_parameter_4 + 4,engine_param_5,MEMORY_COMPARE_SIZE_0x10);
+    if ((engine_temp_int_5 < 0) && (engine_temp_int_5 = memcmp(engine_param_5,engine_temp_ptr_array_6 + 4,MEMORY_COMPARE_SIZE_0x10), engine_temp_int_5 < 0)) {
       if (*engine_system_parameter_4 == 0) goto LAB_18008daa1;
       engine_temp_uint_8 = 1;
       engine_system_parameter_4 = engine_temp_ptr_array_6;
@@ -49935,7 +49961,7 @@ LAB_18008daa4:
   engine_temp_ptr_array_6 = (longlong *)engine_data_structure_ptr[2];
   main_context_pointer = engine_data_structure_ptr;
   while (engine_temp_ptr_array_6 != (longlong *)0x0) {
-    engine_temp_int_5 = memcmp(engine_param_5,engine_temp_ptr_array_6 + 4,0x10);
+    engine_temp_int_5 = memcmp(engine_param_5,engine_temp_ptr_array_6 + 4,MEMORY_COMPARE_SIZE_0x10);
     engine_temp_byte9 = engine_temp_int_5 < 0;
     main_context_pointer = engine_temp_ptr_array_6;
     if (engine_temp_byte9) {
@@ -49950,13 +49976,13 @@ LAB_18008daa4:
     if (main_context_pointer == (longlong *)engine_data_structure_ptr[1]) goto engine_unnamed_function_353a;
     engine_temp_ptr_array_6 = (longlong *)func_0x00018066b9a0(main_context_pointer);
   }
-  engine_temp_int_5 = memcmp(engine_temp_ptr_array_6 + 4,engine_param_5,0x10);
+  engine_temp_int_5 = memcmp(engine_temp_ptr_array_6 + 4,engine_param_5,MEMORY_COMPARE_SIZE_0x10);
   if (-1 < engine_temp_int_5) {
     *engine_result_flag_ptr = engine_temp_ptr_array_6;
     return engine_result_flag_ptr;
   }
 engine_unnamed_function_353a:
-  if ((main_context_pointer == engine_data_structure_ptr) || (engine_temp_int_5 = memcmp(engine_param_5,main_context_pointer + 4,0x10), engine_temp_int_5 < 0)) {
+  if ((main_context_pointer == engine_data_structure_ptr) || (engine_temp_int_5 = memcmp(engine_param_5,main_context_pointer + 4,MEMORY_COMPARE_SIZE_0x10), engine_temp_int_5 < 0)) {
     engine_temp_uint_8 = 0;
   }
   else {
@@ -49966,7 +49992,7 @@ engine_unnamed_function_353a:
   engine_temporary_uint = engine_param_5[1];
   engine_temp_uint_2 = engine_param_5[2];
   engine_temp_uint_3 = engine_param_5[3];
-  *(uint32*)(engine_temp_long_7 + 0x20) = *engine_param_5;
+  *(uint32*)(engine_temp_long_7 + MEMORY_OFFSET_0x20) = *engine_param_5;
   *(uint32*)(engine_temp_long_7 + 0x24) = engine_temporary_uint;
   *(uint32*)(engine_temp_long_7 + 0x28) = engine_temp_uint_2;
   *(uint32*)(engine_temp_long_7 + 0x2c) = engine_temp_uint_3;
@@ -49993,13 +50019,13 @@ void engine_unnamed_function_353a(uint32_t engine_data_structure_ptr)
   longlong unaff_RSI;
   
   if (engine_register_rbx != unaff_RSI) {
-    memcmp(engine_data_structure_ptr,engine_register_rbx + 0x20,0x10);
+    memcmp(engine_data_structure_ptr,engine_register_rbx + MEMORY_OFFSET_0x20,MEMORY_COMPARE_SIZE_0x10);
   }
   engine_temp_long_4 = engine_call_memory_extender(_engine_data_18,0x38,*(uint8*)(unaff_RSI + 0x28));
   engine_temporary_uint = unaff_RBP[1];
   engine_temp_uint_2 = unaff_RBP[2];
   engine_temp_uint_3 = unaff_RBP[3];
-  *(uint32*)(engine_temp_long_4 + 0x20) = *unaff_RBP;
+  *(uint32*)(engine_temp_long_4 + MEMORY_OFFSET_0x20) = *unaff_RBP;
   *(uint32*)(engine_temp_long_4 + 0x24) = engine_temporary_uint;
   *(uint32*)(engine_temp_long_4 + 0x28) = engine_temp_uint_2;
   *(uint32*)(engine_temp_long_4 + 0x2c) = engine_temp_uint_3;
@@ -50211,11 +50237,11 @@ LAB_18008dde0:
       engine_next_node_ptr[2] = 0;
       structure_data_pointer = (void*)((longlong)engine_next_node_ptr + engine_temp_long_9 + 0x18);
       *structure_data_pointer = &engine_data_18098bcb0;
-      *(void*)(engine_temp_long_9 + 0x20 + (longlong)engine_next_node_ptr) = 0;
+      *(void*)(engine_temp_long_9 + MEMORY_OFFSET_0x20 + (longlong)engine_next_node_ptr) = 0;
       *(uint32*)(engine_temp_long_9 + 0x28 + (longlong)engine_next_node_ptr) = 0;
       *structure_data_pointer = &engine_data_18098bc80;
       engine_current_node_ptr = (uint8*)((longlong)engine_next_node_ptr + engine_temp_long_9 + 0x30);
-      *(uint8**)(engine_temp_long_9 + 0x20 + (longlong)engine_next_node_ptr) = engine_current_node_ptr;
+      *(uint8**)(engine_temp_long_9 + MEMORY_OFFSET_0x20 + (longlong)engine_next_node_ptr) = engine_current_node_ptr;
       *(uint32*)(engine_temp_long_9 + 0x28 + (longlong)engine_next_node_ptr) = 0;
       *engine_current_node_ptr = 0;
       *(uint32*)(engine_temp_long_9 + 0x28 + (longlong)engine_next_node_ptr) = *(uint32*)(engine_next_node_ptr + 5);
@@ -50223,7 +50249,7 @@ LAB_18008dde0:
       if ((void*)engine_next_node_ptr[4] != (void*)0x0) {
         current_data_pointer = (void*)engine_next_node_ptr[4];
       }
-      strcpy_s(*(void*)(engine_temp_long_9 + 0x20 + (longlong)engine_next_node_ptr),0x20,current_data_pointer,engine_system_parameter_4,engine_temp_uint0,structure_data_pointer);
+      strcpy_s(*(void*)(engine_temp_long_9 + MEMORY_OFFSET_0x20 + (longlong)engine_next_node_ptr),0x20,current_data_pointer,engine_system_parameter_4,engine_temp_uint0,structure_data_pointer);
       *(uint8*)(engine_temp_long_9 + 0x50 + (longlong)engine_next_node_ptr) = *(uint8*)(engine_next_node_ptr + 10);
       *(uint32*)(engine_temp_long_9 + 0x54 + (longlong)engine_next_node_ptr) = *(uint32*)((longlong)engine_next_node_ptr + 0x54);
       engine_temporary_pointer = engine_temporary_pointer + 0xc;
@@ -50232,7 +50258,7 @@ LAB_18008dde0:
     } while (structure_data_pointer != next_data_pointer);
   }
   engine_call_data_writer(engine_temporary_pointer,engine_result_flag_ptr);
-  engine_unnamed_function_10(engine_temporary_pointer + 4,engine_result_flag_ptr + 0x20);
+  engine_unnamed_function_10(engine_temporary_pointer + 4,engine_result_flag_ptr + MEMORY_OFFSET_0x20);
   *(uint8*)(engine_temporary_pointer + 0xb) = *(uint8*)(engine_result_flag_ptr + 0x58);
   *(uint32*)((longlong)engine_temporary_pointer + 0x5c) = *(uint32*)(engine_result_flag_ptr + 0x5c);
   engine_temp_long_9 = engine_data_structure_ptr[1];
@@ -50270,13 +50296,13 @@ void engine_unnamed_function_3570(longlong engine_data_structure_ptr,uint64 engi
   uint32 engine_temp_uint_4;
   
   if ((engine_system_parameter_4 == '\0') && (engine_comparison_params != engine_data_structure_ptr)) {
-    memcmp(engine_param_5,engine_comparison_params + 0x20,0x10,0,0xfffffffffffffffe);
+    memcmp(engine_param_5,engine_comparison_params + MEMORY_OFFSET_0x20,MEMORY_COMPARE_SIZE_0x10,0,0xfffffffffffffffe);
   }
   engine_temporary_long = engine_call_memory_extender(_engine_data_18,0xc0,*(uint8*)(engine_data_structure_ptr + 0x28));
   engine_temp_uint_2 = engine_param_5[1];
   engine_temp_uint_3 = engine_param_5[2];
   engine_temp_uint_4 = engine_param_5[3];
-  *(uint32*)(engine_temporary_long + 0x20) = *engine_param_5;
+  *(uint32*)(engine_temporary_long + MEMORY_OFFSET_0x20) = *engine_param_5;
   *(uint32*)(engine_temporary_long + 0x24) = engine_temp_uint_2;
   *(uint32*)(engine_temporary_long + 0x28) = engine_temp_uint_3;
   *(uint32*)(engine_temporary_long + 0x2c) = engine_temp_uint_4;
@@ -50302,7 +50328,7 @@ void engine_unnamed_function_3580(longlong engine_data_structure_ptr,uint64 engi
   uint32 engine_temp_uint_6;
   
   if ((engine_system_parameter_4 == '\0') && (engine_comparison_params != engine_data_structure_ptr)) {
-    engine_temp_int_4 = memcmp(engine_param_5,engine_comparison_params + 0x20,0x10);
+    engine_temp_int_4 = memcmp(engine_param_5,engine_comparison_params + MEMORY_OFFSET_0x20,MEMORY_COMPARE_SIZE_0x10);
     if (-1 < engine_temp_int_4) {
       engine_temp_uint_6 = 1;
       goto LAB_18008e13f;
@@ -50314,7 +50340,7 @@ LAB_18008e13f:
   engine_temporary_uint = engine_param_5[1];
   engine_temp_uint_2 = engine_param_5[2];
   engine_temp_uint_3 = engine_param_5[3];
-  *(uint32*)(memory_allocation_result + 0x20) = *engine_param_5;
+  *(uint32*)(memory_allocation_result + MEMORY_OFFSET_0x20) = *engine_param_5;
   *(uint32*)(memory_allocation_result + 0x24) = engine_temporary_uint;
   *(uint32*)(memory_allocation_result + 0x28) = engine_temp_uint_2;
   *(uint32*)(memory_allocation_result + 0x2c) = engine_temp_uint_3;
@@ -50444,7 +50470,7 @@ void engine_unnamed_function_3590(longlong *engine_data_structure_ptr,uint64_t *
         engine_temp_long_6 = *engine_comparison_params;
         if (engine_temp_long_6 != memory_allocation_result) {
           do {
-            *engine_result_flag_ptr = *(void*)(engine_temp_long_6 + 0x20);
+            *engine_result_flag_ptr = *(void*)(engine_temp_long_6 + MEMORY_OFFSET_0x20);
             *(uint32*)(engine_result_flag_ptr + 1) = *(uint32*)(engine_temp_long_6 + 0x28);
             engine_temp_long_6 = func_0x00018066bd70(engine_temp_long_6);
             engine_result_flag_ptr = engine_result_flag_ptr + 2;
@@ -50487,7 +50513,7 @@ void engine_unnamed_function_3590(longlong *engine_data_structure_ptr,uint64_t *
         engine_temp_uint_ptr_9 = engine_result_flag_ptr + (longlong)engine_data_ptr4 * 2;
         while (engine_temp_long_6 != memory_allocation_result) {
           memory_allocation_result = func_0x00018066b9a0(memory_allocation_result);
-          engine_temp_uint_ptr_9[-2] = *(void*)(memory_allocation_result + 0x20);
+          engine_temp_uint_ptr_9[-2] = *(void*)(memory_allocation_result + MEMORY_OFFSET_0x20);
           *(uint32*)(engine_temp_uint_ptr_9 + -1) = *(uint32*)(memory_allocation_result + 0x28);
           engine_temp_uint_ptr_9 = engine_temp_uint_ptr_9 + -2;
         }
@@ -50624,7 +50650,7 @@ void engine_unnamed_function_3607(void)
       memory_allocation_result = *unaff_R12;
       if (memory_allocation_result != engine_temp_long_9) {
         do {
-          *engine_register_rbx = *(void*)(memory_allocation_result + 0x20);
+          *engine_register_rbx = *(void*)(memory_allocation_result + MEMORY_OFFSET_0x20);
           *(uint32*)(engine_register_rbx + 1) = *(uint32*)(memory_allocation_result + 0x28);
           memory_allocation_result = func_0x00018066bd70(memory_allocation_result);
           engine_register_rbx = engine_register_rbx + 2;
@@ -50667,7 +50693,7 @@ void engine_unnamed_function_3607(void)
       next_data_pointer = engine_register_rbx + (longlong)engine_data_ptr4 * 2;
       while (memory_allocation_result != engine_temp_long_9) {
         engine_temp_long_9 = func_0x00018066b9a0(engine_temp_long_9);
-        next_data_pointer[-2] = *(void*)(engine_temp_long_9 + 0x20);
+        next_data_pointer[-2] = *(void*)(engine_temp_long_9 + MEMORY_OFFSET_0x20);
         *(uint32*)(next_data_pointer + -1) = *(uint32*)(engine_temp_long_9 + 0x28);
         next_data_pointer = next_data_pointer + -2;
       }
@@ -51074,7 +51100,7 @@ void engine_unnamed_function_3700(longlong engine_data_structure_ptr,uint64 engi
   engine_temp_uint_2 = 0xfffffffffffffffe;
   engine_unnamed_function_20();
   engine_handle_system_io_data_queue(engine_data_structure_ptr + 0x40,*(void*)(engine_data_structure_ptr + 0x50),engine_comparison_params,engine_system_parameter_4,engine_temp_uint_2);
-  engine_data_pointer = *(void**)(engine_data_structure_ptr + 0x20);
+  engine_data_pointer = *(void**)(engine_data_structure_ptr + MEMORY_OFFSET_0x20);
   if (engine_data_pointer != (void*)0x0) {
     engine_process_data_structure(engine_data_structure_ptr + 0x10,*engine_data_pointer,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
@@ -51225,14 +51251,14 @@ engine_unnamed_function_3730(uint64_t *engine_data_structure_ptr,uint64_t *engin
 void engine_unnamed_function_3740(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
-  *(void*)(engine_result_flag_ptr + 0x20) = &engine_system_context_data;
+  *(void*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20) = &engine_system_context_data;
   if (*(longlong *)(engine_result_flag_ptr + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
   }
   *(void*)(engine_result_flag_ptr + 0x28) = 0;
   *(uint32*)(engine_result_flag_ptr + 0x38) = 0;
-  *(void*)(engine_result_flag_ptr + 0x20) = &engine_data_18098bcb0;
+  *(void*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20) = &engine_data_18098bcb0;
   if (engine_result_flag_ptr != 0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_result_flag_ptr);
@@ -51251,7 +51277,7 @@ uint64_t * engine_unnamed_function_3750(longlong *engine_data_structure_ptr,long
   engine_temporary_long = *engine_result_flag_ptr;
   engine_temp_long_2 = *engine_data_structure_ptr;
   while (engine_temp_long_2 != engine_temporary_long) {
-    *engine_comparison_params = *(void*)(engine_temp_long_2 + 0x20);
+    *engine_comparison_params = *(void*)(engine_temp_long_2 + MEMORY_OFFSET_0x20);
     *(uint32*)(engine_comparison_params + 1) = *(uint32*)(engine_temp_long_2 + 0x28);
     engine_temp_long_2 = func_0x00018066bd70(engine_temp_long_2);
     engine_comparison_params = engine_comparison_params + 2;
@@ -52074,7 +52100,7 @@ void engine_allocate_memory_block(uint64 engine_data_structure_ptr,uint64 engine
   engine_temp_long_2 = engine_unnamed_function_3830();
   *(uint16*)(engine_temp_long_2 + 0x18) = 0;
   engine_temporary_uint = ((void*)*engine_comparison_params)[1];
-  *(void*)(engine_temp_long_2 + 0x20) = *(void*)*engine_comparison_params;
+  *(void*)(engine_temp_long_2 + MEMORY_OFFSET_0x20) = *(void*)*engine_comparison_params;
   *(void*)(engine_temp_long_2 + 0x28) = engine_temporary_uint;
   *(void*)(engine_temp_long_2 + 0x30) = 0;
   *(void*)(engine_temp_long_2 + 0x38) = 0;
@@ -52107,7 +52133,7 @@ engine_initialize_memory_block(longlong *engine_data_structure_ptr,uint64_t *eng
   }
   pengine_temp_long = (longlong *)*engine_data_structure_ptr;
   if (engine_comparison_params == (longlong *)*pengine_temp_long) {
-    comparison_result_index = memcmp(engine_system_parameter_4,engine_comparison_params + 4,0x10);
+    comparison_result_index = memcmp(engine_system_parameter_4,engine_comparison_params + 4,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       engine_unnamed_function_3840(engine_data_structure_ptr,engine_result_flag_ptr,1,engine_comparison_params);
       return engine_result_flag_ptr;
@@ -52115,31 +52141,31 @@ engine_initialize_memory_block(longlong *engine_data_structure_ptr,uint64_t *eng
   }
   else if (engine_comparison_params == pengine_temp_long) {
     engine_temp_long_2 = pengine_temp_long[2];
-    comparison_result_index = memcmp(engine_temp_long_2 + 0x20,engine_system_parameter_4,0x10);
+    comparison_result_index = memcmp(engine_temp_long_2 + MEMORY_OFFSET_0x20,engine_system_parameter_4,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       engine_unnamed_function_3840(engine_data_structure_ptr,engine_result_flag_ptr,0,engine_temp_long_2);
       return engine_result_flag_ptr;
     }
   }
   else {
-    comparison_result_index = memcmp(engine_system_parameter_4,engine_comparison_params + 4,0x10);
+    comparison_result_index = memcmp(engine_system_parameter_4,engine_comparison_params + 4,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
-      if (*(char *)((longlong)engine_comparison_params + 0x19) == '\0') {
+      if (*(char *)((longlong)engine_comparison_params + MEMORY_OFFSET_0x19) == '\0') {
         pengine_temp_long = engine_comparison_params;
         engine_temp_ptr_array_6 = (longlong *)*engine_comparison_params;
-        if (*(char *)(*engine_comparison_params + 0x19) == '\0') {
+        if (*(char *)(*engine_comparison_params + MEMORY_OFFSET_0x19) == '\0') {
           do {
             engine_temp_ptr_5 = engine_temp_ptr_array_6;
             engine_temp_ptr_array_6 = (longlong *)engine_temp_ptr_5[2];
-          } while (*(char *)(engine_temp_ptr_5[2] + 0x19) == '\0');
+          } while (*(char *)(engine_temp_ptr_5[2] + MEMORY_OFFSET_0x19) == '\0');
         }
         else {
           do {
             engine_temp_ptr_5 = pengine_temp_long;
             pengine_temp_long = (longlong *)engine_temp_ptr_5[1];
-            if (*(char *)((longlong)pengine_temp_long + 0x19) != '\0') break;
+            if (*(char *)((longlong)pengine_temp_long + MEMORY_OFFSET_0x19) != '\0') break;
           } while (engine_temp_ptr_5 == (longlong *)*pengine_temp_long);
-          if (*(char *)((longlong)engine_temp_ptr_5 + 0x19) == '\0') {
+          if (*(char *)((longlong)engine_temp_ptr_5 + MEMORY_OFFSET_0x19) == '\0') {
             engine_temp_ptr_5 = pengine_temp_long;
           }
         }
@@ -52147,9 +52173,9 @@ engine_initialize_memory_block(longlong *engine_data_structure_ptr,uint64_t *eng
       else {
         engine_temp_ptr_5 = (longlong *)engine_comparison_params[2];
       }
-      comparison_result_index = memcmp(engine_temp_ptr_5 + 4,engine_system_parameter_4,0x10);
+      comparison_result_index = memcmp(engine_temp_ptr_5 + 4,engine_system_parameter_4,MEMORY_COMPARE_SIZE_0x10);
       if (comparison_result_index < 0) {
-        if (*(char *)(engine_temp_ptr_5[2] + 0x19) != '\0') {
+        if (*(char *)(engine_temp_ptr_5[2] + MEMORY_OFFSET_0x19) != '\0') {
           engine_unnamed_function_3840(engine_data_structure_ptr,engine_result_flag_ptr,0,engine_temp_ptr_5);
           return engine_result_flag_ptr;
         }
@@ -52157,27 +52183,27 @@ engine_initialize_memory_block(longlong *engine_data_structure_ptr,uint64_t *eng
         return engine_result_flag_ptr;
       }
     }
-    comparison_result_index = memcmp(engine_comparison_params + 4,engine_system_parameter_4,0x10);
+    comparison_result_index = memcmp(engine_comparison_params + 4,engine_system_parameter_4,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       pengine_temp_long = (longlong *)engine_comparison_params[2];
       engine_temp_ptr_array_6 = engine_comparison_params;
-      if (*(char *)(engine_comparison_params[2] + 0x19) == '\0') {
+      if (*(char *)(engine_comparison_params[2] + MEMORY_OFFSET_0x19) == '\0') {
         do {
           engine_temp_ptr_5 = pengine_temp_long;
           pengine_temp_long = (longlong *)*engine_temp_ptr_5;
-        } while (*(char *)(*engine_temp_ptr_5 + 0x19) == '\0');
+        } while (*(char *)(*engine_temp_ptr_5 + MEMORY_OFFSET_0x19) == '\0');
       }
       else {
         do {
           engine_temp_ptr_5 = (longlong *)engine_temp_ptr_array_6[1];
-          if (*(char *)((longlong)engine_temp_ptr_5 + 0x19) != '\0') break;
+          if (*(char *)((longlong)engine_temp_ptr_5 + MEMORY_OFFSET_0x19) != '\0') break;
           engine_temp_byte7 = engine_temp_ptr_array_6 == (longlong *)engine_temp_ptr_5[2];
           engine_temp_ptr_array_6 = engine_temp_ptr_5;
         } while (engine_temp_byte7);
       }
-      if ((engine_temp_ptr_5 == (longlong *)*engine_data_structure_ptr) || (comparison_result_index = memcmp(engine_system_parameter_4,engine_temp_ptr_5 + 4,0x10), comparison_result_index < 0))
+      if ((engine_temp_ptr_5 == (longlong *)*engine_data_structure_ptr) || (comparison_result_index = memcmp(engine_system_parameter_4,engine_temp_ptr_5 + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0))
       {
-        if (*(char *)(engine_comparison_params[2] + 0x19) != '\0') {
+        if (*(char *)(engine_comparison_params[2] + MEMORY_OFFSET_0x19) != '\0') {
           engine_unnamed_function_3840(engine_data_structure_ptr,engine_result_flag_ptr,0,engine_comparison_params);
           return engine_result_flag_ptr;
         }
@@ -52280,7 +52306,7 @@ LAB_18008f4f4:
         engine_temp_ptr_array_6 = *(longlong **)(engine_param_6[1] + 8);
         pengine_temp_long_7 = (longlong *)*engine_temp_ptr_array_6;
         *engine_temp_ptr_array_6 = pengine_temp_long_7[2];
-        if (*(char *)(pengine_temp_long_7[2] + 0x19) == '\0') {
+        if (*(char *)(pengine_temp_long_7[2] + MEMORY_OFFSET_0x19) == '\0') {
           *(longlong **)(pengine_temp_long_7[2] + 8) = engine_temp_ptr_array_6;
         }
         pengine_temp_long_7[1] = engine_temp_ptr_array_6[1];
@@ -52314,7 +52340,7 @@ LAB_18008f669:
         engine_temp_ptr_array_6 = *(longlong **)(engine_param_6[1] + 8);
         pengine_temp_long_7 = (longlong *)engine_temp_ptr_array_6[2];
         engine_temp_ptr_array_6[2] = *pengine_temp_long_7;
-        if (*(char *)(*pengine_temp_long_7 + 0x19) == '\0') {
+        if (*(char *)(*pengine_temp_long_7 + MEMORY_OFFSET_0x19) == '\0') {
           *(longlong **)(*pengine_temp_long_7 + 8) = engine_temp_ptr_array_6;
         }
         pengine_temp_long_7[1] = engine_temp_ptr_array_6[1];
@@ -52360,13 +52386,13 @@ engine_unnamed_function_3850(longlong *engine_data_structure_ptr,uint64_t *engin
   engine_temp_byte6 = true;
   engine_next_node_ptr = (void*)((void*)*engine_data_structure_ptr)[1];
   engine_temporary_pointer = (void*)*engine_data_structure_ptr;
-  while (*(char *)((longlong)engine_next_node_ptr + 0x19) == '\0') {
+  while (*(char *)((longlong)engine_next_node_ptr + MEMORY_OFFSET_0x19) == '\0') {
     if (engine_comparison_params == '\0') {
-      comparison_result_index = memcmp(engine_system_parameter_4,engine_next_node_ptr + 4,0x10);
+      comparison_result_index = memcmp(engine_system_parameter_4,engine_next_node_ptr + 4,MEMORY_COMPARE_SIZE_0x10);
       engine_temp_byte6 = comparison_result_index < 0;
     }
     else {
-      comparison_result_index = memcmp(engine_next_node_ptr + 4,engine_system_parameter_4,0x10);
+      comparison_result_index = memcmp(engine_next_node_ptr + 4,engine_system_parameter_4,MEMORY_COMPARE_SIZE_0x10);
       engine_temp_byte6 = -1 < comparison_result_index;
     }
     engine_temporary_pointer = engine_next_node_ptr;
@@ -52385,22 +52411,22 @@ engine_unnamed_function_3850(longlong *engine_data_structure_ptr,uint64_t *engin
       *(uint8*)(engine_result_flag_ptr + 1) = 1;
       return engine_result_flag_ptr;
     }
-    if (*(char *)((longlong)engine_temporary_pointer + 0x19) == '\0') {
+    if (*(char *)((longlong)engine_temporary_pointer + MEMORY_OFFSET_0x19) == '\0') {
       structure_data_pointer = (void*)*engine_temporary_pointer;
       engine_data_pointer = engine_temporary_pointer;
-      if (*(char *)((longlong)*engine_temporary_pointer + 0x19) == '\0') {
+      if (*(char *)((longlong)*engine_temporary_pointer + MEMORY_OFFSET_0x19) == '\0') {
         do {
           engine_next_node_ptr = structure_data_pointer;
           structure_data_pointer = (void*)engine_next_node_ptr[2];
-        } while (*(char *)((longlong)engine_next_node_ptr[2] + 0x19) == '\0');
+        } while (*(char *)((longlong)engine_next_node_ptr[2] + MEMORY_OFFSET_0x19) == '\0');
       }
       else {
         do {
           engine_next_node_ptr = engine_data_pointer;
           engine_data_pointer = (void*)engine_next_node_ptr[1];
-          if (*(char *)((longlong)engine_data_pointer + 0x19) != '\0') break;
+          if (*(char *)((longlong)engine_data_pointer + MEMORY_OFFSET_0x19) != '\0') break;
         } while (engine_next_node_ptr == (void*)*engine_data_pointer);
-        if (*(char *)((longlong)engine_next_node_ptr + 0x19) == '\0') {
+        if (*(char *)((longlong)engine_next_node_ptr + MEMORY_OFFSET_0x19) == '\0') {
           engine_next_node_ptr = engine_data_pointer;
         }
       }
@@ -52409,7 +52435,7 @@ engine_unnamed_function_3850(longlong *engine_data_structure_ptr,uint64_t *engin
       engine_next_node_ptr = (void*)engine_temporary_pointer[2];
     }
   }
-  comparison_result_index = memcmp(engine_next_node_ptr + 4,engine_system_parameter_4,0x10);
+  comparison_result_index = memcmp(engine_next_node_ptr + 4,engine_system_parameter_4,MEMORY_COMPARE_SIZE_0x10);
   if (comparison_result_index < 0) {
     engine_next_node_ptr = (void*)engine_unnamed_function_3840(engine_data_structure_ptr,auStackX_8,engine_temp_byte6,engine_temporary_pointer);
     *engine_result_flag_ptr = *engine_next_node_ptr;
@@ -53018,7 +53044,7 @@ uint64_t * engine_unnamed_function_3980(uint64_t *engine_data_structure_ptr)
   *(uint32*)(engine_data_structure_ptr + 0x74) = 3;
   engine_call_framework_initializer(engine_data_structure_ptr + 0x76,0x20,0x20,engine_unnamed_function_6280,engine_unnamed_function_6290);
   engine_data_structure_ptr[0x75] = 0;
-  _Mtx_init_in_situ(engine_data_structure_ptr + 0x106,0x102);
+  _Mtx_init_in_situ(engine_data_structure_ptr + 0x106,MEMORY_COMPARE_SIZE_0x102);
   do {
     engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x3d0,8,3);
     main_context_pointer = (longlong *)engine_unnamed_function_6100(engine_temp_uint_3);
@@ -53030,7 +53056,7 @@ uint64_t * engine_unnamed_function_3980(uint64_t *engine_data_structure_ptr)
     if (pengine_temp_long != (longlong *)0x0) {
       (**(code **)(*pengine_temp_long + 0x38))();
     }
-    engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x300,0x10,3);
+    engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x300,MEMORY_COMPARE_SIZE_0x10,3);
     main_context_pointer = (longlong *)engine_unnamed_function_1110(engine_temp_uint_3,1);
     if (main_context_pointer != (longlong *)0x0) {
       (**(code **)(*main_context_pointer + 0x28))(main_context_pointer);
@@ -53175,7 +53201,7 @@ void engine_unnamed_function_4010(float *engine_data_structure_ptr,float engine_
   int engine_temporary_int;
   float engine_temp_float_2;
   
-  engine_temporary_int = _Mtx_lock(engine_data_structure_ptr + 0x20c);
+  engine_temporary_int = _Mtx_lock(engine_data_structure_ptr + MEMORY_OFFSET_0x20c);
   if (engine_temporary_int != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temporary_int);
   }
@@ -53216,7 +53242,7 @@ void engine_unnamed_function_4010(float *engine_data_structure_ptr,float engine_
   if (engine_temp_float_2 < 0.0) {
     *engine_data_structure_ptr = 0.0;
   }
-  engine_temporary_int = _Mtx_unlock(engine_data_structure_ptr + 0x20c);
+  engine_temporary_int = _Mtx_unlock(engine_data_structure_ptr + MEMORY_OFFSET_0x20c);
   if (engine_temporary_int != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temporary_int);
   }
@@ -53274,7 +53300,7 @@ void engine_unnamed_function_4020(float *engine_data_structure_ptr,uint64 engine
   uint64 engine_stack_uint_c8;
   
   engine_stack_uint_c8 = 0xfffffffffffffffe;
-  comparison_result_index = _Mtx_lock(engine_data_structure_ptr + 0x20c);
+  comparison_result_index = _Mtx_lock(engine_data_structure_ptr + MEMORY_OFFSET_0x20c);
   if (comparison_result_index != 0) {
     __Throw_C_error_std__YAXH_Z(comparison_result_index);
   }
@@ -53289,7 +53315,7 @@ void engine_unnamed_function_4020(float *engine_data_structure_ptr,uint64 engine
   engine_temp_float_10 = 0.1 - *engine_data_structure_ptr;
   comparison_result_index = 0;
   do {
-    engine_temp_uint_4 = (int)engine_data_structure_ptr[1] + 0x20 + comparison_result_index & 0x8000001f;
+    engine_temp_uint_4 = (int)engine_data_structure_ptr[1] + MEMORY_OFFSET_0x20 + comparison_result_index & 0x8000001f;
     if ((int)engine_temp_uint_4 < 0) {
       engine_temp_uint_4 = (engine_temp_uint_4 - 1 | 0xffffffe0) + 1;
     }
@@ -53363,7 +53389,7 @@ void engine_unnamed_function_4020(float *engine_data_structure_ptr,uint64 engine
     }
     comparison_result_index = comparison_result_index + 1;
   } while (comparison_result_index < 0x20);
-  comparison_result_index = _Mtx_unlock(engine_data_structure_ptr + 0x20c);
+  comparison_result_index = _Mtx_unlock(engine_data_structure_ptr + MEMORY_OFFSET_0x20c);
   if (comparison_result_index != 0) {
     __Throw_C_error_std__YAXH_Z(comparison_result_index);
   }
@@ -53459,7 +53485,7 @@ longlong * engine_unnamed_function_4040(longlong *engine_data_structure_ptr)
   }
   *(uint32*)(engine_data_structure_ptr + 0x1a7) = 0;
   *(uint32*)(engine_data_structure_ptr + 5) = 0xff101010;
-  engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,0x300,0x10,3);
+  engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,0x300,MEMORY_COMPARE_SIZE_0x10,3);
   pengine_temp_long_3 = (longlong *)engine_unnamed_function_1110(engine_temp_uint_2,1);
   if (pengine_temp_long_3 != (longlong *)0x0) {
     (**(code **)(*pengine_temp_long_3 + 0x28))(pengine_temp_long_3);
@@ -53614,7 +53640,7 @@ LAB_1800911c4:
   engine_unnamed_function_4210(engine_temp_long_6);
   engine_unnamed_function_4010(engine_temp_long_6 + 0x30);
   if ((engine_data_60 == '\0') && (*(int *)(_engine_data_08 + 0x7e0) == 0)) {
-    if ((**(char **)(_engine_input_config_data + 0x2010) == '\0') ||
+    if ((**(char **)(_engine_input_config_data + MEMORY_OFFSET_0x2010) == '\0') ||
        (*(char *)(*(longlong *)(_engine_data_70 + 8) + 0xbc +
                  (ulonglong)(*(uint *)(*(longlong *)(_engine_data_70 + 8) + 0x13c) & 1) * 0x48) ==
         '\0')) {
@@ -53632,13 +53658,13 @@ LAB_1800911c4:
       iStack_9c = *(int *)(memory_allocation_result + 0xf0 + engine_temp_uint0 * 0x48) + *(int *)(engine_temp_long_3 + 0xb8 + engine_temp_uint_8 * 0x48);
       iStack_a0 = *(int *)(memory_allocation_result + 0xec + engine_temp_uint0 * 0x48) + *(int *)(engine_temp_long_3 + 0xb4 + engine_temp_uint_8 * 0x48);
       engine_unnamed_function_5590(*(void*)(_engine_data_70 + 8),&engine_stack_int_a8);
-      engine_temp_long_3 = *(longlong *)(_engine_input_config_data + 0x2010);
+      engine_temp_long_3 = *(longlong *)(_engine_input_config_data + MEMORY_OFFSET_0x2010);
       engine_unnamed_function_4180(engine_temp_long_3,*(uint32*)(engine_temp_long_3 + 4),*(uint32*)(engine_temp_long_3 + 8));
       engine_temp_long_3 = _engine_input_config_data;
       *(float *)(engine_temp_long_6 + 0x17e0) =
-           (float)*(int *)(*(longlong *)(_engine_input_config_data + 0x2010) + 4) / *(float *)(engine_temp_long_6 + 0x17ec);
+           (float)*(int *)(*(longlong *)(_engine_input_config_data + MEMORY_OFFSET_0x2010) + 4) / *(float *)(engine_temp_long_6 + 0x17ec);
       *(float *)(engine_temp_long_6 + 0x17e4) =
-           (float)*(int *)(*(longlong *)(engine_temp_long_3 + 0x2010) + 8) / *(float *)(engine_temp_long_6 + 0x17f0);
+           (float)*(int *)(*(longlong *)(engine_temp_long_3 + MEMORY_OFFSET_0x2010) + 8) / *(float *)(engine_temp_long_6 + 0x17f0);
     }
   }
                     // WARNING: Subroutine does not return
@@ -53658,7 +53684,7 @@ void engine_unnamed_function_4060(void)
   int engine_temp_int_2;
   int comparison_result_index;
   
-  presource_status_flag = *(char **)(_engine_input_config_data + 0x2010);
+  presource_status_flag = *(char **)(_engine_input_config_data + MEMORY_OFFSET_0x2010);
   engine_temp_int_2 = (int)(*(float *)(engine_data_pointer_50 + 0x17f0) * *(float *)(engine_data_pointer_50 + 0x17e4));
   comparison_result_index = (int)(*(float *)(engine_data_pointer_50 + 0x17ec) * *(float *)(engine_data_pointer_50 + 0x17e0));
   if (*presource_status_flag == '\0') {
@@ -53757,7 +53783,7 @@ void engine_unnamed_function_4070(void)
     engine_stack_uint_dc = 0x3f800000;
     *(uint32*)(pengine_temp_long1 + 0x18) = 0x3f800000;
     *(uint32*)((longlong)pengine_temp_long1 + 0xc4) = 0;
-    *(uint32*)(pengine_temp_long1 + 0x19) = 0;
+    *(uint32*)(pengine_temp_long1 + MEMORY_OFFSET_0x19) = 0;
     *(uint32*)((longlong)pengine_temp_long1 + 0xcc) = 0;
     *(uint32*)(pengine_temp_long1 + 0x1a) = 0;
     *(uint32*)((longlong)pengine_temp_long1 + 0xd4) = 0x3f800000;
@@ -54249,7 +54275,7 @@ void engine_unnamed_function_4080(ulonglong engine_data_structure_ptr)
     engine_temp_long1 = _engine_animation_buffer_ptr;
     engine_temp_long_20 = *(longlong *)(_engine_animation_buffer_ptr + 0x18);
     engine_temp_uint4 = engine_temp_uint_26;
-    if (*(longlong *)(_engine_animation_buffer_ptr + 0x20) - engine_temp_long_20 >> 3 != 0) {
+    if (*(longlong *)(_engine_animation_buffer_ptr + MEMORY_OFFSET_0x20) - engine_temp_long_20 >> 3 != 0) {
       do {
         engine_temp_long5 = _engine_data_68;
         engine_temp_long_20 = *(longlong *)(engine_temp_uint_26 + engine_temp_long_20);
@@ -54270,7 +54296,7 @@ void engine_unnamed_function_4080(ulonglong engine_data_structure_ptr)
         engine_temp_long_20 = *(longlong *)(engine_temp_long1 + 0x18);
         engine_temp_uint4 = (ulonglong)engine_temp_uint6;
       } while ((ulonglong)(longlong)(int)engine_temp_uint6 <
-               (ulonglong)(*(longlong *)(engine_temp_long1 + 0x20) - engine_temp_long_20 >> 3));
+               (ulonglong)(*(longlong *)(engine_temp_long1 + MEMORY_OFFSET_0x20) - engine_temp_long_20 >> 3));
     }
   }
   engine_temp_long1 = 0;
@@ -54781,7 +54807,7 @@ void engine_unnamed_function_4140(longlong engine_data_structure_ptr,char engine
   uint64 engine_temporary_uint;
   
   if (*(char *)(engine_data_structure_ptr + 0x1609) != engine_result_flag_ptr) {
-    if ((engine_result_flag_ptr == '\0') || (*(char *)(_engine_input_config_data + 0x2028) == '\0')) {
+    if ((engine_result_flag_ptr == '\0') || (*(char *)(_engine_input_config_data + MEMORY_OFFSET_0x2028) == '\0')) {
       engine_temporary_uint = 0;
     }
     else {
@@ -54974,7 +55000,7 @@ LAB_180092c16:
             *(uint32*)((longlong)engine_data_ptr_21 + 0x14) = engine_temp_uint_4;
             *(uint32*)(engine_data_ptr_21 + 3) = engine_temp_index;
             *(uint32*)((longlong)engine_data_ptr_21 + 0x1c) = engine_temp_uint_6;
-            *(uint32*)(engine_data_ptr_21 + 4) = *(uint32*)(engine_temp_long9 + 0x20 + (longlong)engine_data_ptr1);
+            *(uint32*)(engine_data_ptr_21 + 4) = *(uint32*)(engine_temp_long9 + MEMORY_OFFSET_0x20 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr_21 + 0x24) =
                  *(uint32*)(engine_temp_long9 + 0x24 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr_21 + 0x2c) =
@@ -55034,7 +55060,7 @@ LAB_180092e59:
             *(uint32*)((longlong)engine_data_ptr3 + 0x14) = engine_temp_uint_4;
             *(uint32*)(engine_data_ptr3 + 3) = engine_temp_index;
             *(uint32*)((longlong)engine_data_ptr3 + 0x1c) = engine_temp_uint_6;
-            *(uint32*)(engine_data_ptr3 + 4) = *(uint32*)(engine_temp_long9 + 0x20 + (longlong)engine_data_ptr1);
+            *(uint32*)(engine_data_ptr3 + 4) = *(uint32*)(engine_temp_long9 + MEMORY_OFFSET_0x20 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr3 + 0x24) =
                  *(uint32*)(engine_temp_long9 + 0x24 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr3 + 0x2c) =
@@ -55081,7 +55107,7 @@ LAB_180092e59:
             *(uint32*)((longlong)engine_data_ptr_21 + 0x14) = engine_temp_uint_4;
             *(uint32*)(engine_data_ptr_21 + 3) = engine_temp_index;
             *(uint32*)((longlong)engine_data_ptr_21 + 0x1c) = engine_temp_uint_6;
-            *(uint32*)(engine_data_ptr_21 + 4) = *(uint32*)(engine_temp_long9 + 0x20 + (longlong)engine_data_ptr1);
+            *(uint32*)(engine_data_ptr_21 + 4) = *(uint32*)(engine_temp_long9 + MEMORY_OFFSET_0x20 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr_21 + 0x24) =
                  *(uint32*)(engine_temp_long9 + 0x24 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr_21 + 0x2c) =
@@ -55141,7 +55167,7 @@ LAB_180093089:
             *(uint32*)((longlong)engine_data_ptr3 + 0x14) = engine_temp_uint_4;
             *(uint32*)(engine_data_ptr3 + 3) = engine_temp_index;
             *(uint32*)((longlong)engine_data_ptr3 + 0x1c) = engine_temp_uint_6;
-            *(uint32*)(engine_data_ptr3 + 4) = *(uint32*)(engine_temp_long9 + 0x20 + (longlong)engine_data_ptr1);
+            *(uint32*)(engine_data_ptr3 + 4) = *(uint32*)(engine_temp_long9 + MEMORY_OFFSET_0x20 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr3 + 0x24) =
                  *(uint32*)(engine_temp_long9 + 0x24 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr3 + 0x2c) =
@@ -55188,7 +55214,7 @@ LAB_180093089:
             *(uint32*)((longlong)engine_data_ptr_21 + 0x14) = engine_temp_uint_4;
             *(uint32*)(engine_data_ptr_21 + 3) = engine_temp_index;
             *(uint32*)((longlong)engine_data_ptr_21 + 0x1c) = engine_temp_uint_6;
-            *(uint32*)(engine_data_ptr_21 + 4) = *(uint32*)(engine_temp_long9 + 0x20 + (longlong)engine_data_ptr1);
+            *(uint32*)(engine_data_ptr_21 + 4) = *(uint32*)(engine_temp_long9 + MEMORY_OFFSET_0x20 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr_21 + 0x24) =
                  *(uint32*)(engine_temp_long9 + 0x24 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr_21 + 0x2c) =
@@ -55248,7 +55274,7 @@ LAB_1800932b6:
             *(uint32*)((longlong)engine_data_ptr3 + 0x14) = engine_temp_uint_4;
             *(uint32*)(engine_data_ptr3 + 3) = engine_temp_index;
             *(uint32*)((longlong)engine_data_ptr3 + 0x1c) = engine_temp_uint_6;
-            *(uint32*)(engine_data_ptr3 + 4) = *(uint32*)(engine_temp_long9 + 0x20 + (longlong)engine_data_ptr1);
+            *(uint32*)(engine_data_ptr3 + 4) = *(uint32*)(engine_temp_long9 + MEMORY_OFFSET_0x20 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr3 + 0x24) =
                  *(uint32*)(engine_temp_long9 + 0x24 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr3 + 0x2c) =
@@ -55295,7 +55321,7 @@ LAB_1800932b6:
             *(uint32*)((longlong)engine_data_ptr_21 + 0x14) = engine_temp_uint_4;
             *(uint32*)(engine_data_ptr_21 + 3) = engine_temp_index;
             *(uint32*)((longlong)engine_data_ptr_21 + 0x1c) = engine_temp_uint_6;
-            *(uint32*)(engine_data_ptr_21 + 4) = *(uint32*)(engine_temp_long9 + 0x20 + (longlong)engine_data_ptr1);
+            *(uint32*)(engine_data_ptr_21 + 4) = *(uint32*)(engine_temp_long9 + MEMORY_OFFSET_0x20 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr_21 + 0x24) =
                  *(uint32*)(engine_temp_long9 + 0x24 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr_21 + 0x2c) =
@@ -55355,7 +55381,7 @@ LAB_1800934cd:
             *(uint32*)((longlong)engine_data_ptr3 + 0x14) = engine_temp_uint_4;
             *(uint32*)(engine_data_ptr3 + 3) = engine_temp_index;
             *(uint32*)((longlong)engine_data_ptr3 + 0x1c) = engine_temp_uint_6;
-            *(uint32*)(engine_data_ptr3 + 4) = *(uint32*)(engine_temp_long9 + 0x20 + (longlong)engine_data_ptr1);
+            *(uint32*)(engine_data_ptr3 + 4) = *(uint32*)(engine_temp_long9 + MEMORY_OFFSET_0x20 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr3 + 0x24) =
                  *(uint32*)(engine_temp_long9 + 0x24 + (longlong)engine_data_ptr1);
             *(uint32*)((longlong)engine_data_ptr3 + 0x2c) =
@@ -55531,7 +55557,7 @@ void engine_unnamed_function_4190(void)
     memory_allocation_result = *(longlong *)(engine_temp_long_2 + 0x1800);
     engine_temp_long_4 = _engine_data_70;
   }
-  *(uint32*)(engine_temp_long_4 + 0x200) = 0x3d088889;
+  *(uint32*)(engine_temp_long_4 + MEMORY_OFFSET_0x200) = 0x3d088889;
   *(uint8*)(memory_allocation_result + 0xdd) = 1;
   comparison_result_index = _Mtx_unlock(engine_temporary_long);
   if (comparison_result_index != 0) {
@@ -55570,7 +55596,7 @@ void engine_unnamed_function_4200(uint64 engine_data_structure_ptr,uint64 engine
     *(uint8*)(*(longlong *)(engine_temp_long_3 + 0x1800) + 0xf0) = 1;
     memory_allocation_result = _engine_data_70;
   }
-  *(float *)(memory_allocation_result + 0x200) = 1.0 / (float)*(int *)(_engine_data_20 + 0x1b90);
+  *(float *)(memory_allocation_result + MEMORY_OFFSET_0x200) = 1.0 / (float)*(int *)(_engine_data_20 + 0x1b90);
   engine_temp_int_4 = _Mtx_unlock(engine_temporary_long);
   if (engine_temp_int_4 != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temp_int_4);
@@ -55764,7 +55790,7 @@ void engine_unnamed_function_4230(longlong *engine_data_structure_ptr,uint64 eng
 LAB_180093e1b:
   current_data_pointer = engine_temporary_pointer;
   if (engine_temp_long_8 != engine_temp_long_9) {
-    temp_data_pointer = (void*)(engine_temporary_pointer + 0x20);
+    temp_data_pointer = (void*)(engine_temporary_pointer + MEMORY_OFFSET_0x20);
     engine_temp_long_8 = engine_temp_long_8 - (longlong)engine_temporary_pointer;
     do {
       *current_data_pointer = *(uint8*)((longlong)temp_data_pointer + engine_temp_long_8 + -0x20);
@@ -55804,11 +55830,11 @@ LAB_180093e1b:
   if (engine_temp_long_8 != engine_temp_long_9) {
     do {
       *(void*)(engine_temp_long_8 + 0x18) = &engine_system_context_data;
-      if (*(longlong *)(engine_temp_long_8 + 0x20) != 0) {
+      if (*(longlong *)(engine_temp_long_8 + MEMORY_OFFSET_0x20) != 0) {
                     // WARNING: Subroutine does not return
         engine_call_cleanup_routine();
       }
-      *(void*)(engine_temp_long_8 + 0x20) = 0;
+      *(void*)(engine_temp_long_8 + MEMORY_OFFSET_0x20) = 0;
       *(uint32*)(engine_temp_long_8 + 0x30) = 0;
       *(void*)(engine_temp_long_8 + 0x18) = &engine_data_18098bcb0;
       engine_temp_long_8 = engine_temp_long_8 + 0x50;
@@ -55837,18 +55863,18 @@ uint8_t * engine_unnamed_function_4240(uint8_t *engine_data_structure_ptr,uint8_
   *(void*)(engine_data_structure_ptr + 4) = *(void*)(engine_result_flag_ptr + 4);
   *(void*)(engine_data_structure_ptr + 0xc) = engine_temporary_uint;
   *(undefined **)(engine_data_structure_ptr + 0x18) = &engine_data_18098bcb0;
-  *(void*)(engine_data_structure_ptr + 0x20) = 0;
+  *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = 0;
   *(uint32*)(engine_data_structure_ptr + 0x28) = 0;
   *(undefined **)(engine_data_structure_ptr + 0x18) = &engine_system_context_data;
   *(void*)(engine_data_structure_ptr + 0x30) = 0;
-  *(void*)(engine_data_structure_ptr + 0x20) = 0;
+  *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = 0;
   *(uint32*)(engine_data_structure_ptr + 0x28) = 0;
   *(uint32*)(engine_data_structure_ptr + 0x28) = *(uint32*)(engine_result_flag_ptr + 0x28);
-  *(void*)(engine_data_structure_ptr + 0x20) = *(void*)(engine_result_flag_ptr + 0x20);
+  *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = *(void*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20);
   *(uint32*)(engine_data_structure_ptr + 0x34) = *(uint32*)(engine_result_flag_ptr + 0x34);
   *(uint32*)(engine_data_structure_ptr + 0x30) = *(uint32*)(engine_result_flag_ptr + 0x30);
   *(uint32*)(engine_result_flag_ptr + 0x28) = 0;
-  *(void*)(engine_result_flag_ptr + 0x20) = 0;
+  *(void*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20) = 0;
   *(void*)(engine_result_flag_ptr + 0x30) = 0;
   *(uint32*)(engine_data_structure_ptr + 0x38) = *(uint32*)(engine_result_flag_ptr + 0x38);
   *(void*)(engine_data_structure_ptr + 0x3c) = *(void*)(engine_result_flag_ptr + 0x3c);
@@ -56126,7 +56152,7 @@ longlong engine_unnamed_function_4290(longlong engine_data_structure_ptr)
   engine_temporary_long = engine_data_structure_ptr;
   do {
     func_0x000180074f10(engine_temporary_long);
-    engine_temporary_long = engine_temporary_long + 0x20;
+    engine_temporary_long = engine_temporary_long + MEMORY_OFFSET_0x20;
     engine_temp_long_2 = engine_temp_long_2 + -1;
   } while (engine_temp_long_2 != 0);
   *(void*)(engine_data_structure_ptr + 0xc0) = 0x3f800000;
@@ -56402,7 +56428,7 @@ longlong engine_unnamed_function_4340(longlong engine_data_structure_ptr,longlon
   ulonglong engine_temp_uint_2;
   
   engine_temp_uint_2 = *(ulonglong *)(engine_data_structure_ptr + 8);
-  if ((engine_result_flag_ptr + 0x20U < engine_temp_uint_2) && (engine_temp_long_3 = (longlong)(engine_temp_uint_2 - (engine_result_flag_ptr + 0x20U)) >> 5, 0 < engine_temp_long_3))
+  if ((engine_result_flag_ptr + MEMORY_OFFSET_0x20U < engine_temp_uint_2) && (engine_temp_long_3 = (longlong)(engine_temp_uint_2 - (engine_result_flag_ptr + MEMORY_OFFSET_0x20U)) >> 5, 0 < engine_temp_long_3))
   {
     engine_data_pointer = (void*)(engine_result_flag_ptr + 0x28);
     do {
@@ -56689,7 +56715,7 @@ LAB_18009556a:
   if (engine_data_ptr0 == engine_data_ptr1) {
     return 0;
   }
-  engine_byte_ptr_4 = (byte *)engine_call_memory_extender(_engine_data_18,0x10,CONCAT71((int7)((ulonglong)engine_data_ptr3 >> 8),0x13))
+  engine_byte_ptr_4 = (byte *)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,CONCAT71((int7)((ulonglong)engine_data_ptr3 >> 8),0x13))
   ;
   *engine_byte_ptr_4 = 0;
   engine_call_resource_validator(engine_byte_ptr_4);
@@ -56832,7 +56858,7 @@ LAB_18009580a:
   if (engine_data_ptr0 == engine_data_ptr1) {
     return 0;
   }
-  engine_byte_ptr_4 = (byte *)engine_call_memory_extender(_engine_data_18,0x10,CONCAT71((int7)((ulonglong)engine_data_ptr3 >> 8),0x13))
+  engine_byte_ptr_4 = (byte *)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,CONCAT71((int7)((ulonglong)engine_data_ptr3 >> 8),0x13))
   ;
   *engine_byte_ptr_4 = 0;
   engine_call_resource_validator(engine_byte_ptr_4);
@@ -56979,7 +57005,7 @@ void engine_unnamed_function_4420(uint64 engine_data_structure_ptr,longlong engi
   char acStackX_20 [8];
   
   acStackX_20[0] = engine_system_parameter_4;
-  pengine_temp_float_6 = (float *)engine_unnamed_function_4700(engine_comparison_params + 0xc0,engine_result_flag_ptr + 0x20);
+  pengine_temp_float_6 = (float *)engine_unnamed_function_4700(engine_comparison_params + 0xc0,engine_result_flag_ptr + MEMORY_OFFSET_0x20);
   engine_temp_float_15 = *pengine_temp_float_6;
   func_0x000180112210();
   engine_temp_int3 = 0;
@@ -56994,9 +57020,9 @@ void engine_unnamed_function_4420(uint64 engine_data_structure_ptr,longlong engi
   engine_temp_char_flag = engine_unnamed_function_5390((double)(engine_temp_float_15 * 1000.0),engine_temp_uint1,&engine_base_data_offset_30,engine_data_ptr0,
                         (double)(engine_temp_float_15 * 1000.0));
   engine_unnamed_function_5470();
-  engine_temp_char_ptr_7 = (char *)engine_unnamed_function_4780(engine_comparison_params + 0xf0,engine_result_flag_ptr + 0x20);
+  engine_temp_char_ptr_7 = (char *)engine_unnamed_function_4780(engine_comparison_params + 0xf0,engine_result_flag_ptr + MEMORY_OFFSET_0x20);
   acStackX_20[0] = *engine_temp_char_ptr_7;
-  next_data_pointer = (uint16*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
+  next_data_pointer = (uint16*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
   *(uint8*)next_data_pointer = 0;
   engine_temp_uint_4 = engine_call_resource_validator(next_data_pointer);
   *next_data_pointer = 0x2323;
@@ -57004,7 +57030,7 @@ void engine_unnamed_function_4420(uint64 engine_data_structure_ptr,longlong engi
   engine_temp_int_5 = *(int *)(engine_result_flag_ptr + 0x30);
   if (0 < engine_temp_int_5) {
     if ((engine_temp_int_5 != -2) && (engine_temp_uint_4 < engine_temp_int_5 + 3U)) {
-      next_data_pointer = (uint16*)engine_update_system_data(_engine_data_18,next_data_pointer,engine_temp_int_5 + 3U,0x10,0x13);
+      next_data_pointer = (uint16*)engine_update_system_data(_engine_data_18,next_data_pointer,engine_temp_int_5 + 3U,MEMORY_COMPARE_SIZE_0x10,0x13);
       engine_call_resource_validator(next_data_pointer);
       engine_temp_int_5 = *(int *)(engine_result_flag_ptr + 0x30);
     }
@@ -57018,7 +57044,7 @@ void engine_unnamed_function_4420(uint64 engine_data_structure_ptr,longlong engi
   engine_temp_char_flag_2 = engine_unnamed_function_5370(engine_data_ptr4,acStackX_20);
   resource_status_flag = acStackX_20[0];
   if (engine_temp_char_flag_2 != '\0') {
-    engine_temp_char_ptr_7 = (char *)engine_unnamed_function_4780(engine_comparison_params + 0xf0,engine_result_flag_ptr + 0x20);
+    engine_temp_char_ptr_7 = (char *)engine_unnamed_function_4780(engine_comparison_params + 0xf0,engine_result_flag_ptr + MEMORY_OFFSET_0x20);
     *engine_temp_char_ptr_7 = resource_status_flag;
   }
   if (resource_status_flag != '\0') {
@@ -57029,7 +57055,7 @@ void engine_unnamed_function_4420(uint64 engine_data_structure_ptr,longlong engi
     engine_call_cleanup_routine(next_data_pointer);
   }
   engine_unnamed_function_5470();
-  engine_temp_uint_ptr_9 = (uint32*)engine_unnamed_function_4700(engine_comparison_params + 0x90,engine_result_flag_ptr + 0x20);
+  engine_temp_uint_ptr_9 = (uint32*)engine_unnamed_function_4700(engine_comparison_params + 0x90,engine_result_flag_ptr + MEMORY_OFFSET_0x20);
   engine_stack_uint_18 = 0xbf800000;
   uStackX_1c = 0;
   engine_unnamed_function_5380(*engine_temp_uint_ptr_9,&engine_stack_uint_18);
@@ -57263,7 +57289,7 @@ void engine_unnamed_function_4440(uint64 engine_data_structure_ptr,longlong engi
       }
       engine_temp_long1 = *(longlong *)(engine_temp_uint_24 + *(longlong *)(engine_result_flag_ptr + 0x48));
       if (pengine_stack_uint_a8 != (uint8*)0x0) {
-        engine_call_array_builder(engine_temp_long1 + 0x20,engine_temp_uint_23);
+        engine_call_array_builder(engine_temp_long1 + MEMORY_OFFSET_0x20,engine_temp_uint_23);
       }
       if (engine_temp_uint_23 != 0) {
                     // WARNING: Subroutine does not return
@@ -57323,8 +57349,8 @@ LAB_180096990:
           engine_temp_ptr_5 = pengine_temp_long_25;
           do {
             engine_temp_long_21 = engine_temp_ptr_5[-1];
-            engine_initialize_resource_manager(engine_data_ptr2 + 0x12,engine_stack_array_10,engine_temp_long1 + 0x20);
-            pengine_temp_long3 = (longlong *)engine_initialize_resource_manager(engine_data_ptr2 + 0x12,engine_stack_uint_array_20,engine_temp_long_21 + 0x20);
+            engine_initialize_resource_manager(engine_data_ptr2 + 0x12,engine_stack_array_10,engine_temp_long1 + MEMORY_OFFSET_0x20);
+            pengine_temp_long3 = (longlong *)engine_initialize_resource_manager(engine_data_ptr2 + 0x12,engine_stack_uint_array_20,engine_temp_long_21 + MEMORY_OFFSET_0x20);
             if (extraout_XMM0_Da == *(float *)(*pengine_temp_long3 + 0x40)) {
               if (*(int *)(engine_temp_long1 + 0x30) == 0) {
                 engine_temp_byte3 = false;
@@ -57357,7 +57383,7 @@ LAB_180096990:
     return;
   }
   next_data_pointer = engine_stack_pointer_18 + 0x1e;
-  engine_temp_long1 = engine_result_flag_ptr + 0x20;
+  engine_temp_long1 = engine_result_flag_ptr + MEMORY_OFFSET_0x20;
   engine_temp_ptr_5 = (longlong *)engine_initialize_resource_manager(next_data_pointer,&engine_stack_pointer_18,engine_temp_long1);
   if ((void*)*engine_temp_ptr_5 == next_data_pointer) {
     temp_data_pointer = (uint8*)engine_unnamed_function_4780(next_data_pointer,engine_temp_long1);
@@ -57510,7 +57536,7 @@ LAB_180096691:
   }
   engine_temp_long1 = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(engine_temp_uint_ptr_9 + 5));
   engine_temp_double27 = *(double *)(engine_result_flag_ptr + 0x40);
-  *(float *)(engine_temp_long1 + 0x20) = (float)engine_temp_double27;
+  *(float *)(engine_temp_long1 + MEMORY_OFFSET_0x20) = (float)engine_temp_double27;
   engine_temp_byte3 = true;
   engine_data_ptr2 = (void*)engine_temp_uint_ptr_9[2];
   next_data_pointer = engine_temp_uint_ptr_9;
@@ -57529,16 +57555,16 @@ LAB_180096691:
     if (next_data_pointer == (void*)engine_temp_uint_ptr_9[1]) goto LAB_1800967cd;
     engine_data_ptr2 = (void*)func_0x00018066b9a0(next_data_pointer);
   }
-  if (*(float *)(engine_temp_long1 + 0x20) < *(float *)(engine_data_ptr2 + 4) ||
-      *(float *)(engine_temp_long1 + 0x20) == *(float *)(engine_data_ptr2 + 4)) {
+  if (*(float *)(engine_temp_long1 + MEMORY_OFFSET_0x20) < *(float *)(engine_data_ptr2 + 4) ||
+      *(float *)(engine_temp_long1 + MEMORY_OFFSET_0x20) == *(float *)(engine_data_ptr2 + 4)) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_temp_long1);
   }
 LAB_1800967cd:
   if ((next_data_pointer == engine_temp_uint_ptr_9) ||
      (engine_temp_uint_22 = 1,
-     *(float *)(engine_temp_long1 + 0x20) <= *(float *)(next_data_pointer + 4) &&
-     *(float *)(next_data_pointer + 4) != *(float *)(engine_temp_long1 + 0x20))) {
+     *(float *)(engine_temp_long1 + MEMORY_OFFSET_0x20) <= *(float *)(next_data_pointer + 4) &&
+     *(float *)(next_data_pointer + 4) != *(float *)(engine_temp_long1 + MEMORY_OFFSET_0x20))) {
     engine_temp_uint_22 = engine_temp_uint_7;
   }
                     // WARNING: Subroutine does not return
@@ -57566,8 +57592,8 @@ bool engine_unnamed_function_4450(longlong *engine_data_structure_ptr,longlong e
   uint8 auStackX_8 [8];
   
   memory_allocation_result = *engine_data_structure_ptr;
-  engine_initialize_resource_manager(memory_allocation_result + 0x90,auStackX_8,engine_result_flag_ptr + 0x20);
-  pengine_temp_long_2 = (longlong *)engine_initialize_resource_manager(memory_allocation_result + 0x90,auStackX_8,engine_comparison_params + 0x20);
+  engine_initialize_resource_manager(memory_allocation_result + 0x90,auStackX_8,engine_result_flag_ptr + MEMORY_OFFSET_0x20);
+  pengine_temp_long_2 = (longlong *)engine_initialize_resource_manager(memory_allocation_result + 0x90,auStackX_8,engine_comparison_params + MEMORY_OFFSET_0x20);
   if (extraout_XMM0_Da != *(float *)(*pengine_temp_long_2 + 0x40)) {
     return *(float *)(*pengine_temp_long_2 + 0x40) < extraout_XMM0_Da;
   }
@@ -57660,7 +57686,7 @@ void engine_unnamed_function_4460(uint64 engine_data_structure_ptr,longlong engi
   engine_stack_value_788 = 0xfffffffffffffffe;
   engine_stack_value_58 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_958;
   engine_stack_long_800 = engine_comparison_params;
-  (**(code **)(*(longlong *)(engine_comparison_params + 0x20) + 0x10))((longlong *)(engine_comparison_params + 0x20),&engine_data_180a0143c);
+  (**(code **)(*(longlong *)(engine_comparison_params + MEMORY_OFFSET_0x20) + 0x10))((longlong *)(engine_comparison_params + MEMORY_OFFSET_0x20),&engine_data_180a0143c);
   engine_setup_processing_environment(&pengine_stack_uint_7d8,engine_result_flag_ptr);
   engine_temp_long_9 = engine_unnamed_function_4810(engine_next_node_ptr + 8,&pengine_stack_uint_7d8);
   pengine_stack_uint_7d8 = &engine_system_context_data;
@@ -57793,7 +57819,7 @@ LAB_180096e94:
     engine_stack_uint_880 = 0;
     aengine_stack_long_8c0[0] = engine_temp_long_9 + 0xf0;
     engine_stack_long_868 = engine_temp_long_9 + 0x30;
-    engine_data_ptr1 = (uint32*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
+    engine_data_ptr1 = (uint32*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
     *(uint8*)engine_data_ptr1 = 0;
     engine_stack_pointer_888 = engine_data_ptr1;
     engine_temp_uint_8 = engine_call_resource_validator(engine_data_ptr1);
@@ -57801,7 +57827,7 @@ LAB_180096e94:
     *engine_data_ptr1 = 0x6c6c41;
     engine_stack_uint_880 = 3;
     pengine_temp_long0 = (longlong *)engine_initialize_resource_manager(engine_temp_long_9 + 0xf0,aengine_stack_uint_898,&pengine_stack_uint_890);
-    engine_initialize_resource_manager(engine_temp_long_9 + 0x30,aengine_stack_uint_870,*pengine_temp_long0 + 0x20);
+    engine_initialize_resource_manager(engine_temp_long_9 + 0x30,aengine_stack_uint_870,*pengine_temp_long0 + MEMORY_OFFSET_0x20);
     pengine_stack_uint_890 = &engine_system_context_data;
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_data_ptr1);
@@ -57819,13 +57845,13 @@ LAB_180096e94:
     *(longlong *)(engine_temp_long_9 + 8) = engine_temp_long_9;
     *(void*)(engine_temp_long_9 + 0x10) = 0;
     *(uint8*)(engine_temp_long_9 + 0x18) = 0;
-    *(void*)(engine_temp_long_9 + 0x20) = 0;
+    *(void*)(engine_temp_long_9 + MEMORY_OFFSET_0x20) = 0;
     engine_unnamed_function_50(engine_temp_long_9,0);
     *(longlong *)engine_temp_long_9 = engine_temp_long_9;
     *(longlong *)(engine_temp_long_9 + 8) = engine_temp_long_9;
     *(void*)(engine_temp_long_9 + 0x10) = 0;
     *(uint8*)(engine_temp_long_9 + 0x18) = 0;
-    *(void*)(engine_temp_long_9 + 0x20) = 0;
+    *(void*)(engine_temp_long_9 + MEMORY_OFFSET_0x20) = 0;
   }
 LAB_180097ca1:
   engine_execute_system_process(engine_comparison_params);
@@ -57947,7 +57973,7 @@ void engine_handle_render_frame(uint8_t *engine_data_structure_ptr)
       memory_allocation_result = engine_unnamed_function_5410(engine_temp_uint_4,0);
       engine_unnamed_function_5510(memory_allocation_result,engine_temporary_long);
       engine_unnamed_function_5520(memory_allocation_result + 0x10,engine_temporary_long + 0x10);
-      engine_unnamed_function_5500(memory_allocation_result + 0x20,engine_temporary_long + 0x20);
+      engine_unnamed_function_5500(memory_allocation_result + MEMORY_OFFSET_0x20,engine_temporary_long + MEMORY_OFFSET_0x20);
       *(uint32*)(memory_allocation_result + 0x30) = *(uint32*)(engine_temporary_long + 0x30);
       engine_temp_uint_6 = (int)engine_temp_uint64_value + 1;
       engine_temp_uint64_value = (ulonglong)engine_temp_uint_6;
@@ -57984,7 +58010,7 @@ void engine_unnamed_function_4482(void)
     engine_temp_long_3 = engine_unnamed_function_5410(engine_temp_uint_2,0);
     engine_unnamed_function_5510(engine_temp_long_3,engine_temporary_long);
     engine_unnamed_function_5520(engine_temp_long_3 + 0x10,engine_temporary_long + 0x10);
-    engine_unnamed_function_5500(engine_temp_long_3 + 0x20,engine_temporary_long + 0x20);
+    engine_unnamed_function_5500(engine_temp_long_3 + MEMORY_OFFSET_0x20,engine_temporary_long + MEMORY_OFFSET_0x20);
     *(uint32*)(engine_temp_long_3 + 0x30) = *(uint32*)(engine_temporary_long + 0x30);
     engine_temp_uint_4 = (int)unaff_RBP + 1;
     unaff_RBP = (ulonglong)engine_temp_uint_4;
@@ -58112,7 +58138,7 @@ void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine
   aengine_stack_uint_48[0] = 0;
   engine_stack_uint_50 = 5;
   ppengine_stack_long_148 = (longlong **)pengine_temp_long_7;
-  strcpy_s(aengine_stack_uint_48,0x10,&engine_base_data_offset_b8);
+  strcpy_s(aengine_stack_uint_48,MEMORY_COMPARE_SIZE_0x10,&engine_base_data_offset_b8);
   *pengine_temp_long_7 = (longlong)&engine_data_180a21690;
   *pengine_temp_long_7 = (longlong)&engine_data_180a21720;
   *(uint32*)(pengine_temp_long_7 + 1) = 0;
@@ -58174,7 +58200,7 @@ void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine
   pengine_stack_long_128 = pengine_temp_long_7;
   (**(code **)(*pengine_temp_long_7 + 0x28))(pengine_temp_long_7);
   engine_unnamed_function_6040(engine_temp_long_4,&pengine_stack_long_128);
-  engine_temp_index = engine_call_memory_allocator(_engine_data_18,0x3b0,0x10,3);
+  engine_temp_index = engine_call_memory_allocator(_engine_data_18,0x3b0,MEMORY_COMPARE_SIZE_0x10,3);
   pengine_temp_long_8 = (longlong *)engine_unnamed_function_5950(engine_temp_index,1);
   if (pengine_temp_long_8 != (longlong *)0x0) {
     pengine_stack_long_90 = pengine_temp_long_8;
@@ -58534,14 +58560,14 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
       engine_temp_long_26 = (engine_temp_long7 - 2U >> 1) + 1;
       engine_temp_long_24 = engine_temp_long_26 * 2;
       do {
-        engine_temp_long_27 = engine_temp_long_27 + *(int *)(*pengine_temp_long9 + 0x20);
-        engine_temp_long_29 = engine_temp_long_29 + *(int *)(pengine_temp_long9[1] + 0x20);
+        engine_temp_long_27 = engine_temp_long_27 + *(int *)(*pengine_temp_long9 + MEMORY_OFFSET_0x20);
+        engine_temp_long_29 = engine_temp_long_29 + *(int *)(pengine_temp_long9[1] + MEMORY_OFFSET_0x20);
         pengine_temp_long9 = pengine_temp_long9 + 2;
         engine_temp_long_26 = engine_temp_long_26 + -1;
       } while (engine_temp_long_26 != 0);
     }
     if (engine_temp_long_24 < engine_temp_long7) {
-      engine_temp_long_32 = (longlong)*(int *)(*(longlong *)(*(longlong *)(engine_result_flag_ptr + 8) + engine_temp_long_24 * 8) + 0x20);
+      engine_temp_long_32 = (longlong)*(int *)(*(longlong *)(*(longlong *)(engine_result_flag_ptr + 8) + engine_temp_long_24 * 8) + MEMORY_OFFSET_0x20);
     }
     if (engine_temp_long_32 + engine_temp_long_29 + engine_temp_long_27 != 0) {
       engine_unnamed_function_4510(engine_data_structure_ptr);
@@ -58572,7 +58598,7 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
       engine_stack_uint_26c = 0;
       pengine_stack_long_278 = (longlong *)0x10000010001;
       pcStack_2d8 = void engine_update_game_state(void);
-      engine_call_framework_initializer(aengine_stack_uint_238,8,0x10,&engine_calculate_frame_time);
+      engine_call_framework_initializer(aengine_stack_uint_238,8,MEMORY_COMPARE_SIZE_0x10,&engine_calculate_frame_time);
       pengine_stack_long_2b0 = (longlong *)0x0;
       pengine_stack_uint_2d0 = aengine_stack_uint_1b8;
       engine_unnamed_function_5780(pengine_stack_uint_2d0,*(void*)(*(longlong *)(engine_data_structure_ptr + 0x10) + 0x18),&pengine_stack_long_278,
@@ -58592,7 +58618,7 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
         engine_stack_uint_2b8 = 0;
         do {
           engine_temp_long_24 = *(longlong *)(engine_stack_uint_2b8 + *(longlong *)(engine_stack_long_2a8 + 8));
-          engine_temp_uint_35 = *(uint *)(engine_temp_long_24 + 0x20);
+          engine_temp_uint_35 = *(uint *)(engine_temp_long_24 + MEMORY_OFFSET_0x20);
           engine_temp_uint_31 = 0;
           if (3 < engine_temp_uint_35) {
             do {
@@ -58609,7 +58635,7 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
               engine_data_ptr_28[4] = *(uint32*)(engine_temp_long_27 + 0x18 + engine_temp_long_29 * 0x14);
               engine_data_ptr_28[5] = 0;
               engine_current_node_ptr0[2] = *(uint32*)(engine_temp_long_27 + 0x1c + engine_temp_long_29 * 0x14);
-              engine_current_node_ptr0[3] = *(uint32*)(engine_temp_long_27 + 0x20 + engine_temp_long_29 * 0x14);
+              engine_current_node_ptr0[3] = *(uint32*)(engine_temp_long_27 + MEMORY_OFFSET_0x20 + engine_temp_long_29 * 0x14);
               engine_data_ptr_23[1] = *(uint32*)(engine_temp_long_27 + 0x24 + engine_temp_long_29 * 0x14);
               engine_temp_long_27 = *(longlong *)(engine_temp_long_24 + 0x28);
               engine_data_ptr_28[6] = *(uint32*)(engine_temp_long_27 + 0x28 + engine_temp_long_29 * 0x14);
@@ -58655,7 +58681,7 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
               engine_temp_long_27 = engine_temp_long_27 + 2;
             } while (engine_temp_int_25 < *(int *)(engine_temp_long_24 + 0x10));
           }
-          engine_temp_int_33 = engine_temp_int_33 + *(int *)(engine_temp_long_24 + 0x20);
+          engine_temp_int_33 = engine_temp_int_33 + *(int *)(engine_temp_long_24 + MEMORY_OFFSET_0x20);
           iStack_2c8 = iStack_2c8 + 1;
           engine_temp_uint_20 = engine_stack_uint_2b8 + 8;
           engine_data_structure_ptr = engine_stack_long_298;
@@ -58702,7 +58728,7 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
       engine_temp_uint5 = *(uint32*)(engine_data_structure_ptr + 0x58);
       engine_temp_uint6 = *(uint32*)(engine_data_structure_ptr + 0x5c);
       engine_temp_long7 = *(longlong *)(_engine_data_38 + 0x1cd8);
-      *(void*)(engine_temp_long7 + 0x80) = *(void*)(engine_data_structure_ptr + 0x20);
+      *(void*)(engine_temp_long7 + 0x80) = *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20);
       *(void*)(engine_temp_long7 + 0x88) = engine_temp_uint_38;
       *(uint32*)(engine_temp_long7 + 0x90) = engine_temp_uint_21;
       *(uint32*)(engine_temp_long7 + 0x94) = engine_temp_uint_6;
@@ -58893,7 +58919,7 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
         (**(code **)(*pengine_stack_long_278 + 0x38))();
       }
       (**(code **)(*pengine_temp_long9 + 0x38))(pengine_temp_long9);
-      engine_unnamed_function_6548(aengine_stack_uint_238,8,0x10,engine_update_game_state);
+      engine_unnamed_function_6548(aengine_stack_uint_238,8,MEMORY_COMPARE_SIZE_0x10,engine_update_game_state);
     }
   }
                     // WARNING: Subroutine does not return
@@ -58907,7 +58933,7 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
 void engine_unnamed_function_4530(uint64 engine_data_structure_ptr)
 
 {
-  engine_unnamed_function_6548(engine_data_structure_ptr,8,0x10,engine_update_game_state,0xfffffffffffffffe);
+  engine_unnamed_function_6548(engine_data_structure_ptr,8,MEMORY_COMPARE_SIZE_0x10,engine_update_game_state,0xfffffffffffffffe);
   return;
 }
 
@@ -59464,7 +59490,7 @@ longlong engine_unnamed_function_4580(longlong engine_data_structure_ptr,uint64 
   *(longlong *)(engine_data_structure_ptr + 8) = engine_data_structure_ptr;
   *(void*)(engine_data_structure_ptr + 0x10) = 0;
   *(uint8*)(engine_data_structure_ptr + 0x18) = 0;
-  *(void*)(engine_data_structure_ptr + 0x20) = 0;
+  *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = 0;
   engine_temporary_long = engine_data_structure_ptr + 0x30;
   *(void*)(engine_data_structure_ptr + 0x48) = 0;
   *(uint32*)(engine_data_structure_ptr + 0x58) = 3;
@@ -59505,7 +59531,7 @@ longlong engine_unnamed_function_4580(longlong engine_data_structure_ptr,uint64 
   *(void*)(engine_data_structure_ptr + 0x100) = 0;
   *(uint8*)(engine_data_structure_ptr + 0x108) = 0;
   *(void*)(engine_data_structure_ptr + 0x110) = 0;
-  _Mtx_init_in_situ(engine_data_structure_ptr + 0x128,0x102,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+  _Mtx_init_in_situ(engine_data_structure_ptr + 0x128,MEMORY_COMPARE_SIZE_0x102,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   *(uint16*)(engine_data_structure_ptr + 0x124) = 1;
   *(uint8*)(engine_data_structure_ptr + 0x126) = 0;
   *(uint32*)(engine_data_structure_ptr + 0x178) = 0;
@@ -59525,7 +59551,7 @@ float engine_unnamed_function_4590(longlong engine_data_structure_ptr,longlong e
   float engine_temp_float_6;
   uint8 auStackX_8 [8];
   
-  pengine_temp_long_2 = (longlong *)engine_initialize_resource_manager(engine_data_structure_ptr,auStackX_8,engine_result_flag_ptr + 0x20);
+  pengine_temp_long_2 = (longlong *)engine_initialize_resource_manager(engine_data_structure_ptr,auStackX_8,engine_result_flag_ptr + MEMORY_OFFSET_0x20);
   engine_temporary_long = *pengine_temp_long_2;
   if (engine_temporary_long != engine_data_structure_ptr) {
     engine_temp_long_4 = *(longlong *)(engine_temporary_long + 0x60);
@@ -59565,7 +59591,7 @@ float engine_unnamed_function_4607(longlong engine_data_structure_ptr)
       engine_temp_float_2 = engine_temp_float_2 + *(float *)(in_RAX + 0x24);
       in_RAX = func_0x00018066bd70(in_RAX);
     } while (in_RAX != engine_register_rbx);
-    engine_data_structure_ptr = *(longlong *)(engine_register_rbx + 0x20);
+    engine_data_structure_ptr = *(longlong *)(engine_register_rbx + MEMORY_OFFSET_0x20);
   }
   engine_temp_float = (float)engine_data_structure_ptr;
   if (engine_data_structure_ptr < 0) {
@@ -59613,8 +59639,8 @@ void engine_unnamed_function_4620(uint64_t *engine_data_structure_ptr)
   *engine_data_structure_ptr = CONCAT44(fStackX_14 * *(float *)(engine_data_pointer_50 + 0x17e4),
                       fStackX_10 * *(float *)(engine_data_pointer_50 + 0x17e0));
   *(float *)(engine_data_structure_ptr + 1) =
-       (float)*(int *)(*(longlong *)(engine_temp_long_3 + 0x2010) + 0x74) /
-       *(float *)(*(longlong *)(engine_temp_long_3 + 0x2010) + 0xc);
+       (float)*(int *)(*(longlong *)(engine_temp_long_3 + MEMORY_OFFSET_0x2010) + 0x74) /
+       *(float *)(*(longlong *)(engine_temp_long_3 + MEMORY_OFFSET_0x2010) + 0xc);
   if (((*(char *)(engine_temp_long_3 + 0x1518) == '\0') &&
       ((0.7 < *(float *)(engine_temp_long_3 + 0x1504) || *(float *)(engine_temp_long_3 + 0x1504) == 0.7 ||
        ((*(byte *)(engine_temp_long_3 + 0x1514) & 1) != 0)))) ||
@@ -59692,7 +59718,7 @@ void engine_unnamed_function_4620(uint64_t *engine_data_structure_ptr)
   else {
     engine_temp_index = 1;
   }
-  *(uint8*)((longlong)engine_data_structure_ptr + 0x20f) = engine_temp_index;
+  *(uint8*)((longlong)engine_data_structure_ptr + MEMORY_OFFSET_0x20f) = engine_temp_index;
   if ((*(char *)((longlong)engine_data_structure_ptr + 0x47) == '\0') && (*(char *)((longlong)engine_data_structure_ptr + 199) == '\0'))
   {
     engine_temp_index = 0;
@@ -59710,10 +59736,10 @@ void engine_unnamed_function_4620(uint64_t *engine_data_structure_ptr)
   }
   *(uint8*)((longlong)engine_data_structure_ptr + 0x211) = engine_temp_index;
   pengine_temp_long = engine_data_structure_ptr + 0x43;
-  if (pengine_temp_long != (longlong *)(engine_temp_long_3 + 0x2030)) {
+  if (pengine_temp_long != (longlong *)(engine_temp_long_3 + MEMORY_OFFSET_0x2030)) {
     engine_temp_long0 = *pengine_temp_long;
-    engine_temp_long_2 = *(longlong *)(engine_temp_long_3 + 0x2038);
-    engine_temp_long_3 = *(longlong *)(engine_temp_long_3 + 0x2030);
+    engine_temp_long_2 = *(longlong *)(engine_temp_long_3 + MEMORY_OFFSET_0x2038);
+    engine_temp_long_3 = *(longlong *)(engine_temp_long_3 + MEMORY_OFFSET_0x2030);
     engine_temp_long1 = engine_temp_long_2 - engine_temp_long_3;
     engine_temp_uint_9 = engine_temp_long1 >> 2;
     if ((ulonglong)(engine_data_structure_ptr[0x45] - engine_temp_long0 >> 2) < engine_temp_uint_9) {
@@ -59965,7 +59991,7 @@ void engine_unnamed_function_4670(uint32_t *engine_data_structure_ptr)
     engine_temp_uint_8 = (ulonglong)((int)engine_temp_uint_8 + 1);
     engine_temp_uint64_value = engine_temp_uint64_value + 1;
   } while ((longlong)engine_temp_uint64_value < 0x200);
-  *(uint8*)(engine_temp_long_4 + 0x134) = *(uint8*)((longlong)engine_data_structure_ptr + 0x20f);
+  *(uint8*)(engine_temp_long_4 + 0x134) = *(uint8*)((longlong)engine_data_structure_ptr + MEMORY_OFFSET_0x20f);
   *(uint8*)(engine_temp_long_4 + 0x136) = *(uint8*)(engine_data_structure_ptr + 0x84);
   *(uint8*)(engine_temp_long_4 + 0x135) = *(uint8*)((longlong)engine_data_structure_ptr + 0x211);
   engine_data_ptr1 = *(engine_undefined_value **)(engine_data_structure_ptr + 0x86);
@@ -61085,7 +61111,7 @@ longlong * engine_unnamed_function_4840(uint64 engine_data_structure_ptr,longlon
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_comparison_params;
   *(uint32*)(*engine_result_flag_ptr + 0x18) = engine_system_parameter_4;
   *(uint32*)(*engine_result_flag_ptr + 0x1c) = engine_system_parameter_4;
-  *(uint8*)(*engine_result_flag_ptr + 0x20) = 1;
+  *(uint8*)(*engine_result_flag_ptr + MEMORY_OFFSET_0x20) = 1;
   return engine_result_flag_ptr;
 }
 
@@ -61243,7 +61269,7 @@ LAB_18009be87:
   engine_temp_uint0 = 0;
 LAB_18009bed0:
   engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,0x48,(char)engine_data_structure_ptr[5]);
-  engine_call_data_writer(engine_temp_long_7 + 0x20,engine_param_5);
+  engine_call_data_writer(engine_temp_long_7 + MEMORY_OFFSET_0x20,engine_param_5);
   *(uint32*)(engine_temp_long_7 + 0x40) = 0;
                     // WARNING: Subroutine does not return
   engine_call_system_controller(engine_temp_long_7,pengine_temp_long_8,engine_data_structure_ptr,engine_temp_uint0);
@@ -61475,7 +61501,7 @@ LAB_18009c267:
   engine_temp_uint0 = 0;
 LAB_18009c2b0:
   engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,0x48,(char)engine_data_structure_ptr[5]);
-  engine_call_data_writer(engine_temp_long_7 + 0x20,engine_param_5);
+  engine_call_data_writer(engine_temp_long_7 + MEMORY_OFFSET_0x20,engine_param_5);
   *(uint8*)(engine_temp_long_7 + 0x40) = 0;
                     // WARNING: Subroutine does not return
   engine_call_system_controller(engine_temp_long_7,pengine_temp_long_8,engine_data_structure_ptr,engine_temp_uint0);
@@ -61635,7 +61661,7 @@ LAB_18009c4f7:
   engine_temp_uint0 = 0;
 LAB_18009c540:
   engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,0x1c0,(char)engine_data_structure_ptr[5]);
-  engine_call_data_writer(engine_temp_long_7 + 0x20,engine_param_5);
+  engine_call_data_writer(engine_temp_long_7 + MEMORY_OFFSET_0x20,engine_param_5);
   engine_unnamed_function_4580(engine_temp_long_7 + 0x40);
                     // WARNING: Subroutine does not return
   engine_call_system_controller(engine_temp_long_7,pengine_temp_long_8,engine_data_structure_ptr,engine_temp_uint0);
@@ -61714,7 +61740,7 @@ engine_unnamed_function_490a:
     engine_temp_uint_6 = 1;
   }
   memory_allocation_result = engine_call_memory_extender(_engine_data_18,0x28,(char)engine_data_structure_ptr[5]);
-  *(int *)(memory_allocation_result + 0x20) = *engine_param_5;
+  *(int *)(memory_allocation_result + MEMORY_OFFSET_0x20) = *engine_param_5;
   *(uint32*)(memory_allocation_result + 0x24) = 0;
                     // WARNING: Subroutine does not return
   engine_call_system_controller(memory_allocation_result,pengine_temp_long_3,engine_data_structure_ptr,engine_temp_uint_6);
@@ -61734,7 +61760,7 @@ void engine_unnamed_function_490a(void)
   longlong unaff_RDI;
   
   engine_temporary_long = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(unaff_RDI + 0x28));
-  *(uint32*)(engine_temporary_long + 0x20) = *unaff_RSI;
+  *(uint32*)(engine_temporary_long + MEMORY_OFFSET_0x20) = *unaff_RSI;
   *(uint32*)(engine_temporary_long + 0x24) = 0;
                     // WARNING: Subroutine does not return
   engine_call_system_controller(engine_temporary_long);
@@ -61754,7 +61780,7 @@ void engine_unnamed_function_4911(void)
   longlong unaff_RDI;
   
   engine_temporary_long = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(unaff_RDI + 0x28));
-  *(uint32*)(engine_temporary_long + 0x20) = *unaff_RSI;
+  *(uint32*)(engine_temporary_long + MEMORY_OFFSET_0x20) = *unaff_RSI;
   *(uint32*)(engine_temporary_long + 0x24) = 0;
                     // WARNING: Subroutine does not return
   engine_call_system_controller(engine_temporary_long);
@@ -61774,7 +61800,7 @@ void engine_unnamed_function_4915(void)
   longlong unaff_RDI;
   
   engine_temporary_long = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(unaff_RDI + 0x28));
-  *(uint32*)(engine_temporary_long + 0x20) = *unaff_RSI;
+  *(uint32*)(engine_temporary_long + MEMORY_OFFSET_0x20) = *unaff_RSI;
   *(uint32*)(engine_temporary_long + 0x24) = 0;
                     // WARNING: Subroutine does not return
   engine_call_system_controller(engine_temporary_long);
@@ -62135,7 +62161,7 @@ LAB_18009c8cb:
 LAB_18009c8d4:
   engine_data_offset = engine_call_memory_extender(_engine_data_18,0x48,*(uint8*)(engine_structure_ptr + 0x28),engine_validation_flag,
                         0xfffffffffffffffe);
-  engine_call_data_writer(engine_data_offset + 0x20,engine_control_data);
+  engine_call_data_writer(engine_data_offset + MEMORY_OFFSET_0x20,engine_control_data);
   *(uint32*)(engine_data_offset + 0x40) = 0;
                     // WARNING: Subroutine does not return
   engine_call_system_controller(engine_data_offset,engine_validation_target,engine_structure_ptr,engine_validation_result);
@@ -62247,7 +62273,7 @@ LAB_18009ca27:
   engine_temp_uint_9 = 0;
 LAB_18009ca70:
   engine_temp_long_8 = engine_call_memory_extender(_engine_data_18,0x70,*(uint8*)(engine_data_structure_ptr + 5));
-  engine_call_data_writer(engine_temp_long_8 + 0x20,engine_system_parameter_4);
+  engine_call_data_writer(engine_temp_long_8 + MEMORY_OFFSET_0x20,engine_system_parameter_4);
   engine_temp_long_7 = engine_temp_long_8 + 0x40;
   *(void*)(engine_temp_long_8 + 0x58) = 0;
   *(uint32*)(engine_temp_long_8 + 0x68) = 3;
@@ -62308,7 +62334,7 @@ LAB_18009cb7a:
 LAB_18009cb85:
   memory_allocation_result = engine_call_memory_extender(_engine_data_18,0x70,*(uint8*)(engine_data_structure_ptr + 0x28),engine_system_parameter_4,
                         0xfffffffffffffffe);
-  engine_call_data_writer(memory_allocation_result + 0x20,engine_param_5);
+  engine_call_data_writer(memory_allocation_result + MEMORY_OFFSET_0x20,engine_param_5);
   engine_temp_long_4 = memory_allocation_result + 0x40;
   *(void*)(memory_allocation_result + 0x58) = 0;
   *(uint32*)(memory_allocation_result + 0x68) = 3;

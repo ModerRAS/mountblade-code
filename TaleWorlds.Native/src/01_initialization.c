@@ -27073,17 +27073,18 @@ int64_t system_process_context_data(int64_t system_context_ptr)
 
 
 /**
- * 处理视锥体5 - 处理3D视锥体的相关操作
+ * @brief 处理视锥体5 - 处理3D视锥体的相关操作
  * 管理视锥体的裁剪和可见性检测
+ * 
+ * @note 这是简化实现，主要处理视锥体的基本操作
  */
-void system_handle_view_frustum_5(void)
-  void* **ppsystem_temp_unsigned_value;
-  byte *camera_traverse_node_next;
-  void* **context_data_ptr;
-  void* **view_frustum_stack_ptr;
-  char view_frustum_config_array [8];
-  void* *system_stack_byte_pointer;
-  void* *system_stack_byte_pointer;
+void system_handle_view_frustum_5(void) {
+  void** system_temp_unsigned_value_ptr;
+  uint8_t* camera_traverse_node_next_ptr;
+  void** context_data_ptr;
+  void** view_frustum_stack_ptr;
+  uint8_t view_frustum_config_array[8];
+  void* system_stack_byte_pointer;
   
   system_data_handle = system_global_data_pointer;
   view_frustum_config_array[0] = (char)system_memory_size_array;
@@ -27100,7 +27101,7 @@ void system_handle_view_frustum_5(void)
   system_temp_uint_value = 1;
   system_data_handle = system_process_context_data(system_global_data_pointer,0x60,*(uint8_t* *)(system_data_handle + 0x98));
   system_process_context_data(system_data_handle + 0x20,&system_stack_byte_pointer);
-  ppsystem_temp_unsigned_value = (void* **)system_process_context_data(context_data_ptr,view_frustum_config_array,system_data_handle + 0x20);
+  system_temp_unsigned_value_ptr = (void**)system_process_context_data(context_data_ptr, view_frustum_config_array, system_data_handle + 0x20);
   if (view_frustum_config_array[0] == '\0') {
     system_process_context_data(system_data_handle);
     if (system_data_handle != 0) {
@@ -27121,10 +27122,10 @@ void system_handle_view_frustum_5(void)
     }
     system_process_context_data();
   }
-  if (ppsystem_temp_unsigned_value == context_data_ptr) goto system_label;
-  if (*(int *)(ppsystem_temp_unsigned_value + 6) != 0) {
+  if (system_temp_unsigned_value_ptr == context_data_ptr) goto system_label;
+  if (*(int *)(system_temp_unsigned_value_ptr + 6) != 0) {
     if (*(int *)(system_data_handle + 0x30) == 0) goto system_label;
-    camera_traverse_node_next = ppsystem_temp_unsigned_value[5];
+    camera_traverse_node_next = system_temp_unsigned_value_ptr[5];
     system_temp_storage_value = *(int64_t *)(system_data_handle + 0x28) - (int64_t)camera_traverse_node_next;
     do {
       system_temp_bool_primary = *camera_traverse_node_next;
@@ -27136,37 +27137,54 @@ void system_handle_view_frustum_5(void)
   }
   system_temp_byte_primary = 1;
 system_label:
-  system_process_context_data(system_data_handle,ppsystem_temp_unsigned_value,context_data_ptr,system_temp_byte_primary,system_temp_uint_value);
+  system_process_context_data(system_data_handle, system_temp_unsigned_value_ptr, context_data_ptr, system_temp_byte_primary, system_temp_uint_value);
 }
 
 
 
-uint8_t *
-system_process_context_data(uint8_t *system_context_ptr,uint64_t system_config_buffer_array,uint8_t system_thread_count,uint8_t system_memory_size_array)
-
-{
+/**
+ * @brief 处理上下文数据 - 带配置参数的版本
+ * 处理系统上下文数据和配置信息
+ * 
+ * @param system_context_ptr 系统上下文指针
+ * @param system_config_buffer_array 系统配置缓冲区数组
+ * @param system_thread_count 系统线程计数
+ * @param system_memory_size_array 系统内存大小数组
+ * @return uint8_t* 处理后的上下文数据指针
+ * 
+ * @note 这是简化实现，主要处理上下文数据的基本操作
+ */
+uint8_t* system_process_context_data(uint8_t* system_context_ptr, uint64_t system_config_buffer_array, uint8_t system_thread_count, uint8_t system_memory_size_array) {
   system_context_ptr[4] = &system_null_ptr;
   *system_context_ptr = &system_null_ptr;
   *system_context_ptr = &system_null_ptr;
   *system_context_ptr = &system_null_ptr;
   if ((system_config_buffer_array & 1) != 0) {
-    free(system_context_ptr,0x100,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
+    free(system_context_ptr, 0x100, system_thread_count, system_memory_size_array, 0xfffffffffffffffe);
   }
 }
 
 
 
-uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint8_t *system_config_buffer_array)
-
-{
-  uint8_t *system_context_ptr_primary;
+/**
+ * @brief 处理上下文数据 - 带配置缓冲区的版本
+ * 处理系统上下文数据和配置缓冲区
+ * 
+ * @param system_context_ptr 系统上下文指针
+ * @param system_config_buffer_array 系统配置缓冲区数组
+ * @return uint8_t* 处理后的上下文数据指针
+ * 
+ * @note 这是简化实现，主要处理上下文数据的基本操作
+ */
+uint8_t* system_process_context_data(uint8_t* system_context_ptr, uint8_t* system_config_buffer_array) {
+  uint8_t* system_context_ptr_primary;
   
   *system_context_ptr = &system_null_ptr;
   *system_context_ptr = &system_null_ptr;
-  *(uint32_t* *)(system_context_ptr + 1) = 0;
+  *(uint32_t*)(system_context_ptr + 1) = 0;
   *system_context_ptr = &system_null_ptr;
   LOCK();
-  *(uint8_t* *)(system_context_ptr + 2) = 0;
+  *(uint8_t*)(system_context_ptr + 2) = 0;
   UNLOCK();
   system_context_ptr[3] = 0xffffffffffffffff;
   *system_context_ptr = &system_internal_context_data_ptr_7;
