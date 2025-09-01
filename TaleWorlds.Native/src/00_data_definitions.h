@@ -3335,7 +3335,7 @@ LAB_18004e062:
       }
       SystemModuleCleanup(SystemCleanupDataAddress);
       pModuleInitializationResult = SystemModuleDataAddress;
-      if (*(code **)(*SystemModuleDataAddress + 8) == (code *)&UNK_180639070) {
+      if (*(code **)(*SystemModuleDataAddress + 8) == (code *)&SystemNullFunctionPointer) {
         *(uint32_t *)(SystemModuleDataAddress + 9) = 0;
         puVar4 = (uint8_t *)pModuleInitializationResult[8];
         if (puVar4 != (uint8_t *)0x0) {
@@ -3444,7 +3444,7 @@ LAB_18004e062:
       }
       SystemModuleCleanup(SystemCleanupDataAddress);
       pModuleInitializationResult = SystemModuleDataAddress;
-      if (*(code **)(*SystemModuleDataAddress + 8) == (code *)&UNK_180639070) {
+      if (*(code **)(*SystemModuleDataAddress + 8) == (code *)&SystemNullFunctionPointer) {
         *(uint32_t *)(SystemModuleDataAddress + 9) = 0;
         puVar4 = (uint8_t *)pModuleInitializationResult[8];
         if (puVar4 != (uint8_t *)0x0) {
@@ -4225,7 +4225,7 @@ LAB_1800d3d65:
   *(uint32_t *)((longlong)pplStack_220 + 0x1c) = *(uint32_t *)((longlong)pModuleInitializationResult7 + 0x54);
   *(uint32_t *)((longlong)pModuleInitializationResult7 + 0x54) = BufferSize4;
   puStack_f0 = pplStack_220;
-  if (*(code **)(*pModuleInitializationResult7 + 8) == (code *)&UNK_180639070) {
+  if (*(code **)(*pModuleInitializationResult7 + 8) == (code *)&SystemNullFunctionPointer) {
     *(uint32_t *)(pModuleInitializationResult7 + 9) = 0;
     if ((uint8_t *)pModuleInitializationResult7[8] != (uint8_t *)0x0) {
       *(uint8_t *)pModuleInitializationResult7[8] = 0;
