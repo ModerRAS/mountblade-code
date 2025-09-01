@@ -35434,8 +35434,20 @@ void InitializeSystemResourceManager(long long systemResourcePointer, void* conf
 
 
 
-// 函数: void FUN_18005ab50(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005ab50(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源初始化函数A
+ * 
+ * 该函数负责初始化系统资源，设置系统全局数据引用和内存分配器
+ * 用于系统资源管理的前期准备工作
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源的基本信息
+ * @param ConfigurationDataPointer 配置数据指针，包含系统的配置信息
+ * @param AdditionalParameter 额外参数，用于扩展功能
+ * @param ConfigurationFlag 配置标志，用于控制配置行为
+ * 
+ * 原始函数名为FUN_18005ab50，现已重命名为InitializeSystemResourceA
+ */
+void InitializeSystemResourceA(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (*(code **)(SystemResourcePointer + 0x68) != (code *)0x0) {
@@ -35464,8 +35476,20 @@ void FUN_18005ab50(long long SystemResourcePointer,void* ConfigurationDataPointe
 
 
 
-// 函数: void FUN_18005ac00(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005ac00(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源初始化函数B
+ * 
+ * 该函数负责初始化系统资源，创建系统线程并设置线程相关的数据结构
+ * 用于系统资源管理中的线程初始化工作
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源的基本信息
+ * @param ConfigurationDataPointer 配置数据指针，包含系统的配置信息
+ * @param AdditionalParameter 额外参数，用于扩展功能
+ * @param ConfigurationFlag 配置标志，用于控制配置行为
+ * 
+ * 原始函数名为FUN_18005ac00，现已重命名为InitializeSystemResourceB
+ */
+void InitializeSystemResourceB(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint32_t unsignedSystemValue1;
@@ -39983,7 +40007,16 @@ void* FUN_1800603e0(void* SystemResourcePointer,ulong long ConfigurationDataPoin
 
 
 // 函数: void FUN_180060420(void* *SystemResourcePointer)
-void FUN_180060420(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源分配器函数
+ * 
+ * 该函数负责分配系统资源，包括内存分配和资源初始化操作。
+ * 它会处理资源表的分配，并设置相应的资源参数。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组，包含需要分配的资源信息
+ * @note 这是系统资源管理的重要组成部分，用于资源的分配和初始化
+ */
+void AllocateSystemResources(void* *SystemResourcePointer)
 
 {
   int *pointerToInteger1;
