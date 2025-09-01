@@ -12271,7 +12271,7 @@ void InitializeSystemDeviceNodeManager(void)
   stackParameterB = stackBuffer;
   stackBuffer[0] = 0;
   stackParameterC = 8;
-  strcpy_s(stackBuffer,0x80,&UNK_180a24828,in_R9,0xfffffffffffffffe);
+  strcpy_s(stackBuffer,0x80,&SystemStringTemplateB,in_R9,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry013 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
