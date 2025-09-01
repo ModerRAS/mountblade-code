@@ -4245,8 +4245,15 @@ void InitializeSystemNetworkManager(void)
 
 
 
-// 函数: void FUN_180031c10(void)
-void FUN_180031c10(void)
+/**
+ * @brief 初始化系统配置管理器
+ * 
+ * 该函数负责初始化系统的配置管理器节点，用于管理系统配置信息。
+ * 它会在系统数据表中查找或创建配置管理器节点，并设置相关的配置参数。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保配置管理器正确建立
+ */
+void InitializeSystemConfigurationManager(void)
 
 {
   char systemNodeFlag;
@@ -4258,16 +4265,16 @@ void FUN_180031c10(void)
   undefined8 *systemCurrentNode;
   undefined8 *systemNextNode;
   undefined8 *systemPreviousNode;
-  code *pcStackX_18;
+  code *systemInitializationFunction;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_1802281a0;
+  systemInitializationFunction = GetSystemConfigurationManagerFunction;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9e8,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&CONFIGURATION_MANAGER_ID,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -4279,14 +4286,14 @@ void FUN_180031c10(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&CONFIGURATION_MANAGER_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x406be72011d07d37;
   systemPreviousNode[7] = 0x71876af946c867ab;
-  systemPreviousNode[8] = &UNK_1809ff978;
+  systemPreviousNode[8] = &ConfigurationManagerNodeData;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
