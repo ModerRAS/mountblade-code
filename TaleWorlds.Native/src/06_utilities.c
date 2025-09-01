@@ -32954,7 +32954,7 @@ void SystemResourceDestructor(void)
 
 
 
-void Unwind_180902df0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ExceptionStackCleanup(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -33508,7 +33508,7 @@ void ResetMemoryAllocatorState(uint8_t ObjectContextParameter,int64_t Validation
 
 
 
-void Unwind_180903030(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+void SystemExceptionCleanup(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContextParameter + 0x48),*(uint8_t *)(*(int64_t *)(ValidationContextParameter + 0x48) + 0x10),
