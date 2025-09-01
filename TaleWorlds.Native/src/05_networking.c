@@ -6375,7 +6375,7 @@ LAB_180846df9:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
   {
     *apuStack_138[0] = &UNK_180983618;
     *(NetworkStatus *)(apuStack_138[0] + 1) = 0x20;
@@ -7461,7 +7461,7 @@ LAB_180847fc4:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(networkHandleArray[0] + 0x98),apuStack_128,0x18), networkStatus1 == 0))
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(networkHandleArray[0] + 0x98),apuStack_128,0x18), networkStatus1 == 0))
   {
     *apuStack_128[0] = &UNK_180983c78;
     *(NetworkStatus *)(apuStack_128[0] + 1) = 0x18;
@@ -7545,7 +7545,7 @@ LAB_18084820e:
     networkConnectionStatus = networkHandleStatus;
   }
   if ((networkConnectionStatus == 0) &&
-     (networkHandleStatus = FUN_18088dec0(*(NetworkHandle *)(networkConnectionId + 0x98),&networkPacketPointer,0x218), networkHandleStatus == 0)) {
+     (networkHandleStatus = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(networkConnectionId + 0x98),&networkPacketPointer,0x218), networkHandleStatus == 0)) {
     *networkPacketPointer = &UNK_180982508;
     *(NetworkStatus *)(networkPacketPointer + 2) = 0;
     *(NetworkStatus *)(networkPacketPointer + 1) = 0x218;
@@ -7601,7 +7601,7 @@ LAB_180848354:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(networkHandleArray[0] + 0x98),apuStack_128,0x18), networkStatus1 == 0))
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(networkHandleArray[0] + 0x98),apuStack_128,0x18), networkStatus1 == 0))
   {
     *apuStack_128[0] = &UNK_180982cc0;
     *(NetworkStatus *)(apuStack_128[0] + 1) = 0x18;
@@ -9156,7 +9156,7 @@ LAB_180849294:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(networkHandleArray[0] + 0x98),apuStack_128,0x18), networkStatus1 == 0))
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(networkHandleArray[0] + 0x98),apuStack_128,0x18), networkStatus1 == 0))
   {
     *apuStack_128[0] = &UNK_180983cf8;
     *(NetworkStatus *)(apuStack_128[0] + 1) = 0x18;
@@ -9288,7 +9288,7 @@ LAB_180849553:
     iVar6 = iVar5;
   }
   if ((iVar6 == 0) &&
-     (iVar5 = FUN_18088dec0(*(NetworkHandle *)(lStack_140 + 0x98),apuStack_138,0x48), iVar5 == 0)) {
+     (iVar5 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(lStack_140 + 0x98),apuStack_138,0x48), iVar5 == 0)) {
     *apuStack_138[0] = &UNK_180983840;
     *(NetworkStatus *)(apuStack_138[0] + 1) = 0x48;
     *(int *)(apuStack_138[0] + 2) = (int)connectionContext;
@@ -9640,7 +9640,7 @@ LAB_180849ad3:
     iVar6 = iVar5;
   }
   if ((iVar6 == 0) &&
-     (iVar5 = FUN_18088dec0(*(NetworkHandle *)(lStack_160 + 0x98),apuStack_158,0x58), iVar5 == 0)) {
+     (iVar5 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(lStack_160 + 0x98),apuStack_158,0x58), iVar5 == 0)) {
     *apuStack_158[0] = &UNK_1809823f8;
     *(NetworkStatus *)(apuStack_158[0] + 1) = 0x58;
     *(NetworkStatus *)(apuStack_158[0] + 2) = packetData;
@@ -9725,7 +9725,7 @@ LAB_180849c22:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(lStack_168 + 0x98),&puStack_160,0x28), networkStatus1 == 0)) {
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(lStack_168 + 0x98),&puStack_160,0x28), networkStatus1 == 0)) {
     *puStack_160 = &UNK_180983e88;
     *(NetworkStatus *)(puStack_160 + 1) = 0x28;
     *(NetworkStatus *)(puStack_160 + 4) = dataSize;
@@ -9799,7 +9799,7 @@ LAB_180849e6f:
     networkStatus3 = networkStatus2;
   }
   if ((networkStatus3 == 0) &&
-     (networkStatus2 = FUN_18088dec0(*(NetworkHandle *)(lStack_170 + 0x98),apuStack_168,0xa8), networkStatus2 == 0)) {
+     (networkStatus2 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(lStack_170 + 0x98),apuStack_168,0xa8), networkStatus2 == 0)) {
     *apuStack_168[0] = &UNK_180984038;
     *(NetworkStatus *)(apuStack_168[0] + 1) = 0xa8;
     *(int *)(apuStack_168[0] + 2) = (int)connectionContext;
@@ -9862,7 +9862,7 @@ LAB_18084a06f:
     networkStatus3 = networkStatus2;
   }
   if ((networkStatus3 == 0) &&
-     (networkStatus2 = FUN_18088dec0(*(NetworkHandle *)(lStack_170 + 0x98),apuStack_168,0xa0), networkStatus2 == 0)) {
+     (networkStatus2 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(lStack_170 + 0x98),apuStack_168,0xa0), networkStatus2 == 0)) {
     *apuStack_168[0] = &UNK_180982260;
     *(NetworkStatus *)(apuStack_168[0] + 1) = 0xa0;
                     // WARNING: Subroutine does not return
@@ -9913,7 +9913,7 @@ LAB_18084a1a4:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
   {
     *apuStack_138[0] = &UNK_180983a60;
     *(NetworkStatus *)(apuStack_138[0] + 1) = 0x20;
@@ -9966,7 +9966,7 @@ LAB_18084a2ef:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
   {
     *apuStack_138[0] = &UNK_1809837c0;
     *(NetworkStatus *)(apuStack_138[0] + 1) = 0x20;
@@ -10020,7 +10020,7 @@ LAB_18084a43e:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(alStack_158[0] + 0x98),apuStack_148,0x20), networkStatus1 == 0))
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStack_158[0] + 0x98),apuStack_148,0x20), networkStatus1 == 0))
   {
     *apuStack_148[0] = &UNK_180983950;
     *(NetworkStatus *)(apuStack_148[0] + 1) = 0x20;
@@ -10074,7 +10074,7 @@ LAB_18084a5b3:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
   {
     *apuStack_138[0] = &UNK_180983be8;
     *(NetworkStatus *)(apuStack_138[0] + 1) = 0x20;
@@ -10218,7 +10218,7 @@ LAB_18084a92f:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
   {
     *apuStack_138[0] = &UNK_1809842e0;
     *(NetworkStatus *)(apuStack_138[0] + 1) = 0x20;
@@ -10271,7 +10271,7 @@ LAB_18084aa7f:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
   {
     *apuStack_138[0] = &UNK_180983738;
     *(NetworkStatus *)(apuStack_138[0] + 1) = 0x20;
@@ -10324,7 +10324,7 @@ LAB_18084abcf:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
   {
     *apuStack_138[0] = &UNK_1809844c8;
     *(NetworkStatus *)(apuStack_138[0] + 1) = 0x20;
@@ -10376,7 +10376,7 @@ LAB_18084ad14:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(networkHandleArray[0] + 0x98),apuStack_128,0x18), networkStatus1 == 0))
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(networkHandleArray[0] + 0x98),apuStack_128,0x18), networkStatus1 == 0))
   {
     *apuStack_128[0] = &UNK_180983ae8;
     *(NetworkStatus *)(apuStack_128[0] + 1) = 0x18;
@@ -10428,7 +10428,7 @@ LAB_18084ae43:
     networkStatus2 = networkStatus1;
   }
   if ((networkStatus2 == 0) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
   {
     *apuStack_138[0] = &UNK_180983b68;
     *(NetworkStatus *)(apuStack_138[0] + 1) = 0x20;
@@ -10512,7 +10512,7 @@ ulonglong FUN_18084afc0(NetworkHandle connectionContext)
       alStackX_10[1] = 0;
       networkStatus2 = NetworkConnectionHandleInitialize(alStackX_10 + 1);
       if (networkStatus2 == 0) {
-        networkStatus2 = FUN_18088dec0(*(NetworkHandle *)(alStackX_10[0] + 0x98),&puStackX_20,0x10);
+        networkStatus2 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStackX_10[0] + 0x98),&puStackX_20,0x10);
         if (networkStatus2 == 0) {
           *puStackX_20 = &UNK_180982ab0;
           *(NetworkStatus *)(puStackX_20 + 1) = 0x10;
@@ -10547,7 +10547,7 @@ NetworkHandle ValidateNetworkConnectionProtocol(NetworkHandle connectionContext,
   uStack0000000000000040 = 0;
   networkStatus1 = NetworkConnectionHandleInitialize(&stack0x00000040);
   if (networkStatus1 == 0) {
-    networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(in_stack_00000038 + 0x98),&stack0x00000048,0x10);
+    networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(in_stack_00000038 + 0x98),&stack0x00000048,0x10);
     if (networkStatus1 == 0) {
       *in_stack_00000048 = &UNK_180982ab0;
       *(NetworkStatus *)(in_stack_00000048 + 1) = 0x10;
@@ -10790,7 +10790,7 @@ void NetworkConnectionByteProcessor(NetworkHandle connectionContext,NetworkByte 
   if ((((networkStatus1 != 0) ||
        (((*(uint *)(alStackX_18[0] + 0x24) >> 1 & 1) != 0 &&
         (networkStatus2 = NetworkConnectionHandleInitialize(alStackX_18 + 1), networkStatus2 == 0)))) && (networkStatus1 == 0)) &&
-     (networkStatus1 = FUN_18088dec0(*(NetworkHandle *)(alStackX_18[0] + 0x98),apuStack_18,0x18), networkStatus1 == 0)) {
+     (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStackX_18[0] + 0x98),apuStack_18,0x18), networkStatus1 == 0)) {
     *apuStack_18[0] = &UNK_180982790;
     *(NetworkStatus *)(apuStack_18[0] + 1) = 0x18;
     *(NetworkByte *)(apuStack_18[0] + 2) = packetData;
@@ -11834,8 +11834,8 @@ uint FUN_18084c220(longlong *connectionContext)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084c2d0(NetworkHandle *connectionContext)
-void FUN_18084c2d0(NetworkHandle *connectionContext)
+// 函数: void ProcessNetworkContextValidation(NetworkHandle *connectionContext)
+void ProcessNetworkContextValidation(NetworkHandle *connectionContext)
 
 {
   longlong *plVar1;
@@ -12013,8 +12013,8 @@ NetworkHandle FUN_18084c55b(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084c5a0(longlong *connectionContext)
-void FUN_18084c5a0(longlong *connectionContext)
+// 函数: void ValidateNetworkConnectionStatus(longlong *connectionContext)
+void ValidateNetworkConnectionStatus(longlong *connectionContext)
 
 {
   int networkStatus1;
@@ -12070,8 +12070,8 @@ void FUN_18084c5a0(longlong *connectionContext)
 
 
 
-// 函数: void FUN_18084c612(NetworkStatus connectionContext,int packetData,uint dataSize)
-void FUN_18084c612(NetworkStatus connectionContext,int packetData,uint dataSize)
+// 函数: void ProcessNetworkSecurityValidation(NetworkStatus connectionContext,int packetData,uint dataSize)
+void ProcessNetworkSecurityValidation(NetworkStatus connectionContext,int packetData,uint dataSize)
 
 {
   NetworkStatus primaryNetworkFlag;
@@ -12114,8 +12114,8 @@ void FUN_18084c612(NetworkStatus connectionContext,int packetData,uint dataSize)
 
 
 
-// 函数: void FUN_18084c61e(longlong connectionContext)
-void FUN_18084c61e(longlong connectionContext)
+// 函数: void ProcessNetworkConnectionCleanup(longlong connectionContext)
+void ProcessNetworkConnectionCleanup(longlong connectionContext)
 
 {
   NetworkStatus primaryNetworkFlag;
@@ -12156,8 +12156,8 @@ void FUN_18084c61e(longlong connectionContext)
 
 
 
-// 函数: void FUN_18084c653(NetworkHandle connectionContext,NetworkHandle packetData,uint dataSize)
-void FUN_18084c653(NetworkHandle connectionContext,NetworkHandle packetData,uint dataSize)
+// 函数: void ProcessNetworkDataTransfer(NetworkHandle connectionContext,NetworkHandle packetData,uint dataSize)
+void ProcessNetworkDataTransfer(NetworkHandle connectionContext,NetworkHandle packetData,uint dataSize)
 
 {
   NetworkStatus unaff_EBP;
@@ -12173,8 +12173,8 @@ void FUN_18084c653(NetworkHandle connectionContext,NetworkHandle packetData,uint
 
 
 
-// 函数: void FUN_18084c658(NetworkHandle connectionContext,NetworkHandle packetData,uint dataSize)
-void FUN_18084c658(NetworkHandle connectionContext,NetworkHandle packetData,uint dataSize)
+// 函数: void ProcessNetworkDataHandler(NetworkHandle connectionContext,NetworkHandle packetData,uint dataSize)
+void ProcessNetworkDataHandler(NetworkHandle connectionContext,NetworkHandle packetData,uint dataSize)
 
 {
   NetworkStatus unaff_EBP;
@@ -12192,8 +12192,8 @@ void FUN_18084c658(NetworkHandle connectionContext,NetworkHandle packetData,uint
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084c680(longlong *connectionContext)
-void FUN_18084c680(longlong *connectionContext)
+// 函数: void ValidateNetworkDataIntegrity(longlong *connectionContext)
+void ValidateNetworkDataIntegrity(longlong *connectionContext)
 
 {
   longlong *plVar1;
@@ -12226,8 +12226,8 @@ void FUN_18084c680(longlong *connectionContext)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084c730(NetworkHandle *connectionContext)
-void FUN_18084c730(NetworkHandle *connectionContext)
+// 函数: void ProcessNetworkConfigurationManager(NetworkHandle *connectionContext)
+void ProcessNetworkConfigurationManager(NetworkHandle *connectionContext)
 
 {
   int networkStatus1;
@@ -12433,8 +12433,8 @@ LAB_18084ca76:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084c738(NetworkHandle *connectionContext)
-void FUN_18084c738(NetworkHandle *connectionContext)
+// 函数: void ProcessNetworkConfigurationValidator(NetworkHandle *connectionContext)
+void ProcessNetworkConfigurationValidator(NetworkHandle *connectionContext)
 
 {
   int networkStatus1;
@@ -12640,8 +12640,8 @@ LAB_18084ca76:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084c744(NetworkHandle *connectionContext)
-void FUN_18084c744(NetworkHandle *connectionContext)
+// 函数: void ProcessNetworkConfigurationChecker(NetworkHandle *connectionContext)
+void ProcessNetworkConfigurationChecker(NetworkHandle *connectionContext)
 
 {
   int networkStatus1;
@@ -12848,8 +12848,8 @@ LAB_18084ca76:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084c8cc(NetworkStatus connectionContext)
-void FUN_18084c8cc(NetworkStatus connectionContext)
+// 函数: void ProcessNetworkStatusChecker(NetworkStatus connectionContext)
+void ProcessNetworkStatusChecker(NetworkStatus connectionContext)
 
 {
   int networkStatus1;
@@ -13011,8 +13011,8 @@ LAB_18084ca76:
 
 
 
-// 函数: void FUN_18084ca92(NetworkHandle connectionContext,NetworkHandle packetData,longlong *dataSize)
-void FUN_18084ca92(NetworkHandle connectionContext,NetworkHandle packetData,longlong *dataSize)
+// 函数: void ProcessNetworkDataValidator(NetworkHandle connectionContext,NetworkHandle packetData,longlong *dataSize)
+void ProcessNetworkDataValidator(NetworkHandle connectionContext,NetworkHandle packetData,longlong *dataSize)
 
 {
   longlong *plVar1;
@@ -13062,8 +13062,8 @@ void FUN_18084ca92(NetworkHandle connectionContext,NetworkHandle packetData,long
 
 
 
-// 函数: void FUN_18084cae7(NetworkHandle connectionContext,NetworkHandle packetData,longlong *dataSize)
-void FUN_18084cae7(NetworkHandle connectionContext,NetworkHandle packetData,longlong *dataSize)
+// 函数: void ProcessNetworkDataProcessor(NetworkHandle connectionContext,NetworkHandle packetData,longlong *dataSize)
+void ProcessNetworkDataProcessor(NetworkHandle connectionContext,NetworkHandle packetData,longlong *dataSize)
 
 {
   longlong *plVar1;
@@ -13624,8 +13624,8 @@ LAB_18084cfd9:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084cf13(longlong connectionContext,NetworkHandle *packetData,NetworkHandle *dataSize)
-void FUN_18084cf13(longlong connectionContext,NetworkHandle *packetData,NetworkHandle *dataSize)
+// 函数: void ProcessNetworkPacketHandler(longlong connectionContext,NetworkHandle *packetData,NetworkHandle *dataSize)
+void ProcessNetworkPacketHandler(longlong connectionContext,NetworkHandle *packetData,NetworkHandle *dataSize)
 
 {
   ulonglong primaryNetworkFlag;
@@ -13719,8 +13719,8 @@ LAB_18084cfd9:
 
 
 
-// 函数: void FUN_18084cffb(void)
-void FUN_18084cffb(void)
+// 函数: void ProcessNetworkCleanupRoutine(void)
+void ProcessNetworkCleanupRoutine(void)
 
 {
   ulonglong primaryNetworkFlag;
@@ -13754,8 +13754,8 @@ void FUN_18084cffb(void)
 
 
 
-// 函数: void FUN_18084d00e(NetworkHandle connectionContext,ulonglong packetData)
-void FUN_18084d00e(NetworkHandle connectionContext,ulonglong packetData)
+// 函数: void ProcessNetworkConnectionHandler(NetworkHandle connectionContext,ulonglong packetData)
+void ProcessNetworkConnectionHandler(NetworkHandle connectionContext,ulonglong packetData)
 
 {
   ulonglong primaryNetworkFlag;
@@ -13789,8 +13789,8 @@ void FUN_18084d00e(NetworkHandle connectionContext,ulonglong packetData)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084d068(void)
-void FUN_18084d068(void)
+// 函数: void ProcessNetworkStatusReset(void)
+void ProcessNetworkStatusReset(void)
 
 {
   ulonglong primaryNetworkFlag;
@@ -14914,8 +14914,8 @@ NetworkHandle * FUN_18084da70(NetworkHandle *connectionContext)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084dae0(longlong *connectionContext)
-void FUN_18084dae0(longlong *connectionContext)
+// 函数: void ProcessNetworkResourceCleanup(longlong *connectionContext)
+void ProcessNetworkResourceCleanup(longlong *connectionContext)
 
 {
   longlong lVar1;
@@ -14968,8 +14968,8 @@ void FUN_18084dae0(longlong *connectionContext)
 
 
 
-// 函数: void FUN_18084db76(void)
-void FUN_18084db76(void)
+// 函数: void ProcessNetworkMemoryReset(void)
+void ProcessNetworkMemoryReset(void)
 
 {
   longlong in_RAX;
@@ -14995,8 +14995,8 @@ void FUN_18084db76(void)
 
 
 
-// 函数: void FUN_18084dba2(void)
-void FUN_18084dba2(void)
+// 函数: void ProcessNetworkDataReset(void)
+void ProcessNetworkDataReset(void)
 
 {
   uint primaryNetworkFlag;
@@ -15030,8 +15030,8 @@ longlong FUN_18084dbd0(longlong connectionContext,ulonglong packetData)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084dc20(NetworkStatus *connectionContext)
-void FUN_18084dc20(NetworkStatus *connectionContext)
+// 函数: void ProcessNetworkBufferProcessor(NetworkStatus *connectionContext)
+void ProcessNetworkBufferProcessor(NetworkStatus *connectionContext)
 
 {
   NetworkByte auStack_48 [32];
@@ -15977,8 +15977,8 @@ NetworkHandle FUN_18084ed10(longlong connectionContext)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084edf0(longlong connectionContext)
-void FUN_18084edf0(longlong connectionContext)
+// 函数: void ProcessNetworkEventHandler(longlong connectionContext)
+void ProcessNetworkEventHandler(longlong connectionContext)
 
 {
   NetworkByte aprimaryNetworkFlag [16];
@@ -16050,8 +16050,8 @@ LAB_18084efc3:
 
 
 
-// 函数: void FUN_18084ee9a(void)
-void FUN_18084ee9a(void)
+// 函数: void ProcessNetworkEventValidator(void)
+void ProcessNetworkEventValidator(void)
 
 {
   NetworkByte aprimaryNetworkFlag [16];
@@ -16083,8 +16083,8 @@ void FUN_18084ee9a(void)
 
 
 
-// 函数: void FUN_18084efc1(void)
-void FUN_18084efc1(void)
+// 函数: void InitializeNetworkEventSystem(void)
+void InitializeNetworkEventSystem(void)
 
 {
   ulonglong in_stack_000000a0;
@@ -16144,8 +16144,8 @@ NetworkHandle FUN_18084f001(void)
 
 
 
-// 函数: void FUN_18084f033(void)
-void FUN_18084f033(void)
+// 函数: void ProcessNetworkEventInitializer(void)
+void ProcessNetworkEventInitializer(void)
 
 {
   return;
@@ -16392,8 +16392,8 @@ LAB_18084f283:
 
 
 
-// 函数: void FUN_18084f297(void)
-void FUN_18084f297(void)
+// 函数: void ProcessNetworkSystemInitializer(void)
+void ProcessNetworkSystemInitializer(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -16657,8 +16657,8 @@ LAB_18084f513:
 
 
 
-// 函数: void FUN_18084f527(void)
-void FUN_18084f527(void)
+// 函数: void ProcessNetworkConnectionInitializer(void)
+void ProcessNetworkConnectionInitializer(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -16922,8 +16922,8 @@ LAB_18084f7a3:
 
 
 
-// 函数: void FUN_18084f7b7(void)
-void FUN_18084f7b7(void)
+// 函数: void ProcessNetworkConfigurationInitializer(void)
+void ProcessNetworkConfigurationInitializer(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -17430,8 +17430,8 @@ LAB_18084f987:
 
 
 
-// 函数: void FUN_18084fcba(void)
-void FUN_18084fcba(void)
+// 函数: void ProcessNetworkProtocolInitializer(void)
+void ProcessNetworkProtocolInitializer(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -17922,8 +17922,8 @@ LAB_18084fe67:
 
 
 
-// 函数: void FUN_18085019a(void)
-void FUN_18085019a(void)
+// 函数: void ProcessNetworkTransferInitializer(void)
+void ProcessNetworkTransferInitializer(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -18414,8 +18414,8 @@ LAB_180850347:
 
 
 
-// 函数: void FUN_18085067a(void)
-void FUN_18085067a(void)
+// 函数: void ProcessNetworkSecurityInitializer(void)
+void ProcessNetworkSecurityInitializer(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -88159,37 +88159,51 @@ void FUN_18088de97(void)
 
 
 
-NetworkHandle FUN_18088dec0(longlong connectionContext,longlong *packetData,int dataSize)
+/**
+ * @brief 验证并处理网络连接数据
+ * 
+ * 该函数负责验证网络连接的有效性，并处理连接数据。
+ * 主要功能包括：
+ * - 验证连接上下文的有效性
+ * - 处理网络数据包的传输
+ * - 管理连接状态和错误处理
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针的指针
+ * @param dataSize 数据大小
+ * @return 处理结果状态码
+ */
+NetworkHandle ValidateAndProcessNetworkConnectionData(longlong connectionContext,longlong *packetData,int dataSize)
 
 {
-  NetworkHandle primaryNetworkFlag;
-  longlong lStackX_8;
-  NetworkStatus auStackX_10 [4];
-  int aiStackX_20 [2];
-  NetworkHandle *apuStack_60 [5];
+  NetworkHandle validationStatus;
+  longlong securityContext;
+  NetworkStatus securityBuffer [4];
+  int processingData [2];
+  NetworkHandle *connectionHandles [5];
   
   *packetData = connectionContext + 0x238;
   if ((*(int *)(connectionContext + 0x180) != 0) || (*(int *)(connectionContext + 0x184) != 0)) {
-    lStackX_8 = 0;
-    FUN_180768b50(&lStackX_8);
-    if (lStackX_8 == *(longlong *)((longlong)*(int *)(connectionContext + 0x17c) * 8 + 0x180c4f450)) {
+    securityContext = 0;
+    FUN_180768b50(&securityContext);
+    if (securityContext == *(longlong *)((longlong)*(int *)(connectionContext + 0x17c) * 8 + 0x180c4f450)) {
       return 0;
     }
   }
-  primaryNetworkFlag = FUN_1808e6790(*(NetworkHandle *)(connectionContext + 0x1e0),packetData,dataSize + 0xfU & 0xfffffff0,
-                        apuStack_60,aiStackX_20);
-  if ((int)primaryNetworkFlag != 0x41) {
-    if ((int)primaryNetworkFlag == 0) {
-      if (0 < aiStackX_20[0]) {
-        *apuStack_60[0] = &UNK_180986108;
-        *(int *)(apuStack_60[0] + 1) = aiStackX_20[0];
+  validationStatus = FUN_1808e6790(*(NetworkHandle *)(connectionContext + 0x1e0),packetData,dataSize + 0xfU & 0xfffffff0,
+                        connectionHandles,processingData);
+  if ((int)validationStatus != 0x41) {
+    if ((int)validationStatus == 0) {
+      if (0 < processingData[0]) {
+        *connectionHandles[0] = &UNK_180986108;
+        *(int *)(connectionHandles[0] + 1) = processingData[0];
       }
       return 0;
     }
-    return primaryNetworkFlag;
+    return validationStatus;
   }
-  auStackX_10[0] = 0;
-  FUN_180768b90(auStackX_10);
+  securityBuffer[0] = 0;
+  FUN_180768b90(securityBuffer);
   func_0x0001808e64e0(*(NetworkHandle *)(connectionContext + 0x1e0));
                     // WARNING: Subroutine does not return
   FUN_180768400(*(NetworkHandle *)(connectionContext + 0x160));
