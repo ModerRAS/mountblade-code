@@ -8441,7 +8441,7 @@ void InitializeSystemSearchManagerD(void)
 
 
 
-// 函数: void FUN_180036ff0(void)
+// 函数: void InitializeSystemEntryPoint(void)
 /**
  * @brief 初始化系统资源节点
  * 
@@ -9132,7 +9132,7 @@ void InitializeSystemDatabaseNode(void)
 
 
 
-// 函数: void FUN_180037d80(void)
+// 函数: void InitializeStringProcessingSystem(void)
 /**
  * @brief 初始化系统配置管理器
  * 
@@ -9191,7 +9191,7 @@ void InitializeSystemConfigurationManager(void)
 
 
 
-// 函数: void FUN_180037e80(void)
+// 函数: void InitializeMemoryManagementSystem(void)
 /**
  * @brief 初始化系统事件配置管理器
  * 
@@ -9250,7 +9250,7 @@ void InitializeSystemEventConfigurationManager(void)
 
 
 
-// 函数: void FUN_180037f80(void)
+// 函数: void InitializeResourceManagementSystem(void)
 /**
  * @brief 初始化系统网络配置管理器
  * 
@@ -9309,7 +9309,7 @@ void InitializeSystemNetworkConfigurationManager(void)
 
 
 
-// 函数: void FUN_180038080(void)
+// 函数: void InitializeDataTableManager(void)
 /**
  * @brief 初始化系统搜索配置管理器
  * 
@@ -9370,7 +9370,7 @@ void InitializeSystemSearchConfigurationManager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180038180(void)
+// 函数: void InitializeSystemConfiguration(void)
 /**
  * @brief 初始化系统调试信息管理器
  * 
@@ -9402,7 +9402,7 @@ void InitializeSystemDebugInfoManager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180038210(void)
+// 函数: void InitializeSystemMemoryAllocator(void)
 /**
  * @brief 初始化系统日志管理器
  * 
@@ -11284,7 +11284,7 @@ void InitializeSystemMemoryManagerI(void)
 
 
 
-// 函数: void FUN_18003a7b0(void)
+// 函数: void InitializeSystemThreadManager(void)
 /**
  * @brief 初始化系统配置数据节点管理器
  * 
@@ -11342,7 +11342,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
 
 
 
-// 函数: void FUN_18003a8b0(void)
+// 函数: void InitializeSystemProcessManager(void)
 /**
  * @brief 初始化系统事件数据节点管理器
  * 

@@ -12268,7 +12268,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(undefined4 *)(lVar1 + 0x18);
         uStack_280 = *(undefined4 *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_1809830b8;
+        puStack_2a8 = &BufferTemplate6;
         iVar4 = tableEntry + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -12315,7 +12315,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(undefined4 *)(lVar1 + 0x18);
         uStack_280 = *(undefined4 *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_1809830b8;
+        puStack_2a8 = &BufferTemplate6;
         iVar4 = tableEntry + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -12362,7 +12362,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(undefined4 *)(lVar1 + 0x18);
         uStack_280 = *(undefined4 *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_1809830b8;
+        puStack_2a8 = &BufferTemplate6;
         iVar4 = tableEntry + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -12409,7 +12409,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(undefined4 *)(lVar1 + 0x18);
         uStack_280 = *(undefined4 *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_1809830b8;
+        puStack_2a8 = &BufferTemplate6;
         iVar4 = tableEntry + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -12459,7 +12459,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(undefined4 *)(lVar1 + 0x18);
         uStack_280 = *(undefined4 *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_180983238;
+        puStack_2a8 = &BufferTemplate7;
         iVar4 = tableEntry + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -13991,7 +13991,7 @@ undefined8 InitializeResourceRenderingConfiguration(longlong *param_1)
   undefined4 uStack_14;
   
   uStack_20 = 0;
-  puStack_28 = &UNK_180986408;
+  puStack_28 = &NetworkRequestTemplate;
   uStack_18 = 2;
   uStack_14 = 0x20214;
   validationResult = GetAndValidateResourceData(param_1,&puStack_28);
@@ -14002,7 +14002,7 @@ undefined8 InitializeResourceRenderingConfiguration(longlong *param_1)
       validationResult = 0x1c;
     }
     else {
-      validationResult = (**(code **)(*param_1 + 8))(param_1,&UNK_1809864dc);
+      validationResult = (**(code **)(*param_1 + 8))(param_1,&NetworkValidationTemplate);
       if ((int)validationResult == 0) {
         uVar4 = 0x14;
         validationResult = ProcessNetworkRequest(param_1,&ResourceConfigTable,2,2,0x14);
@@ -14012,37 +14012,37 @@ undefined8 InitializeResourceRenderingConfiguration(longlong *param_1)
             (validationResult = ProcessNetworkRequest(param_1,&ResourceDataTable,(ulonglong)*(uint *)(lVar1 + 0x6d8),
                                    (ulonglong)*(uint *)(lVar1 + 0x6dc) /
                                    (ulonglong)*(uint *)(lVar1 + 0x6d8),uVar4), (int)validationResult == 0)) &&
-           (validationResult = ProcessNetworkRequest(param_1,&UNK_180986590,*(undefined4 *)(lVar1 + 0x6d0),
+           (validationResult = ProcessNetworkRequest(param_1,&NetworkOperationTemplate,*(undefined4 *)(lVar1 + 0x6d0),
                                   *(undefined4 *)(lVar1 + 0x1193c),*(undefined4 *)(lVar1 + 0x6d4)),
            (int)validationResult == 0)) {
           uVar4 = *(undefined4 *)(lVar1 + 0x11668);
           uVar8 = *(undefined4 *)(lVar1 + 0x11624);
           uVar7 = *(undefined4 *)(lVar1 + 0x11620);
           uVar6 = *(undefined4 *)(lVar1 + 0x1161c);
-          validationResult = ProcessNetworkRequest(param_1,&UNK_1809865f0,*(undefined4 *)(lVar1 + 0x1160c),
+          validationResult = ProcessNetworkRequest(param_1,&NetworkRequestTemplate2,*(undefined4 *)(lVar1 + 0x1160c),
                                 *(undefined4 *)(lVar1 + 0x11610),*(undefined4 *)(lVar1 + 0x11614),
                                 *(undefined4 *)(lVar1 + 0x11618),uVar6,uVar7,uVar8,uVar4);
           if (((int)validationResult == 0) &&
-             (validationResult = ProcessNetworkRequest(param_1,&UNK_1809866c0,*(undefined4 *)(lVar1 + 0x11628),
+             (validationResult = ProcessNetworkRequest(param_1,&NetworkConfigTemplate,*(undefined4 *)(lVar1 + 0x11628),
                                     (double)*(float *)(lVar1 + 0x11640),
                                     *(undefined4 *)(lVar1 + 0x11644),
                                     *(undefined4 *)(lVar1 + 0x1164c),uVar6,uVar7,uVar8,uVar4),
              (int)validationResult == 0)) {
             uVar6 = *(undefined4 *)(lVar1 + 0x11660);
-            validationResult = ProcessNetworkRequest(param_1,&UNK_180986730,(double)*(float *)(lVar1 + 0x11650),
+            validationResult = ProcessNetworkRequest(param_1,&NetworkDataTemplate,(double)*(float *)(lVar1 + 0x11650),
                                   *(undefined4 *)(lVar1 + 0x11654),*(undefined4 *)(lVar1 + 0x11658),
                                   *(undefined4 *)(lVar1 + 0x1165c),uVar6,uVar7,uVar8,uVar4);
             if ((int)validationResult == 0) {
               uVar5 = *(undefined4 *)(resourceIndex + 0x10);
-              validationResult = ProcessNetworkRequest(param_1,&UNK_1809867b0,*(undefined4 *)(resourceIndex + 4),
+              validationResult = ProcessNetworkRequest(param_1,&NetworkStreamTemplate,*(undefined4 *)(resourceIndex + 4),
                                     *(undefined4 *)(resourceIndex + 8),*(undefined4 *)(resourceIndex + 0xc),uVar5,
                                     uVar6,uVar7,uVar8,uVar4);
               if ((((int)validationResult == 0) &&
-                  (validationResult = ProcessNetworkRequest(param_1,&UNK_180986850,*(undefined4 *)(lVar1 + 0x1e0),
+                  (validationResult = ProcessNetworkRequest(param_1,&NetworkConnectionTemplate,*(undefined4 *)(lVar1 + 0x1e0),
                                          *(undefined4 *)(param_1[1] + 0x20),
                                          *(undefined4 *)(lVar1 + 0x78),uVar5,uVar6,uVar7,uVar8,uVar4
                                         ), (int)validationResult == 0)) &&
-                 ((validationResult = (**(code **)(*param_1 + 8))(param_1,&UNK_1809864dc), (int)validationResult == 0 &&
+                 ((validationResult = (**(code **)(*param_1 + 8))(param_1,&NetworkValidationTemplate), (int)validationResult == 0 &&
                   (((*(uint *)(param_1 + 3) & 2) != 0 ||
                    (validationResult = ValidateNetworkConnection(param_1), (int)validationResult == 0)))))) {
                 validationResult = 0;
@@ -14173,7 +14173,7 @@ undefined8 ValidateResourceRenderingState(void)
   alStack_300[1] = 0;
   iVar6 = InitializeProcessingQueue(alStack_300 + 1,param_1[1]);
   if ((iVar6 == 0) && (iVar6 = CheckSystemStatus(param_1,1), iVar6 == 0)) {
-    (**(code **)(*param_1 + 8))(param_1,&UNK_180986488);
+    (**(code **)(*param_1 + 8))(param_1,&NetworkStatusTemplate);
     if (((*(uint *)(param_1 + 3) & 0x1000000) == 0) ||
        (iVar6 = EstablishNetworkLink(param_1,*(undefined8 *)(param_1[1] + 0xc0),0,1), iVar6 == 0)) {
       lVar15 = param_1[1];
@@ -14405,7 +14405,7 @@ LAB_1808985be:
 LAB_180898629:
         } while (afStack_348[0] != -NAN);
       }
-      (**(code **)(*param_1 + 8))(param_1,&UNK_1809864b0);
+      (**(code **)(*param_1 + 8))(param_1,&NetworkResponseTemplate);
       iVar6 = (**(code **)(*param_1 + 0x18))(param_1);
       if (iVar6 == 0) {
         *(undefined1 *)(param_1 + 4) = 0;
@@ -27855,9 +27855,9 @@ void UnwindExceptionHandlerType4(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x48);
-  *presourceHash = &UNK_18098bdc8;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceHashTemplate;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -27877,8 +27877,8 @@ void UnwindExceptionHandlerType5(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x48);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -27895,7 +27895,7 @@ void UnwindExceptionHandlerType5(undefined8 param_1,longlong param_2)
 void UnwindExceptionHandlerType6(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x48) = &UNK_180a21690;
+  **(undefined8 **)(param_2 + 0x48) = &ResourceCacheTemplate;
   return;
 }
 
@@ -28132,7 +28132,7 @@ void Unwind_180902040(undefined8 param_1,longlong param_2)
 void Unwind_180902070(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x68) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x68) = &ResourceDescriptorTemplate;
   if (*(longlong *)(param_2 + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28301,7 +28301,7 @@ void Unwind_180902160(undefined8 param_1,longlong param_2)
 void Unwind_180902170(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x138) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x138) = &ResourceDescriptorTemplate;
   if (*(longlong *)(param_2 + 0x140) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -30833,9 +30833,9 @@ void Unwind_180902c50(undefined8 param_1,longlong param_2)
   *presourceHash = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(presourceHash + 4);
-  *presourceHash = &UNK_18098bdc8;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceHashTemplate;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -38141,9 +38141,9 @@ void Unwind_180904680(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x50);
-  *presourceHash = &UNK_18098bdc8;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceHashTemplate;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -38169,8 +38169,8 @@ void Unwind_1809046a0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x50);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -38521,9 +38521,9 @@ void Unwind_1809048a0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x20);
-  *presourceHash = &UNK_18098bdc8;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceHashTemplate;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -41889,7 +41889,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xa0) = 0;
   *(undefined4 *)(param_2 + 0xb0) = 0;
   *(undefined8 *)(param_2 + 0x98) = &SystemDataStructure;
-  *(undefined8 *)(param_2 + 0x68) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x68) = &ResourceDescriptorTemplate;
   if (*(longlong *)(param_2 + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -42616,7 +42616,7 @@ void Unwind_180905a70(undefined8 param_1,longlong param_2)
 void Unwind_180905a80(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x68) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x68) = &ResourceDescriptorTemplate;
   if (*(longlong *)(param_2 + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -42711,9 +42711,9 @@ void Unwind_180905b00(undefined8 param_1,longlong param_2)
   *presourceHash = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(presourceHash + 4);
-  *presourceHash = &UNK_18098bdc8;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceHashTemplate;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -43966,9 +43966,9 @@ void Unwind_180905f90(undefined8 param_1,longlong param_2)
   *presourceHash = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(presourceHash + 4);
-  *presourceHash = &UNK_18098bdc8;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceHashTemplate;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -45155,8 +45155,8 @@ void Unwind_180906530(undefined8 param_1,longlong param_2)
   presourceHash = *(undefined8 **)(param_2 + 0x48);
   *presourceHash = &UNK_180a02e68;
   presourceHash[2] = &SystemDataStructure;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -45362,8 +45362,8 @@ void Unwind_180906630(undefined8 param_1,longlong param_2)
   presourceHash = *(undefined8 **)(param_2 + 0xa0);
   *presourceHash = &UNK_180a02e68;
   presourceHash[2] = &SystemDataStructure;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -45511,8 +45511,8 @@ void Unwind_180906780(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0xa0);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -45563,8 +45563,8 @@ void Unwind_1809067c0(undefined8 param_1,longlong param_2)
   presourceHash = *(undefined8 **)(param_2 + 0x50);
   *presourceHash = &UNK_180a02e68;
   presourceHash[2] = &SystemDataStructure;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -47333,8 +47333,8 @@ void Unwind_180906e70(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x178);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -48615,8 +48615,8 @@ void Unwind_180907530(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x30);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -48628,8 +48628,8 @@ void Unwind_180907540(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x30);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -48689,8 +48689,8 @@ void Unwind_180907590(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x40);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -48860,8 +48860,8 @@ void Unwind_1809076a0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x38);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -52351,9 +52351,9 @@ void Unwind_1809088d0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x28);
-  *presourceHash = &UNK_18098bdc8;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceHashTemplate;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -52365,8 +52365,8 @@ void Unwind_1809088e0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x28);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -56196,8 +56196,8 @@ void Unwind_180909990(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0xe0);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -56534,9 +56534,9 @@ void Unwind_180909b70(undefined8 param_1,longlong param_2)
   *presourceHash = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(presourceHash + 4);
-  *presourceHash = &UNK_18098bdc8;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceHashTemplate;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -70434,7 +70434,7 @@ void Unwind_18090e8d0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x98) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x98) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0x68) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x68) = &ResourceDescriptorTemplate;
   if (*(longlong *)(param_2 + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -70520,7 +70520,7 @@ void Unwind_18090e910(undefined8 param_1,longlong param_2)
 void Unwind_18090e920(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x68) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x68) = &ResourceDescriptorTemplate;
   if (*(longlong *)(param_2 + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -71326,8 +71326,8 @@ void Unwind_18090edb0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x150);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -71348,9 +71348,9 @@ void Unwind_18090edd0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x88);
-  *presourceHash = &UNK_18098bdc8;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceHashTemplate;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -71390,8 +71390,8 @@ void Unwind_18090ee00(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x88);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -71426,9 +71426,9 @@ void Unwind_18090ee30(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x98);
-  *presourceHash = &UNK_18098bdc8;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceHashTemplate;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -71468,8 +71468,8 @@ void Unwind_18090ee60(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x98);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -73700,9 +73700,9 @@ void Unwind_18090fa20(undefined8 param_1,longlong param_2)
   *presourceHash = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(presourceHash + 4);
-  *presourceHash = &UNK_18098bdc8;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceHashTemplate;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -74384,8 +74384,8 @@ void Unwind_18090ff00(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x100);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -75579,9 +75579,9 @@ void Unwind_180910400(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x60);
-  *presourceHash = &UNK_18098bdc8;
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceHashTemplate;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 
@@ -75593,8 +75593,8 @@ void Unwind_180910410(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x60);
-  *presourceHash = &UNK_180a21720;
-  *presourceHash = &UNK_180a21690;
+  *presourceHash = &ResourceTableTemplate;
+  *presourceHash = &ResourceCacheTemplate;
   return;
 }
 

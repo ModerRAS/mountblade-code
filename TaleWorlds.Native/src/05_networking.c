@@ -16201,7 +16201,7 @@ NetworkHandle ValidateNetworkConnection(longlong connectionContext)
   if (networkStatus2 != 0) {
     tertiaryNetworkFlag = 0;
   }
-  tertiaryNetworkFlag = FUN_1807411a0(tertiaryNetworkFlag,0,0,0);
+  tertiaryNetworkFlag = CreateNetworkConnectionHandle(tertiaryNetworkFlag,0,0,0);
   if ((int)tertiaryNetworkFlag == 0) {
     return 0;
   }
@@ -16717,7 +16717,7 @@ LAB_18084f0bc:
         networkStatus2 = *pnetworkStatus11;
       }
     }
-    FUN_1808bb9a0(quaternaryNetworkFlag);
+    CleanupNetworkConnectionResources(quaternaryNetworkFlag);
                     // WARNING: Subroutine does not return
     ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
   }
@@ -16848,7 +16848,7 @@ LAB_18084f0bc:
         networkStatus2 = *pnetworkStatus11;
       }
     }
-    FUN_1808bb9a0(quaternaryNetworkFlag);
+    CleanupNetworkConnectionResources(quaternaryNetworkFlag);
                     // WARNING: Subroutine does not return
     ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
   }
@@ -22927,7 +22927,7 @@ NetworkHandle ValidateNetworkConnectionContext(longlong connectionContext)
 
 
 
-NetworkHandle FUN_180853180(longlong connectionContext,int packetData,NetworkStatus dataSize)
+NetworkHandle ProcessNetworkBufferTemplateEx(longlong connectionContext,int packetData,NetworkStatus dataSize)
 
 {
   NetworkHandle primaryNetworkFlag;
@@ -23091,7 +23091,7 @@ LAB_180853370:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_180853304(NetworkHandle connectionContext,int packetData)
+NetworkHandle SendNetworkPacketDataEx(NetworkHandle connectionContext,int packetData)
 
 {
   longlong lVar1;
@@ -23125,7 +23125,7 @@ LAB_180853370:
 
 
 
-NetworkHandle FUN_1808533bb(void)
+NetworkHandle GetNetworkPacketSize(void)
 
 {
   return 0x26;
@@ -23133,7 +23133,7 @@ NetworkHandle FUN_1808533bb(void)
 
 
 
-NetworkHandle FUN_1808533d0(longlong connectionContext,int *packetData)
+NetworkHandle ParseNetworkPacketHeader(longlong connectionContext,int *packetData)
 
 {
   NetworkHandle *networkPointer1;
@@ -23356,7 +23356,7 @@ void NetworkPacketProcessor(longlong connectionContext,NetworkHandle packetData)
 
 
 
-NetworkHandle FUN_1808538a0(NetworkHandle *connectionContext,longlong packetData)
+NetworkHandle ProcessNetworkSecurityValidation(NetworkHandle *connectionContext,longlong packetData)
 
 {
   int networkStatus1;
@@ -23401,7 +23401,7 @@ NetworkHandle FUN_1808538a0(NetworkHandle *connectionContext,longlong packetData
 
 
 
-NetworkHandle FUN_180853980(longlong connectionContext)
+NetworkHandle InitializeNetworkConnectionContext(longlong connectionContext)
 
 {
   NetworkHandle *networkPointer1;
@@ -23485,7 +23485,7 @@ NetworkHandle FUN_180853980(longlong connectionContext)
 
 
 
-NetworkHandle FUN_180853ba0(longlong connectionContext,byte packetData)
+NetworkHandle SendNetworkControlPacket(longlong connectionContext,byte packetData)
 
 {
   NetworkHandle primaryNetworkFlag;
@@ -23540,7 +23540,7 @@ void NetworkConnectionDataSender(NetworkHandle connectionContext,int packetData)
 
 
 
-NetworkHandle FUN_180853c50(longlong connectionContext,uint packetData)
+NetworkHandle SendNetworkDataPacket(longlong connectionContext,uint packetData)
 
 {
   longlong lVar1;
@@ -23621,7 +23621,7 @@ LAB_180853ee2:
 
 
 
-NetworkHandle FUN_180853d20(NetworkHandle *connectionContext,NetworkHandle packetData)
+NetworkHandle CompareNetworkConnectionHandles(NetworkHandle *connectionContext,NetworkHandle packetData)
 
 {
   longlong lVar1;
@@ -23687,7 +23687,7 @@ NetworkHandle FUN_180853d20(NetworkHandle *connectionContext,NetworkHandle packe
 
 
 
-byte FUN_180853e60(NetworkHandle *connectionContext)
+byte GetNetworkConnectionType(NetworkHandle *connectionContext)
 
 {
   longlong lVar1;
@@ -23808,7 +23808,7 @@ void NetworkConnectionCharDataProcessor(longlong connectionContext,char packetDa
 
 
 NetworkHandle *
-FUN_180854040(NetworkHandle *connectionContext,NetworkHandle packetData,NetworkHandle dataSize,NetworkHandle param_4,
+ProcessNetworkConnectionLifecycle(NetworkHandle *connectionContext,NetworkHandle packetData,NetworkHandle dataSize,NetworkHandle param_4,
              NetworkHandle param_5,NetworkHandle param_6)
 
 {
@@ -23923,7 +23923,7 @@ NetworkHandle ValidateNetworkConnection(longlong connectionContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1808542a0(longlong connectionContext,int *packetData,uint dataSize,uint param_4,char param_5)
+int ProcessNetworkPacketRouting(longlong connectionContext,int *packetData,uint dataSize,uint param_4,char param_5)
 
 {
   int *pnetworkStatus1;
@@ -24085,7 +24085,7 @@ LAB_1808545a3:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1808542fa(void)
+int GetNetworkConnectionCount(void)
 
 {
   int *pnetworkStatus1;
@@ -24246,7 +24246,7 @@ LAB_1808545a3:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkStatus FUN_1808545c4(NetworkHandle connectionContext,longlong packetData)
+NetworkStatus ValidateNetworkConnectionState(NetworkHandle connectionContext,longlong packetData)
 
 {
   int *pnetworkStatus1;
@@ -24266,7 +24266,7 @@ NetworkStatus FUN_1808545c4(NetworkHandle connectionContext,longlong packetData)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 NetworkStatus
-FUN_180854610(longlong connectionContext,ulonglong packetData,NetworkStatus dataSize,NetworkStatus param_4,
+ProcessNetworkBufferDataEx(longlong connectionContext,ulonglong packetData,NetworkStatus dataSize,NetworkStatus param_4,
              NetworkStatus param_5,NetworkStatus param_6)
 
 {
@@ -24359,7 +24359,7 @@ LAB_1808547bc:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkStatus FUN_18085461a(longlong connectionContext,ulonglong packetData,NetworkStatus dataSize,NetworkStatus param_4)
+NetworkStatus ProcessNetworkPacketCompression(longlong connectionContext,ulonglong packetData,NetworkStatus dataSize,NetworkStatus param_4)
 
 {
   int *pnetworkStatus1;
