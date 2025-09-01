@@ -7630,12 +7630,12 @@ void ProcessLongNetworkConnectionPacketTransfer(longlong connectionContext,Netwo
 void ProcessNetworkConnectionPacketWriteOperation(longlong connectionContext,NetworkHandle packetData)
 
 {
-  int networkStatus1;
+  int networkWriteStatus;
   
-  networkStatus1 = FUN_18088ee60(packetData,connectionContext + 0x10);
-  if (networkStatus1 == 0) {
-    networkStatus1 = FUN_18088ee20(packetData,connectionContext + 0x18);
-    if (networkStatus1 == 0) {
+  networkWriteStatus = FUN_18088ee60(packetData,connectionContext + 0x10);
+  if (networkWriteStatus == 0) {
+    networkWriteStatus = FUN_18088ee20(packetData,connectionContext + 0x18);
+    if (networkWriteStatus == 0) {
       FUN_18088ee20(packetData,connectionContext + 0x1c);
     }
   }
