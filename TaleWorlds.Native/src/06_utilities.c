@@ -410,14 +410,14 @@ void* DatabaseTransactionLogger;
 void* DatabaseTransactionStateManager;
 void* DatabaseTransactionRollbackManager;
 void* DatabaseTransactionCommitManager;
-undefined DatabaseSystemConfigTable;
-undefined DatabaseSystemStatusTable;
-undefined DatabaseSystemIndexTable;
-undefined DatabaseSystemLockTable;
-undefined DatabaseSystemCacheTable;
-undefined DatabaseSystemConnectionTable;
-undefined DatabaseSystemTransactionTable;
-undefined DatabaseSystemBackupTable;
+void* DatabaseSystemConfigTable;
+void* DatabaseSystemStatusTable;
+void* DatabaseSystemIndexTable;
+void* DatabaseSystemLockTable;
+void* DatabaseSystemCacheTable;
+void* DatabaseSystemConnectionTable;
+void* DatabaseSystemTransactionTable;
+void* DatabaseSystemBackupTable;
 void* SystemResourceConfigTable;
 void* SystemMemoryConfigTable;
 void* SystemThreadConfigTable;
@@ -437,22 +437,22 @@ void* SystemListConfigTable;
 void* SystemHashConfigTable;
 void* SystemTreeConfigTable;
 void* SystemGraphConfigTable;
-undefined SystemCacheConfig;
-undefined SystemNetworkConfig;
-undefined SystemGraphicsConfig;
-undefined SystemAudioConfig;
-undefined SystemInputConfig;
-undefined SystemPhysicsConfig;
-undefined SystemAnimationConfig;
-undefined SystemScriptingConfig;
-undefined SystemFileSystemConfig;
-undefined SystemDatabaseConfig;
-undefined SystemSecurityConfig;
-undefined SystemLoggingConfig;
-undefined SystemPerformanceConfig;
-undefined SystemLocalizationConfig;
-undefined SystemModdingConfig;
-undefined SystemDebugConfig;
+void* SystemCacheConfig;
+void* SystemNetworkConfig;
+void* SystemGraphicsConfig;
+void* SystemAudioConfig;
+void* SystemInputConfig;
+void* SystemPhysicsConfig;
+void* SystemAnimationConfig;
+void* SystemScriptingConfig;
+void* SystemFileSystemConfig;
+void* SystemDatabaseConfig;
+void* SystemSecurityConfig;
+void* SystemLoggingConfig;
+void* SystemPerformanceConfig;
+void* SystemLocalizationConfig;
+void* SystemModdingConfig;
+void* SystemDebugConfig;
 void* SystemThreadConfigTable;
 void* SystemProcessConfigTable;
 void* SystemEventConfigTable;
@@ -466,9 +466,9 @@ void* SystemBarrierConfigTable;
 void* SystemPoolConfigTable;
 void* SystemQueueConfigTable;
 void* SystemStackConfigTable;
-undefined* SystemConfigurationTable;
-undefined* SystemStatusTable;
-undefined* SystemResourceTable;
+void* SystemConfigurationTable;
+void* SystemStatusTable;
+void* SystemResourceTable;
 undefined SystemDataBuffer001;
 undefined SystemDataBuffer002;
 undefined SystemDataBuffer003;
@@ -12368,7 +12368,11 @@ LAB_180896ce3:
  * @param stackData 栈数据，包含错误处理的上下文信息
  * @note 此函数不返回，直接跳转到错误处理程序
  */
-void ModuleProcessErrorHandler(void)
+/**
+ * @brief 模块处理错误处理器
+ * 
+ * 该函数负责处理模块级别的错误，执行必要的清理操作
+ */
 void ModuleProcessErrorHandler(void)
 {
                     // WARNING: Subroutine does not return
