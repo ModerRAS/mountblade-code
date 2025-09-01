@@ -28186,8 +28186,8 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long Conf
   ConfigureSystemData(plocalBufferAddress,_DAT_180c868e8,&puStack_1e0,&uStack_148);
   ReleaseSystemResources(plocalBufferAddress);
   (**(code **)(*(long long *)SystemResourcePointer[0x56] + 0x138))((long long *)SystemResourcePointer[0x56],plocalBufferAddress);
-  FUN_180199500(plocalBufferAddress,0x3d072b02,1);
-  FUN_1801a2ea0(plocalBufferAddress);
+  InitializeSystemBuffer(plocalBufferAddress,0x3d072b02,1);
+  UpdateSystemData(plocalBufferAddress);
   (**(code **)(*(long long *)SystemResourcePointer[0x56] + 0x140))((long long *)SystemResourcePointer[0x56],plocalBufferAddress);
   Sleep(1000);
   puStack_1e0 = &SystemGlobalDataReference;
@@ -31486,7 +31486,7 @@ void ProcessSystemResourceData(long long *SystemResourcePointer,void* Configurat
 void InitializeSystemResource(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_180058710(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ProcessSystemResourceExtension(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
