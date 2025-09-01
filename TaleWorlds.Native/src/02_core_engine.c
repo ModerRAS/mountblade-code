@@ -33650,9 +33650,9 @@ void engine_unnamed_function_1290(longlong *engine_data_structure_ptr)
   ulonglong engine_stack_uint_48;
   ulonglong aengine_stack_uint_40 [2];
   uint64 engine_stack_uint_30;
-  char cStack_28;
-  char cStack_27;
-  char cStack_26;
+  char engine_stack_char_28;
+  char engine_stack_char_27;
+  char engine_stack_char_26;
   ulonglong engine_stack_uint_20;
   
   engine_stack_value_60 = 0xfffffffffffffffe;
@@ -33708,14 +33708,14 @@ void engine_unnamed_function_1290(longlong *engine_data_structure_ptr)
       (**(code **)(*engine_data_structure_ptr + 0x38))(engine_data_structure_ptr);
       engine_unnamed_function_5940(&engine_stack_pointer_58);
       if (pengine_stack_uint_50 != (ulonglong *)0x0) {
-        if (cStack_26 != '\0') {
+        if (engine_stack_char_26 != '\0') {
           engine_unnamed_function_1180(engine_stack_pointer_58);
         }
         engine_unnamed_function_1740(&engine_stack_uint_48);
-        if (cStack_28 != '\0') {
+        if (engine_stack_char_28 != '\0') {
           engine_unnamed_function_1590(engine_stack_pointer_58);
         }
-        if (cStack_27 != '\0') {
+        if (engine_stack_char_27 != '\0') {
           engine_unnamed_function_1590(engine_stack_pointer_58);
         }
         structure_data_pointer = pengine_stack_uint_50;
@@ -56326,9 +56326,9 @@ void engine_unnamed_function_4330(longlong *engine_data_structure_ptr,uint64 eng
   uint8 aengine_stack_uint_48 [8];
   uint64 engine_stack_uint_40;
   longlong *pengine_stack_long_30;
-  char cStack_28;
-  char cStack_27;
-  char cStack_26;
+  char engine_stack_char_28;
+  char engine_stack_char_27;
+  char engine_stack_char_26;
   
   if (engine_data_structure_ptr != (longlong *)0x0) {
     (**(code **)(*engine_data_structure_ptr + 0x28))();
@@ -56348,14 +56348,14 @@ void engine_unnamed_function_4330(longlong *engine_data_structure_ptr,uint64 eng
   engine_stack_uint_5c = 0x3f800000;
   engine_unnamed_function_5910(&pengine_stack_long_58,engine_result_flag_ptr,engine_comparison_params,0xff,&engine_stack_uint_68,1,0,0,1);
   if ((pengine_stack_long_58 != (longlong *)0x0) && (pengine_stack_long_50 != (longlong *)0x0)) {
-    if (cStack_26 != '\0') {
+    if (engine_stack_char_26 != '\0') {
       engine_unnamed_function_1180();
     }
     engine_unnamed_function_1740(aengine_stack_uint_48);
-    if (cStack_28 != '\0') {
+    if (engine_stack_char_28 != '\0') {
       engine_unnamed_function_1590(pengine_stack_long_58);
     }
-    if (cStack_27 != '\0') {
+    if (engine_stack_char_27 != '\0') {
       engine_unnamed_function_1590(pengine_stack_long_58);
     }
     pengine_temp_long = pengine_stack_long_50;
