@@ -32279,7 +32279,19 @@ void CleanupSystemResourceHandlerB(uint8_t objectContextParam,int64_t validation
 
 
 
-void Unwind_180902bb0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 清理系统资源处理器C
+ * 
+ * 该函数负责清理系统资源处理器C的相关资源
+ * 释放内存并重置相关指针
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数会清理系统资源处理器C的资源
+ * @warning 调用此函数后，相关资源将被释放
+ */
+void CleanupSystemResourceHandlerC(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int *pintegerValue1;
@@ -32315,7 +32327,19 @@ void Unwind_180902bb0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902bc0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 初始化系统数据结构指针
+ * 
+ * 该函数负责初始化系统数据结构指针
+ * 设置系统数据结构的引用
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数会设置系统数据结构指针
+ * @warning 调用此函数后，系统数据结构指针将被设置
+ */
+void InitializeSystemDataStructurePointer(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   **(uint8_t **)(validationContextParam + 0x90) = &SystemDataStructure;
@@ -32324,7 +32348,19 @@ void Unwind_180902bc0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902bd0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 设置系统资源处理器模板
+ * 
+ * 该函数负责设置系统资源处理器模板
+ * 初始化资源处理器的相关结构
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数会设置系统资源处理器模板
+ * @warning 调用此函数后，系统资源处理器模板将被设置
+ */
+void SetupSystemResourceHandlerTemplate(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   uint8_t *presourceHash;
