@@ -22902,7 +22902,12 @@ LAB_18089cd76:
 
 
 
-ulonglong FUN_18089ccb9(void)
+/**
+ * 验证和处理资源数据完整性
+ * 该函数负责验证资源数据的完整性，包括哈希计算、边界检查和数据处理
+ * @return 处理状态码：0表示成功，其他值表示错误
+ */
+ulonglong ValidateAndProcessResourceDataIntegrity(void)
 
 {
   longlong *plVar1;
@@ -83576,7 +83581,14 @@ void TriggerResourceHandleOperation(undefined8 *ResourceHandlePtr)
 
 
  void FUN_1809414f0(void)
-void FUN_1809414f0(void)
+/**
+ * @brief 初始化资源表管理器
+ * 
+ * 该函数负责初始化系统的资源表管理器
+ * 设置资源表的基础数据结构和初始化状态
+ * 遍历资源表并进行必要的初始化操作
+ */
+void InitializeResourceTableManager(void)
 
 {
   longlong lVar1;
@@ -83637,7 +83649,13 @@ void InitializeGlobalModuleB(void)
 
 
  void FUN_1809415d0(void)
-void FUN_1809415d0(void)
+/**
+ * @brief 初始化系统数据结构A
+ * 
+ * 该函数负责初始化系统的数据结构A
+ * 设置基础数据结构的默认值和状态
+ */
+void InitializeSystemDataStructureA(void)
 
 {
   _DAT_180bf5208 = &UNK_18098bcb0;
