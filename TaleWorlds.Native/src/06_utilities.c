@@ -105,7 +105,7 @@ void* NetworkSystemModuleHandle;
  * 该函数负责获取系统的第一个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t GetSystemStatusFlagPrimary(void);
+uint32_t GetCoreEngineSystemStatusFlag(void);
 bool SystemStatusFlagCoreInitialized;
 
 
@@ -115,7 +115,7 @@ bool SystemStatusFlagCoreInitialized;
  * 该函数负责获取系统的第二个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t GetSystemStatusFlagSecondary(void);
+uint32_t GetRenderingEngineSystemStatusFlag(void);
 bool SystemStatusFlagEngineInitialized;
 
 
@@ -125,7 +125,7 @@ bool SystemStatusFlagEngineInitialized;
  * 该函数负责获取系统的第三个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t GetSystemStatusFlagTertiary(void);
+uint32_t GetGraphicsSystemStatusFlag(void);
 bool SystemStatusFlagGraphicsInitialized;
 
  /**
@@ -134,7 +134,7 @@ bool SystemStatusFlagGraphicsInitialized;
  * 该函数负责获取系统的第四个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t GetSystemStatusFlagQuaternary(void);
+uint32_t GetAudioSystemStatusFlag(void);
 bool SystemStatusFlagAudioInitialized;
 
 
@@ -148,9 +148,9 @@ bool SystemStatusFlagAudioInitialized;
  * @note 此函数通常在系统关闭或线程终止时调用
  * @warning 调用此函数后，所有相关的同步对象将不再可用
  */
-void DestroyThreadSyncObjects(void);
-void* ThreadSyncObjectHandle;
-void* ThreadSyncExecutionContext;
+void DestroyThreadSynchronizationObjects(void);
+void* ThreadSynchronizationObjectHandle;
+void* ThreadSynchronizationExecutionContext;
 
  /**
  * @brief 关闭系统句柄

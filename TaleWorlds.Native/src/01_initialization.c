@@ -639,10 +639,10 @@ void* SystemConfigurationDataQuaternary;
 void* SystemConfigurationDataQuinary;
 void* SystemConfigurationDataSenary;
 // 系统数据缓冲区
-void* SystemDataBufferPrimary001;
-void* SystemDataBufferPrimary002;
-void* SystemDataBufferPrimary003;
-void* SystemDataBufferPrimary004;
+void* SystemDataBufferPrimaryFirst;
+void* SystemDataBufferPrimarySecond;
+void* SystemDataBufferPrimaryThird;
+void* SystemDataBufferPrimaryFourth;
 void* SystemDataBufferPrimary005;
 void* SystemDataBufferPrimary006;
 void* SystemDataBufferPrimary007;
@@ -18075,13 +18075,13 @@ void InitializeMainSystemController(long long systemParameter)
   long long* SystemInitializationCounter;
   void* SystemMemoryAllocationFlags;
   
-  allocationFlags = 0xfffffffffffffffe;
+  SystemMemoryAllocationFlags = 0xfffffffffffffffe;
   InitializeSystemMemoryPool();
-  _DAT_180c82864 = _DAT_180c82864 + 1;
+  SystemInitializationCounter = SystemInitializationCounter + 1;
   InitializeCoreEngine();
-  if (_DAT_180c91048 != (long long *)0x0) {
-    if ((void* *)*_DAT_180c91048 == &UNK_1809fe100) {
-      isActiveFlag = (char)_DAT_180c91048[2] != '\0';
+  if (SystemGlobalControllerPointer != (long long *)0x0) {
+    if ((void* *)*SystemGlobalControllerPointer == &SystemCoreObjectTemplate) {
+      isActiveFlag = (char)SystemGlobalControllerPointer[2] != '\0';
     }
     else {
       isActiveFlag = (**(code **)((void* *)*_DAT_180c91048 + 0x68))();
@@ -50204,19 +50204,19 @@ void ProcessSystemDataBlock(long long DataBlockHandle, long long *DataBufferPoin
     UIntBufferPointer = (uint *)DataBufferPointer[1];
   }
   *UIntBufferPointer = (uint)DataElementSize;
-  lVar6 = param_2[1] + 4;
-  param_2[1] = lVar6;
-  if (*(ushort *)(param_1 + 0x62) == 0) {
+  DataBlockSize = DataBufferPointer[1] + 4;
+  DataBufferPointer[1] = DataBlockSize;
+  if (*(ushort *)(DataBlockHandle + 0x62) == 0) {
     return;
   }
-  uVar2 = *(void* *)(param_1 + 0x5a);
-  uVar9 = (ulong long)*(ushort *)(param_1 + 0x62) * 4;
-  if ((ulong long)((*param_2 - lVar6) + param_2[2]) <= uVar9) {
-    FUN_180639bf0(param_2,uVar9 + (lVar6 - *param_2));
-    lVar6 = param_2[1];
+  DataPointer = *(void* *)(DataBlockHandle + 0x5a);
+  DataSize = (ulong long)*(ushort *)(DataBlockHandle + 0x62) * 4;
+  if ((ulong long)((*DataBufferPointer - DataBlockSize) + DataBufferPointer[2]) <= DataSize) {
+    ExpandDataBuffer(DataBufferPointer,DataSize + (DataBlockSize - *DataBufferPointer));
+    DataBlockSize = DataBufferPointer[1];
   }
-                    // WARNING: Subroutine does not return
-  memcpy(lVar6,uVar2,uVar9);
+  // WARNING: Subroutine does not return
+  memcpy(DataBlockSize, DataPointer, DataSize);
 }
 
 
