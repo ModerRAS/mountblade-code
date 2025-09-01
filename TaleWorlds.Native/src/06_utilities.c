@@ -1085,11 +1085,11 @@ void* MemoryStatisticsExtendedData;
  * 设置内存调试和错误检测功能
  */
 void InitializeMemoryDebugger(void);
-undefined MemoryDebuggerTable0;
-undefined MemoryDebuggerTable1;
-undefined MemoryDebuggerTable2;
-undefined MemoryDebuggerTable3;
-undefined MemoryDebuggerConfigData;
+void* MemoryDebuggerStateTable;
+void* MemoryDebuggerProcessTable;
+void* MemoryDebuggerMemoryTable;
+void* MemoryDebuggerControlTable;
+void* MemoryDebuggerConfigurationData;
 
  void SetupMemoryAlignment(void);
 /**
@@ -1235,9 +1235,9 @@ undefined SystemConfigTable2;
  */
 void ConfigureMemoryIsolation;
 undefined SystemConfigTable3;
-undefined DAT_180bf9948;
+void* MemoryValidationContextData;
 void* MemoryIsolationConfigData;
-undefined DAT_180bf9990;
+void* MemoryValidationStatusData;
 undefined DAT_180bf9998;
 undefined DAT_180bf99a0;
 
@@ -9711,8 +9711,7 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
 
 
 
- 494e(void)
-494e(void)
+ void FinalizeSecurityOperationWrapper(void)
 
 {
   ulonglong in_stack_000000b0;

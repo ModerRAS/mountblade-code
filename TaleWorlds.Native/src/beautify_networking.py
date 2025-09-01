@@ -4,6 +4,7 @@
 """
 05_networking.c 函数美化脚本
 批量替换 FUN_ 函数为语义化名称
+包含 18085xxxx 和 18088xxxx 系列函数
 """
 
 import os
@@ -88,6 +89,92 @@ def beautify_networking_functions():
         'FUN_180851d20': 'ProcessNetworkStream',
         'FUN_180851d5f': 'ValidateNetworkHandle',
         'FUN_180851d83': 'GetDefaultNetworkHandle',
+        
+        # 18088xxxx 系列函数 (网络核心功能)
+        'FUN_1808801f0': 'ProcessNetworkConnectionRequest',
+        'FUN_180880350': 'ValidateNetworkConnectionData',
+        'FUN_180881eb0': 'EstablishNetworkConnection',
+        'FUN_180881fa0': 'ProcessNetworkPacketData',
+        'FUN_180881fbc': 'HandleNetworkPacketStream',
+        'FUN_180882120': 'InitializeNetworkSystem',
+        'FUN_180882143': 'ResetNetworkConnection',
+        'FUN_18088217c': 'ValidateNetworkPacketHeader',
+        'FUN_1808822c3': 'CleanupNetworkResources',
+        'FUN_1808822d5': 'CheckNetworkStatus',
+        'FUN_180882330': 'SendNetworkPacket',
+        'FUN_180882390': 'GetNetworkConnectionInfo',
+        'FUN_1808823b0': 'GetNetworkHandle',
+        'FUN_1808823f2': 'ShutdownNetworkSystem',
+        'FUN_180882400': 'CloseNetworkConnection',
+        'FUN_180882440': 'ResetNetworkBuffers',
+        'FUN_1808825ef': 'FlushNetworkQueue',
+        'FUN_180882610': 'ProcessNetworkBufferData',
+        'FUN_180882a50': 'ParseNetworkPacketHeader',
+        'FUN_180882c20': 'HandleNetworkDataTransfer',
+        'FUN_180882c70': 'FreeNetworkConnection',
+        'FUN_180882c94': 'GetNetworkErrorCode',
+        'FUN_180882db4': 'GetNetworkLastError',
+        'FUN_180882dd0': 'ReleaseNetworkHandle',
+        'FUN_180882df4': 'DestroyNetworkSocket',
+        'FUN_180882ee4': 'InitializeNetworkSocket',
+        'FUN_180882f00': 'AllocateNetworkBuffer',
+        'FUN_180882f24': 'CreateNetworkSocket',
+        'FUN_180882fec': 'GetNetworkBufferSize',
+        'FUN_180883010': 'ReserveNetworkMemory',
+        'FUN_180883034': 'GetNetworkMemorySize',
+        'FUN_180883110': 'PrepareNetworkTransfer',
+        'FUN_180883134': 'GetNetworkTransferStatus',
+        'FUN_180883279': 'ValidateNetworkProtocol',
+        'FUN_180883290': 'StartNetworkTransfer',
+        'FUN_1808832b4': 'GetNetworkProtocolVersion',
+        'FUN_180883405': 'CheckNetworkCompatibility',
+        'FUN_180883420': 'InitializeNetworkStream',
+        'FUN_180883444': 'ConfigureNetworkSocket',
+        'FUN_1808834ff': 'GetNetworkConfigData',
+        'FUN_180883520': 'SetupNetworkConnection',
+        'FUN_180883544': 'BindNetworkSocket',
+        'FUN_1808835ff': 'GetNetworkSocketType',
+        'FUN_180883620': 'EstablishNetworkStream',
+        'FUN_180883644': 'GetNetworkStreamInfo',
+        'FUN_180883732': 'ValidateNetworkStream',
+        'FUN_180883750': 'ProcessNetworkStream',
+        'FUN_180883774': 'GetNetworkStreamStatus',
+        'FUN_18088394e': 'InitializeNetworkStreamBuffer',
+        'FUN_180883960': 'HandleNetworkStreamData',
+        
+        # 网络数据包验证和处理函数
+        'FUN_18088ee20': 'ValidateNetworkPacket',
+        'FUN_18088ee60': 'ProcessNetworkPacket',
+        'FUN_18088eea0': 'ConvertNetworkFloatData',
+        'FUN_18088ef0e': 'ValidatePacketHeader',
+        'FUN_18088efaa': 'GetPacketSize',
+        'FUN_18088f050': 'HandlePacketTransfer',
+        'FUN_18088f1a0': 'ValidatePacketStream',
+        'FUN_18088f2d0': 'ProcessPacketStream',
+        'FUN_18088f310': 'InitializePacketStream',
+        'FUN_18088f3a0': 'HandlePacketChunk',
+        'FUN_18088f470': 'ValidatePacketChunk',
+        'FUN_18088f4d0': 'ProcessNetworkDataStream',
+        'FUN_18088f530': 'ProcessPacketChunk',
+        'FUN_18088f710': 'ValidatePacketData',
+        
+        # 网络缓冲区和数据处理函数
+        'FUN_18088c060': 'HandleBufferDataTransfer',
+        'FUN_18088c620': 'ProcessBufferQueue',
+        'FUN_18088c9b0': 'ValidateBufferIntegrity',
+        
+        # 网络内存管理函数
+        'FUN_18088ce50': 'FreeNetworkMemory',
+        'FUN_18088d850': 'ValidateMemoryPool',
+        'FUN_18088da50': 'ProcessMemoryRequest',
+        'FUN_18088dbf0': 'HandleMemoryTransfer',
+        'FUN_18088dcf0': 'ValidateMemoryTransfer',
+        'FUN_18088dd60': 'ProcessMemoryTransfer',
+        
+        # 网络事件和错误处理函数
+        'FUN_18088e480': 'ProcessNetworkEvent',
+        'FUN_18088e700': 'ProcessEventQueue',
+        'FUN_18088e8b0': 'ProcessEvent',
     }
     
     # 执行替换

@@ -63166,14 +63166,14 @@ void InitializeSystemEntryPoint(longlong systemContext,undefined8 entryPointData
 // 函数: void ExecuteSystemEntryPoint(undefined8 *entryPointPtr);
 void ExecuteSystemEntryPoint(undefined8 *entryPointPtr);
 
-// 函数: undefined FUN_18004c090;
-undefined FUN_18004c090;
+// 函数: 系统初始化完成检查函数
+undefined SystemInitializationCompleteCheck;
 
-// 函数: undefined FUN_180055ed0;
-undefined FUN_180055ed0;
-undefined4 UNK_180d49150;
-undefined UNK_1800a0f67;
-undefined UNK_1800a127e;
+// 函数: 系统配置验证函数
+undefined SystemConfigurationValidation;
+undefined4 SystemStatusIndicator;
+undefined SystemInitializationFlag;
+undefined SystemConfigurationFlag;
 
 undefined8 FUN_180779434(void)
 
