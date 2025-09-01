@@ -229,34 +229,39 @@ char SystemConfigDataTemplateDuodenaryTertiary[] = "SystemConfigTemplateDuodenar
 char SystemConfigDataTemplateTerdenaryTertiary[] = "SystemConfigTemplateTerdenaryTertiary";
 
 // 系统模块配置字符串模板 - 用于模块初始化和配置
-char SystemModuleConfigTemplate22C70[] = "SystemModuleConfigA";
-char SystemModuleConfigTemplate22C58[] = "SystemModuleConfigB";
-char SystemModuleConfigTemplate22D28[] = "SystemModuleConfigC";
-char SystemModuleConfigTemplate22D08[] = "SystemModuleConfigD";
-char SystemModuleConfigTemplate22CE8[] = "SystemModuleConfigE";
-char SystemModuleConfigTemplate22CC8[] = "SystemModuleConfigF";
-char SystemModuleConfigTemplate22DB0[] = "SystemModuleConfigG";
-char SystemModuleConfigTemplate22D88[] = "SystemModuleConfigH";
-char SystemModuleConfigTemplate22D68[] = "SystemModuleConfigI";
-char SystemModuleConfigTemplate22E40[] = "SystemModuleConfigJ";
-char SystemModuleConfigTemplate22E20[] = "SystemModuleConfigK";
-char SystemModuleConfigTemplate22DF8[] = "SystemModuleConfigL";
-char SystemModuleConfigTemplate22DD0[] = "SystemModuleConfigM";
-char SystemModuleConfigTemplate22EB0[] = "SystemModuleConfigN";
-char SystemModuleConfigTemplate22E90[] = "SystemModuleConfigO";
-char SystemModuleConfigTemplate22E70[] = "SystemModuleConfigP";
-char SystemModuleConfigTemplate22E58[] = "SystemModuleConfigQ";
-char SystemModuleConfigTemplate22F28[] = "SystemModuleConfigR";
-char SystemModuleConfigTemplate22F10[] = "SystemModuleConfigS";
-char SystemModuleConfigTemplate22EF8[] = "SystemModuleConfigT";
-char SystemModuleConfigTemplate22ED8[] = "SystemModuleConfigU";
-char SystemModuleConfigTemplate22F90[] = "SystemModuleConfigV";
-char SystemModuleConfigTemplate22F78[] = "SystemModuleConfigW";
-char SystemModuleConfigTemplate22F60[] = "SystemModuleConfigX";
-char SystemModuleConfigTemplate22F40[] = "SystemModuleConfigY";
-char SystemModuleConfigTemplate23018[] = "SystemModuleConfigZ";
-char SystemModuleConfigTemplate23000[] = "SystemModuleConfigAA";
-char SystemModuleConfigTemplate23068[] = "SystemModuleConfigBB";
+char SystemModuleConfigTemplatePrimary[] = "SystemModuleConfigPrimary";
+char SystemModuleConfigTemplateSecondary[] = "SystemModuleConfigSecondary";
+char SystemModuleConfigTemplateTertiary[] = "SystemModuleConfigTertiary";
+char SystemModuleConfigTemplateQuaternary[] = "SystemModuleConfigQuaternary";
+char SystemModuleConfigTemplateQuinary[] = "SystemModuleConfigQuinary";
+char SystemModuleConfigTemplateSenary[] = "SystemModuleConfigSenary";
+char SystemModuleConfigTemplateSeptenary[] = "SystemModuleConfigSeptenary";
+char SystemModuleConfigTemplateOctonary[] = "SystemModuleConfigOctonary";
+char SystemModuleConfigTemplateNonary[] = "SystemModuleConfigNonary";
+char SystemModuleConfigTemplateDenary[] = "SystemModuleConfigDenary";
+char SystemModuleConfigTemplateUndenary[] = "SystemModuleConfigUndenary";
+char SystemModuleConfigTemplateDuodenary[] = "SystemModuleConfigDuodenary";
+char SystemModuleConfigTemplateTerdenary[] = "SystemModuleConfigTerdenary";
+char SystemModuleConfigTemplateQuaternarySecondary[] = "SystemModuleConfigQuaternarySecondary";
+char SystemModuleConfigTemplateQuinarySecondary[] = "SystemModuleConfigQuinarySecondary";
+char SystemModuleConfigTemplateSenarySecondary[] = "SystemModuleConfigSenarySecondary";
+char SystemModuleConfigTemplateSeptenarySecondary[] = "SystemModuleConfigSeptenarySecondary";
+char SystemModuleConfigTemplateOctonarySecondary[] = "SystemModuleConfigOctonarySecondary";
+char SystemModuleConfigTemplateNonarySecondary[] = "SystemModuleConfigNonarySecondary";
+char SystemModuleConfigTemplateDenarySecondary[] = "SystemModuleConfigDenarySecondary";
+char SystemModuleConfigTemplateUndenarySecondary[] = "SystemModuleConfigUndenarySecondary";
+char SystemModuleConfigTemplateDuodenarySecondary[] = "SystemModuleConfigDuodenarySecondary";
+char SystemModuleConfigTemplateTerdenarySecondary[] = "SystemModuleConfigTerdenarySecondary";
+char SystemModuleConfigTemplateQuaternaryTertiary[] = "SystemModuleConfigQuaternaryTertiary";
+char SystemModuleConfigTemplateQuinaryTertiary[] = "SystemModuleConfigQuinaryTertiary";
+char SystemModuleConfigTemplateSenaryTertiary[] = "SystemModuleConfigSenaryTertiary";
+char SystemModuleConfigTemplateSeptenaryTertiary[] = "SystemModuleConfigSeptenaryTertiary";
+char SystemModuleConfigTemplateOctonaryTertiary[] = "SystemModuleConfigOctonaryTertiary";
+char SystemModuleConfigTemplateNonaryTertiary[] = "SystemModuleConfigNonaryTertiary";
+char SystemModuleConfigTemplateDenaryTertiary[] = "SystemModuleConfigDenaryTertiary";
+char SystemModuleConfigTemplateUndenaryTertiary[] = "SystemModuleConfigUndenaryTertiary";
+char SystemModuleConfigTemplateDuodenaryTertiary[] = "SystemModuleConfigDuodenaryTertiary";
+char SystemModuleConfigTemplateTerdenaryTertiary[] = "SystemModuleConfigTerdenaryTertiary";
 
 /**
  * 初始化渲染系统模块
@@ -12793,70 +12798,69 @@ LAB_1808fc75b:
  * @param configData 配置数据
  * @return 处理结果状态码
  */
+/**
+ * 处理系统字符串数据
+ * 将源字符串数据按照配置参数处理后写入目标缓冲区
+ * 
+ * @param targetBuffer 目标缓冲区指针，用于存储处理后的数据
+ * @param param1 处理参数1，控制字符串处理方式
+ * @param param2 处理参数2，控制字符串处理选项
+ * @param sourceBuffer 源字符串数据缓冲区指针
+ * @param configData 配置数据指针，包含字符串处理规则
+ * @return 处理成功返回0，失败返回-1
+ */
 int ProcessSystemStringData(void* targetBuffer, int param1, int param2, void* sourceBuffer, void* configData);
 
 /**
- * @brief 初始化系统缓冲区
+ * 初始化系统缓冲区
+ * 为系统缓冲区分配内存并进行初始化设置
  * 
- * 该函数负责初始化系统中的各种缓冲区，为后续的
- * 数据处理做准备。设置缓冲区的初始状态和大小。
- * 
- * @param bufferPtr 缓冲区指针
- * @param bufferSize 缓冲区大小
- * @return 初始化结果状态码
+ * @param bufferPtr 缓冲区指针，指向需要初始化的内存区域
+ * @param bufferSize 缓冲区大小，以字节为单位
+ * @return 初始化成功返回0，失败返回-1
  */
 int InitializeSystemBuffer(void* bufferPtr, int bufferSize);
 
 /**
- * @brief 处理系统数据缓冲区
+ * 处理系统数据缓冲区
+ * 将源数据缓冲区的内容处理后写入目标缓冲区
  * 
- * 该函数负责处理系统数据缓冲区中的数据，包括数据的
- * 复制、转换和验证等操作。确保数据的一致性和完整性。
- * 
- * @param targetBuffer 目标缓冲区指针
- * @param sourceBuffer 源缓冲区指针
- * @param bufferSize 缓冲区大小
- * @return 处理结果状态码
+ * @param targetBuffer 目标缓冲区指针，用于存储处理后的数据
+ * @param sourceBuffer 源数据缓冲区指针
+ * @param bufferSize 缓冲区大小，以字节为单位
+ * @return 处理成功返回0，失败返回-1
  */
 int ProcessSystemDataBuffer(void* targetBuffer, void* sourceBuffer, int bufferSize);
 
 /**
- * @brief 注册系统模块A
+ * 注册系统模块A
+ * 向系统注册第一个核心模块，初始化模块所需资源
  * 
- * 该函数负责注册系统中的第一个模块，通常用于核心
- * 系统组件的初始化和配置。
- * 
- * @return 注册结果状态码
+ * @return 注册成功返回0，失败返回-1
  */
 int RegisterSystemModuleA(void);
 
 /**
- * @brief 注册系统模块B
+ * 注册系统模块B
+ * 向系统注册第二个核心模块，初始化模块所需资源
  * 
- * 该函数负责注册系统中的第二个模块，通常用于扩展
- * 系统功能的初始化和配置。
- * 
- * @return 注册结果状态码
+ * @return 注册成功返回0，失败返回-1
  */
 int RegisterSystemModuleB(void);
 
 /**
- * @brief 注册系统模块C
+ * 注册系统模块C
+ * 向系统注册第三个核心模块，初始化模块所需资源
  * 
- * 该函数负责注册系统中的第三个模块，通常用于特定
- * 功能模块的初始化和配置。
- * 
- * @return 注册结果状态码
+ * @return 注册成功返回0，失败返回-1
  */
 int RegisterSystemModuleC(void);
 
 /**
- * @brief 注册系统模块D
+ * 注册系统模块D
+ * 向系统注册第四个核心模块，初始化模块所需资源
  * 
- * 该函数负责注册系统中的第四个模块，通常用于辅助
- * 功能模块的初始化和配置。
- * 
- * @return 注册结果状态码
+ * @return 注册成功返回0，失败返回-1
  */
 int RegisterSystemModuleD(void);
 
