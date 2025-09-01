@@ -6174,7 +6174,7 @@ void HandleNetworkPacketProcessing(NetworkStatus connectionContext,NetworkStatus
     }
   }
   else if (networkStatus1 != 0) goto LAB_1808469dd;
-  FUN_180868270(lStack_148,packetData,dataSize);
+  GetNetworkConnectionData(lStack_148,packetData,dataSize);
 LAB_1808469dd:
                     // WARNING: Subroutine does not return
   NetworkConnectionHandleRelease(&uStack_158);

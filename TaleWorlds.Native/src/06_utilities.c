@@ -1119,7 +1119,7 @@ void InitializeMemorySecurity;
 undefined DAT_180bf98d8;
 undefined DAT_180bf98e0;
 undefined DAT_180bf98e8;
-undefined UNK_180a22ce8;
+undefined MemorySecurityConfigData;
 undefined DAT_180bf9930;
 undefined DAT_180bf9938;
 
@@ -1133,7 +1133,7 @@ undefined DAT_180bf9938;
 void ConfigureMemoryIsolation;
 undefined DAT_180bf9940;
 undefined DAT_180bf9948;
-undefined UNK_180a22cc8;
+undefined MemoryIsolationConfigData;
 undefined DAT_180bf9990;
 undefined DAT_180bf9998;
 undefined DAT_180bf99a0;
@@ -6068,8 +6068,8 @@ void ExpandDynamicBufferCapacity(longlong objectContext, longlong systemContext)
   longlong bufferContext;
   
   validationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&bufferContext);
-  if (((validationStatus != 0) || (validationStatus = FUN_180867bc0(&tempStackBuffer), validationStatus != 0)) ||
-     (validationStatus = FUN_180868490(tempStackBuffer,systemContext,*(undefined8 *)(bufferContext + 8)), validationStatus != 0)) {
+  if (((validationStatus != 0) || (validationStatus = InitializeTempBuffer(&tempStackBuffer), validationStatus != 0)) ||
+     (validationStatus = ProcessSystemContext(tempStackBuffer,systemContext,*(undefined8 *)(bufferContext + 8)), validationStatus != 0)) {
     return;
   }
   newBufferPointer = 0;
@@ -6095,7 +6095,7 @@ void ExpandDynamicBufferCapacity(longlong objectContext, longlong systemContext)
     if (validationStatus < *(int *)(bufferContext + 0x28)) goto LAB_180891fc0;
     if (validationStatus != 0) {
       if ((0x3ffffffe < validationStatus * 8 - 1U) ||
-         (newBufferPointer = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),validationStatus * 8,&UNK_180957f70,
+         (newBufferPointer = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),validationStatus * 8,&UNK_180957f70,
                                 0xf4,0,0,1), newBufferPointer == 0)) goto LAB_180891fc0;
       if (*(int *)(bufferContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -6145,7 +6145,7 @@ void ProcessSystemBufferExpansion(undefined8 systemContext, undefined8 bufferCon
   longlong stackData1;
   longlong stackData2;
   
-  validationStatus = FUN_180868490(systemContext, bufferContext, *(undefined8 *)(stackData2 + 8));
+  validationStatus = ProcessSystemContext(systemContext, bufferContext, *(undefined8 *)(stackData2 + 8));
   if (validationStatus != 0) {
     return;
   }
@@ -6172,7 +6172,7 @@ void ProcessSystemBufferExpansion(undefined8 systemContext, undefined8 bufferCon
     if (iVar1 < *(int *)(in_stack_00000070 + 0x28)) goto LAB_180891fc0;
     if (iVar1 != 0) {
       if ((0x3ffffffe < iVar1 * 8 - 1U) ||
-         (resourceIndex = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar1 * 8,&UNK_180957f70,
+         (resourceIndex = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar1 * 8,&UNK_180957f70,
                                 0xf4,0), resourceIndex == 0)) goto LAB_180891fc0;
       if (*(int *)(in_stack_00000070 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -6248,7 +6248,7 @@ void ProcessDynamicBufferReallocation(void)
     if (iVar1 < *(int *)(unaff_RBX + 0x28)) goto LAB_180891fc0;
     if (iVar1 != 0) {
       if (0x3ffffffe < iVar1 * 8 - 1U) goto LAB_180891fc0;
-      resourceIndex = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar1 * 8,&UNK_180957f70,0xf4,0)
+      resourceIndex = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar1 * 8,&UNK_180957f70,0xf4,0)
       ;
       if (resourceIndex == 0) goto LAB_180891fc0;
       if (*(int *)(unaff_RBX + 0x28) != 0) {
@@ -6309,7 +6309,7 @@ void ProcessSystemConfigurationUpdate(int configIndex, int configSize)
     if (iVar2 < param_1) goto LAB_180891fc0;
     if (iVar2 != 0) {
       if (0x3ffffffe < iVar2 * 8 - 1U) goto LAB_180891fc0;
-      unaff_RSI = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar2 * 8,&UNK_180957f70,
+      unaff_RSI = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar2 * 8,&UNK_180957f70,
                                 0xf4);
       if (unaff_RSI == 0) goto LAB_180891fc0;
       if (*(int *)(unaff_RBX + 0x28) != 0) {
@@ -6411,7 +6411,7 @@ void ValidateObjectContextAndUpdateStatus(longlong objectContext, longlong syste
         *(undefined4 *)(param_1 + 0x18) = 2;
       }
       else {
-        iVar1 = FUN_1808c7f30(uStackX_8,param_1 + 0x18);
+        iVar1 = CalculateObjectHash(uStackX_8,param_1 + 0x18);
         if (iVar1 != 0) {
           return;
         }
@@ -7091,9 +7091,9 @@ undefined8 ValidateMatrixTransformationData(longlong matrixDataPointer,longlong 
     lVar10 = *(longlong *)(param_2 + 0x98);
     if ((*(int *)(lVar10 + 0x180) != 0) || (*(int *)(lVar10 + 0x184) != 0)) {
       alStackX_8[0] = 0;
-      FUN_180768b50(alStackX_8);
+      InitializeSecurityContext(alStackX_8);
       if (alStackX_8[0] == *(longlong *)((longlong)*(int *)(lVar10 + 0x17c) * 8 + 0x180c4f450)) {
-        uVar5 = FUN_18088dd60(lVar10,param_1);
+        uVar5 = ProcessResourceValidation(lVar10,param_1);
         if ((int)uVar5 == 0) {
           return 0;
         }
@@ -7653,9 +7653,9 @@ undefined8 ValidateObjectContextAndProcessParameterizedComplexFloatOperation(lon
     lVar5 = *(longlong *)(param_2 + 0x98);
     if ((*(int *)(lVar5 + 0x180) != 0) || (*(int *)(lVar5 + 0x184) != 0)) {
       lStackX_8 = 0;
-      FUN_180768b50(&lStackX_8,param_1,param_3,param_4,unaff_RDI);
+      InitializeSecurityContext(&lStackX_8,param_1,param_3,param_4,unaff_RDI);
       if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar5 + 0x17c) * 8 + 0x180c4f450)) {
-        uVar4 = FUN_18088dd60(lVar5,param_1);
+        uVar4 = ProcessResourceValidation(lVar5,param_1);
         if ((int)uVar4 == 0) {
           return 0;
         }
@@ -8005,9 +8005,9 @@ undefined8 ValidateAndProcessObjectContextWithParameters(longlong param_1,longlo
   contextPointer = *(longlong *)(param_2 + 0x98);
   if ((*(int *)(contextPointer + 0x180) != 0) || (*(int *)(contextPointer + 0x184) != 0)) {
     stackBuffer = 0;
-    FUN_180768b50(&stackBuffer,param_1,param_3,param_4,unaff_RDI);
+    InitializeSecurityContext(&stackBuffer,param_1,param_3,param_4,unaff_RDI);
     if (stackBuffer == *(longlong *)((longlong)*(int *)(contextPointer + 0x17c) * 8 + 0x180c4f450)) {
-      validationResult = FUN_18088dd60(contextPointer,param_1);
+      validationResult = ProcessResourceValidation(contextPointer,param_1);
       if ((int)validationResult == 0) {
         return 0;
       }
@@ -8080,9 +8080,9 @@ code_r0x00018089322c:
   resourceIndex = *(longlong *)(param_2 + 0x98);
   if ((*(int *)(resourceIndex + 0x180) != 0) || (*(int *)(resourceIndex + 0x184) != 0)) {
     lStackX_8 = 0;
-    FUN_180768b50(&lStackX_8);
+    InitializeSecurityContext(&lStackX_8);
     if (lStackX_8 == *(longlong *)((longlong)*(int *)(resourceIndex + 0x17c) * 8 + 0x180c4f450)) {
-      uVar2 = FUN_18088dd60(resourceIndex,param_1);
+      uVar2 = ProcessResourceValidation(resourceIndex,param_1);
       if ((int)uVar2 == 0) {
         return 0;
       }
@@ -8134,9 +8134,9 @@ undefined8 ValidateObjectContextAndProcessFloatComparison(longlong param_1, long
   resourceTable = *(longlong *)(param_2 + 0x98);
   if ((*(int *)(resourceTable + 0x180) != 0) || (*(int *)(resourceTable + 0x184) != 0)) {
     lStackX_8 = 0;
-    FUN_180768b50(&lStackX_8);
+    InitializeSecurityContext(&lStackX_8);
     if (lStackX_8 == *(longlong *)((longlong)*(int *)(resourceTable + 0x17c) * 8 + 0x180c4f450)) {
-      resourceHash = FUN_18088dd60(resourceTable,param_1);
+      resourceHash = ProcessResourceValidation(resourceTable,param_1);
       if ((int)resourceHash == 0) {
         return 0;
       }
@@ -8359,13 +8359,13 @@ undefined8 ProcessSimplifiedParameterizedFloatComparison(longlong param_1, longl
   lVar1 = *(longlong *)(param_2 + 0x98);
   if (*(int *)(lVar1 + 0x200) != 0) {
     if (((*(int *)(lVar1 + 0x180) == 0) && (*(int *)(lVar1 + 0x184) == 0)) ||
-       (FUN_180768b50(&stack0x00000008),
+       (InitializeSecurityContext(&stack0x00000008),
        *(longlong *)((longlong)*(int *)(lVar1 + 0x17c) * 8 + 0x180c4f450) != 0)) {
       *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
       uVar2 = func_0x0001808e64d0(*(undefined8 *)(lVar1 + 0x1e0));
     }
     else {
-      uVar2 = FUN_18088dd60(lVar1,param_1);
+      uVar2 = ProcessResourceValidation(lVar1,param_1);
     }
     if ((int)uVar2 != 0) {
       return uVar2;
@@ -8500,7 +8500,7 @@ int ProcessObjectContextValidationAndStatusUpdate(longlong param_1,longlong para
       iVar1 = 0x1f;
     }
     else {
-      resourceTable = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(int *)(param_1 + 0x20),
+      resourceTable = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(int *)(param_1 + 0x20),
                             &UNK_1809862d0,0x315,0,0,1);
       if (resourceTable != 0) {
                     // WARNING: Subroutine does not return
@@ -8553,7 +8553,7 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(longlong param_1,undefin
     iVar1 = 0x1f;
   }
   else {
-    resourceTable = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2,&UNK_1809862d0,0x315,0);
+    resourceTable = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2,&UNK_1809862d0,0x315,0);
     if (resourceTable != 0) {
                     // WARNING: Subroutine does not return
       memcpy(resourceTable,*(undefined8 *)(unaff_RDI + 0x18),(longlong)*(int *)(unaff_RDI + 0x20));
@@ -11261,7 +11261,7 @@ uint64_t AllocateAndCopyArrayData(longlong *arrayPointer,int newSize)
   if (newSize != 0) {
     if (newSize * 0xc - 1U < 0x3fffffff) {
       newArrayBuffer = (undefined8 *)
-               FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),newSize * 0xc,&UNK_180957f70,
+               AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),newSize * 0xc,&UNK_180957f70,
                              0xf4,0,0,1);
       if (newArrayBuffer != (undefined8 *)0x0) {
         oldSize = (int)arrayPointer[1];
@@ -11329,7 +11329,7 @@ LAB_180895fdc:
   }
   if (param_2 * 0xc - 1U < 0x3fffffff) {
     puVar3 = (undefined8 *)
-             FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,0xf4
+             AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,0xf4
                            ,0);
     if (puVar3 != (undefined8 *)0x0) {
       iVar1 = (int)unaff_RBX[1];
@@ -11389,7 +11389,7 @@ uint64_t ResizeArray(longlong *arrayPointer, int newSize)
   newMemoryBlock = 0;
   if (newSize != 0) {
     if (newSize * 0xc - 1U < 0x3fffffff) {
-      newMemoryBlock = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),newSize * 0xc,&UNK_180957f70,
+      newMemoryBlock = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),newSize * 0xc,&UNK_180957f70,
                             0xf4,0,0,1);
       if (newMemoryBlock != 0) {
         if ((int)arrayPointer[1] != 0) {
@@ -11443,7 +11443,7 @@ cleanup_old_memory:
     return 0;
   }
   if (newSize * 0xc - 1U < 0x3fffffff) {
-    newMemoryBlock = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),newSize * 0xc,&UNK_180957f70,0xf4,
+    newMemoryBlock = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),newSize * 0xc,&UNK_180957f70,0xf4,
                           0);
     if (newMemoryBlock != 0) {
       if ((int)arrayPointer[1] != 0) {
@@ -11899,7 +11899,7 @@ undefined8 FUN_1808968a0(longlong param_1)
         tableEntry = ((int)resourceTable - (int)lVar1) + 1;
       }
     }
-    piVar3 = (int *)FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),tableEntry + 0x19,
+    piVar3 = (int *)AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),tableEntry + 0x19,
                                   &UNK_1809868b0,0x278,0,0,1);
     piVar3[0] = 0;
     piVar3[1] = 0;
@@ -15009,7 +15009,7 @@ undefined8 FUN_180898d60(longlong *param_1,int param_2)
   if (param_2 != 0) {
     if (param_2 * 3 - 1U < 0x3fffffff) {
       puVar3 = (undefined2 *)
-               FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 3,&UNK_180957f70,0xf4
+               AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 3,&UNK_180957f70,0xf4
                              ,0,0,1);
       if (puVar3 != (undefined2 *)0x0) {
         iVar1 = (int)param_1[1];
@@ -15067,7 +15067,7 @@ LAB_180898e0b:
   }
   if (param_2 * 3 - 1U < 0x3fffffff) {
     puVar3 = (undefined2 *)
-             FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 3,&UNK_180957f70,0xf4,0
+             AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 3,&UNK_180957f70,0xf4,0
                           );
     if (puVar3 != (undefined2 *)0x0) {
       iVar1 = (int)unaff_RBX[1];
@@ -17533,7 +17533,7 @@ undefined8 FUN_18089ace4(void)
             ProcessResourceAllocation(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puVar3,&UNK_1809869a0,0x130,1);
           }
           puVar3 = (undefined8 *)
-                   FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_1809869a0,0x119);
+                   AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_1809869a0,0x119);
           if (puVar3 == (undefined8 *)0x0) {
             return 0x26;
           }
@@ -24268,7 +24268,7 @@ LAB_18089e70b:
         if ((int)uStack_80 != 0) {
           for (; (puStack_88 <= puVar5 && (puVar5 < puStack_88 + (int)uStack_80));
               puVar5 = puVar5 + 1) {
-            lVar6 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,
+            lVar6 = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,
                                   0,0,1);
             if (lVar6 == 0) {
               uVar4 = 0x26;
@@ -24381,7 +24381,7 @@ LAB_18089e70b:
         puVar7 = *(undefined4 **)(unaff_RBP + -0x29);
         for (presourceHash0 = puVar7; (puVar7 <= presourceHash0 && (presourceHash0 < puVar7 + iVar6));
             presourceHash0 = presourceHash0 + 1) {
-          lVar9 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,0)
+          lVar9 = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,0)
           ;
           if (lVar9 == 0) {
             uVar8 = 0x26;
@@ -24452,7 +24452,7 @@ LAB_18089e70b:
     if (iVar3 != 0) {
       puVar6 = *(undefined4 **)(unaff_RBP + -0x29);
       for (puVar7 = puVar6; (puVar6 <= puVar7 && (puVar7 < puVar6 + iVar3)); puVar7 = puVar7 + 1) {
-        lVar5 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c);
+        lVar5 = AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c);
         if (lVar5 == 0) {
           uVar4 = 0x26;
           goto LAB_18089e70b;
