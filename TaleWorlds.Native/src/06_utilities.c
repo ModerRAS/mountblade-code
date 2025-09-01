@@ -28240,7 +28240,7 @@ void Unwind_180902100(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49148 = 0;
+  SystemUnwindFlag = 0;
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
@@ -49090,7 +49090,7 @@ void Unwind_180907770(void)
 void Unwind_180907780(void)
 
 {
-  _DAT_180bf6530 = &SystemDataStructure;
+  SystemDataPointer001 = &SystemDataStructure;
   return;
 }
 
@@ -49101,7 +49101,7 @@ void Unwind_180907780(void)
 void Unwind_180907790(void)
 
 {
-  _DAT_180bf6590 = &SystemDataStructure;
+  SystemDataPointer002 = &SystemDataStructure;
   return;
 }
 
@@ -49112,7 +49112,7 @@ void Unwind_180907790(void)
 void Unwind_1809077a0(void)
 
 {
-  _DAT_180bf65c0 = &SystemDataStructure;
+  SystemDataPointer003 = &SystemDataStructure;
   return;
 }
 
@@ -84199,7 +84199,7 @@ void InitializeSystemDataStructureK(void)
 void InitializeSystemDataStructureK(void)
 
 {
-  _DAT_180bf6530 = &SystemDataStructure;
+  SystemDataPointer001 = &SystemDataStructure;
   return;
 }
 
@@ -84218,7 +84218,7 @@ void InitializeSystemDataStructureL(void)
 void InitializeSystemDataStructureL(void)
 
 {
-  _DAT_180bf6590 = &SystemDataStructure;
+  SystemDataPointer002 = &SystemDataStructure;
   return;
 }
 
@@ -84236,7 +84236,7 @@ void InitializeSystemDataStructureL(void)
 void InitializeSystemDataStructureM(void)
 
 {
-  _DAT_180bf65c0 = &SystemDataStructure;
+  SystemDataPointer003 = &SystemDataStructure;
   return;
 }
 

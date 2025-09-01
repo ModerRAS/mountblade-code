@@ -17264,7 +17264,7 @@ void SystemPerformanceMonitorInitializer(void)
 void SystemSecurityManagerInitializer(void)
 
 {
-  _DAT_180c96218 = GetCurrentProcess();
+  SystemCurrentProcessHandle = GetCurrentProcess();
   return;
 }
 
@@ -18234,7 +18234,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long initializa
   if (CustomSearchPath != (void* *)0x0) {
     SearchPathTemplate = CustomSearchPath;
   }
-  SymSetSearchPath(_DAT_180c96218,SearchPathTemplate);
+  SymSetSearchPath(SystemCurrentProcessHandle,SearchPathTemplate);
   LibraryHandle = AllocatedMemoryPointer[0xb];
   if (LibraryHandle == 0) {
     LibraryHandle = LoadLibraryA(&UNK_180a3c428);
@@ -18587,7 +18587,7 @@ void ProcessSystemStringCopy(long long param_1,long long param_2)
     strcpy_s(*(void* *)(param_1 + 8),0x1000);
     return;
   }
-  FUN_180626f80(&UNK_18098bc48,0x1000,param_2);
+  ProcessSystemStringAllocation(&UNK_18098bc48,0x1000,param_2);
   *(uint32_t *)(param_1 + 0x10) = 0;
   **(uint8_t **)(param_1 + 8) = 0;
   return;
@@ -18799,7 +18799,7 @@ void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
     strcpy_s(*(void* *)(param_1 + 8),0x400);
     return;
   }
-  FUN_180626f80(&UNK_18098bc48,0x400,param_2);
+  ProcessSystemStringAllocation(&UNK_18098bc48,0x400,param_2);
   *(uint32_t *)(param_1 + 0x10) = 0;
   **(uint8_t **)(param_1 + 8) = 0;
   return;
