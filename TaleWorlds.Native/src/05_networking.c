@@ -6515,7 +6515,7 @@ void ProcessNetworkConnectionHandle(ulonglong connectionContext,NetworkHandle *p
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847110(ulonglong connectionContext,NetworkHandle *packetData)
+// 函数: void ProcessNetworkConnectionContextHandle(ulonglong connectionContext,NetworkHandle *packetData)
 /**
  * @brief 处理网络连接上下文句柄
  * 
@@ -7017,7 +7017,7 @@ void ProcessNetworkDataValidationAndBufferOperations(void)
 
 
 
-// 函数: void FUN_1808477f4(void)
+// 函数: void PerformNetworkSecurityGuardCleanup(void)
 /**
  * @brief 执行网络安全守卫清理操作
  * 
@@ -7133,7 +7133,7 @@ void ProcessNetworkPacketTransfer(ulonglong connectionContext,NetworkByte *packe
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808479d0(longlong connectionContext,longlong *packetData,byte *dataSize)
+// 函数: void ProcessNetworkConnectionPacketTransfer(longlong connectionContext,longlong *packetData,byte *dataSize)
 /**
  * @brief 处理网络连接数据包传输
  * 
@@ -7239,7 +7239,7 @@ LAB_180847c35:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847c60(longlong connectionContext,longlong *packetData,byte *dataSize)
+// 函数: void ProcessNetworkConnectionDataStreamTransfer(longlong connectionContext,longlong *packetData,byte *dataSize)
 /**
  * @brief 处理网络连接数据流传输
  * 
