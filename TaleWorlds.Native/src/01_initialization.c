@@ -6049,32 +6049,32 @@ void InitializeSystemStorageManager(void)
   SystemRootStorageNode = (void* *)*SystemDataTableReference;
   SystemNodeTraversalFlag = *(char*)((long long)SystemRootStorageNode[1] + 0x19);
   storageManagerCallbackFunction = SystemStorageManagerCallback;
-  systemPreviousStorageNode = SystemRootStorageNode;
-  systemCurrentStorageNode = (void* *)SystemRootStorageNode[1];
+  SystemPreviousStorageNode = SystemRootStorageNode;
+  SystemCurrentStorageNode = (void* *)SystemRootStorageNode[1];
   while (SystemNodeTraversalFlag == '\0') {
-    MemoryComparisonResult = memcmp(systemCurrentStorageNode + 4,&SystemDataComparisonTemplateO,0x10);
+    MemoryComparisonResult = memcmp(SystemCurrentStorageNode + 4,&SystemDataComparisonTemplateO,0x10);
     if (MemoryComparisonResult < 0) {
-      systemNextStorageNode = (void* *)systemCurrentStorageNode[2];
-      systemCurrentStorageNode = systemPreviousStorageNode;
+      systemNextStorageNode = (void* *)SystemCurrentStorageNode[2];
+      SystemCurrentStorageNode = SystemPreviousStorageNode;
     }
     else {
-      systemNextStorageNode = (void* *)*systemCurrentStorageNode;
+      systemNextStorageNode = (void* *)*SystemCurrentStorageNode;
     }
-    systemPreviousStorageNode = systemCurrentStorageNode;
-    systemCurrentStorageNode = systemNextStorageNode;
+    SystemPreviousStorageNode = SystemCurrentStorageNode;
+    SystemCurrentStorageNode = systemNextStorageNode;
     SystemNodeTraversalFlag = *(char*)((long long)systemNextStorageNode + 0x19);
   }
-  if ((systemCurrentStorageNode == SystemRootStorageNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateO,systemCurrentStorageNode + 4,0x10), MemoryComparisonResult < 0)) {
+  if ((SystemCurrentStorageNode == SystemRootStorageNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateO,SystemCurrentStorageNode + 4,0x10), MemoryComparisonResult < 0)) {
     long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTableReference);
     void** SystemAllocatedStorageNode;
-    AllocateSystemMemory(SystemDataTableReference,&systemAllocatedStorageNode,systemPreviousStorageNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
-    systemPreviousStorageNode = systemAllocatedStorageNode;
+    AllocateSystemMemory(SystemDataTableReference,&systemAllocatedStorageNode,SystemPreviousStorageNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    SystemPreviousStorageNode = systemAllocatedStorageNode;
   }
-  systemCurrentStorageNode[6] = 0x40db4257e97d3df8;
-  systemCurrentStorageNode[7] = 0x81d539e33614429f;
-  systemCurrentStorageNode[8] = &SystemDataNodeN;
-  systemCurrentStorageNode[9] = 4;
-  systemPreviousStorageNode[10] = storageManagerCallbackFunction;
+  SystemCurrentStorageNode[6] = 0x40db4257e97d3df8;
+  SystemCurrentStorageNode[7] = 0x81d539e33614429f;
+  SystemCurrentStorageNode[8] = &SystemDataNodeN;
+  SystemCurrentStorageNode[9] = 4;
+  SystemPreviousStorageNode[10] = storageManagerCallbackFunction;
   return;
 }
 

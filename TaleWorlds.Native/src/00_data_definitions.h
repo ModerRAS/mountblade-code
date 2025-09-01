@@ -2391,7 +2391,7 @@ int InitializeStringProcessingSystemAH(void)
   StringProcessingSystemAHConfigBufferPointer = &StringProcessingSystemAHConfigBuffer;
   StringProcessingSystemAHConfigBuffer = 0;
   StringProcessingSystemAHConfigSize = 0x28;
-  strcpy_s(&StringProcessingSystemAHConfigBuffer,0x40,&DAT_180a22fd0,StringProcessorFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessingSystemAHConfigBuffer,0x40,&StringProcessingSystemAHConfigData,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAH);
   return (ModuleInitializationResult != 0) - 1;
 }
