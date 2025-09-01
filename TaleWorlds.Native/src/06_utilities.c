@@ -758,13 +758,13 @@ void* SystemDataBuffer072;
 void* SystemDataBuffer073;
 void* SystemDataBuffer074;
 void* SystemDataBuffer075;
-undefined SystemDataBuffer076;
-undefined SystemDataBuffer077;
-undefined SystemDataBuffer078;
-undefined SystemDataBuffer079;
-undefined SystemDataBuffer080;
-undefined SystemDataBuffer081;
-undefined SystemDataBuffer082;
+void* SystemDataBufferRenderQueue;
+void* SystemDataBufferNetworkQueue;
+void* SystemDataBufferAudioQueue;
+void* SystemDataBufferInputQueue;
+void* SystemDataBufferPhysicsQueue;
+void* SystemDataBufferAnimationQueue;
+void* SystemDataBufferScriptQueue;
 undefined SystemDataBuffer083;
 undefined SystemDataBuffer084;
 undefined SystemDataBuffer085;
@@ -2006,8 +2006,8 @@ undefined SystemNetworkConfigDataB;
 undefined SystemNetworkConfigDataC;
 undefined SystemConfigDataE;
 undefined SystemConfigDataF;
-undefined1 SystemStatusFlagA;
-undefined1 SystemStatusFlagB;
+bool SystemStatusFlagA;
+bool SystemStatusFlagB;
 undefined SystemStatusFlagC;
 undefined SystemStatusFlagD;
 undefined ResourceBufferPool;
@@ -2450,7 +2450,7 @@ undefined AnimationEventTable;
 undefined AnimationLayerTable;
 undefined AnimationMixerTable;
 undefined SystemResourceTracker;
-undefined4 SystemResourceFlags;
+uint32_t SystemResourceFlags;
 undefined4 SystemResourceState;
 undefined SystemResourceHandler;
 undefined ScriptFunctionTable;
@@ -57202,7 +57202,46 @@ void Unwind_18090a0c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_18090a0d0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 清理资源哈希表回滚函数A
+ * 
+ * 该函数负责在异常情况下回滚资源哈希表操作
+ * 释放资源并清理相关数据结构
+ * 
+ * @param param_1 回滚上下文参数1
+ * @param param_2 回滚上下文参数2
+ * @param param_3 回滚上下文参数3
+ * @param param_4 回滚上下文参数4
+ */
+void CleanupResourceHashUnwindA(void* param_1, longlong param_2, void* param_3, void* param_4)
+
+{
+  void** resourceHashPointer;
+  
+  presourceHash = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
+  if (presourceHash != (undefined8 *)0x0) {
+    FUN_1800b9210(*(longlong *)(param_2 + 0x48),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    CleanupResourceHash(presourceHash);
+                    // WARNING: Subroutine does not return
+    ReleaseResourceHandle(presourceHash);
+  }
+  return;
+}
+
+
+
+/**
+ * @brief 清理资源哈希表回滚函数B
+ * 
+ * 该函数负责在异常情况下回滚资源哈希表操作
+ * 释放资源并清理相关数据结构
+ * 
+ * @param param_1 回滚上下文参数1
+ * @param param_2 回滚上下文参数2
+ * @param param_3 回滚上下文参数3
+ * @param param_4 回滚上下文参数4
+ */
+void CleanupResourceHashUnwindB(void* param_1, longlong param_2, void* param_3, void* param_4)
 
 {
   undefined8 *presourceHash;
@@ -57219,24 +57258,18 @@ void Unwind_18090a0d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_18090a0e0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  undefined8 *presourceHash;
-  
-  presourceHash = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
-  if (presourceHash != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x48),*presourceHash,param_3,param_4,0xfffffffffffffffe);
-    CleanupResourceHash(presourceHash);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(presourceHash);
-  }
-  return;
-}
-
-
-
-void Unwind_18090a0f0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 清理资源哈希表回滚函数C
+ * 
+ * 该函数负责在异常情况下回滚资源哈希表操作
+ * 调用底层清理函数并确保资源正确释放
+ * 
+ * @param param_1 回滚上下文参数1
+ * @param param_2 回滚上下文参数2
+ * @param param_3 回滚上下文参数3
+ * @param param_4 回滚上下文参数4
+ */
+void CleanupResourceHashUnwindC(void* param_1, longlong param_2, void* param_3, void* param_4)
 
 {
   FUN_1800b9030(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
@@ -57246,7 +57279,18 @@ void Unwind_18090a0f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_18090a100(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 清理资源哈希表回滚函数D
+ * 
+ * 该函数负责在异常情况下回滚资源哈希表操作
+ * 处理偏移量0x48处的资源清理
+ * 
+ * @param param_1 回滚上下文参数1
+ * @param param_2 回滚上下文参数2
+ * @param param_3 回滚上下文参数3
+ * @param param_4 回滚上下文参数4
+ */
+void CleanupResourceHashUnwindD(void* param_1, longlong param_2, void* param_3, void* param_4)
 
 {
   FUN_1800b9030(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
@@ -57256,7 +57300,18 @@ void Unwind_18090a100(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_18090a110(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 清理资源哈希表回滚函数E
+ * 
+ * 该函数负责在异常情况下回滚资源哈希表操作
+ * 处理偏移量0x40处的资源清理
+ * 
+ * @param param_1 回滚上下文参数1
+ * @param param_2 回滚上下文参数2
+ * @param param_3 回滚上下文参数3
+ * @param param_4 回滚上下文参数4
+ */
+void CleanupResourceHashUnwindE(void* param_1, longlong param_2, void* param_3, void* param_4)
 
 {
   FUN_1800b9030(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
