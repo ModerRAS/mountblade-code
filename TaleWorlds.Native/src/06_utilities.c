@@ -1238,7 +1238,7 @@ undefined SystemConfigTable3;
 void* MemoryValidationContextData;
 void* MemoryIsolationConfigData;
 void* MemoryValidationStatusData;
-undefined DAT_180bf9998;
+void* MemoryValidationConfigData;
 undefined DAT_180bf99a0;
 
  void InitializeMemoryMapping;
@@ -9725,8 +9725,8 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- 49c0(longlong param_1,undefined4 *param_2,longlong *param_3)
-49c0(longlong param_1,undefined4 *param_2,longlong *param_3)
+ void ProcessResourceIndexAndSecurity(longlong param_1,undefined4 *param_2,longlong *param_3)
+void ProcessResourceIndexAndSecurity(longlong param_1,undefined4 *param_2,longlong *param_3)
 
 {
   longlong *plVar1;
@@ -9923,8 +9923,8 @@ LAB_180894aca:
 
 
 
- 4c70(longlong param_1,undefined8 param_2)
-4c70(longlong param_1,undefined8 param_2)
+ void ValidateAndInitializeResource(longlong param_1,undefined8 param_2)
+void ValidateAndInitializeResource(longlong param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -9940,8 +9940,8 @@ LAB_180894aca:
 
 
 
- 4c94(void)
-4c94(void)
+ void ValidateResourceHashAndProcessEntries(void)
+void ValidateResourceHashAndProcessEntries(void)
 
 {
   int iVar1;
@@ -22577,7 +22577,16 @@ LAB_18089cad8:
 
 
 
-ulonglong FUN_18089c94a(float param_1)
+/**
+ * @brief 处理浮点参数的资源哈希计算
+ * 
+ * 该函数负责处理浮点参数并进行资源哈希计算
+ * 用于资源管理和标识系统的核心功能
+ * 
+ * @param param_1 浮点参数，用于资源计算和验证
+ * @return ulonglong 返回处理结果，包含哈希值或状态码
+ */
+ulonglong ProcessFloatParameterResourceHash(float param_1)
 
 {
   longlong *plVar1;
