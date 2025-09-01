@@ -32546,7 +32546,7 @@ void SystemContextInitializer(uint8_t ObjectContextParameter,int64_t ValidationC
 
 
 
-void Unwind_180902c40(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ExceptionListManager(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -32582,7 +32582,7 @@ void Unwind_180902c40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902c50(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ResourceDeallocationHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   uint8_t *presourceHash;
@@ -32664,7 +32664,7 @@ void ReleaseKernelResourceLock(uint8_t ObjectContextParameter,int64_t Validation
 
 
 
-void Unwind_180902c90(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void SystemExceptionHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   uint8_t *presourceHash;
