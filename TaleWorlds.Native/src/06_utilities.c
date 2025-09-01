@@ -952,10 +952,10 @@ void* SystemAuditConfigTable4;
  */
 void InitializeGarbageCollector;
 undefined UNK_180a22bb8;
-undefined DAT_180bf94b0;
-undefined DAT_180bf94b8;
-undefined DAT_180bf94c0;
-undefined DAT_180bf94c8;
+undefined GarbageCollectorTable0;
+undefined GarbageCollectorTable1;
+undefined GarbageCollectorTable2;
+undefined GarbageCollectorTable3;
 
  void ConfigureMemoryStatistics;
 /**
@@ -8015,7 +8015,13 @@ undefined8 FUN_1808930e0(longlong param_1,longlong param_2,undefined8 param_3,un
 
 
 
-undefined8 FUN_180893190(longlong param_1,longlong param_2)
+/**
+ * @brief 验证对象上下文并处理浮点数范围
+ * @param param_1 对象上下文指针，包含浮点数值和验证信息
+ * @param param_2 系统上下文指针，用于系统级操作
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined8 ValidateObjectContextAndProcessFloatRange(longlong param_1, longlong param_2)
 
 {
   float fVar1;
@@ -8084,7 +8090,13 @@ code_r0x00018089322c:
 
 
 
-undefined8 FUN_180893290(longlong param_1,longlong param_2)
+/**
+ * @brief 验证对象上下文并处理浮点数比较
+ * @param param_1 对象上下文指针，包含浮点数值和验证信息
+ * @param param_2 系统上下文指针，用于系统级操作
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined8 ValidateObjectContextAndProcessFloatComparison(longlong param_1, longlong param_2)
 
 {
   undefined8 uVar1;
@@ -8132,7 +8144,13 @@ undefined8 FUN_180893290(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180893330(longlong param_1,longlong param_2)
+/**
+ * @brief 验证对象上下文并处理复杂浮点数操作
+ * @param param_1 对象上下文指针，包含浮点数值和验证信息
+ * @param param_2 系统上下文指针，用于系统级操作
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined8 ValidateObjectContextAndProcessComplexFloatOperation(longlong param_1, longlong param_2)
 
 {
   undefined8 uVar1;
