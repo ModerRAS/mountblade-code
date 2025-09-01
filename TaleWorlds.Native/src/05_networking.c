@@ -29,6 +29,21 @@ uint CompareNetworkConnectionTimestamps(int64_t *firstConnection, int64_t *secon
  */
 uint ProcessNetworkConnectionData(longlong *connectionContext, longlong packetData, longlong *dataSize);
 
+/**
+ * 发送网络数据包数据
+ * 
+ * 该函数负责发送网络数据包，包括数据封装和传输。
+ * 主要用于网络数据的发送操作。
+ * 
+ * @param socketData 套接字数据
+ * @param connectionHandle 连接句柄
+ * @param packetData 数据包数据
+ * @return 发送结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+uint SendNetworkPacketData(longlong socketData, NetworkHandle connectionHandle, longlong packetData);
+
 uint32_t NetworkConnectionTableHandle;
 uint32_t NetworkConnectionStatusFlags;
 uint32_t NetworkConnectionTimeoutDuration;
@@ -7407,7 +7422,7 @@ void ProcessNetworkConnectionContextPacket(ulonglong connectionContext,NetworkBy
                     // WARNING: Subroutine does not return
     NetworkConnectionHandleRelease(&uStack_138);
   }
-  FUN_180847c60(uStack_128,*(NetworkHandle *)(lStack_130 + 800),packetData);
+  SendNetworkPacketData(uStack_128,*(NetworkHandle *)(lStack_130 + 800),packetData);
                     // WARNING: Subroutine does not return
   NetworkConnectionHandleRelease(&uStack_138);
 }
@@ -11083,7 +11098,7 @@ void ProcessNetworkPacketArrayData(longlong connectionContext,longlong packetDat
                     // WARNING: Subroutine does not return
       ProcessNetworkPacketArray(packetData + 0xd8,anetworkBuffer);
     }
-    FUN_180847c60(lVar1,*(NetworkHandle *)(connectionContext + 0x10),connectionContext + 8);
+    SendNetworkPacketData(lVar1,*(NetworkHandle *)(connectionContext + 0x10),connectionContext + 8);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(uStack_10 ^ (ulonglong)auStack_58);
@@ -15285,7 +15300,17 @@ void ProcessNetworkDataReset(void)
 
 
 
-longlong FUN_18084dbd0(longlong connectionContext,ulonglong packetData)
+/**
+ * @brief 清理网络连接资源
+ * 
+ * 该函数负责清理网络连接相关的资源和内存。
+ * 主要用于连接关闭后的资源释放和内存清理。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包标志位
+ * @return 连接上下文指针
+ */
+longlong CleanupNetworkConnectionResources(longlong connectionContext,ulonglong packetData)
 
 {
   FUN_18084dae0(connectionContext + 0x60);
@@ -15653,7 +15678,17 @@ NetworkHandle ValidateNetworkConnectionContext(longlong *connectionContext,char 
 
 
 
-longlong FUN_18084e3b0(longlong connectionContext,ulonglong packetData)
+/**
+ * @brief 处理网络连接链表操作
+ * 
+ * 该函数负责处理网络连接的链表操作，包括节点移除和链表维护。
+ * 主要用于连接池管理和连接生命周期控制。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包标志位
+ * @return 连接上下文指针
+ */
+longlong ProcessNetworkConnectionLinkedList(longlong connectionContext,ulonglong packetData)
 
 {
   longlong *plVar1;
@@ -15682,7 +15717,17 @@ longlong FUN_18084e3b0(longlong connectionContext,ulonglong packetData)
 
 
 
-NetworkHandle FUN_18084e470(NetworkHandle connectionContext,ulonglong packetData)
+/**
+ * @brief 释放网络连接句柄
+ * 
+ * 该函数负责释放网络连接句柄和相关资源。
+ * 主要用于连接关闭后的资源清理。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包标志位
+ * @return 连接上下文指针
+ */
+NetworkHandle ReleaseNetworkConnectionHandle(NetworkHandle connectionContext,ulonglong packetData)
 
 {
   FUN_1808b1a30();
@@ -21878,8 +21923,8 @@ LAB_180852a9a:
 
 
 
-// 函数: void FUN_180852aaa(void)
-void FUN_180852aaa(void)
+// 函数: void NetworkConnectionCleanupProcessor(void)
+void NetworkConnectionCleanupProcessor(void)
 
 {
   longlong unaff_RBP;
