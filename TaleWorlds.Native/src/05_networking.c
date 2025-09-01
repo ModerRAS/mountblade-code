@@ -25288,7 +25288,7 @@ void NetworkPacketBatchProcessor(longlong connectionContext,NetworkHandle *packe
                     // WARNING: Subroutine does not return
       ProcessNetworkBufferTemplate(auStack_70,0x27,&NetworkPacketTemplateBuffer,*(NetworkStatus *)(networkPointer1 + 4));
     }
-    secondaryNetworkFlag = FUN_1808c6120(lStack_88,param_5);
+    secondaryNetworkFlag = ProcessNetworkDataStream(lStack_88,param_5);
     if (dataSize != 0) {
       secondaryNetworkFlag = func_0x0001808c6590(dataSize,secondaryNetworkFlag);
     }
@@ -25344,7 +25344,7 @@ void NetworkConnectionFinalizer(void)
       ProcessNetworkBufferTemplate(&stack0x00000098,0x27,&NetworkPacketTemplateBuffer,(int)unaff_R12[4],
                     *(NetworkData2 *)((longlong)unaff_R12 + 0x24));
     }
-    tertiaryNetworkFlag = FUN_1808c6120(lVar2,primaryNetworkFlag);
+    tertiaryNetworkFlag = ProcessNetworkDataStream(lVar2,primaryNetworkFlag);
     if (unaff_RBP != 0) {
       tertiaryNetworkFlag = func_0x0001808c6590(tertiaryNetworkFlag,tertiaryNetworkFlag);
     }
@@ -25423,7 +25423,7 @@ NetworkHandle ValidateAndProcessNetworkPacket(longlong connectionContext,longlon
       if (*dataSize <= *(uint *)(packetData + 0x30)) {
         auStackX_10[0] = *(uint *)(packetData + 0x30);
       }
-      tertiaryNetworkFlag = FUN_18084d140(*(NetworkHandle *)(connectionContext + 0x110),auStackX_10[0],packetData + 0x50,
+      tertiaryNetworkFlag = SendNetworkDataStream(*(NetworkHandle *)(connectionContext + 0x110),auStackX_10[0],packetData + 0x50,
                             auStackX_10);
       if ((int)tertiaryNetworkFlag != 0) {
         return tertiaryNetworkFlag;
@@ -25446,7 +25446,7 @@ NetworkHandle ValidateAndProcessNetworkPacket(longlong connectionContext,longlon
           primaryNetworkFlag = auStackX_10[0] + 1;
         }
         auStackX_10[0] = primaryNetworkFlag;
-        tertiaryNetworkFlag = FUN_18084d140(*(NetworkHandle *)(connectionContext + 0x110),auStackX_10[0],packetData + 0x50,
+        tertiaryNetworkFlag = SendNetworkDataStream(*(NetworkHandle *)(connectionContext + 0x110),auStackX_10[0],packetData + 0x50,
                               auStackX_10);
         if ((int)tertiaryNetworkFlag != 0) {
           return tertiaryNetworkFlag;
@@ -25488,7 +25488,7 @@ int ValidateNetworkConnectionData(longlong connectionContext)
   }
   if (networkStatus4 == 1) {
     *(NetworkByte *)(connectionContext + 0x13c) = 0;
-    networkStatus4 = FUN_18085bc30(connectionContext,tertiaryNetworkFlag,1,0,0);
+    networkStatus4 = HandleNetworkDataCompletion(connectionContext,tertiaryNetworkFlag,1,0,0);
     if (networkStatus4 == 0) {
       networkStatus4 = GetConnectionContext(connectionContext + 0xe0);
       if (networkStatus4 == 0) {
@@ -25555,7 +25555,7 @@ int ProcessNetworkConnectionState(longlong connectionContext)
   }
   if (networkStatus3 == 1) {
     *(NetworkByte *)(connectionContext + 0x13c) = 0;
-    networkStatus3 = FUN_18085bc30(connectionContext,secondaryNetworkFlag,1,0,0);
+    networkStatus3 = HandleNetworkDataCompletion(connectionContext,secondaryNetworkFlag,1,0,0);
     if (networkStatus3 == 0) {
       networkStatus3 = GetConnectionContext(connectionContext + 0xe0);
       if (networkStatus3 == 0) {
@@ -28323,7 +28323,7 @@ joined_r0x0001808572dd:
                 puVar9 = (NetworkStatus *)CreateNetworkStatus();
                 uStack_b8 = 0;
                 *(NetworkStatus *)(connectionContext + 0x148) = *puVar9;
-                iVar6 = FUN_18085bc30(connectionContext,primaryNetworkFlag7 - 1,0,1);
+                iVar6 = HandleNetworkDataCompletion(connectionContext,primaryNetworkFlag7 - 1,0,1);
                 if (iVar6 != 0) goto LAB_180857786;
                 break;
               }
@@ -29159,7 +29159,7 @@ void ProcessNetworkPacketHandler(longlong connectionContext,longlong packetData)
               }
               iVar5 = ProcessNetworkDataTransmission(plVar7,0x3f800000,4);
               if (iVar5 != 0) goto NetworkSystemNoOperation;
-              primaryNetworkFlag1 = FUN_1808c6120(lVar8,*(NetworkStatus *)(lVar3 + 0xa0));
+              primaryNetworkFlag1 = ProcessNetworkDataStream(lVar8,*(NetworkStatus *)(lVar3 + 0xa0));
               iVar5 = func_0x0001808c6c50(plVar7,primaryNetworkFlag1);
               goto joined_r0x000180857d6c;
             }
@@ -29278,7 +29278,7 @@ void NetworkConnectionPacketProcessor(longlong connectionContext)
             }
             iVar5 = ProcessNetworkDataTransmission(plVar7,0x3f800000,4);
             if (iVar5 != 0) goto LAB_180857c4e;
-            primaryNetworkFlag1 = FUN_1808c6120(lVar8,*(NetworkStatus *)(lVar3 + 0xa0));
+            primaryNetworkFlag1 = ProcessNetworkDataStream(lVar8,*(NetworkStatus *)(lVar3 + 0xa0));
             iVar5 = func_0x0001808c6c50(plVar7,primaryNetworkFlag1);
             goto joined_r0x000180857d6c;
           }
@@ -29393,7 +29393,7 @@ code_r0x000180857c8f:
       }
       networkStatus2 = ProcessNetworkDataTransmission(plVar4);
       if (networkStatus2 != 0) goto LAB_180857c4e;
-      uVar7 = FUN_1808c6120(lVar5,*(NetworkStatus *)(unaff_R15 + 0xa0));
+      uVar7 = ProcessNetworkDataStream(lVar5,*(NetworkStatus *)(unaff_R15 + 0xa0));
       networkStatus2 = func_0x0001808c6c50(plVar4,uVar7);
       connectionContext = extraout_XMM0_Da_00;
       if (networkStatus2 != 0) goto LAB_180857c4e;
@@ -30528,7 +30528,7 @@ NetworkHandle FUN_1808592c0(longlong connectionContext,longlong packetData,Netwo
     networkStatus11 = primaryNetworkFlag0 + (int)quinaryNetworkFlag;
   }
   auStackX_8[0] = 0;
-  uVar6 = FUN_18084d140(*(NetworkHandle *)(connectionContext + 0x110),networkStatus11,dataSize,auStackX_8);
+  uVar6 = SendNetworkDataStream(*(NetworkHandle *)(connectionContext + 0x110),networkStatus11,dataSize,auStackX_8);
   if ((int)uVar6 == 0) {
     tertiaryNetworkFlag = *(uint *)(*(longlong *)(connectionContext + 0x168) + 0x774);
     if (primaryNetworkFlag0 <= auStackX_8[0]) {
@@ -30617,7 +30617,7 @@ NetworkHandle FUN_1808592ca(longlong connectionContext,longlong packetData,Netwo
     networkStatus11 = primaryNetworkFlag0 + (int)quinaryNetworkFlag;
   }
   in_stack_00000060 = 0;
-  uVar6 = FUN_18084d140(*(NetworkHandle *)(connectionContext + 0x110),networkStatus11,dataSize,&stack0x00000060);
+  uVar6 = SendNetworkDataStream(*(NetworkHandle *)(connectionContext + 0x110),networkStatus11,dataSize,&stack0x00000060);
   if ((int)uVar6 == 0) {
     tertiaryNetworkFlag = *(uint *)(*(longlong *)(connectionContext + 0x168) + 0x774);
     if (primaryNetworkFlag0 <= in_stack_00000060) {
@@ -30664,7 +30664,7 @@ NetworkHandle FUN_180859384(NetworkHandle connectionContext,ulonglong packetData
     in_R10 = (ulonglong)(unaff_EDI + (int)packetData);
   }
   uStack0000000000000060 = 0;
-  secondaryNetworkFlag = FUN_18084d140(*(NetworkHandle *)(unaff_RBP + 0x110),in_R10 & 0xffffffff);
+  secondaryNetworkFlag = SendNetworkDataStream(*(NetworkHandle *)(unaff_RBP + 0x110),in_R10 & 0xffffffff);
   if ((int)secondaryNetworkFlag == 0) {
     primaryNetworkFlag = *(uint *)(*(longlong *)(unaff_RBP + 0x168) + 0x774);
     if (unaff_EDI <= uStack0000000000000060) {
@@ -31178,7 +31178,7 @@ LAB_180859953:
         iVar5 = ProcessNetworkDataTransmission(packetData,0x3f800000,uVar9);
         if (iVar5 == 0) {
 LAB_18085996b:
-          primaryNetworkFlag0 = FUN_1808c6120(lVar6,*(NetworkStatus *)(connectionContext + 0x24));
+          primaryNetworkFlag0 = ProcessNetworkDataStream(lVar6,*(NetworkStatus *)(connectionContext + 0x24));
           func_0x0001808c6c50(packetData,primaryNetworkFlag0);
         }
         goto LAB_1808597c2;
@@ -33955,7 +33955,7 @@ void FUN_18085bbe0(longlong connectionContext,NetworkStatus packetData)
   if (networkStatus2 == 0) {
     networkPointer1 = (NetworkStatus *)CreateNetworkStatus();
     *(NetworkStatus *)(connectionContext + 0x148) = *networkPointer1;
-    FUN_18085bc30(connectionContext,packetData,0,1,0);
+    HandleNetworkDataCompletion(connectionContext,packetData,0,1,0);
   }
   return;
 }
@@ -33975,7 +33975,7 @@ void FUN_18085bbe0(longlong connectionContext,NetworkStatus packetData)
  * @param param_5 网络状态指针
  * @return 处理结果状态码，0表示成功
  * 
- * 注意：这是一个反编译的函数实现，原始函数名为FUN_18085bc30
+ * 注意：这是一个反编译的函数实现，原始函数名为HandleNetworkDataCompletion
  */
 NetworkHandle
 ProcessNetworkConnectionPacket(longlong connectionContext, uint packetData, char dataSize, char param_4, NetworkHandle *param_5)
@@ -34713,7 +34713,7 @@ void FUN_18085ca30(longlong connectionContext,ulonglong packetData)
       *(int *)(lVar14 + 0x10) = *(int *)(lVar14 + 0x10) + 1;
     }
     lStack_98 = 0;
-    iVar8 = FUN_18085bc30(connectionContext,tertiaryNetworkFlag,0,0);
+    iVar8 = HandleNetworkDataCompletion(connectionContext,tertiaryNetworkFlag,0,0);
     if (lVar14 != 0) {
       pnetworkStatus2 = (int *)(lVar14 + 0x10);
       *pnetworkStatus2 = *pnetworkStatus2 + -1;
