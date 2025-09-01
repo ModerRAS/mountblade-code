@@ -41730,7 +41730,7 @@ code_r0x0001800630e9:
         ConsoleHandle = 0;
         lRam0000000180c912e8 = 0;
         LOCK();
-        _DAT_180d48d28 = 0;
+        SystemGlobalCounter = 0;
         UNLOCK();
         FreeConsole();
       }
@@ -43615,7 +43615,7 @@ void FUN_180066320(void* SystemResourcePointer,void* ConfigurationDataPointer,ch
     puStack_1b8 = &SystemMemoryAllocatorReference;
     goto LAB_180066971;
   }
-  if (((DAT_180c82843 != '\0') || (DAT_180c82850 != '\0')) ||
+  if (((SystemDebugFlag != '\0') || (SystemVerboseFlag != '\0')) ||
      (*(int *)(SystemMemoryManagerPointer + 0x10e0) == 1)) {
     FUN_1800622d0(SystemContextManagerPointer,5,3,&UNK_1809fea68);
     InitializeSystemManager();
@@ -51174,7 +51174,7 @@ void FUN_180072000(void* SystemResourcePointer,long long ConfigurationDataPointe
   uStack_116 = 0;
   uStack_b0 = AdditionalParameter;
   lStack_88 = ConfigurationFlag;
-  if ((SystemInitializationFlag != '\0') || (DAT_180c82850 != '\0')) goto LAB_180072d7b;
+  if ((SystemInitializationFlag != '\0') || (SystemVerboseFlag != '\0')) goto LAB_180072d7b;
   uStack_58 = 0;
   uStack_50 = 0;
   FUN_1800634b0(&uStack_58,0x10,&SystemDataBufferTemplateI,AdditionalParameter);
