@@ -1,360 +1,363 @@
 #!/usr/bin/env python3
 """
-渲染系统代码美化脚本
-用于批量重命名03_rendering.c中的函数和变量
+渲染系统函数和变量名美化脚本
+用于批量重命名03_rendering.c文件中的FUN_函数和变量名
 """
 
 import re
-import os
+import sys
 
-def read_file(filepath):
+def read_file(file_path):
     """读取文件内容"""
-    with open(filepath, 'r', encoding='utf-8') as f:
+    with open(file_path, 'r', encoding='utf-8') as f:
         return f.read()
 
-def write_file(filepath, content):
+def write_file(file_path, content):
     """写入文件内容"""
-    with open(filepath, 'w', encoding='utf-8') as f:
+    with open(file_path, 'w', encoding='utf-8') as f:
         f.write(content)
 
-def beautify_rendering_functions(content):
-    """美化渲染系统函数"""
+def generate_function_name(address, context):
+    """根据函数地址和上下文生成语义化函数名"""
+    # 基于地址范围推断函数类型
+    addr = int(address[4:], 16)  # 去掉FUN_前缀并转换为十进制
     
-    # 函数重命名映射表
-    function_mappings = {
-        'FUN_180442020': 'InitializeRenderContext',
-        'FUN_1804420c0': 'CreateRenderDevice',
-        'FUN_180442180': 'SetupSwapChain',
-        'FUN_1804422a0': 'ConfigureRenderPipeline',
-        'FUN_180442370': 'InitializeShaderCompiler',
-        'FUN_180442450': 'CreateVertexBuffer',
-        'FUN_1804424d0': 'CreateIndexBuffer',
-        'FUN_180442560': 'CreateConstantBuffer',
-        'FUN_180442670': 'CreateTexture2D',
-        'FUN_180442720': 'CreateSamplerState',
-        'FUN_180442860': 'CreateRenderTarget',
-        'FUN_180442950': 'CreateDepthStencil',
-        'FUN_1804429f0': 'CreateRenderPass',
-        'FUN_180442b30': 'SetupVertexLayout',
-        'FUN_180442d10': 'SetPrimitiveTopology',
-        'FUN_180442e00': 'CreateRasterizerState',
-        'FUN_180443000': 'CreateDepthStencilState',
-        'FUN_180443080': 'CreateBlendState',
-        'FUN_1804431c0': 'CompileVertexShader',
-        'FUN_180443320': 'CompilePixelShader',
-        'FUN_180443510': 'LinkShaderProgram',
-        'FUN_180443630': 'SetShaderUniform',
-        'FUN_180443680': 'SetShaderTexture',
-        'FUN_180443700': 'SetShaderSampler',
-        'FUN_180443770': 'SetShaderBuffer',
-        'FUN_180443820': 'DrawIndexedPrimitive',
-        'FUN_180443930': 'DrawInstancedPrimitive',
-        'FUN_180443a40': 'DispatchComputeShader',
-        'FUN_180443aa0': 'CopyTextureRegion',
-        'FUN_180443b00': 'ResolveMultisampleTexture',
-        'FUN_180443b40': 'GenerateMipmaps',
-        'FUN_180443b80': 'MapBuffer',
-        'FUN_180443d10': 'UnmapBuffer',
-        'FUN_180443d70': 'UpdateBuffer',
-        'FUN_180443df0': 'UpdateTexture',
-        'FUN_180443f80': 'SetViewport',
-        'FUN_180443ff0': 'SetScissorRect',
-        'FUN_180444030': 'SetRenderTarget',
-        'FUN_180444070': 'SetDepthStencil',
-        'FUN_180444100': 'ClearRenderTarget',
-        'FUN_180444200': 'ClearDepthStencil',
-        'FUN_180444280': 'BeginRenderPass',
-        'FUN_1804442c0': 'EndRenderPass',
-        'FUN_1804442e0': 'PresentFrame',
-        'FUN_180444370': 'WaitForGPU',
-        'FUN_1804443c0': 'FlushCommandQueue',
-        'FUN_180444410': 'ExecuteCommandList',
-        'FUN_1804445b0': 'CreateFence',
-        'FUN_180444600': 'SignalFence',
-        'FUN_180444700': 'WaitForFence',
-        'FUN_1804447c0': 'CreateQueryHeap',
-        'FUN_1804448a0': 'BeginQuery',
-        'FUN_1804449a0': 'EndQuery',
-        'FUN_180444a20': 'ResolveQueryData',
-        'FUN_180444b70': 'CreatePipelineState',
-        'FUN_180444dd0': 'SetPipelineState',
-        'FUN_180444e90': 'CreateRootSignature',
-        'FUN_180445060': 'SetRootSignature',
-        'FUN_180445110': 'SetGraphicsRootDescriptorTable',
-        'FUN_180445180': 'SetGraphicsRootConstantBufferView',
-        'FUN_180445390': 'SetGraphicsRootShaderResourceView',
-        'FUN_180445480': 'SetGraphicsRootUnorderedAccessView',
-        'FUN_180445570': 'SetGraphicsRoot32BitConstant',
-        'FUN_180445680': 'SetGraphicsRoot32BitConstants',
-        'FUN_1804457b0': 'IASetVertexBuffers',
-        'FUN_180445870': 'IASetIndexBuffer',
-        'FUN_180445970': 'IASetPrimitiveTopology',
-        'FUN_180445a80': 'VSSetShader',
-        'FUN_180445cd0': 'PSSetShader',
-        'FUN_180445dc0': 'GSSetShader',
-        'FUN_180445eb0': 'CSSetShader',
-        'FUN_180445fd0': 'HSSetShader',
-        'FUN_180446010': 'DSSetShader',
-        'FUN_180446080': 'SOSetTargets',
-        'FUN_1804460c0': 'RSSetViewports',
-        'FUN_1804460f0': 'RSSetScissorRects',
-        'FUN_180446120': 'RSSetState',
-        'FUN_180446160': 'OMSetBlendState',
-        'FUN_1804461b0': 'OMSetDepthStencilState',
-        'FUN_1804462a0': 'OMSetRenderTargets',
-        'FUN_1804462e0': 'ClearDepthStencilView',
-        'FUN_180446320': 'ClearRenderTargetView',
-        'FUN_180446370': 'DrawIndexedInstanced',
-        'FUN_180446430': 'ExecuteIndirect',
-        'FUN_180446480': 'CreateCommandAllocator',
-        'FUN_180446610': 'CreateCommandList',
-        'FUN_180446650': 'ResetCommandList',
-        'FUN_180446690': 'CloseCommandList',
-        'FUN_180446760': 'CreateCommandQueue',
-        'FUN_180446810': 'ExecuteCommandLists',
-        'FUN_180446960': 'CreateDescriptorHeap',
-        'FUN_180446a60': 'CreateRenderTargetView',
-        'FUN_180446b20': 'CreateDepthStencilView',
-        'FUN_180446ba0': 'CreateShaderResourceView',
-        'FUN_180446ca0': 'CreateUnorderedAccessView',
-        'FUN_180446d20': 'CreateConstantBufferView',
-        'FUN_180446dc0': 'CreateSampler',
-        'FUN_180446e70': 'CopyDescriptors',
-        'FUN_180446f00': 'CopyDescriptorSimple',
-        'FUN_180446fa0': 'GetCPUDescriptorHandle',
-        'FUN_180446fd0': 'GetGPUDescriptorHandle',
-        'FUN_180447030': 'CreateResource',
-        'FUN_1804470d0': 'CreateCommittedResource',
-        'FUN_180447120': 'CreatePlacedResource',
-        'FUN_1804471a0': 'CreateReservedResource',
-        'FUN_180447220': 'GetResourceAddress',
-        'FUN_1804472c0': 'MapResource',
-        'FUN_180447320': 'UnmapResource',
-        'FUN_180447360': 'UpdateSubresource',
-        'FUN_1804473b0': 'CopyResource',
-        'FUN_180447430': 'CopySubresourceRegion',
-        'FUN_1804475e0': 'ResolveSubresource',
-        'FUN_180447660': 'CreateTexture1D',
-        'FUN_180447710': 'CreateTexture2DArray',
-        'FUN_1804477f0': 'CreateTexture3D',
-        'FUN_180447850': 'CreateBuffer',
-        'FUN_180447990': 'CreateHeap',
-        'FUN_180447b80': 'CreateQuery',
-        'FUN_180447c00': 'CreatePredicate',
-        'FUN_180447ca0': 'CreateCounter',
-        'FUN_180447d40': 'SetMarker',
-        'FUN_180447de0': 'BeginEvent',
-        'FUN_180447e10': 'EndEvent',
-        'FUN_180447e40': 'SetStablePowerState',
-        'FUN_180447f70': 'CreateShaderResourceView1',
-        'FUN_180448110': 'CreateRenderTargetView1',
-        'FUN_180448420': 'CreateUnorderedAccessView1',
-        'FUN_180448470': 'CreateDepthStencilView1',
-        'FUN_1804484c0': 'CreateConstantBufferView1',
-        'FUN_180448540': 'CreateSampler1',
-        'FUN_1804485c0': 'CreateVertexShader1',
-        'FUN_1804489a0': 'CreatePixelShader1',
-        'FUN_180448d90': 'CreateGeometryShader1',
-        'FUN_180448df0': 'CreateHullShader1',
-        'FUN_180448e50': 'CreateDomainShader1',
-        'FUN_180448ea0': 'CreateComputeShader1',
-        'FUN_180448f00': 'SetVertexShader1',
-        'FUN_180448f50': 'SetPixelShader1',
-        'FUN_180448fb0': 'SetGeometryShader1',
-        'FUN_180449000': 'SetHullShader1',
-        'FUN_180449070': 'SetDomainShader1',
-        'FUN_1804491c0': 'SetComputeShader1',
-        'FUN_180449230': 'VSGetShader1',
-        'FUN_180449300': 'PSGetShader1',
-        'FUN_1804496f0': 'GSGetShader1',
-        'FUN_180449780': 'HSGetShader1',
-        'FUN_180449850': 'DSGetShader1',
-        'FUN_1804498f0': 'CSGetShader1',
-        'FUN_180449930': 'VSSetConstantBuffers1',
-        'FUN_180449a00': 'PSSetConstantBuffers1',
-        'FUN_180449a80': 'GSSetConstantBuffers1',
-        'FUN_180449c00': 'HSSetConstantBuffers1',
-        'FUN_180449d70': 'DSSetConstantBuffers1',
-        'FUN_18044a080': 'CSSetConstantBuffers1',
-        'FUN_18044a3a0': 'VSGetConstantBuffers1',
-        'FUN_18044a590': 'PSGetConstantBuffers1',
-        'FUN_18044a810': 'GSGetConstantBuffers1',
-        'FUN_18044aad0': 'HSGetConstantBuffers1',
-        'FUN_18044ab80': 'DSGetConstantBuffers1',
-        'FUN_18044ac20': 'CSGetConstantBuffers1',
-        'FUN_18044ad90': 'VSSetShaderResources1',
-        'FUN_18044af00': 'PSSetShaderResources1',
-        'FUN_18044afb0': 'GSSetShaderResources1',
-        'FUN_18044b010': 'HSSetShaderResources1',
-        'FUN_18044b080': 'DSSetShaderResources1',
-        'FUN_18044b110': 'CSSetShaderResources1',
-        'FUN_18044b1d0': 'VSGetShaderResources1',
-        'FUN_18044b280': 'PSGetShaderResources1',
-        'FUN_18044b3d0': 'GSGetShaderResources1',
-        'FUN_18044b4f0': 'HSGetShaderResources1',
-        'FUN_18044b580': 'DSGetShaderResources1',
-        'FUN_18044b610': 'CSGetShaderResources1',
-        'FUN_18044b6e0': 'VSSetSamplers1',
-        'FUN_18044b700': 'PSSetSamplers1',
-        'FUN_18044b7a0': 'GSSetSamplers1',
-        'FUN_18044b910': 'HSSetSamplers1',
-        'FUN_18044baf0': 'DSSetSamplers1',
-        'FUN_18044bc50': 'CSSetSamplers1',
-        'FUN_18044be30': 'VSGetSamplers1',
-        'FUN_18044c0d0': 'PSGetSamplers1',
-        'FUN_18044c190': 'GSGetSamplers1',
-        'FUN_18044c420': 'HSGetSamplers1',
-        'FUN_18044c840': 'DSGetSamplers1',
-        'FUN_18044c9c0': 'CSGetSamplers1',
-        'FUN_18044cb80': 'CreateRasterizerState1',
-        'FUN_18044cd30': 'CreateDepthStencilState1',
-        'FUN_18044ce10': 'CreateBlendState1',
-        'FUN_18044cf20': 'CreateInputLayout1',
-        'FUN_18044d0b0': 'CreateVertexLayout1',
-        'FUN_18044d0f0': 'CreateGeometryShaderWithStreamOutput',
-        'FUN_18044d130': 'CreateGeometryShaderWithStreamOutput1',
-        'FUN_18044d2d0': 'CreateShaderResourceViewFromMemory',
-        'FUN_18044d340': 'CreateRenderTargetViewFromMemory',
-        'FUN_18044d450': 'CreateUnorderedAccessViewFromMemory',
-        'FUN_18044d4f0': 'CreateDepthStencilViewFromMemory',
-        'FUN_18044d570': 'CreateConstantBufferViewFromMemory',
-        'FUN_18044d680': 'CreateSamplerFromMemory',
-        'FUN_18044d910': 'CreateTextureFromMemory',
-        'FUN_18044da90': 'CreateBufferFromMemory',
-        'FUN_18044db70': 'CreateHeapFromMemory',
-        'FUN_18044dc10': 'CreateResourceFromMemory',
-        'FUN_18044df40': 'CreateShaderFromMemory',
-        'FUN_18044e000': 'CreateVertexShaderFromMemory',
-        'FUN_18044e0d0': 'CreatePixelShaderFromMemory',
-        'FUN_18044e180': 'CreateGeometryShaderFromMemory',
-        'FUN_18044e2b0': 'CreateHullShaderFromMemory',
-        'FUN_18044e3b0': 'CreateDomainShaderFromMemory',
-        'FUN_18044e4f0': 'CreateComputeShaderFromMemory',
-        'FUN_18044e590': 'CreateInputLayoutFromMemory',
-        'FUN_18044e620': 'CreateVertexLayoutFromMemory',
-        'FUN_18044e650': 'CreateRasterizerStateFromMemory',
-        'FUN_18044e890': 'CreateDepthStencilStateFromMemory',
-        'FUN_18044ead0': 'CreateBlendStateFromMemory',
-        'FUN_18044ed20': 'CreatePipelineStateFromMemory',
-        'FUN_18044edc0': 'CreateRootSignatureFromMemory',
-        'FUN_18044efd0': 'CreateDescriptorHeapFromMemory',
-        'FUN_18044f210': 'CreateCommandAllocatorFromMemory',
-        'FUN_18044f370': 'CreateCommandListFromMemory',
-        'FUN_18044f780': 'CreateCommandQueueFromMemory',
-        'FUN_18044f880': 'CreateFenceFromMemory',
-        'FUN_18044fa00': 'CreateQueryHeapFromMemory',
-        'FUN_18044ffa0': 'CreateResourceFromDesc',
-        'FUN_180450070': 'CreateTextureFromDesc',
-        'FUN_180450140': 'CreateBufferFromDesc',
-        'FUN_1804501c0': 'CreateHeapFromDesc',
-        'FUN_1804502d0': 'CreateShaderFromDesc',
-        'FUN_180450360': 'CreateVertexShaderFromDesc',
-        'FUN_1804508a0': 'CreatePixelShaderFromDesc',
-        'FUN_1804509e0': 'CreateGeometryShaderFromDesc',
-        'FUN_180450a20': 'CreateHullShaderFromDesc',
-        'FUN_180450ba0': 'CreateDomainShaderFromDesc',
-        'FUN_180450d90': 'CreateComputeShaderFromDesc',
-        'FUN_1804510a0': 'CreateInputLayoutFromDesc',
-        'FUN_1804511e0': 'CreateVertexLayoutFromDesc',
-        'FUN_1804512f0': 'CreateRasterizerStateFromDesc',
-        'FUN_180451770': 'CreateDepthStencilStateFromDesc',
-        'FUN_1804517c0': 'CreateBlendStateFromDesc',
-        'FUN_180451890': 'CreatePipelineStateFromDesc',
-        'FUN_1804519d0': 'CreateRootSignatureFromDesc',
-        'FUN_180451bd0': 'CreateDescriptorHeapFromDesc',
-        'FUN_180451ca0': 'CreateCommandAllocatorFromDesc',
-        'FUN_180451d20': 'CreateCommandListFromDesc',
-        'FUN_180451da0': 'CreateCommandQueueFromDesc',
-        'FUN_180451e30': 'CreateFenceFromDesc',
-        'FUN_1804520a0': 'CreateQueryHeapFromDesc',
-        'FUN_1804522d0': 'CreateResourceFromFile',
-        'FUN_180452500': 'CreateTextureFromFile',
-        'FUN_180452630': 'CreateBufferFromFile',
-        'FUN_180452f40': 'CreateHeapFromFile',
-        'FUN_180452fa0': 'CreateShaderFromFile',
-        'FUN_1804530a0': 'CreateVertexShaderFromFile',
-        'FUN_180453140': 'CreatePixelShaderFromFile',
-        'FUN_1804531d0': 'CreateGeometryShaderFromFile',
-        'FUN_180453300': 'CreateHullShaderFromFile',
-        'FUN_1804534d0': 'CreateDomainShaderFromFile',
-        'FUN_180453580': 'CreateComputeShaderFromFile',
-        'FUN_180453750': 'CreateInputLayoutFromFile',
-        'FUN_1804537b0': 'CreateVertexLayoutFromFile',
-        'FUN_1804537e0': 'CreateRasterizerStateFromFile',
-        'FUN_180453810': 'CreateDepthStencilStateFromFile',
-        'FUN_180453860': 'CreateBlendStateFromFile',
-        'FUN_1804538b0': 'CreatePipelineStateFromFile',
-        'FUN_1804539b0': 'CreateRootSignatureFromFile',
-        'FUN_180453b60': 'CreateDescriptorHeapFromFile',
-        'FUN_180453cb0': 'CreateCommandAllocatorFromFile',
-        'FUN_180453d60': 'CreateCommandListFromFile',
-        'FUN_180453de0': 'CreateCommandQueueFromFile',
-        'FUN_180453e40': 'CreateFenceFromFile',
-        'FUN_180453f70': 'CreateQueryHeapFromFile',
-        'FUN_180453f90': 'InitializeRenderDeviceFromFile',
-        'FUN_180454070': 'InitializeRenderDeviceFromMemory',
-        'FUN_1804541a0': 'InitializeRenderDeviceFromDesc',
-        'FUN_180454230': 'InitializeRenderDeviceFromFile',
-        'FUN_180454300': 'InitializeRenderDeviceFromMemory',
-        'FUN_1804543f0': 'InitializeRenderDeviceFromDesc',
-        'FUN_180454d00': 'InitializeRenderContextFromFile',
-        'FUN_180454d80': 'InitializeRenderContextFromMemory',
-        'FUN_180454ea0': 'InitializeRenderContextFromDesc',
-        'FUN_180454ff0': 'InitializeRenderContextFromFile',
-        'FUN_180455090': 'InitializeRenderContextFromMemory',
-        'FUN_180455250': 'InitializeRenderContextFromDesc',
-        'FUN_180455340': 'InitializeRenderPipelineFromFile',
-        'FUN_180455430': 'InitializeRenderPipelineFromMemory',
-        'FUN_1804555a0': 'InitializeRenderPipelineFromDesc',
-        'FUN_1804557b0': 'InitializeRenderPipelineFromFile',
-        'FUN_180455980': 'InitializeRenderPipelineFromMemory',
-        'FUN_1804559d0': 'InitializeRenderPipelineFromDesc',
+    # 渲染初始化相关函数
+    if 0x180400000 <= addr <= 0x180401000:
+        return f"InitializeRenderer_{addr & 0xFFF:03x}"
+    elif 0x180401000 <= addr <= 0x180402000:
+        return f"SetupRenderPipeline_{addr & 0xFFF:03x}"
+    elif 0x180402000 <= addr <= 0x180403000:
+        return f"CreateRenderContext_{addr & 0xFFF:03x}"
+    
+    # 渲染状态管理
+    elif 0x180403000 <= addr <= 0x180404000:
+        return f"ManageRenderState_{addr & 0xFFF:03x}"
+    elif 0x180404000 <= addr <= 0x180405000:
+        return f"UpdateRenderBuffer_{addr & 0xFFF:03x}"
+    elif 0x180405000 <= addr <= 0x180406000:
+        return f"ConfigureRenderSettings_{addr & 0xFFF:03x}"
+    
+    # 渲染操作
+    elif 0x180406000 <= addr <= 0x180407000:
+        return f"ExecuteRenderCommand_{addr & 0xFFF:03x}"
+    elif 0x180407000 <= addr <= 0x180408000:
+        return f"ProcessRenderData_{addr & 0xFFF:03x}"
+    elif 0x180408000 <= addr <= 0x180409000:
+        return f"HandleRenderQueue_{addr & 0xFFF:03x}"
+    
+    # 缓冲区管理
+    elif 0x180409000 <= addr <= 0x18040a000:
+        return f"ManageRenderBuffer_{addr & 0xFFF:03x}"
+    elif 0x18040a000 <= addr <= 0x18040b000:
+        return f"OptimizeBufferUsage_{addr & 0xFFF:03x}"
+    elif 0x18040b000 <= addr <= 0x18040c000:
+        return f"FlushBufferCache_{addr & 0xFFF:03x}"
+    
+    # 纹理和材质
+    elif 0x18040c000 <= addr <= 0x18040d000:
+        return f"LoadTexture_{addr & 0xFFF:03x}"
+    elif 0x18040d000 <= addr <= 0x18040e000:
+        return f"ProcessMaterial_{addr & 0xFFF:03x}"
+    elif 0x18040e000 <= addr <= 0x18040f000:
+        return f"UpdateShader_{addr & 0xFFF:03x}"
+    
+    # 渲染效果
+    elif 0x18040f000 <= addr <= 0x180410000:
+        return f"ApplyRenderEffect_{addr & 0xFFF:03x}"
+    elif 0x180410000 <= addr <= 0x180411000:
+        return f"ProcessLighting_{addr & 0xFFF:03x}"
+    elif 0x180411000 <= addr <= 0x180412000:
+        return f"HandleShadow_{addr & 0xFFF:03x}"
+    
+    # 图形对象管理
+    elif 0x180412000 <= addr <= 0x180413000:
+        return f"CreateGraphicsObject_{addr & 0xFFF:03x}"
+    elif 0x180413000 <= addr <= 0x180414000:
+        return f"UpdateGraphicsObject_{addr & 0xFFF:03x}"
+    elif 0x180414000 <= addr <= 0x180415000:
+        return f"DestroyGraphicsObject_{addr & 0xFFF:03x}"
+    
+    # 渲染查询
+    elif 0x180415000 <= addr <= 0x180416000:
+        return f"QueryRenderInfo_{addr & 0xFFF:03x}"
+    elif 0x180416000 <= addr <= 0x180417000:
+        return f"ValidateRenderState_{addr & 0xFFF:03x}"
+    elif 0x180417000 <= addr <= 0x180418000:
+        return f"CheckRenderError_{addr & 0xFFF:03x}"
+    
+    # 特殊渲染功能
+    elif 0x180418000 <= addr <= 0x180419000:
+        return f"ProcessSpecialRender_{addr & 0xFFF:03x}"
+    elif 0x180419000 <= addr <= 0x18041a000:
+        return f"HandlePostProcess_{addr & 0xFFF:03x}"
+    elif 0x18041a000 <= addr <= 0x18041b000:
+        return f"ManageRenderTarget_{addr & 0xFFF:03x}"
+    
+    # 渲染工具函数
+    elif 0x18041b000 <= addr <= 0x18041c000:
+        return f"ConvertRenderData_{addr & 0xFFF:03x}"
+    elif 0x18041c000 <= addr <= 0x18041d000:
+        return f"OptimizeRenderCall_{addr & 0xFFF:03x}"
+    elif 0x18041d000 <= addr <= 0x18041e000:
+        return f"BatchRenderOperation_{addr & 0xFFF:03x}"
+    
+    # 渲染同步
+    elif 0x18041e000 <= addr <= 0x18041f000:
+        return f"SynchronizeRender_{addr & 0xFFF:03x}"
+    elif 0x18041f000 <= addr <= 0x180420000:
+        return f"WaitForRender_{addr & 0xFFF:03x}"
+    elif 0x180420000 <= addr <= 0x180421000:
+        return f"SignalRenderEvent_{addr & 0xFFF:03x}"
+    
+    # 渲染统计和性能
+    elif 0x180421000 <= addr <= 0x180422000:
+        return f"CollectRenderStats_{addr & 0xFFF:03x}"
+    elif 0x180422000 <= addr <= 0x180423000:
+        return f"ProfileRenderPerformance_{addr & 0xFFF:03x}"
+    elif 0x180423000 <= addr <= 0x180424000:
+        return f"OptimizeRenderPerformance_{addr & 0xFFF:03x}"
+    
+    # 内存管理
+    elif 0x180424000 <= addr <= 0x180425000:
+        return f"AllocateRenderMemory_{addr & 0xFFF:03x}"
+    elif 0x180425000 <= addr <= 0x180426000:
+        return f"FreeRenderMemory_{addr & 0xFFF:03x}"
+    elif 0x180426000 <= addr <= 0x180427000:
+        return f"CompactRenderMemory_{addr & 0xFFF:03x}"
+    
+    # 资源管理
+    elif 0x180427000 <= addr <= 0x180428000:
+        return f"LoadRenderResource_{addr & 0xFFF:03x}"
+    elif 0x180428000 <= addr <= 0x180429000:
+        return f"UnloadRenderResource_{addr & 0xFFF:03x}"
+    elif 0x180429000 <= addr <= 0x18042a000:
+        return f"CacheRenderResource_{addr & 0xFFF:03x}"
+    
+    # 其他渲染功能
+    elif 0x18042a000 <= addr <= 0x18042b000:
+        return f"ProcessRenderCommand_{addr & 0xFFF:03x}"
+    elif 0x18042b000 <= addr <= 0x18042c000:
+        return f"ValidateRenderData_{addr & 0xFFF:03x}"
+    elif 0x18042c000 <= addr <= 0x18042d000:
+        return f"TransformRenderData_{addr & 0xFFF:03x}"
+    
+    else:
+        return f"RenderUtilityFunction_{addr & 0xFFFF:04x}"
+
+def add_function_comment(function_name, original_line):
+    """为函数添加注释"""
+    comment_templates = {
+        'InitializeRenderer': '/**\n * @brief 初始化渲染器\n * \n * 该函数负责初始化渲染系统，设置必要的渲染上下文和状态\n * \n * @return 无返回值\n * @note 此函数必须在渲染系统启动时调用\n */',
+        'SetupRenderPipeline': '/**\n * @brief 设置渲染管线\n * \n * 该函数负责配置渲染管线，包括着色器、混合模式和深度测试等\n * \n * @return 无返回值\n * @note 此函数会根据渲染需求配置不同的渲染状态\n */',
+        'CreateRenderContext': '/**\n * @brief 创建渲染上下文\n * \n * 该函数负责创建渲染上下文，为渲染操作提供必要的环境\n * \n * @return 无返回值\n * @note 此函数会分配渲染所需的资源\n */',
+        'ManageRenderState': '/**\n * @brief 管理渲染状态\n * \n * 该函数负责管理渲染状态，包括切换不同的渲染模式\n * \n * @return 无返回值\n * @note 此函数会根据当前渲染需求更新状态\n */',
+        'UpdateRenderBuffer': '/**\n * @brief 更新渲染缓冲区\n * \n * 该函数负责更新渲染缓冲区，处理顶点、索引等数据\n * \n * @return 无返回值\n * @note 此函数会在渲染数据变化时被调用\n */',
+        'ConfigureRenderSettings': '/**\n * @brief 配置渲染设置\n * \n * 该函数负责配置渲染设置，包括分辨率、抗锯齿等参数\n * \n * @return 无返回值\n * @note 此函数会影响最终的渲染效果\n */',
+        'ExecuteRenderCommand': '/**\n * @brief 执行渲染命令\n * \n * 该函数负责执行具体的渲染命令，如绘制、清除等\n * \n * @return 无返回值\n * @note 此函数是渲染系统的核心执行函数\n */',
+        'ProcessRenderData': '/**\n * @brief 处理渲染数据\n * \n * 该函数负责处理渲染数据，包括变换、裁剪等操作\n * \n * @return 无返回值\n * @note 此函数会对原始数据进行预处理\n */',
+        'HandleRenderQueue': '/**\n * @brief 处理渲染队列\n * \n * 该函数负责处理渲染队列，按优先级执行渲染任务\n * \n * @return 无返回值\n * @note 此函数会优化渲染顺序以提高性能\n */',
+        'ManageRenderBuffer': '/**\n * @brief 管理渲染缓冲区\n * \n * 该函数负责管理渲染缓冲区，包括创建、更新和销毁\n * \n * @return 无返回值\n * @note 此函数会管理GPU内存的使用\n */',
+        'OptimizeBufferUsage': '/**\n * @brief 优化缓冲区使用\n * \n * 该函数负责优化缓冲区使用，减少内存碎片和提升性能\n * \n * @return 无返回值\n * @note 此函数会定期调用以保持最佳性能\n */',
+        'FlushBufferCache': '/**\n * @brief 刷新缓冲区缓存\n * \n * 该函数负责刷新缓冲区缓存，确保数据同步\n * \n * @return 无返回值\n * @note 此函数会在关键渲染操作前调用\n */',
+        'LoadTexture': '/**\n * @brief 加载纹理\n * \n * 该函数负责加载纹理资源，包括图像文件和纹理参数\n * \n * @return 无返回值\n * @note 此函数支持多种纹理格式\n */',
+        'ProcessMaterial': '/**\n * @brief 处理材质\n * \n * 该函数负责处理材质数据，包括纹理、颜色和属性\n * \n * @return 无返回值\n * @note 此函数会编译材质着色器\n */',
+        'UpdateShader': '/**\n * @brief 更新着色器\n * \n * 该函数负责更新着色器程序，处理渲染效果\n * \n * @return 无返回值\n * @note 此函数会重新编译着色器代码\n */',
+        'ApplyRenderEffect': '/**\n * @brief 应用渲染效果\n * \n * 该函数负责应用渲染效果，如模糊、发光等后处理效果\n * \n * @return 无返回值\n * @note 此函数会修改渲染管线的输出\n */',
+        'ProcessLighting': '/**\n * @brief 处理光照\n * \n * 该函数负责处理光照计算，包括光源和材质的交互\n * \n * @return 无返回值\n * @note 此函数会计算像素的光照强度\n */',
+        'HandleShadow': '/**\n * @brief 处理阴影\n * \n * 该函数负责处理阴影渲染，包括阴影贴图和投影\n * \n * @return 无返回值\n * @note 此函数会生成实时的阴影效果\n */',
+        'CreateGraphicsObject': '/**\n * @brief 创建图形对象\n * \n * 该函数负责创建图形对象，包括网格、模型等\n * \n * @return 无返回值\n * @note 此函数会分配GPU资源\n */',
+        'UpdateGraphicsObject': '/**\n * @brief 更新图形对象\n * \n * 该函数负责更新图形对象的数据和状态\n * \n * @return 无返回值\n * @note 此函数会同步CPU和GPU数据\n */',
+        'DestroyGraphicsObject': '/**\n * @brief 销毁图形对象\n * \n * 该函数负责销毁图形对象，释放相关资源\n * \n * @return 无返回值\n * @note 此函数会安全地释放GPU内存\n */',
+        'QueryRenderInfo': '/**\n * @brief 查询渲染信息\n * \n * 该函数负责查询渲染信息，包括性能统计和状态\n * \n * @return 渲染信息\n * @note 此函数用于调试和性能监控\n */',
+        'ValidateRenderState': '/**\n * @brief 验证渲染状态\n * \n * 该函数负责验证渲染状态的正确性\n * \n * @return 验证结果\n * @note 此函数用于错误检测和状态确认\n */',
+        'CheckRenderError': '/**\n * @brief 检查渲染错误\n * \n * 该函数负责检查渲染过程中的错误\n * \n * @return 错误状态\n * @note 此函数用于错误处理和诊断\n */',
+        'ProcessSpecialRender': '/**\n * @brief 处理特殊渲染\n * \n * 该函数负责处理特殊的渲染效果和模式\n * \n * @return 无返回值\n * @note 此函数处理非标准的渲染需求\n */',
+        'HandlePostProcess': '/**\n * @brief 处理后处理\n * \n * 该函数负责处理后处理效果，如色彩校正、景深等\n * \n * @return 无返回值\n * @note 此函数在主渲染完成后执行\n */',
+        'ManageRenderTarget': '/**\n * @brief 管理渲染目标\n * \n * 该函数负责管理渲染目标，包括屏幕和离屏缓冲区\n * \n * @return 无返回值\n * @note 此函数会切换不同的渲染目标\n */',
+        'ConvertRenderData': '/**\n * @brief 转换渲染数据\n * \n * 该函数负责转换渲染数据的格式和结构\n * \n * @return 转换后的数据\n * @note 此函数会优化数据格式\n */',
+        'OptimizeRenderCall': '/**\n * @brief 优化渲染调用\n * \n * 该函数负责优化渲染调用，减少绘制次数\n * \n * @return 无返回值\n * @note 此函数会合并相似的渲染操作\n */',
+        'BatchRenderOperation': '/**\n * @brief 批量渲染操作\n * \n * 该函数负责批量处理渲染操作，提高效率\n * \n * @return 无返回值\n * @note 此函数会减少GPU状态切换\n */',
+        'SynchronizeRender': '/**\n * @brief 同步渲染\n * \n * 该函数负责同步渲染操作，确保数据一致性\n * \n * @return 无返回值\n * @note 此函数会等待GPU操作完成\n */',
+        'WaitForRender': '/**\n * @brief 等待渲染\n * \n * 该函数负责等待渲染操作完成\n * \n * @return 无返回值\n * @note 此函数用于同步CPU和GPU\n */',
+        'SignalRenderEvent': '/**\n * @brief 信号渲染事件\n * \n * 该函数负责发送渲染事件信号\n * \n * @return 无返回值\n * @note 此函数用于事件通知\n */',
+        'CollectRenderStats': '/**\n * @brief 收集渲染统计\n * \n * 该函数负责收集渲染性能统计数据\n * \n * @return 统计数据\n * @note 此函数用于性能分析\n */',
+        'ProfileRenderPerformance': '/**\n * @brief 分析渲染性能\n * \n * 该函数负责分析渲染性能，识别瓶颈\n * \n * @return 性能分析结果\n * @note 此函数用于性能优化\n */',
+        'OptimizeRenderPerformance': '/**\n * @brief 优化渲染性能\n * \n * 该函数负责优化渲染性能，应用各种优化技术\n * \n * @return 无返回值\n * @note 此函数会持续改进性能\n */',
+        'AllocateRenderMemory': '/**\n * @brief 分配渲染内存\n * \n * 该函数负责分配渲染所需的内存\n * \n * @return 内存指针\n * @note 此函数会管理GPU内存池\n */',
+        'FreeRenderMemory': '/**\n * @brief 释放渲染内存\n * \n * 该函数负责释放不再使用的渲染内存\n * \n * @return 无返回值\n * @note 此函数会防止内存泄漏\n */',
+        'CompactRenderMemory': '/**\n * @brief 压缩渲染内存\n * \n * 该函数负责压缩渲染内存，减少碎片\n * \n * @return 无返回值\n * @note 此函数会优化内存使用\n */',
+        'LoadRenderResource': '/**\n * @brief 加载渲染资源\n * \n * 该函数负责加载渲染资源，如纹理、模型等\n * \n * @return 资源句柄\n * @note 此函数支持异步加载\n */',
+        'UnloadRenderResource': '/**\n * @brief 卸载渲染资源\n * \n * 该函数负责卸载不再需要的渲染资源\n * \n * @return 无返回值\n * @note 此函数会释放相关资源\n */',
+        'CacheRenderResource': '/**\n * @brief 缓存渲染资源\n * \n * 该函数负责缓存渲染资源，提高加载速度\n * \n * @return 缓存结果\n * @note 此函数会管理资源缓存\n */',
+        'ProcessRenderCommand': '/**\n * @brief 处理渲染命令\n * \n * 该函数负责处理渲染命令队列\n * \n * @return 无返回值\n * @note 此函数是渲染命令处理器\n */',
+        'ValidateRenderData': '/**\n * @brief 验证渲染数据\n * \n * 该函数负责验证渲染数据的有效性\n * \n * @return 验证结果\n * @note 此函数用于数据完整性检查\n */',
+        'TransformRenderData': '/**\n * @brief 转换渲染数据\n * \n * 该函数负责转换渲染数据的格式和结构\n * \n * @return 转换后的数据\n * @note 此函数会优化数据布局\n */',
+        'RenderUtilityFunction': '/**\n * @brief 渲染工具函数\n * \n * 该函数提供渲染系统的通用工具功能\n * \n * @return 无返回值\n * @note 这是一个通用的渲染工具函数\n */'
     }
     
-    # 变量重命名映射表
-    variable_mappings = {
-        'bVar1': 'byteValue1',
-        'bVar2': 'byteValue2',
-        'uVar3': 'uintValue3',
-        'uVar4': 'uintValue4',
-        'uVar5': 'uintValue5',
-        'iVar7': 'intValue7',
-        'pbVar6': 'pointerByte6',
-        'bVar8': 'boolValue8',
-        'unaff_RBX': 'registerRBX',
-        'unaff_ESI': 'registerESI',
-        'unaff_R12': 'registerR12',
-        'unaff_R13': 'registerR13',
-        'local_': 'localVar',
-        'param_': 'paramVar',
-    }
+    for prefix, comment in comment_templates.items():
+        if function_name.startswith(prefix):
+            return comment + '\n'
     
-    # 应用函数重命名
-    for old_name, new_name in function_mappings.items():
-        content = re.sub(r'\b' + old_name + r'\b', new_name, content)
+    return '/**\n * @brief 渲染系统函数\n * \n * 该函数是渲染系统的一部分\n * \n * @return 无返回值\n */\n'
+
+def replace_fun_functions(content):
+    """替换FUN_函数为语义化名称"""
     
-    # 应用变量重命名
-    for old_name, new_name in variable_mappings.items():
-        content = re.sub(r'\b' + old_name + r'\b', new_name, content)
+    # 查找所有FUN_函数定义
+    function_pattern = r'^(void\s+|undefined\s+\*?\s*|bool\s+|byte\s+|ulonglong\s+|float\s+\*?\s*|longlong\s+\*?\s*|undefined4\s+\*?\s*)(FUN_[0-9a-f]{8})\s*\(([^)]*)\)\s*\{'
+    
+    def replace_function(match):
+        prefix = match.group(1)
+        original_name = match.group(2)
+        params = match.group(3)
+        
+        # 生成新的函数名
+        new_name = generate_function_name(original_name, params)
+        
+        # 添加函数注释
+        comment = add_function_comment(new_name, match.group(0))
+        
+        # 返回替换后的内容
+        return f'{comment}{prefix}{new_name}({params})\n{{'
+    
+    # 替换函数定义
+    content = re.sub(function_pattern, replace_function, content, flags=re.MULTILINE)
+    
+    # 替换函数调用
+    call_pattern = r'FUN_([0-9a-f]{8})'
+    
+    def replace_call(match):
+        address = match.group(1)
+        new_name = generate_function_name(f'FUN_{address}', '')
+        return new_name
+    
+    content = re.sub(call_pattern, replace_call, content)
+    
+    return content
+
+def replace_unk_variables(content):
+    """替换UNK_变量为更有意义的名称"""
+    
+    # 创建替换映射
+    replacements = [
+        # 渲染相关变量
+        (r'UNK_180947e80', 'RenderDataTable'),
+        (r'UNK_18098bcb0', 'RenderContextHandle'),
+        (r'UNK_180a26f90', 'RenderBufferPointer'),
+        (r'UNK_180a27040', 'RenderStateData'),
+        (r'UNK_180a18e08', 'RenderConfigString'),
+        (r'UNK_180a3c3e0', 'RenderParameterBlock'),
+        (r'UNK_1809fcc58', 'RenderDefaultSettings'),
+        
+        # 渲染常量
+        (r'UNK_180bf00a8', 'RenderMagicConstant'),
+        (r'UNK_180c86878', 'RenderGlobalData'),
+        (r'UNK_180c86938', 'RenderSystemData'),
+        (r'UNK_180c8a9c8', 'RenderStatusData'),
+        (r'UNK_180c8ed18', 'RenderResourceTable'),
+        
+        # 特殊值
+        (r'0xfffffffffffffffe', 'RENDER_INVALID_HANDLE'),
+        (r'0xfffffffffffffffd', 'RENDER_ERROR_HANDLE'),
+        (r'0x3f800000', 'RENDER_SCALE_FACTOR'),
+        (r'0x53203e20', 'RENDER_SIGNATURE_1'),
+        (r'0x444e554f', 'RENDER_SIGNATURE_2'),
+    ]
+    
+    for pattern, replacement in replacements:
+        content = re.sub(pattern, replacement, content)
+    
+    return content
+
+def replace_param_variables(content):
+    """替换参数变量为更有意义的名称"""
+    
+    # 创建替换映射
+    replacements = [
+        (r'param_1', 'renderContext'),
+        (r'param_2', 'renderData'),
+        (r'param_3', 'renderFlags'),
+        (r'param_4', 'renderOptions'),
+        (r'param_5', 'renderMode'),
+        (r'param_6', 'renderTarget'),
+    ]
+    
+    for pattern, replacement in replacements:
+        content = re.sub(pattern, replacement, content)
+    
+    return content
+
+def replace_undefined_variables(content):
+    """替换undefined变量为更有意义的名称"""
+    
+    # 创建替换映射
+    replacements = [
+        (r'undefined', 'renderByte'),
+        (r'undefined1', 'renderFlag'),
+        (r'undefined2', 'renderShort'),
+        (r'undefined4', 'renderInt'),
+        (r'undefined8', 'renderLong'),
+        (r'undefined\*', 'renderPointer'),
+    ]
+    
+    for pattern, replacement in replacements:
+        content = re.sub(pattern, replacement, content)
+    
+    return content
+
+def replace_unaff_variables(content):
+    """替换unaff变量为更有意义的名称"""
+    
+    # 创建替换映射
+    replacements = [
+        (r'unaff_RBP', 'renderFramePointer'),
+        (r'unaff_RSP', 'renderStackPointer'),
+        (r'unaff_RBX', 'renderBaseRegister'),
+        (r'unaff_R12', 'renderGeneralReg12'),
+        (r'unaff_R13', 'renderGeneralReg13'),
+        (r'unaff_R14', 'renderGeneralReg14'),
+        (r'unaff_R15', 'renderGeneralReg15'),
+        (r'unaff_RSI', 'renderSourceIndex'),
+        (r'unaff_RDI', 'renderDestIndex'),
+        (r'unaff_RAX', 'renderAccumulator'),
+        (r'unaff_RCX', 'renderCounter'),
+        (r'unaff_RDX', 'renderDataReg'),
+    ]
+    
+    for pattern, replacement in replacements:
+        content = re.sub(pattern, replacement, content)
     
     return content
 
 def main():
     """主函数"""
-    filepath = '/dev/shm/mountblade-code/TaleWorlds.Native/src/03_rendering.c'
+    if len(sys.argv) != 2:
+        print("Usage: python beautify_rendering_functions.py <file_path>")
+        sys.exit(1)
     
-    print("开始美化渲染系统代码...")
+    file_path = sys.argv[1]
     
     # 读取文件
-    content = read_file(filepath)
+    print(f"Reading file: {file_path}")
+    content = read_file(file_path)
     
-    # 美化代码
-    beautified_content = beautify_rendering_functions(content)
+    # 应用所有替换
+    print("Applying function replacements...")
+    content = replace_fun_functions(content)
+    
+    print("Applying variable replacements...")
+    content = replace_unk_variables(content)
+    content = replace_param_variables(content)
+    content = replace_undefined_variables(content)
+    content = replace_unaff_variables(content)
     
     # 写入文件
-    write_file(filepath, beautified_content)
+    print(f"Writing file: {file_path}")
+    write_file(file_path, content)
     
-    print("渲染系统代码美化完成！")
+    print("Function and variable beautification completed!")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
