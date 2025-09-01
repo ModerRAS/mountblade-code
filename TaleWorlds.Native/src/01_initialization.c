@@ -36570,58 +36570,69 @@ long long ResetSystemResourceDataStructure(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005cc00(void* **SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005cc00(void* **SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源分配配置器函数
+ * 
+ * 该函数负责配置系统资源的分配，包括资源的创建、分配和配置。
+ * 它会处理系统数据管理器指针，并根据配置标志进行相应的资源分配操作。
+ * 
+ * @param ResourcePointer 资源指针，包含资源的基本信息
+ * @param ConfigurationDataPointer 配置数据指针，包含系统的配置信息
+ * @param AdditionalParameter 额外参数，用于指定分配操作
+ * @param ConfigurationFlag 配置标志，用于控制分配行为
+ * @note 这是系统资源管理的重要组成部分，用于资源分配和配置
+ */
+void ConfigureSystemResourceAllocation(void* **ResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  byte bVar1;
-  uint unsignedSystemValue2;
-  long long localResourceOffset;
-  void* **ppunsignedSystemValue4;
-  byte *pbVar5;
-  void* **ppunsignedSystemValue6;
-  long long localDataPointer;
-  void* unsignedSystemValue8;
-  void* **ppuStackX_8;
-  char acStackX_20 [8];
-  uint32_t unsignedSystemValue9;
-  void* *puStack_68;
-  long long lStack_60;
-  void* *puStack_48;
-  long long lStack_40;
-  uint32_t uStack_30;
+  byte comparisonByte1;
+  uint comparisonValue2;
+  long long dataManagerOffset;
+  void* **allocatedResourcePointer;
+  byte *resourceDataPointer;
+  void* **systemDataManagerPointer;
+  long long dataOffset;
+  void* allocationResult;
+  void* **resourceReference;
+  char configurationFlagBuffer [8];
+  uint32_t allocationFlags;
+  void* *configurationDataObject;
+  long long stackOffset60;
+  void* *additionalParameterObject;
+  long long stackOffset40;
+  uint32_t stackOffset30;
   
-  localResourceOffset = SystemDataManagerPointer;
-  acStackX_20[0] = (char)ConfigurationFlag;
-  unsignedSystemValue8 = 0;
-  ppunsignedSystemValue6 = (void* **)(SystemDataManagerPointer + 0x70);
-  ppuStackX_8 = SystemResourcePointer;
-  FUN_180058080(ppunsignedSystemValue6,&ppuStackX_8,ConfigurationDataPointer,ConfigurationFlag,0,0xfffffffffffffffe);
-  if (ppuStackX_8 != ppunsignedSystemValue6) {
-    ProcessDataManager(ppuStackX_8 + 8,AdditionalParameter);
+  dataManagerOffset = SystemDataManagerPointer;
+  configurationFlagBuffer[0] = (char)ConfigurationFlag;
+  allocationResult = 0;
+  systemDataManagerPointer = (void* **)(SystemDataManagerPointer + 0x70);
+  resourceReference = ResourcePointer;
+  FUN_180058080(systemDataManagerPointer,&resourceReference,ConfigurationDataPointer,ConfigurationFlag,0,0xfffffffffffffffe);
+  if (resourceReference != systemDataManagerPointer) {
+    ProcessDataManager(resourceReference + 8,AdditionalParameter);
     return;
   }
-  CreateSystemObject(&puStack_68,ConfigurationDataPointer);
-  CreateSystemObject(&puStack_48,AdditionalParameter);
-  unsignedSystemValue9 = 1;
-  localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x60,*(uint8_t *)(localResourceOffset + 0x98));
-  FUN_18005caa0(localResourceOffset + 0x20,&puStack_68);
-  ppunsignedSystemValue4 = (void* **)SystemResourceAllocator(ppunsignedSystemValue6,acStackX_20,localResourceOffset + 0x20);
-  if (acStackX_20[0] == '\0') {
-    ValidateSystemResourceConfiguration(localResourceOffset);
-    if (localResourceOffset != 0) {
+  CreateSystemObject(&configurationDataObject,ConfigurationDataPointer);
+  CreateSystemObject(&additionalParameterObject,AdditionalParameter);
+  allocationFlags = 1;
+  dataManagerOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x60,*(uint8_t *)(dataManagerOffset + 0x98));
+  FUN_18005caa0(dataManagerOffset + 0x20,&configurationDataObject);
+  allocatedResourcePointer = (void* **)SystemResourceAllocator(systemDataManagerPointer,configurationFlagBuffer,dataManagerOffset + 0x20);
+  if (configurationFlagBuffer[0] == '\0') {
+    ValidateSystemResourceConfiguration(dataManagerOffset);
+    if (dataManagerOffset != 0) {
                     // WARNING: Subroutine does not return
-      SystemCleanupFunction(localResourceOffset);
+      SystemCleanupFunction(dataManagerOffset);
     }
-    ppuStackX_8 = &puStack_48;
-    puStack_48 = &SystemGlobalDataReference;
-    if (lStack_40 == 0) {
-      lStack_40 = 0;
-      uStack_30 = 0;
-      puStack_48 = &SystemMemoryAllocatorReference;
-      ppuStackX_8 = &puStack_68;
-      puStack_68 = &SystemGlobalDataReference;
-      if (lStack_60 == 0) {
+    resourceReference = &additionalParameterObject;
+    additionalParameterObject = &SystemGlobalDataReference;
+    if (stackOffset40 == 0) {
+      stackOffset40 = 0;
+      stackOffset30 = 0;
+      additionalParameterObject = &SystemMemoryAllocatorReference;
+      resourceReference = &configurationDataObject;
+      configurationDataObject = &SystemGlobalDataReference;
+      if (stackOffset60 == 0) {
         return;
       }
                     // WARNING: Subroutine does not return
@@ -36630,23 +36641,23 @@ void FUN_18005cc00(void* **SystemResourcePointer,void* ConfigurationDataPointer,
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  if (ppunsignedSystemValue4 == ppunsignedSystemValue6) goto LAB_18005ccff;
-  if (*(int *)(ppunsignedSystemValue4 + 6) != 0) {
-    if (*(int *)(localResourceOffset + 0x30) == 0) goto LAB_18005ccff;
-    pbVar5 = ppunsignedSystemValue4[5];
-    localDataPointer = *(long long *)(localResourceOffset + 0x28) - (long long)pbVar5;
+  if (allocatedResourcePointer == systemDataManagerPointer) goto LAB_18005ccff;
+  if (*(int *)(allocatedResourcePointer + 6) != 0) {
+    if (*(int *)(dataManagerOffset + 0x30) == 0) goto LAB_18005ccff;
+    resourceDataPointer = allocatedResourcePointer[5];
+    dataOffset = *(long long *)(dataManagerOffset + 0x28) - (long long)resourceDataPointer;
     do {
-      bVar1 = *pbVar5;
-      unsignedSystemValue2 = (uint)pbVar5[localDataPointer];
-      if (bVar1 != unsignedSystemValue2) break;
-      pbVar5 = pbVar5 + 1;
-    } while (unsignedSystemValue2 != 0);
-    if (0 < (int)(bVar1 - unsignedSystemValue2)) goto LAB_18005ccff;
+      comparisonByte1 = *resourceDataPointer;
+      comparisonValue2 = (uint)resourceDataPointer[dataOffset];
+      if (comparisonByte1 != comparisonValue2) break;
+      resourceDataPointer = resourceDataPointer + 1;
+    } while (comparisonValue2 != 0);
+    if (0 < (int)(comparisonByte1 - comparisonValue2)) goto LAB_18005ccff;
   }
-  unsignedSystemValue8 = 1;
+  allocationResult = 1;
 LAB_18005ccff:
                     // WARNING: Subroutine does not return
-  ConfigureSystemResourceHandle(localResourceOffset,ppunsignedSystemValue4,ppunsignedSystemValue6,unsignedSystemValue8,unsignedSystemValue9);
+  ConfigureSystemResourceHandle(dataManagerOffset,allocatedResourcePointer,systemDataManagerPointer,allocationResult,allocationFlags);
 }
 
 
