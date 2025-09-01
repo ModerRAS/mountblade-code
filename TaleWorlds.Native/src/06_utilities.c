@@ -3317,7 +3317,16 @@ undefined8 ValidateSystemAccess(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180890490(longlong param_1)
+/**
+ * @brief 更新对象状态标志
+ * 
+ * 该函数遍历系统中的对象，更新特定对象的状态标志
+ * 主要用于管理对象的生命周期和状态转换
+ * 
+ * @param objectContext 对象上下文指针，包含对象管理所需的信息
+ * @return undefined8 操作状态码，0表示成功，非0表示失败
+ */
+undefined8 UpdateObjectStatusFlags(longlong objectContext)
 
 {
   uint *puVar1;
@@ -4475,8 +4484,14 @@ undefined4 FUN_180890e33(void)
 
 
 
-// 函数: void FUN_180890e5c(void)
-void FUN_180890e5c(void)
+// 函数: void FatalErrorHandler(void)
+/**
+ * @brief 致命错误处理器
+ * 
+ * 该函数负责处理致命级别的错误，调用错误处理子程序
+ * 通常在发生不可恢复的致命错误时调用，不会返回
+ */
+void FatalErrorHandler(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -4486,8 +4501,14 @@ void FUN_180890e5c(void)
 
 
 
-// 函数: void FUN_180890ed2(void)
-void FUN_180890ed2(void)
+// 函数: void SystemCleanupHandler(void)
+/**
+ * @brief 系统清理处理器
+ * 
+ * 该函数负责处理系统清理工作，执行资源释放和清理操作
+ * 在系统关闭或需要清理资源时调用
+ */
+void SystemCleanupHandler(void)
 
 {
   return;
