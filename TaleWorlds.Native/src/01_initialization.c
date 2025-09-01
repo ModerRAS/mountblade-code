@@ -5410,7 +5410,7 @@ void InitializeSystemMemoryNodeManager(void)
 void InitializeSystemStringConfigurationManager(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -5732,7 +5732,7 @@ void InitializeRenderingSystem(void)
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
-  void* renderingInitializationCallback;
+  void* RenderingInitializationCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
@@ -5838,7 +5838,7 @@ void InitializeSystemConfigurationManager(void)
 void InitializeSystemMessageProcessor(void)
 
 {
-  void* systemContextParameter;
+  void* SystemContextParameter;
   void* *messageProcessorReference;
   uint8_t *messageConfigurationBuffer;
   uint32_t configurationBufferSize;
@@ -5869,7 +5869,7 @@ int InitializeSystemDebugManager(void)
 
 {
   long long DebugManagerStatus;
-  void* in_R9;
+  void* RegisterR9Value;
   
   SystemConfigDataPointerF = &SystemGlobalDataPointerB;
   SystemGlobalDataReferenceA = &SystemGlobalDataBufferA;
@@ -5885,7 +5885,7 @@ int InitializeSystemDebugManager(void)
 void InitializeSystemLogManager(void)
 
 {
-  void* systemContextParameter;
+  void* SystemContextParameter;
   void* *logManagerReference;
   uint8_t *logConfigurationBuffer;
   uint32_t configurationBufferSize;
@@ -5915,7 +5915,7 @@ void InitializeSystemLogManager(void)
 void InitializeSystemPerformanceMonitor(void)
 
 {
-  void* systemContextParameter;
+  void* SystemContextParameter;
   void* *performanceMonitorReference;
   uint8_t *performanceConfigurationBuffer;
   uint32_t configurationBufferSize;
@@ -5945,7 +5945,7 @@ void InitializeSystemPerformanceMonitor(void)
 void InitializeSystemSecurityMonitor(void)
 
 {
-  void* systemContextParameter;
+  void* SystemContextParameter;
   void* *securityMonitorReference;
   uint8_t *securityConfigurationBuffer;
   uint32_t configurationBufferSize;
@@ -5975,7 +5975,7 @@ void InitializeSystemSecurityMonitor(void)
 void InitializeSystemResourceManager(void)
 
 {
-  void* systemContextParameter;
+  void* SystemContextParameter;
   void* *resourceManagerReference;
   uint8_t *resourceConfigurationBuffer;
   uint32_t configurationBufferSize;
@@ -6005,7 +6005,7 @@ void InitializeSystemResourceManager(void)
 void InitializeSystemNetworkManager(void)
 
 {
-  void* systemContextParameter;
+  void* SystemContextParameter;
   void* *networkManagerReference;
   uint8_t *networkConfigurationBuffer;
   uint32_t configurationBufferSize;
@@ -6043,7 +6043,7 @@ void InitializeSystemStorageManager(void)
   void** SystemCurrentStorageNode;
   void** SystemNextStorageNode;
   void** SystemPreviousStorageNode;
-  void* storageManagerCallbackFunction;
+  void* StorageManagerCallbackFunction;
   
   SystemDataTableReference = (long long*)GetSystemRootPointer();
   SystemRootStorageNode = (void* *)*SystemDataTableReference;
@@ -8766,7 +8766,7 @@ void InitializeSystemPluginManager(void)
 void InitializeSystemConfigurationManager(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -8797,7 +8797,7 @@ int InitializeSystemModuleLoader(void)
 
 {
   long long systemModuleStatus;
-  void* systemModuleConfig;
+  void* SystemModuleConfig;
   
   SystemModuleLoaderPrimary = &SystemModuleLoaderConfig;
   SystemModuleLoaderSecondary = &SystemModuleLoaderStatus;
@@ -8807,7 +8807,7 @@ int InitializeSystemModuleLoader(void)
 void InitializeSystemExtensionManager(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -8831,7 +8831,7 @@ void InitializeSystemExtensionManager(void)
 void InitializeSystemLibraryManager(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -8918,7 +8918,7 @@ void InitializeSystemSearchManagerD(void)
   void** nextSystemNode;
   void** previousSystemNode;
   void** allocatedSystemNode;
-  void* systemSearchFunctionPointer;
+  void* SystemSearchFunctionPointer;
   long long MemoryAllocationSize;
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
@@ -9140,7 +9140,7 @@ void InitializeSystemConfigurationNode(void)
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
-  void* systemConfigurationData;
+  void* SystemConfigurationData;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
@@ -9282,7 +9282,7 @@ void InitializeSystemThreadNode(void)
 void InitializeSystemPerformanceNode(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -9899,7 +9899,7 @@ void InitializeSystemSearchConfigurationManager(void)
 void InitializeSystemDebugInfoManager(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -9930,7 +9930,7 @@ void InitializeSystemDebugInfoManager(void)
 void InitializeSystemLogManager(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -9961,7 +9961,7 @@ void InitializeSystemLogManager(void)
 void InitializeSystemStringProcessorA(void)
 
 {
-  void* systemRegisterR9;
+  void* SystemRegisterR9Value;
   void* *systemStringPointer;
   uint8_t *systemBufferPointer;
   uint32_t systemConfigValue;
@@ -9992,7 +9992,7 @@ void InitializeSystemStringProcessorA(void)
 void InitializeSystemStringProcessorB(void)
 
 {
-  void* systemRegisterR9;
+  void* SystemRegisterR9Value;
   void* *systemStringPointer;
   uint8_t *systemBufferPointer;
   uint32_t systemConfigValue;
@@ -10023,7 +10023,7 @@ void InitializeSystemStringProcessorB(void)
 void InitializeSystemStringProcessorC(void)
 
 {
-  void* systemRegisterR9;
+  void* SystemRegisterR9Value;
   void* *systemStringPointer;
   uint8_t *systemBufferPointer;
   uint32_t systemConfigValue;
@@ -10046,7 +10046,7 @@ void InitializeSystemStringProcessorC(void)
 void InitializeSystemStringProcessorA(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -10069,7 +10069,7 @@ void InitializeSystemStringProcessorA(void)
 void InitializeSystemStringProcessorB(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -10092,7 +10092,7 @@ void InitializeSystemStringProcessorB(void)
 void InitializeSystemStringProcessorC(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -10115,7 +10115,7 @@ void InitializeSystemStringProcessorC(void)
 void InitializeSystemStringProcessorD(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -12095,7 +12095,7 @@ void InitializeSystemDeviceNodeManager(void)
 void InitializeSystemStringProcessor(void)
 
 {
-  void* systemRegisterR9;
+  void* SystemRegisterR9Value;
   void* *SystemStackPointerA0;
   uint8_t *SystemStackPointer98;
   uint32_t systemStackValue90;
@@ -12712,7 +12712,7 @@ void InitializeSystemStringProcessor(void)
 void InitializeSystemMemoryNodeManager(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -12741,7 +12741,7 @@ void InitializeSystemMemoryNodeManager(void)
 void InitializeSystemDeviceNodeManager(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -13171,7 +13171,7 @@ int InitializeSystemGlobalDataTable(void)
 
 {
   long long DataTableStatus;
-  void* in_R9;
+  void* RegisterR9Value;
   
   SystemGlobalDataPointerD = &SystemMemoryNodeTemplateA;
   SystemGlobalDataReferenceB = &SystemGlobalDataBufferB;
@@ -14021,7 +14021,7 @@ void InitializeSystemEventManagerM(void)
 void InitializeSystemEventManagerN(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -14653,7 +14653,7 @@ void InitializeSystemResourceManagerJ(void)
 void InitializeSystemResourceManagerK(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -14679,7 +14679,7 @@ void InitializeSystemResourceManagerK(void)
 void InitializeSystemResourceManagerL(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -14705,7 +14705,7 @@ void InitializeSystemResourceManagerL(void)
 void InitializeSystemResourceManagerM(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -14731,7 +14731,7 @@ void InitializeSystemResourceManagerM(void)
 void InitializeSystemResourceManagerN(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -14753,7 +14753,7 @@ int InitializeSystemModuleF(void)
 
 {
   long long systemStatus;
-  void* systemRegister;
+  void* SystemRegister;
   
   SystemGlobalDataPointerE = &SystemMemoryNodeTemplateB;
   SystemGlobalDataReferenceC = &SystemGlobalDataBufferC;
@@ -16264,7 +16264,7 @@ int InitializeSystemPerformanceMonitor(void)
 
 {
   long long systemInitializationResult;
-  void* systemParameter;
+  void* SystemParameter;
   
   SystemPerformanceMonitorData = &SystemPerformanceMonitorConfiguration;
   SystemPerformanceMonitorStatus = &SystemPerformanceMonitorStatusData;
@@ -16484,7 +16484,7 @@ void InitializeSystemSubcomponentL(void)
 void InitializeSystemSubcomponentM(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -17721,7 +17721,7 @@ void SystemResourceTrackerInitializer(void)
 void SystemPerformanceMonitorInitializer(void)
 
 {
-  void* in_R9;
+  void* RegisterR9Value;
   void* *stackParameterA;
   uint8_t *stackParameterB;
   uint32_t stackParameterC;
@@ -23113,7 +23113,7 @@ void ExecuteSystemFinalCleanup(void)
   long long *PrimaryResourcePointer;
   long long localSystemHandle;
   long long localResourceOffset;
-  void* in_R9;
+  void* RegisterR9Value;
   void* unsignedSystemValue4;
   
   unsignedSystemValue4 = 0xfffffffffffffffe;
@@ -32104,7 +32104,6 @@ LAB_18005856a:
 
 
 
-// 函数: void FUN_1800586e0(long long SystemResourcePointer)
 /**
  * @brief 系统资源验证器函数
  * 
@@ -34207,9 +34206,9 @@ void ProcessSystemStringAndInitializeBuffer(long long SystemResourcePointer,long
 {
   long long localMemoryPointer;
   
-  if (sourceString == 0) {
-    *(uint32_t *)(targetBuffer + 0x10) = 0;
-    **(uint8_t **)(targetBuffer + 8) = 0;
+  if (ConfigurationDataPointer == 0) {
+    *(uint32_t *)(SystemResourcePointer + 0x10) = 0;
+    **(uint8_t **)(SystemResourcePointer + 8) = 0;
     return;
   }
   localMemoryPointer = -1;
@@ -34224,8 +34223,8 @@ void ProcessSystemStringAndInitializeBuffer(long long SystemResourcePointer,long
     return;
   }
   InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x10,ConfigurationDataPointer);
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
-  **(uint8_t **)(targetBuffer + 8) = 0;
+  *(uint32_t *)(SystemResourcePointer + 0x10) = 0;
+  **(uint8_t **)(SystemResourcePointer + 8) = 0;
   return;
 }
 
