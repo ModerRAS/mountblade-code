@@ -14223,7 +14223,7 @@ void InitializeSystemResourceManagerM(void)
   stackBuffer[0] = 0;
   stackParameterC = 0x19;
   strcpy_s(stackBuffer,0x80,&SystemStringConstantD,in_R9,0xfffffffffffffffe);
-  _DAT_180c924b4 = SystemMemoryAllocationFunction(&stackParameterA);
+  SystemMemoryAllocationTableEntry017 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
 
@@ -14250,7 +14250,7 @@ void InitializeSystemResourceManagerN(void)
   stackBuffer[0] = 0;
   stackParameterC = 0x14;
   strcpy_s(stackBuffer,0x80,&SystemStringConstantE,in_R9,0xfffffffffffffffe);
-  _DAT_180c924b8 = SystemMemoryAllocationFunction(&stackParameterA);
+  SystemMemoryAllocationTableEntry018 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
 
@@ -14264,7 +14264,7 @@ int InitializeSystemModuleF(void)
   long long systemStatus;
   void* systemRegister;
   
-  _DAT_180bf6048 = &UNK_18098bc80;
+  SystemGlobalDataPointerE = &SystemMemoryNodeTemplateB;
   SystemGlobalDataReferenceC = &SystemGlobalDataBufferC;
 
 /**
