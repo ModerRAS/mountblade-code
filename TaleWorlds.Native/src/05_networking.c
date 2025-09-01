@@ -9366,7 +9366,17 @@ void ProcessNetworkConnectionInitializationAndValidation(NetworkHandle connectio
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808496c0(NetworkStatus connectionContext,longlong packetData,NetworkStatus dataSize)
+// 函数: void ProcessNetworkPacketData(NetworkStatus connectionContext,longlong packetData,NetworkStatus dataSize)
+/**
+ * @brief 处理网络包数据
+ * 
+ * 该函数负责处理网络数据包的解析和处理操作。
+ * 主要用于网络通信中的数据包处理和转发。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据大小
+ */
 /**
  * @brief 网络连接数据管理器
  * 
@@ -9577,7 +9587,18 @@ void ExecuteNetworkSecurityGuardCleanupAlternative(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180849990(NetworkHandle connectionContext,NetworkStatus packetData,NetworkHandle *dataSize,NetworkHandle *param_4)
+// 函数: void ManageNetworkConnectionData(NetworkHandle connectionContext,NetworkStatus packetData,NetworkHandle *dataSize,NetworkHandle *param_4)
+/**
+ * @brief 管理网络连接数据
+ * 
+ * 该函数负责管理网络连接的数据流和缓冲区。
+ * 主要用于网络连接的数据传输和管理。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packet 数据包数据
+ * @param dataSize 数据大小指针
+ * @param param_4 附加参数
+ */
 /**
  * @brief 处理网络连接数据验证和处理
  * 
@@ -9684,7 +9705,18 @@ LAB_1808499fb:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180849bb0(NetworkHandle connectionContext,NetworkHandle packetData,NetworkStatus dataSize,NetworkByte param_4)
+// 函数: void ProcessNetworkConnectionData(NetworkHandle connectionContext,NetworkHandle packetData,NetworkStatus dataSize,NetworkByte param_4)
+/**
+ * @brief 处理网络连接数据
+ * 
+ * 该函数负责处理网络连接数据的验证和处理操作。
+ * 主要用于网络连接的数据传输和验证。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据
+ * @param dataSize 数据大小
+ * @param param_4 网络字节参数
+ */
 /**
  * @brief 处理网络连接数据包传输
  * 
@@ -9744,7 +9776,17 @@ LAB_180849c81:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180849d40(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize)
+// 函数: void HandleNetworkPacketTransfer(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize)
+/**
+ * @brief 处理网络包传输
+ * 
+ * 该函数负责处理网络数据包的传输操作。
+ * 主要用于网络通信中的数据包传输和路由。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据大小
+ */
 /**
  * @brief 处理网络连接数据传输和配置
  * 
@@ -11186,7 +11228,17 @@ void ExecuteNetworkSecurityGuardCleanup(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084b990(longlong *connectionContext,longlong packetData,longlong *dataSize)
+// 函数: void ProcessNetworkConnectionTimestamps(longlong *connectionContext,longlong packetData,longlong *dataSize)
+/**
+ * @brief 处理网络连接时间戳
+ * 
+ * 该函数负责处理网络连接的时间戳和数据同步。
+ * 主要用于网络连接的时间管理和同步操作。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据大小指针
+ */
 /**
  * @brief 处理网络连接数据包验证和传输
  * 

@@ -15022,8 +15022,10 @@ void InitializeSystemPluginComponent(void)
 
 
 
-// 函数: void FUN_1800410e0(void)
-void FUN_1800410e0(void)
+// 函数: void InitializeSystemSubcomponentA(void)
+// 功能: 初始化系统子组件A - 负责系统资源初始化回调的设置
+// 该函数通过系统根指针遍历系统节点，设置资源初始化相关的回调函数和系统标识
+void InitializeSystemSubcomponentA(void)
 
 {
   char systemNodeFlag;
@@ -15072,8 +15074,10 @@ void FUN_1800410e0(void)
 
 
 
-// 函数: void FUN_1800411e0(void)
-void FUN_1800411e0(void)
+// 函数: void InitializeSystemSubcomponentB(void)
+// 功能: 初始化系统子组件B - 负责系统事件回调的设置
+// 该函数通过系统根指针遍历系统节点，设置事件处理相关的回调函数和系统标识
+void InitializeSystemSubcomponentB(void)
 
 {
   char systemNodeFlag;
@@ -15122,8 +15126,10 @@ void FUN_1800411e0(void)
 
 
 
-// 函数: void FUN_1800412e0(void)
-void FUN_1800412e0(void)
+// 函数: void InitializeSystemSubcomponentC(void)
+// 功能: 初始化系统子组件C - 负责系统内存管理组件的初始化
+// 该函数初始化系统内存管理相关的数据结构和配置参数
+void InitializeSystemSubcomponentC(void)
 
 {
   char systemNodeFlag;
@@ -15172,8 +15178,10 @@ void FUN_1800412e0(void)
 
 
 
-// 函数: void FUN_1800413e0(void)
-void FUN_1800413e0(void)
+// 函数: void InitializeSystemSubcomponentD(void)
+// 功能: 初始化系统子组件D - 负责系统线程管理组件的初始化
+// 该函数初始化系统线程管理相关的数据结构和同步机制
+void InitializeSystemSubcomponentD(void)
 
 {
   char systemNodeFlag;
@@ -15222,8 +15230,10 @@ void FUN_1800413e0(void)
 
 
 
-// 函数: void FUN_1800414e0(void)
-void FUN_1800414e0(void)
+// 函数: void InitializeSystemSubcomponentE(void)
+// 功能: 初始化系统子组件E - 负责系统文件管理组件的初始化
+// 该函数初始化系统文件管理相关的数据结构和文件句柄
+void InitializeSystemSubcomponentE(void)
 
 {
   char systemNodeFlag;
@@ -15272,8 +15282,10 @@ void FUN_1800414e0(void)
 
 
 
-// 函数: void FUN_1800415e0(void)
-void FUN_1800415e0(void)
+// 函数: void InitializeSystemSubcomponentF(void)
+// 功能: 初始化系统子组件F - 负责系统网络管理组件的初始化
+// 该函数初始化系统网络管理相关的数据结构和网络配置
+void InitializeSystemSubcomponentF(void)
 
 {
   char systemNodeFlag;
@@ -15322,8 +15334,10 @@ void FUN_1800415e0(void)
 
 
 
-// 函数: void FUN_1800416e0(void)
-void FUN_1800416e0(void)
+// 函数: void InitializeSystemSubcomponentG(void)
+// 功能: 初始化系统子组件G - 负责系统安全管理组件的初始化
+// 该函数初始化系统安全管理相关的数据结构和访问控制
+void InitializeSystemSubcomponentG(void)
 
 {
   char systemNodeFlag;
@@ -15372,8 +15386,10 @@ void FUN_1800416e0(void)
 
 
 
-// 函数: void FUN_1800417e0(void)
-void FUN_1800417e0(void)
+// 函数: void InitializeSystemSubcomponentH(void)
+// 功能: 初始化系统子组件H - 负责系统日志管理组件的初始化
+// 该函数初始化系统日志管理相关的数据结构和日志配置
+void InitializeSystemSubcomponentH(void)
 
 {
   char systemNodeFlag;
@@ -15462,8 +15478,10 @@ int FUN_180041a10(void)
   _DAT_180bf64f8 = &UNK_18098bc80;
   _DAT_180bf6500 = &DAT_180bf6510;
 
-// 函数: void FUN_180041af0(void)
-void FUN_180041af0(void)
+// 函数: void InitializeSystemSubcomponentI(void)
+// 功能: 初始化系统子组件I - 负责系统性能监控组件的初始化
+// 该函数初始化系统性能监控相关的数据结构和性能计数器
+void InitializeSystemSubcomponentI(void)
 
 {
   char systemNodeFlag;
@@ -15512,8 +15530,10 @@ void FUN_180041af0(void)
 
 
 
-// 函数: void FUN_180041bf0(void)
-void FUN_180041bf0(void)
+// 函数: void InitializeSystemSubcomponentJ(void)
+// 功能: 初始化系统子组件J - 负责系统配置管理组件的初始化
+// 该函数初始化系统配置管理相关的数据结构和配置参数
+void InitializeSystemSubcomponentJ(void)
 
 {
   char systemNodeFlag;
@@ -15562,8 +15582,10 @@ void FUN_180041bf0(void)
 
 
 
-// 函数: void FUN_180041d10(void)
-void FUN_180041d10(void)
+// 函数: void InitializeSystemSubcomponentK(void)
+// 功能: 初始化系统子组件K - 负责系统插件管理组件的初始化
+// 该函数初始化系统插件管理相关的数据结构和插件接口
+void InitializeSystemSubcomponentK(void)
 
 {
   char systemNodeFlag;
@@ -15612,8 +15634,10 @@ void FUN_180041d10(void)
 
 
 
-// 函数: void FUN_180041e10(void)
-void FUN_180041e10(void)
+// 函数: void InitializeSystemSubcomponentL(void)
+// 功能: 初始化系统子组件L - 负责系统调试管理组件的初始化
+// 该函数初始化系统调试管理相关的数据结构和调试工具
+void InitializeSystemSubcomponentL(void)
 
 {
   char systemNodeFlag;
