@@ -30365,19 +30365,30 @@ void ResourceTableValidationHandler(uint8_t objectContextParam,int64_t validatio
 
 
 
-void Unwind_1809026a0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 上下文状态处理器
+ * 
+ * 该函数负责处理上下文状态的清理和验证
+ * 遍历资源表并调用系统状态处理函数
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象状态信息
+ * @param validationContextParam 验证上下文参数，包含资源表信息
+ * @note 此函数在异常处理过程中被调用
+ * @warning 如果资源表异常，将触发系统紧急退出
+ */
+void ContextStateHandler(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   int64_t loopCounter;
-  int64_t *presourceTable;
+  int64_t *pResourceTable;
   int64_t resourceIndex;
   
-  presourceTable = *(int64_t **)(validationContextParam + 0x78);
-  localContextPointer = presourceTable[1];
-  resourceIndex = *presourceTable;
+  pResourceTable = *(int64_t **)(validationContextParam + 0x78);
+  pLocalContextPointer = pResourceTable[1];
+  resourceIndex = *pResourceTable;
   while( true ) {
-    if (resourceIndex == localContextPointer) {
-      if (*presourceTable == 0) {
+    if (resourceIndex == pLocalContextPointer) {
+      if (*pResourceTable == 0) {
         return;
       }
                     // WARNING: Subroutine does not return
@@ -30396,7 +30407,17 @@ void Unwind_1809026a0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809026b0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 系统数据结构初始化器
+ * 
+ * 该函数负责初始化系统数据结构指针
+ * 在异常处理过程中确保系统数据结构的正确设置
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数在异常处理过程中被调用
+ */
+void SystemDataStructureInitializer(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   **(uint8_t **)(validationContextParam + 0x70) = &SystemDataStructure;
@@ -30463,7 +30484,19 @@ void HandleResourceOperationExceptionRecoveryV2(uint8_t objectContext,int64_t va
 
 
 
-void Unwind_180902710(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 异常处理栈管理器
+ * 
+ * 该函数负责管理异常处理栈
+ * 在异常处理过程中处理资源操作
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @note 此函数在异常处理过程中被调用
+ */
+void ExceptionHandlerStackManager(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   ProcessResourceOperationEx(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
@@ -30473,7 +30506,19 @@ void Unwind_180902710(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180902720(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 资源锁管理器
+ * 
+ * 该函数负责管理资源锁
+ * 在异常处理过程中处理资源锁定操作
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @note 此函数在异常处理过程中被调用
+ */
+void ResourceLockManager(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   uint8_t *presourceHash;
@@ -30496,7 +30541,19 @@ void Unwind_180902720(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180902730(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 内存分配跟踪器
+ * 
+ * 该函数负责跟踪内存分配
+ * 在异常处理过程中处理内存分配跟踪
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @note 此函数在异常处理过程中被调用
+ */
+void MemoryAllocationTracker(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   uint8_t *presourceHash;
@@ -30512,7 +30569,15 @@ void Unwind_180902730(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180902740(void)
+/**
+ * @brief 系统状态重置处理器
+ * 
+ * 该函数负责重置系统状态
+ * 在异常处理过程中恢复系统状态
+ * 
+ * @note 此函数在异常处理过程中被调用
+ */
+void SystemStateResetHandler(void)
 
 {
   _Mtx_destroy_in_situ();
