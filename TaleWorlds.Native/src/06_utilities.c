@@ -13561,7 +13561,7 @@ void SystemInitializerA(void)
   uint32_t in_stack_000001a8;
   
   pResourceValidationResult2 = (uint8_t *)(RegisterR14 + 8);
-  fStack0000000000000048 = unaff_R13D;
+  fStack0000000000000048 = UnaffectedRegisterR13D;
   puStack0000000000000058 = pResourceValidationResult2;
   localContextPointer5 = (*(code *)*InputRAX)(pResourceValidationResult2);
   ResourceIndex3 = ValidateBufferContext(*(uint8_t *)(localContextPointer5 + 0xd0),&stack0x00000048);
@@ -13569,13 +13569,13 @@ void SystemInitializerA(void)
     in_stack_00000070 = &SystemResourceTemplateCache;
     *(uint32_t *)(ExecutionContextPointer + -0xf) = uStackX_20;
     *(float *)(ExecutionContextPointer + -0x10) = fStack0000000000000048;
-    in_stack_00000078 = unaff_R13D;
+    in_stack_00000078 = UnaffectedRegisterR13D;
     ResourceIndex3 = GetAndValidateResourceData(extraout_XMM0_Da,&stack0x00000070);
     if (ResourceIndex3 == 0) {
       in_stack_00000060 = (int64_t)*(int *)(RegisterR15 + 0x28);
       if (0 < in_stack_00000060) {
-        ResourceValidationResult3 = (uint64_t)(uint)unaff_R13D;
-        ResourceValidationResult0 = (uint64_t)(uint)unaff_R13D;
+        ResourceValidationResult3 = (uint64_t)(uint)UnaffectedRegisterR13D;
+        ResourceValidationResult0 = (uint64_t)(uint)UnaffectedRegisterR13D;
         do {
           localContextPointer5 = *(int64_t *)(RegisterR15 + 0x20);
           resourceTable = *(int64_t *)(ResourceValidationResult0 + 0x10 + localContextPointer5);
@@ -13602,7 +13602,7 @@ void SystemInitializerA(void)
             ResourceIndex3 = GetAndValidateResourceData(ResourceValidationResult4,ExecutionContextPointer + -4);
             if (ResourceIndex3 != 0) goto ProcessMemoryRelease;
           }
-          unaff_R13D = 0.0;
+          UnaffectedRegisterR13D = 0.0;
           ResourceValidationResult3 = ResourceValidationResult3 + 1;
           ResourceValidationResult0 = ResourceValidationResult0 + 0x18;
           RegisterR14 = in_stack_00000068;
@@ -13627,7 +13627,7 @@ void SystemInitializerA(void)
             ExecutionContextPointer[-0xe] = &SystemResourceTemplateEvent;
             ExecutionContextPointer[-0xb] = resourceHash7;
             ExecutionContextPointer[-10] = resourceHash6;
-            *(float *)(ExecutionContextPointer + -0xd) = unaff_R13D;
+            *(float *)(ExecutionContextPointer + -0xd) = UnaffectedRegisterR13D;
             ResourceCounter = *(uint32_t *)(RegisterR15 + 0x58);
             ValidationCounter = *(uint32_t *)(RegisterR15 + 0x5c);
             resourceHash0 = *(uint32_t *)(RegisterR15 + 0x60);
@@ -13648,13 +13648,13 @@ void SystemInitializerA(void)
         }
         ResourceIndex3 = ValidateResourceTable(ResourceValidationResult4,(int64_t)&stack0x00000048 + 4,0);
         if (ResourceIndex3 == 0) {
-          in_stack_000001a0 = unaff_XMM6_Da;
-          in_stack_000001a8 = unaff_XMM6_Dc;
+          in_stack_000001a0 = UnaffectedRegisterXMM6_Da;
+          in_stack_000001a8 = UnaffectedRegisterXMM6_Dc;
           if (fStack000000000000004c != 1.0) {
             fStack0000000000000040 = fStack000000000000004c;
             in_stack_00000028 = &SystemResourceTemplateFile;
             in_stack_00000038 = uStackX_20;
-            in_stack_00000030 = unaff_R13D;
+            in_stack_00000030 = UnaffectedRegisterR13D;
             ResourceIndex3 = GetAndValidateResourceData(fStack000000000000004c,&ObjectStackBuffer28);
             fStack000000000000004c = extraout_XMM0_Da_03;
             if (ResourceIndex3 != 0) goto ProcessMemoryRelease;
@@ -13665,18 +13665,18 @@ void SystemInitializerA(void)
               fStack0000000000000040 = in_stack_00000050;
               in_stack_00000028 = &SystemResourceTemplateGraphics;
               in_stack_00000038 = uStackX_20;
-              in_stack_00000030 = unaff_R13D;
+              in_stack_00000030 = UnaffectedRegisterR13D;
               ResourceIndex3 = GetAndValidateResourceData(in_stack_00000050,&ObjectStackBuffer28);
               if (ResourceIndex3 != 0) goto ProcessMemoryRelease;
             }
             pfVar21 = (float *)(RegisterR15 + 0x94);
-            floatValue19 = unaff_R13D;
+            floatValue19 = UnaffectedRegisterR13D;
             do {
               floatValue1 = *pfVar21;
               if (floatValue1 != 0.0) {
                 in_stack_00000038 = uStackX_20;
                 in_stack_00000028 = &SystemResourceTemplateHardware;
-                in_stack_00000030 = unaff_R13D;
+                in_stack_00000030 = UnaffectedRegisterR13D;
                 fStack0000000000000040 = floatValue19;
                 fStack0000000000000044 = floatValue1;
                 ResourceIndex3 = GetAndValidateResourceData(floatValue1,&ObjectStackBuffer28);
@@ -13686,13 +13686,13 @@ void SystemInitializerA(void)
               pfVar21 = pfVar21 + 1;
             } while ((int)floatValue19 < 4);
             pfVar21 = (float *)&SystemFloatTemplateActive;
-            floatValue19 = unaff_R13D;
+            floatValue19 = UnaffectedRegisterR13D;
             do {
               floatValue1 = *(float *)(RegisterR15 + -0x180985054 + (int64_t)pfVar21);
               if (floatValue1 != *pfVar21) {
                 in_stack_00000038 = uStackX_20;
                 in_stack_00000028 = &SystemResourceTemplateInput;
-                in_stack_00000030 = unaff_R13D;
+                in_stack_00000030 = UnaffectedRegisterR13D;
                 fStack0000000000000040 = floatValue19;
                 fStack0000000000000044 = floatValue1;
                 ResourceIndex3 = GetAndValidateResourceData(floatValue1,&ObjectStackBuffer28);
@@ -13706,7 +13706,7 @@ void SystemInitializerA(void)
             if ((float)(resourceHash4 / 0x30) != 0.0) {
               in_stack_00000028 = &SystemResourceTemplateJob;
               in_stack_00000038 = uStackX_20;
-              in_stack_00000030 = unaff_R13D;
+              in_stack_00000030 = UnaffectedRegisterR13D;
               fStack0000000000000040 = (float)(resourceHash4 / 0x30);
               ResourceIndex3 = GetAndValidateResourceData(extraout_XMM0_Da_04,&ObjectStackBuffer28);
               ResourceValidationResult4 = extraout_XMM0_Da_05;
@@ -13716,7 +13716,7 @@ void SystemInitializerA(void)
               in_stack_00000028 = &SystemResourceTemplateKernel;
               in_stack_00000038 = uStackX_20;
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
-              in_stack_00000030 = unaff_R13D;
+              in_stack_00000030 = UnaffectedRegisterR13D;
               ResourceIndex3 = GetAndValidateResourceData(ResourceValidationResult4,&ObjectStackBuffer28);
               if (ResourceIndex3 != 0) goto ProcessMemoryRelease;
             }
@@ -13724,7 +13724,7 @@ void SystemInitializerA(void)
             if (ResourceIndex3 != 2) {
               in_stack_00000028 = &SystemResourceTemplateLibrary;
               in_stack_00000038 = uStackX_20;
-              in_stack_00000030 = unaff_R13D;
+              in_stack_00000030 = UnaffectedRegisterR13D;
               ResourceIndex3 = GetAndValidateResourceData(extraout_XMM0_Da_06,&ObjectStackBuffer28);
               if (ResourceIndex3 != 0) goto ProcessMemoryRelease;
             }
@@ -13733,8 +13733,8 @@ void SystemInitializerA(void)
             if (ResourceIndex3 == 4) {
               in_stack_00000028 = &SystemResourceTemplateMemory;
               in_stack_00000038 = uStackX_20;
-              in_stack_00000030 = unaff_R13D;
-              fStack0000000000000040 = unaff_R13D;
+              in_stack_00000030 = UnaffectedRegisterR13D;
+              fStack0000000000000040 = UnaffectedRegisterR13D;
               ResourceIndex3 = GetAndValidateResourceData(extraout_XMM0_Da_07,&ObjectStackBuffer28);
               ResourceValidationResult4 = extraout_XMM0_Da_08;
               if (ResourceIndex3 != 0) goto ProcessMemoryRelease;
@@ -13742,7 +13742,7 @@ void SystemInitializerA(void)
             if ((*(uint *)(RegisterR14 + 0x2d8) >> 3 & 1) != 0) {
               in_stack_00000028 = &SystemResourceTemplateNetwork;
               in_stack_00000038 = uStackX_20;
-              in_stack_00000030 = unaff_R13D;
+              in_stack_00000030 = UnaffectedRegisterR13D;
               GetAndValidateResourceData(ResourceValidationResult4,&ObjectStackBuffer28);
             }
           }
@@ -13834,8 +13834,8 @@ void DataProcessingErrorHandler(void)
   uint32_t in_stack_000001a8;
   
   if (0 < InputRAX) {
-    ResourceValidationResult2 = (uint64_t)(uint)unaff_R13D;
-    ResourceValidationResult0 = (uint64_t)(uint)unaff_R13D;
+    ResourceValidationResult2 = (uint64_t)(uint)UnaffectedRegisterR13D;
+    ResourceValidationResult0 = (uint64_t)(uint)UnaffectedRegisterR13D;
     lStack0000000000000060 = InputRAX;
     do {
       localContextPointer5 = *(int64_t *)(RegisterR15 + 0x20);
@@ -13863,7 +13863,7 @@ void DataProcessingErrorHandler(void)
         ResourceIndex3 = GetAndValidateResourceData(ResourceValidationResult3,ExecutionContextPointer + -4);
         if (ResourceIndex3 != 0) goto ExecuteMemoryDeallocation;
       }
-      unaff_R13D = 0.0;
+      UnaffectedRegisterR13D = 0.0;
       ResourceValidationResult2 = ResourceValidationResult2 + 1;
       ResourceValidationResult0 = ResourceValidationResult0 + 0x18;
       RegisterR14 = in_stack_00000068;
@@ -13888,7 +13888,7 @@ void DataProcessingErrorHandler(void)
         ExecutionContextPointer[-0xe] = &SystemResourceTemplateEvent;
         ExecutionContextPointer[-0xb] = resourceHash7;
         ExecutionContextPointer[-10] = resourceHash6;
-        *(float *)(ExecutionContextPointer + -0xd) = unaff_R13D;
+        *(float *)(ExecutionContextPointer + -0xd) = UnaffectedRegisterR13D;
         ResourceCounter = *(uint32_t *)(RegisterR15 + 0x58);
         ValidationCounter = *(uint32_t *)(RegisterR15 + 0x5c);
         resourceHash0 = *(uint32_t *)(RegisterR15 + 0x60);
@@ -13909,13 +13909,13 @@ void DataProcessingErrorHandler(void)
     }
     ResourceIndex3 = ValidateResourceTable(ResourceValidationResult3,(int64_t)&stack0x00000048 + 4,0);
     if (ResourceIndex3 == 0) {
-      in_stack_000001a0 = unaff_XMM6_Da;
-      in_stack_000001a8 = unaff_XMM6_Dc;
+      in_stack_000001a0 = UnaffectedRegisterXMM6_Da;
+      in_stack_000001a8 = UnaffectedRegisterXMM6_Dc;
       if (in_stack_00000048._4_4_ != 1.0) {
         fStack0000000000000040 = in_stack_00000048._4_4_;
         in_stack_00000028 = &SystemResourceTemplateFile;
         in_stack_00000038 = uStackX_20;
-        in_stack_00000030 = unaff_R13D;
+        in_stack_00000030 = UnaffectedRegisterR13D;
         ResourceIndex3 = GetAndValidateResourceData(in_stack_00000048._4_4_,&ObjectStackBuffer28);
         in_stack_00000048._4_4_ = extraout_XMM0_Da_02;
         if (ResourceIndex3 != 0) goto ExecuteMemoryDeallocation;
@@ -13926,18 +13926,18 @@ void DataProcessingErrorHandler(void)
           fStack0000000000000040 = in_stack_00000050;
           in_stack_00000028 = &SystemResourceTemplateGraphics;
           in_stack_00000038 = uStackX_20;
-          in_stack_00000030 = unaff_R13D;
+          in_stack_00000030 = UnaffectedRegisterR13D;
           ResourceIndex3 = GetAndValidateResourceData(in_stack_00000050,&ObjectStackBuffer28);
           if (ResourceIndex3 != 0) goto ExecuteMemoryDeallocation;
         }
         pfVar21 = (float *)(RegisterR15 + 0x94);
-        floatValue19 = unaff_R13D;
+        floatValue19 = UnaffectedRegisterR13D;
         do {
           floatValue1 = *pfVar21;
           if (floatValue1 != 0.0) {
             in_stack_00000038 = uStackX_20;
             in_stack_00000028 = &SystemResourceTemplateHardware;
-            in_stack_00000030 = unaff_R13D;
+            in_stack_00000030 = UnaffectedRegisterR13D;
             fStack0000000000000040 = floatValue19;
             fStack0000000000000044 = floatValue1;
             ResourceIndex3 = GetAndValidateResourceData(floatValue1,&ObjectStackBuffer28);
@@ -13947,13 +13947,13 @@ void DataProcessingErrorHandler(void)
           pfVar21 = pfVar21 + 1;
         } while ((int)floatValue19 < 4);
         pfVar21 = (float *)&SystemFloatTemplateActive;
-        floatValue19 = unaff_R13D;
+        floatValue19 = UnaffectedRegisterR13D;
         do {
           floatValue1 = *(float *)(RegisterR15 + -0x180985054 + (int64_t)pfVar21);
           if (floatValue1 != *pfVar21) {
             in_stack_00000038 = uStackX_20;
             in_stack_00000028 = &SystemResourceTemplateInput;
-            in_stack_00000030 = unaff_R13D;
+            in_stack_00000030 = UnaffectedRegisterR13D;
             fStack0000000000000040 = floatValue19;
             fStack0000000000000044 = floatValue1;
             ResourceIndex3 = GetAndValidateResourceData(floatValue1,&ObjectStackBuffer28);
@@ -13967,7 +13967,7 @@ void DataProcessingErrorHandler(void)
         if ((float)(resourceHash4 / 0x30) != 0.0) {
           in_stack_00000028 = &SystemResourceTemplateJob;
           in_stack_00000038 = uStackX_20;
-          in_stack_00000030 = unaff_R13D;
+          in_stack_00000030 = UnaffectedRegisterR13D;
           fStack0000000000000040 = (float)(resourceHash4 / 0x30);
           ResourceIndex3 = GetAndValidateResourceData(extraout_XMM0_Da_03,&ObjectStackBuffer28);
           ResourceValidationResult3 = extraout_XMM0_Da_04;
@@ -13977,7 +13977,7 @@ void DataProcessingErrorHandler(void)
           in_stack_00000028 = &SystemResourceTemplateKernel;
           in_stack_00000038 = uStackX_20;
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
-          in_stack_00000030 = unaff_R13D;
+          in_stack_00000030 = UnaffectedRegisterR13D;
           ResourceIndex3 = GetAndValidateResourceData(ResourceValidationResult3,&ObjectStackBuffer28);
           if (ResourceIndex3 != 0) goto ExecuteMemoryDeallocation;
         }
@@ -13985,7 +13985,7 @@ void DataProcessingErrorHandler(void)
         if (ResourceIndex3 != 2) {
           in_stack_00000028 = &SystemResourceTemplateLibrary;
           in_stack_00000038 = uStackX_20;
-          in_stack_00000030 = unaff_R13D;
+          in_stack_00000030 = UnaffectedRegisterR13D;
           ResourceIndex3 = GetAndValidateResourceData(extraout_XMM0_Da_05,&ObjectStackBuffer28);
           if (ResourceIndex3 != 0) goto ExecuteMemoryDeallocation;
         }
@@ -13994,8 +13994,8 @@ void DataProcessingErrorHandler(void)
         if (ResourceIndex3 == 4) {
           in_stack_00000028 = &SystemResourceTemplateMemory;
           in_stack_00000038 = uStackX_20;
-          in_stack_00000030 = unaff_R13D;
-          fStack0000000000000040 = unaff_R13D;
+          in_stack_00000030 = UnaffectedRegisterR13D;
+          fStack0000000000000040 = UnaffectedRegisterR13D;
           ResourceIndex3 = GetAndValidateResourceData(extraout_XMM0_Da_06,&ObjectStackBuffer28);
           ResourceValidationResult3 = extraout_XMM0_Da_07;
           if (ResourceIndex3 != 0) goto ExecuteMemoryDeallocation;
@@ -14003,7 +14003,7 @@ void DataProcessingErrorHandler(void)
         if ((*(uint *)(RegisterR14 + 0x2d8) >> 3 & 1) != 0) {
           in_stack_00000028 = &SystemResourceTemplateNetwork;
           in_stack_00000038 = uStackX_20;
-          in_stack_00000030 = unaff_R13D;
+          in_stack_00000030 = UnaffectedRegisterR13D;
           GetAndValidateResourceData(ResourceValidationResult3,&ObjectStackBuffer28);
         }
       }
@@ -14063,7 +14063,7 @@ void FloatProcessingErrorHandler(void)
   if (ObjectContextParameter != 1.0) {
     in_stack_00000028 = &SystemResourceTemplateFile;
     in_stack_00000038 = uStackX_20;
-    in_stack_00000030 = unaff_R13D;
+    in_stack_00000030 = UnaffectedRegisterR13D;
     fStack0000000000000040 = ObjectContextParameter;
     OperationResult = GetAndValidateResourceData(ObjectContextParameter,&ObjectStackBuffer28);
     ObjectContextParameter = extraout_XMM0_Da;
@@ -14075,18 +14075,18 @@ void FloatProcessingErrorHandler(void)
       fStack0000000000000040 = in_stack_00000050;
       in_stack_00000028 = &SystemResourceTemplateGraphics;
       in_stack_00000038 = uStackX_20;
-      in_stack_00000030 = unaff_R13D;
+      in_stack_00000030 = UnaffectedRegisterR13D;
       OperationResult = GetAndValidateResourceData(in_stack_00000050,&ObjectStackBuffer28);
       if (OperationResult != 0) goto LAB_180897af6;
     }
     pfloatValue5 = (float *)(RegisterR15 + 0x94);
-    floatValue4 = unaff_R13D;
+    floatValue4 = UnaffectedRegisterR13D;
     do {
       floatValue1 = *pfloatValue5;
       if (floatValue1 != 0.0) {
         in_stack_00000038 = uStackX_20;
         in_stack_00000028 = &SystemResourceTemplateHardware;
-        in_stack_00000030 = unaff_R13D;
+        in_stack_00000030 = UnaffectedRegisterR13D;
         fStack0000000000000040 = floatValue4;
         fStack0000000000000044 = floatValue1;
         OperationResult = GetAndValidateResourceData(floatValue1,&ObjectStackBuffer28);
@@ -14096,13 +14096,13 @@ void FloatProcessingErrorHandler(void)
       pfloatValue5 = pfloatValue5 + 1;
     } while ((int)floatValue4 < 4);
     pfloatValue5 = (float *)&SystemFloatTemplateActive;
-    floatValue4 = unaff_R13D;
+    floatValue4 = UnaffectedRegisterR13D;
     do {
       floatValue1 = *(float *)(RegisterR15 + -0x180985054 + (int64_t)pfloatValue5);
       if (floatValue1 != *pfloatValue5) {
         in_stack_00000038 = uStackX_20;
         in_stack_00000028 = &SystemResourceTemplateInput;
-        in_stack_00000030 = unaff_R13D;
+        in_stack_00000030 = UnaffectedRegisterR13D;
         fStack0000000000000040 = floatValue4;
         fStack0000000000000044 = floatValue1;
         OperationResult = GetAndValidateResourceData(floatValue1,&ObjectStackBuffer28);
@@ -14116,7 +14116,7 @@ void FloatProcessingErrorHandler(void)
     if ((float)(ValidationResult / 0x30) != 0.0) {
       in_stack_00000028 = &SystemResourceTemplateJob;
       in_stack_00000038 = uStackX_20;
-      in_stack_00000030 = unaff_R13D;
+      in_stack_00000030 = UnaffectedRegisterR13D;
       fStack0000000000000040 = (float)(ValidationResult / 0x30);
       OperationResult = GetAndValidateResourceData(extraout_XMM0_Da_00,&ObjectStackBuffer28);
       ContextValidationResult = extraout_XMM0_Da_01;
@@ -14126,7 +14126,7 @@ void FloatProcessingErrorHandler(void)
       in_stack_00000028 = &SystemResourceTemplateKernel;
       in_stack_00000038 = uStackX_20;
       fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
-      in_stack_00000030 = unaff_R13D;
+      in_stack_00000030 = UnaffectedRegisterR13D;
       OperationResult = GetAndValidateResourceData(ContextValidationResult,&ObjectStackBuffer28);
       if (OperationResult != 0) goto LAB_180897af6;
     }
@@ -14134,7 +14134,7 @@ void FloatProcessingErrorHandler(void)
     if (OperationResult != 2) {
       in_stack_00000028 = &SystemResourceTemplateLibrary;
       in_stack_00000038 = uStackX_20;
-      in_stack_00000030 = unaff_R13D;
+      in_stack_00000030 = UnaffectedRegisterR13D;
       OperationResult = GetAndValidateResourceData(extraout_XMM0_Da_02,&ObjectStackBuffer28);
       if (OperationResult != 0) goto LAB_180897af6;
     }
@@ -14143,8 +14143,8 @@ void FloatProcessingErrorHandler(void)
     if (OperationResult == 4) {
       in_stack_00000028 = &SystemResourceTemplateMemory;
       in_stack_00000038 = uStackX_20;
-      in_stack_00000030 = unaff_R13D;
-      fStack0000000000000040 = unaff_R13D;
+      in_stack_00000030 = UnaffectedRegisterR13D;
+      fStack0000000000000040 = UnaffectedRegisterR13D;
       OperationResult = GetAndValidateResourceData(extraout_XMM0_Da_03,&ObjectStackBuffer28);
       ContextValidationResult = extraout_XMM0_Da_04;
       if (OperationResult != 0) goto LAB_180897af6;
@@ -14152,7 +14152,7 @@ void FloatProcessingErrorHandler(void)
     if ((*(uint *)(RegisterR14 + 0x2d8) >> 3 & 1) != 0) {
       in_stack_00000028 = &SystemResourceTemplateNetwork;
       in_stack_00000038 = uStackX_20;
-      in_stack_00000030 = unaff_R13D;
+      in_stack_00000030 = UnaffectedRegisterR13D;
       GetAndValidateResourceData(ContextValidationResult,&ObjectStackBuffer28);
     }
   }
@@ -15380,7 +15380,7 @@ uint32_t ValidateResourceHashIndex(uint8_t ObjectContextParameter,uint64_t Valid
   int64_t longValue8;
   uint8_t *pValidationCounter;
   int ResourceIndex0;
-  uint32_t unaff_R13D;
+  uint32_t UnaffectedRegisterR13D;
   int64_t *RegisterR14;
   int RegisterR15D;
   int *in_stack_00000078;
@@ -15432,7 +15432,7 @@ uint32_t ValidateResourceHashIndex(uint8_t ObjectContextParameter,uint64_t Valid
           pValidationCounter = pValidationCounter + -1;
         } while (SystemContextPointer < pValidationCounter);
       }
-      *resourcePointer5 = (char)unaff_R13D;
+      *resourcePointer5 = (char)UnaffectedRegisterR13D;
     }
     else {
       pContextValidationResult = SystemContextPointer + (int)RegisterEBX;
@@ -15457,14 +15457,14 @@ uint32_t ValidateResourceHashIndex(uint8_t ObjectContextParameter,uint64_t Valid
           pValidationCounter = pValidationCounter + -1;
         } while (pContextValidationResult < pValidationCounter);
       }
-      SystemContextPointer[ExecutionContextPointer + -1] = (char)unaff_R13D;
-      unaff_R13D = 0x41;
+      SystemContextPointer[ExecutionContextPointer + -1] = (char)UnaffectedRegisterR13D;
+      UnaffectedRegisterR13D = 0x41;
     }
   }
   if (in_stack_00000078 != (int *)0x0) {
     *in_stack_00000078 = RegisterR15D + 1;
   }
-  return unaff_R13D;
+  return UnaffectedRegisterR13D;
 }
 
 
@@ -15488,7 +15488,7 @@ uint32_t GetResourceTableStatus(void)
   int64_t ExecutionContextPointer;
   uint8_t *SystemContextPointer;
   uint8_t *resourcePointer5;
-  uint32_t unaff_R13D;
+  uint32_t UnaffectedRegisterR13D;
   int RegisterR15D;
   int *in_stack_00000078;
   
@@ -15506,7 +15506,7 @@ uint32_t GetResourceTableStatus(void)
           pResourceValidationResult = pResourceValidationResult + -1;
         } while (SystemContextPointer < pResourceValidationResult);
       }
-      *resourcePointer5 = (char)unaff_R13D;
+      *resourcePointer5 = (char)UnaffectedRegisterR13D;
     }
     else {
       pValidationResult = SystemContextPointer + RegisterEBX;
@@ -15531,14 +15531,14 @@ uint32_t GetResourceTableStatus(void)
           pResourceValidationResult = pResourceValidationResult + -1;
         } while (pValidationResult < pResourceValidationResult);
       }
-      SystemContextPointer[ExecutionContextPointer + -1] = (char)unaff_R13D;
-      unaff_R13D = 0x41;
+      SystemContextPointer[ExecutionContextPointer + -1] = (char)UnaffectedRegisterR13D;
+      UnaffectedRegisterR13D = 0x41;
     }
   }
   if (in_stack_00000078 != (int *)0x0) {
     *in_stack_00000078 = RegisterR15D + 1;
   }
-  return unaff_R13D;
+  return UnaffectedRegisterR13D;
 }
 
 
@@ -15556,11 +15556,11 @@ uint32_t GetResourceTableStatus(void)
 uint32_t ProcessResourceIndexQuery(uint8_t ObjectContextParameter,int *ValidationContextParameter)
 
 {
-  uint32_t unaff_R13D;
+  uint32_t UnaffectedRegisterR13D;
   int RegisterR15D;
   
   *ValidationContextParameter = RegisterR15D + 1;
-  return unaff_R13D;
+  return UnaffectedRegisterR13D;
 }
 
 
@@ -19117,7 +19117,7 @@ uint8_t ProcessResourceBufferData(int64_t ResourceContext, int64_t *ResourceData
 {
   int64_t loopCounter;
   uint8_t ResourceValidationResult;
-  char unaff_BPL;
+  char UnaffectedRegisterBPL;
   char in_stack_00000008;
   
   if (*(uint *)(resourceData + 8) < 0x55) {
@@ -19323,7 +19323,7 @@ uint8_t ValidateResourceTableIntegrity(void)
   int64_t *presourceTable;
   uint8_t ValidationResult;
   int64_t *ResourceContextPointer;
-  char unaff_BPL;
+  char UnaffectedRegisterBPL;
   int64_t UnaffectedRegisterValue;
   uint in_stack_00000040;
   
@@ -27556,7 +27556,7 @@ f31e(void)
   int operationResult;
   int OperationResult;
   int64_t *ResourceContextPointer;
-  int unaff_EBP;
+  int UnaffectedRegisterEBP;
   int64_t SystemContextPointer;
   uint32_t in_stack_000000b0;
   
