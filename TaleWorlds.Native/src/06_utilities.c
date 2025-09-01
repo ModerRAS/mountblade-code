@@ -2347,13 +2347,13 @@ undefined MemoryAllocationNetwork;
  * 回收内存资源供后续使用
  */
 void FreeMemoryBlock;
-undefined UNK_180a19fd8;
-undefined UNK_180a19eb0;
-undefined UNK_180302310;
-undefined UNK_180a19e28;
-undefined UNK_180a19e38;
-undefined UNK_1803048b0;
-undefined UNK_180a19e88;
+undefined SystemMemoryPoolManager;
+undefined SystemMemoryAllocator;
+undefined SystemMemoryDescriptor;
+undefined SystemMemoryBuffer;
+undefined SystemMemoryCache;
+undefined SystemMemoryHeap;
+undefined SystemMemoryStack;
 
  void ReallocateMemoryBlock;
 /**
@@ -2384,9 +2384,9 @@ undefined DAT_180c918d8;
 undefined DAT_180d48e10;
 undefined DAT_180d48e18;
 undefined DAT_180c918c0;
-undefined UNK_180a1b150;
-undefined UNK_180a1b118;
-undefined UNK_18033cd70;
+undefined SystemThreadScheduler;
+undefined ThreadContextManager;
+undefined ThreadLocalStorage;
 
  void InitializeThreadManager;
 /**
@@ -2428,9 +2428,9 @@ undefined SystemMemoryConfigDataTemplateA900;
 undefined SystemMemoryConfigDataTemplateA920;
 undefined SystemMemoryConfigDataTemplateA948;
 undefined SystemMemoryConfigDataTemplateA968;
-undefined UNK_180462fc0;
-undefined UNK_180462ff0;
-undefined UNK_180463030;
+undefined MemoryTemplateHeader;
+undefined MemoryTemplateData;
+undefined MemoryTemplateConfig;
 undefined UNK_180463060;
 undefined SystemMemoryConfigDataTemplateAA08;
 undefined SystemMemoryConfigDataTemplateA9A0;
