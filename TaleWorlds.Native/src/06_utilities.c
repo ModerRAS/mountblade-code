@@ -2429,12 +2429,12 @@ void GetMemoryBlockSize(void);
  * 用于内存管理和调试目的
  */
 void GetMemoryBlockSize;
-uint8_t SystemMemoryConfigDataTemplateD49990;
-uint8_t SystemMemoryConfigDataTemplateD48DE0;
-uint8_t SystemMemoryConfigDataTemplateD48DE8;
-uint8_t SystemMemoryConfigDataTemplateD48DF0;
+uint8_t SystemMemoryConfigDataTemplatePrimary;
+uint8_t SystemMemoryConfigDataTemplateSecondary;
+uint8_t SystemMemoryConfigDataTemplateTertiary;
+uint8_t SystemMemoryConfigDataTemplateQuaternary;
 uint8_t AudioEffectProcessorTable;
-uint8_t SystemMemoryConfigDataTemplateD48E00;
+uint8_t SystemMemoryConfigDataTemplateQuinary;
 uint8_t AudioMixerSettingsTable;
 uint8_t InputDeviceStateTable;
 uint8_t InputEventQueueTable;
@@ -2992,19 +2992,19 @@ uint8_t SystemGlobalVariable07;
 uint8_t SystemGlobalVariable08;
 uint8_t SystemGlobalVariable09;
 uint8_t SystemGlobalVariable10;
-uint8_t SystemGlobalVariable11;
-uint8_t SystemGlobalVariable12;
-uint8_t SystemGlobalVariable13;
-uint8_t SystemGlobalVariable14;
-uint8_t SystemGlobalVariable15;
-uint8_t SystemGlobalVariable16;
-uint8_t SystemGlobalVariable17;
-uint8_t SystemGlobalVariable18;
-uint8_t SystemGlobalVariable19;
-uint8_t SystemGlobalVariable20;
-uint8_t SystemGlobalVariable21;
-uint8_t SystemGlobalVariable22;
-uint8_t SystemGlobalVariable23;
+uint8_t SystemGlobalVariableConfiguration1;
+uint8_t SystemGlobalVariableConfiguration2;
+uint8_t SystemGlobalVariableConfiguration3;
+uint8_t SystemGlobalVariableConfiguration4;
+uint8_t SystemGlobalVariableConfiguration5;
+uint8_t SystemGlobalVariableConfiguration6;
+uint8_t SystemGlobalVariableConfiguration7;
+uint8_t SystemGlobalVariableConfiguration8;
+uint8_t SystemGlobalVariableConfiguration9;
+uint8_t SystemGlobalVariableConfiguration10;
+uint8_t SystemGlobalVariableConfiguration11;
+uint8_t SystemGlobalVariableConfiguration12;
+uint8_t SystemGlobalVariableConfiguration13;
 uint8_t MemoryManagementBlock01;
 uint8_t MemoryManagementBlock02;
 uint8_t MemoryManagementBlock3;
@@ -84908,7 +84908,7 @@ void InitializeSystemDataStructureV(void)
     ExecuteSystemEmergencyExit();
   }
   SystemResourceStatusFlag002 = 0;
-  _DAT_180d49258 = 0;
+  SystemResourceCleanupFlag002 = 0;
   SystemDataPointer012 = &SystemDataStructure;
   return;
 }
@@ -85189,9 +85189,9 @@ void InitializeSystemDataStructureAG(void)
  * 功能：
  * 1. 调用 SystemDataStructureInitializer 初始化位于 0x180d497e0 的数据结构
  * 2. 检查 SystemValidationManager 是否为0，如果不为0则调用错误处理函数
- * 3. 检查 _DAT_180d49950 是否为0，如果不为0则调用错误处理函数
+ * 3. 检查 SystemInitializationStatusFlag 是否为0，如果不为0则调用错误处理函数
  * 4. 调用 SecondaryDataStructureInitializer 初始化位于 0x180d498a0 的数据结构
- * 5. 将 _DAT_180d49830 设置为指向 SystemDataStructure001
+ * 5. 将 SystemDataStructurePointer001 设置为指向 SystemDataStructure001
  */
 void InitializeSystemDataStructureAH(void)
 void InitializeSystemDataStructureAH(void)
@@ -85202,12 +85202,12 @@ void InitializeSystemDataStructureAH(void)
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  if (_DAT_180d49950 != 0) {
+  if (SystemInitializationStatusFlag != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
   SecondaryDataStructureInitializer(0x180d498a0);
-  _DAT_180d49830 = &SystemDataStructure;
+  SystemDataStructurePointer001 = &SystemDataStructure;
   return;
 }
 
@@ -85221,14 +85221,14 @@ void InitializeSystemDataStructureAH(void)
  * 清理和释放内存池资源
  * 
  * 功能：
- * 1. 检查内存池起始地址 _DAT_180c91f18 是否为0
+ * 1. 检查内存池起始地址 MemoryPoolStartAddress 是否为0
  * 2. 如果不为0，计算需要释放的内存大小
  * 3. 验证内存块的完整性，检查是否有溢出
  * 4. 释放内存块并重置相关指针和计数器
  * 
  * 参数说明：
- * - 使用全局变量 _DAT_180c91f18 作为内存池起始地址
- * - 使用全局变量 _DAT_180c91f28 作为内存池结束地址
+ * - 使用全局变量 MemoryPoolStartAddress 作为内存池起始地址
+ * - 使用全局变量 MemoryPoolEndAddress 作为内存池结束地址
  * - 使用全局变量 uRam0000000180c91f20 作为内存池计数器
  */
 void InitializeSystemDataStructureAI(void)
@@ -85238,20 +85238,20 @@ void InitializeSystemDataStructureAI(void)
   longlong loopCounter;
   ulonglong validationResult;
   
-  if (_DAT_180c91f18 != 0) {
-    validationResult = _DAT_180c91f28 - _DAT_180c91f18 & 0xfffffffffffffff8;
-    localContextPointer = _DAT_180c91f18;
+  if (MemoryPoolStartAddress != 0) {
+    validationResult = MemoryPoolEndAddress - MemoryPoolStartAddress & 0xfffffffffffffff8;
+    localContextPointer = MemoryPoolStartAddress;
     if (0xfff < validationResult) {
-      loopCounter = *(longlong *)(_DAT_180c91f18 + -8);
+      loopCounter = *(longlong *)(MemoryPoolStartAddress + -8);
       validationResult = validationResult + 0x27;
-      if (0x1f < (_DAT_180c91f18 - localContextPointer) - 8U) {
+      if (0x1f < (MemoryPoolStartAddress - localContextPointer) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn();
       }
     }
     free(localContextPointer,validationResult);
-    _DAT_180c91f28 = 0;
-    _DAT_180c91f18 = 0;
+    MemoryPoolEndAddress = 0;
+    MemoryPoolStartAddress = 0;
     uRam0000000180c91f20 = 0;
   }
   return;
