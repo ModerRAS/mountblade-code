@@ -34764,7 +34764,7 @@ void ProcessSecondaryResourceCleanup(uint8_t ObjectContextParameter,int64_t Vali
 
 
 
-void Unwind_180903360(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ProcessResourceContextValidation(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;
@@ -34783,7 +34783,7 @@ void Unwind_180903360(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903370(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void RegisterResourceCleanupHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContextParameter + 0x50) + 0x88,0x20,0x10,SystemResourceCleanupHandler);
@@ -34792,7 +34792,7 @@ void Unwind_180903370(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809033b0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindRegisterMemoryCleanupHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContextParameter + 0x50) + 0x288,0x58,4,SystemMemoryCleanupHandler);
@@ -34801,7 +34801,7 @@ void Unwind_1809033b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809033f0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindRegisterSecondaryMemoryCleanupHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContextParameter + 0x50) + 1000,0x58,4,SystemMemoryCleanupHandler);
@@ -50003,22 +50003,44 @@ void Unwind_180906e40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906e50(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 执行字符指针清理操作
+ * 
+ * 该函数负责在系统清理过程中执行字符指针相关的清理操作
+ * 从验证上下文中获取字符指针并调用相应的清理函数
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含清理所需的信息
+ * @param CleanupOption 清理选项，指定清理的类型
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数通常在系统异常处理或资源清理时调用
+ */
+void ExecuteCharPointerCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
-  code *CharPointer;
+  code *cleanupFunctionPointer;
   
-  CharPointer = *(code **)(*(int64_t *)(ValidationContextParameter + 0x170) + 0x10);
-  if (CharPointer != (code *)0x0) {
-    (*CharPointer)(*(int64_t *)(ValidationContextParameter + 0x170),0,0,CleanupFlag,0xfffffffffffffffe);
+  cleanupFunctionPointer = *(code **)(*(int64_t *)(ValidationContextParameter + 0x170) + 0x10);
+  if (cleanupFunctionPointer != (code *)0x0) {
+    (*cleanupFunctionPointer)(*(int64_t *)(ValidationContextParameter + 0x170), 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180906e60(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
-
+/**
+ * @brief 执行验证上下文清理操作
+ * 
+ * 该函数负责在系统清理过程中执行验证上下文相关的清理操作
+ * 检查验证上下文中的特定指针并调用相应的清理函数
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含清理所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统异常处理或资源清理时调用
+ */
+void ExecuteValidationContextCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 {
   if (*(int64_t **)(ValidationContextParameter + 0x128) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(ValidationContextParameter + 0x128) + 0x38))();
@@ -50028,14 +50050,24 @@ void Unwind_180906e60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906e70(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
-
+/**
+ * @brief 重置资源哈希指针
+ * 
+ * 该函数负责在系统清理过程中重置资源哈希指针
+ * 将资源哈希指针重置为资源表模板和资源缓存模板
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含资源哈希指针信息
+ * @return 无返回值
+ * @note 此函数通常在系统清理或资源重置时调用
+ */
+void ResetResourceHashPointers(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 {
-  uint8_t *presourceHash;
+  uint8_t *resourceHashPointer;
   
-  presourceHash = *(uint8_t **)(ValidationContextParameter + 0x178);
-  *presourceHash = &ResourceTableTemplate;
-  *presourceHash = &ResourceCacheTemplate;
+  resourceHashPointer = *(uint8_t **)(ValidationContextParameter + 0x178);
+  *resourceHashPointer = &ResourceTableTemplate;
+  *resourceHashPointer = &ResourceCacheTemplate;
   return;
 }
 
