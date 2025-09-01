@@ -19997,7 +19997,7 @@ undefined8 ProcessResourceValidation(longlong ValidationParam,undefined8 *Resour
       resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0x34);
       if (((int)resourceHash == 0) && (resourceHash = ParseResourceMetadata(param_2,0), (int)resourceHash == 0)) {
         if ((0x6b < *(uint *)(resourceData + 8)) &&
-           (resourceHash = FUN_1808a6150(param_2,param_1 + 0x38,0), (int)resourceHash != 0)) {
+           (resourceHash = CheckResourceIntegrity(param_2,param_1 + 0x38,0), (int)resourceHash != 0)) {
           return resourceHash;
         }
         resourceHash = 0;
@@ -20024,7 +20024,7 @@ ProcessResourceData(longlong ResourceContext, undefined8 *ResourceData, int Proc
   uint auStackX_8 [2];
   uint auStackX_20 [2];
   
-  auStackX_20[0] = FUN_1808a5630(param_2,param_1,0);
+  auStackX_20[0] = InitializeResourceContext(param_2,param_1,0);
   if (auStackX_20[0] != 0) {
     return;
   }
@@ -20037,7 +20037,7 @@ ProcessResourceData(longlong ResourceContext, undefined8 *ResourceData, int Proc
   uVar4 = (int)*(uint *)(param_1 + 0x1c) >> 0x1f;
   uVar5 = auStackX_20[0] >> 1;
   if (((int)((*(uint *)(param_1 + 0x1c) ^ uVar4) - uVar4) < (int)uVar5) &&
-     (iVar2 = FUN_180748010(param_1 + 0x10,uVar5), iVar2 != 0)) {
+     (iVar2 = ValidateResourcePointer(param_1 + 0x10,uVar5), iVar2 != 0)) {
     return;
   }
   iVar2 = *(int *)(param_1 + 0x18);
@@ -20104,14 +20104,14 @@ ProcessResourceData(longlong ResourceContext, undefined8 *ResourceData, int Proc
   }
 LAB_18089bfc7:
   if (param_3 == 0) {
-    iVar2 = FUN_1808a84c0(param_1,param_2);
+    iVar2 = ProcessResourceValidation(param_1,param_2);
   }
   else {
-    iVar2 = FUN_1808ad600(param_2,param_1 + 0x30);
+    iVar2 = ValidateResourceStructure(param_2,param_1 + 0x30);
     if (iVar2 != 0) {
       return;
     }
-    iVar2 = FUN_1808ad600(param_2,param_1 + 0x40);
+    iVar2 = ValidateResourceStructure(param_2,param_1 + 0x40);
   }
   if (iVar2 == 0) {
     func_0x000180069ee0(param_1);
@@ -20146,7 +20146,7 @@ ValidateResourceIntegrity(void)
   uVar3 = (int)*(uint *)(unaff_R15 + 0x1c) >> 0x1f;
   uVar4 = uStack0000000000000068 >> 1;
   if (((int)((*(uint *)(unaff_R15 + 0x1c) ^ uVar3) - uVar3) < (int)uVar4) &&
-     (iVar1 = FUN_180748010(unaff_R15 + 0x10,uVar4), iVar1 != 0)) {
+     (iVar1 = ValidateResourcePointer(unaff_R15 + 0x10,uVar4), iVar1 != 0)) {
     return;
   }
   iVar1 = *(int *)(unaff_R15 + 0x18);
@@ -20213,14 +20213,14 @@ ValidateResourceIntegrity(void)
   }
 LAB_18089bfc7:
   if (unaff_R12D == 0) {
-    iVar1 = FUN_1808a84c0();
+    iVar1 = ProcessResourceValidation();
   }
   else {
-    iVar1 = FUN_1808ad600();
+    iVar1 = ValidateResourceStructure();
     if (iVar1 != 0) {
       return;
     }
-    iVar1 = FUN_1808ad600();
+    iVar1 = ValidateResourceStructure();
   }
   if (iVar1 == 0) {
     func_0x000180069ee0();
@@ -20313,7 +20313,7 @@ ulonglong ProcessResourceDataReadAndValidate(longlong param_1,undefined8 *param_
     }
   }
 LAB_18089c131:
-  uVar4 = FUN_1808ad600(param_2,param_1 + 0x18);
+  uVar4 = ValidateResourceStructure(param_2,param_1 + 0x18);
   if ((int)uVar4 == 0) {
     if (*(uint *)(resourceData + 8) < 0x7c) {
       uVar3 = 0;
@@ -84508,8 +84508,13 @@ void InitializeSystemDataStructureAA(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941bf0(void)
-void FUN_180941bf0(void)
+ /**
+ * @brief 执行系统状态检查和清理
+ * 
+ * 该函数负责执行系统状态检查，包括检查全局标志位
+ * 并根据状态执行相应的清理操作，如销毁互斥锁和条件变量
+ */
+void ExecuteSystemStatusCheckAndCleanup(void)
 
 {
   if (DAT_180c91d50 != '\0') {
@@ -84839,8 +84844,13 @@ void InitializeSystemDataStructureAP(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941fe0(void)
-void FUN_180941fe0(void)
+ /**
+ * @brief 初始化系统数据结构AE
+ * 
+ * 该函数负责初始化系统的数据结构AE
+ * 将全局变量 _DAT_180bf9450 设置为指向 SystemDataStructure
+ */
+void InitializeSystemDataStructureAE(void)
 
 {
   _DAT_180bf9450 = &SystemDataStructure;
@@ -86301,8 +86311,13 @@ void InitializeSystemDataStructureCN(void)
 
 
 
- void FUN_180942928(void)
-void FUN_180942928(void)
+ /**
+ * @brief 空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何操作
+ * 仅用于保持代码结构完整性或作为占位符
+ */
+void NoOperationFunction(void)
 
 {
   return;
