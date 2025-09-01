@@ -706,7 +706,7 @@ void InitializeNetworkConnection(ulonglong *connectionHandle,int connectionType)
   ulonglong stackGuard;
   
   stackGuard = NetworkSecurityGuardValue ^ (ulonglong)securityBuffer;
-  func_0x000180741c10(&NetworkInitializationData);
+  InitializeNetworkSystemData(&NetworkInitializationData);
   if (connectionHandle == (ulonglong *)0x0) {
     status = 0x1f;
   }
@@ -723,7 +723,7 @@ void InitializeNetworkConnection(ulonglong *connectionHandle,int connectionType)
             HandleNetworkConnectionError();
             goto error_handling;
           }
-          status = func_0x00018088c570(connectionData,connectionParams);
+          status = SetupNetworkConnectionParameters(connectionData,connectionParams);
           if (status == 0) {
             *connectionHandle = (ulonglong)connectionParams[0];
             goto cleanup;
@@ -738,12 +738,12 @@ error_handling:
     }
   }
   if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0) {
-    result = func_0x00018074bda0(errorBuffer,0x100,connectionHandle);
+    result = FormatNetworkErrorDetails(errorBuffer,0x100,connectionHandle);
     errorStatus = FormatNetworkErrorMessage(errorBuffer + result,0x100 - result,&g_NetworkBufferDataTemplate);
-    func_0x00018074b800(errorBuffer + (result + errorStatus),0x100 - (result + errorStatus),connectionType);
+    LogNetworkConnectionError(errorBuffer + (result + errorStatus),0x100 - (result + errorStatus),connectionType);
     errorMessage = errorBuffer;
                     // WARNING: Subroutine does not return
-    LogNetworkError(status,0,0,&NetworkReservedMemoryRegion4660);
+    LogNetworkErrorMessage(status,0,0,&NetworkReservedMemoryRegion4660);
   }
 cleanup:
                     // WARNING: Subroutine does not return
