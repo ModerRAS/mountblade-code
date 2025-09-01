@@ -1822,11 +1822,11 @@ int InitializeStringProcessorS(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9750 = &SystemMemoryPool;
-  _DAT_180bf9758 = &DAT_180bf9768;
-  DAT_180bf9768 = 0;
-  _DAT_180bf9760 = 0x20;
-  strcpy_s(&DAT_180bf9768,0x40,&UNK_180a22c70,StringProcessorFlags,SystemMutexFlags);
+  StringProcessorS_BasePointer = &SystemMemoryPool;
+  StringProcessorS_BufferPointer = &StringProcessorS_DataBuffer;
+  StringProcessorS_DataBuffer = 0;
+  StringProcessorS_BufferSize = 0x20;
+  strcpy_s(&StringProcessorS_DataBuffer,0x40,&StringProcessorS_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleB);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1834,11 +1834,11 @@ int InitializeStringProcessorT(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf97b0 = &SystemMemoryPool;
-  _DAT_180bf97b8 = &DAT_180bf97c8;
-  DAT_180bf97c8 = 0;
-  _DAT_180bf97c0 = 0x13;
-  strcpy_s(&DAT_180bf97c8,0x40,&UNK_180a22c58,StringProcessorFlags,SystemMutexFlags);
+  StringProcessorT_BasePointer = &SystemMemoryPool;
+  StringProcessorT_BufferPointer = &StringProcessorT_DataBuffer;
+  StringProcessorT_DataBuffer = 0;
+  StringProcessorT_BufferSize = 0x13;
+  strcpy_s(&StringProcessorT_DataBuffer,0x40,&StringProcessorT_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleC);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1846,11 +1846,11 @@ int InitializeStringProcessorU(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9810 = &SystemMemoryPool;
-  _DAT_180bf9818 = &DAT_180bf9828;
-  DAT_180bf9828 = 0;
-  _DAT_180bf9820 = 0x1e;
-  strcpy_s(&DAT_180bf9828,0x40,&UNK_180a22d28,StringProcessorFlags,SystemMutexFlags);
+  StringProcessorU_BasePointer = &SystemMemoryPool;
+  StringProcessorU_BufferPointer = &StringProcessorU_DataBuffer;
+  StringProcessorU_DataBuffer = 0;
+  StringProcessorU_BufferSize = 0x1e;
+  strcpy_s(&StringProcessorU_DataBuffer,0x40,&StringProcessorU_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleD);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1858,11 +1858,11 @@ int InitializeStringProcessorV(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9870 = &SystemMemoryPool;
-  _DAT_180bf9878 = &DAT_180bf9888;
-  DAT_180bf9888 = 0;
-  _DAT_180bf9880 = 0x1b;
-  strcpy_s(&DAT_180bf9888,0x40,&UNK_180a22d08,StringProcessorFlags,SystemMutexFlags);
+  StringProcessorV_BasePointer = &SystemMemoryPool;
+  StringProcessorV_BufferPointer = &StringProcessorV_DataBuffer;
+  StringProcessorV_DataBuffer = 0;
+  StringProcessorV_BufferSize = 0x1b;
+  strcpy_s(&StringProcessorV_DataBuffer,0x40,&StringProcessorV_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleA);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1876,11 +1876,11 @@ int InitializeSystemModuleB(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf98d0 = &SystemMemoryPool;
-  _DAT_180bf98d8 = &SYSTEM_MODULE_B_BUFFER;
-  SYSTEM_MODULE_B_BUFFER = 0;
-  _DAT_180bf98e0 = 0x1b;
-  strcpy_s(&SYSTEM_MODULE_B_BUFFER,0x40,&UNK_180a22ce8,StringProcessorFlags,SystemMutexFlags);
+  SystemModuleB_BasePointer = &SystemMemoryPool;
+  SystemModuleB_BufferPointer = &SystemModuleB_DataBuffer;
+  SystemModuleB_DataBuffer = 0;
+  SystemModuleB_BufferSize = 0x1b;
+  strcpy_s(&SystemModuleB_DataBuffer,0x40,&SystemModuleB_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleB);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1888,11 +1888,11 @@ int InitializeSystemModuleC(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9930 = &SystemMemoryPool;
-  _DAT_180bf9938 = &SYSTEM_MODULE_C_BUFFER;
-  SYSTEM_MODULE_C_BUFFER = 0;
-  _DAT_180bf9940 = 0x1c;
-  strcpy_s(&SYSTEM_MODULE_C_BUFFER,0x40,&UNK_180a22cc8,StringProcessorFlags,SystemMutexFlags);
+  SystemModuleC_BasePointer = &SystemMemoryPool;
+  SystemModuleC_BufferPointer = &SystemModuleC_DataBuffer;
+  SystemModuleC_DataBuffer = 0;
+  SystemModuleC_BufferSize = 0x1c;
+  strcpy_s(&SystemModuleC_DataBuffer,0x40,&SystemModuleC_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleC);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1900,11 +1900,11 @@ int InitializeSystemModuleD(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9990 = &SystemMemoryPool;
-  _DAT_180bf9998 = &DAT_180bf99a8;
-  DAT_180bf99a8 = 0;
-  _DAT_180bf99a0 = 0x1d;
-  strcpy_s(&DAT_180bf99a8,0x40,&UNK_180a22db0,StringProcessorFlags,SystemMutexFlags);
+  SystemModuleD_BasePointer = &SystemMemoryPool;
+  SystemModuleD_BufferPointer = &SystemModuleD_DataBuffer;
+  SystemModuleD_DataBuffer = 0;
+  SystemModuleD_BufferSize = 0x1d;
+  strcpy_s(&SystemModuleD_DataBuffer,0x40,&SystemModuleD_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleD);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1918,11 +1918,11 @@ int InitializeStringProcessingSystemM(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf99f0 = &SystemMemoryPool;
-  _DAT_180bf99f8 = &DAT_180bf9a08;
-  DAT_180bf9a08 = 0;
-  _DAT_180bf9a00 = 0x20;
-  strcpy_s(&DAT_180bf9a08,0x40,&UNK_180a22d88,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemM_BasePointer = &SystemMemoryPool;
+  StringProcessingSystemM_BufferPointer = &StringProcessingSystemM_DataBuffer;
+  StringProcessingSystemM_DataBuffer = 0;
+  StringProcessingSystemM_BufferSize = 0x20;
+  strcpy_s(&StringProcessingSystemM_DataBuffer,0x40,&StringProcessingSystemM_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleE);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1936,11 +1936,11 @@ int InitializeStringProcessingSystemN(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9a50 = &SystemMemoryPool;
-  _DAT_180bf9a58 = &DAT_180bf9a68;
-  DAT_180bf9a68 = 0;
-  _DAT_180bf9a60 = 0x1d;
-  strcpy_s(&DAT_180bf9a68,0x40,&UNK_180a22d68,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemN_BasePointer = &SystemMemoryPool;
+  StringProcessingSystemN_BufferPointer = &StringProcessingSystemN_DataBuffer;
+  StringProcessingSystemN_DataBuffer = 0;
+  StringProcessingSystemN_BufferSize = 0x1d;
+  strcpy_s(&StringProcessingSystemN_DataBuffer,0x40,&StringProcessingSystemN_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemN);
   return (ModuleInitializationResult != 0) - 1;
 }

@@ -2324,14 +2324,7 @@ uint8_t SystemSecurityContextTemplate;
 uint8_t SystemEventTableTemplate;
 uint8_t SystemNetworkTableTemplate;
 
- /**
- * @brief 分配内存块
- * 
- * 该函数负责分配指定大小的内存块
- * 返回分配的内存指针
- */
-void AllocateMemoryBlock(void);
-uint8_t MemoryPoolManagerData;
+ uint8_t MemoryPoolManagerData;
 uint8_t MemoryAllocatorData;
 uint8_t MemoryDeallocatorData;
 uint8_t MemoryReallocatorData;
@@ -2387,14 +2380,7 @@ uint8_t MemoryAllocationTree;
 uint8_t MemoryAllocationGraph;
 uint8_t MemoryAllocationNetwork;
 
- /**
- * @brief 释放内存块
- * 
- * 该函数负责释放之前分配的内存块
- * 回收内存资源供后续使用
- */
-void FreeMemoryBlock(void);
-uint8_t SystemMemoryPoolManager;
+ uint8_t SystemMemoryPoolManager;
 uint8_t SystemMemoryAllocator;
 uint8_t SystemMemoryDescriptor;
 uint8_t SystemMemoryPoolBuffer;
@@ -2402,22 +2388,8 @@ uint8_t SystemMemoryCache;
 uint8_t SystemMemoryHeap;
 uint8_t SystemMemoryStack;
 
- /**
- * @brief 重新分配内存块
- * 
- * 该函数负责重新调整已分配内存块的大小
- * 保留原有数据并调整内存空间
- */
-void ReallocateMemoryBlock(void);
-void* SystemMemoryConfigurationDataTemplateSpecialA;
+ void* SystemMemoryConfigurationDataTemplateSpecialA;
 
-void GetMemoryBlockSize(void);
-/**
- * @brief 获取内存块大小
- * 
- * 该函数负责获取已分配内存块的大小
- * 用于内存管理和调试目的
- */
 void GetMemoryBlockSize(void);
 uint8_t SystemMemoryConfigDataPrimary;
 uint8_t SystemMemoryConfigDataSecondary;
@@ -2434,13 +2406,6 @@ uint8_t SystemThreadScheduler;
 uint8_t ThreadContextManager;
 uint8_t ThreadLocalStorage;
 
-void InitializeThreadManager(void);
-/**
- * @brief 初始化线程管理器
- * 
- * 该函数负责初始化系统的线程管理器
- * 设置线程池和调度策略
- */
 void InitializeThreadManager(void);
 uint8_t ThreadManagerContextData;
 uint8_t ThreadSchedulerData;
@@ -37179,7 +37144,22 @@ void CleanupResourceWithStatusCheck(uint8_t ObjectContextParameter,int64_t Valid
 
 
 
-void Unwind_1809039d0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器
+ * 
+ * 该函数负责清理系统资源处理器和相关数据结构
+ * 执行资源清理操作并重置系统状态
+ * 包括处理清理标志和清理选项
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象相关的上下文信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证所需的数据
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数用于系统资源清理
+ * @warning 如果清理过程中发现错误，系统将执行紧急退出
+ */
+void CleanupSystemResourceHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
