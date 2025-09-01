@@ -6511,7 +6511,7 @@ FUN_18045d980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   _DAT_180c961c0 = 0;
   uRam0000000180c961b8 = 0;
   _DAT_180c961b0 = 0;
-  DAT_180c961a0 = 1;
+  SystemLightEnabled = 1;
   _DAT_180c9619c = 3;
   _DAT_180c96194 = 0x40000000;
   _DAT_180c96190 = 0x3f800000;
@@ -6527,7 +6527,7 @@ FUN_18045d980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   _DAT_180c96080 = 0;
   _DAT_180c96078 = 0;
   _DAT_180c96070 = 0;
-  DAT_180c96068 = 1;
+  SystemEffectActive = 1;
   _DAT_180c96050 = 0;
   DAT_180c96048 = 1;
   _DAT_180c96030 = 0;

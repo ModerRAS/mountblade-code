@@ -1385,14 +1385,14 @@ int InitializeSystemGlobalVariables(void)
 {
   long long initializationStatus;
   
-  SystemInitializationStatusA = 0;
-  SystemInitializationStatusB = 0;
+  SystemInitializationStatusCode = 0;
+  SystemInitializationProgress = 0;
   SystemMemoryStatusFlagA = 0;
-  SystemInitializationStatusC = 3;
-  SystemInitializationStatusD = 0;
-  SystemInitializationStatusE = 0;
+  SystemInitializationErrorFlag = 3;
+  SystemInitializationMemoryStatus = 0;
+  SystemInitializationThreadStatus = 0;
   SystemMemoryStatusFlagB = 0;
-  SystemInitializationStatusF = 3;
+  SystemInitializationResourceStatus = 3;
   SystemConfigDataPointerA = &SystemGlobalDataPointerA;
   SystemConfigDataPointerB = 0;
   SystemConfigDataPointerC = 0;
@@ -17680,9 +17680,9 @@ void SetAudioSystemPointer(void)
   int systemStatus;
   
   systemStatus = GetSystemStatus(0);
-  _DAT_180c0e170 = 0x180be23a0;
+  SystemAudioContextB = 0x180be23a0;
   if (systemStatus != 0) {
-    _DAT_180c0e170 = 0x180be23c0;
+    SystemAudioContextB = 0x180be23c0;
   }
   return;
 }
