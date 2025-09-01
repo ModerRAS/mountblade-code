@@ -23842,9 +23842,20 @@ LAB_18089d07f:
 
 
 /**
- * 处理资源数据验证流程
- * 该函数负责处理资源数据的验证流程，包括数据结构检查和边界验证
- * @return 处理状态码：0表示成功，其他值表示错误
+ * @brief 处理资源数据验证流程
+ * 
+ * 该函数负责处理资源数据的验证流程，执行系统化的验证处理：
+ * 1. 初始化验证上下文和相关参数
+ * 2. 执行资源数据结构检查和边界验证
+ * 3. 进行安全性和完整性验证
+ * 4. 处理验证结果和错误状态
+ * 5. 清理验证过程中的临时数据
+ * 
+ * @return uint64_t 处理状态码：0表示成功，其他值表示具体的错误类型
+ * @note 此函数是资源验证流程的核心处理函数，协调整个验证过程
+ * @warning 验证过程中如果发现严重错误，会立即终止验证并返回错误代码
+ * @see ExecuteResourceDataIntegrityValidation 执行完整性验证的相关函数
+ * @see ValidateResourcePackageStructure 验证资源包结构的相关函数
  */
 uint64_t ProcessResourceDataValidationFlow(void)
 
