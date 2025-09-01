@@ -4637,8 +4637,7 @@ void ExecuteNoOperation(void)
 
 
 
- uint64_t ProcessResourceHandle(int64_t resourceHandle)
-/**
+ /**
  * @brief 处理资源句柄
  * 
  * 该函数负责处理资源句柄，执行相关操作
@@ -4647,7 +4646,7 @@ void ExecuteNoOperation(void)
  * @param resourceHandle 资源句柄，用于标识要处理的资源
  * @return 处理结果，0表示成功，非0表示错误码
  */
-uint64_t ProcessResourceHandle(int64_t resourceHandle)
+uint64_t HandleResourceProcessing(int64_t resourceHandle)
 
 {
   uint8_t resourceHash;
