@@ -29125,7 +29125,15 @@ void NetworkEmptyOperation(void)
 
 
 
-NetworkHandle FUN_180857aaa(void)
+/**
+ * @brief 获取网络连接池默认大小
+ * 
+ * 该函数返回网络连接池的默认大小常量。
+ * 这个值用于初始化网络连接池的大小。
+ * 
+ * @return NetworkHandle 默认连接池大小值（0x1c = 28）
+ */
+NetworkHandle GetNetworkConnectionPoolDefaultSize(void)
 
 {
   return 0x1c;
