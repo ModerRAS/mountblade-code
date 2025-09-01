@@ -2586,25 +2586,25 @@ undefined8 ValidateObjectRegistration(longlong objectContext)
     if ((int)objectStatus != 0) {
       return objectStatus;
     }
-    if ((char)uVar4 == (char)uVar5) {
-      if (acStackX_18[0] == (char)uVar5) {
-        plVar11 = (longlong *)(lVar1 + 0x4d8);
-        uVar8 = 0;
-        iVar7 = *(int *)(lVar1 + 0x4e4);
-        if (0 < iVar7) {
-          plVar6 = (longlong *)*plVar11;
-          uVar10 = uVar8;
+    if ((char)validationStatus == (char)objectStatus) {
+      if (objectName[0] == (char)objectStatus) {
+        arrayPointer = (longlong *)(objectData + 0x4d8);
+        currentIndex = 0;
+        arraySize = *(int *)(objectData + 0x4e4);
+        if (0 < arraySize) {
+          objectArray = (longlong *)*arrayPointer;
+          searchIndex = currentIndex;
           do {
-            if (*plVar6 == lVar2) {
-              if (-1 < (int)uVar10) {
+            if (*objectArray == objectHandle) {
+              if (-1 < (int)searchIndex) {
                 return 0;
               }
               break;
             }
-            uVar10 = (ulonglong)((int)uVar10 + 1);
-            uVar8 = uVar8 + 1;
-            plVar6 = plVar6 + 1;
-          } while ((longlong)uVar8 < (longlong)iVar7);
+            searchIndex = (ulonglong)((int)searchIndex + 1);
+            currentIndex = currentIndex + 1;
+            objectArray = objectArray + 1;
+          } while ((longlong)currentIndex < (longlong)arraySize);
         }
         iVar7 = iVar7 + 1;
         if (*(int *)(lVar1 + 0x4e8) < iVar7) {
@@ -6743,22 +6743,26 @@ undefined8 get_error_status_code(void)
 
 
 
-// 函数: void FUN_1808938c0(longlong param_1,longlong param_2)
-void FUN_1808938c0(longlong param_1,longlong param_2)
+/**
+ * @brief 执行数据验证和处理操作
+ * @param data_context 数据上下文指针
+ * @param operation_context 操作上下文指针
+ */
+void execute_data_validation_and_processing(longlong data_context, longlong operation_context)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int validation_result;
+  longlong temp_buffer;
   
-  iVar1 = FUN_1808de900(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-    if (iVar1 == 0) {
-      if (*(int *)(lStackX_8 + 0x30) == 1) {
-        *(undefined4 *)(lStackX_8 + 0x30) = 2;
+  validation_result = validate_data_format(operation_context, data_context + 0x10);
+  if (validation_result == 0) {
+    validation_result = check_data_integrity(*(undefined4 *)(data_context + 0x10), &temp_buffer);
+    if (validation_result == 0) {
+      if (*(int *)(temp_buffer + 0x30) == 1) {
+        *(undefined4 *)(temp_buffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      execute_data_operation(*(undefined8 *)(operation_context + 0x98), data_context);
     }
   }
   return;
