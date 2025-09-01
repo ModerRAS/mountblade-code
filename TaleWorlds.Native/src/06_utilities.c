@@ -32917,7 +32917,7 @@ void ExceptionContextHandler(uint8_t ObjectContextParameter,int64_t ValidationCo
 
 
 
-void Unwind_180902d90(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void SystemResourceTracker(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -32931,7 +32931,7 @@ void Unwind_180902d90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902db0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void MemoryBlockDeallocator(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -32945,7 +32945,7 @@ void Unwind_180902db0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902dd0(void)
+void SystemResourceDestructor(void)
 
 {
   _Mtx_destroy_in_situ();
