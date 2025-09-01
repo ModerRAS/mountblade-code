@@ -5422,7 +5422,15 @@ void InitializeSystemNetworkManager(void)
 
 
 // 函数: void FUN_180033a50(void)
-void FUN_180033a50(void)
+/**
+ * @brief 初始化系统存储管理器
+ * 
+ * 该函数负责初始化系统的存储管理组件，设置存储管理的基础结构。
+ * 它会遍历系统存储节点树，进行内存比较，分配必要的内存，并设置存储节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保存储管理系统的正常运行
+ */
+void InitializeSystemStorageManager(void)
 
 {
   char systemNodeFlag;
