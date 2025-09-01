@@ -63142,25 +63142,25 @@ void ConfigureSystemInitializationParameters(long long *SystemResourcePointer,by
     }
   }
   else {
-    plocalBufferAddress = *(long long **)(SystemResourcePointer[0x15] + 0x88);
-    pcVar5 = *(code **)(*plocalBufferAddress + 0x60);
-    pplStack_88 = &plStack_d0;
-    plStack_d0 = SystemResourcePointer;
-    bStack_c8 = ConfigurationDataPointer;
-    plStack_c0 = SecondaryResourcePointer;
+    LocalBufferAddress = *(long long **)(SystemResourcePointer[0x15] + 0x88);
+    SystemCodePointer = *(code **)(*LocalBufferAddress + 0x60);
+    SystemDoublePointer = &SystemDataPointer1;
+    SystemDataPointer1 = SystemResourcePointer;
+    SystemDataByte1 = ConfigurationDataPointer;
+    SystemDataPointer2 = SecondaryResourcePointer;
     if (SecondaryResourcePointer != (long long *)0x0) {
       (**(code **)(*SecondaryResourcePointer + 0x28))(SecondaryResourcePointer);
     }
-    plStack_b8 = plocalResourceOffset;
-    if (plocalResourceOffset != (long long *)0x0) {
-      (**(code **)(*plocalResourceOffset + 0x28))(plocalResourceOffset);
+    SystemDataPointer3 = LocalResourceOffset;
+    if (LocalResourceOffset != (long long *)0x0) {
+      (**(code **)(*LocalResourceOffset + 0x28))(LocalResourceOffset);
     }
-    FUN_180081120(auStack_80,&plStack_d0);
-    cVar6 = (*pcVar5)(plocalBufferAddress,&DAT_1809fc768,SystemResourcePointer + 0x17,0,auStack_80);
-    if (pcStack_70 != (code *)0x0) {
-      (*pcStack_70)(auStack_80,0,0);
+    FUN_180081120(SystemBuffer1,&SystemDataPointer1);
+    SystemCharacterFlag = (*SystemCodePointer)(LocalBufferAddress,&DAT_1809fc768,SystemResourcePointer + 0x17,0,SystemBuffer1);
+    if (SystemFunctionPointer2 != (code *)0x0) {
+      (*SystemFunctionPointer2)(SystemBuffer1,0,0);
     }
-    if (cVar6 == '\0') {
+    if (SystemCharacterFlag == '\0') {
       SystemPreviousNode = &SystemStringTemplate;
       if ((void* *)SystemResourcePointer[3] != (void* *)0x0) {
         SystemPreviousNode = (void* *)SystemResourcePointer[3];
