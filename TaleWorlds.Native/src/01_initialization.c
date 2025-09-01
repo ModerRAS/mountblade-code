@@ -13572,8 +13572,11 @@ void InitializeSystemResourceManagerE(void)
 
 
 
-// 函数: void FUN_18003f390(void)
-void FUN_18003f390(void)
+/**
+ * 初始化系统配置资源管理器
+ * 设置系统配置标识符和相关数据结构
+ */
+void InitializeSystemResourceManagerF(void)
 
 {
   char systemNodeFlag;
@@ -13622,8 +13625,11 @@ void FUN_18003f390(void)
 
 
 
-// 函数: void FUN_18003f490(void)
-void FUN_18003f490(void)
+/**
+ * 初始化系统事件资源管理器
+ * 设置系统事件标识符和相关数据结构
+ */
+void InitializeSystemResourceManagerG(void)
 
 {
   char systemNodeFlag;
@@ -13672,8 +13678,11 @@ void FUN_18003f490(void)
 
 
 
-// 函数: void FUN_18003f590(void)
-void FUN_18003f590(void)
+/**
+ * 初始化系统资源管理器
+ * 设置系统资源标识符和相关数据结构
+ */
+void InitializeSystemResourceManagerH(void)
 
 {
   char systemNodeFlag;
@@ -13722,8 +13731,11 @@ void FUN_18003f590(void)
 
 
 
-// 函数: void FUN_18003f690(void)
-void FUN_18003f690(void)
+/**
+ * 初始化系统资源管理器I
+ * 设置系统资源标识符和相关数据结构
+ */
+void InitializeSystemResourceManagerI(void)
 
 {
   char systemNodeFlag;
@@ -13772,8 +13784,11 @@ void FUN_18003f690(void)
 
 
 
-// 函数: void FUN_18003f790(void)
-void FUN_18003f790(void)
+/**
+ * 初始化系统资源管理器J
+ * 设置系统资源标识符和相关数据结构
+ */
+void InitializeSystemResourceManagerJ(void)
 
 {
   char systemNodeFlag;
@@ -13824,8 +13839,11 @@ void FUN_18003f790(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003f890(void)
-void FUN_18003f890(void)
+/**
+ * 初始化系统资源管理器K
+ * 设置系统资源标识符和相关数据结构
+ */
+void InitializeSystemResourceManagerK(void)
 
 {
   undefined8 in_R9;
@@ -13848,8 +13866,11 @@ void FUN_18003f890(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003f920(void)
-void FUN_18003f920(void)
+/**
+ * 初始化系统资源管理器L
+ * 处理系统资源字符串初始化
+ */
+void InitializeSystemResourceManagerL(void)
 
 {
   undefined8 in_R9;
@@ -13872,8 +13893,11 @@ void FUN_18003f920(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003f9b0(void)
-void FUN_18003f9b0(void)
+/**
+ * 初始化系统资源管理器M
+ * 处理系统资源字符串初始化
+ */
+void InitializeSystemResourceManagerM(void)
 
 {
   undefined8 in_R9;
@@ -13896,8 +13920,11 @@ void FUN_18003f9b0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003fa40(void)
-void FUN_18003fa40(void)
+/**
+ * 初始化系统资源管理器N
+ * 处理系统资源初始化
+ */
+void InitializeSystemResourceManagerN(void)
 
 {
   undefined8 in_R9;
@@ -13928,8 +13955,11 @@ int FUN_18003fad0(void)
   _DAT_180bf6048 = &UNK_18098bc80;
   _DAT_180bf6050 = &DAT_180bf6060;
 
-// 函数: void FUN_18003fbb0(void)
-void FUN_18003fbb0(void)
+/**
+ * 初始化系统调试管理器A
+ * 设置系统调试标识符和相关数据结构
+ */
+void InitializeSystemDebugManagerA(void)
 
 {
   char systemNodeFlag;
@@ -13978,8 +14008,11 @@ void FUN_18003fbb0(void)
 
 
 
-// 函数: void FUN_18003fcb0(void)
-void FUN_18003fcb0(void)
+/**
+ * 初始化系统调试管理器B
+ * 设置系统调试标识符和相关数据结构
+ */
+void InitializeSystemDebugManagerB(void)
 
 {
   char systemNodeFlag;
@@ -14028,8 +14061,11 @@ void FUN_18003fcb0(void)
 
 
 
-// 函数: void FUN_18003fdb0(void)
-void FUN_18003fdb0(void)
+/**
+ * 初始化系统调试管理器C
+ * 设置系统调试标识符和相关数据结构
+ */
+void InitializeSystemDebugManagerC(void)
 
 {
   char systemNodeFlag;
