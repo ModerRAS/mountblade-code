@@ -28854,7 +28854,7 @@ long long SystemResourceInitializer(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180055ed0(long long SystemResourcePointer)
+// 函数: void InitializeSystemComponents(long long SystemResourcePointer)
 /**
  * @brief 系统资源重置函数
  * 
@@ -28881,7 +28881,7 @@ void SystemResourceResetter(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180055f20(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ConfigureSystemComponents(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 /**
  * @brief 系统资源处理器函数
  * 
