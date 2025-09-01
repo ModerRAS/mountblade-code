@@ -103,7 +103,12 @@ void* GamePhysicsMainEntryPoint;
 void* PhysicsSystemContext;                      // 物理系统上下文
 
 // 文件系统初始化函数
-void* GameFileSystemMainEntryPoint;               // 游戏文件系统主入口点
+/**
+ * @brief 游戏文件系统主入口点
+ * 
+ * 负责初始化和管理游戏的文件系统，包括文件读写、资源加载等
+ */
+void* GameFileSystemMainEntryPoint;
 
 // 字符串处理系统初始化
 void* GameStringProcessingMainInitializer;       // 游戏字符串处理主初始化器
