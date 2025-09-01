@@ -597,8 +597,8 @@ void* SystemDataNodeSexdenary;         // 系统数据节点第十六节点
 void* SystemDataNodeLinkageTable;                // 系统数据节点链接表
 void* SystemDataNodeLinkageManager;               // 系统数据节点链接管理器
 void* SystemDataNodeLinkageHandler;               // 系统数据节点链接处理器
-void* SystemConfigurationDataTemplate;  // DAT_180bf52c0
-void* SystemStringTemplate;  // DAT_180a01028
+void* SystemConfigurationDataTemplate;  // SystemConfigurationTemplate
+void* SystemStringTemplate;  // SystemStringTemplate
 void* SystemDataTemplate;  // DAT_180a01000
 void* SystemDataNodeLinkageCache;                // 系统数据节点链接缓存
 void* SystemDataNodeLinkageBackup;                // 系统数据节点链接备份
@@ -20102,7 +20102,7 @@ void InitializeSystemController(long long *SystemResourcePointer,void* *SystemCo
   SystemManagerInitialize(SystemMemoryHandle,&ResourceStackPointer);
   (**(code **)(*PrimaryResourcePointer + 0x38))(PrimaryResourcePointer);
   SystemMemoryAllocationCounter = (long long)*(int *)(SystemStatusFlagsPointer + 0x224);
-  ConfigureSystemSettings(&DAT_180bf52c0,SystemConfigurationPointer);
+  ConfigureSystemSettings(&SystemConfigurationTemplate,SystemConfigurationPointer);
   *SystemConfigurationPointer = &SystemGlobalDataReference;
   if (SystemConfigurationPointer[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -20225,7 +20225,7 @@ void InitializeSystemCoreEngine(void)
   SystemManagerInitialize(unsignedSystemValue1,&pplStack_588);
   uStack_5b8 = 0;
   (*(code *)(*ppplocalBufferAddress)[7])(ppplocalBufferAddress);
-  InitializeSystemContext(&lStack_678,&DAT_180bf52c0);
+  InitializeSystemContext(&lStack_678,&SystemConfigurationTemplate);
   if (iStack_668 == 0) {
     (**(code **)(lStack_678 + 0x10))(&lStack_678,&SystemRuntimeDataTemplate);
     cVar2 = ValidateSystemConfiguration(&lStack_678);
@@ -20283,7 +20283,7 @@ void InitializeSystemCoreEngine(void)
   puStack_308 = &SystemMemoryAllocatorReference;
   unsignedSystemValue5 = GetSystemInitializationStatus();
   if (0 < SystemConfigDataPointerD) {
-    InitializeSystemConfiguration(&DAT_180bf52c0,&puStack_558,0,SystemConfigDataPointerD + -1);
+    InitializeSystemConfiguration(&SystemConfigurationTemplate,&puStack_558,0,SystemConfigDataPointerD + -1);
     iStack_548 = iStack_548 + -1;
     localSystemFlags = (long long)iStack_548;
     iVar3 = -1;
@@ -23878,7 +23878,7 @@ void SystemMemoryRegionCleaner(void* systemContext,void* memoryRegion,void* clea
 
 
 
-// 函数: void FUN_18004bcb0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void CleanupMemoryRegion(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 /**
  * @brief 系统内存区域处理器
  * 
@@ -23894,14 +23894,14 @@ void SystemMemoryRegionCleaner(void* systemContext,void* memoryRegion,void* clea
 void SystemMemoryRegionProcessor(long long memoryRegion,void* memoryOffset,void* operationFlag,void* operationParameter)
 
 {
-  FUN_180058420(memoryRegion,*(void* *)(memoryRegion + 0x10),operationFlag,operationParameter,0xfffffffffffffffe);
+  ReleaseMemoryRegion(memoryRegion,*(void* *)(memoryRegion + 0x10),operationFlag,operationParameter,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_18004bce0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void FreeMemoryContext(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 /**
  * @brief 系统内存区域操作器
  * 
@@ -23917,13 +23917,13 @@ void SystemMemoryRegionProcessor(long long memoryRegion,void* memoryOffset,void*
 void SystemMemoryRegionOperator(long long memoryContext,void* memoryTarget,void* operationFlag,void* operationParameter)
 
 {
-  FUN_180058420(memoryContext,*(void* *)(memoryContext + 0x10),operationFlag,operationParameter,0xfffffffffffffffe);
+  ReleaseMemoryRegion(memoryContext,*(void* *)(memoryContext + 0x10),operationFlag,operationParameter,0xfffffffffffffffe);
   return;
 }
 
 
 
-// 函数: void* * FUN_18004bd10(void* *SystemResourcePointer)
+// 函数: void* * GetSystemResourcePointer(void* *SystemResourcePointer)
 /**
  * @brief 系统内存分配器初始化器
  * 
@@ -23944,7 +23944,7 @@ void* * SystemMemoryAllocatorInitializer(void* *memoryAllocator)
   memoryAllocator[1] = memoryAllocator + 3;
   *(uint32_t *)(memoryAllocator + 2) = 0;
   *(uint8_t *)(memoryAllocator + 3) = 0;
-  FUN_180142b20(memoryAllocator + 0xb);
+  AllocateMemoryBlock(memoryAllocator + 0xb);
   memoryAllocator[0x74] = 0;
   memoryAllocator[0x75] = 0;
   memoryAllocator[0x76] = 0;
@@ -23979,7 +23979,7 @@ void* * SystemMemoryAllocatorInitializer(void* *memoryAllocator)
 
 
 
-// 函数: void FUN_18004be50(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void InitializeResourcePointer(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 /**
  * @brief 系统数据表处理器A
  * 
@@ -24014,7 +24014,7 @@ void SystemDataTableProcessorA(long long *dataTablePointer,void* systemContext,v
 
 
 
-// 函数: void FUN_18004be70(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void SetupResourcePointer(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 /**
  * @brief 系统数据表处理器B
  * 
@@ -24049,7 +24049,7 @@ void SystemDataTableProcessorB(long long *dataTablePointer,void* systemContext,v
 
 
 
-// 函数: void FUN_18004be90(long long SystemResourcePointer)
+// 函数: void ReleaseGraphicsContext(long long SystemResourcePointer)
 /**
  * @brief 系统互斥锁内存清理器
  * 
@@ -24298,7 +24298,7 @@ void ProcessSystemInitializationQueue(long long *queueHeader)
   
   queueEnd = queueHeader[1];
   for (currentQueueItem = *queueHeader; currentQueueItem != queueEnd; currentQueueItem = currentQueueItem + 0x18) {
-    FUN_18004bf50(currentQueueItem);
+    ProcessQueueItem(currentQueueItem);
   }
   if (*queueHeader == 0) {
     return;
@@ -26225,7 +26225,7 @@ void InitializeSystemDataStructures(void)
     systemTypedPointer = systemTypedPointer + 0xc;
     systemCounter = systemCounter + -1;
   } while (systemCounter != 0);
-  FUN_18004be90(SystemGraphicsContextPointer + 0x48);
+  ReleaseGraphicsContext(SystemGraphicsContextPointer + 0x48);
   _DAT_180c8ed28 = 0;
   _DAT_180bf3ffc = 0;
   if (DAT_180c82851 != '\0') {
@@ -26353,7 +26353,7 @@ void InitializeSystemResourceAllocator(long long systemResourcePointer)
     systemTypedPointer = systemTypedPointer + 0xc;
     localDataPointer = localDataPointer + -1;
   } while (localDataPointer != 0);
-  FUN_18004be90(SystemGraphicsContextPointer + 0x48);
+  ReleaseGraphicsContext(SystemGraphicsContextPointer + 0x48);
   _DAT_180c8ed28 = 0;
   _DAT_180bf3ffc = 0;
   if (DAT_180c82851 != '\0') {
@@ -28676,7 +28676,7 @@ void SystemContextManagerInitializer(void)
   *(uint32_t *)(pointerToUnsigned2 + 1) = 0xe;
   SystemContextManagerPointer = pointerToUnsigned2;
   unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x480,8,3);
-  _DAT_180c8a9f8 = FUN_18004bd10(unsignedSystemValue3);
+  _DAT_180c8a9f8 = GetSystemResourcePointer(unsignedSystemValue3);
   unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x10420,8,3);
   _DAT_180c868c0 = FUN_18005c090(unsignedSystemValue3);
   _DAT_180c868d8 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x30,8,3);
@@ -30564,7 +30564,7 @@ void FUN_1800575d4(void)
 void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
-  FUN_180058420(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
+  ReleaseMemoryRegion(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -30641,7 +30641,7 @@ void FUN_180057730(long long *SystemResourcePointer)
   
   localMemoryPointer = SystemResourcePointer[1];
   for (localSystemHandle = *SystemResourcePointer; localSystemHandle != localMemoryPointer; localSystemHandle = localSystemHandle + 0x18) {
-    FUN_18004bf50(localSystemHandle);
+    ProcessQueueItem(localSystemHandle);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -31546,14 +31546,14 @@ void ProcessMemoryBlock(void* SystemResourcePointer,void* *param_2,void* param_3
 
 
 
-// 函数: void FUN_180058420(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
-void FUN_180058420(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+// 函数: void ReleaseMemoryRegion(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+void ReleaseMemoryRegion(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
 
 {
   if (param_2 == (void* *)0x0) {
     return;
   }
-  FUN_180058420(SystemResourcePointer,*param_2,param_3,param_4,0xfffffffffffffffe);
+  ReleaseMemoryRegion(SystemResourcePointer,*param_2,param_3,param_4,0xfffffffffffffffe);
   if (param_2[8] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
