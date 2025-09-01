@@ -105,8 +105,8 @@ void* GlobalModuleEHandle;
  * 该函数负责获取系统的第一个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t GetSystemStatusFlag1(void);
-bool SystemStatusFlag1Initialized;
+uint32_t GetSystemStatusFlagPrimary(void);
+bool SystemStatusFlagPrimaryInitialized;
 
 
 /**
@@ -115,8 +115,8 @@ bool SystemStatusFlag1Initialized;
  * 该函数负责获取系统的第二个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t GetSystemStatusFlag2(void);
-bool SystemStatusFlag2Initialized;
+uint32_t GetSystemStatusFlagSecondary(void);
+bool SystemStatusFlagSecondaryInitialized;
 
 
 /**
@@ -125,8 +125,8 @@ bool SystemStatusFlag2Initialized;
  * 该函数负责获取系统的第三个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t GetSystemStatusFlag3(void);
-bool SystemStatusFlag3Initialized;
+uint32_t GetSystemStatusFlagTertiary(void);
+bool SystemStatusFlagTertiaryInitialized;
 
  /**
  * @brief 获取系统状态标志4
@@ -134,8 +134,8 @@ bool SystemStatusFlag3Initialized;
  * 该函数负责获取系统的第四个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t GetSystemStatusFlag4(void);
-bool SystemStatusFlag4Initialized;
+uint32_t GetSystemStatusFlagQuaternary(void);
+bool SystemStatusFlagQuaternaryInitialized;
 
 
 /**
@@ -18521,8 +18521,15 @@ int GetStatusFlagValue(void)
 
 
 
- b26e(void)
-b26e(void)
+ /**
+ * @brief 初始化音频系统
+ * 
+ * 该函数负责初始化系统的音频组件
+ * 设置音频播放、录制和处理的基础设施
+ * 
+ * @return 无返回值
+ */
+void InitializeAudioSystem(void)
 
 {
   return;
@@ -19181,8 +19188,15 @@ uint8_t8 GetSystemStatus(void)
 
 
 
- b61e(void)
-b61e(void)
+ /**
+ * @brief 初始化输入系统
+ * 
+ * 该函数负责初始化系统的输入组件
+ * 设置键盘、鼠标和控制器输入处理的基础设施
+ * 
+ * @return 无返回值
+ */
+void InitializeInputSystem(void)
 
 {
   return;
