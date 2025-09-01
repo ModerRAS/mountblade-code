@@ -2713,7 +2713,7 @@ void ResetNetworkPool(longlong poolContext, NetworkHandle resetData, NetworkStat
 void ValidateNetworkPool(longlong poolContext, NetworkHandle validationData, NetworkStatus validationFlags)
 
 {
-  ProcessNetworkResponseStream(validationData,validationFlags,&UNK_180983220,*(NetworkStatus *)(poolContext + 0x10),
+  ProcessNetworkResponseStream(validationData,validationFlags,&NetworkPoolValidationContext,*(NetworkStatus *)(poolContext + 0x10),
                 *(NetworkStatus *)(poolContext + 0x18),*(NetworkStatus *)(poolContext + 0x1c));
   return;
 }
@@ -2751,7 +2751,7 @@ int SerializeNetworkPoolData(longlong poolData, longlong outputBuffer, int buffe
   poolField1 = *(NetworkStatus *)(poolData + 0x2c);
   poolField2 = *(NetworkStatus *)(poolData + 0x18);
   poolField3 = *(NetworkStatus *)(poolData + 0x10);
-  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&UNK_1809832a0);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkPoolOutputContext);
   currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,poolField3);
@@ -2791,7 +2791,7 @@ int SerializeNetworkStateData(longlong stateData, longlong outputBuffer, int buf
   int currentOffset;
   
   stateField = *(NetworkStatus *)(stateData + 0x10);
-  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&UNK_180982d28);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkSecondaryBufferContext);
   currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,stateField);
@@ -2819,7 +2819,7 @@ int SerializeNetworkEventData(longlong eventData, longlong outputBuffer, int buf
   int currentOffset;
   
   eventField = *(NetworkStatus *)(eventData + 0x10);
-  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&UNK_180982e28);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkTertiaryBufferContext);
   currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,eventField);
@@ -2847,7 +2847,7 @@ int SerializeNetworkErrorData(longlong errorData, longlong outputBuffer, int buf
   int currentOffset;
   
   errorField = *(NetworkStatus *)(errorData + 0x10);
-  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&UNK_180982da8);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkQuaternaryBufferContext);
   currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,errorField);
@@ -2877,7 +2877,7 @@ int SerializeNetworkConnectionInfo(longlong connectionInfo, longlong outputBuffe
   
   addressField = *(NetworkHandle *)(connectionInfo + 0x18);
   infoField = *(NetworkStatus *)(connectionInfo + 0x10);
-  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&UNK_1809842c8);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkExtendedBufferContext);
   currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,infoField);
@@ -2909,7 +2909,7 @@ int SerializeNetworkStatsData(longlong statsData, longlong outputBuffer, int buf
   int currentOffset;
   
   statsField = *(NetworkStatus *)(statsData + 0x10);
-  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&UNK_1809841c8);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkAlternateBufferContext);
   currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,statsField);
@@ -5021,7 +5021,7 @@ void FUN_1808453c0(NetworkHandle connectionContext,NetworkHandle *packetData)
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(0x1f,0xf,connectionContext,&UNK_1809842c8);
+    LogNetworkConnectionError(0x1f,0xf,connectionContext,&NetworkExtendedBufferContext);
   }
   *packetData = 0;
   alStack_148[1] = 0;
@@ -9388,7 +9388,7 @@ void FUN_18084b2f0(NetworkHandle connectionContext)
     puStack_128 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(networkStatus1,0x11,connectionContext,&UNK_180982e28);
+    LogNetworkConnectionError(networkStatus1,0x11,connectionContext,&NetworkTertiaryBufferContext);
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_148);
