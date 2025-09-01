@@ -9599,23 +9599,23 @@ int ProcessDataWithSimplifiedValidator(longlong objectContextParam,longlong vali
  * 
  * @param objectContextParam 数据对象指针，包含缓冲区和数据信息
  * @param validationContextParam 数据缓冲区指针，包含要解析的数据
- * @param param_3 数据长度，表示要解析的数据大小
+ * @param dataLength 数据长度，表示要解析的数据大小
  * @return int 解析结果状态码，0表示成功，非0表示错误
  */
-int ProcessDataWithBuffer(longlong *objectContextParam,longlong validationContextParam,int param_3)
+int ProcessDataWithBuffer(longlong *objectContextParam,longlong validationContextParam,int dataLength)
 
 {
   int operationResult;
   int integerValue2;
   
-  integerValue1 = ProcessStringOperation(validationContextParam,param_3,&SystemStringBufferA);
-  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = ProcessStringOperation(validationContextParam,dataLength,&SystemStringBufferA);
+  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,param_3 - integerValue1,(int)objectContextParam[3] * 8 + 0x20);
+  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,dataLength - integerValue1,(int)objectContextParam[3] * 8 + 0x20);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = (**(code **)(*objectContextParam + 8))(objectContextParam,integerValue1 + validationContextParam,param_3 - integerValue1);
+  integerValue2 = (**(code **)(*objectContextParam + 8))(objectContextParam,integerValue1 + validationContextParam,dataLength - integerValue1);
   return integerValue2 + integerValue1;
 }
 
@@ -9629,23 +9629,23 @@ int ProcessDataWithBuffer(longlong *objectContextParam,longlong validationContex
  * 
  * @param objectContextParam 数据对象指针，包含队列和数据信息
  * @param validationContextParam 数据缓冲区指针，包含要解析的数据
- * @param param_3 数据长度，表示要解析的数据大小
+ * @param dataLength 数据长度，表示要解析的数据大小
  * @return int 解析结果状态码，0表示成功，非0表示错误
  */
-int ProcessDataWithQueue(longlong *objectContextParam,longlong validationContextParam,int param_3)
+int ProcessDataWithQueue(longlong *objectContextParam,longlong validationContextParam,int dataLength)
 
 {
   int operationResult;
   int integerValue2;
   
-  integerValue1 = ProcessStringOperation(validationContextParam,param_3,&SystemStringBufferB);
-  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = ProcessStringOperation(validationContextParam,dataLength,&SystemStringBufferB);
+  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,param_3 - integerValue1,(int)objectContextParam[3] * 0xc + 0x20);
+  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,dataLength - integerValue1,(int)objectContextParam[3] * 0xc + 0x20);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = (**(code **)(*objectContextParam + 8))(objectContextParam,integerValue1 + validationContextParam,param_3 - integerValue1);
+  integerValue2 = (**(code **)(*objectContextParam + 8))(objectContextParam,integerValue1 + validationContextParam,dataLength - integerValue1);
   return integerValue2 + integerValue1;
 }
 
@@ -9659,23 +9659,23 @@ int ProcessDataWithQueue(longlong *objectContextParam,longlong validationContext
  * 
  * @param objectContextParam 数据对象指针，包含堆栈和数据信息
  * @param validationContextParam 数据缓冲区指针，包含要解析的数据
- * @param param_3 数据长度，表示要解析的数据大小
+ * @param dataLength 数据长度，表示要解析的数据大小
  * @return int 解析结果状态码，0表示成功，非0表示错误
  */
-int ProcessDataWithStack(longlong *objectContextParam,longlong validationContextParam,int param_3)
+int ProcessDataWithStack(longlong *objectContextParam,longlong validationContextParam,int dataLength)
 
 {
   int operationResult;
   int integerValue2;
   
-  integerValue1 = ProcessStringOperation(validationContextParam,param_3,&SystemStringBufferC);
-  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = ProcessStringOperation(validationContextParam,dataLength,&SystemStringBufferC);
+  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,param_3 - integerValue1,((int)objectContextParam[2] + 2) * 0xc);
+  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,dataLength - integerValue1,((int)objectContextParam[2] + 2) * 0xc);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = (**(code **)(*objectContextParam + 8))(objectContextParam,integerValue1 + validationContextParam,param_3 - integerValue1);
+  integerValue2 = (**(code **)(*objectContextParam + 8))(objectContextParam,integerValue1 + validationContextParam,dataLength - integerValue1);
   return integerValue2 + integerValue1;
 }
 
@@ -87899,17 +87899,16 @@ void ResetThreadLocalStorage(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void CleanupSystemResources(uint8_t8 objectContextParam,uint8_t8 validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
-/**
+ /**
  * @brief 清理系统资源
  * 
  * 该函数负责清理系统运行过程中分配的各种资源
  * 包括内存、句柄、数据结构等
  * 
- * @param objectContextParam 参数1，用于标识资源类型
- * @param validationContextParam 参数2，用于标识资源实例
- * @param param_3 参数3，清理选项
- * @param param_4 参数4，清理标志
+ * @param resourceType 资源类型，用于标识要清理的资源种类
+ * @param resourceInstance 资源实例，用于标识具体的资源实例
+ * @param cleanupOptions 清理选项，控制清理行为的具体参数
+ * @param cleanupFlags 清理标志，指定清理操作的标志位
  */
 void CleanupSystemResources(uint8_t8 resourceType, uint8_t8 resourceInstance, uint8_t8 cleanupOptions, uint8_t8 cleanupFlags)
 
