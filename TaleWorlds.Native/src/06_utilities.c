@@ -87404,9 +87404,9 @@ void ProcessNetworkDataPacket(uint8_t8 objectContextParam,uint8_t8 validationCon
 {
   uint8_t8 *networkDataPointer;
   
-  networkDataPointer = _DAT_180d49e18;
-  if (_DAT_180d49e18 != (uint8_t8 *)0x0) {
-    SystemResourceManager(objectContextParam,*_DAT_180d49e18,param_3,param_4,0xfffffffffffffffe);
+  networkDataPointer = NetworkDataBufferPointer;
+  if (NetworkDataBufferPointer != (uint8_t8 *)0x0) {
+    SystemResourceManager(objectContextParam,*NetworkDataBufferPointer,param_3,param_4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(networkDataPointer);
   }
@@ -87426,7 +87426,7 @@ void ValidateSystemConfiguration(void)
 void ValidateSystemConfiguration(void)
 
 {
-  if (DAT_180c95ef0 != '\0') {
+  if (SystemConfigValidationFlag != '\0') {
     SystemCleanupHandler();
 
  /**
@@ -87439,9 +87439,9 @@ void CleanupNetworkResources(void)
 void CleanupNetworkResources(void)
 
 {
-  if (DAT_180c96008 != '\0') {
-    SystemModuleInitializer(_DAT_180c95ff0);
-    _DAT_180c95ff0 = 0;
+  if (NetworkCleanupFlag != '\0') {
+    SystemModuleInitializer(ModuleInitializerPointer);
+    ModuleInitializerPointer = 0;
 
  /**
  * @brief 终止系统进程
@@ -87453,12 +87453,12 @@ void TerminateSystemProcess(void)
 void TerminateSystemProcess(void)
 
 {
-  if (DAT_180c96028 != '\0') {
-    if (_DAT_180c96010 != 0) {
+  if (SystemTerminationFlag != '\0') {
+    if (EmergencyExitHandler != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    _DAT_180c96010 = 0;
+    EmergencyExitHandler = 0;
 
  /**
  * @brief 执行系统清理操作1
@@ -87476,9 +87476,9 @@ void ExecuteSystemCleanupOperation1(void)
 void ExecuteSystemCleanupOperation1(void)
 
 {
-  if (DAT_180c96048 != '\0') {
-    SystemModuleConfigurator(_DAT_180c96030);
-    _DAT_180c96030 = 0;
+  if (CleanupOperation1Flag != '\0') {
+    SystemModuleConfigurator(ModuleConfigurator1Pointer);
+    ModuleConfigurator1Pointer = 0;
 
  /**
  * @brief 执行系统清理操作2
@@ -87496,9 +87496,9 @@ void ExecuteSystemCleanupOperation2(void)
 void ExecuteSystemCleanupOperation2(void)
 
 {
-  if (DAT_180c96068 != '\0') {
-    SystemModuleConfigurator(_DAT_180c96050);
-    _DAT_180c96050 = 0;
+  if (CleanupOperation2Flag != '\0') {
+    SystemModuleConfigurator(ModuleConfigurator2Pointer);
+    ModuleConfigurator2Pointer = 0;
 
  /**
  * @brief 执行系统清理操作3
@@ -87516,10 +87516,10 @@ void ExecuteSystemCleanupOperation3(void)
 void ExecuteSystemCleanupOperation3(void)
 
 {
-  if (DAT_180c96098 != '\0') {
+  if (CleanupOperation3Flag != '\0') {
     SystemOperationHandler();
-    if (_DAT_180c96070 != (longlong *)0x0) {
-      (**(code **)(*_DAT_180c96070 + 0x38))();
+    if (OperationHandlerPointer != (longlong *)0x0) {
+      (**(code **)(*OperationHandlerPointer + 0x38))();
     }
 
  /**
@@ -87534,9 +87534,9 @@ void InitializeSystemDataStructureCT(void)
 void InitializeSystemDataStructureCT(void)
 
 {
-  if (DAT_180c960b8 != '\0') {
-    SystemStateInitializer(_DAT_180c960a0);
-    _DAT_180c960a0 = 0;
+  if (DataStructureCTFlag != '\0') {
+    SystemStateInitializer(StateInitializerPointer);
+    StateInitializerPointer = 0;
 
  /**
  * 初始化系统数据结构CU
@@ -87550,9 +87550,9 @@ void InitializeSystemDataStructureCU(void)
 void InitializeSystemDataStructureCU(void)
 
 {
-  if (DAT_180c96100 != '\0') {
+  if (DataStructureCUFlag != '\0') {
     SystemFinalizer();
-    SystemShutdownHandler(&DAT_180c960c0);
+    SystemShutdownHandler(&ShutdownHandlerPointer);
 
  /**
  * 初始化系统数据结构CV
@@ -87568,15 +87568,15 @@ void InitializeSystemDataStructureCV(void)
 {
   longlong loopCounter;
   
-  localContextPointer = _DAT_180c96138;
-  if (DAT_180c96140 != '\0') {
-    if (_DAT_180c96120 != 0) {
+  localContextPointer = ResourceHandlerContextPointer;
+  if (DataStructureCVFlag != '\0') {
+    if (EmergencyExitHandler2 != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    _DAT_180c96120 = 0;
-    if (_DAT_180c96138 != 0) {
-      RegisterResourceHandler(_DAT_180c96138 + 0x360,0xcc8,8,ResourceTypeHandlerCC8,0xfffffffffffffffe);
+    EmergencyExitHandler2 = 0;
+    if (ResourceHandlerContextPointer != 0) {
+      RegisterResourceHandler(ResourceHandlerContextPointer + 0x360,0xcc8,8,ResourceTypeHandlerCC8,0xfffffffffffffffe);
       _Mtx_destroy_in_situ();
       _Cnd_destroy_in_situ();
       SystemContextHandler(localContextPointer + 0x60);
