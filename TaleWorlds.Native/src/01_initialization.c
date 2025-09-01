@@ -1725,7 +1725,7 @@ void InitializeSystemResourceNode(void)
   systemTablePointer = (longlong *)GetSystemRootPointer();
   systemRootPointer = (undefined8 *)*systemTablePointer;
   nodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
-  initializationCallback = FUN_18025d270;
+  initializationCallback = GetSystemInitializationCallbackB;
   previousNode = systemRootPointer;
   currentNode = (undefined8 *)systemRootPointer[1];
   while (nodeFlag == '\0') {
@@ -1949,7 +1949,7 @@ void InitializeSystemDataTableStructureC(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d510;
+  systemSearchFunctionPointer = GetSystemSearchFunctionE;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -2005,7 +2005,7 @@ void InitializeSystemDataTableStructureD(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025e330;
+  systemSearchFunctionPointer = GetSystemSearchFunctionF;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -2229,7 +2229,7 @@ void InitializeSystemDataTableStructureH(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_1802633c0;
+  systemSearchFunctionPointer = GetSystemSearchFunctionG;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -2755,7 +2755,7 @@ void InitializeEventSystem(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025e330;
+  systemSearchFunctionPointer = GetSystemSearchFunctionF;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -5447,7 +5447,7 @@ void InitializeSystemStorageManager(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_1802633c0;
+  systemSearchFunctionPointer = GetSystemSearchFunctionG;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -6472,7 +6472,15 @@ void InitializeSystemEventManager(void)
 
 
 // 函数: void FUN_180034c40(void)
-void FUN_180034c40(void)
+/**
+ * @brief 初始化系统搜索管理器
+ * 
+ * 该函数负责初始化系统的搜索管理组件，设置搜索功能的基础结构。
+ * 它会遍历系统搜索节点树，进行内存比较，分配必要的内存，并设置搜索节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保搜索管理系统的正常运行
+ */
+void InitializeSystemSearchManager(void)
 
 {
   char systemNodeFlag;
@@ -6489,7 +6497,7 @@ void FUN_180034c40(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d510;
+  systemSearchFunctionPointer = GetSystemSearchFunctionE;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -6522,7 +6530,15 @@ void FUN_180034c40(void)
 
 
 // 函数: void FUN_180034d40(void)
-void FUN_180034d40(void)
+/**
+ * @brief 初始化系统索引管理器
+ * 
+ * 该函数负责初始化系统的索引管理组件，设置索引功能的基础结构。
+ * 它会遍历系统索引节点树，进行内存比较，分配必要的内存，并设置索引节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保索引管理系统的正常运行
+ */
+void InitializeSystemIndexManager(void)
 
 {
   char systemNodeFlag;
@@ -6572,7 +6588,15 @@ void FUN_180034d40(void)
 
 
 // 函数: void FUN_180034e40(void)
-void FUN_180034e40(void)
+/**
+ * @brief 初始化系统缓存管理器
+ * 
+ * 该函数负责初始化系统的缓存管理组件，设置缓存功能的基础结构。
+ * 它会遍历系统缓存节点树，进行内存比较，分配必要的内存，并设置缓存节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保缓存管理系统的正常运行
+ */
+void InitializeSystemCacheManager(void)
 
 {
   char systemNodeFlag;
@@ -6622,7 +6646,15 @@ void FUN_180034e40(void)
 
 
 // 函数: void FUN_180034f40(void)
-void FUN_180034f40(void)
+/**
+ * @brief 初始化系统日志管理器
+ * 
+ * 该函数负责初始化系统的日志管理组件，设置日志功能的基础结构。
+ * 它会遍历系统日志节点树，进行内存比较，分配必要的内存，并设置日志节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保日志管理系统的正常运行
+ */
+void InitializeSystemLogManager(void)
 
 {
   char systemNodeFlag;
@@ -6672,7 +6704,15 @@ void FUN_180034f40(void)
 
 
 // 函数: void FUN_180035040(void)
-void FUN_180035040(void)
+/**
+ * @brief 初始化系统性能监控器
+ * 
+ * 该函数负责初始化系统的性能监控组件，设置性能监控的基础结构。
+ * 它会遍历系统性能监控节点树，进行内存比较，分配必要的内存，并设置性能监控节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保性能监控系统的正常运行
+ */
+void InitializeSystemPerformanceMonitor(void)
 
 {
   char systemNodeFlag;
@@ -6989,7 +7029,7 @@ void FUN_180035640(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_1802633c0;
+  systemSearchFunctionPointer = GetSystemSearchFunctionG;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -7439,7 +7479,7 @@ void FUN_180035f50(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d510;
+  systemSearchFunctionPointer = GetSystemSearchFunctionE;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -7489,7 +7529,7 @@ void FUN_180036050(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025e330;
+  systemSearchFunctionPointer = GetSystemSearchFunctionF;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -7539,7 +7579,7 @@ void FUN_180036150(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_1802633c0;
+  systemSearchFunctionPointer = GetSystemSearchFunctionG;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -9050,7 +9090,7 @@ void FUN_180038080(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025e330;
+  systemSearchFunctionPointer = GetSystemSearchFunctionF;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -12168,7 +12208,7 @@ void FUN_18003de10(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025e330;
+  systemSearchFunctionPointer = GetSystemSearchFunctionF;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -14311,7 +14351,7 @@ void FUN_180040ae0(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025e330;
+  systemSearchFunctionPointer = GetSystemSearchFunctionF;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -14361,7 +14401,7 @@ void FUN_180040be0(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d510;
+  systemSearchFunctionPointer = GetSystemSearchFunctionE;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {

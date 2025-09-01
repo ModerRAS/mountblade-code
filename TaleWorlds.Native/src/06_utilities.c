@@ -7529,52 +7529,62 @@ undefined8 ValidateObjectContextAndProcessFloatRange(longlong objectContext, lon
 
 
 
-undefined8 FUN_180892ac0(longlong param_1,longlong param_2)
+/**
+ * @brief 验证对象上下文并处理复杂浮点数操作
+ * 
+ * 该函数验证对象上下文的有效性，并处理复杂的浮点数操作
+ * 包括数组索引、范围检查和对象属性更新
+ * 
+ * @param objectContext 对象上下文指针，包含对象的状态和配置信息
+ * @param systemContext 系统上下文指针，包含系统运行环境信息
+ * @return undefined8 操作结果，成功返回0，失败返回错误码
+ */
+undefined8 ValidateObjectContextAndProcessComplexFloatOperation(longlong objectContext, longlong systemContext)
 
 {
-  float fVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  longlong lVar5;
-  longlong lVar6;
-  int aiStackX_8 [2];
-  longlong lStackX_18;
+  float floatValue;
+  longlong arrayPointer;
+  longlong elementPointer;
+  undefined8 validationStatus;
+  longlong arrayIndex;
+  longlong contextPointer;
+  int indexBuffer [2];
+  longlong stackBuffer;
   
-  if (param_1 + 0x28 != 0) {
-    uVar4 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+  if (objectContext + 0x28 != 0) {
+    validationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&stackBuffer);
+    if ((int)validationStatus != 0) {
+      return validationStatus;
     }
-    lVar6 = lStackX_18;
-    if (lStackX_18 != 0) {
-      lVar6 = lStackX_18 + -8;
+    contextPointer = stackBuffer;
+    if (stackBuffer != 0) {
+      contextPointer = stackBuffer + -8;
     }
-    lVar2 = *(longlong *)(lVar6 + 0x18);
-    if (lVar2 == 0) {
+    arrayPointer = *(longlong *)(contextPointer + 0x18);
+    if (arrayPointer == 0) {
       return 0x1e;
     }
-    aiStackX_8[0] = 0;
-    uVar4 = FUN_180840950(param_2,lVar6,param_1 + 0x28,aiStackX_8);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    indexBuffer[0] = 0;
+    validationStatus = FUN_180840950(systemContext,contextPointer,objectContext + 0x28,indexBuffer);
+    if ((int)validationStatus != 0) {
+      return validationStatus;
     }
-    lVar5 = (longlong)aiStackX_8[0];
-    lVar6 = *(longlong *)(lVar6 + 0x20);
-    lVar3 = *(longlong *)(lVar6 + 0x10 + lVar5 * 0x18);
-    if ((*(byte *)(lVar3 + 0x34) & 0x11) == 0) {
-      uVar4 = FUN_18084de40(lVar3,param_1 + 0xa8,param_1 + 0x18);
-      if ((int)uVar4 != 0) {
-        return uVar4;
+    arrayIndex = (longlong)indexBuffer[0];
+    contextPointer = *(longlong *)(contextPointer + 0x20);
+    elementPointer = *(longlong *)(contextPointer + 0x10 + arrayIndex * 0x18);
+    if ((*(byte *)(elementPointer + 0x34) & 0x11) == 0) {
+      validationStatus = FUN_18084de40(elementPointer,objectContext + 0xa8,objectContext + 0x18);
+      if ((int)validationStatus != 0) {
+        return validationStatus;
       }
-      fVar1 = *(float *)(param_1 + 0x18);
-      if ((*(float *)(lVar3 + 0x38) <= fVar1) &&
-         (fVar1 < *(float *)(lVar3 + 0x3c) || fVar1 == *(float *)(lVar3 + 0x3c))) {
-        lVar2 = *(longlong *)(lVar2 + 0x90);
-        *(float *)(lVar6 + 4 + lVar5 * 0x18) = fVar1;
-        *(undefined8 *)(param_1 + 0x20) = *(undefined8 *)(lVar2 + (longlong)aiStackX_8[0] * 8);
+      floatValue = *(float *)(objectContext + 0x18);
+      if ((*(float *)(elementPointer + 0x38) <= floatValue) &&
+         (floatValue < *(float *)(elementPointer + 0x3c) || floatValue == *(float *)(elementPointer + 0x3c))) {
+        arrayPointer = *(longlong *)(arrayPointer + 0x90);
+        *(float *)(contextPointer + 4 + arrayIndex * 0x18) = floatValue;
+        *(undefined8 *)(objectContext + 0x20) = *(undefined8 *)(arrayPointer + (longlong)indexBuffer[0] * 8);
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+        FUN_18088d720(*(undefined8 *)(systemContext + 0x98),objectContext);
       }
       return 0x1c;
     }
@@ -7584,17 +7594,29 @@ undefined8 FUN_180892ac0(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180892bd0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 验证对象上下文并处理带参数的复杂浮点数操作
+ * 
+ * 该函数验证对象上下文的有效性，并处理带参数的复杂浮点数操作
+ * 包括数组索引验证、范围检查和缓冲区上下文验证
+ * 
+ * @param objectContext 对象上下文指针，包含对象的状态和配置信息
+ * @param systemContext 系统上下文指针，包含系统运行环境信息
+ * @param parameter3 第三个参数，用于操作控制
+ * @param parameter4 第四个参数，用于操作控制
+ * @return undefined8 操作结果，成功返回0，失败返回错误码
+ */
+undefined8 ValidateObjectContextAndProcessParameterizedComplexFloatOperation(longlong objectContext, longlong systemContext, undefined8 parameter3, undefined8 parameter4)
 
 {
-  float fVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  longlong lVar5;
-  undefined8 unaff_RDI;
-  float fVar6;
-  longlong lStackX_8;
+  float inputValue;
+  int arrayIndex;
+  longlong elementPointer;
+  undefined8 validationStatus;
+  longlong contextPointer;
+  undefined8 extraParameter;
+  float rangeValue;
+  longlong stackBuffer;
   
   lStackX_8 = CONCAT44(lStackX_8._4_4_,*(uint *)(param_1 + 0x20));
   if ((*(uint *)(param_1 + 0x20) & 0x7f800000) == 0x7f800000) {
