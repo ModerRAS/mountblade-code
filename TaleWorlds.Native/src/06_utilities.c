@@ -627,7 +627,7 @@ void* SystemDataBuffer066;
  * @param entryPointer 资源条目指针，指向要处理的资源条目
  * @return int 返回处理结果，0表示成功，非0表示错误代码
  */
-int ProcessResourceEntryWithValidation(undefined8 resourceContext, undefined8 entryPointer);
+int ProcessResourceEntryWithValidation(void* resourceContext, void* entryPointer);
 
 /**
  * @brief 清理资源条目数据
@@ -638,7 +638,7 @@ int ProcessResourceEntryWithValidation(undefined8 resourceContext, undefined8 en
  * @param resourceContext 资源上下文，包含资源的管理信息
  * @param entryData 资源条目数据，指向要清理的数据结构
  */
-void CleanupResourceEntryData(undefined8 resourceContext, undefined8 entryData);
+void CleanupResourceEntryData(void* resourceContext, void* entryData);
 
 /**
  * @brief 处理数据块操作
@@ -650,7 +650,7 @@ void CleanupResourceEntryData(undefined8 resourceContext, undefined8 entryData);
  * @param operationType 操作类型，指定要执行的操作类型
  * @return int 返回操作结果，0表示成功，非0表示错误代码
  */
-int ProcessDataBlockOperation(undefined8 dataPointer, undefined8 operationType);
+int ProcessDataBlockOperation(void* dataPointer, uint32_t operationType);
 
 /**
  * @brief 初始化配置上下文
@@ -670,7 +670,7 @@ void InitializeConfigurationContext(void);
  * 
  * @param memoryPointer 内存指针，指向要释放的内存资源
  */
-void FreeMemoryResource(undefined8 memoryPointer);
+void FreeMemoryResource(void* memoryPointer);
 
 /**
  * @brief 处理数据上下文操作
@@ -681,7 +681,7 @@ void FreeMemoryResource(undefined8 memoryPointer);
  * @param dataContext 数据上下文，包含数据的状态和管理信息
  * @return int 返回处理结果，0表示成功，非0表示错误代码
  */
-int ProcessDataContextOperations(undefined8 dataContext);
+int ProcessDataContextOperations(void* dataContext);
 
 /**
  * @brief 在资源池中查找条目
@@ -693,7 +693,7 @@ int ProcessDataContextOperations(undefined8 dataContext);
  * @param entryIndex 条目索引，指定要查找的条目位置
  * @return undefined8 返回找到的资源条目指针，如果未找到返回NULL
  */
-undefined8 FindEntryInResourcePool(undefined8 resourcePool, int entryIndex);
+void* FindEntryInResourcePool(void* resourcePool, int entryIndex);
 
 /**
  * @brief 验证资源条目完整性
@@ -704,7 +704,7 @@ undefined8 FindEntryInResourcePool(undefined8 resourcePool, int entryIndex);
  * @param entryPointer 条目指针，指向要验证的资源条目
  * @return int 返回验证结果，0表示验证成功，非0表示验证失败
  */
-int ValidateResourceEntryIntegrity(undefined8 entryPointer);
+int ValidateResourceEntryIntegrity(void* entryPointer);
 
 /**
  * @brief 初始化资源条目数据
@@ -714,7 +714,7 @@ int ValidateResourceEntryIntegrity(undefined8 entryPointer);
  * 
  * @param entryPointer 条目指针，指向要初始化的资源条目
  */
-void InitializeResourceEntryData(undefined8 entryPointer);
+void InitializeResourceEntryData(void* entryPointer);
 
 /**
  * @brief 检查资源表状态
@@ -726,7 +726,7 @@ void InitializeResourceEntryData(undefined8 entryPointer);
  * @param checkType 检查类型，指定要执行的检查类型
  * @return undefined8 返回检查结果，0表示检查通过，非0表示发现问题
  */
-undefined8 CheckResourceTableStatus(undefined8 tablePointer, undefined8 checkType);
+void* CheckResourceTableStatus(void* tablePointer, uint32_t checkType);
 
 void* SystemThreadConfigurationTable;
 void* SystemProcessControlTable;
@@ -1189,12 +1189,12 @@ void InitializeMemoryThroughput(void);
  * 配置内存错误检测和纠正功能
  */
 void SetupMemoryReliability(void);
-undefined SystemMemoryPool;
-undefined SystemMemoryCache;
-undefined SystemMemoryBuffer;
-undefined SystemMemoryDescriptor;
-undefined MemoryReliabilityConfigData;
-undefined SecurityContextData;
+void* SystemMemoryPool;
+void* SystemMemoryCache;
+void* SystemMemoryBuffer;
+void* SystemMemoryDescriptor;
+void* MemoryReliabilityConfigData;
+void* SecurityContextData;
 
  void InitializeMemorySecurity(void);
 /**
@@ -1204,12 +1204,12 @@ undefined SecurityContextData;
  * 设置内存访问控制和数据保护
  */
 void InitializeMemorySecurity(void);
-undefined SystemMemoryValidationFlag;
-undefined SystemSecurityContextFlag;
-undefined SystemMemoryProtectionFlag;
+uint32_t SystemMemoryValidationFlag;
+uint32_t SystemSecurityContextFlag;
+uint32_t SystemMemoryProtectionFlag;
 void* MemorySecurityConfigData;
-undefined SystemConfigTable1;
-undefined SystemConfigTable2;
+void* SystemConfigTable1;
+void* SystemConfigTable2;
 
  void ConfigureMemoryIsolation(void);
 /**
@@ -1219,21 +1219,21 @@ undefined SystemConfigTable2;
  * 设置进程间内存隔离和保护
  */
 void ConfigureMemoryIsolation(void);
-undefined SystemConfigTable3;
+void* SystemConfigTable3;
 void* MemoryValidationContextData;
 void* MemoryIsolationConfigData;
 void* MemoryValidationStatusData;
 void* MemoryValidationConfigData;
 void* MemoryMappingDescriptor;
 
- void InitializeMemoryMapping;
+ void InitializeMemoryMapping(void);
 /**
  * @brief 初始化内存映射
  * 
  * 该函数负责初始化内存映射系统
  * 设置虚拟地址到物理地址的映射
  */
-void InitializeMemoryMapping;
+void InitializeMemoryMapping(void);
 void* MemoryMappingHandle;
 void* MemoryMappingConfigData;
 void* MemoryMappingTable;
@@ -26623,14 +26623,14 @@ undefined8 ResourceIdentifierProcessor(longlong param_1,longlong *param_2)
   undefined1 auStack_68 [64];
   undefined1 dataChecksumBuffer [32];
   
-  resourceHash = FUN_1808ddd30(param_2,dataChecksumBuffer,1,0x5453494c,0x46464542);
+  resourceHash = CalculateDataChecksum(param_2,dataChecksumBuffer,1,0x5453494c,0x46464542);
   if (((int)resourceHash == 0) &&
-     (resourceHash = FUN_1808ddd30(param_2,auStack_68,0,0x42464542,0), (int)resourceHash == 0)) {
+     (resourceHash = CalculateDataChecksum(param_2,auStack_68,0,0x42464542,0), (int)resourceHash == 0)) {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
       resourceHash = GetResourceEntry(*param_2,param_1 + 0x10);
       if (((int)resourceHash == 0) &&
          ((0x5a < *(uint *)(resourceData + 8) ||
-          (resourceHash = FUN_1808afd90(param_2,param_1 + 0x44), (int)resourceHash == 0)))) {
+          (resourceHash = ValidateResourceFormat(param_2,param_1 + 0x44), (int)resourceHash == 0)))) {
         if (*(int *)(resourceData[1] + 0x18) == 0) {
           switch(*(undefined4 *)(param_1 + 0x60)) {
           default:
@@ -26747,9 +26747,9 @@ undefined8 ResourceIdentifierProcessor(longlong param_1,longlong *param_2)
           resourceHash = (**(code **)**(undefined8 **)(*param_2 + 8))
                             (*(undefined8 **)(*param_2 + 8),auStackX_18,4);
           if (((int)resourceHash == 0) &&
-             (resourceHash = FUN_1808a7c90(param_2,param_1 + 0x40,0x3d), (int)resourceHash == 0)) {
+             (resourceHash = ProcessResourceData(param_2,param_1 + 0x40,0x3d), (int)resourceHash == 0)) {
                     // WARNING: Subroutine does not return
-            FUN_1808de000(param_2,auStack_68);
+            CleanupResourceBuffer(param_2,auStack_68);
           }
         }
         else {
@@ -26786,7 +26786,7 @@ undefined8 ResourceValidationService(void)
   if (*(int *)(in_RAX + 0x18) == 0) {
     resourceHash = GetResourceEntry(*unaff_RBX,unaff_RSI + 0x10);
     if (((int)resourceHash == 0) &&
-       ((0x5a < *(uint *)(unaff_RBX + 8) || (resourceHash = FUN_1808afd90(), (int)resourceHash == 0)))) {
+       ((0x5a < *(uint *)(unaff_RBX + 8) || (resourceHash = ValidateResourceFormat(), (int)resourceHash == 0)))) {
       if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
         switch(*(undefined4 *)(unaff_RSI + 0x60)) {
         default:
@@ -26902,9 +26902,9 @@ undefined8 ResourceValidationService(void)
         }
         resourceHash = (**(code **)**(undefined8 **)(*unaff_RBX + 8))
                           (*(undefined8 **)(*unaff_RBX + 8),&stack0x000000b0,4);
-        if (((int)resourceHash == 0) && (resourceHash = FUN_1808a7c90(), (int)resourceHash == 0)) {
+        if (((int)resourceHash == 0) && (resourceHash = ProcessResourceData(), (int)resourceHash == 0)) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000();
+          CleanupResourceBuffer();
         }
       }
       else {
@@ -26943,7 +26943,7 @@ f31e(void)
     }
   }
   else if ((in_EAX == 0x12) && (*(uint *)(unaff_RBX + 8) < 0x40)) {
-    iVar1 = FUN_1808ddd30();
+    iVar1 = CalculateDataChecksum();
     if (iVar1 != 0) {
       return;
     }
@@ -26976,7 +26976,7 @@ f31e(void)
       return;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808de000();
+    CleanupResourceBuffer();
   }
   iVar1 = FUN_1808a1090();
   if (iVar1 != 0) {
@@ -26984,7 +26984,7 @@ f31e(void)
   }
 LAB_18089f45f:
                     // WARNING: Subroutine does not return
-  FUN_1808de000();
+  CleanupResourceBuffer();
 }
 
 
@@ -27018,16 +27018,16 @@ ulonglong ValidateResourceDataIntegrity(longlong param_1,undefined8 *param_2,und
   undefined1 auStack_70 [64];
   undefined1 auStack_30 [40];
   
-  validationResult = FUN_1808ddd30(param_2,auStack_30,1,0x5453494c,param_3);
-  if (((int)validationResult == 0) && (validationResult = FUN_1808ddd30(param_2,auStack_70,0,param_4,0), (int)validationResult == 0))
+  validationResult = CalculateDataChecksum(param_2,auStack_30,1,0x5453494c,param_3);
+  if (((int)validationResult == 0) && (validationResult = CalculateDataChecksum(param_2,auStack_70,0,param_4,0), (int)validationResult == 0))
   {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
       resourceHash = GetResourceEntry(*param_2,param_1 + 0x10);
       validationResult = (ulonglong)resourceHash;
       if ((resourceHash == 0) &&
-         ((param_5 == '\0' || (validationResult = FUN_1808a1870(param_1 + 0x48,param_2), (int)validationResult == 0)))) {
+         ((param_5 == '\0' || (validationResult = CheckResourceIntegrity(param_1 + 0x48,param_2), (int)validationResult == 0)))) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,auStack_70);
+        CleanupResourceBuffer(param_2,auStack_70);
       }
     }
     else {
@@ -27048,16 +27048,16 @@ ulonglong ValidateResourceDataIntegrityInternal(void)
   longlong unaff_RBP;
   char in_stack_000000d0;
   
-  validationResult = FUN_1808ddd30();
+  validationResult = CalculateDataChecksum();
   if ((int)validationResult == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
       resourceHash = GetResourceEntry(*unaff_RBX,unaff_RBP + 0x10);
       validationResult = (ulonglong)resourceHash;
       if ((resourceHash == 0) &&
-         ((in_stack_000000d0 == '\0' || (validationResult = FUN_1808a1870(unaff_RBP + 0x48), (int)validationResult == 0)))
+         ((in_stack_000000d0 == '\0' || (validationResult = CheckResourceIntegrity(unaff_RBP + 0x48), (int)validationResult == 0)))
          ) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        CleanupResourceBuffer();
       }
     }
     else {
@@ -27097,9 +27097,9 @@ undefined8 ModelResourceProcessor(longlong param_1,longlong *param_2)
   undefined1 resourceValidationBuffer [32];
   undefined1 dataChecksumBuffer [32];
   
-  resourceHash = FUN_1808ddd30(param_2,dataChecksumBuffer,1,0x5453494c,0x49444d43);
+  resourceHash = CalculateDataChecksum(param_2,dataChecksumBuffer,1,0x5453494c,0x49444d43);
   if (((int)resourceHash == 0) &&
-     (resourceHash = FUN_1808ddd30(param_2,resourceValidationBuffer,0,0x42444d43,0), (int)resourceHash == 0)) {
+     (resourceHash = CalculateDataChecksum(param_2,resourceValidationBuffer,0,0x42444d43,0), (int)resourceHash == 0)) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -27117,9 +27117,9 @@ undefined8 ModelResourceProcessor(longlong param_1,longlong *param_2)
         }
         resourceHash = GetResourceEntry(*param_2,param_1 + 0xdc);
         if (((int)resourceHash == 0) &&
-           (resourceHash = FUN_1808a7c40(param_2,param_1 + 0xec,0x80), (int)resourceHash == 0)) {
+           (resourceHash = ValidateResourceChunk(param_2,param_1 + 0xec,0x80), (int)resourceHash == 0)) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000(param_2,resourceValidationBuffer);
+          CleanupResourceBuffer(param_2,resourceValidationBuffer);
         }
       }
     }
@@ -27150,7 +27150,7 @@ ulonglong ProcessResourceCertificateValidation(longlong param_1,longlong *param_
   uStack_4c = puVar3[1];
   uStack_48 = puVar3[2];
   uStack_44 = puVar3[3];
-  uVar4 = FUN_1808ddd30(param_2,auStack_40,0,0x4c525443,0);
+  uVar4 = CalculateDataChecksum(param_2,auStack_40,0,0x4c525443,0);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -27193,12 +27193,12 @@ ulonglong ProcessResourceCertificateValidation(longlong param_1,longlong *param_
           validationResult = GetResourceEntry(*param_2,param_1 + 0x30);
           uVar4 = (ulonglong)validationResult;
           if (validationResult == 0) {
-            uVar4 = FUN_180898e70(param_2,param_1 + 0x40);
+            uVar4 = VerifyResourceSignature(param_2,param_1 + 0x40);
             if ((int)uVar4 != 0) {
               return uVar4;
             }
                     // WARNING: Subroutine does not return
-            FUN_1808de000(param_2,auStack_40);
+            CleanupResourceBuffer(param_2,auStack_40);
           }
         }
       }
@@ -27269,10 +27269,10 @@ ulonglong ValidateResourceCertificateChain(void)
         validationResult = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
         uVar3 = (ulonglong)validationResult;
         if (validationResult == 0) {
-          uVar3 = FUN_180898e70();
+          uVar3 = VerifyResourceSignature();
           if ((int)uVar3 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_1808de000();
+            CleanupResourceBuffer();
           }
           return uVar3;
         }
@@ -27333,12 +27333,12 @@ ulonglong ProcessResourceCertificateSigning(void)
       validationResult = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
       uVar3 = (ulonglong)validationResult;
       if (validationResult == 0) {
-        uVar3 = FUN_180898e70();
+        uVar3 = VerifyResourceSignature();
         if ((int)uVar3 != 0) {
           return uVar3;
         }
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        CleanupResourceBuffer();
       }
     }
   }
@@ -27383,10 +27383,10 @@ ulonglong VerifyResourceCertificateIntegrity(void)
     validationResult = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (ulonglong)validationResult;
     if (validationResult == 0) {
-      uVar3 = FUN_180898e70();
+      uVar3 = VerifyResourceSignature();
       if ((int)uVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        CleanupResourceBuffer();
       }
       return uVar3;
     }
@@ -27413,10 +27413,10 @@ ulonglong ValidateResourceCertificateTimestamp(void)
     resourceHash = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (ulonglong)resourceHash;
     if (resourceHash == 0) {
-      validationResult = FUN_180898e70();
+      validationResult = VerifyResourceSignature();
       if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        CleanupResourceBuffer();
       }
       return validationResult;
     }
@@ -27439,10 +27439,10 @@ ulonglong ProcessResourceCertificateRevocation(void)
     resourceHash = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (ulonglong)resourceHash;
     if (resourceHash == 0) {
-      validationResult = FUN_180898e70();
+      validationResult = VerifyResourceSignature();
       if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        CleanupResourceBuffer();
       }
       return validationResult;
     }
@@ -27459,10 +27459,10 @@ fb06(void)
 {
   int iVar1;
   
-  iVar1 = FUN_180898e70();
+  iVar1 = VerifyResourceSignature();
   if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808de000();
+    CleanupResourceBuffer();
   }
   return;
 }
@@ -27487,12 +27487,12 @@ fb40(longlong param_1,undefined8 param_2)
   int iVar1;
   undefined1 dataChecksumBuffer [32];
   
-  iVar1 = FUN_1808ddd30(param_2,dataChecksumBuffer,0,0x4f525443,0);
+  iVar1 = CalculateDataChecksum(param_2,dataChecksumBuffer,0,0x4f525443,0);
   if (iVar1 == 0) {
-    iVar1 = FUN_1808a7b00(param_2,param_1 + 8);
+    iVar1 = AccessResourceData(param_2,param_1 + 8);
     if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808de000(param_2,dataChecksumBuffer);
+      CleanupResourceBuffer(param_2,dataChecksumBuffer);
     }
   }
   return;
@@ -27516,7 +27516,7 @@ undefined8 TextureResourceProcessor(longlong param_1,undefined8 *param_2)
   undefined8 resourceHash;
   undefined1 dataChecksumBuffer [32];
   
-  resourceHash = FUN_1808ddd30(param_2,dataChecksumBuffer,0,0x56525543,0);
+  resourceHash = CalculateDataChecksum(param_2,dataChecksumBuffer,0,0x56525543,0);
   if ((int)resourceHash == 0) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
@@ -27527,10 +27527,10 @@ undefined8 TextureResourceProcessor(longlong param_1,undefined8 *param_2)
         return 0x1c;
       }
       resourceHash = GetResourceEntry(*param_2,param_1 + 0x20);
-      if (((int)resourceHash == 0) && (resourceHash = FUN_1808a4fb0(param_2,param_1 + 0x30,1,0), (int)resourceHash == 0))
+      if (((int)resourceHash == 0) && (resourceHash = ProcessResourceStream(param_2,param_1 + 0x30,1,0), (int)resourceHash == 0))
       {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,dataChecksumBuffer);
+        CleanupResourceBuffer(param_2,dataChecksumBuffer);
       }
     }
   }
@@ -27556,9 +27556,9 @@ undefined8 AnimationResourceProcessor(longlong param_1,undefined8 *param_2)
   undefined1 resourceValidationBuffer [32];
   undefined1 dataChecksumBuffer [32];
   
-  resourceHash = FUN_1808ddd30(param_2,dataChecksumBuffer,1,0x5453494c,0x54494645);
+  resourceHash = CalculateDataChecksum(param_2,dataChecksumBuffer,1,0x5453494c,0x54494645);
   if (((int)resourceHash == 0) &&
-     (resourceHash = FUN_1808ddd30(param_2,resourceValidationBuffer,0,0x42494645,0), (int)resourceHash == 0)) {
+     (resourceHash = CalculateDataChecksum(param_2,resourceValidationBuffer,0,0x42494645,0), (int)resourceHash == 0)) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -27570,7 +27570,7 @@ undefined8 AnimationResourceProcessor(longlong param_1,undefined8 *param_2)
       resourceHash = GetResourceEntry(*param_2,param_1 + 0xd8);
       if ((int)resourceHash == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,resourceValidationBuffer);
+        CleanupResourceBuffer(param_2,resourceValidationBuffer);
       }
     }
   }
@@ -27661,7 +27661,7 @@ undefined8 ValidateResourceId(longlong param_1,longlong *param_2)
         return resourceHash;
       }
     }
-    resourceHash = FUN_1808a7c90(param_2,param_1 + 0x7c,0x7d);
+    resourceHash = ProcessResourceData(param_2,param_1 + 0x7c,0x7d);
     return resourceHash;
   }
   return resourceHash;
@@ -27686,9 +27686,9 @@ undefined8 ProcessResourceIdList(longlong param_1,undefined8 *param_2)
   undefined1 resourceValidationBuffer [32];
   undefined1 dataChecksumBuffer [32];
   
-  resourceHash = FUN_1808ddd30(param_2,dataChecksumBuffer,1,0x5453494c,0x54495645);
+  resourceHash = CalculateDataChecksum(param_2,dataChecksumBuffer,1,0x5453494c,0x54495645);
   if (((int)resourceHash == 0) &&
-     (resourceHash = FUN_1808ddd30(param_2,resourceValidationBuffer,0,0x42495645,0), (int)resourceHash == 0)) {
+     (resourceHash = CalculateDataChecksum(param_2,resourceValidationBuffer,0,0x42495645,0), (int)resourceHash == 0)) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -27698,10 +27698,10 @@ undefined8 ProcessResourceIdList(longlong param_1,undefined8 *param_2)
         return 0x1c;
       }
       resourceHash = GetResourceEntry(*param_2,param_1 + 0xd8);
-      if ((((int)resourceHash == 0) && (resourceHash = FUN_180898eb0(param_2,param_1 + 0xf8), (int)resourceHash == 0)) &&
+      if ((((int)resourceHash == 0) && (resourceHash = ValidateResourceMetadata(param_2,param_1 + 0xf8), (int)resourceHash == 0)) &&
          (resourceHash = FUN_1808a6e50(param_2,param_1 + 0xe8,1,param_1), (int)resourceHash == 0)) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,resourceValidationBuffer);
+        CleanupResourceBuffer(param_2,resourceValidationBuffer);
       }
     }
   }
@@ -27733,14 +27733,14 @@ undefined8 ValidateTextureResourceId(undefined8 param_1,longlong param_2)
     }
   }
   else {
-    resourceHash = FUN_1808ddd30(param_2,dataChecksumBuffer,1,0x5453494c,0x544e5645);
+    resourceHash = CalculateDataChecksum(param_2,dataChecksumBuffer,1,0x5453494c,0x544e5645);
     if ((int)resourceHash == 0) {
       resourceHash = FUN_1808a3d50(param_1,param_2,0x42545645);
       if ((int)resourceHash == 0) {
         resourceHash = FUN_1808a1610(param_1,param_2);
         if ((int)resourceHash == 0) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000(param_2,dataChecksumBuffer);
+          CleanupResourceBuffer(param_2,dataChecksumBuffer);
         }
       }
     }

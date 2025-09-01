@@ -13549,7 +13549,7 @@ int InitializeSystemModuleA(void)
 {
   long long systemStatus;
   
-  FUN_1804777d0();
+  ExecuteSystemPreInitialization();
   systemStatus = FUN_1808fc7d0(FUN_180942890);
   return (systemStatus != 0) - 1;
 }
@@ -20091,8 +20091,19 @@ void SetSystemMemoryAllocatorPointer(void* *allocatorPointer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180047e70(void* param_1,void* param_2,long long param_3,void* param_4)
-void FUN_180047e70(void* param_1,void* param_2,long long param_3,void* param_4)
+/**
+ * @brief 系统数据查找和匹配
+ * 
+ * 该函数负责在系统初始化数据中查找和匹配指定的数据项。
+ * 它会遍历系统数据节点，进行字符串比较和数据匹配，找到合适的
+ * 数据项后设置相应的参数和回调函数。
+ * 
+ * @param searchContext 搜索上下文
+ * @param searchData 搜索数据
+ * @param matchData 匹配数据
+ * @param callbackData 回调数据
+ */
+void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long matchData,void* callbackData)
 
 {
   byte bVar1;
