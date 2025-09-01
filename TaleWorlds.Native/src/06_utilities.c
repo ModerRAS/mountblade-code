@@ -45057,6 +45057,16 @@ void ExecuteResourceContextCallbackAlt(uint8_t ObjectContextParameter, int64_t V
 
 
 
+/**
+ * @brief 销毁原地互斥锁
+ * 
+ * 该函数负责销毁原地的互斥锁对象
+ * 释放互斥锁占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数会直接调用系统底层函数销毁互斥锁
+ * @warning 调用此函数后，互斥锁将不再可用
+ */
 void DestroyMutexInSitu(void)
 
 {
@@ -45066,7 +45076,19 @@ void DestroyMutexInSitu(void)
 
 
 
-void DestroyMutexFromContext(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 从上下文中销毁互斥锁
+ * 
+ * 该函数负责从给定的上下文中销毁互斥锁对象
+ * 从验证上下文中提取互斥锁指针并销毁该互斥锁
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识操作的对象
+ * @param ValidationContextParameter 验证上下文参数，包含互斥锁指针信息
+ * @return 无返回值
+ * @note 此函数会从验证上下文的指定偏移量处获取互斥锁指针
+ * @warning 调用此函数后，互斥锁将不再可用
+ */
+void DestroyMutexFromContext(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   _Mtx_destroy_in_situ(*(uint8_t *)(ValidationContextParameter + 0x2e0));
@@ -45075,7 +45097,19 @@ void DestroyMutexFromContext(uint8_t ObjectContextParameter,int64_t ValidationCo
 
 
 
-void ExecuteContext250Callback(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 执行250偏移量上下文回调函数
+ * 
+ * 该函数负责执行位于验证上下文250偏移量处的回调函数
+ * 检查回调指针的有效性并执行相应的回调操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识操作的对象
+ * @param ValidationContextParameter 验证上下文参数，包含回调函数指针信息
+ * @return 无返回值
+ * @note 此函数会检查回调指针的有效性
+ * @warning 如果回调指针无效，函数将直接返回
+ */
+void ExecuteContext250Callback(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   if (*(int64_t **)(ValidationContextParameter + 0x250) != (int64_t *)0x0) {
