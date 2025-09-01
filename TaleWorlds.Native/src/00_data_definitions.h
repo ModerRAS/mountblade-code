@@ -283,13 +283,13 @@ char SystemModuleConfigTemplateTerdenaryTertiary[] = "SystemModuleConfigTerdenar
  */
 int InitializeRenderingSystem(void)
 {
-  int64_t CallbackResult;
+  int64_t SystemCallbackRegistrationResult;
   GlobalRenderingSystemEnabled = 1;
   GlobalRenderingSystemFlags = 0;
   GlobalRenderingSystemMaxValue = 0x7fffffffffffffff;
   GlobalRenderingSystemStatus = 0;
-  CallbackResult = RegisterSystemCallback(RenderingSystemCallback);
-  return (CallbackResult != 0) - 1;
+  SystemCallbackRegistrationResult = RegisterSystemCallback(RenderingSystemCallback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化物理引擎模块
@@ -299,13 +299,13 @@ int InitializeRenderingSystem(void)
  */
 int InitializePhysicsEngine(void)
 {
-  int64_t CallbackResult;
+  int64_t SystemCallbackRegistrationResult;
   GlobalPhysicsEngineData = &GlobalUnknownData;
   GlobalPhysicsEngineConfig = &GlobalPhysicsEngineState;
   GlobalPhysicsEngineFlags = 0;
   GlobalPhysicsEngineState = 0;
-  CallbackResult = RegisterSystemCallback(PhysicsEngineCallback);
-  return (CallbackResult != 0) - 1;
+  SystemCallbackRegistrationResult = RegisterSystemCallback(PhysicsEngineCallback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化音频系统模块
@@ -315,13 +315,13 @@ int InitializePhysicsEngine(void)
  */
 int InitializeAudioSystem(void)
 {
-  int64_t CallbackResult;
+  int64_t SystemCallbackRegistrationResult;
   GlobalAudioSystemData = &GlobalUnknownData;
   GlobalAudioSystemConfig = &GlobalAudioSystemState;
   GlobalAudioSystemFlags = 0;
   GlobalAudioSystemState = 0;
-  CallbackResult = RegisterSystemCallback(AudioSystemCallback);
-  return (CallbackResult != 0) - 1;
+  SystemCallbackRegistrationResult = RegisterSystemCallback(AudioSystemCallback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化输入系统模块
@@ -331,13 +331,13 @@ int InitializeAudioSystem(void)
  */
 int InitializeInputSystem(void)
 {
-  int64_t CallbackResult;
+  int64_t SystemCallbackRegistrationResult;
   GlobalInputSystemData = &GlobalUnknownInputData;
   GlobalInputSystemConfig = &GlobalInputSystemState;
   GlobalInputSystemFlags = 0;
   GlobalInputSystemState = 0;
-  CallbackResult = RegisterSystemCallback(InputSystemCallback);
-  return (CallbackResult != 0) - 1;
+  SystemCallbackRegistrationResult = RegisterSystemCallback(InputSystemCallback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化网络系统模块
@@ -347,13 +347,13 @@ int InitializeInputSystem(void)
  */
 int InitializeNetworkSystem(void)
 {
-  int64_t CallbackResult;
+  int64_t SystemCallbackRegistrationResult;
   GlobalNetworkSystemData = &GlobalUnknownNetworkData;
   GlobalNetworkSystemConfig = &GlobalNetworkSystemState;
   GlobalNetworkSystemFlags = 0;
   GlobalNetworkSystemState = 0;
-  CallbackResult = RegisterSystemCallback(NetworkSystemCallback);
-  return (CallbackResult != 0) - 1;
+  SystemCallbackRegistrationResult = RegisterSystemCallback(NetworkSystemCallback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化文件系统模块
@@ -363,13 +363,13 @@ int InitializeNetworkSystem(void)
  */
 int InitializeFileSystem(void)
 {
-  int64_t CallbackResult;
+  int64_t SystemCallbackRegistrationResult;
   GlobalFileSystemData = &GlobalUnknownData;
   GlobalFileSystemConfig = &GlobalFileSystemState;
   GlobalFileSystemFlags = 0;
   GlobalFileSystemState = 0;
-  CallbackResult = RegisterSystemCallback(FileSystemCallback);
-  return (CallbackResult != 0) - 1;
+  SystemCallbackRegistrationResult = RegisterSystemCallback(FileSystemCallback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化内存管理模块
@@ -379,13 +379,13 @@ int InitializeFileSystem(void)
  */
 int InitializeMemoryManager(void)
 {
-  int64_t CallbackResult;
+  int64_t SystemCallbackRegistrationResult;
   GlobalMemoryManagerData = &GlobalUnknownData;
   GlobalMemoryManagerConfig = &GlobalMemoryManagerState;
   GlobalMemoryManagerFlags = 0;
   GlobalMemoryManagerState = 0;
-  CallbackResult = RegisterSystemCallback(MemoryManagerCallback);
-  return (CallbackResult != 0) - 1;
+  SystemCallbackRegistrationResult = RegisterSystemCallback(MemoryManagerCallback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化渲染线程同步机制
@@ -399,14 +399,14 @@ int InitializeMemoryManager(void)
  */
 int InitializeRenderingThreadSync(uint64_t threadId, uint64_t syncPtr, uint64_t mutexType, uint64_t mutexAttr)
 {
-  int64_t CallbackResult;
-  uint64_t renderingMutexFlags;
-  renderingMutexFlags = SystemMutexFlags;
+  int64_t SystemCallbackRegistrationResult;
+  uint64_t RenderingThreadMutexFlags;
+  RenderingThreadMutexFlags = SystemMutexFlags;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(RENDER_MUTEX_ADDRESS, 2, mutexType, mutexAttr, renderingMutexFlags);
+  _Mtx_init_in_situ(RENDER_MUTEX_ADDRESS, 2, mutexType, mutexAttr, RenderingThreadMutexFlags);
   RenderingSyncState = 0;
-  CallbackResult = RegisterSystemCallback(RenderingThreadSyncCallback);
-  return (CallbackResult != 0) - 1;
+  SystemCallbackRegistrationResult = RegisterSystemCallback(RenderingThreadSyncCallback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化物理引擎同步机制
@@ -420,14 +420,14 @@ int InitializeRenderingThreadSync(uint64_t threadId, uint64_t syncPtr, uint64_t 
  */
 int InitializePhysicsEngineSync(uint64_t threadId, uint64_t syncPtr, uint64_t mutexType, uint64_t mutexAttr)
 {
-  int64_t CallbackResult;
-  uint64_t physicsMutexFlags;
-  physicsMutexFlags = SystemMutexFlags;
+  int64_t SystemCallbackRegistrationResult;
+  uint64_t PhysicsEngineMutexFlags;
+  PhysicsEngineMutexFlags = SystemMutexFlags;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(PHYSICS_MUTEX_ADDRESS, 2, mutexType, mutexAttr, physicsMutexFlags);
+  _Mtx_init_in_situ(PHYSICS_MUTEX_ADDRESS, 2, mutexType, mutexAttr, PhysicsEngineMutexFlags);
   PhysicsSyncState = 0;
-  CallbackResult = RegisterSystemCallback(PhysicsEngineSyncCallback);
-  return (CallbackResult != 0) - 1;
+  SystemCallbackRegistrationResult = RegisterSystemCallback(PhysicsEngineSyncCallback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化条件变量和互斥锁C
@@ -441,14 +441,14 @@ int InitializePhysicsEngineSync(uint64_t threadId, uint64_t syncPtr, uint64_t mu
  */
 int InitializeConditionMutexC(uint64_t threadId,uint64_t syncPtr,uint64_t mutexType,uint64_t mutexAttr)
 {
-  int64_t result;
-  uint64_t ConditionMutexFlags;
-  ConditionMutexFlags = SystemMutexFlags;
+  int64_t SystemCallbackRegistrationResult;
+  uint64_t ConditionMutexCFlags;
+  ConditionMutexCFlags = SystemMutexFlags;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(ConditionMutexAddressA,2,mutexType,mutexAttr,ConditionMutexFlags);
+  _Mtx_init_in_situ(ConditionMutexAddressA,2,mutexType,mutexAttr,ConditionMutexCFlags);
   GlobalConditionMutexCStatus = 0;
-  result = RegisterSystemCallback(InitializeConditionMutexC_Callback);
-  return (result != 0) - 1;
+  SystemCallbackRegistrationResult = RegisterSystemCallback(InitializeConditionMutexC_Callback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化条件变量和互斥锁D
@@ -462,14 +462,14 @@ int InitializeConditionMutexC(uint64_t threadId,uint64_t syncPtr,uint64_t mutexT
  */
 int InitializeConditionMutexD(uint64_t threadId,uint64_t syncPtr,uint64_t mutexType,uint64_t mutexAttr)
 {
-  int64_t result;
+  int64_t SystemCallbackRegistrationResult;
   uint64_t ConditionMutexDFlags;
   ConditionMutexDFlags = SystemMutexFlags;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(ConditionMutexAddressB,2,mutexType,mutexAttr,ConditionMutexDFlags);
   GlobalConditionMutexDStatus = 0;
-  result = RegisterSystemCallback(InitializeConditionMutexD_Callback);
-  return (result != 0) - 1;
+  SystemCallbackRegistrationResult = RegisterSystemCallback(InitializeConditionMutexD_Callback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 
 /**
@@ -478,15 +478,15 @@ int InitializeConditionMutexD(uint64_t threadId,uint64_t syncPtr,uint64_t mutexT
  */
 int InitializeStringProcessorA(void)
 {
-  int64_t result;
+  int64_t SystemCallbackRegistrationResult;
   uint64_t StringProcessorAFlags;
   StringProcessorA_Base = &SystemStringDataTemplate;
   StringProcessorA_BufferPtr = &StringProcessorA_Buffer;
   StringProcessorA_Buffer = 0;
   StringProcessorA_Length = 0xd;
-  strcpy_s(&StringProcessorA_Buffer,0x10,&StringProcessorATemplate,stringProcessorAFlags,SystemMutexFlags);
-  result = RegisterSystemCallback(InitializeStringProcessorA_Callback);
-  return (result != 0) - 1;
+  strcpy_s(&StringProcessorA_Buffer,0x10,&StringProcessorATemplate,StringProcessorAFlags,SystemMutexFlags);
+  SystemCallbackRegistrationResult = RegisterSystemCallback(InitializeStringProcessorA_Callback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化字符串处理器B
@@ -494,15 +494,15 @@ int InitializeStringProcessorA(void)
  */
 int InitializeStringProcessorB(void)
 {
-  int64_t result;
-  uint64_t stringProcessorBFlags;
+  int64_t SystemCallbackRegistrationResult;
+  uint64_t StringProcessorBFlags;
   StringProcessorB_Base = &SystemStringDataTemplate;
   StringProcessorB_BufferPtr = &StringProcessorB_Buffer;
   StringProcessorB_Buffer = 0;
   StringProcessorB_Length = 0xf;
-  strcpy_s(&StringProcessorB_Buffer,0x10,&StringProcessorBTemplate,stringProcessorBFlags,SystemMutexFlags);
-  result = RegisterSystemCallback(InitializeStringProcessorB_Callback);
-  return (result != 0) - 1;
+  strcpy_s(&StringProcessorB_Buffer,0x10,&StringProcessorBTemplate,StringProcessorBFlags,SystemMutexFlags);
+  SystemCallbackRegistrationResult = RegisterSystemCallback(InitializeStringProcessorB_Callback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化字符串处理器C
@@ -510,15 +510,15 @@ int InitializeStringProcessorB(void)
  */
 int InitializeStringProcessorC(void)
 {
-  int64_t result;
-  uint64_t stringProcessorCFlags;
+  int64_t SystemCallbackRegistrationResult;
+  uint64_t StringProcessorCFlags;
   g_stringProcessorC_Base = &StringProcessorDataTemplate;
   g_stringProcessorC_BufferPtr = &g_stringProcessorC_Buffer;
   g_stringProcessorC_Buffer = 0;
   g_stringProcessorC_Length = 0xf;
-  strcpy_s(&g_stringProcessorC_Buffer,0x10,&StringProcessorCTemplate,stringProcessorCFlags,SystemMutexFlags);
-  result = RegisterSystemCallback(InitializeStringProcessorC_Callback);
-  return (result != 0) - 1;
+  strcpy_s(&g_stringProcessorC_Buffer,0x10,&StringProcessorCTemplate,StringProcessorCFlags,SystemMutexFlags);
+  SystemCallbackRegistrationResult = RegisterSystemCallback(InitializeStringProcessorC_Callback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化字符串处理器D
@@ -526,15 +526,15 @@ int InitializeStringProcessorC(void)
  */
 int InitializeStringProcessorD(void)
 {
-  int64_t result;
-  uint64_t stringProcessorDFlags;
+  int64_t SystemCallbackRegistrationResult;
+  uint64_t StringProcessorDFlags;
   g_stringProcessorD_Base = &StringProcessorDataBaseD;
   g_stringProcessorD_BufferPtr = &g_stringProcessorD_Buffer;
   g_stringProcessorD_Buffer = 0;
   g_stringProcessorD_Length = 0xd;
-  strcpy_s(&g_stringProcessorD_Buffer,0x10,&StringProcessorDataTemplateD,stringProcessorDFlags,SystemMutexFlags);
-  result = RegisterSystemCallback(InitializeStringProcessorD_Callback);
-  return (result != 0) - 1;
+  strcpy_s(&g_stringProcessorD_Buffer,0x10,&StringProcessorDataTemplateD,StringProcessorDFlags,SystemMutexFlags);
+  SystemCallbackRegistrationResult = RegisterSystemCallback(InitializeStringProcessorD_Callback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化字符串处理器E
@@ -542,15 +542,15 @@ int InitializeStringProcessorD(void)
  */
 int InitializeStringProcessorE(void)
 {
-  int64_t result;
-  uint64_t stringProcessorEFlags;
+  int64_t SystemCallbackRegistrationResult;
+  uint64_t StringProcessorEFlags;
   g_stringProcessorE_Base = &StringProcessorDataBaseE;
   g_stringProcessorE_BufferPtr = &g_stringProcessorE_Buffer;
   g_stringProcessorE_Buffer = 0;
   g_stringProcessorE_Length = 0xc;
-  strcpy_s(&g_stringProcessorE_Buffer,0x10,&StringProcessorDataTemplateE,stringProcessorEFlags,SystemMutexFlags);
-  result = RegisterSystemCallback(InitializeStringProcessorE_Callback);
-  return (result != 0) - 1;
+  strcpy_s(&g_stringProcessorE_Buffer,0x10,&StringProcessorDataTemplateE,StringProcessorEFlags,SystemMutexFlags);
+  SystemCallbackRegistrationResult = RegisterSystemCallback(InitializeStringProcessorE_Callback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化字符串处理器F
@@ -558,15 +558,15 @@ int InitializeStringProcessorE(void)
  */
 int InitializeStringProcessorF(void)
 {
-  int64_t result;
-  uint64_t stringFlags;
+  int64_t SystemCallbackRegistrationResult;
+  uint64_t StringProcessorFFlags;
   g_stringProcessorF_Base = &StringProcessorDataBaseF;
   GlobalStringDataPointerF = &GlobalStringDataBufferF;
   GlobalStringDataBufferF = 0;
   GlobalStringDataLengthF = 4;
-  strcpy_s(&GlobalStringDataBufferF,0x10,&StringProcessorDataTemplateF,stringFlags,SystemMutexFlags);
-  result = RegisterSystemCallback(InitializeStringProcessorF_Callback);
-  return (result != 0) - 1;
+  strcpy_s(&GlobalStringDataBufferF,0x10,&StringProcessorDataTemplateF,StringProcessorFFlags,SystemMutexFlags);
+  SystemCallbackRegistrationResult = RegisterSystemCallback(InitializeStringProcessorF_Callback);
+  return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化模块配置A
@@ -576,15 +576,15 @@ int InitializeStringProcessorF(void)
  */
 int InitializeModuleConfigurationA(void)
 {
-  int64_t initializationResult;
-  uint64_t configurationFlags;
+  int64_t ModuleInitializationResult;
+  uint64_t ModuleConfigurationFlags;
   g_stringProcessorDataPointerA = &SystemStringDataConstantB;
   g_stringProcessorConfigPointerA = &STRING_PROCESSOR_CONFIG_A;
   STRING_PROCESSOR_CONFIG_A = 0;
   g_stringProcessorBufferSizeA = 5;
   strcpy_s(&STRING_PROCESSOR_CONFIG_A,0x10,&SystemStringDataConstantA,StringProcessorFlags,SystemMutexFlags);
-  longlong CallbackResult = RegisterSystemModule(InitializeSystemModuleA);
-  return (CallbackResult != 0) - 1;
+  longlong SystemModuleRegistrationResult = RegisterSystemModule(InitializeSystemModuleA);
+  return (SystemModuleRegistrationResult != 0) - 1;
 }
 /**
  * 初始化字符串处理器G
@@ -594,15 +594,15 @@ int InitializeModuleConfigurationA(void)
  */
 int InitializeStringProcessorG(void)
 {
-  int64_t CallbackResult;
-  uint64_t stringProcessorGFlags;
+  int64_t SystemModuleRegistrationResult;
+  uint64_t StringProcessorGFlags;
   g_stringProcessorDataPointerB = &SystemStringDataConstantB;
   g_stringProcessorConfigPointerB = &STRING_PROCESSOR_CONFIG_B;
   STRING_PROCESSOR_CONFIG_B = 0;
   g_stringProcessorBufferSizeB = 5;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_B,0x10,&SystemStringDataConstantC,stringProcessorGFlags,SystemMutexFlags);
-  CallbackResult = RegisterSystemModule(InitializeSystemModuleB);
-  return (CallbackResult != 0) - 1;
+  strcpy_s(&STRING_PROCESSOR_CONFIG_B,0x10,&SystemStringDataConstantC,StringProcessorGFlags,SystemMutexFlags);
+  SystemModuleRegistrationResult = RegisterSystemModule(InitializeSystemModuleB);
+  return (SystemModuleRegistrationResult != 0) - 1;
 }
 /**
  * 初始化字符串处理器H
@@ -612,15 +612,15 @@ int InitializeStringProcessorG(void)
  */
 int InitializeStringProcessorH(void)
 {
-  int64_t CallbackResult;
-  uint64_t stringProcessorHFlags;
+  int64_t SystemModuleRegistrationResult;
+  uint64_t StringProcessorHFlags;
   g_stringProcessorDataPointerC = &SystemStringMemoryTemplate;
   g_stringProcessorConfigPointerC = &STRING_PROCESSOR_CONFIG_C;
   STRING_PROCESSOR_CONFIG_C = 0;
   g_stringProcessorBufferSizeC = 0xd;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_C,0x20,&SystemStringDataConstantD,stringProcessorHFlags,SystemMutexFlags);
-  CallbackResult = RegisterSystemModule(InitializeStringProcessorModule);
-  return (CallbackResult != 0) - 1;
+  strcpy_s(&STRING_PROCESSOR_CONFIG_C,0x20,&SystemStringDataConstantD,StringProcessorHFlags,SystemMutexFlags);
+  SystemModuleRegistrationResult = RegisterSystemModule(InitializeStringProcessorModule);
+  return (SystemModuleRegistrationResult != 0) - 1;
 }
 /**
  * 初始化字符串处理器I
@@ -630,15 +630,15 @@ int InitializeStringProcessorH(void)
  */
 int InitializeStringProcessorI(void)
 {
-  int64_t CallbackResult;
-  uint64_t stringProcessorIFlags;
+  int64_t SystemModuleRegistrationResult;
+  uint64_t StringProcessorIFlags;
   g_stringProcessorDataPointerD = &SystemStringMemoryTemplate;
   g_stringProcessorConfigPointerD = &STRING_PROCESSOR_CONFIG_D;
   STRING_PROCESSOR_CONFIG_D = 0;
   g_stringProcessorBufferSizeD = 9;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_D,0x20,&SystemStringDataConstantE,stringProcessorIFlags,SystemMutexFlags);
-  CallbackResult = RegisterSystemModule(InitializeNetworkModule);
-  return (CallbackResult != 0) - 1;
+  strcpy_s(&STRING_PROCESSOR_CONFIG_D,0x20,&SystemStringDataConstantE,StringProcessorIFlags,SystemMutexFlags);
+  SystemModuleRegistrationResult = RegisterSystemModule(InitializeNetworkModule);
+  return (SystemModuleRegistrationResult != 0) - 1;
 }
 /**
  * 初始化配置互斥锁
@@ -652,10 +652,10 @@ int InitializeStringProcessorI(void)
  */
 int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mutexType,uint64_t mutexAttr)
 {
-  int64_t CallbackResult;
+  int64_t SystemModuleRegistrationResult;
   _Mtx_init_in_situ(SystemMutexAddressA,0x102,mutexType,mutexAttr,SystemMutexFlags);
-  CallbackResult = RegisterSystemModule(InitializeCoreGameEngine);
-  return (CallbackResult != 0) - 1;
+  SystemModuleRegistrationResult = RegisterSystemModule(InitializeCoreGameEngine);
+  return (SystemModuleRegistrationResult != 0) - 1;
 }
   CONFIG_DATA_BUFFER_A = 0;
   g_configDataBufferSizeA = 0x13;
