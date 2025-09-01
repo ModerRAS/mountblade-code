@@ -29275,7 +29275,7 @@ void ManageSystemResourceData(long long SystemResourcePointer,void* param_2,void
     } while ((ulong long)(long long)(int)unsignedSystemValue7 <
              (ulong long)((long long)(*(long long *)(SystemResourcePointer + 0x50) - unsignedSystemValue4) >> 3));
   }
-  FUN_180057340(pointerToUnsigned1,0);
+  ResizeSystemMemoryPool(pointerToUnsigned1,0);
   unsignedSystemValue4 = *(ulong long *)(SystemResourcePointer + 0x50);
   unsignedSystemValue5 = *pointerToUnsigned1;
   unsignedSystemValue7 = *(uint *)(SystemResourcePointer + 0x60);
@@ -30172,8 +30172,9 @@ void SystemNodeInitializer(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180057340(long long *SystemResourcePointer,ulong long param_2)
-void FUN_180057340(long long *SystemResourcePointer,ulong long param_2)
+// 函数: void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long param_2)
+// 功能: 调整系统内存池大小，处理内存分配和重新分配
+void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long param_2)
 
 {
   long long localMemoryPointer;

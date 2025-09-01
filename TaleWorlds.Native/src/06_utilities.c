@@ -1866,7 +1866,7 @@ uint8_t SystemDataStructureInstance;
 uint8_t SystemDataStructureHandle;
 uint8_t SystemDataStructureContext;
 uint8_t SystemDataConfiguration;
-uint8_t SystemMemoryConfigDataTemplateP;
+uint8_t SystemMemoryConfigDataTemplatePerformance;
 
  void InitializeMemoryCompliance(void);
 /**
@@ -1879,7 +1879,7 @@ void InitializeMemoryCompliance(void);
 uint8_t SystemMemoryConfigDataTemplateMedium;
 uint8_t SystemMemoryConfigDataTemplateNormal;
 uint8_t SystemMemoryConfigDataTemplateOptimized;
-uint8_t SystemMemoryConfigDataTemplateP;
+uint8_t SystemMemoryConfigDataTemplatePerformance;
 uint8_t SystemMemoryConfigDataTemplateQ;
 
  void ConfigureMemoryDiagnostics(void);
