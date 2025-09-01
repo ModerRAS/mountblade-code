@@ -12302,8 +12302,8 @@ void ProcessComplexResourceOperation(uint8_t8 objectContextParam,longlong valida
   uint8_t *GraphicsDataPointer;
   int GraphicsDataIndex;
   uint8_t8 GraphicsOperationFlag1;
-  ulonglong uStack_2e0;
-  longlong lStack_2d8;
+  ulonglong GraphicsOperationFlag2;
+  longlong GraphicsContextOffset;
   uint8_t8 uStack_2d0;
   uint8_t8 uStack_2c8;
   uint8_t8 uStack_2c0;
@@ -12348,8 +12348,8 @@ LAB_180896ce3:
         ppunsignedValue6 = &GraphicsDataPointer;
         uStack_2b0 = 0;
         GraphicsOperationFlag1 = 0;
-        uStack_2e0 = 0;
-        lStack_2d8 = 0;
+        GraphicsOperationFlag2 = 0;
+        GraphicsContextOffset = 0;
         uStack_2d0 = 0;
         uStack_2c8 = 0;
         uStack_2c0 = 0;
@@ -12358,9 +12358,9 @@ LAB_180896ce3:
         goto LAB_180896ce3;
       }
       GraphicsDataPointer = &BufferTemplate3;
-      lStack_2d8 = (ulonglong)param_3 << 0x20;
+      GraphicsContextOffset = (ulonglong)param_3 << 0x20;
       GraphicsOperationFlag1 = *(uint8_t8 *)(validationContextParam + 0x228);
-      uStack_2e0 = (ulonglong)CONCAT14(iVar3 != 1,*(uint8_t4 *)(validationContextParam + 0x230));
+      GraphicsOperationFlag2 = (ulonglong)CONCAT14(iVar3 != 1,*(uint8_t4 *)(validationContextParam + 0x230));
       iVar3 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
     }
     if (iVar3 != 0) goto ResourceErrorHandler;
@@ -12410,7 +12410,7 @@ LAB_180896ce3:
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,GraphicsTransformMatrix[0]);
+          GraphicsOperationFlag2 = CONCAT44(GraphicsOperationFlag2._4_4_,GraphicsTransformMatrix[0]);
           GraphicsDataPointer = &SystemDataTypeTemplateA;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           GraphicsDataIndex = tableEntry;
@@ -12421,7 +12421,7 @@ LAB_180896ce3:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateB;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
+          GraphicsOperationFlag2 = CONCAT71(GraphicsOperationFlag2._1_7_,1);
           tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (tableEntry != 0) goto ResourceErrorHandler;
         }
@@ -12430,7 +12430,7 @@ LAB_180896ce3:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateC;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
+          GraphicsOperationFlag2 = CONCAT71(GraphicsOperationFlag2._1_7_,1);
           iVar7 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (iVar7 != 0) goto ResourceErrorHandler;
         }
@@ -12457,7 +12457,7 @@ LAB_180896ce3:
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,GraphicsTransformMatrix[0]);
+          GraphicsOperationFlag2 = CONCAT44(GraphicsOperationFlag2._4_4_,GraphicsTransformMatrix[0]);
           GraphicsDataPointer = &SystemDataTypeTemplateA;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           GraphicsDataIndex = tableEntry;
@@ -12468,7 +12468,7 @@ LAB_180896ce3:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateB;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
+          GraphicsOperationFlag2 = CONCAT71(GraphicsOperationFlag2._1_7_,1);
           tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (tableEntry != 0) goto ResourceErrorHandler;
         }
@@ -12477,7 +12477,7 @@ LAB_180896ce3:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateC;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
+          GraphicsOperationFlag2 = CONCAT71(GraphicsOperationFlag2._1_7_,1);
           iVar7 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (iVar7 != 0) goto ResourceErrorHandler;
         }
@@ -12504,7 +12504,7 @@ LAB_180896ce3:
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,GraphicsTransformMatrix[0]);
+          GraphicsOperationFlag2 = CONCAT44(GraphicsOperationFlag2._4_4_,GraphicsTransformMatrix[0]);
           GraphicsDataPointer = &SystemDataTypeTemplateA;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           GraphicsDataIndex = tableEntry;
@@ -12515,7 +12515,7 @@ LAB_180896ce3:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateB;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
+          GraphicsOperationFlag2 = CONCAT71(GraphicsOperationFlag2._1_7_,1);
           tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (tableEntry != 0) goto ResourceErrorHandler;
         }
@@ -12524,7 +12524,7 @@ LAB_180896ce3:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateC;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
+          GraphicsOperationFlag2 = CONCAT71(GraphicsOperationFlag2._1_7_,1);
           iVar7 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (iVar7 != 0) goto ResourceErrorHandler;
         }
@@ -12551,7 +12551,7 @@ LAB_180896ce3:
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,GraphicsTransformMatrix[0]);
+          GraphicsOperationFlag2 = CONCAT44(GraphicsOperationFlag2._4_4_,GraphicsTransformMatrix[0]);
           GraphicsDataPointer = &SystemDataTypeTemplateA;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           GraphicsDataIndex = tableEntry;
@@ -12562,7 +12562,7 @@ LAB_180896ce3:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateB;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
+          GraphicsOperationFlag2 = CONCAT71(GraphicsOperationFlag2._1_7_,1);
           tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (tableEntry != 0) goto ResourceErrorHandler;
         }
@@ -12571,7 +12571,7 @@ LAB_180896ce3:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateC;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
+          GraphicsOperationFlag2 = CONCAT71(GraphicsOperationFlag2._1_7_,1);
           iVar7 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (iVar7 != 0) goto ResourceErrorHandler;
         }
@@ -12601,7 +12601,7 @@ LAB_180896ce3:
         if ((tableEntry != 0) || (iVar7 = SearchResourceTable(resourceTable,GraphicsTransformMatrix,0), iVar7 != 0)) break;
         tableEntry = iVar4;
         if (GraphicsTransformMatrix[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,GraphicsTransformMatrix[0]);
+          GraphicsOperationFlag2 = CONCAT44(GraphicsOperationFlag2._4_4_,GraphicsTransformMatrix[0]);
           GraphicsDataPointer = &SystemDataTypeTemplateD;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           GraphicsDataIndex = iVar7;
