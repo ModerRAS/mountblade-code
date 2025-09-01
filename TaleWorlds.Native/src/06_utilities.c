@@ -7083,12 +7083,12 @@ uint8_t ValidateAndProcessComplexObjectContext(int64_t ObjectContext, int64_t Sy
     InitializeProcessingBuffer(&validationBuffer);
     if (validationBuffer == *(int64_t *)((int64_t)*(int *)(contextPointer + 0x17c) * 8 + 0x180c4f450)) {
       processingResult = ProcessSystemObjectWithBuffer(contextPointer, ObjectContext);
-      goto LAB_18088d83c;
+      goto ObjectContextProcessingComplete;
     }
   }
   *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + 0xfU & 0xfffffff0;
   processingResult = ProcessSystemObjectState(*(uint8_t *)(contextPointer + 0x1e0));
-LAB_18088d83c:
+ObjectContextProcessingComplete:
   if ((int)processingResult == 0) {
     return 0;
   }
@@ -45120,7 +45120,19 @@ void ExecuteContext250Callback(uint8_t ObjectContextParameter, int64_t Validatio
 
 
 
-void InitializeResourceDescriptor(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 初始化资源描述符
+ * 
+ * 该函数负责初始化系统中的资源描述符
+ * 设置资源描述符的模板和数据结构，确保资源管理的正常运行
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识操作的对象
+ * @param ValidationContextParameter 验证上下文参数，包含初始化所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会设置资源描述符模板和系统数据结构
+ * @warning 如果资源描述符已经初始化，系统将执行紧急退出
+ */
+void InitializeResourceDescriptor(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   *(uint8_t *)(ValidationContextParameter + 0x68) = &ResourceDescriptorTemplate;
@@ -45136,7 +45148,19 @@ void InitializeResourceDescriptor(uint8_t ObjectContextParameter,int64_t Validat
 
 
 
-void InitializeSystemResourceHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 初始化系统资源处理器
+ * 
+ * 该函数负责初始化系统资源处理器
+ * 设置资源处理器的模板和数据结构，确保资源处理的正常运行
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识操作的对象
+ * @param ValidationContextParameter 验证上下文参数，包含初始化所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会设置资源处理器模板和系统数据结构
+ * @warning 如果资源处理器已经初始化，系统将执行紧急退出
+ */
+void InitializeSystemResourceHandler(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   *(uint8_t *)(ValidationContextParameter + 0x98) = &SystemResourceHandlerTemplate;
@@ -45152,7 +45176,19 @@ void InitializeSystemResourceHandler(uint8_t ObjectContextParameter,int64_t Vali
 
 
 
-void InitializeSystemResourceHandlerAlt(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 初始化备用系统资源处理器
+ * 
+ * 该函数负责初始化备用路径的系统资源处理器
+ * 设置资源处理器的模板和数据结构，确保资源处理的正常运行
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识操作的对象
+ * @param ValidationContextParameter 验证上下文参数，包含初始化所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会设置资源处理器模板和系统数据结构
+ * @warning 如果资源处理器已经初始化，系统将执行紧急退出
+ */
+void InitializeSystemResourceHandlerAlt(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   *(uint8_t *)(ValidationContextParameter + 0xb8) = &SystemResourceHandlerTemplate;
