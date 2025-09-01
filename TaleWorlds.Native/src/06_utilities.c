@@ -34764,6 +34764,18 @@ void ProcessSecondaryResourceCleanup(uint8_t ObjectContextParameter,int64_t Vali
 
 
 
+/**
+ * @brief 处理资源上下文验证
+ * 
+ * 该函数负责验证资源上下文的有效性
+ * 检查资源状态并确保上下文数据完整性
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含资源对象的上下文信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证过程的数据
+ * @return 无返回值
+ * @note 此函数在资源处理过程中被调用
+ * @warning 如果验证失败可能会触发系统紧急退出
+ */
 void ProcessResourceContextValidation(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
@@ -34832,7 +34844,7 @@ void UnwindRegisterSecondaryMemoryCleanupHandler(uint8_t ObjectContextParameter,
 
 
 
-void Unwind_180903430(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteResourceCleanupOperation(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -34848,7 +34860,7 @@ void Unwind_180903430(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903440(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ProcessResourceReleaseOperation(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;
@@ -34869,7 +34881,7 @@ void Unwind_180903440(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903450(void)
+void CleanupResourceContextData(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -34878,7 +34890,7 @@ void Unwind_180903450(void)
 
 
 
-void Unwind_180903460(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ReleaseResourceHandlerReference(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -34939,7 +34951,7 @@ void Unwind_180903460(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903470(void)
+void ResetResourceStateManager(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -34948,7 +34960,7 @@ void Unwind_180903470(void)
 
 
 
-void Unwind_180903490(void)
+void FinalizeResourceProcessing(void)
 
 {
   _Mtx_destroy_in_situ();
