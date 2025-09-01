@@ -1239,7 +1239,7 @@ void InitializeSystemResourceManager(void)
  * 初始化系统核心数据结构
  * 设置系统启动所需的基本数据结构和初始化参数
  */
-void initializeSystemCoreData(void)
+void InitializeSystemCoreData(void)
 
 {
   char statusFlag;
@@ -1292,7 +1292,7 @@ void initializeSystemCoreData(void)
  * 初始化系统数据表结构
  * 设置系统数据表和相关的内存结构
  */
-void initializeSystemDataTable(void)
+void InitializeSystemDataTable(void)
 
 {
   char statusFlag;
@@ -20736,9 +20736,9 @@ long long ManageSystemResources(long long param_1,long long param_2,void* param_
   resourceStatusFlag2 = *(uint32_t *)(param_2 + 0x68);
   resourceStatusFlag3 = *(uint32_t *)(param_2 + 0x6c);
   *(uint32_t *)(param_1 + 0x60) = *(uint32_t *)(param_2 + 0x60);
-  *(uint32_t *)(param_1 + 100) = uVar2;
-  *(uint32_t *)(param_1 + 0x68) = uVar3;
-  *(uint32_t *)(param_1 + 0x6c) = uVar4;
+  *(uint32_t *)(param_1 + 100) = resourceStatusFlag1;
+  *(uint32_t *)(param_1 + 0x68) = resourceStatusFlag2;
+  *(uint32_t *)(param_1 + 0x6c) = resourceStatusFlag3;
   *(void* *)(param_1 + 0x70) = *(void* *)(param_2 + 0x70);
   *(void* *)(param_1 + 0x78) = *(void* *)(param_2 + 0x78);
   *(void* *)(param_1 + 0x80) = *(void* *)(param_2 + 0x80);
