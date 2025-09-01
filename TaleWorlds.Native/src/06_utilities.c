@@ -32784,7 +32784,7 @@ void ResourcePoolManager(uint8_t ObjectContextParameter,int64_t ValidationContex
 
 
 
-void Unwind_180902cf0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void MemorySegmentCleaner(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -32807,7 +32807,7 @@ void Unwind_180902cf0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902d00(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void SystemResourceReleaser(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   CleanupSystemMemoryHandle(*(int64_t *)(ValidationContextParameter + 0x20) + 0x60);
@@ -32816,7 +32816,7 @@ void Unwind_180902d00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902d10(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ExceptionFrameHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   CleanupSystemMemoryHandle(*(int64_t *)(ValidationContextParameter + 0x20) + 0x60);
