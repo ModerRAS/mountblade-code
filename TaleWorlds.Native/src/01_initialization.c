@@ -2648,12 +2648,12 @@ void InitializeResourcePool(void)
   undefined8 *systemCurrentNode;
   undefined8 *systemNextNode;
   undefined8 *systemPreviousNode;
-  undefined *puStackX_18;
+  void* resourcePoolCallbackPointer;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  puStackX_18 = &UNK_1800868c0;
+  resourcePoolCallbackPointer = &ResourcePoolCallbackNode;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
