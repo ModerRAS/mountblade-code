@@ -32566,10 +32566,10 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
   float engine_stack_float_b0;
   uint32 engine_stack_uint_ac;
   float engine_stack_float_a8;
-  float fStack_a4;
-  float fStack_a0;
+  float engine_stack_float_a4;
+  float engine_stack_float_a0;
   uint32 engine_stack_uint_9c;
-  float *pfStack_98;
+  float *engine_stack_float_pointer_98;
   uint32 engine_stack_uint_90;
   longlong engine_stack_long_88;
   uint64 engine_stack_value_78;
@@ -32606,8 +32606,8 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
     engine_data_structure_ptr[0xa7] = 0.0;
     engine_data_structure_ptr[0xa8] = 3.4028235e+38;
     engine_stack_uint_90 = 0;
-    pfStack_98 = pengine_temp_float_6;
-    engine_unnamed_function_1750(&pfStack_98);
+    engine_stack_float_pointer_98 = pengine_temp_float_6;
+    engine_unnamed_function_1750(&engine_stack_float_pointer_98);
     if (*(int *)(engine_stack_long_88 + 0x10) != 0) {
       do {
         pengine_temp_float_6 = (float *)((longlong)(int)engine_temp_uint64_value * 0x10 + *(longlong *)(engine_stack_long_88 + 0x18));
@@ -32615,16 +32615,16 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
         if (*pengine_temp_float_1 < engine_stack_float_a8) {
           engine_stack_float_a8 = *pengine_temp_float_1;
         }
-        fStack_a4 = pengine_temp_float_6[1];
-        if (engine_data_structure_ptr[0x9e] < fStack_a4) {
-          fStack_a4 = engine_data_structure_ptr[0x9e];
+        engine_stack_float_a4 = pengine_temp_float_6[1];
+        if (engine_data_structure_ptr[0x9e] < engine_stack_float_a4) {
+          engine_stack_float_a4 = engine_data_structure_ptr[0x9e];
         }
-        fStack_a0 = pengine_temp_float_6[2];
-        if (engine_data_structure_ptr[0x9f] < fStack_a0) {
-          fStack_a0 = engine_data_structure_ptr[0x9f];
+        engine_stack_float_a0 = pengine_temp_float_6[2];
+        if (engine_data_structure_ptr[0x9f] < engine_stack_float_a0) {
+          engine_stack_float_a0 = engine_data_structure_ptr[0x9f];
         }
-        *(ulonglong *)pengine_temp_float_1 = CONCAT44(fStack_a4,engine_stack_float_a8);
-        *(ulonglong *)(engine_data_structure_ptr + 0x9f) = CONCAT44(engine_stack_uint_9c,fStack_a0);
+        *(ulonglong *)pengine_temp_float_1 = CONCAT44(engine_stack_float_a4,engine_stack_float_a8);
+        *(ulonglong *)(engine_data_structure_ptr + 0x9f) = CONCAT44(engine_stack_uint_9c,engine_stack_float_a0);
         engine_stack_float_b8 = *pengine_temp_float_6;
         if (engine_stack_float_b8 < engine_data_structure_ptr[0xa1]) {
           engine_stack_float_b8 = engine_data_structure_ptr[0xa1];
@@ -32684,7 +32684,7 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
         pengine_temp_float_6 = (float *)engine_unnamed_function_6470(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
       }
     }
-    pengine_temp_float_4 = pfStack_98;
+    pengine_temp_float_4 = engine_stack_float_pointer_98;
     if (engine_data_structure_ptr[0xa1] < *pengine_temp_float_1) {
       engine_data_structure_ptr[0xa9] = 0.0;
       pengine_temp_float_1[0] = 0.0;
@@ -32724,7 +32724,7 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
       }
       engine_data_structure_ptr[0xa9] = SQRT(engine_temp_float_10);
     }
-    if (pfStack_98 != (float *)0x0) {
+    if (engine_stack_float_pointer_98 != (float *)0x0) {
       while( true ) {
         LOCK();
         engine_temp_char_5 = *(char *)(pengine_temp_float_4 + 0x3b);
@@ -32748,8 +32748,8 @@ LAB_180075f4f:
       *pengine_temp_float_1 = (float)((int)*pengine_temp_float_1 + -1);
       UNLOCK();
       if (engine_temp_char_5 == '\0') {
-        if ((((engine_temp_float_10 == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
-            (pengine_temp_float_6 = pfStack_98, engine_unnamed_function_1520(pfStack_98), *(char *)(pengine_temp_float_6 + 0x3f) == '\0')) &&
+        if ((((engine_temp_float_10 == 1.4013e-45) && (*(longlong *)(engine_stack_float_pointer_98 + 0x84) != 0)) &&
+            (pengine_temp_float_6 = engine_stack_float_pointer_98, engine_unnamed_function_1520(engine_stack_float_pointer_98), *(char *)(pengine_temp_float_6 + 0x3f) == '\0')) &&
            ((*(char *)(pengine_temp_float_6 + 0x3d) == '\0' &&
             (((*(byte *)((longlong)pengine_temp_float_6 + 0xfd) & 0x20) == 0 ||
              ((*(byte *)((longlong)pengine_temp_float_6 + 0xfe) & 1) == 0)))))) {
@@ -33987,8 +33987,8 @@ ulonglong engine_unnamed_function_1320(longlong engine_data_structure_ptr,uint *
   float engine_stack_float_b0;
   float fStack_ac;
   float engine_stack_float_a8;
-  float fStack_a4;
-  float fStack_a0;
+  float engine_stack_float_a4;
+  float engine_stack_float_a0;
   float fStack_9c;
   float fStack_98;
   float fStack_94;
@@ -34265,8 +34265,8 @@ LAB_180077879:
       engine_temp_float_4 = *(float *)(engine_data_structure_ptr + 0x154);
       engine_temp_float_5 = *(float *)(engine_data_structure_ptr + 0x150);
       engine_stack_float_a8 = engine_temp_float_3 * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
-      fStack_a4 = engine_temp_float_3 * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
-      fStack_a0 = engine_temp_float_3 * engine_temp_float_15 + engine_temp_float_2 * engine_temp_float_11 + engine_temp_float * engine_temp_float_19;
+      engine_stack_float_a4 = engine_temp_float_3 * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
+      engine_stack_float_a0 = engine_temp_float_3 * engine_temp_float_15 + engine_temp_float_2 * engine_temp_float_11 + engine_temp_float * engine_temp_float_19;
       fStack_9c = engine_temp_float_3 * engine_temp_float_16 + engine_temp_float_2 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20;
       engine_temp_float = *(float *)(engine_data_structure_ptr + 0x158);
       fStack_98 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17 + engine_comparison_params[0xc];
@@ -38319,10 +38319,10 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
   float engine_stack_float_b0;
   uint32 engine_stack_uint_ac;
   float engine_stack_float_a8;
-  float fStack_a4;
-  float fStack_a0;
+  float engine_stack_float_a4;
+  float engine_stack_float_a0;
   uint32 engine_stack_uint_9c;
-  float *pfStack_98;
+  float *engine_stack_float_pointer_98;
   uint32 engine_stack_uint_90;
   longlong engine_stack_long_88;
   uint64 engine_stack_value_80;
@@ -38388,8 +38388,8 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
     engine_data_structure_ptr[0xa7] = 0.0;
     engine_data_structure_ptr[0xa8] = 3.4028235e+38;
     engine_stack_uint_90 = 0;
-    pfStack_98 = pengine_temp_float_7;
-    engine_unnamed_function_1750(&pfStack_98);
+    engine_stack_float_pointer_98 = pengine_temp_float_7;
+    engine_unnamed_function_1750(&engine_stack_float_pointer_98);
     if (*(int *)(engine_stack_long_88 + 0x10) != 0) {
       do {
         pengine_temp_float_7 = (float *)((longlong)(int)engine_temp_uint_8 * 0x10 + *(longlong *)(engine_stack_long_88 + 0x18));
@@ -38397,16 +38397,16 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
         if (*pengine_temp_float_1 < engine_stack_float_a8) {
           engine_stack_float_a8 = *pengine_temp_float_1;
         }
-        fStack_a4 = pengine_temp_float_7[1];
-        if (engine_data_structure_ptr[0x9e] < fStack_a4) {
-          fStack_a4 = engine_data_structure_ptr[0x9e];
+        engine_stack_float_a4 = pengine_temp_float_7[1];
+        if (engine_data_structure_ptr[0x9e] < engine_stack_float_a4) {
+          engine_stack_float_a4 = engine_data_structure_ptr[0x9e];
         }
-        fStack_a0 = pengine_temp_float_7[2];
-        if (engine_data_structure_ptr[0x9f] < fStack_a0) {
-          fStack_a0 = engine_data_structure_ptr[0x9f];
+        engine_stack_float_a0 = pengine_temp_float_7[2];
+        if (engine_data_structure_ptr[0x9f] < engine_stack_float_a0) {
+          engine_stack_float_a0 = engine_data_structure_ptr[0x9f];
         }
-        *(ulonglong *)pengine_temp_float_1 = CONCAT44(fStack_a4,engine_stack_float_a8);
-        *(ulonglong *)(engine_data_structure_ptr + 0x9f) = CONCAT44(engine_stack_uint_9c,fStack_a0);
+        *(ulonglong *)pengine_temp_float_1 = CONCAT44(engine_stack_float_a4,engine_stack_float_a8);
+        *(ulonglong *)(engine_data_structure_ptr + 0x9f) = CONCAT44(engine_stack_uint_9c,engine_stack_float_a0);
         engine_stack_float_b8 = *pengine_temp_float_7;
         if (engine_stack_float_b8 < engine_data_structure_ptr[0xa1]) {
           engine_stack_float_b8 = engine_data_structure_ptr[0xa1];
@@ -38463,7 +38463,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
         pengine_temp_float_7 = (float *)engine_unnamed_function_6470(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
       }
     }
-    pengine_temp_float_4 = pfStack_98;
+    pengine_temp_float_4 = engine_stack_float_pointer_98;
     if (engine_data_structure_ptr[0xa1] < *pengine_temp_float_1) {
       engine_data_structure_ptr[0xa9] = 0.0;
       pengine_temp_float_1[0] = 0.0;
@@ -38503,7 +38503,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
       }
       engine_data_structure_ptr[0xa9] = SQRT(engine_temp_float_6);
     }
-    if (pfStack_98 != (float *)0x0) {
+    if (engine_stack_float_pointer_98 != (float *)0x0) {
       while( true ) {
         LOCK();
         engine_temp_char_5 = *(char *)(pengine_temp_float_4 + 0x3b);
@@ -38527,8 +38527,8 @@ LAB_180075f4f:
       *pengine_temp_float_1 = (float)((int)*pengine_temp_float_1 + -1);
       UNLOCK();
       if (engine_temp_char_5 == '\0') {
-        if ((((engine_temp_float_6 == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
-            (pengine_temp_float_7 = pfStack_98, engine_unnamed_function_1520(pfStack_98), *(char *)(pengine_temp_float_7 + 0x3f) == '\0')) &&
+        if ((((engine_temp_float_6 == 1.4013e-45) && (*(longlong *)(engine_stack_float_pointer_98 + 0x84) != 0)) &&
+            (pengine_temp_float_7 = engine_stack_float_pointer_98, engine_unnamed_function_1520(engine_stack_float_pointer_98), *(char *)(pengine_temp_float_7 + 0x3f) == '\0')) &&
            ((*(char *)(pengine_temp_float_7 + 0x3d) == '\0' &&
             (((*(byte *)((longlong)pengine_temp_float_7 + 0xfd) & 0x20) == 0 ||
              ((*(byte *)((longlong)pengine_temp_float_7 + 0xfe) & 1) == 0)))))) {

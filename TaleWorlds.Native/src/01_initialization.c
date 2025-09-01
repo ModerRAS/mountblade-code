@@ -1383,7 +1383,6 @@ void system_initialize_input(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_initialize_subsystem_internal(void)
 
@@ -1469,7 +1468,6 @@ int system_initialize_subsystem_internal(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_initialize_subsystem_internal(void)
 
@@ -1585,7 +1583,6 @@ int system_initialize_subsystem_internal(uint8_t system_context_ptr,uint8_t syst
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_debug(void)
@@ -2364,7 +2361,6 @@ void system_initialize_thread_scheduler(void)
  * 简化实现：提供基本的配置管理器初始化功能
  */
 void system_initialize_config_manager(void)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化入口点函数
@@ -3793,7 +3789,6 @@ void system_manage_network_connections(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_render_commands(void)
@@ -3812,7 +3807,6 @@ void system_process_render_commands(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_initialize_input_system(void)
   
@@ -4299,7 +4293,6 @@ void system_configure_window_manager(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_user_input(void)
@@ -4623,7 +4616,6 @@ void system_process_transform_data(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_camera_system(void)
@@ -4642,7 +4634,6 @@ void system_initialize_camera_system(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_configure_projection_matrix(void)
   
@@ -4665,7 +4656,6 @@ void system_handle_view_frustum(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_render_targets(void)
@@ -4684,7 +4674,6 @@ void system_manage_render_targets(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_shadow_mapping(void)
@@ -4703,7 +4692,6 @@ void system_process_shadow_mapping(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_post_processing(void)
@@ -4722,7 +4710,6 @@ void system_initialize_post_processing(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_shader_parameters(void)
@@ -6902,7 +6889,6 @@ void system_initialize_profiling_system(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_performance_counters(void)
@@ -6921,7 +6907,6 @@ void system_configure_performance_counters(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_handle_metrics_collection(void)
   
@@ -6944,7 +6929,6 @@ void system_manage_profiling_data(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_performance_reports(void)
@@ -7311,7 +7295,6 @@ void system_handle_data_persistence(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_save_slots(void)
@@ -7806,7 +7789,6 @@ void system_process_mod_events(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_context_data_secondary(void)
@@ -7825,7 +7807,6 @@ void system_process_context_data_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_resource_allocation_secondary(void)
@@ -7844,7 +7825,6 @@ void system_handle_resource_allocation_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_memory_pool_secondary(void)
@@ -7863,7 +7843,6 @@ void system_manage_memory_pool_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_thread_scheduler_secondary(void)
@@ -7882,7 +7861,6 @@ void system_configure_thread_scheduler_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_subsystem_component_secondary(void)
@@ -7901,7 +7879,6 @@ void system_initialize_subsystem_component_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_validate_system_state_secondary(void)
@@ -7920,7 +7897,6 @@ void system_validate_system_state_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_configuration_data_secondary(void)
@@ -7939,7 +7915,6 @@ void system_process_configuration_data_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_module_loading_secondary(void)
@@ -7958,7 +7933,6 @@ void system_handle_module_loading_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_resource_cache_secondary(void)
@@ -9629,7 +9603,6 @@ void system_manage_state_machine_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_game_logic_secondary(void)
@@ -9648,7 +9621,6 @@ void system_process_game_logic_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_initialize_ai_system_secondary(void)
   
@@ -10086,7 +10058,6 @@ void system_initialize_post_processing_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_shader_parameters_secondary(void)
@@ -10105,7 +10076,6 @@ void system_configure_shader_parameters_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_buffer_operations_secondary(void)
@@ -10429,7 +10399,6 @@ void system_process_lighting_calculations_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_initialize_animation_system_secondary(void)
   
@@ -11089,7 +11058,6 @@ void system_initialize_network_layer_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_protocol_handlers_secondary(void)
@@ -11588,7 +11556,6 @@ void system_configure_asset_loading_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_resource_streaming_secondary(void)
@@ -11607,7 +11574,6 @@ void system_handle_resource_streaming_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_memory_arena_secondary(void)
@@ -11626,7 +11592,6 @@ void system_manage_memory_arena_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_resource_requests_secondary(void)
@@ -11645,7 +11610,6 @@ void system_process_resource_requests_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_job_system_secondary(void)
@@ -11664,7 +11628,6 @@ void system_initialize_job_system_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_configure_task_scheduler_secondary(void)
   
@@ -12884,7 +12847,6 @@ void system_process_mod_events_secondary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_process_context_data_ternary(void)
   
@@ -12911,7 +12873,6 @@ int system_process_context_data_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_handle_resource_allocation_ternary(void)
   
@@ -13089,7 +13050,6 @@ void system_validate_system_state_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_configuration_data_ternary(void)
@@ -14030,7 +13990,6 @@ void system_manage_component_lifecycle_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_script_engine_ternary(void)
@@ -14049,7 +14008,6 @@ void system_initialize_script_engine_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_physics_system_ternary(void)
@@ -14090,7 +14048,6 @@ int system_initialize_physics_engine(uint8_t system_context_ptr,uint8_t system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_manage_network_connections_ternary(void)
   
@@ -14106,7 +14063,6 @@ int system_manage_network_connections_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_render_commands_ternary(void)
@@ -14125,7 +14081,6 @@ void system_process_render_commands_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t system_process_context_data(void)
 
@@ -14164,7 +14119,6 @@ LABEL_SYSTEM_CONFIG_SIZE_CHECK:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_input_system_ternary(void)
@@ -14183,7 +14137,6 @@ void system_initialize_input_system_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_display_settings_ternary(void)
@@ -14202,7 +14155,6 @@ void system_configure_display_settings_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_handle_file_operations_ternary(void)
   
@@ -14218,7 +14170,6 @@ int system_handle_file_operations_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_manage_data_streams_ternary(void)
   
@@ -14245,7 +14196,6 @@ int system_process_animation_data_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_particle_system_ternary(void)
@@ -14260,7 +14210,6 @@ void system_initialize_particle_system_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_lighting_system_ternary(void)
@@ -14280,7 +14229,6 @@ void system_configure_lighting_system_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_collision_detection_ternary(void)
@@ -14295,7 +14243,6 @@ void system_handle_collision_detection_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_shader_programs_ternary(void)
@@ -14310,7 +14257,6 @@ void system_manage_shader_programs_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_texture_data_ternary(void)
@@ -14325,7 +14271,6 @@ void system_process_texture_data_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_ui_system_ternary(void)
@@ -14340,7 +14285,6 @@ void system_initialize_ui_system_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_window_manager_ternary(void)
@@ -14377,7 +14321,6 @@ int system_handle_user_input_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_state_machine_ternary(void)
@@ -14392,7 +14335,6 @@ void system_manage_state_machine_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_game_logic_ternary(void)
@@ -14440,7 +14382,6 @@ void WotsMainSDLL(uint8_t system_context_ptr)
 {
   uint8_t system_system_stack_arrayx18 [2];
   
-                    // 0x43d20  31  WotsMainSDLL
 
 void system_initialize_module_loader(int64_t system_context_ptr)
 
@@ -14540,7 +14481,6 @@ system_initialize_system_memory_pool_data(uint8_t *system_context_ptr,uint64_t s
 
 
 void system_handle_entity_management_ternary(void)
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -14556,7 +14496,6 @@ void system_initialize_audio(uint8_t *system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_scene_graph_ternary(void)
@@ -14666,7 +14605,6 @@ system_label:
     system_system_stack_context_ptr_b = &system_null_ptr;
     system_system_stack_context_ptr_bf8 = &system_null_ptr;
     if (system_system_stack_context_ptr_bf0 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_system_stack_context_ptr_bf0 = (void* *)0x0;
@@ -14674,7 +14612,6 @@ system_label:
     system_system_stack_context_ptr_bf8 = &system_null_ptr;
     system_system_stack_context_ptr_bd8 = &system_null_ptr;
     if (system_system_stack_context_ptr_bd0 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_system_stack_context_ptr_bd0 = (void* *)0x0;
@@ -14682,7 +14619,6 @@ system_label:
     system_system_stack_context_ptr_bd8 = &system_null_ptr;
     system_system_stack_context_ptr_bb8 = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -14690,13 +14626,11 @@ system_label:
     system_system_stack_context_ptr_bb8 = &system_null_ptr;
   }
   system_stack_context_hash_value = 0;
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_data_array);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_transform_data_ternary(void)
@@ -14756,7 +14690,6 @@ void system_process_transform_data_ternary(void)
     if (system_temp_storage_value != 0) goto system_label;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -14768,7 +14701,6 @@ system_label:
       if (system_temp_storage_value == 0) {
         system_stack_byte_pointer = &system_null_ptr;
         if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         goto system_label;
@@ -14782,7 +14714,6 @@ system_label:
     if (system_result_code == 0) {
       system_stack_byte_pointer = &system_null_ptr;
       if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
     }
@@ -14790,7 +14721,6 @@ system_label:
       *(char *)system_context_long_ptr_secondary = '\x01';
       system_stack_byte_pointer = &system_null_ptr;
       if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
     }
@@ -14855,13 +14785,11 @@ void system_initialize_camera_system_ternary(void)
   system_temp_unsigned_value_primary = GetCurrentThread();
   system_process_context_data(system_temp_unsigned_value_primary,&system_stack_byte_pointer);
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(camera_node_current);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint32_t* system_process_context_data(void)
 
@@ -14975,7 +14903,6 @@ uint32_t* system_process_context_data(void)
     CloseHandle(system_pppp_long_var[0x42686]);
     psystem_stack_ptr_double_resource = (int64_t ***)(system_pppp_long_var + 0x42687);
     if ((int64_t ***)*psystem_stack_ptr_double_resource != (int64_t ***)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     psystem_stack_ptr_double_resource = (int64_t ***)(system_pppp_long_var + 0x4267c);
@@ -14984,7 +14911,6 @@ uint32_t* system_process_context_data(void)
     _Mtx_system_destroy_in_situ();
     system_process_context_data(system_pppp_long_var);
     if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_data_handle);
     }
   }
@@ -14993,7 +14919,6 @@ uint32_t* system_process_context_data(void)
   system_global_data_pointer = (int64_t ****)0x0;
   if (system_global_data_pointer != 0) {
     system_process_context_data(system_global_data_pointer);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_data_handle);
   }
   system_global_data_pointer = 0;
@@ -15015,7 +14940,6 @@ uint32_t* system_process_context_data(void)
   system_process_context_data(system_quad_pointer_14 + 0x1e);
   system_process_context_data(system_quad_pointer_14 + 0xf);
   system_process_context_data(system_quad_pointer_14);
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_quad_pointer_14);
 }
 
@@ -15026,7 +14950,6 @@ void WotsMain(uint8_t system_context_ptr)
 {
   uint8_t system_system_stack_arrayx18 [2];
   
-                    // 0x45a00  27  WotsMain
 
 void system_initialize_resource(int64_t *system_context_ptr)
 
@@ -15053,8 +14976,6 @@ void system_configure_projection_matrix_ternary(void)
   } while (*(char *)(system_config_data_array + system_data_handle) != '\0');
   if ((int)system_data_handle < 0x1000) {
     *(int *)(system_context_ptr + 0x10) = (int)system_data_handle;
-                    // WARNING: Could not recover jumptable at 0x000180045b59. Too many branches
-                    // WARNING: Treating indirect jump as call
     system_strcpy_s(*(uint8_t *)(system_context_ptr + 8),0x1000);
     return;
   }
@@ -15069,7 +14990,6 @@ void system_configure_projection_matrix_ternary(void)
 
 void system_handle_view_frustum_ternary(void)
   if (system_thread_count + 1 < 0x1000) {
-                    // WARNING: Subroutine does not return
     memcpy(*(uint8_t* **)(system_context_ptr + 8),system_config_data_array,(int64_t)system_thread_count);
   }
   **(uint8_t* **)(system_context_ptr + 8) = 0;
@@ -15081,7 +15001,6 @@ void system_handle_view_frustum_ternary(void)
 
 
 void system_manage_render_targets_ternary(void)
-                    // WARNING: Subroutine does not return
   memcpy();
 }
 
@@ -15100,7 +15019,6 @@ void system_process_shadow_mapping_ternary(void)
 
 
 void system_initialize_post_processing_ternary(void)
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -15125,7 +15043,6 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint system_co
   PostQueuedCompletionStatus(system_context_ptr[0x42686],0,0xffffffffffffffff,0,0xfffffffffffffffe);
   CloseHandle(system_context_ptr[0x42686]);
   if (system_context_ptr[0x42687] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   _Mtx_system_destroy_in_situ();
@@ -15172,8 +15089,6 @@ void system_configure_shader_parameters_ternary(void)
   } while (*(char *)(system_config_data_array + system_data_handle) != '\0');
   if ((int)system_data_handle < 0x400) {
     *(int *)(system_context_ptr + 0x10) = (int)system_data_handle;
-                    // WARNING: Could not recover jumptable at 0x000180045f19. Too many branches
-                    // WARNING: Treating indirect jump as call
     system_strcpy_s(*(uint8_t *)(system_context_ptr + 8),0x400);
     return;
   }
@@ -15188,7 +15103,6 @@ void system_configure_shader_parameters_ternary(void)
 
 void system_handle_buffer_operations_ternary(void)
   if (system_thread_count + 1 < 0x400) {
-                    // WARNING: Subroutine does not return
     memcpy(*(uint8_t* **)(system_context_ptr + 8),system_config_data_array,(int64_t)system_thread_count);
   }
   **(uint8_t* **)(system_context_ptr + 8) = 0;
@@ -15200,7 +15114,6 @@ void system_handle_buffer_operations_ternary(void)
 
 
 void system_manage_vertex_data_ternary(void)
-                    // WARNING: Subroutine does not return
   memcpy();
 }
 
@@ -15216,7 +15129,6 @@ void system_process_index_buffers_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_texture_manager_ternary(void)
@@ -15241,11 +15153,9 @@ void system_initialize_texture_manager_ternary(void)
     do {
       system_data_handle = system_data_handle + 1;
     } while (*(char *)(system_data_handle + system_thread_count) != '\0');
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_byte_pointer,*(int64_t *)(system_context_ptr + 8),system_data_handle - *(int64_t *)(system_context_ptr + 8));
   }
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_stack_buffer_context);
 }
 
@@ -15334,7 +15244,6 @@ int64_t system_process_context_data(uint32_t* *system_context_ptr,uint32_t* *sys
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_material_system_ternary(void)
@@ -15387,8 +15296,6 @@ void system_process_lighting_calculations_ternary(void)
   } while (*(char *)(system_config_data_array + system_data_handle) != '\0');
   if ((int)system_data_handle < 0x20) {
     *(int *)(system_context_ptr + 0x10) = (int)system_data_handle;
-                    // WARNING: Could not recover jumptable at 0x0001800463b7. Too many branches
-                    // WARNING: Treating indirect jump as call
     system_strcpy_s(*(uint8_t *)(system_context_ptr + 8),0x20);
     return;
   }
@@ -15403,7 +15310,6 @@ void system_process_lighting_calculations_ternary(void)
 
 void system_initialize_animation_system_ternary(void)
   if (system_thread_count + 1 < 0x20) {
-                    // WARNING: Subroutine does not return
     memcpy(*(uint8_t* **)(system_context_ptr + 8),system_config_data_array,(int64_t)system_thread_count);
   }
   **(uint8_t* **)(system_context_ptr + 8) = 0;
@@ -15415,7 +15321,6 @@ void system_initialize_animation_system_ternary(void)
 
 
 void system_configure_skeletal_animation_ternary(void)
-                    // WARNING: Subroutine does not return
   memcpy();
 }
 
@@ -15459,7 +15364,6 @@ uint8_t * system_initialize_network_manager(uint8_t *system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_animation_states_ternary(void)
@@ -15484,11 +15388,9 @@ void system_manage_animation_states_ternary(void)
     do {
       system_data_handle = system_data_handle + 1;
     } while (*(char *)(system_data_handle + system_thread_count) != '\0');
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_byte_pointer,*(int64_t *)(system_context_ptr + 8),system_data_handle - *(int64_t *)(system_context_ptr + 8));
   }
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_a8_alt);
 }
 
@@ -15572,7 +15474,6 @@ void system_handle_collision_response_ternary(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -15587,7 +15488,6 @@ void system_manage_constraint_system_ternary(void)
   for (init_ctx_base = (uint8_t *)*system_context_ptr; init_ctx_base != system_context_ptr_primary; init_ctx_base = init_ctx_base + 5) {
     *init_ctx_base = &system_null_ptr;
     if (init_ctx_base[1] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     init_ctx_base[1] = 0;
@@ -15595,7 +15495,6 @@ void system_manage_constraint_system_ternary(void)
     *init_ctx_base = &system_null_ptr;
   }
   if (*system_context_ptr != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -15638,7 +15537,6 @@ void system_initialize_network(uint64_t *system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_process_force_calculations_ternary(void)
   uint8_t ***system_psystem_ptr_var;
@@ -15725,7 +15623,6 @@ system_label:
     init_ctx_base_value = *(int64_t *)(system_context_ptr + 8);
   }
   if (init_ctx_base_value != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(init_ctx_base_value);
   }
   *(int64_t *)(system_context_ptr + 8) = system_data_handle;
@@ -15740,7 +15637,6 @@ system_label:
   system_stack_byte_pointer = (uint8_t *)&system_null_ptr;
   if (system_stack_storage == 0) {
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -15751,7 +15647,6 @@ void system_initialize_audio_engine_ternary(void)
   system_process_context_data(system_context_ptr + 0x1a,system_context_ptr[0x1c],system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[1] = 0;
@@ -15827,7 +15722,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_audio_mixing_ternary(void)
@@ -15859,7 +15753,6 @@ void system_handle_audio_mixing_ternary(void)
   system_process_context_data(&system_data_bf52c0,system_config_data_array);
   *system_config_data_array = &system_null_ptr;
   if (system_config_data_array[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_config_data_array[1] = 0;
@@ -15870,8 +15763,6 @@ void system_handle_audio_mixing_ternary(void)
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001800472a0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_sound_resources_ternary(void)
@@ -15918,7 +15809,6 @@ void system_manage_sound_resources_ternary(void)
   system_stack_context_hash_value = system_global_data_pointer ^ (uint64_t)system_stack_buffer_audio_system;
   system_stack_context_hash_value = 0;
   if (*(int *)(system_global_data_pointer + 0x224) - system_global_data_pointer < 0xfb) {
-                    // WARNING: Subroutine does not return
     system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_stack_buffer_audio_system);
   }
   *(uint8_t* *)(system_global_data_pointer + 0x39) = 1;
@@ -16027,7 +15917,6 @@ void system_manage_sound_resources_ternary(void)
     *(double *)(init_ctx_base_value + 0x20 + system_global_data_pointer) = (double)(system_unsigned_result_value >> 0x14);
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -16035,7 +15924,6 @@ void system_manage_sound_resources_ternary(void)
     system_stack_byte_pointer = &system_null_ptr;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -16052,7 +15940,6 @@ void system_manage_sound_resources_ternary(void)
   system_stack_context_hash_value = 0;
   system_process_context_data(&system_stack_byte_pointer,system_system_stack_varint_var);
   if (system_system_stack_varint_var != 0) {
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_byte_pointer,system_stack_storage,system_system_stack_varint_var + 1);
   }
   if (system_stack_storage != 0) {
@@ -16095,7 +15982,6 @@ void system_manage_sound_resources_ternary(void)
       UNLOCK();
     }
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data(current_ctx_ptr);
 }
 
@@ -16138,7 +16024,6 @@ void system_initialize_network_layer_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_protocol_handlers_ternary(void)
@@ -16217,7 +16102,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_data_serialization_ternary(void)
@@ -16250,7 +16134,6 @@ void system_handle_data_serialization_ternary(void)
     system_process_context_data(&system_stack_byte_pointer,system_temp_uint_value,system_thread_count,system_memory_size_array,1,0xfffffffffffffffe);
   }
   if (system_temp_uint_value != 0) {
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_byte_pointer,*(uint8_t *)(system_data_handle + 0x178),system_temp_uint_value);
   }
   if (system_stack_byte_pointer != (void* *)0x0) {
@@ -16291,7 +16174,6 @@ void system_handle_data_serialization_ternary(void)
       system_process_context_data(&system_stack_byte_pointer,*(uint32_t* *)(system_global_data_pointer + 0x10 + system_temp_uint_value));
       system_result_code = *(int *)(system_data_handle + 0x10 + system_temp_uint_value);
       if (system_result_code != 0) {
-                    // WARNING: Subroutine does not return
         memcpy(system_stack_char_ptr_file_path,*(uint8_t *)(system_data_handle + 8 + system_temp_uint_value),system_result_code + 1);
       }
       if (*(int64_t *)(system_data_handle + 8 + system_temp_uint_value) != 0) {
@@ -16421,7 +16303,6 @@ void system_handle_data_serialization_ternary(void)
         system_stack_context_hash_value = 0;
         system_process_context_data(&system_stack_byte_pointer,*(uint32_t* *)(system_data_handle + 0x50));
         if (*(int *)(system_data_handle + 0x50) != 0) {
-                    // WARNING: Subroutine does not return
           memcpy(system_stack_char_ptr_a0,*(uint8_t *)(system_data_handle + 0x48),*(int *)(system_data_handle + 0x50) + 1);
         }
         if (*(int64_t *)(system_data_handle + 0x48) != 0) {
@@ -16447,7 +16328,6 @@ void system_handle_data_serialization_ternary(void)
         system_process_context_data(camera_traverse_node_next,&system_null_ptr,system_status_system_flag_variable_d,*(uint8_t *)(system_data_handle + 0x60));
         system_stack_byte_pointer = &system_null_ptr;
         if (system_stack_char_ptr_a0 != (char *)0x0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         system_stack_char_ptr_a0 = (char *)0x0;
@@ -16459,7 +16339,6 @@ void system_handle_data_serialization_ternary(void)
       system_process_context_data(camera_traverse_node_next,&system_data_system_ptr_varcc18);
       system_stack_byte_pointer = &system_null_ptr;
       if (system_stack_char_ptr_file_path != (char *)0x0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_stack_char_ptr_file_path = (char *)0x0;
@@ -16512,7 +16391,6 @@ void system_handle_data_serialization_ternary(void)
       UNLOCK();
     }
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data(camera_traverse_node_next);
 }
 
@@ -16528,7 +16406,6 @@ void system_manage_connection_pool_ternary(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -16543,7 +16420,6 @@ void system_process_network_events_ternary(void)
   for (init_ctx_base = (uint8_t *)*system_context_ptr; init_ctx_base != system_context_ptr_primary; init_ctx_base = init_ctx_base + 5) {
     *init_ctx_base = &system_null_ptr;
     if (init_ctx_base[1] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     init_ctx_base[1] = 0;
@@ -16551,7 +16427,6 @@ void system_process_network_events_ternary(void)
     *init_ctx_base = &system_null_ptr;
   }
   if (*system_context_ptr != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -16592,7 +16467,6 @@ void system_initialize_security_layer_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_encryption_system_ternary(void)
@@ -16604,7 +16478,6 @@ void system_configure_encryption_system_ternary(void)
       system_global_data_pointer = system_global_data_pointer + -1;
       UNLOCK();
     }
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr);
   }
   return;
@@ -16828,7 +16701,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_authentication_ternary(void)
@@ -16866,13 +16738,11 @@ system_label:
   *(uint8_t *)(context_offset + 0x58) = 0;
   *(uint8_t *)(context_offset + 0x48) = 0;
   *(uint32_t* *)(context_offset + 0x50) = 0;
-                    // WARNING: Subroutine does not return
   system_process_context_data(context_offset,system_thread_count,system_context_ptr,system_iteration_count,system_byte_operation_result,system_byte_pointer_d);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t * system_process_context_data(int64_t system_context_ptr,int64_t *system_config_data_array,uint8_t system_thread_count,uint8_t system_memory_size_array)
 
@@ -16910,7 +16780,6 @@ uint8_t * system_process_context_data(int64_t system_context_ptr,int64_t *system
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t * system_process_context_data(int64_t system_context_ptr,int64_t system_config_data_array,uint8_t system_thread_count,uint8_t system_memory_size_array)
 
@@ -17092,7 +16961,6 @@ void system_process_security_events_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_script_runtime_ternary(void)
@@ -17117,7 +16985,6 @@ void system_initialize_script_runtime_ternary(void)
   if ((system_param_primary & 0xfffffffd) != 0) {
     __Throw_C_system_error_varstd__YAXH_Z(system_param_primary);
   }
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_stack_buffer_thread_sync);
 }
 
@@ -17233,7 +17100,6 @@ system_process_context_data(uint8_t *system_context_ptr,uint64_t system_config_d
 
 void system_configure_asset_loading_ternary(void)
   if (system_thread_count + 1 < 0x80) {
-                    // WARNING: Subroutine does not return
     memcpy(*(uint8_t* **)(system_context_ptr + 8),system_config_data_array,(int64_t)system_thread_count);
   }
   **(uint8_t* **)(system_context_ptr + 8) = 0;
@@ -17245,7 +17111,6 @@ void system_configure_asset_loading_ternary(void)
 
 
 void system_handle_resource_streaming_ternary(void)
-                    // WARNING: Subroutine does not return
   memcpy();
 }
 
@@ -17289,7 +17154,6 @@ uint8_t * system_initialize_memory_manager(uint8_t *system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_resource_requests_ternary(void)
@@ -17314,11 +17178,9 @@ void system_process_resource_requests_ternary(void)
     do {
       system_data_handle = system_data_handle + 1;
     } while (*(char *)(system_data_handle + system_thread_count) != '\0');
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_byte_pointer,*(int64_t *)(system_context_ptr + 8),system_data_handle - *(int64_t *)(system_context_ptr + 8));
   }
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_stack_buffer_network_config);
 }
 
@@ -17373,8 +17235,6 @@ void system_initialize_job_system_ternary(void)
   } while (*(char *)(system_config_data_array + system_data_handle) != '\0');
   if ((int)system_data_handle < 0x40) {
     *(int *)(system_context_ptr + 0x10) = (int)system_data_handle;
-                    // WARNING: Could not recover jumptable at 0x000180049c27. Too many branches
-                    // WARNING: Treating indirect jump as call
     system_strcpy_s(*(uint8_t *)(system_context_ptr + 8),0x40);
     return;
   }
@@ -17389,7 +17249,6 @@ void system_initialize_job_system_ternary(void)
 
 void system_configure_task_scheduler_ternary(void)
   if (system_thread_count + 1 < 0x40) {
-                    // WARNING: Subroutine does not return
     memcpy(*(uint8_t* **)(system_context_ptr + 8),system_config_data_array,(int64_t)system_thread_count);
   }
   **(uint8_t* **)(system_context_ptr + 8) = 0;
@@ -17401,7 +17260,6 @@ void system_configure_task_scheduler_ternary(void)
 
 
 void system_handle_job_distribution_ternary(void)
-                    // WARNING: Subroutine does not return
   memcpy();
 }
 
@@ -17431,7 +17289,6 @@ uint8_t * system_initialize_subsystem_core(uint8_t *system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_job_completion_ternary(void)
@@ -17456,11 +17313,9 @@ void system_process_job_completion_ternary(void)
     do {
       system_data_handle = system_data_handle + 1;
     } while (*(char *)(system_data_handle + system_thread_count) != '\0');
-                    // WARNING: Subroutine does not return
     memcpy(system_system_stack_context_ptr_a,*(int64_t *)(system_context_ptr + 8),system_data_handle - *(int64_t *)(system_context_ptr + 8));
   }
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_d8);
 }
 
@@ -17494,7 +17349,6 @@ system_process_context_data(uint8_t *system_context_ptr,int64_t system_config_da
 void system_initialize_profiling_system_ternary(void)
   system_context_ptr[4] = &system_null_ptr;
   if (system_context_ptr[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[5] = 0;
@@ -17502,7 +17356,6 @@ void system_initialize_profiling_system_ternary(void)
   system_context_ptr[4] = &system_null_ptr;
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[1] = 0;
@@ -17521,7 +17374,6 @@ void system_configure_performance_counters_ternary(void)
   system_process_context_data(system_context_ptr,*system_config_data_array,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   system_config_data_array[8] = &system_null_ptr;
   if (system_config_data_array[9] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_config_data_array[9] = 0;
@@ -17529,13 +17381,11 @@ void system_configure_performance_counters_ternary(void)
   system_config_data_array[8] = &system_null_ptr;
   system_config_data_array[4] = &system_null_ptr;
   if (system_config_data_array[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_config_data_array[5] = 0;
   *(uint32_t* *)(system_config_data_array + 7) = 0;
   system_config_data_array[4] = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_config_data_array);
 }
 
@@ -17571,7 +17421,6 @@ void system_initialize_main_system(uint8_t *system_context_ptr)
 {
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[1] = 0;
@@ -17596,8 +17445,6 @@ void system_initialize_debug_renderer_ternary(void)
   } while (*(char *)(system_config_data_array + system_data_handle) != '\0');
   if ((int)system_data_handle < 0x80) {
     *(int *)(system_context_ptr + 0x10) = (int)system_data_handle;
-                    // WARNING: Could not recover jumptable at 0x00018004a1b9. Too many branches
-                    // WARNING: Treating indirect jump as call
     system_strcpy_s(*(uint8_t *)(system_context_ptr + 8),0x80);
     return;
   }
@@ -17617,7 +17464,6 @@ void system_configure_debug_overlay_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t system_process_context_data(int64_t system_context_ptr,uint32_t* system_config_data_array,uint8_t system_thread_count,uint8_t system_memory_size_array)
 
@@ -17653,12 +17499,10 @@ system_label:
     system_byte_pointer_d = (uint8_t *)0x0;
   }
   if (camera_traverse_node_next != buffer_ptr) {
-                    // WARNING: Subroutine does not return
     memmove(system_byte_pointer_d,camera_traverse_node_next,(int64_t)buffer_ptr - (int64_t)camera_traverse_node_next);
   }
   *system_byte_pointer_d = system_param_primary;
   if (*(int64_t *)(system_context_ptr + 8) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t **)(system_context_ptr + 8) = system_byte_pointer_d;
@@ -17678,7 +17522,6 @@ void system_handle_debug_visualization_ternary(void)
   *system_context_ptr = &system_null_ptr;
   _Mtx_system_destroy_in_situ();
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *system_context_ptr = &system_null_ptr;
@@ -17707,7 +17550,6 @@ void system_manage_debug_context_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t system_process_context_data(int64_t system_context_ptr,uint8_t system_config_data_array)
 
@@ -17726,7 +17568,6 @@ void system_process_debug_commands_ternary(void)
   system_data_handle = system_process_context_data(system_config_data_array);
   *(int64_t *)(system_context_ptr + 8) = *(int64_t *)(system_context_ptr + 8) - system_data_handle;
   if (system_config_data_array != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_config_data_array);
   }
   return;
@@ -17747,7 +17588,6 @@ system_process_context_data(uint8_t *system_context_ptr,uint64_t system_config_d
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 bool system_initialize_save_system_ternary(void)
   uint32_t* *init_ctx_base;
@@ -17796,14 +17636,12 @@ bool system_initialize_save_system_ternary(void)
   }
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_serialization_format_ternary(void)
@@ -17851,7 +17689,6 @@ void system_configure_serialization_format_ternary(void)
   *(uint8_t* *)(camera_node_current + 2) = 0;
   system_process_context_data(camera_node_current,system_byte_pointer_d,&system_null_ptr);
   if (camera_node_current[1] == 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(camera_node_current);
   }
   system_process_context_data(system_global_data_pointer,camera_node_current);
@@ -17863,13 +17700,11 @@ void system_configure_serialization_format_ternary(void)
     system_global_data_pointer = system_global_data_pointer + -1;
     UNLOCK();
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data(camera_node_current);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_data_persistence_ternary(void)
@@ -17879,13 +17714,11 @@ void system_handle_data_persistence_ternary(void)
   system_temp_unsigned_value_primary = system_process_context_data(system_global_data_pointer,0x138,8,3);
   system_global_data_pointer = system_process_context_data(system_temp_unsigned_value_primary);
   system_temp_unsigned_value_primary = system_process_context_data(system_global_data_pointer,0x50,8,3);
-                    // WARNING: Subroutine does not return
   memset(system_temp_unsigned_value_primary,0,0x50);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_save_slots_ternary(void)
@@ -17963,7 +17796,6 @@ void system_process_load_operations_ternary(void)
     system_data_handle = __RTCastToVoid(system_primary_data_ptr);
     (**(code **)(*system_primary_data_ptr + 0x10))(system_primary_data_ptr,0,*(code **)(*system_primary_data_ptr + 0x10),system_cpu_register_r9,system_unsigned_temp_counter);
     if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_data_handle);
     }
   }
@@ -17980,7 +17812,6 @@ void system_process_load_operations_ternary(void)
     *(uint8_t *)(system_data_handle + 0x10) = &system_null_ptr;
     *(uint8_t *)(system_data_handle + 0x10) = &system_null_ptr;
     *(void* **)(system_data_handle + 8) = &system_null_ptr;
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_data_handle);
   }
   system_global_data_pointer = 0;
@@ -17988,7 +17819,6 @@ void system_process_load_operations_ternary(void)
   system_data_handle = system_global_data_pointer;
   if (system_global_data_pointer != 0) {
     system_process_context_data(system_global_data_pointer);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_data_handle);
   }
   system_global_data_pointer = 0;
@@ -18039,7 +17869,6 @@ system_process_context_data(uint8_t *system_context_ptr,uint8_t system_config_da
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t system_process_context_data(char system_context_ptr)
 
@@ -18112,13 +17941,11 @@ uint8_t system_process_context_data(char system_context_ptr)
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_byte_pointer == (void* *)0x0) {
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 bool system_initialize_localization_ternary(void)
   
@@ -18135,7 +17962,6 @@ bool system_initialize_localization_ternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_language_settings_ternary(void)
@@ -18183,18 +18009,15 @@ void system_configure_language_settings_ternary(void)
   } while (camera_traverse_node_next[system_data_handle] != '\0');
   system_result_code = (int)system_data_handle;
   if ((0 < system_result_code) && (*(uint *)(system_context_ptr + 2) + system_result_code < 0x1f)) {
-                    // WARNING: Subroutine does not return
     memcpy((uint64_t)*(uint *)(system_context_ptr + 2) + system_context_ptr[1],camera_traverse_node_next,(int64_t)(system_result_code + 1));
   }
   system_stack_context_hash_value = 1;
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_data_array);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int64_t * system_process_context_data(int64_t *system_context_ptr,uint8_t system_config_data_array,uint8_t system_thread_count,uint8_t system_memory_size_array)
 
@@ -18214,7 +18037,6 @@ int64_t * system_process_context_data(int64_t *system_context_ptr,uint8_t system
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_text_translation_ternary(void)
@@ -18275,7 +18097,6 @@ void system_initialize_mod_support_ternary(void)
   system_context_ptr_primary = *(uint8_t **)(system_context_ptr + 0x10);
   if (system_context_ptr_primary != (uint8_t *)0x0) {
     system_process_context_data(system_context_ptr,*system_context_ptr_primary,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary);
   }
   return;
@@ -18290,7 +18111,6 @@ void system_configure_plugin_interface_ternary(void)
   system_context_ptr_primary = *(uint8_t **)(system_context_ptr + 0x10);
   if (system_context_ptr_primary != (uint8_t *)0x0) {
     system_process_context_data(system_context_ptr,*system_context_ptr_primary,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary);
   }
   return;
@@ -18305,7 +18125,6 @@ void system_handle_mod_loading_ternary(void)
   system_context_ptr_primary = *(uint8_t **)(system_context_ptr + 0x10);
   if (system_context_ptr_primary != (uint8_t *)0x0) {
     system_process_context_data(system_context_ptr,*system_context_ptr_primary,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary);
   }
   return;
@@ -18317,7 +18136,6 @@ void system_handle_mod_loading_ternary(void)
 void system_manage_mod_dependencies_ternary(void)
   if (system_config_data_array != (uint8_t *)0x0) {
     system_process_context_data(system_context_ptr,*system_config_data_array);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_config_data_array);
   }
   return;
@@ -18330,7 +18148,6 @@ void system_process_mod_events_ternary(void)
   uint8_t *unaff_RBX;
   
   system_process_context_data(system_context_ptr,*unaff_RBX);
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -18365,7 +18182,6 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint64_t syste
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_resource_allocation_quaternary(void)
@@ -18388,11 +18204,9 @@ void system_handle_resource_allocation_quaternary(void)
   } while (system_stack_char_audio_buffer[system_calculated_offset + 1] != '\0');
   system_result_code = (int)(system_calculated_offset + 1);
   if ((0 < system_result_code) && (*(uint *)(system_context_ptr + 0x10) + system_result_code < 0x1f)) {
-                    // WARNING: Subroutine does not return
     memcpy((uint64_t)*(uint *)(system_context_ptr + 0x10) + *(int64_t *)(system_context_ptr + 8),system_stack_char_audio_buffer,
            (int64_t)((int)system_calculated_offset + 2));
   }
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_stack_buffer_audio_config);
 }
 
@@ -18448,7 +18262,6 @@ void system_initialize_subsystem_component_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_validate_system_state_quaternary(void)
@@ -18497,7 +18310,6 @@ void system_manage_resource_cache_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_event_queue_quaternary(void)
@@ -18512,7 +18324,6 @@ void system_process_event_queue_quaternary(void)
       if (system_context_ptr_primary != (uint8_t *)0x0) {
         system_context_ptr_primary[4] = &system_null_ptr;
         if (system_context_ptr_primary[5] != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         system_context_ptr_primary[5] = 0;
@@ -18523,10 +18334,8 @@ void system_process_event_queue_quaternary(void)
           system_context_ptr_primary[1] = 0;
           *(uint32_t* *)(system_context_ptr_primary + 3) = 0;
           *system_context_ptr_primary = &system_null_ptr;
-                    // WARNING: Subroutine does not return
           system_process_context_data(system_context_ptr_primary);
         }
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       *(uint8_t *)(*(int64_t *)(system_data_handle + 0x30) + system_calculated_offset * 8) = 0;
@@ -18618,7 +18427,6 @@ void system_setup_render_pipeline_quaternary(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -18637,7 +18445,6 @@ void system_handle_input_processing_quaternary(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -18656,7 +18463,6 @@ void system_initialize_debug_interface_quaternary(void)
   if (*(int64_t *)(system_context_ptr + 0x10) - system_data_handle >> 3 != 0) {
     do {
       if (*(int64_t *)(system_unsigned_result_value + system_data_handle) != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       *(uint8_t *)(system_unsigned_result_value + *(int64_t *)(system_context_ptr + 8)) = 0;
@@ -18692,11 +18498,9 @@ void system_process_performance_metrics_quaternary(void)
     return;
   }
   if (*(int64_t *)(system_data_handle + 8) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   _Mtx_system_destroy_in_situ();
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_data_handle);
 }
 
@@ -18714,7 +18518,6 @@ void system_manage_security_context_quaternary(void)
     do {
       system_data_handle = *(int64_t *)(system_calculated_offset + system_unsigned_result_value * 8);
       if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data(system_data_handle);
       }
       *(uint8_t *)(system_calculated_offset + system_unsigned_result_value * 8) = 0;
@@ -18760,7 +18563,6 @@ void system_initialize_plugin_system_quaternary(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -18782,7 +18584,6 @@ void system_initialize_module_b(int64_t *system_context_ptr)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -18809,7 +18610,6 @@ void system_configure_logging_system_quaternary(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -18827,7 +18627,6 @@ void system_handle_error_processing_quaternary(void)
     do {
       system_data_handle = *(int64_t *)(system_calculated_offset + system_unsigned_result_value * 8);
       if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data(system_data_handle);
       }
       *(uint8_t *)(system_calculated_offset + system_unsigned_result_value * 8) = 0;
@@ -18918,7 +18717,6 @@ void system_manage_thread_pool_quaternary(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -18939,7 +18737,6 @@ void system_initialize_resource_manager_quaternary(void)
   if (0x1fff < system_temp_unsigned_value_primary) {
     system_temp_unsigned_value_primary = 0x1fff;
   }
-                    // WARNING: Subroutine does not return
   memcpy(&system_data_global_buffer,system_context_ptr,(int64_t)(int)system_temp_unsigned_value_primary);
 }
 
@@ -19019,7 +18816,6 @@ system_process_context_data(uint8_t* *system_context_ptr,uint8_t system_config_d
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t * system_process_context_data(uint8_t *system_context_ptr)
 
@@ -19188,12 +18984,10 @@ system_label:
         if (system_calculated_offset != 0) goto system_label;
       }
       if (next_ctx_ptr != system_byte_ptr_input) {
-                    // WARNING: Subroutine does not return
         memmove(camera_traverse_node_next,next_ctx_ptr,(int64_t)system_byte_ptr_input - (int64_t)next_ctx_ptr);
       }
       *camera_traverse_node_next = 0;
       if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       *system_primary_data_ptr = (int64_t)camera_traverse_node_next;
@@ -19271,7 +19065,6 @@ system_process_context_data(uint8_t *system_context_ptr,uint64_t system_config_d
 
 {
   if (system_context_ptr[2] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *system_context_ptr = &system_null_ptr;
@@ -19286,7 +19079,6 @@ system_process_context_data(uint8_t *system_context_ptr,uint64_t system_config_d
 
 void system_manage_component_lifecycle_quaternary(void)
   if (system_context_ptr[2] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *system_context_ptr = &system_null_ptr;
@@ -19296,7 +19088,6 @@ void system_manage_component_lifecycle_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_script_engine_quaternary(void)
@@ -19336,7 +19127,6 @@ void system_initialize_script_engine_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_physics_system_quaternary(void)
@@ -19346,7 +19136,6 @@ void system_configure_physics_system_quaternary(void)
   if (system_context_ptr_primary != (uint8_t *)0x0) {
     system_context_ptr_primary[0x14] = &system_null_ptr;
     if (system_context_ptr_primary[0x15] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_context_ptr_primary[0x15] = 0;
@@ -19354,27 +19143,23 @@ void system_configure_physics_system_quaternary(void)
     system_context_ptr_primary[0x14] = &system_null_ptr;
     system_context_ptr_primary[0x10] = &system_null_ptr;
     if (system_context_ptr_primary[0x11] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_context_ptr_primary[0x11] = 0;
     *(uint32_t* *)(system_context_ptr_primary + 0x13) = 0;
     system_context_ptr_primary[0x10] = &system_null_ptr;
     if (system_context_ptr_primary[0xc] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_process_context_data();
     system_process_context_data();
     *system_context_ptr_primary = &system_null_ptr;
     if (system_context_ptr_primary[1] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_context_ptr_primary[1] = 0;
     *(uint32_t* *)(system_context_ptr_primary + 3) = 0;
     *system_context_ptr_primary = &system_null_ptr;
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary);
   }
   system_context_ptr[0x7c] = 0;
@@ -19386,7 +19171,6 @@ void system_configure_physics_system_quaternary(void)
     system_context_ptr_primary[0x28] = 0;
     system_context_ptr_primary[0x29] = &system_null_ptr;
     if (system_context_ptr_primary[0x2a] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_context_ptr_primary[0x2a] = 0;
@@ -19394,7 +19178,6 @@ void system_configure_physics_system_quaternary(void)
     system_context_ptr_primary[0x29] = &system_null_ptr;
     system_process_context_data();
     if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_data_handle);
     }
   }
@@ -19402,27 +19185,23 @@ void system_configure_physics_system_quaternary(void)
   system_data_handle = *system_context_ptr;
   if (system_data_handle != 0) {
     system_process_context_data(system_data_handle);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_data_handle);
   }
   *system_context_ptr = 0;
   system_data_handle = system_global_data_pointer;
   if (system_global_data_pointer != 0) {
     system_process_context_data();
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_data_handle);
   }
   system_global_data_pointer = 0;
   system_process_context_data();
   system_global_data_pointer = 0;
   if (system_context_ptr[6] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[6] = 0;
   system_context_ptr[0x6d] = (int64_t)&system_null_ptr;
   if (system_context_ptr[0x6e] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x6e] = 0;
@@ -19430,7 +19209,6 @@ void system_configure_physics_system_quaternary(void)
   system_context_ptr[0x6d] = (int64_t)&system_null_ptr;
   system_context_ptr[0x69] = (int64_t)&system_null_ptr;
   if (system_context_ptr[0x6a] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x6a] = 0;
@@ -19440,7 +19218,6 @@ void system_configure_physics_system_quaternary(void)
   system_process_context_data(system_context_ptr + 0x5c,system_context_ptr[0x5e]);
   system_context_ptr[0x58] = (int64_t)&system_null_ptr;
   if (system_context_ptr[0x59] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x59] = 0;
@@ -19448,7 +19225,6 @@ void system_configure_physics_system_quaternary(void)
   system_context_ptr[0x58] = (int64_t)&system_null_ptr;
   system_context_ptr[0x52] = (int64_t)&system_null_ptr;
   if (system_context_ptr[0x53] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x53] = 0;
@@ -19456,7 +19232,6 @@ void system_configure_physics_system_quaternary(void)
   system_context_ptr[0x52] = (int64_t)&system_null_ptr;
   system_context_ptr[0x4e] = (int64_t)&system_null_ptr;
   if (system_context_ptr[0x4f] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x4f] = 0;
@@ -19464,7 +19239,6 @@ void system_configure_physics_system_quaternary(void)
   system_context_ptr[0x4e] = (int64_t)&system_null_ptr;
   system_context_ptr[0x39] = (int64_t)&system_null_ptr;
   if (system_context_ptr[0x3a] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x3a] = 0;
@@ -19473,7 +19247,6 @@ void system_configure_physics_system_quaternary(void)
   system_context_ptr[0x32] = (int64_t)&system_null_ptr;
   system_context_ptr[0x2e] = (int64_t)&system_null_ptr;
   if (system_context_ptr[0x2f] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x2f] = 0;
@@ -19481,27 +19254,23 @@ void system_configure_physics_system_quaternary(void)
   system_context_ptr[0x2e] = (int64_t)&system_null_ptr;
   system_context_ptr[0x29] = (int64_t)&system_null_ptr;
   if (system_context_ptr[0x2a] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x2a] = 0;
   *(uint32_t* *)(system_context_ptr + 0x2c) = 0;
   system_context_ptr[0x29] = (int64_t)&system_null_ptr;
   if (system_context_ptr[0x21] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_process_context_data();
   system_context_ptr[0x17] = (int64_t)&system_null_ptr;
   if (system_context_ptr[0x18] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x18] = 0;
   *(uint32_t* *)(system_context_ptr + 0x1a) = 0;
   system_context_ptr[0x17] = (int64_t)&system_null_ptr;
   if (system_context_ptr[0xf] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if ((int64_t *)system_context_ptr[9] != (int64_t *)0x0) {
@@ -19512,18 +19281,6 @@ void system_configure_physics_system_quaternary(void)
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018004d2c7)
-// WARNING: Removing unreachable block (ram,0x00018004d2d0)
-// WARNING: Removing unreachable block (ram,0x00018004d2da)
-// WARNING: Removing unreachable block (ram,0x00018004d2df)
-// WARNING: Removing unreachable block (ram,0x00018004d2f2)
-// WARNING: Removing unreachable block (ram,0x00018004d30d)
-// WARNING: Removing unreachable block (ram,0x00018004d328)
-// WARNING: Removing unreachable block (ram,0x00018004d343)
-// WARNING: Removing unreachable block (ram,0x00018004d35e)
-// WARNING: Removing unreachable block (ram,0x00018004d379)
-// WARNING: Removing unreachable block (ram,0x00018004d4a0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_audio_processing_quaternary(void)
@@ -19681,13 +19438,11 @@ system_label:
   if (!system_system_temp_byte_connection_flag) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_global_data_pointer,&system_null_ptr,*(uint32_t* *)(system_context_ptr + 0x3cc),*system_context_int_system_pointer_config);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint32_t* system_process_context_data(void)
 
@@ -19729,7 +19484,6 @@ uint32_t* system_process_context_data(void)
     system_process_context_data(system_global_data_pointer + 0xe30,system_byte_pointer_d);
     *system_byte_pointer_d = &system_null_ptr;
     if (system_byte_pointer_d[1] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_byte_pointer_d[1] = 0;
@@ -19737,7 +19491,6 @@ uint32_t* system_process_context_data(void)
     *system_byte_pointer_d = &system_null_ptr;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -19771,7 +19524,6 @@ uint32_t* system_process_context_data(void)
     system_process_context_data(system_global_data_pointer + 0xef0,system_byte_pointer_d);
     *system_byte_pointer_d = &system_null_ptr;
     if (system_byte_pointer_d[1] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_byte_pointer_d[1] = 0;
@@ -19779,7 +19531,6 @@ uint32_t* system_process_context_data(void)
     *system_byte_pointer_d = &system_null_ptr;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -19788,49 +19539,6 @@ uint32_t* system_process_context_data(void)
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018004ed08)
-// WARNING: Removing unreachable block (ram,0x00018004ed22)
-// WARNING: Removing unreachable block (ram,0x00018004ed36)
-// WARNING: Removing unreachable block (ram,0x00018004ed44)
-// WARNING: Removing unreachable block (ram,0x00018004ed48)
-// WARNING: Removing unreachable block (ram,0x00018004ed5b)
-// WARNING: Removing unreachable block (ram,0x00018004ed5f)
-// WARNING: Removing unreachable block (ram,0x00018004ed72)
-// WARNING: Removing unreachable block (ram,0x00018004ed76)
-// WARNING: Removing unreachable block (ram,0x00018004ed89)
-// WARNING: Removing unreachable block (ram,0x00018004ed8d)
-// WARNING: Removing unreachable block (ram,0x00018004edbc)
-// WARNING: Removing unreachable block (ram,0x00018004edc0)
-// WARNING: Removing unreachable block (ram,0x00018004edd3)
-// WARNING: Removing unreachable block (ram,0x00018004ee38)
-// WARNING: Removing unreachable block (ram,0x00018004ee52)
-// WARNING: Removing unreachable block (ram,0x00018004ee66)
-// WARNING: Removing unreachable block (ram,0x00018004ee74)
-// WARNING: Removing unreachable block (ram,0x00018004ee78)
-// WARNING: Removing unreachable block (ram,0x00018004ee8b)
-// WARNING: Removing unreachable block (ram,0x00018004ee8f)
-// WARNING: Removing unreachable block (ram,0x00018004eea2)
-// WARNING: Removing unreachable block (ram,0x00018004eea6)
-// WARNING: Removing unreachable block (ram,0x00018004eeb6)
-// WARNING: Removing unreachable block (ram,0x00018004eeba)
-// WARNING: Removing unreachable block (ram,0x00018004eeec)
-// WARNING: Removing unreachable block (ram,0x00018004eef0)
-// WARNING: Removing unreachable block (ram,0x00018004ef03)
-// WARNING: Removing unreachable block (ram,0x00018004ebd5)
-// WARNING: Removing unreachable block (ram,0x00018004ebef)
-// WARNING: Removing unreachable block (ram,0x00018004ec03)
-// WARNING: Removing unreachable block (ram,0x00018004ec11)
-// WARNING: Removing unreachable block (ram,0x00018004ec15)
-// WARNING: Removing unreachable block (ram,0x00018004ec28)
-// WARNING: Removing unreachable block (ram,0x00018004ec2c)
-// WARNING: Removing unreachable block (ram,0x00018004ec3f)
-// WARNING: Removing unreachable block (ram,0x00018004ec43)
-// WARNING: Removing unreachable block (ram,0x00018004ec56)
-// WARNING: Removing unreachable block (ram,0x00018004ec5a)
-// WARNING: Removing unreachable block (ram,0x00018004ec88)
-// WARNING: Removing unreachable block (ram,0x00018004ec90)
-// WARNING: Removing unreachable block (ram,0x00018004eca3)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_render_commands_quaternary(void)
@@ -19848,7 +19556,6 @@ void system_process_render_commands_quaternary(void)
       system_process_context_data(&system_stack_byte_pointer,system_unsigned_result_value,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
     }
     if (system_temp_unsigned_value_primary != 0) {
-                    // WARNING: Subroutine does not return
       memcpy(system_stack_storage,*(uint8_t *)(system_data_handle + 0xe38),system_unsigned_result_value);
     }
     if (system_stack_storage != 0) {
@@ -19864,7 +19571,6 @@ void system_process_render_commands_quaternary(void)
     system_process_context_data(&system_stack_byte_pointer,system_unsigned_result_value);
   }
   if (system_temp_unsigned_value_primary != 0) {
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_storage,*(uint8_t *)(system_data_handle + 0xef8),system_unsigned_result_value);
   }
   if (system_stack_storage != 0) {
@@ -19879,7 +19585,6 @@ void system_process_render_commands_quaternary(void)
     system_process_context_data(&system_stack_byte_pointer,system_unsigned_result_value);
   }
   if (system_param_primary != 0) {
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_storage,*(uint8_t *)(system_calculated_offset + 0xfb8),system_unsigned_result_value);
   }
   if (system_stack_storage != 0) {
@@ -19889,7 +19594,6 @@ void system_process_render_commands_quaternary(void)
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_storage != 0) {
     system_stack_context_hash_value = system_param_primary;
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -19897,7 +19601,6 @@ void system_process_render_commands_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_input_system_quaternary(void)
@@ -20035,7 +19738,6 @@ void system_initialize_input_system_quaternary(void)
   current_ctx_ptr = (uint32_t* *)system_process_context_data(system_data_handle + 0xe0,&system_data_vertex_buffer_ptr);
   *current_ctx_ptr = 1;
   system_stack_storage = system_process_context_data(system_global_data_pointer,0x3878,8,3);
-                    // WARNING: Subroutine does not return
   memset(system_stack_storage,0,0x3878);
 }
 
@@ -20053,7 +19755,6 @@ void system_configure_display_settings_quaternary(void)
     do {
       system_data_handle = *(int64_t *)(system_calculated_offset + system_unsigned_result_value * 8);
       if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data(system_data_handle);
       }
       *(uint8_t *)(system_calculated_offset + system_unsigned_result_value * 8) = 0;
@@ -20101,7 +19802,6 @@ void system_handle_file_operations_quaternary(void)
     do {
       system_data_handle = *(int64_t *)(system_calculated_offset + system_unsigned_result_value * 8);
       if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data(system_data_handle);
       }
       *(uint8_t *)(system_calculated_offset + system_unsigned_result_value * 8) = 0;
@@ -20137,7 +19837,6 @@ void system_handle_file_operations_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_data_streams_quaternary(void)
@@ -20196,7 +19895,6 @@ void system_manage_data_streams_quaternary(void)
     *system_data_pointer = 0;
     system_stack_alt_ptr = system_data_pointer + 1;
     system_process_context_data();
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_data_pointer);
   }
   system_global_data_pointer = (int64_t *)0x0;
@@ -20266,20 +19964,17 @@ void system_manage_data_streams_quaternary(void)
   system_process_context_data(&system_stack_byte_pointer,&system_stack_byte_pointer);
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_byte_pointer != (uint32_t* *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_byte_pointer = (uint32_t* *)0x0;
   system_stack_context_hash_value = (uint64_t)system_stack_context_hash_value._4_4_ << 0x20;
   system_stack_byte_pointer = &system_null_ptr;
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_global_data_pointer,&system_null_ptr);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_animation_data_quaternary(void)
@@ -20563,7 +20258,6 @@ void system_initialize_module_e(int64_t system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint8_t *system_config_data_array)
 
@@ -20602,11 +20296,9 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint8_t *syste
         init_ctx_base_value = system_process_context_data(system_global_data_pointer,system_temp_uint_value * 4,*(uint8_t* *)(system_context_ptr + 0x46));
       }
       if (system_data_handle != system_data_handle) {
-                    // WARNING: Subroutine does not return
         memmove(init_ctx_base_value,system_data_handle,system_data_handle);
       }
       if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_data_handle = init_ctx_base_value + system_temp_uint_value * 4;
@@ -20620,18 +20312,15 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint8_t *syste
       if (system_unsigned_result_value < system_temp_uint_value) {
         system_data_handle = system_unsigned_result_value * 4 + system_data_handle;
         if (system_data_handle != system_data_handle) {
-                    // WARNING: Subroutine does not return
           memmove(init_ctx_base_value,system_data_handle);
         }
         if (system_data_handle != system_data_handle) {
-                    // WARNING: Subroutine does not return
           memmove(system_calculated_offset,system_data_handle,system_data_handle - system_data_handle);
         }
         system_context_ptr[0x44] = system_calculated_offset;
       }
       else {
         if (system_data_handle != system_data_handle) {
-                    // WARNING: Subroutine does not return
           memmove(init_ctx_base_value,system_data_handle,system_data_handle);
         }
         system_context_ptr[0x44] = init_ctx_base_value;
@@ -20642,7 +20331,6 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint8_t *syste
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_collision_detection_quaternary(void)
@@ -20662,11 +20350,9 @@ void system_handle_collision_detection_quaternary(void)
       system_data_handle = system_process_context_data(system_global_data_pointer,system_iteration_count * 4,(char)system_register_rdi[3]);
     }
     if (system_data_handle != system_data_handle) {
-                    // WARNING: Subroutine does not return
       memmove(system_data_handle,system_data_handle,context_offset);
     }
     if (*system_register_rdi != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_data_handle = system_data_handle + system_iteration_count * 4;
@@ -20680,18 +20366,15 @@ void system_handle_collision_detection_quaternary(void)
     if (system_unsigned_temp_counter < system_iteration_count) {
       context_offset = system_unsigned_temp_counter * 4 + system_data_handle;
       if (system_data_handle != context_offset) {
-                    // WARNING: Subroutine does not return
         memmove(system_context_ptr,system_data_handle);
       }
       if (context_offset != system_data_handle) {
-                    // WARNING: Subroutine does not return
         memmove(system_data_handle,context_offset,system_data_handle - context_offset);
       }
       system_register_rdi[1] = system_data_handle;
     }
     else {
       if (system_data_handle != system_data_handle) {
-                    // WARNING: Subroutine does not return
         memmove(system_context_ptr,system_data_handle,context_offset);
       }
       system_register_rdi[1] = system_context_ptr;
@@ -20702,7 +20385,6 @@ void system_handle_collision_detection_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_shader_programs_quaternary(void)
@@ -20718,11 +20400,9 @@ void system_manage_shader_programs_quaternary(void)
     system_data_handle = system_process_context_data(system_global_data_pointer,system_register_r14 * 4,(char)system_register_rdi[3]);
   }
   if (unaff_RSI != unaff_RBP) {
-                    // WARNING: Subroutine does not return
     memmove(system_data_handle);
   }
   if (*system_register_rdi != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_data_handle = system_data_handle + system_register_r14 * 4;
@@ -20742,18 +20422,15 @@ void system_process_texture_data_quaternary(void)
   if (system_parameter_value_secondary < system_register_r14) {
     system_data_handle = system_parameter_value_secondary * 4 + unaff_RSI;
     if (unaff_RSI != system_data_handle) {
-                    // WARNING: Subroutine does not return
       memmove();
     }
     if (system_data_handle != unaff_RBP) {
-                    // WARNING: Subroutine does not return
       memmove(system_data_handle,system_data_handle,unaff_RBP - system_data_handle);
     }
     *(int64_t *)(system_register_rdi + 8) = system_data_handle;
   }
   else {
     if (unaff_RSI != unaff_RBP) {
-                    // WARNING: Subroutine does not return
       memmove();
     }
     *(int64_t *)(system_register_rdi + 8) = system_context_ptr;
@@ -20839,13 +20516,11 @@ system_label:
   if (system_stack_byte_window_data == (byte *)0x0) {
     return system_context_ptr_primary0 != system_context_ptr_primary;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t
 system_process_context_data(uint8_t system_context_ptr,uint8_t system_config_data_array,uint8_t system_thread_count,uint8_t system_memory_size_array)
@@ -20856,7 +20531,6 @@ system_process_context_data(uint8_t system_context_ptr,uint8_t system_config_dat
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_user_input_quaternary(void)
@@ -20876,13 +20550,11 @@ void system_handle_user_input_quaternary(void)
   *system_context_ptr_primary = 0x2f73656873617263;
   *(uint8_t* *)(system_context_ptr_primary + 1) = 0;
   *(int *)(system_context_ptr + 0x10) = system_result_code;
-                    // WARNING: Subroutine does not return
   memset(system_system_stack_a8_alt,0,0x80);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_state_machine_quaternary(void)
@@ -20945,17 +20617,14 @@ void system_manage_state_machine_quaternary(void)
     system_stack_context_hash_value = 10;
     system_process_context_data(system_context_ptr + 0x2c0,&system_stack_byte_pointer);
     system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_byte_pointer_d);
   }
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_byte_pointer_d);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t system_process_context_data(uint8_t system_context_ptr,uint8_t system_config_data_array)
 
@@ -21000,17 +20669,14 @@ uint8_t system_process_context_data(uint8_t system_context_ptr,uint8_t system_co
     system_stack_context_hash_value = 10;
     system_process_context_data(system_data_handle + 0x2c0,&system_stack_byte_pointer);
     system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_byte_pointer_d);
   }
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_byte_pointer_d);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_game_logic_quaternary(void)
@@ -21182,7 +20848,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_ai_system_quaternary(void)
@@ -21300,7 +20965,6 @@ void system_initialize_ai_system_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_pathfinding_quaternary(void)
@@ -21331,7 +20995,6 @@ void system_configure_pathfinding_quaternary(void)
   *(int *)(system_config_data_array + 0x10) = memory_compare_result;
   if (0 < system_system_stack_varint_var) {
     system_process_context_data(system_config_data_array,memory_compare_result + system_system_stack_varint_var);
-                    // WARNING: Subroutine does not return
     memcpy((uint64_t)*(uint *)(system_config_data_array + 0x10) + *(int64_t *)(system_config_data_array + 8),system_stack_context_hash_value,
            (int64_t)(system_system_stack_varint_var + 1));
   }
@@ -21346,7 +21009,6 @@ void system_configure_pathfinding_quaternary(void)
   *(int *)(system_config_data_array + 0x10) = memory_compare_result;
   if (0 < system_system_stack_varint_var) {
     system_process_context_data(system_config_data_array,memory_compare_result + system_system_stack_varint_var);
-                    // WARNING: Subroutine does not return
     memcpy((uint64_t)*(uint *)(system_config_data_array + 0x10) + *(int64_t *)(system_config_data_array + 8),system_stack_context_hash_value,
            (int64_t)(system_system_stack_varint_var + 1));
   }
@@ -21356,157 +21018,11 @@ void system_configure_pathfinding_quaternary(void)
   system_stack_byte_pointer = &system_null_ptr;
   system_stack_double_ptr_path_data = &system_stack_byte_pointer;
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_stack_buffer_pathfinding);
 }
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180053668)
-// WARNING: Removing unreachable block (ram,0x0001800536a5)
-// WARNING: Removing unreachable block (ram,0x0001800536a9)
-// WARNING: Removing unreachable block (ram,0x0001800536b4)
-// WARNING: Removing unreachable block (ram,0x0001800536b7)
-// WARNING: Removing unreachable block (ram,0x0001800536e1)
-// WARNING: Removing unreachable block (ram,0x0001800536e5)
-// WARNING: Removing unreachable block (ram,0x0001800536f3)
-// WARNING: Removing unreachable block (ram,0x0001800536fb)
-// WARNING: Removing unreachable block (ram,0x000180053702)
-// WARNING: Removing unreachable block (ram,0x00018005370c)
-// WARNING: Removing unreachable block (ram,0x00018005373c)
-// WARNING: Removing unreachable block (ram,0x000180053744)
-// WARNING: Removing unreachable block (ram,0x000180053747)
-// WARNING: Removing unreachable block (ram,0x000180053714)
-// WARNING: Removing unreachable block (ram,0x000180053719)
-// WARNING: Removing unreachable block (ram,0x000180053760)
-// WARNING: Removing unreachable block (ram,0x00018005376e)
-// WARNING: Removing unreachable block (ram,0x0001800537b1)
-// WARNING: Removing unreachable block (ram,0x0001800537b5)
-// WARNING: Removing unreachable block (ram,0x0001800537c0)
-// WARNING: Removing unreachable block (ram,0x0001800537c3)
-// WARNING: Removing unreachable block (ram,0x0001800537ed)
-// WARNING: Removing unreachable block (ram,0x0001800537f1)
-// WARNING: Removing unreachable block (ram,0x0001800537ff)
-// WARNING: Removing unreachable block (ram,0x000180053807)
-// WARNING: Removing unreachable block (ram,0x00018005380c)
-// WARNING: Removing unreachable block (ram,0x00018005381c)
-// WARNING: Removing unreachable block (ram,0x00018005384b)
-// WARNING: Removing unreachable block (ram,0x000180053853)
-// WARNING: Removing unreachable block (ram,0x000180053856)
-// WARNING: Removing unreachable block (ram,0x000180053824)
-// WARNING: Removing unreachable block (ram,0x000180053828)
-// WARNING: Removing unreachable block (ram,0x00018005386f)
-// WARNING: Removing unreachable block (ram,0x00018005387d)
-// WARNING: Removing unreachable block (ram,0x0001800538c8)
-// WARNING: Removing unreachable block (ram,0x0001800538cc)
-// WARNING: Removing unreachable block (ram,0x0001800538d7)
-// WARNING: Removing unreachable block (ram,0x0001800538da)
-// WARNING: Removing unreachable block (ram,0x000180053906)
-// WARNING: Removing unreachable block (ram,0x00018005390a)
-// WARNING: Removing unreachable block (ram,0x000180053918)
-// WARNING: Removing unreachable block (ram,0x000180053921)
-// WARNING: Removing unreachable block (ram,0x000180053925)
-// WARNING: Removing unreachable block (ram,0x000180053931)
-// WARNING: Removing unreachable block (ram,0x000180053962)
-// WARNING: Removing unreachable block (ram,0x00018005396a)
-// WARNING: Removing unreachable block (ram,0x00018005396d)
-// WARNING: Removing unreachable block (ram,0x000180053939)
-// WARNING: Removing unreachable block (ram,0x00018005393e)
-// WARNING: Removing unreachable block (ram,0x000180053987)
-// WARNING: Removing unreachable block (ram,0x000180053996)
-// WARNING: Removing unreachable block (ram,0x0001800539f8)
-// WARNING: Removing unreachable block (ram,0x0001800539fc)
-// WARNING: Removing unreachable block (ram,0x000180053a07)
-// WARNING: Removing unreachable block (ram,0x000180053a0a)
-// WARNING: Removing unreachable block (ram,0x000180053a34)
-// WARNING: Removing unreachable block (ram,0x000180053a38)
-// WARNING: Removing unreachable block (ram,0x000180053a46)
-// WARNING: Removing unreachable block (ram,0x000180053a4e)
-// WARNING: Removing unreachable block (ram,0x000180053a53)
-// WARNING: Removing unreachable block (ram,0x000180053ad8)
-// WARNING: Removing unreachable block (ram,0x000180053a61)
-// WARNING: Removing unreachable block (ram,0x000180053aa2)
-// WARNING: Removing unreachable block (ram,0x000180053aab)
-// WARNING: Removing unreachable block (ram,0x000180053aaf)
-// WARNING: Removing unreachable block (ram,0x000180053a69)
-// WARNING: Removing unreachable block (ram,0x000180053a74)
-// WARNING: Removing unreachable block (ram,0x000180053ade)
-// WARNING: Removing unreachable block (ram,0x000180053b28)
-// WARNING: Removing unreachable block (ram,0x000180053b2c)
-// WARNING: Removing unreachable block (ram,0x000180053b32)
-// WARNING: Removing unreachable block (ram,0x000180053b36)
-// WARNING: Removing unreachable block (ram,0x000180053b60)
-// WARNING: Removing unreachable block (ram,0x000180053b64)
-// WARNING: Removing unreachable block (ram,0x000180053b72)
-// WARNING: Removing unreachable block (ram,0x000180053b7a)
-// WARNING: Removing unreachable block (ram,0x000180053b7e)
-// WARNING: Removing unreachable block (ram,0x000180053b8e)
-// WARNING: Removing unreachable block (ram,0x000180053bbe)
-// WARNING: Removing unreachable block (ram,0x000180053bc6)
-// WARNING: Removing unreachable block (ram,0x000180053bc9)
-// WARNING: Removing unreachable block (ram,0x000180053b97)
-// WARNING: Removing unreachable block (ram,0x000180053b9b)
-// WARNING: Removing unreachable block (ram,0x000180053be2)
-// WARNING: Removing unreachable block (ram,0x000180053bf0)
-// WARNING: Removing unreachable block (ram,0x000180053c4c)
-// WARNING: Removing unreachable block (ram,0x000180053c51)
-// WARNING: Removing unreachable block (ram,0x000180053c5d)
-// WARNING: Removing unreachable block (ram,0x000180053c60)
-// WARNING: Removing unreachable block (ram,0x000180053c8e)
-// WARNING: Removing unreachable block (ram,0x000180053c93)
-// WARNING: Removing unreachable block (ram,0x000180053ca1)
-// WARNING: Removing unreachable block (ram,0x000180053caa)
-// WARNING: Removing unreachable block (ram,0x000180053caf)
-// WARNING: Removing unreachable block (ram,0x000180053cbe)
-// WARNING: Removing unreachable block (ram,0x000180053cf1)
-// WARNING: Removing unreachable block (ram,0x000180053cf9)
-// WARNING: Removing unreachable block (ram,0x000180053cfc)
-// WARNING: Removing unreachable block (ram,0x000180053cc6)
-// WARNING: Removing unreachable block (ram,0x000180053cce)
-// WARNING: Removing unreachable block (ram,0x000180053d15)
-// WARNING: Removing unreachable block (ram,0x000180053d23)
-// WARNING: Removing unreachable block (ram,0x000180053d8b)
-// WARNING: Removing unreachable block (ram,0x000180053d8f)
-// WARNING: Removing unreachable block (ram,0x000180053d9a)
-// WARNING: Removing unreachable block (ram,0x000180053d9d)
-// WARNING: Removing unreachable block (ram,0x000180053dcd)
-// WARNING: Removing unreachable block (ram,0x000180053dd1)
-// WARNING: Removing unreachable block (ram,0x000180053ddf)
-// WARNING: Removing unreachable block (ram,0x000180053de8)
-// WARNING: Removing unreachable block (ram,0x000180053ded)
-// WARNING: Removing unreachable block (ram,0x000180053dfc)
-// WARNING: Removing unreachable block (ram,0x000180053e2f)
-// WARNING: Removing unreachable block (ram,0x000180053e37)
-// WARNING: Removing unreachable block (ram,0x000180053e3a)
-// WARNING: Removing unreachable block (ram,0x000180053e03)
-// WARNING: Removing unreachable block (ram,0x000180053e0b)
-// WARNING: Removing unreachable block (ram,0x000180053e54)
-// WARNING: Removing unreachable block (ram,0x000180053e63)
-// WARNING: Removing unreachable block (ram,0x000180053ead)
-// WARNING: Removing unreachable block (ram,0x000180053eb5)
-// WARNING: Removing unreachable block (ram,0x000180053ee6)
-// WARNING: Removing unreachable block (ram,0x000180053ef5)
-// WARNING: Removing unreachable block (ram,0x000180053f18)
-// WARNING: Removing unreachable block (ram,0x000180053f20)
-// WARNING: Removing unreachable block (ram,0x000180053f43)
-// WARNING: Removing unreachable block (ram,0x000180053f4b)
-// WARNING: Removing unreachable block (ram,0x000180053f74)
-// WARNING: Removing unreachable block (ram,0x000180053f79)
-// WARNING: Removing unreachable block (ram,0x000180053f98)
-// WARNING: Removing unreachable block (ram,0x000180053fa0)
-// WARNING: Removing unreachable block (ram,0x000180053fbc)
-// WARNING: Removing unreachable block (ram,0x000180053fc4)
-// WARNING: Removing unreachable block (ram,0x000180053fe5)
-// WARNING: Removing unreachable block (ram,0x000180053fea)
-// WARNING: Removing unreachable block (ram,0x000180054035)
-// WARNING: Removing unreachable block (ram,0x000180054062)
-// WARNING: Removing unreachable block (ram,0x000180054075)
-// WARNING: Removing unreachable block (ram,0x00018005407a)
-// WARNING: Removing unreachable block (ram,0x0001800540b2)
-// WARNING: Removing unreachable block (ram,0x0001800540b7)
-// WARNING: Removing unreachable block (ram,0x0001800540d9)
-// WARNING: Removing unreachable block (ram,0x0001800540e1)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_entity_management_quaternary(void)
@@ -21546,7 +21062,6 @@ void system_handle_entity_management_quaternary(void)
   } while (system_stack_char_entity_buffer[system_data_handle + 1] != '\0');
   if (0 < (int)(system_data_handle + 1)) {
     system_process_context_data(&system_stack_byte_pointer,(int)system_data_handle + 7);
-                    // WARNING: Subroutine does not return
     memcpy((uint64_t)system_stack_context_hash_value + system_stack_storage,system_stack_char_entity_buffer,(int64_t)((int)system_data_handle + 2));
   }
   system_byte_ptr_input = &system_data_system_ptr_vard128;
@@ -21571,7 +21086,6 @@ void system_handle_entity_management_quaternary(void)
 system_label:
     system_temp_uint_value = system_unsigned_result_value;
     if (system_iteration_count != 0) {
-                    // WARNING: Subroutine does not return
       memcpy(current_ctx_ptr,*(uint8_t *)(system_thread_count + 8),system_temp_byte_primary);
     }
   }
@@ -21611,13 +21125,11 @@ system_label:
     system_stack_context_hash_value = CONCAT44(system_stack_context_hash_value._4_4_,system_parameter_value_secondary);
   }
 system_label:
-                    // WARNING: Subroutine does not return
   memcpy(current_ctx_ptr + system_temp_byte_primary,system_data_handle,7);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t
 system_process_context_data(uint8_t system_context_ptr,uint8_t system_config_data_array,uint8_t system_thread_count,uint8_t system_memory_size_array)
@@ -21652,7 +21164,6 @@ joined_r0x00018005430b:
       (**(code **)*camera_node_current)(camera_node_current,0);
     }
     if (system_byte_pointer_d != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_byte_pointer_d);
     }
   }
@@ -21665,7 +21176,6 @@ system_label:
   system_stack_context_hash_value = 0;
   system_process_context_data(&system_stack_byte_pointer,*system_context_ptr_primary0);
   if (*system_context_ptr_primary0 != 0) {
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_byte_pointer,*(uint8_t *)(system_context_ptr_primary0 + -2),*system_context_ptr_primary0 + 1);
   }
   if (*(int64_t *)(system_context_ptr_primary0 + -2) != 0) {
@@ -21703,7 +21213,6 @@ system_label:
     if (0x1809fde87 < (int64_t)system_context_ptr_primary6) {
       system_stack_byte_pointer = &system_null_ptr;
       if (system_stack_byte_pointer != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_stack_byte_pointer = (uint8_t* *)0x0;
@@ -21715,7 +21224,6 @@ system_label:
   } while( true );
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_byte_pointer != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_byte_pointer = (uint8_t* *)0x0;
@@ -21729,7 +21237,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_scene_graph_quaternary(void)
@@ -21810,7 +21317,6 @@ void system_manage_scene_graph_quaternary(void)
   system_result_code = system_process_context_data(init_ctx_base_value,&system_stack_byte_pointer);
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_storage = 0;
@@ -21835,7 +21341,6 @@ void system_manage_scene_graph_quaternary(void)
     system_process_context_data(&system_stack_byte_pointer,system_byte_operation_result);
   }
   if (system_temp_unsigned_value_primary != 0) {
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_storage,*(uint8_t *)(init_ctx_base_value + 8),system_byte_operation_result);
   }
   if (system_stack_storage != 0) {
@@ -21845,7 +21350,6 @@ void system_manage_scene_graph_quaternary(void)
   if (0 < system_system_stack_varint_var) {
     system_stack_context_hash_value = system_temp_unsigned_value_primary;
     system_process_context_data(&system_stack_byte_pointer,system_system_stack_varint_var);
-                    // WARNING: Subroutine does not return
     memcpy((uint64_t)system_stack_context_hash_value + system_stack_storage,system_stack_storage,(int64_t)(system_system_stack_varint_var + 1));
   }
   system_stack_storage = system_stack_storage;
@@ -21867,7 +21371,6 @@ void system_manage_scene_graph_quaternary(void)
   Sleep(1000);
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_storage = 0;
@@ -21875,7 +21378,6 @@ void system_manage_scene_graph_quaternary(void)
   system_stack_byte_pointer = &system_null_ptr;
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_storage = 0;
@@ -21887,19 +21389,16 @@ void system_manage_scene_graph_quaternary(void)
   system_stack_double_ptr_scene_data = &system_stack_byte_pointer;
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_storage = 0;
   system_stack_context_hash_value = system_stack_context_hash_value & 0xffffffff00000000;
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_stack_buffer_scene_graph);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_transform_data_quaternary(void)
@@ -21956,7 +21455,6 @@ system_label:
       system_stack_context_hash_value = 0;
       system_process_context_data(&system_stack_byte_pointer,*(uint32_t* *)(system_data_handle + 0x10));
       if (*(int *)(system_data_handle + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
         memcpy(system_stack_byte_pointer,*(uint8_t *)(system_data_handle + 8),*(int *)(system_data_handle + 0x10) + 1);
       }
       if (*(int64_t *)(system_data_handle + 8) != 0) {
@@ -21982,7 +21480,6 @@ system_label:
       system_stack_context_hash_value = 0;
       system_process_context_data(&system_stack_byte_pointer,*(uint32_t* *)(system_data_handle + 0x10));
       if (*(int *)(system_data_handle + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
         memcpy(system_stack_byte_pointer,*(uint8_t *)(system_data_handle + 8),*(int *)(system_data_handle + 0x10) + 1);
       }
       if (*(int64_t *)(system_data_handle + 8) != 0) {
@@ -22001,7 +21498,6 @@ system_label:
       if (system_temp_char_result == '\0') {
         system_stack_byte_pointer = &system_null_ptr;
         if (system_stack_byte_pointer != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         system_stack_byte_pointer = (uint8_t* *)0x0;
@@ -22009,7 +21505,6 @@ system_label:
         system_stack_byte_pointer = &system_null_ptr;
         system_stack_byte_pointer = &system_null_ptr;
         if (system_stack_byte_pointer != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
       }
@@ -22047,7 +21542,6 @@ system_label:
             system_stack_context_hash_value = 0;
             system_process_context_data(&system_stack_byte_pointer,*system_context_ptr_primary5);
             if (*system_context_ptr_primary5 != 0) {
-                    // WARNING: Subroutine does not return
               memcpy(system_stack_byte_pointer,*(uint8_t *)(system_context_ptr_primary5 + -2),*system_context_ptr_primary5 + 1);
             }
             if (*(int64_t *)(system_context_ptr_primary5 + -2) != 0) {
@@ -22106,7 +21600,6 @@ system_label:
                   system_process_context_data(&system_stack_byte_pointer,system_temp_uint_value);
                 }
                 if (system_temp_unsigned_value_primary != 0) {
-                    // WARNING: Subroutine does not return
                   memcpy(system_stack_byte_pointer,*(uint8_t *)(system_context_ptr_primary5 + -2),system_temp_uint_value);
                 }
                 if (system_stack_byte_pointer != (uint8_t* *)0x0) {
@@ -22127,7 +21620,6 @@ system_label:
                 if (system_temp_char_result != '\0') goto system_label;
                 system_stack_byte_pointer = &system_null_ptr;
                 if (system_stack_byte_pointer != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
                   system_process_context_data();
                 }
                 system_stack_context_hash_value = (uint64_t)system_stack_context_hash_value._4_4_ << 0x20;
@@ -22155,7 +21647,6 @@ system_label:
                   system_stack_context_hash_value = 0;
                   system_process_context_data(&system_stack_byte_pointer,system_system_stack_varint_var);
                   if (system_system_stack_varint_var != 0) {
-                    // WARNING: Subroutine does not return
                     memcpy(system_stack_byte_pointer,system_stack_storage,system_system_stack_varint_var + 1);
                   }
                   if (system_stack_storage != 0) {
@@ -22174,7 +21665,6 @@ system_label:
                   system_global_data_pointer = 0;
                   system_stack_byte_pointer = &system_null_ptr;
                   if (system_stack_byte_pointer != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
                     system_process_context_data();
                   }
                   system_stack_byte_pointer = (uint8_t* *)0x0;
@@ -22182,7 +21672,6 @@ system_label:
                   system_stack_byte_pointer = &system_null_ptr;
                   system_stack_byte_pointer = &system_null_ptr;
                   if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
                     system_process_context_data();
                   }
                   system_stack_storage = 0;
@@ -22191,7 +21680,6 @@ system_label:
                 }
                 system_system_stack_context_ptr_b = &system_null_ptr;
                 if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
                   system_process_context_data();
                 }
                 system_stack_byte_pointer = (void* *)0x0;
@@ -22199,7 +21687,6 @@ system_label:
                 system_system_stack_context_ptr_b = &system_null_ptr;
                 system_stack_byte_pointer = &system_null_ptr;
                 if (system_stack_byte_pointer != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
                   system_process_context_data();
                 }
                 system_stack_context_hash_value = (uint64_t)system_stack_context_hash_value._4_4_ << 0x20;
@@ -22209,7 +21696,6 @@ system_label:
 system_label:
               system_stack_byte_pointer = &system_null_ptr;
               if (system_stack_byte_pointer != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
                 system_process_context_data();
               }
               system_stack_context_hash_value = (uint64_t)system_stack_context_hash_value._4_4_ << 0x20;
@@ -22226,7 +21712,6 @@ system_label:
         }
         system_stack_byte_pointer = &system_null_ptr;
         if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         system_stack_storage = 0;
@@ -22236,12 +21721,10 @@ system_label:
           (**(code **)*system_context_ptr_primary2)(system_context_ptr_primary2,0);
         }
         if (camera_node_current != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data(camera_node_current);
         }
         system_stack_byte_pointer = &system_null_ptr;
         if (system_stack_byte_pointer != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         system_stack_byte_pointer = (uint8_t* *)0x0;
@@ -22249,7 +21732,6 @@ system_label:
         system_stack_byte_pointer = &system_null_ptr;
         system_stack_byte_pointer = &system_null_ptr;
         if (system_stack_byte_pointer != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
       }
@@ -22261,13 +21743,11 @@ system_label:
       system_system_stack_varint_var = system_int_var_transform_index + 1;
     } while (system_system_stack_varint_var < (int)system_data_handle);
   }
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_stack_buffer_transform_data);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_camera_system_quaternary(void)
@@ -22326,7 +21806,6 @@ void system_initialize_camera_system_quaternary(void)
   *(uint32_t* *)(system_calculated_offset + 0xe0) = 0;
   system_global_data_pointer = system_calculated_offset;
   system_parameter_value_secondary = system_process_context_data(system_global_data_pointer,0x70,8,3);
-                    // WARNING: Subroutine does not return
   memset(system_parameter_value_secondary,0,0x70);
 }
 
@@ -22342,7 +21821,6 @@ void system_configure_projection_matrix_quaternary(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -22369,7 +21847,6 @@ void system_manage_render_targets_quaternary(void)
         if (*(int64_t **)(system_data_handle + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(system_data_handle + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
         system_process_context_data(system_data_handle);
       }
       *(uint8_t *)(system_data_handle + system_unsigned_temp_counter * 8) = 0;
@@ -22379,7 +21856,6 @@ void system_manage_render_targets_quaternary(void)
   }
   *(uint8_t *)(system_context_ptr + 0x18) = 0;
   if ((1 < system_parameter_value_secondary) && (*(int64_t *)(system_context_ptr + 8) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -22405,7 +21881,6 @@ int64_t system_process_context_data(int64_t system_context_ptr)
 void system_process_shadow_mapping_quaternary(void)
   *(uint8_t *)(system_context_ptr + 8) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x10) = 0;
@@ -22437,7 +21912,6 @@ void system_configure_shader_parameters_quaternary(void)
         if (*(int64_t **)(system_data_handle + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(system_data_handle + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
         system_process_context_data(system_data_handle);
       }
       *(uint8_t *)(system_data_handle + system_unsigned_temp_counter * 8) = 0;
@@ -22447,7 +21921,6 @@ void system_configure_shader_parameters_quaternary(void)
   }
   *(uint8_t *)(system_context_ptr + 0x18) = 0;
   if ((1 < system_parameter_value_secondary) && (*(int64_t *)(system_context_ptr + 8) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -22455,7 +21928,6 @@ void system_configure_shader_parameters_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_buffer_operations_quaternary(void)
@@ -22473,7 +21945,6 @@ void system_handle_buffer_operations_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_vertex_data_quaternary(void)
@@ -22603,7 +22074,6 @@ system_label:
         system_byte_pointer_d = *(uint8_t **)(*(int64_t *)(system_context_ptr + 0x48) + system_data_handle * 8);
         if (system_byte_pointer_d != (uint8_t *)0x0) {
           if (system_byte_pointer_d[9] != 0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           system_byte_pointer_d[4] = &system_null_ptr;
@@ -22616,13 +22086,10 @@ system_label:
               system_byte_pointer_d[1] = 0;
               *(uint32_t* *)(system_byte_pointer_d + 3) = 0;
               *system_byte_pointer_d = &system_null_ptr;
-                    // WARNING: Subroutine does not return
               system_process_context_data(system_byte_pointer_d);
             }
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *(uint8_t *)(*(int64_t *)(system_context_ptr + 0x48) + system_data_handle * 8) = 0;
@@ -22630,7 +22097,6 @@ system_label:
         system_temp_uint_value = system_data_handle + 8;
         system_unsigned_result_value = *(uint64_t *)(system_context_ptr + 0x50);
         if (system_temp_uint_value < system_unsigned_result_value) {
-                    // WARNING: Subroutine does not return
           memmove(system_data_handle,system_temp_uint_value,system_unsigned_result_value - system_temp_uint_value);
         }
         system_data_handle = system_unsigned_result_value - 8;
@@ -22652,7 +22118,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_texture_manager_quaternary(void)
@@ -22671,7 +22136,6 @@ void system_initialize_texture_manager_quaternary(void)
       init_ctx_base = *(uint8_t **)(*system_context_ptr_primary + system_unsigned_result_value);
       if (init_ctx_base != (uint8_t *)0x0) {
         if (init_ctx_base[9] != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         init_ctx_base[4] = &system_null_ptr;
@@ -22684,13 +22148,10 @@ void system_initialize_texture_manager_quaternary(void)
             init_ctx_base[1] = 0;
             *(uint32_t* *)(init_ctx_base + 3) = 0;
             *init_ctx_base = &system_null_ptr;
-                    // WARNING: Subroutine does not return
             system_process_context_data(init_ctx_base);
           }
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       *(uint8_t *)(*system_context_ptr_primary + system_unsigned_result_value) = 0;
@@ -22720,16 +22181,13 @@ void system_initialize_texture_manager_quaternary(void)
     if (system_unsigned_temp_counter == 0) {
       return;
     }
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
-                    // WARNING: Subroutine does not return
   memmove(system_parameter_value_secondary,system_unsigned_result_value,system_data_handle,system_memory_size_array,system_temp_uint_value,system_parameter_value_secondary,init_ctx_base_value,init_ctx_base_value);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_mipmap_generation_quaternary(void)
@@ -22782,7 +22240,6 @@ void system_configure_mipmap_generation_quaternary(void)
     (**(code **)(*system_stack_alt_ptr + 0x28))();
   }
   (*system_code_ptr_b)(system_context_ptr_primary,&system_stack_alt_ptr);
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_stack_buffer_texture_system);
 }
 
@@ -22801,7 +22258,6 @@ uint8_t system_process_context_data(uint8_t system_context_ptr,uint64_t system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_texture_compression_quaternary(void)
@@ -22832,7 +22288,6 @@ void system_handle_texture_compression_quaternary(void)
   while( true ) {
     do {
       if (*(int *)(system_context_ptr + 0xcc) == 0) {
-                    // WARNING: Subroutine does not return
         system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_c8);
       }
       Sleep(10);
@@ -22912,7 +22367,6 @@ void system_handle_texture_compression_quaternary(void)
     *(double *)(system_context_ptr + 0xc0) = system_double_var_b;
     system_system_stack_context_ptr_b = &system_null_ptr;
     if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_byte_pointer = (void* *)0x0;
@@ -22920,13 +22374,11 @@ void system_handle_texture_compression_quaternary(void)
     system_system_stack_context_ptr_b = &system_null_ptr;
   }
   system_process_context_data(&system_system_stack_context_ptr_b,system_stack_context_hash_value + system_result_code);
-                    // WARNING: Subroutine does not return
   memcpy(system_stack_byte_pointer + system_stack_context_hash_value,acStack_60,(int64_t)((int)system_data_handle + 2));
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_material_system_quaternary(void)
@@ -22966,7 +22418,6 @@ void system_manage_material_system_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_lighting_calculations_quaternary(void)
@@ -23012,13 +22463,11 @@ void system_process_lighting_calculations_quaternary(void)
   system_stack_byte_pointer = &system_null_ptr;
   *system_config_data_array = &system_null_ptr;
   if (system_config_data_array[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_config_data_array[1] = 0;
   *(uint32_t* *)(system_config_data_array + 3) = 0;
   *system_config_data_array = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_158);
 }
 
@@ -23124,8 +22573,6 @@ void system_configure_skeletal_animation_quaternary(void)
   } while (init_ctx_base[system_data_handle] != '\0');
   if ((int)system_data_handle < 0x400) {
     *(int *)(system_context_ptr + 0x10) = (int)system_data_handle;
-                    // WARNING: Could not recover jumptable at 0x000180056fc2. Too many branches
-                    // WARNING: Treating indirect jump as call
     system_strcpy_s(*(uint8_t *)(system_context_ptr + 8),0x400);
     return;
   }
@@ -23253,13 +22700,11 @@ void system_configure_rigid_body_dynamics_quaternary(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_collision_response_quaternary(void)
@@ -23289,12 +22734,10 @@ void system_handle_collision_response_quaternary(void)
   system_byte_pointer_d = (uint32_t* *)system_context_ptr[1];
 system_label:
   if (camera_node_current != system_byte_pointer_d) {
-                    // WARNING: Subroutine does not return
     memmove(init_ctx_base,camera_node_current,(int64_t)system_byte_pointer_d - (int64_t)camera_node_current);
   }
   *init_ctx_base = *system_config_data_array;
   if (*system_context_ptr != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *system_context_ptr = (int64_t)init_ctx_base;
@@ -23312,7 +22755,6 @@ void system_manage_constraint_system_quaternary(void)
   system_context_ptr_primary = *(uint8_t **)(system_context_ptr + 0x10);
   if (system_context_ptr_primary != (uint8_t *)0x0) {
     system_process_context_data(system_context_ptr,*system_context_ptr_primary);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary);
   }
   *(int64_t *)system_context_ptr = system_context_ptr;
@@ -23328,7 +22770,6 @@ void system_manage_constraint_system_quaternary(void)
 
 void system_process_force_calculations_quaternary(void)
   system_process_context_data();
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -23348,7 +22789,6 @@ void system_initialize_audio_engine_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_sound_spatialization_quaternary(void)
@@ -23363,7 +22803,6 @@ void system_configure_sound_spatialization_quaternary(void)
   system_unsigned_temp_counter = system_config_data_array - system_param_primary;
   if (system_unsigned_temp_counter <= (uint64_t)(system_context_ptr[2] - context_offset >> 3)) {
     if (system_unsigned_temp_counter != 0) {
-                    // WARNING: Subroutine does not return
       memset(context_offset,0,system_unsigned_temp_counter * 8);
     }
     system_context_ptr[1] = context_offset;
@@ -23385,15 +22824,12 @@ void system_configure_sound_spatialization_quaternary(void)
     context_offset = system_context_ptr[1];
   }
   if (init_ctx_base_value != context_offset) {
-                    // WARNING: Subroutine does not return
     memmove(system_data_handle,init_ctx_base_value,context_offset - init_ctx_base_value);
   }
   if (system_unsigned_temp_counter != 0) {
-                    // WARNING: Subroutine does not return
     memset(system_data_handle,0,system_unsigned_temp_counter * 8);
   }
   if (*system_context_ptr != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *system_context_ptr = system_data_handle;
@@ -23404,7 +22840,6 @@ void system_configure_sound_spatialization_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_audio_mixing_quaternary(void)
@@ -23413,7 +22848,6 @@ void system_handle_audio_mixing_quaternary(void)
   system_parameter_value_secondary = system_config_data_array - system_context_ptr;
   if (system_parameter_value_secondary <= (uint64_t)(in_RAX - system_register_rdi >> 3)) {
     if (system_parameter_value_secondary != 0) {
-                    // WARNING: Subroutine does not return
       memset();
     }
     unaff_RBX[1] = system_register_rdi;
@@ -23435,15 +22869,12 @@ void system_handle_audio_mixing_quaternary(void)
     system_register_rdi = unaff_RBX[1];
   }
   if (system_memory_size_array != system_register_rdi) {
-                    // WARNING: Subroutine does not return
     memmove(system_data_handle,system_memory_size_array,system_register_rdi - system_memory_size_array);
   }
   if (system_parameter_value_secondary != 0) {
-                    // WARNING: Subroutine does not return
     memset(system_data_handle,0,system_parameter_value_secondary * 8);
   }
   if (*unaff_RBX != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *unaff_RBX = system_data_handle;
@@ -23458,7 +22889,6 @@ void system_handle_audio_mixing_quaternary(void)
 void system_manage_sound_resources_quaternary(void)
   
   if (unaff_RSI != 0) {
-                    // WARNING: Subroutine does not return
     memset();
   }
   *(uint8_t *)(unaff_RBX + 8) = system_register_rdi;
@@ -23494,7 +22924,6 @@ void system_configure_protocol_handlers_quaternary(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -23528,7 +22957,6 @@ void system_process_network_events_quaternary(void)
     do {
       system_data_handle = *(int64_t *)(system_calculated_offset + system_unsigned_result_value * 8);
       if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data(system_data_handle);
       }
       *(uint8_t *)(system_calculated_offset + system_unsigned_result_value * 8) = 0;
@@ -23576,7 +23004,6 @@ void system_initialize_security_layer_quaternary(void)
     do {
       system_data_handle = *(int64_t *)(system_calculated_offset + system_unsigned_result_value * 8);
       if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data(system_data_handle);
       }
       *(uint8_t *)(system_calculated_offset + system_unsigned_result_value * 8) = 0;
@@ -23621,7 +23048,6 @@ void system_configure_encryption_system_quaternary(void)
   do {
     system_data_handle = *(int64_t *)(system_register_r14 + system_register_rdi * 8);
     if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_data_handle);
     }
     *(uint8_t *)(system_register_r14 + system_register_rdi * 8) = unaff_R15;
@@ -23743,7 +23169,6 @@ void system_initialize_script_runtime_quaternary(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -23762,7 +23187,6 @@ void system_configure_virtual_machine_quaternary(void)
         if (*(int64_t **)(system_data_handle + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(system_data_handle + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
         system_process_context_data(system_data_handle);
       }
       *(uint8_t *)(system_data_handle + system_unsigned_temp_counter * 8) = 0;
@@ -23772,7 +23196,6 @@ void system_configure_virtual_machine_quaternary(void)
   }
   *(uint8_t *)(system_context_ptr + 0x18) = 0;
   if ((1 < system_parameter_value_secondary) && (*(int64_t *)(system_context_ptr + 8) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -23790,7 +23213,6 @@ void system_handle_script_execution_quaternary(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -23808,7 +23230,6 @@ void system_manage_script_objects_quaternary(void)
     do {
       system_data_handle = *(int64_t *)(system_calculated_offset + system_unsigned_result_value * 8);
       if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data(system_data_handle);
       }
       *(uint8_t *)(system_calculated_offset + system_unsigned_result_value * 8) = 0;
@@ -23856,7 +23277,6 @@ void system_process_script_events_quaternary(void)
     do {
       system_data_handle = *(int64_t *)(system_calculated_offset + system_unsigned_result_value * 8);
       if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data(system_data_handle);
       }
       *(uint8_t *)(system_calculated_offset + system_unsigned_result_value * 8) = 0;
@@ -23900,7 +23320,6 @@ void system_initialize_resource_pipeline_quaternary(void)
   do {
     system_data_handle = *(int64_t *)(system_register_r14 + system_register_rdi * 8);
     if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_data_handle);
     }
     *(uint8_t *)(system_register_r14 + system_register_rdi * 8) = unaff_R15;
@@ -24015,13 +23434,11 @@ void system_manage_memory_arena_quaternary(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_resource_requests_quaternary(void)
@@ -24049,7 +23466,6 @@ void system_process_resource_requests_quaternary(void)
   system_process_context_data(init_ctx_base + 0x116);
   system_process_context_data(init_ctx_base + 6);
   if (init_ctx_base[2] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_unsigned_temp_counter = (uint64_t)init_ctx_base & 0xffffffffffc00000;
@@ -24105,7 +23521,6 @@ void system_initialize_job_system_quaternary(void)
         }
         system_stack_byte_pointer = &system_null_ptr;
         if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         system_stack_storage = 0;
@@ -24130,7 +23545,6 @@ void system_initialize_job_system_quaternary(void)
       }
       system_stack_byte_pointer = &system_null_ptr;
       if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
     }
@@ -24140,7 +23554,6 @@ void system_initialize_job_system_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int64_t * system_process_context_data(int64_t system_context_ptr,int64_t *system_config_data_array,uint8_t system_thread_count)
 
@@ -24175,7 +23588,6 @@ system_label:
   }
   system_byte_operation_result = 0;
 system_label:
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_data_handle,system_calculated_offset,system_context_ptr,system_byte_operation_result);
 }
 
@@ -24187,12 +23599,10 @@ void system_configure_task_scheduler_quaternary(void)
     return;
   }
   if (system_context_ptr[9] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[4] = &system_null_ptr;
   if (system_context_ptr[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[5] = 0;
@@ -24200,19 +23610,16 @@ void system_configure_task_scheduler_quaternary(void)
   system_context_ptr[4] = &system_null_ptr;
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[1] = 0;
   *(uint32_t* *)(system_context_ptr + 3) = 0;
   *system_context_ptr = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_context_ptr);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint system_config_data_array,uint8_t system_thread_count,uint8_t system_memory_size_array)
 
@@ -24222,7 +23629,6 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint system_co
   system_context_ptr[0x28] = 0;
   system_context_ptr[0x29] = &system_null_ptr;
   if (system_context_ptr[0x2a] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x2a] = 0;
@@ -24246,7 +23652,6 @@ void system_handle_job_distribution_quaternary(void)
   system_process_context_data();
   system_context_ptr[0x123] = (int64_t)&system_null_ptr;
   if (system_context_ptr[0x124] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x124] = 0;
@@ -24267,10 +23672,8 @@ void system_handle_job_distribution_quaternary(void)
     if (*system_context_ptr == 0) {
       return;
     }
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -24292,7 +23695,6 @@ void system_process_job_completion_quaternary(void)
   if (system_context_ptr_primary != (uint8_t *)0x0) {
     system_process_context_data(system_context_ptr,*system_context_ptr_primary,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
     system_process_context_data(system_context_ptr_primary);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary);
   }
   return;
@@ -24316,7 +23718,6 @@ void system_configure_performance_counters_quaternary(void)
   if (system_context_ptr_primary != (uint8_t *)0x0) {
     system_process_context_data(system_context_ptr,*system_context_ptr_primary,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
     system_process_context_data(system_context_ptr_primary);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary);
   }
   return;
@@ -24349,7 +23750,6 @@ void system_handle_metrics_collection_quaternary(void)
     (**(code **)*current_ctx_ptr)(current_ctx_ptr,0);
   }
   if (system_byte_pointer_d != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_byte_pointer_d);
   }
   return;
@@ -24373,7 +23773,6 @@ void system_process_performance_reports_quaternary(void)
   if (system_context_ptr_primary != (uint8_t *)0x0) {
     system_process_context_data(system_context_ptr,*system_context_ptr_primary,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
     system_process_context_data(system_context_ptr_primary);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary);
   }
   return;
@@ -24503,7 +23902,6 @@ void system_configure_debug_overlay_quaternary(void)
       (**(code **)(*(int64_t *)system_config_data_array[0x17] + 0x38))();
     }
     system_config_data_array[4] = &system_null_ptr;
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_config_data_array);
   }
   return;
@@ -24520,13 +23918,11 @@ void system_handle_debug_visualization_quaternary(void)
   system_process_context_data(system_config_data_array + 8);
   system_config_data_array[4] = &system_null_ptr;
   if (system_config_data_array[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_config_data_array[5] = 0;
   *(uint32_t* *)(system_config_data_array + 7) = 0;
   system_config_data_array[4] = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_config_data_array);
 }
 
@@ -24540,13 +23936,11 @@ void system_manage_debug_context_quaternary(void)
   system_process_context_data(system_context_ptr,*system_config_data_array,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   system_config_data_array[4] = &system_null_ptr;
   if (system_config_data_array[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_config_data_array[5] = 0;
   *(uint32_t* *)(system_config_data_array + 7) = 0;
   system_config_data_array[4] = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_config_data_array);
 }
 
@@ -24559,24 +23953,20 @@ void system_process_debug_commands_quaternary(void)
   }
   system_process_context_data(system_context_ptr,*system_config_data_array,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   if (system_config_data_array[8] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_config_data_array[4] = &system_null_ptr;
   if (system_config_data_array[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_config_data_array[5] = 0;
   *(uint32_t* *)(system_config_data_array + 7) = 0;
   system_config_data_array[4] = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_config_data_array);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_save_system_quaternary(void)
@@ -24649,7 +24039,6 @@ system_label:
     do {
       *system_byte_pointer_d = &system_null_ptr;
       if (system_byte_pointer_d[1] != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_byte_pointer_d[1] = 0;
@@ -24665,7 +24054,6 @@ system_label:
     system_context_ptr[2] = init_ctx_base + context_offset * 5;
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_byte_pointer_d);
 }
 
@@ -24704,18 +24092,15 @@ void system_configure_serialization_format_quaternary(void)
   }
   system_process_context_data(system_context_ptr,*system_config_data_array,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   if (system_config_data_array[8] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_config_data_array[4] = &system_null_ptr;
   if (system_config_data_array[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_config_data_array[5] = 0;
   *(uint32_t* *)(system_config_data_array + 7) = 0;
   system_config_data_array[4] = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_config_data_array);
 }
 
@@ -24726,7 +24111,6 @@ void system_handle_data_persistence_quaternary(void)
   if (system_config_data_array != (uint8_t *)0x0) {
     system_process_context_data(system_context_ptr,*system_config_data_array);
     system_process_context_data(system_config_data_array);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_config_data_array);
   }
   return;
@@ -24740,7 +24124,6 @@ void system_manage_save_slots_quaternary(void)
   
   system_process_context_data(system_context_ptr,*unaff_RBX);
   system_process_context_data();
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -24756,19 +24139,16 @@ void system_process_load_operations_quaternary(void)
 
 void system_initialize_localization_quaternary(void)
   if (*(int64_t *)(system_config_data_array + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_config_data_array + 0x20) = &system_null_ptr;
   if (*(int64_t *)(system_config_data_array + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_config_data_array + 0x28) = 0;
   *(uint32_t* *)(system_config_data_array + 0x38) = 0;
   *(uint8_t *)(system_config_data_array + 0x20) = &system_null_ptr;
   if (system_config_data_array != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_config_data_array);
   }
   return;
@@ -24776,7 +24156,6 @@ void system_initialize_localization_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_language_settings_quaternary(void)
@@ -24809,7 +24188,6 @@ void system_configure_language_settings_quaternary(void)
       system_byte_pointer_d = (uint8_t *)*system_context_ptr;
     }
     if (system_byte_pointer_d != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_byte_pointer_d);
     }
     *system_context_ptr = system_data_handle;
@@ -24839,7 +24217,6 @@ void system_configure_language_settings_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_text_translation_quaternary(void)
@@ -24876,7 +24253,6 @@ void system_handle_text_translation_quaternary(void)
     system_register_rdi[1] = system_data_handle;
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data(camera_node_current);
 }
 
@@ -24904,7 +24280,6 @@ void system_manage_locale_data_quaternary(void)
     init_ctx_base = (uint8_t *)*system_register_rdi;
   }
   if (init_ctx_base != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(init_ctx_base);
   }
   *system_register_rdi = unaff_R12;
@@ -24932,7 +24307,6 @@ void system_process_string_resources_quaternary(void)
     camera_node_current = (uint8_t *)*system_register_rdi;
   }
   if (camera_node_current != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(camera_node_current);
   }
   *system_register_rdi = unaff_R12;
@@ -24969,7 +24343,6 @@ void system_initialize_mod_support_quaternary(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_plugin_interface_quaternary(void)
@@ -24997,38 +24370,30 @@ void system_configure_plugin_interface_quaternary(void)
       system_data_handle = *system_context_ptr;
     }
     if (system_data_handle != system_config_data_array) {
-                    // WARNING: Subroutine does not return
       memmove(system_temp_unsigned_value_primary,system_data_handle,system_config_data_array - system_data_handle);
     }
-                    // WARNING: Subroutine does not return
     memmove(system_temp_unsigned_value_primary,system_thread_count,system_memory_size_array - system_thread_count);
   }
   system_unsigned_temp_counter = system_data_handle - system_config_data_array >> 3;
   if (system_unsigned_result_value < system_unsigned_temp_counter) {
     system_data_handle = system_data_handle + system_unsigned_result_value * -8;
     if (system_data_handle != system_data_handle) {
-                    // WARNING: Subroutine does not return
       memmove(system_data_handle,system_data_handle,system_unsigned_result_value * 8);
     }
-                    // WARNING: Subroutine does not return
     memmove(system_data_handle - ((system_data_handle + system_unsigned_result_value * -8) - system_config_data_array & 0xfffffffffffffff8),system_config_data_array);
   }
   system_data_handle = system_thread_count + system_unsigned_temp_counter * 8;
   if (system_data_handle != system_memory_size_array) {
-                    // WARNING: Subroutine does not return
     memmove(system_data_handle,system_data_handle,system_memory_size_array - system_data_handle);
   }
   if (system_config_data_array != system_data_handle) {
-                    // WARNING: Subroutine does not return
     memmove(system_data_handle + (system_unsigned_result_value - system_unsigned_temp_counter) * 8,system_config_data_array,system_data_handle - system_config_data_array);
   }
-                    // WARNING: Subroutine does not return
   memmove(system_config_data_array + (system_unsigned_temp_counter - (system_data_handle - system_thread_count >> 3)) * 8,system_thread_count,system_data_handle - system_thread_count);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_mod_loading_quaternary(void)
@@ -25053,38 +24418,30 @@ void system_handle_mod_loading_quaternary(void)
       system_data_handle = *system_context_ptr;
     }
     if (system_data_handle != system_config_data_array) {
-                    // WARNING: Subroutine does not return
       memmove(system_temp_unsigned_value_primary,system_data_handle,system_config_data_array - system_data_handle);
     }
-                    // WARNING: Subroutine does not return
     memmove(system_temp_unsigned_value_primary,system_thread_count,system_memory_size_array - system_thread_count);
   }
   system_unsigned_temp_counter = system_data_handle - system_config_data_array >> 3;
   if (system_unsigned_result_value < system_unsigned_temp_counter) {
     system_data_handle = system_data_handle + system_unsigned_result_value * -8;
     if (system_data_handle != system_data_handle) {
-                    // WARNING: Subroutine does not return
       memmove(system_data_handle,system_data_handle,system_unsigned_result_value * 8);
     }
-                    // WARNING: Subroutine does not return
     memmove(system_data_handle - ((system_data_handle + system_unsigned_result_value * -8) - system_config_data_array & 0xfffffffffffffff8),system_config_data_array);
   }
   system_data_handle = system_thread_count + system_unsigned_temp_counter * 8;
   if (system_data_handle != system_memory_size_array) {
-                    // WARNING: Subroutine does not return
     memmove(system_data_handle,system_data_handle,system_memory_size_array - system_data_handle);
   }
   if (system_config_data_array != system_data_handle) {
-                    // WARNING: Subroutine does not return
     memmove(system_data_handle + (system_unsigned_result_value - system_unsigned_temp_counter) * 8,system_config_data_array,system_data_handle - system_config_data_array);
   }
-                    // WARNING: Subroutine does not return
   memmove(system_config_data_array + (system_unsigned_temp_counter - (system_data_handle - system_thread_count >> 3)) * 8,system_thread_count,system_data_handle - system_thread_count);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_mod_dependencies_quaternary(void)
@@ -25106,10 +24463,8 @@ void system_manage_mod_dependencies_quaternary(void)
     system_config_data_array = *system_register_rdi;
   }
   if (system_config_data_array != unaff_RSI) {
-                    // WARNING: Subroutine does not return
     memmove(system_temp_unsigned_value_primary,system_config_data_array,unaff_RSI - system_config_data_array);
   }
-                    // WARNING: Subroutine does not return
   memmove(system_temp_unsigned_value_primary);
 }
 
@@ -25136,7 +24491,6 @@ void system_initialize_graphics_subsystem(int64_t system_context_ptr)
   system_process_context_data();
   *(uint8_t *)(system_context_ptr + 8) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x10) = 0;
@@ -25163,7 +24517,6 @@ void system_manage_memory_pool_5(void)
   system_process_context_data(system_context_ptr + 4);
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[1] = 0;
@@ -25177,12 +24530,10 @@ void system_manage_memory_pool_5(void)
 
 void system_configure_thread_scheduler_5(void)
   if (system_context_ptr[4] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[1] = 0;
@@ -25203,7 +24554,6 @@ void system_initialize_subsystem_component_5(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -25249,77 +24599,6 @@ void system_manage_resource_cache_5(void)
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018017747d)
-// WARNING: Removing unreachable block (ram,0x000180177a18)
-// WARNING: Removing unreachable block (ram,0x000180177a22)
-// WARNING: Removing unreachable block (ram,0x000180177a2e)
-// WARNING: Removing unreachable block (ram,0x000180177a35)
-// WARNING: Removing unreachable block (ram,0x000180177581)
-// WARNING: Removing unreachable block (ram,0x000180177590)
-// WARNING: Removing unreachable block (ram,0x00018017759c)
-// WARNING: Removing unreachable block (ram,0x0001801775a3)
-// WARNING: Removing unreachable block (ram,0x0001801775b3)
-// WARNING: Removing unreachable block (ram,0x0001801775c0)
-// WARNING: Removing unreachable block (ram,0x0001801775cc)
-// WARNING: Removing unreachable block (ram,0x0001801775d3)
-// WARNING: Removing unreachable block (ram,0x000180177263)
-// WARNING: Removing unreachable block (ram,0x000180177296)
-// WARNING: Removing unreachable block (ram,0x00018017726a)
-// WARNING: Removing unreachable block (ram,0x000180177274)
-// WARNING: Removing unreachable block (ram,0x000180177280)
-// WARNING: Removing unreachable block (ram,0x000180177287)
-// WARNING: Removing unreachable block (ram,0x000180177290)
-// WARNING: Removing unreachable block (ram,0x000180177298)
-// WARNING: Removing unreachable block (ram,0x00018017753a)
-// WARNING: Removing unreachable block (ram,0x000180177540)
-// WARNING: Removing unreachable block (ram,0x000180177550)
-// WARNING: Removing unreachable block (ram,0x00018017755c)
-// WARNING: Removing unreachable block (ram,0x000180177563)
-// WARNING: Removing unreachable block (ram,0x0001801772c2)
-// WARNING: Removing unreachable block (ram,0x0001801772d0)
-// WARNING: Removing unreachable block (ram,0x0001801772dc)
-// WARNING: Removing unreachable block (ram,0x0001801772e3)
-// WARNING: Removing unreachable block (ram,0x00018017764c)
-// WARNING: Removing unreachable block (ram,0x00018017749a)
-// WARNING: Removing unreachable block (ram,0x0001801774a8)
-// WARNING: Removing unreachable block (ram,0x0001801774aa)
-// WARNING: Removing unreachable block (ram,0x000180176fc3)
-// WARNING: Removing unreachable block (ram,0x000180177722)
-// WARNING: Removing unreachable block (ram,0x00018017729d)
-// WARNING: Removing unreachable block (ram,0x00018017766b)
-// WARNING: Removing unreachable block (ram,0x000180177677)
-// WARNING: Removing unreachable block (ram,0x000180177679)
-// WARNING: Removing unreachable block (ram,0x00018017739f)
-// WARNING: Removing unreachable block (ram,0x0001801773a6)
-// WARNING: Removing unreachable block (ram,0x0001801773b0)
-// WARNING: Removing unreachable block (ram,0x0001801773bc)
-// WARNING: Removing unreachable block (ram,0x0001801773c3)
-// WARNING: Removing unreachable block (ram,0x00018017731b)
-// WARNING: Removing unreachable block (ram,0x000180177321)
-// WARNING: Removing unreachable block (ram,0x000180177330)
-// WARNING: Removing unreachable block (ram,0x00018017733c)
-// WARNING: Removing unreachable block (ram,0x000180177343)
-// WARNING: Removing unreachable block (ram,0x00018017734b)
-// WARNING: Removing unreachable block (ram,0x000180177356)
-// WARNING: Removing unreachable block (ram,0x000180177360)
-// WARNING: Removing unreachable block (ram,0x00018017736c)
-// WARNING: Removing unreachable block (ram,0x000180177373)
-// WARNING: Removing unreachable block (ram,0x00018017737b)
-// WARNING: Removing unreachable block (ram,0x000180177385)
-// WARNING: Removing unreachable block (ram,0x0001801773cb)
-// WARNING: Removing unreachable block (ram,0x000180177381)
-// WARNING: Removing unreachable block (ram,0x0001801773cd)
-// WARNING: Removing unreachable block (ram,0x0001801773d6)
-// WARNING: Removing unreachable block (ram,0x0001801773da)
-// WARNING: Removing unreachable block (ram,0x0001801773e4)
-// WARNING: Removing unreachable block (ram,0x0001801773eb)
-// WARNING: Removing unreachable block (ram,0x000180177400)
-// WARNING: Removing unreachable block (ram,0x00018017740c)
-// WARNING: Removing unreachable block (ram,0x000180177413)
-// WARNING: Removing unreachable block (ram,0x00018017741e)
-// WARNING: Removing unreachable block (ram,0x000180177417)
-// WARNING: Removing unreachable block (ram,0x000180177420)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_event_queue_5(void)
@@ -25410,7 +24689,6 @@ void system_process_event_queue_5(void)
           system_stack_byte_pointer = system_context_ptr_primary1;
           system_byte_operation_result = system_process_context_data(system_context_ptr_primary1);
           system_stack_context_hash_value = CONCAT44(system_stack_context_hash_value._4_4_,system_byte_operation_result);
-                    // WARNING: Subroutine does not return
           memcpy(system_context_ptr_primary1,system_context_ptr_primary3,system_result_code);
         }
       }
@@ -25464,10 +24742,8 @@ void system_process_event_queue_5(void)
             system_context_ptr_primary3 = system_context_ptr_primary3 + *(int *)(init_ctx_base + system_data_handle * 4 + 2);
           }
           if ((int64_t)system_context_ptr_primary3 - (int64_t)system_context_ptr_primary7 != 0) {
-                    // WARNING: Subroutine does not return
             memcpy(&system_stack_context_hash_value,system_context_ptr_primary7,(int64_t)system_context_ptr_primary3 - (int64_t)system_context_ptr_primary7);
           }
-                    // WARNING: Ignoring partial resolution of indirect
           system_stack_context_hash_value._0_1_ = 0;
           system_temp_uint_value = 0;
           system_byte_operation_result = 0;
@@ -25515,7 +24791,6 @@ void system_process_event_queue_5(void)
               }
             }
             system_stack_context_hash_value = CONCAT44(system_stack_context_hash_value._4_4_,system_temp_uint_value);
-                    // WARNING: Subroutine does not return
             memcpy(system_stack_byte_pointer,&system_stack_context_hash_value,system_result_code);
           }
           system_stack_context_hash_value = 0;
@@ -25570,7 +24845,6 @@ void system_process_event_queue_5(void)
                 *(uint8_t *)(system_data_handle + 0x58) = 0;
                 *(uint8_t *)(system_data_handle + 0x48) = 0;
                 *(uint32_t* *)(system_data_handle + 0x50) = 0;
-                    // WARNING: Subroutine does not return
                 system_process_context_data(system_data_handle,system_context_sextuple_ptr_14,&pppppsystem_stack_temp_pointer_360,system_byte_operation_result);
               }
               system_context_sextuple_ptr_14 = (uint8_t *******)system_generic_function(system_context_sextuple_ptr_14);
@@ -25584,7 +24858,6 @@ void system_process_event_queue_5(void)
             system_process_context_data(system_context_sextuple_ptr_14 + 8,system_temp_uint_value);
           }
           if (system_temp_uint_value != 0) {
-                    // WARNING: Subroutine does not return
             memcpy(system_context_sextuple_ptr_14[9],init_ctx_base[system_data_handle * 4 + 1],system_temp_uint_value);
           }
           *(uint32_t* *)(system_context_sextuple_ptr_14 + 10) = 0;
@@ -25618,14 +24891,12 @@ void system_process_event_queue_5(void)
       if (system_stack_byte_pointer != (uint8_t *)0x0) {
         system_stack_byte_pointer = camera_node_current;
         system_stack_byte_pointer = system_byte_pointer_d;
-                    // WARNING: Subroutine does not return
         system_process_context_data(camera_traverse_node_next);
       }
       system_stack_byte_pointer = &system_null_ptr;
       if (system_stack_storage != 0) {
         system_stack_byte_pointer = camera_node_current;
         system_stack_byte_pointer = system_byte_pointer_d;
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_stack_storage = 0;
@@ -25699,7 +24970,6 @@ void system_process_event_queue_5(void)
               }
               system_stack_context_hash_value = CONCAT44(system_stack_context_hash_value._4_4_,system_temp_uint_value);
               if (*(int *)(system_data_handle + 0xb8) != 0) {
-                    // WARNING: Subroutine does not return
                 memcpy(system_stack_byte_pointer,*(uint8_t *)(system_data_handle + 0xb0),*(int *)(system_data_handle + 0xb8) + 1);
               }
             }
@@ -25713,7 +24983,6 @@ void system_process_event_queue_5(void)
             system_stack_context_hash_value = system_stack_context_hash_value & 0xfffffffd;
             system_stack_byte_pointer = &system_null_ptr;
             if (system_stack_byte_pointer != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
               system_process_context_data(system_stack_byte_pointer);
             }
             system_stack_byte_pointer = (uint8_t* *)0x0;
@@ -25749,7 +25018,6 @@ void system_process_event_queue_5(void)
           system_process_context_data(system_data_handle,&system_stack_byte_pointer,&system_stack_byte_pointer,&system_stack_context_hash_value);
           system_stack_byte_pointer = &system_null_ptr;
           if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           system_stack_storage = 0;
@@ -25757,7 +25025,6 @@ void system_process_event_queue_5(void)
           system_stack_byte_pointer = &system_null_ptr;
           system_stack_byte_pointer = (uint8_t *)&system_null_ptr;
           if (system_stack_byte_pointer != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           system_stack_byte_pointer = (uint8_t *)0x0;
@@ -25765,7 +25032,6 @@ void system_process_event_queue_5(void)
           system_stack_byte_pointer = (uint8_t *)&system_null_ptr;
           system_stack_byte_pointer = &system_null_ptr;
           if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           system_stack_byte_pointer = (void* *)0x0;
@@ -25777,7 +25043,6 @@ void system_process_event_queue_5(void)
     } while (system_context_sextuple_ptr_14 != &pppppsystem_stack_temp_pointer_360);
   }
   system_process_context_data(&pppppsystem_stack_temp_pointer_360);
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_3b8);
 }
 
@@ -25857,7 +25122,6 @@ void system_initialize_audio_component_5(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -25887,7 +25151,6 @@ int64_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
         system_process_context_data(system_thread_count,system_unsigned_temp_counter);
       }
       if (system_temp_unsigned_value_primary != 0) {
-                    // WARNING: Subroutine does not return
         memcpy(*(uint8_t *)(system_context_ptr + (int64_t)system_alternate_data_ptr),*system_alternate_data_ptr,system_unsigned_temp_counter);
       }
       *(uint32_t* *)(system_context_ptr + 8 + (int64_t)system_alternate_data_ptr) = 0;
@@ -25919,7 +25182,6 @@ int64_t system_process_context_data(int64_t system_context_ptr,uint8_t system_co
       system_process_context_data(unaff_RSI,system_parameter_value_secondary);
     }
     if (system_temp_unsigned_value_primary != 0) {
-                    // WARNING: Subroutine does not return
       memcpy(*(uint8_t *)(system_thread_count + (int64_t)system_alternate_data_ptr),*system_alternate_data_ptr,system_parameter_value_secondary);
     }
     *(uint32_t* *)(system_thread_count + 8 + (int64_t)system_alternate_data_ptr) = 0;
@@ -25959,7 +25221,6 @@ int64_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
 
 void system_handle_input_processing_5(void)
   if (system_context_ptr != system_config_data_array) {
-                    // WARNING: Subroutine does not return
     memmove(system_thread_count,system_context_ptr,system_config_data_array - system_context_ptr);
   }
   return;
@@ -25970,12 +25231,10 @@ void system_handle_input_processing_5(void)
 
 void system_initialize_debug_interface_5(void)
   if (system_context_ptr[4] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[1] = 0;
@@ -25995,13 +25254,11 @@ void system_process_performance_metrics_5(void)
   system_process_context_data();
   system_config_data_array[4] = &system_null_ptr;
   if (system_config_data_array[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_config_data_array[5] = 0;
   *(uint32_t* *)(system_config_data_array + 7) = 0;
   system_config_data_array[4] = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_config_data_array);
 }
 
@@ -26014,7 +25271,6 @@ void system_manage_security_context_5(void)
   system_initialize_module(system_context_ptr + 0x11,0x20,0x10,system_initialize_graphics);
   system_context_ptr[8] = &system_null_ptr;
   if (system_context_ptr[9] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[9] = 0;
@@ -26022,7 +25278,6 @@ void system_manage_security_context_5(void)
   system_context_ptr[8] = &system_null_ptr;
   system_context_ptr[4] = &system_null_ptr;
   if (system_context_ptr[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[5] = 0;
@@ -26030,7 +25285,6 @@ void system_manage_security_context_5(void)
   system_context_ptr[4] = &system_null_ptr;
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[1] = 0;
@@ -26046,7 +25300,6 @@ void system_initialize_plugin_system_5(void)
   system_process_context_data();
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[1] = 0;
@@ -26069,7 +25322,6 @@ void system_initialize_graphics(int64_t *system_context_ptr)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -26085,7 +25337,6 @@ void system_configure_logging_system_5(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -26097,7 +25348,6 @@ void system_initialize_module_f(uint8_t *system_context_ptr)
 {
   system_context_ptr[4] = &system_null_ptr;
   if (system_context_ptr[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[5] = 0;
@@ -26105,7 +25355,6 @@ void system_initialize_module_f(uint8_t *system_context_ptr)
   system_context_ptr[4] = &system_null_ptr;
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[1] = 0;
@@ -26119,7 +25368,6 @@ void system_initialize_module_f(uint8_t *system_context_ptr)
 
 void system_handle_error_processing_5(void)
   if (*(int64_t *)(system_context_ptr + 8) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   _Mtx_system_destroy_in_situ();
@@ -26161,7 +25409,6 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint8_t *syste
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_monitoring_system_5(void)
@@ -26201,7 +25448,6 @@ system_label:
     system_context_ptr[1] = system_data_handle + 0x20;
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data(camera_traverse_node_next);
 }
 
@@ -26233,8 +25479,6 @@ void system_process_data_synchronization_5(void)
   } while (*(char *)(system_config_data_array + system_data_handle) != '\0');
   if ((int)system_data_handle < 0x10) {
     *(int *)(system_context_ptr + 0x10) = (int)system_data_handle;
-                    // WARNING: Could not recover jumptable at 0x000180059977. Too many branches
-                    // WARNING: Treating indirect jump as call
     system_strcpy_s(*(uint8_t *)(system_context_ptr + 8),0x10);
     return;
   }
@@ -26249,7 +25493,6 @@ void system_process_data_synchronization_5(void)
 
 void system_manage_thread_pool_5(void)
   if (system_thread_count + 1 < 0x10) {
-                    // WARNING: Subroutine does not return
     memcpy(*(uint8_t* **)(system_context_ptr + 8),system_config_data_array,(int64_t)system_thread_count);
   }
   **(uint8_t* **)(system_context_ptr + 8) = 0;
@@ -26261,7 +25504,6 @@ void system_manage_thread_pool_5(void)
 
 
 void system_configure_memory_allocator_5(void)
-                    // WARNING: Subroutine does not return
   memcpy();
 }
 
@@ -26277,7 +25519,6 @@ void system_initialize_resource_manager_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_system_events_5(void)
@@ -26302,11 +25543,9 @@ void system_handle_system_events_5(void)
     do {
       system_data_handle = system_data_handle + 1;
     } while (*(char *)(system_data_handle + system_thread_count) != '\0');
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_byte_pointer,*(int64_t *)(system_context_ptr + 8),system_data_handle - *(int64_t *)(system_context_ptr + 8));
   }
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_stack_buffer_texture_system);
 }
 
@@ -26345,7 +25584,6 @@ void system_initialize_config(uint8_t *system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_configuration_updates_5(void)
@@ -26476,11 +25714,9 @@ void system_manage_component_lifecycle_5(void)
       *(uint8_t *)camera_node_current[3] = 0;
     }
     (**(code **)*camera_node_current)(camera_node_current,0);
-                    // WARNING: Subroutine does not return
     system_process_context_data(camera_node_current);
   }
   if ((system_context_ptr[6] != 0) && (*(int64_t *)(system_context_ptr[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_calculated_offset = system_context_ptr[5];
@@ -26488,7 +25724,6 @@ void system_manage_component_lifecycle_5(void)
     system_code_ptr_b = (char *)(system_calculated_offset + 0x141);
     system_calculated_offset = *(int64_t *)(system_calculated_offset + 0x138);
     if (*system_code_ptr_b != '\0') {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -26532,11 +25767,9 @@ void system_initialize_script_engine_5(void)
       *(uint8_t *)camera_node_current[3] = 0;
     }
     (**(code **)*camera_node_current)(camera_node_current,0);
-                    // WARNING: Subroutine does not return
     system_process_context_data(camera_node_current);
   }
   if ((system_context_ptr[6] != 0) && (*(int64_t *)(system_context_ptr[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_calculated_offset = system_context_ptr[5];
@@ -26544,7 +25777,6 @@ void system_initialize_script_engine_5(void)
     system_code_ptr_b = (char *)(system_calculated_offset + 0x141);
     system_calculated_offset = *(int64_t *)(system_calculated_offset + 0x138);
     if (*system_code_ptr_b != '\0') {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -26584,7 +25816,6 @@ void system_configure_physics_system_5(void)
     *(uint8_t *)unaff_RBX[3] = 0;
   }
   (**(code **)*unaff_RBX)();
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -26598,7 +25829,6 @@ void system_handle_audio_processing_5(void)
   
   if ((*(int64_t *)(unaff_RSI + 0x30) != 0) &&
      (*(int64_t *)(*(int64_t *)(unaff_RSI + 0x30) + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_calculated_offset = *(int64_t *)(unaff_RSI + 0x28);
@@ -26606,7 +25836,6 @@ void system_handle_audio_processing_5(void)
     system_code_ptr_b = (char *)(system_calculated_offset + 0x141);
     system_calculated_offset = *(int64_t *)(system_calculated_offset + 0x138);
     if (*system_code_ptr_b != '\0') {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -26680,11 +25909,9 @@ void system_process_render_commands_5(void)
       *(uint8_t *)camera_node_current[3] = 0;
     }
     (**(code **)*camera_node_current)(camera_node_current,0);
-                    // WARNING: Subroutine does not return
     system_process_context_data(camera_node_current);
   }
   if ((system_context_ptr[6] != 0) && (*(int64_t *)(system_context_ptr[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_calculated_offset = system_context_ptr[5];
@@ -26692,7 +25919,6 @@ void system_process_render_commands_5(void)
     system_code_ptr_b = (char *)(system_calculated_offset + 0x141);
     system_calculated_offset = *(int64_t *)(system_calculated_offset + 0x138);
     if (*system_code_ptr_b != '\0') {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -26771,10 +25997,8 @@ void system_configure_display_settings_5(void)
       system_data_handle = *(int64_t *)(system_data_handle + system_unsigned_temp_counter * 8);
       if (system_data_handle != 0) {
         if (*(int64_t *)(system_data_handle + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
-                    // WARNING: Subroutine does not return
         system_process_context_data(system_data_handle);
       }
       *(uint8_t *)(system_data_handle + system_unsigned_temp_counter * 8) = 0;
@@ -26902,7 +26126,6 @@ uint8_t system_process_context_data(uint8_t system_context_ptr,uint64_t system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_particle_system_5(void)
@@ -26968,7 +26191,6 @@ void system_initialize_particle_system_5(void)
   system_context_ptr[0x69] = 0;
   *(uint32_t* *)(system_context_ptr + 0x6b) = 0;
   system_param_primary = system_process_context_data(system_global_data_pointer,0xc0,8,4);
-                    // WARNING: Subroutine does not return
   memset(system_param_primary,0,0xc0);
 }
 
@@ -26996,7 +26218,6 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint64_t syste
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_lighting_system_5(void)
@@ -27019,7 +26240,6 @@ void system_configure_lighting_system_5(void)
   system_stack_context_hash_value = 0xd;
   system_process_context_data(system_context_ptr,&system_stack_byte_pointer);
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(init_ctx_base);
 }
 
@@ -27064,7 +26284,6 @@ void system_handle_collision_detection_5(void)
   *system_context_ptr = &system_internal_context_data_ptr_3;
   system_context_ptr[0x18] = &system_null_ptr;
   if (system_context_ptr[0x19] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x19] = 0;
@@ -27072,19 +26291,15 @@ void system_handle_collision_detection_5(void)
   system_context_ptr[0x18] = &system_null_ptr;
   system_process_context_data(system_context_ptr + 0x12,system_context_ptr[0x14],system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   if (system_context_ptr[0xd] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (system_context_ptr[9] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (system_context_ptr[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -27121,7 +26336,6 @@ void system_process_texture_data_5(void)
   }
   *(uint8_t *)(system_context_ptr + 0x30) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x38) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x38) = 0;
@@ -27129,7 +26343,6 @@ void system_process_texture_data_5(void)
   *(uint8_t *)(system_context_ptr + 0x30) = &system_null_ptr;
   *(uint8_t *)(system_context_ptr + 0x10) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x18) = 0;
@@ -27140,7 +26353,6 @@ void system_process_texture_data_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_ui_system_5(void)
@@ -27166,7 +26378,6 @@ void system_initialize_ui_system_5(void)
   system_stack_context_hash_value = 0x12;
   system_process_context_data(system_context_ptr,&system_stack_byte_pointer);
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(init_ctx_base);
 }
 
@@ -27220,7 +26431,6 @@ void system_configure_window_manager_5(void)
   *system_context_ptr = &system_internal_context_data_ptr_3;
   system_context_ptr[0x18] = &system_null_ptr;
   if (system_context_ptr[0x19] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x19] = 0;
@@ -27228,19 +26438,15 @@ void system_configure_window_manager_5(void)
   system_context_ptr[0x18] = &system_null_ptr;
   system_process_context_data(system_context_ptr + 0x12,system_context_ptr[0x14],system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   if (system_context_ptr[0xd] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (system_context_ptr[9] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (system_context_ptr[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -27278,7 +26484,6 @@ void system_handle_user_input_5(void)
   }
   *(uint8_t *)(system_context_ptr + 0x28) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x30) = 0;
@@ -27286,7 +26491,6 @@ void system_handle_user_input_5(void)
   *(uint8_t *)(system_context_ptr + 0x28) = &system_null_ptr;
   *(uint8_t *)(system_context_ptr + 8) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x10) = 0;
@@ -27348,7 +26552,6 @@ void system_manage_state_machine_5(void)
   }
   system_context_ptr[0x10] = &system_null_ptr;
   if (system_context_ptr[0x11] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x11] = 0;
@@ -27356,7 +26559,6 @@ void system_manage_state_machine_5(void)
   system_context_ptr[0x10] = &system_null_ptr;
   system_context_ptr[0xc] = &system_null_ptr;
   if (system_context_ptr[0xd] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0xd] = 0;
@@ -27364,7 +26566,6 @@ void system_manage_state_machine_5(void)
   system_context_ptr[0xc] = &system_null_ptr;
   system_context_ptr[8] = &system_null_ptr;
   if (system_context_ptr[9] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[9] = 0;
@@ -27372,7 +26573,6 @@ void system_manage_state_machine_5(void)
   system_context_ptr[8] = &system_null_ptr;
   system_context_ptr[4] = &system_null_ptr;
   if (system_context_ptr[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[5] = 0;
@@ -27380,7 +26580,6 @@ void system_manage_state_machine_5(void)
   system_context_ptr[4] = &system_null_ptr;
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[1] = 0;
@@ -27391,7 +26590,6 @@ void system_manage_state_machine_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_game_logic_5(void)
@@ -27413,7 +26611,6 @@ void system_process_game_logic_5(void)
   system_stack_context_hash_value = 0xb;
   system_process_context_data(system_context_ptr,&system_stack_byte_pointer);
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(init_ctx_base);
 }
 
@@ -27466,7 +26663,6 @@ int64_t system_process_context_data(int64_t system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t
 system_process_context_data(uint8_t system_context_ptr,uint8_t system_config_data_array,uint8_t system_thread_count,uint8_t system_memory_size_array)
@@ -27535,7 +26731,6 @@ system_process_context_data(uint8_t *system_context_ptr,uint8_t *system_config_d
 void system_initialize_ai_system_5(void)
   *(uint8_t *)(system_context_ptr + 0x18) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x20) = 0;
@@ -27558,7 +26753,6 @@ void system_configure_pathfinding_5(void)
     do {
       *(uint8_t *)(system_data_handle + 0x18) = &system_null_ptr;
       if (*(int64_t *)(system_data_handle + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       *(uint8_t *)(system_data_handle + 0x20) = 0;
@@ -27643,7 +26837,6 @@ system_process_context_data(uint8_t *system_context_ptr,uint8_t *system_config_d
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_scene_graph_5(void)
@@ -27711,13 +26904,11 @@ void system_manage_scene_graph_5(void)
   if ((code *)system_context_ptr[2] != (code *)0x0) {
     (*(code *)system_context_ptr[2])(system_context_ptr,0,0);
   }
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_128);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_transform_data_5(void)
@@ -27764,7 +26955,6 @@ uint8_t system_process_context_data(int64_t system_context_ptr,uint8_t system_co
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_camera_system_5(void)
@@ -27793,7 +26983,6 @@ void system_initialize_camera_system_5(void)
     camera_traverse_node_next = (uint8_t *)system_generic_function(camera_node_current);
   }
   if (*(int *)(system_calculated_offset + 0x20) <= *(int *)(camera_traverse_node_next + 4)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_calculated_offset);
   }
 system_label:
@@ -27803,7 +26992,6 @@ system_label:
   else {
     system_iteration_count = 1;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_calculated_offset,camera_node_current,system_context_ptr,system_iteration_count);
 }
 
@@ -27883,7 +27071,6 @@ int64_t system_process_context_data(int64_t system_context_ptr)
 {
   *(uint8_t *)(system_context_ptr + 0x40) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x48) = 0;
@@ -27891,7 +27078,6 @@ int64_t system_process_context_data(int64_t system_context_ptr)
   *(uint8_t *)(system_context_ptr + 0x40) = &system_null_ptr;
   *(uint8_t *)(system_context_ptr + 0x20) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x28) = 0;
@@ -27933,7 +27119,6 @@ void system_handle_view_frustum_5(void)
   if (view_frustum_config_array[0] == '\0') {
     system_process_context_data(system_data_handle);
     if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_data_handle);
     }
     view_frustum_stack_ptr = &system_stack_byte_pointer;
@@ -27947,10 +27132,8 @@ void system_handle_view_frustum_5(void)
       if (system_stack_storage == 0) {
         return;
       }
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (ppsystem_temp_unsigned_value == context_data_ptr) goto system_label;
@@ -27968,7 +27151,6 @@ void system_handle_view_frustum_5(void)
   }
   system_temp_byte_primary = 1;
 system_label:
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_data_handle,ppsystem_temp_unsigned_value,context_data_ptr,system_temp_byte_primary,system_temp_uint_value);
 }
 
@@ -28075,7 +27257,6 @@ uint32_t* system_process_context_data(int64_t system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_manage_render_targets_5(void)
   
@@ -28114,7 +27295,6 @@ int system_manage_render_targets_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_shadow_mapping_5(void)
@@ -28168,7 +27348,6 @@ void system_process_shadow_mapping_5(void)
     system_temp_int_primary = (int)(init_ctx_base_value + 1);
     if (0 < system_temp_int_primary) {
       system_process_context_data(system_config_data_array,*(int *)(system_config_data_array + 0x10) + system_temp_int_primary);
-                    // WARNING: Subroutine does not return
       memcpy((uint64_t)*(uint *)(system_config_data_array + 0x10) + *(int64_t *)(system_config_data_array + 8),acStack_438,
              (int64_t)((int)init_ctx_base_value + 2));
     }
@@ -28181,11 +27360,9 @@ void system_process_shadow_mapping_5(void)
     system_process_context_data(context_offset,(int64_t)system_temp_int_primary,&system_internal_format_buffer_ptr,&dStackX_18);
     system_process_context_data(system_config_data_array,context_offset);
     if (context_offset != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(context_offset);
     }
   }
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_478);
 }
 
@@ -28195,7 +27372,6 @@ int64_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
 
 {
   if (*(int64_t *)(system_context_ptr + 8) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x18) = 0;
@@ -28216,14 +27392,12 @@ int64_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
 void system_initialize_post_processing_5(void)
   *(uint8_t *)(system_config_data_array + 0x20) = &system_null_ptr;
   if (*(int64_t *)(system_config_data_array + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_config_data_array + 0x28) = 0;
   *(uint32_t* *)(system_config_data_array + 0x38) = 0;
   *(uint8_t *)(system_config_data_array + 0x20) = &system_null_ptr;
   if (system_config_data_array != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_config_data_array);
   }
   return;
@@ -28239,13 +27413,11 @@ void system_configure_shader_parameters_5(void)
   system_process_context_data(system_context_ptr,*system_config_data_array,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   system_config_data_array[4] = &system_null_ptr;
   if (system_config_data_array[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_config_data_array[5] = 0;
   *(uint32_t* *)(system_config_data_array + 7) = 0;
   system_config_data_array[4] = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_config_data_array);
 }
 
@@ -28557,7 +27729,6 @@ void system_configure_mipmap_generation_5(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -28576,7 +27747,6 @@ void system_handle_texture_compression_5(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -28635,7 +27805,6 @@ void system_manage_material_system_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_lighting_calculations_5(void)
@@ -28693,7 +27862,6 @@ void system_process_lighting_calculations_5(void)
         context_offset = __RTCastToVoid(global_ctx_ptr);
         (**(code **)(*global_ctx_ptr + 0x28))(global_ctx_ptr,0);
         if (context_offset != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data(context_offset);
         }
       }
@@ -28713,7 +27881,6 @@ void system_process_lighting_calculations_5(void)
         context_offset = __RTCastToVoid(global_ctx_ptr);
         (**(code **)(*global_ctx_ptr + 0x28))(global_ctx_ptr,0);
         if (context_offset != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data(context_offset);
         }
       }
@@ -28733,7 +27900,6 @@ void system_process_lighting_calculations_5(void)
         context_offset = __RTCastToVoid(global_ctx_ptr);
         (**(code **)(*global_ctx_ptr + 0x28))(global_ctx_ptr,0);
         if (context_offset != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data(context_offset);
         }
       }
@@ -28749,15 +27915,12 @@ void system_process_lighting_calculations_5(void)
   CloseHandle(*(uint8_t *)(system_context_ptr + 0x70));
   CloseHandle(*(uint8_t *)(system_context_ptr + 0x68));
   if (*system_secondary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (*system_alternate_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -28851,7 +28014,6 @@ void system_initialize_physics_engine_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_rigid_body_dynamics_5(void)
@@ -28932,7 +28094,6 @@ void system_configure_rigid_body_dynamics_5(void)
       } while (*(char *)((int64_t)&system_stack_context_hash_value + system_temp_storage_value) != '\0');
       system_result_code = (int)context_offset;
       if ((0 < system_result_code) && (system_stack_context_hash_value + system_result_code < 0xf)) {
-                    // WARNING: Subroutine does not return
         memcpy(system_stack_byte_pointer + system_stack_context_hash_value,&system_stack_context_hash_value,(int64_t)(system_result_code + 1));
       }
       system_parameter_value_secondary = system_process_context_data(system_global_data_pointer,0x208,8,3);
@@ -28972,7 +28133,6 @@ void system_configure_rigid_body_dynamics_5(void)
       } while (system_stack_char_audio_buffer[system_temp_storage_value + 1] != '\0');
       system_result_code = (int)(system_temp_storage_value + 1);
       if ((0 < system_result_code) && (system_stack_context_hash_value + system_result_code < 0xf)) {
-                    // WARNING: Subroutine does not return
         memcpy(system_stack_byte_pointer + system_stack_context_hash_value,system_stack_char_audio_buffer,(int64_t)((int)system_temp_storage_value + 2));
       }
       system_byte_pointer_d = (uint8_t *)system_process_context_data(system_global_data_pointer,0x208,8,3);
@@ -29010,13 +28170,11 @@ void system_configure_rigid_body_dynamics_5(void)
   }
   system_stack_double_ptr_scene_data = asystem_stack_temp_pointer_108;
   asystem_stack_temp_pointer_108[0] = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_1b8);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_collision_response_5(void)
@@ -29070,7 +28228,6 @@ void system_manage_constraint_system_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_force_calculations_5(void)
@@ -29197,7 +28354,6 @@ void system_manage_sound_resources_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t * system_process_context_data(int64_t system_context_ptr,uint8_t system_config_data_array)
 
@@ -29233,7 +28389,6 @@ void system_process_audio_effects_5(void)
         system_data_handle = *(int64_t *)(system_context_ptr + 0x48) + (int64_t)system_context_index * 8;
         system_iteration_count = system_data_handle + 8;
         if (system_iteration_count < system_param_primary) {
-                    // WARNING: Subroutine does not return
           memmove(system_data_handle,system_iteration_count,system_param_primary - system_iteration_count);
         }
         *(uint64_t *)(system_context_ptr + 0x50) = system_param_primary - 8;
@@ -29247,7 +28402,6 @@ void system_process_audio_effects_5(void)
     system_data_handle = __RTCastToVoid(system_config_data_array);
     (**(code **)(*system_config_data_array + 0x28))(system_config_data_array,0);
     if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_data_handle);
     }
   }
@@ -29273,7 +28427,6 @@ void system_initialize_network_layer_5(void)
         system_data_handle = *(int64_t *)(system_context_ptr + 0x48) + (int64_t)system_context_index * 8;
         system_iteration_count = system_data_handle + 8;
         if (system_iteration_count < system_param_primary) {
-                    // WARNING: Subroutine does not return
           memmove(system_data_handle,system_iteration_count,system_param_primary - system_iteration_count);
         }
         *(uint64_t *)(system_context_ptr + 0x50) = system_param_primary - 8;
@@ -29287,7 +28440,6 @@ void system_initialize_network_layer_5(void)
     system_data_handle = __RTCastToVoid(system_config_data_array);
     (**(code **)(*system_config_data_array + 0x28))(system_config_data_array,0);
     if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_data_handle);
     }
   }
@@ -29303,7 +28455,6 @@ void system_configure_protocol_handlers_5(void)
   system_data_handle = __RTCastToVoid();
   (**(code **)(*system_register_rdi + 0x28))();
   if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_data_handle);
   }
   return;
@@ -29311,7 +28462,6 @@ void system_configure_protocol_handlers_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_data_serialization_5(void)
@@ -29324,8 +28474,6 @@ void system_handle_data_serialization_5(void)
   }
   system_result_code = _Mtx_unlock(system_data_handle);
   if (system_result_code != 0) {
-                    // WARNING: Could not recover jumptable at 0x00018005e68f. Too many branches
-                    // WARNING: Treating indirect jump as call
     __Throw_C_system_error_varstd__YAXH_Z(system_result_code);
     return;
   }
@@ -29451,7 +28599,6 @@ int64_t system_process_context_data(int64_t system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t * system_process_context_data(uint8_t *system_context_ptr)
 
@@ -29523,7 +28670,6 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_security_layer_5(void)
@@ -29553,12 +28699,10 @@ void system_initialize_security_layer_5(void)
   system_byte_pointer_d = (uint8_t *)system_context_ptr[1];
 system_label:
   if (camera_node_current != system_byte_pointer_d) {
-                    // WARNING: Subroutine does not return
     memmove(init_ctx_base,camera_node_current,(int64_t)system_byte_pointer_d - (int64_t)camera_node_current);
   }
   *init_ctx_base = *system_config_data_array;
   if (*system_context_ptr != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *system_context_ptr = (uint64_t)init_ctx_base;
@@ -29569,7 +28713,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int64_t system_process_context_data(int64_t system_context_ptr)
 
@@ -29696,7 +28839,6 @@ int64_t system_process_context_data(int64_t system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int64_t system_process_context_data(void)
 
@@ -29818,7 +28960,6 @@ uint8_t system_process_context_data(uint8_t system_context_ptr,uint8_t system_co
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int64_t system_process_context_data(void)
 
@@ -29903,7 +29044,6 @@ int64_t system_process_context_data(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t * system_process_context_data(int64_t *system_context_ptr,char system_config_data_array,uint8_t* *system_thread_count)
 
@@ -30140,7 +29280,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t system_process_context_data(int64_t system_context_ptr,int64_t system_config_data_array)
 
@@ -30187,7 +29326,6 @@ uint8_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t * system_process_context_data(int64_t system_context_ptr)
 
@@ -30304,7 +29442,6 @@ void system_configure_encryption_system_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t system_handle_authentication_5(void)
   uint *system_context_ptr_primary;
@@ -30573,7 +29710,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t system_manage_permission_system_5(void)
   uint64_t *system_context_ptr_primary;
@@ -30756,7 +29892,6 @@ joined_r0x00018005fdcd:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int64_t system_process_context_data(int64_t system_context_ptr)
 
@@ -30937,7 +30072,6 @@ system_label:
     *system_context_ptr = &system_internal_status_flag_ptr_2fe210;
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
   while( true ) {
     system_unsigned_temp_counter = (uint)system_unsigned_result_value;
@@ -30958,7 +30092,6 @@ code_r0x000180060327:
     do {
       system_data_handle = *(int64_t *)(system_temp_storage_value + 0x100);
       if (*(char *)(system_temp_storage_value + 0x141) != '\0') {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_data_handle = system_context_ptr[10];
@@ -31098,7 +30231,6 @@ system_label:
     }
   }
   if (system_context_ptr[0xc] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *system_context_ptr = &system_internal_status_flag_ptr_2fe210;
@@ -31141,10 +30273,8 @@ void system_handle_script_execution_5(void)
     return;
   }
   if (*(int *)(system_context_ptr[1] + 8) == 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
-                    // WARNING: Subroutine does not return
   terminate();
 }
 
@@ -31177,7 +30307,6 @@ int system_manage_script_objects_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_script_events_5(void)
@@ -31249,7 +30378,6 @@ uint8_t system_process_context_data(int64_t system_context_ptr,char system_confi
             (**(code **)(*(int64_t *)*system_secondary_data_ptr + 0x38))();
           }
           if (*(int64_t *)(system_context_ptr + 0xb0) != 0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           system_secondary_data_ptr = (int64_t *)(*(int64_t *)(system_context_ptr + 0xc0) + 8);
@@ -31644,7 +30772,6 @@ bool system_handle_resource_streaming_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_memory_arena_5(void)
@@ -31671,7 +30798,6 @@ void system_manage_memory_arena_5(void)
         if (system_unsigned_result_value < 2) {
           system_unsigned_result_value = 1;
         }
-                    // WARNING: Subroutine does not return
         memmove(system_temp_storage_value + (system_temp_uint_value - system_unsigned_result_value) * 8,init_ctx_base_value,system_data_handle);
       }
       init_ctx_base_value = system_calculated_offset;
@@ -31682,7 +30808,6 @@ void system_manage_memory_arena_5(void)
       system_temp_storage_value = system_process_context_data(system_global_data_pointer,init_ctx_base_value * 8,(char)system_context_ptr[10],system_temp_storage_value,system_temp_uint_value);
       system_primary_data_ptr = (int64_t *)(system_temp_storage_value + (system_context_ptr[5] - *system_context_ptr >> 3) * 8);
       if (*system_context_ptr != 0) {
-                    // WARNING: Subroutine does not return
         memcpy(system_primary_data_ptr,system_context_ptr[5],system_data_handle);
       }
       *system_context_ptr = system_temp_storage_value;
@@ -31719,7 +30844,6 @@ void system_manage_memory_arena_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_resource_requests_5(void)
@@ -31773,7 +30897,6 @@ void system_configure_task_scheduler_5(void)
   *system_context_ptr = &system_internal_status_flag_ptr_2a30778;
   system_context_ptr[7] = &system_null_ptr;
   if (system_context_ptr[8] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[8] = 0;
@@ -31781,7 +30904,6 @@ void system_configure_task_scheduler_5(void)
   system_context_ptr[7] = &system_null_ptr;
   system_context_ptr[1] = &system_null_ptr;
   if (system_context_ptr[2] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[2] = 0;
@@ -31811,7 +30933,6 @@ system_process_context_data(uint8_t *system_context_ptr,uint64_t system_config_d
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_job_distribution_5(void)
@@ -31848,19 +30969,16 @@ void system_handle_job_distribution_5(void)
   system_process_context_data(system_global_data_pointer + 0x170,system_system_stack_buffer_230,&system_data_shader_constants_ptr);
   if (0 < *(int *)(system_config_data_array + 0x10)) {
     system_process_context_data(system_system_stack_buffer_230,system_stack_context_hash_value + *(int *)(system_config_data_array + 0x10));
-                    // WARNING: Subroutine does not return
     memcpy((uint64_t)system_stack_context_hash_value + system_stack_storage,*(uint8_t *)(system_config_data_array + 8),
            (int64_t)(*(int *)(system_config_data_array + 0x10) + 1));
   }
   system_process_context_data(system_stack_buffer_temp_data8,system_system_stack_buffer_230);
   system_process_context_data(system_stack_buffer_temp_data8,1);
-                    // WARNING: Subroutine does not return
   memset(system_system_stack_data_array,0,0x100);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_worker_threads_5(void)
@@ -31935,7 +31053,6 @@ void system_manage_worker_threads_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_job_completion_5(void)
@@ -32012,7 +31129,6 @@ void system_process_job_completion_5(void)
 
 
 void system_initialize_profiling_system_5(void)
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -32063,7 +31179,6 @@ void system_initialize_debug_renderer_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_debug_overlay_5(void)
@@ -32101,7 +31216,6 @@ void system_configure_debug_overlay_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_debug_visualization_5(void)
@@ -32114,13 +31228,11 @@ void system_handle_debug_visualization_5(void)
   system_stack_context_hash_value = system_global_data_pointer;
   system_stack_context_hash_value = _time64(0);
   system_stack_context_hash_value = _localtime64(&system_stack_context_hash_value);
-                    // WARNING: Subroutine does not return
   memset(system_system_stack_data_array,0,0xff);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_debug_context_5(void)
@@ -32139,7 +31251,6 @@ void system_manage_debug_context_5(void)
   system_stack_context_hash_value = 0;
   *system_context_ptr = *system_context_ptr + 1;
   if ((*(int64_t *)(system_context_ptr + 4) != 0) && (*(int64_t *)(system_context_ptr + 2) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_1f8);
   }
   system_stack_storage = 0;
@@ -32155,7 +31266,6 @@ void system_manage_debug_context_5(void)
   system_stack_context_hash_value = 0;
   system_system_stack_context_ptr_b = &system_null_ptr;
   if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_storage = 0;
@@ -32197,13 +31307,11 @@ void system_manage_debug_context_5(void)
     } while ((uint64_t)(int64_t)system_temp_int_primary < system_temp_uint_value);
   }
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_context_data(camera_traverse_node_next);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t system_process_context_data(uint8_t system_context_ptr,uint32_t* system_config_data_array)
 
@@ -32263,7 +31371,6 @@ uint8_t system_process_context_data(uint8_t system_context_ptr,uint32_t* system_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_debug_commands_5(void)
@@ -32315,7 +31422,6 @@ void system_process_debug_commands_5(void)
 code_r0x0001800630e9:
       system_process_context_data(system_context_ptr + 0x30,system_temp_int_primary,&system_stack_byte_pointer);
       system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
       system_process_context_data(camera_traverse_node_next);
     case 2:
       system_data_pointer = (int64_t *)(*(int64_t *)(system_context_ptr + 0x20) + 0xd8);
@@ -32494,7 +31600,6 @@ system_process_context_data(uint8_t *system_context_ptr,uint64_t system_config_d
 {
   system_context_ptr[6] = &system_null_ptr;
   if (system_context_ptr[7] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[7] = 0;
@@ -32562,7 +31667,6 @@ int64_t system_thread_init(int64_t system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_load_operations_5(void)
@@ -32574,13 +31678,11 @@ void system_process_load_operations_5(void)
   system_stack_context_hash_value = system_global_data_pointer ^ (uint64_t)system_system_stack_buffer_2e8;
   system_stack_context_hash_value = system_context_ptr;
   system_process_context_data(system_system_stack_buffer_288,system_global_data_pointer + 0x28);
-                    // WARNING: Subroutine does not return
   memset(system_stack_buffer_scene_graph,0,0x200);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_localization_5(void)
@@ -32691,7 +31793,6 @@ system_label:
     system_context_ptr_primary2 = system_stack_byte_pointer;
     system_byte_pointer_d = system_stack_byte_pointer;
     if (-1 < system_result_code) {
-                    // WARNING: Subroutine does not return
       memset(system_stack_buffer_scene_graph,0,0x200);
     }
   }
@@ -32710,28 +31811,23 @@ system_label:
       (**(code **)*system_context_ptr_primary2)(system_context_ptr_primary2,0);
     }
     if (system_stack_byte_pointer != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
     system_stack_context_hash_value = 0;
     system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
     system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_2f8);
   }
   system_stack_byte_pointer = system_byte_pointer_d;
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_text_translation_5(void)
@@ -32767,7 +31863,6 @@ void system_handle_text_translation_5(void)
   system_context_ptr_primary = system_stack_byte_pointer;
   system_byte_pointer_d = system_stack_byte_pointer;
   if ((int)((int64_t)system_stack_byte_pointer - (int64_t)system_stack_byte_pointer >> 5) != 0) {
-                    // WARNING: Subroutine does not return
     memset(system_stack_buffer_scene_graph,0,0x200);
   }
   for (; system_stack_byte_pointer = system_context_ptr_primary, system_byte_pointer_d != init_ctx_base; system_byte_pointer_d = system_byte_pointer_d + 4) {
@@ -32775,7 +31870,6 @@ void system_handle_text_translation_5(void)
     system_context_ptr_primary = system_stack_byte_pointer;
   }
   if (system_stack_byte_pointer != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_byte_pointer = (uint8_t *)0x0;
@@ -32783,12 +31877,10 @@ void system_handle_text_translation_5(void)
     (**(code **)*system_byte_pointer_d)(system_byte_pointer_d,0);
   }
   if (system_stack_byte_pointer != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_storage = 0;
@@ -32812,7 +31904,6 @@ void system_handle_text_translation_5(void)
   }
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_byte_pointer = (void* *)0x0;
@@ -32843,7 +31934,6 @@ void system_handle_text_translation_5(void)
   }
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_byte_pointer = (void* *)0x0;
@@ -32856,7 +31946,6 @@ void system_handle_text_translation_5(void)
     system_global_data_pointer = system_global_data_pointer + -1;
     UNLOCK();
   }
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_358);
 }
 
@@ -32864,13 +31953,11 @@ void system_handle_text_translation_5(void)
 
 
 void system_manage_locale_data_5(void)
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t system_process_string_resources_5(void)
   void* *camera_node_current;
@@ -32938,7 +32025,6 @@ uint64_t system_process_string_resources_5(void)
     }
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -32946,7 +32032,6 @@ uint64_t system_process_string_resources_5(void)
     system_stack_byte_pointer = &system_null_ptr;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_byte_pointer = (void* *)0x0;
@@ -32968,14 +32053,12 @@ uint64_t system_process_string_resources_5(void)
     system_param_primary = (**(code **)*buffer_ptr)(buffer_ptr,0);
   }
   if (system_byte_pointer_d != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_byte_pointer_d);
   }
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_mod_support_5(void)
@@ -33044,7 +32127,6 @@ void system_initialize_mod_support_5(void)
         system_temp_byte_primary = system_stack_context_hash_value + 0x28;
         system_temp_uint_value = *(uint64_t *)(system_temp_uint_value - 8);
         if (0x1f < (system_temp_uint_value - system_temp_uint_value) - 8) {
-                    // WARNING: Subroutine does not return
           _invalsystem_id_parameter_nosystem_info_noreturn();
         }
       }
@@ -33060,7 +32142,6 @@ void system_initialize_mod_support_5(void)
         system_temp_uint_value = system_stack_context_hash_value + 0x28;
         system_data_handle = *(int64_t *)(system_data_handle + -8);
         if (0x1f < (system_data_handle - system_data_handle) - 8U) {
-                    // WARNING: Subroutine does not return
           _invalsystem_id_parameter_nosystem_info_noreturn();
         }
       }
@@ -33077,7 +32158,6 @@ void system_initialize_mod_support_5(void)
         system_temp_uint_value = system_stack_context_hash_value + 0x28;
         system_data_handle = *(int64_t *)(system_data_handle + -8);
         if (0x1f < (system_data_handle - system_data_handle) - 8U) {
-                    // WARNING: Subroutine does not return
           _invalsystem_id_parameter_nosystem_info_noreturn();
         }
       }
@@ -33086,7 +32166,6 @@ void system_initialize_mod_support_5(void)
     system_stack_byte_pointer = (uint8_t *)0x0;
     system_stack_context_hash_value = 0xf;
     system_stack_context_hash_value = 0;
-                    // WARNING: Subroutine does not return
     system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_data_array);
   }
   system_stack_context_hash_value = 0;
@@ -33130,7 +32209,6 @@ void system_initialize_mod_support_5(void)
     if (0xf < system_stack_context_hash_value) {
       current_ctx_ptr = (uint *)CONCAT44(system_stack_context_hash_value,system_temp_unsigned_value_primary);
     }
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_byte_pointer,current_ctx_ptr,system_temp_uint_value & 0xffffffff);
   }
   system_stack_context_hash_value = 0;
@@ -33196,7 +32274,6 @@ system_label:
       system_byte_pointer_d = (uint8_t *)*system_context_ptr;
     }
     if (system_byte_pointer_d != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_byte_pointer_d);
     }
     *system_context_ptr = system_data_handle;
@@ -33207,7 +32284,6 @@ system_label:
   }
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_byte_pointer != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_byte_pointer = (uint8_t* *)0x0;
@@ -33223,15 +32299,11 @@ system_label:
     camera_traverse_node_next = (uint8_t* *)CONCAT71(system_stack_context_hash_value,system_stack_context_hash_value);
   }
   system_stack_byte_pointer = (uint8_t *)((int64_t)system_stack_byte_pointer - (int64_t)system_byte_pointer_d);
-                    // WARNING: Subroutine does not return
   memmove(camera_traverse_node_next,camera_traverse_node_next + (int64_t)system_byte_pointer_d,(int64_t)system_stack_byte_pointer + 1);
 }
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001800654e7)
-// WARNING: Removing unreachable block (ram,0x0001800654f0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_plugin_interface_5(void)
@@ -33355,7 +32427,6 @@ void system_configure_plugin_interface_5(void)
   system_process_context_data(&system_stack_byte_pointer,&system_null_ptr,&system_null_ptr,&system_null_ptr);
   system_stack_byte_pointer = &system_null_ptr;
   if (system_system_stack_context_ptr_bd8 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_system_stack_context_ptr_bd8 = (void* *)0x0;
@@ -33363,7 +32434,6 @@ void system_configure_plugin_interface_5(void)
   system_stack_byte_pointer = &system_null_ptr;
   system_stack_byte_pointer = &system_null_ptr;
   if (system_system_stack_context_ptr_bb8 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_system_stack_context_ptr_bb8 = (void* *)0x0;
@@ -33406,7 +32476,6 @@ void system_configure_plugin_interface_5(void)
   system_data_handle = system_global_data_pointer;
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_byte_pointer = (void* *)0x0;
@@ -33414,7 +32483,6 @@ void system_configure_plugin_interface_5(void)
   system_stack_byte_pointer = &system_null_ptr;
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_byte_pointer = (void* *)0x0;
@@ -33468,7 +32536,6 @@ void system_configure_plugin_interface_5(void)
     system_byte_pointer_d = system_system_stack_context_ptr_b;
   }
   if (system_context_ptr_primary9 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary9);
   }
   system_temp_uint_value = (int64_t)system_system_stack_context_ptr_b - (int64_t)system_byte_pointer_d >> 5;
@@ -33569,7 +32636,6 @@ system_label:
           }
           system_stack_byte_pointer = &system_null_ptr;
           if (system_stack_char_ptr_298 != (char *)0x0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           system_stack_char_ptr_298 = (char *)0x0;
@@ -33585,7 +32651,6 @@ system_label:
           }
         }
         if (system_context_ptr_primary7 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data(system_context_ptr_primary7);
         }
         system_context_ptr_primary9 = system_context_ptr_primary9 + 4;
@@ -33609,14 +32674,12 @@ system_label:
     if (system_stack_byte_pointer != (uint8_t *)0x0) {
       system_stack_byte_pointer = system_context_ptr_primary8;
       system_stack_byte_pointer = system_context_ptr_primary7;
-                    // WARNING: Subroutine does not return
       system_process_context_data(camera_traverse_node_next);
     }
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
       system_stack_byte_pointer = system_context_ptr_primary8;
       system_stack_byte_pointer = system_context_ptr_primary7;
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -33645,7 +32708,6 @@ system_label:
     system_process_context_data(&system_stack_byte_pointer,&system_null_ptr,system_context_ptr_primary6);
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_byte_pointer = (void* *)0x0;
@@ -33675,13 +32737,11 @@ system_label:
   }
   if (system_context_ptr_primary8 != (uint8_t *)0x0) {
     system_system_stack_context_ptr_b = system_context_ptr_primary9;
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary8);
   }
   system_stack_byte_pointer = &system_null_ptr;
   if (system_system_stack_context_ptr_bf8 != (void* *)0x0) {
     system_system_stack_context_ptr_b = system_context_ptr_primary9;
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_system_stack_context_ptr_bf8 = (void* *)0x0;
@@ -33705,20 +32765,16 @@ system_label:
       system_stack_byte_pointer = (void* *)0x0;
       system_stack_context_hash_value = 0;
       system_system_stack_context_ptr_b = &system_null_ptr;
-                    // WARNING: Subroutine does not return
       system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_stack_buffer_network_stream);
     }
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_system_stack_context_ptr_b = system_context_ptr_primary9;
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_mod_loading_5(void)
@@ -33738,13 +32794,11 @@ void system_handle_mod_loading_5(void)
   system_stack_context_hash_value = 0x73696c62;
   system_stack_context_hash_value = 0x72435c68;
   system_stack_context_hash_value = 0x55687361;
-                    // WARNING: Subroutine does not return
   memset(system_stack_buffer_entity_data,0,0x80);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_mod_dependencies_5(void)
@@ -33775,7 +32829,6 @@ void system_manage_mod_dependencies_5(void)
   (*system_function_ptr)(system_stack_alt_ptr,system_parameter_value_secondary);
   psystem_stack_temp_pointer_68 = (void* **)&system_null_ptr;
   if (system_stack_ptr_ptr_memory_manager != (int64_t **)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_ptr_ptr_memory_manager = (int64_t **)0x0;
@@ -33786,7 +32839,6 @@ void system_manage_mod_dependencies_5(void)
   (*system_function_ptr)(system_stack_alt_ptr,system_parameter_value_secondary);
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_storage = 0;
@@ -33802,7 +32854,6 @@ void system_manage_mod_dependencies_5(void)
     (*system_function_ptr)(system_stack_alt_ptr,system_context_ptr,system_parameter_value_secondary);
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -33812,7 +32863,6 @@ void system_manage_mod_dependencies_5(void)
   system_process_context_data(&system_stack_byte_pointer);
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -33820,7 +32870,6 @@ void system_manage_mod_dependencies_5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_mod_events_5(void)
@@ -33842,7 +32891,6 @@ void system_process_mod_events_5(void)
     system_process_context_data(&system_stack_byte_pointer,system_unsigned_temp_counter,system_thread_count,system_memory_size_array,1,0xfffffffffffffffe);
   }
   if (system_temp_unsigned_value_primary != 0) {
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_storage,*(uint8_t *)(system_data_handle + 8),system_unsigned_temp_counter);
   }
   if (system_stack_storage != 0) {
@@ -33856,7 +32904,6 @@ void system_process_mod_events_5(void)
   system_process_context_data(&system_stack_byte_pointer,&system_stack_byte_pointer,system_thread_count);
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_storage = 0;
@@ -33878,7 +32925,6 @@ void system_process_mod_events_5(void)
   (**(code **)(**(int64_t **)system_context_ptr[1] + 0x40))(*(int64_t **)system_context_ptr[1],&system_stack_byte_pointer);
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_byte_pointer = (void* *)0x0;
@@ -33895,9 +32941,6 @@ void system_process_mod_events_5(void)
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001800665ec)
-// WARNING: Removing unreachable block (ram,0x0001800665f5)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_context_data_6(void)
@@ -33928,7 +32971,6 @@ void system_process_context_data_6(void)
     system_process_context_data(&system_system_stack_context_ptr_bb8,0);
     system_system_stack_context_ptr_bb8 = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -33979,7 +33021,6 @@ system_label:
     system_result_code = system_process_context_data(&system_stack_byte_pointer,system_unsigned_result_value);
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -34051,7 +33092,6 @@ system_label:
     system_process_context_data(&system_stack_byte_pointer,&system_stack_byte_pointer);
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -34059,7 +33099,6 @@ system_label:
     system_stack_byte_pointer = &system_null_ptr;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -34067,7 +33106,6 @@ system_label:
     system_stack_byte_pointer = &system_null_ptr;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -34079,7 +33117,6 @@ system_label:
     system_process_context_data(&system_stack_byte_pointer,system_config_data_array,system_thread_count,0);
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_byte_pointer = (void* *)0x0;
@@ -34087,7 +33124,6 @@ system_label:
     system_stack_byte_pointer = &system_null_ptr;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_byte_pointer = (void* *)0x0;
@@ -34098,7 +33134,6 @@ system_label:
     system_system_stack_context_ptr_bb8 = &system_null_ptr;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_byte_pointer = (void* *)0x0;
@@ -34106,7 +33141,6 @@ system_label:
     system_stack_byte_pointer = &system_null_ptr;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -34114,13 +33148,11 @@ system_label:
     system_stack_byte_pointer = &system_null_ptr;
   }
 system_label:
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_1f8);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_resource_allocation_6(void)
@@ -34149,7 +33181,6 @@ system_label:
         system_stack_context_hash_value = 7;
         system_process_context_data(system_stack_buffer_resource_cache,&system_system_stack_context_ptr_a);
         system_system_stack_context_ptr_a = &system_null_ptr;
-                    // WARNING: Subroutine does not return
         system_process_context_data(camera_traverse_node_next);
       }
       if (((system_data_debug_mode_flag == '\0') || (system_iteration_counter = IsDebuggerPresent(), system_iteration_counter != 0)) &&
@@ -34206,14 +33237,12 @@ system_label:
       *(uint8_t* *)system_system_stack_context_ptr_b = 0;
       system_unsigned_temp_counter = system_process_context_data(system_system_stack_context_ptr_b);
       system_stack_context_hash_value = CONCAT44(system_stack_context_hash_value._4_4_,system_unsigned_temp_counter);
-                    // WARNING: Subroutine does not return
       memcpy(system_system_stack_context_ptr_b,&system_data_global_buffer,system_iteration_counter);
     }
     system_stack_context_hash_value = 0;
     system_process_context_data(&system_system_stack_context_ptr_a,system_context_parameter);
     system_system_stack_context_ptr_a = &system_null_ptr;
     if (system_system_stack_context_ptr_b != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -34229,7 +33258,6 @@ void system_manage_memory_pool_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_thread_scheduler_6(void)
@@ -34300,7 +33328,6 @@ system_label:
     system_context_ptr[2] = init_ctx_base_value * 0x20 + system_data_handle;
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data(camera_traverse_node_next);
 }
 
@@ -34352,7 +33379,6 @@ void system_validate_system_state_6(void)
     if (0xfff < system_temp_unsigned_value_primary + 1) {
       system_data_handle = *(int64_t *)(system_data_handle + -8);
       if (0x1f < (system_data_handle - system_data_handle) - 8U) {
-                    // WARNING: Subroutine does not return
         _invalsystem_id_parameter_nosystem_info_noreturn(system_data_handle - system_data_handle,system_temp_unsigned_value_primary + 0x28);
       }
     }
@@ -34399,7 +33425,6 @@ void system_handle_module_loading_6(void)
     }
     system_data_handle = system_allocate_handle(system_unsigned_temp_counter);
     if (system_data_handle == 0) {
-                    // WARNING: Subroutine does not return
       _invalsystem_id_parameter_nosystem_info_noreturn();
     }
     *(int64_t *)((system_data_handle + 0x27U & 0xffffffffffffffe0) - 8) = system_data_handle;
@@ -34436,12 +33461,9 @@ void system_manage_resource_cache_6(void)
   if (0xfff < system_config_data_array) {
     system_data_handle = *(int64_t *)(system_context_ptr + -8);
     if (0x1f < (system_context_ptr - system_data_handle) - 8U) {
-                    // WARNING: Subroutine does not return
       _invalsystem_id_parameter_nosystem_info_noreturn(system_context_ptr - system_data_handle,system_config_data_array + 0x27);
     }
   }
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
   free(system_data_handle);
   return;
 }
@@ -34460,7 +33482,6 @@ void system_process_event_queue_6(void)
       camera_traverse_node_next = (uint8_t *)*system_context_ptr;
     }
     system_context_ptr[2] = system_thread_count;
-                    // WARNING: Subroutine does not return
     memmove(camera_traverse_node_next);
   }
   if (system_thread_count < 0x8000000000000000) {
@@ -34473,7 +33494,6 @@ void system_process_event_queue_6(void)
     system_parameter_value_secondary = system_process_context_data(system_iteration_count + 1);
     system_context_ptr[2] = system_thread_count;
     system_context_ptr[3] = system_iteration_count;
-                    // WARNING: Subroutine does not return
     memcpy(system_parameter_value_secondary,system_config_data_array,system_thread_count);
   }
   system_process_context_data();
@@ -34495,7 +33515,6 @@ void system_initialize_audio_component_6(void)
   system_param_primary = system_process_context_data(system_register_rdi + 1);
   *(uint8_t *)(unaff_RBX + 0x10) = unaff_RSI;
   *(uint64_t *)(unaff_RBX + 0x18) = system_register_rdi;
-                    // WARNING: Subroutine does not return
   memcpy(system_param_primary);
 }
 
@@ -34510,7 +33529,6 @@ void system_configure_network_settings_6(void)
 
 
 void system_setup_render_pipeline_6(void)
-                    // WARNING: Subroutine does not return
   _invalsystem_id_parameter_nosystem_info_noreturn();
 }
 
@@ -34528,7 +33546,6 @@ void system_handle_input_processing_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_debug_interface_6(void)
@@ -34599,13 +33616,11 @@ void system_initialize_debug_interface_6(void)
     if (system_system_stack_varlong_var_x == 0) break;
     system_process_context_data(*(uint8_t *)(system_context_ptr + 0x20));
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_global_data_pointer,&system_null_ptr,memory_compare_result);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_performance_metrics_6(void)
@@ -34617,7 +33632,6 @@ void system_process_performance_metrics_6(void)
   if (system_context_ptr_primary != (void* *)0x0) {
     init_ctx_base = system_context_ptr_primary;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_global_data_pointer,&system_null_ptr,init_ctx_base);
 }
 
@@ -34633,7 +33647,6 @@ void system_manage_security_context_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_plugin_system_6(void)
@@ -34661,7 +33674,6 @@ void system_initialize_plugin_system_6(void)
       *(bool *)(system_data_pointer + 1) = system_calculated_offset == 3;
     }
     (**(code **)(*system_data_pointer + 0x18))(system_data_pointer,system_system_stack_data_array,system_int_var_transform_index + system_data_handle,system_system_stack_varlong_var_x,system_iteration_count,system_unsigned_result_value);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_data_pointer);
   }
   system_stack_context_hash_value = 3;
@@ -34672,7 +33684,6 @@ void system_initialize_plugin_system_6(void)
   system_stack_storage = system_stack_storage;
   (**(code **)(system_data_handle + 0x180))(&system_stack_storage,*(int64_t *)(system_data_handle + 0x1f8) + 8);
   if (((char)system_stack_context_hash_value == '\0') && (system_stack_storage != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   LOCK();
@@ -34695,11 +33706,9 @@ void system_initialize_plugin_system_6(void)
   }
   system_data_handle = *(int64_t *)(system_context_ptr[1] + 0x1c0);
   if (*(int64_t *)(system_context_ptr[1] + 0x1b8) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_data_handle);
   }
   system_data_handle = system_context_ptr[1];
@@ -34748,7 +33757,6 @@ void system_initialize_plugin_system_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_logging_system_6(void)
@@ -34762,7 +33770,6 @@ void system_configure_logging_system_6(void)
   system_process_context_data();
   *system_context_ptr = &system_null_ptr;
   system_stack_byte_pointer = system_context_ptr + 0x6e;
-                    // WARNING: Subroutine does not return
   memset(system_stack_byte_pointer,0,0x200000);
 }
 
@@ -34784,7 +33791,6 @@ void system_initialize_monitoring_system_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_data_synchronization_6(void)
@@ -34812,7 +33818,6 @@ void system_process_data_synchronization_6(void)
     if (*(void* **)(system_config_data_array + 8) != (void* *)0x0) {
       system_byte_pointer_d = *(void* **)(system_config_data_array + 8);
     }
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_global_data_pointer,&system_null_ptr,system_byte_pointer_d);
   }
   system_data_handle = CreateIoCompletionPort(system_data_handle,*(uint8_t *)(system_context_ptr + 0x213430),0,0);
@@ -34821,7 +33826,6 @@ void system_process_data_synchronization_6(void)
     if (*(void* **)(system_config_data_array + 8) != (void* *)0x0) {
       system_byte_pointer_d = *(void* **)(system_config_data_array + 8);
     }
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_global_data_pointer,&system_null_ptr,system_byte_pointer_d);
   }
   system_data_handle = system_context_ptr + 0x2133e0;
@@ -34857,7 +33861,6 @@ void system_process_data_synchronization_6(void)
       system_process_context_data(system_context_ptr + 0x330,alStack_288,system_temp_byte_primary,system_config_data_array);
       *(uint8_t *)(alStack_288[0] + 0x118) = 0;
       system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
       system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_2e8);
     }
     camera_traverse_node_next = (uint8_t *)(system_temp_byte_primary * 0x130 + system_context_ptr + 0x2003d0);
@@ -34866,13 +33869,11 @@ void system_process_data_synchronization_6(void)
   else {
     *(uint8_t *)(system_context_ptr + 0x2133d8) = *camera_traverse_node_next;
   }
-                    // WARNING: Subroutine does not return
   memset(camera_traverse_node_next + 1,0,0x128);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t system_process_context_data(int64_t system_context_ptr,int64_t system_config_data_array,int64_t system_thread_count)
 
@@ -34918,12 +33919,10 @@ uint8_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
         memory_compare_result = ReadFile(*(uint8_t *)(system_config_data_array + 0x128),uRam00000000000001f0,system_byte_operation_result & 0xffffffff,0,
                          0);
         if (memory_compare_result != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data(system_global_data_pointer,&system_null_ptr);
         }
         memory_compare_result = GetLastError();
         if (memory_compare_result != 0x3e5) {
-                    // WARNING: Subroutine does not return
           system_process_context_data(system_global_data_pointer,&system_null_ptr,memory_compare_result);
         }
         system_unsigned_temp_counter = 1;
@@ -34936,7 +33935,6 @@ uint8_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
     *(uint8_t *)(system_context_ptr + 0x200378) = *buffer_ptr;
     *buffer_ptr = 0;
   }
-                    // WARNING: Subroutine does not return
   memset(buffer_ptr,0,0x200);
 }
 
@@ -35093,7 +34091,6 @@ void system_initialize_resource_manager_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int64_t *
 system_process_context_data(int64_t system_context_ptr,int64_t *system_config_data_array,uint8_t system_thread_count,uint8_t system_memory_size_array,
@@ -35114,7 +34111,6 @@ system_process_context_data(int64_t system_context_ptr,int64_t *system_config_da
     if ((char)system_context_parameter != '\0') {
       system_unsigned_temp_counter = system_process_context_data(system_global_data_pointer,(uint64_t)system_context_parameter._4_4_ * 8 + 8,8,
                             *(uint8_t* *)(system_context_ptr + 0x2c));
-                    // WARNING: Subroutine does not return
       memset(system_unsigned_temp_counter,0,(uint64_t)system_context_parameter._4_4_ * 8);
     }
     *(uint8_t *)(system_data_handle + 0x120) = *(uint8_t *)(*(int64_t *)(system_context_ptr + 8) + system_param_primary * 8);
@@ -35337,7 +34333,6 @@ uint8_t system_process_context_data(int64_t system_context_ptr,uint8_t *system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int64_t system_process_context_data(int64_t *system_context_ptr,int64_t *system_config_data_array,int system_thread_count,uint8_t system_memory_size_array)
 
@@ -35357,7 +34352,6 @@ int64_t system_process_context_data(int64_t *system_context_ptr,int64_t *system_
         if (*(code **)(system_data_handle + 0x10) != (code *)0x0) {
           (**(code **)(system_data_handle + 0x10))(system_data_handle,0,0,system_memory_size_array,0xfffffffffffffffe);
         }
-                    // WARNING: Subroutine does not return
         system_process_context_data(system_data_handle);
       }
     }
@@ -35482,7 +34476,6 @@ system_process_context_data(uint8_t *system_context_ptr,uint64_t system_config_d
 
 void system_process_configuration_updates_6(void)
   if (system_thread_count + 1 < 0x100) {
-                    // WARNING: Subroutine does not return
     memcpy(*(uint8_t* **)(system_context_ptr + 8),system_config_data_array,(int64_t)system_thread_count);
   }
   **(uint8_t* **)(system_context_ptr + 8) = 0;
@@ -35494,7 +34487,6 @@ void system_process_configuration_updates_6(void)
 
 
 void system_manage_component_lifecycle_6(void)
-                    // WARNING: Subroutine does not return
   memcpy();
 }
 
@@ -35510,7 +34502,6 @@ void system_initialize_script_engine_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_physics_system_6(void)
@@ -35535,11 +34526,9 @@ void system_configure_physics_system_6(void)
     do {
       system_data_handle = system_data_handle + 1;
     } while (*(char *)(system_data_handle + system_thread_count) != '\0');
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_byte_pointer,*(int64_t *)(system_context_ptr + 8),system_data_handle - *(int64_t *)(system_context_ptr + 8));
   }
   system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_198);
 }
 
@@ -35559,8 +34548,6 @@ void system_handle_audio_processing_6(void)
   } while (*(char *)(system_config_data_array + system_data_handle) != '\0');
   if ((int)system_data_handle < 0x100) {
     *(int *)(system_context_ptr + 0x10) = (int)system_data_handle;
-                    // WARNING: Could not recover jumptable at 0x000180069429. Too many branches
-                    // WARNING: Treating indirect jump as call
     system_strcpy_s(*(uint8_t *)(system_context_ptr + 8),0x100);
     return;
   }
@@ -35727,7 +34714,6 @@ system_label:
     }
   }
   if (system_context_ptr[0xc] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *system_context_ptr = &system_null_ptr;
@@ -35736,7 +34722,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t * system_process_context_data(int64_t *system_context_ptr)
 
@@ -36058,7 +35043,6 @@ uint8_t system_process_context_data(uint8_t system_context_ptr,uint64_t system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t system_process_context_data(int system_context_ptr)
 
@@ -36078,7 +35062,6 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint64_t syste
   *system_context_ptr = &system_null_ptr;
   system_context_ptr[0x18] = &system_null_ptr;
   if (system_context_ptr[0x19] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x19] = 0;
@@ -36092,7 +35075,6 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint64_t syste
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_file_operations_6(void)
@@ -36173,7 +35155,6 @@ void system_handle_file_operations_6(void)
   *(uint32_t* *)((int64_t)system_byte_pointer_d + 0x6c) = 0;
   *(void**)(system_byte_pointer_d + 0xe) = 0;
   *(uint8_t* *)((int64_t)system_byte_pointer_d + 0x72) = 0;
-                    // WARNING: Subroutine does not return
   memset((int64_t)system_byte_pointer_d + 0x74,0,0x400);
 }
 
@@ -36183,7 +35164,6 @@ void system_handle_file_operations_6(void)
 void system_manage_data_streams_6(void)
   *(uint8_t *)(system_context_ptr + 0xa0) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0xa8) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0xa8) = 0;
@@ -36191,7 +35171,6 @@ void system_manage_data_streams_6(void)
   *(uint8_t *)(system_context_ptr + 0xa0) = &system_null_ptr;
   *(uint8_t *)(system_context_ptr + 0x80) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x88) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x88) = 0;
@@ -36199,7 +35178,6 @@ void system_manage_data_streams_6(void)
   *(uint8_t *)(system_context_ptr + 0x80) = &system_null_ptr;
   *(uint8_t *)(system_context_ptr + 0x58) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x60) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x60) = 0;
@@ -36207,7 +35185,6 @@ void system_manage_data_streams_6(void)
   *(uint8_t *)(system_context_ptr + 0x58) = &system_null_ptr;
   *(uint8_t *)(system_context_ptr + 0x38) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x40) = 0;
@@ -36215,7 +35192,6 @@ void system_manage_data_streams_6(void)
   *(uint8_t *)(system_context_ptr + 0x38) = &system_null_ptr;
   *(uint8_t *)(system_context_ptr + 8) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x10) = 0;
@@ -36226,7 +35202,6 @@ void system_manage_data_streams_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int64_t system_process_context_data(int64_t *system_context_ptr,int64_t *system_config_data_array,int system_thread_count)
 
@@ -36242,7 +35217,6 @@ int64_t system_process_context_data(int64_t *system_context_ptr,int64_t *system_
   }
   if (system_thread_count == 0) {
     if (*system_context_ptr != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -36316,7 +35290,6 @@ void system_initialize_particle_system_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_lighting_system_6(void)
@@ -36397,7 +35370,6 @@ void system_handle_collision_detection_6(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -36416,13 +35388,11 @@ void system_manage_shader_programs_6(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_texture_data_6(void)
@@ -36437,7 +35407,6 @@ void system_get_system_init_function(int64_t system_context_ptr)
 {
   *(uint8_t *)(system_context_ptr + 0x20) = &system_null_ptr;
   if (*(int64_t *)(system_context_ptr + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(system_context_ptr + 0x28) = 0;
@@ -36448,7 +35417,6 @@ void system_get_system_init_function(int64_t system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_ui_system_6(void)
@@ -36525,7 +35493,6 @@ void system_initialize_ui_system_6(void)
   *(uint32_t* *)(system_context_ptr + 0x6b) = 0;
   *(uint8_t* *)(system_context_ptr + 0x6d) = 1;
   init_ctx_base_value = system_process_context_data(system_global_data_pointer,0x140038,8,3);
-                    // WARNING: Subroutine does not return
   memset(init_ctx_base_value + 0x20,0,0x140000);
 }
 
@@ -36554,7 +35521,6 @@ void system_configure_window_manager_6(void)
       init_ctx_base = *(uint8_t **)(system_data_handle + system_unsigned_temp_counter * 8);
       if (init_ctx_base != (uint8_t *)0x0) {
         *init_ctx_base = &system_null_ptr;
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       *(uint8_t *)(system_data_handle + system_unsigned_temp_counter * 8) = 0;
@@ -36564,7 +35530,6 @@ void system_configure_window_manager_6(void)
   }
   *(uint8_t *)(system_context_ptr + 0x18) = 0;
   if ((1 < system_parameter_value_secondary) && (*(int64_t *)(system_context_ptr + 8) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -36584,7 +35549,6 @@ void system_handle_user_input_6(void)
       init_ctx_base = *(uint8_t **)(system_data_handle + system_unsigned_temp_counter * 8);
       if (init_ctx_base != (uint8_t *)0x0) {
         *init_ctx_base = &system_null_ptr;
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       *(uint8_t *)(system_data_handle + system_unsigned_temp_counter * 8) = 0;
@@ -36594,7 +35558,6 @@ void system_handle_user_input_6(void)
   }
   *(uint8_t *)(system_context_ptr + 0x18) = 0;
   if ((1 < system_parameter_value_secondary) && (*(int64_t *)(system_context_ptr + 8) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -36602,7 +35565,6 @@ void system_handle_user_input_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t
 system_process_context_data(int64_t system_context_ptr,int64_t system_config_data_array,int64_t *system_thread_count,int64_t *system_memory_size_array,
@@ -36709,7 +35671,6 @@ void system_manage_state_machine_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_game_logic_6(void)
@@ -36745,7 +35706,6 @@ void system_process_game_logic_6(void)
   system_status_char = *(char *)(*(int64_t *)(system_context_ptr + 1000) + 0x58);
   do {
     if ((system_status_char == '\0') || (system_temp_uint_value = 0, *(char *)(system_context_ptr + 0x400) != '\0')) {
-                    // WARNING: Subroutine does not return
       system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_278);
     }
     system_system_stack_context_ptr_bf8 = &system_null_ptr;
@@ -36978,7 +35938,6 @@ system_label:
           if (pbStack_1f0 != (byte *)0x0) {
             system_byte_ptr_ = pbStack_1f0;
           }
-                    // WARNING: Subroutine does not return
           system_process_context_data(system_global_data_pointer,&system_config_system_ptr_varb,system_temp_uint_value,system_byte_ptr_);
         }
         if (((system_stack_context_hash_value < system_data_handle + system_temp_uint_value) ||
@@ -37042,7 +36001,6 @@ system_label:
               }
               *system_pointer_variable_20 = &system_null_ptr;
               psystem_stack_temp_pointer_248 = (void* **)system_pointer_variable_20;
-                    // WARNING: Subroutine does not return
               system_process_context_data(system_pointer_variable_20);
             }
             system_pointer_variable_20 = (uint8_t *)system_pointer_variable_20[0x24];
@@ -37088,7 +36046,6 @@ system_label:
           system_data_handle = *psystem_long_var_18;
         }
         if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data(system_data_handle);
         }
         *psystem_long_var_18 = system_data_handle;
@@ -37143,7 +36100,6 @@ void system_initialize_ai_system_6(void)
       init_ctx_base = *(uint8_t **)(system_data_handle + system_unsigned_temp_counter * 8);
       if (init_ctx_base != (uint8_t *)0x0) {
         *init_ctx_base = &system_null_ptr;
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       *(uint8_t *)(system_data_handle + system_unsigned_temp_counter * 8) = 0;
@@ -37153,7 +36109,6 @@ void system_initialize_ai_system_6(void)
   }
   *(uint8_t *)(system_context_ptr + 0x18) = 0;
   if ((1 < system_parameter_value_secondary) && (*(int64_t *)(system_context_ptr + 8) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -37161,7 +36116,6 @@ void system_initialize_ai_system_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t system_configure_pathfinding_6(void)
   code *psystem_char_var;
@@ -37231,7 +36185,6 @@ system_label:
     system_data_handle = *system_context_ptr;
   }
   if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_data_handle);
   }
   system_param_primary = system_calculated_offset * 0x1a8 + system_data_handle;
@@ -37242,7 +36195,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_entity_management_6(void)
@@ -37276,7 +36228,6 @@ system_label:
     context_offset = *system_register_rdi;
   }
   if (context_offset != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(context_offset);
   }
   *system_register_rdi = system_data_handle;
@@ -37289,7 +36240,6 @@ system_label:
 
 
 void system_manage_scene_graph_6(void)
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -37424,7 +36374,6 @@ system_label:
     }
   }
   if (system_context_ptr[0xc] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *system_context_ptr = &system_config_system_ptr_vard;
@@ -37433,7 +36382,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t * system_process_context_data(int64_t *system_context_ptr)
 
@@ -37824,7 +36772,6 @@ uint8_t system_process_context_data(int64_t system_context_ptr,uint8_t system_co
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int64_t system_process_context_data(int64_t system_context_ptr)
 
@@ -38226,7 +37173,6 @@ int64_t system_process_context_data(int64_t system_context_ptr,uint64_t system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_render_targets_6(void)
@@ -38368,11 +37314,9 @@ void system_process_shadow_mapping_6(void)
       *(uint8_t *)camera_node_current[3] = 0;
     }
     (**(code **)*camera_node_current)(camera_node_current,0);
-                    // WARNING: Subroutine does not return
     system_process_context_data(camera_node_current);
   }
   if ((system_context_ptr[6] != 0) && (*(int64_t *)(system_context_ptr[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_calculated_offset = system_context_ptr[5];
@@ -38380,7 +37324,6 @@ void system_process_shadow_mapping_6(void)
     system_code_ptr_b = (char *)(system_calculated_offset + 0x3541);
     system_calculated_offset = *(int64_t *)(system_calculated_offset + 0x3538);
     if (*system_code_ptr_b != '\0') {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -38424,11 +37367,9 @@ void system_initialize_post_processing_6(void)
       *(uint8_t *)camera_node_current[3] = 0;
     }
     (**(code **)*camera_node_current)(camera_node_current,0);
-                    // WARNING: Subroutine does not return
     system_process_context_data(camera_node_current);
   }
   if ((system_context_ptr[6] != 0) && (*(int64_t *)(system_context_ptr[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_calculated_offset = system_context_ptr[5];
@@ -38436,7 +37377,6 @@ void system_initialize_post_processing_6(void)
     system_code_ptr_b = (char *)(system_calculated_offset + 0x3541);
     system_calculated_offset = *(int64_t *)(system_calculated_offset + 0x3538);
     if (*system_code_ptr_b != '\0') {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -38476,7 +37416,6 @@ void system_configure_shader_parameters_6(void)
     *(uint8_t *)unaff_RBX[3] = 0;
   }
   (**(code **)*unaff_RBX)();
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -38490,7 +37429,6 @@ void system_handle_buffer_operations_6(void)
   
   if ((*(int64_t *)(unaff_RSI + 0x30) != 0) &&
      (*(int64_t *)(*(int64_t *)(unaff_RSI + 0x30) + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_calculated_offset = *(int64_t *)(unaff_RSI + 0x28);
@@ -38498,7 +37436,6 @@ void system_handle_buffer_operations_6(void)
     system_code_ptr_b = (char *)(system_calculated_offset + 0x3541);
     system_calculated_offset = *(int64_t *)(system_calculated_offset + 0x3538);
     if (*system_code_ptr_b != '\0') {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -38572,11 +37509,9 @@ void system_process_index_buffers_6(void)
       *(uint8_t *)camera_node_current[3] = 0;
     }
     (**(code **)*camera_node_current)(camera_node_current,0);
-                    // WARNING: Subroutine does not return
     system_process_context_data(camera_node_current);
   }
   if ((system_context_ptr[6] != 0) && (*(int64_t *)(system_context_ptr[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_calculated_offset = system_context_ptr[5];
@@ -38584,7 +37519,6 @@ void system_process_index_buffers_6(void)
     system_code_ptr_b = (char *)(system_calculated_offset + 0x3541);
     system_calculated_offset = *(int64_t *)(system_calculated_offset + 0x3538);
     if (*system_code_ptr_b != '\0') {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -38626,7 +37560,6 @@ void system_initialize_texture_manager_6(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -38642,7 +37575,6 @@ void system_configure_mipmap_generation_6(void)
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -38759,7 +37691,6 @@ system_process_context_data(uint32_t* *system_context_ptr,uint8_t system_config_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_texture_compression_6(void)
@@ -38777,7 +37708,6 @@ void system_handle_texture_compression_6(void)
     global_ctx_ptr = *(int64_t **)(*global_ctx_ptr + 8);
     *(int64_t *)(*global_ctx_ptr + 8) = global_ctx_ptr[1];
     *(int64_t *)global_ctx_ptr[1] = *global_ctx_ptr;
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   memory_compare_result = _Mtx_unlock(system_data_handle + 0x98);
@@ -38805,7 +37735,6 @@ system_label:
         global_ctx_ptr = *(int64_t **)(*global_ctx_ptr + 8);
         *(int64_t *)(*global_ctx_ptr + 8) = global_ctx_ptr[1];
         *(int64_t *)global_ctx_ptr[1] = *global_ctx_ptr;
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
     }
@@ -38815,7 +37744,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_material_system_6(void)
@@ -38832,7 +37760,6 @@ void system_manage_material_system_6(void)
     system_primary_data_ptr = *(int64_t **)(**(int64_t **)(system_data_handle + 0x78) + 8);
     *(int64_t *)(*system_primary_data_ptr + 8) = system_primary_data_ptr[1];
     *(int64_t *)system_primary_data_ptr[1] = *system_primary_data_ptr;
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   memory_compare_result = _Mtx_unlock(system_data_handle + 0x98);
@@ -38847,7 +37774,6 @@ void system_manage_material_system_6(void)
     system_primary_data_ptr = *(int64_t **)(**(int64_t **)(system_data_handle + 0xf0) + 8);
     *(int64_t *)(*system_primary_data_ptr + 8) = system_primary_data_ptr[1];
     *(int64_t *)system_primary_data_ptr[1] = *system_primary_data_ptr;
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   memory_compare_result = _Mtx_unlock(system_data_handle + 0x110);
@@ -38859,7 +37785,6 @@ void system_manage_material_system_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_lighting_calculations_6(void)
@@ -38921,7 +37846,6 @@ uint8_t system_process_context_data(int64_t system_context_ptr)
 void system_initialize_animation_system_6(void)
   _Mtx_system_destroy_in_situ();
   if ((int64_t *)*system_context_ptr != system_context_ptr) {
-                    // WARNING: Subroutine does not return
     system_process_context_data((int64_t *)*system_context_ptr);
   }
   return;
@@ -38932,7 +37856,6 @@ void system_initialize_animation_system_6(void)
 
 void system_configure_skeletal_animation_6(void)
   if ((int64_t *)*system_context_ptr != system_context_ptr) {
-                    // WARNING: Subroutine does not return
     system_process_context_data((int64_t *)*system_context_ptr);
   }
   return;
@@ -38952,7 +37875,6 @@ void system_handle_bone_transforms_6(void)
     system_primary_data_ptr = *(int64_t **)(*(int64_t *)*system_context_ptr + 8);
     *(int64_t *)(*system_primary_data_ptr + 8) = system_primary_data_ptr[1];
     *(int64_t *)system_primary_data_ptr[1] = *system_primary_data_ptr;
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_result_code = _Mtx_unlock(system_context_ptr + 4);
@@ -38978,7 +37900,6 @@ void system_manage_animation_states_6(void)
     system_primary_data_ptr = *(int64_t **)(*system_primary_data_ptr + 8);
     *(int64_t *)(*system_primary_data_ptr + 8) = system_primary_data_ptr[1];
     *(int64_t *)system_primary_data_ptr[1] = *system_primary_data_ptr;
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_result_code = _Mtx_unlock(system_context_ptr + 4);
@@ -38993,7 +37914,6 @@ void system_manage_animation_states_6(void)
 
 void system_process_morph_targets_6(void)
   if ((int64_t *)*system_context_ptr != system_context_ptr) {
-                    // WARNING: Subroutine does not return
     system_process_context_data((int64_t *)*system_context_ptr);
   }
   return;
@@ -39026,7 +37946,6 @@ system_label:
         system_secondary_data_ptr = *(int64_t **)(*system_secondary_data_ptr + 8);
         *(int64_t *)(*system_secondary_data_ptr + 8) = system_secondary_data_ptr[1];
         *(int64_t *)system_secondary_data_ptr[1] = *system_secondary_data_ptr;
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
     }
@@ -39043,7 +37962,6 @@ void system_configure_rigid_body_dynamics_6(void)
     system_data_handle = __RTCastToVoid();
     (**(code **)*system_context_ptr)(system_context_ptr,0);
     if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_data_handle);
     }
   }
@@ -39059,7 +37977,6 @@ void system_handle_collision_response_6(void)
   system_data_handle = __RTCastToVoid();
   (**(code **)*unaff_RBX)();
   if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_data_handle);
   }
   return;
@@ -39087,7 +38004,6 @@ void system_process_force_calculations_6(void)
 
 void system_initialize_audio_engine_6(void)
   if (*(int64_t *)(system_context_ptr + 0x1d8) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (*(int64_t **)(system_context_ptr + 0x1b8) != (int64_t *)0x0) {
@@ -39123,7 +38039,6 @@ system_process_context_data(uint8_t *system_context_ptr,uint8_t system_config_da
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t system_configure_sound_spatialization_6(void)
   code *system_function_ptr;
@@ -39217,11 +38132,6 @@ uint64_t system_configure_sound_spatialization_6(void)
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018006fc4b)
-// WARNING: Removing unreachable block (ram,0x00018006fc66)
-// WARNING: Removing unreachable block (ram,0x00018006fc6b)
-// WARNING: Removing unreachable block (ram,0x00018006fe26)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t system_handle_audio_mixing_6(void)
   code *system_code_ptr_b;
@@ -39276,7 +38186,6 @@ uint64_t system_handle_audio_mixing_6(void)
       *(uint8_t *)(system_data_handle + 0x18) = 0;
       system_stack_byte_pointer = &system_null_ptr;
       if (system_stack_byte_pointer != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_stack_byte_pointer = (uint8_t *)0x0;
@@ -39349,7 +38258,6 @@ uint64_t system_handle_audio_mixing_6(void)
         system_process_context_data(system_global_data_pointer,3,0xffffffff00000000,0xd,&system_null_ptr,system_context_ptr_primary4,system_config_data_array);
       }
       system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_context_ptr_primary4);
     }
     if (system_data_debug_mode_flag == '\0') {
@@ -39362,7 +38270,6 @@ uint64_t system_handle_audio_mixing_6(void)
       system_temp_uint_value = system_process_context_data(&system_stack_byte_pointer,system_temp_uint_value);
       system_stack_byte_pointer = &system_null_ptr;
       if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_stack_storage = 0;
@@ -39375,7 +38282,6 @@ uint64_t system_handle_audio_mixing_6(void)
       system_process_context_data(system_temp_uint_value,&system_stack_byte_pointer,system_temp_unsigned_value_primary,0,system_context_ptr_primary1);
       system_stack_byte_pointer = &system_null_ptr;
       if (system_stack_byte_pointer != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_stack_byte_pointer = (uint8_t *)0x0;
@@ -39413,7 +38319,6 @@ uint64_t system_handle_audio_mixing_6(void)
     } while (system_result_code == 0);
     system_system_stack_context_ptr_a = &system_null_ptr;
     if (system_system_stack_context_ptr_b != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_system_stack_context_ptr_b = (void* *)0x0;
@@ -39421,7 +38326,6 @@ uint64_t system_handle_audio_mixing_6(void)
     system_system_stack_context_ptr_a = &system_null_ptr;
     system_stack_byte_pointer = &system_null_ptr;
     if (camera_traverse_node_next != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(camera_traverse_node_next);
     }
     system_byte_operation_result_allocation = (uint64_t)bStackX_20;
@@ -39430,7 +38334,6 @@ uint64_t system_handle_audio_mixing_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t system_manage_sound_resources_6(void)
   code *system_function_ptr;
@@ -39481,7 +38384,6 @@ uint64_t system_manage_sound_resources_6(void)
     *(uint8_t *)(system_temp_storage_value + 0x18) = 0;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -39587,7 +38489,6 @@ system_label:
       if (system_boolean_flag_15) {
         system_stack_byte_pointer = &system_null_ptr;
         if (system_byte_ptr_input != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data(system_byte_ptr_input);
         }
         system_stack_byte_pointer = (uint8_t *)0x0;
@@ -39597,7 +38498,6 @@ system_label:
       if (!system_boolean_flag_15) {
         system_stack_byte_pointer = &system_null_ptr;
         if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         system_stack_storage = 0;
@@ -39611,7 +38511,6 @@ system_label:
       system_process_context_data(system_temp_uint_value,&system_stack_byte_pointer,system_temp_uint_value,0,system_context_ptr_primary0);
       system_stack_byte_pointer = &system_null_ptr;
       if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_stack_storage = 0;
@@ -39649,14 +38548,12 @@ system_label:
     } while (system_result_code == 0);
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_byte_pointer = (void* *)0x0;
     system_stack_context_hash_value = system_stack_context_hash_value & 0xffffffff00000000;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_context_ptr_primary2 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_context_ptr_primary2);
     }
     system_temp_uint_value = (uint64_t)bStack_d8;
@@ -39667,14 +38564,12 @@ system_label:
     }
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_byte_pointer = (void* *)0x0;
     system_stack_context_hash_value = system_stack_context_hash_value & 0xffffffff00000000;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_context_ptr_primary2 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_context_ptr_primary2);
     }
   }
@@ -39682,7 +38577,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_audio_effects_6(void)
@@ -39718,7 +38612,6 @@ void system_process_audio_effects_6(void)
     *(uint8_t *)(context_offset + 0x18) = 0;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -39767,9 +38660,6 @@ void system_process_audio_effects_6(void)
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180070cdc)
-// WARNING: Removing unreachable block (ram,0x000180070ce2)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_network_layer_6(void)
@@ -39819,7 +38709,6 @@ void system_initialize_network_layer_6(void)
 system_label:
     system_result_code = system_unsigned_result_value;
     if (system_iteration_count != 0) {
-                    // WARNING: Subroutine does not return
       memcpy(system_context_ptr_primary0,*(uint8_t *)(system_data_handle + 8),system_temp_uint_value);
     }
   }
@@ -39866,7 +38755,6 @@ system_label:
         system_stack_context_hash_value._0_4_ = system_process_context_data(system_context_ptr_primary0);
       }
 system_label:
-                    // WARNING: Subroutine does not return
       memcpy(system_context_ptr_primary0 + system_temp_uint_value,system_config_data_array,(int64_t)((int)system_data_handle + 2));
     }
   }
@@ -39875,7 +38763,6 @@ system_label:
   system_stack_context_hash_value = 0;
   system_stack_byte_pointer = &system_null_ptr;
   if (system_context_ptr_primary0 != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary0);
   }
   system_stack_byte_pointer = (uint8_t* *)0x0;
@@ -39883,7 +38770,6 @@ system_label:
   system_stack_byte_pointer = &system_null_ptr;
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_storage = 0;
@@ -39897,7 +38783,6 @@ system_label:
   if (system_char_result_validation != '\0') {
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -39906,7 +38791,6 @@ system_label:
   if (system_result_code != 0) {
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -39936,7 +38820,6 @@ system_label:
       system_byte_operation_result = system_process_context_data(system_stack_byte_pointer);
       system_stack_context_hash_value = CONCAT44(system_stack_context_hash_value._4_4_,system_byte_operation_result);
     }
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_byte_pointer + system_stack_context_hash_value,system_context_ptr_primary8,(int64_t)((int)system_data_handle + 2));
   }
   system_stack_byte_pointer = (uint8_t* *)system_process_context_data(system_global_data_pointer,0x10,0x13);
@@ -39993,7 +38876,6 @@ system_label:
       }
 system_label:
       system_stack_context_hash_value = system_unsigned_result_value;
-                    // WARNING: Subroutine does not return
       memcpy(system_stack_byte_pointer + system_stack_context_hash_value,system_config_data_array,(int64_t)((int)system_data_handle + 2));
     }
   }
@@ -40086,7 +38968,6 @@ system_label:
         system_stack_context_hash_value = CONCAT44(system_stack_context_hash_value._4_4_,system_byte_operation_result);
       }
 system_label:
-                    // WARNING: Subroutine does not return
       memcpy(system_stack_byte_pointer + system_stack_context_hash_value,system_data_handle,(int64_t)((int)system_data_handle + 2));
     }
   }
@@ -40158,7 +39039,6 @@ system_label:
     *(uint8_t *)(system_data_handle + 0x18) = 0;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -40303,7 +39183,6 @@ system_label:
     } while (system_result_code == 0);
     system_stack_byte_pointer = &system_null_ptr;
     if (system_context_ptr_primary0 != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_context_ptr_primary0);
     }
     system_stack_byte_pointer = (uint8_t* *)0x0;
@@ -40311,7 +39190,6 @@ system_label:
     system_stack_byte_pointer = &system_null_ptr;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_byte_pointer = (uint8_t* *)0x0;
@@ -40319,14 +39197,12 @@ system_label:
     system_stack_byte_pointer = &system_null_ptr;
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
 system_label:
     system_stack_context_hash_value = 0;
     system_stack_byte_pointer = (void* *)0x0;
     system_stack_byte_pointer = &system_null_ptr;
-                    // WARNING: Subroutine does not return
     system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_188);
   }
 system_label:
@@ -40335,17 +39211,11 @@ system_label:
     system_context_ptr_primary8 = system_stack_byte_pointer;
   }
   system_byte_operation_result = system_process_context_data(system_context_ptr_primary8);
-                    // WARNING: Subroutine does not return
   system_process_context_data(system_global_data_pointer,&system_memory_system_ptr_varo,system_boolean_flag_13 ^ 1,system_byte_operation_result);
 }
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180071b49)
-// WARNING: Removing unreachable block (ram,0x000180071ad3)
-// WARNING: Removing unreachable block (ram,0x000180071a52)
-// WARNING: Removing unreachable block (ram,0x000180071c73)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_protocol_handlers_6(void)
@@ -40381,7 +39251,6 @@ void system_configure_protocol_handlers_6(void)
     system_stack_byte_pointer = &system_null_ptr;
     system_stack_byte_pointer = system_byte_ptr_input;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_storage = 0;
@@ -40463,7 +39332,6 @@ system_label:
       }
 system_label:
       system_stack_context_hash_value = system_temp_uint_value;
-                    // WARNING: Subroutine does not return
       memcpy(system_stack_byte_pointer + system_stack_context_hash_value,system_config_data_array,(int64_t)((int)system_data_handle + 2));
     }
   }
@@ -40551,7 +39419,6 @@ system_label:
         system_stack_context_hash_value = CONCAT44(system_stack_context_hash_value._4_4_,system_parameter_value_secondary);
       }
 system_label:
-                    // WARNING: Subroutine does not return
       memcpy(system_stack_byte_pointer + system_stack_context_hash_value,system_memory_size_array,(int64_t)((int)system_data_handle + 2));
     }
   }
@@ -40603,20 +39470,13 @@ system_label:
     if (system_byte_ptr_input == (void* *)0x0) {
       return;
     }
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_byte_ptr_input);
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018007258a)
-// WARNING: Removing unreachable block (ram,0x0001800724fe)
-// WARNING: Removing unreachable block (ram,0x00018007246a)
-// WARNING: Removing unreachable block (ram,0x0001800726c4)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_data_serialization_6(void)
@@ -40667,7 +39527,6 @@ void system_handle_data_serialization_6(void)
 system_label:
     system_temp_uint_value = system_unsigned_temp_counter;
     if (system_iteration_count != 0) {
-                    // WARNING: Subroutine does not return
       memcpy(system_context_ptr_primary0,*(uint8_t *)(system_data_handle + 8),system_temp_uint_value);
     }
   }
@@ -40714,7 +39573,6 @@ system_label:
         system_stack_context_hash_value._0_4_ = system_process_context_data(system_context_ptr_primary0);
       }
 system_label:
-                    // WARNING: Subroutine does not return
       memcpy(system_context_ptr_primary0 + system_temp_uint_value,system_config_data_array,(int64_t)((int)system_data_handle + 2));
     }
   }
@@ -40722,7 +39580,6 @@ system_label:
   system_stack_context_hash_value = 0;
   system_stack_byte_pointer = &system_null_ptr;
   if (system_context_ptr_primary0 != (uint8_t* *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary0);
   }
   system_stack_byte_pointer = (uint8_t* *)0x0;
@@ -40730,7 +39587,6 @@ system_label:
   system_stack_byte_pointer = &system_null_ptr;
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_storage = 0;
@@ -40794,7 +39650,6 @@ system_label:
         *(uint8_t *)(system_data_handle + 0x18) = 0;
         system_stack_byte_pointer = &system_null_ptr;
         if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         system_stack_storage = 0;
@@ -40881,7 +39736,6 @@ system_label:
           }
 system_label:
           system_stack_context_hash_value = system_unsigned_temp_counter;
-                    // WARNING: Subroutine does not return
           memcpy(system_stack_byte_pointer + system_stack_context_hash_value,system_config_data_array,(int64_t)((int)system_data_handle + 2));
         }
       }
@@ -40973,7 +39827,6 @@ system_label:
             system_stack_context_hash_value = CONCAT44(system_stack_context_hash_value._4_4_,system_byte_operation_result);
           }
 system_label:
-                    // WARNING: Subroutine does not return
           memcpy(system_stack_byte_pointer + system_stack_context_hash_value,system_memory_size_array,(int64_t)((int)system_data_handle + 2));
         }
       }
@@ -41100,7 +39953,6 @@ system_label:
           system_stack_byte_pointer = &system_null_ptr;
           system_stack_context_hash_value = system_iteration_count;
           if (system_context_ptr_primary3 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data(system_context_ptr_primary3);
           }
           system_stack_byte_pointer = (uint8_t *)0x0;
@@ -41111,7 +39963,6 @@ system_label:
           system_stack_context_hash_value = system_iteration_count & 0xfffffffe;
           system_stack_byte_pointer = &system_null_ptr;
           if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           system_stack_storage = 0;
@@ -41125,7 +39976,6 @@ system_label:
         system_process_context_data(system_byte_operation_result,&system_stack_byte_pointer,system_temp_uint_value,system_context_parameter);
         system_stack_byte_pointer = &system_null_ptr;
         if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         system_stack_storage = 0;
@@ -41156,7 +40006,6 @@ void system_manage_connection_pool_6(void)
     system_process_context_data(system_config_data_array,system_param_primary);
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -41165,7 +40014,6 @@ void system_manage_connection_pool_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 bool system_process_network_events_6(void)
   uint8_t *camera_traverse_node_next;
@@ -41245,7 +40093,6 @@ bool system_process_network_events_6(void)
     }
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_byte_pointer = (uint8_t *)0x0;
@@ -41263,7 +40110,6 @@ bool system_process_network_events_6(void)
   system_stack_byte_pointer = system_context_ptr_primary3;
   system_stack_byte_pointer = system_context_ptr_primary3;
   if (system_stack_byte_pointer != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_byte_pointer = (uint8_t *)0x0;
@@ -41328,7 +40174,6 @@ bool system_process_network_events_6(void)
       system_temp_unsigned_value_primary = system_process_context_data(camera_traverse_node_next);
       system_stack_context_hash_value = CONCAT44(system_stack_context_hash_value._4_4_,system_temp_unsigned_value_primary);
       if (*(int *)(system_calculated_offset + 0x158) != 0) {
-                    // WARNING: Subroutine does not return
         memcpy(camera_traverse_node_next,*(uint8_t *)(system_calculated_offset + 0x150),*(int *)(system_calculated_offset + 0x158) + 1);
       }
     }
@@ -41359,7 +40204,6 @@ bool system_process_network_events_6(void)
     system_stack_byte_pointer = next_ctx_ptr;
     system_temp_unsigned_value_primary = system_process_context_data(next_ctx_ptr);
     system_stack_context_hash_value = CONCAT44(system_stack_context_hash_value._4_4_,system_temp_unsigned_value_primary);
-                    // WARNING: Subroutine does not return
     memcpy(next_ctx_ptr,*psystem_ptr_var_7,system_operation_result_code_validation);
   }
   system_stack_context_hash_value = 0;
@@ -41368,7 +40212,6 @@ bool system_process_network_events_6(void)
     system_operation_result_code_validation = system_temp_uint_value & 0xfffffffd;
     system_stack_byte_pointer = &system_null_ptr;
     if (buffer_ptr != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(buffer_ptr);
     }
     system_stack_byte_pointer = (uint8_t *)0x0;
@@ -41380,7 +40223,6 @@ bool system_process_network_events_6(void)
     system_operation_result_code_validation = system_temp_uint_value & 0xfffffffe;
     system_stack_byte_pointer = &system_null_ptr;
     if (camera_traverse_node_next != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(camera_traverse_node_next);
     }
     system_stack_byte_pointer = (uint8_t *)0x0;
@@ -41411,12 +40253,10 @@ bool system_process_network_events_6(void)
       (**(code **)*camera_traverse_node_next)(camera_traverse_node_next,0);
     }
     if (system_stack_byte_pointer != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_byte_pointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_byte_pointer = (void* *)0x0;
@@ -41426,16 +40266,13 @@ bool system_process_network_events_6(void)
     if (system_stack_byte_pointer == (void**)0x0) {
       return cStackX_10 != '\0';
     }
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_security_layer_6(void)
@@ -41460,7 +40297,6 @@ void system_initialize_security_layer_6(void)
     }
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -41469,7 +40305,6 @@ void system_initialize_security_layer_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_encryption_system_6(void)
@@ -41494,7 +40329,6 @@ void system_configure_encryption_system_6(void)
     }
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -41503,7 +40337,6 @@ void system_configure_encryption_system_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_authentication_6(void)
@@ -41528,7 +40361,6 @@ void system_handle_authentication_6(void)
     }
     system_stack_byte_pointer = &system_null_ptr;
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -41571,29 +40403,24 @@ void system_initialize_core_components(uint8_t system_context_ptr,uint8_t system
 
 void system_manage_permission_system_6(void)
   if (*(int64_t *)((int64_t)system_context_ptr + 0x52) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)((int64_t)system_context_ptr + 0x52) = 0;
   if (*(int64_t *)((int64_t)system_context_ptr + 0x5a) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)((int64_t)system_context_ptr + 0x5a) = 0;
   if (system_context_ptr[8] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[8] = 0;
   if (system_context_ptr[9] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[9] = 0;
   system_process_context_data();
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[1] = 0;
@@ -41614,31 +40441,26 @@ void system_process_security_events_6(void)
   while( true ) {
     if (system_alternate_data_ptr == system_primary_data_ptr) {
       if (*system_context_ptr != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       return;
     }
     if (*(int64_t *)((int64_t)system_alternate_data_ptr + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     *(uint8_t *)((int64_t)system_alternate_data_ptr + 0x12) = 0;
     if (*(int64_t *)((int64_t)system_alternate_data_ptr + 0x1a) != 0) break;
     *(uint8_t *)((int64_t)system_alternate_data_ptr + 0x1a) = 0;
     if (*system_alternate_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     *system_alternate_data_ptr = 0;
     if (system_alternate_data_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_alternate_data_ptr[1] = 0;
     system_alternate_data_ptr = (int64_t *)((int64_t)system_alternate_data_ptr + 0x24);
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -41696,7 +40518,6 @@ void system_initialize_script_runtime_6(void)
           system_process_context_data(system_config_data_array,(int64_t)system_byte_pointer_d + (system_temp_uint_value - *system_config_data_array));
           system_byte_pointer_d = (uint32_t* *)system_config_data_array[1];
         }
-                    // WARNING: Subroutine does not return
         memcpy(system_byte_pointer_d,system_param_primary,system_temp_uint_value);
       }
       system_temp_storage_value = *(int64_t *)(system_context_ptr + 0x20) + system_data_handle;
@@ -41729,7 +40550,6 @@ void system_initialize_script_runtime_6(void)
           system_process_context_data(system_config_data_array,(int64_t)system_byte_pointer_d + (system_temp_uint_value - *system_config_data_array));
           system_byte_pointer_d = (uint32_t* *)system_config_data_array[1];
         }
-                    // WARNING: Subroutine does not return
         memcpy(system_byte_pointer_d,system_param_primary,system_temp_uint_value);
       }
       system_data_handle = system_data_handle + 0x24;
@@ -41765,7 +40585,6 @@ void system_initialize_script_runtime_6(void)
       system_process_context_data(system_config_data_array,(int64_t)system_byte_pointer_d + (system_temp_uint_value - *system_config_data_array));
       system_byte_pointer_d = (uint32_t* *)system_config_data_array[1];
     }
-                    // WARNING: Subroutine does not return
     memcpy(system_byte_pointer_d,system_param_primary,system_temp_uint_value);
   }
   if ((uint64_t)((*system_config_data_array - (int64_t)system_byte_pointer_d) + system_config_data_array[2]) < 5) {
@@ -41799,7 +40618,6 @@ void system_initialize_script_runtime_6(void)
     system_process_context_data(system_config_data_array,system_temp_uint_value + (init_ctx_base_value - *system_config_data_array));
     init_ctx_base_value = system_config_data_array[1];
   }
-                    // WARNING: Subroutine does not return
   memcpy(init_ctx_base_value,system_param_primary,system_temp_uint_value);
 }
 
@@ -41858,7 +40676,6 @@ void system_configure_virtual_machine_6(void)
           system_process_context_data();
           system_byte_pointer_d = (uint32_t* *)unaff_RBX[1];
         }
-                    // WARNING: Subroutine does not return
         memcpy(system_byte_pointer_d,system_param_primary,system_temp_uint_value);
       }
       system_temp_storage_value = *(int64_t *)(system_context_ptr + 0x20) + system_data_handle;
@@ -41891,7 +40708,6 @@ void system_configure_virtual_machine_6(void)
           system_process_context_data();
           system_byte_pointer_d = (uint32_t* *)unaff_RBX[1];
         }
-                    // WARNING: Subroutine does not return
         memcpy(system_byte_pointer_d,system_param_primary,system_temp_uint_value);
       }
       system_data_handle = system_data_handle + 0x24;
@@ -41927,7 +40743,6 @@ void system_configure_virtual_machine_6(void)
       system_process_context_data();
       system_byte_pointer_d = (uint32_t* *)unaff_RBX[1];
     }
-                    // WARNING: Subroutine does not return
     memcpy(system_byte_pointer_d,system_param_primary,system_temp_uint_value);
   }
   if ((uint64_t)((*unaff_RBX - (int64_t)system_byte_pointer_d) + unaff_RBX[2]) < 5) {
@@ -41961,7 +40776,6 @@ void system_configure_virtual_machine_6(void)
     system_process_context_data();
     init_ctx_base_value = unaff_RBX[1];
   }
-                    // WARNING: Subroutine does not return
   memcpy(init_ctx_base_value,system_param_primary,system_temp_uint_value);
 }
 
@@ -42006,7 +40820,6 @@ void system_handle_script_execution_6(void)
         system_process_context_data();
         system_byte_pointer_d = (uint *)unaff_RBX[1];
       }
-                    // WARNING: Subroutine does not return
       memcpy(system_byte_pointer_d,system_param_primary,system_iteration_count);
     }
     context_offset = *(int64_t *)(unaff_R15 + 0x20) + system_iteration_count;
@@ -42039,7 +40852,6 @@ void system_handle_script_execution_6(void)
         system_process_context_data();
         system_context_ptr = (uint *)unaff_RBX[1];
       }
-                    // WARNING: Subroutine does not return
       memcpy(system_context_ptr,system_param_primary,system_iteration_count);
     }
     system_iteration_count = system_iteration_count + 0x24;
@@ -42074,7 +40886,6 @@ void system_handle_script_execution_6(void)
       system_process_context_data();
       system_byte_pointer_d = (uint *)unaff_RBX[1];
     }
-                    // WARNING: Subroutine does not return
     memcpy(system_byte_pointer_d,system_param_primary,system_iteration_count);
   }
   if ((uint64_t)((*unaff_RBX - (int64_t)system_byte_pointer_d) + unaff_RBX[2]) < 5) {
@@ -42106,7 +40917,6 @@ void system_handle_script_execution_6(void)
       system_process_context_data();
       context_offset = unaff_RBX[1];
     }
-                    // WARNING: Subroutine does not return
     memcpy(context_offset,system_param_primary,system_iteration_count);
   }
   return;
@@ -42149,7 +40959,6 @@ void system_manage_script_objects_6(void)
       system_process_context_data();
       camera_node_current = (uint32_t* *)unaff_RBX[1];
     }
-                    // WARNING: Subroutine does not return
     memcpy(camera_node_current,system_param_primary,system_iteration_count);
   }
   if ((uint64_t)((*unaff_RBX - (int64_t)camera_node_current) + unaff_RBX[2]) < 5) {
@@ -42181,7 +40990,6 @@ void system_manage_script_objects_6(void)
       system_process_context_data();
       context_offset = unaff_RBX[1];
     }
-                    // WARNING: Subroutine does not return
     memcpy(context_offset,system_param_primary,system_iteration_count);
   }
   return;
@@ -42221,7 +41029,6 @@ void system_process_script_events_6(void)
       system_process_context_data();
       camera_node_current = (uint32_t* *)unaff_RBX[1];
     }
-                    // WARNING: Subroutine does not return
     memcpy(camera_node_current,system_param_primary,system_iteration_count);
   }
   if ((uint64_t)((*unaff_RBX - (int64_t)camera_node_current) + unaff_RBX[2]) < 5) {
@@ -42253,7 +41060,6 @@ void system_process_script_events_6(void)
       system_process_context_data();
       context_offset = unaff_RBX[1];
     }
-                    // WARNING: Subroutine does not return
     memcpy(context_offset,system_param_primary,system_iteration_count);
   }
   return;
@@ -42285,7 +41091,6 @@ void system_initialize_resource_pipeline_6(void)
       system_process_context_data();
       system_calculated_offset = unaff_RBX[1];
     }
-                    // WARNING: Subroutine does not return
     memcpy(system_calculated_offset,system_param_primary,system_unsigned_result_value);
   }
   return;
@@ -42293,7 +41098,6 @@ void system_initialize_resource_pipeline_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_asset_loading_6(void)
@@ -42327,7 +41131,6 @@ void system_configure_asset_loading_6(void)
       if (0 < system_result_code) {
         *(short *)(psystem_long_var_12 + 2) = (short)system_result_code;
         if (psystem_long_var_12[1] != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         psystem_long_var_12[1] = 0;
@@ -42346,10 +41149,8 @@ void system_configure_asset_loading_6(void)
             system_temp_storage_value = system_process_context_data(system_global_data_pointer,system_iteration_count << 4,4);
           }
           *psystem_long_var_12 = system_temp_storage_value;
-                    // WARNING: Subroutine does not return
           memcpy(psystem_long_var_12[1],*(uint8_t *)(system_config_data_array + 8),(int64_t)(system_result_code * 4));
         }
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_data_handle = *system_primary_data_ptr;
@@ -42362,7 +41163,6 @@ void system_configure_asset_loading_6(void)
       if (0 < system_result_code) {
         *(short *)(system_data_handle + 0x22) = (short)system_result_code;
         if (*(int64_t *)(system_data_handle + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *(uint8_t *)(system_data_handle + 0x1a) = 0;
@@ -42381,10 +41181,8 @@ void system_configure_asset_loading_6(void)
             system_temp_storage_value = system_process_context_data(system_global_data_pointer,system_iteration_count << 4,4);
           }
           *(int64_t *)(system_data_handle + 0x12) = system_temp_storage_value;
-                    // WARNING: Subroutine does not return
           memcpy(*(uint8_t *)(system_data_handle + 0x1a),*(uint8_t *)(system_config_data_array + 8),(int64_t)(system_result_code * 4));
         }
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_data_handle = system_data_handle + -1;
@@ -42420,19 +41218,15 @@ void system_configure_asset_loading_6(void)
           system_temp_storage_value = system_process_context_data(system_global_data_pointer,system_iteration_count << 4,4);
         }
         *(int64_t *)((int64_t)system_context_ptr + 0x52) = system_temp_storage_value;
-                    // WARNING: Subroutine does not return
         memcpy(*(uint8_t *)((int64_t)system_context_ptr + 0x5a),*(uint8_t *)(system_config_data_array + 8),
                (int64_t)(system_result_code * 4));
       }
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(short *)(system_context_ptr + 10) = (short)system_result_code;
   if (system_context_ptr[9] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[9] = 0;
@@ -42451,16 +41245,13 @@ void system_configure_asset_loading_6(void)
       system_temp_storage_value = system_process_context_data(system_global_data_pointer,system_iteration_count << 4,4);
     }
     system_context_ptr[8] = system_temp_storage_value;
-                    // WARNING: Subroutine does not return
     memcpy(system_context_ptr[9],*(uint8_t *)(system_config_data_array + 8),(int64_t)(system_result_code * 4));
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_resource_streaming_6(void)
@@ -42495,7 +41286,6 @@ void system_handle_resource_streaming_6(void)
       if (0 < system_result_code) {
         *(short *)(psystem_long_var_12 + 2) = (short)system_result_code;
         if (psystem_long_var_12[1] != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         psystem_long_var_12[1] = 0;
@@ -42514,10 +41304,8 @@ void system_handle_resource_streaming_6(void)
             system_temp_storage_value = system_process_context_data(system_global_data_pointer,system_iteration_count << 4,4);
           }
           *psystem_long_var_12 = system_temp_storage_value;
-                    // WARNING: Subroutine does not return
           memcpy(psystem_long_var_12[1],*(uint8_t *)(system_register_rdi + 8),(int64_t)(system_result_code * 4));
         }
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_data_handle = *system_primary_data_ptr;
@@ -42530,7 +41318,6 @@ void system_handle_resource_streaming_6(void)
       if (0 < system_result_code) {
         *(short *)(system_data_handle + 0x22) = (short)system_result_code;
         if (*(int64_t *)(system_data_handle + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *(uint8_t *)(system_data_handle + 0x1a) = 0;
@@ -42549,11 +41336,9 @@ void system_handle_resource_streaming_6(void)
             system_temp_storage_value = system_process_context_data(system_global_data_pointer,system_iteration_count << 4,4);
           }
           *(int64_t *)(system_data_handle + 0x12) = system_temp_storage_value;
-                    // WARNING: Subroutine does not return
           memcpy(*(uint8_t *)(system_data_handle + 0x1a),*(uint8_t *)(system_register_rdi + 8),(int64_t)(system_result_code * 4)
                 );
         }
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_data_handle = system_data_handle + -1;
@@ -42589,19 +41374,15 @@ void system_handle_resource_streaming_6(void)
           system_temp_storage_value = system_process_context_data(system_global_data_pointer,system_iteration_count << 4,4);
         }
         *(int64_t *)((int64_t)system_context_ptr + 0x52) = system_temp_storage_value;
-                    // WARNING: Subroutine does not return
         memcpy(*(uint8_t *)((int64_t)system_context_ptr + 0x5a),*(uint8_t *)(system_register_rdi + 8),
                (int64_t)(system_result_code * 4));
       }
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(short *)(system_context_ptr + 10) = (short)system_result_code;
   if (system_context_ptr[9] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[9] = 0;
@@ -42620,16 +41401,13 @@ void system_handle_resource_streaming_6(void)
       system_temp_storage_value = system_process_context_data(system_global_data_pointer,system_iteration_count << 4,4);
     }
     system_context_ptr[8] = system_temp_storage_value;
-                    // WARNING: Subroutine does not return
     memcpy(system_context_ptr[9],*(uint8_t *)(system_register_rdi + 8),(int64_t)(system_result_code * 4));
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_memory_arena_6(void)
@@ -42648,7 +41426,6 @@ void system_manage_memory_arena_6(void)
     if (0 < system_result_code) {
       *(short *)(buffer_ptr + 2) = (short)system_result_code;
       if (buffer_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       buffer_ptr[1] = unaff_RSI;
@@ -42667,10 +41444,8 @@ void system_manage_memory_arena_6(void)
           unaff_RSI = system_process_context_data(system_global_data_pointer,system_unsigned_result_value << 4,4);
         }
         *buffer_ptr = unaff_RSI;
-                    // WARNING: Subroutine does not return
         memcpy(buffer_ptr[1],*(uint8_t *)(system_register_rdi + 8),(int64_t)(system_result_code * 4));
       }
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_calculated_offset = *unaff_RBX;
@@ -42681,7 +41456,6 @@ void system_manage_memory_arena_6(void)
     if (0 < system_result_code) {
       *(short *)(system_calculated_offset + 0x22) = (short)system_result_code;
       if (*(int64_t *)(system_calculated_offset + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       *(uint64_t *)(system_calculated_offset + 0x1a) = unaff_RSI;
@@ -42700,10 +41474,8 @@ void system_manage_memory_arena_6(void)
           unaff_RSI = system_process_context_data(system_global_data_pointer,system_unsigned_result_value << 4,4);
         }
         *(uint64_t *)(system_calculated_offset + 0x12) = unaff_RSI;
-                    // WARNING: Subroutine does not return
         memcpy(*(uint8_t *)(system_calculated_offset + 0x1a),*(uint8_t *)(system_register_rdi + 8),(int64_t)(system_result_code * 4));
       }
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_unsigned_result_value = system_unsigned_result_value + 0x24;
@@ -42738,19 +41510,15 @@ void system_manage_memory_arena_6(void)
           unaff_RSI = system_process_context_data(system_global_data_pointer,system_unsigned_result_value << 4,4);
         }
         *(uint64_t *)(unaff_R15 + 0x52) = unaff_RSI;
-                    // WARNING: Subroutine does not return
         memcpy(*(uint8_t *)(unaff_R15 + 0x5a),*(uint8_t *)(system_register_rdi + 8),
                (int64_t)(system_result_code * 4));
       }
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(short *)(unaff_R15 + 0x50) = (short)system_result_code;
   if (*(int64_t *)(unaff_R15 + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint64_t *)(unaff_R15 + 0x48) = unaff_RSI;
@@ -42769,16 +41537,13 @@ void system_manage_memory_arena_6(void)
       unaff_RSI = system_process_context_data(system_global_data_pointer,system_unsigned_result_value << 4,4);
     }
     *(uint64_t *)(unaff_R15 + 0x40) = unaff_RSI;
-                    // WARNING: Subroutine does not return
     memcpy(*(uint8_t *)(unaff_R15 + 0x48),*(uint8_t *)(system_register_rdi + 8),(int64_t)(system_result_code * 4));
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_resource_requests_6(void)
@@ -42811,19 +41576,15 @@ void system_process_resource_requests_6(void)
           unaff_RSI = system_process_context_data(system_global_data_pointer,system_parameter_value_secondary << 4,4);
         }
         *(uint8_t *)(unaff_R15 + 0x52) = unaff_RSI;
-                    // WARNING: Subroutine does not return
         memcpy(*(uint8_t *)(unaff_R15 + 0x5a),*(uint8_t *)(system_register_rdi + 8),
                (int64_t)(system_result_code * 4));
       }
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(short *)(unaff_R15 + 0x50) = (short)system_result_code;
   if (*(int64_t *)(unaff_R15 + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(unaff_R15 + 0x48) = unaff_RSI;
@@ -42842,16 +41603,13 @@ void system_process_resource_requests_6(void)
       unaff_RSI = system_process_context_data(system_global_data_pointer,system_parameter_value_secondary << 4,4);
     }
     *(uint8_t *)(unaff_R15 + 0x40) = unaff_RSI;
-                    // WARNING: Subroutine does not return
     memcpy(*(uint8_t *)(unaff_R15 + 0x48),*(uint8_t *)(system_register_rdi + 8),(int64_t)(system_result_code * 4));
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_job_system_6(void)
@@ -42860,7 +41618,6 @@ void system_initialize_job_system_6(void)
   
   *(void**)(unaff_R15 + 0x50) = unaff_BP;
   if (*(int64_t *)(unaff_R15 + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *(uint8_t *)(unaff_R15 + 0x48) = unaff_RSI;
@@ -42879,17 +41636,14 @@ void system_initialize_job_system_6(void)
       unaff_RSI = system_process_context_data(system_global_data_pointer,system_param_primary << 4,4);
     }
     *(uint8_t *)(unaff_R15 + 0x40) = unaff_RSI;
-                    // WARNING: Subroutine does not return
     memcpy(*(uint8_t *)(unaff_R15 + 0x48),*(uint8_t *)(system_register_rdi + 8),
            (int64_t)((int)CONCAT62(unaff_0000002a,unaff_BP) * 4));
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_task_scheduler_6(void)
@@ -42953,13 +41707,11 @@ void system_configure_task_scheduler_6(void)
   *(uint32_t* **)(system_config_data_array + 8) = system_context_ptr_primary3;
   *(uint32_t* *)(system_context_ptr + 0x34) = *system_context_ptr_primary3;
   *(int64_t *)(system_config_data_array + 8) = *(int64_t *)(system_config_data_array + 8) + 4;
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_buffer_f8);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t * system_process_context_data(uint8_t system_context_ptr,int64_t system_config_data_array)
 
@@ -42992,7 +41744,6 @@ uint8_t * system_process_context_data(uint8_t system_context_ptr,int64_t system_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_job_distribution_6(void)
@@ -43061,8 +41812,6 @@ void system_manage_worker_threads_6(void)
     system_stack_ptr_double_resource = *(int64_t ***)(system_context_ptr + 0xb0);
     *(uint8_t *)(system_context_ptr + 0xb0) = 0;
     if (system_stack_ptr_double_resource != (int64_t **)0x0) {
-                    // WARNING: Could not recover jumptable at 0x0001800748c2. Too many branches
-                    // WARNING: Treating indirect jump as call
       (**(code **)((int64_t)*system_stack_ptr_double_resource + 0x38))();
       return;
     }
@@ -43159,31 +41908,26 @@ void system_initialize_profiling_system_6(void)
   while( true ) {
     if (system_alternate_data_ptr == system_primary_data_ptr) {
       if (*system_context_ptr != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       return;
     }
     if (*(int64_t *)((int64_t)system_alternate_data_ptr + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     *(uint8_t *)((int64_t)system_alternate_data_ptr + 0x12) = 0;
     if (*(int64_t *)((int64_t)system_alternate_data_ptr + 0x1a) != 0) break;
     *(uint8_t *)((int64_t)system_alternate_data_ptr + 0x1a) = 0;
     if (*system_alternate_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     *system_alternate_data_ptr = 0;
     if (system_alternate_data_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_alternate_data_ptr[1] = 0;
     system_alternate_data_ptr = (int64_t *)((int64_t)system_alternate_data_ptr + 0x24);
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -43206,22 +41950,18 @@ void system_configure_performance_counters_6(void)
     if (system_secondary_data_ptr != system_primary_data_ptr) {
       do {
         if (*(int64_t *)((int64_t)system_secondary_data_ptr + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *(uint8_t *)((int64_t)system_secondary_data_ptr + 0x12) = 0;
         if (*(int64_t *)((int64_t)system_secondary_data_ptr + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *(uint8_t *)((int64_t)system_secondary_data_ptr + 0x1a) = 0;
         if (*system_secondary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *system_secondary_data_ptr = 0;
         if (system_secondary_data_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         system_secondary_data_ptr[1] = 0;
@@ -43236,7 +41976,6 @@ void system_configure_performance_counters_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_metrics_collection_6(void)
@@ -43330,22 +42069,18 @@ void system_handle_metrics_collection_6(void)
     if (system_init_config_data_pointer != global_ctx_ptr) {
       do {
         if (*(int64_t *)((int64_t)system_init_config_data_pointer + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *(uint8_t *)((int64_t)system_init_config_data_pointer + 0x12) = 0;
         if (*(int64_t *)((int64_t)system_init_config_data_pointer + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *(uint8_t *)((int64_t)system_init_config_data_pointer + 0x1a) = 0;
         if (*system_init_config_data_pointer != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *system_init_config_data_pointer = 0;
         if (system_init_config_data_pointer[1] != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         system_init_config_data_pointer[1] = 0;
@@ -43354,7 +42089,6 @@ void system_handle_metrics_collection_6(void)
       system_init_config_data_pointer = (int64_t *)*system_context_ptr;
     }
     if (system_init_config_data_pointer != (int64_t *)0x0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_init_config_data_pointer);
     }
     *system_context_ptr = system_primary_data_ptr;
@@ -43392,12 +42126,10 @@ void system_handle_metrics_collection_6(void)
 
 void system_manage_profiling_data_6(void)
   if (*system_context_ptr != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *system_context_ptr = 0;
   if (system_context_ptr[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[1] = 0;
@@ -43445,7 +42177,6 @@ system_process_context_data(uint8_t system_context_ptr,uint8_t *system_config_da
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t * system_process_context_data(uint8_t *system_context_ptr,char system_config_data_array,char system_thread_count)
 
@@ -43670,14 +42401,12 @@ uint8_t* system_process_context_data(int64_t system_context_ptr,uint8_t system_c
   system_temp_unsigned_value_primary = system_process_context_data(system_context_ptr + 0x218,&system_stack_byte_pointer,system_thread_count,system_memory_size_array,system_param_primary);
   system_stack_byte_pointer = &system_null_ptr;
   if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
 }
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180276fbd)
 
 
 void system_process_performance_reports_6(void)
@@ -43844,7 +42573,6 @@ void system_initialize_debug_renderer_6(void)
   *system_context_ptr = &system_memory_ptr_ae;
   system_context_ptr[0x39] = 0;
   if (system_context_ptr[0x59] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x59] = 0;
@@ -43859,35 +42587,29 @@ void system_initialize_debug_renderer_6(void)
     (**(code **)(*system_alternate_data_ptr + 0x38))();
   }
   if (system_context_ptr[0x5a] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x5a] = 0;
   system_alternate_data_ptr = (int64_t *)system_context_ptr[0x4b];
   if (system_alternate_data_ptr != (int64_t *)0x0) {
     if (*system_alternate_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     *system_alternate_data_ptr = 0;
     if (system_alternate_data_ptr[2] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_alternate_data_ptr[2] = 0;
     if (system_alternate_data_ptr[7] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_alternate_data_ptr[2] = 0;
     system_alternate_data_ptr[7] = 0;
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_alternate_data_ptr);
   }
   system_context_ptr[0x4b] = 0;
   if (*(char *)((int64_t)system_context_ptr + 0xf9) != '\0') {
     if (system_context_ptr[0x3b] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_context_ptr[0x3b] = 0;
@@ -43911,7 +42633,6 @@ void system_initialize_debug_renderer_6(void)
   system_data_handle = system_context_ptr[0x3c];
   if (system_data_handle != 0) {
     system_initialize_module(system_data_handle,0x18,0x10,system_initialize_module_a,system_unsigned_temp_counter,system_data_handle);
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_data_handle);
   }
   system_context_ptr[0x3c] = 0;
@@ -44369,7 +43090,6 @@ void system_handle_debug_visualization_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int64_t * system_process_context_data(int64_t *system_context_ptr,int64_t *system_config_data_array)
 
@@ -44574,7 +43294,6 @@ void system_manage_debug_context_6(void)
     *(uint32_t* *)(system_stack_alt_ptr + 0xc) = 0;
     *(void**)(system_stack_alt_ptr + 0x18) = 0;
     if (system_stack_alt_ptr[0x17] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_stack_alt_ptr[0x17] = 0;
@@ -44622,7 +43341,6 @@ void system_process_debug_commands_6(void)
   
   if (*system_config_data_array != *(int64_t *)(system_context_ptr + 0x1b8)) {
     if (*(char *)(system_context_ptr + 0xb1) != '\0') {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_process_context_data(system_context_ptr + 0x1b8);
@@ -44760,7 +43478,6 @@ uint8_t system_process_context_data(int64_t system_context_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_handle_data_persistence_6(void)
   int64_t *system_primary_data_ptr;
@@ -44851,11 +43568,9 @@ int system_handle_data_persistence_6(void)
     system_temp_storage_value = system_process_context_data(system_global_data_pointer,0x1800,(char)system_config_data_array[8]);
     system_data_handle = *system_primary_data_ptr;
     if (system_data_handle != system_config_data_array[6]) {
-                    // WARNING: Subroutine does not return
       memmove(system_temp_storage_value,system_data_handle,system_config_data_array[6] - system_data_handle);
     }
     if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     *system_primary_data_ptr = system_temp_storage_value;
@@ -44910,7 +43625,6 @@ void system_manage_save_slots_6(void)
   for (init_ctx_base = (uint8_t *)*system_context_ptr; init_ctx_base != system_context_ptr_primary; init_ctx_base = init_ctx_base + 6) {
     *init_ctx_base = &system_null_ptr;
     if (init_ctx_base[1] != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     init_ctx_base[1] = 0;
@@ -44918,7 +43632,6 @@ void system_manage_save_slots_6(void)
     *init_ctx_base = &system_null_ptr;
   }
   if (*system_context_ptr != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   return;
@@ -44926,7 +43639,6 @@ void system_manage_save_slots_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t system_process_load_operations_6(void)
   int *system_context_int_system_pointer_config;
@@ -44954,7 +43666,6 @@ uint64_t system_process_load_operations_6(void)
   system_temp_bool_secondary = *(byte *)(system_context_ptr + 0xf9);
   if (system_temp_bool_secondary != 0) {
     if (*(int64_t *)(system_context_ptr + 0x1d8) != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     *(uint8_t *)(system_context_ptr + 0x1d8) = 0;
@@ -44976,7 +43687,6 @@ uint64_t system_process_load_operations_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_localization_6(void)
@@ -45065,13 +43775,11 @@ void system_initialize_localization_6(void)
     }
   }
 system_label:
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_system_stack_data_array);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint8_t system_process_context_data(int64_t system_context_ptr,int64_t system_config_data_array)
 
@@ -45116,7 +43824,6 @@ uint8_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
     system_temp_int_primary = system_process_context_data(*(uint8_t *)(system_context_ptr + 0x1b8),&system_stack_context_hash_value);
     if (system_temp_int_primary < 1) {
       if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       system_system_temp_byte_init_flag = false;
@@ -45159,7 +43866,6 @@ uint8_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
               }
               else {
                 if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
                   system_process_context_data();
                 }
                 do {
@@ -45185,7 +43891,6 @@ uint8_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
       return 1;
     }
     if (system_stack_storage != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
@@ -45227,7 +43932,6 @@ void system_configure_language_settings_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t system_handle_text_translation_6(void)
   float system_float_var_a;
@@ -45377,7 +44081,6 @@ system_label:
                 }
                 else {
                   if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
                     system_process_context_data();
                   }
                   do {
@@ -45574,7 +44277,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_locale_data_6(void)
@@ -45645,7 +44347,6 @@ void system_manage_locale_data_6(void)
       }
       else {
         if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         do {
@@ -45848,7 +44549,6 @@ void system_manage_locale_data_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_string_resources_6(void)
@@ -46037,7 +44737,6 @@ void system_process_string_resources_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_mod_support_6(void)
@@ -46135,7 +44834,6 @@ void system_initialize_mod_support_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_plugin_interface_6(void)
@@ -46241,7 +44939,6 @@ void system_configure_plugin_interface_6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_mod_loading_6(void)
@@ -46491,7 +45188,6 @@ void system_process_context_data_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_resource_allocation_7(void)
@@ -46580,7 +45276,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_memory_pool_7(void)
@@ -46667,7 +45362,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_thread_scheduler_7(void)
@@ -46753,7 +45447,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_subsystem_component_7(void)
@@ -46832,7 +45525,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_validate_system_state_7(void)
@@ -46874,7 +45566,6 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint64_t syste
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_configuration_data_7(void)
@@ -46950,7 +45641,6 @@ void system_process_configuration_data_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_module_loading_7(void)
@@ -47003,7 +45693,6 @@ void system_handle_module_loading_7(void)
   }
   system_stack_context_hash_value = &system_null_ptr;
   if (system_stack_context_hash_value != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_stack_context_hash_value = 0;
@@ -47553,7 +46242,6 @@ void system_initialize_audio_component_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_network_settings_7(void)
@@ -47673,7 +46361,6 @@ void system_configure_network_settings_7(void)
         else {
           *(int *)(system_data_handle + 0x40) = system_result_code;
           if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           *system_primary_data_ptr = 0;
@@ -47776,7 +46463,6 @@ void system_configure_network_settings_7(void)
                 }
                 else {
                   if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
                     system_process_context_data();
                   }
                   do {
@@ -47798,7 +46484,6 @@ void system_configure_network_settings_7(void)
         system_temp_uint_value = system_temp_uint_value >> 0xb;
         *(uint *)(system_data_handle + 0x2c) = system_temp_uint_value;
         if (system_temp_uint_value == (int)system_status_flag6 + system_temp_uint_value >> 0xb) {
-                    // WARNING: Subroutine does not return
           memcpy(*(int64_t *)(psystem_temp_unsigned_value + (uint64_t)system_temp_uint_value * 2 + 2) +
                  (uint64_t)(system_temp_uint_value + system_temp_uint_value * -0x800) * 4,psystem_temp_unsigned_value,(system_temp_uint_value & 0xffffffff) << 2);
         }
@@ -47822,7 +46507,6 @@ void system_configure_network_settings_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_setup_render_pipeline_7(void)
@@ -47941,7 +46625,6 @@ void system_setup_render_pipeline_7(void)
         else {
           *(int *)(system_data_handle + 0x40) = system_result_code;
           if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           *system_primary_data_ptr = 0;
@@ -48044,7 +46727,6 @@ void system_setup_render_pipeline_7(void)
                 }
                 else {
                   if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
                     system_process_context_data();
                   }
                   do {
@@ -48066,7 +46748,6 @@ void system_setup_render_pipeline_7(void)
         system_temp_uint_value = system_temp_uint_value >> 0xb;
         *(uint *)(system_data_handle + 0x2c) = system_temp_uint_value;
         if (system_temp_uint_value == (int)system_status_flag6 + system_temp_uint_value >> 0xb) {
-                    // WARNING: Subroutine does not return
           memcpy(*(int64_t *)(psystem_temp_unsigned_value + (uint64_t)system_temp_uint_value * 2 + 2) +
                  (uint64_t)(system_temp_uint_value + system_temp_uint_value * -0x800) * 4,psystem_temp_unsigned_value,(system_temp_uint_value & 0xffffffff) << 2);
         }
@@ -48090,7 +46771,6 @@ void system_setup_render_pipeline_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_input_processing_7(void)
@@ -48191,7 +46871,6 @@ void system_handle_input_processing_7(void)
         else {
           *(int *)(system_data_handle + 0x40) = system_result_code;
           if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           *system_primary_data_ptr = 0;
@@ -48294,7 +46973,6 @@ void system_handle_input_processing_7(void)
                 }
                 else {
                   if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
                     system_process_context_data();
                   }
                   do {
@@ -48316,7 +46994,6 @@ void system_handle_input_processing_7(void)
         system_temp_uint_value = system_temp_uint_value >> 0xb;
         *(uint *)(system_data_handle + 0x2c) = system_temp_uint_value;
         if (system_temp_uint_value == (int)system_status_flag4 + system_temp_uint_value >> 0xb) {
-                    // WARNING: Subroutine does not return
           memcpy(*(int64_t *)(psystem_temp_unsigned_value + (uint64_t)system_temp_uint_value * 2 + 2) +
                  (uint64_t)(system_temp_uint_value + system_temp_uint_value * -0x800) * 4,psystem_temp_unsigned_value,(system_temp_uint_value & 0xffffffff) << 2);
         }
@@ -48340,7 +47017,6 @@ void system_handle_input_processing_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_debug_interface_7(void)
@@ -48434,7 +47110,6 @@ void system_initialize_debug_interface_7(void)
         else {
           *(int *)(system_data_handle + 0x40) = system_result_code;
           if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           *system_primary_data_ptr = 0;
@@ -48537,7 +47212,6 @@ void system_initialize_debug_interface_7(void)
                 }
                 else {
                   if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
                     system_process_context_data();
                   }
                   do {
@@ -48559,7 +47233,6 @@ void system_initialize_debug_interface_7(void)
         system_temp_uint_value = system_temp_uint_value >> 0xb;
         *(uint *)(system_data_handle + 0x2c) = system_temp_uint_value;
         if (system_temp_uint_value == (int)system_status_flag4 + system_temp_uint_value >> 0xb) {
-                    // WARNING: Subroutine does not return
           memcpy(*(int64_t *)(psystem_temp_unsigned_value + (uint64_t)system_temp_uint_value * 2 + 2) +
                  (uint64_t)(system_temp_uint_value + system_temp_uint_value * -0x800) * 4,psystem_temp_unsigned_value,(system_temp_uint_value & 0xffffffff) << 2);
         }
@@ -48583,7 +47256,6 @@ void system_initialize_debug_interface_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_performance_metrics_7(void)
@@ -48624,7 +47296,6 @@ void system_process_performance_metrics_7(void)
         else {
           *(int *)(context_offset + 0x40) = system_result_code;
           if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           *system_primary_data_ptr = 0;
@@ -48727,7 +47398,6 @@ void system_process_performance_metrics_7(void)
                 }
                 else {
                   if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
                     system_process_context_data();
                   }
                   do {
@@ -48749,7 +47419,6 @@ void system_process_performance_metrics_7(void)
         system_byte_operation_result = system_temp_uint_value >> 0xb;
         *(uint *)(context_offset + 0x2c) = system_temp_uint_value;
         if (system_byte_operation_result == (int)system_temp_char_result + system_temp_uint_value >> 0xb) {
-                    // WARNING: Subroutine does not return
           memcpy(*(int64_t *)(system_context_ptr_primary5 + (uint64_t)system_byte_operation_result * 2 + 2) +
                  (uint64_t)(system_temp_uint_value + system_byte_operation_result * -0x800) * 4,system_pointer_variable_20,(system_temp_uint_value & 0xffffffff) << 2);
         }
@@ -48773,7 +47442,6 @@ void system_process_performance_metrics_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* * system_process_context_data(int64_t system_context_ptr,uint8_t system_config_data_array,uint8_t system_thread_count,uint8_t system_memory_size_array)
 
@@ -48871,8 +47539,6 @@ uint8_t* system_process_context_data(void)
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180079699)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 float * system_process_context_data(float *system_context_ptr)
 
@@ -49099,11 +47765,6 @@ system_label:
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001800797c0)
-// WARNING: Removing unreachable block (ram,0x0001800797c8)
-// WARNING: Removing unreachable block (ram,0x0001800797cd)
-// WARNING: Removing unreachable block (ram,0x0001800797dd)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_logging_system_7(void)
@@ -49215,15 +47876,12 @@ void system_configure_logging_system_7(void)
           system_data_handle = *(int64_t *)(system_data_handle + system_data_handle);
         }
         if (system_data_handle != system_data_handle) {
-                    // WARNING: Subroutine does not return
           memmove(system_data_handle,system_data_handle,system_data_handle - system_data_handle);
         }
         if (system_temp_uint_value != 0) {
-                    // WARNING: Subroutine does not return
           memset(system_data_handle,0,system_temp_uint_value * 0x10);
         }
         if (*(int64_t *)(system_data_handle + system_data_handle) != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *(int64_t *)(system_data_handle + system_data_handle) = system_data_handle;
@@ -49232,7 +47890,6 @@ void system_configure_logging_system_7(void)
       }
       else {
         if (system_temp_uint_value != 0) {
-                    // WARNING: Subroutine does not return
           memset(system_data_handle,0,system_temp_uint_value * 0x10);
         }
         *(int64_t *)(system_data_handle + 8 + system_data_handle) = system_data_handle;
@@ -49347,12 +48004,10 @@ system_label:
           if (system_data_handle != 0) goto system_label;
         }
         if (system_context_ptr_primary5 != system_temp_int_ptr_20) {
-                    // WARNING: Subroutine does not return
           memmove(system_context_ptr_primary3,system_context_ptr_primary5,(int64_t)system_temp_int_ptr_20 - (int64_t)system_context_ptr_primary5);
         }
         *system_context_ptr_primary3 = system_result_code;
         if (*(int64_t *)(system_data_handle + system_data_handle) != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *(int **)(system_data_handle + system_data_handle) = system_context_ptr_primary3;
@@ -49383,12 +48038,10 @@ system_label:
           if (system_data_handle != 0) goto system_label;
         }
         if (system_context_ptr_primary5 != system_temp_int_ptr_20) {
-                    // WARNING: Subroutine does not return
           memmove(system_context_ptr_primary3,system_context_ptr_primary5,(int64_t)system_temp_int_ptr_20 - (int64_t)system_context_ptr_primary5);
         }
         *system_context_ptr_primary3 = system_result_code;
         if (*(int64_t *)(system_data_handle + system_data_handle) != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *(int **)(system_data_handle + system_data_handle) = system_context_ptr_primary3;
@@ -49419,12 +48072,10 @@ system_label:
           system_context_ptr_primary5 = (int *)0x0;
         }
         if (system_context_ptr_primary3 != system_temp_int_ptr_20) {
-                    // WARNING: Subroutine does not return
           memmove(system_context_ptr_primary5,system_context_ptr_primary3,(int64_t)system_temp_int_ptr_20 - (int64_t)system_context_ptr_primary3);
         }
         *system_context_ptr_primary5 = system_result_code;
         if (*(int64_t *)(system_data_handle + system_data_handle) != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *(int **)(system_data_handle + system_data_handle) = system_context_ptr_primary5;
@@ -49670,7 +48321,6 @@ system_label:
                   }
                   system_stack_buffer_ptr_1e0 = pasystem_temp_unsigned_value;
                   if (pasystem_temp_unsigned_value != pasystem_temp_unsigned_value) {
-                    // WARNING: Subroutine does not return
                     memmove(pasystem_temp_unsigned_value,pasystem_temp_unsigned_value,(int64_t)pasystem_temp_unsigned_value - (int64_t)pasystem_temp_unsigned_value);
                   }
                   asystem_temp_unsigned_value._4_4_ = system_stack_context_hash_value;
@@ -49680,7 +48330,6 @@ system_label:
                   *pasystem_temp_unsigned_value = asystem_temp_unsigned_value;
                   *(uint32_t* *)pasystem_temp_unsigned_value[1] = system_stack_ptr_1b0._0_4_;
                   if (*(int64_t *)(system_context_int_system_pointer_config + system_temp_uint_value * 8) != 0) {
-                    // WARNING: Subroutine does not return
                     system_process_context_data();
                   }
                   *(uint8_t* (**) [16])(system_context_int_system_pointer_config + system_temp_uint_value * 8) = pasystem_temp_unsigned_value;
@@ -49863,7 +48512,6 @@ system_label:
       if ((int64_t)system_stack_context_hash_value <= (int64_t)stack_function) {
         system_process_context_data(system_stack_buffer_input_state);
         if (system_stack_byte_pointer != (uint32_t* *)0x0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data(system_stack_byte_pointer);
         }
         return;
@@ -49934,12 +48582,10 @@ system_label:
               if (system_stack_ptr_1f0 != (int *)0x0) goto system_label;
             }
             if (system_temp_int_ptr_25 != system_temp_int_ptr_26) {
-                    // WARNING: Subroutine does not return
               memmove(system_context_ptr_primary6,system_temp_int_ptr_25,system_stack_context_hash_value);
             }
             *system_context_ptr_primary6 = *(int *)(system_stack_context_hash_value_x + (int64_t)system_stack_ptr_1f8);
             if (system_temp_int_ptr_25 != (int *)0x0) {
-                    // WARNING: Subroutine does not return
               system_process_context_data(system_temp_int_ptr_25);
             }
             system_context_ptr_primary3 = system_context_ptr_primary6 + (int64_t)system_stack_ptr_1f0;
@@ -49997,12 +48643,10 @@ system_label:
                   if (system_data_handle != 0) goto system_label;
                 }
                 if (system_temp_int_ptr_25 != system_temp_int_ptr_26) {
-                    // WARNING: Subroutine does not return
                   memmove(system_context_ptr_primary6,system_temp_int_ptr_25,system_stack_context_hash_value);
                 }
                 *system_context_ptr_primary6 = *system_stack_ptr_1f0;
                 if (system_temp_int_ptr_25 != (int *)0x0) {
-                    // WARNING: Subroutine does not return
                   system_process_context_data(system_temp_int_ptr_25);
                 }
                 system_stack_context_hash_value = (uint)system_context_ptr_primary6;
@@ -50038,13 +48682,11 @@ system_label:
                   if (system_data_handle != 0) goto system_label;
                 }
                 if (system_context_ptr_primary4 != system_temp_int_ptr_20) {
-                    // WARNING: Subroutine does not return
                   memmove(system_context_ptr_primary5,system_context_ptr_primary4,system_stack_context_hash_value);
                 }
                 *system_context_ptr_primary5 = *system_stack_ptr_1f0;
                 system_temp_int_ptr_20 = system_context_ptr_primary5 + 1;
                 if (system_context_ptr_primary4 != (int *)0x0) {
-                    // WARNING: Subroutine does not return
                   system_process_context_data(system_context_ptr_primary4);
                 }
                 system_stack_ptr_190 = system_context_ptr_primary5 + system_data_handle;
@@ -50080,7 +48722,6 @@ system_label:
         system_temp_byte_44 = system_stack_ptr_218 != (int *)0x0;
         system_stack_ptr_218 = system_context_ptr_primary6;
         if (system_temp_byte_44) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
       } while( true );
@@ -50089,7 +48730,6 @@ system_label:
 system_label:
   if (system_stack_ptr_218 != (int *)0x0) {
     system_stack_ptr_218 = system_context_ptr_primary6;
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr_primary3 = *(int **)(*system_stack_buffer_ptr_1e0 + system_stack_storage);
@@ -50119,7 +48759,6 @@ system_label:
       system_long_ptr_39[1] = system_data_handle;
       system_long_ptr_39[2] = system_data_handle + ((int64_t)system_temp_uint_value >> 2) * 4;
       if (system_context_ptr_primary6 != system_temp_int_ptr_26) {
-                    // WARNING: Subroutine does not return
         memmove(*system_long_ptr_39,system_context_ptr_primary6,system_temp_uint_value);
       }
       system_long_ptr_39[1] = *system_long_ptr_39;
@@ -50205,11 +48844,9 @@ system_label:
     }
   }
   if (system_context_ptr_primary6 != (int *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary6);
   }
   if (system_context_ptr_primary4 != (int *)0x0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data(system_context_ptr_primary4);
   }
 system_label:
@@ -50227,14 +48864,12 @@ void system_handle_error_processing_7(void)
   
   for (system_primary_data_ptr = (int64_t *)*system_context_ptr; system_primary_data_ptr != (int64_t *)system_context_ptr[1]; system_primary_data_ptr = system_primary_data_ptr + 4) {
     if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -50246,14 +48881,12 @@ void system_initialize_monitoring_system_7(void)
   
   for (system_primary_data_ptr = (int64_t *)*system_context_ptr; system_primary_data_ptr != (int64_t *)system_context_ptr[1]; system_primary_data_ptr = system_primary_data_ptr + 4) {
     if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
   }
   if (*system_context_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_process_context_data();
 }
 
@@ -50279,10 +48912,6 @@ uint8_t* system_process_context_data(int64_t system_context_ptr)
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018007b857)
-// WARNING: Removing unreachable block (ram,0x00018007b868)
-// WARNING: Removing unreachable block (ram,0x00018007b879)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t system_process_data_synchronization_7(void)
   byte *system_byte_system_pointer_a;
@@ -50599,14 +49228,12 @@ void system_configure_memory_allocator_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_resource_manager_7(void)
   
   if (*(int64_t *)(system_context_ptr + 0x1e0) == 0) {
     system_temp_unsigned_value_primary = system_process_context_data(system_global_data_pointer,0x180,8,0x1c);
-                    // WARNING: Subroutine does not return
     memset(system_temp_unsigned_value_primary,0,0x180);
   }
   return;
@@ -50644,9 +49271,6 @@ void system_initialize_module_a(int64_t *system_context_ptr)
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018007c17d)
-// WARNING: Removing unreachable block (ram,0x00018007c188)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_system_events_7(void)
@@ -50999,7 +49623,6 @@ void system_handle_system_events_7(void)
     system_process_context_data(system_temp_storage_value + 0x20,system_operation_result_code_validation);
   }
   if (system_temp_uint_value != 0) {
-                    // WARNING: Subroutine does not return
     memcpy(*(uint8_t *)(system_temp_storage_value + 0x28),*(uint8_t *)(system_thread_count + 0x100),system_operation_result_code_validation);
   }
   *(uint32_t* *)(system_temp_storage_value + 0x30) = 0;
@@ -51007,7 +49630,6 @@ void system_handle_system_events_7(void)
     *(uint8_t* *)(system_operation_result_code_validation + *(int64_t *)(system_temp_storage_value + 0x28)) = 0;
   }
   *(uint32_t* *)(system_temp_storage_value + 0x3c) = *(uint32_t* *)(system_thread_count + 0x114);
-                    // WARNING: Subroutine does not return
   system_process_stack_operation(system_stack_context_hash_value ^ (uint64_t)system_stack_buffer_state_machine);
 }
 
@@ -51152,8 +49774,6 @@ void system_manage_component_lifecycle_7(void)
     *system_function_ptr = '\x04';
   }
   UNLOCK();
-                    // WARNING: Could not recover jumptable at 0x00018007c7e6. Too many branches
-                    // WARNING: Treating indirect jump as call
   (**(code **)(*(int64_t *)*system_context_ptr + 0x38))();
   return;
 }
@@ -51205,8 +49825,6 @@ void system_initialize_script_engine_7(void)
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018007cad0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_physics_system_7(void)
@@ -51323,7 +49941,6 @@ void system_configure_physics_system_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_audio_processing_7(void)
@@ -51672,7 +50289,6 @@ void system_handle_audio_processing_7(void)
   case 8:
     if (*(int *)(system_config_data_array + 200) < 1) {
 code_r0x00018007db1b:
-                    // WARNING: Subroutine does not return
       memset(system_float_pointer_secondary0,0,(int64_t)(system_result_code * 4));
     }
     system_data_handle = system_data_handle;
@@ -52065,9 +50681,6 @@ void system_manage_network_connections_7(void)
     }
     system_data_handle = *(int64_t *)(*system_config_data_array + 0x10);
     if (system_thread_count != '\0') {
-                    // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                    // WARNING: Subroutine does not return
-                    // WARNING: Treating indirect jump as call
       memcpy(system_data_handle,*(uint8_t *)(system_context_ptr + 0x90),(int64_t)*(int *)(system_context_ptr + 0x88) * 0xc);
       return;
     }
@@ -52091,7 +50704,6 @@ void system_manage_network_connections_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_render_commands_7(void)
@@ -52195,7 +50807,6 @@ void system_initialize_input_system_7(void)
     system_process_context_data(system_context_ptr + 0x60);
   }
   *(int *)(system_context_ptr + 0x60) = system_result_code;
-                    // WARNING: Subroutine does not return
   memcpy(*(uint8_t *)(system_context_ptr + 0x68),*(uint8_t *)(system_config_data_array + 8),(int64_t)(system_result_code * 0x5c),
          system_memory_size_array,system_parameter_value_secondary);
 }
@@ -52296,7 +50907,6 @@ void system_configure_display_settings_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_file_operations_7(void)
@@ -52306,7 +50916,6 @@ void system_handle_file_operations_7(void)
                         *(int *)(*(int64_t *)(system_context_ptr + 600) + 0x18));
   system_data_handle = *(int64_t *)(system_context_ptr + 600);
   if (*(int64_t *)(system_data_handle + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_param_primary = 0;
@@ -52316,16 +50925,12 @@ void system_handle_file_operations_7(void)
     system_param_primary = system_process_context_data(system_global_data_pointer,system_data_handle,0x10,CONCAT71((int7)((uint64_t)system_data_handle >> 8),3));
   }
   *(uint8_t *)(*(int64_t *)(system_context_ptr + 600) + 0x10) = system_param_primary;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                    // WARNING: Subroutine does not return
-                    // WARNING: Treating indirect jump as call
   memcpy(*(uint8_t *)(*(int64_t *)(system_context_ptr + 600) + 0x10),system_thread_count,system_data_handle);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_data_streams_7(void)
@@ -52333,7 +50938,6 @@ void system_manage_data_streams_7(void)
   if (*(int64_t *)(system_context_ptr + 0x2c8) == 0) {
     *(uint *)(system_context_ptr + 0x100) = *(uint *)(system_context_ptr + 0x100) | 8;
     system_temp_unsigned_value_primary = system_process_context_data(system_global_data_pointer,0xd0,4,9);
-                    // WARNING: Subroutine does not return
     memset(system_temp_unsigned_value_primary,0,0xd0);
   }
   return;
@@ -52345,7 +50949,6 @@ void system_manage_data_streams_7(void)
 void system_process_animation_data_7(void)
   
   system_temp_unsigned_value_primary = system_process_context_data();
-                    // WARNING: Subroutine does not return
   memset(system_temp_unsigned_value_primary,0,0xd0);
 }
 
@@ -52358,7 +50961,6 @@ void system_initialize_particle_system_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_lighting_system_7(void)
@@ -52367,7 +50969,6 @@ void system_configure_lighting_system_7(void)
   system_primary_data_ptr = *(int64_t **)(system_context_ptr + 600);
   if ((int)system_primary_data_ptr[1] != system_config_data_array) {
     if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     system_param_primary = 0;
@@ -52434,7 +51035,6 @@ system_label:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 code * system_process_context_data(int64_t system_context_ptr,char system_config_data_array)
 
@@ -52518,8 +51118,6 @@ void system_manage_shader_programs_7(void)
       system_primary_data_ptr = *(int64_t **)(system_context_ptr + 0x210);
       *(uint8_t *)(system_context_ptr + 0x210) = 0;
       if (system_primary_data_ptr != (int64_t *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x00018007ee5b. Too many branches
-                    // WARNING: Treating indirect jump as call
         (**(code **)(*system_primary_data_ptr + 0x38))();
         return;
       }
@@ -52530,7 +51128,6 @@ void system_manage_shader_programs_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_texture_data_7(void)
@@ -52559,7 +51156,6 @@ void system_process_texture_data_7(void)
           if (system_unsigned_result_value == system_iteration_count + system_result_code >> 0xb) {
             system_temp_byte_primary = system_param_primary >> 0xb;
             if (system_temp_byte_primary == system_param_primary + system_iteration_count >> 0xb) {
-                    // WARNING: Subroutine does not return
               memcpy(*(int64_t *)(system_data_handle + 8 + system_temp_uint_value * 8) + (uint64_t)(system_result_code + system_unsigned_result_value * -0x800) * 8
                      ,*(int64_t *)(system_data_handle + 8 + (uint64_t)system_temp_byte_primary * 8) +
                       (uint64_t)(system_param_primary + system_temp_byte_primary * -0x800) * 8,(int64_t)(int)system_iteration_count << 3);
@@ -52597,7 +51193,6 @@ void system_process_texture_data_7(void)
       system_result_code = (uint64_t)system_iteration_count;
       system_context_ptr_primary2 = (uint8_t *)**(uint8_t **)(system_context_ptr + 0x2d0);
       if (system_param_primary == system_iteration_count + system_unsigned_result_value >> 0xb) {
-                    // WARNING: Subroutine does not return
         memcpy(*(int64_t *)(system_data_handle + 8 + (uint64_t)system_param_primary * 8) +
                (uint64_t)(system_unsigned_result_value + system_param_primary * -0x800) * 8,system_context_ptr_primary2,(uint64_t)system_iteration_count << 3);
       }
@@ -52624,7 +51219,6 @@ void system_process_texture_data_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_ui_system_7(void)
@@ -52651,7 +51245,6 @@ void system_initialize_ui_system_7(void)
         if (system_unsigned_temp_counter == system_unsigned_result_value + system_iteration_counter >> 0xb) {
           system_byte_operation_result = system_temp_unsigned_value_primary >> 0xb;
           if (system_byte_operation_result == system_temp_unsigned_value_primary + system_unsigned_result_value >> 0xb) {
-                    // WARNING: Subroutine does not return
             memcpy(*(int64_t *)(system_data_handle + 8 + system_temp_uint_value * 8) + (uint64_t)(system_iteration_counter + system_unsigned_temp_counter * -0x800) * 8,
                    *(int64_t *)(system_data_handle + 8 + (uint64_t)system_byte_operation_result * 8) +
                    (uint64_t)(system_temp_unsigned_value_primary + system_byte_operation_result * -0x800) * 8,(int64_t)(int)system_unsigned_result_value << 3);
@@ -52689,7 +51282,6 @@ void system_initialize_ui_system_7(void)
     system_byte_operation_result_allocation = (uint64_t)system_unsigned_result_value;
     system_context_ptr_primary0 = (uint8_t *)**(uint8_t **)(unaff_RBX + 0x2d0);
     if (system_temp_unsigned_value_primary == system_unsigned_result_value + system_unsigned_temp_counter >> 0xb) {
-                    // WARNING: Subroutine does not return
       memcpy(*(int64_t *)(system_data_handle + 8 + (uint64_t)system_temp_unsigned_value_primary * 8) +
              (uint64_t)(system_unsigned_temp_counter + system_temp_unsigned_value_primary * -0x800) * 8,system_context_ptr_primary0,(uint64_t)system_unsigned_result_value << 3);
     }
@@ -52736,7 +51328,6 @@ void system_configure_window_manager_7(void)
     if (system_byte_operation_result == system_parameter_value_secondary + system_result_code >> 0xb) {
       system_iteration_count = system_temp_unsigned_value_primary >> 0xb;
       if (system_iteration_count == system_temp_unsigned_value_primary + system_parameter_value_secondary >> 0xb) {
-                    // WARNING: Subroutine does not return
         memcpy(*(int64_t *)(system_config_data_array + 8 + system_temp_uint_value * 8) + (uint64_t)(system_result_code + system_byte_operation_result * -0x800) * 8,
                *(int64_t *)(system_data_handle + 8 + (uint64_t)system_iteration_count * 8) +
                (uint64_t)(system_temp_unsigned_value_primary + system_iteration_count * -0x800) * 8,(int64_t)(int)system_parameter_value_secondary << 3);
@@ -52788,7 +51379,6 @@ void system_process_game_logic_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_ai_system_7(void)
@@ -52801,7 +51391,6 @@ void system_initialize_ai_system_7(void)
   
   system_temp_uint_value = (uint64_t)system_thread_count;
   if (**(int64_t **)(system_context_ptr + 0x2d0) != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_byte_pointer_d = (uint8_t *)0x0;
@@ -52858,7 +51447,6 @@ void system_initialize_ai_system_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_pathfinding_7(void)
@@ -53018,30 +51606,24 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint64_t syste
 {
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[0x1a] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_process_context_data(system_context_ptr[0x16]);
   system_context_ptr[0x16] = 0;
   if (system_context_ptr[0x17] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   system_context_ptr[0x17] = 0;
   if (system_context_ptr[0x12] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (system_context_ptr[0xd] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (system_context_ptr[8] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   if (system_context_ptr[3] != 0) {
-                    // WARNING: Subroutine does not return
     system_process_context_data();
   }
   *system_context_ptr = &system_null_ptr;
@@ -53053,7 +51635,6 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint64_t syste
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_camera_system_7(void)
@@ -53085,7 +51666,6 @@ void system_initialize_camera_system_7(void)
       if (*(void* **)(system_temp_storage_value + 0x18) != (void* *)0x0) {
         next_ctx_ptr = *(void* **)(system_temp_storage_value + 0x18);
       }
-                    // WARNING: Subroutine does not return
       system_process_context_data(system_global_data_pointer,&system_null_ptr,next_ctx_ptr,system_memory_size_array,system_temp_uint_value);
     }
   }
@@ -53346,7 +51926,6 @@ uint8_t* system_process_context_data(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_shader_parameters_7(void)
@@ -53384,7 +51963,6 @@ void system_configure_shader_parameters_7(void)
         else {
           *(int *)(system_context_ptr + 0x40) = system_result_code;
           if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           *system_primary_data_ptr = 0;
@@ -53487,7 +52065,6 @@ void system_configure_shader_parameters_7(void)
                 }
                 else {
                   if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
                     system_process_context_data();
                   }
                   do {
@@ -53509,7 +52086,6 @@ void system_configure_shader_parameters_7(void)
         system_iteration_count = system_temp_uint_value >> 0xb;
         *(uint *)(system_context_ptr + 0x2c) = system_temp_uint_value;
         if (system_iteration_count == (int)system_temp_char_result + system_temp_uint_value >> 0xb) {
-                    // WARNING: Subroutine does not return
           memcpy(*(int64_t *)(system_context_ptr_primary4 + (uint64_t)system_iteration_count * 2 + 2) +
                  (uint64_t)(system_temp_uint_value + system_iteration_count * -0x800) * 4,system_context_ptr_primary9,(system_byte_operation_result_allocation & 0xffffffff) << 2);
         }
@@ -53533,7 +52109,6 @@ void system_configure_shader_parameters_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_handle_buffer_operations_7(void)
@@ -53570,7 +52145,6 @@ void system_handle_buffer_operations_7(void)
       else {
         *(int *)(system_register_rdi + 0x40) = system_result_code;
         if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
           system_process_context_data();
         }
         *system_primary_data_ptr = 0;
@@ -53674,7 +52248,6 @@ void system_handle_buffer_operations_7(void)
               }
               else {
                 if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
                   system_process_context_data();
                 }
                 do {
@@ -53696,7 +52269,6 @@ void system_handle_buffer_operations_7(void)
       system_iteration_count = system_temp_uint_value >> 0xb;
       *(uint *)(system_register_rdi + 0x2c) = system_temp_uint_value;
       if (system_iteration_count == (int)system_temp_char_result + system_temp_uint_value >> 0xb) {
-                    // WARNING: Subroutine does not return
         memcpy(*(int64_t *)(system_context_ptr_primary4 + (uint64_t)system_iteration_count * 2 + 2) +
                (uint64_t)(system_temp_uint_value + system_iteration_count * -0x800) * 4,system_context_ptr_primary9,(system_byte_operation_result_allocation & 0xffffffff) << 2);
       }
@@ -53719,7 +52291,6 @@ void system_handle_buffer_operations_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_manage_vertex_data_7(void)
@@ -53753,7 +52324,6 @@ void system_manage_vertex_data_7(void)
     else {
       *(int *)(system_register_rdi + 0x40) = system_result_code;
       if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
         system_process_context_data();
       }
       *system_primary_data_ptr = 0;
@@ -53855,7 +52425,6 @@ void system_manage_vertex_data_7(void)
             }
             else {
               if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
                 system_process_context_data();
               }
               do {
@@ -53877,7 +52446,6 @@ void system_manage_vertex_data_7(void)
     system_iteration_count = system_operation_result_code_validation >> 0xb;
     *(uint *)(system_register_rdi + 0x2c) = system_operation_result_code_validation;
     if (system_iteration_count == (int)system_temp_char_result + system_operation_result_code_validation >> 0xb) {
-                    // WARNING: Subroutine does not return
       memcpy(*(int64_t *)(system_context_ptr_primary4 + (uint64_t)system_iteration_count * 2 + 2) +
              (uint64_t)(system_operation_result_code_validation + system_iteration_count * -0x800) * 4,system_context_ptr_primary8,(system_byte_operation_result_allocation & 0xffffffff) << 2);
     }
@@ -53899,7 +52467,6 @@ void system_manage_vertex_data_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_index_buffers_7(void)
@@ -53920,7 +52487,6 @@ void system_process_index_buffers_7(void)
   else {
     *(uint *)(system_register_rdi + 0x40) = system_byte_operation_result_allocation;
     if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     *system_primary_data_ptr = 0;
@@ -54021,7 +52587,6 @@ void system_process_index_buffers_7(void)
           }
           else {
             if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
               system_process_context_data();
             }
             do {
@@ -54043,7 +52608,6 @@ void system_process_index_buffers_7(void)
   system_unsigned_result_value = system_iteration_count >> 0xb;
   *(uint *)(system_register_rdi + 0x2c) = system_iteration_count;
   if (system_unsigned_result_value == system_byte_operation_result_allocation + system_iteration_count >> 0xb) {
-                    // WARNING: Subroutine does not return
     memcpy(*(int64_t *)(system_context_ptr_primary4 + (uint64_t)system_unsigned_result_value * 2 + 2) +
            (uint64_t)(system_iteration_count + system_unsigned_result_value * -0x800) * 4,system_context_ptr_primary7,(unaff_RBX & 0xffffffff) << 2);
   }
@@ -54064,7 +52628,6 @@ void system_process_index_buffers_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_texture_manager_7(void)
@@ -54086,7 +52649,6 @@ void system_initialize_texture_manager_7(void)
   else {
     *(uint *)(system_register_rdi + 0x40) = system_temp_uint_value;
     if (*system_primary_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
       system_process_context_data();
     }
     *system_primary_data_ptr = 0;
@@ -54187,7 +52749,6 @@ void system_initialize_texture_manager_7(void)
           }
           else {
             if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
               system_process_context_data();
             }
             do {
@@ -54209,7 +52770,6 @@ void system_initialize_texture_manager_7(void)
   system_unsigned_result_value = system_iteration_count >> 0xb;
   *(uint *)(system_register_rdi + 0x2c) = system_iteration_count;
   if (system_unsigned_result_value == system_temp_uint_value + system_iteration_count >> 0xb) {
-                    // WARNING: Subroutine does not return
     memcpy(*(int64_t *)(system_context_ptr_primary3 + (uint64_t)system_unsigned_result_value * 2 + 2) +
            (uint64_t)(system_iteration_count + system_unsigned_result_value * -0x800) * 4,system_context_ptr_primary6,(unaff_R12 & 0xffffffff) << 2);
   }
@@ -54230,7 +52790,6 @@ void system_initialize_texture_manager_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_configure_mipmap_generation_7(void)
@@ -54267,7 +52826,6 @@ void system_configure_mipmap_generation_7(void)
         }
         else {
           if (system_data_handle != 0) {
-                    // WARNING: Subroutine does not return
             system_process_context_data();
           }
           do {
@@ -54303,7 +52861,6 @@ void system_configure_mipmap_generation_7(void)
     }
     return;
   }
-                    // WARNING: Subroutine does not return
   memcpy(*(int64_t *)(unaff_RBP + (uint64_t)system_parameter_value_secondary * 2 + 2) +
          (uint64_t)(system_unsigned_result_value + system_parameter_value_secondary * -0x800) * 4,buffer_ptr,(uint64_t)unaff_R12D << 2);
 }
@@ -54333,7 +52890,6 @@ void system_handle_texture_compression_7(void)
     }
     return;
   }
-                    // WARNING: Subroutine does not return
   memcpy(*(int64_t *)(unaff_RBP + 8 + (uint64_t)system_param_primary * 8) +
          (uint64_t)(unaff_ESI + system_param_primary * -0x800) * 4,camera_node_current,(uint64_t)unaff_R12D << 2);
 }
@@ -54343,7 +52899,6 @@ void system_handle_texture_compression_7(void)
 
 void system_manage_material_system_7(void)
   
-                    // WARNING: Subroutine does not return
   memcpy(*(int64_t *)(unaff_RBP + 8 + system_context_ptr * 8) +
          (uint64_t)(uint)(unaff_ESI + (int)system_context_ptr * -0x800) * 4,system_memory_size_array,(uint64_t)unaff_R12D << 2
         );
@@ -54405,7 +52960,6 @@ void system_manage_animation_states_7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_initialize_main(uint8_t system_context_ptr,uint8_t system_config_data_array,uint8_t system_thread_count)
@@ -54428,7 +52982,6 @@ void system_initialize_main(uint8_t system_context_ptr,uint8_t system_config_dat
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void system_process_morph_targets_7(void)
@@ -54455,14 +53008,12 @@ void system_process_morph_targets_7(void)
   if (aplStack_310[0] != (int64_t *)0x0) {
     (**(code **)(*aplStack_310[0] + 0x38))();
   }
-                    // WARNING: Subroutine does not return
   memcpy(*(uint8_t *)(*(int64_t *)(system_config_data_array + 0x20) + 0x10),*(uint8_t *)(system_memory_size_array + 8),
          (int64_t)system_result_code);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void* system_default_function_call;
