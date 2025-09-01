@@ -5392,29 +5392,29 @@ uint64_t ProcessFloatParameterAndUpdateSystem(longlong parameterObject)
 int InitializeSystemManager(longlong managerHandle)
 
 {
-  int iVar1;
+  int integerValue1;
   longlong resourceTable;
-  uint8_t1 auStackX_8 [8];
-  uint8_t1 auStack_50 [72];
+  uint8_t1 ArrayUnionStackX8 [8];
+  uint8_t1 ArrayUnionStack50 [72];
   
   resourceTable = 0;
   if (0 < *(int *)(objectContextParam + 0x20)) {
     resourceTable = *(longlong *)(objectContextParam + 0x18);
   }
-  iVar1 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x4c),auStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = *(int *)(objectContextParam + 0x10);
+  integerValue1 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x4c),ArrayUnionStackX8);
+  if (integerValue1 == 0) {
+    integerValue1 = *(int *)(objectContextParam + 0x10);
     if (0x38 < *(int *)(objectContextParam + 0x10)) {
-      iVar1 = 0x38;
+      integerValue1 = 0x38;
     }
                     // WARNING: Subroutine does not return
-    memcpy(auStack_50,objectContextParam + 0x10,(longlong)iVar1);
+    memcpy(ArrayUnionStack50,objectContextParam + 0x10,(longlong)integerValue1);
   }
   if (resourceTable != 0) {
                     // WARNING: Subroutine does not return
     ProcessResourceAllocation(*(uint8_t8 *)(SystemContextPointer + 0x1a0),resourceTable,&SystemResourceTable,0xb8,1);
   }
-  return iVar1;
+  return integerValue1;
 }
 
 
@@ -5516,7 +5516,7 @@ int ValidateSystemConfigurationParameter(uint8_t4 configParameter)
 
 {
   int in_EAX;
-  int iVar1;
+  int integerValue1;
   longlong resourceTable;
   longlong unaff_RDI;
   uint8_t4 unsignedResult3;
@@ -5534,15 +5534,15 @@ int ValidateSystemConfigurationParameter(uint8_t4 configParameter)
     unsignedResult3 = 2;
   }
   uStack0000000000000030 = objectContextParam;
-  iVar1 = ProcessResourceOperationEx();
-  if (iVar1 == 0) {
-    iVar1 = 0;
+  integerValue1 = ProcessResourceOperationEx();
+  if (integerValue1 == 0) {
+    integerValue1 = 0;
   }
   else if (resourceTable != 0) {
     ProcessResourceRelease(*(uint8_t8 *)(SystemContextPointer + 0x1a0),resourceTable,&ResourceTableTemplate,0xe9,unsignedResult3);
-    return iVar1;
+    return integerValue1;
   }
-  return iVar1;
+  return integerValue1;
 }
 
 
@@ -5592,18 +5592,18 @@ uint8_t8 GetSystemVersionInfo(void)
 void ProcessSystemDataPacketTransmission(longlong packetHandle, longlong transmissionConfig)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = ProcessResourceRequest(*(uint8_t8 *)(validationContextParam + 0x78),*(uint8_t4 *)(objectContextParam + 0x10),
+  integerValue1 = ProcessResourceRequest(*(uint8_t8 *)(validationContextParam + 0x78),*(uint8_t4 *)(objectContextParam + 0x10),
                         objectContextParam + 0x14,objectContextParam + 0x20,objectContextParam + 0x2c,objectContextParam + 0x38);
-  if ((iVar1 == 0) &&
-     (iVar1 = InitializeDataStructure((longlong)*(int *)(objectContextParam + 0x10) * 0x44 +
-                                  *(longlong *)(validationContextParam + 0x90) + 0x554,objectContextParam + 0x14), iVar1 == 0)
+  if ((integerValue1 == 0) &&
+     (integerValue1 = InitializeDataStructure((longlong)*(int *)(objectContextParam + 0x10) * 0x44 +
+                                  *(longlong *)(validationContextParam + 0x90) + 0x554,objectContextParam + 0x14), integerValue1 == 0)
      ) {
     if ((*(char *)(objectContextParam + 0x50) != '\0') &&
-       (iVar1 = ConfigureDataStructure((longlong)*(int *)(objectContextParam + 0x10) * 0x44 +
+       (integerValue1 = ConfigureDataStructure((longlong)*(int *)(objectContextParam + 0x10) * 0x44 +
                                     *(longlong *)(validationContextParam + 0x90) + 0x554,objectContextParam + 0x44),
-       iVar1 != 0)) {
+       integerValue1 != 0)) {
       return;
     }
     FinalizeDataStructure((longlong)*(int *)(objectContextParam + 0x10) * 0x44 +
@@ -6324,18 +6324,18 @@ void ProcessSystemBufferExpansion(uint8_t8 systemContext, uint8_t8 bufferContext
   capacityCheck = (int)*(uint *)(stackPointerSecondary + 0x2c) >> 0x1f;
   bufferSize = (*(uint *)(stackPointerSecondary + 0x2c) ^ capacityCheck) - capacityCheck;
   validationStatus = *(int *)(stackPointerSecondary + 0x28) + 1;
-  if (integerValue2 < iVar1) {
+  if (integerValue2 < integerValue1) {
     integerValue2 = (int)((float)integerValue2 * 1.5);
-    if (iVar1 <= integerValue2) {
-      iVar1 = integerValue2;
+    if (integerValue1 <= integerValue2) {
+      integerValue1 = integerValue2;
     }
-    if (iVar1 < 8) {
-      iVar1 = 8;
+    if (integerValue1 < 8) {
+      integerValue1 = 8;
     }
-    if (iVar1 < *(int *)(in_stack_00000070 + 0x28)) goto LAB_180891fc0;
-    if (iVar1 != 0) {
-      if ((0x3ffffffe < iVar1 * 8 - 1U) ||
-         (resourceIndex = AllocateMemoryBlock(*(uint8_t8 *)(SystemContextPointer + 0x1a0),iVar1 * 8,&ResourceTableTemplate,
+    if (integerValue1 < *(int *)(in_stack_00000070 + 0x28)) goto LAB_180891fc0;
+    if (integerValue1 != 0) {
+      if ((0x3ffffffe < integerValue1 * 8 - 1U) ||
+         (resourceIndex = AllocateMemoryBlock(*(uint8_t8 *)(SystemContextPointer + 0x1a0),integerValue1 * 8,&ResourceTableTemplate,
                                 0xf4,0), resourceIndex == 0)) goto LAB_180891fc0;
       if (*(int *)(in_stack_00000070 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -6350,7 +6350,7 @@ void ProcessSystemBufferExpansion(uint8_t8 systemContext, uint8_t8 bufferContext
                     &ResourceTableTemplate,0x100,1);
     }
     *(longlong *)(in_stack_00000070 + 0x20) = resourceIndex;
-    *(int *)(in_stack_00000070 + 0x2c) = iVar1;
+    *(int *)(in_stack_00000070 + 0x2c) = integerValue1;
   }
   *(longlong *)
    (*(longlong *)(in_stack_00000070 + 0x20) + (longlong)*(int *)(in_stack_00000070 + 0x28) * 8) =
@@ -6378,7 +6378,7 @@ LAB_180891fc0:
 void ProcessDynamicBufferReallocation(void)
 
 {
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   longlong in_RAX;
   longlong resourceIndex;
@@ -6393,25 +6393,25 @@ void ProcessDynamicBufferReallocation(void)
   if (in_RAX == 0) {
     lVar4 = resourceIndex;
   }
-  iVar1 = ValidateBufferContext(lVar4);
-  if (iVar1 != 0) {
+  integerValue1 = ValidateBufferContext(lVar4);
+  if (integerValue1 != 0) {
     return;
   }
   unsignedValue5 = (int)*(uint *)(unaff_RBX + 0x2c) >> 0x1f;
   integerValue2 = (*(uint *)(unaff_RBX + 0x2c) ^ unsignedValue5) - unsignedValue5;
-  iVar1 = *(int *)(unaff_RBX + 0x28) + 1;
-  if (integerValue2 < iVar1) {
+  integerValue1 = *(int *)(unaff_RBX + 0x28) + 1;
+  if (integerValue2 < integerValue1) {
     integerValue2 = (int)((float)integerValue2 * 1.5);
-    if (iVar1 <= integerValue2) {
-      iVar1 = integerValue2;
+    if (integerValue1 <= integerValue2) {
+      integerValue1 = integerValue2;
     }
-    if (iVar1 < 8) {
-      iVar1 = 8;
+    if (integerValue1 < 8) {
+      integerValue1 = 8;
     }
-    if (iVar1 < *(int *)(unaff_RBX + 0x28)) goto LAB_180891fc0;
-    if (iVar1 != 0) {
-      if (0x3ffffffe < iVar1 * 8 - 1U) goto LAB_180891fc0;
-      resourceIndex = AllocateMemoryBlock(*(uint8_t8 *)(SystemContextPointer + 0x1a0),iVar1 * 8,&ResourceTableTemplate,0xf4,0)
+    if (integerValue1 < *(int *)(unaff_RBX + 0x28)) goto LAB_180891fc0;
+    if (integerValue1 != 0) {
+      if (0x3ffffffe < integerValue1 * 8 - 1U) goto LAB_180891fc0;
+      resourceIndex = AllocateMemoryBlock(*(uint8_t8 *)(SystemContextPointer + 0x1a0),integerValue1 * 8,&ResourceTableTemplate,0xf4,0)
       ;
       if (resourceIndex == 0) goto LAB_180891fc0;
       if (*(int *)(unaff_RBX + 0x28) != 0) {
@@ -6425,7 +6425,7 @@ void ProcessDynamicBufferReallocation(void)
                     &ResourceTableTemplate,0x100,1);
     }
     *(longlong *)(unaff_RBX + 0x20) = resourceIndex;
-    *(int *)(unaff_RBX + 0x2c) = iVar1;
+    *(int *)(unaff_RBX + 0x2c) = integerValue1;
   }
   *(uint8_t8 *)(*(longlong *)(unaff_RBX + 0x20) + (longlong)*(int *)(unaff_RBX + 0x28) * 8) =
        in_stack_00000060;
@@ -6462,9 +6462,9 @@ void ProcessSystemConfigurationUpdate(int configIndex, int configSize)
   
   newSize = configIndex + 1;
   if (currentConfigValue - configSize < newSize) {
-    iVar1 = (int)((float)(in_EAX - validationContextParam) * 1.5);
-    if (integerValue2 <= iVar1) {
-      integerValue2 = iVar1;
+    integerValue1 = (int)((float)(in_EAX - validationContextParam) * 1.5);
+    if (integerValue2 <= integerValue1) {
+      integerValue2 = integerValue1;
     }
     if (integerValue2 < 8) {
       integerValue2 = 8;
@@ -6558,24 +6558,24 @@ void SystemResourceCleanupCompleteFlag(void)
 void ValidateObjectContextAndUpdateStatus(longlong objectContext, longlong systemContext)
 
 {
-  int iVar1;
+  int integerValue1;
   uint8_t8 uStackX_8;
   
-  iVar1 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&uStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = ValidateSystemParameter(uStackX_8);
-    if (iVar1 < 1) {
-      iVar1 = ValidateSystemContext(uStackX_8);
-      *(uint *)(objectContextParam + 0x18) = (uint)(iVar1 < 1);
+  integerValue1 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&uStackX_8);
+  if (integerValue1 == 0) {
+    integerValue1 = ValidateSystemParameter(uStackX_8);
+    if (integerValue1 < 1) {
+      integerValue1 = ValidateSystemContext(uStackX_8);
+      *(uint *)(objectContextParam + 0x18) = (uint)(integerValue1 < 1);
     }
     else {
-      iVar1 = ValidateSystemContext(uStackX_8);
-      if (iVar1 < 1) {
+      integerValue1 = ValidateSystemContext(uStackX_8);
+      if (integerValue1 < 1) {
         *(uint8_t4 *)(objectContextParam + 0x18) = 2;
       }
       else {
-        iVar1 = CalculateObjectHash(uStackX_8,objectContextParam + 0x18);
-        if (iVar1 != 0) {
+        integerValue1 = CalculateObjectHash(uStackX_8,objectContextParam + 0x18);
+        if (integerValue1 != 0) {
           return;
         }
       }
@@ -7850,7 +7850,7 @@ uint8_t8 ValidateObjectContextAndProcessFloatRange(longlong objectContext,longlo
  */
 
 {
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   uint8_t8 unsignedResult3;
   float *pfVar4;
@@ -7873,7 +7873,7 @@ uint8_t8 ValidateObjectContextAndProcessFloatRange(longlong objectContext,longlo
   if (CONCAT44(uStackX_c,fStackX_8) == 0) {
     unsignedValue6 = uVar8;
   }
-  iVar1 = *(int *)(unsignedValue6 + 0x28);
+  integerValue1 = *(int *)(unsignedValue6 + 0x28);
   pfloatValue7 = (float *)(objectContextParam + 0x20 + (longlong)*(int *)(objectContextParam + 0x18) * 4);
   if (0 < *(int *)(objectContextParam + 0x18)) {
     pfVar4 = pfloatValue7;
@@ -7885,7 +7885,7 @@ uint8_t8 ValidateObjectContextAndProcessFloatRange(longlong objectContext,longlo
         if (((uint)fStackX_8 & 0x7f800000) == 0x7f800000) {
           return 0x1d;
         }
-        if ((integerValue2 < 0) || (iVar1 <= integerValue2)) {
+        if ((integerValue2 < 0) || (integerValue1 <= integerValue2)) {
           return 0x1f;
         }
         lVar5 = *(longlong *)(unsignedValue6 + 0x20) + (longlong)integerValue2 * 0x18;
@@ -7913,9 +7913,9 @@ uint8_t8 ValidateObjectContextAndProcessFloatRange(longlong objectContext,longlo
     if (0 < *(int *)(objectContextParam + 0x18)) {
       lVar5 = (objectContextParam + 0x20) - (longlong)pfloatValue7;
       do {
-        iVar1 = *(int *)((longlong)pfloatValue7 + lVar5);
-        if (iVar1 != -1) {
-          *(float *)(*(longlong *)(unsignedValue6 + 0x20) + 4 + (longlong)iVar1 * 0x18) = *pfloatValue7;
+        integerValue1 = *(int *)((longlong)pfloatValue7 + lVar5);
+        if (integerValue1 != -1) {
+          *(float *)(*(longlong *)(unsignedValue6 + 0x20) + 4 + (longlong)integerValue1 * 0x18) = *pfloatValue7;
         }
         uVar9 = (int)uVar8 + 1;
         uVar8 = (ulonglong)uVar9;
@@ -8555,10 +8555,10 @@ void ValidateAndProcessBufferContext(longlong objectContextParam,longlong valida
   int validationStatus;
   uint8_t8 bufferContext;
   
-  iVar1 = ProcessSchedulerValidation(validationContextParam,objectContextParam + 0x10,&uStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = ValidateBufferContext(uStackX_8,objectContextParam + 0x20);
-    if (iVar1 == 0) {
+  integerValue1 = ProcessSchedulerValidation(validationContextParam,objectContextParam + 0x10,&uStackX_8);
+  if (integerValue1 == 0) {
+    integerValue1 = ValidateBufferContext(uStackX_8,objectContextParam + 0x20);
+    if (integerValue1 == 0) {
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(uint8_t8 *)(validationContextParam + 0x98),objectContextParam);
     }
@@ -8582,13 +8582,13 @@ void ValidateAndProcessBufferContext(longlong objectContextParam,longlong valida
 void ProcessBufferContextValidationAndCleanup(longlong objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   longlong lStackX_8;
   
-  iVar1 = ProcessSchedulerOperation(validationContextParam,objectContextParam + 0x10,&lStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = ValidateBufferContext(*(uint8_t8 *)(lStackX_8 + 0xd0),objectContextParam + 0x20);
-    if (iVar1 == 0) {
+  integerValue1 = ProcessSchedulerOperation(validationContextParam,objectContextParam + 0x10,&lStackX_8);
+  if (integerValue1 == 0) {
+    integerValue1 = ValidateBufferContext(*(uint8_t8 *)(lStackX_8 + 0xd0),objectContextParam + 0x20);
+    if (integerValue1 == 0) {
       CleanupSystemContextData(*(uint8_t8 *)(validationContextParam + 0x98),objectContextParam);
     }
   }
@@ -8610,13 +8610,13 @@ void ProcessBufferContextValidationAndCleanup(longlong objectContextParam,longlo
 void ProcessBufferContextValidationAndSystemExit(longlong objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   uint8_t8 uStackX_8;
   
-  iVar1 = ProcessSchedulerFinalization(validationContextParam,objectContextParam + 0x10,&uStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = ValidateBufferContext(uStackX_8,objectContextParam + 0x20);
-    if (iVar1 == 0) {
+  integerValue1 = ProcessSchedulerFinalization(validationContextParam,objectContextParam + 0x10,&uStackX_8);
+  if (integerValue1 == 0) {
+    integerValue1 = ValidateBufferContext(uStackX_8,objectContextParam + 0x20);
+    if (integerValue1 == 0) {
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(uint8_t8 *)(validationContextParam + 0x98),objectContextParam);
     }
@@ -8642,16 +8642,16 @@ void ProcessBufferContextValidationAndSystemExit(longlong objectContextParam,lon
 int ProcessObjectContextValidationAndStatusUpdate(longlong objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   longlong resourceTable;
   longlong lStackX_8;
   
   if ((((*(longlong *)(objectContextParam + 0x28) != 0) && (*(longlong *)(objectContextParam + 0x30) != 0)) &&
       (*(longlong *)(objectContextParam + 0x38) != 0)) && (*(longlong *)(objectContextParam + 0x40) != 0)) {
     if (*(int *)(objectContextParam + 0x20) < 1) {
-      iVar1 = ProcessDataValidation(validationContextParam,objectContextParam + 0x4c);
-      if ((iVar1 == 0) &&
-         (iVar1 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x4c),&lStackX_8), iVar1 == 0)) {
+      integerValue1 = ProcessDataValidation(validationContextParam,objectContextParam + 0x4c);
+      if ((integerValue1 == 0) &&
+         (integerValue1 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x4c),&lStackX_8), integerValue1 == 0)) {
         if (*(int *)(lStackX_8 + 0x30) == 1) {
           *(uint8_t4 *)(lStackX_8 + 0x30) = 2;
         }
@@ -8660,7 +8660,7 @@ int ProcessObjectContextValidationAndStatusUpdate(longlong objectContextParam,lo
       }
     }
     else if (*(longlong *)(objectContextParam + 0x18) == 0) {
-      iVar1 = 0x1f;
+      integerValue1 = 0x1f;
     }
     else {
       resourceTable = AllocateMemoryBlock(*(uint8_t8 *)(SystemContextPointer + 0x1a0),*(int *)(objectContextParam + 0x20),
@@ -8669,9 +8669,9 @@ int ProcessObjectContextValidationAndStatusUpdate(longlong objectContextParam,lo
                     // WARNING: Subroutine does not return
         memcpy(resourceTable,*(uint8_t8 *)(objectContextParam + 0x18),(longlong)*(int *)(objectContextParam + 0x20));
       }
-      iVar1 = 0x26;
+      integerValue1 = 0x26;
     }
-    return iVar1;
+    return integerValue1;
   }
   return 0x1f;
 }
@@ -8694,16 +8694,16 @@ int ProcessObjectContextValidationAndStatusUpdate(longlong objectContextParam,lo
 int ProcessObjectContextValidationAndStatusUpdateSimple(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   longlong resourceTable;
   longlong unaff_RDI;
   longlong unaff_R15;
   longlong in_stack_00000060;
   
   if ((int)validationContextParam < 1) {
-    iVar1 = ProcessDataValidation();
-    if ((iVar1 == 0) &&
-       (iVar1 = ValidateObjectContext(*(uint8_t4 *)(unaff_RDI + 0x4c),&stack0x00000060), iVar1 == 0)
+    integerValue1 = ProcessDataValidation();
+    if ((integerValue1 == 0) &&
+       (integerValue1 = ValidateObjectContext(*(uint8_t4 *)(unaff_RDI + 0x4c),&stack0x00000060), integerValue1 == 0)
        ) {
       if (*(int *)(in_stack_00000060 + 0x30) == 1) {
         *(uint8_t4 *)(in_stack_00000060 + 0x30) = 2;
@@ -8713,7 +8713,7 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(longlong objectContextPa
     }
   }
   else if (*(longlong *)(objectContextParam + 0x18) == 0) {
-    iVar1 = 0x1f;
+    integerValue1 = 0x1f;
   }
   else {
     resourceTable = AllocateMemoryBlock(*(uint8_t8 *)(SystemContextPointer + 0x1a0),validationContextParam,&SystemMemoryAllocationTable,0x315,0);
@@ -8721,9 +8721,9 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(longlong objectContextPa
                     // WARNING: Subroutine does not return
       memcpy(resourceTable,*(uint8_t8 *)(unaff_RDI + 0x18),(longlong)*(int *)(unaff_RDI + 0x20));
     }
-    iVar1 = 0x26;
+    integerValue1 = 0x26;
   }
-  return iVar1;
+  return integerValue1;
 }
 
 
@@ -8828,7 +8828,7 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t8 objectContextParam, ui
 
 {
   int in_EAX;
-  int iVar1;
+  int integerValue1;
   longlong resourceTable;
   longlong unaff_RDI;
   longlong unaff_R15;
@@ -8840,12 +8840,12 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t8 objectContextParam, ui
                     // WARNING: Subroutine does not return
       memcpy(resourceTable,*(uint8_t8 *)(unaff_RDI + 0x10),(longlong)*(int *)(unaff_RDI + 0x18));
     }
-    iVar1 = 0x26;
+    integerValue1 = 0x26;
   }
   else {
-    iVar1 = ProcessDataValidation();
-    if ((iVar1 == 0) &&
-       (iVar1 = ValidateObjectContext(*(uint8_t4 *)(unaff_RDI + 0x24),&stack0x00000060), iVar1 == 0)
+    integerValue1 = ProcessDataValidation();
+    if ((integerValue1 == 0) &&
+       (integerValue1 = ValidateObjectContext(*(uint8_t4 *)(unaff_RDI + 0x24),&stack0x00000060), integerValue1 == 0)
        ) {
       if (*(int *)(in_stack_00000060 + 0x30) == 1) {
         *(uint8_t4 *)(in_stack_00000060 + 0x30) = 2;
@@ -8854,7 +8854,7 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t8 objectContextParam, ui
       ReleaseSystemContextResources(*(uint8_t8 *)(unaff_R15 + 0x98));
     }
   }
-  return iVar1;
+  return integerValue1;
 }
 
 
@@ -9154,11 +9154,11 @@ uint8_t8 ProcessDataValidationAndSystemOperation(longlong objectContextParam,lon
   longlong resourceIndex;
   uint8_t8 *punsignedResult4;
   float fVar5;
-  uint auStackX_8 [2];
+  uint ArrayUnionStackX8 [2];
   uint8_t4 auStackX_18 [2];
   
-  auStackX_8[0] = *(uint *)(objectContextParam + 0x10);
-  if ((auStackX_8[0] & 0x7f800000) == 0x7f800000) {
+  ArrayUnionStackX8[0] = *(uint *)(objectContextParam + 0x10);
+  if ((ArrayUnionStackX8[0] & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
   auStackX_18[0] = 0;
@@ -9177,7 +9177,7 @@ uint8_t8 ProcessDataValidationAndSystemOperation(longlong objectContextParam,lon
     *(float *)(objectContextParam + 0x10) = fVar5;
     validationResult = func_0x000180867960(validationContextParam + 0x60,auStackX_18[0],fVar5);
     if ((int)validationResult == 0) {
-      punsignedResult4 = (uint8_t8 *)func_0x000180867660(validationContextParam + 0x60,auStackX_8,auStackX_18[0]);
+      punsignedResult4 = (uint8_t8 *)func_0x000180867660(validationContextParam + 0x60,ArrayUnionStackX8,auStackX_18[0]);
       *(uint8_t8 *)(objectContextParam + 0x18) = *punsignedResult4;
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(uint8_t8 *)(validationContextParam + 0x98),objectContextParam);
@@ -9306,7 +9306,7 @@ uint8_t8 ProcessFloatRangeValidationAndDataHandling(longlong objectContextParam,
   uint8_t8 validationResult;
   longlong resourceIndex;
   uint8_t8 *punsignedResult4;
-  uint8_t1 auStackX_8 [8];
+  uint8_t1 ArrayUnionStackX8 [8];
   uint8_t4 auStackX_18 [2];
   
   auStackX_18[0] = 0;
@@ -9326,7 +9326,7 @@ uint8_t8 ProcessFloatRangeValidationAndDataHandling(longlong objectContextParam,
       else {
         validationResult = func_0x000180867960(validationContextParam + 0x60,auStackX_18[0]);
         if ((int)validationResult == 0) {
-          punsignedResult4 = (uint8_t8 *)func_0x000180867660(validationContextParam + 0x60,auStackX_8,auStackX_18[0]);
+          punsignedResult4 = (uint8_t8 *)func_0x000180867660(validationContextParam + 0x60,ArrayUnionStackX8,auStackX_18[0]);
           *(uint8_t8 *)(objectContextParam + 0x18) = *punsignedResult4;
                     // WARNING: Subroutine does not return
           ReleaseSystemContextResources(*(uint8_t8 *)(validationContextParam + 0x98),objectContextParam);
@@ -9512,24 +9512,24 @@ uint8_t8 ValidateObjectContextAndProcessFloatValidation(longlong objectContextPa
 int ProcessDataWithValidator(longlong objectContextParam,longlong validationContextParam,int param_3)
 
 {
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   
-  iVar1 = func_0x00018074b800(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
-  integerValue2 = ProcessStringOperation(validationContextParam + iVar1,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = func_0x00018074b7d0(iVar1 + validationContextParam,param_3 - iVar1,*(uint8_t4 *)(objectContextParam + 0x18));
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessStringOperation(iVar1 + validationContextParam,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessStringEncoding(iVar1 + validationContextParam,param_3 - iVar1,objectContextParam + 0x20,
+  integerValue1 = func_0x00018074b800(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
+  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,param_3 - integerValue1,*(uint8_t4 *)(objectContextParam + 0x18));
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessStringEncoding(integerValue1 + validationContextParam,param_3 - integerValue1,objectContextParam + 0x20,
                         *(uint8_t4 *)(objectContextParam + 0x18));
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessStringOperation(iVar1 + validationContextParam,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessResourceData(iVar1 + validationContextParam,param_3 - iVar1,
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessResourceData(integerValue1 + validationContextParam,param_3 - integerValue1,
                         objectContextParam + 0x20 + (longlong)*(int *)(objectContextParam + 0x18) * 4);
-  return integerValue2 + iVar1;
+  return integerValue2 + integerValue1;
 }
 
 
@@ -9548,28 +9548,28 @@ int ProcessDataWithValidator(longlong objectContextParam,longlong validationCont
 int ProcessDataWithExtendedValidator(longlong objectContextParam,longlong validationContextParam,int param_3)
 
 {
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   
-  iVar1 = func_0x00018074b800(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
-  integerValue2 = ProcessStringOperation(validationContextParam + iVar1,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = func_0x00018074b7d0(iVar1 + validationContextParam,param_3 - iVar1,*(uint8_t4 *)(objectContextParam + 0x18));
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessStringOperation(iVar1 + validationContextParam,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessStringValidation(iVar1 + validationContextParam,param_3 - iVar1,objectContextParam + 0x20,
+  integerValue1 = func_0x00018074b800(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
+  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,param_3 - integerValue1,*(uint8_t4 *)(objectContextParam + 0x18));
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessStringValidation(integerValue1 + validationContextParam,param_3 - integerValue1,objectContextParam + 0x20,
                         *(uint8_t4 *)(objectContextParam + 0x18));
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessStringOperation(iVar1 + validationContextParam,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessResourceData(iVar1 + validationContextParam,param_3 - iVar1,
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessResourceData(integerValue1 + validationContextParam,param_3 - integerValue1,
                         objectContextParam + 0x20 + (longlong)*(int *)(objectContextParam + 0x18) * 8);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessStringOperation(iVar1 + validationContextParam,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ValidateResourceFormat(iVar1 + validationContextParam,param_3 - iVar1,*(uint8_t1 *)(objectContextParam + 0x1c));
-  return integerValue2 + iVar1;
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ValidateResourceFormat(integerValue1 + validationContextParam,param_3 - integerValue1,*(uint8_t1 *)(objectContextParam + 0x1c));
+  return integerValue2 + integerValue1;
 }
 
 
@@ -9588,24 +9588,24 @@ int ProcessDataWithExtendedValidator(longlong objectContextParam,longlong valida
 int ProcessDataWithSimplifiedValidator(longlong objectContextParam,longlong validationContextParam,int param_3)
 
 {
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   
-  iVar1 = func_0x00018074b7d0(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
-  integerValue2 = ProcessStringOperation(validationContextParam + iVar1,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessStringValidation(iVar1 + validationContextParam,param_3 - iVar1,objectContextParam + 0x18,
+  integerValue1 = func_0x00018074b7d0(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
+  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessStringValidation(integerValue1 + validationContextParam,param_3 - integerValue1,objectContextParam + 0x18,
                         *(uint8_t4 *)(objectContextParam + 0x10));
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessStringOperation(iVar1 + validationContextParam,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessResourceData(iVar1 + validationContextParam,param_3 - iVar1,
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessResourceData(integerValue1 + validationContextParam,param_3 - integerValue1,
                         objectContextParam + 0x18 + (longlong)*(int *)(objectContextParam + 0x10) * 8);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessStringOperation(iVar1 + validationContextParam,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ValidateResourceFormat(iVar1 + validationContextParam,param_3 - iVar1,*(uint8_t1 *)(objectContextParam + 0x14));
-  return integerValue2 + iVar1;
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ValidateResourceFormat(integerValue1 + validationContextParam,param_3 - integerValue1,*(uint8_t1 *)(objectContextParam + 0x14));
+  return integerValue2 + integerValue1;
 }
 
 
@@ -9624,18 +9624,18 @@ int ProcessDataWithSimplifiedValidator(longlong objectContextParam,longlong vali
 int ProcessDataWithBuffer(longlong *objectContextParam,longlong validationContextParam,int param_3)
 
 {
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   
-  iVar1 = ProcessStringOperation(validationContextParam,param_3,&SystemStringBufferA);
-  integerValue2 = ProcessStringOperation(validationContextParam + iVar1,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = func_0x00018074b7d0(iVar1 + validationContextParam,param_3 - iVar1,(int)objectContextParam[3] * 8 + 0x20);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessStringOperation(iVar1 + validationContextParam,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = (**(code **)(*objectContextParam + 8))(objectContextParam,iVar1 + validationContextParam,param_3 - iVar1);
-  return integerValue2 + iVar1;
+  integerValue1 = ProcessStringOperation(validationContextParam,param_3,&SystemStringBufferA);
+  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,param_3 - integerValue1,(int)objectContextParam[3] * 8 + 0x20);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = (**(code **)(*objectContextParam + 8))(objectContextParam,integerValue1 + validationContextParam,param_3 - integerValue1);
+  return integerValue2 + integerValue1;
 }
 
 
@@ -9654,18 +9654,18 @@ int ProcessDataWithBuffer(longlong *objectContextParam,longlong validationContex
 int ProcessDataWithQueue(longlong *objectContextParam,longlong validationContextParam,int param_3)
 
 {
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   
-  iVar1 = ProcessStringOperation(validationContextParam,param_3,&SystemStringBufferB);
-  integerValue2 = ProcessStringOperation(validationContextParam + iVar1,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = func_0x00018074b7d0(iVar1 + validationContextParam,param_3 - iVar1,(int)objectContextParam[3] * 0xc + 0x20);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessStringOperation(iVar1 + validationContextParam,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = (**(code **)(*objectContextParam + 8))(objectContextParam,iVar1 + validationContextParam,param_3 - iVar1);
-  return integerValue2 + iVar1;
+  integerValue1 = ProcessStringOperation(validationContextParam,param_3,&SystemStringBufferB);
+  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,param_3 - integerValue1,(int)objectContextParam[3] * 0xc + 0x20);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = (**(code **)(*objectContextParam + 8))(objectContextParam,integerValue1 + validationContextParam,param_3 - integerValue1);
+  return integerValue2 + integerValue1;
 }
 
 
@@ -9684,18 +9684,18 @@ int ProcessDataWithQueue(longlong *objectContextParam,longlong validationContext
 int ProcessDataWithStack(longlong *objectContextParam,longlong validationContextParam,int param_3)
 
 {
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   
-  iVar1 = ProcessStringOperation(validationContextParam,param_3,&SystemStringBufferC);
-  integerValue2 = ProcessStringOperation(validationContextParam + iVar1,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = func_0x00018074b7d0(iVar1 + validationContextParam,param_3 - iVar1,((int)objectContextParam[2] + 2) * 0xc);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = ProcessStringOperation(iVar1 + validationContextParam,param_3 - iVar1,&StringProcessingTemplate);
-  iVar1 = iVar1 + integerValue2;
-  integerValue2 = (**(code **)(*objectContextParam + 8))(objectContextParam,iVar1 + validationContextParam,param_3 - iVar1);
-  return integerValue2 + iVar1;
+  integerValue1 = ProcessStringOperation(validationContextParam,param_3,&SystemStringBufferC);
+  integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = func_0x00018074b7d0(integerValue1 + validationContextParam,param_3 - integerValue1,((int)objectContextParam[2] + 2) * 0xc);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue1 = integerValue1 + integerValue2;
+  integerValue2 = (**(code **)(*objectContextParam + 8))(objectContextParam,integerValue1 + validationContextParam,param_3 - integerValue1);
+  return integerValue2 + integerValue1;
 }
 
 
@@ -9855,7 +9855,7 @@ void ProcessResourceIndexAndSecurity(longlong objectContextParam,uint8_t4 *valid
 ValidateResourceTableAccess(ulonglong resource_handle)
 
 {
-  int iVar1;
+  int integerValue1;
   longlong in_RAX;
   longlong resourceTable;
   longlong *unaff_RSI;
@@ -9871,8 +9871,8 @@ ValidateResourceTableAccess(ulonglong resource_handle)
                   uStack0000000000000070._4_2_);
   }
   if (**(int **)(resourceTable + 0xd0) == 0) {
-    iVar1 = CheckResourceAvailability(*(uint8_t4 *)(unaff_RDI + 0x18));
-    if (iVar1 != 0) goto LAB_180894aca;
+    integerValue1 = CheckResourceAvailability(*(uint8_t4 *)(unaff_RDI + 0x18));
+    if (integerValue1 != 0) goto LAB_180894aca;
   }
   *unaff_RSI = resourceTable;
 LAB_180894aca:
@@ -9987,14 +9987,14 @@ ProcessResourceIndexOperation(longlong resource_handle, uint8_t4 *resource_data,
 4bf5(void)
 
 {
-  int iVar1;
+  int integerValue1;
   longlong in_RAX;
   longlong *unaff_RDI;
   longlong lStack0000000000000080;
   ulonglong in_stack_000000b0;
   
   lStack0000000000000080 = *(longlong *)(in_RAX + 0x48);
-  if ((lStack0000000000000080 != 0) || (iVar1 = AcquireResourceLock(), iVar1 == 0)) {
+  if ((lStack0000000000000080 != 0) || (integerValue1 = AcquireResourceLock(), integerValue1 == 0)) {
     *unaff_RDI = lStack0000000000000080;
   }
                     // WARNING: Subroutine does not return
@@ -10008,11 +10008,11 @@ ProcessResourceIndexOperation(longlong resource_handle, uint8_t4 *resource_data,
 void ValidateAndInitializeResource(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = CalculateResourceHash(validationContextParam,objectContextParam + 0x10);
-  if (((iVar1 == 0) && (iVar1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x18), iVar1 == 0)) &&
-     (iVar1 = ProcessResourceTableEntries(validationContextParam,objectContextParam + 0x20,*(uint8_t4 *)(objectContextParam + 0x18)), iVar1 == 0)) {
+  integerValue1 = CalculateResourceHash(validationContextParam,objectContextParam + 0x10);
+  if (((integerValue1 == 0) && (integerValue1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x18), integerValue1 == 0)) &&
+     (integerValue1 = ProcessResourceTableEntries(validationContextParam,objectContextParam + 0x20,*(uint8_t4 *)(objectContextParam + 0x18)), integerValue1 == 0)) {
     InitializeResourceBuffer(validationContextParam,objectContextParam + 0x20 + (longlong)*(int *)(objectContextParam + 0x18) * 4);
   }
   return;
@@ -10025,12 +10025,12 @@ void ValidateAndInitializeResource(longlong objectContextParam,uint8_t8 validati
 void ValidateResourceHashAndProcessEntries(void)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = ValidateResourceHash();
-  if (iVar1 == 0) {
-    iVar1 = ProcessResourceTableEntries();
-    if (iVar1 == 0) {
+  integerValue1 = ValidateResourceHash();
+  if (integerValue1 == 0) {
+    integerValue1 = ProcessResourceTableEntries();
+    if (integerValue1 == 0) {
       InitializeResourceBuffer();
     }
   }
@@ -10054,13 +10054,13 @@ void EmptyResourceValidationFunction(void)
 void ProcessResourceValidationAndFinalization(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = CalculateResourceHash(validationContextParam,objectContextParam + 0x10);
-  if ((((iVar1 == 0) && (iVar1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x18), iVar1 == 0)) &&
-      (iVar1 = ValidateResourceTable(validationContextParam,objectContextParam + 0x20,*(uint8_t4 *)(objectContextParam + 0x18)), iVar1 == 0))
-     && (iVar1 = InitializeResourceBuffer(validationContextParam,objectContextParam + 0x20 + (longlong)*(int *)(objectContextParam + 0x18) * 8),
-        iVar1 == 0)) {
+  integerValue1 = CalculateResourceHash(validationContextParam,objectContextParam + 0x10);
+  if ((((integerValue1 == 0) && (integerValue1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x18), integerValue1 == 0)) &&
+      (integerValue1 = ValidateResourceTable(validationContextParam,objectContextParam + 0x20,*(uint8_t4 *)(objectContextParam + 0x18)), integerValue1 == 0))
+     && (integerValue1 = InitializeResourceBuffer(validationContextParam,objectContextParam + 0x20 + (longlong)*(int *)(objectContextParam + 0x18) * 8),
+        integerValue1 == 0)) {
     FinalizeResourceProcessing(validationContextParam,objectContextParam + 0x1c);
   }
   return;
@@ -10073,14 +10073,14 @@ void ProcessResourceValidationAndFinalization(longlong objectContextParam,uint8_
 void ValidateResourceHashAndTable(void)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = ValidateResourceHash();
-  if (iVar1 == 0) {
-    iVar1 = ValidateResourceTable();
-    if (iVar1 == 0) {
-      iVar1 = InitializeResourceBuffer();
-      if (iVar1 == 0) {
+  integerValue1 = ValidateResourceHash();
+  if (integerValue1 == 0) {
+    integerValue1 = ValidateResourceTable();
+    if (integerValue1 == 0) {
+      integerValue1 = InitializeResourceBuffer();
+      if (integerValue1 == 0) {
         FinalizeResourceProcessing();
       }
     }
@@ -10105,14 +10105,14 @@ void EmptyResourceProcessingFunction(void)
 void ValidateAndCleanupResourceEntry(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x10);
-  if (iVar1 == 0) {
-    iVar1 = ValidateResourceTable(validationContextParam,objectContextParam + 0x18,*(uint8_t4 *)(objectContextParam + 0x10));
-    if (iVar1 == 0) {
-      iVar1 = ProcessResourceEntryWithValidation(validationContextParam,objectContextParam + 0x18 + (longlong)*(int *)(objectContextParam + 0x10) * 8);
-      if (iVar1 == 0) {
+  integerValue1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x10);
+  if (integerValue1 == 0) {
+    integerValue1 = ValidateResourceTable(validationContextParam,objectContextParam + 0x18,*(uint8_t4 *)(objectContextParam + 0x10));
+    if (integerValue1 == 0) {
+      integerValue1 = ProcessResourceEntryWithValidation(validationContextParam,objectContextParam + 0x18 + (longlong)*(int *)(objectContextParam + 0x10) * 8);
+      if (integerValue1 == 0) {
         CleanupResourceEntryData(validationContextParam,objectContextParam + 0x14);
       }
     }
@@ -10204,7 +10204,7 @@ LAB_180894ebf:
 uint ValidateAndProcessDataContainer(longlong *objectContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   uint validationResult;
   uint unsignedValue3;
   
@@ -10222,11 +10222,11 @@ uint ValidateAndProcessDataContainer(longlong *objectContextParam)
     unsignedResult3 = 0;
     *(uint8_t4 *)((longlong)objectContextParam + 0xc) = 0;
   }
-  iVar1 = (int)objectContextParam[1];
-  if (iVar1 < 0) {
-    if (iVar1 < 0) {
+  integerValue1 = (int)objectContextParam[1];
+  if (integerValue1 < 0) {
+    if (integerValue1 < 0) {
                     // WARNING: Subroutine does not return
-      memset(*objectContextParam + (longlong)iVar1 * 0xc,0,(ulonglong)(uint)-iVar1 * 0xc);
+      memset(*objectContextParam + (longlong)integerValue1 * 0xc,0,(ulonglong)(uint)-integerValue1 * 0xc);
     }
   }
   *(uint8_t4 *)(objectContextParam + 1) = 0;
@@ -10328,7 +10328,7 @@ uint64_t ProcessObjectLifecycleManagement(longlong objectHandle)
 uint8_t8 CleanupResourcePoolAndReleaseMemory(longlong *objectContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   uint8_t8 validationResult;
   uint unsignedValue3;
   
@@ -10345,10 +10345,10 @@ uint8_t8 CleanupResourcePoolAndReleaseMemory(longlong *objectContextParam)
     unsignedResult3 = 0;
     *(uint8_t4 *)((longlong)objectContextParam + 0xc) = 0;
   }
-  iVar1 = (int)objectContextParam[1];
-  if (iVar1 < 0) {
+  integerValue1 = (int)objectContextParam[1];
+  if (integerValue1 < 0) {
                     // WARNING: Subroutine does not return
-    memset(*objectContextParam + (longlong)iVar1 * 0xc,0,(longlong)-iVar1 * 0xc);
+    memset(*objectContextParam + (longlong)integerValue1 * 0xc,0,(longlong)-integerValue1 * 0xc);
   }
   *(uint8_t4 *)(objectContextParam + 1) = 0;
   if ((0 < (int)((unsignedResult3 ^ (int)unsignedResult3 >> 0x1f) - ((int)unsignedResult3 >> 0x1f))) &&
@@ -11264,7 +11264,7 @@ uint64_t FindOrInsertInResourcePool(uint8_t8 resourcePool, int searchKey)
 uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t8 extendedResourcePool, uint8_t4 operationFlags)
 
 {
-  int iVar1;
+  int integerValue1;
   uint8_t8 validationResult;
   uint8_t8 *punsignedResult3;
   int iVar4;
@@ -11284,14 +11284,14 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t8 extendedResourcePool
     iVar8 = *(int *)(unaff_RDI + 0x18);
     iVar4 = iVar8 + 1;
     unsignedValue6 = (int)*(uint *)(unaff_RDI + 0x1c) >> 0x1f;
-    iVar1 = (*(uint *)(unaff_RDI + 0x1c) ^ unsignedValue6) - unsignedValue6;
-    if (iVar1 < iVar4) {
-      iVar7 = (int)((float)iVar1 * 1.5);
-      iVar1 = iVar4;
+    integerValue1 = (*(uint *)(unaff_RDI + 0x1c) ^ unsignedValue6) - unsignedValue6;
+    if (integerValue1 < iVar4) {
+      iVar7 = (int)((float)integerValue1 * 1.5);
+      integerValue1 = iVar4;
       if (iVar4 <= iVar7) {
-        iVar1 = iVar7;
+        integerValue1 = iVar7;
       }
-      if (iVar1 < 4) {
+      if (integerValue1 < 4) {
         iVar7 = 4;
       }
       else if (iVar7 < iVar4) {
@@ -11502,7 +11502,7 @@ MemoryAllocationComplete:
 uint64_t CleanupResourcePoolAndReleaseMemory(uint8_t8 resourcePool, int cleanupFlags)
 
 {
-  int iVar1;
+  int integerValue1;
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -11526,9 +11526,9 @@ LAB_180895fdc:
              AllocateMemoryBlock(*(uint8_t8 *)(SystemContextPointer + 0x1a0),validationContextParam * 0xc,&ResourceTableTemplate,0xf4
                            ,0);
     if (punsignedResult3 != (uint8_t8 *)0x0) {
-      iVar1 = (int)unaff_RBX[1];
-      lVar4 = (longlong)iVar1;
-      if ((iVar1 != 0) && (resourceTable = *unaff_RBX, 0 < iVar1)) {
+      integerValue1 = (int)unaff_RBX[1];
+      lVar4 = (longlong)integerValue1;
+      if ((integerValue1 != 0) && (resourceTable = *unaff_RBX, 0 < integerValue1)) {
         resourcePointer5 = punsignedResult3;
         do {
           *resourcePointer5 = *(uint8_t8 *)((resourceTable - (longlong)punsignedResult3) + (longlong)resourcePointer5);
@@ -11691,12 +11691,12 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
   uint uVar8;
   uint uVar9;
   ulonglong resourceHash0;
-  int iVar11;
+  int integerValue11;
   uint8_t4 *presourceHash2;
   longlong *plocalContextPointer3;
-  int iVar14;
+  int integerValue14;
   longlong localContextPointer5;
-  int iVar16;
+  int integerValue16;
   bool bVar17;
   int aiStackX_8 [2];
   uint auStackX_10 [2];
@@ -11733,7 +11733,7 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
   if ((uVar8 & 1) == 0) {
     plStack_108 = (longlong *)(dataContext + 0x70);
     uStack_118 = 0;
-    iVar16 = 0;
+    integerValue16 = 0;
     auStackX_10[0] = 0;
     uStack_110 = 0;
     uStack_100 = 0xffffffffffffffff;
@@ -11743,10 +11743,10 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
     if (aiStack_f8[0] != -1) {
       plocalContextPointer3 = plStack_108;
       resourceHash0 = unsignedValue6;
-      iVar11 = (int)uStack_100;
+      integerValue11 = (int)uStack_100;
       do {
         do {
-          iVar16 = (int)resourceHash0;
+          integerValue16 = (int)resourceHash0;
           lVar5 = plocalContextPointer3[2];
           localContextPointer5 = (longlong)aiStackX_8[0];
           iVar4 = *(int *)(lVar5 + 8 + localContextPointer5 * 0x10);
@@ -11826,27 +11826,27 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
                                                auStack_68), plocalContextPointer3 = plStack_108, iVar4 == 0)) {
             validationResult = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
             iVar7 = (int)unsignedValue6 + 1;
-            iVar4 = iVar16;
-            if (iVar16 < 0) {
-              iVar4 = -iVar16;
+            iVar4 = integerValue16;
+            if (integerValue16 < 0) {
+              iVar4 = -integerValue16;
             }
-            iVar14 = (int)unsignedValue6;
+            integerValue14 = (int)unsignedValue6;
             if (iVar4 < iVar7) {
-              if (iVar16 < 0) {
-                iVar16 = -iVar16;
+              if (integerValue16 < 0) {
+                integerValue16 = -integerValue16;
               }
-              iVar16 = (int)((float)iVar16 * 1.5);
+              integerValue16 = (int)((float)integerValue16 * 1.5);
               iVar4 = iVar7;
-              if (iVar7 <= iVar16) {
-                iVar4 = iVar16;
+              if (iVar7 <= integerValue16) {
+                iVar4 = integerValue16;
               }
               if (iVar4 < 0x10) {
-                iVar16 = 0x10;
+                integerValue16 = 0x10;
               }
-              else if (iVar16 < iVar7) {
-                iVar16 = iVar7;
+              else if (integerValue16 < iVar7) {
+                integerValue16 = iVar7;
               }
-              uVar8 = ValidateDataIntegrity(&uStack_118,iVar16);
+              uVar8 = ValidateDataIntegrity(&uStack_118,integerValue16);
               unsignedValue6 = (ulonglong)uVar8;
               iVar4 = (int)uStack_110;
               if (uVar8 != 0) {
@@ -11890,44 +11890,44 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
                 return unsignedValue6;
               }
               resourceHash0 = (ulonglong)uStack_110._4_4_;
-              iVar14 = (int)uStack_110;
+              integerValue14 = (int)uStack_110;
             }
-            auStackX_10[0] = iVar14 + 1;
+            auStackX_10[0] = integerValue14 + 1;
             unsignedValue6 = (ulonglong)auStackX_10[0];
             uStack_110 = CONCAT44(uStack_110._4_4_,auStackX_10[0]);
-            *(uint8_t4 *)(uStack_118 + (longlong)iVar14 * 4) = validationResult;
+            *(uint8_t4 *)(uStack_118 + (longlong)integerValue14 * 4) = validationResult;
             plocalContextPointer3 = plStack_108;
           }
           iVar4 = (int)resourceHash0;
-          iVar16 = (int)unsignedValue6;
+          integerValue16 = (int)unsignedValue6;
         } while ((aiStackX_8[0] != -1) &&
                 (aiStackX_8[0] = *(int *)(plocalContextPointer3[2] + 4 + localContextPointer5 * 0x10), aiStackX_8[0] != -1));
-        iVar7 = iVar11 + 1;
-        bVar17 = iVar11 != -1;
-        iVar11 = 0;
+        iVar7 = integerValue11 + 1;
+        bVar17 = integerValue11 != -1;
+        integerValue11 = 0;
         if (bVar17) {
-          iVar11 = iVar7;
+          integerValue11 = iVar7;
         }
-        if (iVar11 != (int)plocalContextPointer3[1]) {
-          lVar5 = (longlong)iVar11;
+        if (integerValue11 != (int)plocalContextPointer3[1]) {
+          lVar5 = (longlong)integerValue11;
           do {
             if (*(int *)(*plocalContextPointer3 + lVar5 * 4) != -1) {
-              aiStackX_8[0] = *(int *)(*plocalContextPointer3 + (longlong)iVar11 * 4);
+              aiStackX_8[0] = *(int *)(*plocalContextPointer3 + (longlong)integerValue11 * 4);
               goto LAB_1808962af;
             }
-            iVar11 = iVar11 + 1;
+            integerValue11 = integerValue11 + 1;
             lVar5 = lVar5 + 1;
           } while (lVar5 != (int)plocalContextPointer3[1]);
         }
         aiStackX_8[0] = -1;
-        iVar11 = aiStackX_8[0];
+        integerValue11 = aiStackX_8[0];
 LAB_1808962af:
       } while (aiStackX_8[0] != -1);
       aiStackX_8[0] = -1;
       unsignedValue6 = uStack_118;
     }
-    lVar5 = (longlong)(iVar16 + -1);
-    if (-1 < iVar16 + -1) {
+    lVar5 = (longlong)(integerValue16 + -1);
+    if (-1 < integerValue16 + -1) {
       do {
         uStack_100 = uStack_100 & 0xffffffff00000000;
         plStack_108 = (longlong *)&SystemDataTemplateA;
@@ -11936,12 +11936,12 @@ LAB_1808962af:
         lVar5 = lVar5 + -1;
       } while (-1 < lVar5);
     }
-    iVar11 = iVar4;
+    integerValue11 = iVar4;
     if (iVar4 < 0) {
-      iVar11 = -iVar4;
+      integerValue11 = -iVar4;
     }
-    if (iVar11 < 0) {
-      if (0 < iVar16) goto LAB_18089638e;
+    if (integerValue11 < 0) {
+      if (0 < integerValue16) goto LAB_18089638e;
       if ((0 < iVar4) && (unsignedValue6 != 0)) {
                     // WARNING: Subroutine does not return
         ProcessResourceAllocation(*(uint8_t8 *)(SystemContextPointer + 0x1a0),unsignedValue6,&ResourceTableTemplate,0x100,1);
@@ -11951,10 +11951,10 @@ LAB_1808962af:
       unsignedValue6 = 0;
       iVar4 = 0;
     }
-    if (iVar16 < 0) {
-      lVar5 = (longlong)-iVar16;
-      presourceHash2 = (uint8_t4 *)(unsignedValue6 + (longlong)iVar16 * 4);
-      if (iVar16 < 0) {
+    if (integerValue16 < 0) {
+      lVar5 = (longlong)-integerValue16;
+      presourceHash2 = (uint8_t4 *)(unsignedValue6 + (longlong)integerValue16 * 4);
+      if (integerValue16 < 0) {
         for (; lVar5 != 0; lVar5 = lVar5 + -1) {
           *presourceHash2 = 0;
           presourceHash2 = presourceHash2 + 1;
@@ -12073,10 +12073,10 @@ uint8_t8 * InitializeAlternativeDataStructure(uint8_t8 *dataPointer, ulonglong f
 void ProcessPointerOperationAndReset(longlong *objectContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = (**(code **)(*objectContextParam + 0x18))();
-  if (iVar1 == 0) {
+  integerValue1 = (**(code **)(*objectContextParam + 0x18))();
+  if (integerValue1 == 0) {
     *(uint8_t1 *)(objectContextParam + 4) = 0;
   }
   return;
@@ -12945,18 +12945,18 @@ LAB_1808974ec:
 7560(void)
 
 {
-  int iVar1;
+  int integerValue1;
   longlong in_RAX;
   char unaff_SIL;
   longlong *unaff_RDI;
   uint8_t1 auStackX_20 [8];
   ulonglong in_stack_00000220;
   
-  iVar1 = (**(code **)(in_RAX + 0x10))();
-  func_0x00018074b7b0(auStackX_20 + iVar1,0x200 - iVar1,10);
-  iVar1 = (**(code **)(*unaff_RDI + 8))();
-  if (((iVar1 == 0) && (unaff_SIL == '\0')) &&
-     (iVar1 = (**(code **)(*unaff_RDI + 0x18))(), iVar1 == 0)) {
+  integerValue1 = (**(code **)(in_RAX + 0x10))();
+  func_0x00018074b7b0(auStackX_20 + integerValue1,0x200 - integerValue1,10);
+  integerValue1 = (**(code **)(*unaff_RDI + 8))();
+  if (((integerValue1 == 0) && (unaff_SIL == '\0')) &&
+     (integerValue1 = (**(code **)(*unaff_RDI + 0x18))(), integerValue1 == 0)) {
     *(uint8_t1 *)(unaff_RDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
@@ -12970,12 +12970,12 @@ LAB_1808974ec:
 75a6(void)
 
 {
-  int iVar1;
+  int integerValue1;
   char unaff_SIL;
   longlong *unaff_RDI;
   ulonglong in_stack_00000220;
   
-  if ((unaff_SIL == '\0') && (iVar1 = (**(code **)(*unaff_RDI + 0x18))(), iVar1 == 0)) {
+  if ((unaff_SIL == '\0') && (integerValue1 = (**(code **)(*unaff_RDI + 0x18))(), integerValue1 == 0)) {
     *(uint8_t1 *)(unaff_RDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
@@ -13263,7 +13263,7 @@ void BufferValidationErrorHandler(void)
   uint8_t4 resourceHash0;
   uint8_t4 resourceHash1;
   char cVar12;
-  int iVar13;
+  int integerValue13;
   uint resourceHash4;
   uint8_t8 *in_RAX;
   longlong localContextPointer5;
@@ -13315,14 +13315,14 @@ void BufferValidationErrorHandler(void)
   fStack0000000000000048 = unaff_R13D;
   puStack0000000000000058 = pvalidationResult2;
   localContextPointer5 = (*(code *)*in_RAX)(pvalidationResult2);
-  iVar13 = ValidateBufferContext(*(uint8_t8 *)(localContextPointer5 + 0xd0),&stack0x00000048);
-  if (iVar13 == 0) {
+  integerValue13 = ValidateBufferContext(*(uint8_t8 *)(localContextPointer5 + 0xd0),&stack0x00000048);
+  if (integerValue13 == 0) {
     in_stack_00000070 = &SystemResourceTemplateC;
     *(uint8_t4 *)(unaff_RBP + -0xf) = uStackX_20;
     *(float *)(unaff_RBP + -0x10) = fStack0000000000000048;
     in_stack_00000078 = unaff_R13D;
-    iVar13 = GetAndValidateResourceData(extraout_XMM0_Da,&stack0x00000070);
-    if (iVar13 == 0) {
+    integerValue13 = GetAndValidateResourceData(extraout_XMM0_Da,&stack0x00000070);
+    if (integerValue13 == 0) {
       in_stack_00000060 = (longlong)*(int *)(unaff_R15 + 0x28);
       if (0 < in_stack_00000060) {
         validationResult3 = (ulonglong)(uint)unaff_R13D;
@@ -13350,8 +13350,8 @@ void BufferValidationErrorHandler(void)
               presourceHash8 = *(uint8_t **)(resourceTable + 0x50);
             }
             validationResult4 = func_0x00018076b450(unaff_RBP + 1,presourceHash8,0x80);
-            iVar13 = GetAndValidateResourceData(validationResult4,unaff_RBP + -4);
-            if (iVar13 != 0) goto ProcessMemoryRelease;
+            integerValue13 = GetAndValidateResourceData(validationResult4,unaff_RBP + -4);
+            if (integerValue13 != 0) goto ProcessMemoryRelease;
           }
           unaff_R13D = 0.0;
           validationResult3 = validationResult3 + 1;
@@ -13361,14 +13361,14 @@ void BufferValidationErrorHandler(void)
       }
       resourceHash7 = *(uint8_t8 *)(*(longlong *)(unaff_RSI + 8) + 800);
       resourceHash6 = (**(code **)*pvalidationResult2)(pvalidationResult2);
-      iVar13 = CalculateDataHash(resourceHash6,resourceHash7,acStackX_24);
-      if (iVar13 == 0) {
+      integerValue13 = CalculateDataHash(resourceHash6,resourceHash7,acStackX_24);
+      if (integerValue13 == 0) {
         validationResult4 = extraout_XMM0_Da_00;
         if (acStackX_24[0] != '\0') {
           resourceHash7 = func_0x00018085fa80();
-          iVar13 = memcmp(unaff_R15 + 0x38,resourceHash7,0x30);
+          integerValue13 = memcmp(unaff_R15 + 0x38,resourceHash7,0x30);
           validationResult4 = extraout_XMM0_Da_01;
-          if (iVar13 != 0) {
+          if (integerValue13 != 0) {
             resourceHash7 = *(uint8_t8 *)(unaff_R15 + 0x38);
             resourceHash6 = *(uint8_t8 *)(unaff_R15 + 0x40);
             validationResult4 = *(uint8_t4 *)(unaff_R15 + 0x48);
@@ -13392,13 +13392,13 @@ void BufferValidationErrorHandler(void)
             *(uint8_t4 *)((longlong)unaff_RBP + -0x34) = uVar9;
             *(uint8_t4 *)(unaff_RBP + -6) = resourceHash0;
             *(uint8_t4 *)((longlong)unaff_RBP + -0x2c) = resourceHash1;
-            iVar13 = GetAndValidateResourceData(uVar8,unaff_RBP + -0xe);
+            integerValue13 = GetAndValidateResourceData(uVar8,unaff_RBP + -0xe);
             validationResult4 = extraout_XMM0_Da_02;
-            if (iVar13 != 0) goto ProcessMemoryRelease;
+            if (integerValue13 != 0) goto ProcessMemoryRelease;
           }
         }
-        iVar13 = ValidateResourceTable(validationResult4,(longlong)&stack0x00000048 + 4,0);
-        if (iVar13 == 0) {
+        integerValue13 = ValidateResourceTable(validationResult4,(longlong)&stack0x00000048 + 4,0);
+        if (integerValue13 == 0) {
           in_stack_000001a0 = unaff_XMM6_Da;
           in_stack_000001a8 = unaff_XMM6_Dc;
           if (fStack000000000000004c != 1.0) {
@@ -13406,19 +13406,19 @@ void BufferValidationErrorHandler(void)
             in_stack_00000028 = &SystemResourceTemplateF;
             in_stack_00000038 = uStackX_20;
             in_stack_00000030 = unaff_R13D;
-            iVar13 = GetAndValidateResourceData(fStack000000000000004c,&ObjectStackBuffer28);
+            integerValue13 = GetAndValidateResourceData(fStack000000000000004c,&ObjectStackBuffer28);
             fStack000000000000004c = extraout_XMM0_Da_03;
-            if (iVar13 != 0) goto ProcessMemoryRelease;
+            if (integerValue13 != 0) goto ProcessMemoryRelease;
           }
-          iVar13 = CheckResourceIntegrity(fStack000000000000004c,&ObjectStackBuffer50,0);
-          if (iVar13 == 0) {
+          integerValue13 = CheckResourceIntegrity(fStack000000000000004c,&ObjectStackBuffer50,0);
+          if (integerValue13 == 0) {
             if (in_stack_00000050 != 1.0) {
               fStack0000000000000040 = in_stack_00000050;
               in_stack_00000028 = &SystemResourceTemplateG;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
-              iVar13 = GetAndValidateResourceData(in_stack_00000050,&ObjectStackBuffer28);
-              if (iVar13 != 0) goto ProcessMemoryRelease;
+              integerValue13 = GetAndValidateResourceData(in_stack_00000050,&ObjectStackBuffer28);
+              if (integerValue13 != 0) goto ProcessMemoryRelease;
             }
             pfVar21 = (float *)(unaff_R15 + 0x94);
             fVar19 = unaff_R13D;
@@ -13430,8 +13430,8 @@ void BufferValidationErrorHandler(void)
                 in_stack_00000030 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
-                iVar13 = GetAndValidateResourceData(fVar1,&ObjectStackBuffer28);
-                if (iVar13 != 0) goto ProcessMemoryRelease;
+                integerValue13 = GetAndValidateResourceData(fVar1,&ObjectStackBuffer28);
+                if (integerValue13 != 0) goto ProcessMemoryRelease;
               }
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
@@ -13446,8 +13446,8 @@ void BufferValidationErrorHandler(void)
                 in_stack_00000030 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
-                iVar13 = GetAndValidateResourceData(fVar1,&ObjectStackBuffer28);
-                if (iVar13 != 0) goto ProcessMemoryRelease;
+                integerValue13 = GetAndValidateResourceData(fVar1,&ObjectStackBuffer28);
+                if (integerValue13 != 0) goto ProcessMemoryRelease;
               }
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
@@ -13459,36 +13459,36 @@ void BufferValidationErrorHandler(void)
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = (float)(resourceHash4 / 0x30);
-              iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_04,&ObjectStackBuffer28);
+              integerValue13 = GetAndValidateResourceData(extraout_XMM0_Da_04,&ObjectStackBuffer28);
               validationResult4 = extraout_XMM0_Da_05;
-              if (iVar13 != 0) goto ProcessMemoryRelease;
+              if (integerValue13 != 0) goto ProcessMemoryRelease;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
               in_stack_00000028 = &SystemResourceTemplateK;
               in_stack_00000038 = uStackX_20;
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               in_stack_00000030 = unaff_R13D;
-              iVar13 = GetAndValidateResourceData(validationResult4,&ObjectStackBuffer28);
-              if (iVar13 != 0) goto ProcessMemoryRelease;
+              integerValue13 = GetAndValidateResourceData(validationResult4,&ObjectStackBuffer28);
+              if (integerValue13 != 0) goto ProcessMemoryRelease;
             }
-            iVar13 = GetResourceType(unaff_R14);
-            if (iVar13 != 2) {
+            integerValue13 = GetResourceType(unaff_R14);
+            if (integerValue13 != 2) {
               in_stack_00000028 = &SystemResourceTemplateL;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
-              iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_06,&ObjectStackBuffer28);
-              if (iVar13 != 0) goto ProcessMemoryRelease;
+              integerValue13 = GetAndValidateResourceData(extraout_XMM0_Da_06,&ObjectStackBuffer28);
+              if (integerValue13 != 0) goto ProcessMemoryRelease;
             }
-            iVar13 = GetResourceType(unaff_R14);
+            integerValue13 = GetResourceType(unaff_R14);
             validationResult4 = extraout_XMM0_Da_07;
-            if (iVar13 == 4) {
+            if (integerValue13 == 4) {
               in_stack_00000028 = &SystemResourceTemplateM;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = unaff_R13D;
-              iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_07,&ObjectStackBuffer28);
+              integerValue13 = GetAndValidateResourceData(extraout_XMM0_Da_07,&ObjectStackBuffer28);
               validationResult4 = extraout_XMM0_Da_08;
-              if (iVar13 != 0) goto ProcessMemoryRelease;
+              if (integerValue13 != 0) goto ProcessMemoryRelease;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
               in_stack_00000028 = &SystemResourceTemplateN;
@@ -13540,7 +13540,7 @@ void DataProcessingErrorHandler(void)
   uint8_t4 resourceHash0;
   uint8_t4 resourceHash1;
   char cVar12;
-  int iVar13;
+  int integerValue13;
   uint resourceHash4;
   longlong in_RAX;
   longlong localContextPointer5;
@@ -13611,8 +13611,8 @@ void DataProcessingErrorHandler(void)
           presourceHash8 = *(uint8_t **)(resourceTable + 0x50);
         }
         validationResult3 = func_0x00018076b450(unaff_RBP + 1,presourceHash8,0x80);
-        iVar13 = GetAndValidateResourceData(validationResult3,unaff_RBP + -4);
-        if (iVar13 != 0) goto ExecuteMemoryDeallocation;
+        integerValue13 = GetAndValidateResourceData(validationResult3,unaff_RBP + -4);
+        if (integerValue13 != 0) goto ExecuteMemoryDeallocation;
       }
       unaff_R13D = 0.0;
       validationResult2 = validationResult2 + 1;
@@ -13622,14 +13622,14 @@ void DataProcessingErrorHandler(void)
   }
   resourceHash7 = *(uint8_t8 *)(*(longlong *)(unaff_RSI + 8) + 800);
   resourceHash6 = (**(code **)*unaff_R12)(unaff_R12);
-  iVar13 = CalculateDataHash(resourceHash6,resourceHash7,acStackX_24);
-  if (iVar13 == 0) {
+  integerValue13 = CalculateDataHash(resourceHash6,resourceHash7,acStackX_24);
+  if (integerValue13 == 0) {
     validationResult3 = extraout_XMM0_Da;
     if (acStackX_24[0] != '\0') {
       resourceHash7 = func_0x00018085fa80();
-      iVar13 = memcmp(unaff_R15 + 0x38,resourceHash7,0x30);
+      integerValue13 = memcmp(unaff_R15 + 0x38,resourceHash7,0x30);
       validationResult3 = extraout_XMM0_Da_00;
-      if (iVar13 != 0) {
+      if (integerValue13 != 0) {
         resourceHash7 = *(uint8_t8 *)(unaff_R15 + 0x38);
         resourceHash6 = *(uint8_t8 *)(unaff_R15 + 0x40);
         validationResult3 = *(uint8_t4 *)(unaff_R15 + 0x48);
@@ -13653,13 +13653,13 @@ void DataProcessingErrorHandler(void)
         *(uint8_t4 *)((longlong)unaff_RBP + -0x34) = uVar9;
         *(uint8_t4 *)(unaff_RBP + -6) = resourceHash0;
         *(uint8_t4 *)((longlong)unaff_RBP + -0x2c) = resourceHash1;
-        iVar13 = GetAndValidateResourceData(uVar8,unaff_RBP + -0xe);
+        integerValue13 = GetAndValidateResourceData(uVar8,unaff_RBP + -0xe);
         validationResult3 = extraout_XMM0_Da_01;
-        if (iVar13 != 0) goto ExecuteMemoryDeallocation;
+        if (integerValue13 != 0) goto ExecuteMemoryDeallocation;
       }
     }
-    iVar13 = ValidateResourceTable(validationResult3,(longlong)&stack0x00000048 + 4,0);
-    if (iVar13 == 0) {
+    integerValue13 = ValidateResourceTable(validationResult3,(longlong)&stack0x00000048 + 4,0);
+    if (integerValue13 == 0) {
       in_stack_000001a0 = unaff_XMM6_Da;
       in_stack_000001a8 = unaff_XMM6_Dc;
       if (in_stack_00000048._4_4_ != 1.0) {
@@ -13667,19 +13667,19 @@ void DataProcessingErrorHandler(void)
         in_stack_00000028 = &SystemResourceTemplateF;
         in_stack_00000038 = uStackX_20;
         in_stack_00000030 = unaff_R13D;
-        iVar13 = GetAndValidateResourceData(in_stack_00000048._4_4_,&ObjectStackBuffer28);
+        integerValue13 = GetAndValidateResourceData(in_stack_00000048._4_4_,&ObjectStackBuffer28);
         in_stack_00000048._4_4_ = extraout_XMM0_Da_02;
-        if (iVar13 != 0) goto ExecuteMemoryDeallocation;
+        if (integerValue13 != 0) goto ExecuteMemoryDeallocation;
       }
-      iVar13 = CheckResourceIntegrity(in_stack_00000048._4_4_,&ObjectStackBuffer50,0);
-      if (iVar13 == 0) {
+      integerValue13 = CheckResourceIntegrity(in_stack_00000048._4_4_,&ObjectStackBuffer50,0);
+      if (integerValue13 == 0) {
         if (in_stack_00000050 != 1.0) {
           fStack0000000000000040 = in_stack_00000050;
           in_stack_00000028 = &SystemResourceTemplateG;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
-          iVar13 = GetAndValidateResourceData(in_stack_00000050,&ObjectStackBuffer28);
-          if (iVar13 != 0) goto ExecuteMemoryDeallocation;
+          integerValue13 = GetAndValidateResourceData(in_stack_00000050,&ObjectStackBuffer28);
+          if (integerValue13 != 0) goto ExecuteMemoryDeallocation;
         }
         pfVar21 = (float *)(unaff_R15 + 0x94);
         fVar19 = unaff_R13D;
@@ -13691,8 +13691,8 @@ void DataProcessingErrorHandler(void)
             in_stack_00000030 = unaff_R13D;
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
-            iVar13 = GetAndValidateResourceData(fVar1,&ObjectStackBuffer28);
-            if (iVar13 != 0) goto ExecuteMemoryDeallocation;
+            integerValue13 = GetAndValidateResourceData(fVar1,&ObjectStackBuffer28);
+            if (integerValue13 != 0) goto ExecuteMemoryDeallocation;
           }
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
@@ -13707,8 +13707,8 @@ void DataProcessingErrorHandler(void)
             in_stack_00000030 = unaff_R13D;
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
-            iVar13 = GetAndValidateResourceData(fVar1,&ObjectStackBuffer28);
-            if (iVar13 != 0) goto ExecuteMemoryDeallocation;
+            integerValue13 = GetAndValidateResourceData(fVar1,&ObjectStackBuffer28);
+            if (integerValue13 != 0) goto ExecuteMemoryDeallocation;
           }
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
@@ -13720,36 +13720,36 @@ void DataProcessingErrorHandler(void)
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = (float)(resourceHash4 / 0x30);
-          iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_03,&ObjectStackBuffer28);
+          integerValue13 = GetAndValidateResourceData(extraout_XMM0_Da_03,&ObjectStackBuffer28);
           validationResult3 = extraout_XMM0_Da_04;
-          if (iVar13 != 0) goto ExecuteMemoryDeallocation;
+          if (integerValue13 != 0) goto ExecuteMemoryDeallocation;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
           in_stack_00000028 = &SystemResourceTemplateK;
           in_stack_00000038 = uStackX_20;
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           in_stack_00000030 = unaff_R13D;
-          iVar13 = GetAndValidateResourceData(validationResult3,&ObjectStackBuffer28);
-          if (iVar13 != 0) goto ExecuteMemoryDeallocation;
+          integerValue13 = GetAndValidateResourceData(validationResult3,&ObjectStackBuffer28);
+          if (integerValue13 != 0) goto ExecuteMemoryDeallocation;
         }
-        iVar13 = GetResourceType(unaff_R14);
-        if (iVar13 != 2) {
+        integerValue13 = GetResourceType(unaff_R14);
+        if (integerValue13 != 2) {
           in_stack_00000028 = &SystemResourceTemplateL;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
-          iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_05,&ObjectStackBuffer28);
-          if (iVar13 != 0) goto ExecuteMemoryDeallocation;
+          integerValue13 = GetAndValidateResourceData(extraout_XMM0_Da_05,&ObjectStackBuffer28);
+          if (integerValue13 != 0) goto ExecuteMemoryDeallocation;
         }
-        iVar13 = GetResourceType(unaff_R14);
+        integerValue13 = GetResourceType(unaff_R14);
         validationResult3 = extraout_XMM0_Da_06;
-        if (iVar13 == 4) {
+        if (integerValue13 == 4) {
           in_stack_00000028 = &SystemResourceTemplateM;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = unaff_R13D;
-          iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_06,&ObjectStackBuffer28);
+          integerValue13 = GetAndValidateResourceData(extraout_XMM0_Da_06,&ObjectStackBuffer28);
           validationResult3 = extraout_XMM0_Da_07;
-          if (iVar13 != 0) goto ExecuteMemoryDeallocation;
+          if (integerValue13 != 0) goto ExecuteMemoryDeallocation;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
           in_stack_00000028 = &SystemResourceTemplateN;
@@ -14525,7 +14525,7 @@ LAB_18089866f:
 86b0(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   int iVar3;
   int iVar4;
@@ -14533,10 +14533,10 @@ LAB_18089866f:
   int integerValue6;
   
   integerValue2 = func_0x00018076b690(validationContextParam);
-  iVar1 = *(int *)(objectContextParam + 0x30);
+  integerValue1 = *(int *)(objectContextParam + 0x30);
   unsignedValue5 = (int)*(uint *)(objectContextParam + 0x34) >> 0x1f;
   iVar3 = (*(uint *)(objectContextParam + 0x34) ^ unsignedValue5) - unsignedValue5;
-  integerValue6 = iVar1 + integerValue2;
+  integerValue6 = integerValue1 + integerValue2;
   if (iVar3 < integerValue6) {
     iVar4 = (int)((float)iVar3 * 1.5);
     iVar3 = integerValue6;
@@ -14560,7 +14560,7 @@ LAB_18089866f:
   if (integerValue6 <= iVar3) {
     *(int *)(objectContextParam + 0x30) = integerValue6;
                     // WARNING: Subroutine does not return
-    memcpy((longlong)iVar1 + *(longlong *)(objectContextParam + 0x28),validationContextParam,(longlong)integerValue2);
+    memcpy((longlong)integerValue1 + *(longlong *)(objectContextParam + 0x28),validationContextParam,(longlong)integerValue2);
   }
                     // WARNING: Subroutine does not return
   memset((longlong)iVar3 + *(longlong *)(objectContextParam + 0x28),0,(longlong)(integerValue6 - iVar3));
@@ -14581,7 +14581,7 @@ LAB_18089866f:
 uint8_t8 ProcessResourceDataExpansion(longlong *objectContextParam,int validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   uint8_t8 validationResult;
   uint unsignedValue3;
   
@@ -14590,13 +14590,13 @@ uint8_t8 ProcessResourceDataExpansion(longlong *objectContextParam,int validatio
      (validationResult = CheckResourceTableStatus(objectContextParam,validationContextParam), (int)validationResult != 0)) {
     return validationResult;
   }
-  iVar1 = (int)objectContextParam[1];
-  if (validationContextParam <= iVar1) {
+  integerValue1 = (int)objectContextParam[1];
+  if (validationContextParam <= integerValue1) {
     *(int *)(objectContextParam + 1) = validationContextParam;
     return 0;
   }
                     // WARNING: Subroutine does not return
-  memset((longlong)iVar1 + *objectContextParam,0,(longlong)(validationContextParam - iVar1));
+  memset((longlong)integerValue1 + *objectContextParam,0,(longlong)(validationContextParam - integerValue1));
 }
 
 
@@ -14674,12 +14674,12 @@ uint8_t8 FindResourceHashTableEntry(longlong *objectContextParam,char *validatio
   int iVar7;
   uint uVar8;
   char *pcVar9;
-  int iVar10;
+  int integerValue10;
   uint *presourceHash1;
   
   presourceHash1 = (uint *)*objectContextParam;
   if (((presourceHash1 != (uint *)0x0) && (objectContextParam[4] != 0)) && (objectContextParam[2] != 0)) {
-    iVar10 = 0;
+    integerValue10 = 0;
     cVar5 = *validationContextParam;
     while (cVar5 != '\0') {
       bVar3 = *(byte *)((longlong)presourceHash1 + 7);
@@ -14724,9 +14724,9 @@ LAB_1808989b1:
       if (bVar3 != 0) {
         do {
           if (*(char *)((longlong)presourceHash1 + 3) == '\0') goto LAB_1808989f7;
-          iVar10 = iVar10 + 1;
+          integerValue10 = integerValue10 + 1;
           presourceHash1 = presourceHash1 + 2;
-        } while (iVar10 < (int)(uint)bVar3);
+        } while (integerValue10 < (int)(uint)bVar3);
       }
       return 0x4a;
     }
@@ -14979,15 +14979,15 @@ uint8_t4 ExtractResourceHashData(uint8_t8 objectContextParam,int validationConte
   uint8_t1 *presourceHash0;
   uint8_t1 *presourceHash1;
   uint resourceHash2;
-  int iVar13;
+  int integerValue13;
   longlong unaff_RBP;
   uint8_t1 *unaff_RSI;
   longlong localContextPointer4;
   uint8_t1 *presourceHash5;
-  int iVar16;
+  int integerValue16;
   uint8_t4 resourceHash7;
   longlong *unaff_R14;
-  int iVar18;
+  int integerValue18;
   int *in_stack_00000078;
   
   if (param_3 != (uint8_t4 *)0x0) {
@@ -15000,24 +15000,24 @@ uint8_t4 ExtractResourceHashData(uint8_t8 objectContextParam,int validationConte
     param_3[2] = unsignedValue5;
     param_3[3] = unsignedValue6;
   }
-  iVar18 = 0;
+  integerValue18 = 0;
   resourceHash2 = 0;
-  iVar13 = (int)unaff_RBP;
+  integerValue13 = (int)unaff_RBP;
   unsignedResult4 = *(uint3 *)((longlong)validationContextParam * 3 + unaff_R14[6]);
   while (unsignedValue7 = (uint)unsignedResult4, unsignedValue7 != 0xffffff) {
     unsignedResult3 = *(uint *)(*unaff_R14 + (ulonglong)unsignedValue7 * 8);
     if ((unsignedResult3 & 0xffffff) != 0xffffff) {
       localContextPointer4 = (ulonglong)(unsignedResult3 & 0xffffff) + unaff_R14[4];
       iVar8 = func_0x00018076b690(localContextPointer4);
-      if (iVar13 != 0) {
+      if (integerValue13 != 0) {
         presourceHash5 = (uint8_t1 *)((iVar8 + -1) + localContextPointer4);
-        iVar16 = iVar8;
-        while (0 < iVar16) {
-          iVar9 = iVar16;
-          if ((int)(iVar13 - resourceHash2) <= iVar16) {
-            iVar9 = iVar13 - resourceHash2;
+        integerValue16 = iVar8;
+        while (0 < integerValue16) {
+          iVar9 = integerValue16;
+          if ((int)(integerValue13 - resourceHash2) <= integerValue16) {
+            iVar9 = integerValue13 - resourceHash2;
           }
-          iVar16 = iVar16 - iVar9;
+          integerValue16 = integerValue16 - iVar9;
           if (iVar9 != 0) {
             presourceHash0 = unaff_RSI + (int)resourceHash2;
             resourceHash2 = resourceHash2 + iVar9;
@@ -15029,17 +15029,17 @@ uint8_t4 ExtractResourceHashData(uint8_t8 objectContextParam,int validationConte
               iVar9 = iVar9 + -1;
             } while (iVar9 != 0);
           }
-          resourceHash2 = resourceHash2 & (int)(resourceHash2 - iVar13) >> 0x1f;
+          resourceHash2 = resourceHash2 & (int)(resourceHash2 - integerValue13) >> 0x1f;
         }
       }
-      iVar18 = iVar18 + iVar8;
+      integerValue18 = integerValue18 + iVar8;
     }
     unsignedResult4 = *(uint3 *)((ulonglong)unsignedValue7 * 3 + unaff_R14[8]);
   }
   resourceHash7 = 0;
-  if (iVar13 != 0) {
-    if (iVar18 < iVar13) {
-      presourceHash0 = unaff_RSI + iVar18;
+  if (integerValue13 != 0) {
+    if (integerValue18 < integerValue13) {
+      presourceHash0 = unaff_RSI + integerValue18;
       presourceHash5 = presourceHash0 + -1;
       if (unaff_RSI < presourceHash5) {
         do {
@@ -15066,7 +15066,7 @@ uint8_t4 ExtractResourceHashData(uint8_t8 objectContextParam,int validationConte
           presourceHash5 = presourceHash5 + -1;
         } while (presourceHash0 < presourceHash5);
       }
-      presourceHash5 = presourceHash1 + (longlong)(int)(iVar13 - resourceHash2) + -1;
+      presourceHash5 = presourceHash1 + (longlong)(int)(integerValue13 - resourceHash2) + -1;
       if (presourceHash1 < presourceHash5) {
         do {
           validationResult = *presourceHash1;
@@ -15081,7 +15081,7 @@ uint8_t4 ExtractResourceHashData(uint8_t8 objectContextParam,int validationConte
     }
   }
   if (in_stack_00000078 != (int *)0x0) {
-    *in_stack_00000078 = iVar18 + 1;
+    *in_stack_00000078 = integerValue18 + 1;
   }
   return resourceHash7;
 }
@@ -15113,7 +15113,7 @@ uint8_t4 ValidateResourceHashIndex(uint8_t8 objectContextParam,ulonglong validat
   uint8_t1 *unaff_RSI;
   longlong longValue8;
   uint8_t1 *puVar9;
-  int iVar10;
+  int integerValue10;
   uint8_t4 unaff_R13D;
   longlong *unaff_R14;
   int unaff_R15D;
@@ -15127,13 +15127,13 @@ uint8_t4 ValidateResourceHashIndex(uint8_t8 objectContextParam,ulonglong validat
       integerValue2 = func_0x00018076b690(longValue8);
       if (iVar7 != 0) {
         puVar9 = (uint8_t1 *)((integerValue2 + -1) + longValue8);
-        iVar10 = integerValue2;
-        while (0 < iVar10) {
-          iVar3 = iVar10;
-          if ((int)(iVar7 - unaff_EBX) <= iVar10) {
+        integerValue10 = integerValue2;
+        while (0 < integerValue10) {
+          iVar3 = integerValue10;
+          if ((int)(iVar7 - unaff_EBX) <= integerValue10) {
             iVar3 = iVar7 - unaff_EBX;
           }
-          iVar10 = iVar10 - iVar3;
+          integerValue10 = integerValue10 - iVar3;
           if (iVar3 != 0) {
             resourcePointer5 = unaff_RSI + (int)unaff_EBX;
             unaff_EBX = unaff_EBX + iVar3;
@@ -15330,7 +15330,7 @@ uint8_t8 GetDefaultSystemStatus(void)
 uint8_t8 ProcessResourceTableIndex(longlong *objectContextParam,int validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   longlong resourceTable;
   uint8_t2 *punsignedResult3;
   longlong lVar4;
@@ -15346,9 +15346,9 @@ uint8_t8 ProcessResourceTableIndex(longlong *objectContextParam,int validationCo
                AllocateMemoryBlock(*(uint8_t8 *)(SystemContextPointer + 0x1a0),validationContextParam * 3,&ResourceTableTemplate,0xf4
                              ,0,0,1);
       if (punsignedResult3 != (uint8_t2 *)0x0) {
-        iVar1 = (int)objectContextParam[1];
-        lVar4 = (longlong)iVar1;
-        if ((iVar1 != 0) && (resourceTable = *objectContextParam, 0 < iVar1)) {
+        integerValue1 = (int)objectContextParam[1];
+        lVar4 = (longlong)integerValue1;
+        if ((integerValue1 != 0) && (resourceTable = *objectContextParam, 0 < integerValue1)) {
           resourcePointer5 = punsignedResult3;
           do {
             *resourcePointer5 = *(uint8_t2 *)((resourceTable - (longlong)punsignedResult3) + (longlong)resourcePointer5);
@@ -15390,7 +15390,7 @@ LAB_180898e0b:
 uint8_t8 ValidateResourceParameters(uint8_t8 objectContextParam,int validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   longlong resourceTable;
   uint8_t2 *punsignedResult3;
   longlong lVar4;
@@ -15414,9 +15414,9 @@ LAB_180898e0b:
              AllocateMemoryBlock(*(uint8_t8 *)(SystemContextPointer + 0x1a0),validationContextParam * 3,&ResourceTableTemplate,0xf4,0
                           );
     if (punsignedResult3 != (uint8_t2 *)0x0) {
-      iVar1 = (int)unaff_RBX[1];
-      lVar4 = (longlong)iVar1;
-      if ((iVar1 != 0) && (resourceTable = *unaff_RBX, 0 < iVar1)) {
+      integerValue1 = (int)unaff_RBX[1];
+      lVar4 = (longlong)integerValue1;
+      if ((integerValue1 != 0) && (resourceTable = *unaff_RBX, 0 < integerValue1)) {
         resourcePointer5 = punsignedResult3;
         do {
           *resourcePointer5 = *(uint8_t2 *)((resourceTable - (longlong)punsignedResult3) + (longlong)resourcePointer5);
@@ -15464,13 +15464,13 @@ uint8_t8 FindResourceHash(longlong *objectContextParam,uint8_t4 *validationConte
 
 {
   uint8_t8 resourceHash;
-  uint8_t4 auStackX_8 [8];
+  uint8_t4 ArrayUnionStackX8 [8];
   
   if (*(int *)(objectContextParam[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_8[0] = *validationContextParam;
-  resourceHash = (**(code **)**(uint8_t8 **)(*objectContextParam + 8))(*(uint8_t8 **)(*objectContextParam + 8),auStackX_8,4);
+  ArrayUnionStackX8[0] = *validationContextParam;
+  resourceHash = (**(code **)**(uint8_t8 **)(*objectContextParam + 8))(*(uint8_t8 **)(*objectContextParam + 8),ArrayUnionStackX8,4);
   return resourceHash;
 }
 
@@ -15490,13 +15490,13 @@ uint8_t8 SearchResourceEntry(longlong *objectContextParam,uint8_t4 *validationCo
 
 {
   uint8_t8 resourceHash;
-  uint8_t4 auStackX_8 [8];
+  uint8_t4 ArrayUnionStackX8 [8];
   
   if (*(int *)(objectContextParam[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_8[0] = *validationContextParam;
-  resourceHash = (**(code **)**(uint8_t8 **)(*objectContextParam + 8))(*(uint8_t8 **)(*objectContextParam + 8),auStackX_8,4);
+  ArrayUnionStackX8[0] = *validationContextParam;
+  resourceHash = (**(code **)**(uint8_t8 **)(*objectContextParam + 8))(*(uint8_t8 **)(*objectContextParam + 8),ArrayUnionStackX8,4);
   return resourceHash;
 }
 
@@ -15545,16 +15545,16 @@ uint8_t8 ProcessResourceDataParsing(longlong *dataContext,uint8_t4 *dataBuffer)
   longlong loopCounter;
   uint8_t8 *pvalidationResult;
   uint8_t8 unsignedResult3;
-  uint8_t4 auStackX_8 [2];
+  uint8_t4 ArrayUnionStackX8 [2];
   uint8_t4 auStackX_18 [4];
   
   if (*(int *)(objectContextParam[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_8[0] = *validationContextParam;
+  ArrayUnionStackX8[0] = *validationContextParam;
   localContextPointer = *objectContextParam;
   pvalidationResult = *(uint8_t8 **)(localContextPointer + 8);
-  unsignedResult3 = (**(code **)*pvalidationResult)(pvalidationResult,auStackX_8,4);
+  unsignedResult3 = (**(code **)*pvalidationResult)(pvalidationResult,ArrayUnionStackX8,4);
   if ((int)unsignedResult3 == 0) {
     pvalidationResult = *(uint8_t8 **)(localContextPointer + 8);
     auStackX_18[0] = validationContextParam[1];
@@ -15570,16 +15570,16 @@ uint8_t8 ProcessResourceDataParsing(longlong *dataContext,uint8_t4 *dataBuffer)
 8fc0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = ReadResourceData(objectContextParam,validationContextParam,4);
-  if (iVar1 == 0) {
-    iVar1 = ReadResourceData(objectContextParam,validationContextParam + 4,2);
-    if (iVar1 == 0) {
-      iVar1 = ReadResourceData(objectContextParam,validationContextParam + 6,2);
-      if (iVar1 == 0) {
-        iVar1 = ReadResourceData(objectContextParam,validationContextParam + 8,8);
-        if (iVar1 == 0) {
+  integerValue1 = ReadResourceData(objectContextParam,validationContextParam,4);
+  if (integerValue1 == 0) {
+    integerValue1 = ReadResourceData(objectContextParam,validationContextParam + 4,2);
+    if (integerValue1 == 0) {
+      integerValue1 = ReadResourceData(objectContextParam,validationContextParam + 6,2);
+      if (integerValue1 == 0) {
+        integerValue1 = ReadResourceData(objectContextParam,validationContextParam + 8,8);
+        if (integerValue1 == 0) {
           ReadResourceData(objectContextParam,validationContextParam + 0x10,4);
         }
       }
@@ -15595,14 +15595,14 @@ uint8_t8 ProcessResourceDataParsing(longlong *dataContext,uint8_t4 *dataBuffer)
 9040(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = GetResourceProperty();
-  if (iVar1 == 0) {
-    iVar1 = GetResourceProperty(objectContextParam,validationContextParam + 0xc);
-    if (iVar1 == 0) {
-      iVar1 = GetResourceProperty(objectContextParam,validationContextParam + 0x18);
-      if (iVar1 == 0) {
+  integerValue1 = GetResourceProperty();
+  if (integerValue1 == 0) {
+    integerValue1 = GetResourceProperty(objectContextParam,validationContextParam + 0xc);
+    if (integerValue1 == 0) {
+      integerValue1 = GetResourceProperty(objectContextParam,validationContextParam + 0x18);
+      if (integerValue1 == 0) {
         GetResourceProperty(objectContextParam,validationContextParam + 0x24);
       }
     }
@@ -15617,14 +15617,14 @@ uint8_t8 ProcessResourceDataParsing(longlong *dataContext,uint8_t4 *dataBuffer)
 9090(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = ReadResourceData(objectContextParam,validationContextParam,4);
-  if (iVar1 == 0) {
-    iVar1 = ReadResourceData(objectContextParam,validationContextParam + 4,2);
-    if (iVar1 == 0) {
-      iVar1 = ReadResourceData(objectContextParam,validationContextParam + 6,2);
-      if (iVar1 == 0) {
+  integerValue1 = ReadResourceData(objectContextParam,validationContextParam,4);
+  if (integerValue1 == 0) {
+    integerValue1 = ReadResourceData(objectContextParam,validationContextParam + 4,2);
+    if (integerValue1 == 0) {
+      integerValue1 = ReadResourceData(objectContextParam,validationContextParam + 6,2);
+      if (integerValue1 == 0) {
         ReadResourceData(objectContextParam,validationContextParam + 8,8);
       }
     }
@@ -15639,18 +15639,18 @@ uint8_t8 ProcessResourceDataParsing(longlong *dataContext,uint8_t4 *dataBuffer)
 9100(longlong objectContextParam,uint8_t4 *validationContextParam)
 
 {
-  int iVar1;
-  uint8_t4 auStackX_8 [2];
+  int integerValue1;
+  uint8_t4 ArrayUnionStackX8 [2];
   uint8_t4 auStackX_10 [2];
   uint8_t4 auStackX_18 [2];
   
-  auStackX_8[0] = *validationContextParam;
-  iVar1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),auStackX_8,4);
-  if (iVar1 == 0) {
+  ArrayUnionStackX8[0] = *validationContextParam;
+  integerValue1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),ArrayUnionStackX8,4);
+  if (integerValue1 == 0) {
     auStackX_10[0] = validationContextParam[1];
-    iVar1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),auStackX_10,4)
+    integerValue1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),auStackX_10,4)
     ;
-    if (iVar1 == 0) {
+    if (integerValue1 == 0) {
       auStackX_18[0] = validationContextParam[2];
       (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),auStackX_18,4);
     }
@@ -15713,7 +15713,7 @@ uint8_t8 ProcessResourceTableQuery(longlong *tableContext,uint *queryParam)
 
 {
   uint8_t8 resourceHash;
-  uint auStackX_8 [2];
+  uint ArrayUnionStackX8 [2];
   uint auStackX_18 [4];
   
   if (*(int *)(objectContextParam[1] + 0x18) != 0) {
@@ -15725,12 +15725,12 @@ uint8_t8 ProcessResourceTableQuery(longlong *tableContext,uint *queryParam)
   }
   else {
     if (objectContextParam[2] != 0) {
-      auStackX_8[0] = 0;
-      resourceHash = func_0x00018076a7d0(*objectContextParam,auStackX_8);
+      ArrayUnionStackX8[0] = 0;
+      resourceHash = func_0x00018076a7d0(*objectContextParam,ArrayUnionStackX8);
       if ((int)resourceHash != 0) {
         return resourceHash;
       }
-      if ((ulonglong)objectContextParam[2] < (ulonglong)auStackX_8[0] + 4) {
+      if ((ulonglong)objectContextParam[2] < (ulonglong)ArrayUnionStackX8[0] + 4) {
         resourceHash = 0x11;
         goto LAB_1808992a5;
       }
@@ -15823,16 +15823,16 @@ uint8_t8 ProcessResourceDataSerialization(longlong *dataContext,uint8_t4 *dataBu
   longlong loopCounter;
   uint8_t8 *pvalidationResult;
   uint8_t8 unsignedResult3;
-  uint8_t4 auStackX_8 [2];
+  uint8_t4 ArrayUnionStackX8 [2];
   uint8_t4 auStackX_18 [4];
   
   if (*(int *)(objectContextParam[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_8[0] = *validationContextParam;
+  ArrayUnionStackX8[0] = *validationContextParam;
   localContextPointer = *objectContextParam;
   pvalidationResult = *(uint8_t8 **)(localContextPointer + 8);
-  unsignedResult3 = (**(code **)*pvalidationResult)(pvalidationResult,auStackX_8,4);
+  unsignedResult3 = (**(code **)*pvalidationResult)(pvalidationResult,ArrayUnionStackX8,4);
   if ((int)unsignedResult3 == 0) {
     auStackX_18[0] = validationContextParam[1];
     pvalidationResult = *(uint8_t8 **)(localContextPointer + 8);
@@ -15980,29 +15980,29 @@ LAB_180899546:
 95c0(longlong *objectContextParam,uint8_t4 *validationContextParam)
 
 {
-  int iVar1;
-  uint auStackX_8 [2];
+  int integerValue1;
+  uint ArrayUnionStackX8 [2];
   uint8_t4 auStackX_18 [4];
   
   if (*objectContextParam == 0) {
-    iVar1 = 0x1c;
+    integerValue1 = 0x1c;
   }
   else {
     if (objectContextParam[2] != 0) {
-      auStackX_8[0] = 0;
-      iVar1 = func_0x00018076a7d0(*objectContextParam,auStackX_8);
-      if (iVar1 != 0) {
+      ArrayUnionStackX8[0] = 0;
+      integerValue1 = func_0x00018076a7d0(*objectContextParam,ArrayUnionStackX8);
+      if (integerValue1 != 0) {
         return;
       }
-      if ((ulonglong)objectContextParam[2] < (ulonglong)auStackX_8[0] + 4) {
-        iVar1 = 0x11;
+      if ((ulonglong)objectContextParam[2] < (ulonglong)ArrayUnionStackX8[0] + 4) {
+        integerValue1 = 0x11;
         goto LAB_18089962f;
       }
     }
-    iVar1 = CalculateResourceHash(*objectContextParam,auStackX_18,1,4,0);
+    integerValue1 = CalculateResourceHash(*objectContextParam,auStackX_18,1,4,0);
   }
 LAB_18089962f:
-  if (iVar1 == 0) {
+  if (integerValue1 == 0) {
     *validationContextParam = auStackX_18[0];
   }
   return;
@@ -16144,10 +16144,10 @@ uint8_t8 ValidateResourceHash(void)
 97b0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = ReadResourceData(objectContextParam,validationContextParam,4);
-  if (iVar1 == 0) {
+  integerValue1 = ReadResourceData(objectContextParam,validationContextParam,4);
+  if (integerValue1 == 0) {
     ReadResourceData(objectContextParam,validationContextParam + 4,4);
   }
   return;
@@ -16168,7 +16168,7 @@ uint8_t8 ValidateResourceHash(void)
 uint8_t8 QueryResourceTable(uint8_t8 objectContextParam, longlong *validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   uint8_t8 validationResult;
   uint unsignedValue3;
   longlong lVar4;
@@ -16191,10 +16191,10 @@ uint8_t8 QueryResourceTable(uint8_t8 objectContextParam, longlong *validationCon
        (validationResult = CheckResourceTableStatus(validationContextParam,tableEntry), (int)validationResult != 0)) {
       return validationResult;
     }
-    iVar1 = (int)validationContextParam[1];
-    if (iVar1 < tableEntry) {
+    integerValue1 = (int)validationContextParam[1];
+    if (integerValue1 < tableEntry) {
                     // WARNING: Subroutine does not return
-      memset((longlong)iVar1 + *validationContextParam,0,(longlong)(tableEntry - iVar1));
+      memset((longlong)integerValue1 + *validationContextParam,0,(longlong)(tableEntry - integerValue1));
     }
     *(int *)(validationContextParam + 1) = tableEntry;
     validationResult = ReadResourceData(objectContextParam,*validationContextParam,lVar4);
@@ -16219,7 +16219,7 @@ uint8_t8 QueryResourceTable(uint8_t8 objectContextParam, longlong *validationCon
 uint8_t8 InitializeResourceBuffer(void)
 
 {
-  int iVar1;
+  int integerValue1;
   uint8_t8 validationResult;
   uint unsignedValue3;
   longlong *unaff_RBX;
@@ -16236,10 +16236,10 @@ uint8_t8 InitializeResourceBuffer(void)
        (validationResult = CheckResourceTableStatus(), (int)validationResult != 0)) {
       return validationResult;
     }
-    iVar1 = (int)unaff_RBX[1];
-    if (iVar1 < iVar4) {
+    integerValue1 = (int)unaff_RBX[1];
+    if (integerValue1 < iVar4) {
                     // WARNING: Subroutine does not return
-      memset((longlong)iVar1 + *unaff_RBX,0,(longlong)(iVar4 - iVar1));
+      memset((longlong)integerValue1 + *unaff_RBX,0,(longlong)(iVar4 - integerValue1));
     }
     *(int *)(unaff_RBX + 1) = iVar4;
     validationResult = ReadResourceData();
@@ -16276,18 +16276,18 @@ uint8_t8 InitializeResourceBuffer(void)
 uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   longlong resourceTable;
   uint8_t8 unsignedResult3;
   longlong lVar4;
   longlong lVar5;
   int aiStackX_8 [2];
   
-  iVar1 = (int)validationContextParam[1];
-  aiStackX_8[0] = iVar1;
+  integerValue1 = (int)validationContextParam[1];
+  aiStackX_8[0] = integerValue1;
   unsignedResult3 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),aiStackX_8,4);
   if ((int)unsignedResult3 == 0) {
-    if (0 < iVar1) {
+    if (0 < integerValue1) {
       lVar4 = 0;
       lVar5 = lVar4;
       do {
@@ -16304,7 +16304,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
         }
         lVar4 = lVar4 + 1;
         lVar5 = lVar5 + 0x14;
-      } while (lVar4 < iVar1);
+      } while (lVar4 < integerValue1);
     }
     unsignedResult3 = 0;
   }
@@ -16318,7 +16318,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
 9950(longlong objectContextParam,uint8_t4 *validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   uint unsignedValue3;
   ulonglong unsignedResult4;
@@ -16329,19 +16329,19 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
   uint8_t8 uStackX_8;
   
   uStackX_8 = CONCAT44(uStackX_8._4_4_,*validationContextParam);
-  iVar1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),&uStackX_8,4);
-  if (iVar1 == 0) {
+  integerValue1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),&uStackX_8,4);
+  if (integerValue1 == 0) {
     uStackX_8 = *(uint8_t8 *)(validationContextParam + 2);
-    iVar1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),&uStackX_8,8);
-    if ((iVar1 == 0) && (iVar1 = CheckResourceAvailability(objectContextParam,validationContextParam + 4), iVar1 == 0)) {
-      iVar1 = validationContextParam[10];
-      uStackX_8 = CONCAT44(uStackX_8._4_4_,iVar1);
+    integerValue1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),&uStackX_8,8);
+    if ((integerValue1 == 0) && (integerValue1 = CheckResourceAvailability(objectContextParam,validationContextParam + 4), integerValue1 == 0)) {
+      integerValue1 = validationContextParam[10];
+      uStackX_8 = CONCAT44(uStackX_8._4_4_,integerValue1);
       integerValue2 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))
                         (*(uint8_t8 **)(objectContextParam + 8),&uStackX_8,4);
       unsignedValue6 = 0;
       if (integerValue2 == 0) {
         unsignedResult4 = unsignedValue6;
-        if (0 < iVar1) {
+        if (0 < integerValue1) {
           do {
             integerValue2 = ResourceDataAccessor(objectContextParam,(longlong)(int)byteValue4 * 0x6c + *(longlong *)(validationContextParam + 8));
             if (integerValue2 != 0) {
@@ -16349,15 +16349,15 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
             }
             unsignedResult3 = (int)byteValue4 + 1;
             unsignedResult4 = (ulonglong)unsignedResult3;
-          } while ((int)unsignedResult3 < iVar1);
+          } while ((int)unsignedResult3 < integerValue1);
         }
-        iVar1 = validationContextParam[0xe];
-        uStackX_8 = CONCAT44(uStackX_8._4_4_,iVar1);
+        integerValue1 = validationContextParam[0xe];
+        uStackX_8 = CONCAT44(uStackX_8._4_4_,integerValue1);
         integerValue2 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))
                           (*(uint8_t8 **)(objectContextParam + 8),&uStackX_8,4);
         if (integerValue2 == 0) {
           unsignedResult4 = unsignedValue6;
-          if (0 < iVar1) {
+          if (0 < integerValue1) {
             do {
               integerValue2 = GetResourceEntry(objectContextParam,(longlong)(int)byteValue4 * 0x10 +
                                             *(longlong *)(validationContextParam + 0xc));
@@ -16366,15 +16366,15 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
               }
               unsignedResult3 = (int)byteValue4 + 1;
               unsignedResult4 = (ulonglong)unsignedResult3;
-            } while ((int)unsignedResult3 < iVar1);
+            } while ((int)unsignedResult3 < integerValue1);
           }
-          iVar1 = validationContextParam[0x12];
-          uStackX_8 = CONCAT44(uStackX_8._4_4_,iVar1);
+          integerValue1 = validationContextParam[0x12];
+          uStackX_8 = CONCAT44(uStackX_8._4_4_,integerValue1);
           integerValue2 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))
                             (*(uint8_t8 **)(objectContextParam + 8),&uStackX_8,4);
           if (integerValue2 == 0) {
             unsignedResult4 = unsignedValue6;
-            if (0 < iVar1) {
+            if (0 < integerValue1) {
               do {
                 uStackX_8 = CONCAT44(uStackX_8._4_4_,
                                      *(uint8_t4 *)(*(longlong *)(validationContextParam + 0x10) + unsignedResult4 * 4));
@@ -16384,16 +16384,16 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
                   return;
                 }
                 unsignedResult4 = unsignedResult4 + 1;
-              } while ((longlong)unsignedResult4 < (longlong)iVar1);
+              } while ((longlong)unsignedResult4 < (longlong)integerValue1);
             }
-            iVar1 = validationContextParam[0x16];
-            uStackX_8 = CONCAT44(uStackX_8._4_4_,iVar1);
+            integerValue1 = validationContextParam[0x16];
+            uStackX_8 = CONCAT44(uStackX_8._4_4_,integerValue1);
             integerValue2 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))
                               (*(uint8_t8 **)(objectContextParam + 8),&uStackX_8,4);
             if (integerValue2 == 0) {
               unsignedResult4 = unsignedValue6;
               uVar8 = unsignedValue6;
-              if (0 < iVar1) {
+              if (0 < integerValue1) {
                 do {
                   lVar5 = *(longlong *)(validationContextParam + 0x14) + unsignedResult4;
                   integerValue2 = GetResourceEntry(objectContextParam,lVar5);
@@ -16421,16 +16421,16 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
                   }
                   uVar8 = uVar8 + 1;
                   unsignedResult4 = unsignedResult4 + 0x18;
-                } while ((longlong)uVar8 < (longlong)iVar1);
+                } while ((longlong)uVar8 < (longlong)integerValue1);
               }
-              iVar1 = RetrieveResourceData(objectContextParam,validationContextParam + 0x18);
-              if (iVar1 == 0) {
-                iVar1 = validationContextParam[0x1e];
-                uStackX_8 = CONCAT44(uStackX_8._4_4_,iVar1);
+              integerValue1 = RetrieveResourceData(objectContextParam,validationContextParam + 0x18);
+              if (integerValue1 == 0) {
+                integerValue1 = validationContextParam[0x1e];
+                uStackX_8 = CONCAT44(uStackX_8._4_4_,integerValue1);
                 integerValue2 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))
                                   (*(uint8_t8 **)(objectContextParam + 8),&uStackX_8,4);
                 if (integerValue2 == 0) {
-                  if (0 < iVar1) {
+                  if (0 < integerValue1) {
                     do {
                       lVar5 = *(longlong *)(validationContextParam + 0x1c);
                       uStackX_8._0_4_ = *(uint8_t4 *)(lVar5 + unsignedValue6 * 8);
@@ -16446,7 +16446,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
                         return;
                       }
                       unsignedValue6 = unsignedValue6 + 1;
-                    } while ((longlong)unsignedValue6 < (longlong)iVar1);
+                    } while ((longlong)unsignedValue6 < (longlong)integerValue1);
                   }
                   uStackX_8 = CONCAT44(uStackX_8._4_4_,validationContextParam[0x20]);
                   (**(code **)**(uint8_t8 **)(objectContextParam + 8))
@@ -16739,33 +16739,33 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
 9c60(longlong objectContextParam,uint8_t4 *validationContextParam)
 
 {
-  int iVar1;
-  uint8_t4 auStackX_8 [2];
+  int integerValue1;
+  uint8_t4 ArrayUnionStackX8 [2];
   
-  auStackX_8[0] = *validationContextParam;
-  iVar1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),auStackX_8,4);
-  if (((((iVar1 == 0) && (iVar1 = ValidateResourceEntry(objectContextParam,validationContextParam + 1), iVar1 == 0)) &&
+  ArrayUnionStackX8[0] = *validationContextParam;
+  integerValue1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),ArrayUnionStackX8,4);
+  if (((((integerValue1 == 0) && (integerValue1 = ValidateResourceEntry(objectContextParam,validationContextParam + 1), integerValue1 == 0)) &&
        (((*(byte *)(validationContextParam + 1) & 0x20) == 0 ||
-        (iVar1 = GetResourceStatus(objectContextParam,validationContextParam + 2), iVar1 == 0)))) &&
-      (((iVar1 = VerifyResourceIntegrity(objectContextParam,validationContextParam + 0xe), iVar1 == 0 &&
-        (iVar1 = VerifyResourceIntegrity(objectContextParam,validationContextParam + 0xf), iVar1 == 0)) &&
-       (iVar1 = VerifyResourceIntegrity(objectContextParam,validationContextParam + 0x10), iVar1 == 0)))) &&
-     (iVar1 = VerifyResourceIntegrity(objectContextParam,validationContextParam + 0x11), iVar1 == 0)) {
+        (integerValue1 = GetResourceStatus(objectContextParam,validationContextParam + 2), integerValue1 == 0)))) &&
+      (((integerValue1 = VerifyResourceIntegrity(objectContextParam,validationContextParam + 0xe), integerValue1 == 0 &&
+        (integerValue1 = VerifyResourceIntegrity(objectContextParam,validationContextParam + 0xf), integerValue1 == 0)) &&
+       (integerValue1 = VerifyResourceIntegrity(objectContextParam,validationContextParam + 0x10), integerValue1 == 0)))) &&
+     (integerValue1 = VerifyResourceIntegrity(objectContextParam,validationContextParam + 0x11), integerValue1 == 0)) {
     if ((validationContextParam[1] & 0x100) != 0) {
-      auStackX_8[0] = validationContextParam[0x12];
-      iVar1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))
-                        (*(uint8_t8 **)(objectContextParam + 8),auStackX_8,4);
-      if (iVar1 != 0) {
+      ArrayUnionStackX8[0] = validationContextParam[0x12];
+      integerValue1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))
+                        (*(uint8_t8 **)(objectContextParam + 8),ArrayUnionStackX8,4);
+      if (integerValue1 != 0) {
         return;
       }
-      iVar1 = GetResourceEntry(objectContextParam,validationContextParam + 0x13);
-      if (iVar1 != 0) {
+      integerValue1 = GetResourceEntry(objectContextParam,validationContextParam + 0x13);
+      if (integerValue1 != 0) {
         return;
       }
     }
     if (((validationContextParam[1] & 0x800) == 0) ||
-       ((iVar1 = VerifyResourceIntegrity(objectContextParam,validationContextParam + 0x18), iVar1 == 0 &&
-        (iVar1 = VerifyResourceIntegrity(objectContextParam,validationContextParam + 0x17), iVar1 == 0)))) {
+       ((integerValue1 = VerifyResourceIntegrity(objectContextParam,validationContextParam + 0x18), integerValue1 == 0 &&
+        (integerValue1 = VerifyResourceIntegrity(objectContextParam,validationContextParam + 0x17), integerValue1 == 0)))) {
       UpdateResourceStatus(objectContextParam,validationContextParam + 0x19);
     }
   }
@@ -16779,38 +16779,38 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
 9c96(void)
 
 {
-  int iVar1;
+  int integerValue1;
   longlong unaff_RBX;
   longlong unaff_RDI;
   uint8_t4 in_stack_00000030;
   
-  iVar1 = ValidateResourceEntry();
-  if (iVar1 == 0) {
-    if (((*(byte *)(unaff_RBX + 4) & 0x20) != 0) && (iVar1 = GetResourceStatus(), iVar1 != 0)) {
+  integerValue1 = ValidateResourceEntry();
+  if (integerValue1 == 0) {
+    if (((*(byte *)(unaff_RBX + 4) & 0x20) != 0) && (integerValue1 = GetResourceStatus(), integerValue1 != 0)) {
       return;
     }
-    iVar1 = VerifyResourceIntegrity();
-    if ((((iVar1 == 0) && (iVar1 = VerifyResourceIntegrity(), iVar1 == 0)) &&
-        (iVar1 = VerifyResourceIntegrity(), iVar1 == 0)) && (iVar1 = VerifyResourceIntegrity(), iVar1 == 0)) {
+    integerValue1 = VerifyResourceIntegrity();
+    if ((((integerValue1 == 0) && (integerValue1 = VerifyResourceIntegrity(), integerValue1 == 0)) &&
+        (integerValue1 = VerifyResourceIntegrity(), integerValue1 == 0)) && (integerValue1 = VerifyResourceIntegrity(), integerValue1 == 0)) {
       if ((*(uint *)(unaff_RBX + 4) & 0x100) != 0) {
         in_stack_00000030 = *(uint8_t4 *)(unaff_RBX + 0x48);
-        iVar1 = (**(code **)**(uint8_t8 **)(unaff_RDI + 8))
+        integerValue1 = (**(code **)**(uint8_t8 **)(unaff_RDI + 8))
                           (*(uint8_t8 **)(unaff_RDI + 8),&ObjectStackBuffer30,4);
-        if (iVar1 != 0) {
+        if (integerValue1 != 0) {
           return;
         }
-        iVar1 = GetResourceEntry();
-        if (iVar1 != 0) {
+        integerValue1 = GetResourceEntry();
+        if (integerValue1 != 0) {
           return;
         }
       }
       if ((*(uint *)(unaff_RBX + 4) & 0x800) != 0) {
-        iVar1 = VerifyResourceIntegrity();
-        if (iVar1 != 0) {
+        integerValue1 = VerifyResourceIntegrity();
+        if (integerValue1 != 0) {
           return;
         }
-        iVar1 = VerifyResourceIntegrity();
-        if (iVar1 != 0) {
+        integerValue1 = VerifyResourceIntegrity();
+        if (integerValue1 != 0) {
           return;
         }
       }
@@ -16850,10 +16850,10 @@ uint8_t8 ProcessResourceDataNormalization(longlong resourceContext, longlong dat
   float *pfVar2;
   int iVar3;
   float fVar4;
-  uint8_t2 auStackX_8 [4];
+  uint8_t2 ArrayUnionStackX8 [4];
   
-  auStackX_8[0] = CONCAT11(auStackX_8[0]._1_1_,*(uint8_t1 *)(validationContextParam + 0x104));
-  resourceHash = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),auStackX_8,1);
+  ArrayUnionStackX8[0] = CONCAT11(ArrayUnionStackX8[0]._1_1_,*(uint8_t1 *)(validationContextParam + 0x104));
+  resourceHash = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),ArrayUnionStackX8,1);
   if ((int)resourceHash == 0) {
     iVar3 = 0;
     if (0 < *(short *)(validationContextParam + 0x104)) {
@@ -16868,9 +16868,9 @@ uint8_t8 ProcessResourceDataNormalization(longlong resourceContext, longlong dat
         else {
           fVar4 = 0.0;
         }
-        auStackX_8[0] = (uint8_t2)(int)(fVar4 * 65535.0);
+        ArrayUnionStackX8[0] = (uint8_t2)(int)(fVar4 * 65535.0);
         resourceHash = (**(code **)**(uint8_t8 **)(objectContextParam + 8))
-                          (*(uint8_t8 **)(objectContextParam + 8),auStackX_8,2);
+                          (*(uint8_t8 **)(objectContextParam + 8),ArrayUnionStackX8,2);
         if ((int)resourceHash != 0) {
           return resourceHash;
         }
@@ -16883,9 +16883,9 @@ uint8_t8 ProcessResourceDataNormalization(longlong resourceContext, longlong dat
         else {
           fVar4 = 0.0;
         }
-        auStackX_8[0] = (uint8_t2)(int)(fVar4 * 65535.0);
+        ArrayUnionStackX8[0] = (uint8_t2)(int)(fVar4 * 65535.0);
         resourceHash = (**(code **)**(uint8_t8 **)(objectContextParam + 8))
-                          (*(uint8_t8 **)(objectContextParam + 8),auStackX_8,2);
+                          (*(uint8_t8 **)(objectContextParam + 8),ArrayUnionStackX8,2);
         if ((int)resourceHash != 0) {
           return resourceHash;
         }
@@ -16978,19 +16978,19 @@ uint8_t8 ProcessResourceDataNormalizationSimple(void)
 9ef0(longlong objectContextParam,uint8_t4 *validationContextParam)
 
 {
-  int iVar1;
-  uint8_t4 auStackX_8 [2];
+  int integerValue1;
+  uint8_t4 ArrayUnionStackX8 [2];
   
-  auStackX_8[0] = *validationContextParam;
-  iVar1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),auStackX_8,4);
-  if (iVar1 == 0) {
-    auStackX_8[0]._0_2_ = *(uint8_t2 *)(validationContextParam + 1);
-    iVar1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),auStackX_8,2);
-    if (iVar1 == 0) {
-      auStackX_8[0] = CONCAT22(auStackX_8[0]._2_2_,*(uint8_t2 *)((longlong)validationContextParam + 6));
-      iVar1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))
-                        (*(uint8_t8 **)(objectContextParam + 8),auStackX_8,2);
-      if (iVar1 == 0) {
+  ArrayUnionStackX8[0] = *validationContextParam;
+  integerValue1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),ArrayUnionStackX8,4);
+  if (integerValue1 == 0) {
+    ArrayUnionStackX8[0]._0_2_ = *(uint8_t2 *)(validationContextParam + 1);
+    integerValue1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),ArrayUnionStackX8,2);
+    if (integerValue1 == 0) {
+      ArrayUnionStackX8[0] = CONCAT22(ArrayUnionStackX8[0]._2_2_,*(uint8_t2 *)((longlong)validationContextParam + 6));
+      integerValue1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))
+                        (*(uint8_t8 **)(objectContextParam + 8),ArrayUnionStackX8,2);
+      if (integerValue1 == 0) {
         (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),validationContextParam + 2,8);
       }
     }
@@ -17005,14 +17005,14 @@ uint8_t8 ProcessResourceDataNormalizationSimple(void)
 9f80(longlong objectContextParam,uint8_t4 *validationContextParam)
 
 {
-  int iVar1;
-  uint8_t4 auStackX_8 [2];
+  int integerValue1;
+  uint8_t4 ArrayUnionStackX8 [2];
   
-  auStackX_8[0] = *validationContextParam;
-  iVar1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),auStackX_8,4);
-  if (iVar1 == 0) {
-    auStackX_8[0] = validationContextParam[1];
-    (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),auStackX_8,4);
+  ArrayUnionStackX8[0] = *validationContextParam;
+  integerValue1 = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),ArrayUnionStackX8,4);
+  if (integerValue1 == 0) {
+    ArrayUnionStackX8[0] = validationContextParam[1];
+    (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),ArrayUnionStackX8,4);
   }
   return;
 }
@@ -17532,7 +17532,7 @@ void InitializeSystemState(void)
 uint8_t8 ProcessResourceConfigurationData(longlong configContext, uint8_t4 *configData)
 
 {
-  int iVar1;
+  int integerValue1;
   uint8_t8 validationResult;
   int iVar3;
   uint8_t8 uStackX_8;
@@ -17543,20 +17543,20 @@ uint8_t8 ProcessResourceConfigurationData(longlong configContext, uint8_t4 *conf
     uStackX_8 = *(uint8_t8 *)(validationContextParam + 2);
     validationResult = (**(code **)**(uint8_t8 **)(objectContextParam + 8))(*(uint8_t8 **)(objectContextParam + 8),&uStackX_8,8);
     if ((int)validationResult == 0) {
-      iVar1 = validationContextParam[6];
-      uStackX_8 = CONCAT44(uStackX_8._4_4_,iVar1);
+      integerValue1 = validationContextParam[6];
+      uStackX_8 = CONCAT44(uStackX_8._4_4_,integerValue1);
       validationResult = (**(code **)**(uint8_t8 **)(objectContextParam + 8))
                         (*(uint8_t8 **)(objectContextParam + 8),&uStackX_8,4);
       if ((int)validationResult == 0) {
         iVar3 = 0;
-        if (0 < iVar1) {
+        if (0 < integerValue1) {
           do {
             validationResult = ProcessResourceOperation(objectContextParam,(longlong)iVar3 * 0x278 + *(longlong *)(validationContextParam + 4));
             if ((int)validationResult != 0) {
               return validationResult;
             }
             iVar3 = iVar3 + 1;
-          } while (iVar3 < iVar1);
+          } while (iVar3 < integerValue1);
         }
         validationResult = 0;
       }
@@ -17580,25 +17580,25 @@ uint8_t8 ProcessResourceConfigurationData(longlong configContext, uint8_t4 *conf
 uint8_t8 ProcessResourceOperation(uint8_t8 *resourceHandle, uint8_t8 operationParam)
 
 {
-  int iVar1;
+  int integerValue1;
   uint8_t8 validationResult;
   int iVar3;
   longlong unaff_RSI;
   int iStack0000000000000030;
   
-  iVar1 = *(int *)(unaff_RSI + 0x18);
-  iStack0000000000000030 = iVar1;
+  integerValue1 = *(int *)(unaff_RSI + 0x18);
+  iStack0000000000000030 = integerValue1;
   validationResult = (**(code **)*objectContextParam)(objectContextParam,validationContextParam,4);
   if ((int)validationResult == 0) {
     iVar3 = 0;
-    if (0 < iVar1) {
+    if (0 < integerValue1) {
       do {
         validationResult = ProcessResourceOperation();
         if ((int)validationResult != 0) {
           return validationResult;
         }
         iVar3 = iVar3 + 1;
-      } while (iVar3 < iVar1);
+      } while (iVar3 < integerValue1);
     }
     validationResult = 0;
   }
@@ -18806,13 +18806,13 @@ b3e6(void)
 b400(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   uint8_t1 dataChecksumBuffer [32];
   
-  iVar1 = ComputeDataChecksum(validationContextParam,dataChecksumBuffer,0,0x4f525443);
-  if (iVar1 == 0) {
-    iVar1 = ComputeDataChecksum(validationContextParam,objectContextParam + 8);
-    if (iVar1 == 0) {
+  integerValue1 = ComputeDataChecksum(validationContextParam,dataChecksumBuffer,0,0x4f525443);
+  if (integerValue1 == 0) {
+    integerValue1 = ComputeDataChecksum(validationContextParam,objectContextParam + 8);
+    if (integerValue1 == 0) {
                     // WARNING: Subroutine does not return
       CleanupResourceData(validationContextParam,dataChecksumBuffer);
     }
@@ -19305,17 +19305,17 @@ uint8_t8 ValidateResourceHash(longlong ResourceContext,uint8_t8 *ResourceData)
 b6df(void)
 
 {
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   uint unsignedValue3;
   uint uStack00000000000000a8;
   
   uStack00000000000000a8 = 0;
-  iVar1 = LoadResourceData();
-  if (iVar1 != 0) {
+  integerValue1 = LoadResourceData();
+  if (integerValue1 != 0) {
     return;
   }
-  iVar1 = 0;
+  integerValue1 = 0;
   unsignedResult3 = uStack00000000000000a8 >> 1;
   if (unsignedResult3 != 0) {
     do {
@@ -19331,8 +19331,8 @@ b6df(void)
       if (integerValue2 != 0) {
         return;
       }
-      iVar1 = iVar1 + 1;
-    } while (iVar1 < (int)unsignedResult3);
+      integerValue1 = integerValue1 + 1;
+    } while (integerValue1 < (int)unsignedResult3);
   }
                     // WARNING: Subroutine does not return
   CleanupResourceData();
@@ -20202,7 +20202,7 @@ ProcessResourceData(longlong ResourceContext, uint8_t8 *ResourceData, int Proces
   uint unsignedValue5;
   longlong lVar6;
   uint unsignedValue7;
-  uint auStackX_8 [2];
+  uint ArrayUnionStackX8 [2];
   uint auStackX_20 [2];
   
   auStackX_20[0] = InitializeResourceContext(validationContextParam,objectContextParam,0);
@@ -20228,11 +20228,11 @@ ProcessResourceData(longlong ResourceContext, uint8_t8 *ResourceData, int Proces
            (longlong)(int)(unsignedValue5 - integerValue2) << 4);
   }
   *(uint *)(objectContextParam + 0x18) = unsignedValue5;
-  auStackX_8[0] = 0;
+  ArrayUnionStackX8[0] = 0;
   integerValue2 = 0;
   if (resourceHash >> 1 != 0) {
     do {
-      iVar3 = ExtractResourceInfo(validationContextParam,auStackX_8[0]);
+      iVar3 = ExtractResourceInfo(validationContextParam,ArrayUnionStackX8[0]);
       if (iVar3 != 0) {
         return;
       }
@@ -20245,24 +20245,24 @@ ProcessResourceData(longlong ResourceContext, uint8_t8 *ResourceData, int Proces
       if (iVar3 != 0) {
         return;
       }
-      iVar3 = ParseResourceMetadata(validationContextParam,auStackX_8);
+      iVar3 = ParseResourceMetadata(validationContextParam,ArrayUnionStackX8);
       if (iVar3 != 0) {
         return;
       }
       integerValue2 = integerValue2 + 1;
-      auStackX_8[0] = auStackX_8[0] & -unsignedValue7;
+      ArrayUnionStackX8[0] = ArrayUnionStackX8[0] & -unsignedValue7;
     } while (integerValue2 < (int)unsignedValue5);
   }
-  auStackX_8[0] = 0;
-  integerValue2 = LoadResourceData(*validationContextParam,auStackX_8);
-  resourceHash = auStackX_8[0];
+  ArrayUnionStackX8[0] = 0;
+  integerValue2 = LoadResourceData(*validationContextParam,ArrayUnionStackX8);
+  resourceHash = ArrayUnionStackX8[0];
   if (integerValue2 != 0) {
     return;
   }
-  lVar6 = (longlong)(int)auStackX_8[0];
+  lVar6 = (longlong)(int)ArrayUnionStackX8[0];
   unsignedResult4 = (int)*(uint *)(objectContextParam + 0x2c) >> 0x1f;
-  if (((int)((*(uint *)(objectContextParam + 0x2c) ^ unsignedResult4) - unsignedResult4) < (int)auStackX_8[0]) &&
-     (integerValue2 = CheckResourceTableStatus(objectContextParam + 0x20,auStackX_8[0]), integerValue2 != 0)) {
+  if (((int)((*(uint *)(objectContextParam + 0x2c) ^ unsignedResult4) - unsignedResult4) < (int)ArrayUnionStackX8[0]) &&
+     (integerValue2 = CheckResourceTableStatus(objectContextParam + 0x20,ArrayUnionStackX8[0]), integerValue2 != 0)) {
     return;
   }
   integerValue2 = *(int *)(objectContextParam + 0x28);
@@ -20308,7 +20308,7 @@ ValidateResourceIntegrity(void)
 
 {
   uint in_EAX;
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   uint unsignedValue3;
   uint8_t8 *unaff_RBX;
@@ -20320,25 +20320,25 @@ ValidateResourceIntegrity(void)
   uint uStack0000000000000068;
   
   uStack0000000000000068 = in_EAX;
-  iVar1 = LoadResourceData();
-  if (iVar1 != 0) {
+  integerValue1 = LoadResourceData();
+  if (integerValue1 != 0) {
     return;
   }
   unsignedResult3 = (int)*(uint *)(unaff_R15 + 0x1c) >> 0x1f;
   unsignedResult4 = uStack0000000000000068 >> 1;
   if (((int)((*(uint *)(unaff_R15 + 0x1c) ^ unsignedResult3) - unsignedResult3) < (int)byteValue4) &&
-     (iVar1 = ValidateResourcePointer(unaff_R15 + 0x10,unsignedResult4), iVar1 != 0)) {
+     (integerValue1 = ValidateResourcePointer(unaff_R15 + 0x10,unsignedResult4), integerValue1 != 0)) {
     return;
   }
-  iVar1 = *(int *)(unaff_R15 + 0x18);
-  if (iVar1 < (int)byteValue4) {
+  integerValue1 = *(int *)(unaff_R15 + 0x18);
+  if (integerValue1 < (int)byteValue4) {
                     // WARNING: Subroutine does not return
-    memset((longlong)iVar1 * 0x10 + *(longlong *)(unaff_R15 + 0x10),0,
-           (longlong)(int)(unsignedResult4 - iVar1) << 4);
+    memset((longlong)integerValue1 * 0x10 + *(longlong *)(unaff_R15 + 0x10),0,
+           (longlong)(int)(unsignedResult4 - integerValue1) << 4);
   }
   *(uint *)(unaff_R15 + 0x18) = unsignedResult4;
   in_stack_00000050 = 0;
-  iVar1 = 0;
+  integerValue1 = 0;
   if (uStack0000000000000068 >> 1 != 0) {
     do {
       integerValue2 = ExtractResourceInfo();
@@ -20346,7 +20346,7 @@ ValidateResourceIntegrity(void)
         return;
       }
       if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        integerValue2 = GetResourceHashValue(*unaff_RBX,(longlong)iVar1 * 0x10 + *(longlong *)(unaff_R15 + 0x10));
+        integerValue2 = GetResourceHashValue(*unaff_RBX,(longlong)integerValue1 * 0x10 + *(longlong *)(unaff_R15 + 0x10));
       }
       else {
         integerValue2 = 0x1c;
@@ -20358,13 +20358,13 @@ ValidateResourceIntegrity(void)
       if (integerValue2 != 0) {
         return;
       }
-      iVar1 = iVar1 + 1;
+      integerValue1 = integerValue1 + 1;
       in_stack_00000050 = in_stack_00000050 & -(uStack0000000000000068 & 1);
-    } while (iVar1 < (int)byteValue4);
+    } while (integerValue1 < (int)byteValue4);
   }
   in_stack_00000050 = 0;
   integerValue2 = LoadResourceData(*unaff_RBX,&ObjectStackBuffer50);
-  iVar1 = in_stack_00000050;
+  integerValue1 = in_stack_00000050;
   if (integerValue2 != 0) {
     return;
   }
@@ -20375,35 +20375,35 @@ ValidateResourceIntegrity(void)
     return;
   }
   integerValue2 = *(int *)(unaff_R15 + 0x28);
-  if (integerValue2 < iVar1) {
+  if (integerValue2 < integerValue1) {
                     // WARNING: Subroutine does not return
-    memset((longlong)integerValue2 + *(longlong *)(unaff_R15 + 0x20),0,(longlong)(iVar1 - integerValue2));
+    memset((longlong)integerValue2 + *(longlong *)(unaff_R15 + 0x20),0,(longlong)(integerValue1 - integerValue2));
   }
-  *(int *)(unaff_R15 + 0x28) = iVar1;
-  if (iVar1 != 0) {
+  *(int *)(unaff_R15 + 0x28) = integerValue1;
+  if (integerValue1 != 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      iVar1 = ReadResourceData(*unaff_RBX,*(uint8_t8 *)(unaff_R15 + 0x20),lVar5);
-      if (iVar1 == 0) goto LAB_18089bfc7;
+      integerValue1 = ReadResourceData(*unaff_RBX,*(uint8_t8 *)(unaff_R15 + 0x20),lVar5);
+      if (integerValue1 == 0) goto LAB_18089bfc7;
     }
     else {
-      iVar1 = 0x1c;
+      integerValue1 = 0x1c;
     }
-    if (iVar1 != 0) {
+    if (integerValue1 != 0) {
       return;
     }
   }
 LAB_18089bfc7:
   if (unaff_R12D == 0) {
-    iVar1 = ProcessResourceValidation();
+    integerValue1 = ProcessResourceValidation();
   }
   else {
-    iVar1 = ValidateResourceStructure();
-    if (iVar1 != 0) {
+    integerValue1 = ValidateResourceStructure();
+    if (integerValue1 != 0) {
       return;
     }
-    iVar1 = ValidateResourceStructure();
+    integerValue1 = ValidateResourceStructure();
   }
-  if (iVar1 == 0) {
+  if (integerValue1 == 0) {
     func_0x000180069ee0();
   }
   return;
@@ -20437,7 +20437,7 @@ c019(void)
 ulonglong ProcessResourceDataReadAndValidate(longlong objectContextParam,uint8_t8 *validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   uint unsignedValue3;
   ulonglong unsignedResult4;
@@ -20466,11 +20466,11 @@ ulonglong ProcessResourceDataReadAndValidate(longlong objectContextParam,uint8_t
      (unsignedResult4 = CheckResourceStatus(objectContextParam + 8,aiStackX_10[0]), (int)byteValue4 != 0)) {
     return byteValue4;
   }
-  iVar1 = *(int *)(objectContextParam + 0x10);
-  if (iVar1 < integerValue2) {
-    punsignedValue6 = (uint8_t8 *)(*(longlong *)(objectContextParam + 8) + (longlong)iVar1 * 8);
-    if (0 < integerValue2 - iVar1) {
-      unsignedResult4 = (ulonglong)(uint)(integerValue2 - iVar1);
+  integerValue1 = *(int *)(objectContextParam + 0x10);
+  if (integerValue1 < integerValue2) {
+    punsignedValue6 = (uint8_t8 *)(*(longlong *)(objectContextParam + 8) + (longlong)integerValue1 * 8);
+    if (0 < integerValue2 - integerValue1) {
+      unsignedResult4 = (ulonglong)(uint)(integerValue2 - integerValue1);
       do {
         if (punsignedValue6 != (uint8_t8 *)0x0) {
           *punsignedValue6 = 0;
@@ -20531,7 +20531,7 @@ ulonglong ProcessResourceAllocation(longlong ResourceHandle,uint8_t8 *ResourceDa
   uint8_t8 *presourceHash0;
   longlong localContextPointer1;
   longlong localContextPointer2;
-  int iVar13;
+  int integerValue13;
   uint8_t8 *puStackX_18;
   uint8_t8 *puStack_88;
   uint8_t8 uStack_80;
@@ -20610,7 +20610,7 @@ LAB_18089c40a:
       if ((longlong)uStack_80 < 0) {
         unsignedValue6 = -uStack_80._4_4_;
       }
-      iVar13 = (int)uStack_80;
+      integerValue13 = (int)uStack_80;
       uVar9 = uStack_80._4_4_;
       if ((int)unsignedValue6 < 0) {
         if (0 < (int)uStack_80) {
@@ -20624,10 +20624,10 @@ LAB_18089c40a:
         uStack_80 = uStack_80 & 0xffffffff;
         uVar9 = unsignedValue5;
       }
-      if (iVar13 < 0) {
-        localContextPointer2 = (longlong)-iVar13;
-        if (iVar13 < 0) {
-          localContextPointer1 = (longlong)iVar13 * 0x18 + 0x14 + (longlong)puStack_88;
+      if (integerValue13 < 0) {
+        localContextPointer2 = (longlong)-integerValue13;
+        if (integerValue13 < 0) {
+          localContextPointer1 = (longlong)integerValue13 * 0x18 + 0x14 + (longlong)puStack_88;
           do {
             puVar8 = (uint8_t4 *)AllocateMemoryBlock();
             validationResult = puVar8[1];
@@ -20655,7 +20655,7 @@ LAB_18089c40a:
       return unsignedValue7;
     }
     if ((int)uStack_80 == 0) {
-      iVar13 = 0;
+      integerValue13 = 0;
     }
     else {
       unsignedValue6 = (int)*(uint *)(objectContextParam + 0x54) >> 0x1f;
@@ -20666,8 +20666,8 @@ LAB_18089c40a:
         presourceHash0 = puStack_88;
         if (unsignedValue6 != 0) goto LAB_18089c40a;
       }
-      for (; (iVar13 = (int)uStack_80, puStack_88 <= presourceHash0 &&
-             (presourceHash0 < puStack_88 + (longlong)iVar13 * 3)); presourceHash0 = presourceHash0 + 3) {
+      for (; (integerValue13 = (int)uStack_80, puStack_88 <= presourceHash0 &&
+             (presourceHash0 < puStack_88 + (longlong)integerValue13 * 3)); presourceHash0 = presourceHash0 + 3) {
         puStackX_18 = (uint8_t8 *)0x0;
         unsignedValue6 = InitializeResourceBuffer(objectContextParam + 0x48,&puStackX_18);
         unsignedValue7 = (ulonglong)unsignedValue6;
@@ -20687,7 +20687,7 @@ LAB_18089c40a:
     }
     uVar9 = uStack_80._4_4_;
     if ((int)unsignedValue6 < 0) {
-      if (0 < iVar13) goto LAB_18089c586;
+      if (0 < integerValue13) goto LAB_18089c586;
       if ((0 < (int)uStack_80._4_4_) && (puStack_88 != (uint8_t8 *)0x0)) {
                     // WARNING: Subroutine does not return
         ProcessResourceAllocation(*(uint8_t8 *)(SystemContextPointer + 0x1a0),puStack_88,&ResourceTableTemplate,0x100,1);
@@ -20696,10 +20696,10 @@ LAB_18089c40a:
       uStack_80 = uStack_80 & 0xffffffff;
       uVar9 = unsignedValue5;
     }
-    if (iVar13 < 0) {
-      localContextPointer2 = (longlong)-iVar13;
-      if (iVar13 < 0) {
-        localContextPointer1 = (longlong)iVar13 * 0x18 + 0x14 + (longlong)puStack_88;
+    if (integerValue13 < 0) {
+      localContextPointer2 = (longlong)-integerValue13;
+      if (integerValue13 < 0) {
+        localContextPointer1 = (longlong)integerValue13 * 0x18 + 0x14 + (longlong)puStack_88;
         do {
           puVar8 = (uint8_t4 *)AllocateMemoryBlock();
           validationResult = puVar8[1];
@@ -20785,7 +20785,7 @@ uint8_t8 * GetResourceDataPointerA(void)
   longlong unaff_RSI;
   uint8_t8 *unaff_RDI;
   longlong localContextPointer8;
-  int iVar19;
+  int integerValue19;
   uint8_t4 extraout_XMM0_Da;
   uint8_t4 validationResult0;
   float extraout_XMM0_Da_00;
@@ -20860,9 +20860,9 @@ LAB_18089c40a:
       if ((int)uVar9 < 0) {
         resourceHash0 = -uVar9;
       }
-      iVar19 = *(int *)(unaff_RBP + -0x21);
+      integerValue19 = *(int *)(unaff_RBP + -0x21);
       if ((int)resourceHash0 < 0) {
-        if (0 < iVar19) {
+        if (0 < integerValue19) {
           return presourceHash3;
         }
         if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
@@ -20877,10 +20877,10 @@ LAB_18089c40a:
       else {
         presourceHash1 = *(uint8_t8 **)(unaff_RBP + -0x29);
       }
-      if (iVar19 < 0) {
-        localContextPointer8 = (longlong)-iVar19;
-        if (iVar19 < 0) {
-          localContextPointer7 = (longlong)iVar19 * 0x18 + 0x14 + (longlong)presourceHash1;
+      if (integerValue19 < 0) {
+        localContextPointer8 = (longlong)-integerValue19;
+        if (integerValue19 < 0) {
+          localContextPointer7 = (longlong)integerValue19 * 0x18 + 0x14 + (longlong)presourceHash1;
           do {
             presourceHash2 = (uint8_t4 *)AllocateMemoryBlock();
             validationResult0 = presourceHash2[1];
@@ -20907,22 +20907,22 @@ LAB_18089c40a:
       FreeMemoryBlock(unaff_RBP + -0x29,0);
       return presourceHash3;
     }
-    iVar19 = *(int *)(unaff_RBP + -0x21);
+    integerValue19 = *(int *)(unaff_RBP + -0x21);
     fVar21 = extraout_XMM0_Da_03;
-    if (iVar19 == 0) {
+    if (integerValue19 == 0) {
       presourceHash3 = *(uint8_t8 **)(unaff_RBP + -0x29);
     }
     else {
       uVar9 = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uVar9) - uVar9) < iVar19) {
-        uVar9 = CalculateResourceHash(unaff_RSI + 0x48,iVar19);
+      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uVar9) - uVar9) < integerValue19) {
+        uVar9 = CalculateResourceHash(unaff_RSI + 0x48,integerValue19);
         presourceHash3 = (uint8_t8 *)(ulonglong)uVar9;
         if (uVar9 != 0) goto LAB_18089c40a;
-        iVar19 = *(int *)(unaff_RBP + -0x21);
+        integerValue19 = *(int *)(unaff_RBP + -0x21);
         fVar21 = extraout_XMM0_Da_04;
       }
       presourceHash3 = *(uint8_t8 **)(unaff_RBP + -0x29);
-      for (presourceHash6 = presourceHash3; (presourceHash3 <= presourceHash6 && (presourceHash6 < presourceHash3 + (longlong)iVar19 * 3));
+      for (presourceHash6 = presourceHash3; (presourceHash3 <= presourceHash6 && (presourceHash6 < presourceHash3 + (longlong)integerValue19 * 3));
           presourceHash6 = presourceHash6 + 3) {
         *(uint8_t8 *)(unaff_RBP + 0x77) = 0;
         uVar9 = InitializeResourceBuffer(unaff_RSI + 0x48,unaff_RBP + 0x77);
@@ -20936,7 +20936,7 @@ LAB_18089c40a:
         fVar21 = *(float *)((longlong)presourceHash6 + 0x14) + *(float *)(presourceHash6 + 2);
         *(float *)((longlong)presourceHash3 + 0x14) = fVar21;
         *(uint8_t1 *)(presourceHash3 + 3) = 1;
-        iVar19 = *(int *)(unaff_RBP + -0x21);
+        integerValue19 = *(int *)(unaff_RBP + -0x21);
         presourceHash3 = *(uint8_t8 **)(unaff_RBP + -0x29);
       }
     }
@@ -20946,7 +20946,7 @@ LAB_18089c40a:
       resourceHash0 = -uVar9;
     }
     if ((int)resourceHash0 < 0) {
-      if (0 < iVar19) goto LAB_18089c586;
+      if (0 < integerValue19) goto LAB_18089c586;
       if ((0 < (int)uVar9) && (presourceHash3 != (uint8_t8 *)0x0)) {
                     // WARNING: Subroutine does not return
         ProcessResourceAllocation(*(uint8_t8 *)(SystemContextPointer + 0x1a0),presourceHash3,&ResourceTableTemplate,0x100,1);
@@ -20956,10 +20956,10 @@ LAB_18089c40a:
       presourceHash3 = presourceHash1;
       uVar9 = uVar8;
     }
-    if (iVar19 < 0) {
-      localContextPointer8 = (longlong)-iVar19;
-      if (iVar19 < 0) {
-        localContextPointer7 = (longlong)iVar19 * 0x18 + 0x14 + (longlong)presourceHash3;
+    if (integerValue19 < 0) {
+      localContextPointer8 = (longlong)-integerValue19;
+      if (integerValue19 < 0) {
+        localContextPointer7 = (longlong)integerValue19 * 0x18 + 0x14 + (longlong)presourceHash3;
         do {
           pfVar14 = (float *)AllocateMemoryBlock();
           fVar21 = *pfVar14;
@@ -21047,7 +21047,7 @@ uint8_t8 * GetResourceDataPointerB(void)
   longlong unaff_RSI;
   uint8_t8 *unaff_RDI;
   longlong localContextPointer8;
-  int iVar19;
+  int integerValue19;
   uint8_t4 extraout_XMM0_Da;
   uint8_t4 validationResult0;
   float extraout_XMM0_Da_00;
@@ -21115,9 +21115,9 @@ LAB_18089c40a:
       if ((int)uVar9 < 0) {
         resourceHash0 = -uVar9;
       }
-      iVar19 = *(int *)(unaff_RBP + -0x21);
+      integerValue19 = *(int *)(unaff_RBP + -0x21);
       if ((int)resourceHash0 < 0) {
-        if (0 < iVar19) {
+        if (0 < integerValue19) {
           return presourceHash2;
         }
         if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
@@ -21132,10 +21132,10 @@ LAB_18089c40a:
       else {
         presourceHash3 = *(uint8_t8 **)(unaff_RBP + -0x29);
       }
-      if (iVar19 < 0) {
-        localContextPointer8 = (longlong)-iVar19;
-        if (iVar19 < 0) {
-          localContextPointer7 = (longlong)iVar19 * 0x18 + 0x14 + (longlong)presourceHash3;
+      if (integerValue19 < 0) {
+        localContextPointer8 = (longlong)-integerValue19;
+        if (integerValue19 < 0) {
+          localContextPointer7 = (longlong)integerValue19 * 0x18 + 0x14 + (longlong)presourceHash3;
           do {
             presourceHash1 = (uint8_t4 *)AllocateMemoryBlock();
             validationResult0 = presourceHash1[1];
@@ -21162,22 +21162,22 @@ LAB_18089c40a:
       FreeMemoryBlock(unaff_RBP + -0x29,0);
       return presourceHash2;
     }
-    iVar19 = *(int *)(unaff_RBP + -0x21);
+    integerValue19 = *(int *)(unaff_RBP + -0x21);
     fVar21 = extraout_XMM0_Da_03;
-    if (iVar19 == 0) {
+    if (integerValue19 == 0) {
       presourceHash2 = *(uint8_t8 **)(unaff_RBP + -0x29);
     }
     else {
       uVar9 = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uVar9) - uVar9) < iVar19) {
-        uVar9 = CalculateResourceHash(unaff_RSI + 0x48,iVar19);
+      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uVar9) - uVar9) < integerValue19) {
+        uVar9 = CalculateResourceHash(unaff_RSI + 0x48,integerValue19);
         presourceHash2 = (uint8_t8 *)(ulonglong)uVar9;
         if (uVar9 != 0) goto LAB_18089c40a;
-        iVar19 = *(int *)(unaff_RBP + -0x21);
+        integerValue19 = *(int *)(unaff_RBP + -0x21);
         fVar21 = extraout_XMM0_Da_04;
       }
       presourceHash2 = *(uint8_t8 **)(unaff_RBP + -0x29);
-      for (presourceHash6 = presourceHash2; (presourceHash2 <= presourceHash6 && (presourceHash6 < presourceHash2 + (longlong)iVar19 * 3));
+      for (presourceHash6 = presourceHash2; (presourceHash2 <= presourceHash6 && (presourceHash6 < presourceHash2 + (longlong)integerValue19 * 3));
           presourceHash6 = presourceHash6 + 3) {
         *(uint8_t8 *)(unaff_RBP + 0x77) = 0;
         uVar9 = InitializeResourceBuffer(unaff_RSI + 0x48,unaff_RBP + 0x77);
@@ -21191,7 +21191,7 @@ LAB_18089c40a:
         fVar21 = *(float *)((longlong)presourceHash6 + 0x14) + *(float *)(presourceHash6 + 2);
         *(float *)((longlong)presourceHash2 + 0x14) = fVar21;
         *(uint8_t1 *)(presourceHash2 + 3) = 1;
-        iVar19 = *(int *)(unaff_RBP + -0x21);
+        integerValue19 = *(int *)(unaff_RBP + -0x21);
         presourceHash2 = *(uint8_t8 **)(unaff_RBP + -0x29);
       }
     }
@@ -21201,7 +21201,7 @@ LAB_18089c40a:
       resourceHash0 = -uVar9;
     }
     if ((int)resourceHash0 < 0) {
-      if (0 < iVar19) goto LAB_18089c586;
+      if (0 < integerValue19) goto LAB_18089c586;
       if ((0 < (int)uVar9) && (presourceHash2 != (uint8_t8 *)0x0)) {
                     // WARNING: Subroutine does not return
         ProcessResourceAllocation(*(uint8_t8 *)(SystemContextPointer + 0x1a0),presourceHash2,&ResourceTableTemplate,0x100,1);
@@ -21211,10 +21211,10 @@ LAB_18089c40a:
       presourceHash2 = presourceHash3;
       uVar9 = uVar8;
     }
-    if (iVar19 < 0) {
-      localContextPointer8 = (longlong)-iVar19;
-      if (iVar19 < 0) {
-        localContextPointer7 = (longlong)iVar19 * 0x18 + 0x14 + (longlong)presourceHash2;
+    if (integerValue19 < 0) {
+      localContextPointer8 = (longlong)-integerValue19;
+      if (integerValue19 < 0) {
+        localContextPointer7 = (longlong)integerValue19 * 0x18 + 0x14 + (longlong)presourceHash2;
         do {
           pfVar14 = (float *)AllocateMemoryBlock();
           fVar21 = *pfVar14;
@@ -21303,7 +21303,7 @@ ulonglong ResourceProcessingHandler(uint8_t8 objectContextParam)
   longlong unaff_RSI;
   uint8_t8 *unaff_RDI;
   longlong localContextPointer7;
-  int iVar18;
+  int integerValue18;
   uint8_t8 *unaff_R12;
   uint unaff_R15D;
   bool bVar19;
@@ -21335,9 +21335,9 @@ LAB_18089c40a:
       if ((int)uVar9 < 0) {
         resourceHash0 = -uVar9;
       }
-      iVar18 = *(int *)(unaff_RBP + -0x21);
+      integerValue18 = *(int *)(unaff_RBP + -0x21);
       if ((int)resourceHash0 < 0) {
-        if (0 < iVar18) {
+        if (0 < integerValue18) {
           return resourceHash1;
         }
         if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
@@ -21353,10 +21353,10 @@ LAB_18089c40a:
       else {
         presourceHash4 = *(uint8_t8 **)(unaff_RBP + -0x29);
       }
-      if (iVar18 < 0) {
-        localContextPointer7 = (longlong)-iVar18;
-        if (iVar18 < 0) {
-          localContextPointer6 = (longlong)iVar18 * 0x18 + 0x14 + (longlong)presourceHash4;
+      if (integerValue18 < 0) {
+        localContextPointer7 = (longlong)-integerValue18;
+        if (integerValue18 < 0) {
+          localContextPointer6 = (longlong)integerValue18 * 0x18 + 0x14 + (longlong)presourceHash4;
           do {
             presourceHash2 = (uint8_t4 *)AllocateMemoryBlock();
             resourceHash = presourceHash2[1];
@@ -21383,22 +21383,22 @@ LAB_18089c40a:
       FreeMemoryBlock(unaff_RBP + -0x29,0);
       return resourceHash1;
     }
-    iVar18 = *(int *)(unaff_RBP + -0x21);
+    integerValue18 = *(int *)(unaff_RBP + -0x21);
     fVar20 = extraout_XMM0_Da_02;
-    if (iVar18 == 0) {
+    if (integerValue18 == 0) {
       presourceHash4 = *(uint8_t8 **)(unaff_RBP + -0x29);
     }
     else {
       uVar9 = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uVar9) - uVar9) < iVar18) {
-        uVar9 = CalculateResourceHash(unaff_RSI + 0x48,iVar18);
+      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uVar9) - uVar9) < integerValue18) {
+        uVar9 = CalculateResourceHash(unaff_RSI + 0x48,integerValue18);
         resourceHash1 = (ulonglong)uVar9;
         if (uVar9 != 0) goto LAB_18089c40a;
-        iVar18 = *(int *)(unaff_RBP + -0x21);
+        integerValue18 = *(int *)(unaff_RBP + -0x21);
         fVar20 = extraout_XMM0_Da_03;
       }
       presourceHash4 = *(uint8_t8 **)(unaff_RBP + -0x29);
-      for (presourceHash5 = presourceHash4; (presourceHash4 <= presourceHash5 && (presourceHash5 < presourceHash4 + (longlong)iVar18 * 3));
+      for (presourceHash5 = presourceHash4; (presourceHash4 <= presourceHash5 && (presourceHash5 < presourceHash4 + (longlong)integerValue18 * 3));
           presourceHash5 = presourceHash5 + 3) {
         *(uint8_t8 **)(unaff_RBP + 0x77) = unaff_R12;
         uVar9 = InitializeResourceBuffer(unaff_RSI + 0x48,unaff_RBP + 0x77);
@@ -21412,7 +21412,7 @@ LAB_18089c40a:
         fVar20 = *(float *)((longlong)presourceHash5 + 0x14) + *(float *)(presourceHash5 + 2);
         *(float *)((longlong)presourceHash4 + 0x14) = fVar20;
         *(uint8_t1 *)(presourceHash4 + 3) = 1;
-        iVar18 = *(int *)(unaff_RBP + -0x21);
+        integerValue18 = *(int *)(unaff_RBP + -0x21);
         presourceHash4 = *(uint8_t8 **)(unaff_RBP + -0x29);
       }
     }
@@ -21422,7 +21422,7 @@ LAB_18089c40a:
       resourceHash0 = -uVar9;
     }
     if ((int)resourceHash0 < 0) {
-      if (0 < iVar18) goto LAB_18089c586;
+      if (0 < integerValue18) goto LAB_18089c586;
       if ((0 < (int)uVar9) && (presourceHash4 != (uint8_t8 *)0x0)) {
                     // WARNING: Subroutine does not return
         ProcessResourceAllocation(*(uint8_t8 *)(SystemContextPointer + 0x1a0),presourceHash4,&ResourceTableTemplate,0x100,1);
@@ -21432,10 +21432,10 @@ LAB_18089c40a:
       presourceHash4 = unaff_R12;
       uVar9 = uVar8;
     }
-    if (iVar18 < 0) {
-      localContextPointer7 = (longlong)-iVar18;
-      if (iVar18 < 0) {
-        localContextPointer6 = (longlong)iVar18 * 0x18 + 0x14 + (longlong)presourceHash4;
+    if (integerValue18 < 0) {
+      localContextPointer7 = (longlong)-integerValue18;
+      if (integerValue18 < 0) {
+        localContextPointer6 = (longlong)integerValue18 * 0x18 + 0x14 + (longlong)presourceHash4;
         do {
           pfVar13 = (float *)AllocateMemoryBlock();
           fVar20 = *pfVar13;
@@ -22276,10 +22276,10 @@ ulonglong ResourceProcessingHandlerAlt2(void)
   uint uVar8;
   uint uVar9;
   ulonglong unaff_RDI;
-  int iVar10;
+  int integerValue10;
   longlong unaff_R13;
   int unaff_R14D;
-  int iVar11;
+  int integerValue11;
   float extraout_XMM0_Da;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
@@ -22343,8 +22343,8 @@ ulonglong ResourceProcessingHandlerAlt2(void)
   unsignedResult3 = (uint8_t7)(unaff_RDI >> 8);
   iVar7 = 0;
   fVar12 = extraout_XMM0_Da;
-  iVar11 = iVar7;
-  iVar10 = unaff_R14D;
+  integerValue11 = iVar7;
+  integerValue10 = unaff_R14D;
   if (*(uint *)(unaff_RBX + 8) < 0x70) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
       plocalContextPointer = (longlong *)*unaff_RBX;
@@ -22369,8 +22369,8 @@ LAB_18089c9a8:
       }
       if (unsignedResult4 == 0) {
         unsignedValue5 = unaff_RDI & 0xffffffff;
-        iVar11 = (int)CONCAT71(unsignedResult3,*(char *)(unaff_RBP + 0x77) != '\0');
-        iVar10 = (int)CONCAT71(unsignedResult3,*(char *)(unaff_RBP + 0x77) == '\0');
+        integerValue11 = (int)CONCAT71(unsignedResult3,*(char *)(unaff_RBP + 0x77) != '\0');
+        integerValue10 = (int)CONCAT71(unsignedResult3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         unsignedValue5 = (ulonglong)unsignedResult4;
@@ -22449,7 +22449,7 @@ LAB_18089cad8:
   if (unsignedResult4 < 0x70) {
     *(uint *)(unaff_R13 + 0x34) =
          (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + 0x34)) &
-           ~*(uint *)(unaff_RBP + -0x29) | iVar11 * 2) & ~(iVar10 * 2) | iVar7 * 4) &
+           ~*(uint *)(unaff_RBP + -0x29) | integerValue11 * 2) & ~(integerValue10 * 2) | iVar7 * 4) &
          ~(unaff_R14D * 4);
     unsignedResult4 = *(uint *)(unaff_RBX + 8);
   }
@@ -22534,10 +22534,10 @@ ulonglong ResourceProcessingHandlerAlt3(void)
   uint uVar8;
   uint uVar9;
   ulonglong unaff_RDI;
-  int iVar10;
+  int integerValue10;
   longlong unaff_R13;
   int unaff_R14D;
-  int iVar11;
+  int integerValue11;
   float extraout_XMM0_Da;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
@@ -22601,8 +22601,8 @@ ulonglong ResourceProcessingHandlerAlt3(void)
   unsignedResult3 = (uint8_t7)(unaff_RDI >> 8);
   iVar7 = 0;
   fVar12 = extraout_XMM0_Da;
-  iVar11 = iVar7;
-  iVar10 = unaff_R14D;
+  integerValue11 = iVar7;
+  integerValue10 = unaff_R14D;
   if (*(uint *)(unaff_RBX + 8) < 0x70) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
       plocalContextPointer = (longlong *)*unaff_RBX;
@@ -22627,8 +22627,8 @@ LAB_18089c9a8:
       }
       if (unsignedResult4 == 0) {
         unsignedValue5 = unaff_RDI & 0xffffffff;
-        iVar11 = (int)CONCAT71(unsignedResult3,*(char *)(unaff_RBP + 0x77) != '\0');
-        iVar10 = (int)CONCAT71(unsignedResult3,*(char *)(unaff_RBP + 0x77) == '\0');
+        integerValue11 = (int)CONCAT71(unsignedResult3,*(char *)(unaff_RBP + 0x77) != '\0');
+        integerValue10 = (int)CONCAT71(unsignedResult3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         unsignedValue5 = (ulonglong)unsignedResult4;
@@ -22707,7 +22707,7 @@ LAB_18089cad8:
   if (unsignedResult4 < 0x70) {
     *(uint *)(unaff_R13 + 0x34) =
          (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + 0x34)) &
-           ~*(uint *)(unaff_RBP + -0x29) | iVar11 * 2) & ~(iVar10 * 2) | iVar7 * 4) &
+           ~*(uint *)(unaff_RBP + -0x29) | integerValue11 * 2) & ~(integerValue10 * 2) | iVar7 * 4) &
          ~(unaff_R14D * 4);
     unsignedResult4 = *(uint *)(unaff_RBX + 8);
   }
@@ -22793,10 +22793,10 @@ ulonglong ProcessFloatParameterResourceHash(float objectContextParam)
   int iVar9;
   uint resourceHash0;
   ulonglong unaff_RDI;
-  int iVar11;
+  int integerValue11;
   longlong unaff_R13;
   int unaff_R14D;
-  int iVar12;
+  int integerValue12;
   bool in_CF;
   float extraout_XMM0_Da;
   float extraout_XMM0_Da_00;
@@ -22813,8 +22813,8 @@ ulonglong ProcessFloatParameterResourceHash(float objectContextParam)
   
   iVar9 = (int)unaff_RDI;
   unsignedResult3 = (uint8_t7)(unaff_RDI >> 8);
-  iVar12 = iVar9;
-  iVar11 = unaff_R14D;
+  integerValue12 = iVar9;
+  integerValue11 = unaff_R14D;
   if (in_CF) {
     if (*(int *)(unaff_RBX[1] + 0x18) == iVar9) {
       plocalContextPointer = (longlong *)*unaff_RBX;
@@ -22839,8 +22839,8 @@ LAB_18089c9a8:
       }
       if (unsignedResult4 == 0) {
         unsignedValue6 = unaff_RDI & 0xffffffff;
-        iVar12 = (int)CONCAT71(unsignedResult3,*(char *)(unaff_RBP + 0x77) != '\0');
-        iVar11 = (int)CONCAT71(unsignedResult3,*(char *)(unaff_RBP + 0x77) == '\0');
+        integerValue12 = (int)CONCAT71(unsignedResult3,*(char *)(unaff_RBP + 0x77) != '\0');
+        integerValue11 = (int)CONCAT71(unsignedResult3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         unsignedValue6 = (ulonglong)unsignedResult4;
@@ -22920,7 +22920,7 @@ LAB_18089ca9c:
     if (unsignedResult4 < 0x70) {
       *(uint *)(unaff_R13 + 0x34) =
            (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + 0x34)) &
-             ~*(uint *)(unaff_RBP + -0x29) | iVar12 * 2) & ~(iVar11 * 2) | iVar7 * 4) &
+             ~*(uint *)(unaff_RBP + -0x29) | integerValue12 * 2) & ~(integerValue11 * 2) | iVar7 * 4) &
            ~(unaff_R14D * 4);
       unsignedResult4 = *(uint *)(unaff_RBX + 8);
     }
@@ -23542,10 +23542,10 @@ d0a3(void)
 d0b0(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = ProcessResourceTable(objectContextParam + 0xd8);
-  if (iVar1 == 0) {
+  integerValue1 = ProcessResourceTable(objectContextParam + 0xd8);
+  if (integerValue1 == 0) {
     ValidateResourceTable(objectContextParam,validationContextParam);
   }
   return;
@@ -24008,44 +24008,44 @@ uint8_t8 ValidateResourceAccess(longlong ResourceOffset,uint8_t8 *ResourceData)
 d520(longlong objectContextParam,uint8_t8 *validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   uint8_t1 resourceValidationBuffer [32];
   uint8_t1 dataChecksumBuffer [32];
   
-  iVar1 = ComputeDataChecksum(validationContextParam,dataChecksumBuffer,1,0x4a4f5250);
-  if (((iVar1 == 0) && (iVar1 = ComputeDataChecksum(validationContextParam,resourceValidationBuffer,0,0x494b4e42), iVar1 == 0)) &&
-     (iVar1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x10), iVar1 == 0)) {
+  integerValue1 = ComputeDataChecksum(validationContextParam,dataChecksumBuffer,1,0x4a4f5250);
+  if (((integerValue1 == 0) && (integerValue1 = ComputeDataChecksum(validationContextParam,resourceValidationBuffer,0,0x494b4e42), integerValue1 == 0)) &&
+     (integerValue1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x10), integerValue1 == 0)) {
     if (*(uint *)(resourceData + 8) < 0x37) {
-      iVar1 = 0;
+      integerValue1 = 0;
     }
     else if (*(int *)(resourceData[1] + 0x18) == 0) {
-      iVar1 = ReadResourceData(*validationContextParam,objectContextParam + 0x210,8);
+      integerValue1 = ReadResourceData(*validationContextParam,objectContextParam + 0x210,8);
     }
     else {
-      iVar1 = 0x1c;
+      integerValue1 = 0x1c;
     }
-    if (iVar1 == 0) {
+    if (integerValue1 == 0) {
       *(uint8_t4 *)(objectContextParam + 0x218) = *(uint8_t4 *)(validationContextParam + 8);
       if (*(uint *)(resourceData + 8) < 0x41) {
-        iVar1 = 0;
+        integerValue1 = 0;
       }
       else if (*(int *)(resourceData[1] + 0x18) == 0) {
-        iVar1 = ReadResourceData(*validationContextParam,objectContextParam + 0x2f4,4);
+        integerValue1 = ReadResourceData(*validationContextParam,objectContextParam + 0x2f4,4);
       }
       else {
-        iVar1 = 0x1c;
+        integerValue1 = 0x1c;
       }
-      if (iVar1 == 0) {
+      if (integerValue1 == 0) {
         if (*(uint *)(resourceData + 8) < 0x4d) {
-          iVar1 = 0;
+          integerValue1 = 0;
         }
         else if (*(int *)(resourceData[1] + 0x18) == 0) {
-          iVar1 = ReadResourceData(*validationContextParam,objectContextParam + 0x21c,4);
+          integerValue1 = ReadResourceData(*validationContextParam,objectContextParam + 0x21c,4);
         }
         else {
-          iVar1 = 0x1c;
+          integerValue1 = 0x1c;
         }
-        if (iVar1 == 0) {
+        if (integerValue1 == 0) {
           *(uint8_t4 *)(objectContextParam + 0x200) = *(uint8_t4 *)(objectContextParam + 0x10);
           *(uint8_t4 *)(objectContextParam + 0x204) = *(uint8_t4 *)(objectContextParam + 0x14);
           *(uint8_t4 *)(objectContextParam + 0x208) = *(uint8_t4 *)(objectContextParam + 0x18);
@@ -24066,46 +24066,46 @@ d520(longlong objectContextParam,uint8_t8 *validationContextParam)
 d557(uint8_t4 objectContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   uint8_t8 *unaff_RBX;
   longlong unaff_RDI;
   uint8_t4 extraout_XMM0_Da;
   
-  iVar1 = ComputeDataChecksum(objectContextParam,&ObjectStackBuffer30,0);
-  if (iVar1 == 0) {
-    iVar1 = ValidateResourceHash(extraout_XMM0_Da,unaff_RDI + 0x10);
-    if (iVar1 == 0) {
+  integerValue1 = ComputeDataChecksum(objectContextParam,&ObjectStackBuffer30,0);
+  if (integerValue1 == 0) {
+    integerValue1 = ValidateResourceHash(extraout_XMM0_Da,unaff_RDI + 0x10);
+    if (integerValue1 == 0) {
       if (*(uint *)(unaff_RBX + 8) < 0x37) {
-        iVar1 = 0;
+        integerValue1 = 0;
       }
       else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        iVar1 = ReadResourceData(*unaff_RBX,unaff_RDI + 0x210,8);
+        integerValue1 = ReadResourceData(*unaff_RBX,unaff_RDI + 0x210,8);
       }
       else {
-        iVar1 = 0x1c;
+        integerValue1 = 0x1c;
       }
-      if (iVar1 == 0) {
+      if (integerValue1 == 0) {
         *(uint8_t4 *)(unaff_RDI + 0x218) = *(uint8_t4 *)(unaff_RBX + 8);
         if (*(uint *)(unaff_RBX + 8) < 0x41) {
-          iVar1 = 0;
+          integerValue1 = 0;
         }
         else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          iVar1 = ReadResourceData(*unaff_RBX,unaff_RDI + 0x2f4,4);
+          integerValue1 = ReadResourceData(*unaff_RBX,unaff_RDI + 0x2f4,4);
         }
         else {
-          iVar1 = 0x1c;
+          integerValue1 = 0x1c;
         }
-        if (iVar1 == 0) {
+        if (integerValue1 == 0) {
           if (*(uint *)(unaff_RBX + 8) < 0x4d) {
-            iVar1 = 0;
+            integerValue1 = 0;
           }
           else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-            iVar1 = ReadResourceData(*unaff_RBX,unaff_RDI + 0x21c,4);
+            integerValue1 = ReadResourceData(*unaff_RBX,unaff_RDI + 0x21c,4);
           }
           else {
-            iVar1 = 0x1c;
+            integerValue1 = 0x1c;
           }
-          if (iVar1 == 0) {
+          if (integerValue1 == 0) {
             *(uint8_t4 *)(unaff_RDI + 0x200) = *(uint8_t4 *)(unaff_RDI + 0x10);
             *(uint8_t4 *)(unaff_RDI + 0x204) = *(uint8_t4 *)(unaff_RDI + 0x14);
             *(uint8_t4 *)(unaff_RDI + 0x208) = *(uint8_t4 *)(unaff_RDI + 0x18);
@@ -27141,7 +27141,7 @@ f31e(void)
 
 {
   int in_EAX;
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   longlong *unaff_RBX;
   int unaff_EBP;
@@ -27150,35 +27150,35 @@ f31e(void)
   
   if (in_EAX == 0x1b) {
     if (*(uint *)(unaff_RBX + 8) < 0x3b) {
-      iVar1 = CheckSystemStatus();
-      if (iVar1 != 0) {
+      integerValue1 = CheckSystemStatus();
+      if (integerValue1 != 0) {
         return;
       }
       goto LAB_18089f45f;
     }
   }
   else if ((in_EAX == 0x12) && (*(uint *)(unaff_RBX + 8) < 0x40)) {
-    iVar1 = CalculateDataChecksum();
-    if (iVar1 != 0) {
+    integerValue1 = CalculateDataChecksum();
+    if (integerValue1 != 0) {
       return;
     }
-    iVar1 = unaff_EBP;
+    integerValue1 = unaff_EBP;
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
       in_stack_000000b0 = 6;
-      iVar1 = (**(code **)**(uint8_t8 **)(*unaff_RBX + 8))
+      integerValue1 = (**(code **)**(uint8_t8 **)(*unaff_RBX + 8))
                         (*(uint8_t8 **)(*unaff_RBX + 8),&stack0x000000b0,4);
     }
-    if (iVar1 != 0) {
+    if (integerValue1 != 0) {
       return;
     }
-    iVar1 = 0;
+    integerValue1 = 0;
     do {
       integerValue2 = ValidateSystemConfiguration();
       if (integerValue2 != 0) {
         return;
       }
-      iVar1 = iVar1 + 1;
-    } while (iVar1 < 6);
+      integerValue1 = integerValue1 + 1;
+    } while (integerValue1 < 6);
     if (*(uint *)(unaff_RBX + 8) < 0x6e) {
       unaff_EBP = 0;
     }
@@ -27193,8 +27193,8 @@ f31e(void)
                     // WARNING: Subroutine does not return
     CleanupResourceBuffer();
   }
-  iVar1 = GetSystemState();
-  if (iVar1 != 0) {
+  integerValue1 = GetSystemState();
+  if (integerValue1 != 0) {
     return;
   }
 LAB_18089f45f:
@@ -27672,10 +27672,10 @@ ulonglong ProcessResourceCertificateRevocation(void)
 fb06(void)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = VerifyResourceSignature();
-  if (iVar1 == 0) {
+  integerValue1 = VerifyResourceSignature();
+  if (integerValue1 == 0) {
                     // WARNING: Subroutine does not return
     CleanupResourceBuffer();
   }
@@ -27699,13 +27699,13 @@ fb2b(void)
 fb40(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   uint8_t1 dataChecksumBuffer [32];
   
-  iVar1 = CalculateDataChecksum(validationContextParam,dataChecksumBuffer,0,0x4f525443,0);
-  if (iVar1 == 0) {
-    iVar1 = AccessResourceData(validationContextParam,objectContextParam + 8);
-    if (iVar1 == 0) {
+  integerValue1 = CalculateDataChecksum(validationContextParam,dataChecksumBuffer,0,0x4f525443,0);
+  if (integerValue1 == 0) {
+    integerValue1 = AccessResourceData(validationContextParam,objectContextParam + 8);
+    if (integerValue1 == 0) {
                     // WARNING: Subroutine does not return
       CleanupResourceBuffer(validationContextParam,dataChecksumBuffer);
     }
@@ -28165,7 +28165,7 @@ void UnlockResourceHandleAndHandleException(uint8_t8 exceptionHandlerType, longl
 void CleanupValidationResultResources(uint8_t8 exceptionHandlerType, longlong exceptionContext)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -28181,9 +28181,9 @@ void CleanupValidationResultResources(uint8_t8 exceptionHandlerType, longlong ex
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -28883,7 +28883,7 @@ void Unwind_1809023e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809023f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -28899,9 +28899,9 @@ void Unwind_1809023f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -29125,7 +29125,7 @@ void Unwind_180902500(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902510(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -29141,9 +29141,9 @@ void Unwind_180902510(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -29378,7 +29378,7 @@ void Unwind_1809025e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902600(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -29394,9 +29394,9 @@ void Unwind_180902600(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -29965,7 +29965,7 @@ void Unwind_180902870(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902880(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -29981,9 +29981,9 @@ void Unwind_180902880(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -30012,7 +30012,7 @@ void Unwind_180902890(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809028a0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -30028,9 +30028,9 @@ void Unwind_1809028a0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -30087,7 +30087,7 @@ void Unwind_1809028e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809028f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -30103,9 +30103,9 @@ void Unwind_1809028f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -30123,7 +30123,7 @@ void Unwind_1809028f0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902900(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -30139,9 +30139,9 @@ void Unwind_180902900(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -30190,7 +30190,7 @@ void Unwind_180902940(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902950(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -30223,9 +30223,9 @@ void Unwind_180902950(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedValue7 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
         *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
         *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-        piVar1 = (int *)(lVar5 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(lVar5 + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -30245,7 +30245,7 @@ void Unwind_180902950(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902960(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -30278,9 +30278,9 @@ void Unwind_180902960(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedValue7 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
         *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
         *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-        piVar1 = (int *)(lVar5 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(lVar5 + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -30348,7 +30348,7 @@ void Unwind_180902a00(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902a40(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -30381,9 +30381,9 @@ void Unwind_180902a40(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedValue7 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
         *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
         *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-        piVar1 = (int *)(lVar5 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(lVar5 + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -30403,7 +30403,7 @@ void Unwind_180902a40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902a50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -30436,9 +30436,9 @@ void Unwind_180902a50(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedValue7 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
         *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
         *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-        piVar1 = (int *)(lVar5 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(lVar5 + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -30603,7 +30603,7 @@ void Unwind_180902aa0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902ab0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -30619,9 +30619,9 @@ void Unwind_180902ab0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -30867,7 +30867,7 @@ void Unwind_180902ba0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902bb0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -30883,9 +30883,9 @@ void Unwind_180902bb0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -30950,7 +30950,7 @@ void Unwind_180902be0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902bf0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -30966,9 +30966,9 @@ void Unwind_180902bf0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -30986,7 +30986,7 @@ void Unwind_180902bf0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902c00(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -31002,9 +31002,9 @@ void Unwind_180902c00(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -31022,7 +31022,7 @@ void Unwind_180902c00(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902c10(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -31038,9 +31038,9 @@ void Unwind_180902c10(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -31067,7 +31067,7 @@ void Unwind_180902c20(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902c30(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -31083,9 +31083,9 @@ void Unwind_180902c30(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -31103,7 +31103,7 @@ void Unwind_180902c30(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902c40(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -31119,9 +31119,9 @@ void Unwind_180902c40(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -31269,7 +31269,7 @@ void Unwind_180902cc0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902cd0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -31285,9 +31285,9 @@ void Unwind_180902cd0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -31305,7 +31305,7 @@ void Unwind_180902cd0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902ce0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -31321,9 +31321,9 @@ void Unwind_180902ce0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -31590,7 +31590,7 @@ void Unwind_180902e40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902e50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -31606,9 +31606,9 @@ void Unwind_180902e50(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -31626,7 +31626,7 @@ void Unwind_180902e50(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902e60(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -31642,9 +31642,9 @@ void Unwind_180902e60(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -31662,7 +31662,7 @@ void Unwind_180902e60(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902e70(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -31678,9 +31678,9 @@ void Unwind_180902e70(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -31698,7 +31698,7 @@ void Unwind_180902e70(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902e80(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   ulonglong *punsignedResult3;
   longlong lVar4;
@@ -31719,9 +31719,9 @@ void Unwind_180902e80(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(lVar4 + 0x20);
         *(uint8_t8 **)(lVar4 + 0x20) = pvalidationResult;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(lVar4 + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -31760,7 +31760,7 @@ void Unwind_180902e90(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902eb0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong *punsignedResult4;
@@ -31781,9 +31781,9 @@ void Unwind_180902eb0(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -31803,7 +31803,7 @@ void Unwind_180902eb0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902ec0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   ulonglong *punsignedResult3;
   longlong lVar4;
@@ -31824,9 +31824,9 @@ void Unwind_180902ec0(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(lVar4 + 0x20);
         *(uint8_t8 **)(lVar4 + 0x20) = pvalidationResult;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(lVar4 + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -31921,7 +31921,7 @@ void Unwind_180902f40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902f60(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -31937,9 +31937,9 @@ void Unwind_180902f60(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -32292,7 +32292,7 @@ void Unwind_180903120(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180903130(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -32308,9 +32308,9 @@ void Unwind_180903130(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -32328,7 +32328,7 @@ void Unwind_180903130(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180903140(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -32344,9 +32344,9 @@ void Unwind_180903140(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -32387,7 +32387,7 @@ void Unwind_180903150(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180903160(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -32403,9 +32403,9 @@ void Unwind_180903160(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -32465,7 +32465,7 @@ void Unwind_180903180(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180903190(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -32481,9 +32481,9 @@ void Unwind_180903190(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -32577,7 +32577,7 @@ void Unwind_1809031e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809031f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -32593,9 +32593,9 @@ void Unwind_1809031f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -32613,7 +32613,7 @@ void Unwind_1809031f0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180903200(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -32629,9 +32629,9 @@ void Unwind_180903200(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -32784,7 +32784,7 @@ void Unwind_180903300(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180903310(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -32800,9 +32800,9 @@ void Unwind_180903310(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -32980,7 +32980,7 @@ void Unwind_180903450(void)
 void Unwind_180903460(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *plVar4;
@@ -33021,9 +33021,9 @@ void Unwind_180903460(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -33059,7 +33059,7 @@ void Unwind_180903490(void)
 void Unwind_1809034b0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -33075,9 +33075,9 @@ void Unwind_1809034b0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -33095,7 +33095,7 @@ void Unwind_1809034b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809034c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -33111,9 +33111,9 @@ void Unwind_1809034c0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -33131,7 +33131,7 @@ void Unwind_1809034c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809034d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -33147,9 +33147,9 @@ void Unwind_1809034d0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -33167,7 +33167,7 @@ void Unwind_1809034d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809034e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -33183,9 +33183,9 @@ void Unwind_1809034e0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -33203,7 +33203,7 @@ void Unwind_1809034e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809034f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -33219,9 +33219,9 @@ void Unwind_1809034f0(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -33241,7 +33241,7 @@ void Unwind_1809034f0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180903500(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -33257,9 +33257,9 @@ void Unwind_180903500(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -33279,7 +33279,7 @@ void Unwind_180903500(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180903510(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *plVar4;
@@ -33322,9 +33322,9 @@ void Unwind_180903510(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -33342,7 +33342,7 @@ void Unwind_180903510(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180903520(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -33358,9 +33358,9 @@ void Unwind_180903520(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -33392,7 +33392,7 @@ void Unwind_180903540(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180903560(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -33408,9 +33408,9 @@ void Unwind_180903560(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -33430,7 +33430,7 @@ void Unwind_180903560(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180903580(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *plVar4;
@@ -33471,9 +33471,9 @@ void Unwind_180903580(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -33518,7 +33518,7 @@ void Unwind_1809035d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809035e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -33534,9 +33534,9 @@ void Unwind_1809035e0(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -33556,7 +33556,7 @@ void Unwind_1809035e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809035f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -33572,9 +33572,9 @@ void Unwind_1809035f0(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -38372,7 +38372,7 @@ void Unwind_1809045f0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904630(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -38388,9 +38388,9 @@ void Unwind_180904630(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -38862,11 +38862,11 @@ void Unwind_1809048c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809048d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x58));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x58));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -38934,7 +38934,7 @@ void Unwind_180904910(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904920(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -38950,9 +38950,9 @@ void Unwind_180904920(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -38970,7 +38970,7 @@ void Unwind_180904920(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904930(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -38986,9 +38986,9 @@ void Unwind_180904930(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -39024,7 +39024,7 @@ void Unwind_180904950(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904960(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -39066,9 +39066,9 @@ void Unwind_180904960(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -39086,7 +39086,7 @@ void Unwind_180904960(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904970(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -39128,9 +39128,9 @@ void Unwind_180904970(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -39148,7 +39148,7 @@ void Unwind_180904970(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904990(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -39190,9 +39190,9 @@ void Unwind_180904990(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -39228,7 +39228,7 @@ void Unwind_1809049c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809049d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -39244,9 +39244,9 @@ void Unwind_1809049d0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -39264,7 +39264,7 @@ void Unwind_1809049d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809049e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -39280,9 +39280,9 @@ void Unwind_1809049e0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -39300,7 +39300,7 @@ void Unwind_1809049e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809049f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -39316,9 +39316,9 @@ void Unwind_1809049f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -39354,7 +39354,7 @@ void Unwind_180904a10(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904a20(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -39396,9 +39396,9 @@ void Unwind_180904a20(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -39416,7 +39416,7 @@ void Unwind_180904a20(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904a30(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -39458,9 +39458,9 @@ void Unwind_180904a30(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -39478,7 +39478,7 @@ void Unwind_180904a30(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904a50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -39520,9 +39520,9 @@ void Unwind_180904a50(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -39549,7 +39549,7 @@ void Unwind_180904a70(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904a80(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -39565,9 +39565,9 @@ void Unwind_180904a80(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -39585,7 +39585,7 @@ void Unwind_180904a80(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904a90(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -39601,9 +39601,9 @@ void Unwind_180904a90(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -40125,7 +40125,7 @@ void Unwind_180904e60(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904e70(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -40141,9 +40141,9 @@ void Unwind_180904e70(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -40239,7 +40239,7 @@ void Unwind_180904f20(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904f30(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -40255,9 +40255,9 @@ void Unwind_180904f30(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -40367,7 +40367,7 @@ void Unwind_180904fa0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180904fb0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -40383,9 +40383,9 @@ void Unwind_180904fb0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -40527,7 +40527,7 @@ void Unwind_180905020(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905030(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -40543,9 +40543,9 @@ void Unwind_180905030(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -40584,7 +40584,7 @@ void Unwind_180905040(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905050(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -40600,9 +40600,9 @@ void Unwind_180905050(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -40941,7 +40941,7 @@ void Unwind_1809051f0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905200(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -40957,9 +40957,9 @@ void Unwind_180905200(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -40998,7 +40998,7 @@ void Unwind_180905210(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905220(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -41014,9 +41014,9 @@ void Unwind_180905220(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -41073,7 +41073,7 @@ void Unwind_180905250(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905260(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -41089,9 +41089,9 @@ void Unwind_180905260(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -41130,7 +41130,7 @@ void Unwind_180905270(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905280(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -41146,9 +41146,9 @@ void Unwind_180905280(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -41273,7 +41273,7 @@ void Unwind_180905370(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905380(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -41289,9 +41289,9 @@ void Unwind_180905380(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -41640,7 +41640,7 @@ void Unwind_180905520(void)
 void Unwind_180905540(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -41656,9 +41656,9 @@ void Unwind_180905540(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -41703,7 +41703,7 @@ void Unwind_180905590(void)
 void Unwind_1809055b0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -41719,9 +41719,9 @@ void Unwind_1809055b0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -41739,7 +41739,7 @@ void Unwind_1809055b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809055c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -41755,9 +41755,9 @@ void Unwind_1809055c0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -41811,11 +41811,11 @@ void Unwind_180905620(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905630(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0xa0));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0xa0));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -42331,7 +42331,7 @@ void Unwind_180905870(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905880(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -42347,9 +42347,9 @@ void Unwind_180905880(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -42577,7 +42577,7 @@ void Unwind_180905930(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905940(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   ulonglong *punsignedResult3;
   longlong lVar4;
@@ -42598,9 +42598,9 @@ void Unwind_180905940(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(lVar4 + 0x20);
         *(uint8_t8 **)(lVar4 + 0x20) = pvalidationResult;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(lVar4 + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -43208,7 +43208,7 @@ void ResetExceptionUnwindPointerTable(uint8_t8 objectContextParam, longlong vali
 void Unwind_180905b90(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *plVar4;
@@ -43249,9 +43249,9 @@ void Unwind_180905b90(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -43458,7 +43458,7 @@ void Unwind_180905c40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905c50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -43502,9 +43502,9 @@ void Unwind_180905c50(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -43630,7 +43630,7 @@ void Unwind_180905c90(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905ca0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *plVar4;
@@ -43671,9 +43671,9 @@ void Unwind_180905ca0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -43760,12 +43760,12 @@ void Unwind_180905d40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905d50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
   if (*(char *)(validationContextParam + 0x50) != '\0') {
-    iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x48));
-    if (iVar1 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar1);
+    integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x48));
+    if (integerValue1 != 0) {
+      __Throw_C_error_std__YAXH_Z(integerValue1);
     }
   }
   return;
@@ -43978,7 +43978,7 @@ void Unwind_180905e90(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905ea0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -44022,9 +44022,9 @@ void Unwind_180905ea0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -44084,7 +44084,7 @@ void Unwind_180905ee0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905ef0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *plVar4;
@@ -44125,9 +44125,9 @@ void Unwind_180905ef0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -44190,7 +44190,7 @@ void Unwind_180905f60(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905f70(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *plVar4;
@@ -44231,9 +44231,9 @@ void Unwind_180905f70(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -44289,7 +44289,7 @@ void Unwind_180905f90(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905fa0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -44333,9 +44333,9 @@ void Unwind_180905fa0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -44374,7 +44374,7 @@ void Unwind_180905fc0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905fe0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *plVar4;
@@ -44415,9 +44415,9 @@ void Unwind_180905fe0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *punsignedResult3 = *(uint8_t8 *)(lVar5 + 0x20);
       *(uint8_t8 **)(lVar5 + 0x20) = punsignedResult3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(lVar5 + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -44612,11 +44612,11 @@ void Unwind_1809060f0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906100(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x70));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x70));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -44679,7 +44679,7 @@ void Unwind_180906140(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906160(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -44695,9 +44695,9 @@ void Unwind_180906160(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -44715,7 +44715,7 @@ void Unwind_180906160(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906180(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -44731,9 +44731,9 @@ void Unwind_180906180(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -44751,7 +44751,7 @@ void Unwind_180906180(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906190(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -44767,9 +44767,9 @@ void Unwind_180906190(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -44843,7 +44843,7 @@ void Unwind_1809061d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809061f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -44859,9 +44859,9 @@ void Unwind_1809061f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -45089,7 +45089,7 @@ void Unwind_180906460(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906470(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -45105,9 +45105,9 @@ void Unwind_180906470(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -46456,7 +46456,7 @@ void Unwind_180906b40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906b50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -46472,9 +46472,9 @@ void Unwind_180906b50(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -46581,7 +46581,7 @@ void Unwind_180906ba0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906bb0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -46597,9 +46597,9 @@ void Unwind_180906bb0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -46617,7 +46617,7 @@ void Unwind_180906bb0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906bc0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -46633,9 +46633,9 @@ void Unwind_180906bc0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -46734,7 +46734,7 @@ void Unwind_180906c40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906c50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -46750,9 +46750,9 @@ void Unwind_180906c50(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -46812,7 +46812,7 @@ void Unwind_180906c70(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906c80(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -46828,9 +46828,9 @@ void Unwind_180906c80(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -46848,7 +46848,7 @@ void Unwind_180906c80(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906c90(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -46864,9 +46864,9 @@ void Unwind_180906c90(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -46884,7 +46884,7 @@ void Unwind_180906c90(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906ca0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -46900,9 +46900,9 @@ void Unwind_180906ca0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -46941,7 +46941,7 @@ void Unwind_180906cb0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906cc0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -46957,9 +46957,9 @@ void Unwind_180906cc0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -46977,7 +46977,7 @@ void Unwind_180906cc0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906cd0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -46993,9 +46993,9 @@ void Unwind_180906cd0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -47034,7 +47034,7 @@ void Unwind_180906ce0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906cf0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -47050,9 +47050,9 @@ void Unwind_180906cf0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -47070,7 +47070,7 @@ void Unwind_180906cf0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906d00(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -47086,9 +47086,9 @@ void Unwind_180906d00(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -47106,7 +47106,7 @@ void Unwind_180906d00(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906d10(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -47122,9 +47122,9 @@ void Unwind_180906d10(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -47163,7 +47163,7 @@ void Unwind_180906d20(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906d30(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -47179,9 +47179,9 @@ void Unwind_180906d30(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -47199,7 +47199,7 @@ void Unwind_180906d30(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906d40(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -47215,9 +47215,9 @@ void Unwind_180906d40(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -47235,7 +47235,7 @@ void Unwind_180906d40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906d50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -47251,9 +47251,9 @@ void Unwind_180906d50(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -47271,7 +47271,7 @@ void Unwind_180906d50(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906d60(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -47287,9 +47287,9 @@ void Unwind_180906d60(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -47307,7 +47307,7 @@ void Unwind_180906d60(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906d70(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -47323,9 +47323,9 @@ void Unwind_180906d70(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -47343,7 +47343,7 @@ void Unwind_180906d70(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906d80(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -47359,9 +47359,9 @@ void Unwind_180906d80(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -47379,7 +47379,7 @@ void Unwind_180906d80(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906d90(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -47395,9 +47395,9 @@ void Unwind_180906d90(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -47415,7 +47415,7 @@ void Unwind_180906d90(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906da0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -47431,9 +47431,9 @@ void Unwind_180906da0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -47472,7 +47472,7 @@ void Unwind_180906db0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906dc0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -47488,9 +47488,9 @@ void Unwind_180906dc0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -48515,7 +48515,7 @@ void Unwind_180907340(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907350(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -48531,9 +48531,9 @@ void Unwind_180907350(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -48551,7 +48551,7 @@ void Unwind_180907350(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907360(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -48567,9 +48567,9 @@ void Unwind_180907360(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -48587,7 +48587,7 @@ void Unwind_180907360(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907370(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -48603,9 +48603,9 @@ void Unwind_180907370(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -48804,7 +48804,7 @@ void Unwind_1809074a0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809074d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -48820,9 +48820,9 @@ void Unwind_1809074d0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -48840,7 +48840,7 @@ void Unwind_1809074d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809074e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -48856,9 +48856,9 @@ void Unwind_1809074e0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -48876,7 +48876,7 @@ void Unwind_1809074e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809074f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -48892,9 +48892,9 @@ void Unwind_1809074f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -49559,7 +49559,7 @@ void Unwind_180907860(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907880(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -49575,9 +49575,9 @@ void Unwind_180907880(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -49885,7 +49885,7 @@ void Unwind_1809079c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809079d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -49906,9 +49906,9 @@ void Unwind_1809079d0(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -49928,7 +49928,7 @@ void Unwind_1809079d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809079e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -49944,9 +49944,9 @@ void Unwind_1809079e0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -49982,7 +49982,7 @@ void Unwind_180907a00(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907a10(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -49998,9 +49998,9 @@ void Unwind_180907a10(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -50061,7 +50061,7 @@ void Unwind_180907a40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907a50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -50077,9 +50077,9 @@ void Unwind_180907a50(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -50097,7 +50097,7 @@ void Unwind_180907a50(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907a60(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -50113,9 +50113,9 @@ void Unwind_180907a60(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -50617,9 +50617,9 @@ void UnwindResourceValidationAndCleanup(uint8_t8 exceptionContext, longlong syst
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -50637,7 +50637,7 @@ void UnwindResourceValidationAndCleanup(uint8_t8 exceptionContext, longlong syst
 void Unwind_180907c80(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -50653,9 +50653,9 @@ void Unwind_180907c80(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -50818,7 +50818,7 @@ void Unwind_180907d20(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907d30(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -50834,9 +50834,9 @@ void Unwind_180907d30(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -51001,7 +51001,7 @@ void Unwind_180907e80(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907e90(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -51017,9 +51017,9 @@ void Unwind_180907e90(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -51037,7 +51037,7 @@ void Unwind_180907e90(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907ea0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -51053,9 +51053,9 @@ void Unwind_180907ea0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -51073,7 +51073,7 @@ void Unwind_180907ea0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907eb0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -51089,9 +51089,9 @@ void Unwind_180907eb0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -51109,7 +51109,7 @@ void Unwind_180907eb0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907ec0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -51125,9 +51125,9 @@ void Unwind_180907ec0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -51145,7 +51145,7 @@ void Unwind_180907ec0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907ed0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -51161,9 +51161,9 @@ void Unwind_180907ed0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -51372,7 +51372,7 @@ void Unwind_180907ff0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908000(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -51388,9 +51388,9 @@ void Unwind_180908000(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -51440,7 +51440,7 @@ void Unwind_180908020(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908030(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -51456,9 +51456,9 @@ void Unwind_180908030(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -52022,11 +52022,11 @@ void Unwind_1809083a0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809083e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x98));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x98));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -52167,11 +52167,11 @@ void Unwind_1809085b0(void)
 void Unwind_1809085c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x1d0));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x1d0));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -52213,7 +52213,7 @@ void Unwind_180908630(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908650(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -52229,9 +52229,9 @@ void Unwind_180908650(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -52468,7 +52468,7 @@ void Unwind_1809087b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809087c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -52484,9 +52484,9 @@ void Unwind_1809087c0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -52578,7 +52578,7 @@ void Unwind_180908820(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908830(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -52594,9 +52594,9 @@ void Unwind_180908830(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -52614,7 +52614,7 @@ void Unwind_180908830(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908840(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -52630,9 +52630,9 @@ void Unwind_180908840(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -52682,7 +52682,7 @@ void Unwind_180908860(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908870(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -52698,9 +52698,9 @@ void Unwind_180908870(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -52718,11 +52718,11 @@ void Unwind_180908870(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908880(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0xc0));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0xc0));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -52732,11 +52732,11 @@ void Unwind_180908880(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908890(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 200));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 200));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -52937,12 +52937,12 @@ void Unwind_1809089d0(void)
 void Unwind_1809089e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
   GlobalUnwindContext = *(uint8_t8 *)(validationContextParam + 0x70);
-  iVar1 = _Mtx_unlock(0x180c91970);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(0x180c91970);
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -52961,11 +52961,11 @@ void Unwind_1809089e0(uint8_t8 objectContextParam,longlong validationContextPara
 void UnwindMutexLockA(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x68));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x68));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -52984,11 +52984,11 @@ void UnwindMutexLockA(uint8_t8 objectContextParam,longlong validationContextPara
 void UnwindMutexLockB(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x148));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x148));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -53007,11 +53007,11 @@ void UnwindMutexLockB(uint8_t8 objectContextParam,longlong validationContextPara
 void UnwindMutexLockC(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x1d8));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x1d8));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -53021,7 +53021,7 @@ void UnwindMutexLockC(uint8_t8 objectContextParam,longlong validationContextPara
 void UnwindMutexLockD(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -53037,9 +53037,9 @@ void UnwindMutexLockD(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -53057,7 +53057,7 @@ void UnwindMutexLockD(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908a30(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -53073,9 +53073,9 @@ void Unwind_180908a30(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -53093,7 +53093,7 @@ void Unwind_180908a30(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908a40(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -53109,9 +53109,9 @@ void Unwind_180908a40(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -53129,7 +53129,7 @@ void Unwind_180908a40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908a50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -53145,9 +53145,9 @@ void Unwind_180908a50(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -53165,7 +53165,7 @@ void Unwind_180908a50(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908a60(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -53181,9 +53181,9 @@ void Unwind_180908a60(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -53201,7 +53201,7 @@ void Unwind_180908a60(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908a70(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -53217,9 +53217,9 @@ void Unwind_180908a70(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -53237,7 +53237,7 @@ void Unwind_180908a70(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908a80(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -53253,9 +53253,9 @@ void Unwind_180908a80(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -53273,7 +53273,7 @@ void Unwind_180908a80(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908a90(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -53289,9 +53289,9 @@ void Unwind_180908a90(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -53318,7 +53318,7 @@ void Unwind_180908aa0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908ab0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -53334,9 +53334,9 @@ void Unwind_180908ab0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -53354,7 +53354,7 @@ void Unwind_180908ab0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908ac0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -53370,9 +53370,9 @@ void Unwind_180908ac0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -53390,7 +53390,7 @@ void Unwind_180908ac0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908ad0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -53406,9 +53406,9 @@ void Unwind_180908ad0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -53463,7 +53463,7 @@ void Unwind_180908b00(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908b10(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -53479,9 +53479,9 @@ void Unwind_180908b10(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -53966,7 +53966,7 @@ void Unwind_180908dc0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908dd0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -53982,9 +53982,9 @@ void Unwind_180908dd0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -54011,7 +54011,7 @@ void Unwind_180908de0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908df0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -54027,9 +54027,9 @@ void Unwind_180908df0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -54047,7 +54047,7 @@ void Unwind_180908df0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908e00(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -54063,9 +54063,9 @@ void Unwind_180908e00(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -54111,7 +54111,7 @@ void Unwind_180908e40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908e50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -54127,9 +54127,9 @@ void Unwind_180908e50(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -54147,7 +54147,7 @@ void Unwind_180908e50(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908e60(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -54163,9 +54163,9 @@ void Unwind_180908e60(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -54183,7 +54183,7 @@ void Unwind_180908e60(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908e70(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -54199,9 +54199,9 @@ void Unwind_180908e70(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -54567,7 +54567,7 @@ void Unwind_180909080(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909090(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -54583,9 +54583,9 @@ void Unwind_180909090(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -54658,7 +54658,7 @@ void Unwind_1809090a0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809090b0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -54674,9 +54674,9 @@ void Unwind_1809090b0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -54890,7 +54890,7 @@ void Unwind_180909270(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909290(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong *punsignedResult4;
@@ -54911,9 +54911,9 @@ void Unwind_180909290(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -54947,7 +54947,7 @@ void Unwind_1809092b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809092d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   ulonglong *punsignedResult3;
   longlong lVar4;
@@ -54968,9 +54968,9 @@ void Unwind_1809092d0(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(lVar4 + 0x20);
         *(uint8_t8 **)(lVar4 + 0x20) = pvalidationResult;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(lVar4 + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -54990,7 +54990,7 @@ void Unwind_1809092d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809092e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   ulonglong *punsignedResult3;
   longlong lVar4;
@@ -55011,9 +55011,9 @@ void Unwind_1809092e0(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedValue6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(lVar4 + 0x20);
         *(uint8_t8 **)(lVar4 + 0x20) = pvalidationResult;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(lVar4 + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -55871,7 +55871,7 @@ void Unwind_180909650(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909660(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -55887,9 +55887,9 @@ void Unwind_180909660(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -55907,7 +55907,7 @@ void Unwind_180909660(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909670(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -55923,9 +55923,9 @@ void Unwind_180909670(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -55943,7 +55943,7 @@ void Unwind_180909670(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909680(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -55959,9 +55959,9 @@ void Unwind_180909680(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -55979,7 +55979,7 @@ void Unwind_180909680(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909690(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -55995,9 +55995,9 @@ void Unwind_180909690(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -56015,7 +56015,7 @@ void Unwind_180909690(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809096a0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -56031,9 +56031,9 @@ void Unwind_1809096a0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -56475,7 +56475,7 @@ void Unwind_180909850(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909860(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -56491,9 +56491,9 @@ void Unwind_180909860(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -56607,11 +56607,11 @@ void Unwind_180909960(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909970(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0xe8));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0xe8));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -56682,7 +56682,7 @@ void Unwind_1809099d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909a00(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -56698,9 +56698,9 @@ void Unwind_180909a00(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -56736,11 +56736,11 @@ void Unwind_180909a20(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909a30(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0xd8));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0xd8));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -56750,7 +56750,7 @@ void Unwind_180909a30(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909a40(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -56766,9 +56766,9 @@ void Unwind_180909a40(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -56786,7 +56786,7 @@ void Unwind_180909a40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909a50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -56802,9 +56802,9 @@ void Unwind_180909a50(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -56900,11 +56900,11 @@ void Unwind_180909af0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909b20(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x38));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x38));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -57022,11 +57022,11 @@ void Unwind_180909bb0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909be0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x30));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x30));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -57048,7 +57048,7 @@ void Unwind_180909bf0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909c20(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -57064,9 +57064,9 @@ void Unwind_180909c20(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -57086,12 +57086,12 @@ void Unwind_180909c20(uint8_t8 objectContextParam,longlong validationContextPara
 void UnwindThreadContextA(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   int integerValue2;
   
-  iVar1 = *(int *)(**(longlong **)(GlobalThreadManager + 8) + 0x48);
+  integerValue1 = *(int *)(**(longlong **)(GlobalThreadManager + 8) + 0x48);
   integerValue2 = _Thrd_id();
-  if (integerValue2 != iVar1) {
+  if (integerValue2 != integerValue1) {
     GlobalThreadContext = *(uint8_t4 *)(validationContextParam + 0x90);
   }
   return;
@@ -57156,12 +57156,12 @@ void Unwind_180909c90(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909ca0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
   if (*(char *)(validationContextParam + 0x40) != '\0') {
-    iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x38));
-    if (iVar1 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar1);
+    integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x38));
+    if (integerValue1 != 0) {
+      __Throw_C_error_std__YAXH_Z(integerValue1);
     }
   }
   return;
@@ -57442,7 +57442,7 @@ void Unwind_180909f40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909f60(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -57463,9 +57463,9 @@ void Unwind_180909f60(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -58062,7 +58062,7 @@ void Unwind_18090a430(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a450(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -58083,9 +58083,9 @@ void Unwind_18090a450(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -58268,7 +58268,7 @@ void Unwind_18090a5b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a5c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -58284,9 +58284,9 @@ void Unwind_18090a5c0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -58304,7 +58304,7 @@ void Unwind_18090a5c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a5d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -58320,9 +58320,9 @@ void Unwind_18090a5d0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -58400,11 +58400,11 @@ void Unwind_18090a650(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a660(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x78));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x78));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -58512,7 +58512,7 @@ void Unwind_18090a750(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a780(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -58528,9 +58528,9 @@ void Unwind_18090a780(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -58548,11 +58548,11 @@ void Unwind_18090a780(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a790(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x90));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x90));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -58562,7 +58562,7 @@ void Unwind_18090a790(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a7a0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -58578,9 +58578,9 @@ void Unwind_18090a7a0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -58741,7 +58741,7 @@ void Unwind_18090a870(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a880(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -58757,9 +58757,9 @@ void Unwind_18090a880(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -58777,7 +58777,7 @@ void Unwind_18090a880(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a890(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -58793,9 +58793,9 @@ void Unwind_18090a890(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -59001,7 +59001,7 @@ void Unwind_18090a920(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a930(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -59017,9 +59017,9 @@ void Unwind_18090a930(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -59039,7 +59039,7 @@ void Unwind_18090a930(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a940(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -59055,9 +59055,9 @@ void Unwind_18090a940(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -59077,7 +59077,7 @@ void Unwind_18090a940(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a950(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -59093,9 +59093,9 @@ void Unwind_18090a950(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -59115,7 +59115,7 @@ void Unwind_18090a950(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a960(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -59131,9 +59131,9 @@ void Unwind_18090a960(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -59153,7 +59153,7 @@ void Unwind_18090a960(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a970(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -59169,9 +59169,9 @@ void Unwind_18090a970(uint8_t8 objectContextParam,longlong validationContextPara
       if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
         *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
         *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-        piVar1 = (int *)(resourceIndex + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        pintegerValue1 = (int *)(resourceIndex + 0x18);
+        *pintegerValue1 = *pintegerValue1 + -1;
+        if (*pintegerValue1 == 0) {
           SystemCleanupHandler();
           return;
         }
@@ -62186,7 +62186,7 @@ void Unwind_18090c130(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090c140(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -62202,9 +62202,9 @@ void Unwind_18090c140(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -62331,7 +62331,7 @@ void Unwind_18090c1b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090c1c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -62347,9 +62347,9 @@ void Unwind_18090c1c0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -62486,7 +62486,7 @@ void Unwind_18090c270(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090c280(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -62502,9 +62502,9 @@ void Unwind_18090c280(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -62558,7 +62558,7 @@ void Unwind_18090c2c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090c2d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -62574,9 +62574,9 @@ void Unwind_18090c2d0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -62594,7 +62594,7 @@ void Unwind_18090c2d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090c2e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -62610,9 +62610,9 @@ void Unwind_18090c2e0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -62742,7 +62742,7 @@ void Unwind_18090c390(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090c3b0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -62758,9 +62758,9 @@ void Unwind_18090c3b0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -62801,7 +62801,7 @@ void Unwind_18090c3e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090c400(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -62817,9 +62817,9 @@ void Unwind_18090c400(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -63099,7 +63099,7 @@ void Unwind_18090c520(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090c530(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -63115,9 +63115,9 @@ void Unwind_18090c530(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -63520,7 +63520,7 @@ void Unwind_18090c600(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090c610(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -63536,9 +63536,9 @@ void Unwind_18090c610(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -63556,7 +63556,7 @@ void Unwind_18090c610(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090c620(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -63572,9 +63572,9 @@ void Unwind_18090c620(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -65638,12 +65638,12 @@ void Unwind_18090cfc0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090cfd0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
   GlobalUnwindContext = *(uint8_t8 *)(validationContextParam + 0x28);
-  iVar1 = _Mtx_unlock(0x180c91970);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(0x180c91970);
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -65655,12 +65655,12 @@ void Unwind_18090cfd0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090cfe0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
   GlobalUnwindContext = *(uint8_t8 *)(validationContextParam + 0x90);
-  iVar1 = _Mtx_unlock(0x180c91970);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(0x180c91970);
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -65681,7 +65681,7 @@ void Unwind_18090cff0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d000(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -65697,9 +65697,9 @@ void Unwind_18090d000(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -65717,7 +65717,7 @@ void Unwind_18090d000(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d010(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -65733,9 +65733,9 @@ void Unwind_18090d010(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -65753,7 +65753,7 @@ void Unwind_18090d010(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d020(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -65769,9 +65769,9 @@ void Unwind_18090d020(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -65789,7 +65789,7 @@ void Unwind_18090d020(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d030(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -65805,9 +65805,9 @@ void Unwind_18090d030(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -65825,7 +65825,7 @@ void Unwind_18090d030(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d040(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -65841,9 +65841,9 @@ void Unwind_18090d040(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -65861,7 +65861,7 @@ void Unwind_18090d040(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d050(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -65877,9 +65877,9 @@ void Unwind_18090d050(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -65897,7 +65897,7 @@ void Unwind_18090d050(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d060(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -65913,9 +65913,9 @@ void Unwind_18090d060(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -65933,7 +65933,7 @@ void Unwind_18090d060(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d070(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -65949,9 +65949,9 @@ void Unwind_18090d070(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -65969,7 +65969,7 @@ void Unwind_18090d070(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d080(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -65985,9 +65985,9 @@ void Unwind_18090d080(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66005,7 +66005,7 @@ void Unwind_18090d080(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d090(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66021,9 +66021,9 @@ void Unwind_18090d090(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66041,7 +66041,7 @@ void Unwind_18090d090(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d0a0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66057,9 +66057,9 @@ void Unwind_18090d0a0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66077,7 +66077,7 @@ void Unwind_18090d0a0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d0b0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66093,9 +66093,9 @@ void Unwind_18090d0b0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66113,7 +66113,7 @@ void Unwind_18090d0b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d0c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66129,9 +66129,9 @@ void Unwind_18090d0c0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66149,7 +66149,7 @@ void Unwind_18090d0c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d0d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66165,9 +66165,9 @@ void Unwind_18090d0d0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66185,7 +66185,7 @@ void Unwind_18090d0d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d0e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66201,9 +66201,9 @@ void Unwind_18090d0e0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66221,7 +66221,7 @@ void Unwind_18090d0e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d0f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66237,9 +66237,9 @@ void Unwind_18090d0f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66257,7 +66257,7 @@ void Unwind_18090d0f0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d100(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66273,9 +66273,9 @@ void Unwind_18090d100(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66293,7 +66293,7 @@ void Unwind_18090d100(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d110(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66309,9 +66309,9 @@ void Unwind_18090d110(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66329,7 +66329,7 @@ void Unwind_18090d110(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d120(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66345,9 +66345,9 @@ void Unwind_18090d120(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66365,7 +66365,7 @@ void Unwind_18090d120(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d130(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66381,9 +66381,9 @@ void Unwind_18090d130(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66401,7 +66401,7 @@ void Unwind_18090d130(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d140(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66417,9 +66417,9 @@ void Unwind_18090d140(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66437,7 +66437,7 @@ void Unwind_18090d140(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d150(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66453,9 +66453,9 @@ void Unwind_18090d150(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66473,7 +66473,7 @@ void Unwind_18090d150(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d160(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66489,9 +66489,9 @@ void Unwind_18090d160(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66509,7 +66509,7 @@ void Unwind_18090d160(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d170(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66525,9 +66525,9 @@ void Unwind_18090d170(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66545,7 +66545,7 @@ void Unwind_18090d170(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d180(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66561,9 +66561,9 @@ void Unwind_18090d180(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66592,7 +66592,7 @@ void Unwind_18090d190(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d1a0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66608,9 +66608,9 @@ void Unwind_18090d1a0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66628,7 +66628,7 @@ void Unwind_18090d1a0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d1b0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66644,9 +66644,9 @@ void Unwind_18090d1b0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66664,7 +66664,7 @@ void Unwind_18090d1b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d1c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66680,9 +66680,9 @@ void Unwind_18090d1c0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66700,7 +66700,7 @@ void Unwind_18090d1c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d1d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66716,9 +66716,9 @@ void Unwind_18090d1d0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66736,7 +66736,7 @@ void Unwind_18090d1d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d1e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66752,9 +66752,9 @@ void Unwind_18090d1e0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66772,7 +66772,7 @@ void Unwind_18090d1e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d1f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66788,9 +66788,9 @@ void Unwind_18090d1f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66808,7 +66808,7 @@ void Unwind_18090d1f0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d200(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66824,9 +66824,9 @@ void Unwind_18090d200(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66844,7 +66844,7 @@ void Unwind_18090d200(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d210(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66860,9 +66860,9 @@ void Unwind_18090d210(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66880,7 +66880,7 @@ void Unwind_18090d210(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d220(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66896,9 +66896,9 @@ void Unwind_18090d220(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66916,7 +66916,7 @@ void Unwind_18090d220(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d230(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66932,9 +66932,9 @@ void Unwind_18090d230(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66952,7 +66952,7 @@ void Unwind_18090d230(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d240(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -66968,9 +66968,9 @@ void Unwind_18090d240(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -66988,7 +66988,7 @@ void Unwind_18090d240(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d250(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67004,9 +67004,9 @@ void Unwind_18090d250(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67024,7 +67024,7 @@ void Unwind_18090d250(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d260(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67040,9 +67040,9 @@ void Unwind_18090d260(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67060,7 +67060,7 @@ void Unwind_18090d260(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d270(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67076,9 +67076,9 @@ void Unwind_18090d270(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67096,7 +67096,7 @@ void Unwind_18090d270(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d280(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67112,9 +67112,9 @@ void Unwind_18090d280(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67132,7 +67132,7 @@ void Unwind_18090d280(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d290(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67148,9 +67148,9 @@ void Unwind_18090d290(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67168,7 +67168,7 @@ void Unwind_18090d290(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d2a0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67184,9 +67184,9 @@ void Unwind_18090d2a0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67204,7 +67204,7 @@ void Unwind_18090d2a0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d2b0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67220,9 +67220,9 @@ void Unwind_18090d2b0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67240,7 +67240,7 @@ void Unwind_18090d2b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d2c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67256,9 +67256,9 @@ void Unwind_18090d2c0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67276,7 +67276,7 @@ void Unwind_18090d2c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d2d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67292,9 +67292,9 @@ void Unwind_18090d2d0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67312,7 +67312,7 @@ void Unwind_18090d2d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d2e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67328,9 +67328,9 @@ void Unwind_18090d2e0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67348,7 +67348,7 @@ void Unwind_18090d2e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d2f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67364,9 +67364,9 @@ void Unwind_18090d2f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67384,7 +67384,7 @@ void Unwind_18090d2f0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d300(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67400,9 +67400,9 @@ void Unwind_18090d300(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67420,7 +67420,7 @@ void Unwind_18090d300(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d310(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67436,9 +67436,9 @@ void Unwind_18090d310(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67512,7 +67512,7 @@ void Unwind_18090d350(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d360(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67528,9 +67528,9 @@ void Unwind_18090d360(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67548,7 +67548,7 @@ void Unwind_18090d360(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d370(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67564,9 +67564,9 @@ void Unwind_18090d370(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67584,7 +67584,7 @@ void Unwind_18090d370(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d380(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67600,9 +67600,9 @@ void Unwind_18090d380(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67620,7 +67620,7 @@ void Unwind_18090d380(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d390(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67636,9 +67636,9 @@ void Unwind_18090d390(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67656,7 +67656,7 @@ void Unwind_18090d390(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d3a0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67672,9 +67672,9 @@ void Unwind_18090d3a0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67692,7 +67692,7 @@ void Unwind_18090d3a0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d3b0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67708,9 +67708,9 @@ void Unwind_18090d3b0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67728,7 +67728,7 @@ void Unwind_18090d3b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d3c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67744,9 +67744,9 @@ void Unwind_18090d3c0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67764,7 +67764,7 @@ void Unwind_18090d3c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d3d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67780,9 +67780,9 @@ void Unwind_18090d3d0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67800,7 +67800,7 @@ void Unwind_18090d3d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d3e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67816,9 +67816,9 @@ void Unwind_18090d3e0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67836,7 +67836,7 @@ void Unwind_18090d3e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d3f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67852,9 +67852,9 @@ void Unwind_18090d3f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67872,7 +67872,7 @@ void Unwind_18090d3f0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d400(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67888,9 +67888,9 @@ void Unwind_18090d400(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67908,7 +67908,7 @@ void Unwind_18090d400(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d410(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67924,9 +67924,9 @@ void Unwind_18090d410(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67944,7 +67944,7 @@ void Unwind_18090d410(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d420(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67960,9 +67960,9 @@ void Unwind_18090d420(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -67980,7 +67980,7 @@ void Unwind_18090d420(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d430(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -67996,9 +67996,9 @@ void Unwind_18090d430(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -68016,7 +68016,7 @@ void Unwind_18090d430(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d440(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -68032,9 +68032,9 @@ void Unwind_18090d440(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -68052,7 +68052,7 @@ void Unwind_18090d440(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d450(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -68068,9 +68068,9 @@ void Unwind_18090d450(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -68088,7 +68088,7 @@ void Unwind_18090d450(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d460(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -68104,9 +68104,9 @@ void Unwind_18090d460(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -68124,7 +68124,7 @@ void Unwind_18090d460(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d470(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -68140,9 +68140,9 @@ void Unwind_18090d470(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -68160,7 +68160,7 @@ void Unwind_18090d470(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d480(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -68176,9 +68176,9 @@ void Unwind_18090d480(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -68196,7 +68196,7 @@ void Unwind_18090d480(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d490(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -68212,9 +68212,9 @@ void Unwind_18090d490(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -68232,7 +68232,7 @@ void Unwind_18090d490(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d4a0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -68248,9 +68248,9 @@ void Unwind_18090d4a0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -68268,7 +68268,7 @@ void Unwind_18090d4a0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d4b0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -68284,9 +68284,9 @@ void Unwind_18090d4b0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -68304,7 +68304,7 @@ void Unwind_18090d4b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d4c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -68320,9 +68320,9 @@ void Unwind_18090d4c0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -68340,7 +68340,7 @@ void Unwind_18090d4c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d4d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -68356,9 +68356,9 @@ void Unwind_18090d4d0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -68376,7 +68376,7 @@ void Unwind_18090d4d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d4e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -68392,9 +68392,9 @@ void Unwind_18090d4e0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -68412,7 +68412,7 @@ void Unwind_18090d4e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d4f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -68428,9 +68428,9 @@ void Unwind_18090d4f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -68891,7 +68891,7 @@ void Unwind_18090d7c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090d7e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -68922,9 +68922,9 @@ void Unwind_18090d7e0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -69429,7 +69429,7 @@ void Unwind_18090de30(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090de40(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -69445,9 +69445,9 @@ void Unwind_18090de40(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -69665,7 +69665,7 @@ void Unwind_18090dfe0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090e000(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -69696,9 +69696,9 @@ void Unwind_18090e000(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -69991,7 +69991,7 @@ void Unwind_18090e3a0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090e3c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -70007,9 +70007,9 @@ void Unwind_18090e3c0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -70027,7 +70027,7 @@ void Unwind_18090e3c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090e3d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -70043,9 +70043,9 @@ void Unwind_18090e3d0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -72025,7 +72025,7 @@ void Unwind_18090eea0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090eeb0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -72041,9 +72041,9 @@ void Unwind_18090eeb0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -72070,7 +72070,7 @@ void Unwind_18090eec0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090eee0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -72086,9 +72086,9 @@ void Unwind_18090eee0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -72120,7 +72120,7 @@ void Unwind_18090ef00(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090ef20(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -72136,9 +72136,9 @@ void Unwind_18090ef20(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -72170,7 +72170,7 @@ void Unwind_18090ef40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090ef50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -72186,9 +72186,9 @@ void Unwind_18090ef50(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -72206,7 +72206,7 @@ void Unwind_18090ef50(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090ef60(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -72222,9 +72222,9 @@ void Unwind_18090ef60(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -72840,7 +72840,7 @@ void Unwind_18090f1a0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090f1b0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -72856,9 +72856,9 @@ void Unwind_18090f1b0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -72876,7 +72876,7 @@ void Unwind_18090f1b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090f1d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -72892,9 +72892,9 @@ void Unwind_18090f1d0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -72934,7 +72934,7 @@ void Unwind_18090f200(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090f210(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -72950,9 +72950,9 @@ void Unwind_18090f210(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -72970,7 +72970,7 @@ void Unwind_18090f210(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090f230(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -72986,9 +72986,9 @@ void Unwind_18090f230(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -73006,7 +73006,7 @@ void Unwind_18090f230(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090f250(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -73022,9 +73022,9 @@ void Unwind_18090f250(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -73042,7 +73042,7 @@ void Unwind_18090f250(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090f270(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -73058,9 +73058,9 @@ void Unwind_18090f270(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -73078,7 +73078,7 @@ void Unwind_18090f270(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090f290(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -73094,9 +73094,9 @@ void Unwind_18090f290(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -73114,7 +73114,7 @@ void Unwind_18090f290(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090f2b0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -73130,9 +73130,9 @@ void Unwind_18090f2b0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -73171,7 +73171,7 @@ void Unwind_18090f2d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090f2f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -73187,9 +73187,9 @@ void Unwind_18090f2f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -73903,11 +73903,11 @@ void Unwind_18090f870(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090f880(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int iVar1;
+  int integerValue1;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x140));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x140));
+  if (integerValue1 != 0) {
+    __Throw_C_error_std__YAXH_Z(integerValue1);
   }
   return;
 }
@@ -74969,7 +74969,7 @@ void Unwind_18090ff80(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090ff90(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -74985,9 +74985,9 @@ void Unwind_18090ff90(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -75837,7 +75837,7 @@ void Unwind_180910310(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180910320(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -75853,9 +75853,9 @@ void Unwind_180910320(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -75894,7 +75894,7 @@ void Unwind_180910330(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180910340(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -75910,9 +75910,9 @@ void Unwind_180910340(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -75930,7 +75930,7 @@ void Unwind_180910340(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180910350(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -75946,9 +75946,9 @@ void Unwind_180910350(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -76005,7 +76005,7 @@ void Unwind_1809103b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809103c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -76021,9 +76021,9 @@ void Unwind_1809103c0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -76210,7 +76210,7 @@ void Unwind_1809104d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809104f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -76226,9 +76226,9 @@ void Unwind_1809104f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -76246,7 +76246,7 @@ void Unwind_1809104f0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180910510(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -76262,9 +76262,9 @@ void Unwind_180910510(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -76431,7 +76431,7 @@ void Unwind_180910620(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180910640(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -76447,9 +76447,9 @@ void Unwind_180910640(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -76467,7 +76467,7 @@ void Unwind_180910640(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180910660(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -76483,9 +76483,9 @@ void Unwind_180910660(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -76565,7 +76565,7 @@ void Unwind_1809106d0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809106e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -76581,9 +76581,9 @@ void Unwind_1809106e0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -76625,7 +76625,7 @@ void Unwind_180910720(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180910750(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -76641,9 +76641,9 @@ void Unwind_180910750(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -76683,7 +76683,7 @@ void Unwind_180910760(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180910770(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -76699,9 +76699,9 @@ void Unwind_180910770(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -76719,7 +76719,7 @@ void Unwind_180910770(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180910780(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -76735,9 +76735,9 @@ void Unwind_180910780(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -76755,7 +76755,7 @@ void Unwind_180910780(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180910790(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -76771,9 +76771,9 @@ void Unwind_180910790(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -80909,7 +80909,7 @@ void Unwind_1809118b0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809118c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -80925,9 +80925,9 @@ void Unwind_1809118c0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -80975,7 +80975,7 @@ void Unwind_1809118e0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809118f0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -80991,9 +80991,9 @@ void Unwind_1809118f0(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -81116,7 +81116,7 @@ void Unwind_180911940(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180911950(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -81132,9 +81132,9 @@ void Unwind_180911950(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -81786,7 +81786,7 @@ void Unwind_180911dc0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180911de0(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   int integerValue2;
   longlong resourceIndex;
   longlong lVar4;
@@ -81796,9 +81796,9 @@ void Unwind_180911de0(uint8_t8 objectContextParam,longlong validationContextPara
   
   lVar4 = *(longlong *)(validationContextParam + 0x70);
   unsignedValue5 = 0;
-  piVar1 = (int *)(lVar4 + 0x1e70);
+  pintegerValue1 = (int *)(lVar4 + 0x1e70);
   unsignedValue7 = unsignedValue5;
-  if (0 < *piVar1) {
+  if (0 < *pintegerValue1) {
     do {
       integerValue2 = *(int *)(*(longlong *)(lVar4 + 0x1e78) + 8 + unsignedValue5);
       if ((integerValue2 != -1) &&
@@ -81813,12 +81813,12 @@ void Unwind_180911de0(uint8_t8 objectContextParam,longlong validationContextPara
       unsignedValue6 = (int)unsignedValue7 + 1;
       unsignedValue5 = unsignedValue5 + 0x10;
       unsignedValue7 = (ulonglong)unsignedValue6;
-    } while ((int)unsignedValue6 < *piVar1);
+    } while ((int)unsignedValue6 < *pintegerValue1);
   }
   resourceIndex = *(longlong *)(lVar4 + 0x1e78);
   if (resourceIndex != 0) {
-    piVar1[0] = 0;
-    piVar1[1] = 0;
+    pintegerValue1[0] = 0;
+    pintegerValue1[1] = 0;
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -84043,7 +84043,7 @@ void Unwind_180912910(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180912930(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -84059,9 +84059,9 @@ void Unwind_180912930(uint8_t8 objectContextParam,longlong validationContextPara
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -84845,7 +84845,7 @@ void InitializeSystemDataStructureW(void)
 void InitializeSystemDataStructureW(void)
 
 {
-  int *piVar1;
+  int *pintegerValue1;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong unsignedResult4;
@@ -84861,9 +84861,9 @@ void InitializeSystemDataStructureW(void)
     if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *SystemResourceValidator = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      pintegerValue1 = (int *)(resourceIndex + 0x18);
+      *pintegerValue1 = *pintegerValue1 + -1;
+      if (*pintegerValue1 == 0) {
         SystemCleanupHandler();
         return;
       }
