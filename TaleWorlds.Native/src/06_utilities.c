@@ -4,7 +4,7 @@
 
 // 函数: void InitializeModuleDependencies(longlong moduleHandle, longlong moduleContext)
 void InitializeModuleDependencies(longlong moduleHandle, longlong moduleContext);
-undefined DAT_180bf5290;
+undefined g_moduleDependencyTable;
 undefined DAT_180bf52a0;
 undefined DAT_180bf52c0;
 undefined DAT_180bf52c8;
