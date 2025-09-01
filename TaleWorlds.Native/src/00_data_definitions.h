@@ -30,6 +30,14 @@ char SystemConfigBufferH[0x40];
 char SystemConfigBufferI[0x40];
 char SystemConfigBufferJ[0x40];
 
+// 系统地址常量定义
+#define ConditionMutexAddressA ConditionMutexAddressA
+#define ConditionMutexAddressB ConditionMutexAddressB
+#define SystemMutexAddressA 0x180c91970
+#define EventMutexAddress 0x180c91f70
+#define RequestMutexAddress 0x180c91ff0
+#define SystemMutexFlags 0xfffffffffffffffe
+
 // 系统配置字符串模板 - 用于系统初始化和配置
 char SystemConfigDataTemplate5740[] = "SystemConfigTemplateE";
 char SystemConfigDataTemplateCBC8[] = "SystemConfigTemplateF";
@@ -266,7 +274,7 @@ int InitializeConditionMutexC(uint64_t threadId,uint64_t syncPtr,uint64_t mutexT
   uint64_t ConditionMutexFlags;
   ConditionMutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c911e8,2,mutexType,mutexAttr,ConditionMutexFlags);
+  _Mtx_init_in_situ(ConditionMutexAddressA,2,mutexType,mutexAttr,ConditionMutexFlags);
   GlobalConditionMutexCStatus = 0;
   result = RegisterSystemCallback(InitializeConditionMutexC_Callback);
   return (result != 0) - 1;
@@ -287,7 +295,7 @@ int InitializeConditionMutexD(uint64_t threadId,uint64_t syncPtr,uint64_t mutexT
   uint64_t ConditionMutexDFlags;
   ConditionMutexDFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c91288,2,mutexType,mutexAttr,ConditionMutexDFlags);
+  _Mtx_init_in_situ(ConditionMutexAddressB,2,mutexType,mutexAttr,ConditionMutexDFlags);
   GlobalConditionMutexDStatus = 0;
   result = RegisterSystemCallback(InitializeConditionMutexD_Callback);
   return (result != 0) - 1;
@@ -403,7 +411,7 @@ int InitializeModuleConfigurationA(void)
   g_stringProcessorConfigPointerA = &STRING_PROCESSOR_CONFIG_A;
   STRING_PROCESSOR_CONFIG_A = 0;
   g_stringProcessorBufferSizeA = 5;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_A,0x10,&SystemStringDataConstantA,in_R9,0xfffffffffffffffe);
+  strcpy_s(&STRING_PROCESSOR_CONFIG_A,0x10,&SystemStringDataConstantA,StringProcessorFlags,0xfffffffffffffffe);
   longlong CallbackResult = RegisterSystemModule(InitializeSystemModuleA);
   return (CallbackResult != 0) - 1;
 }
@@ -480,7 +488,7 @@ int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mut
 }
   CONFIG_DATA_BUFFER_A = 0;
   g_configDataBufferSizeA = 0x13;
-  strcpy_s(&CONFIG_DATA_BUFFER_A,0x40,&SystemConfigDataTemplateCB48,in_R9,0xfffffffffffffffe);
+  strcpy_s(&CONFIG_DATA_BUFFER_A,0x40,&SystemConfigDataTemplateCB48,StringProcessorFlags,0xfffffffffffffffe);
   g_configDataPointerA = &SystemMemoryPool;
   g_configDataPointerB = &CONFIG_DATA_BUFFER_B;
   CONFIG_DATA_BUFFER_B = 0;
@@ -821,7 +829,7 @@ int InitializeMultiStringProcessorSystem(void)
 }
   DAT_180bf7ea8 = 0;
   _DAT_180bf7ea0 = 0x13;
-  strcpy_s(&DAT_180bf7ea8,0x40,&SystemConfigStringA,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf7ea8,0x40,&SystemConfigStringA,StringProcessorFlags,0xfffffffffffffffe);
   _DAT_180bf7ee8 = &SystemMemoryPool;
   _DAT_180bf7ef0 = &DAT_180bf7f00;
   DAT_180bf7f00 = 0;
@@ -982,7 +990,7 @@ int InitializeMultiStringProcessorSystem(void)
 }
   DAT_180bf90c8 = 0;
   _DAT_180bf90c0 = 0xd;
-  strcpy_s(&DAT_180bf90c8,0x20,&UNK_180a01300,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf90c8,0x20,&UNK_180a01300,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializePhysicsSubsystem);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1006,7 +1014,7 @@ int InitializeStringProcessorAD(void)
 }
   DAT_180bf91c8 = 0;
   _DAT_180bf91c0 = 0x10;
-  strcpy_s(&DAT_180bf91c8,0x40,&UNK_180a22b38,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf91c8,0x40,&UNK_180a22b38,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeRenderingPipeline);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1109,12 +1117,12 @@ int InitializeStringProcessorAA(void)
 int InitializeStringProcessorAA(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf93f0 = &SystemMemoryPool;
   _DAT_180bf93f8 = &DAT_180bf9408;
   DAT_180bf9408 = 0;
   _DAT_180bf9400 = 0x17;
-  strcpy_s(&DAT_180bf9408,0x40,&SystemNetworkConfigData,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9408,0x40,&SystemNetworkConfigData,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleA);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1271,48 +1279,48 @@ int InitializeStringProcessorR(void)
 int InitializeStringProcessorS(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9750 = &SystemMemoryPool;
   _DAT_180bf9758 = &DAT_180bf9768;
   DAT_180bf9768 = 0;
   _DAT_180bf9760 = 0x20;
-  strcpy_s(&DAT_180bf9768,0x40,&UNK_180a22c70,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9768,0x40,&UNK_180a22c70,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleB);
   return (ModuleInitializationResult != 0) - 1;
 }
 int InitializeStringProcessorT(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf97b0 = &SystemMemoryPool;
   _DAT_180bf97b8 = &DAT_180bf97c8;
   DAT_180bf97c8 = 0;
   _DAT_180bf97c0 = 0x13;
-  strcpy_s(&DAT_180bf97c8,0x40,&UNK_180a22c58,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf97c8,0x40,&UNK_180a22c58,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleC);
   return (ModuleInitializationResult != 0) - 1;
 }
 int InitializeStringProcessorU(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9810 = &SystemMemoryPool;
   _DAT_180bf9818 = &DAT_180bf9828;
   DAT_180bf9828 = 0;
   _DAT_180bf9820 = 0x1e;
-  strcpy_s(&DAT_180bf9828,0x40,&UNK_180a22d28,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9828,0x40,&UNK_180a22d28,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleD);
   return (ModuleInitializationResult != 0) - 1;
 }
 int InitializeStringProcessorV(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9870 = &SystemMemoryPool;
   _DAT_180bf9878 = &DAT_180bf9888;
   DAT_180bf9888 = 0;
   _DAT_180bf9880 = 0x1b;
-  strcpy_s(&DAT_180bf9888,0x40,&UNK_180a22d08,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9888,0x40,&UNK_180a22d08,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleA);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1325,36 +1333,36 @@ int InitializeStringProcessorV(void)
 int InitializeSystemModuleB(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf98d0 = &SystemMemoryPool;
   _DAT_180bf98d8 = &SYSTEM_MODULE_B_BUFFER;
   SYSTEM_MODULE_B_BUFFER = 0;
   _DAT_180bf98e0 = 0x1b;
-  strcpy_s(&SYSTEM_MODULE_B_BUFFER,0x40,&UNK_180a22ce8,in_R9,0xfffffffffffffffe);
+  strcpy_s(&SYSTEM_MODULE_B_BUFFER,0x40,&UNK_180a22ce8,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleB);
   return (ModuleInitializationResult != 0) - 1;
 }
 int InitializeSystemModuleC(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9930 = &SystemMemoryPool;
   _DAT_180bf9938 = &SYSTEM_MODULE_C_BUFFER;
   SYSTEM_MODULE_C_BUFFER = 0;
   _DAT_180bf9940 = 0x1c;
-  strcpy_s(&SYSTEM_MODULE_C_BUFFER,0x40,&UNK_180a22cc8,in_R9,0xfffffffffffffffe);
+  strcpy_s(&SYSTEM_MODULE_C_BUFFER,0x40,&UNK_180a22cc8,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleC);
   return (ModuleInitializationResult != 0) - 1;
 }
 int InitializeSystemModuleD(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9990 = &SystemMemoryPool;
   _DAT_180bf9998 = &DAT_180bf99a8;
   DAT_180bf99a8 = 0;
   _DAT_180bf99a0 = 0x1d;
-  strcpy_s(&DAT_180bf99a8,0x40,&UNK_180a22db0,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf99a8,0x40,&UNK_180a22db0,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleD);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1367,12 +1375,12 @@ int InitializeSystemModuleD(void)
 int InitializeStringProcessingSystemM(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf99f0 = &SystemMemoryPool;
   _DAT_180bf99f8 = &DAT_180bf9a08;
   DAT_180bf9a08 = 0;
   _DAT_180bf9a00 = 0x20;
-  strcpy_s(&DAT_180bf9a08,0x40,&UNK_180a22d88,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9a08,0x40,&UNK_180a22d88,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleE);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1385,12 +1393,12 @@ int InitializeStringProcessingSystemM(void)
 int InitializeStringProcessingSystemN(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9a50 = &SystemMemoryPool;
   _DAT_180bf9a58 = &DAT_180bf9a68;
   DAT_180bf9a68 = 0;
   _DAT_180bf9a60 = 0x1d;
-  strcpy_s(&DAT_180bf9a68,0x40,&UNK_180a22d68,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9a68,0x40,&UNK_180a22d68,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemN);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1403,12 +1411,12 @@ int InitializeStringProcessingSystemN(void)
 int InitializeStringProcessingSystemO(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9ab0 = &SystemMemoryPool;
   _DAT_180bf9ab8 = &DAT_180bf9ac8;
   DAT_180bf9ac8 = 0;
   _DAT_180bf9ac0 = 0x1c;
-  strcpy_s(&DAT_180bf9ac8,0x40,&DAT_180a22d48,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9ac8,0x40,&DAT_180a22d48,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemO);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1421,12 +1429,12 @@ int InitializeStringProcessingSystemO(void)
 int InitializeStringProcessingSystemP(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9b10 = &SystemMemoryPool;
   _DAT_180bf9b18 = &DAT_180bf9b28;
   DAT_180bf9b28 = 0;
   _DAT_180bf9b20 = 0x17;
-  strcpy_s(&DAT_180bf9b28,0x40,&UNK_180a22e40,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9b28,0x40,&UNK_180a22e40,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemP);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1439,12 +1447,12 @@ int InitializeStringProcessingSystemP(void)
 int InitializeStringProcessingSystemQ(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9b70 = &SystemMemoryPool;
   _DAT_180bf9b78 = &DAT_180bf9b88;
   DAT_180bf9b88 = 0;
   _DAT_180bf9b80 = 0x1f;
-  strcpy_s(&DAT_180bf9b88,0x40,&UNK_180a22e20,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9b88,0x40,&UNK_180a22e20,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemQ);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1457,12 +1465,12 @@ int InitializeStringProcessingSystemQ(void)
 int InitializeStringProcessingSystemR(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9bd0 = &SystemMemoryPool;
   _DAT_180bf9bd8 = &DAT_180bf9be8;
   DAT_180bf9be8 = 0;
   _DAT_180bf9be0 = 0x21;
-  strcpy_s(&DAT_180bf9be8,0x40,&UNK_180a22df8,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9be8,0x40,&UNK_180a22df8,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemR);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1475,12 +1483,12 @@ int InitializeStringProcessingSystemR(void)
 int InitializeStringProcessingSystemS(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9c30 = &SystemMemoryPool;
   _DAT_180bf9c38 = &DAT_180bf9c48;
   DAT_180bf9c48 = 0;
   _DAT_180bf9c40 = 0x25;
-  strcpy_s(&DAT_180bf9c48,0x40,&UNK_180a22dd0,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9c48,0x40,&UNK_180a22dd0,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemS);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1493,12 +1501,12 @@ int InitializeStringProcessingSystemS(void)
 int InitializeStringProcessingSystemT(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9c90 = &SystemMemoryPool;
   _DAT_180bf9c98 = &DAT_180bf9ca8;
   DAT_180bf9ca8 = 0;
   _DAT_180bf9ca0 = 0x23;
-  strcpy_s(&DAT_180bf9ca8,0x40,&UNK_180a22eb0,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9ca8,0x40,&UNK_180a22eb0,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemT);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1511,12 +1519,12 @@ int InitializeStringProcessingSystemT(void)
 int InitializeStringProcessingSystemU(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9cf0 = &SystemMemoryPool;
   _DAT_180bf9cf8 = &DAT_180bf9d08;
   DAT_180bf9d08 = 0;
   _DAT_180bf9d00 = 0x1e;
-  strcpy_s(&DAT_180bf9d08,0x40,&UNK_180a22e90,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9d08,0x40,&UNK_180a22e90,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemU);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1529,12 +1537,12 @@ int InitializeStringProcessingSystemU(void)
 int InitializeStringProcessingSystemV(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9d50 = &SystemMemoryPool;
   _DAT_180bf9d58 = &DAT_180bf9d68;
   DAT_180bf9d68 = 0;
   _DAT_180bf9d60 = 0x1e;
-  strcpy_s(&DAT_180bf9d68,0x40,&UNK_180a22e70,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9d68,0x40,&UNK_180a22e70,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemV);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1547,12 +1555,12 @@ int InitializeStringProcessingSystemV(void)
 int InitializeStringProcessingSystemW(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9db0 = &SystemMemoryPool;
   _DAT_180bf9db8 = &DAT_180bf9dc8;
   DAT_180bf9dc8 = 0;
   _DAT_180bf9dc0 = 0x12;
-  strcpy_s(&DAT_180bf9dc8,0x40,&UNK_180a22e58,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9dc8,0x40,&UNK_180a22e58,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemW);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1565,12 +1573,12 @@ int InitializeStringProcessingSystemW(void)
 int InitializeStringProcessingSystemX(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9e10 = &SystemMemoryPool;
   _DAT_180bf9e18 = &DAT_180bf9e28;
   DAT_180bf9e28 = 0;
   _DAT_180bf9e20 = 0x13;
-  strcpy_s(&DAT_180bf9e28,0x40,&UNK_180a22f28,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9e28,0x40,&UNK_180a22f28,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemX);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1583,12 +1591,12 @@ int InitializeStringProcessingSystemX(void)
 int InitializeStringProcessingSystemY(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9e70 = &SystemMemoryPool;
   _DAT_180bf9e78 = &DAT_180bf9e88;
   DAT_180bf9e88 = 0;
   _DAT_180bf9e80 = 0x13;
-  strcpy_s(&DAT_180bf9e88,0x40,&UNK_180a22f10,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9e88,0x40,&UNK_180a22f10,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemY);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1601,12 +1609,12 @@ int InitializeStringProcessingSystemY(void)
 int InitializeStringProcessingSystemZ(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9ed0 = &SystemMemoryPool;
   _DAT_180bf9ed8 = &DAT_180bf9ee8;
   DAT_180bf9ee8 = 0;
   _DAT_180bf9ee0 = 0x16;
-  strcpy_s(&DAT_180bf9ee8,0x40,&UNK_180a22ef8,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9ee8,0x40,&UNK_180a22ef8,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemZ);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1619,12 +1627,12 @@ int InitializeStringProcessingSystemZ(void)
 int InitializeStringProcessingSystemAA(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9f30 = &SystemMemoryPool;
   _DAT_180bf9f38 = &DAT_180bf9f48;
   DAT_180bf9f48 = 0;
   _DAT_180bf9f40 = 0x1a;
-  strcpy_s(&DAT_180bf9f48,0x40,&UNK_180a22ed8,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9f48,0x40,&UNK_180a22ed8,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAA);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1637,12 +1645,12 @@ int InitializeStringProcessingSystemAA(void)
 int InitializeStringProcessingSystemAB(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9f90 = &SystemMemoryPool;
   _DAT_180bf9f98 = &DAT_180bf9fa8;
   DAT_180bf9fa8 = 0;
   _DAT_180bf9fa0 = 0x15;
-  strcpy_s(&DAT_180bf9fa8,0x40,&SystemModuleConfigTemplate22F90,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9fa8,0x40,&SystemModuleConfigTemplate22F90,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAB);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1655,12 +1663,12 @@ int InitializeStringProcessingSystemAB(void)
 int InitializeStringProcessingSystemAC(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf9ff0 = &SystemMemoryPool;
   _DAT_180bf9ff8 = &DAT_180bfa008;
   DAT_180bfa008 = 0;
   _DAT_180bfa000 = 0x13;
-  strcpy_s(&DAT_180bfa008,0x40,&SystemModuleConfigTemplate22F78,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa008,0x40,&SystemModuleConfigTemplate22F78,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAC);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1673,12 +1681,12 @@ int InitializeStringProcessingSystemAC(void)
 int InitializeStringProcessingSystemAD(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bfa050 = &SystemMemoryPool;
   _DAT_180bfa058 = &DAT_180bfa068;
   DAT_180bfa068 = 0;
   _DAT_180bfa060 = 0x13;
-  strcpy_s(&DAT_180bfa068,0x40,&SystemModuleConfigTemplate22F60,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa068,0x40,&SystemModuleConfigTemplate22F60,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAD);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1691,12 +1699,12 @@ int InitializeStringProcessingSystemAD(void)
 int InitializeStringProcessingSystemAE(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bfa0b0 = &SystemMemoryPool;
   _DAT_180bfa0b8 = &DAT_180bfa0c8;
   DAT_180bfa0c8 = 0;
   _DAT_180bfa0c0 = 0x1b;
-  strcpy_s(&DAT_180bfa0c8,0x40,&SystemModuleConfigTemplate22F40,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa0c8,0x40,&SystemModuleConfigTemplate22F40,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAE);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1709,12 +1717,12 @@ int InitializeStringProcessingSystemAE(void)
 int InitializeStringProcessingSystemAF(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bfa110 = &SystemMemoryPool;
   _DAT_180bfa118 = &DAT_180bfa128;
   DAT_180bfa128 = 0;
   _DAT_180bfa120 = 0x19;
-  strcpy_s(&DAT_180bfa128,0x40,&SystemModuleConfigTemplate23018,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa128,0x40,&SystemModuleConfigTemplate23018,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAF);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1727,12 +1735,12 @@ int InitializeStringProcessingSystemAF(void)
 int InitializeStringProcessingSystemAG(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bfa170 = &SystemMemoryPool;
   _DAT_180bfa178 = &DAT_180bfa188;
   DAT_180bfa188 = 0;
   _DAT_180bfa180 = 0x15;
-  strcpy_s(&DAT_180bfa188,0x40,&SystemModuleConfigTemplate23000,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa188,0x40,&SystemModuleConfigTemplate23000,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAG);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1745,12 +1753,12 @@ int InitializeStringProcessingSystemAG(void)
 int InitializeStringProcessingSystemAH(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bfa1d0 = &SystemMemoryPool;
   _DAT_180bfa1d8 = &DAT_180bfa1e8;
   DAT_180bfa1e8 = 0;
   _DAT_180bfa1e0 = 0x28;
-  strcpy_s(&DAT_180bfa1e8,0x40,&DAT_180a22fd0,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa1e8,0x40,&DAT_180a22fd0,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAH);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1763,12 +1771,12 @@ int InitializeStringProcessingSystemAH(void)
 int InitializeStringProcessingSystemAI(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bfa230 = &SystemMemoryPool;
   _DAT_180bfa238 = &DAT_180bfa248;
   DAT_180bfa248 = 0;
   _DAT_180bfa240 = 0x23;
-  strcpy_s(&DAT_180bfa248,0x40,&DAT_180a22fa8,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa248,0x40,&DAT_180a22fa8,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAI);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1781,12 +1789,12 @@ int InitializeStringProcessingSystemAI(void)
 int InitializeStringProcessingSystemAJ(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bfa290 = &SystemMemoryPool;
   _DAT_180bfa298 = &DAT_180bfa2a8;
   DAT_180bfa2a8 = 0;
   _DAT_180bfa2a0 = 0x17;
-  strcpy_s(&DAT_180bfa2a8,0x40,&SystemModuleConfigTemplate23068,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa2a8,0x40,&SystemModuleConfigTemplate23068,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAJ);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1835,7 +1843,7 @@ int ProcessSystemEvent(uint64_t systemId,uint64_t eventType,uint64_t eventData,u
 }
   DAT_180bfa368 = 0;
   _DAT_180bfa360 = 7;
-  strcpy_s(&DAT_180bfa368,0x80,&UNK_180a0f5b8,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa368,0x80,&UNK_180a0f5b8,StringProcessorFlags,0xfffffffffffffffe);
   _DAT_180bfa3e8 = &SystemMemoryConfigTemplate;
   _DAT_180bfa3f0 = &DAT_180bfa400;
   DAT_180bfa400 = 0;
@@ -1878,12 +1886,12 @@ int ProcessSystemEvent(uint64_t systemId,uint64_t eventType,uint64_t eventData,u
 int InitializeSystemEventHandler(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bfa780 = &SystemMemoryConfigTemplate;
   _DAT_180bfa788 = &DAT_180bfa798;
   DAT_180bfa798 = 0;
   _DAT_180bfa790 = 0x1b;
-  strcpy_s(&DAT_180bfa798,0x80,&UNK_180a24bd0,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa798,0x80,&UNK_180a24bd0,StringProcessorFlags,0xfffffffffffffffe);
   _DAT_180bfa818 = &SystemMemoryConfigTemplate;
   _DAT_180bfa820 = &DAT_180bfa830;
   DAT_180bfa830 = 0;
@@ -1921,12 +1929,12 @@ int InitializeSystemEventHandler(void)
 int InitializeSystemMessageHandler(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bfab10 = &SystemMemoryConfigTemplate;
   _DAT_180bfab18 = &DAT_180bfab28;
   DAT_180bfab28 = 0;
   _DAT_180bfab20 = 0x13;
-  strcpy_s(&DAT_180bfab28,0x80,&UNK_180a24da8,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfab28,0x80,&UNK_180a24da8,StringProcessorFlags,0xfffffffffffffffe);
   _DAT_180bfaba8 = &SystemMemoryConfigTemplate;
   _DAT_180bfabb0 = &DAT_180bfabc0;
   DAT_180bfabc0 = 0;
@@ -2010,12 +2018,12 @@ int HandleSystemRequest(uint64_t requestId,uint64_t requestType,uint64_t request
 int InitializeSystemDebugManager(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bfaef0 = &SystemMemoryPoolTemplate;
   _DAT_180bfaef8 = &DAT_180bfaf08;
   DAT_180bfaf08 = 0;
   _DAT_180bfaf00 = 0x10;
-  strcpy_s(&DAT_180bfaf08,0x400,&UNK_180a27a58,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfaf08,0x400,&UNK_180a27a58,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeDebugManagerModule);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2028,12 +2036,12 @@ int InitializeSystemDebugManager(void)
 int InitializeSystemPerformanceMonitor(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bfb310 = &SystemMemoryPoolTemplate;
   _DAT_180bfb318 = &DAT_180bfb328;
   DAT_180bfb328 = 0;
   _DAT_180bfb320 = 3;
-  strcpy_s(&DAT_180bfb328,0x400,&UNK_180a27a6c,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfb328,0x400,&UNK_180a27a6c,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializePerformanceMonitorModule);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2046,18 +2054,18 @@ int InitializeSystemPerformanceMonitor(void)
 int InitializeSystemLogManager(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bfb730 = &SystemMemoryPoolTemplate;
   _DAT_180bfb738 = &DAT_180bfb748;
   DAT_180bfb748 = 0;
   _DAT_180bfb740 = 5;
-  strcpy_s(&DAT_180bfb748,0x400,&UNK_180a27a70,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfb748,0x400,&UNK_180a27a70,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeLogManagerModule);
   return (ModuleInitializationResult != 0) - 1;
 }
   DAT_180bf6060 = 0;
   _DAT_180bf6058 = 0xd;
-  strcpy_s(&DAT_180bf6060,0x20,&UNK_180a01300,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf6060,0x20,&UNK_180a01300,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeNetworkManagerModule);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2070,18 +2078,18 @@ int InitializeSystemLogManager(void)
 int InitializeSystemNetworkManager(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf6498 = &SystemStringMemoryTemplate;
   _DAT_180bf64a0 = &DAT_180bf64b0;
   DAT_180bf64b0 = 0;
   _DAT_180bf64a8 = 9;
-  strcpy_s(&DAT_180bf64b0,0x20,&UNK_180a01330,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf64b0,0x20,&UNK_180a01330,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringMemoryModule);
   return (ModuleInitializationResult != 0) - 1;
 }
   DAT_180bf6510 = 0;
   _DAT_180bf6508 = 0xd;
-  strcpy_s(&DAT_180bf6510,0x20,&UNK_180a01300,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf6510,0x20,&UNK_180a01300,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeSecurityManagerModule);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2094,12 +2102,12 @@ int InitializeSystemNetworkManager(void)
 int InitializeSystemSecurityManager(void)
 {
   int64_t ModuleInitializationResult;
-  uint64_t in_R9;
+  uint64_t StringProcessorFlags;
   _DAT_180bf6558 = &SystemStringMemoryTemplate;
   _DAT_180bf6560 = &DAT_180bf6570;
   DAT_180bf6570 = 0;
   _DAT_180bf6568 = 9;
-  strcpy_s(&DAT_180bf6570,0x20,&UNK_180a01330,in_R9,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf6570,0x20,&UNK_180a01330,StringProcessorFlags,0xfffffffffffffffe);
   ModuleInitializationResult = RegisterSystemModule(InitializeSecurityManagerModule);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -3098,7 +3106,7 @@ LAB_18004e062:
     if (iVar7 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar7);
     }
-    iVar7 = _Mtx_unlock(0x180c91288);
+    iVar7 = _Mtx_unlock(ConditionMutexAddressB);
     if (iVar7 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar7);
     }
@@ -3207,7 +3215,7 @@ LAB_18004e062:
     if (iVar6 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar6);
     }
-    iVar6 = _Mtx_unlock(0x180c91288);
+    iVar6 = _Mtx_unlock(ConditionMutexAddressB);
     if (iVar6 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar6);
     }
@@ -6350,7 +6358,7 @@ uint8_t SystemModuleInitializeComplete(void)
 }
       DAT_180d499e8 = 0;
       _DAT_180d499e0 = 6;
-      strcpy_s(&DAT_180d499e8,0x200,&DAT_180a3c074,in_R9,MemoryAddress);
+      strcpy_s(&DAT_180d499e8,0x200,&DAT_180a3c074,StringProcessorFlags,MemoryAddress);
       FUN_1808fc820(FUN_180942830);
       FUN_1808fcb30(&DAT_180d499c8);
     }

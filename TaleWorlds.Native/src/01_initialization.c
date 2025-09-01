@@ -1455,7 +1455,7 @@ void InitializeRenderingSystemConfig(void)
   }
   systemPreviousNode[6] = 0x42bea5b911d9c4bf;
   systemPreviousNode[7] = 0x1aa83fc0020dc1b6;
-  systemPreviousNode[8] = &SystemDataNodeB;
+  systemPreviousNode[8] = &SystemDataNodeSecondaryRoot;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = renderingInitializationFlag;
   return;
@@ -1566,7 +1566,7 @@ void InitializeSystemMemoryManager(void)
   }
   systemPreviousNode[6] = 0x406be72011d07d37;
   systemPreviousNode[7] = 0x71876af946c867ab;
-  systemPreviousNode[8] = &SystemDataNodeC;
+  systemPreviousNode[8] = &SystemDataNodeTertiaryRoot;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -2233,7 +2233,7 @@ void InitializeSystemDataTableStructureE(void)
   }
   systemPreviousNode[6] = 0x406be72011d07d37;
   systemPreviousNode[7] = 0x71876af946c867ab;
-  systemPreviousNode[8] = &SystemDataNodeC;
+  systemPreviousNode[8] = &SystemDataNodeTertiaryRoot;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -2345,7 +2345,7 @@ void InitializeSystemDataTableStructureG(void)
   }
   systemPreviousNode[6] = 0x42bea5b911d9c4bf;
   systemPreviousNode[7] = 0x1aa83fc0020dc1b6;
-  systemPreviousNode[8] = &SystemDataNodeB;
+  systemPreviousNode[8] = &SystemDataNodeSecondaryRoot;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -3766,7 +3766,7 @@ void InitializeSystemPerformanceMonitor(void)
   }
   systemPreviousNode[6] = 0x42bea5b911d9c4bf;
   systemPreviousNode[7] = 0x1aa83fc0020dc1b6;
-  systemPreviousNode[8] = &SystemDataNodeB;
+  systemPreviousNode[8] = &SystemDataNodeSecondaryRoot;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -4339,7 +4339,7 @@ void InitializeSystemEventManager(void)
   }
   previousNode[6] = 0x406be72011d07d37;
   previousNode[7] = 0x71876af946c867ab;
-  previousNode[8] = &SystemDataNodeC;
+  previousNode[8] = &SystemDataNodeTertiaryRoot;
   previousNode[9] = 0;
   previousNode[10] = eventCallbackPointer;
   return;
@@ -6719,7 +6719,7 @@ void InitializeSystemIndexManager(void)
   }
   systemPreviousNode[6] = 0x406be72011d07d37;
   systemPreviousNode[7] = 0x71876af946c867ab;
-  systemPreviousNode[8] = &SystemDataNodeC;
+  systemPreviousNode[8] = &SystemDataNodeTertiaryRoot;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -7919,7 +7919,7 @@ void InitializeSystemThreadManager(void)
   }
   systemPreviousNode[6] = 0x42bea5b911d9c4bf;
   systemPreviousNode[7] = 0x1aa83fc0020dc1b6;
-  systemPreviousNode[8] = &SystemDataNodeB;
+  systemPreviousNode[8] = &SystemDataNodeSecondaryRoot;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -8802,7 +8802,7 @@ void InitializeSystemThreadNode(void)
   }
   systemPreviousNode[6] = 0x42bea5b911d9c4bf;
   systemPreviousNode[7] = 0x1aa83fc0020dc1b6;
-  systemPreviousNode[8] = &SystemDataNodeB;
+  systemPreviousNode[8] = &SystemDataNodeSecondaryRoot;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -15173,7 +15173,7 @@ void InitializeSystemPerformanceComponent(void)
   }
   systemPreviousNode[6] = 0x406be72011d07d37;
   systemPreviousNode[7] = 0x71876af946c867ab;
-  systemPreviousNode[8] = &SystemDataNodeC;
+  systemPreviousNode[8] = &SystemDataNodeTertiaryRoot;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -15638,7 +15638,7 @@ void InitializeSystemSubcomponentF(void)
   }
   systemPreviousNode[6] = 0x42bea5b911d9c4bf;
   systemPreviousNode[7] = 0x1aa83fc0020dc1b6;
-  systemPreviousNode[8] = &SystemDataNodeB;
+  systemPreviousNode[8] = &SystemDataNodeSecondaryRoot;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -16221,7 +16221,7 @@ void InitializeSystemSearchManager(void)
   }
   systemPreviousNode[6] = 0x406be72011d07d37;
   systemPreviousNode[7] = 0x71876af946c867ab;
-  systemPreviousNode[8] = &SystemDataNodeC;
+  systemPreviousNode[8] = &SystemDataNodeTertiaryRoot;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;

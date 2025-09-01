@@ -299,11 +299,11 @@ void* textureDescriptorTable;
  * @warning 调用此函数前必须确保音频硬件设备可用
  */
 void InitializeAudioSystem(void);
-void* AudioSystemInstance;
-void* AudioDeviceHandle;
-void* AudioMixerHandle;
-void* AudioBufferPool;
-void* AudioStreamManager;
+void* audioSystemInstance;
+void* audioDeviceHandle;
+void* audioMixerHandle;
+void* audioBufferPool;
+void* audioStreamManager;
 
  /**
  * @brief 初始化物理引擎
@@ -312,11 +312,11 @@ void* AudioStreamManager;
  * 设置碰撞检测、重力模拟和物理计算的相关系统
  */
 void InitializePhysicsEngine(void);
-void* PhysicsEngineInstance;
-void* PhysicsWorldHandle;
-void* CollisionSystemHandle;
-void* RigidBodyManager;
-void* PhysicsConstraintSolver;
+void* physicsEngineInstance;
+void* physicsWorldHandle;
+void* collisionSystemHandle;
+void* rigidBodyManager;
+void* physicsConstraintSolver;
 
  /**
  * @brief 初始化输入管理器
