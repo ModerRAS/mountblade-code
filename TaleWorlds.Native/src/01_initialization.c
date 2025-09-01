@@ -24520,7 +24520,7 @@ InitializeSystemResourceBuffer(uint8_t *systemResourcePointer, void* reservedPar
   *(uint32_t *)(SystemResourcePointer + 0x30) = 0;
   SystemResourcePointer[0x7c] = 0;
   SystemResourcePointer[0xc9] = 1;
-  (**(code **)(*PrimaryResourcePointer + 0x10))(PrimaryResourcePointer,&DAT_1809fd128);
+  (**(code **)(*PrimaryResourcePointer + 0x10))(PrimaryResourcePointer,&SystemResourceTemplate);
   (**(code **)(*SecondaryResourcePointer + 0x10))(SecondaryResourcePointer,&SystemStringTemplate);
   *(uint32_t *)(SystemResourcePointer + 0xc0) = 0x461c4000;
   *(uint32_t *)(SystemResourcePointer + 0xc4) = 0x461c4000;
@@ -27690,7 +27690,7 @@ void CreateAndManageSystemThreadObject(void* SystemResourcePointer,void* ThreadC
                     // WARNING: Subroutine does not return
     memcpy((ulong long)configFlags + configValue,processNameBuffer,(long long)((int)allocationSize + 2));
   }
-  dataTemplatePointer = &DAT_1809fd128;
+  dataTemplatePointer = &SystemResourceTemplate;
   if (DAT_180c82841 != '\0') {
     dataTemplatePointer = &UNK_1809fd730;
   }
@@ -29685,7 +29685,19 @@ void* * InitializeSystemResourcePointerExtended(void* *SystemResourcePointer)
 
 
 
-long long * FUN_180056f10(long long *SystemResourcePointer,long long *param_2)
+/**
+ * @brief 系统资源链接管理器
+ * 
+ * 该函数负责管理系统资源之间的链接关系，包括资源的插入和删除。
+ * 它会处理资源的清理和重新链接，确保资源链表的完整性。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向资源链表的头节点
+ * @param param_2 参数指针，包含要插入或删除的资源信息
+ * @return 返回更新后的系统资源指针
+ * 
+ * @note 这是资源管理系统中的核心函数，用于维护资源链表结构
+ */
+long long * SystemResourceManagerLink(long long *SystemResourcePointer,long long *param_2)
 
 {
   long long *PrimaryResourcePointer;
@@ -30037,7 +30049,7 @@ void InitializeSystemContext(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_1800572e6(void)
+// 函数: void SystemCleanupWrapper(void)
 /**
  * @brief 系统清理包装函数
  * 
@@ -30057,7 +30069,7 @@ void SystemCleanupWrapper(void)
 
 
 
-// 函数: void FUN_180057314(void)
+// 函数: void SystemNodeInitialize(void)
 /**
  * @brief 系统节点初始化函数
  * 
@@ -30205,7 +30217,7 @@ void AllocateSystemMemoryBlock(long long SystemResourcePointer,ulong long param_
 
 
 
-// 函数: void FUN_180057446(void)
+// 函数: void SystemMemoryPoolInitialize(void)
 /**
  * @brief 系统内存清零函数
  * 
@@ -60812,7 +60824,7 @@ ulong long FUN_18007b240(long long SystemResourcePointer,long long *param_2,byte
     UNLOCK();
     SystemPreviousNode[3] = 0;
     SystemPreviousNode[4] = SystemResourcePointer;
-    FUN_180056f10(PrimaryResourcePointer4);
+    SystemResourceManagerLink(PrimaryResourcePointer4);
   }
   if (PrimaryResourcePointer4[1] == 0) {
     SystemPreviousNode = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,0x20);
@@ -60824,7 +60836,7 @@ ulong long FUN_18007b240(long long SystemResourcePointer,long long *param_2,byte
     *(uint32_t *)(SystemPreviousNode + 2) = 0;
     UNLOCK();
     SystemPreviousNode[3] = 0;
-    FUN_180056f10(PrimaryResourcePointer4 + 1);
+    SystemResourceManagerLink(PrimaryResourcePointer4 + 1);
   }
   uStack_88 = 1;
   lStack_90 = SystemResourcePointer;
@@ -63056,7 +63068,7 @@ code * FUN_18007eb80(long long SystemResourcePointer,char param_2)
         FUN_18007f770(&lStack_30);
         unsignedSystemValue2 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0xf0,8,3);
         unsignedSystemValue2 = FUN_18007f2f0(unsignedSystemValue2);
-        FUN_180056f10(pcVar3,unsignedSystemValue2);
+        SystemResourceManagerLink(pcVar3,unsignedSystemValue2);
         FUN_1800860f0(*(long long *)pcVar3 + 0x10,(long long)pcStack_20 + 0x10);
         FUN_1800860f0(*(long long *)pcVar3 + 0x38,(long long)pcStack_20 + 0x38);
         FUN_180086090(*(long long *)pcVar3 + 0x60,(long long)pcStack_20 + 0x60);
