@@ -34286,8 +34286,8 @@ LAB_180077879:
       engine_temp_float = *(float *)(engine_data_structure_ptr + 0x158);
       engine_stack_float_98 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17 + engine_comparison_params[0xc];
       engine_stack_float_94 = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18 + engine_comparison_params[0xd];
-      fStack_90 = engine_temp_float_4 * engine_temp_float_15 + engine_temp_float_5 * engine_temp_float_11 + engine_temp_float * engine_temp_float_19 + engine_comparison_params[0xe];
-      fStack_8c = engine_temp_float_4 * engine_temp_float_16 + engine_temp_float_5 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20 + engine_comparison_params[0xf];
+      engine_stack_float_90 = engine_temp_float_4 * engine_temp_float_15 + engine_temp_float_5 * engine_temp_float_11 + engine_temp_float * engine_temp_float_19 + engine_comparison_params[0xe];
+      engine_stack_float_8c = engine_temp_float_4 * engine_temp_float_16 + engine_temp_float_5 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20 + engine_comparison_params[0xf];
       engine_comparison_params = &engine_stack_float_c8;
     }
     engine_unnamed_function_2650(&engine_stack_uint_108,engine_result_flag_ptr + 0xc,*(uint8*)(engine_data_structure_ptr + 0xf7),engine_comparison_params);
@@ -38352,7 +38352,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
   uint64 engine_stack_uint_40;
   uint64 engine_stack_uint_38;
   uint8 aengine_stack_uint_30 [8];
-  float *pfStack_28;
+  float *engine_stack_float_pointer_28;
   uint32 engine_stack_uint_20;
   
   engine_stack_uint_38 = 0xfffffffffffffffe;
@@ -38360,7 +38360,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
     aengine_stack_uint_30[0] = 0;
     engine_stack_uint_20 = 0;
     engine_stack_value_80 = 0x1800795fa;
-    pfStack_28 = engine_data_structure_ptr;
+    engine_stack_float_pointer_28 = engine_data_structure_ptr;
     engine_unnamed_function_1730(aengine_stack_uint_30);
     engine_stack_value_80 = 0x180079605;
     engine_temp_float_6 = (float)engine_unnamed_function_5900(0);
