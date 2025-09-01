@@ -49351,7 +49351,7 @@ LAB_180869c72:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49424,7 +49424,7 @@ LAB_180869c72:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -49439,7 +49439,7 @@ void FUN_180869cdf(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49452,7 +49452,7 @@ void FUN_180869cee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49606,7 +49606,7 @@ LAB_180869e72:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49679,7 +49679,7 @@ LAB_180869e72:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -49694,7 +49694,7 @@ void FUN_180869edf(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49707,7 +49707,7 @@ void FUN_180869eee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49861,7 +49861,7 @@ LAB_18086a072:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49934,7 +49934,7 @@ LAB_18086a072:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -49949,7 +49949,7 @@ void FUN_18086a0df(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49962,7 +49962,7 @@ void FUN_18086a0ee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50123,28 +50123,35 @@ LAB_18086a272:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
-// 函数: void FUN_18086a16c(void)
-void FUN_18086a16c(void)
+/**
+ * @brief 整理网络连接数组
+ * 
+ * 该函数负责整理网络连接数组，重新排序和优化连接项。
+ * 主要用于网络连接的性能优化和维护。
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void OrganizeNetworkConnectionArray(void)
 
 {
-  longlong lVar1;
-  int networkStatus2;
-  longlong lVar3;
-  longlong unaff_RBP;
-  int unaff_ESI;
-  int unaff_EDI;
-  NetworkHandle *unaff_R14;
-  longlong lVar4;
-  NetworkHandle *puStackX_20;
-  ulonglong in_stack_00000050;
+  longlong connectionEntry;
+  int networkStatus;
+  longlong processedEntry;
+  longlong connectionContext;
+  int organizeIndex;
+  int connectionCount;
+  NetworkHandle *connectionManager;
+  longlong arrayIndex;
+  NetworkHandle *stackPointer;
+  ulonglong securityContext;
   
-  lVar4 = 0;
+  arrayIndex = 0;
   do {
     lVar1 = *(longlong *)(lVar4 + *(longlong *)(unaff_RBP + 0x180));
     if (connectionEntry == 0) {
@@ -50196,7 +50203,7 @@ LAB_18086a272:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -50211,7 +50218,7 @@ void FUN_18086a2df(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50224,7 +50231,7 @@ void FUN_18086a2ee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50378,7 +50385,7 @@ LAB_18086a472:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50451,7 +50458,7 @@ LAB_18086a472:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -50466,7 +50473,7 @@ void FUN_18086a4df(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50479,7 +50486,7 @@ void FUN_18086a4ee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50633,7 +50640,7 @@ LAB_18086a672:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50706,7 +50713,7 @@ LAB_18086a672:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -50721,7 +50728,7 @@ void FUN_18086a6df(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50734,7 +50741,7 @@ void FUN_18086a6ee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50888,7 +50895,7 @@ LAB_18086a872:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50961,7 +50968,7 @@ LAB_18086a872:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -50976,7 +50983,7 @@ void FUN_18086a8df(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50989,7 +50996,7 @@ void FUN_18086a8ee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51143,7 +51150,7 @@ LAB_18086aa72:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51216,7 +51223,7 @@ LAB_18086aa72:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -51231,7 +51238,7 @@ void FUN_18086aadf(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51244,7 +51251,7 @@ void FUN_18086aaee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51398,7 +51405,7 @@ LAB_18086ac58:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51471,7 +51478,7 @@ LAB_18086ac58:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -51486,7 +51493,7 @@ void FUN_18086acbc(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51499,7 +51506,7 @@ void FUN_18086accb(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51653,7 +51660,7 @@ LAB_18086ae38:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51726,7 +51733,7 @@ LAB_18086ae38:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -51741,7 +51748,7 @@ void FUN_18086ae9c(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51754,7 +51761,7 @@ void FUN_18086aeab(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51908,7 +51915,7 @@ LAB_18086b032:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51981,7 +51988,7 @@ LAB_18086b032:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -51996,7 +52003,7 @@ void FUN_18086b09f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52009,7 +52016,7 @@ void FUN_18086b0ae(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52163,7 +52170,7 @@ LAB_18086b232:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52236,7 +52243,7 @@ LAB_18086b232:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -52251,7 +52258,7 @@ void FUN_18086b29f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52264,7 +52271,7 @@ void FUN_18086b2ae(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52418,7 +52425,7 @@ LAB_18086b418:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52491,7 +52498,7 @@ LAB_18086b418:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -52506,7 +52513,7 @@ void FUN_18086b47c(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52519,7 +52526,7 @@ void FUN_18086b48b(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52673,7 +52680,7 @@ LAB_18086b612:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52746,7 +52753,7 @@ LAB_18086b612:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -52761,7 +52768,7 @@ void FUN_18086b67f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52774,7 +52781,7 @@ void FUN_18086b68e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52928,7 +52935,7 @@ LAB_18086b812:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -53001,7 +53008,7 @@ LAB_18086b812:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -53016,7 +53023,7 @@ void FUN_18086b87f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -53029,7 +53036,7 @@ void FUN_18086b88e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -53190,7 +53197,7 @@ LAB_18086b9f8:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -53272,7 +53279,7 @@ LAB_18086b9f8:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -53287,7 +53294,7 @@ void FUN_18086ba5c(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -53300,7 +53307,7 @@ void FUN_18086ba6b(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -53454,7 +53461,7 @@ LAB_18086bbf2:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -53527,7 +53534,7 @@ LAB_18086bbf2:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -53542,7 +53549,7 @@ void FUN_18086bc5f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -53555,7 +53562,7 @@ void FUN_18086bc6e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -53709,7 +53716,7 @@ LAB_18086bdf2:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -53782,7 +53789,7 @@ LAB_18086bdf2:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -53797,7 +53804,7 @@ void FUN_18086be5f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -53810,7 +53817,7 @@ void FUN_18086be6e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -53964,7 +53971,7 @@ LAB_18086bff2:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -54037,7 +54044,7 @@ LAB_18086bff2:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -54052,7 +54059,7 @@ void FUN_18086c05f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -54065,7 +54072,7 @@ void FUN_18086c06e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -54219,7 +54226,7 @@ LAB_18086c1f2:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -54292,7 +54299,7 @@ LAB_18086c1f2:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -54307,7 +54314,7 @@ void FUN_18086c25f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -54320,7 +54327,7 @@ void FUN_18086c26e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -54474,7 +54481,7 @@ LAB_18086c3d8:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -54547,7 +54554,7 @@ LAB_18086c3d8:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -54562,7 +54569,7 @@ void FUN_18086c43c(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -54575,7 +54582,7 @@ void FUN_18086c44b(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -54729,7 +54736,7 @@ LAB_18086c5d2:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -54802,7 +54809,7 @@ LAB_18086c5d2:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -54817,7 +54824,7 @@ void FUN_18086c63f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -54830,7 +54837,7 @@ void FUN_18086c64e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -54984,7 +54991,7 @@ LAB_18086c7d2:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -55057,7 +55064,7 @@ LAB_18086c7d2:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -55072,7 +55079,7 @@ void FUN_18086c83f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -55085,7 +55092,7 @@ void FUN_18086c84e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -55239,7 +55246,7 @@ LAB_18086c9d2:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -55312,7 +55319,7 @@ LAB_18086c9d2:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -55327,7 +55334,7 @@ void FUN_18086ca3f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -55340,7 +55347,7 @@ void FUN_18086ca4e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -55494,7 +55501,7 @@ LAB_18086cbd2:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -55567,7 +55574,7 @@ LAB_18086cbd2:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -55582,7 +55589,7 @@ void FUN_18086cc3f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -55595,7 +55602,7 @@ void FUN_18086cc4e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -55749,7 +55756,7 @@ LAB_18086cdd2:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -55822,7 +55829,7 @@ LAB_18086cdd2:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -55837,7 +55844,7 @@ void FUN_18086ce3f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -55850,7 +55857,7 @@ void FUN_18086ce4e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -56004,7 +56011,7 @@ LAB_18086cfd2:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -56077,7 +56084,7 @@ LAB_18086cfd2:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -56092,7 +56099,7 @@ void FUN_18086d03f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -56105,7 +56112,7 @@ void FUN_18086d04e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -56259,7 +56266,7 @@ LAB_18086d1d2:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -56332,7 +56339,7 @@ LAB_18086d1d2:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -56347,7 +56354,7 @@ void FUN_18086d23f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -56360,7 +56367,7 @@ void FUN_18086d24e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -56514,7 +56521,7 @@ LAB_18086d3d2:
     } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -56587,7 +56594,7 @@ LAB_18086d3d2:
     connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -56602,7 +56609,7 @@ void FUN_18086d43f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -56615,7 +56622,7 @@ void FUN_18086d44e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -95062,7 +95069,7 @@ void FUN_18089246a(longlong *connectionContext,longlong packetData)
   plVar2 = (longlong *)(lVar1 + 0x58);
   if (((longlong *)*plVar2 == plVar2) && (*(longlong **)(lVar1 + 0x60) == plVar2)) {
                     // WARNING: Subroutine does not return
-    NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+    NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
   FUN_18088d720(*(NetworkHandle *)(unaff_RDI + 0x98));
@@ -95078,7 +95085,7 @@ void FUN_1808924c8(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
