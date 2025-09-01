@@ -32613,59 +32613,59 @@ void ProcessSystemResourceRange(long long *SystemResourcePointer,long long Confi
 void CopySystemResourceData(long long *SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter,long long ConfigurationFlag)
 
 {
-  void* unsignedSystemValue1;
-  long long localSystemHandle;
-  long long localResourceOffset;
-  ulong long unsignedSystemValue4;
-  ulong long unsignedSystemValue5;
+  void* newMemoryBuffer;
+  long long resourceStartAddress;
+  long long resourceEndAddress;
+  ulong long sourceOffset;
+  ulong long targetOffset;
   
-  localSystemHandle = SystemResourcePointer[1];
-  unsignedSystemValue5 = ConfigurationFlag - AdditionalParameter >> 3;
-  if ((ulong long)(SystemResourcePointer[2] - localSystemHandle >> 3) < unsignedSystemValue5) {
-    localResourceOffset = *SystemResourcePointer;
-    localSystemHandle = localSystemHandle - localResourceOffset >> 3;
-    unsignedSystemValue4 = localSystemHandle * 2;
-    if (localSystemHandle == 0) {
-      unsignedSystemValue4 = 1;
+  resourceStartAddress = SystemResourcePointer[1];
+  targetOffset = ConfigurationFlag - AdditionalParameter >> 3;
+  if ((ulong long)(SystemResourcePointer[2] - resourceStartAddress >> 3) < targetOffset) {
+    resourceEndAddress = *SystemResourcePointer;
+    resourceStartAddress = resourceStartAddress - resourceEndAddress >> 3;
+    sourceOffset = resourceStartAddress * 2;
+    if (resourceStartAddress == 0) {
+      sourceOffset = 1;
     }
-    if (unsignedSystemValue4 <= localSystemHandle + unsignedSystemValue5) {
-      unsignedSystemValue4 = localSystemHandle + unsignedSystemValue5;
+    if (sourceOffset <= resourceStartAddress + targetOffset) {
+      sourceOffset = resourceStartAddress + targetOffset;
     }
-    if (unsignedSystemValue4 == 0) {
-      unsignedSystemValue1 = 0;
+    if (sourceOffset == 0) {
+      newMemoryBuffer = 0;
     }
     else {
-      unsignedSystemValue1 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue4 * 8,(char)SystemResourcePointer[3]);
-      localResourceOffset = *SystemResourcePointer;
+      newMemoryBuffer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,sourceOffset * 8,(char)SystemResourcePointer[3]);
+      resourceEndAddress = *SystemResourcePointer;
     }
-    if (localResourceOffset != ConfigurationDataPointer) {
+    if (resourceEndAddress != ConfigurationDataPointer) {
                     // WARNING: Subroutine does not return
-      memmove(unsignedSystemValue1,localResourceOffset,ConfigurationDataPointer - localResourceOffset);
-    }
-                    // WARNING: Subroutine does not return
-    memmove(unsignedSystemValue1,AdditionalParameter,ConfigurationFlag - AdditionalParameter);
-  }
-  unsignedSystemValue4 = localSystemHandle - ConfigurationDataPointer >> 3;
-  if (unsignedSystemValue5 < unsignedSystemValue4) {
-    localResourceOffset = localSystemHandle + unsignedSystemValue5 * -8;
-    if (localResourceOffset != localSystemHandle) {
-                    // WARNING: Subroutine does not return
-      memmove(localSystemHandle,localResourceOffset,unsignedSystemValue5 * 8);
+      memmove(newMemoryBuffer,resourceEndAddress,ConfigurationDataPointer - resourceEndAddress);
     }
                     // WARNING: Subroutine does not return
-    memmove(localSystemHandle - ((localSystemHandle + unsignedSystemValue5 * -8) - ConfigurationDataPointer & 0xfffffffffffffff8),ConfigurationDataPointer);
+    memmove(newMemoryBuffer,AdditionalParameter,ConfigurationFlag - AdditionalParameter);
   }
-  localResourceOffset = AdditionalParameter + unsignedSystemValue4 * 8;
-  if (localResourceOffset != ConfigurationFlag) {
+  sourceOffset = resourceStartAddress - ConfigurationDataPointer >> 3;
+  if (targetOffset < sourceOffset) {
+    resourceEndAddress = resourceStartAddress + targetOffset * -8;
+    if (resourceEndAddress != resourceStartAddress) {
                     // WARNING: Subroutine does not return
-    memmove(localSystemHandle,localResourceOffset,ConfigurationFlag - localResourceOffset);
+      memmove(resourceStartAddress,resourceEndAddress,targetOffset * 8);
+    }
+                    // WARNING: Subroutine does not return
+    memmove(resourceStartAddress - ((resourceStartAddress + targetOffset * -8) - ConfigurationDataPointer & 0xfffffffffffffff8),ConfigurationDataPointer);
   }
-  if (ConfigurationDataPointer != localSystemHandle) {
+  resourceEndAddress = AdditionalParameter + sourceOffset * 8;
+  if (resourceEndAddress != ConfigurationFlag) {
                     // WARNING: Subroutine does not return
-    memmove(localSystemHandle + (unsignedSystemValue5 - unsignedSystemValue4) * 8,ConfigurationDataPointer,localSystemHandle - ConfigurationDataPointer);
+    memmove(resourceStartAddress,resourceEndAddress,ConfigurationFlag - resourceEndAddress);
+  }
+  if (ConfigurationDataPointer != resourceStartAddress) {
+                    // WARNING: Subroutine does not return
+    memmove(resourceStartAddress + (targetOffset - sourceOffset) * 8,ConfigurationDataPointer,resourceStartAddress - ConfigurationDataPointer);
   }
                     // WARNING: Subroutine does not return
-  memmove(ConfigurationDataPointer + (unsignedSystemValue4 - (localResourceOffset - AdditionalParameter >> 3)) * 8,AdditionalParameter,localResourceOffset - AdditionalParameter);
+  memmove(ConfigurationDataPointer + (sourceOffset - (resourceEndAddress - AdditionalParameter >> 3)) * 8,AdditionalParameter,resourceEndAddress - AdditionalParameter);
 }
 
 
@@ -32686,33 +32686,33 @@ void CopySystemResourceData(long long *SystemResourcePointer,long long Configura
 void CalculateSystemResourceSize(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
-  void* unsignedSystemValue1;
-  long long unaff_RBP;
-  long long unaff_RSI;
-  long long *unaff_RDI;
-  ulong long unsignedSystemValue2;
+  void* memoryBuffer;
+  long long additionalOffset;
+  long long targetAddress;
+  long long *resourceArray;
+  ulong long calculatedSize;
   
   SystemResourcePointer = SystemResourcePointer >> 3;
-  unsignedSystemValue2 = SystemResourcePointer * 2;
+  calculatedSize = SystemResourcePointer * 2;
   if (SystemResourcePointer == 0) {
-    unsignedSystemValue2 = 1;
+    calculatedSize = 1;
   }
-  if (unsignedSystemValue2 <= (ulong long)(SystemResourcePointer + unaff_RBP)) {
-    unsignedSystemValue2 = SystemResourcePointer + unaff_RBP;
+  if (calculatedSize <= (ulong long)(SystemResourcePointer + additionalOffset)) {
+    calculatedSize = SystemResourcePointer + additionalOffset;
   }
-  if (unsignedSystemValue2 == 0) {
-    unsignedSystemValue1 = 0;
+  if (calculatedSize == 0) {
+    memoryBuffer = 0;
   }
   else {
-    unsignedSystemValue1 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue2 * 8,(char)unaff_RDI[3]);
-    ConfigurationDataPointer = *unaff_RDI;
+    memoryBuffer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,calculatedSize * 8,(char)resourceArray[3]);
+    ConfigurationDataPointer = *resourceArray;
   }
-  if (ConfigurationDataPointer != unaff_RSI) {
+  if (ConfigurationDataPointer != targetAddress) {
                     // WARNING: Subroutine does not return
-    memmove(unsignedSystemValue1,ConfigurationDataPointer,unaff_RSI - ConfigurationDataPointer);
+    memmove(memoryBuffer,ConfigurationDataPointer,targetAddress - ConfigurationDataPointer);
   }
                     // WARNING: Subroutine does not return
-  memmove(unsignedSystemValue1);
+  memmove(memoryBuffer);
 }
 
 
@@ -32877,11 +32877,11 @@ void CleanupSystemResourceMemoryRegion(long long *SystemResourcePointer)
  */
 void DestroySystemResourceMutex(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 {
-  void* unsignedSystemValue1;
+  void* cleanupFlag;
   
-  unsignedSystemValue1 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  ProcessMemoryBlock(SystemResourcePointer + 0xf0,*(void* *)(SystemResourcePointer + 0x100),AdditionalParameter,ConfigurationFlag,unsignedSystemValue1);
+  ProcessMemoryBlock(SystemResourcePointer + 0xf0,*(void* *)(SystemResourcePointer + 0x100),AdditionalParameter,ConfigurationFlag,cleanupFlag);
   ProcessMemoryBlock(SystemResourcePointer + 0xc0,*(void* *)(SystemResourcePointer + 0xd0));
   ProcessMemoryBlock(SystemResourcePointer + 0x90,*(void* *)(SystemResourcePointer + 0xa0));
   FUN_1800593f0(SystemResourcePointer + 0x60,*(void* *)(SystemResourcePointer + 0x70));
