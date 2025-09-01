@@ -307,6 +307,8 @@ void* ResourceContextStatusMonitor;
 void* ResourceSmallBufferPool;
 void* ResourceMediumBufferPool;
 void* ResourceLargeBufferPool;
+void* SystemResourceManagerPointer;
+void* SystemResourceData;
 
  /**
  * @brief 初始化纹理管理器
@@ -4470,7 +4472,7 @@ uint8_t InitializeObjectHandleF(void)
   int *pintegerValue2;
   int64_t ExecutionContextPointer;
   uint32_t *punsignedResult3;
-  uint unsignedResult4;
+  uint LoopIncrement;
   uint64_t ContextValidationResult;
   int64_t StackBufferPointer;
   uint64_t LoopCounter;
@@ -4486,7 +4488,7 @@ uint8_t InitializeObjectHandleF(void)
     do {
       if ((*pintegerValue2 != SystemValidationCodeA) || (pintegerValue2[1] != SystemValidationCodeB)) {
         lStack0000000000000050 = 0;
-        resourceHash = ValidateResourceContext(unsignedValue6,(int *)(ExecutionContextPointer + 0x20) + (int64_t)(int)unsignedValue5 * 2,
+        resourceHash = ValidateResourceContext(ContextValidationResult,(int *)(ExecutionContextPointer + 0x20) + (int64_t)(int)LoopCounter * 2,
                               &ObjectStackBuffer50);
         if ((int)resourceHash != 0) {
           return resourceHash;
@@ -4500,11 +4502,11 @@ uint8_t InitializeObjectHandleF(void)
           return resourceHash;
         }
       }
-      unsignedResult4 = (int)unsignedValue5 + 1;
-      unsignedValue5 = (uint64_t)unsignedResult4;
+      LoopIncrement = (int)LoopCounter + 1;
+      LoopCounter = (uint64_t)LoopIncrement;
       punsignedResult3 = punsignedResult3 + 1;
       pintegerValue2 = pintegerValue2 + 2;
-    } while ((int)byteValue4 < *(int *)(ExecutionContextPointer + 0x18));
+    } while ((int)LoopIncrement < *(int *)(ExecutionContextPointer + 0x18));
   }
   return 0;
 }
