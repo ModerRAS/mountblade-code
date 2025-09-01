@@ -19149,7 +19149,7 @@ void ReleaseSystemSemaphore(void* *SemaphoreHandle,uint32_t ReleaseCount)
 
 
 
-// 函数: void FUN_180046160(void* *SystemResourcePointer)
+// 函数: void FinalizeSystemSetup(void* *SystemResourcePointer)
 /**
  * @brief 解锁系统互斥锁
  * 
@@ -19370,7 +19370,7 @@ void ProcessSystemStringCopyWithLimit(long long targetBuffer,long long sourceStr
 
 
 
-// 函数: void FUN_180046400(long long SystemResourcePointer,void* param_2,int param_3)
+// 函数: void SetupSystemMemoryPool(long long SystemResourcePointer,void* param_2,int param_3)
 /**
  * @brief 系统内存复制操作（带长度限制）
  * 
@@ -19459,7 +19459,7 @@ void* * InitializeSystemMemoryAllocatorReference(void* *memoryAllocatorPointer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800464f0(long long SystemResourcePointer,long long param_2,long long param_3)
+// 函数: void ConfigureSystemBuffers(long long SystemResourcePointer,long long param_2,long long param_3)
 /**
  * @brief 系统三参数数据处理函数
  * 
@@ -24670,11 +24670,11 @@ void FUN_18004caf0(long long SystemResourcePointer)
   long long lVar1;
   int iVar2;
   int memoryCompareResult;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
+  float renderQualityMultiplier;
+  float baseRenderScale;
+  float textureScaleFactor;
+  float shadowScaleFactor;
+  float qualityLevel;
   
   lVar1 = SystemNodeManagerPointer;
   iVar2 = *(int *)(SystemNodeManagerPointer + 0xd90) + -1;
