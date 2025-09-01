@@ -29641,7 +29641,20 @@ void RestoreSystemResourceHandlerAtContextOffset88(uint8_t objectContextParam, i
 
 
 
-void Unwind_180902500(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 在异常处理时清理资源验证结果
+ * 
+ * 该函数负责在异常处理过程中遍历并清理资源验证结果
+ * 通过调用每个验证结果的清理函数来释放相关资源
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 清理参数3
+ * @param param_4 清理参数4
+ * @note 此函数会遍历所有验证结果并执行清理操作
+ * @warning 如果清理失败，可能会触发系统紧急退出
+ */
+void CleanupResourceValidationResults(uint8_t objectContextParam, int64_t validationContextParam, uint8_t param_3, uint8_t param_4)
 
 {
   uint8_t *presourceHash;
@@ -29662,7 +29675,17 @@ void Unwind_180902500(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180902510(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 在异常处理时释放资源句柄
+ * 
+ * 该函数负责在异常处理过程中释放资源句柄
+ * 检查资源状态并执行相应的释放操作
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数会释放资源句柄并重置相关状态
+ */
+void ReleaseResourceHandleOnException(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   int *pintegerValue1;
@@ -29698,7 +29721,17 @@ void Unwind_180902510(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902520(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 在异常处理时重置系统状态
+ * 
+ * 该函数负责在异常处理过程中重置系统状态
+ * 清理异常状态标志并恢复系统到正常运行状态
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数会重置系统状态并清理异常标志
+ */
+void ResetSystemStateOnException(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0x88) = &SystemDataStructure;
