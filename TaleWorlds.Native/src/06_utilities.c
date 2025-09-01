@@ -10680,8 +10680,8 @@ void ProcessResourceCalculationAndValidation(int64_t objectContextParam,uint8_t1
     ObjectContextOffset = *(int64_t *)(objectContextParam + 0x18);
     SecurityContextOffset = lVar7 * 3;
     SystemDataPointer = (int64_t)*(int *)(ObjectContextOffset + lVar7 * 0xc) + *(int64_t *)(objectContextParam + 8);
-    cVar3 = *(char *)(ObjectContextOffset + 8 + lVar7 * 0xc);
-    if (cVar3 == '\x01') {
+    CharVariable3 = *(char *)(ObjectContextOffset + 8 + lVar7 * 0xc);
+    if (CharVariable3 == '\x01') {
       iVar8 = *(int *)(objectContextParam + 0xb0);
       if (iVar4 < iVar8) {
         *(int *)(objectContextParam + 0xac) = iVar4 + 1;
@@ -10730,15 +10730,15 @@ LAB_18089555d:
       }
     }
     else {
-      if (cVar3 == '\x06') {
-        cVar3 = ProcessObjectData(*(uint8_t *)(objectContextParam + 0x58));
-        if (cVar3 == '\0') goto LAB_18089555d;
+      if (CharVariable3 == '\x06') {
+        CharVariable3 = ProcessObjectData(*(uint8_t *)(objectContextParam + 0x58));
+        if (CharVariable3 == '\0') goto LAB_18089555d;
         *validationContextParam = 0;
         goto HandleSystemError;
       }
-      if (cVar3 == '\a') {
-        cVar3 = ProcessObjectData(*(uint8_t *)(objectContextParam + 0x58));
-        if (cVar3 == '\0') {
+      if (CharVariable3 == '\a') {
+        CharVariable3 = ProcessObjectData(*(uint8_t *)(objectContextParam + 0x58));
+        if (CharVariable3 == '\0') {
           if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(objectContextParam + 0x58) + 0x90) + 0x790) +
                       0x1c8) != 0) {
             *validationContextParam = 0;
@@ -10748,7 +10748,7 @@ LAB_18089555d:
         }
       }
       else {
-        if ((cVar3 != '\x02') || ((*(byte *)(objectContextParam + 0x6c) & 4) != 0)) goto LAB_18089555d;
+        if ((CharVariable3 != '\x02') || ((*(byte *)(objectContextParam + 0x6c) & 4) != 0)) goto LAB_18089555d;
         SecurityValidationFlag = *(uint32_t *)(SystemDataPointer + 0x20);
         iVar4 = ProcessDataWithContext(objectContextParam,iVar4,&SecurityValidationFlag);
         if (iVar4 != 0) goto HandleSystemError;
@@ -11226,10 +11226,10 @@ uint8_t InsertOrUpdateResourceInHashTable(int64_t *hashTablePointer, uint *resou
  * 如果未找到则在适当的位置插入新的键值对
  * 
  * @param resourcePool 资源池指针
- * @param searchKey 要查找或插入的键值
+ * @param SearchKey 要查找或插入的键值
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
-uint64_t FindOrInsertInResourcePool(uint8_t resourcePool, int searchKey)
+uint64_t FindOrInsertInResourcePool(uint8_t resourcePool, int SearchKey)
 {
   int64_t poolData;
   int index;
@@ -11254,7 +11254,7 @@ uint64_t FindOrInsertInResourcePool(uint8_t resourcePool, int searchKey)
     poolData = poolHeader[2];
     do {
       entryOffset = (int64_t)currentEntry;
-      if (*(int *)(poolData + entryOffset * 0x10) == searchKey) {
+      if (*(int *)(poolData + entryOffset * 0x10) == SearchKey) {
         *(uint8_t *)(poolData + 8 + entryOffset * 0x10) = *valuePointer;
         return 0;
       }
@@ -11287,7 +11287,7 @@ uint64_t FindOrInsertInResourcePool(uint8_t resourcePool, int searchKey)
       }
     }
     entryPointer = (uint8_t *)((int64_t)(int)poolHeader[3] * 0x10 + poolHeader[2]);
-    *entryPointer = CONCAT44(0xffffffff, searchKey);
+    *entryPointer = CONCAT44(0xffffffff, SearchKey);
     entryPointer[1] = newValue;
     *(int *)(poolHeader + 3) = (int)poolHeader[3] + 1;
   }
@@ -14368,8 +14368,8 @@ uint8_t ValidateResourceRenderingState(void)
   float afStack_348 [2];
   int64_t *plStack_340;
   uint64_t uStack_338;
-  int64_t *aplStack_330 [2];
-  int64_t lStack_320;
+  int64_t *AudioBufferPointer [2];
+  int64_t AudioSampleRate;
   int64_t *plStack_318;
   uint8_t uStack_310;
   float afStack_308 [2];
@@ -14442,7 +14442,7 @@ uint8_t ValidateResourceRenderingState(void)
       if (integerValue6 != 1) {
         uStack_338 = uStack_338 & 0xffffffff00000000;
         plStack_340 = (int64_t *)&SystemMemoryTemplateC;
-        aplStack_330[0] = (int64_t *)CONCAT44(aplStack_330[0]._4_4_,integerValue6);
+        AudioBufferPointer[0] = (int64_t *)CONCAT44(AudioBufferPointer[0]._4_4_,integerValue6);
         iVar7 = GetAndValidateResourceData(objectContextParam,&plStack_340);
         if (iVar7 != 0) goto LAB_18089866f;
       }
@@ -14526,18 +14526,18 @@ uint8_t ValidateResourceRenderingState(void)
             if ((char)localContextPointer1 == '\0') {
               *(uint8_t1 *)(objectContextParam + 4) = 1;
               iVar7 = InitializeResourceContext(*(uint8_t *)(objectContextParam[1] + 0x78),aGraphicsOperationFlag1);
-              if (((iVar7 != 0) || (iVar7 = SetupResourceEnvironment(aGraphicsOperationFlag1[0],&lStack_320,0), iVar7 != 0)
+              if (((iVar7 != 0) || (iVar7 = SetupResourceEnvironment(aGraphicsOperationFlag1[0],&AudioSampleRate,0), iVar7 != 0)
                   ) || (iVar7 = (**(code **)(*objectContextParam + 0x10))(objectContextParam), iVar7 != 0))
               goto LAB_18089866f;
-              ValidationCounter = (uint64_t)(lStack_320 * 48000) /
+              ValidationCounter = (uint64_t)(AudioSampleRate * 48000) /
                       (uint64_t)*(uint *)((int64_t)objectContextParam + 0x1c);
               lVar4 = objectContextParam[2];
               plStack_340 = (int64_t *)&SystemMemoryTemplateF;
               uStack_338 = uStack_338 & 0xffffffff00000000;
               objectContextParam[2] = ValidationCounter;
-              aplStack_330[0] = plocalContextPointer6;
+              AudioBufferPointer[0] = plocalContextPointer6;
               if (lVar4 != 0) {
-                aplStack_330[0] = (int64_t *)(ValidationCounter - lVar4);
+                AudioBufferPointer[0] = (int64_t *)(ValidationCounter - lVar4);
               }
               iVar7 = GetAndValidateResourceData(objectContextParam,&plStack_340);
               if (iVar7 != 0) goto LAB_18089866f;
@@ -14568,13 +14568,13 @@ uint8_t ValidateResourceRenderingState(void)
           do {
             localContextPointer5 = (int64_t)(int)afStack_348[0] * 0x20;
             uStack_338 = 0xffffffffffffffff;
-            aplStack_330[0] = (int64_t *)CONCAT44(aplStack_330[0]._4_4_,0xffffffff);
+            AudioBufferPointer[0] = (int64_t *)CONCAT44(AudioBufferPointer[0]._4_4_,0xffffffff);
             plStack_340 = *(int64_t **)(plocalContextPointer6[2] + 0x18 + localContextPointer5);
-            lStack_320 = localContextPointer5;
-            SetupResourceHandlers(plStack_340,&uStack_338,aplStack_330);
+            AudioSampleRate = localContextPointer5;
+            SetupResourceHandlers(plStack_340,&uStack_338,AudioBufferPointer);
             plocalContextPointer4 = plStack_340;
-            if ((int)aplStack_330[0] != -1) {
-              integerValue6 = (int)aplStack_330[0];
+            if ((int)AudioBufferPointer[0] != -1) {
+              integerValue6 = (int)AudioBufferPointer[0];
               iVar7 = (int)uStack_338;
               do {
                 do {
@@ -14603,7 +14603,7 @@ uint8_t ValidateResourceRenderingState(void)
                 integerValue6 = -1;
                 iVar7 = integerValue6;
 LAB_1808985be:
-                localContextPointer5 = lStack_320;
+                localContextPointer5 = AudioSampleRate;
                 plocalContextPointer6 = plStack_318;
               } while (integerValue6 != -1);
             }
@@ -14878,13 +14878,13 @@ LAB_1808989f7:
  * 主要用于快速查找和检索操作，提高查找效率
  * 
  * @param arrayData 数组数据指针，包含数组的基本信息
- * @param searchKey 搜索键值，要查找的目标值
+ * @param SearchKey 搜索键值，要查找的目标值
  * @param searchContext 搜索上下文，包含搜索的配置信息
  * @param searchFlags 搜索标志，控制搜索的行为
  * @param additionalData 附加数据，用于扩展搜索功能
  * @return uint64_t 查找结果，成功返回找到的元素，失败返回错误码
  */
-uint64_t BinarySearchInArray(int64_t arrayData,uint *searchKey,uint8_t searchContext,uint32_t searchFlags,
+uint64_t BinarySearchInArray(int64_t arrayData,uint *SearchKey,uint8_t searchContext,uint32_t searchFlags,
              uint8_t additionalData)
 
 {
@@ -14902,16 +14902,16 @@ uint64_t BinarySearchInArray(int64_t arrayData,uint *searchKey,uint8_t searchCon
   iVar9 = *(int *)(arrayData + 0x18) + -1;
   if (-1 < iVar9) {
     resourceTable = *(int64_t *)(arrayData + 0x10);
-    resourceHash = *searchKey;
+    resourceHash = *SearchKey;
     do {
       iVar7 = iVar9 + iVar8 >> 1;
       pContextValidationResult = (uint *)((int64_t)iVar7 * 0x10 + resourceTable);
       if (resourceHash == *pContextValidationResult) {
-        iVar4 = (uint)(ushort)searchKey[1] - (uint)(ushort)pContextValidationResult[1];
+        iVar4 = (uint)(ushort)SearchKey[1] - (uint)(ushort)pContextValidationResult[1];
         if ((iVar4 == 0) &&
-           (iVar4 = (uint)*(ushort *)((int64_t)searchKey + 6) -
+           (iVar4 = (uint)*(ushort *)((int64_t)SearchKey + 6) -
                     (uint)*(ushort *)((int64_t)pContextValidationResult + 6), iVar4 == 0)) {
-          iVar4 = memcmp(searchKey + 2,pContextValidationResult + 2,8);
+          iVar4 = memcmp(SearchKey + 2,pContextValidationResult + 2,8);
         }
       }
       else {
@@ -17456,7 +17456,7 @@ uint8_t ValidateResourceStatusFlags(int64_t resourceContext, int64_t statusPoint
   int64_t MemoryAddress;
   int64_t BufferPointer;
   int64_t longValue8;
-  int aResourceCount [4];
+  int ResourceCountArray [4];
   
   lVar7 = 0;
   ResourceContextOffset = (ushort)(*(int *)(validationContextParam + 0x28) != 0);
@@ -17491,17 +17491,17 @@ uint8_t ValidateResourceStatusFlags(int64_t resourceContext, int64_t statusPoint
   }
   LoopIncrement = GetResourceEntry(objectContextParam);
   if ((int)LoopCondition == 0) {
-    aResourceCount[0] = *(int *)(validationContextParam + 0x20);
-    LoopIncrement = (**(code **)**(uint8_t **)(objectContextParam + 8))(*(uint8_t **)(objectContextParam + 8),aResourceCount,4);
+    ResourceCountArray[0] = *(int *)(validationContextParam + 0x20);
+    LoopIncrement = (**(code **)**(uint8_t **)(objectContextParam + 8))(*(uint8_t **)(objectContextParam + 8),ResourceCountArray,4);
     if ((int)LoopCondition == 0) {
-      aResourceCount[0] = CONCAT22(aResourceCount[0]._2_2_,ResourceContextOffset);
+      ResourceCountArray[0] = CONCAT22(ResourceCountArray[0]._2_2_,ResourceContextOffset);
       LoopIncrement = (**(code **)**(uint8_t **)(objectContextParam + 8))
-                        (*(uint8_t **)(objectContextParam + 8),aResourceCount,2);
+                        (*(uint8_t **)(objectContextParam + 8),ResourceCountArray,2);
       if (((int)LoopCondition == 0) && (LoopIncrement = VerifyResourceIntegrity(objectContextParam,validationContextParam + 0x24), (int)LoopCondition == 0)) {
         if ((ResourceContextOffset & 1) != 0) {
-          aResourceCount[0] = *(int *)(validationContextParam + 0x28);
+          ResourceCountArray[0] = *(int *)(validationContextParam + 0x28);
           LoopIncrement = (**(code **)**(uint8_t **)(objectContextParam + 8))
-                            (*(uint8_t **)(objectContextParam + 8),aResourceCount,4);
+                            (*(uint8_t **)(objectContextParam + 8),ResourceCountArray,4);
           if ((int)LoopCondition != 0) {
             return LoopCondition;
           }
@@ -17514,9 +17514,9 @@ uint8_t ValidateResourceStatusFlags(int64_t resourceContext, int64_t statusPoint
                   (LoopIncrement = QueryResourceInfo(objectContextParam,validationContextParam + 0x150), (int)LoopCondition == 0)))) {
           if ((ResourceContextOffset & 0x10) != 0) {
             OperationResult = *(int *)(validationContextParam + 0x260);
-            aResourceCount[0] = OperationResult;
+            ResourceCountArray[0] = OperationResult;
             LoopIncrement = (**(code **)**(uint8_t **)(objectContextParam + 8))
-                              (*(uint8_t **)(objectContextParam + 8),aResourceCount,4);
+                              (*(uint8_t **)(objectContextParam + 8),ResourceCountArray,4);
             if ((int)LoopCondition != 0) {
               return LoopCondition;
             }
@@ -17529,9 +17529,9 @@ uint8_t ValidateResourceStatusFlags(int64_t resourceContext, int64_t statusPoint
                 if ((int)LoopCondition != 0) {
                   return LoopCondition;
                 }
-                aResourceCount[0] = CONCAT31(aResourceCount[0]._1_3_,sVar1 != 0);
+                ResourceCountArray[0] = CONCAT31(ResourceCountArray[0]._1_3_,sVar1 != 0);
                 LoopIncrement = (**(code **)**(uint8_t **)(objectContextParam + 8))
-                                  (*(uint8_t **)(objectContextParam + 8),aResourceCount,1);
+                                  (*(uint8_t **)(objectContextParam + 8),ResourceCountArray,1);
                 if ((int)LoopCondition != 0) {
                   return LoopCondition;
                 }
@@ -18051,21 +18051,21 @@ void ProcessObjectContextValidation(int64_t objectContextParam,int *validationCo
   uint32_t UnsignedResult4;
   
   ContextValidationResult = (uint8_t3)((uint)in_EAX >> 8);
-  cVar3 = (char)in_EAX + -0x57 + in_CF;
-  LoopIncrement = CONCAT31(ContextValidationResult,cVar3);
+  CharVariable3 = (char)in_EAX + -0x57 + in_CF;
+  LoopIncrement = CONCAT31(ContextValidationResult,CharVariable3);
   *(uint32_t *)CONCAT44(in_register_00000004,LoopIncrement) = LoopIncrement;
   *(uint *)(objectContextParam + -0x565dff77) = *(uint *)(objectContextParam + -0x565dff77) & unaff_EBP;
   *(uint32_t *)CONCAT44(in_register_00000004,LoopIncrement) = LoopIncrement;
   piStack_8 = validationContextParam;
   *(uint32_t *)CONCAT44(in_register_00000004,LoopIncrement) = LoopIncrement;
   *(char *)CONCAT44(in_register_00000004,LoopIncrement) =
-       *(char *)CONCAT44(in_register_00000004,LoopIncrement) + cVar3;
+       *(char *)CONCAT44(in_register_00000004,LoopIncrement) + CharVariable3;
   *(char *)CONCAT44(in_register_00000004,LoopIncrement) =
-       *(char *)CONCAT44(in_register_00000004,LoopIncrement) + cVar3;
-  tableEntry = CONCAT31(ContextValidationResult,cVar3 + '\x18');
+       *(char *)CONCAT44(in_register_00000004,LoopIncrement) + CharVariable3;
+  tableEntry = CONCAT31(ContextValidationResult,CharVariable3 + '\x18');
   *validationContextParam = *validationContextParam + tableEntry;
   pcVar1 = (char *)((int64_t)&piStack_8 + CONCAT44(in_register_00000004,tableEntry));
-  *pcVar1 = *pcVar1 + cVar3 + '\x18';
+  *pcVar1 = *pcVar1 + CharVariable3 + '\x18';
   pcVar2 = (code *)swi(3);
   (*pcVar2)();
   return;
@@ -18465,7 +18465,7 @@ uint64_t ValidateAndProcessResourceData(void)
   uint unaff_EDI;
   uint configurationFlags;
   uint SecurityHashValue;
-  char cStack0000000000000030;
+  char CharStackValue30;
   uint uStack0000000000000034;
   uint32_t in_stack_00000038;
   
@@ -18494,9 +18494,9 @@ LAB_18089af81:
     }
     validationResult = unaff_ESI;
     if (ValidationResult == 0) {
-      ContextValidationResult = (uint)(cStack0000000000000030 != '\0');
+      ContextValidationResult = (uint)(CharStackValue30 != '\0');
       ValidationResult = SecurityHashValue;
-      validationResult = (uint)(cStack0000000000000030 == '\0');
+      validationResult = (uint)(CharStackValue30 == '\0');
     }
     if (ValidationResult != 0) {
       return (uint64_t)ValidationResult;
@@ -19114,7 +19114,7 @@ uint8_t GetResourcePoolInfo(void)
   uint8_t ExecutionContextPointer;
   int64_t UnaffectedRegisterValue;
   bool in_CF;
-  char cStack0000000000000030;
+  char CharStackValue30;
   uint in_stack_00000040;
   
   if (in_CF) {
@@ -19122,7 +19122,7 @@ uint8_t GetResourcePoolInfo(void)
       return 0x1c;
     }
     localContextPointer = *ResourceContextPointer;
-    _cStack0000000000000030 = ExecutionContextPointer;
+    _CharStackValue30 = ExecutionContextPointer;
     ValidationResult = ReadResourceData(localContextPointer,unaff_RDI + 0x60,4);
     if ((((int)ValidationResult == 0) && (ValidationResult = ReadResourceData(localContextPointer,unaff_RDI + 100,2), (int)ValidationResult == 0)) &&
        (ValidationResult = ReadResourceData(localContextPointer,unaff_RDI + 0x66,2), (int)ValidationResult == 0)) {
@@ -19174,7 +19174,7 @@ uint8_t GetResourcePoolInfo(void)
   }
 LAB_1808a2e6d:
   if ((int)ValidationResult == 0) {
-    *(bool *)(unaff_RDI + 0x7c) = cStack0000000000000030 != (char)ValidationResult;
+    *(bool *)(unaff_RDI + 0x7c) = CharStackValue30 != (char)ValidationResult;
   }
   return ValidationResult;
 }
@@ -19544,7 +19544,7 @@ uint64_t ProcessResourceDataA(int64_t objectContextParam,int64_t *validationCont
   uint64_t ContextValidationResult;
   uint SecurityHashValue;
   uint64_t MemorySize;
-  char acStackX_18 [8];
+  char CharStackArray18 [8];
   uint auStackX_20 [2];
   uint8_t1 resourceValidationBuffer [32];
   
@@ -19590,7 +19590,7 @@ uint64_t ProcessResourceDataA(int64_t objectContextParam,int64_t *validationCont
     }
     else if (plocalContextPointer[2] == 0) {
 LAB_18089b91c:
-      LoopIncrement = CalculateResourceHash(*plocalContextPointer,acStackX_18,1,1,0);
+      LoopIncrement = CalculateResourceHash(*plocalContextPointer,CharStackArray18,1,1,0);
     }
     else {
       auStackX_20[0] = 0;
@@ -19602,8 +19602,8 @@ LAB_18089b91c:
     }
     SecurityHashValue = 0;
     if (LoopIncrement == 0) {
-      SecurityHashValue = (uint)(acStackX_18[0] != '\0');
-      ValidationResult = (uint)(acStackX_18[0] == '\0');
+      SecurityHashValue = (uint)(CharStackArray18[0] != '\0');
+      ValidationResult = (uint)(CharStackArray18[0] == '\0');
       LoopIncrement = 0;
     }
     if (LoopIncrement != 0) {
