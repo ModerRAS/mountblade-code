@@ -30961,7 +30961,7 @@ void SystemResourceRelease(void)
 
 
 
-// 函数: void FUN_180057814(void)
+// 函数: void SystemExceptionHandler(void)
 /**
  * @brief 系统异常处理函数
  * 
@@ -31031,8 +31031,14 @@ void FUN_180057830(long long *SystemResourcePointer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800578a0(void)
-void FUN_1800578a0(void)
+// 函数: void DestroyRenderingSystem(void)
+/**
+ * @brief 渲染系统销毁函数
+ * 
+ * 该函数负责销毁渲染系统，清理渲染相关的资源和内存。
+ * 用于系统关闭时的渲染资源清理工作。
+ */
+void DestroyRenderingSystem(void)
 
 {
   int *pointerToInteger1;

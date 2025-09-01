@@ -1801,8 +1801,8 @@ uint8_t SystemMemoryConfigurationFlags;
 uint8_t SystemMemoryOperationFlags;
 uint8_t SystemMemoryDataPoolPrimary;
 uint8_t SystemMemoryDataPoolSecondary;
-uint8_t SystemMemoryDataPoolC;
-uint8_t SystemMemoryDataPoolD;
+uint8_t SystemMemoryDataPoolTertiary;
+uint8_t SystemMemoryDataPoolQuaternary;
 uint8_t SystemMemoryConfigDataTemplateL;
 uint8_t SystemMemoryConfigDataTemplateM;
 uint8_t SystemMemoryConfigDataTemplateN;
@@ -2035,7 +2035,7 @@ void EncryptDataBuffer(void);
  */
 void DecryptDataBuffer(void);
 uint8_t EncryptionKey;
-uint8_t EncryptionIV;
+uint8_t EncryptionInitializationVector;
 
  /**
  * @brief 哈希数据缓冲区
@@ -2856,7 +2856,7 @@ uint8_t SystemEventHandlerAudio;
 uint8_t SystemEventHandlerNetwork;
 uint8_t SystemEventHandlerPhysics;
 uint8_t SystemEventHandlerAnimation;
-uint8_t SystemEventHandlerUI;
+uint8_t SystemEventHandlerUserInterface;
 uint8_t SystemEventHandlerScript;
 uint8_t SystemEventHandlerResource;
 uint8_t SystemEventHandlerMemory;
