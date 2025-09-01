@@ -5379,9 +5379,9 @@ uint64_t ProcessFloatParameterAndUpdateSystem(int64_t parameterObject)
       if ((FirstStatusFlags & 1) == 0) {
         if ((((SecondStatusFlags >> 3 & 1) != 0) && (IntegerValue = (int)FloatValue, IntegerValue != -0x80000000)) &&
            ((float)IntegerValue != FloatValue)) {
-          VectorData._4_4_ = FloatValue;
-          VectorData._0_4_ = FloatValue;
-          VectorData._8_8_ = 0;
+          VectorData.VectorY = FloatValue;
+          VectorData.VectorX = FloatValue;
+          VectorData.VectorZ = 0;
           SecondStatusFlags = movmskps(FirstStatusFlags, VectorData);
           FloatValue = (float)(int)(IntegerValue - (SecondStatusFlags & 1));
         }
@@ -7241,7 +7241,7 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
   firstRowInfinityCheck = 0;
   uint32_t securityValidationContext = *(uint *)(ObjectContextParameter + 0x40);
   float matrixElementWComponent = *(float *)(ObjectContextParameter + 0x3c);
-  ValidationContextBuffer[0] = CONCAT44(ValidationContextBuffer[0]._4_4_,matrixElementXCoordinate);
+  ValidationContextBuffer[0] = CONCAT44(ValidationContextBuffer[0].VectorComponent,matrixElementXCoordinate);
   secondRowInfinityCheck = firstRowInfinityCheck;
   if (((uint)matrixElementXCoordinate & 0x7f800000) == 0x7f800000) {
     secondRowInfinityCheck = 0x1d;
@@ -7883,7 +7883,7 @@ uint8_t ValidateObjectContextAndProcessParameterizedComplexFloatOperation(int64_
   float rangeValue;
   int64_t stackBuffer;
   
-  StackContextPointer = CONCAT44(StackContextPointer._4_4_,*(uint *)(ObjectContextParameter + 0x20));
+  StackContextPointer = CONCAT44(StackContextPointer.VectorComponent,*(uint *)(ObjectContextParameter + 0x20));
   if ((*(uint *)(ObjectContextParameter + 0x20) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
@@ -8241,7 +8241,7 @@ uint8_t ValidateAndProcessObjectContextWithParameters(int64_t objectContext,int6
   int64_t stackBuffer;
   
   validationFloat = *(float *)(ObjectContextParameter + 0x18);
-  stackBuffer = CONCAT44(stackBuffer._4_4_,validationFloat);
+  stackBuffer = CONCAT44(stackBuffer.VectorComponent,validationFloat);
   if (((uint)validationFloat & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }

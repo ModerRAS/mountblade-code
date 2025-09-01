@@ -37470,8 +37470,17 @@ void ResumeSystemThreadsB(void)
 
 
 
-// 函数: void FUN_18005db99(void)
-void FUN_18005db99(void)
+/**
+ * @brief 系统空操作函数D
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作
+ * 用于系统初始化过程中的占位符或默认处理
+ * 
+ * @note 这是一个空操作函数，仅用于系统初始化的完整性
+ * 
+ * 原始函数名为FUN_18005db99，现已重命名为SystemNoOperationD
+ */
+void SystemNoOperationD(void)
 
 {
   return;
@@ -39541,7 +39550,7 @@ ulong long FUN_18005fb30(long long SystemResourcePointer,long long *Configuratio
       plocalSystemPointer[1] = unsignedSystemValue14;
     }
     else {
-      cVar9 = FUN_18005f430(SystemResourcePointer);
+      cVar9 = ExpandSystemResourceAllocator(SystemResourcePointer);
       if (cVar9 == '\0') goto joined_r0x00018005fdcd;
       plocalSystemPointer = *(long long **)(SystemResourcePointer + 0x60);
       unsignedSystemValue14 = *plocalSystemPointer - 1U & plocalSystemPointer[1] + 1U;
