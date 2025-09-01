@@ -17665,15 +17665,15 @@ int InitializeSystemConfiguration(void)
   int ConfigurationIndex;
   
   SystemConfigurationSize = 0x100;
-  configIndex = 0;
+  ConfigurationIndex = 0;
   do {
-    ConfigureSystemParameters(configIndex,0x4000000000000000,0xffff7fff,0);
-    configIndex = configIndex + 1;
-  } while (configIndex < 0xd);
+    ConfigureSystemParameters(ConfigurationIndex,0x4000000000000000,0xffff7fff,0);
+    ConfigurationIndex = ConfigurationIndex + 1;
+  } while (ConfigurationIndex < 0xd);
   *(uint *)(SystemDeviceContextPointer + 0x330) = *(uint *)(SystemDeviceContextPointer + 0x330) | 4;
   SystemDeviceStatusFlag = 0xffffffff;
-  callbackResult = SystemEventCallback(&SystemEventParameterA);
-  return (callbackResult != 0) - 1;
+  SystemCallbackResult = SystemEventCallback(&SystemEventParameterA);
+  return (SystemCallbackResult != 0) - 1;
 }
 
 
@@ -17985,11 +17985,11 @@ int InitializeThreadSafetyMutex(void)
  * 
  * 这是Wots系统的主SDL入口点函数，负责初始化和启动系统。
  * 
- * @param param_1 系统参数指针
+ * @param SystemParameter 系统参数指针
  * @return 无返回值
  * @note 这是系统的主入口函数，处理SDL相关的初始化工作
  */
-void WotsMainSDLL(void* param_1)
+void WotsMainSDLL(void* SystemParameter)
 
 {
   void* stackVariables [2];

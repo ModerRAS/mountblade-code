@@ -1093,8 +1093,7 @@ void* SystemThreadingConfigTableQuinary;
 void* SystemProcessConfigTableSenary;
 void* SystemSecurityConfigTableQuinary;
 
- void SetupMemoryPool(void);
-/**
+ /**
  * @brief 设置内存池
  * 
  * 该函数负责设置系统内存池
@@ -1107,8 +1106,7 @@ void* SystemEventConfigTableOctonary;
 void* SystemLoggingConfigTableSeptenary;
 void* SystemAuditConfigTableQuaternary;
 
- void InitializeGarbageCollector(void);
-/**
+ /**
  * @brief 初始化垃圾收集器
  * 
  * 该函数负责初始化系统垃圾收集器
@@ -2143,7 +2141,7 @@ uint8_t SystemLogConfigDataSecondary;
 uint8_t SystemLogConfigDataTertiary;
 uint8_t SystemLogConfigDataQuaternary;
 uint8_t SystemMemoryConfigDataTemplateSixth;
-uint8_t SystemMemoryConfigDataTemplatePrimary;
+uint8_t SystemMemoryConfigDataPrimary;
 uint8_t SystemMemoryConfigDataTemplateSeventh;
 uint8_t SystemMemoryConfigDataTemplateEighth;
 uint8_t SystemMemoryConfigDataTemplateNinth;
@@ -2427,9 +2425,9 @@ void GetMemoryBlockSize(void);
  * 用于内存管理和调试目的
  */
 void GetMemoryBlockSize;
-uint8_t SystemMemoryConfigDataTemplatePrimary;
-uint8_t SystemMemoryConfigDataTemplateSecondary;
-uint8_t SystemMemoryConfigDataTemplateTertiary;
+uint8_t SystemMemoryConfigDataPrimary;
+uint8_t SystemMemoryConfigDataSecondary;
+uint8_t SystemMemoryConfigDataTertiary;
 uint8_t SystemMemoryConfigDataTemplateQuaternary;
 uint8_t AudioEffectProcessorTable;
 uint8_t SystemMemoryConfigDataTemplateQuinary;
