@@ -724,7 +724,9 @@ int ProcessDataBlockOperation(void* dataPointer, uint32_t operationType);
  * 该函数负责初始化系统的配置上下文
  * 设置配置参数并建立配置管理的基础设施
  * 
- * 该函数无参数，无返回值
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用，以确保配置系统的正常运行
+ * @warning 调用此函数前必须确保基础系统组件已经初始化
  */
 void InitializeConfigurationContext(void);
 
