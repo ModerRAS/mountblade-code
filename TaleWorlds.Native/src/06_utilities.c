@@ -13578,13 +13578,13 @@ void SystemInitializerA(void)
         }
         ResourceIndex3 = ValidateResourceTable(ResourceValidationResult4,(int64_t)&stack0x00000048 + 4,0);
         if (ResourceIndex3 == 0) {
-          in_stack_000001a0 = Xmm6RegisterDa;
-          in_stack_000001a8 = Xmm6RegisterDc;
-          if (fStack000000000000004c != 1.0) {
-            fStack0000000000000040 = fStack000000000000004c;
-            in_stack_00000028 = &SystemResourceTemplateFile;
-            in_stack_00000038 = StackContextBuffer;
-            in_stack_00000030 = FloatRegisterValue;
+          StackRegisterXmm6Da = Xmm6RegisterDa;
+          StackRegisterXmm6Dc = Xmm6RegisterDc;
+          if (StackFloatPrimaryValue != 1.0) {
+            StackFloatResourceValue = StackFloatPrimaryValue;
+            StackResourceTemplatePointer = &SystemResourceTemplateFile;
+            StackContextBufferPointer = StackContextBuffer;
+            StackFloatRegisterValue = FloatRegisterValue;
             ResourceIndex3 = GetAndValidateResourceData(fStack000000000000004c,&ObjectStackBufferResource28);
             fStack000000000000004c = extraout_XMM0_Da_03;
             if (ResourceIndex3 != 0) goto ProcessMemoryRelease;
