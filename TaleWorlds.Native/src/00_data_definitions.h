@@ -337,7 +337,7 @@ int InitializeModuleConfigurationA(void)
   g_stringProcessorConfigPointerA = &STRING_PROCESSOR_CONFIG_A;
   STRING_PROCESSOR_CONFIG_A = 0;
   g_stringProcessorBufferSizeA = 5;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_A,0x10,&UNK_180a00540,in_R9,0xfffffffffffffffe);
+  strcpy_s(&STRING_PROCESSOR_CONFIG_A,0x10,&SystemStringDataConstantA,in_R9,0xfffffffffffffffe);
   longlong CallbackResult = RegisterSystemModule(InitializeSystemModuleA);
   return (CallbackResult != 0) - 1;
 }
@@ -355,7 +355,7 @@ int InitializeStringProcessorG(void)
   g_stringProcessorConfigPointerB = &STRING_PROCESSOR_CONFIG_B;
   STRING_PROCESSOR_CONFIG_B = 0;
   g_stringProcessorBufferSizeB = 5;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_B,0x10,&UNK_180a00548,stringProcessorGFlags,0xfffffffffffffffe);
+  strcpy_s(&STRING_PROCESSOR_CONFIG_B,0x10,&SystemStringDataConstantC,stringProcessorGFlags,0xfffffffffffffffe);
   CallbackResult = RegisterSystemModule(InitializeSystemModuleB);
   return (CallbackResult != 0) - 1;
 }
@@ -373,7 +373,7 @@ int InitializeStringProcessorH(void)
   g_stringProcessorConfigPointerC = &STRING_PROCESSOR_CONFIG_C;
   STRING_PROCESSOR_CONFIG_C = 0;
   g_stringProcessorBufferSizeC = 0xd;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_C,0x20,&UNK_180a01300,stringProcessorHFlags,0xfffffffffffffffe);
+  strcpy_s(&STRING_PROCESSOR_CONFIG_C,0x20,&SystemStringDataConstantD,stringProcessorHFlags,0xfffffffffffffffe);
   CallbackResult = RegisterSystemModule(InitializeStringProcessorModule);
   return (CallbackResult != 0) - 1;
 }
@@ -391,7 +391,7 @@ int InitializeStringProcessorI(void)
   g_stringProcessorConfigPointerD = &STRING_PROCESSOR_CONFIG_D;
   STRING_PROCESSOR_CONFIG_D = 0;
   g_stringProcessorBufferSizeD = 9;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_D,0x20,&UNK_180a01330,stringProcessorIFlags,0xfffffffffffffffe);
+  strcpy_s(&STRING_PROCESSOR_CONFIG_D,0x20,&SystemStringDataConstantE,stringProcessorIFlags,0xfffffffffffffffe);
   CallbackResult = RegisterSystemModule(InitializeNetworkModule);
   return (CallbackResult != 0) - 1;
 }
@@ -4107,7 +4107,18 @@ LAB_1800d3d65:
   *(uint32_t *)(param_1 + 2) = 3;
   return param_1;
 }
-longlong FUN_18016fec0(longlong param_1,longlong param_2,longlong param_3)
+/**
+ * @brief 内存区域清理和数据迁移函数
+ * 
+ * 该函数负责清理内存区域中的数据，并在必要时进行数据迁移。
+ * 主要用于系统资源管理和内存优化操作。
+ * 
+ * @param StartAddress 起始地址
+ * @param EndAddress 结束地址
+ * @param TargetAddress 目标地址
+ * @return 返回处理后的地址
+ */
+longlong ProcessMemoryRegionCleanupAndDataMigration(longlong StartAddress, longlong EndAddress, longlong TargetAddress)
 {
   uint64_t *pMemoryAddress;
   uint64_t *pBufferSize;
@@ -4139,7 +4150,18 @@ longlong FUN_18016fec0(longlong param_1,longlong param_2,longlong param_3)
   }
   return param_3;
 }
-longlong FUN_18016fee0(uint64_t param_1,longlong param_2,longlong param_3)
+/**
+ * @brief 批量内存清理和资源释放函数
+ * 
+ * 该函数负责批量清理内存区域并释放相关资源。
+ * 通过循环处理内存块，确保系统资源得到正确释放。
+ * 
+ * @param MemoryRegion 内存区域标识
+ * @param RegionOffset 区域偏移量
+ * @param CleanupTarget 清理目标地址
+ * @return 返回处理后的地址偏移
+ */
+longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longlong RegionOffset, longlong CleanupTarget)
 {
   uint64_t *pMemoryAddress;
   longlong lVar2;
@@ -4340,7 +4362,19 @@ longlong FUN_18016fee0(uint64_t param_1,longlong param_2,longlong param_3)
   return MemoryAddress2;
 }
 uint64_t *
-FUN_18019e140(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
+/**
+ * @brief 系统缓冲区模板初始化函数
+ * 
+ * 该函数负责初始化系统缓冲区模板，设置缓冲区的基本结构
+ * 和参数，包括字符串处理和内存配置。
+ * 
+ * @param BufferTemplate 缓冲区模板指针
+ * @param DataSource 数据源参数
+ * @param ConfigParam1 配置参数1
+ * @param ConfigParam2 配置参数2
+ * @return 返回初始化后的缓冲区模板指针
+ */
+uint64_t* InitializeSystemBufferTemplate(uint64_t *BufferTemplate, longlong DataSource, uint64_t ConfigParam1, uint64_t ConfigParam2)
 {
   int LoopCounter;
   uint64_t *pBufferSize;
@@ -5202,7 +5236,16 @@ LAB_1802a912b:
   }
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_248);
 }
-bool FUN_1802a9200(uint64_t *param_1)
+/**
+ * @brief 系统参数验证函数
+ * 
+ * 该函数负责验证系统参数的有效性，检查参数结构
+ * 和配置是否符合系统要求。
+ * 
+ * @param ParameterArray 参数数组指针
+ * @return 验证通过返回true，失败返回false
+ */
+bool ValidateSystemParameters(uint64_t *ParameterArray)
 {
   int LoopCounter;
   uint64_t BufferSize;
@@ -5244,7 +5287,16 @@ bool FUN_1802a9200(uint64_t *param_1)
   }
   memcpy(BufferSize,*param_1,uVar3);
 }
-uint64_t FUN_1802a9450(uint64_t *param_1)
+/**
+ * @brief 数据处理和转换函数
+ * 
+ * 该函数负责处理各种数据类型之间的转换和计算操作，
+ * 包括字符串、浮点数和其他数据类型的处理。
+ * 
+ * @param DataArray 数据数组指针
+ * @return 返回处理后的数据结果
+ */
+uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
 {
   uint8_t aMemoryAddress [16];
   int StringIndex;
@@ -5706,7 +5758,19 @@ code_r0x000180329ed1:
   bVar8 = (byte)auStackX_20[0];
   goto LAB_180329ed5;
 }
-uint64_t FUN_180329fa0(longlong param_1,longlong *param_2,uint32_t *param_3,uint param_4)
+/**
+ * @brief 模块数据验证和处理函数
+ * 
+ * 该函数负责验证模块数据的完整性，并进行必要的数据处理
+ * 和转换操作，确保系统数据的一致性。
+ * 
+ * @param ModuleHandle 模块句柄
+ * @param DataBuffer 数据缓冲区指针
+ * @param ValidationFlags 验证标志
+ * @param ProcessingMode 处理模式
+ * @return 返回处理结果状态码
+ */
+uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffer, uint32_t *ValidationFlags, uint ProcessingMode)
 {
   longlong *pModuleInitializationResult;
   byte bVar2;
@@ -5842,7 +5906,18 @@ LAB_18032b98e:
   }
   return lVar4;
 }
-longlong FUN_18032ba60(longlong param_1,uint param_2,uint param_3)
+/**
+ * @brief 系统模块查找和验证函数
+ * 
+ * 该函数负责在系统模块中查找指定的模块，并验证其有效性。
+ * 主要用于模块管理和系统配置操作。
+ * 
+ * @param SystemContext 系统上下文
+ * @param ModuleId 模块ID
+ * @param ValidationType 验证类型
+ * @return 返回找到的模块句柄或错误代码
+ */
+longlong FindAndValidateSystemModule(longlong SystemContext, uint ModuleId, uint ValidationType)
 {
   int64_t ModuleInitializationResult;
   longlong lVar2;
