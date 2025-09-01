@@ -420,9 +420,9 @@ undefined SystemStackConfig;
 undefined* SystemConfigurationTable;
 undefined* SystemStatusTable;
 undefined* SystemResourceTable;
-undefined DAT_180bf7058;
-undefined DAT_180bf7098;
-undefined DAT_180bf70a0;
+undefined SystemDataBuffer001;
+undefined SystemDataBuffer002;
+undefined SystemDataBuffer003;
 undefined DAT_180bf70a8;
 undefined DAT_180bf70b0;
 undefined DAT_180bf70f0;
@@ -441,9 +441,9 @@ undefined DAT_180bf71f8;
 undefined DAT_180bf7200;
 undefined DAT_180bf7208;
 undefined DAT_180bf7210;
-undefined UNK_180941b70;
+undefined SystemResourceTable;
 undefined DAT_18098bc73;
-undefined UNK_180a05740;
+undefined SystemConfigurationData;
 undefined UNK_180a0cb48;
 undefined UNK_180a0cb60;
 undefined UNK_180a0cb70;
@@ -83349,8 +83349,14 @@ void DestroyMutexResource(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942a60(void)
-void FUN_180942a60(void)
+ /**
+ * @brief 初始化全局数据指针
+ * 
+ * 该函数负责初始化系统的全局数据指针
+ * 设置数据指针指向预定义的系统数据结构
+ */
+void InitializeGlobalDataPointer(void)
+void InitializeGlobalDataPointer(void)
 
 {
   _DAT_180bf6048 = &UNK_18098bcb0;
@@ -83362,8 +83368,14 @@ void FUN_180942a60(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942a80(void)
-void FUN_180942a80(void)
+ /**
+ * @brief 初始化次要数据指针
+ * 
+ * 该函数负责初始化系统的次要数据指针
+ * 设置次要数据指针指向预定义的系统数据结构
+ */
+void InitializeSecondaryDataPointer(void)
+void InitializeSecondaryDataPointer(void)
 
 {
   _DAT_180bf6498 = &UNK_18098bcb0;
@@ -83375,17 +83387,28 @@ void FUN_180942a80(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942aa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180942aa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ /**
+ * @brief 处理网络数据包
+ * 
+ * 该函数负责处理网络数据包，验证数据包的有效性
+ * 并根据数据包内容执行相应的网络操作
+ * 
+ * @param param_1 数据包句柄
+ * @param param_2 数据包类型
+ * @param param_3 数据包大小
+ * @param param_4 数据包标志
+ */
+void ProcessNetworkDataPacket(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void ProcessNetworkDataPacket(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *networkDataPointer;
   
-  puVar1 = _DAT_180d49e18;
+  networkDataPointer = _DAT_180d49e18;
   if (_DAT_180d49e18 != (undefined8 *)0x0) {
     FUN_1804a9b80(param_1,*_DAT_180d49e18,param_3,param_4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(networkDataPointer);
   }
   return;
 }

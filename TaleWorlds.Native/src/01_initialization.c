@@ -3435,8 +3435,15 @@ void InitializeSystemResourcePool(void)
 
 
 
-// 函数: void FUN_18002fd70(void)
-void FUN_18002fd70(void)
+/**
+ * @brief 初始化系统配置管理器
+ * 
+ * 初始化游戏引擎的配置管理器，设置系统配置的基础设施。
+ * 该函数负责创建配置管理的基本结构，为系统配置的存储和管理做准备。
+ * 
+ * @note 该函数在系统初始化阶段被调用，用于建立配置管理的基础
+ */
+void InitializeSystemConfigurationManager(void)
 
 {
   char systemNodeFlag;
