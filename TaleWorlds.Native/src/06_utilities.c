@@ -14468,7 +14468,7 @@ uint8_t ValidateResourceRenderingState(void)
   uint resourceHash7;
   float floatValue18;
   int64_t *ResourceContextPointer9;
-  bool bVar20;
+  bool ValidationFlag;
   uint8_t auStack_368 [32];
   float afStack_348 [2];
   int64_t *plStack_340;
@@ -14689,9 +14689,9 @@ uint8_t ValidateResourceRenderingState(void)
                 } while ((integerValue6 != -1) &&
                         (integerValue6 = *(int *)(ResourceContextPointer4[2] + 4 + (int64_t)integerValue6 * 0x10), integerValue6 != -1));
                 integerValue6 = ResourceCount + 1;
-                bVar20 = ResourceCount != -1;
+                ValidationFlag = ResourceCount != -1;
                 ResourceCount = 0;
-                if (bVar20) {
+                if (ValidationFlag) {
                   ResourceCount = integerValue6;
                 }
                 if (ResourceCount != (int)ResourceContextPointer4[1]) {
@@ -14716,9 +14716,9 @@ LAB_1808985be:
                   (afStack_348[0] = *(float *)(ResourceContextPointer6[2] + 0x10 + localContextPointer5), afStack_348[0] != -NAN))
           ;
           floatValue1 = (float)((int)floatValue18 + 1);
-          bVar20 = floatValue18 != -NAN;
+          ValidationFlag = floatValue18 != -NAN;
           floatValue18 = 0.0;
-          if (bVar20) {
+          if (ValidationFlag) {
             floatValue18 = floatValue1;
           }
           if (floatValue18 != *(float *)(ResourceContextPointer6 + 1)) {
@@ -14898,10 +14898,10 @@ uint8_t FindResourceHashTableEntry(int64_t *ObjectContextParameter,char *Validat
 {
   char *CharPointer;
   uint8_t *pResourceValidationResult;
-  byte bVar3;
+  byte ResourceFlag;
   uint8_t LoopCondition;
   char ResourceCheckResult;
-  char cVar6;
+  char ResourceDataResult;
   int ValidationStatus;
   uint ResourceCounter;
   char *pcVar9;
@@ -14913,20 +14913,20 @@ uint8_t FindResourceHashTableEntry(int64_t *ObjectContextParameter,char *Validat
     ResourceIndex0 = 0;
     ResourceCheckResult = *ValidationContextParameter;
     while (ResourceCheckResult != '\0') {
-      bVar3 = *(byte *)((int64_t)presourceHash1 + 7);
-      if (bVar3 == 0) {
+      ResourceFlag = *(byte *)((int64_t)presourceHash1 + 7);
+      if (ResourceFlag == 0) {
         return 0x4a;
       }
       ResourceCheckResult = ProcessResourceData(ResourceCheckResult);
       presourceHash1 = (uint *)(*ObjectContextParameter + (uint64_t)(presourceHash1[1] & 0xffffff) * 8);
       ResourceCount = 0;
-      if (bVar3 == 0) {
+      if (ResourceFlag == 0) {
         return 0x4a;
       }
       while (*(char *)((int64_t)presourceHash1 + 3) != ResourceCheckResult) {
         ResourceCount = ResourceCount + 1;
         presourceHash1 = presourceHash1 + 2;
-        if ((int)(uint)bVar3 <= ResourceCount) {
+        if ((int)(uint)ResourceFlag <= ResourceCount) {
           return 0x4a;
         }
       }
@@ -14936,8 +14936,8 @@ uint8_t FindResourceHashTableEntry(int64_t *ObjectContextParameter,char *Validat
       while (ResourceCheckResult != '\0') {
         if (*pcVar9 == '\0') goto LAB_1808989b1;
         ResourceCheckResult = ProcessResourceData(ResourceCheckResult);
-        cVar6 = ProcessResourceData(*pcVar9);
-        if (ResourceCheckResult != cVar6) break;
+        ResourceDataResult = ProcessResourceData(*pcVar9);
+        if (ResourceCheckResult != ResourceDataResult) break;
         CharPointer = ValidationContextParameter + 1;
         ValidationContextParameter = ValidationContextParameter + 1;
         pcVar9 = pcVar9 + 1;
@@ -14949,15 +14949,15 @@ uint8_t FindResourceHashTableEntry(int64_t *ObjectContextParameter,char *Validat
 LAB_1808989b1:
       ResourceCheckResult = *ValidationContextParameter;
     }
-    bVar3 = *(byte *)((int64_t)presourceHash1 + 7);
-    if (bVar3 != 0) {
+    ResourceFlag = *(byte *)((int64_t)presourceHash1 + 7);
+    if (ResourceFlag != 0) {
       presourceHash1 = (uint *)(*ObjectContextParameter + (uint64_t)(presourceHash1[1] & 0xffffff) * 8);
-      if (bVar3 != 0) {
+      if (ResourceFlag != 0) {
         do {
           if (*(char *)((int64_t)presourceHash1 + 3) == '\0') goto LAB_1808989f7;
           ResourceIndex0 = ResourceIndex0 + 1;
           presourceHash1 = presourceHash1 + 2;
-        } while (ResourceIndex0 < (int)(uint)bVar3);
+        } while (ResourceIndex0 < (int)(uint)ResourceFlag);
       }
       return 0x4a;
     }
