@@ -2438,6 +2438,8 @@ undefined SystemMemoryConfigDataTemplateA9A0;
 undefined SystemMemoryConfigDataTemplateAA68;
 undefined SystemMemoryConfigDataTemplateABB0;
 undefined UNK_18098be5c;
+undefined SystemDataStructure;
+undefined SystemDataPointer;
 undefined SystemMemoryConfigDataTemplateAAC8;
 undefined SystemMemoryConfigDataTemplateAAD0;
 undefined SystemMemoryConfigDataTemplateAA78;
@@ -18066,7 +18068,7 @@ undefined8 InitializeResourceTableCache(void)
     }
   }
   else if ((in_EAX == 0x12) && (*(uint *)(unaff_RBX + 0x40) < 0x40)) {
-    validationResult = FUN_1808a8620();
+    validationResult = ValidateResourceData();
     if ((int)validationResult != 0) {
       return validationResult;
     }
@@ -25804,7 +25806,17 @@ LAB_18089ed1b:
 
 
 
-ulonglong FUN_18089e87d(void)
+/**
+ * @brief 处理资源表验证和操作
+ * 
+ * 该函数负责处理资源表的验证和操作，包括：
+ * - 验证资源表结构
+ * - 处理资源数据
+ * - 执行资源操作
+ * 
+ * @return 处理结果，0表示成功，非0表示错误代码
+ */
+ulonglong ProcessResourceTableValidationAndOperations(void)
 
 {
   longlong lVar1;
@@ -28137,7 +28149,7 @@ void Unwind_180902070(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x70) = 0;
   *(undefined4 *)(param_2 + 0x80) = 0;
-  *(undefined8 *)(param_2 + 0x68) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x68) = &SystemDataStructure;
   return;
 }
 
@@ -28146,7 +28158,7 @@ void Unwind_180902070(undefined8 param_1,longlong param_2)
 void Unwind_180902080(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x68) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x68) = &SystemDataStructure;
   return;
 }
 
@@ -28272,7 +28284,7 @@ void Unwind_180902130(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180902140(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xf0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xf0) = &SystemDataStructure;
   return;
 }
 
@@ -28281,7 +28293,7 @@ void Unwind_180902140(undefined8 param_1,longlong param_2)
 void Unwind_180902150(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x30) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x30) = &SystemDataStructure;
   return;
 }
 
@@ -28290,7 +28302,7 @@ void Unwind_180902150(undefined8 param_1,longlong param_2)
 void Unwind_180902160(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xf0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xf0) = &SystemDataStructure;
   return;
 }
 
@@ -28306,7 +28318,7 @@ void Unwind_180902170(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x140) = 0;
   *(undefined4 *)(param_2 + 0x150) = 0;
-  *(undefined8 *)(param_2 + 0x138) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x138) = &SystemDataStructure;
   return;
 }
 
@@ -28322,7 +28334,7 @@ void Unwind_180902180(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x1a8) = 0;
   *(undefined4 *)(param_2 + 0x1b8) = 0;
-  *(undefined8 *)(param_2 + 0x1a0) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x1a0) = &SystemDataStructure;
   return;
 }
 
@@ -28350,7 +28362,7 @@ void Unwind_1809021c0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x188) = 0;
   *(undefined4 *)(param_2 + 0x198) = 0;
-  *(undefined8 *)(param_2 + 0x180) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x180) = &SystemDataStructure;
   return;
 }
 
@@ -28359,7 +28371,7 @@ void Unwind_1809021c0(undefined8 param_1,longlong param_2)
 void Unwind_1809021d0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x138) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x138) = &SystemDataStructure;
   return;
 }
 
@@ -28380,7 +28392,7 @@ void Unwind_1809021e0(undefined8 param_1,longlong param_2)
 void Unwind_180902210(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x78) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x78) = &SystemDataStructure;
   return;
 }
 
@@ -28401,7 +28413,7 @@ void Unwind_180902220(undefined8 param_1,longlong param_2)
 void Unwind_180902250(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x118) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x118) = &SystemDataStructure;
   return;
 }
 
@@ -28422,7 +28434,7 @@ void Unwind_180902260(undefined8 param_1,longlong param_2)
 void Unwind_180902290(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xf8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xf8) = &SystemDataStructure;
   return;
 }
 
@@ -28455,7 +28467,7 @@ void Unwind_1809022d0(undefined8 param_1,longlong param_2)
 void Unwind_180902300(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xd8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xd8) = &SystemDataStructure;
   return;
 }
 
@@ -28488,7 +28500,7 @@ void Unwind_180902340(undefined8 param_1,longlong param_2)
 void Unwind_180902370(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x98) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x98) = &SystemDataStructure;
   return;
 }
 
@@ -28509,7 +28521,7 @@ void Unwind_180902380(undefined8 param_1,longlong param_2)
 void Unwind_1809023b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x180) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x180) = &SystemDataStructure;
   return;
 }
 
@@ -28518,7 +28530,7 @@ void Unwind_1809023b0(undefined8 param_1,longlong param_2)
 void Unwind_1809023c0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1a0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1a0) = &SystemDataStructure;
   return;
 }
 
@@ -28612,7 +28624,7 @@ void Unwind_180902400(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x80) = 0;
   *(undefined4 *)(param_2 + 0x90) = 0;
-  *(undefined8 *)(param_2 + 0x78) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x78) = &SystemDataStructure;
   return;
 }
 
@@ -28632,7 +28644,7 @@ void Unwind_180902410(undefined8 param_1,longlong param_2)
 void Unwind_180902420(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x150) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x150) = &SystemDataStructure;
   return;
 }
 
@@ -28648,7 +28660,7 @@ void Unwind_180902430(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xb0) = 0;
   *(undefined4 *)(param_2 + 0xc0) = 0;
-  *(undefined8 *)(param_2 + 0xa8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xa8) = &SystemDataStructure;
   return;
 }
 
@@ -28664,7 +28676,7 @@ void Unwind_180902440(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xd8) = 0;
   *(undefined4 *)(param_2 + 0xe8) = 0;
-  *(undefined8 *)(param_2 + 0xd0) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xd0) = &SystemDataStructure;
   return;
 }
 
@@ -28680,7 +28692,7 @@ void Unwind_180902450(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x80) = 0;
   *(undefined4 *)(param_2 + 0x90) = 0;
-  *(undefined8 *)(param_2 + 0x78) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x78) = &SystemDataStructure;
   return;
 }
 
@@ -28689,7 +28701,7 @@ void Unwind_180902450(undefined8 param_1,longlong param_2)
 void Unwind_180902460(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x148) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x148) = &SystemDataStructure;
   return;
 }
 
@@ -28698,7 +28710,7 @@ void Unwind_180902460(undefined8 param_1,longlong param_2)
 void Unwind_180902470(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xd0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xd0) = &SystemDataStructure;
   return;
 }
 
@@ -28719,7 +28731,7 @@ void Unwind_180902480(undefined8 param_1,longlong param_2)
 void Unwind_1809024b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xa8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xa8) = &SystemDataStructure;
   return;
 }
 
@@ -28728,7 +28740,7 @@ void Unwind_1809024b0(undefined8 param_1,longlong param_2)
 void Unwind_1809024c0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 200) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 200) = &SystemDataStructure;
   return;
 }
 
@@ -28765,7 +28777,7 @@ void Unwind_1809024e0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x108) = 0;
   *(undefined4 *)(param_2 + 0x118) = 0;
-  *(undefined8 *)(param_2 + 0x100) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x100) = &SystemDataStructure;
   return;
 }
 
@@ -28781,7 +28793,7 @@ void Unwind_1809024f0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x90) = 0;
   *(undefined4 *)(param_2 + 0xa0) = 0;
-  *(undefined8 *)(param_2 + 0x88) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x88) = &SystemDataStructure;
   return;
 }
 
@@ -28847,7 +28859,7 @@ void Unwind_180902510(undefined8 param_1,longlong param_2)
 void Unwind_180902520(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x88) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x88) = &SystemDataStructure;
   return;
 }
 
@@ -28856,7 +28868,7 @@ void Unwind_180902520(undefined8 param_1,longlong param_2)
 void Unwind_180902530(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x100) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x100) = &SystemDataStructure;
   return;
 }
 
@@ -28881,7 +28893,7 @@ void Unwind_180902540(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x60) = 0;
   *(undefined4 *)(lVar1 + 0x70) = 0;
-  *(undefined8 *)(lVar1 + 0x58) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x58) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -28889,7 +28901,7 @@ void Unwind_180902540(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -28914,7 +28926,7 @@ void Unwind_180902550(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x118) = 0;
   *(undefined4 *)(lVar1 + 0x128) = 0;
-  *(undefined8 *)(lVar1 + 0x110) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x110) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
@@ -28922,7 +28934,7 @@ void Unwind_180902550(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0xe8) = 0;
   *(undefined4 *)(lVar1 + 0xf8) = 0;
-  *(undefined8 *)(lVar1 + 0xe0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe0) = &SystemDataStructure;
   return;
 }
 
@@ -28947,7 +28959,7 @@ void Unwind_180902570(undefined8 param_1,longlong param_2)
   }
   presourceHash[8] = 0;
   *(undefined4 *)(presourceHash + 10) = 0;
-  presourceHash[7] = &UNK_18098bcb0;
+  presourceHash[7] = &SystemDataStructure;
   presourceHash[1] = &UNK_180a3c3e0;
   if (presourceHash[2] != 0) {
                     // WARNING: Subroutine does not return
@@ -28955,7 +28967,7 @@ void Unwind_180902570(undefined8 param_1,longlong param_2)
   }
   presourceHash[2] = 0;
   *(undefined4 *)(presourceHash + 4) = 0;
-  presourceHash[1] = &UNK_18098bcb0;
+  presourceHash[1] = &SystemDataStructure;
   return;
 }
 
@@ -28976,7 +28988,7 @@ void Unwind_180902580(undefined8 param_1,longlong param_2)
   }
   presourceHash[8] = 0;
   *(undefined4 *)(presourceHash + 10) = 0;
-  presourceHash[7] = &UNK_18098bcb0;
+  presourceHash[7] = &SystemDataStructure;
   presourceHash[1] = &UNK_180a3c3e0;
   if (presourceHash[2] != 0) {
                     // WARNING: Subroutine does not return
@@ -28984,7 +28996,7 @@ void Unwind_180902580(undefined8 param_1,longlong param_2)
   }
   presourceHash[2] = 0;
   *(undefined4 *)(presourceHash + 4) = 0;
-  presourceHash[1] = &UNK_18098bcb0;
+  presourceHash[1] = &SystemDataStructure;
   return;
 }
 
@@ -29296,7 +29308,7 @@ void Unwind_1809026a0(undefined8 param_1,longlong param_2)
 void Unwind_1809026b0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x70) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x70) = &SystemDataStructure;
   return;
 }
 
@@ -29497,7 +29509,7 @@ void Unwind_1809027c0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -29516,7 +29528,7 @@ void Unwind_1809027d0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x58) = 0;
   *(undefined4 *)(lVar1 + 0x68) = 0;
-  *(undefined8 *)(lVar1 + 0x50) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x50) = &SystemDataStructure;
   return;
 }
 
@@ -29764,7 +29776,7 @@ void Unwind_1809028e0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x48) = 0;
   *(undefined4 *)(lVar1 + 0x58) = 0;
-  *(undefined8 *)(lVar1 + 0x40) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x40) = &SystemDataStructure;
   return;
 }
 
@@ -30506,7 +30518,7 @@ void Unwind_180902b80(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x10) = 0;
   *(undefined4 *)(lVar1 + 0x20) = 0;
-  *(undefined8 *)(lVar1 + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 8) = &SystemDataStructure;
   return;
 }
 
@@ -30525,7 +30537,7 @@ void Unwind_180902b90(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x10) = 0;
   *(undefined4 *)(lVar1 + 0x20) = 0;
-  *(undefined8 *)(lVar1 + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 8) = &SystemDataStructure;
   return;
 }
 
@@ -30544,7 +30556,7 @@ void Unwind_180902ba0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -30589,7 +30601,7 @@ void Unwind_180902bb0(undefined8 param_1,longlong param_2)
 void Unwind_180902bc0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x90) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x90) = &SystemDataStructure;
   return;
 }
 
@@ -30608,7 +30620,7 @@ void Unwind_180902bd0(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -30627,7 +30639,7 @@ void Unwind_180902be0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -30744,7 +30756,7 @@ void Unwind_180902c10(undefined8 param_1,longlong param_2)
 void Unwind_180902c20(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0xa0) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0xa0) = &SystemDataStructure;
   return;
 }
 
@@ -30863,7 +30875,7 @@ void Unwind_180902c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(undefined8 *)(presourceHash[0xe] + 0x10) = 0;
       *(undefined1 *)(presourceHash[0xe] + 8) = 1;
     }
-    presourceHash[2] = &UNK_18098bcb0;
+    presourceHash[2] = &SystemDataStructure;
     return;
   }
   if (*(int *)(presourceHash[1] + 8) == 0) {
@@ -30917,7 +30929,7 @@ void Unwind_180902c90(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -30926,7 +30938,7 @@ void Unwind_180902c90(undefined8 param_1,longlong param_2)
 void Unwind_180902ca0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x50) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x50) = &SystemDataStructure;
   return;
 }
 
@@ -30946,7 +30958,7 @@ void Unwind_180902cb0(undefined8 param_1,longlong param_2)
 void Unwind_180902cc0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x50) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x50) = &SystemDataStructure;
   return;
 }
 
@@ -31267,7 +31279,7 @@ void Unwind_180902e40(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -31394,7 +31406,7 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
   puVar3 = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x18);
   pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
   for (puVar5 = (undefined8 *)*puVar3; puVar5 != pvalidationResult; puVar5 = puVar5 + 0xe) {
-    *puVar5 = &UNK_18098bcb0;
+    *puVar5 = &SystemDataStructure;
   }
   pvalidationResult = (undefined8 *)*puVar3;
   if (pvalidationResult != (undefined8 *)0x0) {
@@ -31437,7 +31449,7 @@ void Unwind_180902e90(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x150) = 0;
   *(undefined4 *)(lVar1 + 0x160) = 0;
-  *(undefined8 *)(lVar1 + 0x148) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x148) = &SystemDataStructure;
   return;
 }
 
@@ -31456,7 +31468,7 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
   puVar4 = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x18);
   pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
   for (puVar5 = (undefined8 *)*puVar4; puVar5 != pvalidationResult; puVar5 = puVar5 + 0xe) {
-    *puVar5 = &UNK_18098bcb0;
+    *puVar5 = &SystemDataStructure;
   }
   pvalidationResult = (undefined8 *)*puVar4;
   if (pvalidationResult != (undefined8 *)0x0) {
@@ -31499,7 +31511,7 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
   puVar3 = *(ulonglong **)(param_2 + 0x40);
   pvalidationResult = (undefined8 *)puVar3[1];
   for (puVar5 = (undefined8 *)*puVar3; puVar5 != pvalidationResult; puVar5 = puVar5 + 0xe) {
-    *puVar5 = &UNK_18098bcb0;
+    *puVar5 = &SystemDataStructure;
   }
   pvalidationResult = (undefined8 *)*puVar3;
   if (pvalidationResult != (undefined8 *)0x0) {
@@ -31532,7 +31544,7 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
 void Unwind_180902ed0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x40) + 0x20) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x40) + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -31541,7 +31553,7 @@ void Unwind_180902ed0(undefined8 param_1,longlong param_2)
 void Unwind_180902ee0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x40) + 0x438) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x40) + 0x438) = &SystemDataStructure;
   return;
 }
 
@@ -31664,7 +31676,7 @@ void Unwind_180902fa0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x920) = 0;
   *(undefined4 *)(lVar1 + 0x930) = 0;
-  *(undefined8 *)(lVar1 + 0x918) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x918) = &SystemDataStructure;
   return;
 }
 
@@ -31864,7 +31876,7 @@ void Unwind_1809030b0(undefined8 param_1,longlong param_2)
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
-  *(undefined **)(resourceTable + 0x20) = &UNK_18098bcb0;
+  *(undefined **)(resourceTable + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -31873,7 +31885,7 @@ void Unwind_1809030b0(undefined8 param_1,longlong param_2)
 void Unwind_1809030c0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x60) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x60) = &SystemDataStructure;
   return;
 }
 
@@ -31907,7 +31919,7 @@ void Unwind_1809030f0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -31946,7 +31958,7 @@ void Unwind_180903110(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -31969,7 +31981,7 @@ void Unwind_180903120(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -32064,7 +32076,7 @@ void Unwind_180903150(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -32123,7 +32135,7 @@ void Unwind_180903170(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -32142,7 +32154,7 @@ void Unwind_180903180(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -32517,7 +32529,7 @@ void Unwind_180903320(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -32584,7 +32596,7 @@ void Unwind_180903360(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x48) = 0;
   *(undefined4 *)(lVar1 + 0x58) = 0;
-  *(undefined8 *)(lVar1 + 0x40) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x40) = &SystemDataStructure;
   return;
 }
 
@@ -33302,7 +33314,7 @@ void Unwind_180903610(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   presourceHash[0x19] = 0;
   *(undefined4 *)(presourceHash + 0x1b) = 0;
-  presourceHash[0x18] = &UNK_18098bcb0;
+  presourceHash[0x18] = &SystemDataStructure;
   FUN_18005d260(presourceHash + 0x12,presourceHash[0x14],param_3,param_4,0xfffffffffffffffe);
   if (presourceHash[0xd] != 0) {
                     // WARNING: Subroutine does not return
@@ -33341,7 +33353,7 @@ void Unwind_180903620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x110) = 0;
   *(undefined4 *)(lVar1 + 0x120) = 0;
-  *(undefined8 *)(lVar1 + 0x108) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x108) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
@@ -33349,7 +33361,7 @@ void Unwind_180903620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf0) = 0;
   *(undefined4 *)(lVar1 + 0x100) = 0;
-  *(undefined8 *)(lVar1 + 0xe8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe8) = &SystemDataStructure;
   return;
 }
 
@@ -33371,7 +33383,7 @@ void Unwind_180903640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x180) = 0;
   *(undefined4 *)(lVar1 + 400) = 0;
-  *(undefined8 *)(lVar1 + 0x178) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x178) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x158) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x160) != 0) {
                     // WARNING: Subroutine does not return
@@ -33379,7 +33391,7 @@ void Unwind_180903640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x160) = 0;
   *(undefined4 *)(lVar1 + 0x170) = 0;
-  *(undefined8 *)(lVar1 + 0x158) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x158) = &SystemDataStructure;
   return;
 }
 
@@ -33401,7 +33413,7 @@ void Unwind_180903660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1f0) = 0;
   *(undefined4 *)(lVar1 + 0x200) = 0;
-  *(undefined8 *)(lVar1 + 0x1e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1e8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1c8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
@@ -33409,7 +33421,7 @@ void Unwind_180903660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1d0) = 0;
   *(undefined4 *)(lVar1 + 0x1e0) = 0;
-  *(undefined8 *)(lVar1 + 0x1c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1c8) = &SystemDataStructure;
   return;
 }
 
@@ -33431,7 +33443,7 @@ void Unwind_180903680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x260) = 0;
   *(undefined4 *)(lVar1 + 0x270) = 0;
-  *(undefined8 *)(lVar1 + 600) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 600) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x238) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x240) != 0) {
                     // WARNING: Subroutine does not return
@@ -33439,7 +33451,7 @@ void Unwind_180903680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x240) = 0;
   *(undefined4 *)(lVar1 + 0x250) = 0;
-  *(undefined8 *)(lVar1 + 0x238) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x238) = &SystemDataStructure;
   return;
 }
 
@@ -33461,7 +33473,7 @@ void Unwind_1809036a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2d0) = 0;
   *(undefined4 *)(lVar1 + 0x2e0) = 0;
-  *(undefined8 *)(lVar1 + 0x2c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2c8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2a8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2b0) != 0) {
                     // WARNING: Subroutine does not return
@@ -33469,7 +33481,7 @@ void Unwind_1809036a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2b0) = 0;
   *(undefined4 *)(lVar1 + 0x2c0) = 0;
-  *(undefined8 *)(lVar1 + 0x2a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2a8) = &SystemDataStructure;
   return;
 }
 
@@ -33491,7 +33503,7 @@ void Unwind_1809036c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x340) = 0;
   *(undefined4 *)(lVar1 + 0x350) = 0;
-  *(undefined8 *)(lVar1 + 0x338) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x338) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x318) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 800) != 0) {
                     // WARNING: Subroutine does not return
@@ -33499,7 +33511,7 @@ void Unwind_1809036c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 800) = 0;
   *(undefined4 *)(lVar1 + 0x330) = 0;
-  *(undefined8 *)(lVar1 + 0x318) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x318) = &SystemDataStructure;
   return;
 }
 
@@ -33521,7 +33533,7 @@ void Unwind_1809036e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x3b0) = 0;
   *(undefined4 *)(lVar1 + 0x3c0) = 0;
-  *(undefined8 *)(lVar1 + 0x3a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x3a8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x388) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x390) != 0) {
                     // WARNING: Subroutine does not return
@@ -33529,7 +33541,7 @@ void Unwind_1809036e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x390) = 0;
   *(undefined4 *)(lVar1 + 0x3a0) = 0;
-  *(undefined8 *)(lVar1 + 0x388) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x388) = &SystemDataStructure;
   return;
 }
 
@@ -33551,7 +33563,7 @@ void Unwind_180903700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x420) = 0;
   *(undefined4 *)(lVar1 + 0x430) = 0;
-  *(undefined8 *)(lVar1 + 0x418) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x418) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x3f8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x400) != 0) {
                     // WARNING: Subroutine does not return
@@ -33559,7 +33571,7 @@ void Unwind_180903700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x400) = 0;
   *(undefined4 *)(lVar1 + 0x410) = 0;
-  *(undefined8 *)(lVar1 + 0x3f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x3f8) = &SystemDataStructure;
   return;
 }
 
@@ -33581,7 +33593,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4e8) = 0;
   *(undefined4 *)(lVar1 + 0x4f8) = 0;
-  *(undefined8 *)(lVar1 + 0x4e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x4c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -33589,7 +33601,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4c8) = 0;
   *(undefined4 *)(lVar1 + 0x4d8) = 0;
-  *(undefined8 *)(lVar1 + 0x4c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x4a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -33597,7 +33609,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4a8) = 0;
   *(undefined4 *)(lVar1 + 0x4b8) = 0;
-  *(undefined8 *)(lVar1 + 0x4a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x480) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x488) != 0) {
                     // WARNING: Subroutine does not return
@@ -33605,7 +33617,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x488) = 0;
   *(undefined4 *)(lVar1 + 0x498) = 0;
-  *(undefined8 *)(lVar1 + 0x480) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x480) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x460) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x468) != 0) {
                     // WARNING: Subroutine does not return
@@ -33613,7 +33625,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x468) = 0;
   *(undefined4 *)(lVar1 + 0x478) = 0;
-  *(undefined8 *)(lVar1 + 0x460) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x460) = &SystemDataStructure;
   return;
 }
 
@@ -33635,7 +33647,7 @@ void Unwind_180903740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x550) = 0;
   *(undefined4 *)(lVar1 + 0x560) = 0;
-  *(undefined8 *)(lVar1 + 0x548) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x548) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x528) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x530) != 0) {
                     // WARNING: Subroutine does not return
@@ -33643,7 +33655,7 @@ void Unwind_180903740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x530) = 0;
   *(undefined4 *)(lVar1 + 0x540) = 0;
-  *(undefined8 *)(lVar1 + 0x528) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x528) = &SystemDataStructure;
   return;
 }
 
@@ -33663,7 +33675,7 @@ void Unwind_180903760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   presourceHash[0x19] = 0;
   *(undefined4 *)(presourceHash + 0x1b) = 0;
-  presourceHash[0x18] = &UNK_18098bcb0;
+  presourceHash[0x18] = &SystemDataStructure;
   FUN_18005d260(presourceHash + 0x12,presourceHash[0x14],param_3,param_4,0xfffffffffffffffe);
   if (presourceHash[0xd] != 0) {
                     // WARNING: Subroutine does not return
@@ -33702,7 +33714,7 @@ void Unwind_180903770(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x110) = 0;
   *(undefined4 *)(lVar1 + 0x120) = 0;
-  *(undefined8 *)(lVar1 + 0x108) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x108) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
@@ -33710,7 +33722,7 @@ void Unwind_180903770(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf0) = 0;
   *(undefined4 *)(lVar1 + 0x100) = 0;
-  *(undefined8 *)(lVar1 + 0xe8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe8) = &SystemDataStructure;
   return;
 }
 
@@ -33732,7 +33744,7 @@ void Unwind_180903790(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x180) = 0;
   *(undefined4 *)(lVar1 + 400) = 0;
-  *(undefined8 *)(lVar1 + 0x178) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x178) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x158) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x160) != 0) {
                     // WARNING: Subroutine does not return
@@ -33740,7 +33752,7 @@ void Unwind_180903790(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x160) = 0;
   *(undefined4 *)(lVar1 + 0x170) = 0;
-  *(undefined8 *)(lVar1 + 0x158) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x158) = &SystemDataStructure;
   return;
 }
 
@@ -33762,7 +33774,7 @@ void Unwind_1809037b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1f0) = 0;
   *(undefined4 *)(lVar1 + 0x200) = 0;
-  *(undefined8 *)(lVar1 + 0x1e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1e8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1c8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
@@ -33770,7 +33782,7 @@ void Unwind_1809037b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1d0) = 0;
   *(undefined4 *)(lVar1 + 0x1e0) = 0;
-  *(undefined8 *)(lVar1 + 0x1c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1c8) = &SystemDataStructure;
   return;
 }
 
@@ -33792,7 +33804,7 @@ void Unwind_1809037d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x260) = 0;
   *(undefined4 *)(lVar1 + 0x270) = 0;
-  *(undefined8 *)(lVar1 + 600) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 600) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x238) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x240) != 0) {
                     // WARNING: Subroutine does not return
@@ -33800,7 +33812,7 @@ void Unwind_1809037d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x240) = 0;
   *(undefined4 *)(lVar1 + 0x250) = 0;
-  *(undefined8 *)(lVar1 + 0x238) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x238) = &SystemDataStructure;
   return;
 }
 
@@ -33822,7 +33834,7 @@ void Unwind_1809037f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2d0) = 0;
   *(undefined4 *)(lVar1 + 0x2e0) = 0;
-  *(undefined8 *)(lVar1 + 0x2c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2c8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2a8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2b0) != 0) {
                     // WARNING: Subroutine does not return
@@ -33830,7 +33842,7 @@ void Unwind_1809037f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2b0) = 0;
   *(undefined4 *)(lVar1 + 0x2c0) = 0;
-  *(undefined8 *)(lVar1 + 0x2a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2a8) = &SystemDataStructure;
   return;
 }
 
@@ -33852,7 +33864,7 @@ void Unwind_180903810(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x340) = 0;
   *(undefined4 *)(lVar1 + 0x350) = 0;
-  *(undefined8 *)(lVar1 + 0x338) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x338) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x318) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 800) != 0) {
                     // WARNING: Subroutine does not return
@@ -33860,7 +33872,7 @@ void Unwind_180903810(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 800) = 0;
   *(undefined4 *)(lVar1 + 0x330) = 0;
-  *(undefined8 *)(lVar1 + 0x318) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x318) = &SystemDataStructure;
   return;
 }
 
@@ -33882,7 +33894,7 @@ void Unwind_180903830(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x3b0) = 0;
   *(undefined4 *)(lVar1 + 0x3c0) = 0;
-  *(undefined8 *)(lVar1 + 0x3a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x3a8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x388) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x390) != 0) {
                     // WARNING: Subroutine does not return
@@ -33890,7 +33902,7 @@ void Unwind_180903830(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x390) = 0;
   *(undefined4 *)(lVar1 + 0x3a0) = 0;
-  *(undefined8 *)(lVar1 + 0x388) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x388) = &SystemDataStructure;
   return;
 }
 
@@ -33912,7 +33924,7 @@ void Unwind_180903850(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x420) = 0;
   *(undefined4 *)(lVar1 + 0x430) = 0;
-  *(undefined8 *)(lVar1 + 0x418) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x418) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x3f8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x400) != 0) {
                     // WARNING: Subroutine does not return
@@ -33920,7 +33932,7 @@ void Unwind_180903850(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x400) = 0;
   *(undefined4 *)(lVar1 + 0x410) = 0;
-  *(undefined8 *)(lVar1 + 0x3f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x3f8) = &SystemDataStructure;
   return;
 }
 
@@ -33942,7 +33954,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4e8) = 0;
   *(undefined4 *)(lVar1 + 0x4f8) = 0;
-  *(undefined8 *)(lVar1 + 0x4e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x4c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -33950,7 +33962,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4c8) = 0;
   *(undefined4 *)(lVar1 + 0x4d8) = 0;
-  *(undefined8 *)(lVar1 + 0x4c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x4a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -33958,7 +33970,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4a8) = 0;
   *(undefined4 *)(lVar1 + 0x4b8) = 0;
-  *(undefined8 *)(lVar1 + 0x4a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x480) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x488) != 0) {
                     // WARNING: Subroutine does not return
@@ -33966,7 +33978,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x488) = 0;
   *(undefined4 *)(lVar1 + 0x498) = 0;
-  *(undefined8 *)(lVar1 + 0x480) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x480) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x460) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x468) != 0) {
                     // WARNING: Subroutine does not return
@@ -33974,7 +33986,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x468) = 0;
   *(undefined4 *)(lVar1 + 0x478) = 0;
-  *(undefined8 *)(lVar1 + 0x460) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x460) = &SystemDataStructure;
   return;
 }
 
@@ -33996,7 +34008,7 @@ void Unwind_180903890(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x550) = 0;
   *(undefined4 *)(lVar1 + 0x560) = 0;
-  *(undefined8 *)(lVar1 + 0x548) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x548) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x528) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x530) != 0) {
                     // WARNING: Subroutine does not return
@@ -34004,7 +34016,7 @@ void Unwind_180903890(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x530) = 0;
   *(undefined4 *)(lVar1 + 0x540) = 0;
-  *(undefined8 *)(lVar1 + 0x528) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x528) = &SystemDataStructure;
   return;
 }
 
@@ -34023,7 +34035,7 @@ void Unwind_1809038b0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x10) = 0;
   *(undefined4 *)(lVar1 + 0x20) = 0;
-  *(undefined8 *)(lVar1 + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 8) = &SystemDataStructure;
   return;
 }
 
@@ -34042,7 +34054,7 @@ void Unwind_1809038c0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -34092,7 +34104,7 @@ void Unwind_1809038f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x490) = 0;
   *(undefined4 *)(lVar1 + 0x4a0) = 0;
-  *(undefined8 *)(lVar1 + 0x488) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x488) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x468) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x470) != 0) {
                     // WARNING: Subroutine does not return
@@ -34100,7 +34112,7 @@ void Unwind_1809038f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x470) = 0;
   *(undefined4 *)(lVar1 + 0x480) = 0;
-  *(undefined8 *)(lVar1 + 0x468) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x468) = &SystemDataStructure;
   return;
 }
 
@@ -34122,7 +34134,7 @@ void Unwind_180903910(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x500) = 0;
   *(undefined4 *)(lVar1 + 0x510) = 0;
-  *(undefined8 *)(lVar1 + 0x4f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4f8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x4d8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x4e0) != 0) {
                     // WARNING: Subroutine does not return
@@ -34130,7 +34142,7 @@ void Unwind_180903910(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4e0) = 0;
   *(undefined4 *)(lVar1 + 0x4f0) = 0;
-  *(undefined8 *)(lVar1 + 0x4d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4d8) = &SystemDataStructure;
   return;
 }
 
@@ -34152,7 +34164,7 @@ void Unwind_180903930(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x570) = 0;
   *(undefined4 *)(lVar1 + 0x580) = 0;
-  *(undefined8 *)(lVar1 + 0x568) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x568) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x548) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x550) != 0) {
                     // WARNING: Subroutine does not return
@@ -34160,7 +34172,7 @@ void Unwind_180903930(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x550) = 0;
   *(undefined4 *)(lVar1 + 0x560) = 0;
-  *(undefined8 *)(lVar1 + 0x548) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x548) = &SystemDataStructure;
   return;
 }
 
@@ -34182,7 +34194,7 @@ void Unwind_180903950(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x5e0) = 0;
   *(undefined4 *)(lVar1 + 0x5f0) = 0;
-  *(undefined8 *)(lVar1 + 0x5d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x5d8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x5b8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x5c0) != 0) {
                     // WARNING: Subroutine does not return
@@ -34190,7 +34202,7 @@ void Unwind_180903950(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x5c0) = 0;
   *(undefined4 *)(lVar1 + 0x5d0) = 0;
-  *(undefined8 *)(lVar1 + 0x5b8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x5b8) = &SystemDataStructure;
   return;
 }
 
@@ -34212,7 +34224,7 @@ void Unwind_180903970(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x650) = 0;
   *(undefined4 *)(lVar1 + 0x660) = 0;
-  *(undefined8 *)(lVar1 + 0x648) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x648) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x628) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x630) != 0) {
                     // WARNING: Subroutine does not return
@@ -34220,7 +34232,7 @@ void Unwind_180903970(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x630) = 0;
   *(undefined4 *)(lVar1 + 0x640) = 0;
-  *(undefined8 *)(lVar1 + 0x628) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x628) = &SystemDataStructure;
   return;
 }
 
@@ -34242,7 +34254,7 @@ void Unwind_180903990(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x6c0) = 0;
   *(undefined4 *)(lVar1 + 0x6d0) = 0;
-  *(undefined8 *)(lVar1 + 0x6b8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x6b8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x698) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x6a0) != 0) {
                     // WARNING: Subroutine does not return
@@ -34250,7 +34262,7 @@ void Unwind_180903990(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x6a0) = 0;
   *(undefined4 *)(lVar1 + 0x6b0) = 0;
-  *(undefined8 *)(lVar1 + 0x698) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x698) = &SystemDataStructure;
   return;
 }
 
@@ -34272,7 +34284,7 @@ void Unwind_1809039b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x730) = 0;
   *(undefined4 *)(lVar1 + 0x740) = 0;
-  *(undefined8 *)(lVar1 + 0x728) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x728) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x708) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x710) != 0) {
                     // WARNING: Subroutine does not return
@@ -34280,7 +34292,7 @@ void Unwind_1809039b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x710) = 0;
   *(undefined4 *)(lVar1 + 0x720) = 0;
-  *(undefined8 *)(lVar1 + 0x708) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x708) = &SystemDataStructure;
   return;
 }
 
@@ -34302,7 +34314,7 @@ void Unwind_1809039d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x7a0) = 0;
   *(undefined4 *)(lVar1 + 0x7b0) = 0;
-  *(undefined8 *)(lVar1 + 0x798) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x798) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x778) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x780) != 0) {
                     // WARNING: Subroutine does not return
@@ -34310,7 +34322,7 @@ void Unwind_1809039d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x780) = 0;
   *(undefined4 *)(lVar1 + 0x790) = 0;
-  *(undefined8 *)(lVar1 + 0x778) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x778) = &SystemDataStructure;
   return;
 }
 
@@ -34332,7 +34344,7 @@ void Unwind_1809039f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x810) = 0;
   *(undefined4 *)(lVar1 + 0x820) = 0;
-  *(undefined8 *)(lVar1 + 0x808) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x808) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x7e8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x7f0) != 0) {
                     // WARNING: Subroutine does not return
@@ -34340,7 +34352,7 @@ void Unwind_1809039f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x7f0) = 0;
   *(undefined4 *)(lVar1 + 0x800) = 0;
-  *(undefined8 *)(lVar1 + 0x7e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x7e8) = &SystemDataStructure;
   return;
 }
 
@@ -34362,7 +34374,7 @@ void Unwind_180903a10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x880) = 0;
   *(undefined4 *)(lVar1 + 0x890) = 0;
-  *(undefined8 *)(lVar1 + 0x878) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x878) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x858) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x860) != 0) {
                     // WARNING: Subroutine does not return
@@ -34370,7 +34382,7 @@ void Unwind_180903a10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x860) = 0;
   *(undefined4 *)(lVar1 + 0x870) = 0;
-  *(undefined8 *)(lVar1 + 0x858) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x858) = &SystemDataStructure;
   return;
 }
 
@@ -34392,7 +34404,7 @@ void Unwind_180903a30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x8f0) = 0;
   *(undefined4 *)(lVar1 + 0x900) = 0;
-  *(undefined8 *)(lVar1 + 0x8e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x8e8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x8c8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
@@ -34400,7 +34412,7 @@ void Unwind_180903a30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x8d0) = 0;
   *(undefined4 *)(lVar1 + 0x8e0) = 0;
-  *(undefined8 *)(lVar1 + 0x8c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x8c8) = &SystemDataStructure;
   return;
 }
 
@@ -34422,7 +34434,7 @@ void Unwind_180903a50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x960) = 0;
   *(undefined4 *)(lVar1 + 0x970) = 0;
-  *(undefined8 *)(lVar1 + 0x958) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x958) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x938) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x940) != 0) {
                     // WARNING: Subroutine does not return
@@ -34430,7 +34442,7 @@ void Unwind_180903a50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x940) = 0;
   *(undefined4 *)(lVar1 + 0x950) = 0;
-  *(undefined8 *)(lVar1 + 0x938) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x938) = &SystemDataStructure;
   return;
 }
 
@@ -34452,7 +34464,7 @@ void Unwind_180903a70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x9d8) = 0;
   *(undefined4 *)(lVar1 + 0x9e8) = 0;
-  *(undefined8 *)(lVar1 + 0x9d0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x9d0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x9b0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x9b8) != 0) {
                     // WARNING: Subroutine does not return
@@ -34460,7 +34472,7 @@ void Unwind_180903a70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x9b8) = 0;
   *(undefined4 *)(lVar1 + 0x9c8) = 0;
-  *(undefined8 *)(lVar1 + 0x9b0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x9b0) = &SystemDataStructure;
   return;
 }
 
@@ -34482,7 +34494,7 @@ void Unwind_180903a90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa50) = 0;
   *(undefined4 *)(lVar1 + 0xa60) = 0;
-  *(undefined8 *)(lVar1 + 0xa48) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa48) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xa28) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xa30) != 0) {
                     // WARNING: Subroutine does not return
@@ -34490,7 +34502,7 @@ void Unwind_180903a90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa30) = 0;
   *(undefined4 *)(lVar1 + 0xa40) = 0;
-  *(undefined8 *)(lVar1 + 0xa28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa28) = &SystemDataStructure;
   return;
 }
 
@@ -34523,7 +34535,7 @@ void Unwind_180903ac0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x18) = 0;
   *(undefined4 *)(lVar1 + 0x28) = 0;
-  *(undefined8 *)(lVar1 + 0x10) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x10) = &SystemDataStructure;
   return;
 }
 
@@ -34542,7 +34554,7 @@ void Unwind_180903ad0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x38) = 0;
   *(undefined4 *)(lVar1 + 0x48) = 0;
-  *(undefined8 *)(lVar1 + 0x30) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x30) = &SystemDataStructure;
   return;
 }
 
@@ -34592,7 +34604,7 @@ void Unwind_180903b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x490) = 0;
   *(undefined4 *)(lVar1 + 0x4a0) = 0;
-  *(undefined8 *)(lVar1 + 0x488) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x488) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x468) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x470) != 0) {
                     // WARNING: Subroutine does not return
@@ -34600,7 +34612,7 @@ void Unwind_180903b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x470) = 0;
   *(undefined4 *)(lVar1 + 0x480) = 0;
-  *(undefined8 *)(lVar1 + 0x468) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x468) = &SystemDataStructure;
   return;
 }
 
@@ -34622,7 +34634,7 @@ void Unwind_180903b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x500) = 0;
   *(undefined4 *)(lVar1 + 0x510) = 0;
-  *(undefined8 *)(lVar1 + 0x4f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4f8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x4d8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x4e0) != 0) {
                     // WARNING: Subroutine does not return
@@ -34630,7 +34642,7 @@ void Unwind_180903b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4e0) = 0;
   *(undefined4 *)(lVar1 + 0x4f0) = 0;
-  *(undefined8 *)(lVar1 + 0x4d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4d8) = &SystemDataStructure;
   return;
 }
 
@@ -34652,7 +34664,7 @@ void Unwind_180903b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x570) = 0;
   *(undefined4 *)(lVar1 + 0x580) = 0;
-  *(undefined8 *)(lVar1 + 0x568) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x568) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x548) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x550) != 0) {
                     // WARNING: Subroutine does not return
@@ -34660,7 +34672,7 @@ void Unwind_180903b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x550) = 0;
   *(undefined4 *)(lVar1 + 0x560) = 0;
-  *(undefined8 *)(lVar1 + 0x548) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x548) = &SystemDataStructure;
   return;
 }
 
@@ -34682,7 +34694,7 @@ void Unwind_180903b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x5e0) = 0;
   *(undefined4 *)(lVar1 + 0x5f0) = 0;
-  *(undefined8 *)(lVar1 + 0x5d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x5d8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x5b8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x5c0) != 0) {
                     // WARNING: Subroutine does not return
@@ -34690,7 +34702,7 @@ void Unwind_180903b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x5c0) = 0;
   *(undefined4 *)(lVar1 + 0x5d0) = 0;
-  *(undefined8 *)(lVar1 + 0x5b8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x5b8) = &SystemDataStructure;
   return;
 }
 
@@ -34712,7 +34724,7 @@ void Unwind_180903b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x650) = 0;
   *(undefined4 *)(lVar1 + 0x660) = 0;
-  *(undefined8 *)(lVar1 + 0x648) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x648) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x628) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x630) != 0) {
                     // WARNING: Subroutine does not return
@@ -34720,7 +34732,7 @@ void Unwind_180903b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x630) = 0;
   *(undefined4 *)(lVar1 + 0x640) = 0;
-  *(undefined8 *)(lVar1 + 0x628) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x628) = &SystemDataStructure;
   return;
 }
 
@@ -34742,7 +34754,7 @@ void Unwind_180903ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x6c0) = 0;
   *(undefined4 *)(lVar1 + 0x6d0) = 0;
-  *(undefined8 *)(lVar1 + 0x6b8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x6b8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x698) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x6a0) != 0) {
                     // WARNING: Subroutine does not return
@@ -34750,7 +34762,7 @@ void Unwind_180903ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x6a0) = 0;
   *(undefined4 *)(lVar1 + 0x6b0) = 0;
-  *(undefined8 *)(lVar1 + 0x698) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x698) = &SystemDataStructure;
   return;
 }
 
@@ -34772,7 +34784,7 @@ void Unwind_180903bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x730) = 0;
   *(undefined4 *)(lVar1 + 0x740) = 0;
-  *(undefined8 *)(lVar1 + 0x728) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x728) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x708) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x710) != 0) {
                     // WARNING: Subroutine does not return
@@ -34780,7 +34792,7 @@ void Unwind_180903bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x710) = 0;
   *(undefined4 *)(lVar1 + 0x720) = 0;
-  *(undefined8 *)(lVar1 + 0x708) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x708) = &SystemDataStructure;
   return;
 }
 
@@ -34802,7 +34814,7 @@ void Unwind_180903be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x7a0) = 0;
   *(undefined4 *)(lVar1 + 0x7b0) = 0;
-  *(undefined8 *)(lVar1 + 0x798) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x798) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x778) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x780) != 0) {
                     // WARNING: Subroutine does not return
@@ -34810,7 +34822,7 @@ void Unwind_180903be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x780) = 0;
   *(undefined4 *)(lVar1 + 0x790) = 0;
-  *(undefined8 *)(lVar1 + 0x778) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x778) = &SystemDataStructure;
   return;
 }
 
@@ -34832,7 +34844,7 @@ void Unwind_180903c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x810) = 0;
   *(undefined4 *)(lVar1 + 0x820) = 0;
-  *(undefined8 *)(lVar1 + 0x808) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x808) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x7e8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x7f0) != 0) {
                     // WARNING: Subroutine does not return
@@ -34840,7 +34852,7 @@ void Unwind_180903c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x7f0) = 0;
   *(undefined4 *)(lVar1 + 0x800) = 0;
-  *(undefined8 *)(lVar1 + 0x7e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x7e8) = &SystemDataStructure;
   return;
 }
 
@@ -34862,7 +34874,7 @@ void Unwind_180903c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x880) = 0;
   *(undefined4 *)(lVar1 + 0x890) = 0;
-  *(undefined8 *)(lVar1 + 0x878) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x878) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x858) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x860) != 0) {
                     // WARNING: Subroutine does not return
@@ -34870,7 +34882,7 @@ void Unwind_180903c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x860) = 0;
   *(undefined4 *)(lVar1 + 0x870) = 0;
-  *(undefined8 *)(lVar1 + 0x858) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x858) = &SystemDataStructure;
   return;
 }
 
@@ -34892,7 +34904,7 @@ void Unwind_180903c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x8f0) = 0;
   *(undefined4 *)(lVar1 + 0x900) = 0;
-  *(undefined8 *)(lVar1 + 0x8e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x8e8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x8c8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
@@ -34900,7 +34912,7 @@ void Unwind_180903c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x8d0) = 0;
   *(undefined4 *)(lVar1 + 0x8e0) = 0;
-  *(undefined8 *)(lVar1 + 0x8c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x8c8) = &SystemDataStructure;
   return;
 }
 
@@ -34922,7 +34934,7 @@ void Unwind_180903c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x960) = 0;
   *(undefined4 *)(lVar1 + 0x970) = 0;
-  *(undefined8 *)(lVar1 + 0x958) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x958) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x938) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x940) != 0) {
                     // WARNING: Subroutine does not return
@@ -34930,7 +34942,7 @@ void Unwind_180903c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x940) = 0;
   *(undefined4 *)(lVar1 + 0x950) = 0;
-  *(undefined8 *)(lVar1 + 0x938) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x938) = &SystemDataStructure;
   return;
 }
 
@@ -34952,7 +34964,7 @@ void Unwind_180903c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x9d8) = 0;
   *(undefined4 *)(lVar1 + 0x9e8) = 0;
-  *(undefined8 *)(lVar1 + 0x9d0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x9d0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x9b0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x9b8) != 0) {
                     // WARNING: Subroutine does not return
@@ -34960,7 +34972,7 @@ void Unwind_180903c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x9b8) = 0;
   *(undefined4 *)(lVar1 + 0x9c8) = 0;
-  *(undefined8 *)(lVar1 + 0x9b0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x9b0) = &SystemDataStructure;
   return;
 }
 
@@ -34982,7 +34994,7 @@ void Unwind_180903ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa50) = 0;
   *(undefined4 *)(lVar1 + 0xa60) = 0;
-  *(undefined8 *)(lVar1 + 0xa48) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa48) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xa28) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xa30) != 0) {
                     // WARNING: Subroutine does not return
@@ -34990,7 +35002,7 @@ void Unwind_180903ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa30) = 0;
   *(undefined4 *)(lVar1 + 0xa40) = 0;
-  *(undefined8 *)(lVar1 + 0xa28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa28) = &SystemDataStructure;
   return;
 }
 
@@ -35009,7 +35021,7 @@ void Unwind_180903cc0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x18) = 0;
   *(undefined4 *)(lVar1 + 0x28) = 0;
-  *(undefined8 *)(lVar1 + 0x10) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x10) = &SystemDataStructure;
   return;
 }
 
@@ -35028,7 +35040,7 @@ void Unwind_180903cd0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x38) = 0;
   *(undefined4 *)(lVar1 + 0x48) = 0;
-  *(undefined8 *)(lVar1 + 0x30) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x30) = &SystemDataStructure;
   return;
 }
 
@@ -35064,7 +35076,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x168) = 0;
   *(undefined4 *)(lVar1 + 0x178) = 0;
-  *(undefined8 *)(lVar1 + 0x160) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x160) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x140) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x148) != 0) {
                     // WARNING: Subroutine does not return
@@ -35072,7 +35084,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x148) = 0;
   *(undefined4 *)(lVar1 + 0x158) = 0;
-  *(undefined8 *)(lVar1 + 0x140) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x140) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x120) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x128) != 0) {
                     // WARNING: Subroutine does not return
@@ -35080,7 +35092,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x128) = 0;
   *(undefined4 *)(lVar1 + 0x138) = 0;
-  *(undefined8 *)(lVar1 + 0x120) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x120) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x100) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x108) != 0) {
                     // WARNING: Subroutine does not return
@@ -35088,7 +35100,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x108) = 0;
   *(undefined4 *)(lVar1 + 0x118) = 0;
-  *(undefined8 *)(lVar1 + 0x100) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x100) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35096,7 +35108,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe8) = 0;
   *(undefined4 *)(lVar1 + 0xf8) = 0;
-  *(undefined8 *)(lVar1 + 0xe0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe0) = &SystemDataStructure;
   return;
 }
 
@@ -35118,7 +35130,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x228) = 0;
   *(undefined4 *)(lVar1 + 0x238) = 0;
-  *(undefined8 *)(lVar1 + 0x220) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x220) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x200) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x208) != 0) {
                     // WARNING: Subroutine does not return
@@ -35126,7 +35138,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x208) = 0;
   *(undefined4 *)(lVar1 + 0x218) = 0;
-  *(undefined8 *)(lVar1 + 0x200) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x200) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1e0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35134,7 +35146,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1e8) = 0;
   *(undefined4 *)(lVar1 + 0x1f8) = 0;
-  *(undefined8 *)(lVar1 + 0x1e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35142,7 +35154,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1c8) = 0;
   *(undefined4 *)(lVar1 + 0x1d8) = 0;
-  *(undefined8 *)(lVar1 + 0x1c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35150,7 +35162,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1a8) = 0;
   *(undefined4 *)(lVar1 + 0x1b8) = 0;
-  *(undefined8 *)(lVar1 + 0x1a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1a0) = &SystemDataStructure;
   return;
 }
 
@@ -35172,7 +35184,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2e8) = 0;
   *(undefined4 *)(lVar1 + 0x2f8) = 0;
-  *(undefined8 *)(lVar1 + 0x2e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35180,7 +35192,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2c8) = 0;
   *(undefined4 *)(lVar1 + 0x2d8) = 0;
-  *(undefined8 *)(lVar1 + 0x2c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35188,7 +35200,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2a8) = 0;
   *(undefined4 *)(lVar1 + 0x2b8) = 0;
-  *(undefined8 *)(lVar1 + 0x2a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x280) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x288) != 0) {
                     // WARNING: Subroutine does not return
@@ -35196,7 +35208,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x288) = 0;
   *(undefined4 *)(lVar1 + 0x298) = 0;
-  *(undefined8 *)(lVar1 + 0x280) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x280) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x260) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x268) != 0) {
                     // WARNING: Subroutine does not return
@@ -35204,7 +35216,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x268) = 0;
   *(undefined4 *)(lVar1 + 0x278) = 0;
-  *(undefined8 *)(lVar1 + 0x260) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x260) = &SystemDataStructure;
   return;
 }
 
@@ -35226,7 +35238,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x3a8) = 0;
   *(undefined4 *)(lVar1 + 0x3b8) = 0;
-  *(undefined8 *)(lVar1 + 0x3a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x3a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x380) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x388) != 0) {
                     // WARNING: Subroutine does not return
@@ -35234,7 +35246,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x388) = 0;
   *(undefined4 *)(lVar1 + 0x398) = 0;
-  *(undefined8 *)(lVar1 + 0x380) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x380) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x360) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x368) != 0) {
                     // WARNING: Subroutine does not return
@@ -35242,7 +35254,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x368) = 0;
   *(undefined4 *)(lVar1 + 0x378) = 0;
-  *(undefined8 *)(lVar1 + 0x360) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x360) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x340) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x348) != 0) {
                     // WARNING: Subroutine does not return
@@ -35250,7 +35262,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x348) = 0;
   *(undefined4 *)(lVar1 + 0x358) = 0;
-  *(undefined8 *)(lVar1 + 0x340) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x340) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 800) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x328) != 0) {
                     // WARNING: Subroutine does not return
@@ -35258,7 +35270,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x328) = 0;
   *(undefined4 *)(lVar1 + 0x338) = 0;
-  *(undefined8 *)(lVar1 + 800) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 800) = &SystemDataStructure;
   return;
 }
 
@@ -35280,7 +35292,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x468) = 0;
   *(undefined4 *)(lVar1 + 0x478) = 0;
-  *(undefined8 *)(lVar1 + 0x460) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x460) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x440) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x448) != 0) {
                     // WARNING: Subroutine does not return
@@ -35288,7 +35300,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x448) = 0;
   *(undefined4 *)(lVar1 + 0x458) = 0;
-  *(undefined8 *)(lVar1 + 0x440) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x440) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x420) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x428) != 0) {
                     // WARNING: Subroutine does not return
@@ -35296,7 +35308,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x428) = 0;
   *(undefined4 *)(lVar1 + 0x438) = 0;
-  *(undefined8 *)(lVar1 + 0x420) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x420) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x400) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x408) != 0) {
                     // WARNING: Subroutine does not return
@@ -35304,7 +35316,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x408) = 0;
   *(undefined4 *)(lVar1 + 0x418) = 0;
-  *(undefined8 *)(lVar1 + 0x400) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x400) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x3e0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 1000) != 0) {
                     // WARNING: Subroutine does not return
@@ -35312,7 +35324,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 1000) = 0;
   *(undefined4 *)(lVar1 + 0x3f8) = 0;
-  *(undefined8 *)(lVar1 + 0x3e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x3e0) = &SystemDataStructure;
   return;
 }
 
@@ -35334,7 +35346,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x528) = 0;
   *(undefined4 *)(lVar1 + 0x538) = 0;
-  *(undefined8 *)(lVar1 + 0x520) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x520) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x500) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x508) != 0) {
                     // WARNING: Subroutine does not return
@@ -35342,7 +35354,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x508) = 0;
   *(undefined4 *)(lVar1 + 0x518) = 0;
-  *(undefined8 *)(lVar1 + 0x500) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x500) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x4e0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35350,7 +35362,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4e8) = 0;
   *(undefined4 *)(lVar1 + 0x4f8) = 0;
-  *(undefined8 *)(lVar1 + 0x4e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x4c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35358,7 +35370,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4c8) = 0;
   *(undefined4 *)(lVar1 + 0x4d8) = 0;
-  *(undefined8 *)(lVar1 + 0x4c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x4a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35366,7 +35378,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4a8) = 0;
   *(undefined4 *)(lVar1 + 0x4b8) = 0;
-  *(undefined8 *)(lVar1 + 0x4a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4a0) = &SystemDataStructure;
   return;
 }
 
@@ -35388,7 +35400,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x5e8) = 0;
   *(undefined4 *)(lVar1 + 0x5f8) = 0;
-  *(undefined8 *)(lVar1 + 0x5e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x5e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x5c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x5c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35396,7 +35408,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x5c8) = 0;
   *(undefined4 *)(lVar1 + 0x5d8) = 0;
-  *(undefined8 *)(lVar1 + 0x5c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x5c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x5a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x5a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35404,7 +35416,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x5a8) = 0;
   *(undefined4 *)(lVar1 + 0x5b8) = 0;
-  *(undefined8 *)(lVar1 + 0x5a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x5a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x580) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x588) != 0) {
                     // WARNING: Subroutine does not return
@@ -35412,7 +35424,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x588) = 0;
   *(undefined4 *)(lVar1 + 0x598) = 0;
-  *(undefined8 *)(lVar1 + 0x580) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x580) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x560) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x568) != 0) {
                     // WARNING: Subroutine does not return
@@ -35420,7 +35432,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x568) = 0;
   *(undefined4 *)(lVar1 + 0x578) = 0;
-  *(undefined8 *)(lVar1 + 0x560) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x560) = &SystemDataStructure;
   return;
 }
 
@@ -35442,7 +35454,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x6a8) = 0;
   *(undefined4 *)(lVar1 + 0x6b8) = 0;
-  *(undefined8 *)(lVar1 + 0x6a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x6a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x680) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x688) != 0) {
                     // WARNING: Subroutine does not return
@@ -35450,7 +35462,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x688) = 0;
   *(undefined4 *)(lVar1 + 0x698) = 0;
-  *(undefined8 *)(lVar1 + 0x680) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x680) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x660) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x668) != 0) {
                     // WARNING: Subroutine does not return
@@ -35458,7 +35470,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x668) = 0;
   *(undefined4 *)(lVar1 + 0x678) = 0;
-  *(undefined8 *)(lVar1 + 0x660) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x660) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x640) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x648) != 0) {
                     // WARNING: Subroutine does not return
@@ -35466,7 +35478,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x648) = 0;
   *(undefined4 *)(lVar1 + 0x658) = 0;
-  *(undefined8 *)(lVar1 + 0x640) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x640) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x620) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x628) != 0) {
                     // WARNING: Subroutine does not return
@@ -35474,7 +35486,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x628) = 0;
   *(undefined4 *)(lVar1 + 0x638) = 0;
-  *(undefined8 *)(lVar1 + 0x620) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x620) = &SystemDataStructure;
   return;
 }
 
@@ -35496,7 +35508,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x768) = 0;
   *(undefined4 *)(lVar1 + 0x778) = 0;
-  *(undefined8 *)(lVar1 + 0x760) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x760) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x740) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x748) != 0) {
                     // WARNING: Subroutine does not return
@@ -35504,7 +35516,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x748) = 0;
   *(undefined4 *)(lVar1 + 0x758) = 0;
-  *(undefined8 *)(lVar1 + 0x740) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x740) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x720) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x728) != 0) {
                     // WARNING: Subroutine does not return
@@ -35512,7 +35524,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x728) = 0;
   *(undefined4 *)(lVar1 + 0x738) = 0;
-  *(undefined8 *)(lVar1 + 0x720) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x720) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x700) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x708) != 0) {
                     // WARNING: Subroutine does not return
@@ -35520,7 +35532,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x708) = 0;
   *(undefined4 *)(lVar1 + 0x718) = 0;
-  *(undefined8 *)(lVar1 + 0x700) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x700) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x6e0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x6e8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35528,7 +35540,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x6e8) = 0;
   *(undefined4 *)(lVar1 + 0x6f8) = 0;
-  *(undefined8 *)(lVar1 + 0x6e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x6e0) = &SystemDataStructure;
   return;
 }
 
@@ -35550,7 +35562,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x828) = 0;
   *(undefined4 *)(lVar1 + 0x838) = 0;
-  *(undefined8 *)(lVar1 + 0x820) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x820) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x800) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x808) != 0) {
                     // WARNING: Subroutine does not return
@@ -35558,7 +35570,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x808) = 0;
   *(undefined4 *)(lVar1 + 0x818) = 0;
-  *(undefined8 *)(lVar1 + 0x800) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x800) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x7e0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x7e8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35566,7 +35578,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x7e8) = 0;
   *(undefined4 *)(lVar1 + 0x7f8) = 0;
-  *(undefined8 *)(lVar1 + 0x7e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x7e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x7c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x7c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35574,7 +35586,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x7c8) = 0;
   *(undefined4 *)(lVar1 + 0x7d8) = 0;
-  *(undefined8 *)(lVar1 + 0x7c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x7c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x7a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x7a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35582,7 +35594,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x7a8) = 0;
   *(undefined4 *)(lVar1 + 0x7b8) = 0;
-  *(undefined8 *)(lVar1 + 0x7a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x7a0) = &SystemDataStructure;
   return;
 }
 
@@ -35604,7 +35616,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x8e8) = 0;
   *(undefined4 *)(lVar1 + 0x8f8) = 0;
-  *(undefined8 *)(lVar1 + 0x8e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x8e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x8c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35612,7 +35624,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x8c8) = 0;
   *(undefined4 *)(lVar1 + 0x8d8) = 0;
-  *(undefined8 *)(lVar1 + 0x8c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x8c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x8a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x8a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35620,7 +35632,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x8a8) = 0;
   *(undefined4 *)(lVar1 + 0x8b8) = 0;
-  *(undefined8 *)(lVar1 + 0x8a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x8a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x880) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x888) != 0) {
                     // WARNING: Subroutine does not return
@@ -35628,7 +35640,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x888) = 0;
   *(undefined4 *)(lVar1 + 0x898) = 0;
-  *(undefined8 *)(lVar1 + 0x880) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x880) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x860) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x868) != 0) {
                     // WARNING: Subroutine does not return
@@ -35636,7 +35648,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x868) = 0;
   *(undefined4 *)(lVar1 + 0x878) = 0;
-  *(undefined8 *)(lVar1 + 0x860) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x860) = &SystemDataStructure;
   return;
 }
 
@@ -35658,7 +35670,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x9a8) = 0;
   *(undefined4 *)(lVar1 + 0x9b8) = 0;
-  *(undefined8 *)(lVar1 + 0x9a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x9a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x980) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x988) != 0) {
                     // WARNING: Subroutine does not return
@@ -35666,7 +35678,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x988) = 0;
   *(undefined4 *)(lVar1 + 0x998) = 0;
-  *(undefined8 *)(lVar1 + 0x980) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x980) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x960) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x968) != 0) {
                     // WARNING: Subroutine does not return
@@ -35674,7 +35686,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x968) = 0;
   *(undefined4 *)(lVar1 + 0x978) = 0;
-  *(undefined8 *)(lVar1 + 0x960) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x960) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x940) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x948) != 0) {
                     // WARNING: Subroutine does not return
@@ -35682,7 +35694,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x948) = 0;
   *(undefined4 *)(lVar1 + 0x958) = 0;
-  *(undefined8 *)(lVar1 + 0x940) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x940) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x920) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x928) != 0) {
                     // WARNING: Subroutine does not return
@@ -35690,7 +35702,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x928) = 0;
   *(undefined4 *)(lVar1 + 0x938) = 0;
-  *(undefined8 *)(lVar1 + 0x920) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x920) = &SystemDataStructure;
   return;
 }
 
@@ -35712,7 +35724,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa68) = 0;
   *(undefined4 *)(lVar1 + 0xa78) = 0;
-  *(undefined8 *)(lVar1 + 0xa60) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa60) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xa40) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xa48) != 0) {
                     // WARNING: Subroutine does not return
@@ -35720,7 +35732,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa48) = 0;
   *(undefined4 *)(lVar1 + 0xa58) = 0;
-  *(undefined8 *)(lVar1 + 0xa40) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa40) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xa20) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xa28) != 0) {
                     // WARNING: Subroutine does not return
@@ -35728,7 +35740,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa28) = 0;
   *(undefined4 *)(lVar1 + 0xa38) = 0;
-  *(undefined8 *)(lVar1 + 0xa20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa20) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xa00) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xa08) != 0) {
                     // WARNING: Subroutine does not return
@@ -35736,7 +35748,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa08) = 0;
   *(undefined4 *)(lVar1 + 0xa18) = 0;
-  *(undefined8 *)(lVar1 + 0xa00) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa00) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x9e0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x9e8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35744,7 +35756,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x9e8) = 0;
   *(undefined4 *)(lVar1 + 0x9f8) = 0;
-  *(undefined8 *)(lVar1 + 0x9e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x9e0) = &SystemDataStructure;
   return;
 }
 
@@ -35766,7 +35778,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb28) = 0;
   *(undefined4 *)(lVar1 + 0xb38) = 0;
-  *(undefined8 *)(lVar1 + 0xb20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb20) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xb00) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xb08) != 0) {
                     // WARNING: Subroutine does not return
@@ -35774,7 +35786,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb08) = 0;
   *(undefined4 *)(lVar1 + 0xb18) = 0;
-  *(undefined8 *)(lVar1 + 0xb00) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb00) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xae0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xae8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35782,7 +35794,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xae8) = 0;
   *(undefined4 *)(lVar1 + 0xaf8) = 0;
-  *(undefined8 *)(lVar1 + 0xae0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xae0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xac0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xac8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35790,7 +35802,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xac8) = 0;
   *(undefined4 *)(lVar1 + 0xad8) = 0;
-  *(undefined8 *)(lVar1 + 0xac0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xac0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xaa0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xaa8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35798,7 +35810,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xaa8) = 0;
   *(undefined4 *)(lVar1 + 0xab8) = 0;
-  *(undefined8 *)(lVar1 + 0xaa0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xaa0) = &SystemDataStructure;
   return;
 }
 
@@ -35820,7 +35832,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xbe8) = 0;
   *(undefined4 *)(lVar1 + 0xbf8) = 0;
-  *(undefined8 *)(lVar1 + 0xbe0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xbe0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xbc0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xbc8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35828,7 +35840,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xbc8) = 0;
   *(undefined4 *)(lVar1 + 0xbd8) = 0;
-  *(undefined8 *)(lVar1 + 0xbc0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xbc0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xba0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xba8) != 0) {
                     // WARNING: Subroutine does not return
@@ -35836,7 +35848,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xba8) = 0;
   *(undefined4 *)(lVar1 + 3000) = 0;
-  *(undefined8 *)(lVar1 + 0xba0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xba0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xb80) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xb88) != 0) {
                     // WARNING: Subroutine does not return
@@ -35844,7 +35856,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb88) = 0;
   *(undefined4 *)(lVar1 + 0xb98) = 0;
-  *(undefined8 *)(lVar1 + 0xb80) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb80) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xb60) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xb68) != 0) {
                     // WARNING: Subroutine does not return
@@ -35852,7 +35864,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb68) = 0;
   *(undefined4 *)(lVar1 + 0xb78) = 0;
-  *(undefined8 *)(lVar1 + 0xb60) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb60) = &SystemDataStructure;
   return;
 }
 
@@ -35874,7 +35886,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xca8) = 0;
   *(undefined4 *)(lVar1 + 0xcb8) = 0;
-  *(undefined8 *)(lVar1 + 0xca0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xca0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xc80) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xc88) != 0) {
                     // WARNING: Subroutine does not return
@@ -35882,7 +35894,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc88) = 0;
   *(undefined4 *)(lVar1 + 0xc98) = 0;
-  *(undefined8 *)(lVar1 + 0xc80) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xc80) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xc60) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xc68) != 0) {
                     // WARNING: Subroutine does not return
@@ -35890,7 +35902,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc68) = 0;
   *(undefined4 *)(lVar1 + 0xc78) = 0;
-  *(undefined8 *)(lVar1 + 0xc60) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xc60) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xc40) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xc48) != 0) {
                     // WARNING: Subroutine does not return
@@ -35898,7 +35910,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc48) = 0;
   *(undefined4 *)(lVar1 + 0xc58) = 0;
-  *(undefined8 *)(lVar1 + 0xc40) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xc40) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xc20) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xc28) != 0) {
                     // WARNING: Subroutine does not return
@@ -35906,7 +35918,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc28) = 0;
   *(undefined4 *)(lVar1 + 0xc38) = 0;
-  *(undefined8 *)(lVar1 + 0xc20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xc20) = &SystemDataStructure;
   return;
 }
 
@@ -35928,7 +35940,7 @@ void Unwind_180903ef0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xd10) = 0;
   *(undefined4 *)(lVar1 + 0xd20) = 0;
-  *(undefined8 *)(lVar1 + 0xd08) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xd08) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xce8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xcf0) != 0) {
                     // WARNING: Subroutine does not return
@@ -35936,7 +35948,7 @@ void Unwind_180903ef0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xcf0) = 0;
   *(undefined4 *)(lVar1 + 0xd00) = 0;
-  *(undefined8 *)(lVar1 + 0xce8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xce8) = &SystemDataStructure;
   return;
 }
 
@@ -35958,7 +35970,7 @@ void Unwind_180903f10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xd80) = 0;
   *(undefined4 *)(lVar1 + 0xd90) = 0;
-  *(undefined8 *)(lVar1 + 0xd78) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xd78) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xd58) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xd60) != 0) {
                     // WARNING: Subroutine does not return
@@ -35966,7 +35978,7 @@ void Unwind_180903f10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xd60) = 0;
   *(undefined4 *)(lVar1 + 0xd70) = 0;
-  *(undefined8 *)(lVar1 + 0xd58) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xd58) = &SystemDataStructure;
   return;
 }
 
@@ -35988,7 +36000,7 @@ void Unwind_180903f30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xdf0) = 0;
   *(undefined4 *)(lVar1 + 0xe00) = 0;
-  *(undefined8 *)(lVar1 + 0xde8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xde8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xdc8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xdd0) != 0) {
                     // WARNING: Subroutine does not return
@@ -35996,7 +36008,7 @@ void Unwind_180903f30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xdd0) = 0;
   *(undefined4 *)(lVar1 + 0xde0) = 0;
-  *(undefined8 *)(lVar1 + 0xdc8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xdc8) = &SystemDataStructure;
   return;
 }
 
@@ -36018,7 +36030,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xeb8) = 0;
   *(undefined4 *)(lVar1 + 0xec8) = 0;
-  *(undefined8 *)(lVar1 + 0xeb0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xeb0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe90) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe98) != 0) {
                     // WARNING: Subroutine does not return
@@ -36026,7 +36038,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe98) = 0;
   *(undefined4 *)(lVar1 + 0xea8) = 0;
-  *(undefined8 *)(lVar1 + 0xe90) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe90) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe70) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe78) != 0) {
                     // WARNING: Subroutine does not return
@@ -36034,7 +36046,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe78) = 0;
   *(undefined4 *)(lVar1 + 0xe88) = 0;
-  *(undefined8 *)(lVar1 + 0xe70) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe70) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe50) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe58) != 0) {
                     // WARNING: Subroutine does not return
@@ -36042,7 +36054,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe58) = 0;
   *(undefined4 *)(lVar1 + 0xe68) = 0;
-  *(undefined8 *)(lVar1 + 0xe50) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe50) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe30) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe38) != 0) {
                     // WARNING: Subroutine does not return
@@ -36050,7 +36062,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe38) = 0;
   *(undefined4 *)(lVar1 + 0xe48) = 0;
-  *(undefined8 *)(lVar1 + 0xe30) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe30) = &SystemDataStructure;
   return;
 }
 
@@ -36072,7 +36084,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf78) = 0;
   *(undefined4 *)(lVar1 + 0xf88) = 0;
-  *(undefined8 *)(lVar1 + 0xf70) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf70) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xf50) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xf58) != 0) {
                     // WARNING: Subroutine does not return
@@ -36080,7 +36092,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf58) = 0;
   *(undefined4 *)(lVar1 + 0xf68) = 0;
-  *(undefined8 *)(lVar1 + 0xf50) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf50) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xf30) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xf38) != 0) {
                     // WARNING: Subroutine does not return
@@ -36088,7 +36100,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf38) = 0;
   *(undefined4 *)(lVar1 + 0xf48) = 0;
-  *(undefined8 *)(lVar1 + 0xf30) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf30) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xf10) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xf18) != 0) {
                     // WARNING: Subroutine does not return
@@ -36096,7 +36108,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf18) = 0;
   *(undefined4 *)(lVar1 + 0xf28) = 0;
-  *(undefined8 *)(lVar1 + 0xf10) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf10) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xef0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xef8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36104,7 +36116,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xef8) = 0;
   *(undefined4 *)(lVar1 + 0xf08) = 0;
-  *(undefined8 *)(lVar1 + 0xef0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xef0) = &SystemDataStructure;
   return;
 }
 
@@ -36126,7 +36138,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1038) = 0;
   *(undefined4 *)(lVar1 + 0x1048) = 0;
-  *(undefined8 *)(lVar1 + 0x1030) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1030) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1010) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1018) != 0) {
                     // WARNING: Subroutine does not return
@@ -36134,7 +36146,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1018) = 0;
   *(undefined4 *)(lVar1 + 0x1028) = 0;
-  *(undefined8 *)(lVar1 + 0x1010) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1010) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xff0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xff8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36142,7 +36154,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xff8) = 0;
   *(undefined4 *)(lVar1 + 0x1008) = 0;
-  *(undefined8 *)(lVar1 + 0xff0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xff0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xfd0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xfd8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36150,7 +36162,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xfd8) = 0;
   *(undefined4 *)(lVar1 + 0xfe8) = 0;
-  *(undefined8 *)(lVar1 + 0xfd0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xfd0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xfb0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xfb8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36158,7 +36170,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xfb8) = 0;
   *(undefined4 *)(lVar1 + 0xfc8) = 0;
-  *(undefined8 *)(lVar1 + 0xfb0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xfb0) = &SystemDataStructure;
   return;
 }
 
@@ -36180,7 +36192,7 @@ void Unwind_180903fb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x10a0) = 0;
   *(undefined4 *)(lVar1 + 0x10b0) = 0;
-  *(undefined8 *)(lVar1 + 0x1098) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1098) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1078) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1080) != 0) {
                     // WARNING: Subroutine does not return
@@ -36188,7 +36200,7 @@ void Unwind_180903fb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1080) = 0;
   *(undefined4 *)(lVar1 + 0x1090) = 0;
-  *(undefined8 *)(lVar1 + 0x1078) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1078) = &SystemDataStructure;
   return;
 }
 
@@ -36210,7 +36222,7 @@ void Unwind_180903fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1110) = 0;
   *(undefined4 *)(lVar1 + 0x1120) = 0;
-  *(undefined8 *)(lVar1 + 0x1108) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1108) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x10e8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x10f0) != 0) {
                     // WARNING: Subroutine does not return
@@ -36218,7 +36230,7 @@ void Unwind_180903fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x10f0) = 0;
   *(undefined4 *)(lVar1 + 0x1100) = 0;
-  *(undefined8 *)(lVar1 + 0x10e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x10e8) = &SystemDataStructure;
   return;
 }
 
@@ -36240,7 +36252,7 @@ void Unwind_180903ff0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1180) = 0;
   *(undefined4 *)(lVar1 + 0x1190) = 0;
-  *(undefined8 *)(lVar1 + 0x1178) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1178) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1158) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1160) != 0) {
                     // WARNING: Subroutine does not return
@@ -36248,7 +36260,7 @@ void Unwind_180903ff0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1160) = 0;
   *(undefined4 *)(lVar1 + 0x1170) = 0;
-  *(undefined8 *)(lVar1 + 0x1158) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1158) = &SystemDataStructure;
   return;
 }
 
@@ -36270,7 +36282,7 @@ void Unwind_180904010(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x11f0) = 0;
   *(undefined4 *)(lVar1 + 0x1200) = 0;
-  *(undefined8 *)(lVar1 + 0x11e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x11e8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x11c8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x11d0) != 0) {
                     // WARNING: Subroutine does not return
@@ -36278,7 +36290,7 @@ void Unwind_180904010(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x11d0) = 0;
   *(undefined4 *)(lVar1 + 0x11e0) = 0;
-  *(undefined8 *)(lVar1 + 0x11c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x11c8) = &SystemDataStructure;
   return;
 }
 
@@ -36300,7 +36312,7 @@ void Unwind_180904030(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1260) = 0;
   *(undefined4 *)(lVar1 + 0x1270) = 0;
-  *(undefined8 *)(lVar1 + 0x1258) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1258) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1238) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1240) != 0) {
                     // WARNING: Subroutine does not return
@@ -36308,7 +36320,7 @@ void Unwind_180904030(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1240) = 0;
   *(undefined4 *)(lVar1 + 0x1250) = 0;
-  *(undefined8 *)(lVar1 + 0x1238) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1238) = &SystemDataStructure;
   return;
 }
 
@@ -36330,7 +36342,7 @@ void Unwind_180904050(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x12d0) = 0;
   *(undefined4 *)(lVar1 + 0x12e0) = 0;
-  *(undefined8 *)(lVar1 + 0x12c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x12c8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x12a8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x12b0) != 0) {
                     // WARNING: Subroutine does not return
@@ -36338,7 +36350,7 @@ void Unwind_180904050(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x12b0) = 0;
   *(undefined4 *)(lVar1 + 0x12c0) = 0;
-  *(undefined8 *)(lVar1 + 0x12a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x12a8) = &SystemDataStructure;
   return;
 }
 
@@ -36360,7 +36372,7 @@ void Unwind_180904070(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1340) = 0;
   *(undefined4 *)(lVar1 + 0x1350) = 0;
-  *(undefined8 *)(lVar1 + 0x1338) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1338) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1318) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1320) != 0) {
                     // WARNING: Subroutine does not return
@@ -36368,7 +36380,7 @@ void Unwind_180904070(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1320) = 0;
   *(undefined4 *)(lVar1 + 0x1330) = 0;
-  *(undefined8 *)(lVar1 + 0x1318) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1318) = &SystemDataStructure;
   return;
 }
 
@@ -36433,7 +36445,7 @@ void Unwind_1809040d0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -36480,7 +36492,7 @@ void Unwind_180904100(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -36513,7 +36525,7 @@ void Unwind_180904120(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -36532,7 +36544,7 @@ void Unwind_180904130(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -36551,7 +36563,7 @@ void Unwind_180904140(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x48) = 0;
   *(undefined4 *)(lVar1 + 0x58) = 0;
-  *(undefined8 *)(lVar1 + 0x40) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x40) = &SystemDataStructure;
   return;
 }
 
@@ -36570,7 +36582,7 @@ void Unwind_180904150(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x68) = 0;
   *(undefined4 *)(lVar1 + 0x78) = 0;
-  *(undefined8 *)(lVar1 + 0x60) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x60) = &SystemDataStructure;
   return;
 }
 
@@ -36589,7 +36601,7 @@ void Unwind_180904160(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x88) = 0;
   *(undefined4 *)(lVar1 + 0x98) = 0;
-  *(undefined8 *)(lVar1 + 0x80) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x80) = &SystemDataStructure;
   return;
 }
 
@@ -36622,7 +36634,7 @@ void Unwind_1809041a0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x68) = 0;
   *(undefined4 *)(lVar1 + 0x78) = 0;
-  *(undefined8 *)(lVar1 + 0x60) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x60) = &SystemDataStructure;
   return;
 }
 
@@ -36658,7 +36670,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x168) = 0;
   *(undefined4 *)(lVar1 + 0x178) = 0;
-  *(undefined8 *)(lVar1 + 0x160) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x160) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x140) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x148) != 0) {
                     // WARNING: Subroutine does not return
@@ -36666,7 +36678,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x148) = 0;
   *(undefined4 *)(lVar1 + 0x158) = 0;
-  *(undefined8 *)(lVar1 + 0x140) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x140) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x120) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x128) != 0) {
                     // WARNING: Subroutine does not return
@@ -36674,7 +36686,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x128) = 0;
   *(undefined4 *)(lVar1 + 0x138) = 0;
-  *(undefined8 *)(lVar1 + 0x120) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x120) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x100) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x108) != 0) {
                     // WARNING: Subroutine does not return
@@ -36682,7 +36694,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x108) = 0;
   *(undefined4 *)(lVar1 + 0x118) = 0;
-  *(undefined8 *)(lVar1 + 0x100) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x100) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36690,7 +36702,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe8) = 0;
   *(undefined4 *)(lVar1 + 0xf8) = 0;
-  *(undefined8 *)(lVar1 + 0xe0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe0) = &SystemDataStructure;
   return;
 }
 
@@ -36712,7 +36724,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x228) = 0;
   *(undefined4 *)(lVar1 + 0x238) = 0;
-  *(undefined8 *)(lVar1 + 0x220) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x220) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x200) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x208) != 0) {
                     // WARNING: Subroutine does not return
@@ -36720,7 +36732,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x208) = 0;
   *(undefined4 *)(lVar1 + 0x218) = 0;
-  *(undefined8 *)(lVar1 + 0x200) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x200) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1e0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36728,7 +36740,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1e8) = 0;
   *(undefined4 *)(lVar1 + 0x1f8) = 0;
-  *(undefined8 *)(lVar1 + 0x1e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36736,7 +36748,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1c8) = 0;
   *(undefined4 *)(lVar1 + 0x1d8) = 0;
-  *(undefined8 *)(lVar1 + 0x1c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36744,7 +36756,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1a8) = 0;
   *(undefined4 *)(lVar1 + 0x1b8) = 0;
-  *(undefined8 *)(lVar1 + 0x1a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1a0) = &SystemDataStructure;
   return;
 }
 
@@ -36766,7 +36778,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2e8) = 0;
   *(undefined4 *)(lVar1 + 0x2f8) = 0;
-  *(undefined8 *)(lVar1 + 0x2e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36774,7 +36786,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2c8) = 0;
   *(undefined4 *)(lVar1 + 0x2d8) = 0;
-  *(undefined8 *)(lVar1 + 0x2c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36782,7 +36794,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2a8) = 0;
   *(undefined4 *)(lVar1 + 0x2b8) = 0;
-  *(undefined8 *)(lVar1 + 0x2a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x280) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x288) != 0) {
                     // WARNING: Subroutine does not return
@@ -36790,7 +36802,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x288) = 0;
   *(undefined4 *)(lVar1 + 0x298) = 0;
-  *(undefined8 *)(lVar1 + 0x280) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x280) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x260) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x268) != 0) {
                     // WARNING: Subroutine does not return
@@ -36798,7 +36810,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x268) = 0;
   *(undefined4 *)(lVar1 + 0x278) = 0;
-  *(undefined8 *)(lVar1 + 0x260) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x260) = &SystemDataStructure;
   return;
 }
 
@@ -36820,7 +36832,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x3a8) = 0;
   *(undefined4 *)(lVar1 + 0x3b8) = 0;
-  *(undefined8 *)(lVar1 + 0x3a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x3a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x380) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x388) != 0) {
                     // WARNING: Subroutine does not return
@@ -36828,7 +36840,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x388) = 0;
   *(undefined4 *)(lVar1 + 0x398) = 0;
-  *(undefined8 *)(lVar1 + 0x380) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x380) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x360) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x368) != 0) {
                     // WARNING: Subroutine does not return
@@ -36836,7 +36848,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x368) = 0;
   *(undefined4 *)(lVar1 + 0x378) = 0;
-  *(undefined8 *)(lVar1 + 0x360) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x360) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x340) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x348) != 0) {
                     // WARNING: Subroutine does not return
@@ -36844,7 +36856,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x348) = 0;
   *(undefined4 *)(lVar1 + 0x358) = 0;
-  *(undefined8 *)(lVar1 + 0x340) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x340) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 800) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x328) != 0) {
                     // WARNING: Subroutine does not return
@@ -36852,7 +36864,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x328) = 0;
   *(undefined4 *)(lVar1 + 0x338) = 0;
-  *(undefined8 *)(lVar1 + 800) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 800) = &SystemDataStructure;
   return;
 }
 
@@ -36874,7 +36886,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x468) = 0;
   *(undefined4 *)(lVar1 + 0x478) = 0;
-  *(undefined8 *)(lVar1 + 0x460) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x460) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x440) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x448) != 0) {
                     // WARNING: Subroutine does not return
@@ -36882,7 +36894,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x448) = 0;
   *(undefined4 *)(lVar1 + 0x458) = 0;
-  *(undefined8 *)(lVar1 + 0x440) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x440) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x420) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x428) != 0) {
                     // WARNING: Subroutine does not return
@@ -36890,7 +36902,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x428) = 0;
   *(undefined4 *)(lVar1 + 0x438) = 0;
-  *(undefined8 *)(lVar1 + 0x420) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x420) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x400) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x408) != 0) {
                     // WARNING: Subroutine does not return
@@ -36898,7 +36910,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x408) = 0;
   *(undefined4 *)(lVar1 + 0x418) = 0;
-  *(undefined8 *)(lVar1 + 0x400) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x400) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x3e0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 1000) != 0) {
                     // WARNING: Subroutine does not return
@@ -36906,7 +36918,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 1000) = 0;
   *(undefined4 *)(lVar1 + 0x3f8) = 0;
-  *(undefined8 *)(lVar1 + 0x3e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x3e0) = &SystemDataStructure;
   return;
 }
 
@@ -36928,7 +36940,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x528) = 0;
   *(undefined4 *)(lVar1 + 0x538) = 0;
-  *(undefined8 *)(lVar1 + 0x520) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x520) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x500) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x508) != 0) {
                     // WARNING: Subroutine does not return
@@ -36936,7 +36948,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x508) = 0;
   *(undefined4 *)(lVar1 + 0x518) = 0;
-  *(undefined8 *)(lVar1 + 0x500) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x500) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x4e0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36944,7 +36956,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4e8) = 0;
   *(undefined4 *)(lVar1 + 0x4f8) = 0;
-  *(undefined8 *)(lVar1 + 0x4e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x4c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36952,7 +36964,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4c8) = 0;
   *(undefined4 *)(lVar1 + 0x4d8) = 0;
-  *(undefined8 *)(lVar1 + 0x4c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x4a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36960,7 +36972,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x4a8) = 0;
   *(undefined4 *)(lVar1 + 0x4b8) = 0;
-  *(undefined8 *)(lVar1 + 0x4a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4a0) = &SystemDataStructure;
   return;
 }
 
@@ -36982,7 +36994,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x5e8) = 0;
   *(undefined4 *)(lVar1 + 0x5f8) = 0;
-  *(undefined8 *)(lVar1 + 0x5e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x5e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x5c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x5c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36990,7 +37002,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x5c8) = 0;
   *(undefined4 *)(lVar1 + 0x5d8) = 0;
-  *(undefined8 *)(lVar1 + 0x5c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x5c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x5a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x5a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -36998,7 +37010,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x5a8) = 0;
   *(undefined4 *)(lVar1 + 0x5b8) = 0;
-  *(undefined8 *)(lVar1 + 0x5a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x5a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x580) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x588) != 0) {
                     // WARNING: Subroutine does not return
@@ -37006,7 +37018,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x588) = 0;
   *(undefined4 *)(lVar1 + 0x598) = 0;
-  *(undefined8 *)(lVar1 + 0x580) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x580) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x560) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x568) != 0) {
                     // WARNING: Subroutine does not return
@@ -37014,7 +37026,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x568) = 0;
   *(undefined4 *)(lVar1 + 0x578) = 0;
-  *(undefined8 *)(lVar1 + 0x560) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x560) = &SystemDataStructure;
   return;
 }
 
@@ -37036,7 +37048,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x6a8) = 0;
   *(undefined4 *)(lVar1 + 0x6b8) = 0;
-  *(undefined8 *)(lVar1 + 0x6a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x6a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x680) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x688) != 0) {
                     // WARNING: Subroutine does not return
@@ -37044,7 +37056,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x688) = 0;
   *(undefined4 *)(lVar1 + 0x698) = 0;
-  *(undefined8 *)(lVar1 + 0x680) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x680) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x660) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x668) != 0) {
                     // WARNING: Subroutine does not return
@@ -37052,7 +37064,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x668) = 0;
   *(undefined4 *)(lVar1 + 0x678) = 0;
-  *(undefined8 *)(lVar1 + 0x660) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x660) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x640) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x648) != 0) {
                     // WARNING: Subroutine does not return
@@ -37060,7 +37072,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x648) = 0;
   *(undefined4 *)(lVar1 + 0x658) = 0;
-  *(undefined8 *)(lVar1 + 0x640) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x640) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x620) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x628) != 0) {
                     // WARNING: Subroutine does not return
@@ -37068,7 +37080,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x628) = 0;
   *(undefined4 *)(lVar1 + 0x638) = 0;
-  *(undefined8 *)(lVar1 + 0x620) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x620) = &SystemDataStructure;
   return;
 }
 
@@ -37090,7 +37102,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x768) = 0;
   *(undefined4 *)(lVar1 + 0x778) = 0;
-  *(undefined8 *)(lVar1 + 0x760) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x760) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x740) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x748) != 0) {
                     // WARNING: Subroutine does not return
@@ -37098,7 +37110,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x748) = 0;
   *(undefined4 *)(lVar1 + 0x758) = 0;
-  *(undefined8 *)(lVar1 + 0x740) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x740) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x720) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x728) != 0) {
                     // WARNING: Subroutine does not return
@@ -37106,7 +37118,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x728) = 0;
   *(undefined4 *)(lVar1 + 0x738) = 0;
-  *(undefined8 *)(lVar1 + 0x720) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x720) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x700) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x708) != 0) {
                     // WARNING: Subroutine does not return
@@ -37114,7 +37126,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x708) = 0;
   *(undefined4 *)(lVar1 + 0x718) = 0;
-  *(undefined8 *)(lVar1 + 0x700) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x700) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x6e0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x6e8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37122,7 +37134,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x6e8) = 0;
   *(undefined4 *)(lVar1 + 0x6f8) = 0;
-  *(undefined8 *)(lVar1 + 0x6e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x6e0) = &SystemDataStructure;
   return;
 }
 
@@ -37144,7 +37156,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x828) = 0;
   *(undefined4 *)(lVar1 + 0x838) = 0;
-  *(undefined8 *)(lVar1 + 0x820) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x820) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x800) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x808) != 0) {
                     // WARNING: Subroutine does not return
@@ -37152,7 +37164,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x808) = 0;
   *(undefined4 *)(lVar1 + 0x818) = 0;
-  *(undefined8 *)(lVar1 + 0x800) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x800) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x7e0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x7e8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37160,7 +37172,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x7e8) = 0;
   *(undefined4 *)(lVar1 + 0x7f8) = 0;
-  *(undefined8 *)(lVar1 + 0x7e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x7e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x7c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x7c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37168,7 +37180,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x7c8) = 0;
   *(undefined4 *)(lVar1 + 0x7d8) = 0;
-  *(undefined8 *)(lVar1 + 0x7c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x7c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x7a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x7a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37176,7 +37188,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x7a8) = 0;
   *(undefined4 *)(lVar1 + 0x7b8) = 0;
-  *(undefined8 *)(lVar1 + 0x7a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x7a0) = &SystemDataStructure;
   return;
 }
 
@@ -37198,7 +37210,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x8e8) = 0;
   *(undefined4 *)(lVar1 + 0x8f8) = 0;
-  *(undefined8 *)(lVar1 + 0x8e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x8e0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x8c0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37206,7 +37218,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x8c8) = 0;
   *(undefined4 *)(lVar1 + 0x8d8) = 0;
-  *(undefined8 *)(lVar1 + 0x8c0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x8c0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x8a0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x8a8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37214,7 +37226,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x8a8) = 0;
   *(undefined4 *)(lVar1 + 0x8b8) = 0;
-  *(undefined8 *)(lVar1 + 0x8a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x8a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x880) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x888) != 0) {
                     // WARNING: Subroutine does not return
@@ -37222,7 +37234,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x888) = 0;
   *(undefined4 *)(lVar1 + 0x898) = 0;
-  *(undefined8 *)(lVar1 + 0x880) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x880) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x860) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x868) != 0) {
                     // WARNING: Subroutine does not return
@@ -37230,7 +37242,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x868) = 0;
   *(undefined4 *)(lVar1 + 0x878) = 0;
-  *(undefined8 *)(lVar1 + 0x860) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x860) = &SystemDataStructure;
   return;
 }
 
@@ -37252,7 +37264,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x9a8) = 0;
   *(undefined4 *)(lVar1 + 0x9b8) = 0;
-  *(undefined8 *)(lVar1 + 0x9a0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x9a0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x980) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x988) != 0) {
                     // WARNING: Subroutine does not return
@@ -37260,7 +37272,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x988) = 0;
   *(undefined4 *)(lVar1 + 0x998) = 0;
-  *(undefined8 *)(lVar1 + 0x980) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x980) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x960) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x968) != 0) {
                     // WARNING: Subroutine does not return
@@ -37268,7 +37280,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x968) = 0;
   *(undefined4 *)(lVar1 + 0x978) = 0;
-  *(undefined8 *)(lVar1 + 0x960) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x960) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x940) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x948) != 0) {
                     // WARNING: Subroutine does not return
@@ -37276,7 +37288,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x948) = 0;
   *(undefined4 *)(lVar1 + 0x958) = 0;
-  *(undefined8 *)(lVar1 + 0x940) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x940) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x920) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x928) != 0) {
                     // WARNING: Subroutine does not return
@@ -37284,7 +37296,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x928) = 0;
   *(undefined4 *)(lVar1 + 0x938) = 0;
-  *(undefined8 *)(lVar1 + 0x920) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x920) = &SystemDataStructure;
   return;
 }
 
@@ -37306,7 +37318,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa68) = 0;
   *(undefined4 *)(lVar1 + 0xa78) = 0;
-  *(undefined8 *)(lVar1 + 0xa60) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa60) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xa40) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xa48) != 0) {
                     // WARNING: Subroutine does not return
@@ -37314,7 +37326,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa48) = 0;
   *(undefined4 *)(lVar1 + 0xa58) = 0;
-  *(undefined8 *)(lVar1 + 0xa40) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa40) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xa20) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xa28) != 0) {
                     // WARNING: Subroutine does not return
@@ -37322,7 +37334,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa28) = 0;
   *(undefined4 *)(lVar1 + 0xa38) = 0;
-  *(undefined8 *)(lVar1 + 0xa20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa20) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xa00) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xa08) != 0) {
                     // WARNING: Subroutine does not return
@@ -37330,7 +37342,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa08) = 0;
   *(undefined4 *)(lVar1 + 0xa18) = 0;
-  *(undefined8 *)(lVar1 + 0xa00) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa00) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x9e0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x9e8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37338,7 +37350,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x9e8) = 0;
   *(undefined4 *)(lVar1 + 0x9f8) = 0;
-  *(undefined8 *)(lVar1 + 0x9e0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x9e0) = &SystemDataStructure;
   return;
 }
 
@@ -37360,7 +37372,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb28) = 0;
   *(undefined4 *)(lVar1 + 0xb38) = 0;
-  *(undefined8 *)(lVar1 + 0xb20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb20) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xb00) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xb08) != 0) {
                     // WARNING: Subroutine does not return
@@ -37368,7 +37380,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb08) = 0;
   *(undefined4 *)(lVar1 + 0xb18) = 0;
-  *(undefined8 *)(lVar1 + 0xb00) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb00) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xae0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xae8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37376,7 +37388,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xae8) = 0;
   *(undefined4 *)(lVar1 + 0xaf8) = 0;
-  *(undefined8 *)(lVar1 + 0xae0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xae0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xac0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xac8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37384,7 +37396,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xac8) = 0;
   *(undefined4 *)(lVar1 + 0xad8) = 0;
-  *(undefined8 *)(lVar1 + 0xac0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xac0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xaa0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xaa8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37392,7 +37404,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xaa8) = 0;
   *(undefined4 *)(lVar1 + 0xab8) = 0;
-  *(undefined8 *)(lVar1 + 0xaa0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xaa0) = &SystemDataStructure;
   return;
 }
 
@@ -37414,7 +37426,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xbe8) = 0;
   *(undefined4 *)(lVar1 + 0xbf8) = 0;
-  *(undefined8 *)(lVar1 + 0xbe0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xbe0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xbc0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xbc8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37422,7 +37434,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xbc8) = 0;
   *(undefined4 *)(lVar1 + 0xbd8) = 0;
-  *(undefined8 *)(lVar1 + 0xbc0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xbc0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xba0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xba8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37430,7 +37442,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xba8) = 0;
   *(undefined4 *)(lVar1 + 3000) = 0;
-  *(undefined8 *)(lVar1 + 0xba0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xba0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xb80) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xb88) != 0) {
                     // WARNING: Subroutine does not return
@@ -37438,7 +37450,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb88) = 0;
   *(undefined4 *)(lVar1 + 0xb98) = 0;
-  *(undefined8 *)(lVar1 + 0xb80) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb80) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xb60) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xb68) != 0) {
                     // WARNING: Subroutine does not return
@@ -37446,7 +37458,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb68) = 0;
   *(undefined4 *)(lVar1 + 0xb78) = 0;
-  *(undefined8 *)(lVar1 + 0xb60) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb60) = &SystemDataStructure;
   return;
 }
 
@@ -37468,7 +37480,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xca8) = 0;
   *(undefined4 *)(lVar1 + 0xcb8) = 0;
-  *(undefined8 *)(lVar1 + 0xca0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xca0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xc80) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xc88) != 0) {
                     // WARNING: Subroutine does not return
@@ -37476,7 +37488,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc88) = 0;
   *(undefined4 *)(lVar1 + 0xc98) = 0;
-  *(undefined8 *)(lVar1 + 0xc80) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xc80) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xc60) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xc68) != 0) {
                     // WARNING: Subroutine does not return
@@ -37484,7 +37496,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc68) = 0;
   *(undefined4 *)(lVar1 + 0xc78) = 0;
-  *(undefined8 *)(lVar1 + 0xc60) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xc60) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xc40) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xc48) != 0) {
                     // WARNING: Subroutine does not return
@@ -37492,7 +37504,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc48) = 0;
   *(undefined4 *)(lVar1 + 0xc58) = 0;
-  *(undefined8 *)(lVar1 + 0xc40) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xc40) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xc20) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xc28) != 0) {
                     // WARNING: Subroutine does not return
@@ -37500,7 +37512,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc28) = 0;
   *(undefined4 *)(lVar1 + 0xc38) = 0;
-  *(undefined8 *)(lVar1 + 0xc20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xc20) = &SystemDataStructure;
   return;
 }
 
@@ -37522,7 +37534,7 @@ void Unwind_1809043d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xd10) = 0;
   *(undefined4 *)(lVar1 + 0xd20) = 0;
-  *(undefined8 *)(lVar1 + 0xd08) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xd08) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xce8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xcf0) != 0) {
                     // WARNING: Subroutine does not return
@@ -37530,7 +37542,7 @@ void Unwind_1809043d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xcf0) = 0;
   *(undefined4 *)(lVar1 + 0xd00) = 0;
-  *(undefined8 *)(lVar1 + 0xce8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xce8) = &SystemDataStructure;
   return;
 }
 
@@ -37552,7 +37564,7 @@ void Unwind_1809043f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xd80) = 0;
   *(undefined4 *)(lVar1 + 0xd90) = 0;
-  *(undefined8 *)(lVar1 + 0xd78) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xd78) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xd58) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xd60) != 0) {
                     // WARNING: Subroutine does not return
@@ -37560,7 +37572,7 @@ void Unwind_1809043f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xd60) = 0;
   *(undefined4 *)(lVar1 + 0xd70) = 0;
-  *(undefined8 *)(lVar1 + 0xd58) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xd58) = &SystemDataStructure;
   return;
 }
 
@@ -37582,7 +37594,7 @@ void Unwind_180904410(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xdf0) = 0;
   *(undefined4 *)(lVar1 + 0xe00) = 0;
-  *(undefined8 *)(lVar1 + 0xde8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xde8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xdc8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xdd0) != 0) {
                     // WARNING: Subroutine does not return
@@ -37590,7 +37602,7 @@ void Unwind_180904410(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xdd0) = 0;
   *(undefined4 *)(lVar1 + 0xde0) = 0;
-  *(undefined8 *)(lVar1 + 0xdc8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xdc8) = &SystemDataStructure;
   return;
 }
 
@@ -37612,7 +37624,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xeb8) = 0;
   *(undefined4 *)(lVar1 + 0xec8) = 0;
-  *(undefined8 *)(lVar1 + 0xeb0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xeb0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe90) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe98) != 0) {
                     // WARNING: Subroutine does not return
@@ -37620,7 +37632,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe98) = 0;
   *(undefined4 *)(lVar1 + 0xea8) = 0;
-  *(undefined8 *)(lVar1 + 0xe90) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe90) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe70) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe78) != 0) {
                     // WARNING: Subroutine does not return
@@ -37628,7 +37640,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe78) = 0;
   *(undefined4 *)(lVar1 + 0xe88) = 0;
-  *(undefined8 *)(lVar1 + 0xe70) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe70) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe50) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe58) != 0) {
                     // WARNING: Subroutine does not return
@@ -37636,7 +37648,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe58) = 0;
   *(undefined4 *)(lVar1 + 0xe68) = 0;
-  *(undefined8 *)(lVar1 + 0xe50) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe50) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe30) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe38) != 0) {
                     // WARNING: Subroutine does not return
@@ -37644,7 +37656,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe38) = 0;
   *(undefined4 *)(lVar1 + 0xe48) = 0;
-  *(undefined8 *)(lVar1 + 0xe30) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe30) = &SystemDataStructure;
   return;
 }
 
@@ -37666,7 +37678,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf78) = 0;
   *(undefined4 *)(lVar1 + 0xf88) = 0;
-  *(undefined8 *)(lVar1 + 0xf70) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf70) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xf50) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xf58) != 0) {
                     // WARNING: Subroutine does not return
@@ -37674,7 +37686,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf58) = 0;
   *(undefined4 *)(lVar1 + 0xf68) = 0;
-  *(undefined8 *)(lVar1 + 0xf50) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf50) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xf30) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xf38) != 0) {
                     // WARNING: Subroutine does not return
@@ -37682,7 +37694,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf38) = 0;
   *(undefined4 *)(lVar1 + 0xf48) = 0;
-  *(undefined8 *)(lVar1 + 0xf30) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf30) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xf10) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xf18) != 0) {
                     // WARNING: Subroutine does not return
@@ -37690,7 +37702,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf18) = 0;
   *(undefined4 *)(lVar1 + 0xf28) = 0;
-  *(undefined8 *)(lVar1 + 0xf10) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf10) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xef0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xef8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37698,7 +37710,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xef8) = 0;
   *(undefined4 *)(lVar1 + 0xf08) = 0;
-  *(undefined8 *)(lVar1 + 0xef0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xef0) = &SystemDataStructure;
   return;
 }
 
@@ -37720,7 +37732,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1038) = 0;
   *(undefined4 *)(lVar1 + 0x1048) = 0;
-  *(undefined8 *)(lVar1 + 0x1030) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1030) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1010) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1018) != 0) {
                     // WARNING: Subroutine does not return
@@ -37728,7 +37740,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1018) = 0;
   *(undefined4 *)(lVar1 + 0x1028) = 0;
-  *(undefined8 *)(lVar1 + 0x1010) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1010) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xff0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xff8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37736,7 +37748,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xff8) = 0;
   *(undefined4 *)(lVar1 + 0x1008) = 0;
-  *(undefined8 *)(lVar1 + 0xff0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xff0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xfd0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xfd8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37744,7 +37756,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xfd8) = 0;
   *(undefined4 *)(lVar1 + 0xfe8) = 0;
-  *(undefined8 *)(lVar1 + 0xfd0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xfd0) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xfb0) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xfb8) != 0) {
                     // WARNING: Subroutine does not return
@@ -37752,7 +37764,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xfb8) = 0;
   *(undefined4 *)(lVar1 + 0xfc8) = 0;
-  *(undefined8 *)(lVar1 + 0xfb0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xfb0) = &SystemDataStructure;
   return;
 }
 
@@ -37774,7 +37786,7 @@ void Unwind_180904490(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x10a0) = 0;
   *(undefined4 *)(lVar1 + 0x10b0) = 0;
-  *(undefined8 *)(lVar1 + 0x1098) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1098) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1078) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1080) != 0) {
                     // WARNING: Subroutine does not return
@@ -37782,7 +37794,7 @@ void Unwind_180904490(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1080) = 0;
   *(undefined4 *)(lVar1 + 0x1090) = 0;
-  *(undefined8 *)(lVar1 + 0x1078) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1078) = &SystemDataStructure;
   return;
 }
 
@@ -37804,7 +37816,7 @@ void Unwind_1809044b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1110) = 0;
   *(undefined4 *)(lVar1 + 0x1120) = 0;
-  *(undefined8 *)(lVar1 + 0x1108) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1108) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x10e8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x10f0) != 0) {
                     // WARNING: Subroutine does not return
@@ -37812,7 +37824,7 @@ void Unwind_1809044b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x10f0) = 0;
   *(undefined4 *)(lVar1 + 0x1100) = 0;
-  *(undefined8 *)(lVar1 + 0x10e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x10e8) = &SystemDataStructure;
   return;
 }
 
@@ -37834,7 +37846,7 @@ void Unwind_1809044d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1180) = 0;
   *(undefined4 *)(lVar1 + 0x1190) = 0;
-  *(undefined8 *)(lVar1 + 0x1178) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1178) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1158) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1160) != 0) {
                     // WARNING: Subroutine does not return
@@ -37842,7 +37854,7 @@ void Unwind_1809044d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1160) = 0;
   *(undefined4 *)(lVar1 + 0x1170) = 0;
-  *(undefined8 *)(lVar1 + 0x1158) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1158) = &SystemDataStructure;
   return;
 }
 
@@ -37864,7 +37876,7 @@ void Unwind_1809044f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x11f0) = 0;
   *(undefined4 *)(lVar1 + 0x1200) = 0;
-  *(undefined8 *)(lVar1 + 0x11e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x11e8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x11c8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x11d0) != 0) {
                     // WARNING: Subroutine does not return
@@ -37872,7 +37884,7 @@ void Unwind_1809044f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x11d0) = 0;
   *(undefined4 *)(lVar1 + 0x11e0) = 0;
-  *(undefined8 *)(lVar1 + 0x11c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x11c8) = &SystemDataStructure;
   return;
 }
 
@@ -37894,7 +37906,7 @@ void Unwind_180904510(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1260) = 0;
   *(undefined4 *)(lVar1 + 0x1270) = 0;
-  *(undefined8 *)(lVar1 + 0x1258) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1258) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1238) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1240) != 0) {
                     // WARNING: Subroutine does not return
@@ -37902,7 +37914,7 @@ void Unwind_180904510(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1240) = 0;
   *(undefined4 *)(lVar1 + 0x1250) = 0;
-  *(undefined8 *)(lVar1 + 0x1238) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1238) = &SystemDataStructure;
   return;
 }
 
@@ -37924,7 +37936,7 @@ void Unwind_180904530(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x12d0) = 0;
   *(undefined4 *)(lVar1 + 0x12e0) = 0;
-  *(undefined8 *)(lVar1 + 0x12c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x12c8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x12a8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x12b0) != 0) {
                     // WARNING: Subroutine does not return
@@ -37932,7 +37944,7 @@ void Unwind_180904530(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x12b0) = 0;
   *(undefined4 *)(lVar1 + 0x12c0) = 0;
-  *(undefined8 *)(lVar1 + 0x12a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x12a8) = &SystemDataStructure;
   return;
 }
 
@@ -37954,7 +37966,7 @@ void Unwind_180904550(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1340) = 0;
   *(undefined4 *)(lVar1 + 0x1350) = 0;
-  *(undefined8 *)(lVar1 + 0x1338) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1338) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1318) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1320) != 0) {
                     // WARNING: Subroutine does not return
@@ -37962,7 +37974,7 @@ void Unwind_180904550(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1320) = 0;
   *(undefined4 *)(lVar1 + 0x1330) = 0;
-  *(undefined8 *)(lVar1 + 0x1318) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1318) = &SystemDataStructure;
   return;
 }
 
@@ -38196,7 +38208,7 @@ void Unwind_1809046c0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x20) = 0;
   *(undefined4 *)(lVar1 + 0x30) = 0;
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x18) = &SystemDataStructure;
   return;
 }
 
@@ -38215,7 +38227,7 @@ void Unwind_1809046d0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x20) = 0;
   *(undefined4 *)(lVar1 + 0x30) = 0;
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x18) = &SystemDataStructure;
   return;
 }
 
@@ -38425,7 +38437,7 @@ void Unwind_180904810(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x48) = 0;
   *(undefined4 *)(lVar1 + 0x58) = 0;
-  *(undefined8 *)(lVar1 + 0x40) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x40) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -38433,7 +38445,7 @@ void Unwind_180904810(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -38452,7 +38464,7 @@ void Unwind_180904820(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -38461,7 +38473,7 @@ void Unwind_180904820(undefined8 param_1,longlong param_2)
 void Unwind_180904830(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x60) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x60) = &SystemDataStructure;
   return;
 }
 
@@ -38489,7 +38501,7 @@ void Unwind_180904870(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x58) = 0;
   *(undefined4 *)(param_2 + 0x68) = 0;
-  *(undefined8 *)(param_2 + 0x50) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x50) = &SystemDataStructure;
   return;
 }
 
@@ -38498,7 +38510,7 @@ void Unwind_180904870(undefined8 param_1,longlong param_2)
 void Unwind_180904880(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x40) + 0x20) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x40) + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -38507,7 +38519,7 @@ void Unwind_180904880(undefined8 param_1,longlong param_2)
 void Unwind_180904890(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x50) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x50) = &SystemDataStructure;
   return;
 }
 
@@ -38530,7 +38542,7 @@ void Unwind_1809048a0(undefined8 param_1,longlong param_2)
 void Unwind_1809048b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x20) + 0x20) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x20) + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -38539,7 +38551,7 @@ void Unwind_1809048b0(undefined8 param_1,longlong param_2)
 void Unwind_1809048c0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x28) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -38572,7 +38584,7 @@ void Unwind_1809048e0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -38591,7 +38603,7 @@ void Unwind_1809048f0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -39307,7 +39319,7 @@ void Unwind_180904a90(undefined8 param_1,longlong param_2)
 void Unwind_180904aa0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xb0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xb0) = &SystemDataStructure;
   return;
 }
 
@@ -39337,7 +39349,7 @@ void Unwind_180904ab0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(undefined8 *)(presourceHash[0xe] + 0x10) = 0;
       *(undefined1 *)(presourceHash[0xe] + 8) = 1;
     }
-    presourceHash[2] = &UNK_18098bcb0;
+    presourceHash[2] = &SystemDataStructure;
     return;
   }
   if (*(int *)(presourceHash[1] + 8) == 0) {
@@ -39353,7 +39365,7 @@ void Unwind_180904ab0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904ac0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xb0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xb0) = &SystemDataStructure;
   return;
 }
 
@@ -39405,7 +39417,7 @@ void Unwind_180904af0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(undefined8 *)(presourceHash[0xe] + 0x10) = 0;
       *(undefined1 *)(presourceHash[0xe] + 8) = 1;
     }
-    presourceHash[2] = &UNK_18098bcb0;
+    presourceHash[2] = &SystemDataStructure;
     return;
   }
   if (*(int *)(presourceHash[1] + 8) == 0) {
@@ -39620,7 +39632,7 @@ void Unwind_180904dd0(undefined8 param_1,longlong param_2)
   }
   presourceHash[8] = 0;
   *(undefined4 *)(presourceHash + 10) = 0;
-  presourceHash[7] = &UNK_18098bcb0;
+  presourceHash[7] = &SystemDataStructure;
   presourceHash[1] = &UNK_180a3c3e0;
   if (presourceHash[2] != 0) {
                     // WARNING: Subroutine does not return
@@ -39628,7 +39640,7 @@ void Unwind_180904dd0(undefined8 param_1,longlong param_2)
   }
   presourceHash[2] = 0;
   *(undefined4 *)(presourceHash + 4) = 0;
-  presourceHash[1] = &UNK_18098bcb0;
+  presourceHash[1] = &SystemDataStructure;
   return;
 }
 
@@ -39649,7 +39661,7 @@ void Unwind_180904de0(undefined8 param_1,longlong param_2)
   }
   presourceHash[8] = 0;
   *(undefined4 *)(presourceHash + 10) = 0;
-  presourceHash[7] = &UNK_18098bcb0;
+  presourceHash[7] = &SystemDataStructure;
   presourceHash[1] = &UNK_180a3c3e0;
   if (presourceHash[2] != 0) {
                     // WARNING: Subroutine does not return
@@ -39657,7 +39669,7 @@ void Unwind_180904de0(undefined8 param_1,longlong param_2)
   }
   presourceHash[2] = 0;
   *(undefined4 *)(presourceHash + 4) = 0;
-  presourceHash[1] = &UNK_18098bcb0;
+  presourceHash[1] = &SystemDataStructure;
   return;
 }
 
@@ -39677,7 +39689,7 @@ void Unwind_180904df0(undefined8 param_1,longlong param_2)
   }
   presourceHash[8] = 0;
   *(undefined4 *)(presourceHash + 10) = 0;
-  presourceHash[7] = &UNK_18098bcb0;
+  presourceHash[7] = &SystemDataStructure;
   presourceHash[1] = &UNK_180a3c3e0;
   if (presourceHash[2] != 0) {
                     // WARNING: Subroutine does not return
@@ -39685,7 +39697,7 @@ void Unwind_180904df0(undefined8 param_1,longlong param_2)
   }
   presourceHash[2] = 0;
   *(undefined4 *)(presourceHash + 4) = 0;
-  presourceHash[1] = &UNK_18098bcb0;
+  presourceHash[1] = &SystemDataStructure;
   return;
 }
 
@@ -39703,7 +39715,7 @@ void Unwind_180904e00(void)
 void Unwind_180904e10(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xc0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xc0) = &SystemDataStructure;
   return;
 }
 
@@ -39712,7 +39724,7 @@ void Unwind_180904e10(undefined8 param_1,longlong param_2)
 void Unwind_180904e20(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xe8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xe8) = &SystemDataStructure;
   return;
 }
 
@@ -39753,7 +39765,7 @@ void Unwind_180904e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(undefined8 *)(presourceHash[0xe] + 0x10) = 0;
       *(undefined1 *)(presourceHash[0xe] + 8) = 1;
     }
-    presourceHash[2] = &UNK_18098bcb0;
+    presourceHash[2] = &SystemDataStructure;
     return;
   }
   if (*(int *)(presourceHash[1] + 8) == 0) {
@@ -39983,7 +39995,7 @@ void Unwind_180904f70(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x38) = 0;
   *(undefined4 *)(lVar1 + 0x48) = 0;
-  *(undefined8 *)(lVar1 + 0x30) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x30) = &SystemDataStructure;
   return;
 }
 
@@ -40002,7 +40014,7 @@ void Unwind_180904f80(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -40096,7 +40108,7 @@ void Unwind_180904fc0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xc0) = 0;
   *(undefined4 *)(param_2 + 0xd0) = 0;
-  *(undefined8 *)(param_2 + 0xb8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xb8) = &SystemDataStructure;
   return;
 }
 
@@ -40150,7 +40162,7 @@ void Unwind_180904ff0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xe0) = 0;
   *(undefined4 *)(param_2 + 0xf0) = 0;
-  *(undefined8 *)(param_2 + 0xd8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xd8) = &SystemDataStructure;
   return;
 }
 
@@ -40183,7 +40195,7 @@ void Unwind_180905010(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x100) = 0;
   *(undefined4 *)(param_2 + 0x110) = 0;
-  *(undefined8 *)(param_2 + 0xf8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xf8) = &SystemDataStructure;
   return;
 }
 
@@ -40352,7 +40364,7 @@ void Unwind_1809050c0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x1f0) = 0;
   *(undefined4 *)(param_2 + 0x200) = 0;
-  *(undefined8 *)(param_2 + 0x1e8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x1e8) = &SystemDataStructure;
   return;
 }
 
@@ -40385,7 +40397,7 @@ void Unwind_1809050e0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x170) = 0;
   *(undefined4 *)(param_2 + 0x180) = 0;
-  *(undefined8 *)(param_2 + 0x168) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x168) = &SystemDataStructure;
   return;
 }
 
@@ -40401,7 +40413,7 @@ void Unwind_1809050f0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x1b0) = 0;
   *(undefined4 *)(param_2 + 0x1c0) = 0;
-  *(undefined8 *)(param_2 + 0x1a8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x1a8) = &SystemDataStructure;
   return;
 }
 
@@ -40417,7 +40429,7 @@ void Unwind_180905100(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 400) = 0;
   *(undefined4 *)(param_2 + 0x1a0) = 0;
-  *(undefined8 *)(param_2 + 0x188) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x188) = &SystemDataStructure;
   return;
 }
 
@@ -40468,7 +40480,7 @@ void Unwind_180905120(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905130(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x278) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x278) = &SystemDataStructure;
   return;
 }
 
@@ -40477,7 +40489,7 @@ void Unwind_180905130(undefined8 param_1,longlong param_2)
 void Unwind_180905140(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x250) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x250) = &SystemDataStructure;
   return;
 }
 
@@ -40493,7 +40505,7 @@ void Unwind_180905150(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x130) = 0;
   *(undefined4 *)(param_2 + 0x140) = 0;
-  *(undefined8 *)(param_2 + 0x128) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x128) = &SystemDataStructure;
   return;
 }
 
@@ -40551,7 +40563,7 @@ void Unwind_180905180(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xd0) = 0;
   *(undefined4 *)(param_2 + 0xe0) = 0;
-  *(undefined8 *)(param_2 + 200) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 200) = &SystemDataStructure;
   return;
 }
 
@@ -40567,7 +40579,7 @@ void Unwind_180905190(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x1d0) = 0;
   *(undefined4 *)(param_2 + 0x1e0) = 0;
-  *(undefined8 *)(param_2 + 0x1c8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x1c8) = &SystemDataStructure;
   return;
 }
 
@@ -40588,7 +40600,7 @@ void Unwind_1809051a0(undefined8 param_1,longlong param_2)
 void Unwind_1809051d0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x188) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x188) = &SystemDataStructure;
   return;
 }
 
@@ -40597,7 +40609,7 @@ void Unwind_1809051d0(undefined8 param_1,longlong param_2)
 void Unwind_1809051e0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1a8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1a8) = &SystemDataStructure;
   return;
 }
 
@@ -40720,7 +40732,7 @@ void Unwind_180905220(undefined8 param_1,longlong param_2)
 void Unwind_180905230(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x278) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x278) = &SystemDataStructure;
   return;
 }
 
@@ -40729,7 +40741,7 @@ void Unwind_180905230(undefined8 param_1,longlong param_2)
 void Unwind_180905240(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x250) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x250) = &SystemDataStructure;
   return;
 }
 
@@ -40852,7 +40864,7 @@ void Unwind_180905280(undefined8 param_1,longlong param_2)
 void Unwind_180905290(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1c8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1c8) = &SystemDataStructure;
   return;
 }
 
@@ -40861,7 +40873,7 @@ void Unwind_180905290(undefined8 param_1,longlong param_2)
 void Unwind_1809052a0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x168) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x168) = &SystemDataStructure;
   return;
 }
 
@@ -40870,7 +40882,7 @@ void Unwind_1809052a0(undefined8 param_1,longlong param_2)
 void Unwind_1809052b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1e8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1e8) = &SystemDataStructure;
   return;
 }
 
@@ -40925,7 +40937,7 @@ void Unwind_180905350(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -40941,7 +40953,7 @@ void Unwind_180905360(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x110) = 0;
   *(undefined4 *)(param_2 + 0x120) = 0;
-  *(undefined8 *)(param_2 + 0x108) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x108) = &SystemDataStructure;
   return;
 }
 
@@ -40950,7 +40962,7 @@ void Unwind_180905360(undefined8 param_1,longlong param_2)
 void Unwind_180905370(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x108) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x108) = &SystemDataStructure;
   return;
 }
 
@@ -41255,7 +41267,7 @@ void Unwind_1809054c0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x98) = 0;
   *(undefined4 *)(param_2 + 0xa8) = 0;
-  *(undefined8 *)(param_2 + 0x90) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x90) = &SystemDataStructure;
   return;
 }
 
@@ -41271,7 +41283,7 @@ void Unwind_1809054d0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x98) = 0;
   *(undefined4 *)(param_2 + 0xa8) = 0;
-  *(undefined8 *)(param_2 + 0x90) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x90) = &SystemDataStructure;
   return;
 }
 
@@ -41280,7 +41292,7 @@ void Unwind_1809054d0(undefined8 param_1,longlong param_2)
 void Unwind_1809054e0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x100) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x100) = &SystemDataStructure;
   return;
 }
 
@@ -41362,7 +41374,7 @@ void Unwind_180905540(undefined8 param_1,longlong param_2)
 void Unwind_180905560(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x60) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x60) = &SystemDataStructure;
   return;
 }
 
@@ -41479,7 +41491,7 @@ void Unwind_1809055f0(void)
 void Unwind_180905610(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x50) + 8) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x50) + 8) = &SystemDataStructure;
   return;
 }
 
@@ -41488,7 +41500,7 @@ void Unwind_180905610(undefined8 param_1,longlong param_2)
 void Unwind_180905620(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x50) + 8) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x50) + 8) = &SystemDataStructure;
   return;
 }
 
@@ -41520,7 +41532,7 @@ void Unwind_180905640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x178) != (code *)0x0) {
     (**(code **)(lVar1 + 0x178))(lVar1 + 0x168,0,0);
   }
-  *(undefined **)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined **)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -41538,7 +41550,7 @@ void Unwind_180905650(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x178) != (code *)0x0) {
     (**(code **)(lVar1 + 0x178))(lVar1 + 0x168,0,0);
   }
-  *(undefined **)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined **)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -41575,7 +41587,7 @@ void Unwind_180905680(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809056a0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x40) + 8) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x40) + 8) = &SystemDataStructure;
   return;
 }
 
@@ -41584,7 +41596,7 @@ void Unwind_1809056a0(undefined8 param_1,longlong param_2)
 void Unwind_1809056b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x40) + 8) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x40) + 8) = &SystemDataStructure;
   return;
 }
 
@@ -41635,7 +41647,7 @@ void Unwind_180905700(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905710(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x20) + 8) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x20) + 8) = &SystemDataStructure;
   return;
 }
 
@@ -41846,7 +41858,7 @@ void Unwind_1809057c0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 200) = 0;
   *(undefined4 *)(lVar1 + 0xd8) = 0;
-  *(undefined8 *)(lVar1 + 0xc0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xc0) = &SystemDataStructure;
   return;
 }
 
@@ -41862,7 +41874,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x108) = 0;
   *(undefined4 *)(param_2 + 0x118) = 0;
-  *(undefined8 *)(param_2 + 0x100) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x100) = &SystemDataStructure;
   *(undefined8 *)(param_2 + 0xe0) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
@@ -41870,7 +41882,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xe8) = 0;
   *(undefined4 *)(param_2 + 0xf8) = 0;
-  *(undefined8 *)(param_2 + 0xe0) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xe0) = &SystemDataStructure;
   *(undefined8 *)(param_2 + 0xb8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
@@ -41878,7 +41890,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xc0) = 0;
   *(undefined4 *)(param_2 + 0xd0) = 0;
-  *(undefined8 *)(param_2 + 0xb8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xb8) = &SystemDataStructure;
   *(undefined8 *)(param_2 + 0x98) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
@@ -41886,7 +41898,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xa0) = 0;
   *(undefined4 *)(param_2 + 0xb0) = 0;
-  *(undefined8 *)(param_2 + 0x98) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x98) = &SystemDataStructure;
   *(undefined8 *)(param_2 + 0x68) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x70) != 0) {
                     // WARNING: Subroutine does not return
@@ -41894,7 +41906,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x70) = 0;
   *(undefined4 *)(param_2 + 0x80) = 0;
-  *(undefined8 *)(param_2 + 0x68) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x68) = &SystemDataStructure;
   return;
 }
 
@@ -42067,7 +42079,7 @@ void Unwind_180905890(undefined8 param_1,longlong param_2)
     }
     *(undefined8 *)(resourceIndex + 0x10) = 0;
     *(undefined4 *)(resourceIndex + 0x20) = 0;
-    *(undefined8 *)(resourceIndex + 8) = &UNK_18098bcb0;
+    *(undefined8 *)(resourceIndex + 8) = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
                     // WARNING: Subroutine does not return
@@ -42141,7 +42153,7 @@ void Unwind_1809058c0(undefined8 param_1,longlong param_2)
     }
     *(undefined8 *)(resourceIndex + 0x10) = 0;
     *(undefined4 *)(resourceIndex + 0x20) = 0;
-    *(undefined8 *)(resourceIndex + 8) = &UNK_18098bcb0;
+    *(undefined8 *)(resourceIndex + 8) = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
                     // WARNING: Subroutine does not return
@@ -42162,7 +42174,7 @@ void Unwind_1809058d0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x208) = 0;
   *(undefined4 *)(param_2 + 0x218) = 0;
-  *(undefined8 *)(param_2 + 0x200) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x200) = &SystemDataStructure;
   return;
 }
 
@@ -42171,7 +42183,7 @@ void Unwind_1809058d0(undefined8 param_1,longlong param_2)
 void Unwind_1809058e0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x200) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x200) = &SystemDataStructure;
   return;
 }
 
@@ -42273,7 +42285,7 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
   puVar3 = *(ulonglong **)(param_2 + 0x48);
   pvalidationResult = (undefined8 *)puVar3[1];
   for (puVar5 = (undefined8 *)*puVar3; puVar5 != pvalidationResult; puVar5 = puVar5 + 0xe) {
-    *puVar5 = &UNK_18098bcb0;
+    *puVar5 = &SystemDataStructure;
   }
   pvalidationResult = (undefined8 *)*puVar3;
   if (pvalidationResult != (undefined8 *)0x0) {
@@ -42470,7 +42482,7 @@ void Unwind_180905980(undefined8 param_1,longlong param_2)
     }
     puVar3[1] = 0;
     *(undefined4 *)(puVar3 + 3) = 0;
-    *puVar3 = &UNK_18098bcb0;
+    *puVar3 = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
                     // WARNING: Subroutine does not return
@@ -42621,7 +42633,7 @@ void Unwind_180905a80(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x70) = 0;
   *(undefined4 *)(param_2 + 0x80) = 0;
-  *(undefined8 *)(param_2 + 0x68) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x68) = &SystemDataStructure;
   return;
 }
 
@@ -42637,7 +42649,7 @@ void Unwind_180905a90(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xa0) = 0;
   *(undefined4 *)(param_2 + 0xb0) = 0;
-  *(undefined8 *)(param_2 + 0x98) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x98) = &SystemDataStructure;
   return;
 }
 
@@ -42653,7 +42665,7 @@ void Unwind_180905aa0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xc0) = 0;
   *(undefined4 *)(param_2 + 0xd0) = 0;
-  *(undefined8 *)(param_2 + 0xb8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xb8) = &SystemDataStructure;
   return;
 }
 
@@ -42669,7 +42681,7 @@ void Unwind_180905ab0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xe8) = 0;
   *(undefined4 *)(param_2 + 0xf8) = 0;
-  *(undefined8 *)(param_2 + 0xe0) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xe0) = &SystemDataStructure;
   return;
 }
 
@@ -42685,7 +42697,7 @@ void Unwind_180905ad0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x108) = 0;
   *(undefined4 *)(param_2 + 0x118) = 0;
-  *(undefined8 *)(param_2 + 0x100) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x100) = &SystemDataStructure;
   return;
 }
 
@@ -42694,7 +42706,7 @@ void Unwind_180905ad0(undefined8 param_1,longlong param_2)
 void Unwind_180905af0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x2e0) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x2e0) = &SystemDataStructure;
   return;
 }
 
@@ -42753,7 +42765,7 @@ void Unwind_180905b40(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -42872,7 +42884,7 @@ void ResetExceptionUnwindPointerTable(undefined8 param_1, longlong param_2)
     do {
       pointerEntry = *(undefined8 **)(pointerArray + pointerIndex * 8);
       if (pointerEntry != (undefined8 *)0x0) {
-        *pointerEntry = &UNK_18098bcb0;
+        *pointerEntry = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -43014,7 +43026,7 @@ void Unwind_180905c10(undefined8 param_1,longlong param_2)
     do {
       pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
       if (pvalidationResult != (undefined8 *)0x0) {
-        *pvalidationResult = &UNK_18098bcb0;
+        *pvalidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -43050,7 +43062,7 @@ void Unwind_180905c20(undefined8 param_1,longlong param_2)
     do {
       pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
       if (pvalidationResult != (undefined8 *)0x0) {
-        *pvalidationResult = &UNK_18098bcb0;
+        *pvalidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -43086,7 +43098,7 @@ void Unwind_180905c30(undefined8 param_1,longlong param_2)
     do {
       pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
       if (pvalidationResult != (undefined8 *)0x0) {
-        *pvalidationResult = &UNK_18098bcb0;
+        *pvalidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -43122,7 +43134,7 @@ void Unwind_180905c40(undefined8 param_1,longlong param_2)
     do {
       pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
       if (pvalidationResult != (undefined8 *)0x0) {
-        *pvalidationResult = &UNK_18098bcb0;
+        *pvalidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -43222,7 +43234,7 @@ void Unwind_180905c60(undefined8 param_1,longlong param_2)
     do {
       pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
       if (pvalidationResult != (undefined8 *)0x0) {
-        *pvalidationResult = &UNK_18098bcb0;
+        *pvalidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -43258,7 +43270,7 @@ void Unwind_180905c80(undefined8 param_1,longlong param_2)
     do {
       pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
       if (pvalidationResult != (undefined8 *)0x0) {
-        *pvalidationResult = &UNK_18098bcb0;
+        *pvalidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -43294,7 +43306,7 @@ void Unwind_180905c90(undefined8 param_1,longlong param_2)
     do {
       pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
       if (pvalidationResult != (undefined8 *)0x0) {
-        *pvalidationResult = &UNK_18098bcb0;
+        *pvalidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -43401,7 +43413,7 @@ void Unwind_180905cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(param_2 + 0x1d8) != (code *)0x0) {
     (**(code **)(param_2 + 0x1d8))(param_2 + 0x1c8,0,0);
   }
-  *(undefined **)(param_2 + 0x80) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x80) = &SystemDataStructure;
   return;
 }
 
@@ -43462,7 +43474,7 @@ void Unwind_180905d50(undefined8 param_1,longlong param_2)
 void Unwind_180905d60(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x30) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x30) = &SystemDataStructure;
   return;
 }
 
@@ -43471,7 +43483,7 @@ void Unwind_180905d60(undefined8 param_1,longlong param_2)
 void Unwind_180905d70(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x30) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x30) = &SystemDataStructure;
   return;
 }
 
@@ -43480,7 +43492,7 @@ void Unwind_180905d70(undefined8 param_1,longlong param_2)
 void Unwind_180905d80(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x60) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x60) = &SystemDataStructure;
   return;
 }
 
@@ -44619,7 +44631,7 @@ void Unwind_1809062b0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xb8) = 0;
   *(undefined4 *)(param_2 + 200) = 0;
-  *(undefined8 *)(param_2 + 0xb0) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xb0) = &SystemDataStructure;
   return;
 }
 
@@ -44664,7 +44676,7 @@ void Unwind_180906320(undefined8 param_1,longlong param_2)
 void Unwind_180906350(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xb0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xb0) = &SystemDataStructure;
   return;
 }
 
@@ -44839,7 +44851,7 @@ void Unwind_180906480(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x38) = 0;
   *(undefined4 *)(param_2 + 0x48) = 0;
-  *(undefined8 *)(param_2 + 0x30) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x30) = &SystemDataStructure;
   return;
 }
 
@@ -45152,7 +45164,7 @@ void Unwind_180906530(undefined8 param_1,longlong param_2)
   
   presourceHash = *(undefined8 **)(param_2 + 0x48);
   *presourceHash = &UNK_180a02e68;
-  presourceHash[2] = &UNK_18098bcb0;
+  presourceHash[2] = &SystemDataStructure;
   *presourceHash = &UNK_180a21720;
   *presourceHash = &UNK_180a21690;
   return;
@@ -45163,7 +45175,7 @@ void Unwind_180906530(undefined8 param_1,longlong param_2)
 void Unwind_180906540(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x48) + 0x10) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x48) + 0x10) = &SystemDataStructure;
   return;
 }
 
@@ -45325,7 +45337,7 @@ void Unwind_1809065d0(void)
 void Unwind_1809065e0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0xd0) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0xd0) = &SystemDataStructure;
   return;
 }
 
@@ -45334,7 +45346,7 @@ void Unwind_1809065e0(undefined8 param_1,longlong param_2)
 void Unwind_1809065f0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0xd0) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0xd0) = &SystemDataStructure;
   return;
 }
 
@@ -45359,7 +45371,7 @@ void Unwind_180906630(undefined8 param_1,longlong param_2)
   
   presourceHash = *(undefined8 **)(param_2 + 0xa0);
   *presourceHash = &UNK_180a02e68;
-  presourceHash[2] = &UNK_18098bcb0;
+  presourceHash[2] = &SystemDataStructure;
   *presourceHash = &UNK_180a21720;
   *presourceHash = &UNK_180a21690;
   return;
@@ -45519,7 +45531,7 @@ void Unwind_180906780(undefined8 param_1,longlong param_2)
 void Unwind_180906790(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0xa0) + 0x10) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0xa0) + 0x10) = &SystemDataStructure;
   return;
 }
 
@@ -45547,7 +45559,7 @@ void Unwind_1809067b0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -45560,7 +45572,7 @@ void Unwind_1809067c0(undefined8 param_1,longlong param_2)
   
   presourceHash = *(undefined8 **)(param_2 + 0x50);
   *presourceHash = &UNK_180a02e68;
-  presourceHash[2] = &UNK_18098bcb0;
+  presourceHash[2] = &SystemDataStructure;
   *presourceHash = &UNK_180a21720;
   *presourceHash = &UNK_180a21690;
   return;
@@ -45739,7 +45751,7 @@ void Unwind_180906940(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180906950(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x50) + 0x10) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x50) + 0x10) = &SystemDataStructure;
   return;
 }
 
@@ -46080,7 +46092,7 @@ void Unwind_180906b10(undefined8 param_1,longlong param_2)
     }
     pvalidationResult[1] = 0;
     *(undefined4 *)(pvalidationResult + 3) = 0;
-    *pvalidationResult = &UNK_18098bcb0;
+    *pvalidationResult = &SystemDataStructure;
   }
   if (*(longlong *)(param_2 + 0x88) != 0) {
                     // WARNING: Subroutine does not return
@@ -46128,7 +46140,7 @@ void Unwind_180906b40(undefined8 param_1,longlong param_2)
     }
     pvalidationResult[1] = 0;
     *(undefined4 *)(pvalidationResult + 3) = 0;
-    *pvalidationResult = &UNK_18098bcb0;
+    *pvalidationResult = &SystemDataStructure;
   }
   if (*(longlong *)(param_2 + 0x88) != 0) {
                     // WARNING: Subroutine does not return
@@ -46192,7 +46204,7 @@ void Unwind_180906b60(undefined8 param_1,longlong param_2)
     }
     puVar3[1] = 0;
     *(undefined4 *)(puVar3 + 3) = 0;
-    *puVar3 = &UNK_18098bcb0;
+    *puVar3 = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
                     // WARNING: Subroutine does not return
@@ -46377,7 +46389,7 @@ void Unwind_180906c00(void)
 void Unwind_180906c10(void)
 
 {
-  _DAT_180d49160 = &UNK_18098bcb0;
+  _DAT_180d49160 = &SystemDataStructure;
   return;
 }
 
@@ -48161,7 +48173,7 @@ void Unwind_180907300(undefined8 param_1,longlong param_2)
 void Unwind_180907310(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x130) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x130) = &SystemDataStructure;
   return;
 }
 
@@ -48170,7 +48182,7 @@ void Unwind_180907310(undefined8 param_1,longlong param_2)
 void Unwind_180907320(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x130) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x130) = &SystemDataStructure;
   return;
 }
 
@@ -48445,7 +48457,7 @@ void Unwind_180907400(undefined8 param_1,longlong param_2)
 void Unwind_180907430(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x40) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x40) = &SystemDataStructure;
   return;
 }
 
@@ -48935,7 +48947,7 @@ void Unwind_180907700(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -48971,7 +48983,7 @@ void Unwind_180907710(undefined8 param_1,longlong param_2)
   }
   pvalidationResult[0xe] = 0;
   *(undefined4 *)(pvalidationResult + 0x10) = 0;
-  pvalidationResult[0xd] = &UNK_18098bcb0;
+  pvalidationResult[0xd] = &SystemDataStructure;
   FUN_180179f00(pvalidationResult + 7,pvalidationResult[9]);
   *pvalidationResult = &UNK_180a14c60;
   return;
@@ -49023,7 +49035,7 @@ void Unwind_180907740(undefined8 param_1,longlong param_2)
   }
   pvalidationResult[0xe] = 0;
   *(undefined4 *)(pvalidationResult + 0x10) = 0;
-  pvalidationResult[0xd] = &UNK_18098bcb0;
+  pvalidationResult[0xd] = &SystemDataStructure;
   FUN_180179f00(pvalidationResult + 7,pvalidationResult[9]);
   *pvalidationResult = &UNK_180a14c60;
   return;
@@ -49050,7 +49062,7 @@ void Unwind_180907750(undefined8 param_1,longlong param_2)
 void Unwind_180907770(void)
 
 {
-  _DAT_180bf64d0 = &UNK_18098bcb0;
+  _DAT_180bf64d0 = &SystemDataStructure;
   return;
 }
 
@@ -49061,7 +49073,7 @@ void Unwind_180907770(void)
 void Unwind_180907780(void)
 
 {
-  _DAT_180bf6530 = &UNK_18098bcb0;
+  _DAT_180bf6530 = &SystemDataStructure;
   return;
 }
 
@@ -49072,7 +49084,7 @@ void Unwind_180907780(void)
 void Unwind_180907790(void)
 
 {
-  _DAT_180bf6590 = &UNK_18098bcb0;
+  _DAT_180bf6590 = &SystemDataStructure;
   return;
 }
 
@@ -49083,7 +49095,7 @@ void Unwind_180907790(void)
 void Unwind_1809077a0(void)
 
 {
-  _DAT_180bf65c0 = &UNK_18098bcb0;
+  _DAT_180bf65c0 = &SystemDataStructure;
   return;
 }
 
@@ -49094,7 +49106,7 @@ void Unwind_1809077a0(void)
 void Unwind_1809077b0(void)
 
 {
-  _DAT_180bf65f0 = &UNK_18098bcb0;
+  _DAT_180bf65f0 = &SystemDataStructure;
   return;
 }
 
@@ -49105,7 +49117,7 @@ void Unwind_1809077b0(void)
 void Unwind_1809077c0(void)
 
 {
-  _DAT_180bf6620 = &UNK_18098bcb0;
+  _DAT_180bf6620 = &SystemDataStructure;
   return;
 }
 
@@ -49116,7 +49128,7 @@ void Unwind_1809077c0(void)
 void Unwind_1809077d0(void)
 
 {
-  _DAT_180bf6650 = &UNK_18098bcb0;
+  _DAT_180bf6650 = &SystemDataStructure;
   return;
 }
 
@@ -49127,7 +49139,7 @@ void Unwind_1809077d0(void)
 void Unwind_1809077e0(void)
 
 {
-  _DAT_180bf6680 = &UNK_18098bcb0;
+  _DAT_180bf6680 = &SystemDataStructure;
   return;
 }
 
@@ -49138,7 +49150,7 @@ void Unwind_1809077e0(void)
 void Unwind_1809077f0(void)
 
 {
-  _DAT_180bf66b0 = &UNK_18098bcb0;
+  _DAT_180bf66b0 = &SystemDataStructure;
   return;
 }
 
@@ -49448,7 +49460,7 @@ void Unwind_180907950(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -49467,7 +49479,7 @@ void Unwind_180907960(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -49496,7 +49508,7 @@ void Unwind_180907970(undefined8 param_1,longlong param_2)
 void Unwind_180907980(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0xb0) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0xb0) = &SystemDataStructure;
   return;
 }
 
@@ -49505,7 +49517,7 @@ void Unwind_180907980(undefined8 param_1,longlong param_2)
 void Unwind_180907990(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0xb8) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0xb8) = &SystemDataStructure;
   return;
 }
 
@@ -49524,7 +49536,7 @@ void Unwind_1809079a0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x20) = 0;
   *(undefined4 *)(lVar1 + 0x30) = 0;
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x18) = &SystemDataStructure;
   return;
 }
 
@@ -49543,7 +49555,7 @@ void Unwind_1809079b0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x40) = 0;
   *(undefined4 *)(lVar1 + 0x50) = 0;
-  *(undefined8 *)(lVar1 + 0x38) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x38) = &SystemDataStructure;
   return;
 }
 
@@ -49562,7 +49574,7 @@ void Unwind_1809079c0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x60) = 0;
   *(undefined4 *)(lVar1 + 0x70) = 0;
-  *(undefined8 *)(lVar1 + 0x58) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x58) = &SystemDataStructure;
   return;
 }
 
@@ -49577,7 +49589,7 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x80);
-  *(undefined **)(resourceIndex + 0xd8) = &UNK_18098bcb0;
+  *(undefined **)(resourceIndex + 0xd8) = &SystemDataStructure;
   if (*(longlong *)(resourceIndex + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -49847,7 +49859,7 @@ void Unwind_180907a90(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -49856,7 +49868,7 @@ void Unwind_180907a90(undefined8 param_1,longlong param_2)
 void Unwind_180907aa0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x178) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x178) = &SystemDataStructure;
   return;
 }
 
@@ -49898,7 +49910,7 @@ void Unwind_180907ad0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907ae0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x180) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x180) = &SystemDataStructure;
   return;
 }
 
@@ -49940,7 +49952,7 @@ void Unwind_180907b10(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907b20(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x230) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x230) = &SystemDataStructure;
   return;
 }
 
@@ -49949,7 +49961,7 @@ void Unwind_180907b20(undefined8 param_1,longlong param_2)
 void Unwind_180907b30(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 400) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 400) = &SystemDataStructure;
   return;
 }
 
@@ -49958,7 +49970,7 @@ void Unwind_180907b30(undefined8 param_1,longlong param_2)
 void Unwind_180907b40(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x230) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x230) = &SystemDataStructure;
   return;
 }
 
@@ -49995,7 +50007,7 @@ void Unwind_180907b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907b70(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x50) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x50) = &SystemDataStructure;
   *(undefined8 *)(param_2 + 0x30) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
@@ -50003,7 +50015,7 @@ void Unwind_180907b70(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x38) = 0;
   *(undefined4 *)(param_2 + 0x48) = 0;
-  *(undefined8 *)(param_2 + 0x30) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x30) = &SystemDataStructure;
   return;
 }
 
@@ -50012,7 +50024,7 @@ void Unwind_180907b70(undefined8 param_1,longlong param_2)
 void Unwind_180907b80(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x50) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x50) = &SystemDataStructure;
   return;
 }
 
@@ -50021,7 +50033,7 @@ void Unwind_180907b80(undefined8 param_1,longlong param_2)
 void Unwind_180907b90(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x20) + 0x20) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x20) + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -50054,7 +50066,7 @@ void Unwind_180907bd0(undefined8 param_1,longlong param_2)
 void Unwind_180907c00(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x2c0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x2c0) = &SystemDataStructure;
   return;
 }
 
@@ -50073,7 +50085,7 @@ void Unwind_180907c10(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -50144,7 +50156,7 @@ void Unwind_180907c30(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void UnwindCleanupCallbackA(undefined8 exceptionContext, longlong systemContext)
 
 {
-  *(undefined **)(systemContext + 0x298) = &UNK_18098bcb0;
+  *(undefined **)(systemContext + 0x298) = &SystemDataStructure;
   return;
 }
 
@@ -50162,7 +50174,7 @@ void UnwindCleanupCallbackA(undefined8 exceptionContext, longlong systemContext)
 void UnwindCleanupCallbackB(undefined8 exceptionContext, longlong systemContext)
 
 {
-  **(undefined8 **)(systemContext + 600) = &UNK_18098bcb0;
+  **(undefined8 **)(systemContext + 600) = &SystemDataStructure;
   return;
 }
 
@@ -50171,7 +50183,7 @@ void UnwindCleanupCallbackB(undefined8 exceptionContext, longlong systemContext)
 void Unwind_180907c60(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x2c0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x2c0) = &SystemDataStructure;
   return;
 }
 
@@ -50315,7 +50327,7 @@ void Unwind_180907cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907cd0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x360) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x360) = &SystemDataStructure;
   return;
 }
 
@@ -50324,7 +50336,7 @@ void Unwind_180907cd0(undefined8 param_1,longlong param_2)
 void Unwind_180907ce0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x240) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x240) = &SystemDataStructure;
   return;
 }
 
@@ -50340,7 +50352,7 @@ void Unwind_180907cf0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x1c8) = 0;
   *(undefined4 *)(param_2 + 0x1d8) = 0;
-  *(undefined8 *)(param_2 + 0x1c0) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x1c0) = &SystemDataStructure;
   return;
 }
 
@@ -50359,7 +50371,7 @@ void Unwind_180907d00(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -50442,7 +50454,7 @@ void Unwind_180907d30(undefined8 param_1,longlong param_2)
 void Unwind_180907d40(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x360) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x360) = &SystemDataStructure;
   return;
 }
 
@@ -50475,7 +50487,7 @@ void Unwind_180907d80(undefined8 param_1,longlong param_2)
 void Unwind_180907db0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x218) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x218) = &SystemDataStructure;
   return;
 }
 
@@ -50484,7 +50496,7 @@ void Unwind_180907db0(undefined8 param_1,longlong param_2)
 void Unwind_180907dc0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1c0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1c0) = &SystemDataStructure;
   return;
 }
 
@@ -50517,7 +50529,7 @@ void Unwind_180907e00(undefined8 param_1,longlong param_2)
 void Unwind_180907e30(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x480) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x480) = &SystemDataStructure;
   return;
 }
 
@@ -50526,7 +50538,7 @@ void Unwind_180907e30(undefined8 param_1,longlong param_2)
 void Unwind_180907e40(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x1e8) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x1e8) = &SystemDataStructure;
   return;
 }
 
@@ -50786,7 +50798,7 @@ void Unwind_180907ef0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(param_2 + 0x1e8) != (code *)0x0) {
     (**(code **)(param_2 + 0x1e8))(param_2 + 0x1d8,0,0);
   }
-  *(undefined **)(param_2 + 0x90) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x90) = &SystemDataStructure;
   return;
 }
 
@@ -50806,7 +50818,7 @@ void Unwind_180907f00(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907f10(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x90) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x90) = &SystemDataStructure;
   return;
 }
 
@@ -50898,7 +50910,7 @@ void Unwind_180907f90(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xa8) = 0;
   *(undefined4 *)(param_2 + 0xb8) = 0;
-  *(undefined8 *)(param_2 + 0xa0) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xa0) = &SystemDataStructure;
   return;
 }
 
@@ -50914,7 +50926,7 @@ void Unwind_180907fa0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xa8) = 0;
   *(undefined4 *)(param_2 + 0xb8) = 0;
-  *(undefined8 *)(param_2 + 0xa0) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xa0) = &SystemDataStructure;
   return;
 }
 
@@ -50935,7 +50947,7 @@ void Unwind_180907fb0(undefined8 param_1,longlong param_2)
 void Unwind_180907fe0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x480) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x480) = &SystemDataStructure;
   return;
 }
 
@@ -51297,7 +51309,7 @@ void Unwind_180908130(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -51306,7 +51318,7 @@ void Unwind_180908130(undefined8 param_1,longlong param_2)
 void Unwind_180908140(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x98) + 0x20) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x98) + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -51315,7 +51327,7 @@ void Unwind_180908140(undefined8 param_1,longlong param_2)
 void Unwind_180908150(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x80) + 0x20) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x80) + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -51735,7 +51747,7 @@ void Unwind_180908570(undefined8 param_1,longlong param_2)
 void Unwind_1809085a0(void)
 
 {
-  _DAT_180bf52e8 = &UNK_18098bcb0;
+  _DAT_180bf52e8 = &SystemDataStructure;
   return;
 }
 
@@ -51746,7 +51758,7 @@ void Unwind_1809085a0(void)
 void Unwind_1809085b0(void)
 
 {
-  _DAT_180bf5738 = &UNK_18098bcb0;
+  _DAT_180bf5738 = &SystemDataStructure;
   return;
 }
 
@@ -52027,7 +52039,7 @@ void Unwind_180908780(undefined8 param_1,longlong param_2)
 void Unwind_180908790(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x180) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x180) = &SystemDataStructure;
   return;
 }
 
@@ -52036,7 +52048,7 @@ void Unwind_180908790(undefined8 param_1,longlong param_2)
 void Unwind_1809087a0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1e0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1e0) = &SystemDataStructure;
   return;
 }
 
@@ -52146,7 +52158,7 @@ void Unwind_180908800(undefined8 param_1,longlong param_2)
 void Unwind_180908810(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1e0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1e0) = &SystemDataStructure;
   return;
 }
 
@@ -52392,7 +52404,7 @@ void Unwind_180908900(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x20) = 0;
   *(undefined4 *)(lVar1 + 0x30) = 0;
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x18) = &SystemDataStructure;
   return;
 }
 
@@ -52411,7 +52423,7 @@ void Unwind_180908910(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x20) = 0;
   *(undefined4 *)(lVar1 + 0x30) = 0;
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x18) = &SystemDataStructure;
   return;
 }
 
@@ -53015,7 +53027,7 @@ void Unwind_180908b00(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -53060,7 +53072,7 @@ void Unwind_180908b10(undefined8 param_1,longlong param_2)
 void Unwind_180908b20(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x118) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x118) = &SystemDataStructure;
   return;
 }
 
@@ -53165,7 +53177,7 @@ void Unwind_180908ba0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xb0) = 0;
   *(undefined4 *)(param_2 + 0xc0) = 0;
-  *(undefined8 *)(param_2 + 0xa8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xa8) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0xa0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0xa0) + 0x38))();
   }
@@ -53198,7 +53210,7 @@ void Unwind_180908bc0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x50) = 0;
   *(undefined4 *)(param_2 + 0x60) = 0;
-  *(undefined8 *)(param_2 + 0x48) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x48) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x40) + 0x38))();
   }
@@ -53223,7 +53235,7 @@ void Unwind_180908bd0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   if (*(longlong **)(lVar1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x20) + 0x38))();
   }
@@ -53253,7 +53265,7 @@ void Unwind_180908bf0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xb0) = 0;
   *(undefined4 *)(param_2 + 0xc0) = 0;
-  *(undefined8 *)(param_2 + 0xa8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xa8) = &SystemDataStructure;
   return;
 }
 
@@ -53273,7 +53285,7 @@ void Unwind_180908c00(undefined8 param_1,longlong param_2)
 void Unwind_180908c10(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x1b8) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x1b8) = &SystemDataStructure;
   return;
 }
 
@@ -53300,7 +53312,7 @@ void Unwind_180908c30(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x50) = 0;
   *(undefined4 *)(param_2 + 0x60) = 0;
-  *(undefined8 *)(param_2 + 0x48) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x48) = &SystemDataStructure;
   return;
 }
 
@@ -53344,7 +53356,7 @@ void Unwind_180908c60(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -53367,7 +53379,7 @@ void Unwind_180908c70(undefined8 param_1,longlong param_2)
 void Unwind_180908c80(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x1a0) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x1a0) = &SystemDataStructure;
   return;
 }
 
@@ -53441,7 +53453,7 @@ void Unwind_180908d30(void)
 void Unwind_180908d40(void)
 
 {
-  _DAT_180d49218 = &UNK_18098bcb0;
+  _DAT_180d49218 = &SystemDataStructure;
   return;
 }
 
@@ -53499,7 +53511,7 @@ void Unwind_180908db0(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -53518,7 +53530,7 @@ void Unwind_180908dc0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -53563,7 +53575,7 @@ void Unwind_180908dd0(undefined8 param_1,longlong param_2)
 void Unwind_180908de0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x110) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x110) = &SystemDataStructure;
   return;
 }
 
@@ -53810,7 +53822,7 @@ void Unwind_180908e90(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -54047,7 +54059,7 @@ undefined * Catch_180908fc0(undefined8 param_1,longlong param_2)
 void Unwind_180909000(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1a0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1a0) = &SystemDataStructure;
   return;
 }
 
@@ -54461,7 +54473,7 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
   puVar4 = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x1d20);
   uVar6 = *(ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x1d28);
   for (uVar5 = *puVar4; uVar5 != uVar6; uVar5 = uVar5 + 0xd0) {
-    *(undefined **)(uVar5 + 0x10) = &UNK_18098bcb0;
+    *(undefined **)(uVar5 + 0x10) = &SystemDataStructure;
   }
   pvalidationResult = (undefined8 *)*puVar4;
   if (pvalidationResult != (undefined8 *)0x0) {
@@ -54518,7 +54530,7 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
   puVar3 = *(ulonglong **)(param_2 + 0x48);
   uVar6 = puVar3[1];
   for (uVar5 = *puVar3; uVar5 != uVar6; uVar5 = uVar5 + 0xd0) {
-    *(undefined **)(uVar5 + 0x10) = &UNK_18098bcb0;
+    *(undefined **)(uVar5 + 0x10) = &SystemDataStructure;
   }
   pvalidationResult = (undefined8 *)*puVar3;
   if (pvalidationResult != (undefined8 *)0x0) {
@@ -54561,7 +54573,7 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
   puVar3 = *(ulonglong **)(param_2 + 0x40);
   uVar6 = puVar3[1];
   for (uVar5 = *puVar3; uVar5 != uVar6; uVar5 = uVar5 + 0xd0) {
-    *(undefined **)(uVar5 + 0x10) = &UNK_18098bcb0;
+    *(undefined **)(uVar5 + 0x10) = &SystemDataStructure;
   }
   pvalidationResult = (undefined8 *)*puVar3;
   if (pvalidationResult != (undefined8 *)0x0) {
@@ -54594,7 +54606,7 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
 void Unwind_1809092f0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x90) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x90) = &SystemDataStructure;
   return;
 }
 
@@ -54603,7 +54615,7 @@ void Unwind_1809092f0(undefined8 param_1,longlong param_2)
 void Unwind_180909300(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x58) + 0x10) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x58) + 0x10) = &SystemDataStructure;
   return;
 }
 
@@ -54612,7 +54624,7 @@ void Unwind_180909300(undefined8 param_1,longlong param_2)
 void Unwind_180909310(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x90) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x90) = &SystemDataStructure;
   return;
 }
 
@@ -54660,7 +54672,7 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
           (**(code **)(*(longlong *)pvalidationResult[0x11] + 0x10))();
           pvalidationResult[0x11] = 0;
         }
-        *pvalidationResult = &UNK_18098bcb0;
+        *pvalidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         FUN_18064e900(pvalidationResult);
       }
@@ -54673,7 +54685,7 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
   pvalidationResult = (undefined8 *)puVar3[0x1043];
   if (pvalidationResult != (undefined8 *)0x0) {
     FUN_1800f74f0(puVar3 + 0x1041,*pvalidationResult);
-    pvalidationResult[4] = &UNK_18098bcb0;
+    pvalidationResult[4] = &SystemDataStructure;
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationResult);
   }
@@ -54808,7 +54820,7 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
           (**(code **)(*(longlong *)pvalidationResult[0x11] + 0x10))();
           pvalidationResult[0x11] = 0;
         }
-        *pvalidationResult = &UNK_18098bcb0;
+        *pvalidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         FUN_18064e900(pvalidationResult);
       }
@@ -54821,7 +54833,7 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
   pvalidationResult = (undefined8 *)puVar3[0x1043];
   if (pvalidationResult != (undefined8 *)0x0) {
     FUN_1800f74f0(puVar3 + 0x1041,*pvalidationResult);
-    pvalidationResult[4] = &UNK_18098bcb0;
+    pvalidationResult[4] = &SystemDataStructure;
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationResult);
   }
@@ -54885,7 +54897,7 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
           (**(code **)(*(longlong *)pvalidationResult[0x11] + 0x10))();
           pvalidationResult[0x11] = 0;
         }
-        *pvalidationResult = &UNK_18098bcb0;
+        *pvalidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         FUN_18064e900(pvalidationResult);
       }
@@ -54898,7 +54910,7 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   pvalidationResult = *(undefined8 **)(resourceIndex + 0x8218);
   if (pvalidationResult != (undefined8 *)0x0) {
     FUN_1800f74f0(resourceIndex + 0x8208,*pvalidationResult);
-    pvalidationResult[4] = &UNK_18098bcb0;
+    pvalidationResult[4] = &SystemDataStructure;
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationResult);
   }
@@ -54955,7 +54967,7 @@ void Unwind_180909400(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180909410(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x68) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x68) = &SystemDataStructure;
   return;
 }
 
@@ -54964,7 +54976,7 @@ void Unwind_180909410(undefined8 param_1,longlong param_2)
 void Unwind_180909420(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x90) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x90) = &SystemDataStructure;
   return;
 }
 
@@ -54973,7 +54985,7 @@ void Unwind_180909420(undefined8 param_1,longlong param_2)
 void Unwind_180909430(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x38) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x38) = &SystemDataStructure;
   return;
 }
 
@@ -55060,7 +55072,7 @@ void Unwind_180909480(undefined8 param_1,longlong param_2)
 void Unwind_180909490(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x6a0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x6a0) = &SystemDataStructure;
   return;
 }
 
@@ -55069,7 +55081,7 @@ void Unwind_180909490(undefined8 param_1,longlong param_2)
 void Unwind_1809094a0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x6a0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x6a0) = &SystemDataStructure;
   return;
 }
 
@@ -55137,7 +55149,7 @@ void Unwind_1809094d0(undefined8 param_1,longlong param_2)
 void Unwind_1809094e0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x6f0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x6f0) = &SystemDataStructure;
   return;
 }
 
@@ -55153,7 +55165,7 @@ void Unwind_1809094f0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x220) = 0;
   *(undefined4 *)(param_2 + 0x230) = 0;
-  *(undefined8 *)(param_2 + 0x218) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x218) = &SystemDataStructure;
   return;
 }
 
@@ -55169,7 +55181,7 @@ void Unwind_180909500(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x2a0) = 0;
   *(undefined4 *)(param_2 + 0x2b0) = 0;
-  *(undefined8 *)(param_2 + 0x298) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x298) = &SystemDataStructure;
   return;
 }
 
@@ -55178,7 +55190,7 @@ void Unwind_180909500(undefined8 param_1,longlong param_2)
 void Unwind_180909510(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x4b0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x4b0) = &SystemDataStructure;
   return;
 }
 
@@ -55194,7 +55206,7 @@ void Unwind_180909520(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x280) = 0;
   *(undefined4 *)(param_2 + 0x290) = 0;
-  *(undefined8 *)(param_2 + 0x278) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x278) = &SystemDataStructure;
   return;
 }
 
@@ -55203,7 +55215,7 @@ void Unwind_180909520(undefined8 param_1,longlong param_2)
 void Unwind_180909530(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x5d0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x5d0) = &SystemDataStructure;
   return;
 }
 
@@ -55256,7 +55268,7 @@ void Unwind_180909560(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x200) = 0;
   *(undefined4 *)(param_2 + 0x210) = 0;
-  *(undefined8 *)(param_2 + 0x1f8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x1f8) = &SystemDataStructure;
   return;
 }
 
@@ -55289,7 +55301,7 @@ void Unwind_180909580(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xf8) = 0;
   *(undefined4 *)(param_2 + 0x108) = 0;
-  *(undefined8 *)(param_2 + 0xf0) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xf0) = &SystemDataStructure;
   return;
 }
 
@@ -55322,7 +55334,7 @@ void Unwind_1809095a0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x1a0) = 0;
   *(undefined4 *)(param_2 + 0x1b0) = 0;
-  *(undefined8 *)(param_2 + 0x198) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x198) = &SystemDataStructure;
   return;
 }
 
@@ -55331,7 +55343,7 @@ void Unwind_1809095a0(undefined8 param_1,longlong param_2)
 void Unwind_1809095b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x6f0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x6f0) = &SystemDataStructure;
   return;
 }
 
@@ -55340,7 +55352,7 @@ void Unwind_1809095b0(undefined8 param_1,longlong param_2)
 void Unwind_1809095c0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x4b0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x4b0) = &SystemDataStructure;
   return;
 }
 
@@ -55361,7 +55373,7 @@ void Unwind_1809095d0(undefined8 param_1,longlong param_2)
 void Unwind_180909600(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x5d0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x5d0) = &SystemDataStructure;
   return;
 }
 
@@ -55377,7 +55389,7 @@ void Unwind_180909610(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x2f8) = 0;
   *(undefined4 *)(param_2 + 0x308) = 0;
-  *(undefined8 *)(param_2 + 0x2f0) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x2f0) = &SystemDataStructure;
   return;
 }
 
@@ -55386,7 +55398,7 @@ void Unwind_180909610(undefined8 param_1,longlong param_2)
 void Unwind_180909620(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x2f0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x2f0) = &SystemDataStructure;
   return;
 }
 
@@ -55395,7 +55407,7 @@ void Unwind_180909620(undefined8 param_1,longlong param_2)
 void Unwind_180909630(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1f8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1f8) = &SystemDataStructure;
   return;
 }
 
@@ -55404,7 +55416,7 @@ void Unwind_180909630(undefined8 param_1,longlong param_2)
 void Unwind_180909640(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x198) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x198) = &SystemDataStructure;
   return;
 }
 
@@ -55651,7 +55663,7 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
           (**(code **)(*(longlong *)pvalidationResult[0x11] + 0x10))();
           pvalidationResult[0x11] = 0;
         }
-        *pvalidationResult = &UNK_18098bcb0;
+        *pvalidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         FUN_18064e900(pvalidationResult);
       }
@@ -55664,7 +55676,7 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
   pvalidationResult = (undefined8 *)puVar3[0x1043];
   if (pvalidationResult != (undefined8 *)0x0) {
     FUN_1800f74f0(puVar3 + 0x1041,*pvalidationResult);
-    pvalidationResult[4] = &UNK_18098bcb0;
+    pvalidationResult[4] = &SystemDataStructure;
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationResult);
   }
@@ -55728,7 +55740,7 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
           (**(code **)(*(longlong *)pvalidationResult[0x11] + 0x10))();
           pvalidationResult[0x11] = 0;
         }
-        *pvalidationResult = &UNK_18098bcb0;
+        *pvalidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         FUN_18064e900(pvalidationResult);
       }
@@ -55741,7 +55753,7 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   pvalidationResult = *(undefined8 **)(resourceIndex + 0x8218);
   if (pvalidationResult != (undefined8 *)0x0) {
     FUN_1800f74f0(resourceIndex + 0x8208,*pvalidationResult);
-    pvalidationResult[4] = &UNK_18098bcb0;
+    pvalidationResult[4] = &SystemDataStructure;
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationResult);
   }
@@ -55784,7 +55796,7 @@ void Unwind_1809096e0(undefined8 param_1,longlong param_2)
 void Unwind_180909700(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x90) + 0x10) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x90) + 0x10) = &SystemDataStructure;
   return;
 }
 
@@ -55793,7 +55805,7 @@ void Unwind_180909700(undefined8 param_1,longlong param_2)
 void Unwind_180909710(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x98) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x98) = &SystemDataStructure;
   return;
 }
 
@@ -55802,7 +55814,7 @@ void Unwind_180909710(undefined8 param_1,longlong param_2)
 void Unwind_180909720(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x80) + 0x10) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x80) + 0x10) = &SystemDataStructure;
   return;
 }
 
@@ -55811,7 +55823,7 @@ void Unwind_180909720(undefined8 param_1,longlong param_2)
 void Unwind_180909730(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x88) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x88) = &SystemDataStructure;
   return;
 }
 
@@ -55830,7 +55842,7 @@ void Unwind_180909740(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x60) = 0;
   *(undefined4 *)(lVar1 + 0x70) = 0;
-  *(undefined8 *)(lVar1 + 0x58) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x58) = &SystemDataStructure;
   return;
 }
 
@@ -55846,7 +55858,7 @@ void Unwind_180909750(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x10) = 0;
   *(undefined4 *)(param_2 + 0x20) = 0;
-  *(undefined8 *)(param_2 + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 8) = &SystemDataStructure;
   return;
 }
 
@@ -55855,7 +55867,7 @@ void Unwind_180909750(undefined8 param_1,longlong param_2)
 void Unwind_180909760(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 8) = &SystemDataStructure;
   return;
 }
 
@@ -55874,7 +55886,7 @@ void Unwind_180909770(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -55893,7 +55905,7 @@ void Unwind_180909780(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x10) = 0;
   *(undefined4 *)(lVar1 + 0x20) = 0;
-  *(undefined8 *)(lVar1 + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 8) = &SystemDataStructure;
   return;
 }
 
@@ -56159,7 +56171,7 @@ void Unwind_180909930(undefined8 param_1,longlong param_2)
 void Unwind_180909960(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xf0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xf0) = &SystemDataStructure;
   return;
 }
 
@@ -56182,7 +56194,7 @@ void Unwind_180909970(undefined8 param_1,longlong param_2)
 void Unwind_180909980(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1d0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1d0) = &SystemDataStructure;
   return;
 }
 
@@ -56213,7 +56225,7 @@ void Unwind_1809099a0(undefined8 param_1,longlong param_2)
 void Unwind_1809099b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0xe0) + 0x50) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0xe0) + 0x50) = &SystemDataStructure;
   return;
 }
 
@@ -56279,7 +56291,7 @@ void Unwind_180909a00(undefined8 param_1,longlong param_2)
 void Unwind_180909a10(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x330) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x330) = &SystemDataStructure;
   return;
 }
 
@@ -56288,7 +56300,7 @@ void Unwind_180909a10(undefined8 param_1,longlong param_2)
 void Unwind_180909a20(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x410) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x410) = &SystemDataStructure;
   return;
 }
 
@@ -56383,7 +56395,7 @@ void Unwind_180909a50(undefined8 param_1,longlong param_2)
 void Unwind_180909a60(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x410) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x410) = &SystemDataStructure;
   return;
 }
 
@@ -56404,7 +56416,7 @@ void Unwind_180909a70(undefined8 param_1,longlong param_2)
 void Unwind_180909aa0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x200) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x200) = &SystemDataStructure;
   return;
 }
 
@@ -56413,7 +56425,7 @@ void Unwind_180909aa0(undefined8 param_1,longlong param_2)
 void Unwind_180909ab0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x2e0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x2e0) = &SystemDataStructure;
   return;
 }
 
@@ -56422,7 +56434,7 @@ void Unwind_180909ab0(undefined8 param_1,longlong param_2)
 void Unwind_180909ac0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x58) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x58) = &SystemDataStructure;
   return;
 }
 
@@ -56431,7 +56443,7 @@ void Unwind_180909ac0(undefined8 param_1,longlong param_2)
 void Unwind_180909ad0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x200) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x200) = &SystemDataStructure;
   return;
 }
 
@@ -56440,7 +56452,7 @@ void Unwind_180909ad0(undefined8 param_1,longlong param_2)
 void Unwind_180909ae0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x2e0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x2e0) = &SystemDataStructure;
   return;
 }
 
@@ -56503,7 +56515,7 @@ void Unwind_180909b40(undefined8 param_1,longlong param_2)
 void Unwind_180909b50(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x180) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x180) = &SystemDataStructure;
   return;
 }
 
@@ -56752,7 +56764,7 @@ void Unwind_180909ce0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x568) = 0;
   *(undefined4 *)(lVar1 + 0x578) = 0;
-  *(undefined8 *)(lVar1 + 0x560) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x560) = &SystemDataStructure;
   return;
 }
 
@@ -57317,7 +57329,7 @@ void Unwind_18090a1d0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x568) = 0;
   *(undefined4 *)(lVar1 + 0x578) = 0;
-  *(undefined8 *)(lVar1 + 0x560) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x560) = &SystemDataStructure;
   return;
 }
 
@@ -57946,7 +57958,7 @@ void Unwind_18090a6a0(undefined8 param_1,longlong param_2)
 void Unwind_18090a6d0(void)
 
 {
-  _DAT_180d49240 = &UNK_18098bcb0;
+  _DAT_180d49240 = &SystemDataStructure;
   return;
 }
 
@@ -58114,7 +58126,7 @@ void Unwind_18090a7b0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x30) = 0;
   *(undefined4 *)(param_2 + 0x40) = 0;
-  *(undefined8 *)(param_2 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -58144,7 +58156,7 @@ void Unwind_18090a7d0(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -58475,7 +58487,7 @@ void Unwind_18090a910(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -58749,7 +58761,7 @@ void Unwind_18090a9e0(undefined8 param_1,longlong param_2)
 void Unwind_18090aa10(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xe0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xe0) = &SystemDataStructure;
   return;
 }
 
@@ -58813,7 +58825,7 @@ void Unwind_18090aae0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xa0) = 0;
   *(undefined4 *)(param_2 + 0xb0) = 0;
-  *(undefined8 *)(param_2 + 0x98) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x98) = &SystemDataStructure;
   return;
 }
 
@@ -61080,7 +61092,7 @@ void Unwind_18090bd40(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090bd50(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x260) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x260) = &SystemDataStructure;
   return;
 }
 
@@ -61089,7 +61101,7 @@ void Unwind_18090bd50(undefined8 param_1,longlong param_2)
 void Unwind_18090bd60(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xa0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xa0) = &SystemDataStructure;
   return;
 }
 
@@ -61307,7 +61319,7 @@ void Unwind_18090bf10(undefined8 param_1,longlong param_2)
 void Unwind_18090bf40(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x98) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x98) = &SystemDataStructure;
   return;
 }
 
@@ -61587,7 +61599,7 @@ void Unwind_18090c0a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090c0b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x88) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x88) = &SystemDataStructure;
   return;
 }
 
@@ -61596,7 +61608,7 @@ void Unwind_18090c0b0(undefined8 param_1,longlong param_2)
 void Unwind_18090c0c0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x120) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x120) = &SystemDataStructure;
   return;
 }
 
@@ -61605,7 +61617,7 @@ void Unwind_18090c0c0(undefined8 param_1,longlong param_2)
 void Unwind_18090c0d0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x2a0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x2a0) = &SystemDataStructure;
   return;
 }
 
@@ -61614,7 +61626,7 @@ void Unwind_18090c0d0(undefined8 param_1,longlong param_2)
 void Unwind_18090c0e0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x300) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x300) = &SystemDataStructure;
   return;
 }
 
@@ -61623,7 +61635,7 @@ void Unwind_18090c0e0(undefined8 param_1,longlong param_2)
 void Unwind_18090c0f0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x3c0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x3c0) = &SystemDataStructure;
   return;
 }
 
@@ -61653,7 +61665,7 @@ void Unwind_18090c100(undefined8 param_1,longlong param_2)
 void Unwind_18090c110(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x300) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x300) = &SystemDataStructure;
   return;
 }
 
@@ -61662,7 +61674,7 @@ void Unwind_18090c110(undefined8 param_1,longlong param_2)
 void Unwind_18090c120(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x3c0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x3c0) = &SystemDataStructure;
   return;
 }
 
@@ -61741,7 +61753,7 @@ void Unwind_18090c150(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -61777,7 +61789,7 @@ void Unwind_18090c170(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -62145,7 +62157,7 @@ void Unwind_18090c2f0(undefined8 param_1,longlong param_2)
 void Unwind_18090c300(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x78) + 8) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x78) + 8) = &SystemDataStructure;
   return;
 }
 
@@ -62164,7 +62176,7 @@ void Unwind_18090c310(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x28) = 0;
   *(undefined4 *)(lVar1 + 0x38) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -62173,7 +62185,7 @@ void Unwind_18090c310(undefined8 param_1,longlong param_2)
 void Unwind_18090c320(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0xc0) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0xc0) = &SystemDataStructure;
   return;
 }
 
@@ -62361,7 +62373,7 @@ void Unwind_18090c420(undefined8 param_1,longlong param_2)
 void Unwind_18090c430(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x168) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x168) = &SystemDataStructure;
   return;
 }
 
@@ -62370,7 +62382,7 @@ void Unwind_18090c430(undefined8 param_1,longlong param_2)
 void Unwind_18090c440(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1d8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1d8) = &SystemDataStructure;
   return;
 }
 
@@ -62379,7 +62391,7 @@ void Unwind_18090c440(undefined8 param_1,longlong param_2)
 void Unwind_18090c450(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x248) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x248) = &SystemDataStructure;
   return;
 }
 
@@ -62388,7 +62400,7 @@ void Unwind_18090c450(undefined8 param_1,longlong param_2)
 void Unwind_18090c460(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1d8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1d8) = &SystemDataStructure;
   return;
 }
 
@@ -62397,7 +62409,7 @@ void Unwind_18090c460(undefined8 param_1,longlong param_2)
 void Unwind_18090c470(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x248) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x248) = &SystemDataStructure;
   return;
 }
 
@@ -62455,7 +62467,7 @@ void Unwind_18090c490(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x140) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x140) = &SystemDataStructure;
   return;
 }
 
@@ -62474,7 +62486,7 @@ void Unwind_18090c4a0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xe0) = 0;
   *(undefined4 *)(param_2 + 0xf0) = 0;
-  *(undefined8 *)(param_2 + 0xd8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xd8) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0xd0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0xd0) + 0x38))();
   }
@@ -62499,7 +62511,7 @@ void Unwind_18090c4b0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   if (*(longlong **)(lVar1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x20) + 0x38))();
   }
@@ -62511,7 +62523,7 @@ void Unwind_18090c4b0(undefined8 param_1,longlong param_2)
 void Unwind_18090c4c0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x140) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x140) = &SystemDataStructure;
   return;
 }
 
@@ -62538,7 +62550,7 @@ void Unwind_18090c4e0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xe0) = 0;
   *(undefined4 *)(param_2 + 0xf0) = 0;
-  *(undefined8 *)(param_2 + 0xd8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xd8) = &SystemDataStructure;
   return;
 }
 
@@ -62582,7 +62594,7 @@ void Unwind_18090c510(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -62678,7 +62690,7 @@ void Unwind_18090c540(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x170) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x170) = &SystemDataStructure;
   return;
 }
 
@@ -62724,7 +62736,7 @@ void Unwind_18090c550(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x230) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x230) = &SystemDataStructure;
   return;
 }
 
@@ -62733,7 +62745,7 @@ void Unwind_18090c550(undefined8 param_1,longlong param_2)
 void Unwind_18090c560(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x470) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x470) = &SystemDataStructure;
   return;
 }
 
@@ -62754,7 +62766,7 @@ void Unwind_18090c570(void)
 void Unwind_18090c580(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x4d0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x4d0) = &SystemDataStructure;
   return;
 }
 
@@ -62800,7 +62812,7 @@ void Unwind_18090c590(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x1d0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1d0) = &SystemDataStructure;
   return;
 }
 
@@ -62809,7 +62821,7 @@ void Unwind_18090c590(undefined8 param_1,longlong param_2)
 void Unwind_18090c5a0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x3b0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x3b0) = &SystemDataStructure;
   return;
 }
 
@@ -62867,7 +62879,7 @@ void Unwind_18090c5c0(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x110) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x110) = &SystemDataStructure;
   return;
 }
 
@@ -62913,7 +62925,7 @@ void Unwind_18090c5d0(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x290) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x290) = &SystemDataStructure;
   return;
 }
 
@@ -62971,7 +62983,7 @@ void Unwind_18090c5f0(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x2f0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x2f0) = &SystemDataStructure;
   return;
 }
 
@@ -63017,7 +63029,7 @@ void Unwind_18090c600(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x350) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x350) = &SystemDataStructure;
   return;
 }
 
@@ -63098,7 +63110,7 @@ void Unwind_18090c620(undefined8 param_1,longlong param_2)
 void Unwind_18090c630(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x170) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x170) = &SystemDataStructure;
   return;
 }
 
@@ -63107,7 +63119,7 @@ void Unwind_18090c630(undefined8 param_1,longlong param_2)
 void Unwind_18090c640(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x4d0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x4d0) = &SystemDataStructure;
   return;
 }
 
@@ -63116,7 +63128,7 @@ void Unwind_18090c640(undefined8 param_1,longlong param_2)
 void Unwind_18090c650(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x3b0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x3b0) = &SystemDataStructure;
   return;
 }
 
@@ -63125,7 +63137,7 @@ void Unwind_18090c650(undefined8 param_1,longlong param_2)
 void Unwind_18090c660(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x470) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x470) = &SystemDataStructure;
   return;
 }
 
@@ -63134,7 +63146,7 @@ void Unwind_18090c660(undefined8 param_1,longlong param_2)
 void Unwind_18090c670(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x110) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x110) = &SystemDataStructure;
   return;
 }
 
@@ -63143,7 +63155,7 @@ void Unwind_18090c670(undefined8 param_1,longlong param_2)
 void Unwind_18090c680(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x410) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x410) = &SystemDataStructure;
   return;
 }
 
@@ -63152,7 +63164,7 @@ void Unwind_18090c680(undefined8 param_1,longlong param_2)
 void Unwind_18090c690(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x290) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x290) = &SystemDataStructure;
   return;
 }
 
@@ -63161,7 +63173,7 @@ void Unwind_18090c690(undefined8 param_1,longlong param_2)
 void Unwind_18090c6a0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x2f0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x2f0) = &SystemDataStructure;
   return;
 }
 
@@ -63170,7 +63182,7 @@ void Unwind_18090c6a0(undefined8 param_1,longlong param_2)
 void Unwind_18090c6b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x350) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x350) = &SystemDataStructure;
   return;
 }
 
@@ -63179,7 +63191,7 @@ void Unwind_18090c6b0(undefined8 param_1,longlong param_2)
 void Unwind_18090c6c0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x188) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x188) = &SystemDataStructure;
   return;
 }
 
@@ -63306,7 +63318,7 @@ void Unwind_18090c790(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x150) = 0;
   *(undefined4 *)(param_2 + 0x160) = 0;
-  *(undefined8 *)(param_2 + 0x148) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x148) = &SystemDataStructure;
   return;
 }
 
@@ -63315,7 +63327,7 @@ void Unwind_18090c790(undefined8 param_1,longlong param_2)
 void Unwind_18090c7a0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x430) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x430) = &SystemDataStructure;
   return;
 }
 
@@ -63324,7 +63336,7 @@ void Unwind_18090c7a0(undefined8 param_1,longlong param_2)
 void Unwind_18090c7b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x570) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x570) = &SystemDataStructure;
   return;
 }
 
@@ -63333,7 +63345,7 @@ void Unwind_18090c7b0(undefined8 param_1,longlong param_2)
 void Unwind_18090c7c0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x610) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x610) = &SystemDataStructure;
   return;
 }
 
@@ -63342,7 +63354,7 @@ void Unwind_18090c7c0(undefined8 param_1,longlong param_2)
 void Unwind_18090c7d0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x6b0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x6b0) = &SystemDataStructure;
   return;
 }
 
@@ -63351,7 +63363,7 @@ void Unwind_18090c7d0(undefined8 param_1,longlong param_2)
 void Unwind_18090c7e0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x750) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x750) = &SystemDataStructure;
   return;
 }
 
@@ -63371,7 +63383,7 @@ void Unwind_18090c7f0(undefined8 param_1,longlong param_2)
 void Unwind_18090c800(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x7f0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x7f0) = &SystemDataStructure;
   return;
 }
 
@@ -63391,7 +63403,7 @@ void Unwind_18090c810(undefined8 param_1,longlong param_2)
 void Unwind_18090c820(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x2a8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x2a8) = &SystemDataStructure;
   return;
 }
 
@@ -63400,7 +63412,7 @@ void Unwind_18090c820(undefined8 param_1,longlong param_2)
 void Unwind_18090c830(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x890) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x890) = &SystemDataStructure;
   return;
 }
 
@@ -63409,7 +63421,7 @@ void Unwind_18090c830(undefined8 param_1,longlong param_2)
 void Unwind_18090c840(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x930) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x930) = &SystemDataStructure;
   return;
 }
 
@@ -63418,7 +63430,7 @@ void Unwind_18090c840(undefined8 param_1,longlong param_2)
 void Unwind_18090c850(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x318) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x318) = &SystemDataStructure;
   return;
 }
 
@@ -63471,7 +63483,7 @@ void Unwind_18090c890(undefined8 param_1,longlong param_2)
 void Unwind_18090c8a0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x148) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x148) = &SystemDataStructure;
   return;
 }
 
@@ -63480,7 +63492,7 @@ void Unwind_18090c8a0(undefined8 param_1,longlong param_2)
 void Unwind_18090c8b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x430) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x430) = &SystemDataStructure;
   return;
 }
 
@@ -63489,7 +63501,7 @@ void Unwind_18090c8b0(undefined8 param_1,longlong param_2)
 void Unwind_18090c8c0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x570) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x570) = &SystemDataStructure;
   return;
 }
 
@@ -63498,7 +63510,7 @@ void Unwind_18090c8c0(undefined8 param_1,longlong param_2)
 void Unwind_18090c8d0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x610) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x610) = &SystemDataStructure;
   return;
 }
 
@@ -63507,7 +63519,7 @@ void Unwind_18090c8d0(undefined8 param_1,longlong param_2)
 void Unwind_18090c8e0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x6b0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x6b0) = &SystemDataStructure;
   return;
 }
 
@@ -63516,7 +63528,7 @@ void Unwind_18090c8e0(undefined8 param_1,longlong param_2)
 void Unwind_18090c8f0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x750) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x750) = &SystemDataStructure;
   return;
 }
 
@@ -63536,7 +63548,7 @@ void Unwind_18090c900(undefined8 param_1,longlong param_2)
 void Unwind_18090c910(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x7f0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x7f0) = &SystemDataStructure;
   return;
 }
 
@@ -63556,7 +63568,7 @@ void Unwind_18090c920(undefined8 param_1,longlong param_2)
 void Unwind_18090c930(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x2a8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x2a8) = &SystemDataStructure;
   return;
 }
 
@@ -63565,7 +63577,7 @@ void Unwind_18090c930(undefined8 param_1,longlong param_2)
 void Unwind_18090c940(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x890) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x890) = &SystemDataStructure;
   return;
 }
 
@@ -63574,7 +63586,7 @@ void Unwind_18090c940(undefined8 param_1,longlong param_2)
 void Unwind_18090c950(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x2e0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x2e0) = &SystemDataStructure;
   return;
 }
 
@@ -63583,7 +63595,7 @@ void Unwind_18090c950(undefined8 param_1,longlong param_2)
 void Unwind_18090c960(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x930) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x930) = &SystemDataStructure;
   return;
 }
 
@@ -63592,7 +63604,7 @@ void Unwind_18090c960(undefined8 param_1,longlong param_2)
 void Unwind_18090c970(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x318) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x318) = &SystemDataStructure;
   return;
 }
 
@@ -63601,7 +63613,7 @@ void Unwind_18090c970(undefined8 param_1,longlong param_2)
 void Unwind_18090c980(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x350) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x350) = &SystemDataStructure;
   return;
 }
 
@@ -63706,7 +63718,7 @@ void Unwind_18090ca20(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0xc0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xc0) = &SystemDataStructure;
   return;
 }
 
@@ -63764,7 +63776,7 @@ void Unwind_18090ca40(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x120) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x120) = &SystemDataStructure;
   return;
 }
 
@@ -63834,7 +63846,7 @@ void Unwind_18090ca70(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x180) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x180) = &SystemDataStructure;
   return;
 }
 
@@ -63843,7 +63855,7 @@ void Unwind_18090ca70(undefined8 param_1,longlong param_2)
 void Unwind_18090ca80(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x540) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x540) = &SystemDataStructure;
   return;
 }
 
@@ -63901,7 +63913,7 @@ void Unwind_18090caa0(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x1e0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1e0) = &SystemDataStructure;
   return;
 }
 
@@ -63910,7 +63922,7 @@ void Unwind_18090caa0(undefined8 param_1,longlong param_2)
 void Unwind_18090cab0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x5a0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x5a0) = &SystemDataStructure;
   return;
 }
 
@@ -63968,7 +63980,7 @@ void Unwind_18090cad0(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x240) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x240) = &SystemDataStructure;
   return;
 }
 
@@ -63977,7 +63989,7 @@ void Unwind_18090cad0(undefined8 param_1,longlong param_2)
 void Unwind_18090cae0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x600) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x600) = &SystemDataStructure;
   return;
 }
 
@@ -64035,7 +64047,7 @@ void Unwind_18090cb00(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x2a0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x2a0) = &SystemDataStructure;
   return;
 }
 
@@ -64044,7 +64056,7 @@ void Unwind_18090cb00(undefined8 param_1,longlong param_2)
 void Unwind_18090cb10(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x660) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x660) = &SystemDataStructure;
   return;
 }
 
@@ -64090,7 +64102,7 @@ void Unwind_18090cb20(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x300) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x300) = &SystemDataStructure;
   return;
 }
 
@@ -64099,7 +64111,7 @@ void Unwind_18090cb20(undefined8 param_1,longlong param_2)
 void Unwind_18090cb30(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x6c0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x6c0) = &SystemDataStructure;
   return;
 }
 
@@ -64145,7 +64157,7 @@ void Unwind_18090cb40(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x4e0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x4e0) = &SystemDataStructure;
   return;
 }
 
@@ -64203,7 +64215,7 @@ void Unwind_18090cb60(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x360) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x360) = &SystemDataStructure;
   return;
 }
 
@@ -64212,7 +64224,7 @@ void Unwind_18090cb60(undefined8 param_1,longlong param_2)
 void Unwind_18090cb70(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x720) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x720) = &SystemDataStructure;
   return;
 }
 
@@ -64258,7 +64270,7 @@ void Unwind_18090cb80(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x3c0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x3c0) = &SystemDataStructure;
   return;
 }
 
@@ -64279,7 +64291,7 @@ void Unwind_18090cb90(void)
 void Unwind_18090cba0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x780) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x780) = &SystemDataStructure;
   return;
 }
 
@@ -64349,7 +64361,7 @@ void Unwind_18090cbd0(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x420) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x420) = &SystemDataStructure;
   return;
 }
 
@@ -64358,7 +64370,7 @@ void Unwind_18090cbd0(undefined8 param_1,longlong param_2)
 void Unwind_18090cbe0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x7e0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x7e0) = &SystemDataStructure;
   return;
 }
 
@@ -64416,7 +64428,7 @@ void Unwind_18090cc00(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x480) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x480) = &SystemDataStructure;
   return;
 }
 
@@ -64425,7 +64437,7 @@ void Unwind_18090cc00(undefined8 param_1,longlong param_2)
 void Unwind_18090cc10(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x840) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x840) = &SystemDataStructure;
   return;
 }
 
@@ -64434,7 +64446,7 @@ void Unwind_18090cc10(undefined8 param_1,longlong param_2)
 void Unwind_18090cc20(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x540) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x540) = &SystemDataStructure;
   return;
 }
 
@@ -64443,7 +64455,7 @@ void Unwind_18090cc20(undefined8 param_1,longlong param_2)
 void Unwind_18090cc30(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x5a0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x5a0) = &SystemDataStructure;
   return;
 }
 
@@ -64452,7 +64464,7 @@ void Unwind_18090cc30(undefined8 param_1,longlong param_2)
 void Unwind_18090cc40(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x600) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x600) = &SystemDataStructure;
   return;
 }
 
@@ -64461,7 +64473,7 @@ void Unwind_18090cc40(undefined8 param_1,longlong param_2)
 void Unwind_18090cc50(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x660) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x660) = &SystemDataStructure;
   return;
 }
 
@@ -64470,7 +64482,7 @@ void Unwind_18090cc50(undefined8 param_1,longlong param_2)
 void Unwind_18090cc60(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x6c0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x6c0) = &SystemDataStructure;
   return;
 }
 
@@ -64479,7 +64491,7 @@ void Unwind_18090cc60(undefined8 param_1,longlong param_2)
 void Unwind_18090cc70(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x4e0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x4e0) = &SystemDataStructure;
   return;
 }
 
@@ -64488,7 +64500,7 @@ void Unwind_18090cc70(undefined8 param_1,longlong param_2)
 void Unwind_18090cc80(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x720) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x720) = &SystemDataStructure;
   return;
 }
 
@@ -64497,7 +64509,7 @@ void Unwind_18090cc80(undefined8 param_1,longlong param_2)
 void Unwind_18090cc90(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x780) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x780) = &SystemDataStructure;
   return;
 }
 
@@ -64506,7 +64518,7 @@ void Unwind_18090cc90(undefined8 param_1,longlong param_2)
 void Unwind_18090cca0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x420) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x420) = &SystemDataStructure;
   return;
 }
 
@@ -64515,7 +64527,7 @@ void Unwind_18090cca0(undefined8 param_1,longlong param_2)
 void Unwind_18090ccb0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x7e0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x7e0) = &SystemDataStructure;
   return;
 }
 
@@ -64524,7 +64536,7 @@ void Unwind_18090ccb0(undefined8 param_1,longlong param_2)
 void Unwind_18090ccc0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x840) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x840) = &SystemDataStructure;
   return;
 }
 
@@ -64582,7 +64594,7 @@ void Unwind_18090cce0(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x40) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x40) = &SystemDataStructure;
   return;
 }
 
@@ -64591,7 +64603,7 @@ void Unwind_18090cce0(undefined8 param_1,longlong param_2)
 void Unwind_18090ccf0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xf8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xf8) = &SystemDataStructure;
   return;
 }
 
@@ -64670,7 +64682,7 @@ void Unwind_18090cdf0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x150) = 0;
   *(undefined4 *)(param_2 + 0x160) = 0;
-  *(undefined8 *)(param_2 + 0x148) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x148) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0x140) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x140) + 0x38))();
   }
@@ -64695,7 +64707,7 @@ void Unwind_18090ce00(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   if (*(longlong **)(lVar1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x20) + 0x38))();
   }
@@ -64717,7 +64729,7 @@ void Unwind_18090ce10(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x360) = 0;
   *(undefined4 *)(param_2 + 0x370) = 0;
-  *(undefined8 *)(param_2 + 0x358) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x358) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0x350) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x350) + 0x38))();
   }
@@ -64742,7 +64754,7 @@ void Unwind_18090ce20(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   if (*(longlong **)(lVar1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x20) + 0x38))();
   }
@@ -64764,7 +64776,7 @@ void Unwind_18090ce30(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x200) = 0;
   *(undefined4 *)(param_2 + 0x210) = 0;
-  *(undefined8 *)(param_2 + 0x1f8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x1f8) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0x1f0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x1f0) + 0x38))();
   }
@@ -64786,7 +64798,7 @@ void Unwind_18090ce40(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x260) = 0;
   *(undefined4 *)(param_2 + 0x270) = 0;
-  *(undefined8 *)(param_2 + 600) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 600) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0x250) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x250) + 0x38))();
   }
@@ -64808,7 +64820,7 @@ void Unwind_18090ce50(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x2c0) = 0;
   *(undefined4 *)(param_2 + 0x2d0) = 0;
-  *(undefined8 *)(param_2 + 0x2b8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x2b8) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0x2b0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x2b0) + 0x38))();
   }
@@ -64830,7 +64842,7 @@ void Unwind_18090ce60(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x3c0) = 0;
   *(undefined4 *)(param_2 + 0x3d0) = 0;
-  *(undefined8 *)(param_2 + 0x3b8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x3b8) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0x3b0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x3b0) + 0x38))();
   }
@@ -64855,7 +64867,7 @@ void Unwind_18090ce70(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   if (*(longlong **)(lVar1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x20) + 0x38))();
   }
@@ -64885,7 +64897,7 @@ void Unwind_18090ce90(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x150) = 0;
   *(undefined4 *)(param_2 + 0x160) = 0;
-  *(undefined8 *)(param_2 + 0x148) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x148) = &SystemDataStructure;
   return;
 }
 
@@ -64929,7 +64941,7 @@ void Unwind_18090cec0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -64970,7 +64982,7 @@ void Unwind_18090cef0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x360) = 0;
   *(undefined4 *)(param_2 + 0x370) = 0;
-  *(undefined8 *)(param_2 + 0x358) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x358) = &SystemDataStructure;
   return;
 }
 
@@ -65008,7 +65020,7 @@ void Unwind_18090cf20(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x200) = 0;
   *(undefined4 *)(param_2 + 0x210) = 0;
-  *(undefined8 *)(param_2 + 0x1f8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x1f8) = &SystemDataStructure;
   return;
 }
 
@@ -65046,7 +65058,7 @@ void Unwind_18090cf50(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x260) = 0;
   *(undefined4 *)(param_2 + 0x270) = 0;
-  *(undefined8 *)(param_2 + 600) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 600) = &SystemDataStructure;
   return;
 }
 
@@ -65084,7 +65096,7 @@ void Unwind_18090cf80(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x2c0) = 0;
   *(undefined4 *)(param_2 + 0x2d0) = 0;
-  *(undefined8 *)(param_2 + 0x2b8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x2b8) = &SystemDataStructure;
   return;
 }
 
@@ -65122,7 +65134,7 @@ void Unwind_18090cfb0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x3c0) = 0;
   *(undefined4 *)(param_2 + 0x3d0) = 0;
-  *(undefined8 *)(param_2 + 0x3b8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x3b8) = &SystemDataStructure;
   return;
 }
 
@@ -67995,7 +68007,7 @@ void Unwind_18090d530(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   if (*(longlong **)(lVar1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x20) + 0x38))();
   }
@@ -68007,7 +68019,7 @@ void Unwind_18090d530(undefined8 param_1,longlong param_2)
 void Unwind_18090d540(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x140) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x140) = &SystemDataStructure;
   return;
 }
 
@@ -68040,7 +68052,7 @@ void Unwind_18090d560(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -68073,7 +68085,7 @@ void Unwind_18090d580(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x90) = 0;
   *(undefined4 *)(param_2 + 0xa0) = 0;
-  *(undefined8 *)(param_2 + 0x88) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x88) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0x80) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x80) + 0x38))();
   }
@@ -68098,7 +68110,7 @@ void Unwind_18090d590(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   if (*(longlong **)(lVar1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x20) + 0x38))();
   }
@@ -68128,7 +68140,7 @@ void Unwind_18090d5b0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x90) = 0;
   *(undefined4 *)(param_2 + 0xa0) = 0;
-  *(undefined8 *)(param_2 + 0x88) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x88) = &SystemDataStructure;
   return;
 }
 
@@ -68148,7 +68160,7 @@ void Unwind_18090d5c0(undefined8 param_1,longlong param_2)
 void Unwind_18090d5d0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x160) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x160) = &SystemDataStructure;
   return;
 }
 
@@ -68157,7 +68169,7 @@ void Unwind_18090d5d0(undefined8 param_1,longlong param_2)
 void Unwind_18090d5e0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xd8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xd8) = &SystemDataStructure;
   return;
 }
 
@@ -68166,7 +68178,7 @@ void Unwind_18090d5e0(undefined8 param_1,longlong param_2)
 void Unwind_18090d5f0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x148) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x148) = &SystemDataStructure;
   return;
 }
 
@@ -68175,7 +68187,7 @@ void Unwind_18090d5f0(undefined8 param_1,longlong param_2)
 void Unwind_18090d600(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1b8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1b8) = &SystemDataStructure;
   return;
 }
 
@@ -68184,7 +68196,7 @@ void Unwind_18090d600(undefined8 param_1,longlong param_2)
 void Unwind_18090d610(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1f0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1f0) = &SystemDataStructure;
   return;
 }
 
@@ -68193,7 +68205,7 @@ void Unwind_18090d610(undefined8 param_1,longlong param_2)
 void Unwind_18090d620(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x228) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x228) = &SystemDataStructure;
   return;
 }
 
@@ -68202,7 +68214,7 @@ void Unwind_18090d620(undefined8 param_1,longlong param_2)
 void Unwind_18090d630(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1b8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1b8) = &SystemDataStructure;
   return;
 }
 
@@ -68211,7 +68223,7 @@ void Unwind_18090d630(undefined8 param_1,longlong param_2)
 void Unwind_18090d640(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x228) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x228) = &SystemDataStructure;
   return;
 }
 
@@ -68814,7 +68826,7 @@ void Unwind_18090dd00(undefined8 param_1,longlong param_2)
     }
     puVar3[1] = 0;
     *(undefined4 *)(puVar3 + 3) = 0;
-    *puVar3 = &UNK_18098bcb0;
+    *puVar3 = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
                     // WARNING: Subroutine does not return
@@ -68842,7 +68854,7 @@ void Unwind_18090dd10(undefined8 param_1,longlong param_2)
     }
     puVar3[1] = 0;
     *(undefined4 *)(puVar3 + 3) = 0;
-    *puVar3 = &UNK_18098bcb0;
+    *puVar3 = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
                     // WARNING: Subroutine does not return
@@ -69855,7 +69867,7 @@ void Unwind_18090e760(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x60) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x60) = &SystemDataStructure;
   return;
 }
 
@@ -69913,7 +69925,7 @@ void Unwind_18090e7a0(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 400) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 400) = &SystemDataStructure;
   return;
 }
 
@@ -69959,7 +69971,7 @@ void Unwind_18090e7b0(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x90) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x90) = &SystemDataStructure;
   return;
 }
 
@@ -70005,7 +70017,7 @@ void Unwind_18090e7c0(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0xf0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xf0) = &SystemDataStructure;
   return;
 }
 
@@ -70051,7 +70063,7 @@ void Unwind_18090e7d0(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x50) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x50) = &SystemDataStructure;
   return;
 }
 
@@ -70097,7 +70109,7 @@ void Unwind_18090e7e0(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x80) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x80) = &SystemDataStructure;
   return;
 }
 
@@ -70143,7 +70155,7 @@ void Unwind_18090e7f0(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0xe0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xe0) = &SystemDataStructure;
   return;
 }
 
@@ -70189,7 +70201,7 @@ void Unwind_18090e800(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x1a0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1a0) = &SystemDataStructure;
   return;
 }
 
@@ -70247,7 +70259,7 @@ void Unwind_18090e820(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x200) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x200) = &SystemDataStructure;
   return;
 }
 
@@ -70305,7 +70317,7 @@ void Unwind_18090e840(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x260) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x260) = &SystemDataStructure;
   return;
 }
 
@@ -70363,7 +70375,7 @@ void Unwind_18090e860(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x2c0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x2c0) = &SystemDataStructure;
   return;
 }
 
@@ -70384,7 +70396,7 @@ void Unwind_18090e870(void)
 void Unwind_18090e880(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 800) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 800) = &SystemDataStructure;
   return;
 }
 
@@ -70393,7 +70405,7 @@ void Unwind_18090e880(undefined8 param_1,longlong param_2)
 void Unwind_18090e890(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1a8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1a8) = &SystemDataStructure;
   return;
 }
 
@@ -70402,7 +70414,7 @@ void Unwind_18090e890(undefined8 param_1,longlong param_2)
 void Unwind_18090e8a0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x218) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x218) = &SystemDataStructure;
   return;
 }
 
@@ -70411,7 +70423,7 @@ void Unwind_18090e8a0(undefined8 param_1,longlong param_2)
 void Unwind_18090e8b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x288) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x288) = &SystemDataStructure;
   return;
 }
 
@@ -70420,7 +70432,7 @@ void Unwind_18090e8b0(undefined8 param_1,longlong param_2)
 void Unwind_18090e8c0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xd0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xd0) = &SystemDataStructure;
   return;
 }
 
@@ -70439,7 +70451,7 @@ void Unwind_18090e8d0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x70) = 0;
   *(undefined4 *)(param_2 + 0x80) = 0;
-  *(undefined8 *)(param_2 + 0x68) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x68) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0x60) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x60) + 0x38))();
   }
@@ -70464,7 +70476,7 @@ void Unwind_18090e8e0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   if (*(longlong **)(lVar1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x20) + 0x38))();
   }
@@ -70486,7 +70498,7 @@ void Unwind_18090e8f0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x100) = 0;
   *(undefined4 *)(param_2 + 0x110) = 0;
-  *(undefined8 *)(param_2 + 0xf8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xf8) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0xf0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0xf0) + 0x38))();
   }
@@ -70498,7 +70510,7 @@ void Unwind_18090e8f0(undefined8 param_1,longlong param_2)
 void Unwind_18090e900(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x288) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x288) = &SystemDataStructure;
   return;
 }
 
@@ -70525,7 +70537,7 @@ void Unwind_18090e920(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x70) = 0;
   *(undefined4 *)(param_2 + 0x80) = 0;
-  *(undefined8 *)(param_2 + 0x68) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x68) = &SystemDataStructure;
   return;
 }
 
@@ -70569,7 +70581,7 @@ void Unwind_18090e950(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -70610,7 +70622,7 @@ void Unwind_18090e980(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x100) = 0;
   *(undefined4 *)(param_2 + 0x110) = 0;
-  *(undefined8 *)(param_2 + 0xf8) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0xf8) = &SystemDataStructure;
   return;
 }
 
@@ -70630,7 +70642,7 @@ void Unwind_18090e990(undefined8 param_1,longlong param_2)
 void Unwind_18090e9a0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 800) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 800) = &SystemDataStructure;
   return;
 }
 
@@ -70802,7 +70814,7 @@ void Unwind_18090eb00(undefined8 param_1,longlong param_2)
       }
     }
   }
-  *(undefined **)(param_2 + 0x130) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x130) = &SystemDataStructure;
   return;
 }
 
@@ -70811,7 +70823,7 @@ void Unwind_18090eb00(undefined8 param_1,longlong param_2)
 void Unwind_18090eb10(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x128) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x128) = &SystemDataStructure;
   return;
 }
 
@@ -70833,7 +70845,7 @@ void Unwind_18090eb20(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   if (*(longlong **)(lVar1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x20) + 0x38))();
   }
@@ -70845,7 +70857,7 @@ void Unwind_18090eb20(undefined8 param_1,longlong param_2)
 void Unwind_18090eb30(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x108) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x108) = &SystemDataStructure;
   return;
 }
 
@@ -70878,7 +70890,7 @@ void Unwind_18090eb50(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -70910,7 +70922,7 @@ void Unwind_18090eb70(undefined8 param_1,longlong param_2)
 void Unwind_18090eb80(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x78) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x78) = &SystemDataStructure;
   return;
 }
 
@@ -70947,7 +70959,7 @@ void Unwind_18090ebf0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xa0) = 0;
   *(undefined4 *)(param_2 + 0xb0) = 0;
-  *(undefined8 *)(param_2 + 0x98) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x98) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0x90) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x90) + 0x38))();
   }
@@ -70972,7 +70984,7 @@ void Unwind_18090ec00(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   if (*(longlong **)(lVar1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x20) + 0x38))();
   }
@@ -71002,7 +71014,7 @@ void Unwind_18090ec20(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xa0) = 0;
   *(undefined4 *)(param_2 + 0xb0) = 0;
-  *(undefined8 *)(param_2 + 0x98) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 0x98) = &SystemDataStructure;
   return;
 }
 
@@ -71032,7 +71044,7 @@ void Unwind_18090ec40(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -71185,7 +71197,7 @@ void Unwind_18090ed20(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xd0) = 0;
   *(undefined4 *)(param_2 + 0xe0) = 0;
-  *(undefined8 *)(param_2 + 200) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 200) = &SystemDataStructure;
   if (*(longlong **)(param_2 + 0xc0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0xc0) + 0x38))();
   }
@@ -71210,7 +71222,7 @@ void Unwind_18090ed30(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   if (*(longlong **)(lVar1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x20) + 0x38))();
   }
@@ -71240,7 +71252,7 @@ void Unwind_18090ed50(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0xd0) = 0;
   *(undefined4 *)(param_2 + 0xe0) = 0;
-  *(undefined8 *)(param_2 + 200) = &UNK_18098bcb0;
+  *(undefined8 *)(param_2 + 200) = &SystemDataStructure;
   return;
 }
 
@@ -71270,7 +71282,7 @@ void Unwind_18090ed70(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -72238,7 +72250,7 @@ void Unwind_18090f140(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -72257,7 +72269,7 @@ void Unwind_18090f150(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x10) = 0;
   *(undefined4 *)(lVar1 + 0x20) = 0;
-  *(undefined8 *)(lVar1 + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 8) = &SystemDataStructure;
   return;
 }
 
@@ -72276,7 +72288,7 @@ void Unwind_18090f160(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x10) = 0;
   *(undefined4 *)(lVar1 + 0x20) = 0;
-  *(undefined8 *)(lVar1 + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 8) = &SystemDataStructure;
   return;
 }
 
@@ -72323,7 +72335,7 @@ void Unwind_18090f190(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x10) = 0;
   *(undefined4 *)(lVar1 + 0x20) = 0;
-  *(undefined8 *)(lVar1 + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 8) = &SystemDataStructure;
   return;
 }
 
@@ -73097,7 +73109,7 @@ void Unwind_18090f650(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x4148) = 0;
   *(undefined4 *)(lVar1 + 0x4158) = 0;
-  *(undefined8 *)(lVar1 + 0x4140) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4140) = &SystemDataStructure;
   return;
 }
 
@@ -73116,7 +73128,7 @@ void Unwind_18090f670(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x4198) = 0;
   *(undefined4 *)(lVar1 + 0x41a8) = 0;
-  *(undefined8 *)(lVar1 + 0x4190) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x4190) = &SystemDataStructure;
   return;
 }
 
@@ -73778,7 +73790,7 @@ void Unwind_18090fa90(undefined8 param_1,longlong param_2)
 void Unwind_18090faa0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x158) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x158) = &SystemDataStructure;
   return;
 }
 
@@ -73787,7 +73799,7 @@ void Unwind_18090faa0(undefined8 param_1,longlong param_2)
 void Unwind_18090fab0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x158) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x158) = &SystemDataStructure;
   return;
 }
 
@@ -73809,7 +73821,7 @@ void Unwind_18090fac0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   if (*(longlong **)(lVar1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x20) + 0x38))();
   }
@@ -73821,7 +73833,7 @@ void Unwind_18090fac0(undefined8 param_1,longlong param_2)
 void Unwind_18090fad0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x120) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x120) = &SystemDataStructure;
   return;
 }
 
@@ -73854,7 +73866,7 @@ void Unwind_18090faf0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined4 *)(lVar1 + 0x40) = 0;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -73941,7 +73953,7 @@ void Unwind_18090fb70(undefined8 param_1,longlong param_2)
   }
   presourceHash[1] = 0;
   *(undefined4 *)(presourceHash + 3) = 0;
-  *presourceHash = &UNK_18098bcb0;
+  *presourceHash = &SystemDataStructure;
   return;
 }
 
@@ -73950,7 +73962,7 @@ void Unwind_18090fb70(undefined8 param_1,longlong param_2)
 void Unwind_18090fb80(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x88) + 0x20) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x88) + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -73959,7 +73971,7 @@ void Unwind_18090fb80(undefined8 param_1,longlong param_2)
 void Unwind_18090fb90(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0xa0) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0xa0) = &SystemDataStructure;
   return;
 }
 
@@ -74013,7 +74025,7 @@ void Unwind_18090fbf0(undefined8 param_1,longlong param_2)
 void Unwind_18090fc00(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x100) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x100) = &SystemDataStructure;
   return;
 }
 
@@ -74090,7 +74102,7 @@ void Unwind_18090fca0(undefined8 param_1,longlong param_2)
 void Unwind_18090fcb0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1c0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1c0) = &SystemDataStructure;
   return;
 }
 
@@ -74099,7 +74111,7 @@ void Unwind_18090fcb0(undefined8 param_1,longlong param_2)
 void Unwind_18090fcc0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x1f8) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x1f8) = &SystemDataStructure;
   return;
 }
 
@@ -74108,7 +74120,7 @@ void Unwind_18090fcc0(undefined8 param_1,longlong param_2)
 void Unwind_18090fcd0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0xe0) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0xe0) = &SystemDataStructure;
   return;
 }
 
@@ -74413,7 +74425,7 @@ void Unwind_18090ff10(undefined8 param_1,longlong param_2)
 void Unwind_18090ff20(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x100) + 0x38) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x100) + 0x38) = &SystemDataStructure;
   return;
 }
 
@@ -74422,7 +74434,7 @@ void Unwind_18090ff20(undefined8 param_1,longlong param_2)
 void Unwind_18090ff30(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x100) + 0xe0) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x100) + 0xe0) = &SystemDataStructure;
   return;
 }
 
@@ -74511,7 +74523,7 @@ void Unwind_18090ff90(undefined8 param_1,longlong param_2)
 void Unwind_18090ffa0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x168) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x168) = &SystemDataStructure;
   return;
 }
 
@@ -74813,7 +74825,7 @@ void Unwind_180910080(undefined8 param_1,longlong param_2)
 void Unwind_180910090(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x88) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x88) = &SystemDataStructure;
   return;
 }
 
@@ -74822,7 +74834,7 @@ void Unwind_180910090(undefined8 param_1,longlong param_2)
 void Unwind_1809100a0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x58) + 0x20) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x58) + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -74974,7 +74986,7 @@ void Unwind_180910110(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x110) = 0;
   *(undefined4 *)(lVar1 + 0x120) = 0;
-  *(undefined8 *)(lVar1 + 0x108) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x108) = &SystemDataStructure;
   return;
 }
 
@@ -74993,7 +75005,7 @@ void Unwind_180910130(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x110) = 0;
   *(undefined4 *)(lVar1 + 0x120) = 0;
-  *(undefined8 *)(lVar1 + 0x108) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x108) = &SystemDataStructure;
   return;
 }
 
@@ -75051,7 +75063,7 @@ void Unwind_1809101c0(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x110) = 0;
   *(undefined4 *)(lVar1 + 0x120) = 0;
-  *(undefined8 *)(lVar1 + 0x108) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x108) = &SystemDataStructure;
   return;
 }
 
@@ -75619,7 +75631,7 @@ void Unwind_180910430(undefined8 param_1,longlong param_2)
 void Unwind_180910440(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(*(longlong *)(param_2 + 0x60) + 8) = &UNK_18098bcb0;
+  *(undefined **)(*(longlong *)(param_2 + 0x60) + 8) = &SystemDataStructure;
   return;
 }
 
@@ -76310,7 +76322,7 @@ void Unwind_1809107a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x9d0) = 0;
   *(undefined4 *)(lVar1 + 0x9e0) = 0;
-  *(undefined8 *)(lVar1 + 0x9c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x9c8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x9a8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x9b0) != 0) {
                     // WARNING: Subroutine does not return
@@ -76318,7 +76330,7 @@ void Unwind_1809107a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x9b0) = 0;
   *(undefined4 *)(lVar1 + 0x9c0) = 0;
-  *(undefined8 *)(lVar1 + 0x9a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x9a8) = &SystemDataStructure;
   return;
 }
 
@@ -76340,7 +76352,7 @@ void Unwind_1809107c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa40) = 0;
   *(undefined4 *)(lVar1 + 0xa50) = 0;
-  *(undefined8 *)(lVar1 + 0xa38) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa38) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xa18) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xa20) != 0) {
                     // WARNING: Subroutine does not return
@@ -76348,7 +76360,7 @@ void Unwind_1809107c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa20) = 0;
   *(undefined4 *)(lVar1 + 0xa30) = 0;
-  *(undefined8 *)(lVar1 + 0xa18) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa18) = &SystemDataStructure;
   return;
 }
 
@@ -76370,7 +76382,7 @@ void Unwind_1809107e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xab0) = 0;
   *(undefined4 *)(lVar1 + 0xac0) = 0;
-  *(undefined8 *)(lVar1 + 0xaa8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xaa8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xa88) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
@@ -76378,7 +76390,7 @@ void Unwind_1809107e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa90) = 0;
   *(undefined4 *)(lVar1 + 0xaa0) = 0;
-  *(undefined8 *)(lVar1 + 0xa88) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa88) = &SystemDataStructure;
   return;
 }
 
@@ -76400,7 +76412,7 @@ void Unwind_180910800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb20) = 0;
   *(undefined4 *)(lVar1 + 0xb30) = 0;
-  *(undefined8 *)(lVar1 + 0xb18) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb18) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xaf8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xb00) != 0) {
                     // WARNING: Subroutine does not return
@@ -76408,7 +76420,7 @@ void Unwind_180910800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb00) = 0;
   *(undefined4 *)(lVar1 + 0xb10) = 0;
-  *(undefined8 *)(lVar1 + 0xaf8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xaf8) = &SystemDataStructure;
   return;
 }
 
@@ -76430,7 +76442,7 @@ void Unwind_180910820(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb90) = 0;
   *(undefined4 *)(lVar1 + 0xba0) = 0;
-  *(undefined8 *)(lVar1 + 0xb88) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb88) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xb68) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xb70) != 0) {
                     // WARNING: Subroutine does not return
@@ -76438,7 +76450,7 @@ void Unwind_180910820(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb70) = 0;
   *(undefined4 *)(lVar1 + 0xb80) = 0;
-  *(undefined8 *)(lVar1 + 0xb68) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb68) = &SystemDataStructure;
   return;
 }
 
@@ -76460,7 +76472,7 @@ void Unwind_180910840(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc00) = 0;
   *(undefined4 *)(lVar1 + 0xc10) = 0;
-  *(undefined8 *)(lVar1 + 0xbf8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xbf8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xbd8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xbe0) != 0) {
                     // WARNING: Subroutine does not return
@@ -76468,7 +76480,7 @@ void Unwind_180910840(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xbe0) = 0;
   *(undefined4 *)(lVar1 + 0xbf0) = 0;
-  *(undefined8 *)(lVar1 + 0xbd8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xbd8) = &SystemDataStructure;
   return;
 }
 
@@ -76490,7 +76502,7 @@ void Unwind_180910860(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc70) = 0;
   *(undefined4 *)(lVar1 + 0xc80) = 0;
-  *(undefined8 *)(lVar1 + 0xc68) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xc68) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xc48) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xc50) != 0) {
                     // WARNING: Subroutine does not return
@@ -76498,7 +76510,7 @@ void Unwind_180910860(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc50) = 0;
   *(undefined4 *)(lVar1 + 0xc60) = 0;
-  *(undefined8 *)(lVar1 + 0xc48) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xc48) = &SystemDataStructure;
   return;
 }
 
@@ -76520,7 +76532,7 @@ void Unwind_180910880(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xce0) = 0;
   *(undefined4 *)(lVar1 + 0xcf0) = 0;
-  *(undefined8 *)(lVar1 + 0xcd8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xcd8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xcb8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xcc0) != 0) {
                     // WARNING: Subroutine does not return
@@ -76528,7 +76540,7 @@ void Unwind_180910880(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xcc0) = 0;
   *(undefined4 *)(lVar1 + 0xcd0) = 0;
-  *(undefined8 *)(lVar1 + 0xcb8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xcb8) = &SystemDataStructure;
   return;
 }
 
@@ -76550,7 +76562,7 @@ void Unwind_1809108a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xd50) = 0;
   *(undefined4 *)(lVar1 + 0xd60) = 0;
-  *(undefined8 *)(lVar1 + 0xd48) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xd48) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xd28) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xd30) != 0) {
                     // WARNING: Subroutine does not return
@@ -76558,7 +76570,7 @@ void Unwind_1809108a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xd30) = 0;
   *(undefined4 *)(lVar1 + 0xd40) = 0;
-  *(undefined8 *)(lVar1 + 0xd28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xd28) = &SystemDataStructure;
   return;
 }
 
@@ -76580,7 +76592,7 @@ void Unwind_1809108c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xdc0) = 0;
   *(undefined4 *)(lVar1 + 0xdd0) = 0;
-  *(undefined8 *)(lVar1 + 0xdb8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xdb8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xd98) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xda0) != 0) {
                     // WARNING: Subroutine does not return
@@ -76588,7 +76600,7 @@ void Unwind_1809108c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xda0) = 0;
   *(undefined4 *)(lVar1 + 0xdb0) = 0;
-  *(undefined8 *)(lVar1 + 0xd98) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xd98) = &SystemDataStructure;
   return;
 }
 
@@ -76610,7 +76622,7 @@ void Unwind_1809108e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe30) = 0;
   *(undefined4 *)(lVar1 + 0xe40) = 0;
-  *(undefined8 *)(lVar1 + 0xe28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe28) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe08) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe10) != 0) {
                     // WARNING: Subroutine does not return
@@ -76618,7 +76630,7 @@ void Unwind_1809108e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe10) = 0;
   *(undefined4 *)(lVar1 + 0xe20) = 0;
-  *(undefined8 *)(lVar1 + 0xe08) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe08) = &SystemDataStructure;
   return;
 }
 
@@ -76640,7 +76652,7 @@ void Unwind_180910900(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xea0) = 0;
   *(undefined4 *)(lVar1 + 0xeb0) = 0;
-  *(undefined8 *)(lVar1 + 0xe98) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe98) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe78) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe80) != 0) {
                     // WARNING: Subroutine does not return
@@ -76648,7 +76660,7 @@ void Unwind_180910900(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe80) = 0;
   *(undefined4 *)(lVar1 + 0xe90) = 0;
-  *(undefined8 *)(lVar1 + 0xe78) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe78) = &SystemDataStructure;
   return;
 }
 
@@ -76670,7 +76682,7 @@ void Unwind_180910920(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf10) = 0;
   *(undefined4 *)(lVar1 + 0xf20) = 0;
-  *(undefined8 *)(lVar1 + 0xf08) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf08) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xee8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xef0) != 0) {
                     // WARNING: Subroutine does not return
@@ -76678,7 +76690,7 @@ void Unwind_180910920(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xef0) = 0;
   *(undefined4 *)(lVar1 + 0xf00) = 0;
-  *(undefined8 *)(lVar1 + 0xee8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xee8) = &SystemDataStructure;
   return;
 }
 
@@ -76700,7 +76712,7 @@ void Unwind_180910940(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf80) = 0;
   *(undefined4 *)(lVar1 + 0xf90) = 0;
-  *(undefined8 *)(lVar1 + 0xf78) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf78) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xf58) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xf60) != 0) {
                     // WARNING: Subroutine does not return
@@ -76708,7 +76720,7 @@ void Unwind_180910940(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf60) = 0;
   *(undefined4 *)(lVar1 + 0xf70) = 0;
-  *(undefined8 *)(lVar1 + 0xf58) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf58) = &SystemDataStructure;
   return;
 }
 
@@ -76730,7 +76742,7 @@ void Unwind_180910960(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xff0) = 0;
   *(undefined4 *)(lVar1 + 0x1000) = 0;
-  *(undefined8 *)(lVar1 + 0xfe8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xfe8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xfc8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xfd0) != 0) {
                     // WARNING: Subroutine does not return
@@ -76738,7 +76750,7 @@ void Unwind_180910960(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xfd0) = 0;
   *(undefined4 *)(lVar1 + 0xfe0) = 0;
-  *(undefined8 *)(lVar1 + 0xfc8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xfc8) = &SystemDataStructure;
   return;
 }
 
@@ -76760,7 +76772,7 @@ void Unwind_180910980(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1060) = 0;
   *(undefined4 *)(lVar1 + 0x1070) = 0;
-  *(undefined8 *)(lVar1 + 0x1058) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1058) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1038) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1040) != 0) {
                     // WARNING: Subroutine does not return
@@ -76768,7 +76780,7 @@ void Unwind_180910980(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1040) = 0;
   *(undefined4 *)(lVar1 + 0x1050) = 0;
-  *(undefined8 *)(lVar1 + 0x1038) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1038) = &SystemDataStructure;
   return;
 }
 
@@ -76790,7 +76802,7 @@ void Unwind_1809109a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x10d0) = 0;
   *(undefined4 *)(lVar1 + 0x10e0) = 0;
-  *(undefined8 *)(lVar1 + 0x10c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x10c8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x10a8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x10b0) != 0) {
                     // WARNING: Subroutine does not return
@@ -76798,7 +76810,7 @@ void Unwind_1809109a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x10b0) = 0;
   *(undefined4 *)(lVar1 + 0x10c0) = 0;
-  *(undefined8 *)(lVar1 + 0x10a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x10a8) = &SystemDataStructure;
   return;
 }
 
@@ -76820,7 +76832,7 @@ void Unwind_1809109c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1140) = 0;
   *(undefined4 *)(lVar1 + 0x1150) = 0;
-  *(undefined8 *)(lVar1 + 0x1138) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1138) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1118) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1120) != 0) {
                     // WARNING: Subroutine does not return
@@ -76828,7 +76840,7 @@ void Unwind_1809109c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1120) = 0;
   *(undefined4 *)(lVar1 + 0x1130) = 0;
-  *(undefined8 *)(lVar1 + 0x1118) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1118) = &SystemDataStructure;
   return;
 }
 
@@ -76850,7 +76862,7 @@ void Unwind_1809109e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x11b0) = 0;
   *(undefined4 *)(lVar1 + 0x11c0) = 0;
-  *(undefined8 *)(lVar1 + 0x11a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x11a8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1188) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1190) != 0) {
                     // WARNING: Subroutine does not return
@@ -76858,7 +76870,7 @@ void Unwind_1809109e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1190) = 0;
   *(undefined4 *)(lVar1 + 0x11a0) = 0;
-  *(undefined8 *)(lVar1 + 0x1188) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1188) = &SystemDataStructure;
   return;
 }
 
@@ -76880,7 +76892,7 @@ void Unwind_180910a00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1220) = 0;
   *(undefined4 *)(lVar1 + 0x1230) = 0;
-  *(undefined8 *)(lVar1 + 0x1218) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1218) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x11f8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1200) != 0) {
                     // WARNING: Subroutine does not return
@@ -76888,7 +76900,7 @@ void Unwind_180910a00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1200) = 0;
   *(undefined4 *)(lVar1 + 0x1210) = 0;
-  *(undefined8 *)(lVar1 + 0x11f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x11f8) = &SystemDataStructure;
   return;
 }
 
@@ -76910,7 +76922,7 @@ void Unwind_180910a20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1290) = 0;
   *(undefined4 *)(lVar1 + 0x12a0) = 0;
-  *(undefined8 *)(lVar1 + 0x1288) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1288) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1268) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1270) != 0) {
                     // WARNING: Subroutine does not return
@@ -76918,7 +76930,7 @@ void Unwind_180910a20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1270) = 0;
   *(undefined4 *)(lVar1 + 0x1280) = 0;
-  *(undefined8 *)(lVar1 + 0x1268) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1268) = &SystemDataStructure;
   return;
 }
 
@@ -76940,7 +76952,7 @@ void Unwind_180910a40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1300) = 0;
   *(undefined4 *)(lVar1 + 0x1310) = 0;
-  *(undefined8 *)(lVar1 + 0x12f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x12f8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x12d8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x12e0) != 0) {
                     // WARNING: Subroutine does not return
@@ -76948,7 +76960,7 @@ void Unwind_180910a40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x12e0) = 0;
   *(undefined4 *)(lVar1 + 0x12f0) = 0;
-  *(undefined8 *)(lVar1 + 0x12d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x12d8) = &SystemDataStructure;
   return;
 }
 
@@ -76970,7 +76982,7 @@ void Unwind_180910a60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1370) = 0;
   *(undefined4 *)(lVar1 + 0x1380) = 0;
-  *(undefined8 *)(lVar1 + 0x1368) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1368) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1348) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1350) != 0) {
                     // WARNING: Subroutine does not return
@@ -76978,7 +76990,7 @@ void Unwind_180910a60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1350) = 0;
   *(undefined4 *)(lVar1 + 0x1360) = 0;
-  *(undefined8 *)(lVar1 + 0x1348) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1348) = &SystemDataStructure;
   return;
 }
 
@@ -77000,7 +77012,7 @@ void Unwind_180910a80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x13e0) = 0;
   *(undefined4 *)(lVar1 + 0x13f0) = 0;
-  *(undefined8 *)(lVar1 + 0x13d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x13d8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x13b8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x13c0) != 0) {
                     // WARNING: Subroutine does not return
@@ -77008,7 +77020,7 @@ void Unwind_180910a80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x13c0) = 0;
   *(undefined4 *)(lVar1 + 0x13d0) = 0;
-  *(undefined8 *)(lVar1 + 0x13b8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x13b8) = &SystemDataStructure;
   return;
 }
 
@@ -77030,7 +77042,7 @@ void Unwind_180910aa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1450) = 0;
   *(undefined4 *)(lVar1 + 0x1460) = 0;
-  *(undefined8 *)(lVar1 + 0x1448) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1448) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1428) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1430) != 0) {
                     // WARNING: Subroutine does not return
@@ -77038,7 +77050,7 @@ void Unwind_180910aa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1430) = 0;
   *(undefined4 *)(lVar1 + 0x1440) = 0;
-  *(undefined8 *)(lVar1 + 0x1428) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1428) = &SystemDataStructure;
   return;
 }
 
@@ -77060,7 +77072,7 @@ void Unwind_180910ac0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x14c0) = 0;
   *(undefined4 *)(lVar1 + 0x14d0) = 0;
-  *(undefined8 *)(lVar1 + 0x14b8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x14b8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1498) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x14a0) != 0) {
                     // WARNING: Subroutine does not return
@@ -77068,7 +77080,7 @@ void Unwind_180910ac0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x14a0) = 0;
   *(undefined4 *)(lVar1 + 0x14b0) = 0;
-  *(undefined8 *)(lVar1 + 0x1498) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1498) = &SystemDataStructure;
   return;
 }
 
@@ -77090,7 +77102,7 @@ void Unwind_180910ae0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1530) = 0;
   *(undefined4 *)(lVar1 + 0x1540) = 0;
-  *(undefined8 *)(lVar1 + 0x1528) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1528) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1508) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1510) != 0) {
                     // WARNING: Subroutine does not return
@@ -77098,7 +77110,7 @@ void Unwind_180910ae0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1510) = 0;
   *(undefined4 *)(lVar1 + 0x1520) = 0;
-  *(undefined8 *)(lVar1 + 0x1508) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1508) = &SystemDataStructure;
   return;
 }
 
@@ -77120,7 +77132,7 @@ void Unwind_180910b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x15a0) = 0;
   *(undefined4 *)(lVar1 + 0x15b0) = 0;
-  *(undefined8 *)(lVar1 + 0x1598) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1598) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1578) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1580) != 0) {
                     // WARNING: Subroutine does not return
@@ -77128,7 +77140,7 @@ void Unwind_180910b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1580) = 0;
   *(undefined4 *)(lVar1 + 0x1590) = 0;
-  *(undefined8 *)(lVar1 + 0x1578) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1578) = &SystemDataStructure;
   return;
 }
 
@@ -77150,7 +77162,7 @@ void Unwind_180910b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1610) = 0;
   *(undefined4 *)(lVar1 + 0x1620) = 0;
-  *(undefined8 *)(lVar1 + 0x1608) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1608) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x15e8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
@@ -77158,7 +77170,7 @@ void Unwind_180910b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x15f0) = 0;
   *(undefined4 *)(lVar1 + 0x1600) = 0;
-  *(undefined8 *)(lVar1 + 0x15e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x15e8) = &SystemDataStructure;
   return;
 }
 
@@ -77180,7 +77192,7 @@ void Unwind_180910b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1680) = 0;
   *(undefined4 *)(lVar1 + 0x1690) = 0;
-  *(undefined8 *)(lVar1 + 0x1678) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1678) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1658) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1660) != 0) {
                     // WARNING: Subroutine does not return
@@ -77188,7 +77200,7 @@ void Unwind_180910b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1660) = 0;
   *(undefined4 *)(lVar1 + 0x1670) = 0;
-  *(undefined8 *)(lVar1 + 0x1658) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1658) = &SystemDataStructure;
   return;
 }
 
@@ -77210,7 +77222,7 @@ void Unwind_180910b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x16f0) = 0;
   *(undefined4 *)(lVar1 + 0x1700) = 0;
-  *(undefined8 *)(lVar1 + 0x16e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x16e8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x16c8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x16d0) != 0) {
                     // WARNING: Subroutine does not return
@@ -77218,7 +77230,7 @@ void Unwind_180910b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x16d0) = 0;
   *(undefined4 *)(lVar1 + 0x16e0) = 0;
-  *(undefined8 *)(lVar1 + 0x16c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x16c8) = &SystemDataStructure;
   return;
 }
 
@@ -77240,7 +77252,7 @@ void Unwind_180910b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1760) = 0;
   *(undefined4 *)(lVar1 + 6000) = 0;
-  *(undefined8 *)(lVar1 + 0x1758) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1758) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1738) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1740) != 0) {
                     // WARNING: Subroutine does not return
@@ -77248,7 +77260,7 @@ void Unwind_180910b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1740) = 0;
   *(undefined4 *)(lVar1 + 0x1750) = 0;
-  *(undefined8 *)(lVar1 + 0x1738) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1738) = &SystemDataStructure;
   return;
 }
 
@@ -77270,7 +77282,7 @@ void Unwind_180910ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x17d0) = 0;
   *(undefined4 *)(lVar1 + 0x17e0) = 0;
-  *(undefined8 *)(lVar1 + 0x17c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x17c8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x17a8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x17b0) != 0) {
                     // WARNING: Subroutine does not return
@@ -77278,7 +77290,7 @@ void Unwind_180910ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x17b0) = 0;
   *(undefined4 *)(lVar1 + 0x17c0) = 0;
-  *(undefined8 *)(lVar1 + 0x17a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x17a8) = &SystemDataStructure;
   return;
 }
 
@@ -77300,7 +77312,7 @@ void Unwind_180910bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1840) = 0;
   *(undefined4 *)(lVar1 + 0x1850) = 0;
-  *(undefined8 *)(lVar1 + 0x1838) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1838) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1818) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1820) != 0) {
                     // WARNING: Subroutine does not return
@@ -77308,7 +77320,7 @@ void Unwind_180910bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1820) = 0;
   *(undefined4 *)(lVar1 + 0x1830) = 0;
-  *(undefined8 *)(lVar1 + 0x1818) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1818) = &SystemDataStructure;
   return;
 }
 
@@ -77330,7 +77342,7 @@ void Unwind_180910be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x18b0) = 0;
   *(undefined4 *)(lVar1 + 0x18c0) = 0;
-  *(undefined8 *)(lVar1 + 0x18a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x18a8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1888) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1890) != 0) {
                     // WARNING: Subroutine does not return
@@ -77338,7 +77350,7 @@ void Unwind_180910be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1890) = 0;
   *(undefined4 *)(lVar1 + 0x18a0) = 0;
-  *(undefined8 *)(lVar1 + 0x1888) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1888) = &SystemDataStructure;
   return;
 }
 
@@ -77360,7 +77372,7 @@ void Unwind_180910c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1920) = 0;
   *(undefined4 *)(lVar1 + 0x1930) = 0;
-  *(undefined8 *)(lVar1 + 0x1918) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1918) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x18f8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1900) != 0) {
                     // WARNING: Subroutine does not return
@@ -77368,7 +77380,7 @@ void Unwind_180910c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1900) = 0;
   *(undefined4 *)(lVar1 + 0x1910) = 0;
-  *(undefined8 *)(lVar1 + 0x18f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x18f8) = &SystemDataStructure;
   return;
 }
 
@@ -77390,7 +77402,7 @@ void Unwind_180910c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1990) = 0;
   *(undefined4 *)(lVar1 + 0x19a0) = 0;
-  *(undefined8 *)(lVar1 + 0x1988) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1988) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1968) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1970) != 0) {
                     // WARNING: Subroutine does not return
@@ -77398,7 +77410,7 @@ void Unwind_180910c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1970) = 0;
   *(undefined4 *)(lVar1 + 0x1980) = 0;
-  *(undefined8 *)(lVar1 + 0x1968) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1968) = &SystemDataStructure;
   return;
 }
 
@@ -77420,7 +77432,7 @@ void Unwind_180910c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1a00) = 0;
   *(undefined4 *)(lVar1 + 0x1a10) = 0;
-  *(undefined8 *)(lVar1 + 0x19f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x19f8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x19d8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x19e0) != 0) {
                     // WARNING: Subroutine does not return
@@ -77428,7 +77440,7 @@ void Unwind_180910c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x19e0) = 0;
   *(undefined4 *)(lVar1 + 0x19f0) = 0;
-  *(undefined8 *)(lVar1 + 0x19d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x19d8) = &SystemDataStructure;
   return;
 }
 
@@ -77450,7 +77462,7 @@ void Unwind_180910c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1a70) = 0;
   *(undefined4 *)(lVar1 + 0x1a80) = 0;
-  *(undefined8 *)(lVar1 + 0x1a68) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1a68) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1a48) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1a50) != 0) {
                     // WARNING: Subroutine does not return
@@ -77458,7 +77470,7 @@ void Unwind_180910c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1a50) = 0;
   *(undefined4 *)(lVar1 + 0x1a60) = 0;
-  *(undefined8 *)(lVar1 + 0x1a48) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1a48) = &SystemDataStructure;
   return;
 }
 
@@ -77480,7 +77492,7 @@ void Unwind_180910c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1ae0) = 0;
   *(undefined4 *)(lVar1 + 0x1af0) = 0;
-  *(undefined8 *)(lVar1 + 0x1ad8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1ad8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1ab8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1ac0) != 0) {
                     // WARNING: Subroutine does not return
@@ -77488,7 +77500,7 @@ void Unwind_180910c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1ac0) = 0;
   *(undefined4 *)(lVar1 + 0x1ad0) = 0;
-  *(undefined8 *)(lVar1 + 0x1ab8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1ab8) = &SystemDataStructure;
   return;
 }
 
@@ -77510,7 +77522,7 @@ void Unwind_180910ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1b50) = 0;
   *(undefined4 *)(lVar1 + 0x1b60) = 0;
-  *(undefined8 *)(lVar1 + 0x1b48) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1b48) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1b28) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1b30) != 0) {
                     // WARNING: Subroutine does not return
@@ -77518,7 +77530,7 @@ void Unwind_180910ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1b30) = 0;
   *(undefined4 *)(lVar1 + 0x1b40) = 0;
-  *(undefined8 *)(lVar1 + 0x1b28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1b28) = &SystemDataStructure;
   return;
 }
 
@@ -77540,7 +77552,7 @@ void Unwind_180910cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1bc0) = 0;
   *(undefined4 *)(lVar1 + 0x1bd0) = 0;
-  *(undefined8 *)(lVar1 + 0x1bb8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1bb8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1b98) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1ba0) != 0) {
                     // WARNING: Subroutine does not return
@@ -77548,7 +77560,7 @@ void Unwind_180910cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1ba0) = 0;
   *(undefined4 *)(lVar1 + 0x1bb0) = 0;
-  *(undefined8 *)(lVar1 + 0x1b98) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1b98) = &SystemDataStructure;
   return;
 }
 
@@ -77570,7 +77582,7 @@ void Unwind_180910ce0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1c30) = 0;
   *(undefined4 *)(lVar1 + 0x1c40) = 0;
-  *(undefined8 *)(lVar1 + 0x1c28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1c28) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1c08) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1c10) != 0) {
                     // WARNING: Subroutine does not return
@@ -77578,7 +77590,7 @@ void Unwind_180910ce0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1c10) = 0;
   *(undefined4 *)(lVar1 + 0x1c20) = 0;
-  *(undefined8 *)(lVar1 + 0x1c08) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1c08) = &SystemDataStructure;
   return;
 }
 
@@ -77600,7 +77612,7 @@ void Unwind_180910d00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1ca0) = 0;
   *(undefined4 *)(lVar1 + 0x1cb0) = 0;
-  *(undefined8 *)(lVar1 + 0x1c98) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1c98) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1c78) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1c80) != 0) {
                     // WARNING: Subroutine does not return
@@ -77608,7 +77620,7 @@ void Unwind_180910d00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1c80) = 0;
   *(undefined4 *)(lVar1 + 0x1c90) = 0;
-  *(undefined8 *)(lVar1 + 0x1c78) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1c78) = &SystemDataStructure;
   return;
 }
 
@@ -77630,7 +77642,7 @@ void Unwind_180910d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1d10) = 0;
   *(undefined4 *)(lVar1 + 0x1d20) = 0;
-  *(undefined8 *)(lVar1 + 0x1d08) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1d08) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1ce8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1cf0) != 0) {
                     // WARNING: Subroutine does not return
@@ -77638,7 +77650,7 @@ void Unwind_180910d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1cf0) = 0;
   *(undefined4 *)(lVar1 + 0x1d00) = 0;
-  *(undefined8 *)(lVar1 + 0x1ce8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1ce8) = &SystemDataStructure;
   return;
 }
 
@@ -77660,7 +77672,7 @@ void Unwind_180910d40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1d80) = 0;
   *(undefined4 *)(lVar1 + 0x1d90) = 0;
-  *(undefined8 *)(lVar1 + 0x1d78) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1d78) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1d58) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1d60) != 0) {
                     // WARNING: Subroutine does not return
@@ -77668,7 +77680,7 @@ void Unwind_180910d40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1d60) = 0;
   *(undefined4 *)(lVar1 + 0x1d70) = 0;
-  *(undefined8 *)(lVar1 + 0x1d58) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1d58) = &SystemDataStructure;
   return;
 }
 
@@ -77690,7 +77702,7 @@ void Unwind_180910d60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1df0) = 0;
   *(undefined4 *)(lVar1 + 0x1e00) = 0;
-  *(undefined8 *)(lVar1 + 0x1de8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1de8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1dc8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1dd0) != 0) {
                     // WARNING: Subroutine does not return
@@ -77698,7 +77710,7 @@ void Unwind_180910d60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1dd0) = 0;
   *(undefined4 *)(lVar1 + 0x1de0) = 0;
-  *(undefined8 *)(lVar1 + 0x1dc8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1dc8) = &SystemDataStructure;
   return;
 }
 
@@ -77720,7 +77732,7 @@ void Unwind_180910d80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1e60) = 0;
   *(undefined4 *)(lVar1 + 0x1e70) = 0;
-  *(undefined8 *)(lVar1 + 0x1e58) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1e58) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1e38) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1e40) != 0) {
                     // WARNING: Subroutine does not return
@@ -77728,7 +77740,7 @@ void Unwind_180910d80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1e40) = 0;
   *(undefined4 *)(lVar1 + 0x1e50) = 0;
-  *(undefined8 *)(lVar1 + 0x1e38) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1e38) = &SystemDataStructure;
   return;
 }
 
@@ -77750,7 +77762,7 @@ void Unwind_180910da0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1ed0) = 0;
   *(undefined4 *)(lVar1 + 0x1ee0) = 0;
-  *(undefined8 *)(lVar1 + 0x1ec8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1ec8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1ea8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1eb0) != 0) {
                     // WARNING: Subroutine does not return
@@ -77758,7 +77770,7 @@ void Unwind_180910da0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1eb0) = 0;
   *(undefined4 *)(lVar1 + 0x1ec0) = 0;
-  *(undefined8 *)(lVar1 + 0x1ea8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1ea8) = &SystemDataStructure;
   return;
 }
 
@@ -77780,7 +77792,7 @@ void Unwind_180910dc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 8000) = 0;
   *(undefined4 *)(lVar1 + 0x1f50) = 0;
-  *(undefined8 *)(lVar1 + 0x1f38) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1f38) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1f18) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1f20) != 0) {
                     // WARNING: Subroutine does not return
@@ -77788,7 +77800,7 @@ void Unwind_180910dc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1f20) = 0;
   *(undefined4 *)(lVar1 + 0x1f30) = 0;
-  *(undefined8 *)(lVar1 + 0x1f18) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1f18) = &SystemDataStructure;
   return;
 }
 
@@ -77810,7 +77822,7 @@ void Unwind_180910de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1fb0) = 0;
   *(undefined4 *)(lVar1 + 0x1fc0) = 0;
-  *(undefined8 *)(lVar1 + 0x1fa8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1fa8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1f88) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1f90) != 0) {
                     // WARNING: Subroutine does not return
@@ -77818,7 +77830,7 @@ void Unwind_180910de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1f90) = 0;
   *(undefined4 *)(lVar1 + 0x1fa0) = 0;
-  *(undefined8 *)(lVar1 + 0x1f88) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1f88) = &SystemDataStructure;
   return;
 }
 
@@ -77840,7 +77852,7 @@ void Unwind_180910e00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2020) = 0;
   *(undefined4 *)(lVar1 + 0x2030) = 0;
-  *(undefined8 *)(lVar1 + 0x2018) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2018) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1ff8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2000) != 0) {
                     // WARNING: Subroutine does not return
@@ -77848,7 +77860,7 @@ void Unwind_180910e00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2000) = 0;
   *(undefined4 *)(lVar1 + 0x2010) = 0;
-  *(undefined8 *)(lVar1 + 0x1ff8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1ff8) = &SystemDataStructure;
   return;
 }
 
@@ -77870,7 +77882,7 @@ void Unwind_180910e20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2090) = 0;
   *(undefined4 *)(lVar1 + 0x20a0) = 0;
-  *(undefined8 *)(lVar1 + 0x2088) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2088) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2068) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2070) != 0) {
                     // WARNING: Subroutine does not return
@@ -77878,7 +77890,7 @@ void Unwind_180910e20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2070) = 0;
   *(undefined4 *)(lVar1 + 0x2080) = 0;
-  *(undefined8 *)(lVar1 + 0x2068) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2068) = &SystemDataStructure;
   return;
 }
 
@@ -77900,7 +77912,7 @@ void Unwind_180910e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2100) = 0;
   *(undefined4 *)(lVar1 + 0x2110) = 0;
-  *(undefined8 *)(lVar1 + 0x20f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20f8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x20d8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x20e0) != 0) {
                     // WARNING: Subroutine does not return
@@ -77908,7 +77920,7 @@ void Unwind_180910e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x20e0) = 0;
   *(undefined4 *)(lVar1 + 0x20f0) = 0;
-  *(undefined8 *)(lVar1 + 0x20d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20d8) = &SystemDataStructure;
   return;
 }
 
@@ -77930,7 +77942,7 @@ void Unwind_180910e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2170) = 0;
   *(undefined4 *)(lVar1 + 0x2180) = 0;
-  *(undefined8 *)(lVar1 + 0x2168) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2168) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2148) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2150) != 0) {
                     // WARNING: Subroutine does not return
@@ -77938,7 +77950,7 @@ void Unwind_180910e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2150) = 0;
   *(undefined4 *)(lVar1 + 0x2160) = 0;
-  *(undefined8 *)(lVar1 + 0x2148) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2148) = &SystemDataStructure;
   return;
 }
 
@@ -77960,7 +77972,7 @@ void Unwind_180910e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x21e0) = 0;
   *(undefined4 *)(lVar1 + 0x21f0) = 0;
-  *(undefined8 *)(lVar1 + 0x21d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x21d8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x21b8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x21c0) != 0) {
                     // WARNING: Subroutine does not return
@@ -77968,7 +77980,7 @@ void Unwind_180910e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x21c0) = 0;
   *(undefined4 *)(lVar1 + 0x21d0) = 0;
-  *(undefined8 *)(lVar1 + 0x21b8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x21b8) = &SystemDataStructure;
   return;
 }
 
@@ -77990,7 +78002,7 @@ void Unwind_180910ea0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2250) = 0;
   *(undefined4 *)(lVar1 + 0x2260) = 0;
-  *(undefined8 *)(lVar1 + 0x2248) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2248) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2228) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2230) != 0) {
                     // WARNING: Subroutine does not return
@@ -77998,7 +78010,7 @@ void Unwind_180910ea0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2230) = 0;
   *(undefined4 *)(lVar1 + 0x2240) = 0;
-  *(undefined8 *)(lVar1 + 0x2228) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2228) = &SystemDataStructure;
   return;
 }
 
@@ -78020,7 +78032,7 @@ void Unwind_180910ec0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x22c0) = 0;
   *(undefined4 *)(lVar1 + 0x22d0) = 0;
-  *(undefined8 *)(lVar1 + 0x22b8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x22b8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2298) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x22a0) != 0) {
                     // WARNING: Subroutine does not return
@@ -78028,7 +78040,7 @@ void Unwind_180910ec0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x22a0) = 0;
   *(undefined4 *)(lVar1 + 0x22b0) = 0;
-  *(undefined8 *)(lVar1 + 0x2298) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2298) = &SystemDataStructure;
   return;
 }
 
@@ -78050,7 +78062,7 @@ void Unwind_180910ee0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2330) = 0;
   *(undefined4 *)(lVar1 + 0x2340) = 0;
-  *(undefined8 *)(lVar1 + 9000) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 9000) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2308) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2310) != 0) {
                     // WARNING: Subroutine does not return
@@ -78058,7 +78070,7 @@ void Unwind_180910ee0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2310) = 0;
   *(undefined4 *)(lVar1 + 0x2320) = 0;
-  *(undefined8 *)(lVar1 + 0x2308) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2308) = &SystemDataStructure;
   return;
 }
 
@@ -78080,7 +78092,7 @@ void Unwind_180910f00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x23a0) = 0;
   *(undefined4 *)(lVar1 + 0x23b0) = 0;
-  *(undefined8 *)(lVar1 + 0x2398) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2398) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2378) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2380) != 0) {
                     // WARNING: Subroutine does not return
@@ -78088,7 +78100,7 @@ void Unwind_180910f00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2380) = 0;
   *(undefined4 *)(lVar1 + 0x2390) = 0;
-  *(undefined8 *)(lVar1 + 0x2378) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2378) = &SystemDataStructure;
   return;
 }
 
@@ -78110,7 +78122,7 @@ void Unwind_180910f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2410) = 0;
   *(undefined4 *)(lVar1 + 0x2420) = 0;
-  *(undefined8 *)(lVar1 + 0x2408) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2408) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x23e8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x23f0) != 0) {
                     // WARNING: Subroutine does not return
@@ -78118,7 +78130,7 @@ void Unwind_180910f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x23f0) = 0;
   *(undefined4 *)(lVar1 + 0x2400) = 0;
-  *(undefined8 *)(lVar1 + 0x23e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x23e8) = &SystemDataStructure;
   return;
 }
 
@@ -78140,7 +78152,7 @@ void Unwind_180910f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2480) = 0;
   *(undefined4 *)(lVar1 + 0x2490) = 0;
-  *(undefined8 *)(lVar1 + 0x2478) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2478) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2458) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2460) != 0) {
                     // WARNING: Subroutine does not return
@@ -78148,7 +78160,7 @@ void Unwind_180910f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2460) = 0;
   *(undefined4 *)(lVar1 + 0x2470) = 0;
-  *(undefined8 *)(lVar1 + 0x2458) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2458) = &SystemDataStructure;
   return;
 }
 
@@ -78170,7 +78182,7 @@ void Unwind_180910f60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x24f0) = 0;
   *(undefined4 *)(lVar1 + 0x2500) = 0;
-  *(undefined8 *)(lVar1 + 0x24e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x24e8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x24c8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x24d0) != 0) {
                     // WARNING: Subroutine does not return
@@ -78178,7 +78190,7 @@ void Unwind_180910f60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x24d0) = 0;
   *(undefined4 *)(lVar1 + 0x24e0) = 0;
-  *(undefined8 *)(lVar1 + 0x24c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x24c8) = &SystemDataStructure;
   return;
 }
 
@@ -78200,7 +78212,7 @@ void Unwind_180910f80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2560) = 0;
   *(undefined4 *)(lVar1 + 0x2570) = 0;
-  *(undefined8 *)(lVar1 + 0x2558) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2558) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2538) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2540) != 0) {
                     // WARNING: Subroutine does not return
@@ -78208,7 +78220,7 @@ void Unwind_180910f80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2540) = 0;
   *(undefined4 *)(lVar1 + 0x2550) = 0;
-  *(undefined8 *)(lVar1 + 0x2538) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2538) = &SystemDataStructure;
   return;
 }
 
@@ -78230,7 +78242,7 @@ void Unwind_180910fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x25d0) = 0;
   *(undefined4 *)(lVar1 + 0x25e0) = 0;
-  *(undefined8 *)(lVar1 + 0x25c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x25c8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x25a8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x25b0) != 0) {
                     // WARNING: Subroutine does not return
@@ -78238,7 +78250,7 @@ void Unwind_180910fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x25b0) = 0;
   *(undefined4 *)(lVar1 + 0x25c0) = 0;
-  *(undefined8 *)(lVar1 + 0x25a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x25a8) = &SystemDataStructure;
   return;
 }
 
@@ -78306,7 +78318,7 @@ void Unwind_180911000(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x9d0) = 0;
   *(undefined4 *)(lVar1 + 0x9e0) = 0;
-  *(undefined8 *)(lVar1 + 0x9c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x9c8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x9a8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x9b0) != 0) {
                     // WARNING: Subroutine does not return
@@ -78314,7 +78326,7 @@ void Unwind_180911000(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x9b0) = 0;
   *(undefined4 *)(lVar1 + 0x9c0) = 0;
-  *(undefined8 *)(lVar1 + 0x9a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x9a8) = &SystemDataStructure;
   return;
 }
 
@@ -78336,7 +78348,7 @@ void Unwind_180911020(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa40) = 0;
   *(undefined4 *)(lVar1 + 0xa50) = 0;
-  *(undefined8 *)(lVar1 + 0xa38) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa38) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xa18) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xa20) != 0) {
                     // WARNING: Subroutine does not return
@@ -78344,7 +78356,7 @@ void Unwind_180911020(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa20) = 0;
   *(undefined4 *)(lVar1 + 0xa30) = 0;
-  *(undefined8 *)(lVar1 + 0xa18) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa18) = &SystemDataStructure;
   return;
 }
 
@@ -78366,7 +78378,7 @@ void Unwind_180911040(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xab0) = 0;
   *(undefined4 *)(lVar1 + 0xac0) = 0;
-  *(undefined8 *)(lVar1 + 0xaa8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xaa8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xa88) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
@@ -78374,7 +78386,7 @@ void Unwind_180911040(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xa90) = 0;
   *(undefined4 *)(lVar1 + 0xaa0) = 0;
-  *(undefined8 *)(lVar1 + 0xa88) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xa88) = &SystemDataStructure;
   return;
 }
 
@@ -78396,7 +78408,7 @@ void Unwind_180911060(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb20) = 0;
   *(undefined4 *)(lVar1 + 0xb30) = 0;
-  *(undefined8 *)(lVar1 + 0xb18) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb18) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xaf8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xb00) != 0) {
                     // WARNING: Subroutine does not return
@@ -78404,7 +78416,7 @@ void Unwind_180911060(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb00) = 0;
   *(undefined4 *)(lVar1 + 0xb10) = 0;
-  *(undefined8 *)(lVar1 + 0xaf8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xaf8) = &SystemDataStructure;
   return;
 }
 
@@ -78426,7 +78438,7 @@ void Unwind_180911080(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb90) = 0;
   *(undefined4 *)(lVar1 + 0xba0) = 0;
-  *(undefined8 *)(lVar1 + 0xb88) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb88) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xb68) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xb70) != 0) {
                     // WARNING: Subroutine does not return
@@ -78434,7 +78446,7 @@ void Unwind_180911080(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xb70) = 0;
   *(undefined4 *)(lVar1 + 0xb80) = 0;
-  *(undefined8 *)(lVar1 + 0xb68) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xb68) = &SystemDataStructure;
   return;
 }
 
@@ -78456,7 +78468,7 @@ void Unwind_1809110a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc00) = 0;
   *(undefined4 *)(lVar1 + 0xc10) = 0;
-  *(undefined8 *)(lVar1 + 0xbf8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xbf8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xbd8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xbe0) != 0) {
                     // WARNING: Subroutine does not return
@@ -78464,7 +78476,7 @@ void Unwind_1809110a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xbe0) = 0;
   *(undefined4 *)(lVar1 + 0xbf0) = 0;
-  *(undefined8 *)(lVar1 + 0xbd8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xbd8) = &SystemDataStructure;
   return;
 }
 
@@ -78486,7 +78498,7 @@ void Unwind_1809110c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc70) = 0;
   *(undefined4 *)(lVar1 + 0xc80) = 0;
-  *(undefined8 *)(lVar1 + 0xc68) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xc68) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xc48) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xc50) != 0) {
                     // WARNING: Subroutine does not return
@@ -78494,7 +78506,7 @@ void Unwind_1809110c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xc50) = 0;
   *(undefined4 *)(lVar1 + 0xc60) = 0;
-  *(undefined8 *)(lVar1 + 0xc48) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xc48) = &SystemDataStructure;
   return;
 }
 
@@ -78516,7 +78528,7 @@ void Unwind_1809110e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xce0) = 0;
   *(undefined4 *)(lVar1 + 0xcf0) = 0;
-  *(undefined8 *)(lVar1 + 0xcd8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xcd8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xcb8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xcc0) != 0) {
                     // WARNING: Subroutine does not return
@@ -78524,7 +78536,7 @@ void Unwind_1809110e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xcc0) = 0;
   *(undefined4 *)(lVar1 + 0xcd0) = 0;
-  *(undefined8 *)(lVar1 + 0xcb8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xcb8) = &SystemDataStructure;
   return;
 }
 
@@ -78546,7 +78558,7 @@ void Unwind_180911100(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xd50) = 0;
   *(undefined4 *)(lVar1 + 0xd60) = 0;
-  *(undefined8 *)(lVar1 + 0xd48) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xd48) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xd28) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xd30) != 0) {
                     // WARNING: Subroutine does not return
@@ -78554,7 +78566,7 @@ void Unwind_180911100(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xd30) = 0;
   *(undefined4 *)(lVar1 + 0xd40) = 0;
-  *(undefined8 *)(lVar1 + 0xd28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xd28) = &SystemDataStructure;
   return;
 }
 
@@ -78576,7 +78588,7 @@ void Unwind_180911120(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xdc0) = 0;
   *(undefined4 *)(lVar1 + 0xdd0) = 0;
-  *(undefined8 *)(lVar1 + 0xdb8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xdb8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xd98) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xda0) != 0) {
                     // WARNING: Subroutine does not return
@@ -78584,7 +78596,7 @@ void Unwind_180911120(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xda0) = 0;
   *(undefined4 *)(lVar1 + 0xdb0) = 0;
-  *(undefined8 *)(lVar1 + 0xd98) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xd98) = &SystemDataStructure;
   return;
 }
 
@@ -78606,7 +78618,7 @@ void Unwind_180911140(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe30) = 0;
   *(undefined4 *)(lVar1 + 0xe40) = 0;
-  *(undefined8 *)(lVar1 + 0xe28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe28) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe08) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe10) != 0) {
                     // WARNING: Subroutine does not return
@@ -78614,7 +78626,7 @@ void Unwind_180911140(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe10) = 0;
   *(undefined4 *)(lVar1 + 0xe20) = 0;
-  *(undefined8 *)(lVar1 + 0xe08) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe08) = &SystemDataStructure;
   return;
 }
 
@@ -78636,7 +78648,7 @@ void Unwind_180911160(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xea0) = 0;
   *(undefined4 *)(lVar1 + 0xeb0) = 0;
-  *(undefined8 *)(lVar1 + 0xe98) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe98) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xe78) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xe80) != 0) {
                     // WARNING: Subroutine does not return
@@ -78644,7 +78656,7 @@ void Unwind_180911160(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xe80) = 0;
   *(undefined4 *)(lVar1 + 0xe90) = 0;
-  *(undefined8 *)(lVar1 + 0xe78) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xe78) = &SystemDataStructure;
   return;
 }
 
@@ -78666,7 +78678,7 @@ void Unwind_180911180(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf10) = 0;
   *(undefined4 *)(lVar1 + 0xf20) = 0;
-  *(undefined8 *)(lVar1 + 0xf08) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf08) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xee8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xef0) != 0) {
                     // WARNING: Subroutine does not return
@@ -78674,7 +78686,7 @@ void Unwind_180911180(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xef0) = 0;
   *(undefined4 *)(lVar1 + 0xf00) = 0;
-  *(undefined8 *)(lVar1 + 0xee8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xee8) = &SystemDataStructure;
   return;
 }
 
@@ -78696,7 +78708,7 @@ void Unwind_1809111a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf80) = 0;
   *(undefined4 *)(lVar1 + 0xf90) = 0;
-  *(undefined8 *)(lVar1 + 0xf78) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf78) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xf58) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xf60) != 0) {
                     // WARNING: Subroutine does not return
@@ -78704,7 +78716,7 @@ void Unwind_1809111a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xf60) = 0;
   *(undefined4 *)(lVar1 + 0xf70) = 0;
-  *(undefined8 *)(lVar1 + 0xf58) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xf58) = &SystemDataStructure;
   return;
 }
 
@@ -78726,7 +78738,7 @@ void Unwind_1809111c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xff0) = 0;
   *(undefined4 *)(lVar1 + 0x1000) = 0;
-  *(undefined8 *)(lVar1 + 0xfe8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xfe8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0xfc8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0xfd0) != 0) {
                     // WARNING: Subroutine does not return
@@ -78734,7 +78746,7 @@ void Unwind_1809111c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0xfd0) = 0;
   *(undefined4 *)(lVar1 + 0xfe0) = 0;
-  *(undefined8 *)(lVar1 + 0xfc8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0xfc8) = &SystemDataStructure;
   return;
 }
 
@@ -78756,7 +78768,7 @@ void Unwind_1809111e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1060) = 0;
   *(undefined4 *)(lVar1 + 0x1070) = 0;
-  *(undefined8 *)(lVar1 + 0x1058) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1058) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1038) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1040) != 0) {
                     // WARNING: Subroutine does not return
@@ -78764,7 +78776,7 @@ void Unwind_1809111e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1040) = 0;
   *(undefined4 *)(lVar1 + 0x1050) = 0;
-  *(undefined8 *)(lVar1 + 0x1038) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1038) = &SystemDataStructure;
   return;
 }
 
@@ -78786,7 +78798,7 @@ void Unwind_180911200(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x10d0) = 0;
   *(undefined4 *)(lVar1 + 0x10e0) = 0;
-  *(undefined8 *)(lVar1 + 0x10c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x10c8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x10a8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x10b0) != 0) {
                     // WARNING: Subroutine does not return
@@ -78794,7 +78806,7 @@ void Unwind_180911200(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x10b0) = 0;
   *(undefined4 *)(lVar1 + 0x10c0) = 0;
-  *(undefined8 *)(lVar1 + 0x10a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x10a8) = &SystemDataStructure;
   return;
 }
 
@@ -78816,7 +78828,7 @@ void Unwind_180911220(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1140) = 0;
   *(undefined4 *)(lVar1 + 0x1150) = 0;
-  *(undefined8 *)(lVar1 + 0x1138) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1138) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1118) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1120) != 0) {
                     // WARNING: Subroutine does not return
@@ -78824,7 +78836,7 @@ void Unwind_180911220(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1120) = 0;
   *(undefined4 *)(lVar1 + 0x1130) = 0;
-  *(undefined8 *)(lVar1 + 0x1118) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1118) = &SystemDataStructure;
   return;
 }
 
@@ -78846,7 +78858,7 @@ void Unwind_180911240(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x11b0) = 0;
   *(undefined4 *)(lVar1 + 0x11c0) = 0;
-  *(undefined8 *)(lVar1 + 0x11a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x11a8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1188) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1190) != 0) {
                     // WARNING: Subroutine does not return
@@ -78854,7 +78866,7 @@ void Unwind_180911240(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1190) = 0;
   *(undefined4 *)(lVar1 + 0x11a0) = 0;
-  *(undefined8 *)(lVar1 + 0x1188) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1188) = &SystemDataStructure;
   return;
 }
 
@@ -78876,7 +78888,7 @@ void Unwind_180911260(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1220) = 0;
   *(undefined4 *)(lVar1 + 0x1230) = 0;
-  *(undefined8 *)(lVar1 + 0x1218) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1218) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x11f8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1200) != 0) {
                     // WARNING: Subroutine does not return
@@ -78884,7 +78896,7 @@ void Unwind_180911260(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1200) = 0;
   *(undefined4 *)(lVar1 + 0x1210) = 0;
-  *(undefined8 *)(lVar1 + 0x11f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x11f8) = &SystemDataStructure;
   return;
 }
 
@@ -78906,7 +78918,7 @@ void Unwind_180911280(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1290) = 0;
   *(undefined4 *)(lVar1 + 0x12a0) = 0;
-  *(undefined8 *)(lVar1 + 0x1288) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1288) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1268) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1270) != 0) {
                     // WARNING: Subroutine does not return
@@ -78914,7 +78926,7 @@ void Unwind_180911280(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1270) = 0;
   *(undefined4 *)(lVar1 + 0x1280) = 0;
-  *(undefined8 *)(lVar1 + 0x1268) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1268) = &SystemDataStructure;
   return;
 }
 
@@ -78936,7 +78948,7 @@ void Unwind_1809112a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1300) = 0;
   *(undefined4 *)(lVar1 + 0x1310) = 0;
-  *(undefined8 *)(lVar1 + 0x12f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x12f8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x12d8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x12e0) != 0) {
                     // WARNING: Subroutine does not return
@@ -78944,7 +78956,7 @@ void Unwind_1809112a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x12e0) = 0;
   *(undefined4 *)(lVar1 + 0x12f0) = 0;
-  *(undefined8 *)(lVar1 + 0x12d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x12d8) = &SystemDataStructure;
   return;
 }
 
@@ -78966,7 +78978,7 @@ void Unwind_1809112c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1370) = 0;
   *(undefined4 *)(lVar1 + 0x1380) = 0;
-  *(undefined8 *)(lVar1 + 0x1368) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1368) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1348) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1350) != 0) {
                     // WARNING: Subroutine does not return
@@ -78974,7 +78986,7 @@ void Unwind_1809112c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1350) = 0;
   *(undefined4 *)(lVar1 + 0x1360) = 0;
-  *(undefined8 *)(lVar1 + 0x1348) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1348) = &SystemDataStructure;
   return;
 }
 
@@ -78996,7 +79008,7 @@ void Unwind_1809112e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x13e0) = 0;
   *(undefined4 *)(lVar1 + 0x13f0) = 0;
-  *(undefined8 *)(lVar1 + 0x13d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x13d8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x13b8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x13c0) != 0) {
                     // WARNING: Subroutine does not return
@@ -79004,7 +79016,7 @@ void Unwind_1809112e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x13c0) = 0;
   *(undefined4 *)(lVar1 + 0x13d0) = 0;
-  *(undefined8 *)(lVar1 + 0x13b8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x13b8) = &SystemDataStructure;
   return;
 }
 
@@ -79026,7 +79038,7 @@ void Unwind_180911300(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1450) = 0;
   *(undefined4 *)(lVar1 + 0x1460) = 0;
-  *(undefined8 *)(lVar1 + 0x1448) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1448) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1428) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1430) != 0) {
                     // WARNING: Subroutine does not return
@@ -79034,7 +79046,7 @@ void Unwind_180911300(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1430) = 0;
   *(undefined4 *)(lVar1 + 0x1440) = 0;
-  *(undefined8 *)(lVar1 + 0x1428) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1428) = &SystemDataStructure;
   return;
 }
 
@@ -79056,7 +79068,7 @@ void Unwind_180911320(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x14c0) = 0;
   *(undefined4 *)(lVar1 + 0x14d0) = 0;
-  *(undefined8 *)(lVar1 + 0x14b8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x14b8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1498) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x14a0) != 0) {
                     // WARNING: Subroutine does not return
@@ -79064,7 +79076,7 @@ void Unwind_180911320(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x14a0) = 0;
   *(undefined4 *)(lVar1 + 0x14b0) = 0;
-  *(undefined8 *)(lVar1 + 0x1498) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1498) = &SystemDataStructure;
   return;
 }
 
@@ -79086,7 +79098,7 @@ void Unwind_180911340(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1530) = 0;
   *(undefined4 *)(lVar1 + 0x1540) = 0;
-  *(undefined8 *)(lVar1 + 0x1528) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1528) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1508) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1510) != 0) {
                     // WARNING: Subroutine does not return
@@ -79094,7 +79106,7 @@ void Unwind_180911340(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1510) = 0;
   *(undefined4 *)(lVar1 + 0x1520) = 0;
-  *(undefined8 *)(lVar1 + 0x1508) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1508) = &SystemDataStructure;
   return;
 }
 
@@ -79116,7 +79128,7 @@ void Unwind_180911360(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x15a0) = 0;
   *(undefined4 *)(lVar1 + 0x15b0) = 0;
-  *(undefined8 *)(lVar1 + 0x1598) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1598) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1578) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1580) != 0) {
                     // WARNING: Subroutine does not return
@@ -79124,7 +79136,7 @@ void Unwind_180911360(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1580) = 0;
   *(undefined4 *)(lVar1 + 0x1590) = 0;
-  *(undefined8 *)(lVar1 + 0x1578) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1578) = &SystemDataStructure;
   return;
 }
 
@@ -79146,7 +79158,7 @@ void Unwind_180911380(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1610) = 0;
   *(undefined4 *)(lVar1 + 0x1620) = 0;
-  *(undefined8 *)(lVar1 + 0x1608) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1608) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x15e8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
@@ -79154,7 +79166,7 @@ void Unwind_180911380(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x15f0) = 0;
   *(undefined4 *)(lVar1 + 0x1600) = 0;
-  *(undefined8 *)(lVar1 + 0x15e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x15e8) = &SystemDataStructure;
   return;
 }
 
@@ -79176,7 +79188,7 @@ void Unwind_1809113a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1680) = 0;
   *(undefined4 *)(lVar1 + 0x1690) = 0;
-  *(undefined8 *)(lVar1 + 0x1678) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1678) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1658) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1660) != 0) {
                     // WARNING: Subroutine does not return
@@ -79184,7 +79196,7 @@ void Unwind_1809113a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1660) = 0;
   *(undefined4 *)(lVar1 + 0x1670) = 0;
-  *(undefined8 *)(lVar1 + 0x1658) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1658) = &SystemDataStructure;
   return;
 }
 
@@ -79206,7 +79218,7 @@ void Unwind_1809113c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x16f0) = 0;
   *(undefined4 *)(lVar1 + 0x1700) = 0;
-  *(undefined8 *)(lVar1 + 0x16e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x16e8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x16c8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x16d0) != 0) {
                     // WARNING: Subroutine does not return
@@ -79214,7 +79226,7 @@ void Unwind_1809113c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x16d0) = 0;
   *(undefined4 *)(lVar1 + 0x16e0) = 0;
-  *(undefined8 *)(lVar1 + 0x16c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x16c8) = &SystemDataStructure;
   return;
 }
 
@@ -79236,7 +79248,7 @@ void Unwind_1809113e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1760) = 0;
   *(undefined4 *)(lVar1 + 6000) = 0;
-  *(undefined8 *)(lVar1 + 0x1758) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1758) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1738) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1740) != 0) {
                     // WARNING: Subroutine does not return
@@ -79244,7 +79256,7 @@ void Unwind_1809113e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1740) = 0;
   *(undefined4 *)(lVar1 + 0x1750) = 0;
-  *(undefined8 *)(lVar1 + 0x1738) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1738) = &SystemDataStructure;
   return;
 }
 
@@ -79266,7 +79278,7 @@ void Unwind_180911400(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x17d0) = 0;
   *(undefined4 *)(lVar1 + 0x17e0) = 0;
-  *(undefined8 *)(lVar1 + 0x17c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x17c8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x17a8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x17b0) != 0) {
                     // WARNING: Subroutine does not return
@@ -79274,7 +79286,7 @@ void Unwind_180911400(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x17b0) = 0;
   *(undefined4 *)(lVar1 + 0x17c0) = 0;
-  *(undefined8 *)(lVar1 + 0x17a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x17a8) = &SystemDataStructure;
   return;
 }
 
@@ -79296,7 +79308,7 @@ void Unwind_180911420(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1840) = 0;
   *(undefined4 *)(lVar1 + 0x1850) = 0;
-  *(undefined8 *)(lVar1 + 0x1838) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1838) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1818) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1820) != 0) {
                     // WARNING: Subroutine does not return
@@ -79304,7 +79316,7 @@ void Unwind_180911420(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1820) = 0;
   *(undefined4 *)(lVar1 + 0x1830) = 0;
-  *(undefined8 *)(lVar1 + 0x1818) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1818) = &SystemDataStructure;
   return;
 }
 
@@ -79326,7 +79338,7 @@ void Unwind_180911440(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x18b0) = 0;
   *(undefined4 *)(lVar1 + 0x18c0) = 0;
-  *(undefined8 *)(lVar1 + 0x18a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x18a8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1888) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1890) != 0) {
                     // WARNING: Subroutine does not return
@@ -79334,7 +79346,7 @@ void Unwind_180911440(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1890) = 0;
   *(undefined4 *)(lVar1 + 0x18a0) = 0;
-  *(undefined8 *)(lVar1 + 0x1888) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1888) = &SystemDataStructure;
   return;
 }
 
@@ -79356,7 +79368,7 @@ void Unwind_180911460(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1920) = 0;
   *(undefined4 *)(lVar1 + 0x1930) = 0;
-  *(undefined8 *)(lVar1 + 0x1918) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1918) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x18f8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1900) != 0) {
                     // WARNING: Subroutine does not return
@@ -79364,7 +79376,7 @@ void Unwind_180911460(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1900) = 0;
   *(undefined4 *)(lVar1 + 0x1910) = 0;
-  *(undefined8 *)(lVar1 + 0x18f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x18f8) = &SystemDataStructure;
   return;
 }
 
@@ -79386,7 +79398,7 @@ void Unwind_180911480(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1990) = 0;
   *(undefined4 *)(lVar1 + 0x19a0) = 0;
-  *(undefined8 *)(lVar1 + 0x1988) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1988) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1968) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1970) != 0) {
                     // WARNING: Subroutine does not return
@@ -79394,7 +79406,7 @@ void Unwind_180911480(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1970) = 0;
   *(undefined4 *)(lVar1 + 0x1980) = 0;
-  *(undefined8 *)(lVar1 + 0x1968) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1968) = &SystemDataStructure;
   return;
 }
 
@@ -79416,7 +79428,7 @@ void Unwind_1809114a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1a00) = 0;
   *(undefined4 *)(lVar1 + 0x1a10) = 0;
-  *(undefined8 *)(lVar1 + 0x19f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x19f8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x19d8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x19e0) != 0) {
                     // WARNING: Subroutine does not return
@@ -79424,7 +79436,7 @@ void Unwind_1809114a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x19e0) = 0;
   *(undefined4 *)(lVar1 + 0x19f0) = 0;
-  *(undefined8 *)(lVar1 + 0x19d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x19d8) = &SystemDataStructure;
   return;
 }
 
@@ -79446,7 +79458,7 @@ void Unwind_1809114c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1a70) = 0;
   *(undefined4 *)(lVar1 + 0x1a80) = 0;
-  *(undefined8 *)(lVar1 + 0x1a68) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1a68) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1a48) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1a50) != 0) {
                     // WARNING: Subroutine does not return
@@ -79454,7 +79466,7 @@ void Unwind_1809114c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1a50) = 0;
   *(undefined4 *)(lVar1 + 0x1a60) = 0;
-  *(undefined8 *)(lVar1 + 0x1a48) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1a48) = &SystemDataStructure;
   return;
 }
 
@@ -79476,7 +79488,7 @@ void Unwind_1809114e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1ae0) = 0;
   *(undefined4 *)(lVar1 + 0x1af0) = 0;
-  *(undefined8 *)(lVar1 + 0x1ad8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1ad8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1ab8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1ac0) != 0) {
                     // WARNING: Subroutine does not return
@@ -79484,7 +79496,7 @@ void Unwind_1809114e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1ac0) = 0;
   *(undefined4 *)(lVar1 + 0x1ad0) = 0;
-  *(undefined8 *)(lVar1 + 0x1ab8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1ab8) = &SystemDataStructure;
   return;
 }
 
@@ -79506,7 +79518,7 @@ void Unwind_180911500(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1b50) = 0;
   *(undefined4 *)(lVar1 + 0x1b60) = 0;
-  *(undefined8 *)(lVar1 + 0x1b48) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1b48) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1b28) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1b30) != 0) {
                     // WARNING: Subroutine does not return
@@ -79514,7 +79526,7 @@ void Unwind_180911500(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1b30) = 0;
   *(undefined4 *)(lVar1 + 0x1b40) = 0;
-  *(undefined8 *)(lVar1 + 0x1b28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1b28) = &SystemDataStructure;
   return;
 }
 
@@ -79536,7 +79548,7 @@ void Unwind_180911520(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1bc0) = 0;
   *(undefined4 *)(lVar1 + 0x1bd0) = 0;
-  *(undefined8 *)(lVar1 + 0x1bb8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1bb8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1b98) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1ba0) != 0) {
                     // WARNING: Subroutine does not return
@@ -79544,7 +79556,7 @@ void Unwind_180911520(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1ba0) = 0;
   *(undefined4 *)(lVar1 + 0x1bb0) = 0;
-  *(undefined8 *)(lVar1 + 0x1b98) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1b98) = &SystemDataStructure;
   return;
 }
 
@@ -79566,7 +79578,7 @@ void Unwind_180911540(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1c30) = 0;
   *(undefined4 *)(lVar1 + 0x1c40) = 0;
-  *(undefined8 *)(lVar1 + 0x1c28) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1c28) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1c08) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1c10) != 0) {
                     // WARNING: Subroutine does not return
@@ -79574,7 +79586,7 @@ void Unwind_180911540(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1c10) = 0;
   *(undefined4 *)(lVar1 + 0x1c20) = 0;
-  *(undefined8 *)(lVar1 + 0x1c08) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1c08) = &SystemDataStructure;
   return;
 }
 
@@ -79596,7 +79608,7 @@ void Unwind_180911560(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1ca0) = 0;
   *(undefined4 *)(lVar1 + 0x1cb0) = 0;
-  *(undefined8 *)(lVar1 + 0x1c98) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1c98) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1c78) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1c80) != 0) {
                     // WARNING: Subroutine does not return
@@ -79604,7 +79616,7 @@ void Unwind_180911560(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1c80) = 0;
   *(undefined4 *)(lVar1 + 0x1c90) = 0;
-  *(undefined8 *)(lVar1 + 0x1c78) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1c78) = &SystemDataStructure;
   return;
 }
 
@@ -79626,7 +79638,7 @@ void Unwind_180911580(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1d10) = 0;
   *(undefined4 *)(lVar1 + 0x1d20) = 0;
-  *(undefined8 *)(lVar1 + 0x1d08) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1d08) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1ce8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1cf0) != 0) {
                     // WARNING: Subroutine does not return
@@ -79634,7 +79646,7 @@ void Unwind_180911580(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1cf0) = 0;
   *(undefined4 *)(lVar1 + 0x1d00) = 0;
-  *(undefined8 *)(lVar1 + 0x1ce8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1ce8) = &SystemDataStructure;
   return;
 }
 
@@ -79656,7 +79668,7 @@ void Unwind_1809115a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1d80) = 0;
   *(undefined4 *)(lVar1 + 0x1d90) = 0;
-  *(undefined8 *)(lVar1 + 0x1d78) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1d78) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1d58) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1d60) != 0) {
                     // WARNING: Subroutine does not return
@@ -79664,7 +79676,7 @@ void Unwind_1809115a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1d60) = 0;
   *(undefined4 *)(lVar1 + 0x1d70) = 0;
-  *(undefined8 *)(lVar1 + 0x1d58) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1d58) = &SystemDataStructure;
   return;
 }
 
@@ -79686,7 +79698,7 @@ void Unwind_1809115c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1df0) = 0;
   *(undefined4 *)(lVar1 + 0x1e00) = 0;
-  *(undefined8 *)(lVar1 + 0x1de8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1de8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1dc8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1dd0) != 0) {
                     // WARNING: Subroutine does not return
@@ -79694,7 +79706,7 @@ void Unwind_1809115c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1dd0) = 0;
   *(undefined4 *)(lVar1 + 0x1de0) = 0;
-  *(undefined8 *)(lVar1 + 0x1dc8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1dc8) = &SystemDataStructure;
   return;
 }
 
@@ -79716,7 +79728,7 @@ void Unwind_1809115e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1e60) = 0;
   *(undefined4 *)(lVar1 + 0x1e70) = 0;
-  *(undefined8 *)(lVar1 + 0x1e58) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1e58) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1e38) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1e40) != 0) {
                     // WARNING: Subroutine does not return
@@ -79724,7 +79736,7 @@ void Unwind_1809115e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1e40) = 0;
   *(undefined4 *)(lVar1 + 0x1e50) = 0;
-  *(undefined8 *)(lVar1 + 0x1e38) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1e38) = &SystemDataStructure;
   return;
 }
 
@@ -79746,7 +79758,7 @@ void Unwind_180911600(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1ed0) = 0;
   *(undefined4 *)(lVar1 + 0x1ee0) = 0;
-  *(undefined8 *)(lVar1 + 0x1ec8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1ec8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1ea8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1eb0) != 0) {
                     // WARNING: Subroutine does not return
@@ -79754,7 +79766,7 @@ void Unwind_180911600(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1eb0) = 0;
   *(undefined4 *)(lVar1 + 0x1ec0) = 0;
-  *(undefined8 *)(lVar1 + 0x1ea8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1ea8) = &SystemDataStructure;
   return;
 }
 
@@ -79776,7 +79788,7 @@ void Unwind_180911620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 8000) = 0;
   *(undefined4 *)(lVar1 + 0x1f50) = 0;
-  *(undefined8 *)(lVar1 + 0x1f38) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1f38) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1f18) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1f20) != 0) {
                     // WARNING: Subroutine does not return
@@ -79784,7 +79796,7 @@ void Unwind_180911620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1f20) = 0;
   *(undefined4 *)(lVar1 + 0x1f30) = 0;
-  *(undefined8 *)(lVar1 + 0x1f18) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1f18) = &SystemDataStructure;
   return;
 }
 
@@ -79806,7 +79818,7 @@ void Unwind_180911640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1fb0) = 0;
   *(undefined4 *)(lVar1 + 0x1fc0) = 0;
-  *(undefined8 *)(lVar1 + 0x1fa8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1fa8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1f88) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x1f90) != 0) {
                     // WARNING: Subroutine does not return
@@ -79814,7 +79826,7 @@ void Unwind_180911640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x1f90) = 0;
   *(undefined4 *)(lVar1 + 0x1fa0) = 0;
-  *(undefined8 *)(lVar1 + 0x1f88) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1f88) = &SystemDataStructure;
   return;
 }
 
@@ -79836,7 +79848,7 @@ void Unwind_180911660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2020) = 0;
   *(undefined4 *)(lVar1 + 0x2030) = 0;
-  *(undefined8 *)(lVar1 + 0x2018) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2018) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1ff8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2000) != 0) {
                     // WARNING: Subroutine does not return
@@ -79844,7 +79856,7 @@ void Unwind_180911660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2000) = 0;
   *(undefined4 *)(lVar1 + 0x2010) = 0;
-  *(undefined8 *)(lVar1 + 0x1ff8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1ff8) = &SystemDataStructure;
   return;
 }
 
@@ -79866,7 +79878,7 @@ void Unwind_180911680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2090) = 0;
   *(undefined4 *)(lVar1 + 0x20a0) = 0;
-  *(undefined8 *)(lVar1 + 0x2088) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2088) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2068) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2070) != 0) {
                     // WARNING: Subroutine does not return
@@ -79874,7 +79886,7 @@ void Unwind_180911680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2070) = 0;
   *(undefined4 *)(lVar1 + 0x2080) = 0;
-  *(undefined8 *)(lVar1 + 0x2068) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2068) = &SystemDataStructure;
   return;
 }
 
@@ -79896,7 +79908,7 @@ void Unwind_1809116a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2100) = 0;
   *(undefined4 *)(lVar1 + 0x2110) = 0;
-  *(undefined8 *)(lVar1 + 0x20f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20f8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x20d8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x20e0) != 0) {
                     // WARNING: Subroutine does not return
@@ -79904,7 +79916,7 @@ void Unwind_1809116a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x20e0) = 0;
   *(undefined4 *)(lVar1 + 0x20f0) = 0;
-  *(undefined8 *)(lVar1 + 0x20d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x20d8) = &SystemDataStructure;
   return;
 }
 
@@ -79926,7 +79938,7 @@ void Unwind_1809116c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2170) = 0;
   *(undefined4 *)(lVar1 + 0x2180) = 0;
-  *(undefined8 *)(lVar1 + 0x2168) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2168) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2148) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2150) != 0) {
                     // WARNING: Subroutine does not return
@@ -79934,7 +79946,7 @@ void Unwind_1809116c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2150) = 0;
   *(undefined4 *)(lVar1 + 0x2160) = 0;
-  *(undefined8 *)(lVar1 + 0x2148) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2148) = &SystemDataStructure;
   return;
 }
 
@@ -79956,7 +79968,7 @@ void Unwind_1809116e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x21e0) = 0;
   *(undefined4 *)(lVar1 + 0x21f0) = 0;
-  *(undefined8 *)(lVar1 + 0x21d8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x21d8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x21b8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x21c0) != 0) {
                     // WARNING: Subroutine does not return
@@ -79964,7 +79976,7 @@ void Unwind_1809116e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x21c0) = 0;
   *(undefined4 *)(lVar1 + 0x21d0) = 0;
-  *(undefined8 *)(lVar1 + 0x21b8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x21b8) = &SystemDataStructure;
   return;
 }
 
@@ -79986,7 +79998,7 @@ void Unwind_180911700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2250) = 0;
   *(undefined4 *)(lVar1 + 0x2260) = 0;
-  *(undefined8 *)(lVar1 + 0x2248) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2248) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2228) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2230) != 0) {
                     // WARNING: Subroutine does not return
@@ -79994,7 +80006,7 @@ void Unwind_180911700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2230) = 0;
   *(undefined4 *)(lVar1 + 0x2240) = 0;
-  *(undefined8 *)(lVar1 + 0x2228) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2228) = &SystemDataStructure;
   return;
 }
 
@@ -80016,7 +80028,7 @@ void Unwind_180911720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x22c0) = 0;
   *(undefined4 *)(lVar1 + 0x22d0) = 0;
-  *(undefined8 *)(lVar1 + 0x22b8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x22b8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2298) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x22a0) != 0) {
                     // WARNING: Subroutine does not return
@@ -80024,7 +80036,7 @@ void Unwind_180911720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x22a0) = 0;
   *(undefined4 *)(lVar1 + 0x22b0) = 0;
-  *(undefined8 *)(lVar1 + 0x2298) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2298) = &SystemDataStructure;
   return;
 }
 
@@ -80046,7 +80058,7 @@ void Unwind_180911740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2330) = 0;
   *(undefined4 *)(lVar1 + 0x2340) = 0;
-  *(undefined8 *)(lVar1 + 9000) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 9000) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2308) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2310) != 0) {
                     // WARNING: Subroutine does not return
@@ -80054,7 +80066,7 @@ void Unwind_180911740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2310) = 0;
   *(undefined4 *)(lVar1 + 0x2320) = 0;
-  *(undefined8 *)(lVar1 + 0x2308) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2308) = &SystemDataStructure;
   return;
 }
 
@@ -80076,7 +80088,7 @@ void Unwind_180911760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x23a0) = 0;
   *(undefined4 *)(lVar1 + 0x23b0) = 0;
-  *(undefined8 *)(lVar1 + 0x2398) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2398) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2378) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2380) != 0) {
                     // WARNING: Subroutine does not return
@@ -80084,7 +80096,7 @@ void Unwind_180911760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2380) = 0;
   *(undefined4 *)(lVar1 + 0x2390) = 0;
-  *(undefined8 *)(lVar1 + 0x2378) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2378) = &SystemDataStructure;
   return;
 }
 
@@ -80106,7 +80118,7 @@ void Unwind_180911780(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2410) = 0;
   *(undefined4 *)(lVar1 + 0x2420) = 0;
-  *(undefined8 *)(lVar1 + 0x2408) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2408) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x23e8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x23f0) != 0) {
                     // WARNING: Subroutine does not return
@@ -80114,7 +80126,7 @@ void Unwind_180911780(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x23f0) = 0;
   *(undefined4 *)(lVar1 + 0x2400) = 0;
-  *(undefined8 *)(lVar1 + 0x23e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x23e8) = &SystemDataStructure;
   return;
 }
 
@@ -80136,7 +80148,7 @@ void Unwind_1809117a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2480) = 0;
   *(undefined4 *)(lVar1 + 0x2490) = 0;
-  *(undefined8 *)(lVar1 + 0x2478) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2478) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2458) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2460) != 0) {
                     // WARNING: Subroutine does not return
@@ -80144,7 +80156,7 @@ void Unwind_1809117a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2460) = 0;
   *(undefined4 *)(lVar1 + 0x2470) = 0;
-  *(undefined8 *)(lVar1 + 0x2458) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2458) = &SystemDataStructure;
   return;
 }
 
@@ -80166,7 +80178,7 @@ void Unwind_1809117c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x24f0) = 0;
   *(undefined4 *)(lVar1 + 0x2500) = 0;
-  *(undefined8 *)(lVar1 + 0x24e8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x24e8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x24c8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x24d0) != 0) {
                     // WARNING: Subroutine does not return
@@ -80174,7 +80186,7 @@ void Unwind_1809117c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x24d0) = 0;
   *(undefined4 *)(lVar1 + 0x24e0) = 0;
-  *(undefined8 *)(lVar1 + 0x24c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x24c8) = &SystemDataStructure;
   return;
 }
 
@@ -80196,7 +80208,7 @@ void Unwind_1809117e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2560) = 0;
   *(undefined4 *)(lVar1 + 0x2570) = 0;
-  *(undefined8 *)(lVar1 + 0x2558) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2558) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x2538) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x2540) != 0) {
                     // WARNING: Subroutine does not return
@@ -80204,7 +80216,7 @@ void Unwind_1809117e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x2540) = 0;
   *(undefined4 *)(lVar1 + 0x2550) = 0;
-  *(undefined8 *)(lVar1 + 0x2538) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x2538) = &SystemDataStructure;
   return;
 }
 
@@ -80226,7 +80238,7 @@ void Unwind_180911800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x25d0) = 0;
   *(undefined4 *)(lVar1 + 0x25e0) = 0;
-  *(undefined8 *)(lVar1 + 0x25c8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x25c8) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x25a8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x25b0) != 0) {
                     // WARNING: Subroutine does not return
@@ -80234,7 +80246,7 @@ void Unwind_180911800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   *(undefined8 *)(lVar1 + 0x25b0) = 0;
   *(undefined4 *)(lVar1 + 0x25c0) = 0;
-  *(undefined8 *)(lVar1 + 0x25a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x25a8) = &SystemDataStructure;
   return;
 }
 
@@ -80451,7 +80463,7 @@ void Unwind_1809118c0(undefined8 param_1,longlong param_2)
 void Unwind_1809118d0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined **)(param_2 + 0x160) = &UNK_18098bcb0;
+  *(undefined **)(param_2 + 0x160) = &SystemDataStructure;
   return;
 }
 
@@ -83532,7 +83544,7 @@ void Unwind_180912910(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x220) = 0;
   *(undefined4 *)(lVar1 + 0x230) = 0;
-  *(undefined8 *)(lVar1 + 0x218) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x218) = &SystemDataStructure;
   *(undefined8 *)(lVar1 + 0x1f8) = &UNK_180a3c3e0;
   if (*(longlong *)(lVar1 + 0x200) != 0) {
                     // WARNING: Subroutine does not return
@@ -83540,7 +83552,7 @@ void Unwind_180912910(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x200) = 0;
   *(undefined4 *)(lVar1 + 0x210) = 0;
-  *(undefined8 *)(lVar1 + 0x1f8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1f8) = &SystemDataStructure;
   return;
 }
 
@@ -83595,7 +83607,7 @@ void Unwind_180912950(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x390) = 0;
   *(undefined4 *)(lVar1 + 0x3a0) = 0;
-  *(undefined8 *)(lVar1 + 0x388) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x388) = &SystemDataStructure;
   return;
 }
 
@@ -83614,7 +83626,7 @@ void Unwind_180912970(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar1 + 0x3b0) = 0;
   *(undefined4 *)(lVar1 + 0x3c0) = 0;
-  *(undefined8 *)(lVar1 + 0x3a8) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x3a8) = &SystemDataStructure;
   return;
 }
 
@@ -83799,7 +83811,7 @@ void InitializeResourceTableManager(void)
   }
   _DAT_180bf52c8 = 0;
   _DAT_180bf52d8 = 0;
-  _DAT_180bf52c0 = &UNK_18098bcb0;
+  _DAT_180bf52c0 = &SystemDataStructure;
   if (_DAT_180bf5288 == 0) {
     FUN_180048980();
     lVar1 = _DAT_180bf5250;
@@ -83824,7 +83836,7 @@ void InitializeResourceTableManager(void)
 void InitializeGlobalModuleA(void)
 
 {
-  _DAT_180bf5320 = &UNK_18098bcb0;
+  _DAT_180bf5320 = &SystemDataStructure;
   return;
 }
 
@@ -83837,7 +83849,7 @@ void InitializeGlobalModuleA(void)
 void InitializeGlobalModuleB(void)
 
 {
-  _DAT_180bf5770 = &UNK_18098bcb0;
+  _DAT_180bf5770 = &SystemDataStructure;
   return;
 }
 
@@ -83855,7 +83867,7 @@ void InitializeGlobalModuleB(void)
 void InitializeSystemDataStructureA(void)
 
 {
-  _DAT_180bf5208 = &UNK_18098bcb0;
+  _DAT_180bf5208 = &SystemDataStructure;
   return;
 }
 
@@ -83873,7 +83885,7 @@ void InitializeSystemDataStructureA(void)
 void InitializeSystemDataStructureB(void)
 
 {
-  _DAT_180bf5bc0 = &UNK_18098bcb0;
+  _DAT_180bf5bc0 = &SystemDataStructure;
   return;
 }
 
@@ -83892,7 +83904,7 @@ void InitializeSystemDataStructureB(void)
 void InitializeSystemDataStructureC(void)
 
 {
-  _DAT_180bf5c30 = &UNK_18098bcb0;
+  _DAT_180bf5c30 = &SystemDataStructure;
   return;
 }
 
@@ -84031,7 +84043,7 @@ void InitializeSystemDataStructureI(void)
 void InitializeSystemDataStructureI(void)
 
 {
-  _DAT_180d49160 = &UNK_18098bcb0;
+  _DAT_180d49160 = &SystemDataStructure;
   return;
 }
 
@@ -84050,7 +84062,7 @@ void InitializeSystemDataStructureJ(void)
 void InitializeSystemDataStructureJ(void)
 
 {
-  _DAT_180bf64d0 = &UNK_18098bcb0;
+  _DAT_180bf64d0 = &SystemDataStructure;
   return;
 }
 
@@ -84069,7 +84081,7 @@ void InitializeSystemDataStructureK(void)
 void InitializeSystemDataStructureK(void)
 
 {
-  _DAT_180bf6530 = &UNK_18098bcb0;
+  _DAT_180bf6530 = &SystemDataStructure;
   return;
 }
 
@@ -84088,7 +84100,7 @@ void InitializeSystemDataStructureL(void)
 void InitializeSystemDataStructureL(void)
 
 {
-  _DAT_180bf6590 = &UNK_18098bcb0;
+  _DAT_180bf6590 = &SystemDataStructure;
   return;
 }
 
@@ -84106,7 +84118,7 @@ void InitializeSystemDataStructureL(void)
 void InitializeSystemDataStructureM(void)
 
 {
-  _DAT_180bf65c0 = &UNK_18098bcb0;
+  _DAT_180bf65c0 = &SystemDataStructure;
   return;
 }
 
@@ -84125,7 +84137,7 @@ void InitializeSystemDataStructureM(void)
 void InitializeSystemDataStructureN(void)
 
 {
-  _DAT_180bf65f0 = &UNK_18098bcb0;
+  _DAT_180bf65f0 = &SystemDataStructure;
   return;
 }
 
@@ -84144,7 +84156,7 @@ void InitializeSystemDataStructureN(void)
 void InitializeSystemDataStructureO(void)
 
 {
-  _DAT_180bf6620 = &UNK_18098bcb0;
+  _DAT_180bf6620 = &SystemDataStructure;
   return;
 }
 
@@ -84163,7 +84175,7 @@ void InitializeSystemDataStructureO(void)
 void InitializeSystemDataStructureP(void)
 
 {
-  _DAT_180bf6650 = &UNK_18098bcb0;
+  _DAT_180bf6650 = &SystemDataStructure;
   return;
 }
 
@@ -84182,7 +84194,7 @@ void InitializeSystemDataStructureP(void)
 void InitializeSystemDataStructureQ(void)
 
 {
-  _DAT_180bf6680 = &UNK_18098bcb0;
+  _DAT_180bf6680 = &SystemDataStructure;
   return;
 }
 
@@ -84201,7 +84213,7 @@ void InitializeSystemDataStructureQ(void)
 void InitializeSystemDataStructureR(void)
 
 {
-  _DAT_180bf66b0 = &UNK_18098bcb0;
+  _DAT_180bf66b0 = &SystemDataStructure;
   return;
 }
 
@@ -84255,7 +84267,7 @@ void InitializeSystemDataStructureS(void)
 void InitializeSystemDataStructureS(void)
 
 {
-  _DAT_180bf52e8 = &UNK_18098bcb0;
+  _DAT_180bf52e8 = &SystemDataStructure;
   return;
 }
 
@@ -84275,7 +84287,7 @@ void InitializeSystemDataStructureT(void)
 void InitializeSystemDataStructureT(void)
 
 {
-  _DAT_180bf5738 = &UNK_18098bcb0;
+  _DAT_180bf5738 = &SystemDataStructure;
   return;
 }
 
@@ -84316,7 +84328,7 @@ void InitializeSystemDataStructureU(void)
   }
   _DAT_180d49220 = 0;
   _DAT_180d49230 = 0;
-  _DAT_180d49218 = &UNK_18098bcb0;
+  _DAT_180d49218 = &SystemDataStructure;
   return;
 }
 
@@ -84344,7 +84356,7 @@ void InitializeSystemDataStructureV(void)
   }
   _DAT_180d49248 = 0;
   _DAT_180d49258 = 0;
-  _DAT_180d49240 = &UNK_18098bcb0;
+  _DAT_180d49240 = &SystemDataStructure;
   return;
 }
 
@@ -84420,7 +84432,7 @@ void InitializeSystemDataStructureX(void)
   }
   _DAT_180d49640 = 0;
   _DAT_180d49650 = 0;
-  _DAT_180d49638 = &UNK_18098bcb0;
+  _DAT_180d49638 = &SystemDataStructure;
   return;
 }
 
@@ -84440,7 +84452,7 @@ void InitializeSystemDataStructureY(void)
 void InitializeSystemDataStructureY(void)
 
 {
-  _DAT_180bf7250 = &UNK_18098bcb0;
+  _DAT_180bf7250 = &SystemDataStructure;
   return;
 }
 
@@ -84449,11 +84461,16 @@ void InitializeSystemDataStructureY(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941bb0(void)
-void FUN_180941bb0(void)
+ /**
+ * @brief 初始化系统数据指针
+ * 
+ * 该函数负责初始化系统数据指针，设置系统数据结构的引用
+ * 确保系统能够正确访问核心数据结构
+ */
+void InitializeSystemDataPointer(void)
 
 {
-  _DAT_180bf72b0 = &UNK_18098bcb0;
+  SystemDataPointer = &SystemDataStructure;
   return;
 }
 
@@ -84473,7 +84490,7 @@ void InitializeSystemDataStructureAA(void)
 void InitializeSystemDataStructureAA(void)
 
 {
-  _DAT_180bf7310 = &UNK_18098bcb0;
+  _DAT_180bf7310 = &SystemDataStructure;
   return;
 }
 
@@ -84512,7 +84529,7 @@ void InitializeSystemDataStructureAC(void)
 void InitializeSystemDataStructureAC(void)
 
 {
-  _DAT_180bf90b0 = &UNK_18098bcb0;
+  _DAT_180bf90b0 = &SystemDataStructure;
   return;
 }
 
@@ -84530,7 +84547,7 @@ void InitializeSystemDataStructureAD(void)
 void InitializeSystemDataStructureAD(void)
 
 {
-  _DAT_180bf5b88 = &UNK_18098bcb0;
+  _DAT_180bf5b88 = &SystemDataStructure;
   return;
 }
 
@@ -84560,7 +84577,7 @@ void InitializeSystemDataStructureAE(void)
   }
   _DAT_180d48dc0 = 0;
   _DAT_180d48dd0 = 0;
-  _DAT_180d48db8 = &UNK_18098bcb0;
+  _DAT_180d48db8 = &SystemDataStructure;
   return;
 }
 
@@ -84598,7 +84615,7 @@ void InitializeSystemDataStructureAG(void)
 void InitializeSystemDataStructureAG(void)
 
 {
-  _DAT_180d49730 = &UNK_18098bcb0;
+  _DAT_180d49730 = &SystemDataStructure;
   return;
 }
 
@@ -84632,7 +84649,7 @@ void InitializeSystemDataStructureAH(void)
     FUN_18064e900();
   }
   FUN_180320b20(0x180d498a0);
-  _DAT_180d49830 = &UNK_18098bcb0;
+  _DAT_180d49830 = &SystemDataStructure;
   return;
 }
 
@@ -84696,7 +84713,7 @@ void InitializeSystemDataStructureAJ(void)
 void InitializeSystemDataStructureAJ(void)
 
 {
-  _DAT_180bf91b0 = &UNK_18098bcb0;
+  _DAT_180bf91b0 = &SystemDataStructure;
   return;
 }
 
@@ -84714,7 +84731,7 @@ void InitializeSystemDataStructureAK(void)
 void InitializeSystemDataStructureAK(void)
 
 {
-  _DAT_180bf9210 = &UNK_18098bcb0;
+  _DAT_180bf9210 = &SystemDataStructure;
   return;
 }
 
@@ -84732,7 +84749,7 @@ void InitializeSystemDataStructureAL(void)
 void InitializeSystemDataStructureAL(void)
 
 {
-  _DAT_180bf9270 = &UNK_18098bcb0;
+  _DAT_180bf9270 = &SystemDataStructure;
   return;
 }
 
@@ -84750,7 +84767,7 @@ void InitializeSystemDataStructureAM(void)
 void InitializeSystemDataStructureAM(void)
 
 {
-  _DAT_180bf92d0 = &UNK_18098bcb0;
+  _DAT_180bf92d0 = &SystemDataStructure;
   return;
 }
 
@@ -84768,7 +84785,7 @@ void InitializeSystemDataStructureAN(void)
 void InitializeSystemDataStructureAN(void)
 
 {
-  _DAT_180bf9330 = &UNK_18098bcb0;
+  _DAT_180bf9330 = &SystemDataStructure;
   return;
 }
 
@@ -84777,11 +84794,16 @@ void InitializeSystemDataStructureAN(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941fa0(void)
-void FUN_180941fa0(void)
+ /**
+ * 初始化系统数据结构AO
+ * 将全局变量 _DAT_180bf9390 设置为指向 UNK_18098bcb0
+ * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ */
+void InitializeSystemDataStructureAO(void)
+void InitializeSystemDataStructureAO(void)
 
 {
-  _DAT_180bf9390 = &UNK_18098bcb0;
+  _DAT_180bf9390 = &SystemDataStructure;
   return;
 }
 
@@ -84790,11 +84812,16 @@ void FUN_180941fa0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941fc0(void)
-void FUN_180941fc0(void)
+ /**
+ * 初始化系统数据结构AP
+ * 将全局变量 _DAT_180bf93f0 设置为指向 UNK_18098bcb0
+ * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ */
+void InitializeSystemDataStructureAP(void)
+void InitializeSystemDataStructureAP(void)
 
 {
-  _DAT_180bf93f0 = &UNK_18098bcb0;
+  _DAT_180bf93f0 = &SystemDataStructure;
   return;
 }
 
@@ -84807,7 +84834,7 @@ void FUN_180941fc0(void)
 void FUN_180941fe0(void)
 
 {
-  _DAT_180bf9450 = &UNK_18098bcb0;
+  _DAT_180bf9450 = &SystemDataStructure;
   return;
 }
 
@@ -84826,7 +84853,7 @@ void InitializeGarbageCollectorTable(void)
 void InitializeGarbageCollectorTable(void)
 
 {
-  GarbageCollectorTable0 = &UNK_18098bcb0;
+  GarbageCollectorTable0 = &SystemDataStructure;
   return;
 }
 
@@ -84845,7 +84872,7 @@ void InitializeMemoryStatisticsTable(void)
 void InitializeMemoryStatisticsTable(void)
 
 {
-  MemoryStatisticsTable0 = &UNK_18098bcb0;
+  MemoryStatisticsTable0 = &SystemDataStructure;
   return;
 }
 
@@ -84858,7 +84885,7 @@ void InitializeMemoryStatisticsTable(void)
 void FUN_180942040(void)
 
 {
-  _DAT_180bf9570 = &UNK_18098bcb0;
+  _DAT_180bf9570 = &SystemDataStructure;
   return;
 }
 
@@ -84871,7 +84898,7 @@ void FUN_180942040(void)
 void FUN_180942060(void)
 
 {
-  _DAT_180bf95d0 = &UNK_18098bcb0;
+  _DAT_180bf95d0 = &SystemDataStructure;
   return;
 }
 
@@ -84884,7 +84911,7 @@ void FUN_180942060(void)
 void FUN_180942080(void)
 
 {
-  _DAT_180bf9630 = &UNK_18098bcb0;
+  _DAT_180bf9630 = &SystemDataStructure;
   return;
 }
 
@@ -84897,7 +84924,7 @@ void FUN_180942080(void)
 void FUN_1809420a0(void)
 
 {
-  _DAT_180bf9690 = &UNK_18098bcb0;
+  _DAT_180bf9690 = &SystemDataStructure;
   return;
 }
 
@@ -84910,7 +84937,7 @@ void FUN_1809420a0(void)
 void FUN_1809420c0(void)
 
 {
-  _DAT_180bf96f0 = &UNK_18098bcb0;
+  _DAT_180bf96f0 = &SystemDataStructure;
   return;
 }
 
@@ -84923,7 +84950,7 @@ void FUN_1809420c0(void)
 void FUN_1809420e0(void)
 
 {
-  _DAT_180bf9750 = &UNK_18098bcb0;
+  _DAT_180bf9750 = &SystemDataStructure;
   return;
 }
 
@@ -84936,7 +84963,7 @@ void FUN_1809420e0(void)
 void FUN_180942100(void)
 
 {
-  _DAT_180bf97b0 = &UNK_18098bcb0;
+  _DAT_180bf97b0 = &SystemDataStructure;
   return;
 }
 
@@ -84949,7 +84976,7 @@ void FUN_180942100(void)
 void FUN_180942120(void)
 
 {
-  _DAT_180bf9810 = &UNK_18098bcb0;
+  _DAT_180bf9810 = &SystemDataStructure;
   return;
 }
 
@@ -84962,7 +84989,7 @@ void FUN_180942120(void)
 void FUN_180942140(void)
 
 {
-  _DAT_180bf9870 = &UNK_18098bcb0;
+  _DAT_180bf9870 = &SystemDataStructure;
   return;
 }
 
@@ -84975,7 +85002,7 @@ void FUN_180942140(void)
 void FUN_180942160(void)
 
 {
-  _DAT_180bf98d0 = &UNK_18098bcb0;
+  _DAT_180bf98d0 = &SystemDataStructure;
   return;
 }
 
@@ -84988,7 +85015,7 @@ void FUN_180942160(void)
 void FUN_180942180(void)
 
 {
-  _DAT_180bf9930 = &UNK_18098bcb0;
+  _DAT_180bf9930 = &SystemDataStructure;
   return;
 }
 
@@ -85001,7 +85028,7 @@ void FUN_180942180(void)
 void FUN_1809421a0(void)
 
 {
-  _DAT_180bf9990 = &UNK_18098bcb0;
+  _DAT_180bf9990 = &SystemDataStructure;
   return;
 }
 
@@ -85014,7 +85041,7 @@ void FUN_1809421a0(void)
 void FUN_1809421c0(void)
 
 {
-  MemoryMappingTable = &UNK_18098bcb0;
+  MemoryMappingTable = &SystemDataStructure;
   return;
 }
 
@@ -85027,7 +85054,7 @@ void FUN_1809421c0(void)
 void FUN_1809421e0(void)
 
 {
-  _DAT_180bf9a50 = &UNK_18098bcb0;
+  _DAT_180bf9a50 = &SystemDataStructure;
   return;
 }
 
@@ -85040,7 +85067,7 @@ void FUN_1809421e0(void)
 void FUN_180942200(void)
 
 {
-  _DAT_180bf9ab0 = &UNK_18098bcb0;
+  _DAT_180bf9ab0 = &SystemDataStructure;
   return;
 }
 
@@ -85053,7 +85080,7 @@ void FUN_180942200(void)
 void FUN_180942220(void)
 
 {
-  _DAT_180bf9b10 = &UNK_18098bcb0;
+  _DAT_180bf9b10 = &SystemDataStructure;
   return;
 }
 
@@ -85066,7 +85093,7 @@ void FUN_180942220(void)
 void FUN_180942240(void)
 
 {
-  _DAT_180bf9b70 = &UNK_18098bcb0;
+  _DAT_180bf9b70 = &SystemDataStructure;
   return;
 }
 
@@ -85079,7 +85106,7 @@ void FUN_180942240(void)
 void FUN_180942260(void)
 
 {
-  _DAT_180bf9bd0 = &UNK_18098bcb0;
+  _DAT_180bf9bd0 = &SystemDataStructure;
   return;
 }
 
@@ -85092,7 +85119,7 @@ void FUN_180942260(void)
 void FUN_180942280(void)
 
 {
-  _DAT_180bf9c30 = &UNK_18098bcb0;
+  _DAT_180bf9c30 = &SystemDataStructure;
   return;
 }
 
@@ -85105,7 +85132,7 @@ void FUN_180942280(void)
 void FUN_1809422a0(void)
 
 {
-  _DAT_180bf9c90 = &UNK_18098bcb0;
+  _DAT_180bf9c90 = &SystemDataStructure;
   return;
 }
 
@@ -85118,7 +85145,7 @@ void FUN_1809422a0(void)
 void FUN_1809422c0(void)
 
 {
-  _DAT_180bf9cf0 = &UNK_18098bcb0;
+  _DAT_180bf9cf0 = &SystemDataStructure;
   return;
 }
 
@@ -85131,7 +85158,7 @@ void FUN_1809422c0(void)
 void FUN_1809422e0(void)
 
 {
-  _DAT_180bf9d50 = &UNK_18098bcb0;
+  _DAT_180bf9d50 = &SystemDataStructure;
   return;
 }
 
@@ -85144,7 +85171,7 @@ void FUN_1809422e0(void)
 void FUN_180942300(void)
 
 {
-  _DAT_180bf9db0 = &UNK_18098bcb0;
+  _DAT_180bf9db0 = &SystemDataStructure;
   return;
 }
 
@@ -85157,7 +85184,7 @@ void FUN_180942300(void)
 void FUN_180942320(void)
 
 {
-  _DAT_180bf9e10 = &UNK_18098bcb0;
+  _DAT_180bf9e10 = &SystemDataStructure;
   return;
 }
 
@@ -85170,7 +85197,7 @@ void FUN_180942320(void)
 void FUN_180942340(void)
 
 {
-  _DAT_180bf9e70 = &UNK_18098bcb0;
+  _DAT_180bf9e70 = &SystemDataStructure;
   return;
 }
 
@@ -85183,7 +85210,7 @@ void FUN_180942340(void)
 void FUN_180942360(void)
 
 {
-  _DAT_180bf9ed0 = &UNK_18098bcb0;
+  _DAT_180bf9ed0 = &SystemDataStructure;
   return;
 }
 
@@ -85196,7 +85223,7 @@ void FUN_180942360(void)
 void FUN_180942380(void)
 
 {
-  _DAT_180bf9f30 = &UNK_18098bcb0;
+  _DAT_180bf9f30 = &SystemDataStructure;
   return;
 }
 
@@ -85209,7 +85236,7 @@ void FUN_180942380(void)
 void FUN_1809423a0(void)
 
 {
-  _DAT_180bf9f90 = &UNK_18098bcb0;
+  _DAT_180bf9f90 = &SystemDataStructure;
   return;
 }
 
@@ -85222,7 +85249,7 @@ void FUN_1809423a0(void)
 void FUN_1809423c0(void)
 
 {
-  _DAT_180bf9ff0 = &UNK_18098bcb0;
+  _DAT_180bf9ff0 = &SystemDataStructure;
   return;
 }
 
@@ -85235,7 +85262,7 @@ void FUN_1809423c0(void)
 void FUN_1809423e0(void)
 
 {
-  _DAT_180bfa050 = &UNK_18098bcb0;
+  _DAT_180bfa050 = &SystemDataStructure;
   return;
 }
 
@@ -85248,7 +85275,7 @@ void FUN_1809423e0(void)
 void FUN_180942400(void)
 
 {
-  _DAT_180bfa0b0 = &UNK_18098bcb0;
+  _DAT_180bfa0b0 = &SystemDataStructure;
   return;
 }
 
@@ -85261,7 +85288,7 @@ void FUN_180942400(void)
 void FUN_180942420(void)
 
 {
-  _DAT_180bfa110 = &UNK_18098bcb0;
+  _DAT_180bfa110 = &SystemDataStructure;
   return;
 }
 
@@ -85274,7 +85301,7 @@ void FUN_180942420(void)
 void FUN_180942440(void)
 
 {
-  _DAT_180bfa170 = &UNK_18098bcb0;
+  _DAT_180bfa170 = &SystemDataStructure;
   return;
 }
 
@@ -85287,7 +85314,7 @@ void FUN_180942440(void)
 void FUN_180942460(void)
 
 {
-  _DAT_180bfa1d0 = &UNK_18098bcb0;
+  _DAT_180bfa1d0 = &SystemDataStructure;
   return;
 }
 
@@ -85300,7 +85327,7 @@ void FUN_180942460(void)
 void FUN_180942480(void)
 
 {
-  _DAT_180bfa230 = &UNK_18098bcb0;
+  _DAT_180bfa230 = &SystemDataStructure;
   return;
 }
 
@@ -85313,7 +85340,7 @@ void FUN_180942480(void)
 void FUN_1809424a0(void)
 
 {
-  _DAT_180bfa290 = &UNK_18098bcb0;
+  _DAT_180bfa290 = &SystemDataStructure;
   return;
 }
 
@@ -85548,7 +85575,7 @@ void FUN_180942750(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
     }
     pvalidationResult[1] = 0;
     *(undefined4 *)(pvalidationResult + 3) = 0;
-    *pvalidationResult = &UNK_18098bcb0;
+    *pvalidationResult = &SystemDataStructure;
   }
   if (_DAT_180bfaea0 != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
@@ -85566,7 +85593,7 @@ void FUN_180942750(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 void FUN_180942790(void)
 
 {
-  _DAT_180c92050 = &UNK_18098bcb0;
+  _DAT_180c92050 = &SystemDataStructure;
                     // WARNING: Could not recover jumptable at 0x0001809427c7. Too many branches
                     // WARNING: Treating indirect jump as call
   _Mtx_destroy_in_situ();
@@ -85582,7 +85609,7 @@ void FUN_180942790(void)
 void FUN_1809427d0(void)
 
 {
-  _DAT_180bfaef0 = &UNK_18098bcb0;
+  _DAT_180bfaef0 = &SystemDataStructure;
   return;
 }
 
@@ -85595,7 +85622,7 @@ void FUN_1809427d0(void)
 void FUN_1809427f0(void)
 
 {
-  _DAT_180bfb310 = &UNK_18098bcb0;
+  _DAT_180bfb310 = &SystemDataStructure;
   return;
 }
 
@@ -85608,7 +85635,7 @@ void FUN_1809427f0(void)
 void FUN_180942810(void)
 
 {
-  _DAT_180bfb730 = &UNK_18098bcb0;
+  _DAT_180bfb730 = &SystemDataStructure;
   return;
 }
 
@@ -85621,7 +85648,7 @@ void FUN_180942810(void)
 void FUN_180942830(void)
 
 {
-  _DAT_180d499d0 = &UNK_18098bcb0;
+  _DAT_180d499d0 = &SystemDataStructure;
   return;
 }
 
@@ -85634,7 +85661,7 @@ void FUN_180942830(void)
 void FUN_180942850(void)
 
 {
-  _DAT_180d49bf0 = &UNK_18098bcb0;
+  _DAT_180d49bf0 = &SystemDataStructure;
   return;
 }
 
@@ -86008,7 +86035,7 @@ void InitializeGlobalDataPointer(void)
 void InitializeGlobalDataPointer(void)
 
 {
-  _DAT_180bf6048 = &UNK_18098bcb0;
+  _DAT_180bf6048 = &SystemDataStructure;
   return;
 }
 
@@ -86027,7 +86054,7 @@ void InitializeSecondaryDataPointer(void)
 void InitializeSecondaryDataPointer(void)
 
 {
-  _DAT_180bf6498 = &UNK_18098bcb0;
+  _DAT_180bf6498 = &SystemDataStructure;
   return;
 }
 
@@ -86225,7 +86252,7 @@ void FUN_180942f50(void)
 void FUN_180942fa0(void)
 
 {
-  _DAT_180bf64f8 = &UNK_18098bcb0;
+  _DAT_180bf64f8 = &SystemDataStructure;
   return;
 }
 
@@ -86238,7 +86265,7 @@ void FUN_180942fa0(void)
 void FUN_180942fc0(void)
 
 {
-  _DAT_180bf6558 = &UNK_18098bcb0;
+  _DAT_180bf6558 = &SystemDataStructure;
   return;
 }
 
@@ -86314,7 +86341,7 @@ void FUN_180943070(void)
 void ExecuteResourceCleanup(void)
 
 {
-  _DAT_180d49f80 = &UNK_18098bcb0;
+  _DAT_180d49f80 = &SystemDataStructure;
   return;
 }
 
@@ -86333,7 +86360,7 @@ void ExecuteResourceCleanup(void)
 void OptimizeResourceUsage(void)
 
 {
-  _DAT_180d49fe0 = &UNK_18098bcb0;
+  _DAT_180d49fe0 = &SystemDataStructure;
   return;
 }
 
