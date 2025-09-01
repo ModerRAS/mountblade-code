@@ -45862,23 +45862,23 @@ void ProcessResourceValidationAndCleanup(uint8_t ObjectContextParameter,int64_t 
   uint8_t *ResourceIteratorPointer;
   uint64_t ContextValidationResult;
   
-  pValidationResult = *(uint64_t **)(ValidationContextParameter + 0x48);
-  pResourceValidationResult = (uint8_t *)pValidationResult[1];
-  for (resourcePointer5 = (uint8_t *)*pValidationResult; resourcePointer5 != pResourceValidationResult; resourcePointer5 = resourcePointer5 + 0xe) {
-    *resourcePointer5 = &SystemDataStructure;
+  ValidationResultPointer = *(uint64_t **)(ValidationContextParameter + 0x48);
+  ResourceValidationResultPointer = (uint8_t *)ValidationResultPointer[1];
+  for (ResourceIteratorPointer = (uint8_t *)*ValidationResultPointer; ResourceIteratorPointer != ResourceValidationResultPointer; ResourceIteratorPointer = ResourceIteratorPointer + 0xe) {
+    *ResourceIteratorPointer = &SystemDataStructure;
   }
-  pResourceValidationResult = (uint8_t *)*pValidationResult;
-  if (pResourceValidationResult != (uint8_t *)0x0) {
-    ContextValidationResult = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
+  ResourceValidationResultPointer = (uint8_t *)*ValidationResultPointer;
+  if (ResourceValidationResultPointer != (uint8_t *)0x0) {
+    ContextValidationResult = (uint64_t)ResourceValidationResultPointer & 0xffffffffffc00000;
     if (ContextValidationResult != 0) {
-      LoopOffset = ContextValidationResult + 0x80 + ((int64_t)pResourceValidationResult - ContextValidationResult >> 0x10) * 0x50;
+      LoopOffset = ContextValidationResult + 0x80 + ((int64_t)ResourceValidationResultPointer - ContextValidationResult >> 0x10) * 0x50;
       LoopOffset = LoopOffset - (uint64_t)*(uint *)(LoopOffset + 4);
       if ((*(void ***)(ContextValidationResult + 0x70) == &ExceptionList) && (*(char *)(LoopOffset + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(LoopOffset + 0x20);
-        *(uint8_t **)(LoopOffset + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(LoopOffset + 0x18);
-        *pResourceIndex = *pResourceIndex + -1;
-        if (*pResourceIndex == 0) {
+        *ResourceValidationResultPointer = *(uint8_t *)(LoopOffset + 0x20);
+        *(uint8_t **)(LoopOffset + 0x20) = ResourceValidationResultPointer;
+        ResourceIndexPointer = (int *)(LoopOffset + 0x18);
+        *ResourceIndexPointer = *ResourceIndexPointer + -1;
+        if (*ResourceIndexPointer == 0) {
           SystemCleanupHandler();
           return;
         }
