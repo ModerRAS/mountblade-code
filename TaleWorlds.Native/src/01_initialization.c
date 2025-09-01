@@ -13577,8 +13577,8 @@ int InitializeSystemModuleC(void)
   uint8_t systemConfigBuffer [32];
   
   systemConfigBuffer[0] = 0;
-  FUN_180477890(&DAT_180c92480,systemConfigBuffer);
-  systemStatus = FUN_1808fc7d0(FUN_180942930);
+  ConfigureSystemModule(&SystemConfigDataTableB,systemConfigBuffer);
+  systemStatus = ValidateSystemConfiguration(SystemConfigValidatorTertiary);
   return (systemStatus != 0) - 1;
 }
 
@@ -13589,7 +13589,7 @@ int InitializeSystemModuleD(void)
 {
   long long systemStatus;
   
-  systemStatus = FUN_1808fc7d0(FUN_180942a20);
+  systemStatus = ValidateSystemConfiguration(SystemConfigValidatorQuaternary);
   return (systemStatus != 0) - 1;
 }
 

@@ -7606,7 +7606,7 @@ LAB_180847fc4:
   if ((networkStatus2 == 0) &&
      (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(networkHandleArray[0] + 0x98),apuStack_128,0x18), networkStatus1 == 0))
   {
-    *apuStack_128[0] = &UNK_180983c78;
+    *apuStack_128[0] = &NetworkPacketDataTemplate;
     *(NetworkStatus *)(apuStack_128[0] + 1) = 0x18;
     *(int *)(apuStack_128[0] + 2) = (int)connectionContext;
     ProcessNetworkConnectionCleanup(*(NetworkHandle *)(networkHandleArray[0] + 0x98));
@@ -7689,7 +7689,7 @@ LAB_18084820e:
   }
   if ((networkConnectionStatus == 0) &&
      (networkHandleStatus = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(networkConnectionId + 0x98),&networkPacketPointer,0x218), networkHandleStatus == 0)) {
-    *networkPacketPointer = &UNK_180982508;
+    *networkPacketPointer = &NetworkPacketFooterTemplate;
     *(NetworkStatus *)(networkPacketPointer + 2) = 0;
     *(NetworkStatus *)(networkPacketPointer + 1) = 0x218;
     *(NetworkStatus *)((longlong)networkPacketPointer + 0x14) = networkDataSize;
@@ -7746,7 +7746,7 @@ LAB_180848354:
   if ((networkStatus2 == 0) &&
      (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(networkHandleArray[0] + 0x98),apuStack_128,0x18), networkStatus1 == 0))
   {
-    *apuStack_128[0] = &UNK_180982cc0;
+    *apuStack_128[0] = &NetworkPacketChecksumTemplate;
     *(NetworkStatus *)(apuStack_128[0] + 1) = 0x18;
     *(int *)(apuStack_128[0] + 2) = (int)connectionContext;
     ProcessNetworkConnectionCleanup(*(NetworkHandle *)(networkHandleArray[0] + 0x98));
@@ -8691,14 +8691,14 @@ void ProcessNetworkConnectionContext(longlong *connectionContext,uint packetData
 NetworkSecurityContextValidation:
     networkStatus1 = ValidateSecurityContext(dataSize,securityContextBuffer);
     if ((networkStatus1 == 0) && (networkStatus1 = ValidateSecurityContext(securityContextBuffer,&securityContextHandle), networkStatus1 == 0)) {
-      networkStatus1 = ValidateNetworkSecurityContext(securityContextHandle,&UNK_180986258,(longlong)connectionContext + 0x14,connectionContext + 3,
+      networkStatus1 = ValidateNetworkSecurityContext(securityContextHandle,&NetworkSecurityContextTemplate,(longlong)connectionContext + 0x14,connectionContext + 3,
                             (longlong)connectionContext + 0x1c);
       if (((networkStatus1 == 3) ||
           (((networkStatus1 = ReadNetworkData(&securityContextHandle,(longlong)connectionContext + 0x14), networkStatus1 == 0 &&
             (networkStatus1 = ReadNetworkData(&securityContextHandle,connectionContext + 3), networkStatus1 == 0)) &&
            (networkStatus1 = ReadNetworkData(&securityContextHandle,(longlong)connectionContext + 0x1c), networkStatus1 == 0)))) &&
          (networkStatus1 = ValidateSecurityContext(securityContextBuffer,&securityContextHandle), networkStatus1 == 0)) {
-        networkStatus1 = ValidateNetworkSecurityContext(securityContextHandle,&UNK_180986258,connectionContext + 4,(longlong)connectionContext + 0x24,
+        networkStatus1 = ValidateNetworkSecurityContext(securityContextHandle,&NetworkSecurityContextTemplate,connectionContext + 4,(longlong)connectionContext + 0x24,
                               connectionContext + 5);
         if (((networkStatus1 == 3) ||
             (((networkStatus1 = ReadNetworkData(&securityContextHandle,connectionContext + 4), networkStatus1 == 0 &&
@@ -9301,7 +9301,7 @@ LAB_180849294:
   if ((networkStatus2 == 0) &&
      (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(networkHandleArray[0] + 0x98),apuStack_128,0x18), networkStatus1 == 0))
   {
-    *apuStack_128[0] = &UNK_180983cf8;
+    *apuStack_128[0] = &NetworkEncryptionKeyTemplate;
     *(NetworkStatus *)(apuStack_128[0] + 1) = 0x18;
     *(int *)(apuStack_128[0] + 2) = (int)connectionContext;
     ProcessNetworkConnectionCleanup(*(NetworkHandle *)(networkHandleArray[0] + 0x98));
@@ -9364,7 +9364,7 @@ void NetworkConnectionStatusValidator(ulonglong connectionContext)
     puStack_148 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(networkStatus1,0xb,connectionContext,&UNK_1809570e8);
+    LogNetworkConnectionError(networkStatus1,0xb,connectionContext,&NetworkSecurityCertificateTemplate);
   }
 LAB_180849462:
                     // WARNING: Subroutine does not return
@@ -9417,7 +9417,7 @@ void NetworkConnectionPacketProcessor(NetworkHandle connectionContext,NetworkHan
     ProcessNetworkAddressValidation(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(0x1f,0xd,connectionContext,&UNK_1809838a8);
+    LogNetworkConnectionError(0x1f,0xd,connectionContext,&NetworkConnectionStatusTemplate);
   }
   uStack_148 = 0;
   iVar5 = NetworkConnectionIdInitialize(connectionContext,&lStack_140);
@@ -9432,7 +9432,7 @@ LAB_180849553:
   }
   if ((iVar6 == 0) &&
      (iVar5 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(lStack_140 + 0x98),apuStack_138,0x48), iVar5 == 0)) {
-    *apuStack_138[0] = &UNK_180983840;
+    *apuStack_138[0] = &NetworkConnectionTimeoutTemplate;
     *(NetworkStatus *)(apuStack_138[0] + 1) = 0x48;
     *(int *)(apuStack_138[0] + 2) = (int)connectionContext;
     quaternaryNetworkFlag = packetData[1];
@@ -90651,13 +90651,13 @@ void ConfigureNetworkData(NetworkHandle connectionContext,longlong packetData)
   
   networkStatus1 = ValidateSecurityContext(connectionContext,auStackX_20);
   if ((networkStatus1 == 0) && (networkStatus1 = ValidateSecurityContext(auStackX_20,&uStackX_18), networkStatus1 == 0)) {
-    networkStatus1 = ValidateNetworkSecurityContext(uStackX_18,&UNK_180986258,packetData,packetData + 4,packetData + 8);
+    networkStatus1 = ValidateNetworkSecurityContext(uStackX_18,&NetworkSecurityContextTemplate,packetData,packetData + 4,packetData + 8);
     if (((networkStatus1 == 3) ||
         (((networkStatus1 = ReadNetworkData(&uStackX_18,packetData), networkStatus1 == 0 &&
           (networkStatus1 = ReadNetworkData(&uStackX_18,packetData + 4), networkStatus1 == 0)) &&
          (networkStatus1 = ReadNetworkData(&uStackX_18,packetData + 8), networkStatus1 == 0)))) &&
        (networkStatus1 = ValidateSecurityContext(auStackX_20,&uStackX_18), networkStatus1 == 0)) {
-      networkStatus1 = ValidateNetworkSecurityContext(uStackX_18,&UNK_180986258,packetData + 0xc,packetData + 0x10,packetData + 0x14);
+      networkStatus1 = ValidateNetworkSecurityContext(uStackX_18,&NetworkSecurityContextTemplate,packetData + 0xc,packetData + 0x10,packetData + 0x14);
       if (((networkStatus1 == 3) ||
           (((networkStatus1 = ReadNetworkData(&uStackX_18,packetData + 0xc), networkStatus1 == 0 &&
             (networkStatus1 = ReadNetworkData(&uStackX_18,packetData + 0x10), networkStatus1 == 0)) &&
@@ -90683,13 +90683,13 @@ void FUN_18088f06b(void)
   
   networkStatus1 = ValidateSecurityContext(&stack0x00000068,&stack0x00000060);
   if (networkStatus1 == 0) {
-    networkStatus1 = ValidateNetworkSecurityContext(in_stack_00000060,&UNK_180986258);
+    networkStatus1 = ValidateNetworkSecurityContext(in_stack_00000060,&NetworkSecurityContextTemplate);
     if (((networkStatus1 == 3) ||
         (((networkStatus1 = ReadNetworkData(&stack0x00000060), networkStatus1 == 0 &&
           (networkStatus1 = ReadNetworkData(&stack0x00000060,unaff_RBX + 4), networkStatus1 == 0)) &&
          (networkStatus1 = ReadNetworkData(&stack0x00000060,unaff_RBX + 8), networkStatus1 == 0)))) &&
        (networkStatus1 = ValidateSecurityContext(&stack0x00000068,&stack0x00000060), networkStatus1 == 0)) {
-      networkStatus1 = ValidateNetworkSecurityContext(in_stack_00000060,&UNK_180986258,unaff_RBX + 0xc,unaff_RBX + 0x10,
+      networkStatus1 = ValidateNetworkSecurityContext(in_stack_00000060,&NetworkSecurityContextTemplate,unaff_RBX + 0xc,unaff_RBX + 0x10,
                             unaff_RBX + 0x14);
       if (((networkStatus1 == 3) ||
           (((networkStatus1 = ReadNetworkData(&stack0x00000060,unaff_RBX + 0xc), networkStatus1 == 0 &&
@@ -90718,7 +90718,7 @@ void FUN_18088f0f7(void)
   if (networkStatus1 != 0) {
     return;
   }
-  networkStatus1 = ValidateNetworkSecurityContext(in_stack_00000060,&UNK_180986258,unaff_RBX + 0xc,unaff_RBX + 0x10,
+  networkStatus1 = ValidateNetworkSecurityContext(in_stack_00000060,&NetworkSecurityContextTemplate,unaff_RBX + 0xc,unaff_RBX + 0x10,
                         unaff_RBX + 0x14);
   if (networkStatus1 != 3) {
     networkStatus1 = ReadNetworkData(&stack0x00000060,unaff_RBX + 0xc);
@@ -90920,7 +90920,7 @@ NetworkHandle ValidateNetworkPacketTriple(NetworkHandle connectionContext,longlo
   
   secondaryNetworkFlag = ValidateSecurityContext(connectionContext,auStackX_18);
   if ((int)secondaryNetworkFlag == 0) {
-    networkStatus1 = ValidateNetworkSecurityContext(auStackX_18[0],&UNK_180986258,packetData,packetData + 4,packetData + 8);
+    networkStatus1 = ValidateNetworkSecurityContext(auStackX_18[0],&NetworkSecurityContextTemplate,packetData,packetData + 4,packetData + 8);
     if ((networkStatus1 == 3) ||
        (((secondaryNetworkFlag = ReadNetworkData(auStackX_18,packetData), (int)secondaryNetworkFlag == 0 &&
          (secondaryNetworkFlag = ReadNetworkData(auStackX_18,packetData + 4), (int)secondaryNetworkFlag == 0)) &&
@@ -90951,7 +90951,7 @@ NetworkHandle ValidateNetworkConnectionSecurity(NetworkHandle connectionContext)
   NetworkHandle secondaryNetworkFlag;
   longlong unaff_RBX;
   
-  networkStatus1 = ValidateNetworkSecurityContext(connectionContext,&UNK_180986258);
+  networkStatus1 = ValidateNetworkSecurityContext(connectionContext,&NetworkSecurityContextTemplate);
   if (networkStatus1 != 3) {
     secondaryNetworkFlag = ReadNetworkData(&stack0x00000050);
     if ((int)secondaryNetworkFlag != 0) {
@@ -99468,7 +99468,7 @@ ulonglong FUN_180896140(longlong connectionContext)
               uStack_d0 = 0;
               uStack_c0 = 1;
               FUN_180893420(&puStack_d8,*(NetworkHandle *)(connectionContext + 0x58));
-              puStack_f0 = &UNK_180983cf8;
+              puStack_f0 = &NetworkEncryptionKeyTemplate;
               uStack_e0 = *(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_e8 = 0;
               FUN_1808920e0(&puStack_f0,*(NetworkHandle *)(connectionContext + 0x58));
@@ -99925,7 +99925,7 @@ void FUN_180896c60(NetworkHandle connectionContext,longlong packetData,uint data
   if (dataSize != 0) {
     networkStatus3 = *(int *)(packetData + 0x220);
     if (networkStatus3 == 0) {
-      puStack_278 = &UNK_180982508;
+      puStack_278 = &NetworkPacketFooterTemplate;
       uStack_270 = 0;
       uStack_264 = 0;
       uStack_268 = dataSize;
@@ -99972,7 +99972,7 @@ LAB_180896ce3:
     if (0 < networkStatus3) {
       do {
         iStack_2f0 = 0;
-        puStack_2f8 = &UNK_180982cc0;
+        puStack_2f8 = &NetworkPacketChecksumTemplate;
         uStack_2e8 = CONCAT44(uStack_2e8._4_4_,dataSize);
         networkStatus4 = FUN_180897520(connectionContext,&puStack_2f8);
         if (networkStatus4 != 0) goto FUN_1808974f4;
@@ -100725,7 +100725,7 @@ void FUN_1808975e0(longlong connectionContext,longlong packetData)
               uStack_12c = *(NetworkStatus *)(lVar2 + 0x4c);
               uStack_128 = *(NetworkStatus *)(lVar2 + 0x50);
               uStack_124 = *(NetworkStatus *)(lVar2 + 0x54);
-              puStack_158 = &UNK_180983840;
+              puStack_158 = &NetworkConnectionTimeoutTemplate;
               uStack_150 = 0;
               uStack_120 = *(NetworkStatus *)(lVar2 + 0x58);
               uStack_11c = *(NetworkStatus *)(lVar2 + 0x5c);
@@ -100823,7 +100823,7 @@ void FUN_1808975e0(longlong connectionContext,longlong packetData)
               }
               if ((*(uint *)(packetData + 0x2d8) >> 3 & 1) != 0) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &UNK_180983cf8;
+                puStack_1c0 = &NetworkEncryptionKeyTemplate;
                 uStack_1b0 = uStack_1c8;
                 FUN_180897520(connectionContext,&puStack_1c0);
               }
@@ -100969,7 +100969,7 @@ void FUN_180897644(void)
             quinaryNetworkFlag = *(NetworkStatus *)(unaff_R15 + 0x4c);
             uVar6 = *(NetworkStatus *)(unaff_R15 + 0x50);
             uVar7 = *(NetworkStatus *)(unaff_R15 + 0x54);
-            unaff_RBP[-0xe] = &UNK_180983840;
+            unaff_RBP[-0xe] = &NetworkConnectionTimeoutTemplate;
             unaff_RBP[-0xb] = primaryNetworkFlag7;
             unaff_RBP[-10] = primaryNetworkFlag6;
             *(float *)(unaff_RBP + -0xd) = unaff_R13D;
@@ -101085,7 +101085,7 @@ void FUN_180897644(void)
               if (networkStatus13 != 0) goto FUN_180897b0e;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
-              in_stack_00000028 = &UNK_180983cf8;
+              in_stack_00000028 = &NetworkEncryptionKeyTemplate;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               FUN_180897520(secondaryNetworkFlag4,&stack0x00000028);
@@ -101215,7 +101215,7 @@ void FUN_1808976b0(void)
         quinaryNetworkFlag = *(NetworkStatus *)(unaff_R15 + 0x4c);
         uVar6 = *(NetworkStatus *)(unaff_R15 + 0x50);
         uVar7 = *(NetworkStatus *)(unaff_R15 + 0x54);
-        unaff_RBP[-0xe] = &UNK_180983840;
+        unaff_RBP[-0xe] = &NetworkConnectionTimeoutTemplate;
         unaff_RBP[-0xb] = primaryNetworkFlag7;
         unaff_RBP[-10] = primaryNetworkFlag6;
         *(float *)(unaff_RBP + -0xd) = unaff_R13D;
@@ -101331,7 +101331,7 @@ void FUN_1808976b0(void)
           if (networkStatus13 != 0) goto FUN_180897afe;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
-          in_stack_00000028 = &UNK_180983cf8;
+          in_stack_00000028 = &NetworkEncryptionKeyTemplate;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           FUN_180897520(secondaryNetworkFlag3,&stack0x00000028);
@@ -101465,7 +101465,7 @@ void FUN_180897859(float connectionContext)
       if (networkStatus2 != 0) goto LAB_180897af6;
     }
     if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
-      in_stack_00000028 = &UNK_180983cf8;
+      in_stack_00000028 = &NetworkEncryptionKeyTemplate;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       FUN_180897520(uVar6,&stack0x00000028);
