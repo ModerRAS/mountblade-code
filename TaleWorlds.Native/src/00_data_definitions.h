@@ -14,7 +14,7 @@ void* GlobalUnknownData;
  */
 int InitializeRenderingSystem(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   GlobalRenderingSystemEnabled = 1;
   GlobalRenderingSystemFlags = 0;
   GlobalRenderingSystemMaxValue = 0x7fffffffffffffff;
@@ -30,7 +30,7 @@ int InitializeRenderingSystem(void)
  */
 int InitializePhysicsEngine(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   GlobalPhysicsEngineData = &GlobalUnknownData;
   GlobalPhysicsEngineConfig = &GlobalPhysicsEngineState;
   GlobalPhysicsEngineFlags = 0;
@@ -46,7 +46,7 @@ int InitializePhysicsEngine(void)
  */
 int InitializeAudioSystem(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   GlobalAudioSystemData = &GlobalUnknownData;
   GlobalAudioSystemConfig = &GlobalAudioSystemState;
   GlobalAudioSystemFlags = 0;
@@ -62,7 +62,7 @@ int InitializeAudioSystem(void)
  */
 int InitializeInputSystem(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   GlobalInputSystemData = &GlobalUnknownInputData;
   GlobalInputSystemConfig = &GlobalInputSystemState;
   GlobalInputSystemFlags = 0;
@@ -78,7 +78,7 @@ int InitializeInputSystem(void)
  */
 int InitializeNetworkSystem(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   GlobalNetworkSystemData = &GlobalUnknownNetworkData;
   GlobalNetworkSystemConfig = &GlobalNetworkSystemState;
   GlobalNetworkSystemFlags = 0;
@@ -94,7 +94,7 @@ int InitializeNetworkSystem(void)
  */
 int InitializeFileSystem(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   GlobalFileSystemData = &GlobalUnknownData;
   GlobalFileSystemConfig = &GlobalFileSystemState;
   GlobalFileSystemFlags = 0;
@@ -110,7 +110,7 @@ int InitializeFileSystem(void)
  */
 int InitializeMemoryManager(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   GlobalMemoryManagerData = &GlobalUnknownData;
   GlobalMemoryManagerConfig = &GlobalMemoryManagerState;
   GlobalMemoryManagerFlags = 0;
@@ -166,8 +166,8 @@ int InitializePhysicsEngineSync(uint64_t threadId, uint64_t syncPtr, uint64_t mu
  */
 int InitializeConditionMutexC(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
 {
-  longlong result;
-  undefined8 ConditionMutexFlags;
+  int64_t result;
+  uint64_t ConditionMutexFlags;
   ConditionMutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c911e8,2,mutexType,mutexAttr,ConditionMutexFlags);
@@ -181,8 +181,8 @@ int InitializeConditionMutexC(undefined8 threadId,undefined8 syncPtr,undefined8 
  */
 int InitializeConditionMutexD(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
 {
-  longlong result;
-  undefined8 ConditionMutexDFlags;
+  int64_t result;
+  uint64_t ConditionMutexDFlags;
   ConditionMutexDFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91288,2,mutexType,mutexAttr,ConditionMutexDFlags);
@@ -197,8 +197,8 @@ int InitializeConditionMutexD(undefined8 threadId,undefined8 syncPtr,undefined8 
  */
 int InitializeStringProcessorA(void)
 {
-  longlong result;
-  undefined8 StringProcessorAFlags;
+  int64_t result;
+  uint64_t StringProcessorAFlags;
   StringProcessorA_Base = &UnknownData1809fdc18;
   StringProcessorA_BufferPtr = &StringProcessorA_Buffer;
   StringProcessorA_Buffer = 0;
@@ -213,7 +213,7 @@ int InitializeStringProcessorA(void)
  */
 int InitializeStringProcessorB(void)
 {
-  longlong result;
+  int64_t result;
   undefined8 stringProcessorBFlags;
   StringProcessorB_Base = &UnknownData1809fdc18;
   StringProcessorB_BufferPtr = &StringProcessorB_Buffer;
@@ -229,7 +229,7 @@ int InitializeStringProcessorB(void)
  */
 int InitializeStringProcessorC(void)
 {
-  longlong result;
+  int64_t result;
   undefined8 stringProcessorCFlags;
   g_stringProcessorC_Base = &unknownData_1809fdc18;
   g_stringProcessorC_BufferPtr = &g_stringProcessorC_Buffer;
@@ -245,7 +245,7 @@ int InitializeStringProcessorC(void)
  */
 int InitializeStringProcessorD(void)
 {
-  longlong result;
+  int64_t result;
   undefined8 stringProcessorDFlags;
   g_stringProcessorD_Base = &unknownData_1809fdc18;
   g_stringProcessorD_BufferPtr = &g_stringProcessorD_Buffer;
@@ -261,7 +261,7 @@ int InitializeStringProcessorD(void)
  */
 int InitializeStringProcessorE(void)
 {
-  longlong result;
+  int64_t result;
   undefined8 stringProcessorEFlags;
   g_stringProcessorE_Base = &unknownData_1809fdc18;
   g_stringProcessorE_BufferPtr = &g_stringProcessorE_Buffer;
@@ -277,7 +277,7 @@ int InitializeStringProcessorE(void)
  */
 int InitializeStringProcessorF(void)
 {
-  longlong result;
+  int64_t result;
   undefined8 stringFlags;
   g_stringProcessorF_Base = &unknownData_1809fdc18;
   globalData_180bf6658 = &globalData_180bf6668;
@@ -295,7 +295,7 @@ int InitializeStringProcessorF(void)
  */
 int InitializeModuleConfigurationA(void)
 {
-  longlong initializationResult;
+  int64_t initializationResult;
   undefined8 configurationFlags;
   _DAT_180bf6680 = &UNK_1809fdc18;
   _DAT_180bf6688 = &DAT_180bf6698;
@@ -313,7 +313,7 @@ int InitializeModuleConfigurationA(void)
  */
 int InitializeStringProcessorG(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorGFlags;
   _DAT_180bf66b0 = &UNK_1809fdc18;
   _DAT_180bf66b8 = &DAT_180bf66c8;
@@ -331,7 +331,7 @@ int InitializeStringProcessorG(void)
  */
 int InitializeStringProcessorH(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorHFlags;
   _DAT_180bf52e8 = &UNK_18098bc80;
   _DAT_180bf52f0 = &DAT_180bf5300;
@@ -349,7 +349,7 @@ int InitializeStringProcessorH(void)
  */
 int InitializeStringProcessorI(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorIFlags;
   _DAT_180bf5738 = &UNK_18098bc80;
   _DAT_180bf5740 = &DAT_180bf5750;
@@ -371,7 +371,7 @@ int InitializeStringProcessorI(void)
  */
 int InitializeConfigurationMutex(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   _Mtx_init_in_situ(0x180c91970,0x102,mutexType,mutexAttr,0xfffffffffffffffe);
   CallbackResult = FUN_1808fc7d0(FUN_1809419c0);
   return (CallbackResult != 0) - 1;
@@ -545,7 +545,7 @@ int InitializeConfigurationMutex(undefined8 threadId,undefined8 syncPtr,undefine
  */
 int InitializeStringProcessorJ(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorJFlags;
   g_stringProcessorJ_Base = &unknownData_1809fcc58;
   g_stringProcessorJ_BufferPtr = &g_stringProcessorJ_Buffer;
@@ -563,7 +563,7 @@ int InitializeStringProcessorJ(void)
  */
 int InitializeStringProcessorK(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorKFlags;
   g_stringProcessorK_Base = &unknownData_1809fcc58;
   g_stringProcessorK_BufferPtr = &g_stringProcessorK_Buffer;
@@ -581,7 +581,7 @@ int InitializeStringProcessorK(void)
  */
 int InitializeStringProcessorL(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorLFlags;
   g_stringProcessorL_Base = &unknownData_1809fcc58;
   g_stringProcessorL_BufferPtr = &g_stringProcessorL_Buffer;
@@ -599,7 +599,7 @@ int InitializeStringProcessorL(void)
  */
 int InitializeMultiStringProcessorSystem(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 systemFlags;
   
   // 初始化字符串处理器N
@@ -892,7 +892,7 @@ int InitializeMultiStringProcessorSystem(void)
  */
 int InitializeStringProcessorAD(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorADFlags;
   g_stringProcessorAD_Base = &unknownData_18098bc80;
   g_stringProcessorAD_BufferPtr = &g_stringProcessorAD_Buffer;
@@ -916,7 +916,7 @@ int InitializeStringProcessorAD(void)
  */
 int InitializeStringProcessorAE(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorAEFlags;
   g_stringProcessorAE_Base = &unknownData_1809fcc58;
   g_stringProcessorAE_BufferPtr = &g_stringProcessorAE_Buffer;
@@ -934,7 +934,7 @@ int InitializeStringProcessorAE(void)
  */
 int InitializeStringProcessorAF(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorAFFlags;
   g_stringProcessorAF_Base = &unknownData_1809fcc58;
   g_stringProcessorAF_BufferPtr = &g_stringProcessorAF_Buffer;
@@ -952,7 +952,7 @@ int InitializeStringProcessorAF(void)
  */
 int InitializeStringProcessorG(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 processorFlags;
   GlobalStringProcessorG_Base = &GlobalUnknownDataBase;
   GlobalStringProcessorG_BufferPtr = &GlobalStringProcessorG_Buffer;
@@ -970,7 +970,7 @@ int InitializeStringProcessorG(void)
  */
 int InitializeStringProcessorH(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 processorFlags;
   GlobalStringProcessorH_Base = &GlobalUnknownDataBase;
   GlobalStringProcessorH_BufferPtr = &GlobalStringProcessorH_Buffer;
@@ -980,21 +980,27 @@ int InitializeStringProcessorH(void)
   CallbackResult = RegisterSystemCallback(StringProcessorH_Callback);
   return (CallbackResult != 0) - 1;
 }
-int FUN_18003af70(void)
+/**
+ * 初始化字符串处理器AA
+ * 设置字符串处理AA所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorAA(void)
 {
-  longlong LocalResult;
-  undefined8 in_R9;
-  _DAT_180bf9390 = &UNK_1809fcc58;
-  _DAT_180bf9398 = &DAT_180bf93a8;
-  DAT_180bf93a8 = 0;
-  _DAT_180bf93a0 = 0x10;
-  strcpy_s(&DAT_180bf93a8,0x40,&UNK_180a22be8,in_R9,0xfffffffffffffffe);
-  LocalResult = FUN_1808fc7d0(FUN_180941fa0);
-  return (LocalResult != 0) - 1;
+  longlong InitializationResult;
+  undefined8 StringProcessorFlags;
+  StringProcessorAABase = &UnknownData1809fcc58;
+  StringProcessorAABufferPtr = &StringProcessorAABuffer;
+  StringProcessorAABuffer = 0;
+  StringProcessorAALength = 0x10;
+  strcpy_s(&StringProcessorAABuffer, 0x40, &UnknownData180a22be8, StringProcessorFlags, 0xfffffffffffffffe);
+  InitializationResult = RegisterSystemCallback(StringProcessorAACallback);
+  return (InitializationResult != 0) - 1;
 }
 int FUN_18003afe0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf93f0 = &UNK_1809fcc58;
   _DAT_180bf93f8 = &DAT_180bf9408;
@@ -1012,7 +1018,7 @@ int FUN_18003afe0(void)
  */
 int InitializeStringProcessorK(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorKFlags;
   StringProcessorK_Base = &UnknownData1809fcc58;
   StringProcessorK_BufferPtr = &StringProcessorK_Buffer;
@@ -1030,7 +1036,7 @@ int InitializeStringProcessorK(void)
  */
 int InitializeStringProcessorL(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorLFlags;
   StringProcessorL_Base = &UnknownData1809fcc58;
   StringProcessorL_BufferPtr = &StringProcessorL_Buffer;
@@ -1048,7 +1054,7 @@ int InitializeStringProcessorL(void)
  */
 int InitializeStringProcessorM(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorMFlags;
   StringProcessorM_Base = &UnknownData1809fcc58;
   StringProcessorM_BufferPtr = &StringProcessorM_Buffer;
@@ -1066,7 +1072,7 @@ int InitializeStringProcessorM(void)
  */
 int InitializeStringProcessorN(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorNFlags;
   StringProcessorN_Base = &UnknownData1809fcc58;
   StringProcessorN_BufferPtr = &StringProcessorN_Buffer;
@@ -1084,7 +1090,7 @@ int InitializeStringProcessorN(void)
  */
 int InitializeStringProcessorO(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorOFlags;
   StringProcessorO_Base = &UnknownData1809fcc58;
   StringProcessorO_BufferPtr = &StringProcessorO_Buffer;
@@ -1102,7 +1108,7 @@ int InitializeStringProcessorO(void)
  */
 int InitializeStringProcessorP(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorPFlags;
   StringProcessorP_Base = &UnknownData1809fcc58;
   StringProcessorP_BufferPtr = &StringProcessorP_Buffer;
@@ -1120,7 +1126,7 @@ int InitializeStringProcessorP(void)
  */
 int InitializeStringProcessorQ(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorQFlags;
   StringProcessorQ_Base = &UnknownData1809fcc58;
   StringProcessorQ_BufferPtr = &StringProcessorQ_Buffer;
@@ -1138,7 +1144,7 @@ int InitializeStringProcessorQ(void)
  */
 int InitializeStringProcessorR(void)
 {
-  longlong CallbackResult;
+  int64_t CallbackResult;
   undefined8 stringProcessorRFlags;
   StringProcessorR_Base = &UnknownData1809fcc58;
   StringProcessorR_BufferPtr = &StringProcessorR_Buffer;
@@ -1156,7 +1162,7 @@ int InitializeStringProcessorR(void)
  */
 int InitializeStringProcessorS(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9750 = &UNK_1809fcc58;
   _DAT_180bf9758 = &DAT_180bf9768;
@@ -1168,7 +1174,7 @@ int InitializeStringProcessorS(void)
 }
 int InitializeStringProcessorT(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf97b0 = &UNK_1809fcc58;
   _DAT_180bf97b8 = &DAT_180bf97c8;
@@ -1180,7 +1186,7 @@ int InitializeStringProcessorT(void)
 }
 int InitializeStringProcessorU(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9810 = &UNK_1809fcc58;
   _DAT_180bf9818 = &DAT_180bf9828;
@@ -1192,7 +1198,7 @@ int InitializeStringProcessorU(void)
 }
 int InitializeStringProcessorV(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9870 = &UNK_1809fcc58;
   _DAT_180bf9878 = &DAT_180bf9888;
@@ -1204,7 +1210,7 @@ int InitializeStringProcessorV(void)
 }
 int FUN_18003b590(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf98d0 = &UNK_1809fcc58;
   _DAT_180bf98d8 = &DAT_180bf98e8;
@@ -1216,7 +1222,7 @@ int FUN_18003b590(void)
 }
 int FUN_18003b600(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9930 = &UNK_1809fcc58;
   _DAT_180bf9938 = &DAT_180bf9948;
@@ -1228,7 +1234,7 @@ int FUN_18003b600(void)
 }
 int FUN_18003b670(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9990 = &UNK_1809fcc58;
   _DAT_180bf9998 = &DAT_180bf99a8;
@@ -1240,7 +1246,7 @@ int FUN_18003b670(void)
 }
 int FUN_18003b6e0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf99f0 = &UNK_1809fcc58;
   _DAT_180bf99f8 = &DAT_180bf9a08;
@@ -1252,7 +1258,7 @@ int FUN_18003b6e0(void)
 }
 int FUN_18003b750(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9a50 = &UNK_1809fcc58;
   _DAT_180bf9a58 = &DAT_180bf9a68;
@@ -1264,7 +1270,7 @@ int FUN_18003b750(void)
 }
 int FUN_18003b7c0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9ab0 = &UNK_1809fcc58;
   _DAT_180bf9ab8 = &DAT_180bf9ac8;
@@ -1276,7 +1282,7 @@ int FUN_18003b7c0(void)
 }
 int FUN_18003b830(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9b10 = &UNK_1809fcc58;
   _DAT_180bf9b18 = &DAT_180bf9b28;
@@ -1288,7 +1294,7 @@ int FUN_18003b830(void)
 }
 int FUN_18003b8a0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9b70 = &UNK_1809fcc58;
   _DAT_180bf9b78 = &DAT_180bf9b88;
@@ -1300,7 +1306,7 @@ int FUN_18003b8a0(void)
 }
 int FUN_18003b910(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9bd0 = &UNK_1809fcc58;
   _DAT_180bf9bd8 = &DAT_180bf9be8;
@@ -1312,7 +1318,7 @@ int FUN_18003b910(void)
 }
 int FUN_18003b980(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9c30 = &UNK_1809fcc58;
   _DAT_180bf9c38 = &DAT_180bf9c48;
@@ -1324,7 +1330,7 @@ int FUN_18003b980(void)
 }
 int FUN_18003b9f0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9c90 = &UNK_1809fcc58;
   _DAT_180bf9c98 = &DAT_180bf9ca8;
@@ -1336,7 +1342,7 @@ int FUN_18003b9f0(void)
 }
 int FUN_18003ba60(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9cf0 = &UNK_1809fcc58;
   _DAT_180bf9cf8 = &DAT_180bf9d08;
@@ -1348,7 +1354,7 @@ int FUN_18003ba60(void)
 }
 int FUN_18003bad0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9d50 = &UNK_1809fcc58;
   _DAT_180bf9d58 = &DAT_180bf9d68;
@@ -1360,7 +1366,7 @@ int FUN_18003bad0(void)
 }
 int FUN_18003bb40(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9db0 = &UNK_1809fcc58;
   _DAT_180bf9db8 = &DAT_180bf9dc8;
@@ -1372,7 +1378,7 @@ int FUN_18003bb40(void)
 }
 int FUN_18003bbb0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9e10 = &UNK_1809fcc58;
   _DAT_180bf9e18 = &DAT_180bf9e28;
@@ -1384,7 +1390,7 @@ int FUN_18003bbb0(void)
 }
 int FUN_18003bc20(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9e70 = &UNK_1809fcc58;
   _DAT_180bf9e78 = &DAT_180bf9e88;
@@ -1396,7 +1402,7 @@ int FUN_18003bc20(void)
 }
 int FUN_18003bc90(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9ed0 = &UNK_1809fcc58;
   _DAT_180bf9ed8 = &DAT_180bf9ee8;
@@ -1408,7 +1414,7 @@ int FUN_18003bc90(void)
 }
 int FUN_18003bd00(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9f30 = &UNK_1809fcc58;
   _DAT_180bf9f38 = &DAT_180bf9f48;
@@ -1420,7 +1426,7 @@ int FUN_18003bd00(void)
 }
 int FUN_18003bd70(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9f90 = &UNK_1809fcc58;
   _DAT_180bf9f98 = &DAT_180bf9fa8;
@@ -1432,7 +1438,7 @@ int FUN_18003bd70(void)
 }
 int FUN_18003bde0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf9ff0 = &UNK_1809fcc58;
   _DAT_180bf9ff8 = &DAT_180bfa008;
@@ -1444,7 +1450,7 @@ int FUN_18003bde0(void)
 }
 int FUN_18003be50(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bfa050 = &UNK_1809fcc58;
   _DAT_180bfa058 = &DAT_180bfa068;
@@ -1456,7 +1462,7 @@ int FUN_18003be50(void)
 }
 int FUN_18003bec0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bfa0b0 = &UNK_1809fcc58;
   _DAT_180bfa0b8 = &DAT_180bfa0c8;
@@ -1468,7 +1474,7 @@ int FUN_18003bec0(void)
 }
 int FUN_18003bf30(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bfa110 = &UNK_1809fcc58;
   _DAT_180bfa118 = &DAT_180bfa128;
@@ -1480,7 +1486,7 @@ int FUN_18003bf30(void)
 }
 int FUN_18003bfa0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bfa170 = &UNK_1809fcc58;
   _DAT_180bfa178 = &DAT_180bfa188;
@@ -1492,7 +1498,7 @@ int FUN_18003bfa0(void)
 }
 int FUN_18003c010(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bfa1d0 = &UNK_1809fcc58;
   _DAT_180bfa1d8 = &DAT_180bfa1e8;
@@ -1504,7 +1510,7 @@ int FUN_18003c010(void)
 }
 int FUN_18003c080(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bfa230 = &UNK_1809fcc58;
   _DAT_180bfa238 = &DAT_180bfa248;
@@ -1516,7 +1522,7 @@ int FUN_18003c080(void)
 }
 int FUN_18003c0f0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bfa290 = &UNK_1809fcc58;
   _DAT_180bfa298 = &DAT_180bfa2a8;
@@ -1528,25 +1534,25 @@ int FUN_18003c0f0(void)
 }
 int FUN_18003c160(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   LocalResult = FUN_1808fc7d0(FUN_1809424c0);
   return (LocalResult != 0) - 1;
 }
 int FUN_18003c180(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   LocalResult = FUN_1808fc7d0(FUN_180942520);
   return (LocalResult != 0) - 1;
 }
 int FUN_18003c1a0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   LocalResult = FUN_1808fc7d0(FUN_180942580);
   return (LocalResult != 0) - 1;
 }
 int FUN_18003c1c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   _Mtx_init_in_situ(0x180c91f70,2,param_3,param_4,0xfffffffffffffffe);
   LocalResult = FUN_1808fc7d0(FUN_1809425e0);
   return (LocalResult != 0) - 1;
@@ -1589,7 +1595,7 @@ int FUN_18003c1c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 }
 int FUN_18003d690(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bfa780 = &UNK_1809fcc28;
   _DAT_180bfa788 = &DAT_180bfa798;
@@ -1626,7 +1632,7 @@ int FUN_18003d690(void)
 }
 int FUN_18003d8c0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bfab10 = &UNK_1809fcc28;
   _DAT_180bfab18 = &DAT_180bfab28;
@@ -1663,7 +1669,7 @@ int FUN_18003d8c0(void)
 }
 int FUN_18003db40(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   _DAT_180bfc150 = 0;
   uRam0000000180bfc158 = 0xf;
   DAT_180bfc140 = 0;
@@ -1674,7 +1680,7 @@ int FUN_18003db40(void)
 }
 int FUN_18003dba0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   _DAT_180bfaee8 = 3;
   _DAT_180bfaec0 = &DAT_180bfaec0;
   _DAT_180bfaec8 = &DAT_180bfaec0;
@@ -1686,7 +1692,7 @@ int FUN_18003dba0(void)
 }
 int FUN_18003dc30(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   _Mtx_init_in_situ(0x180c91ff0,2,param_3,param_4,0xfffffffffffffffe);
   _DAT_180c92050 = &UNK_18098bb30;
   _DAT_180c92058 = &DAT_180c92068;
@@ -1697,7 +1703,7 @@ int FUN_18003dc30(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 }
 int FUN_18003dcc0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bfaef0 = &UNK_18098bb30;
   _DAT_180bfaef8 = &DAT_180bfaf08;
@@ -1709,7 +1715,7 @@ int FUN_18003dcc0(void)
 }
 int FUN_18003dd30(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bfb310 = &UNK_18098bb30;
   _DAT_180bfb318 = &DAT_180bfb328;
@@ -1721,7 +1727,7 @@ int FUN_18003dd30(void)
 }
 int FUN_18003dda0(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bfb730 = &UNK_18098bb30;
   _DAT_180bfb738 = &DAT_180bfb748;
@@ -1739,7 +1745,7 @@ int FUN_18003dda0(void)
 }
 int FUN_18003fb40(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf6498 = &UNK_18098bc80;
   _DAT_180bf64a0 = &DAT_180bf64b0;
@@ -1757,7 +1763,7 @@ int FUN_18003fb40(void)
 }
 int FUN_180041a80(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 in_R9;
   _DAT_180bf6558 = &UNK_18098bc80;
   _DAT_180bf6560 = &DAT_180bf6570;
@@ -5551,7 +5557,7 @@ LAB_18032b98e:
 }
 longlong FUN_18032ba60(longlong param_1,uint param_2,uint param_3)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   longlong lVar2;
   uint *puVar3;
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
@@ -5589,7 +5595,7 @@ LAB_18032bb25:
 }
 longlong FUN_18032bba0(undefined8 param_1,longlong *param_2,longlong param_3)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   uint uVar2;
   ulonglong uVar3;
   undefined8 uVar4;
@@ -5638,7 +5644,7 @@ undefined8
 FUN_18032bd90(undefined8 param_1,longlong *param_2,undefined8 *param_3,undefined4 param_4,
              undefined4 param_5,undefined1 param_6)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   ulonglong uVar2;
   longlong lVar3;
   undefined8 uVar4;
@@ -5678,7 +5684,7 @@ FUN_18032bd90(undefined8 param_1,longlong *param_2,undefined8 *param_3,undefined
 undefined1 FUN_18032bdbf(void)
 {
   uint in_EAX;
-  longlong LocalResult;
+  int64_t LocalResult;
   longlong lVar2;
   longlong lVar3;
   undefined1 unaff_SIL;
@@ -5719,7 +5725,7 @@ undefined1 FUN_18032be83(void)
 undefined8
 FUN_18032bea0(undefined8 param_1,longlong *param_2,longlong *param_3,uint param_4,char param_5)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   longlong lVar2;
   uint uVar3;
   ulonglong uVar4;
@@ -5771,7 +5777,7 @@ LAB_18032bf87:
 }
 undefined1 FUN_18032beda(undefined8 param_1,undefined8 param_2,longlong *param_3)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   uint uVar2;
   ulonglong in_RAX;
   ulonglong uVar3;
@@ -5864,7 +5870,7 @@ FUN_18032bfc0(undefined8 param_1,longlong *param_2,undefined8 *param_3,undefined
 undefined1 FUN_18032bff0(void)
 {
   uint in_EAX;
-  longlong LocalResult;
+  int64_t LocalResult;
   longlong lVar2;
   longlong lVar3;
   undefined1 unaff_SIL;
@@ -8770,7 +8776,7 @@ LAB_18060bbae:
 }
 double FUN_180629810(void)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   longlong alStackX_8 [4];
   LocalResult = _DAT_180c8ed58;
   if (_DAT_180c8ed58 == 0) {
@@ -9971,7 +9977,7 @@ undefined4 FUN_180631845(void)
 }
 longlong FUN_180631850(undefined8 param_1,undefined8 param_2,longlong param_3)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   longlong lVar2;
   char *pcVar3;
   longlong lVar4;
@@ -10011,7 +10017,7 @@ longlong FUN_180631850(undefined8 param_1,undefined8 param_2,longlong param_3)
 }
 longlong FUN_180631960(undefined8 param_1,undefined8 param_2,longlong param_3)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   longlong lVar2;
   char *pcVar3;
   longlong lVar4;
@@ -10049,7 +10055,7 @@ longlong FUN_180631960(undefined8 param_1,undefined8 param_2,longlong param_3)
 }
 longlong FUN_180631a80(undefined8 param_1,undefined8 param_2,longlong param_3,undefined8 param_4)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   longlong lVar2;
   char *pcVar3;
   longlong lVar4;
@@ -10132,7 +10138,7 @@ longlong FUN_180631b90(undefined8 param_1,undefined8 param_2,longlong param_3)
 }
 longlong FUN_180631cc0(undefined8 param_1,undefined8 param_2,longlong param_3)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   longlong lVar2;
   char *pcVar3;
   longlong lVar4;
@@ -10414,7 +10420,7 @@ undefined8 FUN_180653580(undefined8 param_1)
 }
 undefined8 FUN_1806535c0(undefined8 param_1,undefined8 param_2)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   undefined8 uVar2;
   LocalResult = FUN_18064e990();
   uVar2 = FUN_18062b680(_DAT_180c8ed18,param_1,param_2,0x19);
@@ -11367,7 +11373,7 @@ undefined4 FUN_1808ee740(int param_1,int param_2,int param_3)
 }
 undefined8 FUN_1808ee7d0(undefined4 param_1,uint *param_2)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   uint uVar2;
   uint uVar3;
   char cVar4;
@@ -11682,7 +11688,7 @@ float * FUN_1808f6e00(float *param_1,float *param_2,float *param_3)
 }
 undefined8 FUN_1808f6f40(undefined8 param_1,undefined4 *param_2)
 {
-  longlong LocalResult;
+  int64_t LocalResult;
   LocalResult = func_0x0001808f0dd0(param_1,0);
   if (LocalResult != 0) {
     *param_2 = *(undefined4 *)(LocalResult + 100);

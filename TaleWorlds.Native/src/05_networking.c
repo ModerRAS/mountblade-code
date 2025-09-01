@@ -347,7 +347,7 @@ void ResetNetworkConnectionPointer(void)
   longlong networkConnectionContext;
   uint64_t *networkConnectionPointer;
   
-  *connectionPtr = (uint64_t)*(uint *)(connectionContext + 0x20);
+  *networkConnectionPointer = (uint64_t)*(uint *)(networkConnectionContext + 0x20);
   CleanupNetworkConnectionStack(&stack0x00000078);
 }
 
@@ -988,9 +988,9 @@ void ProcessNetworkConnectionContext(undefined8 connectionContext, undefined8 pr
   longlong stackParameter2;
   longlong stackParameter3;
   
-  lStack0000000000000030 = 0;
-  uStack0000000000000028 = in_XMM0_Qb;
-  iVar3 = func_0x00018088c590(in_RCX,&stack0x00000028,param_3,param_4,param_1);
+  stackParameter2 = 0;
+  stackParameter1 = timeoutRegister;
+  operationStatus = func_0x00018088c590(contextRegister,&stack0x00000028,param_3,param_4,param_1);
   if (((iVar3 == 0) && (iVar3 = FUN_18088c740(&stack0x00000020,uStack0000000000000028), iVar3 == 0))
      && (iVar3 = func_0x00018088c530(unaff_ESI,&stack0x00000070), iVar3 == 0)) {
     lStack0000000000000030 = *(longlong *)(in_stack_00000070 + 8);
@@ -23338,8 +23338,20 @@ LAB_18085604d:
 
 
 
+/**
+ * 查找网络连接记录
+ * 
+ * 该函数负责在连接表中查找指定的网络连接记录。
+ * 通过比较连接标识符来匹配正确的连接条目。
+ * 
+ * @param connectionTable 连接表指针
+ * @param connectionRecord 连接记录指针
+ * @param searchKey 搜索键值
+ * @param connectionId 连接标识符
+ * @return 找到的连接记录指针，未找到返回NULL
+ */
 undefined8 *
-FUN_180855ffc(undefined8 param_1,undefined8 *param_2,undefined8 param_3,longlong *param_4)
+FindNetworkConnectionRecord(undefined8 connectionTable, undefined8 *connectionRecord, undefined8 searchKey, longlong *connectionId)
 
 {
   longlong lVar1;
@@ -23386,8 +23398,16 @@ LAB_18085604d:
 
 
 
-// 函数: void FUN_18085605b(undefined8 param_1,longlong param_2)
-void FUN_18085605b(undefined8 param_1,longlong param_2)
+/**
+ * 设置网络连接参数
+ * 
+ * 该函数负责设置网络连接的基本参数和状态标志。
+ * 初始化连接的超时、重试和错误处理参数。
+ * 
+ * @param connectionContext 连接上下文
+ * @param connectionParams 连接参数指针
+ */
+void SetNetworkConnectionParameters(undefined8 connectionContext, longlong connectionParams)
 
 {
   undefined4 unaff_EBX;
@@ -23404,7 +23424,18 @@ void FUN_18085605b(undefined8 param_1,longlong param_2)
 
 // WARNING: Removing unreachable block (ram,0x00018085607b)
 
-undefined8 * FUN_180856074(undefined8 param_1,undefined8 *param_2,undefined4 param_3)
+/**
+ * 初始化网络连接记录
+ * 
+ * 该函数负责初始化新的网络连接记录，设置基本的连接参数。
+ * 为新建立的连接准备必要的数据结构。
+ * 
+ * @param connectionTable 连接表指针
+ * @param connectionRecord 连接记录指针
+ * @param initialFlags 初始标志位
+ * @return 初始化后的连接记录指针
+ */
+undefined8 * InitializeNetworkConnectionRecord(undefined8 connectionTable, undefined8 *connectionRecord, undefined4 initialFlags)
 
 {
   undefined4 unaff_EBX;

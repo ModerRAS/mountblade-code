@@ -2859,72 +2859,72 @@ undefined8 ValidateObjectRegistration(longlong objectContext)
   char registeredObjectName[16];
   
   registrationValidationStatus = GetRegistrationContextData(*(undefined4 *)(objectContext + 0x10), &contextStackData);
-  if ((int)validationStatus != 0) {
-    return validationStatus;
+  if ((int)registrationValidationStatus != 0) {
+    return registrationValidationStatus;
   }
-  objectHandle = *(longlong *)(stackData + 8);
-  if ((objectHandle == 0) || (*(longlong *)(objectHandle + 0x48) != stackData)) {
+  registrationObjectHandle = *(longlong *)(contextStackData + 8);
+  if ((registrationObjectHandle == 0) || (*(longlong *)(registrationObjectHandle + 0x48) != contextStackData)) {
     return 0x1c;
   }
-  objectData = *(longlong *)(objectHandle + 0x38);
-  if (objectHandle == 0) {
+  registrationObjectData = *(longlong *)(registrationObjectHandle + 0x38);
+  if (registrationObjectHandle == 0) {
     return 0x1f;
   }
-  if (*(int *)(objectHandle + 0xe4) == -1) {
-    validationStatus = FUN_180853000(objectHandle, objectName);
-    if ((int)validationStatus != 0) {
-      return validationStatus;
+  if (*(int *)(registrationObjectHandle + 0xe4) == -1) {
+    registrationValidationStatus = GetRegisteredObjectName(registrationObjectHandle, registeredObjectName);
+    if ((int)registrationValidationStatus != 0) {
+      return registrationValidationStatus;
     }
-    objectStatus = func_0x000180851460(objectHandle);
-    if ((int)objectStatus != 0) {
-      return objectStatus;
+    objectRegistrationStatus = VerifyObjectRegistrationStatus(registrationObjectHandle);
+    if ((int)objectRegistrationStatus != 0) {
+      return objectRegistrationStatus;
     }
-    if ((char)validationStatus == (char)objectStatus) {
-      if (objectName[0] == (char)objectStatus) {
-        arrayPointer = (longlong *)(objectData + 0x4d8);
-        currentIndex = 0;
-        arraySize = *(int *)(objectData + 0x4e4);
-        if (0 < arraySize) {
-          objectArray = (longlong *)*arrayPointer;
-          searchIndex = currentIndex;
+    if ((char)registrationValidationStatus == (char)objectRegistrationStatus) {
+      if (registeredObjectName[0] == (char)objectRegistrationStatus) {
+        registrationArrayPointer = (longlong *)(registrationObjectData + 0x4d8);
+        currentArrayIndex = 0;
+        registrationArraySize = *(int *)(registrationObjectData + 0x4e4);
+        if (0 < registrationArraySize) {
+          objectRegistrationArray = (longlong *)*registrationArrayPointer;
+          objectSearchIndex = currentArrayIndex;
           do {
-            if (*objectArray == objectHandle) {
-              if (-1 < (int)searchIndex) {
+            if (*objectRegistrationArray == registrationObjectHandle) {
+              if (-1 < (int)objectSearchIndex) {
                 return 0;
               }
               break;
             }
-            searchIndex = (ulonglong)((int)searchIndex + 1);
-            currentIndex = currentIndex + 1;
-            objectArray = objectArray + 1;
-          } while ((longlong)currentIndex < (longlong)arraySize);
+            objectSearchIndex = (ulonglong)((int)objectSearchIndex + 1);
+            currentArrayIndex = currentArrayIndex + 1;
+            objectRegistrationArray = objectRegistrationArray + 1;
+          } while ((longlong)currentArrayIndex < (longlong)registrationArraySize);
         }
-        iVar7 = iVar7 + 1;
-        if (*(int *)(lVar1 + 0x4e8) < iVar7) {
-          iVar9 = (int)((float)*(int *)(lVar1 + 0x4e8) * 1.5);
-          iVar3 = iVar7;
-          if (iVar7 <= iVar9) {
-            iVar3 = iVar9;
+        registrationCounter = registrationCounter + 1;
+        if (*(int *)(registrationObjectData + 0x4e8) < registrationCounter) {
+          newSizeCalculation = (int)((float)*(int *)(registrationObjectData + 0x4e8) * 1.5);
+          targetSize = registrationCounter;
+          if (registrationCounter <= newSizeCalculation) {
+            targetSize = newSizeCalculation;
           }
-          if (iVar3 < 8) {
-            iVar9 = 8;
+          if (targetSize < 8) {
+            newSizeCalculation = 8;
           }
-          else if (iVar9 < iVar7) {
-            iVar9 = iVar7;
+          else if (newSizeCalculation < registrationCounter) {
+            newSizeCalculation = registrationCounter;
           }
-          iVar7 = FUN_1808c17c0(plVar11,iVar9);
-          if (iVar7 != 0) {
+          registrationCounter = ResizeRegistrationArray(registrationArrayPointer,newSizeCalculation);
+          if (registrationCounter != 0) {
             return 0;
           }
         }
-        *(longlong *)(*plVar11 + (longlong)*(int *)(lVar1 + 0x4e4) * 8) = lVar2;
-        *(int *)(lVar1 + 0x4e4) = *(int *)(lVar1 + 0x4e4) + 1;
-        *(int *)(lVar1 + 0x4e0) = *(int *)(lVar1 + 0x4e0) + 1;
+        *(longlong *)(*registrationArrayPointer + (longlong)*(int *)(registrationObjectData + 0x4e4) * 8) = registrationObjectHandle;
+        *(int *)(registrationObjectData + 0x4e4) = *(int *)(registrationObjectData + 0x4e4) + 1;
+        *(int *)(registrationObjectData + 0x4e0) = *(int *)(registrationObjectData + 0x4e0) + 1;
       }
       else {
-        uVar4 = FUN_180851490(lVar1 + 0x368,lVar2);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        registrationStatus = ValidateObjectRegistrationData(registrationObjectData + 0x368,registrationObjectHandle);
+        if ((int)registrationStatus != 0) {
+          return registrationStatus;
         }
       }
     }
