@@ -20448,7 +20448,7 @@ LAB_180047f93:
  * @brief 初始化系统配置数据
  * 初始化系统配置数据，设置系统属性和配置模板
  */
-void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void InitializeSystemConfigurationData(void* SystemResourcePointer,void* ConfigurationDataPointer,void* param_3,void* param_4)
 
 {
   double dVar1;
@@ -21817,11 +21817,11 @@ void* * InitializeMemoryAllocatorStructure(void* *memoryAllocator)
  * 该函数处理系统字符串操作，包括字符串搜索、长度计算和内存复制。
  * 它还涉及到内存分配器的引用管理和堆栈操作。
  * 
- * @param SystemResourcePointer 字符串参数1，包含要处理的字符串
- * @param param_2 字符串参数2，用于长度计算
- * @param param_3 字符串参数3，用于长度计算
+ * @param SystemResourcePointer 系统资源指针，包含字符串处理所需的系统资源
+ * @param SourceStringPointer 源字符串指针，用于长度计算和处理
+ * @param TargetStringPointer 目标字符串指针，用于长度计算和处理
  */
-void SystemStringProcessor(long long SystemResourcePointer,long long param_2,long long param_3)
+void SystemStringProcessor(long long SystemResourcePointer,long long SourceStringPointer,long long TargetStringPointer)
 
 {
   long long localMemoryPointer;
