@@ -2325,7 +2325,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
           strstr(&DAT_18098bc73,&UNK_1809fd1a0);
           strstr(&DAT_18098bc73,&UNK_1809fd1b0);
           SystemModuleStatus = 1;
-          DAT_180c8ecec = 1;
+          SystemNetworkEnabled = 1;
           lVar20 = strstr(pMemoryAddress7,&UNK_1809fd1c0);
           if (lVar20 == 0) {
             lVar20 = strstr(pMemoryAddress7,&UNK_1809fd1d8);
@@ -2778,7 +2778,7 @@ LAB_18004d511:
                       if (uVar8 == 0x18) {
                         iVar6 = strcmp(pMemoryAddress1);
                         if (iVar6 == 0) {
-                          DAT_180c8ecec = 1;
+                          SystemNetworkEnabled = 1;
                           goto LAB_18004d527;
                         }
                         goto LAB_18004e25f;
@@ -6444,7 +6444,7 @@ FUN_18045d980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   }
   return;
 }
-  DAT_180c95f28 = 1;
+  SystemUIEnabled = 1;
   _DAT_180c924c8 = 0x100;
   _DAT_180c924d0 = &UNK_180a3c3e0;
   _DAT_180c924e8 = 0;

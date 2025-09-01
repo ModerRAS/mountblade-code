@@ -17605,9 +17605,9 @@ void SetSystemPointerA(void)
   int systemStatus;
   
   systemStatus = GetSystemStatus(0);
-  _DAT_180c0c6d0 = 0x180be14a8;
+  SystemDisplayContextA = 0x180be14a8;
   if (systemStatus != 0) {
-    _DAT_180c0c6d0 = 0x180be14c0;
+    SystemDisplayContextA = 0x180be14c0;
   }
   return;
 }
