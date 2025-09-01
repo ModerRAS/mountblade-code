@@ -99,7 +99,7 @@ void* GlobalModuleEHandle;
  * 该函数负责获取系统的第一个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t SystemStatusFlag1;
+uint32_t GetSystemStatusFlag1(void);
 bool SystemStatusFlag1Initialized;
 
 
@@ -109,7 +109,7 @@ bool SystemStatusFlag1Initialized;
  * 该函数负责获取系统的第二个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t SystemStatusFlag2;
+uint32_t GetSystemStatusFlag2(void);
 bool SystemStatusFlag2Initialized;
 
 
@@ -415,16 +415,16 @@ undefined SystemDatabaseConfig;
 undefined SystemSecurityConfig;
 undefined SystemLoggingConfig;
 undefined SystemPerformanceConfig;
-undefined DAT_180bf6ee0;
-undefined DAT_180bf6ee8;
-undefined DAT_180bf6ef0;
-undefined DAT_180bf6ef8;
-undefined DAT_180bf6f38;
-undefined DAT_180bf6f40;
-undefined DAT_180bf6f48;
-undefined DAT_180bf6f50;
-undefined DAT_180bf6f90;
-undefined DAT_180bf6f98;
+undefined SystemLocalizationConfig;
+undefined SystemModdingConfig;
+undefined SystemDebugConfig;
+undefined SystemThreadConfig;
+undefined SystemProcessConfig;
+undefined SystemEventConfig;
+undefined SystemTimerConfig;
+undefined SystemSyncConfig;
+undefined SystemLockConfig;
+undefined SystemSemaphoreConfig;
 undefined DAT_180bf6fa0;
 undefined DAT_180bf6fa8;
 undefined DAT_180bf6fe8;
