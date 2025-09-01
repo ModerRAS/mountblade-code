@@ -40893,7 +40893,16 @@ void ValidateSystemResourceEx(long long SystemResourcePointer,long long *Configu
 
 
 // 函数: void FUN_180061290(void* *SystemResourcePointer)
-void FUN_180061290(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源释放器函数
+ * 
+ * 该函数负责释放系统资源，清理内存和句柄。
+ * 它会处理资源的释放操作，确保资源被正确清理。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组，包含需要释放的资源信息
+ * @note 这是系统资源管理的重要组成部分，用于资源的释放和清理
+ */
+void ReleaseSystemResourceEx(void* *SystemResourcePointer)
 
 {
   CloseHandle(*SystemResourcePointer);
@@ -40904,7 +40913,16 @@ void FUN_180061290(void* *SystemResourcePointer)
 
 
 // 函数: void FUN_1800612b0(void* *SystemResourcePointer)
-void FUN_1800612b0(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源重置器函数
+ * 
+ * 该函数负责重置系统资源，恢复资源到初始状态。
+ * 它会处理资源的重置操作，确保资源可以重新使用。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组，包含需要重置的资源信息
+ * @note 这是系统资源管理的重要组成部分，用于资源的重置和恢复
+ */
+void ResetSystemResource(void* *SystemResourcePointer)
 
 {
   *SystemResourcePointer = &UNK_180a3cf50;
