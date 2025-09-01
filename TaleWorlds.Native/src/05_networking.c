@@ -3970,31 +3970,43 @@ int ProcessNetworkPacketHeader(longlong connectionContext,longlong packetData,in
 
 
 
-int FUN_1808443b0(longlong connectionContext,longlong packetData,int dataSize)
+// 函数: int ProcessNetworkPacketBody(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络数据包主体内容
+ * 
+ * 该函数负责处理网络数据包的主体内容，包括数据解析、验证和处理。
+ * 从连接上下文中提取加密密钥和其他配置信息，对数据包进行完整处理。
+ * 
+ * @param connectionContext 网络连接上下文，包含连接状态和配置信息
+ * @param packetData 网络数据包的指针
+ * @param dataSize 数据包的大小
+ * @return 处理后的数据包大小或状态码
+ */
+int ProcessNetworkPacketBody(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  int networkStatus2;
-  int networkStatus3;
-  NetworkStatus uStack_18;
-  NetworkStatus uStack_14;
-  NetworkStatus uStack_10;
-  NetworkStatus uStack_c;
+  NetworkStatus encryptionKey;
+  int packetProcessingOffset;
+  int dataProcessedSize;
+  NetworkStatus connectionOffset16;
+  NetworkStatus connectionOffset20;
+  NetworkStatus connectionOffset24;
+  NetworkStatus connectionOffset28;
   
-  uStack_18 = *(NetworkStatus *)(connectionContext + 0x10);
-  uStack_14 = *(NetworkStatus *)(connectionContext + 0x14);
-  uStack_10 = *(NetworkStatus *)(connectionContext + 0x18);
-  uStack_c = *(NetworkStatus *)(connectionContext + 0x1c);
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x20);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180981e40);
-  networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b650(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  return networkStatus3 + networkStatus2;
+  connectionOffset16 = *(NetworkStatus *)(connectionContext + 0x10);
+  connectionOffset20 = *(NetworkStatus *)(connectionContext + 0x14);
+  connectionOffset24 = *(NetworkStatus *)(connectionContext + 0x18);
+  connectionOffset28 = *(NetworkStatus *)(connectionContext + 0x1c);
+  encryptionKey = *(NetworkStatus *)(connectionContext + 0x20);
+  packetProcessingOffset = FUN_18074b880(packetData,dataSize,&UNK_180981e40);
+  dataProcessedSize = NetworkBufferCopyData(packetData + packetProcessingOffset,dataSize - packetProcessingOffset,&NetworkBufferDataTemplate);
+  packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
+  dataProcessedSize = FUN_18074b650(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&connectionOffset16);
+  packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
+  dataProcessedSize = FUN_18074b880(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
+  packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
+  dataProcessedSize = func_0x00018074b800(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,encryptionKey);
+  return dataProcessedSize + packetProcessingOffset;
 }
 
 

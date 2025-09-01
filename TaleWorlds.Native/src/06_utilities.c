@@ -5330,7 +5330,15 @@ int ValidateSystemConfigurationParameter(undefined4 configParameter)
 
 
 
-undefined8 FUN_180891492(void)
+/**
+ * @brief 获取系统状态标志
+ * 
+ * 该函数获取系统的状态标志，用于检查系统当前的状态
+ * 这是一个简单的状态查询函数，返回固定的状态值
+ * 
+ * @return 系统状态标志，0表示系统处于正常状态
+ */
+undefined8 GetSystemStatusFlag(void)
 
 {
   return 0;
@@ -5338,7 +5346,15 @@ undefined8 FUN_180891492(void)
 
 
 
-undefined8 FUN_1808914ac(void)
+/**
+ * @brief 获取系统版本信息
+ * 
+ * 该函数获取系统的版本信息，返回版本标识符
+ * 用于系统版本检查和兼容性验证
+ * 
+ * @return 系统版本标识符，0x1f表示当前版本
+ */
+undefined8 GetSystemVersionInfo(void)
 
 {
   return 0x1f;
