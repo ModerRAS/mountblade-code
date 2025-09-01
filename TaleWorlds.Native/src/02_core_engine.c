@@ -1616,12 +1616,12 @@ void engine_register_mesh_resource(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -1646,7 +1646,7 @@ void engine_register_mesh_resource(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -1716,12 +1716,12 @@ void engine_register_audio_resource(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -1746,7 +1746,7 @@ void engine_register_audio_resource(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -1816,12 +1816,12 @@ void engine_register_script_resource(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -1846,7 +1846,7 @@ void engine_register_script_resource(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -2200,12 +2200,12 @@ void engine_setup_script_manager(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -2230,7 +2230,7 @@ void engine_setup_script_manager(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -2300,12 +2300,12 @@ void engine_configure_shader_system(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -2330,7 +2330,7 @@ void engine_configure_shader_system(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -2400,12 +2400,12 @@ void engine_configure_animation_system(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -2430,7 +2430,7 @@ void engine_configure_animation_system(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -2582,12 +2582,12 @@ void engine_register_audio_resource(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -2612,7 +2612,7 @@ void engine_register_audio_resource(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -2682,12 +2682,12 @@ void engine_initialize_shader_program(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -2712,7 +2712,7 @@ void engine_initialize_shader_program(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -2782,12 +2782,12 @@ void engine_setup_asset_database(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -2812,7 +2812,7 @@ void engine_setup_asset_database(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -3184,12 +3184,12 @@ void engine_setup_database_manager(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -3214,7 +3214,7 @@ void engine_setup_database_manager(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -3284,12 +3284,12 @@ void engine_configure_localization_system(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -3314,7 +3314,7 @@ void engine_configure_localization_system(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -3384,12 +3384,12 @@ void engine_configure_save_system(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -3414,7 +3414,7 @@ void engine_configure_save_system(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -3534,12 +3534,12 @@ void engine_create_localization_cache(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -3564,7 +3564,7 @@ void engine_create_localization_cache(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -3634,12 +3634,12 @@ void engine_create_save_cache(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -3664,7 +3664,7 @@ void engine_create_save_cache(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -3734,12 +3734,12 @@ void engine_initialize_text_system(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -3764,7 +3764,7 @@ void engine_initialize_text_system(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -4141,12 +4141,12 @@ void engine_configure_text_cache(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -4171,7 +4171,7 @@ void engine_configure_text_cache(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -4241,12 +4241,12 @@ void engine_setup_text_database(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -4271,7 +4271,7 @@ void engine_setup_text_database(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -4341,12 +4341,12 @@ void engine_configure_text_compression(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -4371,7 +4371,7 @@ void engine_configure_text_compression(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -4591,12 +4591,12 @@ void engine_register_cubemap_resource(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -4621,7 +4621,7 @@ void engine_register_cubemap_resource(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -4691,12 +4691,12 @@ void engine_register_buffer_resource(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -4721,7 +4721,7 @@ void engine_register_buffer_resource(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -4791,12 +4791,12 @@ void engine_configure_audio_system(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -4821,7 +4821,7 @@ void engine_configure_audio_system(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -5041,12 +5041,12 @@ void engine_configure_ui_system(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -5071,7 +5071,7 @@ void engine_configure_ui_system(void)
   current_data_pointer[7] = 0x1aa83fc0020dc1b6;
   current_data_pointer[8] = &engine_data_1809fd0d8;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -5191,12 +5191,12 @@ void engine_configure_database_system(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -5221,7 +5221,7 @@ void engine_configure_database_system(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -5291,12 +5291,12 @@ void engine_initialize_logging_system(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -5321,7 +5321,7 @@ void engine_initialize_logging_system(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -5391,12 +5391,12 @@ void engine_setup_debug_system(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -5421,7 +5421,7 @@ void engine_setup_debug_system(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -5621,12 +5621,12 @@ void engine_validate_structure_data(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -5651,7 +5651,7 @@ void engine_validate_structure_data(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -5721,12 +5721,12 @@ void engine_allocate_structure_memory(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -5751,7 +5751,7 @@ void engine_allocate_structure_memory(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -5821,12 +5821,12 @@ void engine_update_structure_state(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -5851,7 +5851,7 @@ void engine_update_structure_state(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -5871,12 +5871,12 @@ void engine_process_structure_events(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -5901,7 +5901,7 @@ void engine_process_structure_events(void)
   current_data_pointer[7] = 0x1aa83fc0020dc1b6;
   current_data_pointer[8] = &engine_data_1809fd0d8;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -5995,12 +5995,12 @@ void engine_cleanup_structure_handles(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -6025,7 +6025,7 @@ void engine_cleanup_structure_handles(void)
   current_data_pointer[7] = 0x47f249e43f66f2ab;
   current_data_pointer[8] = &engine_data_18098c7a0;
   current_data_pointer[9] = 1;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -6045,12 +6045,12 @@ void engine_initialize_structure_handles(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -6075,7 +6075,7 @@ void engine_initialize_structure_handles(void)
   current_data_pointer[7] = 0x4e4b0d63a6ad1d8f;
   current_data_pointer[8] = &engine_data_18098c7b8;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -6095,12 +6095,12 @@ void engine_process_structure_requests(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -6125,7 +6125,7 @@ void engine_process_structure_requests(void)
   current_data_pointer[7] = 0xdc42c056bbde8482;
   current_data_pointer[8] = &engine_data_18098c7c8;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -6145,12 +6145,12 @@ void engine_handle_structure_requests(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -6175,7 +6175,7 @@ void engine_handle_structure_requests(void)
   current_data_pointer[7] = 0xc29193aa9d9b35b9;
   current_data_pointer[8] = &engine_data_18098c7d8;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -6195,12 +6195,12 @@ void engine_validate_structure_requests(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -6225,7 +6225,7 @@ void engine_validate_structure_requests(void)
   current_data_pointer[7] = 0x7f74eb2c5a7fadae;
   current_data_pointer[8] = &engine_data_18098c7f0;
   current_data_pointer[9] = 3;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -6245,12 +6245,12 @@ void engine_cleanup_structure_requests(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -6275,7 +6275,7 @@ void engine_cleanup_structure_requests(void)
   current_data_pointer[7] = 0x8d98f4c06880eda4;
   current_data_pointer[8] = &engine_data_18098c810;
   current_data_pointer[9] = 3;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -6295,12 +6295,12 @@ void engine_initialize_structure_requests(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -6325,7 +6325,7 @@ void engine_initialize_structure_requests(void)
   current_data_pointer[7] = 0x355ffeb2d29e668a;
   current_data_pointer[8] = &engine_data_18098c870;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -6395,12 +6395,12 @@ void engine_handle_structure_operations(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -6425,7 +6425,7 @@ void engine_handle_structure_operations(void)
   current_data_pointer[7] = 0x5e3cf00ce2978287;
   current_data_pointer[8] = &void* engine_memory_pool;
   current_data_pointer[9] = 1;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -6811,12 +6811,12 @@ void engine_cleanup_structure_buffers(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -6841,7 +6841,7 @@ void engine_cleanup_structure_buffers(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -6911,12 +6911,12 @@ void engine_process_structure_memory(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -6941,7 +6941,7 @@ void engine_process_structure_memory(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -7011,12 +7011,12 @@ void engine_validate_structure_memory(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -7041,7 +7041,7 @@ void engine_validate_structure_memory(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -7161,12 +7161,12 @@ void engine_process_structure_pointers(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -7191,7 +7191,7 @@ void engine_process_structure_pointers(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -7261,12 +7261,12 @@ void engine_validate_structure_pointers(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -7291,7 +7291,7 @@ void engine_validate_structure_pointers(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -7361,12 +7361,12 @@ void engine_initialize_structure_pointers(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -7391,7 +7391,7 @@ void engine_initialize_structure_pointers(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -7511,12 +7511,12 @@ void engine_validate_structure_arrays(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -7541,7 +7541,7 @@ void engine_validate_structure_arrays(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -7611,12 +7611,12 @@ void engine_initialize_structure_arrays(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -7641,7 +7641,7 @@ void engine_initialize_structure_arrays(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -7711,12 +7711,12 @@ void engine_handle_structure_lists(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -7741,7 +7741,7 @@ void engine_handle_structure_lists(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -7861,12 +7861,12 @@ void engine_initialize_structure_lists(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -7891,7 +7891,7 @@ void engine_initialize_structure_lists(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -7961,12 +7961,12 @@ void engine_handle_structure_queues(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -7991,7 +7991,7 @@ void engine_handle_structure_queues(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -8011,12 +8011,12 @@ void engine_core_initialize_updates(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -8041,7 +8041,7 @@ void engine_core_initialize_updates(void)
   current_data_pointer[7] = 0xdc42c056bbde8482;
   current_data_pointer[8] = &engine_data_18098c7c8;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -8061,12 +8061,12 @@ void engine_core_setup_updatesystem(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -8091,7 +8091,7 @@ void engine_core_setup_updatesystem(void)
   current_data_pointer[7] = 0xc29193aa9d9b35b9;
   current_data_pointer[8] = &engine_data_18098c7d8;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -8111,12 +8111,12 @@ void engine_core_initialize_drm(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -8141,7 +8141,7 @@ void engine_core_initialize_drm(void)
   current_data_pointer[7] = 0x7f74eb2c5a7fadae;
   current_data_pointer[8] = &engine_data_18098c7f0;
   current_data_pointer[9] = 3;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -8161,12 +8161,12 @@ void engine_core_setup_drmsystem(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -8191,7 +8191,7 @@ void engine_core_setup_drmsystem(void)
   current_data_pointer[7] = 0x8d98f4c06880eda4;
   current_data_pointer[8] = &engine_data_18098c810;
   current_data_pointer[9] = 3;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -8211,12 +8211,12 @@ void engine_core_initialize_anticheat(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -8241,7 +8241,7 @@ void engine_core_initialize_anticheat(void)
   current_data_pointer[7] = 0x355ffeb2d29e668a;
   current_data_pointer[8] = &engine_data_18098c870;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -8311,12 +8311,12 @@ void engine_core_initialize_social(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -8341,7 +8341,7 @@ void engine_core_initialize_social(void)
   current_data_pointer[7] = 0x5e3cf00ce2978287;
   current_data_pointer[8] = &void* engine_memory_pool;
   current_data_pointer[9] = 1;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -8361,12 +8361,12 @@ void engine_core_setup_socialsystem(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -8391,7 +8391,7 @@ void engine_core_setup_socialsystem(void)
   current_data_pointer[7] = 0x727b256e3af32585;
   current_data_pointer[8] = &engine_data_180a2ca90;
   current_data_pointer[9] = 2;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -8411,12 +8411,12 @@ void engine_core_initialize_community(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -8441,7 +8441,7 @@ void engine_core_initialize_community(void)
   current_data_pointer[7] = 0x25db30365f277abb;
   current_data_pointer[8] = &engine_data_180a2cab0;
   current_data_pointer[9] = 2;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -8761,12 +8761,12 @@ void engine_core_setup_monetizationsystem(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -8791,7 +8791,7 @@ void engine_core_setup_monetizationsystem(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -8861,12 +8861,12 @@ void engine_core_setup_advertisingsystem(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -8891,7 +8891,7 @@ void engine_core_setup_advertisingsystem(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -8961,12 +8961,12 @@ void engine_core_setup_partnershipsystem(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -8991,7 +8991,7 @@ void engine_core_setup_partnershipsystem(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -9011,12 +9011,12 @@ void engine_core_initialize_branding(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -9041,7 +9041,7 @@ void engine_core_initialize_branding(void)
   current_data_pointer[7] = 0x1aa83fc0020dc1b6;
   current_data_pointer[8] = &engine_data_1809fd0d8;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -9061,12 +9061,12 @@ void engine_core_setup_brandingsystem(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -9091,7 +9091,7 @@ void engine_core_setup_brandingsystem(void)
   current_data_pointer[7] = 0x727b256e3af32585;
   current_data_pointer[8] = &engine_data_180a2ca90;
   current_data_pointer[9] = 2;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -9111,12 +9111,12 @@ void engine_core_initialize_licensing(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -9141,7 +9141,7 @@ void engine_core_initialize_licensing(void)
   current_data_pointer[7] = 0x25db30365f277abb;
   current_data_pointer[8] = &engine_data_180a2cab0;
   current_data_pointer[9] = 2;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -9201,12 +9201,12 @@ void engine_core_start_main_loop(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -9231,7 +9231,7 @@ void engine_core_start_main_loop(void)
   current_data_pointer[7] = 0x727b256e3af32585;
   current_data_pointer[8] = &engine_data_180a2ca90;
   current_data_pointer[9] = 2;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -9251,12 +9251,12 @@ void engine_core_process_frame(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -9281,7 +9281,7 @@ void engine_core_process_frame(void)
   current_data_pointer[7] = 0x25db30365f277abb;
   current_data_pointer[8] = &engine_data_180a2cab0;
   current_data_pointer[9] = 2;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -9301,12 +9301,12 @@ void engine_core_update_physics(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -9331,7 +9331,7 @@ void engine_core_update_physics(void)
   current_data_pointer[7] = 0x727b256e3af32585;
   current_data_pointer[8] = &engine_data_180a2ca90;
   current_data_pointer[9] = 2;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -9351,12 +9351,12 @@ void engine_core_update_animations(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -9381,7 +9381,7 @@ void engine_core_update_animations(void)
   current_data_pointer[7] = 0x25db30365f277abb;
   current_data_pointer[8] = &engine_data_180a2cab0;
   current_data_pointer[9] = 2;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -9437,12 +9437,12 @@ void engine_core_update_ui(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -9467,7 +9467,7 @@ void engine_core_update_ui(void)
   current_data_pointer[7] = 0x727b256e3af32585;
   current_data_pointer[8] = &engine_data_180a2ca90;
   current_data_pointer[9] = 2;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -9487,12 +9487,12 @@ void engine_core_update_audio(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -9517,7 +9517,7 @@ void engine_core_update_audio(void)
   current_data_pointer[7] = 0x25db30365f277abb;
   current_data_pointer[8] = &engine_data_180a2cab0;
   current_data_pointer[9] = 2;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -9737,12 +9737,12 @@ void engine_core_update_particles(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -9767,7 +9767,7 @@ void engine_core_update_particles(void)
   current_data_pointer[7] = 0x9c552acd3ed5548d;
   current_data_pointer[8] = &engine_base_data_offset_a0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -9837,12 +9837,12 @@ void engine_core_update_time(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -9867,7 +9867,7 @@ void engine_core_update_time(void)
   current_data_pointer[7] = 0xd4c2151109de93a0;
   current_data_pointer[8] = &engine_base_data_offset_d0;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -9937,12 +9937,12 @@ void engine_core_update_profiling(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -9967,7 +9967,7 @@ void engine_core_update_profiling(void)
   current_data_pointer[7] = 0x399eced9bb5517ad;
   current_data_pointer[8] = &engine_base_data_zero;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -10037,12 +10037,12 @@ void engine_core_update_config(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -10067,7 +10067,7 @@ void engine_core_update_config(void)
   current_data_pointer[7] = 0x47f249e43f66f2ab;
   current_data_pointer[8] = &engine_data_18098c7a0;
   current_data_pointer[9] = 1;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -10087,12 +10087,12 @@ void engine_core_update_localization(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -10117,7 +10117,7 @@ void engine_core_update_localization(void)
   current_data_pointer[7] = 0x4e4b0d63a6ad1d8f;
   current_data_pointer[8] = &engine_data_18098c7b8;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -10137,12 +10137,12 @@ void engine_core_update_modding(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -10167,7 +10167,7 @@ void engine_core_update_modding(void)
   current_data_pointer[7] = 0xdc42c056bbde8482;
   current_data_pointer[8] = &engine_data_18098c7c8;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -10187,12 +10187,12 @@ void engine_core_update_multiplayer(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -10217,7 +10217,7 @@ void engine_core_update_multiplayer(void)
   current_data_pointer[7] = 0xc29193aa9d9b35b9;
   current_data_pointer[8] = &engine_data_18098c7d8;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -10237,12 +10237,12 @@ void engine_core_update_achievements(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -10267,7 +10267,7 @@ void engine_core_update_achievements(void)
   current_data_pointer[7] = 0x7f74eb2c5a7fadae;
   current_data_pointer[8] = &engine_data_18098c7f0;
   current_data_pointer[9] = 3;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -10287,12 +10287,12 @@ void engine_core_update_leaderboards(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -10317,7 +10317,7 @@ void engine_core_update_leaderboards(void)
   current_data_pointer[7] = 0x8d98f4c06880eda4;
   current_data_pointer[8] = &engine_data_18098c810;
   current_data_pointer[9] = 3;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -10337,12 +10337,12 @@ void engine_core_update_statistics(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -10367,7 +10367,7 @@ void engine_core_update_statistics(void)
   current_data_pointer[7] = 0x355ffeb2d29e668a;
   current_data_pointer[8] = &engine_data_18098c870;
   current_data_pointer[9] = 0;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -10437,12 +10437,12 @@ void engine_core_update_telemetry(void)
   void* current_data_pointer;
   void* next_data_pointer;
   void* local_resource_node;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   
   main_context_pointer = (longlong *)engine_get_system_context();
   structure_data_pointer = (void*)*main_context_pointer;
   resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
@@ -10467,7 +10467,7 @@ void engine_core_update_telemetry(void)
   current_data_pointer[7] = 0x5e3cf00ce2978287;
   current_data_pointer[8] = &void* engine_memory_pool;
   current_data_pointer[9] = 1;
-  current_data_pointer[10] = uStackX_18;
+  current_data_pointer[10] = engine_stack_uint_18;
   return;
 }
 
@@ -22217,13 +22217,13 @@ int engine_process_performance_data(uint64 engine_data_structure_ptr,uint64 engi
 {
   int engine_temporary_int;
   ulonglong *structure_data_pointer;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   uint64 engine_stack_uint_20;
   
-  uStackX_18 = engine_comparison_params;
+  engine_stack_uint_18 = engine_comparison_params;
   engine_stack_uint_20 = engine_system_parameter_4;
   structure_data_pointer = (ulonglong *)func_0x00018004b9a0();
-  engine_temporary_int = __stdio_common_vsprintf(*structure_data_pointer | 1,engine_data_structure_ptr,0xffffffffffffffff,engine_result_flag_ptr,0,&uStackX_18);
+  engine_temporary_int = __stdio_common_vsprintf(*structure_data_pointer | 1,engine_data_structure_ptr,0xffffffffffffffff,engine_result_flag_ptr,0,&engine_stack_uint_18);
   if (engine_temporary_int < 0) {
     engine_temporary_int = -1;
   }
@@ -23187,12 +23187,12 @@ void engine_handle_system_validation(uint64 engine_data_structure_ptr,uint64 eng
 void engine_validate_system_compatibility(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   uint64 engine_stack_uint_20;
   
-  uStackX_18 = engine_comparison_params;
+  engine_stack_uint_18 = engine_comparison_params;
   engine_stack_uint_20 = engine_system_parameter_4;
-  engine_process_system_validation(engine_data_structure_ptr,0,0xffffffff00000000,0xd,engine_result_flag_ptr,&uStackX_18);
+  engine_process_system_validation(engine_data_structure_ptr,0,0xffffffff00000000,0xd,engine_result_flag_ptr,&engine_stack_uint_18);
   return;
 }
 
@@ -24633,7 +24633,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   ulonglong engine_stack_uint_2a8;
   void* pengine_stack_uint_2a0;
   char *engine_stack_char_pointer_298;
-  int iStack_290;
+  int engine_stack_int_290;
   uint32 engine_stack_uint_288;
   uint64 engine_stack_uint_280;
   longlong engine_stack_long_278;
@@ -24917,7 +24917,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
         if (((longlong)engine_stack_pointer_138 - (longlong)pengine_stack_uint_140 & 0xffffffffffffffe0U) == 0x40) {
           engine_call_data_writer(&pengine_stack_uint_2a0,pengine_stack_uint_140);
           if (engine_stack_char_pointer_298 != (char *)0x0) {
-            iStack_290 = 0;
+            engine_stack_int_290 = 0;
             engine_temp_long4 = 0;
             engine_temp_long_9 = 0;
             engine_temp_char_7 = *engine_stack_char_pointer_298;
@@ -24926,7 +24926,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
                 if (engine_temp_long4 != engine_temp_long_9) {
                   engine_stack_char_pointer_298[engine_temp_long4] = engine_stack_char_pointer_298[engine_temp_long_9];
                 }
-                iStack_290 = iStack_290 + 1;
+                engine_stack_int_290 = engine_stack_int_290 + 1;
                 engine_temp_long4 = engine_temp_long4 + 1;
               }
               engine_temp_long_9 = engine_temp_long_9 + 1;
@@ -24939,8 +24939,8 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
             engine_data_ptr8 = engine_next_node_ptr + 1;
             do {
               engine_temp_int_2 = *(int *)(engine_data_ptr8 + 1);
-              engine_temp_int5 = iStack_290;
-              if (engine_temp_int_2 == iStack_290) {
+              engine_temp_int5 = engine_stack_int_290;
+              if (engine_temp_int_2 == engine_stack_int_290) {
                 if (engine_temp_int_2 != 0) {
                   engine_byte_ptr_13 = (byte *)*engine_data_ptr8;
                   engine_temp_long_9 = (longlong)engine_stack_char_pointer_298 - (longlong)engine_byte_ptr_13;
@@ -38608,7 +38608,7 @@ void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
   float engine_temp_float_52;
   float engine_temp_float_53;
   int iStackX_10;
-  ulonglong uStackX_18;
+  ulonglong engine_stack_uint_18;
   ulonglong engine_stack_uint_20;
   int *piStack_218;
   int *piStack_210;
@@ -38941,13 +38941,13 @@ LAB_180079d9b:
     } while (engine_stack_uint_20 != 0);
   }
   engine_temp_uint9 = 0;
-  uStackX_18 = 0;
+  engine_stack_uint_18 = 0;
   if (*pengine_temp_int < 1) {
 LAB_18007a5ac:
     engine_unnamed_function_2070(&engine_stack_long_170);
     engine_temp_long_21 = (longlong)iStack_1e8;
     engine_stack_uint_1d8 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0xc0);
-    uStackX_18 = -1;
+    engine_stack_uint_18 = -1;
     do {
       piStack_218 = (int *)0x0;
       piStack_210 = (int *)0x0;
@@ -38960,7 +38960,7 @@ LAB_18007a5ac:
       else {
         engine_unnamed_function_2230(&piStack_218,engine_temp_long_21);
       }
-      pengine_temp_long_39 = (longlong *)((uStackX_18 + 1) * 0x20 + aengine_stack_uint_150._0_8_);
+      pengine_temp_long_39 = (longlong *)((engine_stack_uint_18 + 1) * 0x20 + aengine_stack_uint_150._0_8_);
       engine_temp_long_23 = 0;
       piStack_1f0 = (int *)0x0;
       if (0 < (longlong)engine_temp_uint_28) {
@@ -38971,7 +38971,7 @@ LAB_18007a5ac:
           engine_temp_uint9 = pengine_stack_uint_130[(longlong)piStack_1f0];
           if (engine_temp_uint9 == 0) {
             do {
-              if (uStackX_18 == -1) {
+              if (engine_stack_uint_18 == -1) {
                 engine_temp_long_31 = (longlong)*(int *)(engine_stack_uint_180 + engine_temp_long_21 * 4) * 0x5c +
                          *(longlong *)(engine_data_structure_ptr + 0x68);
                 engine_temp_uint_6 = ((void*)(engine_temp_long_23 + *pengine_temp_long_39))[1];
@@ -39004,13 +39004,13 @@ LAB_18007a5ac:
               else {
                 engine_temp_uint_6 = ((void*)(engine_temp_long_23 + *pengine_temp_long_39))[1];
                 engine_current_node_ptr = (void*)
-                         (*(longlong *)(*(longlong *)(engine_data_structure_ptr + 0xb0) + 0x30 + uStackX_18 * 0x50) +
+                         (*(longlong *)(*(longlong *)(engine_data_structure_ptr + 0xb0) + 0x30 + engine_stack_uint_18 * 0x50) +
                          (longlong)*(int *)(engine_stack_uint_180 + engine_temp_long_21 * 4) * 0x10);
                 *engine_current_node_ptr = *(void*)(engine_temp_long_23 + *pengine_temp_long_39);
                 engine_current_node_ptr[1] = engine_temp_uint_6;
                 pengine_temp_float_18 = (float *)((longlong)*(int *)(engine_stack_uint_180 + engine_temp_long_21 * 4) * 0x10 +
                                    *(longlong *)
-                                    (*(longlong *)(engine_data_structure_ptr + 0xb0) + 0x30 + uStackX_18 * 0x50));
+                                    (*(longlong *)(engine_data_structure_ptr + 0xb0) + 0x30 + engine_stack_uint_18 * 0x50));
                 engine_temp_float_48 = pengine_temp_float_18[1];
                 engine_temp_float_52 = *pengine_temp_float_18;
                 engine_temp_float_51 = pengine_temp_float_18[2];
@@ -39262,7 +39262,7 @@ LAB_18007ac04:
             engine_current_node_ptr = (void*)(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
             engine_temp_uint_6 = *engine_current_node_ptr;
             engine_temp_uint64_value = engine_current_node_ptr[1];
-            if (uStackX_18 == -1) {
+            if (engine_stack_uint_18 == -1) {
               engine_current_node_ptr = (void*)(*(longlong *)(engine_data_structure_ptr + 0x68) + 4 + engine_temp_long2);
               *engine_current_node_ptr = engine_temp_uint_6;
               engine_current_node_ptr[1] = engine_temp_uint64_value;
@@ -39276,7 +39276,7 @@ LAB_18007ac04:
             }
             else {
               engine_current_node_ptr = (void*)
-                       (*(longlong *)(*(longlong *)(engine_data_structure_ptr + 0xb0) + 0x30 + uStackX_18 * 0x50) +
+                       (*(longlong *)(*(longlong *)(engine_data_structure_ptr + 0xb0) + 0x30 + engine_stack_uint_18 * 0x50) +
                        (longlong)*(int *)(engine_temp_long7 + engine_temp_long_21) * 0x10);
               *engine_current_node_ptr = engine_temp_uint_6;
               engine_current_node_ptr[1] = engine_temp_uint64_value;
@@ -39302,7 +39302,7 @@ LAB_18007ac04:
             engine_current_node_ptr = (void*)(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
             engine_temp_uint_6 = *engine_current_node_ptr;
             engine_temp_uint64_value = engine_current_node_ptr[1];
-            if (uStackX_18 == -1) {
+            if (engine_stack_uint_18 == -1) {
               engine_current_node_ptr = (void*)(*(longlong *)(engine_data_structure_ptr + 0x68) + 4 + engine_temp_long2);
               *engine_current_node_ptr = engine_temp_uint_6;
               engine_current_node_ptr[1] = engine_temp_uint64_value;
@@ -39316,7 +39316,7 @@ LAB_18007ac04:
             }
             else {
               engine_current_node_ptr = (void*)
-                       (*(longlong *)(*(longlong *)(engine_data_structure_ptr + 0xb0) + 0x30 + uStackX_18 * 0x50) +
+                       (*(longlong *)(*(longlong *)(engine_data_structure_ptr + 0xb0) + 0x30 + engine_stack_uint_18 * 0x50) +
                        engine_temp_long_40 * 0x10);
               *engine_current_node_ptr = engine_temp_uint_6;
               engine_current_node_ptr[1] = engine_temp_uint64_value;
@@ -39341,7 +39341,7 @@ LAB_18007ac04:
             }
             engine_temp_long_24 = *(longlong *)(piStack_218 + engine_temp_long2 * 8);
             aengine_temp_uint_47 = *(uint8_t (*) [16])(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
-            if (uStackX_18 == -1) {
+            if (engine_stack_uint_18 == -1) {
               *(uint8_t (*) [16])(engine_temp_long_43 + 4 + *(longlong *)(engine_data_structure_ptr + 0x68)) = aengine_temp_uint_47;
               engine_current_node_ptr = (void*)(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
               engine_temp_uint_6 = engine_current_node_ptr[1];
@@ -39353,7 +39353,7 @@ LAB_18007ac04:
             }
             else {
               *(uint8_t (*) [16])
-               (*(longlong *)(*(longlong *)(engine_data_structure_ptr + 0xb0) + 0x30 + uStackX_18 * 0x50) +
+               (*(longlong *)(*(longlong *)(engine_data_structure_ptr + 0xb0) + 0x30 + engine_stack_uint_18 * 0x50) +
                engine_temp_long_40 * 0x10) = aengine_temp_uint_47;
             }
           }
@@ -39363,8 +39363,8 @@ LAB_18007ac04:
         engine_temp_long_21 = (longlong)iStack_1e8;
       }
       engine_unnamed_function_2090(&piStack_218);
-      uStackX_18 = uStackX_18 + 1;
-      if ((longlong)engine_stack_uint_1d8 <= (longlong)uStackX_18) {
+      engine_stack_uint_18 = engine_stack_uint_18 + 1;
+      if ((longlong)engine_stack_uint_1d8 <= (longlong)engine_stack_uint_18) {
         engine_unnamed_function_2070(aengine_stack_uint_150);
         if (pengine_stack_uint_130 != (uint32*)0x0) {
                     // WARNING: Subroutine does not return
@@ -39395,13 +39395,13 @@ LAB_180079e40:
       engine_temp_uint9 = engine_temp_uint9 | pengine_stack_uint_130[*pengine_temp_int3];
       engine_temp_int_27 = engine_temp_int_27 + 1;
     } while ((ulonglong)(longlong)engine_temp_int_27 < engine_temp_uint_41);
-    engine_temp_uint9 = (uint)uStackX_18;
+    engine_temp_uint9 = (uint)engine_stack_uint_18;
     if (!engine_temp_byte44) {
       engine_stack_uint_1a0 = (int *)0x0;
       engine_stack_value_198 = (int *)0x0;
       piStack_190 = (int *)0x0;
       engine_stack_uint_188 = 3;
-      pengine_temp_int4 = (int *)engine_call_memory_extender(_engine_data_18,4,CONCAT71((uint7)(uint3)(uStackX_18 >> 8),3));
+      pengine_temp_int4 = (int *)engine_call_memory_extender(_engine_data_18,4,CONCAT71((uint7)(uint3)(engine_stack_uint_18 >> 8),3));
       *pengine_temp_int4 = *pengine_temp_int_20;
       pengine_temp_int_20 = pengine_temp_int4 + 1;
       piStack_218 = (int *)0x0;
@@ -39664,13 +39664,13 @@ LAB_18007a312:
       do {
         engine_temp_long_31 = (longlong)*pengine_temp_int_20;
         engine_temp_long_21 = *(longlong *)(engine_data_structure_ptr + 0x90);
-        if (*(uint *)(engine_temp_long_21 + engine_temp_long_31 * 0xc) == (uint)uStackX_18) {
+        if (*(uint *)(engine_temp_long_21 + engine_temp_long_31 * 0xc) == (uint)engine_stack_uint_18) {
           *(int *)(engine_temp_long_21 + engine_temp_long_31 * 0xc) = engine_temp_int_27;
         }
-        if (*(uint *)(engine_temp_long_21 + 4 + engine_temp_long_31 * 0xc) == (uint)uStackX_18) {
+        if (*(uint *)(engine_temp_long_21 + 4 + engine_temp_long_31 * 0xc) == (uint)engine_stack_uint_18) {
           *(int *)(engine_temp_long_21 + 4 + engine_temp_long_31 * 0xc) = engine_temp_int_27;
         }
-        if (*(uint *)(engine_temp_long_21 + 8 + engine_temp_long_31 * 0xc) == (uint)uStackX_18) {
+        if (*(uint *)(engine_temp_long_21 + 8 + engine_temp_long_31 * 0xc) == (uint)engine_stack_uint_18) {
           *(int *)(engine_temp_long_21 + 8 + engine_temp_long_31 * 0xc) = engine_temp_int_27;
         }
         engine_temp_uint_33 = (int)engine_temp_uint_41 + 1;
@@ -39720,7 +39720,7 @@ LAB_18007a312:
   }
 LAB_18007a58b:
   engine_temp_uint9 = engine_temp_uint9 + 1;
-  uStackX_18 = (ulonglong)engine_temp_uint9;
+  engine_stack_uint_18 = (ulonglong)engine_temp_uint9;
   engine_stack_long_1d0 = engine_stack_long_1d0 + 1;
   if (*pengine_temp_int <= (int)engine_temp_uint9) goto LAB_18007a5ac;
   goto LAB_180079e40;
@@ -56950,7 +56950,7 @@ void engine_unnamed_function_4420(uint64 engine_data_structure_ptr,longlong engi
   int engine_temp_int3;
   engine_undefined_value *engine_data_ptr4;
   float engine_temp_float_15;
-  uint32 uStackX_18;
+  uint32 engine_stack_uint_18;
   uint32 uStackX_1c;
   char acStackX_20 [8];
   
@@ -57006,9 +57006,9 @@ void engine_unnamed_function_4420(uint64 engine_data_structure_ptr,longlong engi
   }
   engine_unnamed_function_5470();
   engine_temp_uint_ptr_9 = (uint32*)engine_unnamed_function_4700(engine_comparison_params + 0x90,engine_result_flag_ptr + 0x20);
-  uStackX_18 = 0xbf800000;
+  engine_stack_uint_18 = 0xbf800000;
   uStackX_1c = 0;
-  engine_unnamed_function_5380(*engine_temp_uint_ptr_9,&uStackX_18);
+  engine_unnamed_function_5380(*engine_temp_uint_ptr_9,&engine_stack_uint_18);
   engine_unnamed_function_5470();
   if (engine_temp_char_flag != '\0') {
     if (*(longlong *)(engine_result_flag_ptr + 0x50) - *(longlong *)(engine_result_flag_ptr + 0x48) >> 3 != 0) {
@@ -58931,7 +58931,7 @@ uint8_t engine_unnamed_function_4540(uint64 engine_data_structure_ptr,longlong e
   uint64 uStackX_8;
   uint32 uStackX_10;
   float fStackX_14;
-  uint64 uStackX_18;
+  uint64 engine_stack_uint_18;
   void* pengine_stack_uint_20;
   uint64 engine_stack_uint_40;
   uint64 engine_stack_uint_38;
@@ -58939,7 +58939,7 @@ uint8_t engine_unnamed_function_4540(uint64 engine_data_structure_ptr,longlong e
   uint64 engine_stack_uint_28;
   
   uStackX_8 = engine_data_structure_ptr;
-  uStackX_18 = engine_comparison_params;
+  engine_stack_uint_18 = engine_comparison_params;
   pengine_stack_uint_20 = engine_system_parameter_4;
   engine_temp_uint_2 = func_0x000180220c90(*(uint32*)(engine_result_flag_ptr + 0x324));
   engine_unnamed_function_5450();
@@ -58953,11 +58953,11 @@ uint8_t engine_unnamed_function_4540(uint64 engine_data_structure_ptr,longlong e
   engine_stack_uint_38 = 0x3f8000003f800000;
   engine_stack_uint_30 = 0;
   engine_stack_uint_28 = 0;
-  uStackX_18 = 0x3f8000003f800000;
+  engine_stack_uint_18 = 0x3f8000003f800000;
   uStackX_8 = 0;
   fStackX_14 = ((float)*(ushort *)(engine_result_flag_ptr + 0x32e) * 256.0) / (float)*(ushort *)(engine_result_flag_ptr + 0x32c);
   uStackX_10 = 0x43800000;
-  engine_temporary_uint = engine_unnamed_function_5360(engine_result_flag_ptr,&uStackX_10,&uStackX_8,&uStackX_18,engine_temp_uint_4,&engine_stack_uint_30,&engine_stack_uint_40);
+  engine_temporary_uint = engine_unnamed_function_5360(engine_result_flag_ptr,&uStackX_10,&uStackX_8,&engine_stack_uint_18,engine_temp_uint_4,&engine_stack_uint_30,&engine_stack_uint_40);
   engine_unnamed_function_5460();
   *engine_system_parameter_4 = &engine_system_context_data;
   if (engine_system_parameter_4[1] != 0) {
