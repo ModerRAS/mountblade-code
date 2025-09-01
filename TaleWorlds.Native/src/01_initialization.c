@@ -23727,51 +23727,61 @@ void ProcessSystemQueueItem(long long *QueuePointer)
 
 
 
-// 函数: void FUN_18004bff0(long long param_1)
-void FUN_18004bff0(long long param_1)
+// 函数: 系统资源清理器 - 清理系统资源并处理异常列表
+/**
+ * @brief 系统资源清理器
+ * 
+ * 该函数负责清理系统资源，包括内存释放、异常列表处理和资源句柄管理
+ * 它会遍历资源数组，逐个清理资源，并处理相关的异常列表条目
+ * 
+ * @param ResourceHandle 资源句柄，指向需要清理的资源结构
+ * 
+ * 该函数会递归清理所有相关资源，并确保系统处于一致状态
+ */
+void CleanupSystemResources(long long ResourceHandle)
 
 {
-  int *piVar1;
-  long long lVar2;
-  void* *puVar3;
-  long long lVar4;
-  ulong long uVar5;
-  ulong long uVar6;
+  int *ReferenceCount;
+  long long ResourcePointer;
+  void* *ResourceArray;
+  long long ArrayBase;
+  ulong long ResourceIndex;
+  ulong long ResourceCount;
   
-  uVar6 = *(ulong long *)(param_1 + 0x10);
-  lVar4 = *(long long *)(param_1 + 8);
-  uVar5 = 0;
-  if (uVar6 != 0) {
+  ResourceCount = *(ulong long *)(ResourceHandle + 0x10);
+  ArrayBase = *(long long *)(ResourceHandle + 8);
+  ResourceIndex = 0;
+  if (ResourceCount != 0) {
     do {
-      lVar2 = *(long long *)(lVar4 + uVar5 * 8);
-      if (lVar2 != 0) {
+      ResourcePointer = *(long long *)(ArrayBase + ResourceIndex * 8);
+      if (ResourcePointer != 0) {
                     // WARNING: Subroutine does not return
-        SystemCleanupFunction(lVar2);
+        SystemCleanupFunction(ResourcePointer);
       }
-      *(void* *)(lVar4 + uVar5 * 8) = 0;
-      uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar6);
-    uVar6 = *(ulong long *)(param_1 + 0x10);
+      *(void* *)(ArrayBase + ResourceIndex * 8) = 0;
+      ResourceIndex = ResourceIndex + 1;
+    } while (ResourceIndex < ResourceCount);
+    ResourceCount = *(ulong long *)(ResourceHandle + 0x10);
   }
-  *(void* *)(param_1 + 0x18) = 0;
-  if ((1 < uVar6) && (puVar3 = *(void* **)(param_1 + 8), puVar3 != (void* *)0x0)) {
-    uVar6 = (ulong long)puVar3 & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((long long)puVar3 - uVar6 >> 0x10) * 0x50;
-      lVar4 = lVar4 - (ulong long)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar3 = *(void* *)(lVar4 + 0x20);
-        *(void* **)(lVar4 + 0x20) = puVar3;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+  *(void* *)(ResourceHandle + 0x18) = 0;
+  if ((1 < ResourceCount) && (ResourceArray = *(void* **)(ResourceHandle + 8), ResourceArray != (void* *)0x0)) {
+    ResourceCount = (ulong long)ResourceArray & 0xffffffffffc00000;
+    if (ResourceCount != 0) {
+      ArrayBase = ResourceCount + 0x80 + ((long long)ResourceArray - ResourceCount >> 0x10) * 0x50;
+      ArrayBase = ArrayBase - (ulong long)*(uint *)(ArrayBase + 4);
+      if ((*(void ***)(ResourceCount + 0x70) == &ExceptionList) && (*(char *)(ArrayBase + 0xe) == '\0')) {
+        *ResourceArray = *(void* *)(ArrayBase + 0x20);
+        *(void* **)(ArrayBase + 0x20) = ResourceArray;
+        ReferenceCount = (int *)(ArrayBase + 0x18);
+        *ReferenceCount = *ReferenceCount + -1;
+        if (*ReferenceCount == 0) {
           FUN_18064d630();
           return;
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar3,uVar6,0xfffffffffffffffe);
+        func_0x00018064e870(ResourceCount,CONCAT71(0xff000000,*(void ***)(ResourceCount + 0x70) == &ExceptionList),
+                            ResourceArray,ResourceCount,0xfffffffffffffffe);
       }
     }
     return;
@@ -23782,18 +23792,29 @@ void FUN_18004bff0(long long param_1)
 
 
 
-// 函数: void FUN_18004c010(long long *param_1)
-void FUN_18004c010(long long *param_1)
+// 函数: 系统队列清理器 - 清理系统队列中的所有项目
+/**
+ * @brief 系统队列清理器
+ * 
+ * 该函数负责清理系统队列中的所有项目，遍历整个队列并逐个处理
+ * 每个队列项目。最后会调用系统清理函数确保资源正确释放
+ * 
+ * @param QueueHeader 队列头指针，指向需要清理的队列头部
+ * 
+ * 该函数会遍历队列中的所有项目，调用队列处理器处理每个项目
+ * 最后确保系统资源被正确清理
+ */
+void CleanupSystemQueue(long long *QueueHeader)
 
 {
-  long long lVar1;
-  long long lVar2;
+  long long QueueEnd;
+  long long CurrentItem;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x18) {
-    FUN_18004bf50(lVar2);
+  QueueEnd = QueueHeader[1];
+  for (CurrentItem = *QueueHeader; CurrentItem != QueueEnd; CurrentItem = CurrentItem + 0x18) {
+    ProcessSystemQueueItem(CurrentItem);
   }
-  if (*param_1 == 0) {
+  if (*QueueHeader == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
