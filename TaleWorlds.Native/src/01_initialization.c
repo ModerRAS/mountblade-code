@@ -51,22 +51,22 @@ void* AudioSystemData;
 
 // 输入系统初始化函数和相关数据
 void* InputSystemEntryPoint;
-void* InputSystemDataPrimary;
-void* InputSystemDataSecondary;
-void* InputSystemDataTertiary;
-void* InputSystemDataQuaternary;
-void* InputSystemDataQuinary;
-void* InputSystemDataSenary;
-void* InputSystemDataSeptenary;
-void* InputSystemDataOctonary;
+void* InputSystemDataBuffer;
+void* InputSystemEventQueue;
+void* InputSystemStateData;
+void* InputSystemDeviceManager;
+void* InputSystemKeyMapping;
+void* InputSystemAxisMapping;
+void* InputSystemActionBindings;
+void* InputSystemConfiguration;
 void* SubsystemEntryPoint;
 void* SubsystemData;
 void* InputSystemDataTable;
 uint8_t InputSystemFlags;
-void* InputSystemConfigPrimary;
-void* InputSystemConfigSecondary;
-void* InputSystemConfigTertiary;
-void* InputSystemConfigQuaternary;
+void* InputSystemConfigMain;
+void* InputSystemDeviceConfig;
+void* InputSystemMappingConfig;
+void* InputSystemProfileConfig;
 
 // 物理系统初始化函数
 void* PhysicsSystemEntryPoint;
@@ -1691,50 +1691,56 @@ void InitializeSystemResourceNode(void)
 
 
 
-// 函数: void FUN_18002d9e0(void)
-void FUN_18002d9e0(void)
+// 函数: void InitializeSystemMemoryNode(void)
+/**
+ * @brief 初始化系统内存节点
+ * 
+ * 该函数负责初始化系统的内存节点结构
+ * 设置系统内存管理的基本参数和数据结构
+ */
+void InitializeSystemMemoryNode(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char nodeFlag;
+  undefined8 *systemRootPointer;
+  int comparisonResult;
+  longlong *systemTablePointer;
+  longlong allocationSize;
+  undefined8 *currentNode;
+  undefined8 *previousNode;
+  undefined8 *nextNode;
+  undefined8 *allocatedNode;
+  undefined8 initializationFlag;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  systemTablePointer = (longlong *)FUN_18008d070();
+  systemRootPointer = (undefined8 *)*systemTablePointer;
+  nodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  initializationFlag = 0;
+  previousNode = systemRootPointer;
+  currentNode = (undefined8 *)systemRootPointer[1];
+  while (nodeFlag == '\0') {
+    comparisonResult = memcmp(currentNode + 4,&DAT_180a01000,0x10);
+    if (comparisonResult < 0) {
+      nextNode = (undefined8 *)currentNode[2];
+      currentNode = previousNode;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      nextNode = (undefined8 *)*currentNode;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previousNode = currentNode;
+    currentNode = nextNode;
+    nodeFlag = *(char *)((longlong)nextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_180a01000,previousNode + 4,0x10), comparisonResult < 0)) {
+    allocationSize = FUN_18008f0d0(systemTablePointer);
+    FUN_18008f140(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
+    previousNode = allocatedNode;
   }
-  puVar7[6] = 0x402feffe4481676e;
-  puVar7[7] = 0xd4c2151109de93a0;
-  puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
+  previousNode[6] = 0x402feffe4481676e;
+  previousNode[7] = 0xd4c2151109de93a0;
+  previousNode[8] = &UNK_180a003d0;
+  previousNode[9] = 0;
+  previousNode[10] = initializationFlag;
   return;
 }
 
@@ -10010,8 +10016,13 @@ void FUN_18003a1b0(void)
 
 
 
-// 函数: void FUN_18003a2b0(void)
-void FUN_18003a2b0(void)
+/**
+ * @brief 系统初始化函数 - 内存分配器设置
+ * 
+ * 该函数负责初始化系统内存分配器，设置内存池和数据结构
+ * 用于管理游戏运行时的内存分配和释放
+ */
+void InitializeSystemMemoryAllocatorSetup(void)
 
 {
   char cVar1;
@@ -10060,8 +10071,13 @@ void FUN_18003a2b0(void)
 
 
 
-// 函数: void FUN_18003a3b0(void)
-void FUN_18003a3b0(void)
+/**
+ * @brief 系统初始化函数 - 数据表配置器
+ * 
+ * 该函数负责初始化系统数据表配置器，设置数据结构和索引
+ * 用于管理游戏运行时的数据存储和检索
+ */
+void InitializeSystemDataTableConfigurator(void)
 
 {
   char cVar1;
@@ -20045,8 +20061,13 @@ bool FUN_18004a500(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004a640(void)
-void FUN_18004a640(void)
+/**
+ * @brief 系统初始化函数 - 线程池管理器
+ * 
+ * 该函数负责初始化系统线程池管理器，设置线程池和工作队列
+ * 用于管理游戏运行时的多线程任务执行
+ */
+void InitializeSystemThreadPoolManager(void)
 
 {
   char cVar1;

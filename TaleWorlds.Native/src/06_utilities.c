@@ -4608,8 +4608,14 @@ undefined4 FUN_180890fae(void)
 
 
 
-// 函数: void FUN_180890fe2(void)
-void FUN_180890fe2(void)
+// 函数: void ExecuteNonReturningFunctionAtLocation180d49f90(void)
+/**
+ * @brief 执行位于0x180d49f90的不返回函数
+ * 
+ * 该函数调用位于0x180d49f90地址的函数，该函数不会返回
+ * 用于处理特殊情况下的程序退出
+ */
+void ExecuteNonReturningFunctionAtLocation180d49f90(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -4619,8 +4625,14 @@ void FUN_180890fe2(void)
 
 
 
-// 函数: void FUN_180891062(void)
-void FUN_180891062(void)
+// 函数: void ExecuteNonReturningFunctionAtLocation180d49fe0(void)
+/**
+ * @brief 执行位于0x180d49fe0的不返回函数
+ * 
+ * 该函数调用位于0x180d49fe0地址的函数，该函数不会返回
+ * 用于处理特殊情况下的程序退出
+ */
+void ExecuteNonReturningFunctionAtLocation180d49fe0(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -82519,8 +82531,14 @@ void FUN_180942850(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942890(void)
-void FUN_180942890(void)
+// 函数: void ReleaseResourceReference(void)
+/**
+ * @brief 释放资源引用
+ * 
+ * 该函数负责释放资源的引用计数，当引用计数降为0时
+ * 会调用相应的清理函数来释放资源
+ */
+void ReleaseResourceReference(void)
 
 {
   longlong *plVar1;

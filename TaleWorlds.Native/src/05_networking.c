@@ -597,7 +597,7 @@ void ValidateNetworkConnection(undefined8 connectionId,ulonglong *connectionStat
 
 {
   int validationStatus;
-  int connectionStatus;
+  int localConnectionStatus;
   undefined1 securityBuffer [32];
   undefined1 *errorMessage;
   longlong connectionInfo [2];
@@ -742,8 +742,8 @@ void SendNetworkPacket(undefined8 packetId,undefined8 connectionId,undefined1 pa
       }
       if ((((*(int *)(lVar3 + 0x38) != 0) || (*(int *)(lVar3 + 0x3c) != 0)) ||
           ((*(int *)(lVar3 + 0x40) != 0 || (*(int *)(lVar3 + 0x44) != 0)))) &&
-         (lVar3 = FUN_18083fb90(plVar1), lVar3 != 0)) {
-        FUN_180847550(lVar3);
+         (lVar3 = GetNetworkPacketEntry(plVar1), lVar3 != 0)) {
+        SendNetworkPacketEntry(lVar3);
       }
     }
   }
@@ -796,12 +796,12 @@ void SendNetworkPacketEx(undefined8 packetId,undefined8 connectionId,undefined8 
       lVar3 = (**(code **)(*plVar1 + 0x270))(plVar1,lVar4,1,param_4,param_1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar4,&stack0x00000040);
+        ProcessNetworkPacketArray(lVar4,&stack0x00000040);
       }
       if ((((*(int *)(lVar3 + 0x38) != 0) || (*(int *)(lVar3 + 0x3c) != 0)) ||
           ((*(int *)(lVar3 + 0x40) != 0 || (*(int *)(lVar3 + 0x44) != 0)))) &&
-         (lVar3 = FUN_18083fb90(plVar1), lVar3 != 0)) {
-        FUN_180847550(lVar3);
+         (lVar3 = GetNetworkPacketEntry(plVar1), lVar3 != 0)) {
+        SendNetworkPacketEntry(lVar3);
       }
     }
   }
@@ -5749,7 +5749,7 @@ void FUN_1808479d0(longlong param_1,longlong *param_2,byte *param_3)
     lVar4 = (**(code **)(*param_2 + 0x330))(param_2,param_1 + 0x50,1);
     if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(param_1 + 0x50,&puStack_58);
+      ProcessNetworkPacketArray(param_1 + 0x50,&puStack_58);
     }
     cStack_60 = '\0';
     puStack_68 = &UNK_1809845a0;
@@ -5764,7 +5764,7 @@ void FUN_1808479d0(longlong param_1,longlong *param_2,byte *param_3)
         lVar4 = (**(code **)(*param_2 + 0x150))(param_2,uVar5,1);
         if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(uVar5,&puStack_58);
+          ProcessNetworkPacketArray(uVar5,&puStack_58);
         }
         iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x80,param_2);
         if ((iVar3 != 0) || (iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x90,param_2), iVar3 != 0))
@@ -5778,7 +5778,7 @@ void FUN_1808479d0(longlong param_1,longlong *param_2,byte *param_3)
         lVar4 = (**(code **)(*param_2 + 0x270))(param_2,uVar5,1);
         if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(uVar5,&puStack_58);
+          ProcessNetworkPacketArray(uVar5,&puStack_58);
         }
         lVar4 = FUN_18083fb90(param_2,lVar4 + 0x38);
         if (lVar4 == 0) goto LAB_180847c35;
@@ -5848,7 +5848,7 @@ void FUN_180847c60(longlong param_1,longlong *param_2,byte *param_3)
         lVar4 = (**(code **)(*param_2 + 0x2f0))(param_2,param_1 + 0x30);
         if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(param_1 + 0x30,auStack_60);
+          ProcessNetworkPacketArray(param_1 + 0x30,auStack_60);
         }
         plVar5 = (longlong *)(lVar4 + 0x58);
         if (((longlong *)*plVar5 == plVar5) && (*(longlong **)(lVar4 + 0x60) == plVar5)) {
@@ -8584,8 +8584,8 @@ void FUN_18084b180(undefined8 param_1,undefined1 param_2)
 
 
 
-// 函数: void FUN_18084b240(undefined4 *param_1,undefined8 param_2)
-void FUN_18084b240(undefined4 *param_1,undefined8 param_2)
+// 函数: void ProcessNetworkPacketArray(undefined4 *param_1,undefined8 param_2)
+void ProcessNetworkPacketArray(undefined4 *param_1,undefined8 param_2)
 
 {
                     // WARNING: Subroutine does not return
@@ -8766,7 +8766,7 @@ void FUN_18084b6c0(longlong param_1,longlong param_2)
                       (*(longlong **)(param_1 + 0x10),param_2 + 0xd8,1);
     if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(param_2 + 0xd8,auStack_38);
+      ProcessNetworkPacketArray(param_2 + 0xd8,auStack_38);
     }
     FUN_180847c60(lVar1,*(undefined8 *)(param_1 + 0x10),param_1 + 8);
   }
@@ -8800,7 +8800,7 @@ void FUN_18084b760(longlong param_1,longlong param_2)
                     (*(longlong **)(param_1 + 0x10),param_2 + 0xd8,1);
   if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2 + 0xd8,auStack_40);
+    ProcessNetworkPacketArray(param_2 + 0xd8,auStack_40);
   }
   abStack_48[0] = 0;
   iVar1 = FUN_1808479d0(lVar2,*(undefined8 *)(param_1 + 0x10),abStack_48);
@@ -8971,7 +8971,7 @@ LAB_18084bb6f:
       lVar15 = (**(code **)(*param_3 + 0x278))(param_3,lVar14 + 0x38,1);
       if (lVar15 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar14 + 0x38,auStack_58);
+        ProcessNetworkPacketArray(lVar14 + 0x38,auStack_58);
       }
       for (puVar17 = *(undefined4 **)(lVar14 + 0x58);
           (*(undefined4 **)(lVar14 + 0x58) <= puVar17 &&
@@ -9172,7 +9172,7 @@ void FUN_18084be00(longlong *param_1,longlong param_2,longlong *param_3)
     lVar3 = (**(code **)(*param_3 + 0x2f0))(param_3,param_2 + 0x30,1);
     if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(param_2 + 0x30,auStack_58);
+      ProcessNetworkPacketArray(param_2 + 0x30,auStack_58);
     }
     for (uVar5 = *(ulonglong *)(lVar3 + 0x38);
         (*(ulonglong *)(lVar3 + 0x38) <= uVar5 &&
@@ -9181,7 +9181,7 @@ void FUN_18084be00(longlong *param_1,longlong param_2,longlong *param_3)
       plVar4 = (longlong *)(**(code **)(*param_3 + 0x128))(param_3,uVar5,1);
       if (plVar4 == (longlong *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(uVar5,auStack_58);
+        ProcessNetworkPacketArray(uVar5,auStack_58);
       }
       iVar2 = (**(code **)(*plVar4 + 0x28))(plVar4,param_1);
       if ((iVar2 != 0) || (cVar1 = (**(code **)(*param_1 + 0x50))(param_1), cVar1 == '\0'))
@@ -16654,7 +16654,7 @@ void FUN_180850b70(undefined8 *param_1,undefined8 param_2,longlong param_3,undef
   lStack_e8 = lVar8;
   if (lVar8 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2,auStack_78);
+    ProcessNetworkPacketArray(param_2,auStack_78);
   }
   if ((*(byte *)(lVar8 + 0xc4) & 1) == 0) {
     if (param_3 == 0) goto LAB_180851437;
@@ -24792,7 +24792,7 @@ void FUN_180856ec0(longlong param_1,undefined8 *param_2)
     lVar7 = (**(code **)(*(longlong *)*param_2 + 0x2f0))((longlong *)*param_2,lVar11 + 0x10,1);
     if (lVar7 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(lVar11 + 0x10,&plStack_78);
+      ProcessNetworkPacketArray(lVar11 + 0x10,&plStack_78);
     }
     *(longlong *)(param_1 + 0x110) = lVar7;
   }
@@ -25679,7 +25679,7 @@ void FUN_180857b70(longlong param_1,longlong param_2)
                                  CONCAT71((int7)((ulonglong)puVar1 >> 8),1));
               if (lVar8 == 0) {
                     // WARNING: Subroutine does not return
-                FUN_18084b240(puVar9 + 4,auStack_68);
+                ProcessNetworkPacketArray(puVar9 + 4,auStack_68);
               }
               plVar7 = plVar4 + -3;
               if (plVar4 == (longlong *)0x0) {
@@ -25790,7 +25790,7 @@ void FUN_180857bad(longlong param_1)
                                CONCAT71((int7)((ulonglong)puVar1 >> 8),1));
             if (lVar8 == 0) {
                     // WARNING: Subroutine does not return
-              FUN_18084b240(puVar9 + 4,auStackX_20);
+              ProcessNetworkPacketArray(puVar9 + 4,auStackX_20);
             }
             plVar7 = plVar4 + -3;
             if (plVar4 == (longlong *)0x0) {
@@ -25891,7 +25891,7 @@ code_r0x000180857c8f:
                          CONCAT71((int7)((ulonglong)puVar1 >> 8),1));
       if (lVar5 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(puVar6 + 4,auStackX_20);
+        ProcessNetworkPacketArray(puVar6 + 4,auStackX_20);
       }
       plVar4 = unaff_RBX + -3;
       if (unaff_RBX == (longlong *)0x0) {
@@ -27673,7 +27673,7 @@ void FUN_180859ba0(longlong param_1,longlong *param_2)
                             (*(longlong **)(param_1 + 0x170),piVar1,1);
       if (lStack_78 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(piVar1,auStack_70,0);
+        ProcessNetworkPacketArray(piVar1,auStack_70,0);
       }
     }
     puVar2 = (undefined8 *)(lVar3 + 0xb0);
@@ -34674,7 +34674,7 @@ void FUN_180860480(longlong param_1,undefined8 param_2,undefined8 *param_3,char 
                       (*(longlong **)(param_1 + 0x458),param_2,1);
     if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(param_2,auStack_58);
+      ProcessNetworkPacketArray(param_2,auStack_58);
     }
     iVar5 = 0;
     uStack_68 = 1;
@@ -34834,7 +34834,7 @@ void FUN_180860690(longlong param_1,undefined8 *param_2)
     lVar7 = (**(code **)(*(longlong *)*param_2 + 0x288))((longlong *)*param_2,lVar13 + 0x10);
     if (lVar7 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(lVar13 + 0x10,auStack_a0);
+      ProcessNetworkPacketArray(lVar13 + 0x10,auStack_a0);
     }
     *(longlong *)(param_1 + 0x88) = lVar7;
   }
@@ -37501,7 +37501,7 @@ void FUN_180862000(longlong param_1,undefined8 param_2,undefined8 param_3)
                     (*(longlong **)(param_1 + 0x458),param_2,1);
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2,auStack_48);
+    ProcessNetworkPacketArray(param_2,auStack_48);
   }
   FUN_180862080(param_1,lVar1,param_3);
                     // WARNING: Subroutine does not return
@@ -44769,7 +44769,7 @@ LAB_1808683fc:
                               ((longlong *)*param_2,lVar1 + 0x10,1);
             if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-              FUN_18084b240(lVar1 + 0x10,auStack_58);
+              ProcessNetworkPacketArray(lVar1 + 0x10,auStack_58);
             }
             *(longlong *)((longlong)plVar6 + *(longlong *)(param_1 + 0x20) + 0x10) = lVar3;
           }
@@ -44843,7 +44843,7 @@ LAB_1808683fc:
                             ((longlong *)*unaff_R15,lVar1 + 0x10,1);
           if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1 + 0x10,auStackX_20);
+            ProcessNetworkPacketArray(lVar1 + 0x10,auStackX_20);
           }
           *(longlong *)(uVar6 + 0x10 + *(longlong *)(unaff_RBP + 0x20)) = lVar3;
         }
@@ -44907,7 +44907,7 @@ void FUN_180868490(longlong param_1,longlong param_2,longlong param_3)
                           (*(longlong **)(param_2 + 800),uVar3,1);
         if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(uVar3,auStack_68);
+          ProcessNetworkPacketArray(uVar3,auStack_68);
         }
         lVar2 = FUN_18083fb90(*(undefined8 *)(param_2 + 800),lVar2 + 0x38);
         if (lVar2 == 0) goto LAB_1808685dc;
@@ -45356,13 +45356,13 @@ LAB_180868b10:
           lVar2 = (**(code **)(*param_4 + 0x260))(param_4,plVar6 + 6,1);
           if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(plVar6 + 6,auStack_78);
+            ProcessNetworkPacketArray(plVar6 + 6,auStack_78);
           }
           lVar4 = plVar6[4];
           lVar3 = (**(code **)(*param_4 + 0x298))(param_4,lVar4,1);
           if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar4,auStack_78);
+            ProcessNetworkPacketArray(lVar4,auStack_78);
           }
           lVar4 = FUN_180869a50(param_4,lVar3 + 0x30);
           if (lVar4 != 0) {
@@ -46014,7 +46014,7 @@ void FUN_180869a50(longlong *param_1,undefined8 param_2)
   lVar1 = (**(code **)(*param_1 + 0x268))(param_1,param_2,1);
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2,auStack_38);
+    ProcessNetworkPacketArray(param_2,auStack_38);
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_58);
@@ -46038,7 +46038,7 @@ void FUN_180869ab0(longlong *param_1,undefined8 param_2)
   lVar1 = (**(code **)(*param_1 + 0x260))(param_1,param_2,1);
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2,auStack_38);
+    ProcessNetworkPacketArray(param_2,auStack_38);
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_58);
@@ -46092,7 +46092,7 @@ LAB_180869c7a:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x2a0))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x148);
           if (lVar4 == 0) goto LAB_180869c7a;
@@ -46170,7 +46170,7 @@ LAB_180869c7a:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2a0))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x148);
         if (lVar3 == 0) goto LAB_180869c7a;
@@ -46237,7 +46237,7 @@ LAB_180869c7a:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2a0))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x148);
       if (lVar3 == 0) goto LAB_180869c7a;
@@ -46347,7 +46347,7 @@ LAB_180869e7a:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x318))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x88);
           if (lVar4 == 0) goto LAB_180869e7a;
@@ -46425,7 +46425,7 @@ LAB_180869e7a:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x318))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x88);
         if (lVar3 == 0) goto LAB_180869e7a;
@@ -46492,7 +46492,7 @@ LAB_180869e7a:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x318))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x88);
       if (lVar3 == 0) goto LAB_180869e7a;
@@ -46602,7 +46602,7 @@ LAB_18086a07a:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x2d8))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x118);
           if (lVar4 == 0) goto LAB_18086a07a;
@@ -46680,7 +46680,7 @@ LAB_18086a07a:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2d8))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x118);
         if (lVar3 == 0) goto LAB_18086a07a;
@@ -46747,7 +46747,7 @@ LAB_18086a07a:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2d8))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x118);
       if (lVar3 == 0) goto LAB_18086a07a;
@@ -46857,7 +46857,7 @@ LAB_18086a27a:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x298))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x188);
           if (lVar4 == 0) goto LAB_18086a27a;
@@ -46935,7 +46935,7 @@ LAB_18086a27a:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x298))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x188);
         if (lVar3 == 0) goto LAB_18086a27a;
@@ -47002,7 +47002,7 @@ LAB_18086a27a:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x298))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x188);
       if (lVar3 == 0) goto LAB_18086a27a;
@@ -47112,7 +47112,7 @@ LAB_18086a47a:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x268))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x1d8);
           if (lVar4 == 0) goto LAB_18086a47a;
@@ -47190,7 +47190,7 @@ LAB_18086a47a:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x268))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1d8);
         if (lVar3 == 0) goto LAB_18086a47a;
@@ -47257,7 +47257,7 @@ LAB_18086a47a:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x268))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1d8);
       if (lVar3 == 0) goto LAB_18086a47a;
@@ -47367,7 +47367,7 @@ LAB_18086a67a:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x2e0))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x108);
           if (lVar4 == 0) goto LAB_18086a67a;
@@ -47445,7 +47445,7 @@ LAB_18086a67a:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2e0))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x108);
         if (lVar3 == 0) goto LAB_18086a67a;
@@ -47512,7 +47512,7 @@ LAB_18086a67a:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2e0))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x108);
       if (lVar3 == 0) goto LAB_18086a67a;
@@ -47622,7 +47622,7 @@ LAB_18086a87a:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x2e8))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0xe8);
           if (lVar4 == 0) goto LAB_18086a87a;
@@ -47700,7 +47700,7 @@ LAB_18086a87a:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2e8))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0xe8);
         if (lVar3 == 0) goto LAB_18086a87a;
@@ -47767,7 +47767,7 @@ LAB_18086a87a:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2e8))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0xe8);
       if (lVar3 == 0) goto LAB_18086a87a;
@@ -47877,7 +47877,7 @@ LAB_18086aa7a:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x288))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x1a8);
           if (lVar4 == 0) goto LAB_18086aa7a;
@@ -47955,7 +47955,7 @@ LAB_18086aa7a:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x288))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1a8);
         if (lVar3 == 0) goto LAB_18086aa7a;
@@ -48022,7 +48022,7 @@ LAB_18086aa7a:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x288))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1a8);
       if (lVar3 == 0) goto LAB_18086aa7a;
@@ -48132,7 +48132,7 @@ LAB_18086ac60:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x338))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x48);
           if (lVar4 == 0) goto LAB_18086ac60;
@@ -48210,7 +48210,7 @@ LAB_18086ac60:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x338))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x48);
         if (lVar3 == 0) goto LAB_18086ac60;
@@ -48277,7 +48277,7 @@ LAB_18086ac60:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x338))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x48);
       if (lVar3 == 0) goto LAB_18086ac60;
@@ -48387,7 +48387,7 @@ LAB_18086ae40:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x340))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x38);
           if (lVar4 == 0) goto LAB_18086ae40;
@@ -48465,7 +48465,7 @@ LAB_18086ae40:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x340))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x38);
         if (lVar3 == 0) goto LAB_18086ae40;
@@ -48532,7 +48532,7 @@ LAB_18086ae40:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x340))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x38);
       if (lVar3 == 0) goto LAB_18086ae40;
@@ -48642,7 +48642,7 @@ LAB_18086b03a:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x2a8))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x138);
           if (lVar4 == 0) goto LAB_18086b03a;
@@ -48720,7 +48720,7 @@ LAB_18086b03a:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2a8))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x138);
         if (lVar3 == 0) goto LAB_18086b03a;
@@ -48787,7 +48787,7 @@ LAB_18086b03a:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2a8))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x138);
       if (lVar3 == 0) goto LAB_18086b03a;
@@ -48897,7 +48897,7 @@ LAB_18086b23a:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x260))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x1e8);
           if (lVar4 == 0) goto LAB_18086b23a;
@@ -48975,7 +48975,7 @@ LAB_18086b23a:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x260))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1e8);
         if (lVar3 == 0) goto LAB_18086b23a;
@@ -49042,7 +49042,7 @@ LAB_18086b23a:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x260))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1e8);
       if (lVar3 == 0) goto LAB_18086b23a;
@@ -49152,7 +49152,7 @@ LAB_18086b420:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x330))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x68);
           if (lVar4 == 0) goto LAB_18086b420;
@@ -49230,7 +49230,7 @@ LAB_18086b420:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x330))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x68);
         if (lVar3 == 0) goto LAB_18086b420;
@@ -49297,7 +49297,7 @@ LAB_18086b420:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x330))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x68);
       if (lVar3 == 0) goto LAB_18086b420;
@@ -49407,7 +49407,7 @@ LAB_18086b61a:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x290))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x198);
           if (lVar4 == 0) goto LAB_18086b61a;
@@ -49485,7 +49485,7 @@ LAB_18086b61a:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x290))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x198);
         if (lVar3 == 0) goto LAB_18086b61a;
@@ -49552,7 +49552,7 @@ LAB_18086b61a:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x290))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x198);
       if (lVar3 == 0) goto LAB_18086b61a;
@@ -49662,7 +49662,7 @@ LAB_18086b81a:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x2c0))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x158);
           if (lVar4 == 0) goto LAB_18086b81a;
@@ -49740,7 +49740,7 @@ LAB_18086b81a:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2c0))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x158);
         if (lVar3 == 0) goto LAB_18086b81a;
@@ -49807,7 +49807,7 @@ LAB_18086b81a:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2c0))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x158);
       if (lVar3 == 0) goto LAB_18086b81a;
@@ -49917,7 +49917,7 @@ LAB_18086ba00:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 800))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x78);
           if (lVar4 == 0) goto LAB_18086ba00;
@@ -49995,7 +49995,7 @@ LAB_18086ba00:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 800))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x78);
         if (lVar3 == 0) goto LAB_18086ba00;
@@ -50026,20 +50026,29 @@ LAB_18086b9f8:
 
 
 
-// 函数: void FUN_18086b90c(void)
-void FUN_18086b90c(void)
+/**
+ * 处理网络连接队列排序
+ * 
+ * 该函数负责对网络连接队列进行排序和管理，确保连接按优先级
+ * 或时间戳正确排列。主要用于优化网络连接的处理顺序。
+ * 
+ * @return 无返回值
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名已丢失
+ */
+void ProcessNetworkConnectionQueueSorting(void)
 
 {
-  longlong lVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong unaff_RBP;
-  int unaff_ESI;
-  int unaff_EDI;
-  undefined8 *unaff_R14;
-  longlong lVar4;
-  undefined8 *puStackX_20;
-  ulonglong in_stack_00000050;
+  longlong connectionData;
+  int comparisonResult;
+  longlong newConnectionData;
+  longlong connectionContext;
+  int queueIndex;
+  int queueSize;
+  undefined8 *connectionManager;
+  longlong queuePosition;
+  undefined8 *stackBuffer;
+  ulonglong stackParameter;
   
   lVar4 = 0;
   do {
@@ -50062,7 +50071,7 @@ LAB_18086ba00:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 800))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x78);
       if (lVar3 == 0) goto LAB_18086ba00;
@@ -50172,7 +50181,7 @@ LAB_18086bbfa:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x270))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x1c8);
           if (lVar4 == 0) goto LAB_18086bbfa;
@@ -50250,7 +50259,7 @@ LAB_18086bbfa:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x270))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1c8);
         if (lVar3 == 0) goto LAB_18086bbfa;
@@ -50317,7 +50326,7 @@ LAB_18086bbfa:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x270))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1c8);
       if (lVar3 == 0) goto LAB_18086bbfa;
@@ -50427,7 +50436,7 @@ LAB_18086bdfa:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x278))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x1b8);
           if (lVar4 == 0) goto LAB_18086bdfa;
@@ -50505,7 +50514,7 @@ LAB_18086bdfa:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x278))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1b8);
         if (lVar3 == 0) goto LAB_18086bdfa;
@@ -50572,7 +50581,7 @@ LAB_18086bdfa:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x278))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1b8);
       if (lVar3 == 0) goto LAB_18086bdfa;
@@ -50682,7 +50691,7 @@ LAB_18086bffa:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x310))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x98);
           if (lVar4 == 0) goto LAB_18086bffa;
@@ -50760,7 +50769,7 @@ LAB_18086bffa:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x310))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x98);
         if (lVar3 == 0) goto LAB_18086bffa;
@@ -50827,7 +50836,7 @@ LAB_18086bffa:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x310))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x98);
       if (lVar3 == 0) goto LAB_18086bffa;
@@ -50937,7 +50946,7 @@ LAB_18086c1fa:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x2b0))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x178);
           if (lVar4 == 0) goto LAB_18086c1fa;
@@ -51015,7 +51024,7 @@ LAB_18086c1fa:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2b0))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x178);
         if (lVar3 == 0) goto LAB_18086c1fa;
@@ -51082,7 +51091,7 @@ LAB_18086c1fa:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2b0))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x178);
       if (lVar3 == 0) goto LAB_18086c1fa;
@@ -51192,7 +51201,7 @@ LAB_18086c3e0:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x328))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x58);
           if (lVar4 == 0) goto LAB_18086c3e0;
@@ -51270,7 +51279,7 @@ LAB_18086c3e0:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x328))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x58);
         if (lVar3 == 0) goto LAB_18086c3e0;
@@ -51337,7 +51346,7 @@ LAB_18086c3e0:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x328))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x58);
       if (lVar3 == 0) goto LAB_18086c3e0;
@@ -51447,7 +51456,7 @@ LAB_18086c5da:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x2b8))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x168);
           if (lVar4 == 0) goto LAB_18086c5da;
@@ -51525,7 +51534,7 @@ LAB_18086c5da:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2b8))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x168);
         if (lVar3 == 0) goto LAB_18086c5da;
@@ -51592,7 +51601,7 @@ LAB_18086c5da:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2b8))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x168);
       if (lVar3 == 0) goto LAB_18086c5da;
@@ -51702,7 +51711,7 @@ LAB_18086c7da:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x308))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0xa8);
           if (lVar4 == 0) goto LAB_18086c7da;
@@ -51780,7 +51789,7 @@ LAB_18086c7da:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x308))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0xa8);
         if (lVar3 == 0) goto LAB_18086c7da;
@@ -51847,7 +51856,7 @@ LAB_18086c7da:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x308))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0xa8);
       if (lVar3 == 0) goto LAB_18086c7da;
@@ -51957,7 +51966,7 @@ LAB_18086c9da:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x300))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0xb8);
           if (lVar4 == 0) goto LAB_18086c9da;
@@ -52035,7 +52044,7 @@ LAB_18086c9da:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x300))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0xb8);
         if (lVar3 == 0) goto LAB_18086c9da;
@@ -52102,7 +52111,7 @@ LAB_18086c9da:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x300))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0xb8);
       if (lVar3 == 0) goto LAB_18086c9da;
@@ -52212,7 +52221,7 @@ LAB_18086cbda:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x2d0))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x128);
           if (lVar4 == 0) goto LAB_18086cbda;
@@ -52290,7 +52299,7 @@ LAB_18086cbda:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2d0))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x128);
         if (lVar3 == 0) goto LAB_18086cbda;
@@ -52357,7 +52366,7 @@ LAB_18086cbda:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2d0))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x128);
       if (lVar3 == 0) goto LAB_18086cbda;
@@ -52467,7 +52476,7 @@ LAB_18086cdda:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x280))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x1f8);
           if (lVar4 == 0) goto LAB_18086cdda;
@@ -52545,7 +52554,7 @@ LAB_18086cdda:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x280))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1f8);
         if (lVar3 == 0) goto LAB_18086cdda;
@@ -52612,7 +52621,7 @@ LAB_18086cdda:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x280))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1f8);
       if (lVar3 == 0) goto LAB_18086cdda;
@@ -52722,7 +52731,7 @@ LAB_18086cfda:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x2f0))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0xd8);
           if (lVar4 == 0) goto LAB_18086cfda;
@@ -52800,7 +52809,7 @@ LAB_18086cfda:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2f0))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0xd8);
         if (lVar3 == 0) goto LAB_18086cfda;
@@ -52867,7 +52876,7 @@ LAB_18086cfda:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2f0))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0xd8);
       if (lVar3 == 0) goto LAB_18086cfda;
@@ -52977,7 +52986,7 @@ LAB_18086d1da:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x2f8))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 200);
           if (lVar4 == 0) goto LAB_18086d1da;
@@ -53055,7 +53064,7 @@ LAB_18086d1da:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2f8))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 200);
         if (lVar3 == 0) goto LAB_18086d1da;
@@ -53122,7 +53131,7 @@ LAB_18086d1da:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2f8))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 200);
       if (lVar3 == 0) goto LAB_18086d1da;
@@ -53232,7 +53241,7 @@ LAB_18086d3da:
           lVar4 = (**(code **)(*(longlong *)*param_2 + 0x2c8))((longlong *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            ProcessNetworkPacketArray(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0xf8);
           if (lVar4 == 0) goto LAB_18086d3da;
@@ -53310,7 +53319,7 @@ LAB_18086d3da:
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2c8))((longlong *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0xf8);
         if (lVar3 == 0) goto LAB_18086d3da;
@@ -53377,7 +53386,7 @@ LAB_18086d3da:
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2c8))((longlong *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0xf8);
       if (lVar3 == 0) goto LAB_18086d3da;
@@ -61801,7 +61810,7 @@ void FUN_180876d90(longlong param_1,longlong *param_2)
     lVar3 = (**(code **)(*param_2 + 0x110))(param_2,param_1 + 0x30,1);
     if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(param_1 + 0x30,auStack_38);
+      ProcessNetworkPacketArray(param_1 + 0x30,auStack_38);
     }
     plVar1 = (longlong *)(lVar3 + 0x20);
     plVar4 = *(longlong **)(lVar3 + 0x20);
@@ -61863,7 +61872,7 @@ void FUN_180876eb0(longlong param_1,longlong *param_2)
   lVar2 = (**(code **)(*param_2 + 0x330))(param_2,param_1 + 0x50,1);
   if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_1 + 0x50,auStack_60);
+    ProcessNetworkPacketArray(param_1 + 0x50,auStack_60);
   }
   iVar1 = FUN_18084b5a0(&puStack_78,lVar2 + 0x80,param_2);
   if (iVar1 == 0) {
@@ -62281,7 +62290,7 @@ void FUN_180877810(longlong param_1,longlong *param_2)
         lVar3 = (**(code **)(*param_2 + 0x270))(param_2,uVar8,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(uVar8,auStack_68);
+          ProcessNetworkPacketArray(uVar8,auStack_68);
         }
         uStack_78 = *(undefined8 *)(lVar3 + 0x38);
         uStack_70 = *(undefined8 *)(lVar3 + 0x40);
@@ -62611,7 +62620,7 @@ void FUN_1808780d0(longlong param_1,longlong *param_2)
   lVar4 = (**(code **)(*param_2 + 0x110))(param_2,param_1 + 0x30,1);
   if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_1 + 0x30,auStack_38);
+    ProcessNetworkPacketArray(param_1 + 0x30,auStack_38);
   }
   plVar1 = (longlong *)(lVar4 + 0x20);
   plVar5 = *(longlong **)(lVar4 + 0x20);
@@ -65740,7 +65749,7 @@ void FUN_18087a790(longlong param_1,undefined8 param_2)
   lVar1 = (**(code **)(**(longlong **)(param_1 + 8) + 600))(*(longlong **)(param_1 + 8),param_2,1);
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2,auStack_38);
+    ProcessNetworkPacketArray(param_2,auStack_38);
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_58);
@@ -91721,7 +91730,7 @@ void FUN_180892410(longlong param_1,longlong param_2)
                         (*(longlong **)(param_2 + 800),lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,auStack_40);
+        ProcessNetworkPacketArray(lVar1,auStack_40);
       }
       plVar4 = (longlong *)(lVar3 + 0x58);
       if (((longlong *)*plVar4 != plVar4) || (*(longlong **)(lVar3 + 0x60) != plVar4)) {
@@ -91749,7 +91758,7 @@ void FUN_18089246a(longlong *param_1,longlong param_2)
   lVar1 = (**(code **)(*param_1 + 0x2f0))(param_1,param_2 + 0x30);
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2 + 0x30,&stack0x00000028);
+    ProcessNetworkPacketArray(param_2 + 0x30,&stack0x00000028);
   }
   plVar2 = (longlong *)(lVar1 + 0x58);
   if (((longlong *)*plVar2 == plVar2) && (*(longlong **)(lVar1 + 0x60) == plVar2)) {
