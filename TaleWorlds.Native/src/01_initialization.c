@@ -517,15 +517,15 @@ void* SystemInitializationProgressStatus;
 // 系统内存分配器 - 负责动态内存分配和管理
 
 // 系统数据比较模板和节点指针
-void* SystemDataComparisonTemplatePrimary;  // DAT_18098c8f0
-void* SystemDataComparisonTemplateSecondary;  // DAT_18098c8c8
-void* SystemDataComparisonTemplateTertiary;  // DAT_1809fe0d0
-void* SystemDataComparisonTemplateQuaternary;  // DAT_1809ff9e8
-void* SystemDataComparisonTemplateSeptenary;  // DAT_1809ff9c0
-void* SystemDataComparisonTemplateOctonary;  // DAT_180a010a0
-void* SystemDataComparisonTemplateNonary;  // DAT_180a01078
-void* SystemDataComparisonTemplateQuinary;  // DAT_180a00e28
-void* SystemDataComparisonTemplateSenary;  // DAT_180a00d48
+void* SystemDataComparisonTemplatePrimary;
+void* SystemDataComparisonTemplateSecondary;
+void* SystemDataComparisonTemplateTertiary;
+void* SystemDataComparisonTemplateQuaternary;
+void* SystemDataComparisonTemplateSeptenary;
+void* SystemDataComparisonTemplateOctonary;
+void* SystemDataComparisonTemplateNonary;
+void* SystemDataComparisonTemplateQuinary;
+void* SystemDataComparisonTemplateSenary;
 void* SystemDataNodePrimaryRoot;       // 系统数据节点主根节点
 void* SystemDataNodeSecondaryRoot;     // 系统数据节点次根节点
 void* SystemDataNodeTertiaryRoot;      // 系统数据节点第三根节点
@@ -65733,61 +65733,61 @@ long long SystemModuleExecutionTime;
 long long *SystemModuleExecutionCounter;
 
 // 系统字符串常量模板
-void* SystemStringConstantTemplateA;  // UNK_180a33fb0
-void* SystemStringConstantTemplateB;  // UNK_180a3c028  
-void* SystemStringConstantTemplateC;  // UNK_180a3def0
-void* SystemStringConstantTemplateD;  // UNK_180a3e3d8
-void* SystemStringConstantTemplateE;  // UNK_180a3e3f0
-void* SystemStringConstantTemplateF;  // UNK_180a3c110
-void* SystemStringConstantTemplateG;  // UNK_180a3c138
-void* SystemStringConstantTemplateH;  // UNK_180a3c428
-void* SystemStringConstantTemplateI;  // UNK_180a3c410
-void* SystemStringConstantTemplateJ;  // UNK_180a3c07c
+void* SystemStringConstantTemplateA;
+void* SystemStringConstantTemplateB;
+void* SystemStringConstantTemplateC;
+void* SystemStringConstantTemplateD;
+void* SystemStringConstantTemplateE;
+void* SystemStringConstantTemplateF;
+void* SystemStringConstantTemplateG;
+void* SystemStringConstantTemplateH;
+void* SystemStringConstantTemplateI;
+void* SystemStringConstantTemplateJ;
 
 // 系统虚拟函数表模板
-void* SystemVirtualTableTemplateA;    // UNK_18097e888
-void* SystemVirtualTableTemplateB;    // UNK_1809fe100
-void* SystemVirtualTableTemplateC;    // UNK_1809ff2f8
-void* SystemVirtualTableTemplateD;    // UNK_1809ff3f8
-void* SystemVirtualTableTemplateE;    // UNK_1809fee70
+void* SystemVirtualTableTemplateA;
+void* SystemVirtualTableTemplateB;
+void* SystemVirtualTableTemplateC;
+void* SystemVirtualTableTemplateD;
+void* SystemVirtualTableTemplateE;
 
 // 系统内存管理模板
-void* SystemMemoryTemplateA;          // UNK_180a21690
-void* SystemMemoryTemplateB;          // UNK_180a21720
-void* SystemMemoryTemplateC;          // UNK_18098bdc8
-void* SystemMemoryTemplateD;          // UNK_18098bd40
-void* SystemMemoryTemplateE;          // UNK_18098bc80
-void* SystemMemoryTemplateF;          // UNK_18098bb30
-void* SystemMemoryTemplateG;          // UNK_18098bc48
+void* SystemMemoryTemplateA;
+void* SystemMemoryTemplateB;
+void* SystemMemoryTemplateC;
+void* SystemMemoryTemplateD;
+void* SystemMemoryTemplateE;
+void* SystemMemoryTemplateF;
+void* SystemMemoryTemplateG;
 
 // 系统数据缓冲区模板
-void* SystemDataBufferTemplateA;      // UNK_1809fcc28
-void* SystemDataBufferTemplateB;      // UNK_1809fcc58
-void* SystemDataBufferTemplateC;      // UNK_1809fcd00
-void* SystemDataBufferTemplateD;      // UNK_1809fcd18
-void* SystemDataBufferTemplateE;      // UNK_1809fccc0
-void* SystemDataBufferTemplateF;      // UNK_1809fcce0
-void* SystemDataBufferTemplateG;      // UNK_1809fcca0
-void* SystemDataBufferTemplateH;      // UNK_1809fcc88
-void* SystemDataBufferTemplateI;      // UNK_1809fd0a0
-void* SystemDataBufferTemplateJ;      // UNK_1809fc7b8
-void* SystemDataBufferTemplateK;      // UNK_1809fc790
-void* SystemDataBufferTemplateL;      // UNK_1809fc8e8
-void* SystemDataBufferTemplateM;      // UNK_1809fc8f8
-void* SystemDataBufferTemplateN;      // UNK_1809fc918
-void* SystemDataBufferTemplateO;      // UNK_1809fc928
-void* SystemDataBufferTemplateP;      // UNK_1809fc940
-void* SystemDataBufferTemplateQ;      // UNK_1809fc958
-void* SystemDataBufferTemplateR;      // UNK_1809fc970
-void* SystemDataBufferTemplateS;      // UNK_1809fc990
-void* SystemDataBufferTemplateT;      // UNK_1809fc9b0
-void* SystemDataBufferTemplateU;      // UNK_1809fc9d0
-void* SystemDataBufferTemplateV;      // UNK_1809fc9f8
-void* SystemDataBufferTemplateW;      // UNK_1809fca20
-void* SystemDataBufferTemplateX;      // UNK_1809fca48
-void* SystemDataBufferTemplateY;      // UNK_1809fca60
-void* SystemDataBufferTemplateZ;      // UNK_1809fca88
-void* SystemDataBufferTemplateAA;     // UNK_1809fcaa8
-void* SystemDataBufferTemplateAB;     // UNK_1809fcac8
-void* SystemDataBufferTemplateAC;     // UNK_1809fcad8
+void* SystemDataBufferTemplateA;
+void* SystemDataBufferTemplateB;
+void* SystemDataBufferTemplateC;
+void* SystemDataBufferTemplateD;
+void* SystemDataBufferTemplateE;
+void* SystemDataBufferTemplateF;
+void* SystemDataBufferTemplateG;
+void* SystemDataBufferTemplateH;
+void* SystemDataBufferTemplateI;
+void* SystemDataBufferTemplateJ;
+void* SystemDataBufferTemplateK;
+void* SystemDataBufferTemplateL;
+void* SystemDataBufferTemplateM;
+void* SystemDataBufferTemplateN;
+void* SystemDataBufferTemplateO;
+void* SystemDataBufferTemplateP;
+void* SystemDataBufferTemplateQ;
+void* SystemDataBufferTemplateR;
+void* SystemDataBufferTemplateS;
+void* SystemDataBufferTemplateT;
+void* SystemDataBufferTemplateU;
+void* SystemDataBufferTemplateV;
+void* SystemDataBufferTemplateW;
+void* SystemDataBufferTemplateX;
+void* SystemDataBufferTemplateY;
+void* SystemDataBufferTemplateZ;
+void* SystemDataBufferTemplateAA;
+void* SystemDataBufferTemplateAB;
+void* SystemDataBufferTemplateAC;
 
