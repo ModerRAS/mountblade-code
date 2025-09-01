@@ -4395,8 +4395,14 @@ void ExecuteSystemTermination(void)
 
 
 
-// 函数: void FUN_180890e03(void)
-void FUN_180890e03(void)
+// 函数: void ReturnNoOperation(void)
+/**
+ * @brief 无操作返回
+ * 
+ * 该函数是一个无操作函数，直接返回而不执行任何操作
+ * 用于占位或作为默认的空实现
+ */
+void ReturnNoOperation(void)
 
 {
   return;
@@ -83099,14 +83105,15 @@ void FUN_1809430b0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809430e0(void)
+// 函数: void ClearSystemCacheAndResetState(void)
 /**
  * @brief 清理系统缓存并重置状态
  * 
  * 该函数负责清理系统缓存并重置相关状态
  * 检查资源状态并进行必要的清理操作
+ * 重置系统缓存指针和相关数据结构
  */
-void FUN_1809430e0(void)
+void ClearSystemCacheAndResetState(void)
 
 {
   _DAT_180d4a068 = &UNK_180a3c3e0;

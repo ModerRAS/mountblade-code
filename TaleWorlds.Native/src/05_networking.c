@@ -699,12 +699,12 @@ void ProcessNetworkPacket(undefined4 packetId,int packetIndex,longlong packetDat
     packetEntry = (**(code **)(*packetProcessor + 0x270))(packetProcessor,packetArray,1);
     if (packetEntry == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(packetArray,processingBuffer);
+      ProcessNetworkPacketArray(packetArray,processingBuffer);
     }
     if ((((*(int *)(packetEntry + 0x38) != 0) || (*(int *)(packetEntry + 0x3c) != 0)) ||
         ((*(int *)(packetEntry + 0x40) != 0 || (*(int *)(packetEntry + 0x44) != 0)))) &&
-       (packetEntry = FUN_18083fb90(packetProcessor), packetEntry != 0)) {
-      FUN_180847550(packetEntry,packetData,1);
+       (packetEntry = GetNetworkPacketEntry(packetProcessor), packetEntry != 0)) {
+      SendNetworkPacketEntry(packetEntry,packetData,1);
     }
   }
                     // WARNING: Subroutine does not return
