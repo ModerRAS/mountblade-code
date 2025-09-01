@@ -1208,36 +1208,39 @@ void InitializeSystemMemoryPool(void)
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t SystemInitializationFlag;
+  long long MemoryAllocationSize;
+  void** SystemAllocatedNode;
+  void* ResourceInitializationCallback;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  systemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
-  systemInitializationFlag = 0;
-  systemPreviousNode = systemRootNode;
-  systemCurrentNode = (void**)systemRootNode[1];
-  while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
-    if (memoryCompareResult < 0) {
-      systemNextNode = (void**)systemCurrentNode[2];
-      systemCurrentNode = systemPreviousNode;
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
+  SystemInitializationFlag = 0;
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
+  while (SystemNodeFlag == '\0') {
+    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
+    if (MemoryCompareResult < 0) {
+      SystemNextNode = (void**)SystemCurrentNode[2];
+      SystemCurrentNode = SystemPreviousNode;
     }
     else {
-      systemNextNode = (void**)*systemCurrentNode;
+      SystemNextNode = (void**)*SystemCurrentNode;
     }
-    systemPreviousNode = systemCurrentNode;
-    systemCurrentNode = systemNextNode;
-    systemNodeFlag = *(char*)((long long)systemNextNode + 0x19);
+    SystemPreviousNode = SystemCurrentNode;
+    SystemCurrentNode = SystemNextNode;
+    SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemAllocatorIdentifier,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
-    memoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
-    systemPreviousNode = systemAllocatedNode;
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    SystemPreviousNode = SystemAllocatedNode;
   }
-  systemPreviousNode[6] = 0x4c868a42644030f6;
-  systemPreviousNode[7] = 0xc29193aa9d9b35b9;
-  systemPreviousNode[8] = &SystemAllocatorNodeId;
-  systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = resourceInitializationCallback;
+  SystemPreviousNode[6] = 0x4c868a42644030f6;
+  SystemPreviousNode[7] = 0xc29193aa9d9b35b9;
+  SystemPreviousNode[8] = &SystemAllocatorNodeId;
+  SystemPreviousNode[9] = 0;
+  SystemPreviousNode[10] = ResourceInitializationCallback;
   return;
 }
 
@@ -28330,18 +28333,29 @@ void FUN_180055f50(long long param_1)
 
 
 // 函数: void FUN_180055f70(void* param_1,uint32_t param_2)
-void FUN_180055f70(void* param_1,uint32_t param_2)
+/**
+ * @brief 系统紧急退出处理器
+ * 
+ * 该函数负责处理系统的紧急退出操作，包括清理资源和安全退出。
+ * 它会执行清理操作，等待一段时间，然后以指定的退出码退出系统。
+ * 
+ * @param exitContext 退出上下文指针，包含退出相关的信息
+ * @param exitCode 退出码，用于指示退出的原因或状态
+ * 
+ * @note 该函数用于处理系统异常或紧急情况的退出
+ */
+void HandleSystemEmergencyExit(void* exitContext,uint32_t exitCode)
 
 {
-  code *pcVar1;
+  code *systemInterruptHandler;
   
   if (_DAT_180c8f008 != 0) {
-    func_0x00018005a410(_DAT_180c8f008 + 8);
+    ExecuteSystemCleanupFunction(_DAT_180c8f008 + 8);
   }
   Sleep(2000);
-  _Exit(param_2);
-  pcVar1 = (code *)swi(3);
-  (*pcVar1)();
+  _Exit(exitCode);
+  systemInterruptHandler = (code *)swi(3);
+  (*systemInterruptHandler)();
   return;
 }
 
