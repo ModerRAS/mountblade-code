@@ -5655,9 +5655,9 @@ uint8_t8 ValidateSystemDataIntegrity(longlong dataBuffer, longlong validationCon
   uint8_t8 resourceHash;
   int *pintegerValue2;
   uint8_t4 *punsignedResult3;
-  int iVar4;
+  int validationIndex;
   
-  iVar4 = 0;
+  validationIndex = 0;
   punsignedResult3 = (uint8_t4 *)(objectContextParam + 0x18 + (longlong)*(int *)(objectContextParam + 0x10) * 8);
   pintegerValue2 = (int *)(objectContextParam + 0x18);
   if (0 < *(int *)(objectContextParam + 0x10)) {
@@ -85318,14 +85318,14 @@ void InitializeSystemDataStructureAL(void)
 
  /**
  * 初始化系统数据结构AM
- * 将全局变量 _DAT_180bf92d0 设置为指向 SystemDataStructure001
+ * 将全局变量 SystemDataStructurePointer005 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAM(void)
 void InitializeSystemDataStructureAM(void)
 
 {
-  _DAT_180bf92d0 = &SystemDataStructure;
+  SystemDataStructurePointer005 = &SystemDataStructure;
   return;
 }
 
@@ -85361,7 +85361,7 @@ void InitializeSystemDataStructureAO(void)
 void InitializeSystemDataStructureAO(void)
 
 {
-  _DAT_180bf9390 = &SystemDataStructure;
+  SystemDataPointer015 = &SystemDataStructure;
   return;
 }
 
@@ -85379,7 +85379,7 @@ void InitializeSystemDataStructureAP(void)
 void InitializeSystemDataStructureAP(void)
 
 {
-  _DAT_180bf93f0 = &SystemDataStructure;
+  SystemDataPointer016 = &SystemDataStructure;
   return;
 }
 
@@ -85397,7 +85397,7 @@ void InitializeSystemDataStructureAP(void)
 void InitializeSystemDataStructureAE(void)
 
 {
-  _DAT_180bf9450 = &SystemDataStructure;
+  SystemDataPointer017 = &SystemDataStructure;
   return;
 }
 
@@ -85456,7 +85456,7 @@ void InitializeSystemDataStructureAQ(void)
 void InitializeSystemDataStructureAQ(void)
 
 {
-  _DAT_180bf9570 = &SystemDataStructure;
+  SystemDataPointer018 = &SystemDataStructure;
   return;
 }
 
@@ -86643,7 +86643,7 @@ void InitializeSystemDataStructureCJ(void)
 void InitializeSystemDataStructureCJ(void)
 
 {
-  _DAT_180d499d0 = &SystemDataStructure;
+  SystemConfigurationPointer001 = &SystemDataStructure;
   return;
 }
 
@@ -86684,10 +86684,10 @@ void ReleaseResourceReference(void)
   longlong referenceCountValue;
   longlong *resourceManagerPointer;
   
-  resourceManagerPointer = _DAT_180c92478;
-  if (_DAT_180c92478 != (longlong *)0x0) {
+  resourceManagerPointer = ResourceManagerMainPointer;
+  if (ResourceManagerMainPointer != (longlong *)0x0) {
     LOCK();
-    referenceCountPointer = _DAT_180c92478 + 1;
+    referenceCountPointer = ResourceManagerMainPointer + 1;
     referenceCountValue = *referenceCountPointer;
     *(int *)referenceCountPointer = (int)*referenceCountPointer + -1;
     UNLOCK();
@@ -86785,10 +86785,10 @@ void InitializeSystemDataStructureCM(void)
   longlong lVar4;
   longlong *plVar5;
   
-  plVar5 = _DAT_180c92498;
-  if (_DAT_180c92498 != (longlong *)0x0) {
+  plVar5 = ResourceManagerSecondaryPointer;
+  if (ResourceManagerSecondaryPointer != (longlong *)0x0) {
     LOCK();
-    plocalContextPointer = _DAT_180c92498 + 1;
+    plocalContextPointer = ResourceManagerSecondaryPointer + 1;
     lVar4 = *plocalContextPointer;
     *(int *)plocalContextPointer = (int)*plocalContextPointer + -1;
     UNLOCK();
@@ -86882,10 +86882,10 @@ void ExecuteReferenceCountDecrementAndCleanup(void)
   longlong lVar4;
   longlong *plVar5;
   
-  plVar5 = _DAT_180c92488;
-  if (_DAT_180c92488 != (longlong *)0x0) {
+  plVar5 = ResourceManagerTertiaryPointer;
+  if (ResourceManagerTertiaryPointer != (longlong *)0x0) {
     LOCK();
-    plocalContextPointer = _DAT_180c92488 + 1;
+    plocalContextPointer = ResourceManagerTertiaryPointer + 1;
     lVar4 = *plocalContextPointer;
     *(int *)plocalContextPointer = (int)*plocalContextPointer + -1;
     UNLOCK();
