@@ -712,8 +712,13 @@ void initializeSystemDataTable_BaseAllocator(void)
 
 
 
-// 函数: void FUN_18002c540(void)
-void FUN_18002c540(void)
+/**
+ * @brief 初始化系统数据表分配器
+ * 
+ * 该函数负责初始化系统数据表的内存分配器，
+ * 设置内存分配策略和数据结构管理。
+ */
+void InitializeSystemDataTableAllocator(void)
 
 {
   char cVar1;
@@ -762,8 +767,13 @@ void FUN_18002c540(void)
 
 
 
-// 函数: void FUN_18002c640(void)
-void FUN_18002c640(void)
+/**
+ * @brief 初始化系统核心配置
+ * 
+ * 该函数负责初始化系统核心配置参数，
+ * 设置系统运行的基本配置和状态。
+ */
+void InitializeSystemCoreConfig(void)
 
 {
   char cVar1;
@@ -812,8 +822,13 @@ void FUN_18002c640(void)
 
 
 
-// 函数: void FUN_18002c740(void)
-void FUN_18002c740(void)
+/**
+ * @brief 初始化系统内存池
+ * 
+ * 该函数负责初始化系统内存池，
+ * 设置内存分配策略和管理机制。
+ */
+void InitializeSystemMemoryPool(void)
 
 {
   char cVar1;
@@ -862,8 +877,13 @@ void FUN_18002c740(void)
 
 
 
-// 函数: void FUN_18002c840(void)
-void FUN_18002c840(void)
+/**
+ * @brief 初始化系统线程池
+ * 
+ * 该函数负责初始化系统线程池，
+ * 设置线程创建、同步和管理机制。
+ */
+void InitializeSystemThreadPool(void)
 
 {
   char cVar1;
@@ -912,8 +932,13 @@ void FUN_18002c840(void)
 
 
 
-// 函数: void FUN_18002c940(void)
-void FUN_18002c940(void)
+/**
+ * @brief 初始化系统事件管理器
+ * 
+ * 该函数负责初始化系统事件管理器，
+ * 设置事件创建、分发和处理机制。
+ */
+void InitializeSystemEventManager(void)
 
 {
   char cVar1;

@@ -305,6 +305,12 @@ int InitializeModuleConfigurationA(void)
   longlong callbackResult = FUN_1808fc7d0(FUN_1809418e0);
   return (callbackResult != 0) - 1;
 }
+/**
+ * 初始化字符串处理器G
+ * 设置字符串处理G所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
 int InitializeStringProcessorG(void)
 {
   longlong callbackResult;
@@ -317,6 +323,12 @@ int InitializeStringProcessorG(void)
   callbackResult = FUN_1808fc7d0(FUN_180941900);
   return (callbackResult != 0) - 1;
 }
+/**
+ * 初始化字符串处理器H
+ * 设置字符串处理H所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
 int InitializeStringProcessorH(void)
 {
   longlong callbackResult;
@@ -329,6 +341,12 @@ int InitializeStringProcessorH(void)
   callbackResult = FUN_1808fc7d0(FUN_180941980);
   return (callbackResult != 0) - 1;
 }
+/**
+ * 初始化字符串处理器I
+ * 设置字符串处理I所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
 int InitializeStringProcessorI(void)
 {
   longlong callbackResult;
@@ -519,17 +537,23 @@ int InitializeConfigurationMutex(undefined8 threadId,undefined8 syncPtr,undefine
   lVar1 = FUN_1808fc7d0(&UNK_180941b70);
   return (lVar1 != 0) - 1;
 }
-int FUN_180031350(void)
+/**
+ * 初始化字符串处理器J
+ * 设置字符串处理所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorJ(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf7250 = &UNK_1809fcc58;
-  _DAT_180bf7258 = &DAT_180bf7268;
-  DAT_180bf7268 = 0;
-  _DAT_180bf7260 = 0xb;
-  strcpy_s(&DAT_180bf7268,0x40,&UNK_180a03098,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941b90);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorJFlags;
+  g_stringProcessorJ_Base = &unknownData_1809fcc58;
+  g_stringProcessorJ_BufferPtr = &g_stringProcessorJ_Buffer;
+  g_stringProcessorJ_Buffer = 0;
+  g_stringProcessorJ_Length = 0xb;
+  strcpy_s(&g_stringProcessorJ_Buffer,0x40,&unknownData_180a03098,stringProcessorJFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorJ_Callback);
+  return (callbackResult != 0) - 1;
 }
 int FUN_1800313c0(void)
 {

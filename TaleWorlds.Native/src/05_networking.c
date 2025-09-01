@@ -325,9 +325,9 @@ void InitializeNetworkConnectionState(void)
     if (networkStatus == 0) {
       *connectionPointer = (uint64_t)*(uint *)(CONCAT44(connectionFlags,connectionHandle) + 0x20);
     }
-    FUN_18088c790(&stack0x00000078);
+    CleanupNetworkConnectionStack(&stack0x00000078);
   }
-  memcpy(connectionBuffer);
+  CopyNetworkConnectionBuffer(connectionBuffer);
 }
 
 
@@ -348,7 +348,7 @@ void ResetNetworkConnectionPointer(void)
   uint64_t *connectionPtr;
   
   *connectionPtr = (uint64_t)*(uint *)(connectionContext + 0x20);
-  FUN_18088c790(&stack0x00000078);
+  CleanupNetworkConnectionStack(&stack0x00000078);
 }
 
 
@@ -377,7 +377,7 @@ uint ValidateNetworkConnectionParameters(longlong *connectionParams)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -400,7 +400,7 @@ uint ValidateNetworkConnectionParameters(longlong *connectionParams)
   }
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = 0;
   *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -6691,7 +6691,7 @@ undefined8 FUN_180849030(longlong *param_1,undefined8 param_2)
 LAB_1808490b9:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((longlong)param_1 + 0xc) = iVar2;
@@ -6794,7 +6794,7 @@ undefined8 FUN_180849120(longlong *param_1,int param_2)
 LAB_1808491ce:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = (longlong)puVar7;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -9030,7 +9030,7 @@ uint FUN_18084c150(longlong *param_1)
     }
     if ((0 < (int)uVar5) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar5 = 0;
@@ -9061,7 +9061,7 @@ uint FUN_18084c150(longlong *param_1)
   }
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = 0;
   *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -9092,7 +9092,7 @@ uint FUN_18084c220(longlong *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -9113,7 +9113,7 @@ uint FUN_18084c220(longlong *param_1)
   }
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = 0;
   *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -9237,7 +9237,7 @@ undefined8 FUN_18084c470(longlong *param_1,int param_2)
 LAB_18084c510:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = (longlong)puVar3;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -9324,7 +9324,7 @@ void FUN_18084c5a0(longlong *param_1)
     }
     if ((0 < (int)uVar8) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -11536,7 +11536,7 @@ undefined8 FUN_18084d3f0(longlong *param_1,int param_2)
 LAB_18084d4b4:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = lVar7;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -11643,7 +11643,7 @@ undefined8 FUN_18084d520(longlong *param_1,int param_2)
 LAB_18084d5b4:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -11725,7 +11725,7 @@ undefined8 FUN_18084d620(longlong *param_1,int param_2)
 LAB_18084d7db:
     if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = lVar7;
     uVar9 = 0;
@@ -12221,7 +12221,7 @@ void FUN_18084dae0(longlong *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -12433,7 +12433,7 @@ undefined8 FUN_18084def0(longlong *param_1,int param_2)
   }
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = lVar3;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -19584,7 +19584,7 @@ undefined8 FUN_1808532e0(longlong *param_1,int param_2)
 LAB_180853370:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -21937,7 +21937,7 @@ undefined8 FUN_1808553b0(longlong *param_1)
     }
     if ((0 < (int)uVar7) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -22060,7 +22060,7 @@ undefined8 FUN_1808554a0(longlong *param_1)
     }
     if ((0 < (int)uVar9) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -22242,7 +22242,7 @@ undefined8 FUN_1808555a0(longlong *param_1)
     }
     if ((0 < (int)uVar9) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar9 = 0;
@@ -26769,7 +26769,7 @@ undefined8 FUN_180859470(longlong *param_1,int param_2)
 LAB_180859535:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = lVar7;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -26902,7 +26902,7 @@ undefined8 FUN_1808595a0(longlong *param_1,int param_2)
 LAB_180859665:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = lVar7;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -31324,7 +31324,7 @@ uint FUN_18085dbf0(longlong *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -31345,7 +31345,7 @@ uint FUN_18085dbf0(longlong *param_1)
   }
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = 0;
   *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -31373,7 +31373,7 @@ void FUN_18085dca0(longlong *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -36679,7 +36679,7 @@ undefined8 FUN_180861ce0(longlong *param_1,int param_2)
   }
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = lVar7;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -36988,7 +36988,7 @@ undefined8 FUN_180861ef0(longlong *param_1,int param_2)
 LAB_180861f94:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = (longlong)puVar3;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -42286,7 +42286,7 @@ undefined8 FUN_180865ec0(longlong *param_1)
     }
     if ((0 < (int)uVar5) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -42482,7 +42482,7 @@ undefined8 FUN_1808661e0(longlong *param_1,longlong param_2,int param_3)
       }
       if ((0 < (int)uVar5) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+        ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
       }
       *param_1 = 0;
       *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -43581,7 +43581,7 @@ undefined8 FUN_1808676f0(longlong *param_1,int param_2)
 LAB_1808677af:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = (longlong)puVar7;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -44585,7 +44585,7 @@ undefined8 FUN_180868700(longlong *param_1,int param_2)
 LAB_180868794:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -55851,7 +55851,7 @@ uint FUN_180872300(longlong *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -55874,7 +55874,7 @@ uint FUN_180872300(longlong *param_1)
   }
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = 0;
   *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -55909,7 +55909,7 @@ uint FUN_1808723c0(longlong *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -55932,7 +55932,7 @@ uint FUN_1808723c0(longlong *param_1)
   }
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = 0;
   *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -55965,7 +55965,7 @@ uint FUN_180872480(longlong *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -55988,7 +55988,7 @@ uint FUN_180872480(longlong *param_1)
   }
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = 0;
   *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -56025,7 +56025,7 @@ LAB_18087257d:
     }
     if ((0 < (int)uVar4) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -56266,7 +56266,7 @@ undefined8 FUN_180872630(longlong *param_1)
     }
     if ((0 < (int)uVar4) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar4 = 0;
@@ -56364,7 +56364,7 @@ undefined8 FUN_180872cc0(longlong *param_1)
     }
     if ((0 < (int)uVar4) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar4 = 0;
@@ -57590,7 +57590,7 @@ uint FUN_1808733a0(longlong *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -57613,7 +57613,7 @@ uint FUN_1808733a0(longlong *param_1)
   }
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = 0;
   *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -58067,7 +58067,7 @@ undefined8 FUN_180873cd0(longlong *param_1)
     }
     if ((0 < (int)uVar4) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar4 = 0;
@@ -58317,7 +58317,7 @@ undefined8 FUN_180874340(longlong *param_1)
     }
     if ((0 < (int)uVar2) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -58477,7 +58477,7 @@ undefined8 FUN_1808744f0(longlong *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -58514,7 +58514,7 @@ undefined8 FUN_1808745b0(longlong *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -58557,7 +58557,7 @@ undefined8 FUN_180874670(longlong *param_1)
     }
     if ((0 < (int)uVar7) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -69973,7 +69973,7 @@ undefined8 FUN_18087df20(longlong *param_1,int param_2,undefined8 *param_3)
     }
     if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = lVar2;
     *(int *)((longlong)param_1 + 0xc) = iVar5;
@@ -74031,7 +74031,7 @@ undefined8 FUN_180882c70(longlong *param_1,int param_2)
 LAB_180882d69:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = (longlong)puVar5;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -74175,7 +74175,7 @@ undefined8 FUN_180882dd0(longlong *param_1,int param_2)
 LAB_180882e99:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = (longlong)puVar5;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -74290,7 +74290,7 @@ undefined8 FUN_180882f00(longlong *param_1,int param_2)
 LAB_180882fa1:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = (longlong)puVar3;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -74382,7 +74382,7 @@ undefined8 FUN_180883010(longlong *param_1,int param_2)
 LAB_1808830a3:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -74524,7 +74524,7 @@ undefined8 FUN_180883110(longlong *param_1,int param_2)
 LAB_18088322e:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = (longlong)puVar9;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -74730,7 +74730,7 @@ undefined8 FUN_180883290(longlong *param_1,int param_2)
 LAB_1808833ba:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = (longlong)puVar9;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -74875,7 +74875,7 @@ undefined8 FUN_180883420(longlong *param_1,int param_2)
 LAB_1808834b4:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -74956,7 +74956,7 @@ undefined8 FUN_180883520(longlong *param_1,int param_2)
 LAB_1808835b4:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -75064,7 +75064,7 @@ undefined8 FUN_180883620(longlong *param_1,int param_2)
 LAB_1808836e7:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = (longlong)puVar7;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -75173,7 +75173,7 @@ undefined8 FUN_180883750(longlong *param_1,int param_2)
 LAB_1808838fe:
     if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = lVar7;
     uVar9 = 0;
@@ -84251,7 +84251,7 @@ uint FUN_18088ccd0(longlong *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -84272,7 +84272,7 @@ uint FUN_18088ccd0(longlong *param_1)
   }
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = 0;
   *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -84307,7 +84307,7 @@ uint FUN_18088cd80(longlong *param_1)
     }
     if ((0 < (int)uVar5) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar5 = 0;
@@ -84341,7 +84341,7 @@ uint FUN_18088cd80(longlong *param_1)
   }
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = 0;
   *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -85844,7 +85844,7 @@ undefined8 FUN_18088e780(longlong *param_1,int param_2)
 LAB_18088e847:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = (longlong)puVar9;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -93885,7 +93885,7 @@ uint FUN_180894ef0(longlong *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -93908,7 +93908,7 @@ uint FUN_180894ef0(longlong *param_1)
   }
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = 0;
   *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -93989,7 +93989,7 @@ undefined8 FUN_180895070(longlong *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -94028,7 +94028,7 @@ undefined8 FUN_180895130(longlong *param_1)
     }
     if ((0 < (int)uVar5) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
     }
     *param_1 = 0;
     *(undefined4 *)((longlong)param_1 + 0xc) = 0;
@@ -94965,7 +94965,7 @@ undefined8 FUN_180895f20(longlong *param_1,int param_2)
 LAB_180895fdc:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = (longlong)puVar3;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -95059,7 +95059,7 @@ undefined8 FUN_180896040(longlong *param_1,int param_2)
 LAB_1808960d4:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -98542,7 +98542,7 @@ undefined8 FUN_180898d60(longlong *param_1,int param_2)
 LAB_180898e0b:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
   }
   *param_1 = (longlong)puVar3;
   *(int *)((longlong)param_1 + 0xc) = param_2;
