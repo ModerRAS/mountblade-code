@@ -20119,37 +20119,48 @@ NetworkHandle ProcessNetworkConnectionData(longlong connectionContext, longlong 
         networkResult = FUN_1808b1f70(packetData);
         if ((int)networkResult == 0) {
           connectionStatus = *(longlong *)(packetData + 0x48);
-          if (lVar2 != 0) {
-            if (*(longlong *)(lVar2 + 8) != packetData) {
+          if (connectionStatus != 0) {
+            if (*(longlong *)(connectionStatus + 8) != packetData) {
               return 0x1c;
             }
-            FUN_18088c9b0(lVar2,0);
+            FUN_18088c9b0(connectionStatus,0);
           }
           if (((*(short *)(*(longlong *)(packetData + 0x40) + 0xc) != 2) ||
-              (tertiaryNetworkFlag = FUN_180740d90(*(NetworkHandle *)(packetData + 0x68)), (int)tertiaryNetworkFlag == 0)) &&
-             (tertiaryNetworkFlag = FUN_18073f710(*(NetworkHandle *)(packetData + 0x78)), (int)tertiaryNetworkFlag == 0)) {
+              (networkResult = FUN_180740d90(*(NetworkHandle *)(packetData + 0x68)), (int)networkResult == 0)) &&
+             (networkResult = FUN_18073f710(*(NetworkHandle *)(packetData + 0x78)), (int)networkResult == 0)) {
             func_0x0001808bef10(*(NetworkHandle *)(connectionContext + 0x10),packetData);
-            tertiaryNetworkFlag = 0;
+            networkResult = 0;
           }
         }
       }
     }
   }
-  return tertiaryNetworkFlag;
+  return networkResult;
 }
 
 
 
-NetworkHandle FUN_180851740(longlong connectionContext)
+/**
+ * @brief 网络连接验证器
+ * 
+ * 该函数负责验证网络连接的有效性和状态
+ * 检查连接参数、安全性和数据完整性
+ * 
+ * @param connectionContext 连接上下文指针，包含连接状态和信息
+ * @return 验证结果，成功返回0，失败返回错误码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle NetworkConnectionValidator(longlong connectionContext)
 
 {
-  int networkStatus1;
-  NetworkHandle *networkPointer2;
-  int *pnetworkStatus3;
-  NetworkHandle quaternaryNetworkFlag;
-  longlong lVar5;
-  int iVar6;
-  bool bVar7;
+  int primaryNetworkStatus;
+  NetworkHandle *networkHandlePointer;
+  int *secondaryNetworkStatus;
+  NetworkHandle validationResult;
+  longlong connectionHandle;
+  int loopCounter;
+  bool isConnectionNull;
   
   lVar5 = *(longlong *)(*(longlong *)(connectionContext + 8) + 0x28);
   bVar7 = lVar5 == 0;

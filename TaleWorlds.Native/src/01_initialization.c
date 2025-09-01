@@ -11548,8 +11548,15 @@ int InitializeSystemServiceManager(void)
   SystemServiceManagerPrimary = &SystemServiceManagerConfig;
   SystemServiceManagerSecondary = &SystemServiceManagerStatus;
 
-// 函数: void FUN_18003c1f0(void)
-void FUN_18003c1f0(void)
+/**
+ * @brief 初始化系统内存节点管理器
+ * 
+ * 该函数负责初始化系统的内存节点管理器，设置内存节点的相关配置和状态。
+ * 它会初始化内存管理所需的数据结构和节点信息。
+ * 
+ * @note 这是系统内存管理的重要组成部分，确保内存节点的正确管理
+ */
+void InitializeSystemMemoryNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -11598,8 +11605,15 @@ void FUN_18003c1f0(void)
 
 
 
-// 函数: void FUN_18003c2f0(void)
-void FUN_18003c2f0(void)
+/**
+ * @brief 初始化系统设备节点管理器
+ * 
+ * 该函数负责初始化系统的设备节点管理器，设置设备节点的相关配置和状态。
+ * 它会初始化设备管理所需的数据结构和节点信息。
+ * 
+ * @note 这是系统设备管理的重要组成部分，确保设备节点的正确管理
+ */
+void InitializeSystemDeviceNodeManager(void)
 
 {
   char systemNodeFlag;
