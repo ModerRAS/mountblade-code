@@ -1271,8 +1271,8 @@ void* MemoryPagingReservedMemory;
 void ValidateMemoryIntegrity;
 void* MemoryValidationContext;
 void* MemoryValidationTable;
-uint32_t g_memoryValidationStatus;
-void* g_memoryValidationConfig;
+uint32_t MemoryValidationStatus;
+void* MemoryValidationConfig;
 void* g_memoryValidationHandle;
 
  void ProcessMemoryAllocation;
