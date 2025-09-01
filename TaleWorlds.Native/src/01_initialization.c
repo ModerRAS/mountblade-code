@@ -26522,8 +26522,8 @@ void SystemResourceManager(long long SystemResourcePointer)
   long long in_RAX;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
-  long long *unaff_RSI;
-  long long *unaff_RDI;
+  long long *threadContextPointer;
+  long long *threadDataPointer;
   long long systemTimeValue;
   ulong long unsignedSystemValue6;
   
@@ -42747,7 +42747,7 @@ LAB_180066bf4:
       memcpy(stackParameterB,&SystemStringBuffer,systemFlag);
     }
     stackParameterC = 0;
-    FUN_180065f00(&stackParameterA,param_5);
+    FUN_180065f00(&stackParameterA,SystemParameter);
     stackParameterA = &SystemGlobalDataReference;
     if (stackParameterB != (void* *)0x0) {
                     // WARNING: Subroutine does not return
@@ -42852,7 +42852,7 @@ LAB_180066ec4:
 
 
 long long FUN_180066f90(long long SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,char *ConfigurationFlag,
-                      ulong long param_5)
+                      ulong long DataSize)
 
 {
   char SystemNodeFlag;
@@ -42860,7 +42860,7 @@ long long FUN_180066f90(long long SystemResourcePointer,ulong long Configuration
   long long localResourceOffset;
   long long localBufferAddress;
   
-  if (param_5 <= ConfigurationDataPointer) {
+  if (DataSize <= ConfigurationDataPointer) {
     if (param_5 == 0) {
       return 0;
     }
@@ -49014,7 +49014,7 @@ void FUN_180070680(void* SystemResourcePointer,void* ConfigurationDataPointer)
 
 // 函数: void FUN_180070930(void* SystemResourcePointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
 void FUN_180070930(void* SystemResourcePointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
-                  char param_5,char param_6)
+                  char ControlFlag,char SystemStatus)
 
 {
   code *pcVar1;
@@ -49070,7 +49070,7 @@ void FUN_180070930(void* SystemResourcePointer,long long ConfigurationDataPointe
   
   uStack_60 = 0xfffffffffffffffe;
   uStack_48 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_188;
-  cStack_120 = param_5;
+  cStack_120 = ControlFlag;
   pointerToUnsigned10 = (uint8_t *)0x0;
   unsignedSystemValue14 = 0;
   uStack_11c = 0;
@@ -49465,7 +49465,7 @@ LAB_18007113f:
   FUN_18004c2b0(localMemoryPointer5);
   if (DAT_180c82860 != '\0') {
     if (bVar13 != 0) {
-      if (((cStack_147 == '\0') && (param_6 != '\0')) && (*(int *)(SystemStatusFlagsPointer + 0x340) != 2)) {
+      if (((cStack_147 == '\0') && (SystemStatus != '\0')) && (*(int *)(SystemStatusFlagsPointer + 0x340) != 2)) {
         uStack_148 = 1;
       }
       else if (DAT_180c82851 == '\0') {
@@ -49543,7 +49543,7 @@ LAB_18007113f:
           SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd);
         }
       }
-      else if (((param_6 == '\0') || (*(int *)(SystemStatusFlagsPointer + 0x340) == 2)) &&
+      else if (((SystemStatus == '\0') || (*(int *)(SystemStatusFlagsPointer + 0x340) == 2)) &&
               (DAT_180c82851 == '\0')) {
         pcVar1 = (code *)swi(3);
         (*pcVar1)();
@@ -49917,7 +49917,7 @@ LAB_180071eb0:
 
 // 函数: void FUN_180072000(void* SystemResourcePointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
 void FUN_180072000(void* SystemResourcePointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
-                  uint8_t param_5,char param_6)
+                  uint8_t OperationType,char SystemMode)
 
 {
   code *pcVar1;
@@ -50105,7 +50105,7 @@ LAB_1800722f5:
         if ((bool)cStack_117) goto LAB_1800722f5;
       }
       if (cVar2 != '\0') {
-        if ((param_6 == '\0') || (*(int *)(SystemStatusFlagsPointer + 0x340) == 2)) {
+        if ((SystemMode == '\0') || (*(int *)(SystemStatusFlagsPointer + 0x340) == 2)) {
           pcVar1 = (code *)swi(3);
           (*pcVar1)();
           return;
