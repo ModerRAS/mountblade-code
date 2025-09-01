@@ -58,19 +58,19 @@ void* RenderingEngineModuleInstance;
 void* RenderingEngineModuleConfiguration;
 uint32_t RenderingEngineInitializationStatus;
 void* RenderingEngineModuleHandle;
-void* GlobalModuleBExecutionContext;
+void* RenderingEngineExecutionContext;
 /**
  * @brief 初始化全局模块C
  * 
  * 该函数负责初始化游戏引擎的全局模块C
  * 设置模块C所需的数据结构和运行环境
  */
-void InitializeGlobalModuleC(void);
-void* GlobalModuleCInstance;
-void* GlobalModuleCConfiguration;
-uint32_t GlobalModuleGraphicsInitializationStatus;
-void* GlobalModuleCHandle;
-void* GlobalModuleCExecutionContext;
+void InitializeGraphicsSystemModule(void);
+void* GraphicsSystemModuleInstance;
+void* GraphicsSystemModuleConfiguration;
+uint32_t GraphicsSystemInitializationStatus;
+void* GraphicsSystemModuleHandle;
+void* GraphicsSystemModuleExecutionContext;
 
 
 /**
@@ -79,9 +79,9 @@ void* GlobalModuleCExecutionContext;
  * 该函数负责初始化游戏引擎的全局模块D
  * 设置模块D所需的数据结构和运行环境
  */
-void InitializeGlobalModuleD(void);
-void* GlobalModuleDInstance;
-void* GlobalModuleDConfiguration;
+void InitializeAudioSystemModule(void);
+void* AudioSystemModuleInstance;
+void* AudioSystemModuleConfiguration;
 uint32_t GlobalModuleAudioInitializationStatus;
 void* GlobalModuleDHandle;
 
