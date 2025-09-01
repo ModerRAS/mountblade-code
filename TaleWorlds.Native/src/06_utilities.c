@@ -38,7 +38,7 @@ void* ModuleDependencyHandle;
 void InitializeGlobalModuleA(void);
 void* GlobalModuleAInstance;
 void* GlobalModuleAConfiguration;
-uint32_t GlobalModuleA_Status;
+uint32_t GlobalModuleAStatus;
 void* GlobalModuleAHandle;
 
 // 函数: void InitializeGlobalModuleB(void)
@@ -408,10 +408,14 @@ undefined DatabaseSystemStatusTable;
 undefined DatabaseSystemIndexTable;
 // 数据库系统锁表指针
 undefined DatabaseSystemLockTable;
-undefined DAT_180bf6bc8;
-undefined DAT_180bf6bd0;
-undefined DAT_180bf6bd8;
-undefined DAT_180bf6be0;
+// 数据库系统缓存表指针
+undefined DatabaseSystemCacheTable;
+// 数据库系统连接表指针
+undefined DatabaseSystemConnectionTable;
+// 数据库系统事务表指针
+undefined DatabaseSystemTransactionTable;
+// 数据库系统备份表指针
+undefined DatabaseSystemBackupTable;
 undefined DAT_180bf6c20;
 undefined DAT_180bf6c28;
 undefined DAT_180bf6c30;

@@ -304,10 +304,6 @@ uint32_t NetworkCallbackIndex;
  * - 连接指针的初始化
  * 
  * @return void
- */ 
- * @return 无返回值
- * 
- * 注意：这是一个反编译的函数实现
  */
 void InitializeNetworkConnectionState(void)
 

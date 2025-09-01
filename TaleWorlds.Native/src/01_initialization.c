@@ -681,7 +681,7 @@ void InitializeGameCoreSystem(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -693,7 +693,7 @@ void InitializeGameCoreSystem(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
@@ -7977,7 +7977,7 @@ void FUN_180037680(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -7989,7 +7989,7 @@ void FUN_180037680(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
@@ -10148,7 +10148,7 @@ void InitializeSystemMemoryAllocatorSetup(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -10160,7 +10160,7 @@ void InitializeSystemMemoryAllocatorSetup(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
@@ -10687,7 +10687,7 @@ void FUN_18003c1f0(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -10699,7 +10699,7 @@ void FUN_18003c1f0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
@@ -12432,7 +12432,7 @@ void FUN_18003ee90(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -12444,7 +12444,7 @@ void FUN_18003ee90(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
@@ -13138,7 +13138,7 @@ void FUN_18003fdb0(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -13150,7 +13150,7 @@ void FUN_18003fdb0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
@@ -15264,7 +15264,7 @@ void FUN_180042ad0(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -15276,7 +15276,7 @@ void FUN_180042ad0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (systemComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
