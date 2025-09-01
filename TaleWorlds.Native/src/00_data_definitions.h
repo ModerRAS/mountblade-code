@@ -103,8 +103,8 @@ char SystemConfigurationFlagPrimary;
 char* SystemConstantStringPrimary;
 
 // 系统模块缓冲区 - 用于存储系统模块数据
-char* SystemModuleBBBuffer;
-char* SystemModuleCBuffer;
+char* SystemModuleAudioBuffer;
+char* SystemModuleGraphicsBuffer;
 
 // 字符串处理器标志 - 用于字符串处理操作
 uint32_t StringProcessorFlags;
@@ -120,8 +120,8 @@ void* SystemMemoryPoolTemplate;
 void* SystemStringMemoryTemplate;
 
 // 系统常量 - 用于系统常量定义
-void* SystemConstantEE;
-void* SystemConstantFF;
+void* SystemEngineConstant;
+void* SystemFrameworkConstant;
 
 // 系统内存管理器指针 - 用于管理核心内存分配
 void* SystemMemoryManagerPointer;
@@ -130,8 +130,8 @@ void* SystemMemoryPoolManagerPointer;
 void* SystemMemoryBufferManagerPointer;
 void* SystemMemoryCachePointer;
 void* SystemMemoryHeapPointer;
-void* UnknownDataPointer180a22db0;
-void* UnknownDataPointer180a22d88;
+void* SystemMemoryStackPointer;
+void* SystemMemoryPagePointer;
 void* UnknownDataPointer180a22d68;
 void* UnknownDataPointer180a22e40;
 void* UnknownDataPointer180a22e20;
