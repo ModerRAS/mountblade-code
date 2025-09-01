@@ -5997,7 +5997,17 @@ void SetObjectContextByte28(longlong objectContext, longlong processContext)
 
 
 
-undefined8 FUN_180891d40(longlong param_1,longlong param_2)
+/**
+ * @brief 验证对象上下文并处理状态更新
+ * 
+ * 该函数负责验证对象上下文的有效性，并处理相关状态的更新
+ * 用于对象状态管理和系统维护操作
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param SystemHandle 系统句柄
+ * @return 验证状态码，0表示成功，非0表示错误
+ */
+undefined8 ValidateObjectContextAndUpdateStatus(longlong ObjectContext, longlong SystemHandle)
 
 {
   undefined8 uVar1;
