@@ -10346,7 +10346,7 @@ LAB_18063182e:
     }
   } while( true );
 }
-int FUN_18063182a(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
+int SystemBufferVerifyData(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
 {
   char *pcVar1;
   char cVar2;
@@ -10398,12 +10398,12 @@ LAB_18063182e:
     }
   } while( true );
 }
-uint32_t FUN_180631845(void)
+uint32_t SystemGetBufferSize(void)
 {
   uint32_t in_R11D;
   return in_R11D;
 }
-longlong FUN_180631850(uint64_t param_1,uint64_t param_2,longlong param_3)
+longlong SystemBufferConfigure(uint64_t param_1,uint64_t param_2,longlong param_3)
 {
   int64_t ModuleInitializationResult;
   longlong lVar2;
@@ -10443,7 +10443,7 @@ longlong FUN_180631850(uint64_t param_1,uint64_t param_2,longlong param_3)
   }
   return lVar4;
 }
-longlong FUN_180631960(uint64_t param_1,uint64_t param_2,longlong param_3)
+longlong SystemBufferSetup(uint64_t param_1,uint64_t param_2,longlong param_3)
 {
   int64_t ModuleInitializationResult;
   longlong lVar2;
@@ -10481,7 +10481,7 @@ longlong FUN_180631960(uint64_t param_1,uint64_t param_2,longlong param_3)
   }
   return lVar4;
 }
-longlong FUN_180631a80(uint64_t param_1,uint64_t param_2,longlong param_3,uint64_t param_4)
+longlong SystemBufferInitialize(uint64_t param_1,uint64_t param_2,longlong param_3,uint64_t param_4)
 {
   int64_t ModuleInitializationResult;
   longlong lVar2;
@@ -10519,7 +10519,7 @@ longlong FUN_180631a80(uint64_t param_1,uint64_t param_2,longlong param_3,uint64
   }
   return lVar4;
 }
-longlong FUN_180631b90(uint64_t param_1,uint64_t param_2,longlong param_3)
+longlong SystemBufferCreate(uint64_t param_1,uint64_t param_2,longlong param_3)
 {
   int LoopCounter;
   longlong lVar2;
@@ -10564,7 +10564,7 @@ longlong FUN_180631b90(uint64_t param_1,uint64_t param_2,longlong param_3)
   }
   return lVar5;
 }
-longlong FUN_180631cc0(uint64_t param_1,uint64_t param_2,longlong param_3)
+longlong SystemBufferManage(uint64_t param_1,uint64_t param_2,longlong param_3)
 {
   int64_t ModuleInitializationResult;
   longlong lVar2;
@@ -10604,7 +10604,7 @@ longlong FUN_180631cc0(uint64_t param_1,uint64_t param_2,longlong param_3)
   }
   return lVar4;
 }
-longlong FUN_180631de0(uint64_t param_1,uint64_t param_2,longlong param_3)
+longlong SystemBufferControl(uint64_t param_1,uint64_t param_2,longlong param_3)
 {
   longlong *pModuleInitializationResult;
   longlong lVar2;
@@ -10644,7 +10644,7 @@ longlong FUN_180631de0(uint64_t param_1,uint64_t param_2,longlong param_3)
   }
   return lVar2;
 }
-longlong FUN_180631f30(uint64_t param_1,uint64_t param_2,longlong param_3)
+longlong SystemBufferHandle(uint64_t param_1,uint64_t param_2,longlong param_3)
 {
   longlong *pModuleInitializationResult;
   longlong lVar2;
@@ -10688,7 +10688,7 @@ longlong FUN_180631f30(uint64_t param_1,uint64_t param_2,longlong param_3)
   }
   return lVar2;
 }
-longlong FUN_180632100(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
+longlong SystemBufferOperate(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
 {
   uint64_t MemoryAddress;
   longlong lVar2;
@@ -10709,7 +10709,7 @@ longlong FUN_180632100(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
   }
   return 0;
 }
-uint64_t FUN_18063211a(uint64_t param_1)
+uint64_t SystemBufferProcess(uint64_t param_1)
 {
   uint64_t MemoryAddress;
   uint64_t *pBufferSize;
@@ -10812,7 +10812,7 @@ LAB_18064ff6c:
   DAT_180bf66d8 = 1;
   return;
 }
-uint32_t FUN_18064ff90(int param_1)
+uint32_t SystemGetDeviceParameter(int param_1)
 {
   if (*(int *)(&DAT_180bfbd84 + (longlong)param_1 * 0x18) == 0) {
     FUN_180650490(&DAT_180bfbd80 + (longlong)param_1 * 0x18);
@@ -10835,7 +10835,7 @@ uint32_t FUN_18064ff90(int param_1)
   DAT_180c8f020 = 0;
   return;
 }
-uint64_t FUN_180653580(uint64_t param_1)
+uint64_t SystemMemoryAllocate(uint64_t param_1)
 {
   uint64_t MemoryAddress;
   longlong lVar2;
@@ -10846,7 +10846,7 @@ uint64_t FUN_180653580(uint64_t param_1)
   UNLOCK();
   return MemoryAddress;
 }
-uint64_t FUN_1806535c0(uint64_t param_1,uint64_t param_2)
+uint64_t SystemMemoryResize(uint64_t param_1,uint64_t param_2)
 {
   int64_t ModuleInitializationResult;
   uint64_t BufferSize;
@@ -10861,7 +10861,7 @@ uint64_t FUN_1806535c0(uint64_t param_1,uint64_t param_2)
   UNLOCK();
   return BufferSize;
 }
-longlong FUN_180653630(longlong *param_1)
+longlong SystemMemoryFree(longlong *param_1)
 {
   int *pLoopCounter;
   longlong lVar2;
@@ -11091,7 +11091,7 @@ LAB_18076802d:
   }
   return 0;
 }
-uint64_t FUN_1807c1ec0(int param_1)
+uint64_t SystemDataInitialize(int param_1)
 {
   byte bVar1;
   int StringIndex;
@@ -11598,7 +11598,7 @@ FUN_1807c3d8b:
   }
   return &DAT_180c4f4a0;
 }
-uint64_t FUN_1808c7260(uint64_t *param_1,longlong param_2,char param_3,char param_4)
+uint64_t SystemConfigureParameters(uint64_t *param_1,longlong param_2,char param_3,char param_4)
 {
   int LoopCounter;
   uint BufferSize;
@@ -11744,7 +11744,7 @@ FUN_1808c7400(longlong param_1,longlong param_2,longlong *param_3,longlong *para
   }
   return 0;
 }
-uint64_t FUN_1808ee6c8(void)
+uint64_t SystemInitializeAudio(void)
 {
   char cVar1;
   int StringIndex;
@@ -11768,11 +11768,11 @@ uint64_t FUN_1808ee6c8(void)
   DAT_180c4f818 = 1;
   return 0;
 }
-uint64_t FUN_1808ee714(void)
+uint64_t SystemGetAudioError(void)
 {
   return 0x809200ff;
 }
-uint32_t FUN_1808ee740(int param_1,int param_2,int param_3)
+uint32_t SystemAudioConfigure(int param_1,int param_2,int param_3)
 {
   int LoopCounter;
   uint32_t BufferSize;
@@ -11799,7 +11799,7 @@ uint32_t FUN_1808ee740(int param_1,int param_2,int param_3)
   func_0x0001808f6ce0();
   return auStack_18[0];
 }
-uint64_t FUN_1808ee7d0(uint32_t param_1,uint *param_2)
+uint64_t SystemAudioCreateBuffer(uint32_t param_1,uint *param_2)
 {
   int64_t ModuleInitializationResult;
   uint BufferSize;
@@ -11896,7 +11896,7 @@ uint64_t FUN_1808ee7d0(uint32_t param_1,uint *param_2)
   func_0x0001808f6ce0();
   return 0;
 }
-int FUN_1808eea10(uint32_t param_1,byte *param_2)
+int SystemAudioProcessData(uint32_t param_1,byte *param_2)
 {
   char cVar1;
   int StringIndex;
@@ -11938,7 +11938,7 @@ int FUN_1808eea10(uint32_t param_1,byte *param_2)
   func_0x0001808f6ce0();
   return -0x7f6dff01;
 }
-int FUN_1808eea88(void)
+int SystemAudioGetStatus(void)
 {
   char cVar1;
   int StringIndex;
@@ -11967,7 +11967,7 @@ int FUN_1808eea88(void)
   func_0x0001808f6ce0();
   return -0x7f6dff01;
 }
-int FUN_1808eeadc(void)
+int SystemAudioCheckState(void)
 {
   int LoopCounter;
   uint8_t *unaff_RBX;
@@ -11987,7 +11987,7 @@ int FUN_1808eeadc(void)
   func_0x0001808f6ce0();
   return -0x7f6dff01;
 }
-uint64_t FUN_1808eeb3d(void)
+uint64_t SystemAudioGetDevice(void)
 {
   func_0x0001808f6ce0();
   return 0x809200ff;
@@ -12016,13 +12016,13 @@ uint64_t FUN_1808eeb3d(void)
   func_0x0001808f0b40(pStringIndex + -4);
   return 0;
 }
-longlong FUN_1808f07b0(void)
+longlong SystemGetTimeCounter(void)
 {
   uint MemoryAddress;
   MemoryAddress = timeGetTime();
   return (ulonglong)MemoryAddress * 1000;
 }
-uint FUN_1808f07d0(longlong param_1,int param_2,int param_3,char param_4)
+uint SystemProcessTimer(longlong param_1,int param_2,int param_3,char param_4)
 {
   ulonglong MemoryAddress;
   byte bVar2;
@@ -12075,7 +12075,7 @@ uint FUN_1808f07d0(longlong param_1,int param_2,int param_3,char param_4)
   DAT_180c69e20 = 1;
   return;
 }
-uint32_t FUN_1808f6da0(byte param_1,byte *param_2,int param_3)
+uint32_t SystemProcessAudioData(byte param_1,byte *param_2,int param_3)
 {
   uint *pMemoryAddress;
   byte bVar2;
@@ -12090,7 +12090,7 @@ uint32_t FUN_1808f6da0(byte param_1,byte *param_2,int param_3)
   }
   return CONCAT31((int3)(~uVar3 >> 8),*pMemoryAddress != ~uVar3);
 }
-float * FUN_1808f6e00(float *param_1,float *param_2,float *param_3)
+float * SystemProcessAudioBuffer(float *param_1,float *param_2,float *param_3)
 {
   float fVar1;
   float fVar2;
@@ -12114,7 +12114,7 @@ float * FUN_1808f6e00(float *param_1,float *param_2,float *param_3)
   param_2[2] = (fVar6 * fVar8 + fVar7 * fVar2 + fVar5 * fVar4) - fVar3 * fVar1;
   return param_2;
 }
-uint64_t FUN_1808f6f40(uint64_t param_1,uint32_t *param_2)
+uint64_t SystemAudioGetFormat(uint64_t param_1,uint32_t *param_2)
 {
   int64_t ModuleInitializationResult;
   ModuleInitializationResult = func_0x0001808f0dd0(param_1,0);
@@ -12263,7 +12263,7 @@ LAB_1808fbebe:
   DAT_180c6a14d = DAT_180c6a14c == '\0';
   return true;
 }
-bool FUN_1808fbc0e(void)
+bool SystemAudioIsInitialized(void)
 {
   short sVar1;
   longlong lVar2;
@@ -12378,7 +12378,7 @@ LAB_1808fbebe:
   DAT_180c6a14d = DAT_180c6a14c == (char)unaff_R12;
   return true;
 }
-bool FUN_1808fbd52(void)
+bool SystemAudioIsPlaying(void)
 {
   short sVar1;
   longlong lVar2;
@@ -12481,7 +12481,7 @@ LAB_1808fbebe:
   }
   return 0;
 }
-uint64_t FUN_1808fc60c(uint param_1)
+uint64_t SystemAudioCreateChannel(uint param_1)
 {
   code *pcVar1;
   byte bVar2;

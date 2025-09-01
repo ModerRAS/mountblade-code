@@ -1283,12 +1283,12 @@ void* g_memoryValidationHandle;
  * 管理内存池和分配策略
  */
 void ProcessMemoryAllocation;
-uint8_t g_memoryAllocationContext;
-uint8_t g_memoryAllocationTable;
-uint8_t g_memoryAllocationStatus;
-uint8_t g_memoryAllocationConfig;
-uint8_t g_memoryAllocationHandle;
-uint8_t g_memoryAllocationData;
+void* g_memoryAllocationContext;
+void* g_memoryAllocationTable;
+void* g_memoryAllocationStatus;
+void* g_memoryAllocationConfig;
+void* g_memoryAllocationHandle;
+void* g_memoryAllocationData;
 
  void InitializeMemoryPool;
 /**
@@ -1298,11 +1298,11 @@ uint8_t g_memoryAllocationData;
  * 设置内存块大小和分配策略
  */
 void InitializeMemoryPool;
-uint8_t g_memoryPoolConfig;
-uint8_t g_memoryPoolStatus;
-uint8_t g_memoryPoolHandle;
-uint8_t g_memoryPoolData;
-uint8_t g_memoryPoolContext;
+void* g_memoryPoolConfig;
+void* g_memoryPoolStatus;
+void* g_memoryPoolHandle;
+void* g_memoryPoolData;
+void* g_memoryPoolContext;
 
  void CleanupMemoryPool;
 /**
@@ -3455,7 +3455,7 @@ ulonglong ProcessSystemRequest(longlong requestParameters,longlong systemContext
   longlong lStackX_8;
   longlong lStackX_18;
   
-  uVar6 = ValidateObjectContext(*(uint8_t4 *)(param_1 + 0x18),&lStackX_18);
+  uVar6 = ValidateObjectContext(*(uint8_t4 *)(requestParameters + 0x18),&lStackX_18);
   iVar4 = (int)uVar6;
   if (iVar4 == 0) {
     plVar10 = (longlong *)0x0;
@@ -3463,11 +3463,11 @@ ulonglong ProcessSystemRequest(longlong requestParameters,longlong systemContext
     if (lStackX_18 != 0) {
       plVar9 = (longlong *)(lStackX_18 + -8);
     }
-    uVar6 = ValidateObjectContext(*(uint8_t4 *)(param_1 + 0x10),&lStackX_18);
+    uVar6 = ValidateObjectContext(*(uint8_t4 *)(requestParameters + 0x10),&lStackX_18);
     iVar4 = (int)uVar6;
     if (iVar4 == 0) {
       lStackX_8 = 0;
-      uVar5 = ProcessSystemObjectValidation(*(uint8_t8 *)(param_2 + 0x90),*(longlong *)(lStackX_18 + 8) + 0x10,
+      uVar5 = ProcessSystemObjectValidation(*(uint8_t8 *)(systemContext + 0x90),*(longlong *)(lStackX_18 + 8) + 0x10,
                             &lStackX_8);
       if (uVar5 != 0) {
         CleanupValidationData(plVar9);
