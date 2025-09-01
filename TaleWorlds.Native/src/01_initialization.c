@@ -36,19 +36,19 @@ void* CoreSystemConfigTertiary;
 void* CoreSystemConfigQuaternary;
 
 // 渲染系统初始化函数
-void* GameRenderingSystemEntryPoint;
+void* GameRenderingEntryPoint;
 void* RenderingSystemContext;
 
 // 网络系统初始化函数
-void* GameNetworkSystemEntryPoint;
+void* GameNetworkEntryPoint;
 void* NetworkSystemContext;
 
 // 音频系统初始化函数
-void* GameAudioSystemEntryPoint;
+void* GameAudioEntryPoint;
 void* AudioSystemContext;
 
 // 输入系统初始化函数和相关数据
-void* GameInputSystemEntryPoint;
+void* GameInputEntryPoint;
 void* InputSystemDataBuffer;
 void* InputSystemEventQueue;
 void* InputSystemStateData;
@@ -67,7 +67,7 @@ void* InputSystemMappingConfig;
 void* InputSystemProfileConfig;
 
 // 物理系统初始化函数
-void* GamePhysicsSystemEntryPoint;
+void* GamePhysicsEntryPoint;
 void* PhysicsSystemContext;
 
 // 文件系统初始化函数

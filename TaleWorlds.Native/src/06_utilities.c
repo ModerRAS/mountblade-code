@@ -2137,8 +2137,14 @@ undefined UNK_180a07804;
 undefined UNK_18098d6b0;
 undefined UNK_18015c090;
 
-// 函数: undefined FUN_180941b20;
-undefined FUN_180941b20;
+// 函数: void InitializeMemoryManager;
+/**
+ * @brief 初始化内存管理器
+ * 
+ * 该函数负责初始化系统的内存管理器
+ * 设置内存分配策略和回收机制
+ */
+void InitializeMemoryManager;
 undefined DAT_180d49648;
 undefined DAT_180d49640;
 undefined DAT_180d49650;
