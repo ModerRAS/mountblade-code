@@ -751,40 +751,40 @@ void* SystemDataBufferStateOctonary;
 void* SystemDataBufferStateNonary;
 void* SystemDataBufferStateDenary;
 void* SystemDataBufferStateUndenary;
-uint8_t SystemDataBufferSpecial052;
-void* SystemDataBufferState053;
-void* SystemDataBufferState054;
-void* SystemDataBufferState055;
-void* SystemDataBufferState056;
-void* SystemDataBufferState057;
-void* SystemDataBufferState058;
-uint32_t SystemDataBufferExtended059;
-uint32_t SystemDataBufferExtended060;
-uint32_t SystemDataBufferExtended061;
-void* SystemDataBufferState062;
+uint8_t SystemDataBufferStateSpecial;
+void* SystemDataBufferStateDuodenary;
+void* SystemDataBufferStateTredecenary;
+void* SystemDataBufferStateQuattuordecenary;
+void* SystemDataBufferStateQuindecenary;
+void* SystemDataBufferStateSexdecenary;
+void* SystemDataBufferStateSeptendecenary;
+uint32_t SystemDataBufferExtendedPrimary;
+uint32_t SystemDataBufferExtendedSecondary;
+uint32_t SystemDataBufferExtendedTertiary;
+void* SystemDataBufferStateOctodecenary;
 // 系统状态和数据缓冲区
-char SystemStatusBuffer063;
-void* SystemDataBufferGeneral064;
-void* SystemDataBufferGeneral065;
-void* SystemDataBufferGeneral066;
-void* SystemDataBufferGeneral067;
-void* SystemDataBufferGeneral068;
-void* SystemDataBufferGeneral069;
-void* SystemDataBufferGeneral070;
-void* SystemDataBufferGeneral071;
-void* SystemDataBufferGeneral072;
-void* SystemDataBufferGeneral073;
+char SystemStatusBufferPrimary;
+void* SystemDataBufferGeneralPrimary;
+void* SystemDataBufferGeneralSecondary;
+void* SystemDataBufferGeneralTertiary;
+void* SystemDataBufferGeneralQuaternary;
+void* SystemDataBufferGeneralQuinary;
+void* SystemDataBufferGeneralSenary;
+void* SystemDataBufferGeneralSeptenary;
+void* SystemDataBufferGeneralOctonary;
+void* SystemDataBufferGeneralNonary;
+void* SystemDataBufferGeneralDenary;
 // 系统通用数据缓冲区
-char SystemGeneralFlagBuffer074;
-void* SystemDataBufferCommon075;
-void* SystemDataBufferCommon076;
-void* SystemDataBufferCommon077;
-void* SystemDataBufferCommon078;
-void* SystemDataBufferCommon079;
-void* SystemDataBufferCommon080;
-void* SystemDataBufferCommon081;
+char SystemGeneralFlagBufferPrimary;
+void* SystemDataBufferCommonPrimary;
+void* SystemDataBufferCommonSecondary;
+void* SystemDataBufferCommonTertiary;
+void* SystemDataBufferCommonQuaternary;
+void* SystemDataBufferCommonQuinary;
+void* SystemDataBufferCommonSenary;
+void* SystemDataBufferCommonSeptenary;
 // 系统数据缓冲区 - 通用用途
-char SystemCommonFlagBuffer082;
+char SystemCommonFlagBufferPrimary;
 void* SystemDataBufferStandard083;
 void* SystemDataBufferStandard084;
 void* SystemDataBufferStandard085;
@@ -21374,7 +21374,6 @@ void* * CreateSystemResourceTemplate(long long SystemResourcePointer,long long p
 
 
 
-// 函数: void FUN_1800491b0(void* *SystemResourcePointer,long long *param_2,long long *param_3,void* *param_4)
 /**
  * @brief 系统内存块批量初始化函数
  * 
@@ -21382,12 +21381,12 @@ void* * CreateSystemResourceTemplate(long long SystemResourcePointer,long long p
  * 它遍历指定的内存区域，为每个内存块设置相应的引用和参数。
  * 
  * @param SystemResourcePointer 输出参数，用于返回初始化后的内存块
- * @param param_2 内存区域的起始地址
- * @param param_3 内存区域的结束地址
- * @param param_4 要初始化的内存块指针
+ * @param MemoryRegionStart 内存区域的起始地址
+ * @param MemoryRegionEnd 内存区域的结束地址
+ * @param MemoryBlockPointer 要初始化的内存块指针
  * @return 返回初始化后的内存块指针
  */
-void* * SystemMemoryBatchInitializer(void* *SystemResourcePointer,long long *param_2,long long *param_3,void* *param_4)
+void* * SystemMemoryBatchInitializer(void* *SystemResourcePointer,long long *MemoryRegionStart,long long *MemoryRegionEnd,void* *MemoryBlockPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -21397,16 +21396,16 @@ void* * SystemMemoryBatchInitializer(void* *SystemResourcePointer,long long *par
   long long *plocalSystemPointer;
   
   *SystemResourcePointer = param_4;
-  if (param_2 != param_3) {
-    plocalSystemPointer = param_2 + 0x1b;
+  if (MemoryRegionStart != MemoryRegionEnd) {
+    plocalSystemPointer = MemoryRegionStart + 0x1b;
     do {
-      *param_4 = &SystemMemoryAllocatorReference;
-      param_4[1] = 0;
-      *(uint32_t *)(param_4 + 2) = 0;
-      *param_4 = &SystemGlobalDataReference;
-      param_4[3] = 0;
-      param_4[1] = 0;
-      *(uint32_t *)(param_4 + 2) = 0;
+      *MemoryBlockPointer = &SystemMemoryAllocatorReference;
+      MemoryBlockPointer[1] = 0;
+      *(uint32_t *)(MemoryBlockPointer + 2) = 0;
+      *MemoryBlockPointer = &SystemGlobalDataReference;
+      MemoryBlockPointer[3] = 0;
+      MemoryBlockPointer[1] = 0;
+      *(uint32_t *)(MemoryBlockPointer + 2) = 0;
       *(int *)(param_4 + 2) = (int)plocalSystemPointer[-0x19];
       param_4[1] = plocalSystemPointer[-0x1a];
       *(uint32_t *)((long long)param_4 + 0x1c) = *(uint32_t *)((long long)plocalSystemPointer + -0xbc);

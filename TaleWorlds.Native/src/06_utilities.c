@@ -30894,7 +30894,7 @@ void ClearRenderQueueState(uint8_t objectContextParam,int64_t validationContextP
 
 
 
-void Unwind_180902840(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ResetFrameBufferState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
@@ -30904,7 +30904,7 @@ void Unwind_180902840(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180902850(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ClearTextureCacheState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   ProcessDataStream(*(int64_t *)(validationContextParam + 0x70),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x10),
