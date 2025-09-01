@@ -29482,7 +29482,7 @@ void InitializeSystemMemoryResource(long long *SystemResourcePointer)
   InitializeSystemMemoryContext(plocalBufferAddress,&memoryAllocationEnd,3,localResourceOffset + 0x2e0);
   *plocalBufferAddress = (long long)&UNK_1809fe220;
   plStack_68 = plocalBufferAddress;
-  FUN_18020e840(plocalBufferAddress);
+  InitializeSystemMemoryContext(plocalBufferAddress);
   InitializeSystemHandle(localResourceOffset + 0x48,&plStack_68);
   SystemResourcePointer[1] = (long long)plocalBufferAddress;
   memoryAllocationEnd = &SystemMemoryAllocatorReference;
@@ -31396,7 +31396,7 @@ void ProcessSystemStringData(long long SystemResourcePointer,long long Configura
         uStack_38 = 0;
         lStack_48 = 0;
         uStack_40 = 0;
-        FUN_180628210(&memoryAllocationEnd,pcVar4,(int)pcVar3 - (int)pcVar4,ConfigurationFlag,unsignedSystemValue5);
+        ProcessSystemMemoryAllocation(&memoryAllocationEnd,pcVar4,(int)pcVar3 - (int)pcVar4,ConfigurationFlag,unsignedSystemValue5);
         pcVar4 = pcVar3 + 1;
         if (*(ulong long *)(ConfigurationDataPointer + 8) < *(ulong long *)(ConfigurationDataPointer + 0x10)) {
           *(ulong long *)(ConfigurationDataPointer + 8) = *(ulong long *)(ConfigurationDataPointer + 8) + 0x20;
@@ -31422,7 +31422,7 @@ void ProcessSystemStringData(long long SystemResourcePointer,long long Configura
       uStack_38 = 0;
       lStack_48 = 0;
       uStack_40 = 0;
-      FUN_180628210(&memoryAllocationEnd,pcVar4,(int)pcVar3 - (int)pcVar4,ConfigurationFlag,unsignedSystemValue5);
+      ProcessSystemMemoryAllocation(&memoryAllocationEnd,pcVar4,(int)pcVar3 - (int)pcVar4,ConfigurationFlag,unsignedSystemValue5);
       if (*(ulong long *)(ConfigurationDataPointer + 8) < *(ulong long *)(ConfigurationDataPointer + 0x10)) {
         *(ulong long *)(ConfigurationDataPointer + 8) = *(ulong long *)(ConfigurationDataPointer + 8) + 0x20;
         InitializeSystemMemoryAllocator();
@@ -31485,7 +31485,7 @@ LAB_180057b97:
   unsignedSystemValue7 = 0;
 LAB_180057ba2:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(localResourceOffset,localBufferAddress,SystemResourcePointer,unsignedSystemValue7);
+  ConfigureSystemResourceHandle(localResourceOffset,localBufferAddress,SystemResourcePointer,unsignedSystemValue7);
 }
 
 
@@ -31550,7 +31550,7 @@ void* * InitializeSystemResourceHandler(void* *SystemResourcePointer,uint Config
 
 {
   *SystemResourcePointer = &UNK_180a08db0;
-  FUN_18005e570(SystemAllocationFlagsTemplate,SystemResourcePointer[0x28],AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ReleaseSystemResourceHandle(SystemAllocationFlagsTemplate,SystemResourcePointer[0x28],AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   SystemResourcePointer[0x28] = 0;
   SystemResourcePointer[0x29] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x2a] != 0) {
@@ -31560,7 +31560,7 @@ void* * InitializeSystemResourceHandler(void* *SystemResourcePointer,uint Config
   SystemResourcePointer[0x2a] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x2c) = 0;
   SystemResourcePointer[0x29] = &SystemMemoryAllocatorReference;
-  FUN_180174950();
+  InitializeSystemResourceHandler();
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x170);
   }
@@ -31579,8 +31579,8 @@ void ProcessSystemResourceData(long long *SystemResourcePointer,void* Configurat
   void* unsignedSystemValue3;
   
   unsignedSystemValue3 = 0xfffffffffffffffe;
-  FUN_180058020();
-  FUN_180058020();
+  ProcessSystemResourceInitialization();
+  ProcessSystemResourceInitialization();
   SystemResourcePointer[0x123] = (long long)&SystemGlobalDataReference;
   if (SystemResourcePointer[0x124] != 0) {
                     // WARNING: Subroutine does not return
@@ -31645,8 +31645,8 @@ void ReleaseSystemResourcePointer(long long SystemResourcePointer,void* Configur
   
   pointerToUnsigned1 = *(void* **)(SystemResourcePointer + 0x10);
   if (pointerToUnsigned1 != (void* *)0x0) {
-    FUN_1800587d0(SystemResourcePointer,*pointerToUnsigned1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
-    FUN_18005cb60(pointerToUnsigned1);
+    ConfigureSystemResourceData(SystemResourcePointer,*pointerToUnsigned1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+    ValidateSystemResourceConfiguration(pointerToUnsigned1);
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(pointerToUnsigned1);
   }
@@ -31675,8 +31675,8 @@ void CleanupSystemResourceStream(long long SystemResourcePointer,void* Configura
   
   pointerToUnsigned1 = *(void* **)(SystemResourcePointer + 0x10);
   if (pointerToUnsigned1 != (void* *)0x0) {
-    FUN_1800587d0(SystemResourcePointer,*pointerToUnsigned1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
-    FUN_18005cb60(pointerToUnsigned1);
+    ConfigureSystemResourceData(SystemResourcePointer,*pointerToUnsigned1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+    ValidateSystemResourceConfiguration(pointerToUnsigned1);
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(pointerToUnsigned1);
   }
@@ -31745,8 +31745,8 @@ void ReleaseSystemMemoryAllocation(long long SystemResourcePointer,void* Configu
   
   pointerToUnsigned1 = *(void* **)(SystemResourcePointer + 0x10);
   if (pointerToUnsigned1 != (void* *)0x0) {
-    FUN_1800587d0(SystemResourcePointer,*pointerToUnsigned1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
-    FUN_18005cb60(pointerToUnsigned1);
+    ConfigureSystemResourceData(SystemResourcePointer,*pointerToUnsigned1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+    ValidateSystemResourceConfiguration(pointerToUnsigned1);
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(pointerToUnsigned1);
   }
@@ -31939,7 +31939,7 @@ void ProcessSystemConfigurationData(void* SystemResourcePointer,void* *Configura
     return;
   }
   ProcessSystemConfiguration(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
-  FUN_180058db0(ConfigurationDataPointer + 8);
+  ProcessSystemDataConfiguration(ConfigurationDataPointer + 8);
   ConfigurationDataPointer[4] = &SystemGlobalDataReference;
   if (ConfigurationDataPointer[5] != 0) {
                     // WARNING: Subroutine does not return
@@ -32165,7 +32165,7 @@ void ProcessSystemResourceExtension(void* SystemResourcePointer,void* *Configura
 
 
 
-// 函数: void FUN_1800587d0(void* SystemResourcePointer,void* *ConfigurationDataPointer)
+// 函数: void ConfigureSystemResourceData(void* SystemResourcePointer,void* *ConfigurationDataPointer)
 /**
  * @brief 系统配置数据清理器函数
  * 
@@ -32181,7 +32181,7 @@ void CleanupSystemConfigurationData(void* SystemResourcePointer,void* *Configura
 {
   if (ConfigurationDataPointer != (void* *)0x0) {
     CleanupSystemConfigurationData(SystemResourcePointer,*ConfigurationDataPointer);
-    FUN_18005cb60(ConfigurationDataPointer);
+    ValidateSystemResourceConfiguration(ConfigurationDataPointer);
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(ConfigurationDataPointer);
   }
@@ -32206,8 +32206,8 @@ void FinalCleanupSystemResource(void* SystemResourcePointer)
 {
   void* *unaff_RBX;
   
-  FUN_1800587d0(SystemResourcePointer,*unaff_RBX);
-  FUN_18005cb60();
+  ConfigureSystemResourceData(SystemResourcePointer,*unaff_RBX);
+  ValidateSystemResourceConfiguration();
                     // WARNING: Subroutine does not return
   SystemCleanupFunction();
 }
@@ -32792,7 +32792,7 @@ void ReleaseSystemResourcePointer(void* *SystemResourcePointer)
  */
 void ResetSystemResourcePointer(void* *SystemResourcePointer)
 {
-  FUN_180058db0(SystemResourcePointer + 4);
+  ProcessSystemDataConfiguration(SystemResourcePointer + 4);
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -32863,7 +32863,7 @@ void CleanupSystemResourceMemoryRegion(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180058db0(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ProcessSystemDataConfiguration(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 销毁系统资源互斥锁
  * 
@@ -33326,7 +33326,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
                 *(void* *)(localAllocationFlags + 0x48) = 0;
                 *(uint32_t *)(localAllocationFlags + 0x50) = 0;
                     // WARNING: Subroutine does not return
-                FUN_18066bdc0(localAllocationFlags,pppppppointerToUnsigned14,&ppppppuStack_360,unsignedSystemValue7);
+                ConfigureSystemResourceHandle(localAllocationFlags,pppppppointerToUnsigned14,&ppppppuStack_360,unsignedSystemValue7);
               }
               pppppppointerToUnsigned14 = (void* *******)SystemResourceOffsetGet(pppppppointerToUnsigned14);
               localMemoryPointer2 = lStack_2c8;
@@ -33531,7 +33531,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       pppppppointerToUnsigned14 = (void* *******)SystemMemoryNodeGetNext(pppppppointerToUnsigned14);
     } while (pppppppointerToUnsigned14 != &ppppppuStack_360);
   }
-  FUN_180058020(&ppppppuStack_360);
+  ProcessSystemResourceInitialization(&ppppppuStack_360);
                     // WARNING: Subroutine does not return
   ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_3b8);
 }
@@ -36060,7 +36060,7 @@ LAB_18005c9be:
     unsignedSystemValue6 = 1;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(localBufferAddress,pointerToUnsigned3,SystemResourcePointer,unsignedSystemValue6);
+  ConfigureSystemResourceHandle(localBufferAddress,pointerToUnsigned3,SystemResourcePointer,unsignedSystemValue6);
 }
 
 
@@ -36202,7 +36202,7 @@ void FUN_18005cc00(void* **SystemResourcePointer,void* ConfigurationDataPointer,
   FUN_18005caa0(localResourceOffset + 0x20,&puStack_68);
   ppunsignedSystemValue4 = (void* **)SystemResourceAllocator(ppunsignedSystemValue6,acStackX_20,localResourceOffset + 0x20);
   if (acStackX_20[0] == '\0') {
-    FUN_18005cb60(localResourceOffset);
+    ValidateSystemResourceConfiguration(localResourceOffset);
     if (localResourceOffset != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction(localResourceOffset);
@@ -36240,7 +36240,7 @@ void FUN_18005cc00(void* **SystemResourcePointer,void* ConfigurationDataPointer,
   unsignedSystemValue8 = 1;
 LAB_18005ccff:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(localResourceOffset,ppunsignedSystemValue4,ppunsignedSystemValue6,unsignedSystemValue8,unsignedSystemValue9);
+  ConfigureSystemResourceHandle(localResourceOffset,ppunsignedSystemValue4,ppunsignedSystemValue6,unsignedSystemValue8,unsignedSystemValue9);
 }
 
 
@@ -37700,8 +37700,8 @@ void* * FUN_18005e4d0(long long SystemResourcePointer,void* ConfigurationDataPoi
 
 
 
-// 函数: void FUN_18005e570(long long SystemResourcePointer,long long *ConfigurationDataPointer)
-void FUN_18005e570(long long SystemResourcePointer,long long *ConfigurationDataPointer)
+// 函数: void ReleaseSystemResourceHandle(long long SystemResourcePointer,long long *ConfigurationDataPointer)
+void ReleaseSystemResourceHandle(long long SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;

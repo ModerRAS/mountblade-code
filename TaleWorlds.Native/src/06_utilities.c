@@ -3254,7 +3254,7 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数在游戏运行时定期调用
  * @warning 调用此函数前必须确保游戏和系统上下文已正确初始化
  */
-void ProcessGameDataObjects(int64_t GameContext, int64_t SystemContext)
+void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 
 {
   uint8_t ObjectValidationStatus;
@@ -3311,7 +3311,7 @@ void ProcessGameDataObjects(int64_t GameContext, int64_t SystemContext)
  * 该函数用于验证系统中的对象状态，确保所有对象都处于有效状态
  * 对无效对象进行相应处理，维护系统稳定性
  */
-void ValidateSystemObjects(void)
+void ValidateSystemObjectCollection(void)
 
 {
   uint8_t SystemObjectHandle;
@@ -3326,14 +3326,14 @@ void ValidateSystemObjects(void)
   uint64_t SecurityValidationHash;
   
   if (*(int64_t *)(SystemObjectContext + 8) != 0) {
-    ObjectCollectionArray = &SystemObjectCollectionBuffer;
+    ObjectCollectionArray = &SystemObjectDataBuffer;
     ProcessedObjectCount = 0;
     RetrievedObjectCount = 0;
     MaximumCapacity = 0xffffffc0;
     ValidationStatusCode = RetrieveSystemObjectCollection(*(uint8_t *)(SystemContextPointer + 0x90), *(int64_t *)(SystemObjectContext + 8),
-                          &RetrievedObjectCollectionBuffer);
+                          &RetrievedObjectDataBuffer);
     if (ValidationStatusCode == 0) {
-      RetrievedObjectCount = *(int *)(RetrievedObjectCollectionBuffer + 4);
+      RetrievedObjectCount = *(int *)(RetrievedObjectDataBuffer + 4);
       if (0 < RetrievedObjectCount) {
         ObjectDataOffset = 8;
         do {
@@ -3347,10 +3347,10 @@ void ValidateSystemObjects(void)
           ObjectDataOffset = ObjectDataOffset + 8;
         } while (ProcessedObjectCount < RetrievedObjectCount);
       }
-      ReleaseSystemObjectCollection(&RetrievedObjectCollectionBuffer);
+      ReleaseSystemObjectCollection(&RetrievedObjectDataBuffer);
     }
     else {
-      ReleaseSystemObjectCollection(&RetrievedObjectCollectionBuffer);
+      ReleaseSystemObjectCollection(&RetrievedObjectDataBuffer);
     }
   }
                     // WARNING: Subroutine does not return
@@ -13218,8 +13218,8 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
   float fStack_19c;
   float afStack_198 [2];
   uint8_t *puStack_190;
-  int64_t lStack_188;
-  int64_t lStack_180;
+  int64_t StackBuffer188;
+  int64_t StackBuffer180;
   uint8_t *puStack_178;
   uint32_t uStack_170;
   uint32_t uStack_168;
@@ -13254,7 +13254,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
   if (resourceTable == 0) {
     longValue8 = LocalContextData4;
   }
-  lStack_180 = ValidationContextParameter;
+  StackBuffer180 = ValidationContextParameter;
   integerValue6 = ValidateBufferContext(longValue8,&uStack_1c8);
   if (integerValue6 == 0) {
     presourceHash6 = (uint8_t *)(ValidationContextParameter + 8);
@@ -13269,9 +13269,9 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
       uStack_168 = uStack_1a0;
       integerValue6 = GetAndValidateResourceData(ObjectContextParameter,&puStack_178);
       if (integerValue6 == 0) {
-        lStack_188 = (int64_t)*(int *)(resourceTable + 0x28);
+        StackBuffer188 = (int64_t)*(int *)(resourceTable + 0x28);
         longValue8 = LocalContextData4;
-        if (0 < lStack_188) {
+        if (0 < StackBuffer188) {
           do {
             SystemDataPointer = *(int64_t *)(resourceTable + 0x20);
             ResourceIndex = *(int64_t *)(LocalContextData4 + 0x10 + SystemDataPointer);
@@ -13298,8 +13298,8 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
             }
             longValue8 = longValue8 + 1;
             LocalContextData4 = LocalContextData4 + 0x18;
-            ValidationContextParameter = lStack_180;
-          } while (longValue8 < lStack_188);
+            ValidationContextParameter = StackBuffer180;
+          } while (longValue8 < StackBuffer188);
         }
         resourceHash1 = *(uint8_t *)(*(int64_t *)(ObjectContextParameter + 8) + 800);
         resourceHash0 = (**(code **)*presourceHash6)(presourceHash6);
@@ -13785,7 +13785,7 @@ void DataProcessingErrorHandler(void)
   uint8_t StackParameterContext48;
   float StackParameter50;
   uint8_t *in_stack_00000058;
-  int64_t lStack0000000000000060;
+  int64_t StackBuffer60;
   int64_t in_stack_00000068;
   uint32_t in_stack_000001a0;
   uint32_t in_stack_000001a8;
@@ -13793,7 +13793,7 @@ void DataProcessingErrorHandler(void)
   if (0 < InputRAX) {
     ResourceValidationResult2 = (uint64_t)(uint)UnaffectedRegisterR13D;
     ResourceValidationResult0 = (uint64_t)(uint)UnaffectedRegisterR13D;
-    lStack0000000000000060 = InputRAX;
+    StackBuffer60 = InputRAX;
     do {
       LocalContextData5 = *(int64_t *)(RegisterR15 + 0x20);
       resourceTable = *(int64_t *)(ResourceValidationResult0 + 0x10 + LocalContextData5);
@@ -13824,7 +13824,7 @@ void DataProcessingErrorHandler(void)
       ResourceValidationResult2 = ResourceValidationResult2 + 1;
       ResourceValidationResult0 = ResourceValidationResult0 + 0x18;
       RegisterR14 = in_stack_00000068;
-    } while ((int64_t)ResourceValidationResult2 < lStack0000000000000060);
+    } while ((int64_t)ResourceValidationResult2 < StackBuffer60);
   }
   resourceHash7 = *(uint8_t *)(*(int64_t *)(SystemContextPointer + 8) + 800);
   resourceHash6 = (**(code **)*UnaffectedRegisterR12)(UnaffectedRegisterR12);
@@ -14465,11 +14465,11 @@ uint8_t ValidateResourceRenderingState(void)
   bool ValidationFlag;
   uint8_t auStack_368 [32];
   float afStack_348 [2];
-  int64_t *plStack_340;
+  int64_t *PointerStack340;
   uint64_t uStack_338;
   int64_t *AudioBufferPointer [2];
   int64_t AudioSampleRate;
-  int64_t *plStack_318;
+  int64_t *PointerStack318;
   uint8_t uStack_310;
   float afStack_308 [2];
   int64_t alStack_300 [2];
@@ -14488,7 +14488,7 @@ uint8_t ValidateResourceRenderingState(void)
   uint32_t uStack_2a0;
   uint32_t uStack_29c;
   uint32_t uStack_298;
-  int64_t lStack_294;
+  int64_t StackBuffer294;
   uint uStack_28c;
   uint8_t uStack_288;
   uint8_t auStack_238 [512];
@@ -14540,9 +14540,9 @@ uint8_t ValidateResourceRenderingState(void)
       integerValue6 = *(int *)(LocalContextData5 + 0x28);
       if (integerValue6 != 1) {
         uStack_338 = uStack_338 & 0xffffffff00000000;
-        plStack_340 = (int64_t *)&SystemMemoryTemplateC;
+        PointerStack340 = (int64_t *)&SystemMemoryConfigTemplate;
         AudioBufferPointer[0] = (int64_t *)CONCAT44(AudioBufferPointer[0]._4_4_,integerValue6);
-        ResourceCount = GetAndValidateResourceData(ObjectContextParameter,&plStack_340);
+        ResourceCount = GetAndValidateResourceData(ObjectContextParameter,&PointerStack340);
         if (ResourceCount != 0) goto LAB_18089866f;
       }
       ResourceContextPointer4 = ResourceContextPointer6;
@@ -14571,9 +14571,9 @@ uint8_t ValidateResourceRenderingState(void)
           uStack_2a0 = pValidationResult[1];
           uStack_29c = pValidationResult[2];
           uStack_298 = pValidationResult[3];
-          lStack_294 = *(int64_t *)(LocalContextData5 + 0x260 + (int64_t)ResourceContextPointer9);
+          StackBuffer294 = *(int64_t *)(LocalContextData5 + 0x260 + (int64_t)ResourceContextPointer9);
           uStack_28c = *(uint *)(LocalContextData5 + 0x268 + (int64_t)ResourceContextPointer9);
-          LocalContextData1 = LocalContextData1 - lStack_294;
+          LocalContextData1 = LocalContextData1 - StackBuffer294;
           if (LocalContextData1 == 0) {
             LocalContextData1 = (ValidationCounter & 0xffffffff) - (uint64_t)uStack_28c;
           }
@@ -14631,14 +14631,14 @@ uint8_t ValidateResourceRenderingState(void)
               ValidationCounter = (uint64_t)(AudioSampleRate * 48000) /
                       (uint64_t)*(uint *)((int64_t)ObjectContextParameter + 0x1c);
               LoopOffset = ObjectContextParameter[2];
-              plStack_340 = (int64_t *)&SystemMemoryTemplateF;
+              PointerStack340 = (int64_t *)&SystemMemoryConfigTemplateSecondary;
               uStack_338 = uStack_338 & 0xffffffff00000000;
               ObjectContextParameter[2] = ValidationCounter;
               AudioBufferPointer[0] = ResourceContextPointer6;
               if (LoopOffset != 0) {
                 AudioBufferPointer[0] = (int64_t *)(ValidationCounter - LoopOffset);
               }
-              ResourceCount = GetAndValidateResourceData(ObjectContextParameter,&plStack_340);
+              ResourceCount = GetAndValidateResourceData(ObjectContextParameter,&PointerStack340);
               if (ResourceCount != 0) goto LAB_18089866f;
             }
             ResourceCount = (**(code **)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
@@ -14657,21 +14657,21 @@ uint8_t ValidateResourceRenderingState(void)
       }
       uStack_310 = 0xffffffffffffffff;
       afStack_308[0] = -NAN;
-      plStack_318 = (int64_t *)(*(int64_t *)(ObjectContextParameter[1] + 0x90) + 0x38);
-      ConfigureResourceSettings(plStack_318,&uStack_310,afStack_308);
+      PointerStack318 = (int64_t *)(*(int64_t *)(ObjectContextParameter[1] + 0x90) + 0x38);
+      ConfigureResourceSettings(PointerStack318,&uStack_310,afStack_308);
       afStack_348[0] = afStack_308[0];
       if (afStack_308[0] != -NAN) {
-        ResourceContextPointer6 = plStack_318;
+        ResourceContextPointer6 = PointerStack318;
         floatValue18 = (float)uStack_310;
         do {
           do {
             LocalContextData5 = (int64_t)(int)afStack_348[0] * 0x20;
             uStack_338 = 0xffffffffffffffff;
             AudioBufferPointer[0] = (int64_t *)CONCAT44(AudioBufferPointer[0]._4_4_,0xffffffff);
-            plStack_340 = *(int64_t **)(ResourceContextPointer6[2] + 0x18 + LocalContextData5);
+            PointerStack340 = *(int64_t **)(ResourceContextPointer6[2] + 0x18 + LocalContextData5);
             AudioSampleRate = LocalContextData5;
-            SetupResourceHandlers(plStack_340,&uStack_338,AudioBufferPointer);
-            ResourceContextPointer4 = plStack_340;
+            SetupResourceHandlers(PointerStack340,&uStack_338,AudioBufferPointer);
+            ResourceContextPointer4 = PointerStack340;
             if ((int)AudioBufferPointer[0] != -1) {
               integerValue6 = (int)AudioBufferPointer[0];
               ResourceCount = (int)uStack_338;
@@ -14703,7 +14703,7 @@ uint8_t ValidateResourceRenderingState(void)
                 ResourceCount = integerValue6;
 LAB_1808985be:
                 LocalContextData5 = AudioSampleRate;
-                ResourceContextPointer6 = plStack_318;
+                ResourceContextPointer6 = PointerStack318;
               } while (integerValue6 != -1);
             }
           } while ((afStack_348[0] != -NAN) &&
@@ -14863,7 +14863,7 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *ObjectContextParameter,char 
       if (loopCounter != 0) {
         OperationParam1 = LoopIncrement;
       }
-      puStack_28 = &SystemMemoryTemplateF;
+      puStack_28 = &SystemMemoryConfigTemplateSecondary;
       ResourceValidationResult = GetAndValidateResourceData(ObjectContextParameter,&puStack_28);
       if ((int)ResourceValidationResult != 0) {
         return ResourceValidationResult;
@@ -44320,16 +44320,16 @@ void Unwind_1809057b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   uint ValidationCounter;
   uint64_t resourceHash1;
   uint64_t resourceHash2;
-  int64_t *plStackX_10;
-  int64_t *plStackX_18;
-  int64_t *plStackX_20;
+  int64_t *PointerStack10;
+  int64_t *PointerStack18;
+  int64_t *PointerStack20;
   uint64_t resourceHash0;
   
   bytePointer5 = *(uint8_t **)(ValidationContextParameter + 0x40);
   *resourcePointer5 = &ResourceHashTable003;
   *(uint8_t *)((int64_t)resourcePointer5 + 0x162) = 1;
   presourceTable = resourcePointer5 + 0x1a;
-  plStackX_20 = presourceTable;
+  PointerStack20 = presourceTable;
   integerValue6 = _Mtx_lock(presourceTable);
   if (integerValue6 != 0) {
     __Throw_C_error_std__YAXH_Z(integerValue6);
@@ -44347,7 +44347,7 @@ void Unwind_1809057b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
           break;
         }
       }
-      InitializeResourceBuffer(resourcePointer5 + 10,&plStackX_10,(uint64_t)*(uint *)(resourcePointer5 + 8),
+      InitializeResourceBuffer(resourcePointer5 + 10,&PointerStack10,(uint64_t)*(uint *)(resourcePointer5 + 8),
                     *(uint32_t *)(resourcePointer5 + 9),1);
       pResourceCount = (int *)AllocateResourceBuffer(ResourceBufferPool,0x18,*(uint8_t *)((int64_t)resourcePointer5 + 0x5c));
       *pResourceCount = integerValue6;
@@ -44355,19 +44355,19 @@ void Unwind_1809057b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       pResourceCount[3] = 0;
       pResourceCount[4] = 0;
       pResourceCount[5] = 0;
-      if ((char)plStackX_10 != '\0') {
-        resourceHash2 = resourceHash1 % ((uint64_t)plStackX_10 >> 0x20);
+      if ((char)PointerStack10 != '\0') {
+        resourceHash2 = resourceHash1 % ((uint64_t)PointerStack10 >> 0x20);
         CleanupResourceBuffer(resourcePointer5 + 6);
       }
       *(uint8_t *)(pResourceCount + 4) = *(uint8_t *)(resourcePointer5[7] + resourceHash2 * 8);
       *(int **)(resourcePointer5[7] + resourceHash2 * 8) = pResourceCount;
       resourcePointer5[9] = resourcePointer5[9] + 1;
 LAB_1801571ef:
-      plStackX_18 = *(int64_t **)(pResourceCount + 2);
+      PointerStack18 = *(int64_t **)(pResourceCount + 2);
       pResourceCount[2] = 0;
       pResourceCount[3] = 0;
-      if (plStackX_18 != (int64_t *)0x0) {
-        (**(code **)(*plStackX_18 + 0x38))();
+      if (PointerStack18 != (int64_t *)0x0) {
+        (**(code **)(*PointerStack18 + 0x38))();
       }
       ValidationCounter = integerValue6 + 1;
       resourceHash0 = (uint64_t)ValidationCounter;
@@ -44397,27 +44397,27 @@ LAB_1801571ef:
     free();
     resourcePointer5[0x4a] = 0;
   }
-  plStackX_10 = resourcePointer5 + 0x44;
+  PointerStack10 = resourcePointer5 + 0x44;
   FinalizeResourceBuffer();
   if ((int64_t *)resourcePointer5[0x3d] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)resourcePointer5[0x3d] + 0x38))();
   }
-  plStackX_10 = pResourceIndex;
+  PointerStack10 = pResourceIndex;
   UpdateResourceIndex(pResourceIndex);
-  plStackX_10 = resourcePointer5 + 0x28;
+  PointerStack10 = resourcePointer5 + 0x28;
   ResetResourceSystem();
-  plStackX_10 = resourcePointer5 + 0x24;
+  PointerStack10 = resourcePointer5 + 0x24;
   ResetResourceSystem();
-  plStackX_10 = presourceTable;
+  PointerStack10 = presourceTable;
   _Mtx_destroy_in_situ(presourceTable);
-  plStackX_10 = resourcePointer5 + 0x16;
-  if (*plStackX_10 != 0) {
+  PointerStack10 = resourcePointer5 + 0x16;
+  if (*PointerStack10 != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  plStackX_10 = resourcePointer5 + 0xc;
+  PointerStack10 = resourcePointer5 + 0xc;
   _Mtx_destroy_in_situ();
-  plStackX_10 = ResourceContextPointer;
+  PointerStack10 = ResourceContextPointer;
   ValidateResourceBuffer(ResourceContextPointer);
   if ((1 < (uint64_t)resourcePointer5[8]) && (resourcePointer5[7] != 0)) {
                     // WARNING: Subroutine does not return
@@ -44917,16 +44917,16 @@ void Unwind_180905950(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   uint ValidationCounter;
   uint64_t resourceHash1;
   uint64_t resourceHash2;
-  int64_t *plStackX_10;
-  int64_t *plStackX_18;
-  int64_t *plStackX_20;
+  int64_t *PointerStack10;
+  int64_t *PointerStack18;
+  int64_t *PointerStack20;
   uint64_t resourceHash0;
   
   bytePointer5 = *(uint8_t **)(ValidationContextParameter + 0x2e8);
   *resourcePointer5 = &ResourceHashTable003;
   *(uint8_t *)((int64_t)resourcePointer5 + 0x162) = 1;
   presourceTable = resourcePointer5 + 0x1a;
-  plStackX_20 = presourceTable;
+  PointerStack20 = presourceTable;
   integerValue6 = _Mtx_lock(presourceTable);
   if (integerValue6 != 0) {
     __Throw_C_error_std__YAXH_Z(integerValue6);
@@ -44944,7 +44944,7 @@ void Unwind_180905950(uint8_t ObjectContextParameter,int64_t ValidationContextPa
           break;
         }
       }
-      InitializeResourceBuffer(resourcePointer5 + 10,&plStackX_10,(uint64_t)*(uint *)(resourcePointer5 + 8),
+      InitializeResourceBuffer(resourcePointer5 + 10,&PointerStack10,(uint64_t)*(uint *)(resourcePointer5 + 8),
                     *(uint32_t *)(resourcePointer5 + 9),1);
       pResourceCount = (int *)AllocateResourceBuffer(ResourceBufferPool,0x18,*(uint8_t *)((int64_t)resourcePointer5 + 0x5c));
       *pResourceCount = integerValue6;
@@ -44952,19 +44952,19 @@ void Unwind_180905950(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       pResourceCount[3] = 0;
       pResourceCount[4] = 0;
       pResourceCount[5] = 0;
-      if ((char)plStackX_10 != '\0') {
-        resourceHash2 = resourceHash1 % ((uint64_t)plStackX_10 >> 0x20);
+      if ((char)PointerStack10 != '\0') {
+        resourceHash2 = resourceHash1 % ((uint64_t)PointerStack10 >> 0x20);
         CleanupResourceBuffer(resourcePointer5 + 6);
       }
       *(uint8_t *)(pResourceCount + 4) = *(uint8_t *)(resourcePointer5[7] + resourceHash2 * 8);
       *(int **)(resourcePointer5[7] + resourceHash2 * 8) = pResourceCount;
       resourcePointer5[9] = resourcePointer5[9] + 1;
 LAB_1801571ef:
-      plStackX_18 = *(int64_t **)(pResourceCount + 2);
+      PointerStack18 = *(int64_t **)(pResourceCount + 2);
       pResourceCount[2] = 0;
       pResourceCount[3] = 0;
-      if (plStackX_18 != (int64_t *)0x0) {
-        (**(code **)(*plStackX_18 + 0x38))();
+      if (PointerStack18 != (int64_t *)0x0) {
+        (**(code **)(*PointerStack18 + 0x38))();
       }
       ValidationCounter = integerValue6 + 1;
       resourceHash0 = (uint64_t)ValidationCounter;
@@ -44994,27 +44994,27 @@ LAB_1801571ef:
     free();
     resourcePointer5[0x4a] = 0;
   }
-  plStackX_10 = resourcePointer5 + 0x44;
+  PointerStack10 = resourcePointer5 + 0x44;
   FinalizeResourceBuffer();
   if ((int64_t *)resourcePointer5[0x3d] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)resourcePointer5[0x3d] + 0x38))();
   }
-  plStackX_10 = pResourceIndex;
+  PointerStack10 = pResourceIndex;
   UpdateResourceIndex(pResourceIndex);
-  plStackX_10 = resourcePointer5 + 0x28;
+  PointerStack10 = resourcePointer5 + 0x28;
   ResetResourceSystem();
-  plStackX_10 = resourcePointer5 + 0x24;
+  PointerStack10 = resourcePointer5 + 0x24;
   ResetResourceSystem();
-  plStackX_10 = presourceTable;
+  PointerStack10 = presourceTable;
   _Mtx_destroy_in_situ(presourceTable);
-  plStackX_10 = resourcePointer5 + 0x16;
-  if (*plStackX_10 != 0) {
+  PointerStack10 = resourcePointer5 + 0x16;
+  if (*PointerStack10 != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  plStackX_10 = resourcePointer5 + 0xc;
+  PointerStack10 = resourcePointer5 + 0xc;
   _Mtx_destroy_in_situ();
-  plStackX_10 = ResourceContextPointer;
+  PointerStack10 = ResourceContextPointer;
   ValidateResourceBuffer(ResourceContextPointer);
   if ((1 < (uint64_t)resourcePointer5[8]) && (resourcePointer5[7] != 0)) {
                     // WARNING: Subroutine does not return
