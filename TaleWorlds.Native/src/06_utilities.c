@@ -34795,6 +34795,18 @@ void ProcessResourceContextValidation(uint8_t ObjectContextParameter,int64_t Val
 
 
 
+/**
+ * @brief 注册资源清理处理器
+ * 
+ * 该函数负责注册资源清理的处理器
+ * 为资源分配清理处理器并设置相关参数
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含资源对象的上下文信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证过程的数据
+ * @return 无返回值
+ * @note 此函数在资源初始化过程中被调用
+ * @warning 清理处理器的注册必须在资源使用之前完成
+ */
 void RegisterResourceCleanupHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
