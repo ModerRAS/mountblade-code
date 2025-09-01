@@ -6,7 +6,13 @@
  */
 
 // 全局函数指针 - 系统初始化相关
-void* GameSystemMainEntryPoint;                    // 游戏系统主入口点
+/**
+ * @brief 游戏系统主入口点
+ * 
+ * 这是整个游戏系统的主要入口点，负责初始化所有核心系统组件
+ * 和管理系统的生命周期。所有其他系统的初始化都通过这个入口点进行协调。
+ */
+void* GameSystemMainEntryPoint;
 void* SystemGlobalDataReferenceA;              // 全局系统数据引用A
 void* SystemPrimaryMemoryPool;                 // 主系统内存池
 void* SystemPrimaryDataTable;                // 系统数据表引用
@@ -22,7 +28,13 @@ void* SystemSenaryMemoryPool;                  // 第六级系统内存池
 void* SystemSenaryDataTable;                   // 第六级系统数据表
 
 // 核心系统函数指针和相关数据
-void* GameCoreSystemMainEntryPoint;                 // 游戏核心系统入口点
+/**
+ * @brief 游戏核心系统入口点
+ * 
+ * 负责初始化游戏的核心系统组件，包括内存管理、线程管理、
+ * 任务调度等基础系统服务。这是系统启动的第二阶段。
+ */
+void* GameCoreSystemMainEntryPoint;
 void* CoreSystemMainMemoryAllocator;                // 核心系统内存分配器
 void* CoreSystemMainDataTable;                     // 核心系统数据表
 void* CoreSystemMainMemoryBuffer;                  // 核心系统内存缓冲区
@@ -40,49 +52,49 @@ void* GameNetworkMainEntryPoint;                    // 游戏网络系统入口�
 void* NetworkSystemContext;                     // 网络系统上下文
 
 // 音频系统初始化函数
-void* GameAudioEntryPoint;                      // 游戏音频系统入口点
+void* GameAudioMainEntryPoint;                      // 游戏音频系统入口点
 void* AudioSystemContext;                       // 音频系统上下文
 
 // 输入系统初始化函数和相关数据
-void* GameInputEntryPoint;                      // 游戏输入系统入口点
-void* InputSystemDataBuffer;
-void* InputSystemEventQueue;
-void* InputSystemStateData;
+void* GameInputMainEntryPoint;                      // 游戏输入系统入口点
+void* InputSystemMainDataBuffer;
+void* InputSystemEventQueueManager;
+void* InputSystemCurrentStateData;
 void* InputSystemDeviceManager;
-void* InputSystemKeyMapping;
-void* InputSystemAxisMapping;
-void* InputSystemActionBindings;
-void* InputSystemConfiguration;
-void* GameSubsystemEntryPoint;
-void* SubsystemContext;
-void* InputSystemDataTable;
-uint8_t InputSystemFlags;
-void* InputSystemConfigMain;
-void* InputSystemDeviceConfig;
-void* InputSystemMappingConfig;
-void* InputSystemProfileConfig;
+void* InputSystemKeyMappingTable;
+void* InputSystemAxisMappingTable;
+void* InputSystemActionBindingsTable;
+void* InputSystemMainConfiguration;
+void* GameSubsystemMainEntryPoint;
+void* SubsystemMainContext;
+void* InputSystemMainDataTable;
+uint8_t InputSystemStatusFlags;
+void* InputSystemPrimaryConfig;
+void* InputSystemDeviceConfigTable;
+void* InputSystemMappingConfigTable;
+void* InputSystemProfileConfigTable;
 
 // 物理系统初始化函数
-void* GamePhysicsEntryPoint;
-void* PhysicsSystemContext;
+void* GamePhysicsMainEntryPoint;
+void* PhysicsSystemMainContext;
 
 // 文件系统初始化函数
-void* GameFileSystemEntryPoint;
+void* GameFileSystemMainEntryPoint;
 
 // 函数: 系统初始化函数A - 字符串处理系统初始化
-void* GameStringProcessingInitializer;
-void* StringProcessingDataBuffer;
-void* StringProcessingStructurePrimary;
-void* StringProcessingStructureSecondary;
-void* StringProcessingStructureTertiary;
-void* StringProcessingStructureQuaternary;
-void* StringProcessingGuardCheckFunction;
+void* GameStringProcessingMainInitializer;
+void* StringProcessingMainDataBuffer;
+void* StringProcessingPrimaryStructure;
+void* StringProcessingSecondaryStructure;
+void* StringProcessingTertiaryStructure;
+void* StringProcessingQuaternaryStructure;
+void* StringProcessingGuardCheckHandler;
 
 // 函数: 系统初始化函数B - 内存管理系统初始化
-void* GameMemoryManagementInitializer;
+void* GameMemoryManagementMainInitializer;
 
 // 函数: 系统初始化函数C - 系统资源管理器初始化
-void* GameResourceManagementInitializer;
+void* GameResourceManagementMainInitializer;
 void* ResourceMemoryRegionPrimary;
 void* ResourceMemoryRegionSecondary;
 void* ResourceMemoryRegionTertiary;
