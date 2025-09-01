@@ -6503,7 +6503,7 @@ void ProcessNetworkConnectionPacketData(NetworkHandle connectionContext,NetworkS
     ProcessNetworkAddressValidation(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(0x1f,0xc,connectionContext,&UNK_180983680);
+    LogNetworkConnectionError(0x1f,0xc,connectionContext,&NetworkErrorMessageInvalidHeader);
   }
   *packetData = 1;
   alStack_148[1] = 0;
