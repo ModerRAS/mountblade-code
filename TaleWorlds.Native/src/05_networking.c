@@ -49311,7 +49311,7 @@ void FUN_180869b4f(void)
       if (connectionEntry == 0) {
 LAB_180869c7a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x140) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -49566,7 +49566,7 @@ void FUN_180869d52(void)
       if (connectionEntry == 0) {
 LAB_180869e7a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x80) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -49821,7 +49821,7 @@ void FUN_180869f52(void)
       if (connectionEntry == 0) {
 LAB_18086a07a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x110) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -50083,7 +50083,7 @@ void CleanupNetworkConnectionArray(void)
       if (connectionEntry == 0) {
 LAB_18086a27a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x180) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -50338,7 +50338,7 @@ void FUN_18086a34f(void)
       if (connectionEntry == 0) {
 LAB_18086a47a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1d0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -50593,7 +50593,7 @@ void FUN_18086a552(void)
       if (connectionEntry == 0) {
 LAB_18086a67a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x100) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -50848,7 +50848,7 @@ void FUN_18086a752(void)
       if (connectionEntry == 0) {
 LAB_18086a87a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0xe0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -51103,7 +51103,7 @@ void FUN_18086a94f(void)
       if (connectionEntry == 0) {
 LAB_18086aa7a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1a0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -51358,7 +51358,7 @@ void FUN_18086ab52(void)
       if (connectionEntry == 0) {
 LAB_18086ac60:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x40) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -51613,7 +51613,7 @@ void FUN_18086ad32(void)
       if (connectionEntry == 0) {
 LAB_18086ae40:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x30) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -51868,7 +51868,7 @@ void FUN_18086af12(void)
       if (connectionEntry == 0) {
 LAB_18086b03a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x130) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -52123,7 +52123,7 @@ void FUN_18086b10f(void)
       if (connectionEntry == 0) {
 LAB_18086b23a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1e0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -52378,7 +52378,7 @@ void FUN_18086b312(void)
       if (connectionEntry == 0) {
 LAB_18086b420:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x60) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -52633,7 +52633,7 @@ void FUN_18086b4ef(void)
       if (connectionEntry == 0) {
 LAB_18086b61a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 400) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -52888,7 +52888,7 @@ void FUN_18086b6f2(void)
       if (connectionEntry == 0) {
 LAB_18086b81a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x150) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -53150,7 +53150,7 @@ void ProcessNetworkConnectionQueue(void)
       if (connectionEntry == 0) {
 LAB_18086ba00:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x70) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -53414,7 +53414,7 @@ void FUN_18086bacf(void)
       if (connectionEntry == 0) {
 LAB_18086bbfa:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1c0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -53669,7 +53669,7 @@ void FUN_18086bccf(void)
       if (connectionEntry == 0) {
 LAB_18086bdfa:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1b0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -53924,7 +53924,7 @@ void FUN_18086bed2(void)
       if (connectionEntry == 0) {
 LAB_18086bffa:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x90) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -54179,7 +54179,7 @@ void FUN_18086c0d2(void)
       if (connectionEntry == 0) {
 LAB_18086c1fa:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x170) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -54434,7 +54434,7 @@ void FUN_18086c2d2(void)
       if (connectionEntry == 0) {
 LAB_18086c3e0:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x50) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -54689,7 +54689,7 @@ void FUN_18086c4b2(void)
       if (connectionEntry == 0) {
 LAB_18086c5da:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x160) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -54944,7 +54944,7 @@ void FUN_18086c6b2(void)
       if (connectionEntry == 0) {
 LAB_18086c7da:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0xa0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -55199,7 +55199,7 @@ void FUN_18086c8b2(void)
       if (connectionEntry == 0) {
 LAB_18086c9da:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0xb0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -55454,7 +55454,7 @@ void FUN_18086cab2(void)
       if (connectionEntry == 0) {
 LAB_18086cbda:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x120) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -55709,7 +55709,7 @@ void FUN_18086ccaf(void)
       if (connectionEntry == 0) {
 LAB_18086cdda:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1f0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -55964,7 +55964,7 @@ void FUN_18086ceaf(void)
       if (connectionEntry == 0) {
 LAB_18086cfda:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0xd0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -56219,7 +56219,7 @@ void FUN_18086d0b2(void)
       if (connectionEntry == 0) {
 LAB_18086d1da:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0xc0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
@@ -56474,7 +56474,7 @@ void FUN_18086d2af(void)
       if (connectionEntry == 0) {
 LAB_18086d3da:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
-          networkStatus2 = (iVar5 - networkStatus4) + -1;
+          networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus2) {
             lVar6 = *(longlong *)(unaff_RBP + 0xf0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
