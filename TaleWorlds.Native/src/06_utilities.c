@@ -1897,7 +1897,6 @@ void ConfigureSystemParameters(void);
  * 该函数负责初始化系统所需的资源
  * 分配和初始化系统运行所需的资源
  */
-void InitializeSystemResources(void);
 
  void InitializeSystemMemoryManager(void)
 /**
@@ -4344,8 +4343,7 @@ uint8_t InitializeObjectHandleD(void)
 
 
 
- void CleanupSystemResources(void)
-/**
+ /**
  * @brief 清理系统资源
  * 
  * 该函数负责清理系统运行过程中产生的临时资源
@@ -9378,9 +9376,9 @@ void ProcessFloatRangeClamping(void)
 {
   float CalculatedFloatValue;
   uint8_t *pResourceValidationResult;
-  uint32_t in_EAX;
+  uint32_t InputRegisterLow;
   int validationStatus;
-  uint32_t in_register_00000004;
+  uint32_t InputRegisterHigh;
   int64_t ResourceContextPointer;
   int64_t UnaffectedRegisterValue;
   float SecondaryFloatValue;
@@ -10906,7 +10904,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
   uint32_t UnaffectedRegisterValue1c;
   int64_t ExecutionContextPointer;
   int64_t UnaffectedRegisterValue;
-  char in_R11B;
+  char InputRegisterByte;
   uint8_t *UnaffectedRegisterR13;
   int64_t longValue8;
   float RangeValue;
@@ -11142,21 +11140,21 @@ uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uin
   uint8_t *pValidationResult;
   int ResultIndex;
   int *RegisterRDI;
-  int64_t in_R10;
-  bool in_ZF;
-  int iStack0000000000000044;
+  int64_t RegisterValueR10;
+  bool ZeroFlag;
+  int StackVariableIndex;
   
-  if (((!in_ZF) && (*(int *)(dataContext + 0x78) != 0)) &&
-     (iVar4 = *(int *)(*(int64_t *)(in_R10 + 0x70) +
+  if (((!ZeroFlag) && (*(int *)(dataContext + 0x78) != 0)) &&
+     (iVar4 = *(int *)(*(int64_t *)(RegisterValueR10 + 0x70) +
                       (int64_t)(int)(*(int *)(dataContext + 0x78) - 1U & CleanupFlag) * 4), iVar4 != -1)) {
-    loopCounter = *(int64_t *)(in_R10 + 0x80);
+    loopCounter = *(int64_t *)(RegisterValueR10 + 0x80);
     do {
       resourceTable = (int64_t)iVar4;
       if (*(uint *)(localContextPointer + resourceTable * 0x10) == CleanupFlag) {
-        iStack0000000000000044 = (int)((uint64_t)*(uint8_t *)(localContextPointer + 8 + resourceTable * 0x10) >> 0x20)
+        StackVariableIndex = (int)((uint64_t)*(uint8_t *)(localContextPointer + 8 + resourceTable * 0x10) >> 0x20)
         ;
-        if (iStack0000000000000044 != 0) {
-          *RegisterRDI = iStack0000000000000044;
+        if (StackVariableIndex != 0) {
+          *RegisterRDI = StackVariableIndex;
           return 0;
         }
         goto LAB_180895ccb;
@@ -11164,15 +11162,15 @@ uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uin
       iVar4 = *(int *)(localContextPointer + 4 + resourceTable * 0x10);
     } while (iVar4 != -1);
   }
-  iStack0000000000000044 = 0;
+  StackVariableIndex = 0;
 LAB_180895ccb:
   pValidationResult = (uint8_t *)
-           ((int64_t)*(int *)(*(int64_t *)(in_R10 + 0x18) + CleanupOption * 0xc) +
-           *(int64_t *)(in_R10 + 8));
+           ((int64_t)*(int *)(*(int64_t *)(RegisterValueR10 + 0x18) + CleanupOption * 0xc) +
+           *(int64_t *)(RegisterValueR10 + 8));
   if (pValidationResult != (uint8_t *)0x0) {
     (**(code **)*pValidationResult)();
   }
-  *RegisterRDI = iStack0000000000000044;
+  *RegisterRDI = StackVariableIndex;
   return 0;
 }
 
@@ -11555,7 +11553,6 @@ uint64_t ValidateAndProcessParameters(int minValue,int maxValue,uint8_t SystemCo
  * 该函数是一个空操作函数，用于占位或作为默认的回调函数
  * 不执行任何操作，直接返回
  */
-void PerformNoOperation(void)
 void PerformNoOperation(void)
 
 {
@@ -34665,7 +34662,20 @@ void ProcessResourceValidationUnwindA(uint8_t ObjectContextParameter, int64_t Va
 
 
 
-void Unwind_180903320(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 初始化系统资源处理器
+ * 
+ * 该函数负责初始化系统资源处理器
+ * 设置资源处理所需的数据结构和运行环境
+ * 包括资源系统初始化、处理器模板设置和紧急退出机制
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含资源验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数在资源系统初始化时调用
+ * @warning 调用此函数前必须确保系统已准备好处理资源
+ */
+void InitializeSystemResourceProcessor(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;

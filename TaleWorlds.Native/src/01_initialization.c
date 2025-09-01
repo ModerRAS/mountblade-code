@@ -20663,22 +20663,22 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
     do {
       if (*(int *)(AdditionalParameter + 0x10) == 0) {
         punsignedSystemValue9 = (void* *)punsignedSystemValue8[1];
-        bVar2 = false;
+        IsMatchFound = false;
       }
       else {
         if (*(int *)(punsignedSystemValue8 + 6) == 0) {
-          bVar2 = true;
+          IsMatchFound = true;
         }
         else {
-          pbVar6 = *(byte **)(AdditionalParameter + 8);
-          localAllocationFlags = punsignedSystemValue8[5] - (long long)pbVar6;
+          byteComparePointer = *(byte **)(AdditionalParameter + 8);
+          stringLengthDifference = punsignedSystemValue8[5] - (long long)byteComparePointer;
           do {
-            unsignedSystemValue5 = (uint)pbVar6[localAllocationFlags];
-            systemCounter = *pbVar6 - unsignedSystemValue5;
-            if (*pbVar6 != unsignedSystemValue5) break;
-            pbVar6 = pbVar6 + 1;
-          } while (unsignedSystemValue5 != 0);
-          bVar2 = 0 < systemCounter;
+            comparisonCharValue = (uint)byteComparePointer[stringLengthDifference];
+            systemCounter = *byteComparePointer - comparisonCharValue;
+            if (*byteComparePointer != comparisonCharValue) break;
+            byteComparePointer = byteComparePointer + 1;
+          } while (comparisonCharValue != 0);
+          IsMatchFound = 0 < systemCounter;
           if (systemCounter < 1) {
             punsignedSystemValue9 = (void* *)punsignedSystemValue8[1];
             goto LAB_180047f2c;
@@ -20687,7 +20687,7 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
         punsignedSystemValue9 = (void* *)*punsignedSystemValue8;
       }
 LAB_180047f2c:
-      if (bVar2) {
+      if (IsMatchFound) {
         punsignedSystemValue8 = punsignedSystemValue4;
       }
       punsignedSystemValue4 = punsignedSystemValue8;
@@ -20697,15 +20697,15 @@ LAB_180047f2c:
   if (punsignedSystemValue4 != SystemPreviousNode) {
     if (*(int *)(punsignedSystemValue4 + 6) == 0) goto LAB_180047f93;
     if (*(int *)(AdditionalParameter + 0x10) != 0) {
-      pbVar6 = (byte *)punsignedSystemValue4[5];
-      localAllocationFlags = *(long long *)(AdditionalParameter + 8) - (long long)pbVar6;
+      stringComparePointer = (byte *)punsignedSystemValue4[5];
+      stringLengthDifference = *(long long *)(AdditionalParameter + 8) - (long long)stringComparePointer;
       do {
-        bVar1 = *pbVar6;
-        unsignedSystemValue5 = (uint)pbVar6[localAllocationFlags];
-        if (bVar1 != unsignedSystemValue5) break;
-        pbVar6 = pbVar6 + 1;
-      } while (unsignedSystemValue5 != 0);
-      if ((int)(bVar1 - unsignedSystemValue5) < 1) goto LAB_180047f93;
+        currentCharValue = *stringComparePointer;
+        comparisonCharValue = (uint)stringComparePointer[stringLengthDifference];
+        if (currentCharValue != comparisonCharValue) break;
+        stringComparePointer = stringComparePointer + 1;
+      } while (comparisonCharValue != 0);
+      if ((int)(currentCharValue - comparisonCharValue) < 1) goto LAB_180047f93;
     }
   }
   punsignedSystemValue4 = (void* *)GetSystemNodeDataPointer(SystemPreviousNode,&uStackX_8);
