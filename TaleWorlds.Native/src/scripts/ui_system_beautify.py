@@ -731,6 +731,9 @@ def main():
     content = read_file(file_path)
     
     # 应用所有替换
+    print("Applying function replacements...")
+    content = replace_fun_functions(content)
+    
     print("Applying variable replacements...")
     content = replace_unk_variables(content)
     content = replace_param_variables(content)
@@ -741,7 +744,7 @@ def main():
     print(f"Writing file: {file_path}")
     write_file(file_path, content)
     
-    print("Variable beautification completed!")
+    print("Function and variable beautification completed!")
 
 if __name__ == "__main__":
     main()
