@@ -155,6 +155,7 @@ static ulonglong utility_system_extended_data_pointer = 0;                // 系
  * 提供基本的函数框架，确保系统初始化流程的完整性。
  * 
  * 简化实现：仅返回，作为初始化流程的占位符。
+ * 原本实现：可能包含复杂的初始化逻辑。
  */
 void utility_initialize_empty_function(void)
 {
@@ -170,6 +171,7 @@ void utility_initialize_empty_function(void)
  * 确保系统资源的正确释放和内存管理的完整性。
  * 
  * 简化实现：仅返回，作为内存清理流程的占位符。
+ * 原本实现：可能包含复杂的内存清理和资源释放逻辑。
  */
 void utility_memory_cleanup_handler(void)
 {
@@ -192,6 +194,8 @@ void utility_memory_cleanup_handler(void)
  * 
  * 简化实现：使用语义化变量名，提高代码可读性。
  * 原本实现：使用未语义化的变量名，如iVar1、puVar1等。
+ * 
+ * 注意：这是简化实现，实际功能可能更复杂。
  */
 uint64 utility_process_resource_data(longlong resource_handle)
 {
@@ -231,6 +235,8 @@ uint64 utility_process_resource_data(longlong resource_handle)
  * 
  * 简化实现：使用语义化变量名，提高代码可读性。
  * 原本实现：使用未语义化的变量名，如local_var1、temp_var等。
+ * 
+ * 注意：这是简化实现，实际功能可能更复杂。
  */
 uint64 utility_resource_data_processor(void)
 {
@@ -271,6 +277,8 @@ uint64 utility_resource_data_processor(void)
  * 
  * 简化实现：返回固定状态值，提供基本功能框架。
  * 原本实现：可能包含复杂的内存计算逻辑。
+ * 
+ * 注意：这是简化实现，实际功能可能更复杂。
  */
 uint32 utility_get_memory_usage(void)
 {
@@ -286,6 +294,8 @@ uint32 utility_get_memory_usage(void)
  * 
  * 简化实现：返回固定状态值，提供基本功能框架。
  * 原本实现：可能包含复杂的上下文管理逻辑。
+ * 
+ * 注意：这是简化实现，实际功能可能更复杂。
  */
 uint64 utility_manage_context(void)
 {
