@@ -33157,8 +33157,9 @@ void FreeSystemMemoryPool(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180059230(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180059230(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ConfigureSystemResource(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 功能: 配置系统资源，设置资源参数
+void ConfigureSystemResource(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   FUN_1800593f0(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
