@@ -83840,7 +83840,7 @@ void Unwind_1809127d0(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49270 = 0;
+  SystemMemoryManager = 0;
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
@@ -84270,21 +84270,21 @@ void InitializeResourceTableManager(void)
   longlong loopCounter;
   longlong resourceTable;
   
-  _DAT_180bf52c0 = &SystemResourceHandlerTemplate;
-  if (_DAT_180bf52c8 != 0) {
+  SystemResourceHandler = &SystemResourceHandlerTemplate;
+  if (SystemResourceHandlerFlag != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  _DAT_180bf52c8 = 0;
-  _DAT_180bf52d8 = 0;
-  _DAT_180bf52c0 = &SystemDataStructure;
-  if (_DAT_180bf5288 == 0) {
+  SystemResourceHandlerFlag = 0;
+  SystemResourceHandlerLock = 0;
+  SystemResourceHandler = &SystemDataStructure;
+  if (SystemResourceTablePointer == 0) {
     ResetResourceSystem();
-    lVar1 = _DAT_180bf5250;
-    for (resourceTable = _DAT_180bf5248; resourceTable != lVar1; resourceTable = resourceTable + 0x100) {
+    lVar1 = SystemResourceTableEnd;
+    for (resourceTable = SystemResourceTableStart; resourceTable != lVar1; resourceTable = resourceTable + 0x100) {
       SystemResourceTableCleanup(resourceTable);
     }
-    if (_DAT_180bf5248 == 0) {
+    if (SystemResourceTableStart == 0) {
       return;
     }
                     // WARNING: Subroutine does not return

@@ -64979,57 +64979,57 @@ void* CalculateWeightedAverageFloatArray(int startIndex, void* arrayBasePointer,
   float rangeFactor;
   int offsetIndex;
   
-  if (param_1 < in_R9D) {
-    if (3 < in_R9D - param_1) {
-      iVar3 = param_1 + 2;
-      fVar4 = (float)unaff_EBX;
-      pfVar2 = (float *)(unaff_RDI + ((long long)param_1 + 2) * 4);
-      fVar5 = (float)in_R9D;
+  if (startIndex < endIndex) {
+    if (3 < endIndex - startIndex) {
+      offsetIndex = startIndex + 2;
+      rangeFactor = (float)stepSize;
+      arrayPointer = (float *)(baseAddress + ((long long)startIndex + 2) * 4);
+      float totalCount = (float)endIndex;
       do {
-        fVar1 = pfVar2[-2];
-        if (0.0001 < fVar1) {
-          param_4 = param_4 + fVar1;
-          unaff_XMM6_Da = unaff_XMM6_Da + ((fVar4 * 0.5 * (float)param_1) / fVar5) * fVar1;
+        currentValue = arrayPointer[-2];
+        if (0.0001 < currentValue) {
+          weightFactor = weightFactor + currentValue;
+          weightedSum = weightedSum + ((rangeFactor * 0.5 * (float)startIndex) / totalCount) * currentValue;
         }
-        fVar1 = pfVar2[-1];
-        if (0.0001 < fVar1) {
-          param_4 = param_4 + fVar1;
-          unaff_XMM6_Da = unaff_XMM6_Da + (((float)(iVar3 + -1) * fVar4 * 0.5) / fVar5) * fVar1;
+        currentValue = arrayPointer[-1];
+        if (0.0001 < currentValue) {
+          weightFactor = weightFactor + currentValue;
+          weightedSum = weightedSum + (((float)(offsetIndex + -1) * rangeFactor * 0.5) / totalCount) * currentValue;
         }
-        fVar1 = *pfVar2;
-        if (0.0001 < fVar1) {
-          param_4 = param_4 + fVar1;
-          unaff_XMM6_Da = unaff_XMM6_Da + (((float)iVar3 * fVar4 * 0.5) / fVar5) * fVar1;
+        currentValue = *arrayPointer;
+        if (0.0001 < currentValue) {
+          weightFactor = weightFactor + currentValue;
+          weightedSum = weightedSum + (((float)offsetIndex * rangeFactor * 0.5) / totalCount) * currentValue;
         }
-        fVar1 = pfVar2[1];
-        if (0.0001 < fVar1) {
-          param_4 = param_4 + fVar1;
-          unaff_XMM6_Da = unaff_XMM6_Da + (((float)(iVar3 + 1) * fVar4 * 0.5) / fVar5) * fVar1;
+        currentValue = arrayPointer[1];
+        if (0.0001 < currentValue) {
+          weightFactor = weightFactor + currentValue;
+          weightedSum = weightedSum + (((float)(offsetIndex + 1) * rangeFactor * 0.5) / totalCount) * currentValue;
         }
-        pfVar2 = pfVar2 + 4;
-        param_1 = param_1 + 4;
-        iVar3 = iVar3 + 4;
-      } while (param_1 < in_R9D + -3);
+        arrayPointer = arrayPointer + 4;
+        startIndex = startIndex + 4;
+        offsetIndex = offsetIndex + 4;
+      } while (startIndex < endIndex + -3);
     }
-    if (param_1 < in_R9D) {
-      pfVar2 = (float *)(unaff_RDI + (long long)param_1 * 4);
+    if (startIndex < endIndex) {
+      arrayPointer = (float *)(baseAddress + (long long)startIndex * 4);
       do {
-        fVar4 = *pfVar2;
-        if (0.0001 < fVar4) {
-          param_4 = param_4 + fVar4;
-          unaff_XMM6_Da =
-               unaff_XMM6_Da + (((float)unaff_EBX * 0.5 * (float)param_1) / (float)in_R9D) * fVar4;
+        rangeFactor = *arrayPointer;
+        if (0.0001 < rangeFactor) {
+          weightFactor = weightFactor + rangeFactor;
+          weightedSum =
+               weightedSum + (((float)stepSize * 0.5 * (float)startIndex) / (float)endIndex) * rangeFactor;
         }
-        pfVar2 = pfVar2 + 1;
-        param_1 = param_1 + 1;
-      } while (param_1 < in_R9D);
+        arrayPointer = arrayPointer + 1;
+        startIndex = startIndex + 1;
+      } while (startIndex < endIndex);
     }
   }
-  if (param_4 <= 0.001) {
-    *in_R11 = 0.0;
+  if (weightFactor <= 0.001) {
+    *resultStorage = 0.0;
   }
   else {
-    *in_R11 = unaff_XMM6_Da / param_4;
+    *resultStorage = weightedSum / weightFactor;
   }
   return 0;
 }
