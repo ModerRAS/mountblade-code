@@ -19317,8 +19317,8 @@ void UnlockSystemMutex(void* *param_1)
 
 
 
-// 函数: void FUN_1800466d0(long long param_1)
-void FUN_1800466d0(long long param_1)
+// 函数: void LockSystemMutexAndBroadcast(long long param_1)
+void LockSystemMutexAndBroadcast(long long param_1)
 
 {
   int iVar1;
@@ -19615,8 +19615,8 @@ LAB_180046a90:
 
 
 
-// 函数: void FUN_180046b10(void* *param_1,void* param_2,void* param_3,void* param_4)
-void FUN_180046b10(void* *param_1,void* param_2,void* param_3,void* param_4)
+// 函数: void InitializeSystemDataBlock(void* *param_1,void* param_2,void* param_3,void* param_4)
+void InitializeSystemDataBlock(void* *param_1,void* param_2,void* param_3,void* param_4)
 
 {
   FUN_180049fd0(param_1 + 0x1a,param_1[0x1c],param_3,param_4,0xfffffffffffffffe);
@@ -19633,7 +19633,7 @@ void FUN_180046b10(void* *param_1,void* param_2,void* param_3,void* param_4)
 
 
 
-ulong long FUN_180046b80(long long param_1,long long param_2)
+ulong long CompareSystemDataBlocks(long long param_1,long long param_2)
 
 {
   byte *pbVar1;
