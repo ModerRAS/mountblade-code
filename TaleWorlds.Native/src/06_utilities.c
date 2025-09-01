@@ -3349,7 +3349,6 @@ void ProcessGameDataObjects(int64_t GameContext, int64_t SystemContext)
  * 该函数用于验证系统中的对象状态，确保所有对象都处于有效状态
  * 对无效对象进行相应处理，维护系统稳定性
  */
-void VerifySystemObjects(void)
 void ValidateSystemObjects(void)
 
 {
@@ -5344,18 +5343,18 @@ void PerformNoOperation(void)
 void ProcessObjectConfiguration(int64_t objectPointer, uint8_t configData)
 
 {
-  int processResult;
-  uint8_t tempBuffer [4];
-  uint32_t configParams [2];
-  uint8_t objectConfig;
-  uint32_t objectFlags;
+  int ProcessResult;
+  uint8_t TemporaryBuffer [4];
+  uint32_t ConfigurationParameters [2];
+  uint8_t ObjectConfiguration;
+  uint32_t ObjectFlags;
   
-  objectConfig = *(uint8_t *)(objectPointer + 0x10);
-  objectFlags = *(uint32_t *)(objectPointer + 0x18);
-  configParams[0] = 2;
-  processResult = ProcessConfigurationData(configData, configParams, *(uint32_t *)(objectPointer + 0x1c), tempBuffer);
-  if (processResult == 0) {
-    InitializeObjectWithConfig(configData, tempBuffer[0]);
+  ObjectConfiguration = *(uint8_t *)(objectPointer + 0x10);
+  ObjectFlags = *(uint32_t *)(objectPointer + 0x18);
+  ConfigurationParameters[0] = 2;
+  ProcessResult = ProcessConfigurationData(configData, ConfigurationParameters, *(uint32_t *)(objectPointer + 0x1c), TemporaryBuffer);
+  if (ProcessResult == 0) {
+    InitializeObjectWithConfig(configData, TemporaryBuffer[0]);
   }
   return;
 }

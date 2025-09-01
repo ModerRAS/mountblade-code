@@ -30620,7 +30620,19 @@ void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* param_2
 
 
 // 函数: void FUN_180057610(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180057610(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 资源数组清理处理函数
+ * 
+ * 该函数遍历资源指针数组，对每个资源调用其清理函数。
+ * 主要用于批量处理资源的清理操作，确保所有资源都被正确释放。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源数组信息
+ * @param param_2 保留参数，当前未使用
+ * @param param_3 传递给资源清理函数的参数
+ * @param param_4 传递给资源清理函数的参数
+ * @note 这是资源批量清理的核心函数
+ */
+void ProcessResourceArrayCleanup(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   void* *pointerToUnsigned1;
