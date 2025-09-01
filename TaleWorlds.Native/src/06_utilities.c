@@ -92,8 +92,8 @@ undefined UNK_1809ffa30;
 undefined DAT_180a010a0;
 undefined UNK_180a00370;
 
-// 函数: undefined FUN_180941800;
-undefined FUN_180941800;
+// 函数: void InitializeResourceManager(void)
+void InitializeResourceManager(void);
 undefined DAT_180bf64e0;
 undefined DAT_180bf64e8;
 undefined UNK_1809fdc18;
@@ -102,8 +102,14 @@ undefined DAT_180bf6530;
 undefined DAT_180bf6538;
 undefined DAT_180bf6540;
 
-// 函数: undefined FUN_180941820;
-undefined FUN_180941820;
+// 函数: void InitializeTextureManager(void)
+/**
+ * @brief 初始化纹理管理器
+ * 
+ * 该函数负责初始化游戏中的纹理管理系统
+ * 设置纹理加载、缓存和释放的相关数据结构
+ */
+void InitializeTextureManager(void);
 undefined DAT_180bf6548;
 undefined UNK_180a004e8;
 undefined DAT_180bf6590;
@@ -111,8 +117,14 @@ undefined DAT_180bf6598;
 undefined DAT_180bf65a0;
 undefined DAT_180bf65a8;
 
-// 函数: undefined FUN_180941840;
-undefined FUN_180941840;
+// 函数: void InitializeAudioSystem(void)
+/**
+ * @brief 初始化音频系统
+ * 
+ * 该函数负责初始化游戏音频系统
+ * 设置音效、音乐和语音播放的相关参数
+ */
+void InitializeAudioSystem(void);
 undefined UNK_180a004f8;
 undefined DAT_180bf65c0;
 undefined DAT_180bf65c8;

@@ -4929,29 +4929,37 @@ undefined8 FUN_1802a9450(undefined8 *param_1)
   }
   return CONCAT71((int7)((ulonglong)pfVar4 >> 8),1);
 }
-undefined8 FUN_1802a9bc0(undefined8 *param_1)
+/**
+ * 颜色亮度标准化处理函数
+ * 根据不同的颜色格式(0x20或0x21)对颜色数据进行亮度标准化处理
+ * 使用RGB到亮度的转换系数：R=0.2126, G=0.7152, B=0.0722
+ * 
+ * @param color_data 颜色数据指针数组
+ * @return 处理成功返回1，失败返回0
+ */
+uint8_t normalize_color_luminance(uint64_t *color_data)
 {
-  float *pfVar1;
-  float *pfVar2;
-  float *pfVar3;
-  float *pfVar4;
-  float *pfVar5;
-  float *pfVar6;
-  float *pfVar7;
-  float *pfVar8;
-  float *pfVar9;
-  float *pfVar10;
-  float *pfVar11;
-  float fVar12;
-  uint uVar13;
-  float *pfVar14;
-  float *pfVar15;
-  int iVar16;
-  int iVar17;
-  int iVar18;
-  ulonglong uVar19;
-  longlong lVar20;
-  double dVar21;
+  float *red_component;
+  float *green_component;
+  float *blue_component;
+  float *alpha_component;
+  float *component_5;
+  float *component_6;
+  float *component_7;
+  float *component_8;
+  float *component_9;
+  float *component_10;
+  float *component_11;
+  float temp_float;
+  uint32_t loop_counter;
+  float *output_buffer;
+  float *input_buffer;
+  int total_elements;
+  int processed_elements;
+  int batch_processed;
+  uint64_t remaining_elements;
+  int64_t element_count;
+  double luminance_sum;
   if (*(int *)((longlong)param_1 + 0x54) == 0x20) {
     pfVar14 = (float *)*param_1;
     iVar18 = 0;
