@@ -28120,50 +28120,75 @@ void CleanupValidationResultResourcesDuplicate(uint8_t8 exceptionHandlerType, lo
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180901f90(uint8_t8 param_1,longlong param_2)
+/**
+ * @brief 解锁辅助资源句柄并处理异常
+ * 
+ * 该函数在异常处理过程中解锁辅助资源句柄，确保资源在异常情况下
+ * 能够正确释放，避免资源泄漏。
+ * 
+ * @param exceptionHandlerType 异常处理器类型
+ * @param exceptionContext 异常上下文，包含辅助资源句柄信息
+ * @return 无
+ * 
+ * @note 此函数与UnlockResourceHandleAndHandleException类似，但操作不同的资源句柄
+ * @note 此函数访问偏移量0x88处的资源句柄
+ */
+void UnlockSecondaryResourceHandleAndHandleException(uint8_t8 exceptionHandlerType, longlong exceptionContext)
 
 {
-  int iVar1;
+  int unlockResult;
   
-  ResourceHandlePointer = *(uint8_t8 *)(param_2 + 0x88);
-  iVar1 = _Mtx_unlock(0x180c91970);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  ResourceHandlePointer = *(uint8_t8 *)(exceptionContext + 0x88);
+  unlockResult = _Mtx_unlock(0x180c91970);
+  if (unlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(unlockResult);
   }
   return;
 }
 
 
 
-void Unwind_180901fa0(uint8_t8 param_1,longlong param_2)
+/**
+ * @brief 清理嵌套验证结果资源
+ * 
+ * 该函数在异常处理过程中清理嵌套在结构体中的验证结果相关资源
+ * 释放验证结果占用的内存，并在必要时调用系统清理处理器
+ * 
+ * @param exceptionHandlerType 异常处理器类型
+ * @param exceptionContext 异常上下文指针
+ * 
+ * @note 此函数通过两层间接寻址访问验证结果
+ * @note 首先从exceptionContext+0x20获取结构体指针，然后从该指针+0x218处获取验证结果
+ */
+void CleanupNestedValidationResultResources(uint8_t8 exceptionHandlerType, longlong exceptionContext)
 
 {
-  int *piVar1;
-  uint8_t8 *pvalidationResult;
+  int *referenceCount;
+  uint8_t8 *validationResult;
   longlong resourceIndex;
-  ulonglong uVar4;
+  ulonglong resourceBase;
   
-  pvalidationResult = *(uint8_t8 **)(*(longlong *)(param_2 + 0x20) + 0x218);
-  if (pvalidationResult == (uint8_t8 *)0x0) {
+  validationResult = *(uint8_t8 **)(*(longlong *)(exceptionContext + 0x20) + 0x218);
+  if (validationResult == (uint8_t8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
+  resourceBase = (ulonglong)validationResult & 0xffffffffffc00000;
+  if (resourceBase != 0) {
+    resourceIndex = resourceBase + 0x80 + ((longlong)validationResult - resourceBase >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
-      *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    if ((*(void ***)(resourceBase + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
+      *validationResult = *(uint8_t8 *)(resourceIndex + 0x20);
+      *(uint8_t8 **)(resourceIndex + 0x20) = validationResult;
+      referenceCount = (int *)(resourceIndex + 0x18);
+      *referenceCount = *referenceCount - 1;
+      if (*referenceCount == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          pvalidationResult,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(resourceBase,CONCAT71(0xff000000,*(void ***)(resourceBase + 0x70) == &ExceptionList),
+                          validationResult,resourceBase,0xfffffffffffffffe);
     }
   }
   return;

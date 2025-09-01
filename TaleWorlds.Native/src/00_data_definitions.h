@@ -5745,7 +5745,7 @@ uint8_t normalize_color_luminance(uint64_t *color_data)
   }
   return 1;
 }
-  DAT_180c8aa6a = 0;
+  SystemGamePaused = 0;
   *(uint32_t *)(ModuleInitializationResult + 0x4c) = 0;
   FUN_18023a940(*(uint64_t *)(ModuleInitializationResult + 0x108));
   puStack_50 = &SystemStringMemoryTemplate;
@@ -6529,13 +6529,13 @@ FUN_18045d980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   _DAT_180c96070 = 0;
   SystemEffectActive = 1;
   _DAT_180c96050 = 0;
-  DAT_180c96048 = 1;
+  SystemTextureEnabled = 1;
   _DAT_180c96030 = 0;
-  DAT_180c96028 = 1;
+  SystemTextureActive = 1;
   _DAT_180c96010 = 0;
-  DAT_180c96008 = 1;
+  SystemTextureQuality = 1;
   _DAT_180c95ff0 = 0;
-  DAT_180c95fc0 = 1;
+  SystemShadowEnabled = 1;
   _DAT_180c95fb8 = 0;
   _DAT_180c95fb0 = 0;
   _DAT_180c95fa8 = 0;
