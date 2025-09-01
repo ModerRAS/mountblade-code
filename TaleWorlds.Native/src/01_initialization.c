@@ -21741,8 +21741,15 @@ void FUN_180049c70(long long param_1,void* param_2,int param_3)
 
 
 
-// 函数: void FUN_180049c8f(void)
-void FUN_180049c8f(void)
+/**
+ * @brief 初始化系统内存复制操作
+ * 
+ * 该函数负责初始化系统的内存复制操作，通常用于系统启动时的
+ * 基础内存设置和数据初始化。
+ * 
+ * @note 这是一个不返回的函数，通常在系统初始化的关键阶段调用
+ */
+void InitializeSystemMemoryCopyOperation(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -21752,30 +21759,48 @@ void FUN_180049c8f(void)
 
 
 
-// 函数: void FUN_180049cb4(uint8_t *param_1)
-void FUN_180049cb4(uint8_t *param_1)
+/**
+ * @brief 重置系统字节标志
+ * 
+ * 该函数负责重置系统的字节标志，将指定参数设置为0，
+ * 并清除相关的长度标志。
+ * 
+ * @param byteFlagPointer 指向需要重置的字节标志的指针
+ * @note 这是系统状态管理的重要组成部分，确保标志的正确重置
+ */
+void ResetSystemByteFlag(uint8_t *byteFlagPointer)
 
 {
-  long long unaff_RDI;
+  long long systemContextPointer;
   
-  *param_1 = 0;
-  *(uint32_t *)(unaff_RDI + 0x10) = 0;
+  *byteFlagPointer = 0;
+  *(uint32_t *)(systemContextPointer + 0x10) = 0;
   return;
 }
 
 
 
-void* * FUN_180049cd0(void* *param_1)
+/**
+ * @brief 初始化系统内存分配器引用
+ * 
+ * 该函数负责初始化系统的内存分配器引用，设置内存分配器的基本配置
+ * 和引用关系，为系统内存管理提供基础支持。
+ * 
+ * @param memoryAllocatorPointer 指向内存分配器指针的指针
+ * @return 返回初始化后的内存分配器指针
+ * @note 这是系统内存管理初始化的重要组成部分
+ */
+void* * InitializeSystemMemoryAllocatorReference(void* *memoryAllocatorPointer)
 
 {
-  *param_1 = &SystemMemoryAllocatorReference;
-  param_1[1] = 0;
-  *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809fcc58;
-  param_1[1] = param_1 + 3;
-  *(uint32_t *)(param_1 + 2) = 0;
-  *(uint8_t *)(param_1 + 3) = 0;
-  return param_1;
+  *memoryAllocatorPointer = &SystemMemoryAllocatorReference;
+  memoryAllocatorPointer[1] = 0;
+  *(uint32_t *)(memoryAllocatorPointer + 2) = 0;
+  *memoryAllocatorPointer = &SystemMemoryAllocatorReferenceSecondary;
+  memoryAllocatorPointer[1] = memoryAllocatorPointer + 3;
+  *(uint32_t *)(memoryAllocatorPointer + 2) = 0;
+  *(uint8_t *)(memoryAllocatorPointer + 3) = 0;
+  return memoryAllocatorPointer;
 }
 
 
@@ -21783,8 +21808,18 @@ void* * FUN_180049cd0(void* *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180049d20(long long param_1,long long param_2,long long param_3)
-void FUN_180049d20(long long param_1,long long param_2,long long param_3)
+/**
+ * @brief 处理系统三参数缓冲区
+ * 
+ * 该函数负责处理系统的三参数缓冲区操作，包括字符串搜索、长度计算
+ * 和缓冲区处理等操作。
+ * 
+ * @param param_1 主操作参数
+ * @param param_2 辅助操作参数
+ * @param param_3 配置参数
+ * @note 这是系统缓冲区管理的重要组成部分
+ */
+void ProcessSystemThreeParameterBuffer(long long param_1,long long param_2,long long param_3)
 
 {
   long long lVar1;
@@ -21908,22 +21943,42 @@ void FUN_180049fd0(void* param_1,void* *param_2,void* param_3,void* param_4)
 
 
 
-// 函数: void FUN_18004a0b0(long long param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004a0b0(long long param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统数据处理器A
+ * 
+ * 该函数是系统数据处理的包装函数，负责调用底层数据处理函数。
+ * 
+ * @param param_1 系统参数1
+ * @param param_2 系统参数2
+ * @param param_3 系统参数3
+ * @param param_4 系统参数4
+ * @note 这是系统数据处理层的重要组成部分
+ */
+void SystemDataProcessorA(long long param_1,void* param_2,void* param_3,void* param_4)
 
 {
-  FUN_180049fd0(param_1,*(void* *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  ProcessSystemDataBuffer(param_1,*(void* *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// 函数: void FUN_18004a0d0(long long param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004a0d0(long long param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统数据处理器B
+ * 
+ * 该函数是系统数据处理的包装函数，负责调用底层数据处理函数。
+ * 
+ * @param param_1 系统参数1
+ * @param param_2 系统参数2
+ * @param param_3 系统参数3
+ * @param param_4 系统参数4
+ * @note 这是系统数据处理层的重要组成部分
+ */
+void SystemDataProcessorB(long long param_1,void* param_2,void* param_3,void* param_4)
 
 {
-  FUN_180049fd0(param_1,*(void* *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  ProcessSystemDataBuffer(param_1,*(void* *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
