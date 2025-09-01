@@ -2247,10 +2247,10 @@ undefined UNK_180a1afb8;
 undefined UNK_180a079c0;
 undefined UNK_180a07b48;
 undefined UNK_180a3c313;
-undefined UNK_18098d6d0;
+undefined ResourceSystemState;
 undefined UNK_180a078fc;
 undefined UNK_180a07804;
-undefined UNK_18098d6b0;
+undefined ResourceSystemConfig;
 undefined UNK_18015c090;
 
  void InitializeMemoryManager;
@@ -2264,9 +2264,9 @@ void InitializeMemoryManager;
 undefined DAT_180d49648;
 undefined DAT_180d49640;
 undefined DAT_180d49650;
-undefined UNK_180a0b650;
+undefined MemoryPoolDescriptor;
 undefined DAT_180d49638;
-undefined UNK_180a0c258;
+undefined MemoryAllocatorState;
 undefined UNK_1801bc7a0;
 undefined UNK_1801bc7e0;
 undefined UNK_180a0b640;
@@ -16242,7 +16242,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
   if (iVar1 == 0) {
     uStackX_8 = *(undefined8 *)(param_2 + 2);
     iVar1 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),&uStackX_8,8);
-    if ((iVar1 == 0) && (iVar1 = FUN_1808ac750(param_1,param_2 + 4), iVar1 == 0)) {
+    if ((iVar1 == 0) && (iVar1 = CheckResourceAvailability(param_1,param_2 + 4), iVar1 == 0)) {
       iVar1 = param_2[10];
       uStackX_8 = CONCAT44(uStackX_8._4_4_,iVar1);
       iVar2 = (**(code **)**(undefined8 **)(param_1 + 8))
@@ -16332,7 +16332,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
                   uVar4 = uVar4 + 0x18;
                 } while ((longlong)uVar8 < (longlong)iVar1);
               }
-              iVar1 = FUN_1808aca30(param_1,param_2 + 0x18);
+              iVar1 = RetrieveResourceData(param_1,param_2 + 0x18);
               if (iVar1 == 0) {
                 iVar1 = param_2[0x1e];
                 uStackX_8 = CONCAT44(uStackX_8._4_4_,iVar1);
@@ -16491,7 +16491,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
               uVar9 = extraout_XMM0_Da_05;
             } while ((longlong)uVar8 < (longlong)iVar3);
           }
-          iVar3 = FUN_1808aca30(uVar9,unaff_R14 + 0x60);
+          iVar3 = RetrieveResourceData(uVar9,unaff_R14 + 0x60);
           if (iVar3 == 0) {
             presourceHash = *(undefined8 **)(unaff_RBX + 8);
             iVar3 = *(int *)(unaff_R14 + 0x78);
@@ -16587,7 +16587,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
         uVar8 = extraout_XMM0_Da_01;
       } while (lVar7 < unaff_RSI);
     }
-    iVar3 = FUN_1808aca30(uVar8,unaff_R14 + 0x60);
+    iVar3 = RetrieveResourceData(uVar8,unaff_R14 + 0x60);
     if (iVar3 == 0) {
       pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
       iVar3 = *(int *)(unaff_R14 + 0x78);
@@ -17266,7 +17266,7 @@ undefined8 ValidateResourceStatusFlags(longlong resourceContext, longlong status
       aiStack_48[0] = CONCAT22(aiStack_48[0]._2_2_,uVar5);
       uVar4 = (**(code **)**(undefined8 **)(param_1 + 8))
                         (*(undefined8 **)(param_1 + 8),aiStack_48,2);
-      if (((int)uVar4 == 0) && (uVar4 = FUN_1808b00b0(param_1,param_2 + 0x24), (int)uVar4 == 0)) {
+      if (((int)uVar4 == 0) && (uVar4 = VerifyResourceIntegrity(param_1,param_2 + 0x24), (int)uVar4 == 0)) {
         if ((uVar5 & 1) != 0) {
           aiStack_48[0] = *(int *)(param_2 + 0x28);
           uVar4 = (**(code **)**(undefined8 **)(param_1 + 8))
@@ -17918,22 +17918,22 @@ undefined8 ValidateResourceTableEntry(longlong resourceContext, undefined8 *reso
        (resourceHash = ComputeDataChecksum(param_2,auStack_58,0,0x42464542), (int)resourceHash == 0)) &&
       (resourceHash = ValidateResourceHash(param_2,param_1 + 0x10), (int)resourceHash == 0)) &&
      ((0x5a < *(uint *)(resourceData + 8) ||
-      (resourceHash = FUN_1808afc70(param_2,param_1 + 0x44), (int)resourceHash == 0)))) {
+      (resourceHash = ValidateResourceData(param_2,param_1 + 0x44), (int)resourceHash == 0)))) {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
-      resourceHash = FUN_1808a2890(*param_2,param_1 + 0x60,0x25);
+      resourceHash = CalculateResourceHash(*param_2,param_1 + 0x60,0x25);
       if ((int)resourceHash == 0) {
         if (*(uint *)(resourceData + 8) < 0x3d) {
           resourceHash = 0;
         }
         else if (*(int *)(resourceData[1] + 0x18) == 0) {
-          resourceHash = FUN_1808a2e00(*param_2,param_1 + 0x40);
+          resourceHash = ProcessResourceHash(*param_2,param_1 + 0x40);
         }
         else {
           resourceHash = 0x1c;
         }
         if ((int)resourceHash == 0) {
                     // WARNING: Subroutine does not return
-          FUN_1808ddf80(param_2,auStack_58);
+          CleanupResourceData(param_2,auStack_58);
         }
       }
     }
@@ -17962,20 +17962,20 @@ undefined8 GetResourceTableStatus(void)
   longlong unaff_RDI;
   
   if (*(int *)(in_RAX + 0x18) == 0) {
-    resourceHash = FUN_1808a2890(*unaff_RBX,unaff_RDI + 0x60,0x25);
+    resourceHash = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x60,0x25);
     if ((int)resourceHash == 0) {
       if (*(uint *)(unaff_RBX + 8) < 0x3d) {
         resourceHash = 0;
       }
       else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        resourceHash = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+        resourceHash = ProcessResourceHash(*unaff_RBX,unaff_RDI + 0x40);
       }
       else {
         resourceHash = 0x1c;
       }
       if ((int)resourceHash == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80();
+        CleanupResourceData();
       }
     }
   }
@@ -18000,14 +18000,14 @@ ac96(void)
     iVar1 = 0;
   }
   else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    iVar1 = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+    iVar1 = ProcessResourceHash(*unaff_RBX,unaff_RDI + 0x40);
   }
   else {
     iVar1 = 0x1c;
   }
   if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80();
+    CleanupResourceData();
   }
   return;
 }
@@ -18080,7 +18080,7 @@ undefined8 InitializeResourceTableCache(void)
   }
 LAB_18089ae18:
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  CleanupResourceData();
 }
 
 
@@ -18132,7 +18132,7 @@ ae50(longlong param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
       return;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80(param_2,auStack_78);
+    CleanupResourceData(param_2,auStack_78);
   }
   return;
 }
@@ -18205,7 +18205,7 @@ LAB_18089af81:
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_1808afc70();
+  uVar4 = ValidateResourceData();
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -18317,7 +18317,7 @@ LAB_18089b1ab:
 LAB_18089b226:
   if (uVar6 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80();
+    CleanupResourceData();
   }
 LAB_18089b22a:
   return (ulonglong)uVar6;
@@ -18329,7 +18329,7 @@ LAB_18089b22a:
  * @brief 设置状态标志为7
  * 
  * 该函数负责将状态标志设置为7。
- * 如果unaff_R15D不为0，则返回该值，否则调用FUN_1808ddf80()函数。
+ * 如果unaff_R15D不为0，则返回该值，否则调用CleanupResourceData()函数。
  * 
  * @return int 返回状态码或unaff_R15D的值
  * @note 这是一个简化的状态设置函数
@@ -18345,7 +18345,7 @@ int SetStatusFlagToSeven(void)
     return unaff_R15D;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  CleanupResourceData();
 }
 
 
@@ -18371,7 +18371,7 @@ int GetStatusFlagValue(void)
     return unaff_R15D;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  CleanupResourceData();
 }
 
 
@@ -18443,7 +18443,7 @@ ulonglong ProcessResourceDataReadAndValidate(longlong ResourceHandle,undefined8 
         if ((*(int *)(resourceData[1] + 0x18) == 0) &&
            (uVar4 = ReadResourceData(*param_2,param_1 + 0x40,4), uVar4 == 0)) {
                     // WARNING: Subroutine does not return
-          FUN_1808ddf80(param_2,dataChecksumBuffer);
+          CleanupResourceData(param_2,dataChecksumBuffer);
         }
       }
       return (ulonglong)uVar4;
@@ -18504,7 +18504,7 @@ ulonglong ExecuteResourceDataValidation(void)
     if ((*(int *)(unaff_RBX[1] + 0x18) == 0) &&
        (uVar3 = ReadResourceData(*unaff_RBX,unaff_RBP + 0x40,4), uVar3 == 0)) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80();
+      CleanupResourceData();
     }
   }
   return (ulonglong)uVar3;
@@ -18552,7 +18552,7 @@ ulonglong GetResourceHashA(void)
       unaff_RDI = (ulonglong)validationResult;
       if (validationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80();
+        CleanupResourceData();
       }
     }
   }
@@ -18588,7 +18588,7 @@ ulonglong GetResourceHashB(void)
       unaff_RDI = (ulonglong)resourceHash;
       if (resourceHash == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80();
+        CleanupResourceData();
       }
     }
   }
@@ -18603,7 +18603,7 @@ b3d4(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  CleanupResourceData();
 }
 
 
@@ -18631,7 +18631,7 @@ b400(longlong param_1,undefined8 param_2)
     iVar1 = FUN_1808a79f0(param_2,param_1 + 8);
     if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,dataChecksumBuffer);
+      CleanupResourceData(param_2,dataChecksumBuffer);
     }
   }
   return;
@@ -19101,7 +19101,7 @@ undefined8 ValidateResourceHash(longlong ResourceContext,undefined8 *ResourceDat
           } while (iVar2 < (int)uVar4);
         }
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80(param_2,auStack_68);
+        CleanupResourceData(param_2,auStack_68);
       }
     }
   }
@@ -19145,7 +19145,7 @@ b6df(void)
     } while (iVar1 < (int)uVar3);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  CleanupResourceData();
 }
 
 
@@ -19321,7 +19321,7 @@ LAB_18089b91c:
               if (*(uint *)(resourceData + 8) < 0x82) {
 LAB_18089bbcc:
                     // WARNING: Subroutine does not return
-                FUN_1808ddf80(param_2,resourceValidationBuffer);
+                CleanupResourceData(param_2,resourceValidationBuffer);
               }
               uVar6 = uVar8;
               if (*(int *)(resourceData[1] + 0x18) == 0) {
@@ -19493,7 +19493,7 @@ LAB_18089b91c:
               if (*(uint *)(unaff_RBX + 8) < 0x82) {
 LAB_18089bbcc:
                     // WARNING: Subroutine does not return
-                FUN_1808ddf80();
+                CleanupResourceData();
               }
               uVar5 = uVar8;
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
@@ -19647,7 +19647,7 @@ LAB_18089b91c:
               if (*(uint *)(unaff_RBX + 8) < 0x82) {
 LAB_18089bbcc:
                     // WARNING: Subroutine does not return
-                FUN_1808ddf80();
+                CleanupResourceData();
               }
               uVar5 = uVar8;
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
@@ -19797,7 +19797,7 @@ LAB_18089b91c:
               if (*(uint *)(unaff_RBX + 8) < 0x82) {
 LAB_18089bbcc:
                     // WARNING: Subroutine does not return
-                FUN_1808ddf80();
+                CleanupResourceData();
               }
               uVar5 = uVar8;
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
@@ -19884,7 +19884,7 @@ bc10(longlong param_1,undefined8 *param_2)
           } while (iVar4 < (int)uVar7);
         }
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80(param_2,resourceValidationBuffer);
+        CleanupResourceData(param_2,resourceValidationBuffer);
       }
     }
   }
@@ -19945,7 +19945,7 @@ bc5a(void)
         } while (iVar4 < (int)uVar6);
       }
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80();
+      CleanupResourceData();
     }
   }
   return;
@@ -20231,7 +20231,20 @@ c019(void)
 
 
 
-ulonglong FUN_18089c030(longlong param_1,undefined8 *param_2)
+/**
+ * @brief 处理资源数据读取和验证
+ * 
+ * 该函数负责读取和验证资源数据，包括：
+ * - 检查资源状态
+ * - 读取资源数据
+ * - 验证数据完整性
+ * - 处理资源分配和清理
+ * 
+ * @param param_1 资源上下文指针
+ * @param param_2 资源数据指针数组
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+ulonglong ProcessResourceDataReadAndValidate(longlong param_1,undefined8 *param_2)
 
 {
   int iVar1;
@@ -20542,7 +20555,7 @@ LAB_18089c300:
     return (ulonglong)uVar5;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(param_2,auStack_68);
+  CleanupResourceData(param_2,auStack_68);
 }
 
 
@@ -20805,7 +20818,7 @@ LAB_18089c300:
     return (undefined8 *)(ulonglong)uVar8;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar21,unaff_RBP + -9);
+  CleanupResourceData(fVar21,unaff_RBP + -9);
 }
 
 
@@ -21060,7 +21073,7 @@ LAB_18089c300:
     return (undefined8 *)(ulonglong)uVar8;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar21,unaff_RBP + -9);
+  CleanupResourceData(fVar21,unaff_RBP + -9);
 }
 
 
@@ -21273,7 +21286,7 @@ LAB_18089c300:
     return (ulonglong)uVar8;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar20,unaff_RBP + -9);
+  CleanupResourceData(fVar20,unaff_RBP + -9);
 }
 
 
@@ -21466,7 +21479,7 @@ LAB_18089c878:
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808a2740(*param_2,param_1 + 0x50);
+  uVar3 = GetResourceHash(*param_2,param_1 + 0x50);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -21613,7 +21626,7 @@ LAB_18089ca9c:
     if (validationResult < 0x8b) {
 LAB_18089cbf6:
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,auStack_80);
+      CleanupResourceData(param_2,auStack_80);
     }
     auStackX_20[0] = 0;
     uVar3 = LoadResourceData(*param_2,auStackX_20);
@@ -21632,7 +21645,7 @@ LAB_18089cbf6:
               return uVar3;
             }
             if (*(int *)(resourceData[1] + 0x18) == 0) {
-              uVar3 = FUN_1808a2740(*param_2,(longlong)(int)uVar6 * 0x10 +
+              uVar3 = GetResourceHash(*param_2,(longlong)(int)uVar6 * 0x10 +
                                              *(longlong *)(param_1 + 0x60));
             }
             else {
@@ -21818,7 +21831,7 @@ LAB_18089c878:
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808a2740(*unaff_RBX,unaff_R13 + 0x50);
+  uVar4 = GetResourceHash(*unaff_RBX,unaff_R13 + 0x50);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -21993,7 +22006,7 @@ LAB_18089cad8:
           return uVar4;
         }
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          uVar4 = FUN_1808a2740(*unaff_RBX,
+          uVar4 = GetResourceHash(*unaff_RBX,
                                 (longlong)(int)uVar7 * 0x10 + *(longlong *)(unaff_R13 + 0x60));
           resourceHash0 = extraout_XMM0_Da_08;
         }
@@ -22018,7 +22031,7 @@ LAB_18089cad8:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar9,unaff_RBP + -0x21);
+  CleanupResourceData(fVar9,unaff_RBP + -0x21);
 }
 
 
@@ -22063,7 +22076,7 @@ ulonglong FUN_18089c86d(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808a2740(*unaff_RBX,unaff_R13 + 0x50);
+  uVar5 = GetResourceHash(*unaff_RBX,unaff_R13 + 0x50);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -22242,7 +22255,7 @@ LAB_18089cad8:
           return uVar6;
         }
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          uVar6 = FUN_1808a2740(*unaff_RBX,
+          uVar6 = GetResourceHash(*unaff_RBX,
                                 (longlong)(int)uVar5 * 0x10 + *(longlong *)(unaff_R13 + 0x60));
           resourceHash3 = extraout_XMM0_Da_08;
         }
@@ -22267,7 +22280,7 @@ LAB_18089cad8:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar12,unaff_RBP + -0x21);
+  CleanupResourceData(fVar12,unaff_RBP + -0x21);
 }
 
 
@@ -22313,7 +22326,7 @@ ulonglong FUN_18089c872(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808a2740(*unaff_RBX,unaff_R13 + 0x50);
+  uVar5 = GetResourceHash(*unaff_RBX,unaff_R13 + 0x50);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -22492,7 +22505,7 @@ LAB_18089cad8:
           return uVar6;
         }
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          uVar6 = FUN_1808a2740(*unaff_RBX,
+          uVar6 = GetResourceHash(*unaff_RBX,
                                 (longlong)(int)uVar5 * 0x10 + *(longlong *)(unaff_R13 + 0x60));
           resourceHash3 = extraout_XMM0_Da_08;
         }
@@ -22517,7 +22530,7 @@ LAB_18089cad8:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar12,unaff_RBP + -0x21);
+  CleanupResourceData(fVar12,unaff_RBP + -0x21);
 }
 
 
@@ -22677,7 +22690,7 @@ LAB_18089ca9c:
     if (uVar4 < 0x8b) {
 LAB_18089cbf6:
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_1,unaff_RBP + -0x21);
+      CleanupResourceData(param_1,unaff_RBP + -0x21);
     }
     resourceTable = *unaff_RBX;
     *(int *)(unaff_RBP + 0x7f) = iVar9;
@@ -22697,7 +22710,7 @@ LAB_18089cbf6:
               return uVar5;
             }
             if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-              uVar5 = FUN_1808a2740(*unaff_RBX,
+              uVar5 = GetResourceHash(*unaff_RBX,
                                     (longlong)(int)uVar6 * 0x10 + *(longlong *)(unaff_R13 + 0x60));
               resourceHash4 = extraout_XMM0_Da_07;
             }
@@ -22827,11 +22840,11 @@ LAB_18089cd76:
     validationResult = 0;
   }
   else if (*(int *)(resourceData[1] + 0x18) == 0) {
-    validationResult = FUN_1808a2e00(*param_2,param_1 + 0x5c);
+    validationResult = ProcessResourceHash(*param_2,param_1 + 0x5c);
   }
   if (validationResult == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80(param_2,auStack_38);
+    CleanupResourceData(param_2,auStack_38);
   }
   return (ulonglong)validationResult;
 }
@@ -22902,13 +22915,13 @@ LAB_18089cd76:
     validationResult = 0;
   }
   else if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
-    validationResult = FUN_1808a2e00(*unaff_RSI,unaff_RBP + 0x5c);
+    validationResult = ProcessResourceHash(*unaff_RSI,unaff_RBP + 0x5c);
   }
   if (validationResult != 0) {
     return (ulonglong)validationResult;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  CleanupResourceData();
 }
 
 
@@ -23066,7 +23079,7 @@ LAB_18089d06e:
   }
 LAB_18089d07f:
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(param_2,resourceValidationBuffer);
+  CleanupResourceData(param_2,resourceValidationBuffer);
 }
 
 
@@ -23186,7 +23199,7 @@ LAB_18089d06e:
   }
 LAB_18089d07f:
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  CleanupResourceData();
 }
 
 
@@ -23235,7 +23248,7 @@ LAB_18089d06e:
   }
 LAB_18089d07f:
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  CleanupResourceData();
 }
 
 
@@ -23290,13 +23303,13 @@ ulonglong FUN_18089d0f0(longlong param_1,undefined8 *param_2)
        (validationResult = ComputeDataChecksum(param_2,resourceValidationBuffer,0,0x42464550), (int)validationResult != 0)) ||
       (validationResult = ValidateResourceHash(param_2,param_1 + 0x10), (int)validationResult != 0)) ||
      ((*(uint *)(resourceData + 8) < 0x5b &&
-      (validationResult = FUN_1808afc70(param_2,param_1 + 0x44), (int)validationResult != 0)))) {
+      (validationResult = ValidateResourceData(param_2,param_1 + 0x44), (int)validationResult != 0)))) {
     return validationResult;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  resourceHash = FUN_1808a2740(*param_2,param_1 + 0x60);
+  resourceHash = GetResourceHash(*param_2,param_1 + 0x60);
   validationResult = (ulonglong)resourceHash;
   if (resourceHash == 0) {
     validationResult = 0x1c;
@@ -23306,7 +23319,7 @@ ulonglong FUN_18089d0f0(longlong param_1,undefined8 *param_2)
     else {
       uVar3 = validationResult;
       if (*(int *)(resourceData[1] + 0x18) == 0) {
-        uVar3 = FUN_1808a2740(*param_2,dataContext + 0x70);
+        uVar3 = GetResourceHash(*param_2,dataContext + 0x70);
       }
     }
     if ((int)uVar3 != 0) {
@@ -23316,12 +23329,12 @@ ulonglong FUN_18089d0f0(longlong param_1,undefined8 *param_2)
       validationResult = 0;
     }
     else if (*(int *)(resourceData[1] + 0x18) == 0) {
-      resourceHash = FUN_1808a2e00(*param_2,param_1 + 0x40);
+      resourceHash = ProcessResourceHash(*param_2,param_1 + 0x40);
       validationResult = (ulonglong)resourceHash;
     }
     if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,resourceValidationBuffer);
+      CleanupResourceData(param_2,resourceValidationBuffer);
     }
   }
   return validationResult;
@@ -23342,7 +23355,7 @@ ulonglong FUN_18089d171(void)
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
   }
-  resourceHash = FUN_1808a2740(*unaff_RBX,unaff_RSI + 0x60);
+  resourceHash = GetResourceHash(*unaff_RBX,unaff_RSI + 0x60);
   uVar3 = (ulonglong)resourceHash;
   if (resourceHash == 0) {
     uVar3 = 0x1c;
@@ -23352,7 +23365,7 @@ ulonglong FUN_18089d171(void)
     else {
       validationResult = uVar3;
       if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        validationResult = FUN_1808a2740(*unaff_RBX,unaff_RSI + 0x70);
+        validationResult = GetResourceHash(*unaff_RBX,unaff_RSI + 0x70);
       }
     }
     if ((int)validationResult != 0) {
@@ -23362,12 +23375,12 @@ ulonglong FUN_18089d171(void)
       uVar3 = 0;
     }
     else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      resourceHash = FUN_1808a2e00(*unaff_RBX,unaff_RSI + 0x40);
+      resourceHash = ProcessResourceHash(*unaff_RBX,unaff_RSI + 0x40);
       uVar3 = (ulonglong)resourceHash;
     }
     if ((int)uVar3 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80();
+      CleanupResourceData();
     }
   }
   return uVar3;
@@ -23384,7 +23397,7 @@ ulonglong FUN_18089d193(void)
   longlong unaff_RSI;
   ulonglong uVar3;
   
-  resourceHash = FUN_1808a2740(*unaff_RBX,unaff_RSI + 0x60);
+  resourceHash = GetResourceHash(*unaff_RBX,unaff_RSI + 0x60);
   uVar3 = (ulonglong)resourceHash;
   if (resourceHash == 0) {
     uVar3 = 0x1c;
@@ -23394,7 +23407,7 @@ ulonglong FUN_18089d193(void)
     else {
       validationResult = uVar3;
       if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        validationResult = FUN_1808a2740(*unaff_RBX,unaff_RSI + 0x70);
+        validationResult = GetResourceHash(*unaff_RBX,unaff_RSI + 0x70);
       }
     }
     if ((int)validationResult != 0) {
@@ -23404,12 +23417,12 @@ ulonglong FUN_18089d193(void)
       uVar3 = 0;
     }
     else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      resourceHash = FUN_1808a2e00(*unaff_RBX,unaff_RSI + 0x40);
+      resourceHash = ProcessResourceHash(*unaff_RBX,unaff_RSI + 0x40);
       uVar3 = (ulonglong)resourceHash;
     }
     if ((int)uVar3 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80();
+      CleanupResourceData();
     }
   }
   return uVar3;
@@ -23423,7 +23436,7 @@ d208(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  CleanupResourceData();
 }
 
 
@@ -23467,7 +23480,7 @@ undefined8 ProcessSPRPResource(undefined8 ResourceHandle,longlong *ResourceTable
   if ((int)uVar3 == 0x12) {
 LAB_18089d455:
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80(param_2,auStack_38);
+    CleanupResourceData(param_2,auStack_38);
   }
   if ((int)uVar3 != 0) {
     return uVar3;
@@ -23541,7 +23554,7 @@ LAB_18089d378:
     if ((int)uVar3 == 0) {
 LAB_18089d435:
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,auStack_58);
+      CleanupResourceData(param_2,auStack_58);
     }
   }
   return uVar3;
@@ -23571,7 +23584,7 @@ undefined8 ManageResourceTable(void)
   if ((int)uVar3 == 0x12) {
 LAB_18089d455:
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80();
+    CleanupResourceData();
   }
   if ((int)uVar3 != 0) {
     return uVar3;
@@ -23645,7 +23658,7 @@ LAB_18089d378:
     if ((int)uVar3 == 0) {
 LAB_18089d435:
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80();
+      CleanupResourceData();
     }
   }
   return uVar3;
@@ -23694,7 +23707,7 @@ undefined8 ValidateResourceAccess(longlong ResourceOffset,undefined8 *ResourceDa
       return 0x1c;
     }
     resourceHash = GetResourceHashValue(*param_2,param_1 + 0x10);
-    if (((int)resourceHash == 0) && (resourceHash = FUN_1808afc70(param_2,param_1 + 8), (int)resourceHash == 0)) {
+    if (((int)resourceHash == 0) && (resourceHash = ValidateResourceData(param_2,param_1 + 8), (int)resourceHash == 0)) {
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
@@ -23757,7 +23770,7 @@ d520(longlong param_1,undefined8 *param_2)
           *(undefined4 *)(param_1 + 0x208) = *(undefined4 *)(param_1 + 0x18);
           *(undefined4 *)(param_1 + 0x20c) = *(undefined4 *)(param_1 + 0x1c);
                     // WARNING: Subroutine does not return
-          FUN_1808ddf80(param_2,resourceValidationBuffer);
+          CleanupResourceData(param_2,resourceValidationBuffer);
         }
       }
     }
@@ -23817,7 +23830,7 @@ d557(undefined4 param_1)
             *(undefined4 *)(unaff_RDI + 0x208) = *(undefined4 *)(unaff_RDI + 0x18);
             *(undefined4 *)(unaff_RDI + 0x20c) = *(undefined4 *)(unaff_RDI + 0x1c);
                     // WARNING: Subroutine does not return
-            FUN_1808ddf80(*(undefined4 *)(unaff_RDI + 0x10),&stack0x00000030);
+            CleanupResourceData(*(undefined4 *)(unaff_RDI + 0x10),&stack0x00000030);
           }
         }
       }
@@ -23910,7 +23923,7 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
                  ((*(uint *)(resourceData + 8) < 0x85 ||
                   (uVar3 = ResourceDataValidator(param_2,param_1 + 0x108), (int)uVar3 == 0)))) {
                     // WARNING: Subroutine does not return
-                FUN_1808ddf80(param_2,auStack_58);
+                CleanupResourceData(param_2,auStack_58);
               }
             }
           }
@@ -23991,7 +24004,7 @@ ulonglong FUN_18089dd54(void)
                  ((*(uint *)(unaff_RBX + 8) < 0x85 || (uVar3 = ResourceDataValidator(), (int)uVar3 == 0))))
               {
                     // WARNING: Subroutine does not return
-                FUN_1808ddf80();
+                CleanupResourceData();
               }
             }
           }
@@ -24070,7 +24083,7 @@ ulonglong FUN_18089dd78(void)
             if (((int)uVar3 == 0) &&
                ((*(uint *)(unaff_RBX + 8) < 0x85 || (uVar3 = ResourceDataValidator(), (int)uVar3 == 0)))) {
                     // WARNING: Subroutine does not return
-              FUN_1808ddf80();
+              CleanupResourceData();
             }
           }
         }
@@ -24143,7 +24156,7 @@ ulonglong FUN_18089dda2(void)
             if (((int)uVar3 == 0) &&
                ((*(uint *)(unaff_RBX + 8) < 0x85 || (uVar3 = ResourceDataValidator(), (int)uVar3 == 0)))) {
                     // WARNING: Subroutine does not return
-              FUN_1808ddf80();
+              CleanupResourceData();
             }
           }
         }
@@ -24194,7 +24207,7 @@ ulonglong FUN_18089de39(void)
           return validationResult;
         }
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80();
+        CleanupResourceData();
       }
       validationResult = (ulonglong)unaff_EDI;
     }
@@ -24231,7 +24244,7 @@ ulonglong FUN_18089de72(void)
     if (unaff_EDI == 0) {
       if ((*(uint *)(unaff_RBX + 8) < 0x85) || (resourceHash = ResourceDataValidator(), (int)resourceHash == 0)) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80();
+        CleanupResourceData();
       }
     }
     else {
@@ -24276,7 +24289,7 @@ undefined8 ResourceValidationHandler(longlong param_1,undefined8 *param_2)
        (validationResult = ComputeDataChecksum(param_2,resourceValidationBuffer,0,0x42464553), (int)validationResult == 0)) &&
       (validationResult = ValidateResourceHash(param_2,param_1 + 0x10), (int)validationResult == 0)) &&
      ((0x5a < *(uint *)(resourceData + 8) ||
-      (validationResult = FUN_1808afc70(param_2,param_1 + 0x44), (int)validationResult == 0)))) {
+      (validationResult = ValidateResourceData(param_2,param_1 + 0x44), (int)validationResult == 0)))) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -24296,14 +24309,14 @@ undefined8 ResourceValidationHandler(longlong param_1,undefined8 *param_2)
           validationResult = 0;
         }
         else if (*(int *)(resourceData[1] + 0x18) == 0) {
-          validationResult = FUN_1808a2e00(*param_2,param_1 + 0x40);
+          validationResult = ProcessResourceHash(*param_2,param_1 + 0x40);
         }
         else {
           validationResult = 0x1c;
         }
         if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-          FUN_1808ddf80(param_2,resourceValidationBuffer);
+          CleanupResourceData(param_2,resourceValidationBuffer);
         }
       }
     }
@@ -24349,14 +24362,14 @@ undefined8 ResourceDataProcessor(void)
         validationResult = 0;
       }
       else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        validationResult = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+        validationResult = ProcessResourceHash(*unaff_RBX,unaff_RDI + 0x40);
       }
       else {
         validationResult = 0x1c;
       }
       if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80();
+        CleanupResourceData();
       }
     }
   }
@@ -24402,14 +24415,14 @@ undefined8 ResourceDataManager(void)
         validationResult = 0;
       }
       else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        validationResult = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+        validationResult = ProcessResourceHash(*unaff_RBX,unaff_RDI + 0x40);
       }
       else {
         validationResult = 0x1c;
       }
       if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80();
+        CleanupResourceData();
       }
     }
   }
@@ -24442,14 +24455,14 @@ undefined8 ResourceHandler(void)
       resourceHash = 0;
     }
     else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      resourceHash = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+      resourceHash = ProcessResourceHash(*unaff_RBX,unaff_RDI + 0x40);
     }
     else {
       resourceHash = 0x1c;
     }
     if ((int)resourceHash == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80();
+      CleanupResourceData();
     }
   }
   return resourceHash;
@@ -24467,6 +24480,16 @@ e0be(void)
 
 
 
+/**
+ * @brief 资源上下文处理器
+ * 
+ * 该函数用于处理资源上下文相关的操作，包括在特定上下文中的资源验证、
+ * 数据读取和处理。它接收资源上下文参数和资源数据句柄作为输入。
+ * 
+ * @param param_1 资源上下文参数的指针
+ * @param param_2 资源数据句柄的指针
+ * @return undefined8 返回处理结果状态码，0表示成功，非0表示错误
+ */
 undefined8 ResourceContextProcessor(longlong param_1,undefined8 *param_2)
 
 {
@@ -24483,10 +24506,10 @@ undefined8 ResourceContextProcessor(longlong param_1,undefined8 *param_2)
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    resourceHash = FUN_1808a2e00(*param_2,param_1 + 0x6c);
+    resourceHash = ProcessResourceHash(*param_2,param_1 + 0x6c);
     if (((int)resourceHash == 0) && (resourceHash = FUN_1808a5d60(param_2,param_1 + 0x48,0), (int)resourceHash == 0)) {
       if ((*(int *)(param_2 + 8) - 0x4aU < 0x11) &&
-         (resourceHash = FUN_1808afc70(param_2,param_1 + 0x44), (int)resourceHash != 0)) {
+         (resourceHash = ValidateResourceData(param_2,param_1 + 0x44), (int)resourceHash != 0)) {
         return resourceHash;
       }
       if ((0x52 < *(uint *)(resourceData + 8)) &&
@@ -24504,7 +24527,7 @@ undefined8 ResourceContextProcessor(longlong param_1,undefined8 *param_2)
       }
       if ((int)resourceHash == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80(param_2,resourceValidationBuffer);
+        CleanupResourceData(param_2,resourceValidationBuffer);
       }
     }
   }
@@ -24581,7 +24604,7 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808a2e00(*param_2,param_1 + 0x48);
+  uVar3 = ProcessResourceHash(*param_2,param_1 + 0x48);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
@@ -24621,7 +24644,7 @@ LAB_18089e447:
       }
       if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80(param_2,auStack_68);
+        CleanupResourceData(param_2,auStack_68);
       }
     }
   }
@@ -24685,7 +24708,7 @@ ulonglong FUN_18089e297(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808a2e00(*unaff_RBX,unaff_RSI + 0x48);
+  uVar4 = ProcessResourceHash(*unaff_RBX,unaff_RSI + 0x48);
   if (uVar4 != 0) {
     return (ulonglong)uVar4;
   }
@@ -24725,7 +24748,7 @@ LAB_18089e447:
       }
       if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80();
+        CleanupResourceData();
       }
     }
   }
@@ -24785,7 +24808,7 @@ ulonglong FUN_18089e2be(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808a2e00(*unaff_RBX,unaff_RSI + 0x48);
+  uVar4 = ProcessResourceHash(*unaff_RBX,unaff_RSI + 0x48);
   if (uVar4 != 0) {
     return (ulonglong)uVar4;
   }
@@ -24825,7 +24848,7 @@ LAB_18089e447:
       }
       if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80();
+        CleanupResourceData();
       }
     }
   }
@@ -24881,7 +24904,7 @@ ulonglong FUN_18089e2e8(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808a2e00(*unaff_RBX,unaff_RSI + 0x48);
+  uVar4 = ProcessResourceHash(*unaff_RBX,unaff_RSI + 0x48);
   if (uVar4 != 0) {
     return (ulonglong)uVar4;
   }
@@ -24921,7 +24944,7 @@ LAB_18089e447:
       }
       if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80();
+        CleanupResourceData();
       }
     }
   }
@@ -25035,7 +25058,7 @@ LAB_18089e70b:
       uVar4 = FUN_1808ad9d0(param_2,dataContext + 0x78,0);
       if (((int)uVar4 == 0) && (uVar4 = FUN_1808a62d0(param_2,param_1 + 0x88,0), (int)uVar4 == 0)) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80(param_2,auStack_58);
+        CleanupResourceData(param_2,auStack_58);
       }
     }
   }
@@ -25152,7 +25175,7 @@ LAB_18089e70b:
     if (((int)uVar8 == 0) &&
        (uVar8 = FUN_1808a62d0(extraout_XMM0_Da_03,unaff_R15 + 0x88,0), (int)uVar8 == 0)) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(extraout_XMM0_Da_04,unaff_RBP + 7);
+      CleanupResourceData(extraout_XMM0_Da_04,unaff_RBP + 7);
     }
   }
   return uVar8;
@@ -25220,7 +25243,7 @@ LAB_18089e70b:
   uVar4 = FUN_1808ad9d0();
   if (((int)uVar4 == 0) && (uVar4 = FUN_1808a62d0(), (int)uVar4 == 0)) {
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80();
+    CleanupResourceData();
   }
   return uVar4;
 }
@@ -25547,7 +25570,7 @@ LAB_18089ed1b:
   }
   if ((int)uVar4 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80(param_2,auStack_78);
+    CleanupResourceData(param_2,auStack_78);
   }
   return uVar4;
 }
@@ -25855,7 +25878,7 @@ LAB_18089ed1b:
   }
   if ((int)uVar4 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80();
+    CleanupResourceData();
   }
   return uVar4;
 }
@@ -26150,7 +26173,7 @@ LAB_18089ed1b:
     return uVar5;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  CleanupResourceData();
 }
 
 
@@ -26175,7 +26198,17 @@ edc7(void)
 
 
 
-undefined8 FUN_18089ede0(longlong param_1,undefined8 *param_2)
+/**
+ * @brief 数据验证处理器
+ * 
+ * 该函数用于验证数据的完整性和正确性，包括数据校验和计算、
+ * 格式验证和错误检测。它接收数据上下文参数和数据句柄作为输入。
+ * 
+ * @param param_1 数据上下文参数的指针
+ * @param param_2 数据句柄的指针
+ * @return undefined8 返回验证结果状态码，0表示成功，非0表示错误
+ */
+undefined8 DataValidationProcessor(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 resourceHash;
@@ -26200,7 +26233,7 @@ undefined8 FUN_18089ede0(longlong param_1,undefined8 *param_2)
     }
     if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,resourceValidationBuffer);
+      CleanupResourceData(param_2,resourceValidationBuffer);
     }
   }
   return validationResult;
@@ -26233,7 +26266,7 @@ undefined8 FUN_18089ee64(void)
   }
   if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80();
+    CleanupResourceData();
   }
   return validationResult;
 }
@@ -26263,7 +26296,7 @@ ee87(void)
   }
   if (iVar2 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80();
+    CleanupResourceData();
   }
   return;
 }
@@ -26276,7 +26309,7 @@ eef2(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  CleanupResourceData();
 }
 
 
