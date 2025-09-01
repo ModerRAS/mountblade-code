@@ -993,41 +993,14 @@ void* GetSystemInitializationFunction;
 /**
  * @brief 初始化游戏核心系统
  * 
- * 此函数负责初始化游戏的核心系统组件，包括内存分配、系统节点管理和核心系统ID验证。
- * 函数会遍历系统节点树，查找游戏核心系统节点，并在需要时分配新的内存节点。
- * 
- * @note 函数使用全局常量GAME_CORE_SYSTEM_ID进行系统识别
- * @note 函数依赖GetSystemRootPointer和GetGameCoreSystemInitializationFunction等辅助函数
- * @note 函数会修改系统数据表结构并设置核心节点数据
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 此函数负责初始化游戏的核心系统组件，包括内存分配、系统节点管理和核心功能设置。
- * 函数会遍历系统节点树，查找或创建游戏核心系统节点，并配置相关的系统参数。
- * 
- * @note 函数使用GAME_CORE_SYSTEM_ID进行系统识别
- * @note 函数依赖GetSystemRootPointer和GetGameCoreSystemInitializationFunction等辅助函数
- * @note 函数会设置GAME_CORE_NODE_DATA相关配置
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 该函数负责初始化游戏的核心系统组件，包括内存分配、
- * 数据表设置和核心系统功能的启用。这是游戏启动过程中的
- * 关键初始化步骤。
- * 
- * @note 该函数在系统启动时自动调用，确保所有核心系统
- * 组件都正确初始化并准备就绪。
- */
-/**
- * @brief 初始化游戏核心系统
- * 
  * 该函数负责初始化游戏的核心系统组件，包括系统节点的遍历、
  * 内存分配和核心系统数据的设置。这是游戏启动过程中的关键步骤。
  * 
  * @note 该函数会遍历系统节点树，查找或创建游戏核心系统节点，
  *       并设置相关的系统数据和回调函数。
+ * @note 函数使用全局常量GAME_CORE_SYSTEM_ID进行系统识别
+ * @note 函数依赖GetSystemRootPointer和GetGameCoreSystemInitializationFunction等辅助函数
+ * @note 函数会设置GAME_CORE_NODE_DATA相关配置
  */
 void InitializeGameCoreSystem(void)
 {
@@ -1042,39 +1015,39 @@ void InitializeGameCoreSystem(void)
   void** AllocatedSystemNode;
   void* CoreSystemInitializationHandler;
   
-  DataTablePointer = (long long*)GetSystemRootPointer();
-  RootNodePointer = (void**)*DataTablePointer;
-  IsNodeActive = *(bool*)((long long)RootNodePointer[1] + 0x19);
-  CoreSystemInitializationFunction = GetGameCoreSystemInitializationFunction;
-  PreviousNode = RootNodePointer;
-  CurrentNode = (void**)RootNodePointer[1];
+  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemRootNodePointer = (void**)*SystemDataTablePointer;
+  IsSystemNodeActive = *(bool*)((long long)SystemRootNodePointer[1] + 0x19);
+  CoreSystemInitializationHandler = GetGameCoreSystemInitializationFunction;
+  PreviousSystemNode = SystemRootNodePointer;
+  CurrentSystemNode = (void**)SystemRootNodePointer[1];
   
-  while (!IsNodeActive) {
-    MemoryComparisonResult = memcmp(CurrentNode + 4, &GAME_CORE_SYSTEM_ID, 0x10);
+  while (!IsSystemNodeActive) {
+    MemoryComparisonResult = memcmp(CurrentSystemNode + 4, &GAME_CORE_SYSTEM_ID, 0x10);
     if (MemoryComparisonResult < 0) {
-      NextNode = (void**)CurrentNode[2];
-      CurrentNode = PreviousNode;
+      NextSystemNode = (void**)CurrentSystemNode[2];
+      CurrentSystemNode = PreviousSystemNode;
     }
     else {
-      NextNode = (void**)*CurrentNode;
+      NextSystemNode = (void**)*CurrentSystemNode;
     }
-    PreviousNode = CurrentNode;
-    CurrentNode = NextNode;
-    IsNodeActive = *(bool*)((long long)NextNode + 0x19);
+    PreviousSystemNode = CurrentSystemNode;
+    CurrentSystemNode = NextSystemNode;
+    IsSystemNodeActive = *(bool*)((long long)NextSystemNode + 0x19);
   }
   
-  if ((PreviousNode == RootNodePointer) || 
-      (MemoryComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID, PreviousNode + 4, 0x10), MemoryComparisonResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(DataTablePointer);
-    AllocateSystemMemory(DataTablePointer, &AllocatedNode, PreviousNode, MemoryAllocationSize + 0x20, MemoryAllocationSize);
-    PreviousNode = AllocatedNode;
+  if ((PreviousSystemNode == SystemRootNodePointer) || 
+      (MemoryComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID, PreviousSystemNode + 4, 0x10), MemoryComparisonResult < 0)) {
+    RequiredMemorySize = GetSystemMemorySize(SystemDataTablePointer);
+    AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, RequiredMemorySize + 0x20, RequiredMemorySize);
+    PreviousSystemNode = AllocatedSystemNode;
   }
   
-  PreviousNode[6] = 0x4fc124d23d41985f;
-  PreviousNode[7] = 0xe2f4a30d6e6ae482;
-  PreviousNode[8] = &GAME_CORE_NODE_DATA;
-  PreviousNode[9] = 0;
-  PreviousNode[10] = EventCallbackPointer;
+  PreviousSystemNode[6] = 0x4fc124d23d41985f;
+  PreviousSystemNode[7] = 0xe2f4a30d6e6ae482;
+  PreviousSystemNode[8] = &GAME_CORE_NODE_DATA;
+  PreviousSystemNode[9] = 0;
+  PreviousSystemNode[10] = CoreSystemInitializationHandler;
   return;
 }
 
@@ -1146,12 +1119,6 @@ void InitializeSystemDataTableBaseAllocator(void)
 /**
  * @brief 初始化系统数据表分配器
  * 
- * 该函数负责初始化系统数据表的内存分配器，
- * 设置内存分配策略和数据结构管理。
- */
-/**
- * @brief 初始化系统数据表分配器
- * 
  * 该函数负责初始化系统数据表的分配器，为系统数据表的内存分配
  * 和管理提供支持。它会遍历系统节点树，查找合适的位置来初始化
  * 数据表分配器功能。
@@ -1213,12 +1180,6 @@ void InitializeSystemDataTableAllocator(void)
 
 
 
-/**
- * @brief 初始化系统核心配置
- * 
- * 该函数负责初始化系统核心配置参数，
- * 设置系统运行的基本配置和状态。
- */
 /**
  * @brief 初始化系统核心配置
  * 
@@ -1285,12 +1246,6 @@ void InitializeSystemCoreConfig(void)
 /**
  * @brief 初始化系统内存池
  * 
- * 该函数负责初始化系统内存池，
- * 设置内存分配策略和管理机制。
- */
-/**
- * @brief 初始化系统内存池
- * 
  * 该函数负责初始化系统的内存池，为系统运行提供内存管理基础。
  * 它会设置内存池的大小、分配策略和管理机制。
  * 
@@ -1351,12 +1306,6 @@ void InitializeSystemMemoryPool(void)
 /**
  * @brief 初始化系统线程池
  * 
- * 该函数负责初始化系统线程池，
- * 设置线程创建、同步和管理机制。
- */
-/**
- * @brief 初始化系统线程池
- * 
  * 该函数负责初始化系统的线程池，为系统提供多线程处理能力。
  * 它会设置线程池的大小、工作线程和管理机制。
  * 
@@ -1414,12 +1363,6 @@ void InitializeSystemThreadPool(void)
 
 
 
-/**
- * @brief 初始化系统事件管理器
- * 
- * 该函数负责初始化系统事件管理器，
- * 设置事件创建、分发和处理机制。
- */
 /**
  * @brief 初始化系统事件管理器
  * 
@@ -20411,17 +20354,17 @@ void SetSystemMemoryAllocatorPointer(void* *allocatorPointer)
 void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long matchData,void* callbackData)
 
 {
-  byte bVar1;
-  bool bVar2;
+  byte FirstByteValue;
+  bool IsMatchFound;
   int MemoryCompareResult;
-  void* *punsignedSystemValue4;
-  uint unsignedSystemValue5;
-  byte *pbVar6;
+  void* *CurrentSearchNode;
+  uint ComparisonValue;
+  byte *StringComparePointer;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void* *punsignedSystemValue9;
-  long long localAllocationFlags;
-  void* uStackX_8;
+  void* *NextSearchNode;
+  long long StringLengthDifference;
+  void* SystemContextBackup;
   
   uStackX_8 = SystemResourcePointer;
   systemCounter = FindSystemDataIndex(&SystemResourceTemplate);
@@ -31120,8 +31063,19 @@ void DestroyRenderingSystem(void)
 
 
 
-// 函数: void FUN_180057980(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
-void FUN_180057980(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+/**
+ * @brief 处理系统字符串数据
+ * 
+ * 该函数负责处理系统中的字符串数据，包括字符串的解析、
+ * 分配和管理。用于系统字符串操作的核心功能。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 参数2，用于传递字符串处理的相关数据
+ * @param param_3 参数3，字符串数据源
+ * @param param_4 参数4，字符串处理标志
+ * @note 这是字符串处理系统的核心函数
+ */
+void ProcessSystemStringData(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
 
 {
   char SystemNodeFlag;
@@ -31241,8 +31195,16 @@ LAB_180057ba2:
 
 
 
-// 函数: void FUN_180057bf0(void* *SystemResourcePointer)
-void FUN_180057bf0(void* *SystemResourcePointer)
+/**
+ * @brief 清理系统资源处理器
+ * 
+ * 该函数负责清理系统资源处理器，包括释放内存、
+ * 重置指针和清理相关数据结构。当系统资源不再需要时调用。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @note 这是资源管理系统的重要组成部分
+ */
+void CleanupSystemResourceHandler(void* *SystemResourcePointer)
 
 {
   if (SystemResourcePointer == (void* *)0x0) {
@@ -31275,7 +31237,20 @@ void FUN_180057bf0(void* *SystemResourcePointer)
 
 
 
-void* * FUN_180057cb0(void* *SystemResourcePointer,uint param_2,void* param_3,void* param_4)
+/**
+ * @brief 初始化系统资源处理器
+ * 
+ * 该函数负责初始化系统资源处理器，设置内存分配器、
+ * 数据表和相关配置。用于系统资源管理的前期准备工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 参数2，初始化标志
+ * @param param_3 参数3，初始化数据源
+ * @param param_4 参数4，初始化配置
+ * @return 返回初始化后的系统资源处理器指针
+ * @note 这是资源管理系统的初始化函数
+ */
+void* * InitializeSystemResourceHandler(void* *SystemResourcePointer,uint param_2,void* param_3,void* param_4)
 
 {
   *SystemResourcePointer = &UNK_180a08db0;
@@ -31299,8 +31274,8 @@ void* * FUN_180057cb0(void* *SystemResourcePointer,uint param_2,void* param_3,vo
 
 
 
-// 函数: void FUN_180057d70(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180057d70(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ProcessSystemResourceData(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void ProcessSystemResourceData(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   void* *pointerToUnsigned1;
@@ -31354,8 +31329,8 @@ void FUN_180057e90(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// 函数: void FUN_180057ec0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180057ec0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ReleaseSystemResourcePointer(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void ReleaseSystemResourcePointer(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   void* *pointerToUnsigned1;
@@ -31373,8 +31348,8 @@ void FUN_180057ec0(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// 函数: void FUN_180057ee0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180057ee0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void InitializeSystemResourceStream(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void InitializeSystemResourceStream(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   FUN_180058710(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -31384,8 +31359,8 @@ void FUN_180057ee0(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// 函数: void FUN_180057f10(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180057f10(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void CleanupSystemResourceStream(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void CleanupSystemResourceStream(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   void* *pointerToUnsigned1;
@@ -31403,8 +31378,8 @@ void FUN_180057f10(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// 函数: void FUN_180057f30(long long *SystemResourcePointer)
-void FUN_180057f30(long long *SystemResourcePointer)
+// 函数: void FinalizeSystemResourceCleanup(long long *SystemResourcePointer)
+void FinalizeSystemResourceCleanup(long long *SystemResourcePointer)
 
 {
   long long localMemoryPointer;
@@ -31443,8 +31418,8 @@ void FUN_180057f30(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180058000(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180058000(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ProcessSystemMemoryAllocation(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void ProcessSystemMemoryAllocation(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   FUN_180058710(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -31454,8 +31429,8 @@ void FUN_180058000(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// 函数: void FUN_180058020(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180058020(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ReleaseSystemMemoryAllocation(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+void ReleaseSystemMemoryAllocation(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   void* *pointerToUnsigned1;
@@ -31549,8 +31524,8 @@ LAB_180058138:
 
 
 
-// 函数: void FUN_180058160(ulong long *SystemResourcePointer)
-void FUN_180058160(ulong long *SystemResourcePointer)
+// 函数: void InitializeSystemResourceManager(ulong long *SystemResourcePointer)
+void InitializeSystemResourceManager(ulong long *SystemResourcePointer)
 
 {
   int *pointerToInteger1;
@@ -31603,8 +31578,8 @@ void FUN_180058160(ulong long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180058210(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
-void FUN_180058210(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+// 函数: void ProcessSystemResourceDataTransfer(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
+void ProcessSystemResourceDataTransfer(void* SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
 
 {
   if (param_2 != (void* *)0x0) {
@@ -31697,8 +31672,8 @@ void ReleaseMemoryRegion(void* SystemResourcePointer,void* *param_2,void* param_
 
 
 
-// 函数: void FUN_1800584e0(void* *SystemResourcePointer,long long param_2)
-void FUN_1800584e0(void* *SystemResourcePointer,long long param_2)
+// 函数: void ProcessSystemResourceAllocation(void* *SystemResourcePointer,long long param_2)
+void ProcessSystemResourceAllocation(void* *SystemResourcePointer,long long param_2)
 
 {
   void* *pointerToUnsigned1;
