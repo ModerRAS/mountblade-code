@@ -253,7 +253,7 @@ uint32_t NetworkConnectionEventHandler;
  * 该函数负责通过网络连接发送数据
  * 处理数据分片、重传和确认机制
  */
-void SendNetworkData(void);
+void TransmitNetworkData(void);
 
 // 函数: void ReceiveNetworkData(void)
 /**
@@ -262,7 +262,7 @@ void SendNetworkData(void);
  * 该函数负责从网络连接接收数据
  * 处理数据重组、验证和错误检测
  */
-void ReceiveNetworkData(void);
+void RetrieveNetworkData(void);
 
 // 函数: void ValidateNetworkPacket(void)
 /**
@@ -271,7 +271,7 @@ void ReceiveNetworkData(void);
  * 该函数负责验证接收到的网络数据包的完整性
  * 检查数据包的校验和、序列号和格式
  */
-void ValidateNetworkPacket(void);
+void AuthenticateNetworkPacket(void);
 
 // 函数: void ProcessNetworkPacket(void)
 /**
@@ -280,7 +280,7 @@ void ValidateNetworkPacket(void);
  * 该函数负责处理接收到的网络数据包
  * 根据数据包类型执行相应的处理逻辑
  */
-void ProcessNetworkPacket(void);
+void HandleNetworkPacketProcessing(void);
 
 // 函数: void HandleNetworkError(void)
 /**
@@ -289,8 +289,8 @@ void ProcessNetworkPacket(void);
  * 该函数负责处理网络通信中出现的错误
  * 记录错误信息，尝试恢复连接或通知上层应用
  */
-void HandleNetworkError(void);
-uint32_t NetworkErrorHandler;
+void ManageNetworkErrorHandling(void);
+uint32_t NetworkErrorProcessor;
 uint32_t NetworkErrorCounter;
 uint32_t NetworkConnectionAttempts;
 uint32_t NetworkConnectionFailures;
@@ -4770,42 +4770,64 @@ int ProcessNetworkPacketWithContextValidation(longlong connectionContext,longlon
 
 
 
-int FUN_180844d00(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络连接数据加密和打包
+ * 
+ * 该函数负责对网络连接数据进行处理，包括数据打包、加密和格式化。
+ * 主要用于网络数据传输前的准备工作。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据大小
+ * @return 处理后的数据大小
+ */
+int ProcessNetworkConnectionEncryption(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkByte uVar1;
-  int networkStatus2;
-  int networkStatus3;
+  NetworkByte encryptionKey;
+  int processedSize1;
+  int processedSize2;
   
-  uVar1 = *(NetworkByte *)(connectionContext + 0x14);
-  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982350);
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0x20);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0xa0);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = NetworkBufferEncryptData(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  return networkStatus3 + networkStatus2;
+  encryptionKey = *(NetworkByte *)(connectionContext + 0x14);
+  processedSize1 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982350);
+  processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,&g_NetworkBufferDataTemplate);
+  processedSize1 = processedSize1 + processedSize2;
+  processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,connectionContext + 0x20);
+  processedSize1 = processedSize1 + processedSize2;
+  processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,&g_NetworkBufferDataTemplate);
+  processedSize1 = processedSize1 + processedSize2;
+  processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,connectionContext + 0xa0);
+  processedSize1 = processedSize1 + processedSize2;
+  processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,&g_NetworkBufferDataTemplate);
+  processedSize1 = processedSize1 + processedSize2;
+  processedSize2 = NetworkBufferEncryptData(processedSize1 + packetData,dataSize - processedSize1,encryptionKey);
+  return processedSize2 + processedSize1;
 }
 
 
 
-int FUN_180844e10(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络连接数据打包
+ * 
+ * 该函数负责对网络连接数据进行打包处理，包括数据格式化和缓冲区处理。
+ * 主要用于网络数据传输前的数据准备工作。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据大小
+ * @return 处理后的数据大小
+ */
+int ProcessNetworkConnectionPackaging(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  int networkStatus1;
-  int networkStatus2;
+  int processedSize1;
+  int processedSize2;
   
-  networkStatus1 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982770);
-  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
-  networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,connectionContext + 0x10);
-  return networkStatus2 + networkStatus1;
+  processedSize1 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982770);
+  processedSize2 = ProcessNetworkBufferData(packetData + processedSize1,dataSize - processedSize1,&g_NetworkBufferDataTemplate);
+  processedSize1 = processedSize1 + processedSize2;
+  processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,connectionContext + 0x10);
+  return processedSize2 + processedSize1;
 }
 
 
