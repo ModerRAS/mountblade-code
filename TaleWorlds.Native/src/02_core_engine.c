@@ -58897,7 +58897,7 @@ void FUN_18009a4b0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
   longlong *engine_memory_allocation_pointer;
   longlong *pengine_temp_long_7;
   void* next_data_pointer;
-  char *pcVar9;
+  char *engine_temp_char_ptr_9;
   longlong *pengine_temp_long1;
   longlong *pengine_temp_long2;
   int engine_temp_int3;
@@ -59001,11 +59001,11 @@ void FUN_18009a4b0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
   *(uint32*)(next_data_pointer + 5) = 1;
   next_data_pointer[6] = 0;
   next_data_pointer[8] = 0;
-  pcVar9 = "scope";
+  engine_temp_char_ptr_9 = "scope";
   do {
-    presource_status_flag0 = pcVar9;
-    pcVar9 = presource_status_flag0 + 1;
-  } while (*pcVar9 != '\0');
+    presource_status_flag0 = engine_temp_char_ptr_9;
+    engine_temp_char_ptr_9 = presource_status_flag0 + 1;
+  } while (*engine_temp_char_ptr_9 != '\0');
   *next_data_pointer = &engine_unknown_04;
   next_data_pointer[2] = presource_status_flag0 + -0x180a01603;
   engine_data_ptr9 = &engine_data_73;
