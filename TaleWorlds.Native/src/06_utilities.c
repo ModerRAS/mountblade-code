@@ -28868,7 +28868,18 @@ void RestoreResourceDescriptorTemplateAndResetState(uint8_t objectContextParam, 
 
 
 
-void Unwind_180902180(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 在异常处理时设置系统资源处理器模板
+ * 
+ * 该函数负责在异常处理过程中设置系统资源处理器模板
+ * 重置相关状态标志，确保系统资源处理器的正确初始化
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数通常在异常处理的清理阶段调用
+ * @warning 如果系统资源状态异常，可能会触发紧急退出
+ */
+void SetSystemResourceHandlerTemplate(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   *(uint8_t *)(validationContextParam + 0x1a0) = &SystemResourceHandlerTemplate;
