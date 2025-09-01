@@ -93,10 +93,10 @@ void* GlobalModuleDHandle;
  * 设置模块E所需的数据结构和运行环境
  */
 void InitializeGlobalModuleE(void);
-void* globalModuleEInstance;
-void* globalModuleEConfiguration;
-uint32_t globalModuleEStatus;
-void* globalModuleEHandle;
+void* GlobalModuleEInstance;
+void* GlobalModuleEConfiguration;
+uint32_t GlobalModuleEStatus;
+void* GlobalModuleEHandle;
 
 
 /**
@@ -106,7 +106,7 @@ void* globalModuleEHandle;
  * 用于判断系统是否处于特定的运行状态
  */
 uint32_t GetSystemStatusFlag1(void);
-bool systemStatusFlag1Initialized;
+bool SystemStatusFlag1Initialized;
 
 
 /**
