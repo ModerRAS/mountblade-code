@@ -1901,19 +1901,34 @@ int ProcessNetworkPacketPhaseOne(longlong connectionContext, longlong packetData
 
 
 
-int FUN_1808418a0(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络连接数据包的第二阶段处理
+ * 
+ * 该函数负责处理网络连接数据包的第二阶段，包括：
+ * - 从连接上下文中获取网络状态
+ * - 处理数据包的第一部分数据
+ * - 复制网络缓冲区数据
+ * - 使用不同的函数处理数据包的第二部分数据
+ * - 返回总共处理的数据大小
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return int 处理的总数据大小
+ */
+int ProcessNetworkPacketPhaseTwo(longlong connectionContext, longlong packetData, int dataSize)
 
 {
-  NetworkStatus uVar1;
-  int networkStatus2;
-  int networkStatus3;
+  NetworkStatus networkStatus;
+  int firstPhaseStatus;
+  int secondPhaseStatus;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x14);
-  networkStatus2 = func_0x00018074b7d0(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  return networkStatus3 + networkStatus2;
+  networkStatus = *(NetworkStatus *)(connectionContext + 0x14);
+  firstPhaseStatus = func_0x00018074b7d0(packetData, dataSize, *(NetworkStatus *)(connectionContext + 0x10));
+  secondPhaseStatus = NetworkBufferCopyData(packetData + firstPhaseStatus, dataSize - firstPhaseStatus, &NetworkBufferDataTemplate);
+  firstPhaseStatus = firstPhaseStatus + secondPhaseStatus;
+  secondPhaseStatus = func_0x00018074b800(firstPhaseStatus + packetData, dataSize - firstPhaseStatus, networkStatus);
+  return secondPhaseStatus + firstPhaseStatus;
 }
 
 
