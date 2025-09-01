@@ -16007,7 +16007,7 @@ void InitializeSystemSubcomponentM(void)
   stackBuffer[0] = 0;
   stackParameterC = 0xd;
   strcpy_s(stackBuffer,0x80,&UNK_180a33fb0,in_R9,0xfffffffffffffffe);
-  _DAT_180c95ecc = SystemMemoryAllocationFunction(&stackParameterA);
+  SystemMemoryRegionCacheB = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
 
