@@ -3308,37 +3308,37 @@ void ProcessGameDataObjects(int64_t GameContext, int64_t SystemContext)
   uint8_t objectProcessingWorkspace[512];
   uint64_t securityAccessKey;
   
-  SecurityAccessToken = SecurityEncryptionKey ^ (uint64_t)ObjectMetadataBuffer;
-  ProcessingStatus = GetContextHandles(*(uint32_t *)(GameContext + 0x10), ContextHandles);
-  if ((ProcessingStatus == 0) && (*(int64_t *)(ContextHandles[0] + 8) != 0)) {
-    GameDataList = ObjectProcessingBuffer;
+  SecurityAccessKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
+  OperationStatus = GetContextHandles(*(uint32_t *)(GameObjectContext + 0x10), SystemContextHandles);
+  if ((OperationStatus == 0) && (*(int64_t *)(SystemContextHandles[0] + 8) != 0)) {
+    GameObjectDataList = ObjectProcessingWorkspace;
     ProcessedObjectCount = 0;
-    ListIterator = 0;
-    MaximumItems = 0xffffffc0;
-    ProcessingStatus = RetrieveObjectList(*(uint8_t *)(SystemContext + 0x90), *(int64_t *)(ContextHandles[0] + 8),
-                          &GameDataList);
-    if (ProcessingStatus == 0) {
-      if (0 < ListIterator) {
-        CurrentObjectPointer = 0;
+    ListIterationIndex = 0;
+    MaximumAllowedItems = 0xffffffc0;
+    OperationStatus = RetrieveObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemContextHandles[0] + 8),
+                          &GameObjectDataList);
+    if (OperationStatus == 0) {
+      if (0 < ListIterationIndex) {
+        CurrentObjectDataPointer = 0;
         do {
-          ObjectValidationResult = *(uint8_t *)(GameDataList + CurrentObjectPointer);
-          ProcessingStatus = ValidateObjectStatus(ObjectValidationResult);
-          if (ProcessingStatus != 2) {
+          ValidationResult = *(uint8_t *)(GameObjectDataList + CurrentObjectDataPointer);
+          OperationStatus = ValidateObjectStatus(ValidationResult);
+          if (OperationStatus != 2) {
                     // WARNING: Subroutine does not return
-            HandleInvalidObject(ObjectValidationResult, 1);
+            HandleInvalidObject(ValidationResult, 1);
           }
           ProcessedObjectCount = ProcessedObjectCount + 1;
-          CurrentObjectPointer = CurrentObjectPointer + 8;
-        } while (ProcessedObjectCount < ListIterator);
+          CurrentObjectDataPointer = CurrentObjectDataPointer + 8;
+        } while (ProcessedObjectCount < ListIterationIndex);
       }
-      ReleaseObjectListMemory(&GameDataList);
+      ReleaseObjectListMemory(&GameObjectDataList);
     }
     else {
-      ReleaseObjectListMemory(&GameDataList);
+      ReleaseObjectListMemory(&GameObjectDataList);
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityValidation(SecurityAccessToken ^ (uint64_t)ObjectMetadataBuffer);
+  ExecuteSecurityValidation(SecurityAccessKey ^ (uint64_t)ObjectMetadataBuffer);
 }
 
 
@@ -3354,10 +3354,10 @@ void ValidateSystemObjects(void)
 
 {
   uint8_t SystemObjectHandle;
-  int ValidationStatus;
+  int ValidationStatusCode;
   int64_t SystemObjectContext;
   int64_t SystemContextPointer;
-  int64_t ObjectOffset;
+  int64_t ObjectDataOffset;
   int ProcessedObjectCount;
   uint8_t1 *ObjectCollectionArray;
   int RetrievedObjectCount;
@@ -3369,21 +3369,21 @@ void ValidateSystemObjects(void)
     ProcessedObjectCount = 0;
     RetrievedObjectCount = 0;
     MaximumCapacity = 0xffffffc0;
-    ValidationStatus = RetrieveSystemObjectCollection(*(uint8_t *)(SystemContextPointer + 0x90), *(int64_t *)(SystemObjectContext + 8),
+    ValidationStatusCode = RetrieveSystemObjectCollection(*(uint8_t *)(SystemContextPointer + 0x90), *(int64_t *)(SystemObjectContext + 8),
                           &RetrievedObjectCollectionBuffer);
-    if (ValidationStatus == 0) {
+    if (ValidationStatusCode == 0) {
       RetrievedObjectCount = *(int *)(RetrievedObjectCollectionBuffer + 4);
       if (0 < RetrievedObjectCount) {
-        ObjectOffset = 8;
+        ObjectDataOffset = 8;
         do {
-          SystemObjectHandle = *(uint8_t *)(ObjectCollectionArray + ObjectOffset);
-          ValidationStatus = ValidateSystemObject(SystemObjectHandle);
-          if (ValidationStatus != 2) {
+          SystemObjectHandle = *(uint8_t *)(ObjectCollectionArray + ObjectDataOffset);
+          ValidationStatusCode = ValidateSystemObject(SystemObjectHandle);
+          if (ValidationStatusCode != 2) {
                     // WARNING: Subroutine does not return
             HandleInvalidSystemObject(SystemObjectHandle, 1);
           }
           ProcessedObjectCount = ProcessedObjectCount + 1;
-          ObjectOffset = ObjectOffset + 8;
+          ObjectDataOffset = ObjectDataOffset + 8;
         } while (ProcessedObjectCount < RetrievedObjectCount);
       }
       ReleaseSystemObjectCollection(&RetrievedObjectCollectionBuffer);
@@ -3405,7 +3405,6 @@ void ValidateSystemObjects(void)
  * 该函数用于安全终止系统进程，确保系统资源正确释放
  */
 void TerminateSystemProcess(void)
-void TerminateSystemProcess(void)
 
 {
   uint64_t SystemTerminationToken;
@@ -3417,8 +3416,7 @@ void TerminateSystemProcess(void)
 
 
 
- void CheckSystemFlags(void)
-/**
+ /**
  * @brief 检查系统标志
  * 
  * 该函数检查系统标志状态，根据标志位执行相应操作
