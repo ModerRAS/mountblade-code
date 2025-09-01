@@ -2483,10 +2483,10 @@ int ProcessSystemEvent(uint64_t systemId,uint64_t eventType,uint64_t eventData,u
   SystemBufferSizeParameter = 9;
   strcpy_s(&SystemStringBufferAI,0x80,&UnknownDataPointer180a0f190);
   SystemMemoryConfigInstance = &SystemMemoryConfigTemplate;
-  _DAT_180bfa488 = &DAT_180bfa498;
-  DAT_180bfa498 = 0;
+  SystemPathBufferReference = &SystemPathBufferA;
+  SystemPathBufferA = 0;
   _DAT_180bfa490 = 0xb;
-  strcpy_s(&DAT_180bfa498,0x80,&UnknownDataPointer180a0f168);
+  strcpy_s(&SystemPathBufferA,0x80,&UnknownDataPointer180a0f168);
   _DAT_180bfa518 = &SystemMemoryConfigTemplate;
   _DAT_180bfa520 = &DAT_180bfa530;
   DAT_180bfa530 = 0;
