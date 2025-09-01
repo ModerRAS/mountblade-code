@@ -24203,7 +24203,15 @@ ulonglong ProcessResourceReadAndValidation(void)
 
 
 
-ulonglong FUN_18089dda2(void)
+/**
+ * @brief 处理资源验证和分配
+ * 
+ * 该函数负责处理系统资源的验证和分配操作，包括资源哈希计算、
+ * 数据完整性检查和资源分配状态管理。这是资源管理系统的核心函数之一。
+ * 
+ * @return 处理结果，成功返回0，失败返回相应的错误码
+ */
+ulonglong ProcessResourceValidationAndAllocation(void)
 
 {
   undefined8 resourceHash;
@@ -24276,7 +24284,15 @@ ulonglong FUN_18089dda2(void)
 
 
 
-ulonglong FUN_18089de39(void)
+/**
+ * @brief 验证资源数据完整性
+ * 
+ * 该函数负责验证系统资源的数据完整性，检查数据是否被损坏或篡改。
+ * 通过校验和验证和其他完整性检查机制确保资源数据的可靠性。
+ * 
+ * @return 验证结果，成功返回0，失败返回相应的错误码
+ */
+ulonglong ValidateResourceDataIntegrity(void)
 
 {
   undefined8 resourceHash;
@@ -24322,7 +24338,15 @@ ulonglong FUN_18089de39(void)
 
 
 
-ulonglong FUN_18089de72(void)
+/**
+ * @brief 检查资源可用性
+ * 
+ * 该函数负责检查系统资源的可用性状态，确定资源是否可以被访问和使用。
+ * 这是资源管理流程中的重要步骤，确保资源在需要时处于可用状态。
+ * 
+ * @return 检查结果，成功返回0，失败返回相应的错误码
+ */
+ulonglong CheckResourceAvailability(void)
 
 {
   ulonglong resourceHash;
@@ -24641,7 +24665,17 @@ undefined8 ResourceContextProcessor(longlong param_1,undefined8 *param_2)
 
 
 
-ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
+/**
+ * @brief 处理资源数据提取
+ * 
+ * 该函数负责从系统中提取资源数据，包括数据校验、解析和验证。
+ * 通过多种验证机制确保提取的数据完整性和正确性。
+ * 
+ * @param param_1 资源句柄，用于标识要提取的资源
+ * @param param_2 数据缓冲区指针，用于存储提取的数据
+ * @return 处理结果，成功返回0，失败返回相应的错误码
+ */
+ulonglong ProcessResourceDataExtraction(longlong param_1,longlong *param_2)
 
 {
   longlong *plVar1;
@@ -50055,13 +50089,22 @@ void Unwind_180907c60(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180907c70(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常解卷函数：资源验证和清理
+ * 
+ * 该函数在异常解卷过程中验证资源状态并进行必要的清理
+ * 处理资源的引用计数和内存管理
+ * 
+ * @param exceptionContext 异常上下文参数
+ * @param systemContext 系统上下文指针
+ */
+void UnwindResourceValidationAndCleanup(undefined8 exceptionContext, longlong systemContext)
 
 {
-  int *piVar1;
-  undefined8 *pvalidationResult;
+  int *referenceCount;
+  undefined8 *validationResult;
   longlong resourceIndex;
-  ulonglong uVar4;
+  ulonglong resourceBaseAddress;
   
   pvalidationResult = *(undefined8 **)(param_2 + 0x230);
   if (pvalidationResult == (undefined8 *)0x0) {
@@ -84372,8 +84415,13 @@ void FUN_180941bf0(void)
     _Cnd_destroy_in_situ();
     FUN_180059ee0(0x180c919f0);
 
- void FUN_180941d00(void)
-void FUN_180941d00(void)
+ /**
+ * 初始化系统数据结构AC
+ * 将全局变量 _DAT_180bf90b0 设置为指向 UNK_18098bcb0
+ * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ */
+void InitializeSystemDataStructureAC(void)
+void InitializeSystemDataStructureAC(void)
 
 {
   _DAT_180bf90b0 = &UNK_18098bcb0;
@@ -84385,8 +84433,13 @@ void FUN_180941d00(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941d20(void)
-void FUN_180941d20(void)
+ /**
+ * 初始化系统数据结构AD
+ * 将全局变量 _DAT_180bf5b88 设置为指向 UNK_18098bcb0
+ * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ */
+void InitializeSystemDataStructureAD(void)
+void InitializeSystemDataStructureAD(void)
 
 {
   _DAT_180bf5b88 = &UNK_18098bcb0;
@@ -84398,8 +84451,18 @@ void FUN_180941d20(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941d50(void)
-void FUN_180941d50(void)
+ /**
+ * 初始化系统数据结构AE
+ * 初始化全局数据结构 _DAT_180d48db8 并重置相关计数器
+ * 
+ * 功能：
+ * 1. 将 _DAT_180d48db8 设置为指向 UNK_180a3c3e0
+ * 2. 检查 _DAT_180d48dc0 是否为0，如果不为0则调用错误处理函数
+ * 3. 重置计数器 _DAT_180d48dc0 和 _DAT_180d48dd0 为0
+ * 4. 最后将 _DAT_180d48db8 设置为指向 UNK_18098bcb0
+ */
+void InitializeSystemDataStructureAE(void)
+void InitializeSystemDataStructureAE(void)
 
 {
   _DAT_180d48db8 = &UNK_180a3c3e0;
@@ -84416,8 +84479,15 @@ void FUN_180941d50(void)
 
 
 
- void FUN_180941da0(void)
-void FUN_180941da0(void)
+ /**
+ * 初始化系统数据结构AF
+ * 销毁位于 0x180d49680 的互斥锁
+ * 
+ * 注意：此函数包含间接跳转，被编译器识别为调用
+ * 主要功能是清理和销毁系统数据结构中的互斥锁
+ */
+void InitializeSystemDataStructureAF(void)
+void InitializeSystemDataStructureAF(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180941db8. Too many branches
@@ -84431,8 +84501,13 @@ void FUN_180941da0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941dd0(void)
-void FUN_180941dd0(void)
+ /**
+ * 初始化系统数据结构AG
+ * 将全局变量 _DAT_180d49730 设置为指向 UNK_18098bcb0
+ * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ */
+void InitializeSystemDataStructureAG(void)
+void InitializeSystemDataStructureAG(void)
 
 {
   _DAT_180d49730 = &UNK_18098bcb0;
