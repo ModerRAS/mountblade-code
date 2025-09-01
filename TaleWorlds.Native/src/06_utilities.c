@@ -562,19 +562,6 @@ void* SystemPerformanceConfig;
 void* SystemLocalizationConfig;
 void* SystemModdingConfig;
 void* SystemDebugConfig;
-void* SystemThreadConfigTable;
-void* SystemProcessConfigTable;
-void* SystemEventConfigTable;
-void* SystemTimerConfigTable;
-void* SystemSyncConfigTable;
-void* SystemLockConfigTable;
-void* SystemSemaphoreConfigTable;
-void* SystemMutexConfigTable;
-void* SystemConditionConfigTable;
-void* SystemBarrierConfigTable;
-void* SystemPoolConfigTable;
-void* SystemQueueConfigTable;
-void* SystemStackConfigTable;
 void* SystemConfigurationTable;
 void* SystemStatusTable;
 void* SystemResourceTable;
@@ -1393,8 +1380,7 @@ uint8_t CleanupMemoryHandle;
 uint8_t CleanupMemoryData;
 uint8_t CleanupMemoryContext;
 
- void ResizeMemoryPool(void);
-/**
+ /**
  * @brief 调整内存池大小
  * 
  * 该函数负责调整系统内存池的大小
@@ -1407,8 +1393,7 @@ uint8_t ResizeMemoryHandle;
 uint8_t ResizeMemoryData;
 uint8_t ResizeMemoryContext;
 
- void OptimizeMemoryUsage(void);
-/**
+ /**
  * @brief 优化内存使用
  * 
  * 该函数负责优化系统内存使用
@@ -1421,8 +1406,7 @@ uint8_t OptimizeMemoryHandle;
 uint8_t OptimizeMemoryData;
 uint8_t OptimizeMemoryContext;
 
- void CheckMemoryLeaks(void);
-/**
+ /**
  * @brief 检查内存泄漏
  * 
  * 该函数负责检查系统中的内存泄漏
@@ -1435,8 +1419,7 @@ uint8_t MemoryLeakHandle;
 uint8_t MemoryLeakDataBuffer;
 uint8_t MemoryLeakContext;
 
- void TrackMemoryUsage(void);
-/**
+ /**
  * @brief 跟踪内存使用
  * 
  * 该函数负责跟踪系统内存使用情况
@@ -1449,7 +1432,6 @@ uint8_t MemoryTrackingHandle;
 uint8_t MemoryTrackingData;
 uint8_t MemoryTrackingContext;
 
- void LogMemoryStatistics(void);
 /**
  * @brief 记录内存统计信息
  * 
@@ -1463,8 +1445,7 @@ uint8_t MemoryStatsHandle;
 uint8_t MemoryStatsDataBuffer;
 uint8_t MemoryStatsContext;
 
- void GarbageCollectMemory(void);
-/**
+ /**
  * @brief 内存垃圾回收
  * 
  * 该函数负责执行内存垃圾回收
@@ -1477,8 +1458,7 @@ uint8_t GarbageCollectionHandle;
 uint8_t GarbageCollectionDataBuffer;
 uint8_t GarbageCollectionContext;
 
- void CompactMemory(void);
-/**
+ /**
  * @brief 压缩内存
  * 
  * 该函数负责压缩系统内存
@@ -1528,8 +1508,7 @@ uint8_t ReallocateMemoryHandle;
 uint8_t ReallocateMemoryData;
 uint8_t ReallocateMemoryBuffer;
 
- void CopyMemoryBlock(void);
-/**
+ /**
  * @brief 复制内存块
  * 
  * 该函数负责复制内存块数据
@@ -1543,8 +1522,7 @@ uint8_t MemoryCopyStatus;
 uint8_t MemoryCopyData;
 uint8_t MemoryCopyPoolBuffer;
 
- void CompareMemoryBlocks(void);
-/**
+ /**
  * @brief 比较内存块
  * 
  * 该函数负责比较两个内存块的内容
@@ -1557,8 +1535,7 @@ uint8_t MemoryCompareStatus;
 uint8_t MemoryCompareData;
 uint8_t MemoryComparePoolBuffer;
 
- void SetMemoryProtection(void);
-/**
+ /**
  * @brief 设置内存保护
  * 
  * 该函数负责设置内存保护属性
