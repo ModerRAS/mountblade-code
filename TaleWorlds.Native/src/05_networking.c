@@ -257,48 +257,51 @@ undefined g_NetworkEncryptionContext;
 undefined g_NetworkCompressionContext;
 undefined g_NetworkAuthenticationContext;
 undefined g_NetworkSecurityContext;
-undefined UNK_180986e10;
-undefined UNK_180986e38;
-undefined UNK_180986ef0;
-undefined UNK_180986af0;
-undefined UNK_180986bb8;
-undefined UNK_180986d78;
-undefined UNK_180986a10;
-undefined UNK_180986ce0;
-undefined UNK_180986ab0;
-undefined UNK_180986930;
-undefined UNK_180986ca8;
-undefined UNK_180986b00;
-undefined UNK_180986d58;
-undefined UNK_180986e60;
-undefined UNK_180986bf0;
-undefined UNK_180986d50;
-undefined UNK_180986a60;
-undefined UNK_180986c70;
-undefined UNK_180986c30;
-undefined UNK_180986d18;
-undefined UNK_180986948;
-undefined UNK_180986ab8;
-undefined UNK_180986938;
-undefined UNK_180986b40;
-undefined UNK_180987010;
-undefined UNK_1808b168c;
-undefined UNK_1808b16c0;
-undefined UNK_1808b16f4;
-undefined UNK_180984c08;
-undefined UNK_180987090;
-undefined UNK_180987110;
-undefined UNK_180987190;
-undefined UNK_1809871b0;
-undefined UNK_180987170;
-undefined UNK_180987150;
+undefined g_NetworkConnectionContext;
+undefined g_NetworkConnectionContextSize;
+undefined g_NetworkConnectionPoolManager;
+undefined g_NetworkConnectionPoolData;
+undefined g_NetworkConnectionPoolIndex;
+undefined g_NetworkConnectionPoolSize;
+undefined g_NetworkSocketContext;
+undefined g_NetworkSocketContextSize;
+undefined g_NetworkSocketData;
+undefined g_NetworkSocketIndex;
+undefined g_NetworkSocketSize;
+undefined g_NetworkPacketContext;
+undefined g_NetworkPacketContextSize;
+undefined g_NetworkPacketData;
+undefined g_NetworkPacketIndex;
+undefined g_NetworkPacketSize;
+undefined g_NetworkPacketHeaderData;
+undefined g_NetworkPacketHeaderSize;
+undefined g_NetworkPacketTrailerData;
+undefined g_NetworkPacketTrailerSize;
+undefined g_NetworkBufferManager;
+undefined g_NetworkBufferData;
+undefined g_NetworkBufferSize;
+undefined g_NetworkBufferIndex;
+undefined g_NetworkConnectionManager;
+undefined g_NetworkConnectionData;
+undefined g_NetworkConnectionSize;
+undefined g_NetworkConnectionIndex;
+undefined g_NetworkEventContext;
+undefined g_NetworkEventData;
+undefined g_NetworkEventSize;
+undefined g_NetworkEventIndex;
+undefined g_NetworkCallbackContext;
+undefined g_NetworkCallbackData;
+undefined g_NetworkCallbackSize;
+undefined g_NetworkCallbackIndex;
 
-// 函数: void FUN_180840074(void)
+// 函数: void InitializeNetworkConnectionState(void)
 /**
  * 初始化网络连接状态
  * 
  * 该函数负责初始化网络连接的基本状态和参数设置。
  * 用于建立和维护网络通信的基础设施。
+ * 
+ * @return 无返回值
  * 
  * 注意：这是一个反编译的函数实现
  */

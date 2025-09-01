@@ -341,10 +341,10 @@ int InitializeStringProcessorI(void)
   callbackResult = FUN_1808fc7d0(FUN_1809419a0);
   return (callbackResult != 0) - 1;
 }
-int FUN_18002e8b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int InitializeConfigurationMutex(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
 {
   longlong callbackResult;
-  _Mtx_init_in_situ(0x180c91970,0x102,param_3,param_4,0xfffffffffffffffe);
+  _Mtx_init_in_situ(0x180c91970,0x102,mutexType,mutexAttr,0xfffffffffffffffe);
   callbackResult = FUN_1808fc7d0(FUN_1809419c0);
   return (callbackResult != 0) - 1;
 }
