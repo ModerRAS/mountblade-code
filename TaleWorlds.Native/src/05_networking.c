@@ -16009,7 +16009,7 @@ NetworkHandle ProcessNetworkDataTransfer(NetworkHandle *connectionContext,Networ
               networkStatus1 = iVar7;
             }
             iVar7 = iVar7 + 1;
-            lVar6 = lVar6 + 8;
+            arrayIndex = arrayIndex + 8;
           } while (iVar7 < *(int *)(connectionContext + 0x20));
         }
       }
@@ -16028,7 +16028,7 @@ NetworkHandle ProcessNetworkDataTransfer(NetworkHandle *connectionContext,Networ
               networkStatus1 = iVar7;
             }
             iVar7 = iVar7 + 1;
-            lVar6 = lVar6 + 8;
+            arrayIndex = arrayIndex + 8;
           } while (iVar7 < *(int *)(connectionContext + 0x20));
         }
       }
@@ -34632,7 +34632,7 @@ LAB_18085d4e7:
       if ((int)tertiaryNetworkFlag != 0) {
         return tertiaryNetworkFlag;
       }
-      networkStatus4 = networkStatus4 + 1;
+      cleanupIndex = cleanupIndex + 1;
     } while (networkStatus4 < (int)dataSize[1]);
   }
   return 0;
@@ -34667,7 +34667,7 @@ NetworkHandle FUN_18085d570(longlong connectionContext,longlong *packetData,long
         return tertiaryNetworkFlag;
       }
 LAB_18085d61f:
-      networkStatus4 = networkStatus4 + 1;
+      cleanupIndex = cleanupIndex + 1;
     } while (networkStatus4 < (int)dataSize[1]);
   }
   return 0;
@@ -47563,7 +47563,7 @@ NetworkStatus FUN_180867d60(NetworkHandle *connectionContext)
       do {
         iVar5 = ProcessBufferQueue();
         if (iVar5 != 0) goto LAB_180867f55;
-        networkStatus4 = networkStatus4 + 1;
+        cleanupIndex = cleanupIndex + 1;
       } while (networkStatus4 < *(int *)(connectionContext + 5));
     }
     if (connectionContext[3] != 0) {
@@ -48791,7 +48791,7 @@ FUN_1808690e0(code *connectionContext,longlong *packetData,longlong dataSize,Net
             iVar6 = *(int *)(*packetData + (longlong)networkStatus4 * 4);
             goto LAB_1808691e9;
           }
-          networkStatus4 = networkStatus4 + 1;
+          cleanupIndex = cleanupIndex + 1;
           lVar3 = lVar3 + 1;
         } while (lVar3 != (int)packetData[1]);
       }
@@ -48859,7 +48859,7 @@ FUN_180869270(code *connectionContext,longlong *packetData,longlong dataSize,Net
             iVar6 = *(int *)(*packetData + (longlong)networkStatus4 * 4);
             goto LAB_180869379;
           }
-          networkStatus4 = networkStatus4 + 1;
+          cleanupIndex = cleanupIndex + 1;
           lVar3 = lVar3 + 1;
         } while (lVar3 != (int)packetData[1]);
       }
@@ -48927,7 +48927,7 @@ FUN_180869400(code *connectionContext,longlong *packetData,longlong dataSize,Net
             iVar6 = *(int *)(*packetData + (longlong)networkStatus4 * 4);
             goto LAB_180869509;
           }
-          networkStatus4 = networkStatus4 + 1;
+          cleanupIndex = cleanupIndex + 1;
           lVar3 = lVar3 + 1;
         } while (lVar3 != (int)packetData[1]);
       }
@@ -48995,7 +48995,7 @@ FUN_180869590(code *connectionContext,longlong *packetData,longlong dataSize,Net
             iVar6 = *(int *)(*packetData + (longlong)networkStatus4 * 4);
             goto LAB_180869699;
           }
-          networkStatus4 = networkStatus4 + 1;
+          cleanupIndex = cleanupIndex + 1;
           lVar3 = lVar3 + 1;
         } while (lVar3 != (int)packetData[1]);
       }
@@ -49063,7 +49063,7 @@ FUN_180869720(code *connectionContext,longlong *packetData,longlong dataSize,Net
             iVar6 = *(int *)(*packetData + (longlong)networkStatus4 * 4);
             goto LAB_180869829;
           }
-          networkStatus4 = networkStatus4 + 1;
+          cleanupIndex = cleanupIndex + 1;
           lVar3 = lVar3 + 1;
         } while (lVar3 != (int)packetData[1]);
       }
@@ -49131,7 +49131,7 @@ FUN_1808698b0(code *connectionContext,longlong *packetData,longlong dataSize,Net
             iVar6 = *(int *)(*packetData + (longlong)networkStatus4 * 4);
             goto LAB_1808699bc;
           }
-          networkStatus4 = networkStatus4 + 1;
+          cleanupIndex = cleanupIndex + 1;
           lVar3 = lVar3 + 1;
         } while (lVar3 != (int)packetData[1]);
       }
@@ -49344,8 +49344,8 @@ LAB_180869c7a:
           iVar5 = *(int *)(unaff_RBP + 0x148);
         }
 LAB_180869c72:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -49599,8 +49599,8 @@ LAB_180869e7a:
           iVar5 = *(int *)(unaff_RBP + 0x88);
         }
 LAB_180869e72:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -49854,8 +49854,8 @@ LAB_18086a07a:
           iVar5 = *(int *)(unaff_RBP + 0x118);
         }
 LAB_18086a072:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -50112,12 +50112,12 @@ LAB_18086a27a:
             if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086a272;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x180)) = lVar3;
+          *(longlong *)(arrayIndex + *(longlong *)(connectionContext + 0x180)) = processedEntry;
           connectionCount = *(int *)(connectionContext + 0x188);
         }
 LAB_18086a272:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -50371,8 +50371,8 @@ LAB_18086a47a:
           iVar5 = *(int *)(unaff_RBP + 0x1d8);
         }
 LAB_18086a472:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -50626,8 +50626,8 @@ LAB_18086a67a:
           iVar5 = *(int *)(unaff_RBP + 0x108);
         }
 LAB_18086a672:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -50881,8 +50881,8 @@ LAB_18086a87a:
           iVar5 = *(int *)(unaff_RBP + 0xe8);
         }
 LAB_18086a872:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -51136,8 +51136,8 @@ LAB_18086aa7a:
           iVar5 = *(int *)(unaff_RBP + 0x1a8);
         }
 LAB_18086aa72:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -51391,8 +51391,8 @@ LAB_18086ac60:
           iVar5 = *(int *)(unaff_RBP + 0x48);
         }
 LAB_18086ac58:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -51646,8 +51646,8 @@ LAB_18086ae40:
           iVar5 = *(int *)(unaff_RBP + 0x38);
         }
 LAB_18086ae38:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -51901,8 +51901,8 @@ LAB_18086b03a:
           iVar5 = *(int *)(unaff_RBP + 0x138);
         }
 LAB_18086b032:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -52156,8 +52156,8 @@ LAB_18086b23a:
           iVar5 = *(int *)(unaff_RBP + 0x1e8);
         }
 LAB_18086b232:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -52411,8 +52411,8 @@ LAB_18086b420:
           iVar5 = *(int *)(unaff_RBP + 0x68);
         }
 LAB_18086b418:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -52666,8 +52666,8 @@ LAB_18086b61a:
           iVar5 = *(int *)(unaff_RBP + 0x198);
         }
 LAB_18086b612:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -52921,8 +52921,8 @@ LAB_18086b81a:
           iVar5 = *(int *)(unaff_RBP + 0x158);
         }
 LAB_18086b812:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -53183,8 +53183,8 @@ LAB_18086ba00:
           iVar5 = *(int *)(unaff_RBP + 0x78);
         }
 LAB_18086b9f8:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -53447,8 +53447,8 @@ LAB_18086bbfa:
           iVar5 = *(int *)(unaff_RBP + 0x1c8);
         }
 LAB_18086bbf2:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -53702,8 +53702,8 @@ LAB_18086bdfa:
           iVar5 = *(int *)(unaff_RBP + 0x1b8);
         }
 LAB_18086bdf2:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -53957,8 +53957,8 @@ LAB_18086bffa:
           iVar5 = *(int *)(unaff_RBP + 0x98);
         }
 LAB_18086bff2:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -54212,8 +54212,8 @@ LAB_18086c1fa:
           iVar5 = *(int *)(unaff_RBP + 0x178);
         }
 LAB_18086c1f2:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -54467,8 +54467,8 @@ LAB_18086c3e0:
           iVar5 = *(int *)(unaff_RBP + 0x58);
         }
 LAB_18086c3d8:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -54722,8 +54722,8 @@ LAB_18086c5da:
           iVar5 = *(int *)(unaff_RBP + 0x168);
         }
 LAB_18086c5d2:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -54977,8 +54977,8 @@ LAB_18086c7da:
           iVar5 = *(int *)(unaff_RBP + 0xa8);
         }
 LAB_18086c7d2:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -55232,8 +55232,8 @@ LAB_18086c9da:
           iVar5 = *(int *)(unaff_RBP + 0xb8);
         }
 LAB_18086c9d2:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -55487,8 +55487,8 @@ LAB_18086cbda:
           iVar5 = *(int *)(unaff_RBP + 0x128);
         }
 LAB_18086cbd2:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -55742,8 +55742,8 @@ LAB_18086cdda:
           iVar5 = *(int *)(unaff_RBP + 0x1f8);
         }
 LAB_18086cdd2:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -55997,8 +55997,8 @@ LAB_18086cfda:
           iVar5 = *(int *)(unaff_RBP + 0xd8);
         }
 LAB_18086cfd2:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -56252,8 +56252,8 @@ LAB_18086d1da:
           iVar5 = *(int *)(unaff_RBP + 200);
         }
 LAB_18086d1d2:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -56507,8 +56507,8 @@ LAB_18086d3da:
           iVar5 = *(int *)(unaff_RBP + 0xf8);
         }
 LAB_18086d3d2:
-        networkStatus4 = networkStatus4 + 1;
-        lVar6 = lVar6 + 8;
+        cleanupIndex = cleanupIndex + 1;
+        arrayIndex = arrayIndex + 8;
       }
       unaff_R14 = puStackX_20;
     } while (networkStatus4 < iVar5);
@@ -76421,7 +76421,7 @@ NetworkHandle EstablishNetworkConnection(longlong connectionContext,longlong pac
     if (((*(byte *)(lVar1 + 0x34) & 1) != 0) &&
        (((*(ushort *)(lVar1 + 0xe) & 0x7fff) != 0 &&
         (secondaryNetworkFlag = FUN_1808be0f0(*(NetworkHandle *)(connectionContext + 0x90)), (int)secondaryNetworkFlag != 0)))) break;
-    networkStatus4 = networkStatus4 + 1;
+    cleanupIndex = cleanupIndex + 1;
   }
   return secondaryNetworkFlag;
 }
@@ -76830,7 +76830,7 @@ int ValidateNetworkPacketHeader(longlong connectionContext,NetworkHandle packetD
             iVar5 = *(int *)(lVar1 + (longlong)networkStatus4 * 4);
             goto LAB_18088228f;
           }
-          networkStatus4 = networkStatus4 + 1;
+          cleanupIndex = cleanupIndex + 1;
           lVar3 = lVar3 + 1;
         } while (lVar3 != *(int *)(connectionContext + 0x8a0));
       }
@@ -89833,7 +89833,7 @@ uint ProcessNetworkHandleValidation(NetworkByte *connectionContext,int packetDat
         connectionContext[(int)secondaryNetworkFlag] = 0x2c;
         networkStatus1 = ProcessNetworkHandleBuffer(connectionContext + networkStatus3,packetData - networkStatus3,dataSize + (longlong)networkStatus4 * 8);
         secondaryNetworkFlag = networkStatus3 + networkStatus1;
-        networkStatus4 = networkStatus4 + 1;
+        cleanupIndex = cleanupIndex + 1;
       } while (networkStatus4 < param_4);
     }
   }
@@ -90752,7 +90752,7 @@ NetworkHandle FUN_18088f620(NetworkHandle connectionContext,longlong packetData,
         if (networkStatus2 != 1) {
           return 0x13;
         }
-        networkStatus4 = networkStatus4 + 1;
+        cleanupIndex = cleanupIndex + 1;
       } while (networkStatus4 < dataSize);
     }
     tertiaryNetworkFlag = 0;
@@ -90800,7 +90800,7 @@ NetworkHandle FUN_18088f643(void)
       if (networkStatus2 != 1) {
         return 0x13;
       }
-      networkStatus4 = networkStatus4 + 1;
+      cleanupIndex = cleanupIndex + 1;
     } while (networkStatus4 < unaff_ESI);
   }
   return 0;
@@ -92183,7 +92183,7 @@ void CleanupNetworkConnectionResources(void)
                     // WARNING: Subroutine does not return
             FUN_180862e00(primaryNetworkFlag,1);
           }
-          networkStatus4 = networkStatus4 + 1;
+          cleanupIndex = cleanupIndex + 1;
           lVar3 = lVar3 + 8;
         } while (networkStatus4 < iStack0000000000000038);
       }
@@ -93949,7 +93949,7 @@ NetworkHandle FUN_180891650(longlong connectionContext,longlong packetData)
                                 ,*(NetworkByte *)(connectionContext + 0x14)), (int)primaryNetworkFlag != 0)) {
         return primaryNetworkFlag;
       }
-      networkStatus4 = networkStatus4 + 1;
+      cleanupIndex = cleanupIndex + 1;
       ptertiaryNetworkFlag = ptertiaryNetworkFlag + 1;
       pnetworkStatus2 = pnetworkStatus2 + 2;
     } while (networkStatus4 < *(int *)(connectionContext + 0x10));
@@ -106506,7 +106506,7 @@ void FUN_18089bc10(longlong connectionContext,NetworkHandle *packetData)
             if (iVar5 != 0) {
               return;
             }
-            networkStatus4 = networkStatus4 + 1;
+            cleanupIndex = cleanupIndex + 1;
             auStackX_18[0] = auStackX_18[0] & -uVar6;
           } while (networkStatus4 < (int)uVar7);
         }
@@ -106568,7 +106568,7 @@ void FUN_18089bc5a(void)
           if (iVar5 != 0) {
             return;
           }
-          networkStatus4 = networkStatus4 + 1;
+          cleanupIndex = cleanupIndex + 1;
         } while (networkStatus4 < (int)uVar6);
       }
                     // WARNING: Subroutine does not return
@@ -109424,7 +109424,7 @@ LAB_18089cd76:
       if ((int)tertiaryNetworkFlag != 0) {
         return tertiaryNetworkFlag;
       }
-      networkStatus4 = networkStatus4 + 1;
+      cleanupIndex = cleanupIndex + 1;
     } while (networkStatus4 < (int)auStackX_18[0]);
   }
   if (*(uint *)(packetData + 8) < 0x6e) {
@@ -109499,7 +109499,7 @@ LAB_18089cd76:
       if ((int)tertiaryNetworkFlag != 0) {
         return tertiaryNetworkFlag;
       }
-      networkStatus4 = networkStatus4 + 1;
+      cleanupIndex = cleanupIndex + 1;
     } while (networkStatus4 < (int)in_stack_00000080);
   }
   if (*(uint *)(unaff_RSI + 8) < 0x6e) {
