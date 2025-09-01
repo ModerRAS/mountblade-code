@@ -3900,8 +3900,15 @@ void InitializeSystemDataTableStructureA(void)
 
 
 
-// 函数: void FUN_180030570(void)
-void FUN_180030570(void)
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统的资源管理器组件，设置资源分配的基础结构。
+ * 它会创建资源管理节点，配置资源分配回调函数，并建立资源标识符。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保资源管理系统的正常运行
+ */
+void InitializeSystemResourceManager(void)
 
 {
   char systemNodeFlag;
@@ -3913,16 +3920,16 @@ void FUN_180030570(void)
   undefined8 *systemCurrentNode;
   undefined8 *systemNextNode;
   undefined8 *systemPreviousNode;
-  undefined8 uStackX_18;
+  undefined8 systemCallbackData;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  uStackX_18 = 0;
+  systemCallbackData = 0;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01000,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -3934,24 +3941,33 @@ void FUN_180030570(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01000,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+    longlong memoryAllocationSize;
+    undefined8 *systemAllocatedNode;
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x402feffe4481676e;
-  puVar7[7] = 0xd4c2151109de93a0;
-  puVar7[8] = &UNK_180a003d0;
+  systemPreviousNode[6] = 0x402feffe4481676e;
+  systemPreviousNode[7] = 0xd4c2151109de93a0;
+  systemPreviousNode[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = resourceInitializationCallback;
+  systemPreviousNode[10] = resourceInitializationCallback;
   return;
 }
 
 
 
 
-// 函数: void FUN_180030670(void)
-void FUN_180030670(void)
+/**
+ * @brief 初始化系统性能监控器
+ * 
+ * 该函数负责初始化系统的性能监控组件，设置性能数据收集的基础结构。
+ * 它会创建性能监控节点，配置性能数据回调函数，并建立性能监控标识符。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保性能监控系统的正常运行
+ */
+void InitializeSystemPerformanceMonitor(void)
 
 {
   char systemNodeFlag;
@@ -3963,16 +3979,16 @@ void FUN_180030670(void)
   undefined8 *systemCurrentNode;
   undefined8 *systemNextNode;
   undefined8 *systemPreviousNode;
-  undefined *puStackX_18;
+  undefined *systemPerformanceCallback;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  puStackX_18 = &UNK_1800868c0;
+  systemPerformanceCallback = &UNK_1800868c0;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00fd8,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -3984,24 +4000,33 @@ void FUN_180030670(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00fd8,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+    longlong memoryAllocationSize;
+    undefined8 *systemAllocatedNode;
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4384dcc4b6d3f417;
-  puVar7[7] = 0x92a15d52fe2679bd;
-  puVar7[8] = &UNK_180a003e8;
+  systemPreviousNode[6] = 0x4384dcc4b6d3f417;
+  systemPreviousNode[7] = 0x92a15d52fe2679bd;
+  systemPreviousNode[8] = &UNK_180a003e8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = puStackX_18;
+  systemPreviousNode[10] = systemPerformanceCallback;
   return;
 }
 
 
 
 
-// 函数: void FUN_180030770(void)
-void FUN_180030770(void)
+/**
+ * @brief 初始化系统调试管理器
+ * 
+ * 该函数负责初始化系统的调试管理组件，设置调试功能的基础结构。
+ * 它会创建调试管理节点，配置调试回调函数，并建立调试功能标识符。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保调试系统的正常运行
+ */
+void InitializeSystemDebugManager(void)
 
 {
   char systemNodeFlag;
@@ -4013,16 +4038,16 @@ void FUN_180030770(void)
   undefined8 *systemCurrentNode;
   undefined8 *systemNextNode;
   undefined8 *systemPreviousNode;
-  undefined8 uStackX_18;
+  undefined8 systemDebugData;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  uStackX_18 = 0;
+  systemDebugData = 0;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00fb0,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -4034,16 +4059,18 @@ void FUN_180030770(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00fb0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+    longlong memoryAllocationSize;
+    undefined8 *systemAllocatedNode;
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4140994454d56503;
-  puVar7[7] = 0x399eced9bb5517ad;
-  puVar7[8] = &UNK_180a00400;
+  systemPreviousNode[6] = 0x4140994454d56503;
+  systemPreviousNode[7] = 0x399eced9bb5517ad;
+  systemPreviousNode[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = resourceInitializationCallback;
+  systemPreviousNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4053,7 +4080,15 @@ void FUN_180030770(void)
 
 
 // 函数: void FUN_180030870(void)
-void FUN_180030870(void)
+/**
+ * @brief 初始化系统字符串处理器
+ * 
+ * 该函数负责初始化系统的字符串处理组件，设置字符串操作的基础结构。
+ * 它会创建字符串处理缓冲区，配置字符串复制操作，并建立字符串处理标识符。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保字符串处理系统的正常运行
+ */
+void InitializeSystemStringProcessor(void)
 
 {
   undefined8 in_R9;
@@ -4075,17 +4110,34 @@ void FUN_180030870(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180030900(void)
+/**
+ * @brief 初始化系统数据管理器
+ * 
+ * 该函数负责初始化系统的数据管理组件，设置数据处理的基础结构。
+ * 它会创建数据管理节点，配置数据操作回调函数，并建立数据管理标识符。
+ * 
+ * @return 初始化结果状态码
+ * @note 这是系统初始化过程中的重要组成部分，确保数据管理系统的正常运行
+ */
+int InitializeSystemDataManager(void)
 
 {
-  longlong lVar1;
-  undefined8 in_R9;
+  longlong systemDataOffset;
+  undefined8 systemParameter;
   
   _DAT_180bf6750 = &UNK_1809fcc58;
   _DAT_180bf6758 = &DAT_180bf6768;
 
 // 函数: void FUN_180031a10(void)
-void FUN_180031a10(void)
+/**
+ * @brief 初始化系统事件管理器
+ * 
+ * 该函数负责初始化系统的事件管理组件，设置事件处理的基础结构。
+ * 它会创建事件管理节点，配置事件处理回调函数，并建立事件管理标识符。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保事件管理系统的正常运行
+ */
+void InitializeSystemEventManager(void)
 
 {
   char systemNodeFlag;
@@ -4097,7 +4149,7 @@ void FUN_180031a10(void)
   undefined8 *systemCurrentNode;
   undefined8 *systemNextNode;
   undefined8 *systemPreviousNode;
-  code *pcStackX_18;
+  code *eventCallbackPointer;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
