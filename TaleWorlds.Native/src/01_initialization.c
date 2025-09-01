@@ -20708,28 +20708,28 @@ void CleanupSystemResource(long long param_1)
 long long ManageSystemResources(long long param_1,long long param_2,void* param_3,void* param_4)
 
 {
-  void* *puVar1;
-  uint32_t uVar2;
-  uint32_t uVar3;
-  uint32_t uVar4;
-  void* uVar5;
+  void* *resourcePointer;
+  uint32_t resourceStatusFlag1;
+  uint32_t resourceStatusFlag2;
+  uint32_t resourceStatusFlag3;
+  void* resourceHandle;
   void** systemRootNode;
   void** systemCurrentNode;
   void** systemNextNode;
-  void* *puVar9;
-  void* uVar10;
+  void* *systemConfigPointer;
+  void* systemMemoryHandle;
   
-  uVar10 = 0xfffffffffffffffe;
+  systemMemoryHandle = 0xfffffffffffffffe;
   FUN_180627ae0();
   *(void* *)(param_1 + 0x20) = *(void* *)(param_2 + 0x20);
   *(void* *)(param_1 + 0x28) = *(void* *)(param_2 + 0x28);
-  uVar5 = *(void* *)(param_2 + 0x38);
+  resourceHandle = *(void* *)(param_2 + 0x38);
   *(void* *)(param_1 + 0x30) = *(void* *)(param_2 + 0x30);
-  *(void* *)(param_1 + 0x38) = uVar5;
-  uVar5 = *(void* *)(param_2 + 0x48);
+  *(void* *)(param_1 + 0x38) = resourceHandle;
+  resourceHandle = *(void* *)(param_2 + 0x48);
   *(void* *)(param_1 + 0x40) = *(void* *)(param_2 + 0x40);
-  *(void* *)(param_1 + 0x48) = uVar5;
-  uVar5 = *(void* *)(param_2 + 0x58);
+  *(void* *)(param_1 + 0x48) = resourceHandle;
+  resourceHandle = *(void* *)(param_2 + 0x58);
   *(void* *)(param_1 + 0x50) = *(void* *)(param_2 + 0x50);
   *(void* *)(param_1 + 0x58) = uVar5;
   uVar2 = *(uint32_t *)(param_2 + 100);
