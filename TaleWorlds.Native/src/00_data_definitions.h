@@ -2,9 +2,9 @@
 #define DATA_DEFINITIONS_H
 
 // 全局系统数据指针
-void* SystemGlobalData;
+void* GlobalSystemData;
 // 未知全局数据指针
-void* UnknownGlobalData;
+void* GlobalUnknownData;
 
 /**
  * 初始化渲染系统模块
