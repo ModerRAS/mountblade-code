@@ -32596,7 +32596,6 @@ void ProcessSystemResourceRange(long long *SystemResourcePointer,long long Confi
 
 
 
-// 函数: void FUN_180058a31(long long *SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter,long long ConfigurationFlag)
 /**
  * @brief 系统资源数据复制器函数
  * 
