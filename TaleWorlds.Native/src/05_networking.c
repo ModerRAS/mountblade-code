@@ -589,6 +589,15 @@ uint32_t NetworkCallbackData;
 uint32_t NetworkCallbackSize;
 uint32_t NetworkCallbackIndex;
 
+// 全局网络连接表，用于管理所有网络连接的索引和状态
+uint32_t NetworkConnectionTable;
+// 网络安全验证数据，用于存储连接验证相关的信息
+uint32_t NetworkSecurityValidationData;
+// 网络缓冲区数据模板，用于数据包处理和缓冲区管理
+uint32_t NetworkBufferDataTemplate;
+// 网络连接数据默认值，用于连接初始化时的默认配置
+uint32_t NetworkConnectionDataDefault;
+
 /**
  * @brief 初始化网络连接状态
  * 
@@ -643,7 +652,7 @@ void ResetNetworkConnectionPointer(void)
   uint64_t *networkConnectionPointer;
   
   *networkConnectionPointer = (uint64_t)*(uint *)(networkConnectionContext + 0x20);
-  CleanupNetworkConnectionStack(&stack0x00000078);
+  CleanupNetworkConnectionStack(&NetworkStackBuffer78);
 }
 
 
@@ -684,7 +693,7 @@ uint ValidateNetworkConnectionParameters(longlong *connectionParams)
     }
     if ((0 < (int)parameterValue) && (*connectionParams != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionParams,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionParams,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionParams = 0;
     parameterValue = 0;
@@ -707,7 +716,7 @@ uint ValidateNetworkConnectionParameters(longlong *connectionParams)
   }
   if ((0 < *(int *)((longlong)connectionParams + 0xc)) && (*connectionParams != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionParams,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionParams,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionParams = 0;
   *(NetworkStatus *)((longlong)connectionParams + 0xc) = 0;
@@ -808,7 +817,7 @@ uint64_t CleanupNetworkConnectionResources(longlong *connectionContext)
     }
     if ((0 < (int)validationRange) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     validationRange = 0;
@@ -891,9 +900,9 @@ error_handling:
       status = 0x14;
     }
   }
-  if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0) {
+  if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0) {
     result = FormatNetworkErrorDetails(errorBuffer,0x100,connectionHandle);
-    errorStatus = FormatNetworkErrorMessage(errorBuffer + result,0x100 - result,&g_NetworkBufferDataTemplate);
+    errorStatus = FormatNetworkErrorMessage(errorBuffer + result,0x100 - result,&NetworkBufferDataTemplate);
     LogNetworkConnectionError(errorBuffer + (result + errorStatus),0x100 - (result + errorStatus),connectionType);
     errorMessage = errorBuffer;
                     // WARNING: Subroutine does not return
@@ -937,7 +946,7 @@ void ValidateNetworkConnection(NetworkHandle connectionId,ulonglong *connectionS
   
   stackGuard = NetworkSecurityGuardValue ^ (ulonglong)securityBuffer;
   if (connectionStatus == (ulonglong *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       CleanupNetworkSecurityBuffer(stackGuard ^ (ulonglong)securityBuffer);
     }
@@ -1234,10 +1243,10 @@ uint32_t InitializeNetworkConnectionContext(uint32_t connectionFlags, int64_t co
   }
   else if (status != 0) goto LAB_1808408dd;
   connectionTable = (uint64_t *)(connectionOffset + 0xb0);
-  connectionResult = &g_NetworkConnectionDataDefault;
+  connectionResult = &NetworkConnectionDataDefault;
   for (connectionEntry = (uint64_t *)*connectionTable; connectionEntry != connectionTable; connectionEntry = (uint64_t *)*connectionEntry) {
     if (*(int32_t *)(connectionEntry + 3) < 1) {
-      connectionData = &g_NetworkConnectionDataDefault;
+      connectionData = &NetworkConnectionDataDefault;
     }
     else {
       connectionData = (uint8_t *)connectionEntry[2];
@@ -1257,7 +1266,7 @@ uint32_t InitializeNetworkConnectionContext(uint32_t connectionFlags, int64_t co
   networkPointer1 = (NetworkHandle *)(localContext + 0xc0);
   for (networkPointer2 = (NetworkHandle *)*networkPointer1; networkPointer2 != networkPointer1; networkPointer2 = (NetworkHandle *)*networkPointer2) {
     if (*(int *)(networkPointer2 + 3) < 1) {
-      networkPointer4 = &g_NetworkConnectionDataDefault;
+      networkPointer4 = &NetworkConnectionDataDefault;
     }
     else {
       networkPointer4 = (NetworkData *)networkPointer2[2];
@@ -1265,7 +1274,7 @@ uint32_t InitializeNetworkConnectionContext(uint32_t connectionFlags, int64_t co
     networkStatus3 = NetworkConnectionDataValidate(networkPointer4,packetData);
     if (networkStatus3 == 0) {
       if (*(int *)(networkPointer2 + 3) < 1) {
-        networkPointer4 = &g_NetworkConnectionDataDefault;
+        networkPointer4 = &NetworkConnectionDataDefault;
       }
       else {
         networkPointer4 = (NetworkData *)networkPointer2[2];
@@ -1327,10 +1336,10 @@ void ProcessNetworkConnectionContext(NetworkHandle connectionContext, NetworkHan
   }
   else if (operationStatus != 0) goto LAB_1808408dd;
   connectionTable = (NetworkHandle *)(stackParameter2 + 0xb0);
-  connectionResult = &g_NetworkConnectionDataDefault;
+  connectionResult = &NetworkConnectionDataDefault;
   for (connectionEntry = (NetworkHandle *)*connectionTable; connectionEntry != connectionTable; connectionEntry = (NetworkHandle *)*connectionEntry) {
     if (*(int *)(networkPointer2 + 3) < 1) {
-      networkPointer4 = &g_NetworkConnectionDataDefault;
+      networkPointer4 = &NetworkConnectionDataDefault;
     }
     else {
       networkPointer4 = (NetworkData *)networkPointer2[2];
@@ -1350,7 +1359,7 @@ void ProcessNetworkConnectionContext(NetworkHandle connectionContext, NetworkHan
   networkPointer1 = (NetworkHandle *)(lStack0000000000000030 + 0xc0);
   for (networkPointer2 = (NetworkHandle *)*networkPointer1; networkPointer2 != networkPointer1; networkPointer2 = (NetworkHandle *)*networkPointer2) {
     if (*(int *)(networkPointer2 + 3) < 1) {
-      networkPointer4 = &g_NetworkConnectionDataDefault;
+      networkPointer4 = &NetworkConnectionDataDefault;
     }
     else {
       networkPointer4 = (NetworkData *)networkPointer2[2];
@@ -1358,7 +1367,7 @@ void ProcessNetworkConnectionContext(NetworkHandle connectionContext, NetworkHan
     networkStatus3 = NetworkConnectionDataValidate(networkPointer4);
     if (networkStatus3 == 0) {
       if (*(int *)(networkPointer2 + 3) < 1) {
-        networkPointer4 = &g_NetworkConnectionDataDefault;
+        networkPointer4 = &NetworkConnectionDataDefault;
       }
       else {
         networkPointer4 = (NetworkData *)networkPointer2[2];
@@ -1491,7 +1500,7 @@ LAB_180840a03:
           tempOffset = *(int64_t *)(connectionInfo + 0x10 + *(int64_t *)(packetData + 0x20));
           if (tempOffset == 0) break;
           if (*(int32_t *)(tempOffset + 0x58) < 1) {
-            packetBuffer = &g_NetworkConnectionDataDefault;
+            packetBuffer = &NetworkConnectionDataDefault;
           }
           else {
             packetBuffer = *(uint8_t **)(tempOffset + 0x50);
@@ -1613,7 +1622,7 @@ void FindNetworkConnectionIndex(longlong connectionContext, longlong searchKey, 
         do {
           connectionEntry = NetworkGetConnectionByIndex(connectionContext,connectionIndex);
           if (*(int *)(lVar3 + 0x58) < 1) {
-            networkPointer4 = &g_NetworkConnectionDataDefault;
+            networkPointer4 = &NetworkConnectionDataDefault;
           }
           else {
             networkPointer4 = *(NetworkData **)(lVar3 + 0x50);
@@ -1690,7 +1699,7 @@ LAB_180840d1b:
     }
     goto LAB_180840d1b;
   }
-  if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0) {
+  if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0) {
     puStack_148 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
@@ -1784,15 +1793,15 @@ int ValidateNetworkPacket(longlong packetContext, longlong packetData, int packe
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x2c);
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   networkStatus3 = ProcessNetworkBufferCopy(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkBufferCompressData(networkStatus3 + packetData,dataSize - networkStatus3,&uStack_18);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferCopy(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -1901,11 +1910,11 @@ int NetworkEncryptConnectionData(longlong connectionContext,longlong packetData,
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x1c);
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   networkStatus3 = ProcessNetworkBufferCopy(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -1924,11 +1933,11 @@ int NetworkDecryptConnectionData(longlong connectionContext,longlong packetData,
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x1c);
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   networkStatus3 = ProcessNetworkBufferCopy(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferCopy(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -1963,7 +1972,7 @@ int NetworkCompressConnectionData(longlong connectionContext,longlong packetData
   uStack_10 = *(NetworkStatus *)(connectionContext + 0x40);
   uStack_c = *(NetworkStatus *)(connectionContext + 0x44);
   networkStatus1 = ProcessNetworkBufferCopy(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = NetworkProcessBufferHandle(networkStatus1 + packetData,dataSize - networkStatus1,&networkBuffer);
   return networkStatus2 + networkStatus1;
@@ -2001,15 +2010,15 @@ int NetworkHashConnectionData(longlong connectionContext,longlong packetData,int
   secondaryNetworkFlag = *(NetworkByte *)(connectionContext + 0x24);
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x20);
   networkStatus3 = ProcessNetworkBufferCopy(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkProcessNetworkHandle(networkStatus3 + packetData,dataSize - networkStatus3,&uStackX_8);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkEncryption(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkEncryptPacketData(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -2039,15 +2048,15 @@ int ProcessNetworkDataSendRequest(longlong connectionContext,longlong packetData
   networkHandle = *(NetworkHandle *)(connectionContext + 0x18);
   encryptionKey = *(NetworkByte *)(connectionContext + 0x24);
   processedSize = ProcessNetworkBufferCopy(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  totalProcessedSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  totalProcessedSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&NetworkBufferDataTemplate);
   processedSize = processedSize + totalProcessedSize;
   totalProcessedSize = NetworkProcessNetworkHandle(processedSize + packetData,dataSize - processedSize,&networkHandle);
   processedSize = processedSize + totalProcessedSize;
-  totalProcessedSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  totalProcessedSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&NetworkBufferDataTemplate);
   processedSize = processedSize + totalProcessedSize;
   totalProcessedSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,connectionContext + 0x25);
   processedSize = processedSize + totalProcessedSize;
-  totalProcessedSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  totalProcessedSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&NetworkBufferDataTemplate);
   processedSize = processedSize + totalProcessedSize;
   totalProcessedSize = NetworkBufferEncryptData(processedSize + packetData,dataSize - processedSize,encryptionKey);
   return totalProcessedSize + processedSize;
@@ -2077,15 +2086,15 @@ int ProcessNetworkPacketValidationA(longlong connectionContext,longlong packetDa
   secondaryNetworkFlag = *(NetworkByte *)(connectionContext + 0x1c);
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   networkStatus3 = ProcessNetworkBufferCopy(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferData(networkStatus3 + packetData,dataSize - networkStatus3,connectionContext + 0x28);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkEncryption(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkEncryptPacketData(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -2113,15 +2122,15 @@ int ProcessNetworkPacketEncryptionB(longlong connectionContext,longlong packetDa
   
   primaryNetworkFlag = *(NetworkByte *)(connectionContext + 0x1c);
   networkStatus2 = ProcessNetworkBufferCopy(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0x28);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0xa8);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = NetworkBufferEncryptData(networkStatus2 + packetData,dataSize - networkStatus2,primaryNetworkFlag);
   return networkStatus3 + networkStatus2;
@@ -2151,11 +2160,11 @@ int ProcessNetworkPacketValidationB(longlong connectionContext,longlong packetDa
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x1c);
   networkStatus3 = ProcessNetworkBufferCopy(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkEncryption(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -2307,11 +2316,11 @@ int ProcessNetworkPacketPhaseThree(longlong connectionContext, longlong packetDa
   bufferStatusFour = *(NetworkStatus *)(connectionContext + 0x3c);
   quaternaryNetworkHandle = *(NetworkHandle *)(connectionContext + 0x40);
   firstProcessingStatus = ProcessNetworkHandleInitialization(packetData, dataSize, &primaryNetworkHandle);
-  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &NetworkBufferDataTemplate);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkBufferCopy(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, secondaryNetworkStatus);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
-  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &NetworkBufferDataTemplate);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkBufferCopy(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, primaryNetworkStatus);
   return secondProcessingStatus + firstProcessingStatus;
@@ -2347,11 +2356,11 @@ int ProcessNetworkPacketPhaseFour(longlong connectionContext, longlong packetDat
   primaryNetworkStatus = *(NetworkStatus *)(connectionContext + 0x10);
   secondaryNetworkStatus = *(NetworkStatus *)(connectionContext + 0x14);
   firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, connectionContext + 0x18);
-  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &NetworkBufferDataTemplate);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkBufferCopy(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, secondaryNetworkStatus);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
-  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &NetworkBufferDataTemplate);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkBufferCopy(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, primaryNetworkStatus);
   return secondProcessingStatus + firstProcessingStatus;
@@ -2387,19 +2396,19 @@ int ProcessNetworkPacketPhaseOne(longlong connectionContext, longlong packetData
   secondProcessingStatus = *(NetworkStatus *)(connectionContext + 0x1c);
   firstProcessingStatus = *(NetworkStatus *)(connectionContext + 0x18);
   currentOffset = ProcessNetworkAddressValidation(packetData, dataSize, *(NetworkHandle *)(connectionContext + 0x10));
-  processedBytes = ProcessNetworkBufferData(packetData + currentOffset, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(packetData + currentOffset, dataSize - currentOffset, &NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = ProcessNetworkDataValidation(currentOffset + packetData, dataSize - currentOffset, firstProcessingStatus);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = ProcessNetworkDataValidation(currentOffset + packetData, dataSize - currentOffset, secondProcessingStatus);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = ProcessNetworkBufferCopy(currentOffset + packetData, dataSize - currentOffset, thirdProcessingStatus);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = ProcessNetworkBufferCopy(currentOffset + packetData, dataSize - currentOffset, fourthProcessingStatus);
   return processedBytes + currentOffset;
@@ -2456,11 +2465,11 @@ int ProcessNetworkPacketPhaseTwo(longlong connectionContext, longlong packetData
   currentOffset = currentOffset + processedBytes;
   processedBytes = NetworkProcessBufferHandle(currentOffset + packetData, dataSize - currentOffset, &networkBuffer);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = NetworkProcessSecurityContext(currentOffset + packetData, dataSize - currentOffset, &securityContext);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = NetworkBufferEncryptData(currentOffset + packetData, dataSize - currentOffset, encryptionKey);
   return processedBytes + currentOffset;
@@ -2524,11 +2533,11 @@ int ProcessNetworkPacketPhaseFour(longlong connectionContext, longlong packetDat
   encryptionFlag = *(NetworkByte *)(connectionContext + 0x1c);
   connectionStatus = *(NetworkStatus *)(connectionContext + 0x18);
   currentOffset = NetworkProcessNetworkHandle(packetData, dataSize, &networkHandle);
-  processedBytes = ProcessNetworkBufferData(packetData + currentOffset, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(packetData + currentOffset, dataSize - currentOffset, &NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = ProcessNetworkEncryption(currentOffset + packetData, dataSize - currentOffset, connectionStatus);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = ProcessNetworkBufferWithEncryption(currentOffset + packetData, dataSize - currentOffset, encryptionFlag);
   return processedBytes + currentOffset;
@@ -2560,11 +2569,11 @@ int ProcessEncryptedNetworkPacket(longlong connectionContext, longlong packetDat
   networkHandle = *(NetworkHandle *)(connectionContext + 0x10);
   encryptionKey = *(NetworkByte *)(connectionContext + 0x1c);
   currentOffset = NetworkProcessNetworkHandle(packetData, dataSize, &networkHandle);
-  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, connectionContext + 0x1d);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = NetworkBufferEncryptData(currentOffset + packetData, dataSize - currentOffset, encryptionKey);
   return processedBytes + currentOffset;
@@ -2596,11 +2605,11 @@ int ProcessValidatedNetworkPacket(longlong connectionContext, longlong packetDat
   encryptionFlag = *(NetworkByte *)(connectionContext + 0x14);
   validationStatus = *(NetworkStatus *)(connectionContext + 0x10);
   currentOffset = ProcessNetworkBufferData(packetData, dataSize, connectionContext + 0x20);
-  processedBytes = ProcessNetworkBufferData(packetData + currentOffset, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(packetData + currentOffset, dataSize - currentOffset, &NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = ProcessNetworkEncryption(currentOffset + packetData, dataSize - currentOffset, validationStatus);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = ProcessNetworkBufferWithEncryption(currentOffset + packetData, dataSize - currentOffset, encryptionFlag);
   return processedBytes + currentOffset;
@@ -2631,11 +2640,11 @@ int ProcessNetworkPacketPhaseOne(longlong connectionContext, longlong packetData
   
   encryptionKey = *(NetworkByte *)(connectionContext + 0x14);
   firstPhaseStatus = ProcessNetworkBufferData(packetData, dataSize, connectionContext + 0x20);
-  secondPhaseStatus = ProcessNetworkBufferData(firstPhaseStatus + packetData, dataSize - firstPhaseStatus, &g_NetworkBufferDataTemplate);
+  secondPhaseStatus = ProcessNetworkBufferData(firstPhaseStatus + packetData, dataSize - firstPhaseStatus, &NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstPhaseStatus + secondPhaseStatus;
   secondPhaseStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, connectionContext + 0xa0);
   cumulativeProcessedSize = cumulativeProcessedSize + secondPhaseStatus;
-  secondPhaseStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  secondPhaseStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &NetworkBufferDataTemplate);
   cumulativeProcessedSize = cumulativeProcessedSize + secondPhaseStatus;
   secondPhaseStatus = NetworkBufferEncryptData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, encryptionKey);
   return secondPhaseStatus + cumulativeProcessedSize;
@@ -2719,19 +2728,19 @@ int SerializeNetworkConnectionData(longlong connectionData, longlong outputBuffe
   headerField2 = *(NetworkStatus *)(connectionData + 0x18);
   headerField3 = *(NetworkStatus *)(connectionData + 0x10);
   bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkSerializationBuffer);
-  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkBufferCopy(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,headerField3);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkDataValidation(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,headerField2);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ValidateNetworkBufferTimeout(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&connectionTimeout);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkBufferCopy(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,headerField1);
   return currentOffset + bytesProcessed;
@@ -2813,19 +2822,19 @@ int SerializeNetworkConfigData(longlong configData, longlong outputBuffer, int b
   configField2 = *(NetworkStatus *)(configData + 0x18);
   configField3 = *(NetworkStatus *)(configData + 0x10);
   bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkReservedMemoryRegion2fa0);
-  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkBufferCopy(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,configField3);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkDataValidation(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,configField2);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ValidateNetworkBufferTimeout(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&configTimeout);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkBufferCopy(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,configField1);
   return currentOffset + bytesProcessed;
@@ -2949,19 +2958,19 @@ int SerializeNetworkPoolData(longlong poolData, longlong outputBuffer, int buffe
   poolField2 = *(NetworkStatus *)(poolData + 0x18);
   poolField3 = *(NetworkStatus *)(poolData + 0x10);
   bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkPoolOutputContext);
-  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkBufferCopy(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,poolField3);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkDataValidation(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,poolField2);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ValidateNetworkBufferTimeout(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&poolTimeout);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkBufferCopy(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,poolField1);
   return currentOffset + bytesProcessed;
@@ -2989,7 +2998,7 @@ int SerializeNetworkStateData(longlong stateData, longlong outputBuffer, int buf
   
   stateField = *(NetworkStatus *)(stateData + 0x10);
   bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkSecondaryBufferContext);
-  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkBufferCopy(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,stateField);
   return currentOffset + bytesProcessed;
@@ -3017,7 +3026,7 @@ int SerializeNetworkEventData(longlong eventData, longlong outputBuffer, int buf
   
   eventField = *(NetworkStatus *)(eventData + 0x10);
   bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkTertiaryBufferContext);
-  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkBufferCopy(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,eventField);
   return currentOffset + bytesProcessed;
@@ -3045,7 +3054,7 @@ int SerializeNetworkErrorData(longlong errorData, longlong outputBuffer, int buf
   
   errorField = *(NetworkStatus *)(errorData + 0x10);
   bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkQuaternaryBufferContext);
-  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkBufferCopy(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,errorField);
   return currentOffset + bytesProcessed;
@@ -3075,11 +3084,11 @@ int SerializeNetworkConnectionInfo(longlong connectionInfo, longlong outputBuffe
   addressField = *(NetworkHandle *)(connectionInfo + 0x18);
   infoField = *(NetworkStatus *)(connectionInfo + 0x10);
   bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkExtendedBufferContext);
-  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkBufferCopy(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,infoField);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkAddressValidation(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,addressField);
   return currentOffset + bytesProcessed;
@@ -3107,7 +3116,7 @@ int SerializeNetworkStatsData(longlong statsData, longlong outputBuffer, int buf
   
   statsField = *(NetworkStatus *)(statsData + 0x10);
   bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkAlternateBufferContext);
-  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = ProcessNetworkBufferCopy(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,statsField);
   return currentOffset + bytesProcessed;
@@ -3182,11 +3191,11 @@ int ProcessNetworkPacketPhaseTwo(longlong connectionContext, longlong packetData
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &NetworkPacketProcessingTemplate);
-  secondProcessingStatus = ProcessNetworkBufferData(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkBufferCopy(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, firstNetworkFlag);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
-  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &NetworkBufferDataTemplate);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkEncryption(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
   return secondProcessingStatus + cumulativeProcessedSize;
@@ -3219,11 +3228,11 @@ int ProcessNetworkPacketPhaseThree(longlong connectionContext, longlong packetDa
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &NetworkConnectionPhaseOneTemplate);
-  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkBufferCopy(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
-  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &NetworkBufferDataTemplate);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkDataValidation(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, firstNetworkFlag);
   return secondProcessingStatus + cumulativeProcessedSize;
@@ -3286,11 +3295,11 @@ int ValidateNetworkConnectionPacket(longlong connectionContext, longlong packetD
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   firstValidationStatus = ProcessNetworkBufferData(packetData, dataSize, &NetworkConnectionValidationTemplate);
-  secondValidationStatus = ProcessNetworkBufferData(firstValidationStatus + packetData, dataSize - firstValidationStatus, &g_NetworkBufferDataTemplate);
+  secondValidationStatus = ProcessNetworkBufferData(firstValidationStatus + packetData, dataSize - firstValidationStatus, &NetworkBufferDataTemplate);
   cumulativeValidationResult = firstValidationStatus + secondValidationStatus;
   secondValidationStatus = ProcessNetworkBufferCopy(cumulativeValidationResult + packetData, dataSize - cumulativeValidationResult, secondNetworkFlag);
   cumulativeValidationResult = cumulativeValidationResult + secondValidationStatus;
-  secondValidationStatus = ProcessNetworkBufferData(cumulativeValidationResult + packetData, dataSize - cumulativeValidationResult, &g_NetworkBufferDataTemplate);
+  secondValidationStatus = ProcessNetworkBufferData(cumulativeValidationResult + packetData, dataSize - cumulativeValidationResult, &NetworkBufferDataTemplate);
   cumulativeValidationResult = cumulativeValidationResult + secondValidationStatus;
   secondValidationStatus = ProcessNetworkBufferCopy(cumulativeValidationResult + packetData, dataSize - cumulativeValidationResult, firstNetworkFlag);
   return secondValidationStatus + cumulativeValidationResult;
@@ -3323,11 +3332,11 @@ int ProcessNetworkPacketPhaseFive(longlong connectionContext, longlong packetDat
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &NetworkConnectionTemplate);
-  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkBufferCopy(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
-  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &NetworkBufferDataTemplate);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkDataValidation(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, firstNetworkFlag);
   return secondProcessingStatus + cumulativeProcessedSize;
@@ -3362,15 +3371,15 @@ int ProcessNetworkPacketPhaseSix(longlong connectionContext, longlong packetData
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   thirdNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &NetworkSecurityTemplate);
-  secondProcessingStatus = ProcessNetworkBufferData(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkBufferCopy(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, thirdNetworkFlag);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
-  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &NetworkBufferDataTemplate);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkDataValidation(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
-  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &NetworkBufferDataTemplate);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkDataValidation(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, firstNetworkFlag);
   return secondProcessingStatus + cumulativeProcessedSize;
@@ -3403,15 +3412,15 @@ int ProcessNetworkPacketHeader(longlong connectionContext,longlong packetData,in
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   tertiaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   networkStatus4 = ProcessNetworkBufferData(packetData,dataSize,&NetworkValidationTemplate);
-  iVar5 = ProcessNetworkBufferData(packetData + networkStatus4,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
+  iVar5 = ProcessNetworkBufferData(packetData + networkStatus4,dataSize - networkStatus4,&NetworkBufferDataTemplate);
   networkStatus4 = networkStatus4 + iVar5;
   iVar5 = ProcessNetworkBufferCopy(networkStatus4 + packetData,dataSize - networkStatus4,tertiaryNetworkFlag);
   networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = ProcessNetworkBufferData(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
+  iVar5 = ProcessNetworkBufferData(networkStatus4 + packetData,dataSize - networkStatus4,&NetworkBufferDataTemplate);
   networkStatus4 = networkStatus4 + iVar5;
   iVar5 = ProcessNetworkDataValidation(networkStatus4 + packetData,dataSize - networkStatus4,secondaryNetworkFlag);
   networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = ProcessNetworkBufferData(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
+  iVar5 = ProcessNetworkBufferData(networkStatus4 + packetData,dataSize - networkStatus4,&NetworkBufferDataTemplate);
   networkStatus4 = networkStatus4 + iVar5;
   iVar5 = ProcessNetworkBufferCopy(networkStatus4 + packetData,dataSize - networkStatus4,primaryNetworkFlag);
   return iVar5 + networkStatus4;
@@ -3441,11 +3450,11 @@ int ProcessNetworkPacketWithMultipleBuffers(longlong connectionContext,longlong 
   primaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x18);
   secondaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
   firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkEncryptionTemplate);
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,secondaryBufferStatus);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkDataValidation(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,primaryBufferStatus);
   return secondProcessingOffset + firstProcessingOffset;
@@ -3559,11 +3568,11 @@ int ProcessNetworkPacketWithHandle(longlong connectionContext,longlong packetDat
   networkHandle = *(NetworkHandle *)(connectionContext + 0x18);
   bufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
   firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkStreamTemplate);
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,bufferStatus);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkAddressValidation(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,networkHandle);
   return secondProcessingOffset + firstProcessingOffset;
@@ -3594,11 +3603,11 @@ int ProcessNetworkPacketStream(longlong connectionContext,longlong packetData,in
   connectionState = *(NetworkStatus *)(connectionContext + 0x18);
   networkFlags = *(NetworkStatus *)(connectionContext + 0x10);
   streamOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkDataStreamTemplate);
-  processedBytes = ProcessNetworkBufferData(streamOffset + packetData,dataSize - streamOffset,&g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(streamOffset + packetData,dataSize - streamOffset,&NetworkBufferDataTemplate);
   streamOffset = streamOffset + processedBytes;
   processedBytes = ProcessNetworkBufferCopy(streamOffset + packetData,dataSize - streamOffset,networkFlags);
   streamOffset = streamOffset + processedBytes;
-  processedBytes = ProcessNetworkBufferData(streamOffset + packetData,dataSize - streamOffset,&g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(streamOffset + packetData,dataSize - streamOffset,&NetworkBufferDataTemplate);
   streamOffset = streamOffset + processedBytes;
   processedBytes = ProcessNetworkBufferCopy(streamOffset + packetData,dataSize - streamOffset,connectionState);
   return processedBytes + streamOffset;
@@ -3709,7 +3718,7 @@ int ProcessNetworkConnectionProtocol(longlong connectionContext,longlong packetD
   dataOffset = dataOffset + processedSize;
   processedSize = ProcessNetworkBufferCopy(dataOffset + packetData,dataSize - dataOffset,connectionFlags);
   dataOffset = dataOffset + processedSize;
-  processedSize = ProcessNetworkBufferData(dataOffset + packetData,dataSize - dataOffset,&g_NetworkBufferDataTemplate);
+  processedSize = ProcessNetworkBufferData(dataOffset + packetData,dataSize - dataOffset,&NetworkBufferDataTemplate);
   dataOffset = dataOffset + processedSize;
   processedSize = ProcessNetworkPrimaryBuffer(dataOffset + packetData,dataSize - dataOffset,&primaryBuffer);
   return processedSize + dataOffset;
@@ -3740,11 +3749,11 @@ int HandleNetworkConnectionRequest(longlong connectionContext,longlong packetDat
   connectionState = *(NetworkStatus *)(connectionContext + 0x18);
   requestFlags = *(NetworkStatus *)(connectionContext + 0x10);
   requestOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkRequestBufferTemplate);
-  processedSize = ProcessNetworkBufferData(requestOffset + packetData,dataSize - requestOffset,&g_NetworkBufferDataTemplate);
+  processedSize = ProcessNetworkBufferData(requestOffset + packetData,dataSize - requestOffset,&NetworkBufferDataTemplate);
   requestOffset = requestOffset + processedSize;
   processedSize = ProcessNetworkBufferCopy(requestOffset + packetData,dataSize - requestOffset,requestFlags);
   requestOffset = requestOffset + processedSize;
-  processedSize = ProcessNetworkBufferData(requestOffset + packetData,dataSize - requestOffset,&g_NetworkBufferDataTemplate);
+  processedSize = ProcessNetworkBufferData(requestOffset + packetData,dataSize - requestOffset,&NetworkBufferDataTemplate);
   requestOffset = requestOffset + processedSize;
   processedSize = ProcessNetworkBufferCopy(requestOffset + packetData,dataSize - requestOffset,connectionState);
   return processedSize + requestOffset;
@@ -3778,19 +3787,19 @@ int ProcessNetworkPacketWithEncryptionFlag(longlong connectionContext,longlong p
   secondaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
   primaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x20);
   firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkFirstProcessingBufferTemplate);
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,secondaryBufferStatus);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkHandleBuffer(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&networkHandle);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkEncryption(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,primaryBufferStatus);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferWithEncryption(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,encryptionFlag);
   return secondProcessingOffset + firstProcessingOffset;
@@ -3824,19 +3833,19 @@ int ProcessNetworkPacketMultiPhase(longlong connectionContext,longlong packetDat
   primaryNetworkFlag = *(NetworkByte *)(connectionContext + 0x24);
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&NetworkBufferProcessingTemplateA);
-  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferCopy(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkProcessNetworkHandle(networkStatus3 + packetData,dataSize - networkStatus3,&uStackX_8);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferData(networkStatus3 + packetData,dataSize - networkStatus3,connectionContext + 0x25);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferWithEncryption(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -3868,19 +3877,19 @@ int ProcessNetworkPacketWithBuffer(longlong connectionContext, longlong packetDa
   connectionState = *(NetworkStatus *)(connectionContext + 0x10);
   primaryBuffer = *(NetworkStatus *)(connectionContext + 0x18);
   firstProcessingOffset = ProcessNetworkBufferData(packetData, dataSize, &NetworkFirstBufferTemplate);
-  secondProcessingOffset = ProcessNetworkBufferData(packetData + firstProcessingOffset, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(packetData + firstProcessingOffset, dataSize - firstProcessingOffset, &NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionState);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionContext + 0x28);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkEncryption(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, primaryBuffer);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferWithEncryption(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, encryptionFlag);
   return secondProcessingOffset + firstProcessingOffset;
@@ -3910,19 +3919,19 @@ int ProcessNetworkPacketWithExtendedContext(longlong connectionContext, longlong
   encryptionFlag = *(NetworkByte *)(connectionContext + 0x1c);
   connectionState = *(NetworkStatus *)(connectionContext + 0x10);
   firstProcessingOffset = ProcessNetworkBufferData(packetData, dataSize, &NetworkPacketHeaderTemplate);
-  secondProcessingOffset = ProcessNetworkBufferData(packetData + firstProcessingOffset, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(packetData + firstProcessingOffset, dataSize - firstProcessingOffset, &NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionState);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionContext + 0x28);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionContext + 0xa8);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferWithEncryption(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, encryptionFlag);
   return secondProcessingOffset + firstProcessingOffset;
@@ -3952,11 +3961,11 @@ int ProcessNetworkPacketSimplified(longlong connectionContext, longlong packetDa
   encryptionFlag = *(NetworkByte *)(connectionContext + 0x18);
   connectionState = *(NetworkStatus *)(connectionContext + 0x10);
   firstProcessingOffset = ProcessNetworkBufferData(packetData, dataSize, &NetworkDataChunkTemplate);
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionState);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferWithEncryption(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, encryptionFlag);
   return secondProcessingOffset + firstProcessingOffset;
@@ -4010,15 +4019,15 @@ int ProcessNetworkPacketWithMultipleStatus(longlong connectionContext, longlong 
   connectionState = *(NetworkStatus *)(connectionContext + 0x10);
   secondaryBuffer = *(NetworkStatus *)(connectionContext + 0x1c);
   firstProcessingOffset = ProcessNetworkBufferData(packetData, dataSize, &NetworkPacketValidationTemplate);
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionState);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkDataValidation(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, primaryBuffer);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkEncryption(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, secondaryBuffer);
   return secondProcessingOffset + firstProcessingOffset;
@@ -4051,15 +4060,15 @@ int ProcessNetworkPacketWithFullContext(longlong connectionContext,longlong pack
   connectionState = *(NetworkStatus *)(connectionContext + 0x10);
   bufferStatus = *(NetworkStatus *)(connectionContext + 0x1c);
   firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkPayloadDataTemplate);
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,connectionState);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkDataValidation(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,encryptionFlag);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkEncryption(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,bufferStatus);
   return secondProcessingOffset + firstProcessingOffset;
@@ -4090,11 +4099,11 @@ int ProcessNetworkPacketWithBufferTemplate(longlong connectionContext,longlong p
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&NetworkSecurityDataTemplate);
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferCopy(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -4174,11 +4183,11 @@ int ProcessNetworkConnectionAdvancedPacket(longlong connectionContext,longlong p
   connectionTimeout = *(NetworkStatus *)(connectionContext + 0x18);
   connectionFlags = *(NetworkStatus *)(connectionContext + 0x10);
   firstProcessingStatus = ProcessNetworkBufferData(packetData,dataSize,&NetworkAdvancedProcessingBuffer);
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferCopy(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -4218,7 +4227,7 @@ int ProcessNetworkConnectionPacketPhaseOne(longlong connectionContext,longlong p
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ValidateNetworkBufferTimeout(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ProcessNetworkBufferCopy(networkStatus2 + packetData,dataSize - networkStatus2,primaryNetworkFlag);
   return networkStatus3 + networkStatus2;
@@ -4260,7 +4269,7 @@ int ProcessNetworkPacketStreamWithTimeout(longlong connectionContext,longlong pa
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ValidateNetworkBufferTimeout(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ProcessNetworkBufferCopy(networkStatus2 + packetData,dataSize - networkStatus2,primaryNetworkFlag);
   return networkStatus3 + networkStatus2;
@@ -4344,11 +4353,11 @@ int ProcessNetworkHandshakeProtocol(longlong connectionContext,longlong packetDa
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x14);
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&NetworkDataStreamTemplateA);
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferCopy(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -4390,7 +4399,7 @@ int ProcessNetworkPacketTypeG(longlong connectionContext,longlong packetData,int
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ValidateNetworkBufferTimeout(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ProcessNetworkBufferCopy(networkStatus2 + packetData,dataSize - networkStatus2,primaryNetworkFlag);
   return networkStatus3 + networkStatus2;
@@ -4432,7 +4441,7 @@ int ProcessNetworkPacketTypeH(longlong connectionContext,longlong packetData,int
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ValidateNetworkBufferTimeout(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ProcessNetworkBufferCopy(networkStatus2 + packetData,dataSize - networkStatus2,primaryNetworkFlag);
   return networkStatus3 + networkStatus2;
@@ -4461,7 +4470,7 @@ int ProcessNetworkPacketTypeI(longlong connectionContext,longlong packetData,int
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ValidateNetworkBufferTimeout(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ProcessNetworkBufferCopy(networkStatus2 + packetData,dataSize - networkStatus2,primaryNetworkFlag);
   return networkStatus3 + networkStatus2;
@@ -4490,7 +4499,7 @@ int ProcessNetworkPacketTypeJ(longlong connectionContext,longlong packetData,int
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ValidateNetworkBufferTimeout(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ProcessNetworkBufferCopy(networkStatus2 + packetData,dataSize - networkStatus2,primaryNetworkFlag);
   return networkStatus3 + networkStatus2;
@@ -4549,7 +4558,7 @@ int ProcessNetworkPacketHeader(longlong connectionContext,longlong packetData,in
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = ValidateNetworkBufferTimeout(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&connectionOffset16);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
-  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
+  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&NetworkBufferDataTemplate);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = ProcessNetworkBufferCopy(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,encryptionKey);
   return dataProcessedSize + packetProcessingOffset;
@@ -4590,7 +4599,7 @@ int ProcessNetworkPacketBody(longlong connectionContext,longlong packetData,int 
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = ValidateNetworkBufferTimeout(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&connectionOffset16);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
-  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
+  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&NetworkBufferDataTemplate);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = ProcessNetworkBufferCopy(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,encryptionKey);
   return dataProcessedSize + packetProcessingOffset;
@@ -4639,15 +4648,15 @@ int ProcessNetworkPacketComplete(longlong connectionContext,longlong packetData,
   connectionOffset5c = *(NetworkStatus *)(connectionContext + 0x3c);
   connectionOffset60 = *(NetworkHandle *)(connectionContext + 0x40);
   packetProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkPacketCacheBuffer);
-  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
+  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&NetworkBufferDataTemplate);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = ProcessNetworkHandleInitialization(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&connectionOffset16);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
-  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
+  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&NetworkBufferDataTemplate);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = ProcessNetworkBufferCopy(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,encryptionKey2);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
-  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
+  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&NetworkBufferDataTemplate);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = ProcessNetworkBufferCopy(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,encryptionKey1);
   return dataProcessedSize + packetProcessingOffset;
@@ -4666,15 +4675,15 @@ int ProcessNetworkPacketTypeL(longlong connectionContext,longlong packetData,int
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x14);
   networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&NetworkPacketFilterBuffer);
-  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferData(networkStatus3 + packetData,dataSize - networkStatus3,connectionContext + 0x18);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferCopy(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferCopy(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -4699,23 +4708,23 @@ int ProcessNetworkPacketTypeM(longlong connectionContext,longlong packetData,int
   quaternaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   quinaryNetworkFlag = *(NetworkHandle *)(connectionContext + 0x10);
   dataProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkConnectionUnknownData);
-  validationStatus = ProcessNetworkBufferData(packetData + dataProcessingOffset,dataSize - dataProcessingOffset,&g_NetworkBufferDataTemplate);
+  validationStatus = ProcessNetworkBufferData(packetData + dataProcessingOffset,dataSize - dataProcessingOffset,&NetworkBufferDataTemplate);
   dataProcessingOffset = dataProcessingOffset + validationStatus;
   validationStatus = ProcessNetworkAddressValidation(dataProcessingOffset + packetData,dataSize - dataProcessingOffset,quinaryNetworkFlag);
   dataProcessingOffset = dataProcessingOffset + validationStatus;
-  validationStatus = ProcessNetworkBufferData(dataProcessingOffset + packetData,dataSize - dataProcessingOffset,&g_NetworkBufferDataTemplate);
+  validationStatus = ProcessNetworkBufferData(dataProcessingOffset + packetData,dataSize - dataProcessingOffset,&NetworkBufferDataTemplate);
   dataProcessingOffset = dataProcessingOffset + validationStatus;
   validationStatus = ProcessNetworkDataValidation(dataProcessingOffset + packetData,dataSize - dataProcessingOffset,quaternaryNetworkFlag);
   dataProcessingOffset = dataProcessingOffset + validationStatus;
-  validationStatus = ProcessNetworkBufferData(dataProcessingOffset + packetData,dataSize - dataProcessingOffset,&g_NetworkBufferDataTemplate);
+  validationStatus = ProcessNetworkBufferData(dataProcessingOffset + packetData,dataSize - dataProcessingOffset,&NetworkBufferDataTemplate);
   dataProcessingOffset = dataProcessingOffset + validationStatus;
   validationStatus = ProcessNetworkDataValidation(dataProcessingOffset + packetData,dataSize - dataProcessingOffset,tertiaryNetworkFlag);
   dataProcessingOffset = dataProcessingOffset + validationStatus;
-  validationStatus = ProcessNetworkBufferData(dataProcessingOffset + packetData,dataSize - dataProcessingOffset,&g_NetworkBufferDataTemplate);
+  validationStatus = ProcessNetworkBufferData(dataProcessingOffset + packetData,dataSize - dataProcessingOffset,&NetworkBufferDataTemplate);
   dataProcessingOffset = dataProcessingOffset + validationStatus;
   validationStatus = ProcessNetworkBufferCopy(dataProcessingOffset + packetData,dataSize - dataProcessingOffset,secondaryNetworkFlag);
   dataProcessingOffset = dataProcessingOffset + validationStatus;
-  validationStatus = ProcessNetworkBufferData(dataProcessingOffset + packetData,dataSize - dataProcessingOffset,&g_NetworkBufferDataTemplate);
+  validationStatus = ProcessNetworkBufferData(dataProcessingOffset + packetData,dataSize - dataProcessingOffset,&NetworkBufferDataTemplate);
   dataProcessingOffset = dataProcessingOffset + validationStatus;
   validationStatus = ProcessNetworkBufferCopy(dataProcessingOffset + packetData,dataSize - dataProcessingOffset,primaryNetworkFlag);
   return validationStatus + dataProcessingOffset;
@@ -4758,19 +4767,19 @@ int ProcessNetworkPacketTypeN(longlong connectionContext,longlong packetData,int
   uStack_10 = *(NetworkStatus *)(connectionContext + 0x3c);
   uStack_c = *(NetworkStatus *)(connectionContext + 0x40);
   networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&NetworkConnectionContextData);
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkPrimaryBuffer(networkStatus3 + packetData,dataSize - networkStatus3,&networkBuffer);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkSecondaryBuffer(networkStatus3 + packetData,dataSize - networkStatus3,&uStack_48);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferWithEncryption(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -4789,11 +4798,11 @@ int ProcessNetworkPacketTypeO(longlong connectionContext,longlong packetData,int
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x14);
   networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&NetworkConnectionSecurityContext);
-  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkEncryption(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -4843,15 +4852,15 @@ int ProcessNetworkPacketWithEncryption(longlong connectionContext,longlong packe
   encryptionKey = *(NetworkByte *)(connectionContext + 0x1c);
   networkStatus = *(NetworkStatus *)(connectionContext + 0x18);
   processedSize = ProcessNetworkBufferData(packetData,dataSize,&NetworkManagementBuffer);
-  additionalSize = ProcessNetworkBufferData(packetData + processedSize,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  additionalSize = ProcessNetworkBufferData(packetData + processedSize,dataSize - processedSize,&NetworkBufferDataTemplate);
   processedSize = processedSize + additionalSize;
   additionalSize = NetworkProcessNetworkHandle(processedSize + packetData,dataSize - processedSize,&networkHandle);
   processedSize = processedSize + additionalSize;
-  additionalSize = NetworkProcessBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  additionalSize = NetworkProcessBufferData(processedSize + packetData,dataSize - processedSize,&NetworkBufferDataTemplate);
   processedSize = processedSize + additionalSize;
   additionalSize = ProcessNetworkEncryption(processedSize + packetData,dataSize - processedSize,networkStatus);
   processedSize = processedSize + additionalSize;
-  additionalSize = NetworkProcessBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  additionalSize = NetworkProcessBufferData(processedSize + packetData,dataSize - processedSize,&NetworkBufferDataTemplate);
   processedSize = processedSize + additionalSize;
   additionalSize = NetworkEncryptPacketData(processedSize + packetData,dataSize - processedSize,encryptionKey);
   return additionalSize + processedSize;
@@ -4881,15 +4890,15 @@ int ProcessNetworkPacketWithHandleBuffer(longlong connectionContext,longlong pac
   networkHandle = *(NetworkHandle *)(connectionContext + 0x10);
   encryptionKey = *(NetworkByte *)(connectionContext + 0x1c);
   processedSize = ProcessNetworkBufferData(packetData,dataSize,&NetworkControlBuffer);
-  additionalSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  additionalSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&NetworkBufferDataTemplate);
   processedSize = processedSize + additionalSize;
   additionalSize = ProcessNetworkHandleBuffer(processedSize + packetData,dataSize - processedSize,&networkHandle);
   processedSize = processedSize + additionalSize;
-  additionalSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  additionalSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&NetworkBufferDataTemplate);
   processedSize = processedSize + additionalSize;
   additionalSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,connectionContext + 0x1d);
   processedSize = processedSize + additionalSize;
-  additionalSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  additionalSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&NetworkBufferDataTemplate);
   processedSize = processedSize + additionalSize;
   additionalSize = NetworkBufferEncryptData(processedSize + packetData,dataSize - processedSize,encryptionKey);
   return additionalSize + processedSize;
@@ -4908,15 +4917,15 @@ int ProcessNetworkPacketWithContextValidation(longlong connectionContext,longlon
   secondaryNetworkFlag = *(NetworkByte *)(connectionContext + 0x14);
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&NetworkStatusBuffer);
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferData(networkStatus3 + packetData,dataSize - networkStatus3,connectionContext + 0x20);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkEncryption(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkEncryptPacketData(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -4944,15 +4953,15 @@ int ProcessNetworkConnectionEncryption(longlong connectionContext,longlong packe
   
   encryptionKey = *(NetworkByte *)(connectionContext + 0x14);
   processedSize1 = ProcessNetworkBufferData(packetData,dataSize,&NetworkDataBuffer);
-  processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,&g_NetworkBufferDataTemplate);
+  processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,&NetworkBufferDataTemplate);
   processedSize1 = processedSize1 + processedSize2;
   processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,connectionContext + 0x20);
   processedSize1 = processedSize1 + processedSize2;
-  processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,&g_NetworkBufferDataTemplate);
+  processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,&NetworkBufferDataTemplate);
   processedSize1 = processedSize1 + processedSize2;
   processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,connectionContext + 0xa0);
   processedSize1 = processedSize1 + processedSize2;
-  processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,&g_NetworkBufferDataTemplate);
+  processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,&NetworkBufferDataTemplate);
   processedSize1 = processedSize1 + processedSize2;
   processedSize2 = NetworkBufferEncryptData(processedSize1 + packetData,dataSize - processedSize1,encryptionKey);
   return processedSize2 + processedSize1;
@@ -4978,7 +4987,7 @@ int ProcessNetworkConnectionPackaging(longlong connectionContext,longlong packet
   int processedSize2;
   
   processedSize1 = ProcessNetworkBufferData(packetData,dataSize,&NetworkRoutingBuffer);
-  processedSize2 = ProcessNetworkBufferData(packetData + processedSize1,dataSize - processedSize1,&g_NetworkBufferDataTemplate);
+  processedSize2 = ProcessNetworkBufferData(packetData + processedSize1,dataSize - processedSize1,&NetworkBufferDataTemplate);
   processedSize1 = processedSize1 + processedSize2;
   processedSize2 = ProcessNetworkBufferData(processedSize1 + packetData,dataSize - processedSize1,connectionContext + 0x10);
   return processedSize2 + processedSize1;
@@ -5011,11 +5020,11 @@ int ProcessNetworkPacketMultiProtocol(longlong connectionContext,longlong packet
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&NetworkSecurityBuffer);
-  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferCopy(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkEncryption(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -5059,7 +5068,7 @@ void InitializeNetworkConnectionSession(ulonglong connectionContext,NetworkHandl
   
   securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)securityBuffer;
   if (packetData == (NetworkHandle *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(securityGuardValue ^ (ulonglong)securityBuffer);
     }
@@ -5138,7 +5147,7 @@ void ValidateNetworkConnectionAndProcessPacket(NetworkHandle connectionContext,l
   
   securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)securityStackBuffer;
   if (packetData == 0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0) {
       ProcessNetworkAddressValidation(addressBuffer,0x100,0);
       addressValidationBuffer = addressBuffer;
                     // WARNING: Subroutine does not return
@@ -5200,9 +5209,9 @@ void ProcessNetworkConnectionErrorLogging(NetworkHandle connectionContext,Networ
   
   networkBuffer = NetworkSecurityGuardValue ^ (ulonglong)networkStackBuffer;
   networkStatus1 = GetNetworkConnectionPoolStatus();
-  if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
+  if ((networkStatus1 != 0) && ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     networkStatus2 = ProcessNetworkBufferData(auStack_138,0x100,packetData);
-    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&NetworkBufferDataTemplate);
     ProcessNetworkAddressValidation(auStack_138 + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),dataSize);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -5234,7 +5243,7 @@ void ProcessNetworkConnectionErrorData(void)
   NetworkStatus unaff_ESI;
   
   networkStatus1 = ProcessNetworkBufferData(&stack0x00000030,0x100);
-  networkStatus2 = ProcessNetworkBufferData(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
   ProcessNetworkAddressValidation(&stack0x00000030 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   LogNetworkConnectionError(unaff_ESI,0xb);
@@ -5303,9 +5312,9 @@ void ProcessNetworkConnectionDataTransfer(NetworkHandle connectionContext, Netwo
   if (packetData != (NetworkStatus *)0x0) {
     *packetData = 0;
   }
-  if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
+  if ((networkStatus1 != 0) && ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     networkStatus2 = ProcessNetworkAddressValidation(auStack_138,0x100,packetData);
-    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&NetworkBufferDataTemplate);
     ProcessNetworkAddressValidation(auStack_138 + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),dataSize);
     puStack_158 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -5338,7 +5347,7 @@ void ProcessNetworkConnectionValidationData(void)
   NetworkStatus unaff_ESI;
   
   networkStatus1 = ProcessNetworkAddressValidation(&stack0x00000040,0x100);
-  networkStatus2 = ProcessNetworkBufferData(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
   ProcessNetworkAddressValidation(&stack0x00000040 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   LogNetworkConnectionError(unaff_ESI,0xb);
@@ -5402,7 +5411,7 @@ void InitializeNetworkConnectionAndProcessPacket(NetworkHandle connectionContext
   
   securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)securityStackBuffer;
   if (packetData == (NetworkHandle *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       PerformSecurityGuardCheck(securityGuardValue ^ (ulonglong)securityStackBuffer);
     }
@@ -5483,7 +5492,7 @@ void InitializeNetworkConnectionAndReturnHandle(NetworkHandle connectionContext,
       goto SecurityGuardCheck;
     }
   }
-  if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0) {
+  if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0) {
     ProcessNetworkAddressValidation(addressBuffer,0x100,packetData);
     addressValidationBuffer = addressBuffer;
                     // WARNING: Subroutine does not return
@@ -5529,7 +5538,7 @@ void InitializeNetworkConnectionAndReturnPacketHandle(NetworkHandle connectionCo
   
   securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)securityStackBuffer;
   if (packetData == (ulonglong *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       CleanupNetworkSecurityBuffer(securityGuardValue ^ (ulonglong)securityStackBuffer);
     }
@@ -5604,9 +5613,9 @@ void ValidateNetworkConnectionAndProcessPacket(NetworkHandle connectionContext,N
   
   securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)securityStackBuffer;
   connectionValidationStatus = GetNetworkConnectionValidationStatus();
-  if ((connectionValidationStatus != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
+  if ((connectionValidationStatus != 0) && ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     firstProcessingStatus = ProcessNetworkBufferData(networkDataBuffer,0x100,packetData);
-    secondProcessingStatus = ProcessNetworkBufferData(networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,&g_NetworkBufferDataTemplate);
+    secondProcessingStatus = ProcessNetworkBufferData(networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,&NetworkBufferDataTemplate);
     ProcessNetworkAddressValidation(networkDataBuffer + (firstProcessingStatus + secondProcessingStatus),0x100 - (firstProcessingStatus + secondProcessingStatus),dataSize);
     dataProcessingBuffer = networkDataBuffer;
                     // WARNING: Subroutine does not return
@@ -5641,7 +5650,7 @@ void ProcessNetworkBufferAndLogError(void)
   NetworkStatus errorStatusCode;
   
   firstProcessingStatus = ProcessNetworkBufferData(&NetworkStackBuffer,0x100);
-  secondProcessingStatus = ProcessNetworkBufferData(&NetworkStackBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,&g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(&NetworkStackBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,&NetworkBufferDataTemplate);
   ProcessNetworkAddressValidation(&NetworkStackBuffer + (firstProcessingStatus + secondProcessingStatus),0x100 - (firstProcessingStatus + secondProcessingStatus));
                     // WARNING: Subroutine does not return
   LogNetworkConnectionError(errorStatusCode,0xb);
@@ -5713,12 +5722,12 @@ void ProcessNetworkConnectionAndValidatePacket(NetworkHandle connectionContext,N
   
   securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)securityStackBuffer;
   if ((dataSize == (ulonglong *)0x0) || (*dataSize = 0, packetData == (NetworkStatus *)0x0)) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       PerformSecurityGuardCheck(securityGuardValue ^ (ulonglong)securityStackBuffer);
     }
     connectionInitStatus = ProcessNetworkPacketValidation(networkDataBuffer,0x100,packetData);
-    resourceValidationStatus = ProcessNetworkBufferData(networkDataBuffer + connectionInitStatus,0x100 - connectionInitStatus,&g_NetworkBufferDataTemplate);
+    resourceValidationStatus = ProcessNetworkBufferData(networkDataBuffer + connectionInitStatus,0x100 - connectionInitStatus,&NetworkBufferDataTemplate);
     ProcessNetworkAddressValidation(networkDataBuffer + (connectionInitStatus + resourceValidationStatus),0x100 - (connectionInitStatus + resourceValidationStatus),dataSize);
     dataProcessingBuffer = networkDataBuffer;
                     // WARNING: Subroutine does not return
@@ -5788,7 +5797,7 @@ void GetNetworkPacketSize(ulonglong connectionContext,uint *packetData)
   
   securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)networkSecurityBuffer;
   if (packetData == (uint *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCheck(securityGuardValue ^ (ulonglong)networkSecurityBuffer);
     }
@@ -5907,13 +5916,13 @@ void ProcessNetworkDataTransfer(NetworkHandle connectionContext,longlong packetD
     *param_4 = 0;
   }
   if (packetData == 0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0) {
       networkStatus1 = ProcessNetworkBufferData(errorLogBuffer,0x100,0);
-      networkStatus2 = ProcessNetworkBufferData(errorLogBuffer + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+      networkStatus2 = ProcessNetworkBufferData(errorLogBuffer + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
       networkStatus1 = networkStatus1 + networkStatus2;
       networkStatus2 = ProcessNetworkBufferDataWithSize(errorLogBuffer + networkStatus1,0x100 - networkStatus1,dataSize);
       networkStatus1 = networkStatus1 + networkStatus2;
-      networkStatus2 = ProcessNetworkBufferData(errorLogBuffer + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+      networkStatus2 = ProcessNetworkBufferData(errorLogBuffer + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
       ProcessNetworkBufferDataWithSize(errorLogBuffer + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),param_4);
       errorMessageBuffer = errorLogBuffer;
                     // WARNING: Subroutine does not return
@@ -5974,9 +5983,9 @@ void ValidateNetworkConnectionParameters(NetworkHandle connectionContext,Network
   
   securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)networkSecurityBuffer;
   networkStatus1 = GetNetworkConnectionStatus();
-  if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
+  if ((networkStatus1 != 0) && ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     networkStatus2 = ProcessNetworkDataValidation(errorLogBuffer,0x100,packetData);
-    networkStatus3 = ProcessNetworkBufferData(errorLogBuffer + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(errorLogBuffer + networkStatus2,0x100 - networkStatus2,&NetworkBufferDataTemplate);
     ProcessNetworkAddressValidation(errorLogBuffer + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),dataSize);
     errorMessageBuffer = errorLogBuffer;
                     // WARNING: Subroutine does not return
@@ -6009,7 +6018,7 @@ void ProcessNetworkConnectionErrorLogging(void)
   NetworkStatus networkErrorCode;
   
   networkStatus1 = ProcessNetworkDataValidation(&stack0x00000030,0x100,networkErrorStatus);
-  networkStatus2 = ProcessNetworkBufferData(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
   ProcessNetworkAddressValidation(&stack0x00000030 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   LogNetworkConnectionError(networkErrorCode,0xc);
@@ -6061,7 +6070,7 @@ void ValidateNetworkConnectionContext(ulonglong connectionContext,NetworkStatus 
   
   uStack_18 = NetworkSecurityGuardValue ^ (ulonglong)networkStackBuffer;
   if (packetData == (NetworkStatus *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCheck(uStack_18 ^ (ulonglong)networkStackBuffer);
     }
@@ -6152,16 +6161,16 @@ void ProcessNetworkDataBufferOperations(ulonglong connectionContext,NetworkByte 
                     // WARNING: Subroutine does not return
     NetworkConnectionHandleRelease(&uStack_178);
   }
-  if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+  if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
     NetworkSecurityGuardCleanup(uStack_48 ^ (ulonglong)auStack_1a8);
   }
   networkStatus1 = ProcessNetworkBufferData(auStack_148,0x100,packetData);
-  networkStatus2 = ProcessNetworkBufferData(auStack_148 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(auStack_148 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = ProcessNetworkDataValidation(auStack_148 + networkStatus1,0x100 - networkStatus1,dataSize);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(auStack_148 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(auStack_148 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
   ProcessNetworkBufferDataWithZeroInit(auStack_148 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),param_4);
   puStack_188 = (NetworkStatus *)auStack_148;
                     // WARNING: Subroutine does not return
@@ -6188,11 +6197,11 @@ void HandleNetworkBufferValidation(void)
   NetworkStatus unaff_ESI;
   
   networkStatus1 = ProcessNetworkBufferData(&stack0x00000060,0x100);
-  networkStatus2 = ProcessNetworkBufferData(&stack0x00000060 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000060 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = ProcessNetworkDataValidation(&stack0x00000060 + networkStatus1,0x100 - networkStatus1,unaff_EBP);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(&stack0x00000060 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000060 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
   ProcessNetworkBufferDataWithZeroInit(&stack0x00000060 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   LogNetworkConnectionError(unaff_ESI,0xc);
@@ -6252,7 +6261,7 @@ void ProcessNetworkPacketSecurityValidation(ulonglong connectionContext,NetworkB
   
   uStack_28 = NetworkSecurityGuardValue ^ (ulonglong)auStack_178;
   if (packetData == (NetworkByte *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(uStack_28 ^ (ulonglong)auStack_178);
     }
@@ -6365,7 +6374,7 @@ void ProcessNetworkConnectionData(ulonglong connectionContext,NetworkStatus *pac
   
   uStack_28 = NetworkSecurityGuardValue ^ (ulonglong)auStack_178;
   if (packetData == (NetworkStatus *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(uStack_28 ^ (ulonglong)auStack_178);
     }
@@ -6452,12 +6461,12 @@ void GetNetworkConnectionStatusData(ulonglong connectionContext,uint packetData,
       NetworkConnectionHandleRelease(&uStack_158);
     }
   }
-  if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+  if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
     NetworkSecurityGuardCleanup(networkBuffer ^ (ulonglong)auStack_188);
   }
   networkStatus1 = ProcessNetworkDataValidation(auStack_138,0x100,packetData);
-  networkStatus2 = ProcessNetworkBufferData(auStack_138 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(auStack_138 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
   ProcessNetworkBufferDataWithSize(auStack_138 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),dataSize);
   puStack_168 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -6496,7 +6505,7 @@ void ProcessNetworkConnectionPacketData(NetworkHandle connectionContext,NetworkS
   
   uStack_28 = NetworkSecurityGuardValue ^ (ulonglong)auStack_178;
   if (packetData == (NetworkStatus *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(uStack_28 ^ (ulonglong)auStack_178);
     }
@@ -6568,7 +6577,7 @@ void ValidateNetworkConnectionPacket(ulonglong connectionContext,uint *packetDat
   
   uStack_28 = NetworkSecurityGuardValue ^ (ulonglong)auStack_178;
   if (packetData == (uint *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(uStack_28 ^ (ulonglong)auStack_178);
     }
@@ -6637,7 +6646,7 @@ void ProcessNetworkConnectionHandle(ulonglong connectionContext,NetworkHandle *p
   
   uStack_18 = NetworkSecurityGuardValue ^ (ulonglong)networkStackBuffer;
   if (packetData == (NetworkHandle *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCheck(uStack_18 ^ (ulonglong)networkStackBuffer);
     }
@@ -6698,7 +6707,7 @@ void ProcessNetworkConnectionContextHandle(ulonglong connectionContext,NetworkHa
   
   uStack_28 = NetworkSecurityGuardValue ^ (ulonglong)auStack_178;
   if (packetData == (NetworkHandle *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(uStack_28 ^ (ulonglong)auStack_178);
     }
@@ -6761,9 +6770,9 @@ void ProcessNetworkConnectionDataTransfer(NetworkHandle connectionContext,Networ
   
   networkBuffer = NetworkSecurityGuardValue ^ (ulonglong)networkStackBuffer;
   networkStatus1 = NetworkSystemStatusChecker();
-  if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
+  if ((networkStatus1 != 0) && ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     networkStatus2 = ProcessNetworkBufferData(auStack_138,0x100,packetData);
-    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&NetworkBufferDataTemplate);
     ProcessNetworkAddressValidation(auStack_138 + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),dataSize);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -6796,7 +6805,7 @@ void ProcessNetworkConnectionBufferData(void)
   NetworkStatus unaff_ESI;
   
   networkStatus1 = ProcessNetworkBufferData(&stack0x00000030,0x100);
-  networkStatus2 = ProcessNetworkBufferData(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
   ProcessNetworkAddressValidation(&stack0x00000030 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   LogNetworkConnectionError(unaff_ESI,0xc);
@@ -6857,9 +6866,9 @@ void ProcessNetworkConnectionSecureDataTransfer(NetworkHandle connectionContext,
   
   networkBuffer = NetworkSecurityGuardValue ^ (ulonglong)networkStackBuffer;
   networkStatus1 = NetworkConnectionValidator();
-  if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
+  if ((networkStatus1 != 0) && ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     networkStatus2 = ProcessNetworkBufferData(auStack_138,0x100,packetData);
-    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&NetworkBufferDataTemplate);
     ProcessNetworkAddressValidation(auStack_138 + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),dataSize);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -6892,7 +6901,7 @@ void ProcessNetworkConnectionSecureBufferData(void)
   NetworkStatus unaff_ESI;
   
   networkStatus1 = ProcessNetworkBufferData(&stack0x00000030,0x100);
-  networkStatus2 = ProcessNetworkBufferData(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
   ProcessNetworkAddressValidation(&stack0x00000030 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   LogNetworkConnectionError(unaff_ESI,0xb);
@@ -7018,7 +7027,7 @@ void ProcessNetworkConnectionContextData(longlong connectionContext,NetworkHandl
   
   securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)securityContextBuffer;
   if (*(int *)(connectionContext + 0x58) < 1) {
-    puVar6 = &g_NetworkConnectionDataDefault;
+    puVar6 = &NetworkConnectionDataDefault;
   }
   else {
     puVar6 = *(NetworkData **)(connectionContext + 0x50);
@@ -7107,17 +7116,17 @@ void ProcessNetworkConnectionMultiParameterDataTransfer(NetworkHandle connection
     networkStatus1 = NetworkPacketDataProcessor(auStack_158[0],packetData,dataSize,param_4);
     if (networkStatus1 == 0) goto LAB_1808477fa;
   }
-  if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
+  if ((networkStatus1 != 0) && ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     networkStatus2 = ProcessNetworkDataValidation(auStack_148,0x100,packetData);
-    networkStatus3 = ProcessNetworkBufferData(auStack_148 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(auStack_148 + networkStatus2,0x100 - networkStatus2,&NetworkBufferDataTemplate);
     networkStatus2 = networkStatus2 + networkStatus3;
     networkStatus3 = ProcessNetworkBufferCopy(auStack_148 + networkStatus2,0x100 - networkStatus2,dataSize);
     networkStatus2 = networkStatus2 + networkStatus3;
-    networkStatus3 = ProcessNetworkBufferData(auStack_148 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(auStack_148 + networkStatus2,0x100 - networkStatus2,&NetworkBufferDataTemplate);
     networkStatus2 = networkStatus2 + networkStatus3;
     networkStatus3 = ProcessNetworkBufferCopy(auStack_148 + networkStatus2,0x100 - networkStatus2,param_4);
     networkStatus2 = networkStatus2 + networkStatus3;
-    networkStatus3 = ProcessNetworkBufferData(auStack_148 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(auStack_148 + networkStatus2,0x100 - networkStatus2,&NetworkBufferDataTemplate);
     ProcessNetworkAddressValidation(auStack_148 + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),param_5);
     puStack_168 = auStack_148;
                     // WARNING: Subroutine does not return
@@ -7154,15 +7163,15 @@ void ProcessNetworkDataValidationAndBufferOperations(void)
   NetworkStatus networkFinalContext;
   
   firstProcessingStatus = ProcessNetworkDataValidation(&networkDataBuffer,0x100,networkValidationContext);
-  secondProcessingStatus = ProcessNetworkBufferData(&networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,&g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(&networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,&NetworkBufferDataTemplate);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkBufferCopy(&networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,networkBufferContext);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
-  secondProcessingStatus = ProcessNetworkBufferData(&networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,&g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(&networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,&NetworkBufferDataTemplate);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkBufferCopy(&networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,networkFinalContext);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
-  secondProcessingStatus = ProcessNetworkBufferData(&networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,&g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(&networkDataBuffer + firstProcessingStatus,0x100 - firstProcessingStatus,&NetworkBufferDataTemplate);
   ProcessNetworkAddressValidation(&networkDataBuffer + (firstProcessingStatus + secondProcessingStatus),0x100 - (firstProcessingStatus + secondProcessingStatus));
                     // WARNING: Subroutine does not return
   LogNetworkConnectionError(networkErrorContext,0xb);
@@ -7255,7 +7264,7 @@ void ProcessNetworkPacketTransfer(ulonglong connectionContext,NetworkByte *packe
   
   securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)networkSecurityBuffer;
   if (packetData == (NetworkByte *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCheck(securityGuardValue ^ (ulonglong)networkSecurityBuffer);
     }
@@ -7513,7 +7522,7 @@ void ProcessNetworkConnectionContextPacket(ulonglong connectionContext,NetworkBy
   
   uStack_18 = NetworkSecurityGuardValue ^ (ulonglong)networkStackBuffer;
   if (packetData == (NetworkByte *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCheck(uStack_18 ^ (ulonglong)networkStackBuffer);
     }
@@ -7661,16 +7670,16 @@ void ProcessNetworkConnectionStatusAndPacketTransfer(ulonglong connectionContext
   if (((param_4 == (NetworkHandle *)0x0) || (*param_4 = 0, packetData == 0)) ||
      (networkStatus2 = ValidateNetworkBufferSize(packetData), 0x1ff < networkStatus2)) {
     networkPrimaryFlag = networkDataSize;
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(securityGuardValue ^ (ulonglong)networkSecurityBuffer);
     }
     networkValidationStatus = ProcessNetworkBufferData(networkDataBuffer,0x100,packetData);
-    networkHandleStatus = ProcessNetworkBufferData(networkDataBuffer + networkValidationStatus,0x100 - networkValidationStatus,&g_NetworkBufferDataTemplate);
+    networkHandleStatus = ProcessNetworkBufferData(networkDataBuffer + networkValidationStatus,0x100 - networkValidationStatus,&NetworkBufferDataTemplate);
     networkValidationStatus = networkValidationStatus + networkHandleStatus;
     networkHandleStatus = ProcessNetworkBufferCopy(networkDataBuffer + networkValidationStatus,0x100 - networkValidationStatus,networkPrimaryFlag);
     networkValidationStatus = networkValidationStatus + networkHandleStatus;
-    networkHandleStatus = ProcessNetworkBufferData(networkDataBuffer + networkValidationStatus,0x100 - networkValidationStatus,&g_NetworkBufferDataTemplate);
+    networkHandleStatus = ProcessNetworkBufferData(networkDataBuffer + networkValidationStatus,0x100 - networkValidationStatus,&NetworkBufferDataTemplate);
     ProcessNetworkAddressValidation(networkDataBuffer + (networkValidationStatus + networkHandleStatus),0x100 - (networkValidationStatus + networkHandleStatus),param_4);
     networkErrorBuffer = networkDataBuffer;
                     // WARNING: Subroutine does not return
@@ -9064,7 +9073,7 @@ NetworkHandle ValidateNetworkPacketData(longlong *connectionContext,NetworkHandl
   lVar1 = 0;
   if (networkStatus2 != 0) {
     if (networkStatus2 - 1U < 0x3fffffff) {
-      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData,&g_NetworkSecurityValidationData,0xf4,0,0,
+      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData,&NetworkSecurityValidationData,0xf4,0,0,
                             1);
       if (lVar1 != 0) {
         if ((int)connectionContext[1] != 0) {
@@ -9079,7 +9088,7 @@ NetworkHandle ValidateNetworkPacketData(longlong *connectionContext,NetworkHandl
 LAB_1808490b9:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = lVar1;
   *(int *)((longlong)connectionContext + 0xc) = networkStatus2;
@@ -9102,14 +9111,14 @@ NetworkHandle ProcessNetworkConnectionRequest(NetworkHandle connectionContext,Ne
 LAB_1808490b9:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if ((int)packetData - 1U < 0x3fffffff) {
-    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData,&g_NetworkSecurityValidationData,0xf4,0);
+    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData,&NetworkSecurityValidationData,0xf4,0);
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -9153,7 +9162,7 @@ NetworkHandle HandleNetworkConnectionData(longlong *connectionContext,int packet
   if (packetData != 0) {
     if (packetData * 0x14 - 1U < 0x3fffffff) {
       puVar7 = (NetworkStatus *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x14,&g_NetworkSecurityValidationData,
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x14,&NetworkSecurityValidationData,
                              0xf4,0,0,1);
       if (puVar7 != (NetworkStatus *)0x0) {
         networkStatus2 = (int)connectionContext[1];
@@ -9182,7 +9191,7 @@ NetworkHandle HandleNetworkConnectionData(longlong *connectionContext,int packet
 LAB_1808491ce:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = (longlong)puVar7;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -9213,7 +9222,7 @@ NetworkHandle ProcessNetworkConnectionStatus(NetworkHandle connectionContext,int
 LAB_1808491ce:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = (longlong)puVar7;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -9221,7 +9230,7 @@ LAB_1808491ce:
   }
   if (packetData * 0x14 - 1U < 0x3fffffff) {
     puVar7 = (NetworkStatus *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x14,&g_NetworkSecurityValidationData,
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x14,&NetworkSecurityValidationData,
                            0xf4,0);
     if (puVar7 != (NetworkStatus *)0x0) {
       networkStatus2 = (int)unaff_RBX[1];
@@ -9360,7 +9369,7 @@ void NetworkConnectionStatusValidator(ulonglong connectionContext)
     networkStatus1 = GetNetworkConnectionStatus();
     if (networkStatus1 == 0) goto LAB_180849462;
   }
-  if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
+  if ((networkStatus1 != 0) && ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     puStack_148 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
@@ -9410,7 +9419,7 @@ void NetworkConnectionPacketProcessor(NetworkHandle connectionContext,NetworkHan
   
   uStack_28 = NetworkSecurityGuardValue ^ (ulonglong)auStack_178;
   if (packetData == (NetworkHandle *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(uStack_28 ^ (ulonglong)auStack_178);
     }
@@ -9494,7 +9503,7 @@ void ProcessNetworkConnectionInitializationAndValidation(NetworkHandle connectio
   uStack_18 = NetworkSecurityGuardValue ^ (ulonglong)auStack_158;
   networkStatus1 = NetworkConnectionIdInitialize(connectionContext,auStack_128);
   if ((((networkStatus1 != 0) || (networkStatus1 = ValidateNetworkConnection(auStack_128[0],packetData), networkStatus1 != 0)) && (networkStatus1 != 0)
-      ) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
+      ) && ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     ProcessNetworkAddressValidation(auStack_118,0x100,packetData);
     puStack_138 = auStack_118;
                     // WARNING: Subroutine does not return
@@ -9593,7 +9602,7 @@ void ProcessNetworkAddressValidationAndErrorLogging(void)
   NetworkStatus unaff_R14D;
   
   networkStatus1 = ProcessNetworkAddressValidation(&stack0x00000050,0x100);
-  networkStatus2 = ProcessNetworkBufferData(&stack0x00000050 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000050 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
   ProcessNetworkBufferCopy(&stack0x00000050 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),unaff_R14D);
                     // WARNING: Subroutine does not return
   LogNetworkConnectionError(unaff_ESI,0xc);
@@ -9699,7 +9708,7 @@ void ProcessNetworkAddressValidationAndErrorLoggingWithCode0d(void)
   NetworkStatus unaff_R14D;
   
   networkStatus1 = ProcessNetworkAddressValidation(&stack0x00000050,0x100);
-  networkStatus2 = ProcessNetworkBufferData(&stack0x00000050 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000050 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
   ProcessNetworkBufferCopy(&stack0x00000050 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),unaff_R14D);
                     // WARNING: Subroutine does not return
   LogNetworkConnectionError(unaff_ESI,0xd);
@@ -9777,16 +9786,16 @@ void ProcessNetworkConnectionDataValidationAndProcessing(NetworkHandle connectio
   
   uStack_48 = NetworkSecurityGuardValue ^ (ulonglong)auStack_198;
   if (dataSize == (NetworkHandle *)0x0) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(uStack_48 ^ (ulonglong)auStack_198);
     }
     iVar5 = ProcessNetworkDataValidation(auStack_148,0x100,packetData);
-    iVar6 = ProcessNetworkBufferData(auStack_148 + iVar5,0x100 - iVar5,&g_NetworkBufferDataTemplate);
+    iVar6 = ProcessNetworkBufferData(auStack_148 + iVar5,0x100 - iVar5,&NetworkBufferDataTemplate);
     iVar5 = iVar5 + iVar6;
     iVar6 = ProcessNetworkAddressValidation(auStack_148 + iVar5,0x100 - iVar5,0);
     iVar5 = iVar5 + iVar6;
-    iVar6 = ProcessNetworkBufferData(auStack_148 + iVar5,0x100 - iVar5,&g_NetworkBufferDataTemplate);
+    iVar6 = ProcessNetworkBufferData(auStack_148 + iVar5,0x100 - iVar5,&NetworkBufferDataTemplate);
     NetworkErrorHandler(auStack_148 + (iVar5 + iVar6),0x100 - (iVar5 + iVar6),param_4);
     puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
@@ -9961,12 +9970,12 @@ void ProcessNetworkConnectionDataTransferAndConfiguration(ulonglong connectionCo
   
   uStack_58 = NetworkSecurityGuardValue ^ (ulonglong)auStack_1a8;
   if ((packetData == 0) || (networkStatus1 = ValidateNetworkBufferSize(packetData), 0x7f < networkStatus1)) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(uStack_58 ^ (ulonglong)auStack_1a8);
     }
     networkStatus1 = ProcessNetworkBufferData(auStack_158,0x100,packetData);
-    networkStatus2 = ProcessNetworkBufferData(auStack_158 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+    networkStatus2 = ProcessNetworkBufferData(auStack_158 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
     ProcessNetworkEncryption(auStack_158 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),dataSize);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return
@@ -10024,12 +10033,12 @@ void NetworkConnectionSecurityValidator(ulonglong connectionContext,longlong pac
   
   uStack_58 = NetworkSecurityGuardValue ^ (ulonglong)auStack_1a8;
   if ((packetData == 0) || (networkStatus1 = ValidateNetworkBufferSize(packetData), 0x7f < networkStatus1)) {
-    if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(uStack_58 ^ (ulonglong)auStack_1a8);
     }
     networkStatus1 = ProcessNetworkBufferData(auStack_158,0x100,packetData);
-    networkStatus2 = ProcessNetworkBufferData(auStack_158 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+    networkStatus2 = ProcessNetworkBufferData(auStack_158 + networkStatus1,0x100 - networkStatus1,&NetworkBufferDataTemplate);
     ProcessNetworkEncryption(auStack_158 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),dataSize);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return
@@ -11029,7 +11038,7 @@ void NetworkConnectionErrorHandler(NetworkHandle connectionContext)
   
   uStack_18 = NetworkSecurityGuardValue ^ (ulonglong)auStack_148;
   networkStatus1 = GetNetworkStatus();
-  if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
+  if ((networkStatus1 != 0) && ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     puStack_128 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
@@ -11056,7 +11065,7 @@ void ProcessNetworkSecurityValidation(NetworkHandle connectionContext)
   
   uStack_18 = NetworkSecurityGuardValue ^ (ulonglong)auStack_148;
   networkStatus1 = InitializeNetworkConnection(connectionContext,0);
-  if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
+  if ((networkStatus1 != 0) && ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     puStack_128 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
@@ -11094,7 +11103,7 @@ LAB_18084b46d:
     if (networkStatus1 == 0) goto LAB_18084b4a9;
     goto LAB_18084b46d;
   }
-  if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0) {
+  if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0) {
     puStack_138 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
@@ -11994,7 +12003,7 @@ uint ValidateNetworkConnectionSecurity(longlong *connectionContext)
     }
     if ((0 < (int)quinaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     quinaryNetworkFlag = 0;
@@ -12025,7 +12034,7 @@ uint ValidateNetworkConnectionSecurity(longlong *connectionContext)
   }
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = 0;
   *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -12068,7 +12077,7 @@ uint CleanupNetworkConnectionState(longlong *connectionContext)
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     tertiaryNetworkFlag = 0;
@@ -12089,7 +12098,7 @@ uint CleanupNetworkConnectionState(longlong *connectionContext)
   }
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = 0;
   *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -12144,7 +12153,7 @@ void ProcessNetworkContextValidation(NetworkHandle *connectionContext)
   plVar3[1] = (longlong)plVar3;
   *plVar3 = (longlong)plVar3;
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar3,&UNK_180986f90,0x30,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar3,&UNK_180986f90,0x30,1);
 }
 
 
@@ -12205,7 +12214,7 @@ NetworkHandle HandleNetworkConnectionEvent(longlong *connectionContext,int packe
   if (packetData != 0) {
     if (packetData * 4 - 1U < 0x3fffffff) {
       ptertiaryNetworkFlag = (NetworkStatus *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 4,&g_NetworkSecurityValidationData,0xf4
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 4,&NetworkSecurityValidationData,0xf4
                              ,0,0,1);
       if (ptertiaryNetworkFlag != (NetworkStatus *)0x0) {
         networkStatus1 = (int)connectionContext[1];
@@ -12226,7 +12235,7 @@ NetworkHandle HandleNetworkConnectionEvent(longlong *connectionContext,int packe
 LAB_18084c510:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = (longlong)ptertiaryNetworkFlag;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -12253,7 +12262,7 @@ NetworkHandle ProcessNetworkConnectionData(NetworkHandle connectionContext,int p
 LAB_18084c510:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = (longlong)ptertiaryNetworkFlag;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -12261,7 +12270,7 @@ LAB_18084c510:
   }
   if (packetData * 4 - 1U < 0x3fffffff) {
     ptertiaryNetworkFlag = (NetworkStatus *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 4,&g_NetworkSecurityValidationData,0xf4,0
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 4,&NetworkSecurityValidationData,0xf4,0
                           );
     if (ptertiaryNetworkFlag != (NetworkStatus *)0x0) {
       networkStatus1 = (int)unaff_RBX[1];
@@ -12324,7 +12333,7 @@ void ValidateNetworkConnectionStatus(longlong *connectionContext)
     }
     if ((0 < (int)uVar8) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -12501,7 +12510,7 @@ void ValidateNetworkDataIntegrity(longlong *connectionContext)
       plVar1[1] = (longlong)plVar1;
       *plVar1 = (longlong)plVar1;
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar1,&UNK_180984b50,0xe1,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar1,&UNK_180984b50,0xe1,1);
     }
     plVar1 = (longlong *)*connectionContext;
   }
@@ -12562,7 +12571,7 @@ void ProcessNetworkConfigurationManager(NetworkHandle *connectionContext)
     plVar11[1] = (longlong)plVar11;
     *plVar11 = (longlong)plVar11;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar11,&UNK_180984ad0,0xe,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar11,&UNK_180984ad0,0xe,1);
   }
   plVar2 = connectionContext + 0xb;
   plVar3 = (longlong *)*plVar2;
@@ -12580,7 +12589,7 @@ void ProcessNetworkConfigurationManager(NetworkHandle *connectionContext)
     plVar11[1] = (longlong)plVar11;
     *plVar11 = (longlong)plVar11;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar11,&UNK_180984ad0,0x12,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar11,&UNK_180984ad0,0x12,1);
   }
   plVar3 = connectionContext + 0x11;
   primaryNetworkFlag0 = *(uint *)((longlong)connectionContext + 0x94);
@@ -12589,7 +12598,7 @@ void ProcessNetworkConfigurationManager(NetworkHandle *connectionContext)
     if (*(int *)(connectionContext + 0x12) < 1) {
       if ((0 < (int)primaryNetworkFlag0) && (*plVar3 != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar3,&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar3,&NetworkSecurityValidationData,0x100,1);
       }
       *plVar3 = 0;
       *(NetworkStatus *)((longlong)connectionContext + 0x94) = 0;
@@ -12635,7 +12644,7 @@ LAB_18084c923:
     if (0 < *(int *)(connectionContext + 0x10)) goto LAB_18084ca76;
     if ((0 < (int)primaryNetworkFlag0) && (connectionContext[0xf] != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext[0xf],&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext[0xf],&NetworkSecurityValidationData,0x100,1);
     }
     connectionContext[0xf] = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0x84) = 0;
@@ -12769,7 +12778,7 @@ void ProcessNetworkConfigurationValidator(NetworkHandle *connectionContext)
     plVar11[1] = (longlong)plVar11;
     *plVar11 = (longlong)plVar11;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar11,&UNK_180984ad0,0xe,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar11,&UNK_180984ad0,0xe,1);
   }
   plVar2 = connectionContext + 0xb;
   plVar3 = (longlong *)*plVar2;
@@ -12787,7 +12796,7 @@ void ProcessNetworkConfigurationValidator(NetworkHandle *connectionContext)
     plVar11[1] = (longlong)plVar11;
     *plVar11 = (longlong)plVar11;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar11,&UNK_180984ad0,0x12,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar11,&UNK_180984ad0,0x12,1);
   }
   plVar3 = connectionContext + 0x11;
   primaryNetworkFlag0 = *(uint *)((longlong)connectionContext + 0x94);
@@ -12796,7 +12805,7 @@ void ProcessNetworkConfigurationValidator(NetworkHandle *connectionContext)
     if (*(int *)(connectionContext + 0x12) < 1) {
       if ((0 < (int)primaryNetworkFlag0) && (*plVar3 != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar3,&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar3,&NetworkSecurityValidationData,0x100,1);
       }
       *plVar3 = 0;
       *(NetworkStatus *)((longlong)connectionContext + 0x94) = 0;
@@ -12842,7 +12851,7 @@ LAB_18084c923:
     if (0 < *(int *)(connectionContext + 0x10)) goto LAB_18084ca76;
     if ((0 < (int)primaryNetworkFlag0) && (connectionContext[0xf] != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext[0xf],&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext[0xf],&NetworkSecurityValidationData,0x100,1);
     }
     connectionContext[0xf] = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0x84) = 0;
@@ -12977,7 +12986,7 @@ void ProcessNetworkConfigurationChecker(NetworkHandle *connectionContext)
     plVar11[1] = (longlong)plVar11;
     *plVar11 = (longlong)plVar11;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar11,&UNK_180984ad0,0xe,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar11,&UNK_180984ad0,0xe,1);
   }
   plVar2 = connectionContext + 0xb;
   plVar3 = (longlong *)*plVar2;
@@ -12995,7 +13004,7 @@ void ProcessNetworkConfigurationChecker(NetworkHandle *connectionContext)
     plVar11[1] = (longlong)plVar11;
     *plVar11 = (longlong)plVar11;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar11,&UNK_180984ad0,0x12,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar11,&UNK_180984ad0,0x12,1);
   }
   plVar3 = connectionContext + 0x11;
   primaryNetworkFlag0 = *(uint *)((longlong)connectionContext + 0x94);
@@ -13004,7 +13013,7 @@ void ProcessNetworkConfigurationChecker(NetworkHandle *connectionContext)
     if (*(int *)(connectionContext + 0x12) < 1) {
       if ((0 < (int)primaryNetworkFlag0) && (*plVar3 != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar3,&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar3,&NetworkSecurityValidationData,0x100,1);
       }
       *plVar3 = 0;
       *(NetworkStatus *)((longlong)connectionContext + 0x94) = 0;
@@ -13050,7 +13059,7 @@ LAB_18084c923:
     if (0 < *(int *)(connectionContext + 0x10)) goto LAB_18084ca76;
     if ((0 < (int)primaryNetworkFlag0) && (connectionContext[0xf] != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext[0xf],&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext[0xf],&NetworkSecurityValidationData,0x100,1);
     }
     connectionContext[0xf] = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0x84) = 0;
@@ -13169,7 +13178,7 @@ void ProcessNetworkStatusChecker(NetworkStatus connectionContext)
     if ((int)unaff_R14[1] <= (int)primaryNetworkFlag3) {
       if ((0 < (int)uVar8) && (*unaff_R14 != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_R14,&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_R14,&NetworkSecurityValidationData,0x100,1);
       }
       *unaff_R14 = unaff_R12;
       *(uint *)((longlong)unaff_R14 + 0xc) = primaryNetworkFlag3;
@@ -13215,7 +13224,7 @@ LAB_18084c923:
     if ((int)primaryNetworkFlag3 < *(int *)(unaff_R15 + 0x10)) goto LAB_18084ca76;
     if ((0 < (int)uVar8) && (unaff_R15[0xf] != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),unaff_R15[0xf],&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),unaff_R15[0xf],&NetworkSecurityValidationData,0x100,1);
     }
     unaff_R15[0xf] = unaff_R12;
     *(uint *)((longlong)unaff_R15 + 0x84) = primaryNetworkFlag3;
@@ -14572,7 +14581,7 @@ NetworkHandle InitializeNetworkConnectionContext(longlong *connectionContext,int
   lVar7 = 0;
   if (packetData != 0) {
     if (packetData * 0x18 - 1U < 0x3fffffff) {
-      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x18,&g_NetworkSecurityValidationData,
+      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x18,&NetworkSecurityValidationData,
                             0xf4,0,0,1);
       if (lVar7 != 0) {
         networkStatus3 = (int)connectionContext[1];
@@ -14604,7 +14613,7 @@ NetworkHandle InitializeNetworkConnectionContext(longlong *connectionContext,int
 LAB_18084d4b4:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = lVar7;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -14636,14 +14645,14 @@ NetworkHandle ProcessNetworkConnectionValidation(NetworkHandle connectionContext
 LAB_18084d4b4:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar7;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (packetData * 0x18 - 1U < 0x3fffffff) {
-    lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x18,&g_NetworkSecurityValidationData,0xf4
+    lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x18,&NetworkSecurityValidationData,0xf4
                           ,0);
     if (lVar7 != 0) {
       networkStatus3 = (int)unaff_RBX[1];
@@ -14718,7 +14727,7 @@ NetworkHandle InitializeNetworkConnectionResources(longlong *connectionContext,i
   lVar1 = 0;
   if (packetData != 0) {
     if (packetData * 0x28 - 1U < 0x3fffffff) {
-      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x28,&g_NetworkSecurityValidationData,
+      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x28,&NetworkSecurityValidationData,
                             0xf4,0,0,1);
       if (lVar1 != 0) {
         if ((int)connectionContext[1] != 0) {
@@ -14733,7 +14742,7 @@ NetworkHandle InitializeNetworkConnectionResources(longlong *connectionContext,i
 LAB_18084d5b4:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = lVar1;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -14769,14 +14778,14 @@ NetworkHandle CopyNetworkConnectionContext(NetworkHandle connectionContext,int p
 LAB_18084d5b4:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (packetData * 0x28 - 1U < 0x3fffffff) {
-    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x28,&g_NetworkSecurityValidationData,0xf4
+    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x28,&NetworkSecurityValidationData,0xf4
                           ,0);
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -14851,7 +14860,7 @@ NetworkHandle InitializeNetworkConnectionData(longlong *connectionContext,int pa
 LAB_18084d7db:
     if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = lVar7;
     uVar9 = 0;
@@ -14859,7 +14868,7 @@ LAB_18084d7db:
   }
   else {
     if (packetData * 0x20 - 1U < 0x3fffffff) {
-      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x20,&g_NetworkSecurityValidationData,
+      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x20,&NetworkSecurityValidationData,
                             0xf4,0,0,1);
       if (lVar7 != 0) {
         lVar8 = (longlong)(int)connectionContext[1];
@@ -14986,7 +14995,7 @@ NetworkHandle ProcessNetworkConnectionDataPacket(NetworkHandle connectionContext
 LAB_18084d7db:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar7;
     uVar9 = 0;
@@ -14994,7 +15003,7 @@ LAB_18084d7db:
   }
   else {
     if (packetData * 0x20 - 1U < 0x3fffffff) {
-      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x20,&g_NetworkSecurityValidationData,
+      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x20,&NetworkSecurityValidationData,
                             0xf4,0);
       if (lVar7 != 0) {
         lVar8 = (longlong)(int)unaff_RBX[1];
@@ -15409,7 +15418,7 @@ void ProcessNetworkResourceCleanup(longlong *connectionContext)
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -15577,7 +15586,7 @@ NetworkHandle ProcessNetworkConnectionDataTransfer(longlong connectionContext,lo
     }
     if (packetData != 0) {
       if (*(int *)(ptertiaryNetworkFlag + 1) < 1) {
-        networkPointer2 = &g_NetworkConnectionDataDefault;
+        networkPointer2 = &NetworkConnectionDataDefault;
       }
       else {
         networkPointer2 = (NetworkData *)*ptertiaryNetworkFlag;
@@ -15626,7 +15635,7 @@ NetworkHandle ExecuteNetworkConnectionValidation(longlong *connectionContext,int
   lVar3 = 0;
   if (packetData != 0) {
     if ((0x3ffffffe < packetData * 0x10 - 1U) ||
-       (lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x10,&g_NetworkSecurityValidationData,
+       (lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x10,&NetworkSecurityValidationData,
                               0xf4,0,0,1), lVar3 == 0)) {
       return 0x26;
     }
@@ -15656,7 +15665,7 @@ NetworkHandle ExecuteNetworkConnectionValidation(longlong *connectionContext,int
   }
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = lVar3;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -15683,7 +15692,7 @@ NetworkHandle InitializeNetworkConnectionBuffer(NetworkHandle connectionContext,
   lVar3 = 0;
   if (unaff_ESI != 0) {
     if ((0x3ffffffe < packetData * 0x10 - 1U) ||
-       (lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x10,&g_NetworkSecurityValidationData,
+       (lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x10,&NetworkSecurityValidationData,
                               0xf4,0), lVar3 == 0)) {
       return 0x26;
     }
@@ -15713,7 +15722,7 @@ NetworkHandle InitializeNetworkConnectionBuffer(NetworkHandle connectionContext,
   }
   if ((0 < *(int *)((longlong)unaff_RDI + 0xc)) && (*unaff_RDI != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RDI,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RDI,&NetworkSecurityValidationData,0x100,1);
   }
   *unaff_RDI = lVar3;
   *(int *)((longlong)unaff_RDI + 0xc) = unaff_ESI;
@@ -15767,7 +15776,7 @@ NetworkHandle GetNetworkConnectionStatusInfo(void)
   }
   if ((0 < *(int *)((longlong)unaff_RDI + 0xc)) && (*unaff_RDI != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RDI,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RDI,&NetworkSecurityValidationData,0x100,1);
   }
   *unaff_RDI = unaff_RBP;
   *(NetworkStatus *)((longlong)unaff_RDI + 0xc) = unaff_ESI;
@@ -15819,7 +15828,7 @@ NetworkHandle ValidateNetworkConnectionContext(NetworkHandle connectionContext)
   } while (unaff_R15 != 0);
   if ((0 < *(int *)((longlong)unaff_RDI + 0xc)) && (*unaff_RDI != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RDI,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RDI,&NetworkSecurityValidationData,0x100,1);
   }
   *unaff_RDI = unaff_RBP;
   *(NetworkStatus *)((longlong)unaff_RDI + 0xc) = unaff_ESI;
@@ -15839,7 +15848,7 @@ NetworkHandle GetNetworkConnectionIdleState(void)
   
   if ((0 < *(int *)((longlong)unaff_RDI + 0xc)) && (*unaff_RDI != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RDI,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RDI,&NetworkSecurityValidationData,0x100,1);
   }
   *unaff_RDI = unaff_RBP;
   *(NetworkStatus *)((longlong)unaff_RDI + 0xc) = unaff_ESI;
@@ -15859,7 +15868,7 @@ NetworkHandle GetNetworkConnectionActiveState(void)
   
   if ((0 < *(int *)((longlong)unaff_RDI + 0xc)) && (*unaff_RDI != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RDI,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RDI,&NetworkSecurityValidationData,0x100,1);
   }
   *unaff_RDI = unaff_RBP;
   *(NetworkStatus *)((longlong)unaff_RDI + 0xc) = unaff_ESI;
@@ -16031,7 +16040,7 @@ LAB_18084e5ba:
       } while ((plVar7 != plVar1) && (plVar7 = (longlong *)*plVar7, plVar7 != plVar1));
     }
     plVar7 = (longlong *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x18,&UNK_180984b50,0xbf,0,0,1);
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x18,&UNK_180984b50,0xbf,0,0,1);
     if (plVar7 == (longlong *)0x0) {
       uVar8 = 0x26;
     }
@@ -16632,7 +16641,7 @@ void ProcessNetworkEventValidator(void)
   uStack0000000000000030 = (uint)aprimaryNetworkFlag[8];
   uStack0000000000000028 = (uint)aprimaryNetworkFlag._6_2_;
                     // WARNING: Subroutine does not return
-  ProcessNetworkBufferTemplate(&stack0x00000078,0x27,&NetworkPacketTemplateBuffer,aprimaryNetworkFlag._0_8_,aprimaryNetworkFlag._4_4_ & 0xffff);
+  ProcessNetworkBufferTemplate(&NetworkStackBuffer78,0x27,&NetworkPacketTemplateBuffer,aprimaryNetworkFlag._0_8_,aprimaryNetworkFlag._4_4_ & 0xffff);
 }
 
 
@@ -16782,7 +16791,7 @@ LAB_18084f0bc:
     }
     CleanupNetworkConnectionResources(quaternaryNetworkFlag);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
   }
   lVar9 = connectionContext[5];
   if (lVar9 != 0) {
@@ -16797,7 +16806,7 @@ LAB_18084f0bc:
       if (0 < (int)connectionContext[3]) goto LAB_18084f283;
       if ((0 < (int)uVar6) && (connectionContext[2] != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext[2],&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext[2],&NetworkSecurityValidationData,0x100,1);
       }
       connectionContext[2] = 0;
       *(NetworkStatus *)((longlong)connectionContext + 0x1c) = 0;
@@ -16913,7 +16922,7 @@ LAB_18084f0bc:
     }
     CleanupNetworkConnectionResources(quaternaryNetworkFlag);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
   }
   lVar3 = connectionContext[5];
   if (lVar3 != 0) {
@@ -16928,7 +16937,7 @@ LAB_18084f0bc:
       if (0 < (int)connectionContext[3]) goto LAB_18084f283;
       if ((0 < (int)uVar6) && (connectionContext[2] != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext[2],&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext[2],&NetworkSecurityValidationData,0x100,1);
       }
       connectionContext[2] = 0;
       *(NetworkStatus *)((longlong)connectionContext + 0x1c) = 0;
@@ -17056,7 +17065,7 @@ LAB_18084f34c:
     }
     ValidateNetworkConnectionState(quaternaryNetworkFlag);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
   }
   lVar9 = connectionContext[5];
   if (lVar9 != 0) {
@@ -17071,7 +17080,7 @@ LAB_18084f34c:
       if (0 < (int)connectionContext[3]) goto LAB_18084f513;
       if ((0 < (int)uVar6) && (connectionContext[2] != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext[2],&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext[2],&NetworkSecurityValidationData,0x100,1);
       }
       connectionContext[2] = 0;
       *(NetworkStatus *)((longlong)connectionContext + 0x1c) = 0;
@@ -17178,7 +17187,7 @@ LAB_18084f34c:
     }
     ValidateNetworkConnectionState(quaternaryNetworkFlag);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
   }
   lVar3 = connectionContext[5];
   if (lVar3 != 0) {
@@ -17193,7 +17202,7 @@ LAB_18084f34c:
       if (0 < (int)connectionContext[3]) goto LAB_18084f513;
       if ((0 < (int)uVar6) && (connectionContext[2] != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext[2],&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext[2],&NetworkSecurityValidationData,0x100,1);
       }
       connectionContext[2] = 0;
       *(NetworkStatus *)((longlong)connectionContext + 0x1c) = 0;
@@ -17321,7 +17330,7 @@ LAB_18084f5dc:
     }
     ResetNetworkConnectionState(quaternaryNetworkFlag);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
   }
   lVar9 = connectionContext[5];
   if (lVar9 != 0) {
@@ -17336,7 +17345,7 @@ LAB_18084f5dc:
       if (0 < (int)connectionContext[3]) goto LAB_18084f7a3;
       if ((0 < (int)uVar6) && (connectionContext[2] != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext[2],&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext[2],&NetworkSecurityValidationData,0x100,1);
       }
       connectionContext[2] = 0;
       *(NetworkStatus *)((longlong)connectionContext + 0x1c) = 0;
@@ -17443,7 +17452,7 @@ LAB_18084f5dc:
     }
     ResetNetworkConnectionState(quaternaryNetworkFlag);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
   }
   lVar3 = connectionContext[5];
   if (lVar3 != 0) {
@@ -17458,7 +17467,7 @@ LAB_18084f5dc:
       if (0 < (int)connectionContext[3]) goto LAB_18084f7a3;
       if ((0 < (int)uVar6) && (connectionContext[2] != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext[2],&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext[2],&NetworkSecurityValidationData,0x100,1);
       }
       connectionContext[2] = 0;
       *(NetworkStatus *)((longlong)connectionContext + 0x1c) = 0;
@@ -17750,7 +17759,7 @@ LAB_18084f970:
 LAB_18084f987:
   CleanupNetworkConnectionResources(plVar6);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
 }
 
 
@@ -17997,7 +18006,7 @@ LAB_18084f970:
 LAB_18084f987:
   CleanupNetworkConnectionResources(plVar5);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984cd0,0x193,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984cd0,0x193,1);
 }
 
 
@@ -18253,7 +18262,7 @@ LAB_18084fe50:
 LAB_18084fe67:
   CleanupNetworkConnectionResources(plVar6);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
 }
 
 
@@ -18511,7 +18520,7 @@ LAB_18084fe50:
 LAB_18084fe67:
   CleanupNetworkConnectionResources(plVar5);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984cd0,0x193,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984cd0,0x193,1);
 }
 
 
@@ -18765,7 +18774,7 @@ LAB_180850330:
 LAB_180850347:
   NetworkProcessConnectionFlag(plVar6);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
 }
 
 
@@ -19021,7 +19030,7 @@ LAB_180850330:
 LAB_180850347:
   NetworkProcessConnectionFlag(plVar5);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984cd0,0x193,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984cd0,0x193,1);
 }
 
 
@@ -19275,7 +19284,7 @@ LAB_180850810:
 LAB_180850827:
   NetworkValidateConnectionFlag(plVar6);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
 }
 
 
@@ -19531,7 +19540,7 @@ LAB_180850810:
 LAB_180850827:
   NetworkValidateConnectionFlag(plVar5);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984cd0,0x193,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984cd0,0x193,1);
 }
 
 
@@ -20118,7 +20127,7 @@ LAB_180850d95:
       }
       iVar7 = ValidateNetworkMemoryAllocation(primaryNetworkFlag,&UNK_18095af38,&stack0x00000040);
       if (iVar7 == 0) {
-        iVar7 = CheckNetworkSecurity(primaryNetworkFlag,0x19,&stack0x00000078);
+        iVar7 = CheckNetworkSecurity(primaryNetworkFlag,0x19,&NetworkStackBuffer78);
         if ((iVar7 != 0) || (iVar7 = ValidateSecurityCertificate(lStack0000000000000078,1), iVar7 != 0))
         goto LAB_180850d9b;
         iVar7 = WriteToNetworkBuffer(lStack0000000000000040,0xfffffffd,lStack0000000000000078);
@@ -21650,7 +21659,7 @@ LAB_180852518:
         if ((0 < (int)primaryNetworkFlag7) && (*plVar13 != 0)) {
           plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_,1);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar13,&g_NetworkSecurityValidationData,0x100);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar13,&NetworkSecurityValidationData,0x100);
         }
         *plVar13 = 0;
         *(NetworkStatus *)((longlong)connectionContext + 0x8c) = 0;
@@ -21717,7 +21726,7 @@ LAB_1808526bf:
       if ((0 < (int)primaryNetworkFlag7) && (*plVar13 != 0)) {
         plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_,1);
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar13,&g_NetworkSecurityValidationData,0x100);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar13,&NetworkSecurityValidationData,0x100);
       }
       *plVar13 = 0;
       *(NetworkStatus *)((longlong)connectionContext + 0x9c) = 0;
@@ -22134,7 +22143,7 @@ LAB_180852518:
       if (*(int *)(unaff_R15 + 0x11) < 1) {
         if ((0 < (int)primaryNetworkFlag6) && (*plVar12 != 0)) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar12,&g_NetworkSecurityValidationData,0x100,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar12,&NetworkSecurityValidationData,0x100,1);
         }
         *plVar12 = 0;
         *(NetworkStatus *)((longlong)unaff_R15 + 0x8c) = 0;
@@ -22201,7 +22210,7 @@ LAB_1808526bf:
       if (0 < *(int *)(unaff_R15 + 0x13)) goto LAB_180852954;
       if ((0 < (int)primaryNetworkFlag6) && (*plVar12 != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar12,&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar12,&NetworkSecurityValidationData,0x100,1);
       }
       *plVar12 = 0;
       *(NetworkStatus *)((longlong)unaff_R15 + 0x9c) = 0;
@@ -22636,7 +22645,7 @@ int NetworkConnectionDataValidator(longlong *connectionContext,NetworkStatus *pa
   puVar7 = (NetworkHandle *)0x0;
   if (puVar6 == (NetworkHandle *)0x0) {
     puVar7 = (NetworkHandle *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x38,&UNK_180984cd0,0x124,0,0,1);
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x38,&UNK_180984cd0,0x124,0,0,1);
     if (puVar7 == (NetworkHandle *)0x0) {
       networkStatus10 = 0x26;
       puVar7 = (NetworkHandle *)0x0;
@@ -22724,7 +22733,7 @@ LAB_180852f9c:
   }
   CleanupNetworkConnectionResources(puVar7);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),puVar7,&UNK_18095b500,0xc6,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),puVar7,&UNK_18095b500,0xc6,1);
 }
 
 
@@ -22784,7 +22793,7 @@ int InitializeNetworkTransferHandler(void)
   puVar7 = (NetworkHandle *)0x0;
   if (puVar6 == (NetworkHandle *)0x0) {
     puVar7 = (NetworkHandle *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x38,&UNK_180984cd0,0x124,0);
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x38,&UNK_180984cd0,0x124,0);
     if (puVar7 == (NetworkHandle *)0x0) {
       networkStatus10 = 0x26;
       puVar7 = (NetworkHandle *)0x0;
@@ -22875,7 +22884,7 @@ LAB_180852f9c:
   }
   CleanupNetworkConnectionResources(puVar7);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),puVar7,&UNK_18095b500,0xc6,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),puVar7,&UNK_18095b500,0xc6,1);
 }
 
 
@@ -22899,7 +22908,7 @@ NetworkStatus CheckNetworkConnectionState(void)
   }
   CleanupNetworkConnectionResources();
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0));
 }
 
 
@@ -23068,7 +23077,7 @@ void NetworkConnectionSecurityValidator(longlong connectionContext)
     networkStatus2 = (**(code **)(*plStack_120 + 0x10))(plStack_120,1);
     if (networkStatus2 == 0) goto LAB_18073d93d;
   }
-  if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0) {
+  if ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0) {
     ProcessNetworkBufferWithEncryption(auStack_118,0x100,1);
     puStack_138 = auStack_118;
                     // WARNING: Subroutine does not return
@@ -23128,7 +23137,7 @@ NetworkHandle ValidateNetworkBufferSize(longlong *connectionContext,int packetDa
   lVar1 = 0;
   if (packetData != 0) {
     if (packetData * 0x20 - 1U < 0x3fffffff) {
-      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x20,&g_NetworkSecurityValidationData,
+      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x20,&NetworkSecurityValidationData,
                             0xf4,0,0,1);
       if (lVar1 != 0) {
         if ((int)connectionContext[1] != 0) {
@@ -23143,7 +23152,7 @@ NetworkHandle ValidateNetworkBufferSize(longlong *connectionContext,int packetDa
 LAB_180853370:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = lVar1;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -23166,14 +23175,14 @@ NetworkHandle SendNetworkPacketDataEx(NetworkHandle connectionContext,int packet
 LAB_180853370:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (packetData * 0x20 - 1U < 0x3fffffff) {
-    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x20,&g_NetworkSecurityValidationData,0xf4
+    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x20,&NetworkSecurityValidationData,0xf4
                           ,0);
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -23347,7 +23356,7 @@ LAB_180853663:
     if (quaternaryNetworkFlag == 0) {
       CleanupNetworkConnectionResources(plVar7);
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar7,&UNK_180984cd0,0xe1,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar7,&UNK_180984cd0,0xe1,1);
     }
   }
 LAB_180853766:
@@ -23381,7 +23390,7 @@ NetworkHandle ReceiveNetworkPacket(longlong *connectionContext)
     plVar1[1] = (longlong)plVar1;
     *plVar1 = (longlong)plVar1;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar1,&UNK_180984b50,0xe1,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar1,&UNK_180984b50,0xe1,1);
   }
   return 0x1c;
 }
@@ -23972,7 +23981,7 @@ NetworkHandle ValidateNetworkConnection(longlong connectionContext)
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar4,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar4,&UNK_180984d50,0x76,1);
     }
   }
   if (1 < networkStatus3 - 4U) {
@@ -24138,7 +24147,7 @@ LAB_1808545a3:
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lStack_a8,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lStack_a8,&UNK_180984d50,0x76,1);
     }
   }
   return networkStatus4;
@@ -24299,7 +24308,7 @@ LAB_1808545a3:
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
     }
   }
   return iVar6;
@@ -24319,7 +24328,7 @@ NetworkStatus ValidateNetworkConnectionState(NetworkHandle connectionContext,lon
   *pnetworkStatus1 = *pnetworkStatus1 + -1;
   if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData,&UNK_180984d50,0x76,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData,&UNK_180984d50,0x76,1);
   }
   return unaff_EDI;
 }
@@ -24367,7 +24376,7 @@ ProcessNetworkBufferDataEx(longlong connectionContext,ulonglong packetData,Netwo
       if (packetData < (ulonglong)networkPointer4[2]) {
         uVar7 = 0;
         puVar6 = (NetworkHandle *)
-                 ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180984b50,0xbf,0,0,
+                 ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180984b50,0xbf,0,0,
                                1);
         if (puVar6 == (NetworkHandle *)0x0) goto LAB_1808547b7;
         *puVar6 = puVar6;
@@ -24387,7 +24396,7 @@ ProcessNetworkBufferDataEx(longlong connectionContext,ulonglong packetData,Netwo
     }
     uVar7 = 0;
     networkPointer4 = (NetworkHandle *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180984b50,0xbf,0,0,1);
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180984b50,0xbf,0,0,1);
     if (networkPointer4 == (NetworkHandle *)0x0) {
 LAB_1808547b7:
       uVar7 = 0x26;
@@ -24412,7 +24421,7 @@ LAB_1808547bc:
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar5,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar5,&UNK_180984d50,0x76,1);
     }
   }
   return uVar7;
@@ -24460,7 +24469,7 @@ NetworkStatus ProcessNetworkPacketCompression(longlong connectionContext,ulonglo
       if (packetData < (ulonglong)ptertiaryNetworkFlag[2]) {
         uVar6 = 0;
         networkPointer5 = (NetworkHandle *)
-                 ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180984b50,0xbf,0);
+                 ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180984b50,0xbf,0);
         if (networkPointer5 == (NetworkHandle *)0x0) goto LAB_1808547b7;
         *networkPointer5 = networkPointer5;
         *(NetworkStatus *)(networkPointer5 + 2) = uStack0000000000000040;
@@ -24479,7 +24488,7 @@ NetworkStatus ProcessNetworkPacketCompression(longlong connectionContext,ulonglo
     }
     uVar6 = 0;
     ptertiaryNetworkFlag = (NetworkHandle *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180984b50,0xbf,0);
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180984b50,0xbf,0);
     if (ptertiaryNetworkFlag == (NetworkHandle *)0x0) {
 LAB_1808547b7:
       uVar6 = 0x26;
@@ -24504,7 +24513,7 @@ LAB_1808547bc:
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar4,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar4,&UNK_180984d50,0x76,1);
     }
   }
   return uVar6;
@@ -24525,7 +24534,7 @@ NetworkStatus GetNetworkSystemStatus(void)
   *pnetworkStatus1 = *pnetworkStatus1 + -1;
   if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0));
   }
   return unaff_EDI;
 }
@@ -24596,7 +24605,7 @@ LAB_180854920:
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lStack_38,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lStack_38,&UNK_180984d50,0x76,1);
     }
   }
 LAB_180854958:
@@ -24605,7 +24614,7 @@ LAB_180854958:
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar6,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar6,&UNK_180984d50,0x76,1);
     }
   }
   return networkStatus3;
@@ -24683,7 +24692,7 @@ LAB_180854920:
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),param_8,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),param_8,&UNK_180984d50,0x76,1);
     }
   }
 LAB_180854958:
@@ -24692,7 +24701,7 @@ LAB_180854958:
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar6,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar6,&UNK_180984d50,0x76,1);
     }
   }
   return networkStatus3;
@@ -24713,7 +24722,7 @@ NetworkStatus GetNetworkConnectionStatistics(void)
   *pnetworkStatus1 = *pnetworkStatus1 + -1;
   if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0));
   }
   return unaff_R14D;
 }
@@ -25509,7 +25518,7 @@ int ValidateNetworkConnectionData(longlong connectionContext)
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar5,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar5,&UNK_180984d50,0x76,1);
     }
   }
   return networkStatus4;
@@ -25576,7 +25585,7 @@ int ProcessNetworkConnectionState(longlong connectionContext)
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar4,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar4,&UNK_180984d50,0x76,1);
     }
   }
   return networkStatus3;
@@ -25597,7 +25606,7 @@ NetworkStatus ReleaseNetworkConnectionReference(void)
   *pnetworkStatus1 = *pnetworkStatus1 + -1;
   if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0));
   }
   return unaff_ESI;
 }
@@ -25626,7 +25635,7 @@ NetworkHandle ValidateNetworkConnectionState(longlong *connectionContext)
     }
     if ((0 < (int)uVar7) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -25772,7 +25781,7 @@ NetworkHandle ValidateNetworkConnectionState(longlong *connectionContext)
     }
     if ((0 < (int)uVar9) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -25978,7 +25987,7 @@ NetworkHandle ValidateNetworkConnectionState(longlong *connectionContext)
     }
     if ((0 < (int)uVar9) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     uVar9 = 0;
@@ -26168,7 +26177,7 @@ void NetworkConnectionContextCleaner(longlong *connectionContext)
       *pnetworkStatus1 = *pnetworkStatus1 + -1;
       if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar3,&UNK_180984d50,0x76,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar3,&UNK_180984d50,0x76,1);
       }
     }
     *(longlong *)plVar2[1] = *plVar2;
@@ -26176,7 +26185,7 @@ void NetworkConnectionContextCleaner(longlong *connectionContext)
     plVar2[1] = (longlong)plVar2;
     *plVar2 = (longlong)plVar2;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar2,&UNK_180984b50,0xe1,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar2,&UNK_180984b50,0xe1,1);
   }
   return;
 }
@@ -26208,7 +26217,7 @@ void NetworkConnectionMemoryManager(void)
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar2,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar2,&UNK_180984d50,0x76,1);
     }
   }
   *(longlong *)unaff_RDI[1] = *unaff_RDI;
@@ -26216,7 +26225,7 @@ void NetworkConnectionMemoryManager(void)
   unaff_RDI[1] = (longlong)unaff_RDI;
   *unaff_RDI = (longlong)unaff_RDI;
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0));
 }
 
 
@@ -26251,7 +26260,7 @@ void NetworkConnectionDataProcessor(longlong *connectionContext)
     plVar1[1] = (longlong)plVar1;
     *plVar1 = (longlong)plVar1;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar1,&UNK_180984b50,0xe1,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar1,&UNK_180984b50,0xe1,1);
   }
   return;
 }
@@ -26419,7 +26428,7 @@ NetworkHandle CleanupNetworkConnection(NetworkHandle *connectionContext)
         *pnetworkStatus1 = *pnetworkStatus1 + -1;
         if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lStack_18,&UNK_180984d50,0x76,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lStack_18,&UNK_180984d50,0x76,1);
         }
       }
       return 0;
@@ -27265,7 +27274,7 @@ NetworkHandle InitializeNetworkConnectionContext(longlong connectionContext)
       *pnetworkStatus2 = *pnetworkStatus2 + -1;
       if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar3,&UNK_180984d50,0x76,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar3,&UNK_180984d50,0x76,1);
       }
     }
     lVar3 = *(longlong *)(connectionContext + 0x140);
@@ -27286,7 +27295,7 @@ NetworkHandle InitializeNetworkConnectionContext(longlong connectionContext)
       *pnetworkStatus2 = *pnetworkStatus2 + -1;
       if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar6,&UNK_180984d50,0x76,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar6,&UNK_180984d50,0x76,1);
       }
     }
     if (*(int *)(lVar3 + 0x20) == *(int *)(lVar6 + 0xc)) {
@@ -27332,7 +27341,7 @@ NetworkHandle FUN_1808561bc(void)
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar5,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar5,&UNK_180984d50,0x76,1);
     }
   }
   if (*(int *)(lVar4 + 0x20) != *(int *)(lVar5 + 0xc)) {
@@ -28176,7 +28185,7 @@ NetworkHandle InitializeNetworkDataReceiving(longlong connectionContext,NetworkH
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lStack_18,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lStack_18,&UNK_180984d50,0x76,1);
     }
   }
   return 0;
@@ -28315,7 +28324,7 @@ LAB_180856fce:
             if (*pnetworkStatus22 == 0) {
               uStack_b8 = CONCAT71(uStack_b8._1_7_,1);
                     // WARNING: Subroutine does not return
-              ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar7,&UNK_180984d50,0x76);
+              ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar7,&UNK_180984d50,0x76);
             }
           }
           if (((plVar21 == plVar18) ||
@@ -29808,7 +29817,7 @@ LAB_180857f82:
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar15,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar15,&UNK_180984d50,0x76,1);
     }
   }
   if (((longlong *)*plVar24 == plVar24) && (*(longlong **)(connectionContext + 0x78) == plVar24)) {
@@ -29824,7 +29833,7 @@ LAB_180857f82:
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar15,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar15,&UNK_180984d50,0x76,1);
     }
   }
   if (iVar8 == 3) {
@@ -30053,7 +30062,7 @@ LAB_180859163:
           *(int *)plVar21 = (int)*plVar21 + -1;
           if ((int)*plVar21 == 0) {
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
           }
           return primaryNetworkFlag8;
         }
@@ -30071,7 +30080,7 @@ LAB_180859163:
       *(int *)plVar21 = (int)*plVar21 + -1;
       if ((int)*plVar21 == 0) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
       }
 LAB_180858c20:
       plVar24 = (longlong *)(connectionContext + 0x70);
@@ -30248,7 +30257,7 @@ LAB_180858c20:
             *(int *)plVar21 = (int)*plVar21 + -1;
             if ((int)*plVar21 == 0) {
                     // WARNING: Subroutine does not return
-              ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
+              ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
             }
           }
         }
@@ -30257,7 +30266,7 @@ LAB_180858c20:
           *(int *)plVar24 = (int)*plVar24 + -1;
           if ((int)*plVar24 == 0) {
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plStack_148,&UNK_180984d50,0x76,1)
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plStack_148,&UNK_180984d50,0x76,1)
             ;
           }
         }
@@ -30367,7 +30376,7 @@ joined_r0x0001808591a3:
             return 0x1c;
           }
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
         }
         *(NetworkByte *)(connectionContext + 0x13c) = 0;
         uStack_114 = 2;
@@ -30387,7 +30396,7 @@ joined_r0x0001808591a3:
             *(int *)plVar21 = (int)*plVar21 + -1;
             if ((int)*plVar21 == 0) {
                     // WARNING: Subroutine does not return
-              ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
+              ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
             }
           }
         }
@@ -30398,7 +30407,7 @@ LAB_180858e04:
             *(int *)plVar21 = (int)*plVar21 + -1;
             if ((int)*plVar21 == 0) {
                     // WARNING: Subroutine does not return
-              ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
+              ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
             }
           }
           if (uVar6 != 0) {
@@ -30518,7 +30527,7 @@ LAB_180858e04:
         *(int *)plVar21 = (int)*plVar21 + -1;
         if ((int)*plVar21 == 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar24,&UNK_180984d50,0x76,1);
         }
       }
       plVar24 = plStack_b8;
@@ -30541,7 +30550,7 @@ NetworkHandle MonitorNetworkPerformance(longlong connectionContext,longlong *pac
   longlong *plVar2;
   
   plVar2 = (longlong *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180984b50,0xbf,0,0,1);
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180984b50,0xbf,0,0,1);
   if (plVar2 != (longlong *)0x0) {
     *plVar2 = (longlong)plVar2;
     plVar2[1] = (longlong)plVar2;
@@ -30605,7 +30614,7 @@ NetworkHandle FUN_1808592c0(longlong connectionContext,longlong packetData,Netwo
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar7,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar7,&UNK_180984d50,0x76,1);
     }
   }
   networkStatus11 = -1;
@@ -30694,7 +30703,7 @@ NetworkHandle FUN_1808592ca(longlong connectionContext,longlong packetData,Netwo
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar7,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar7,&UNK_180984d50,0x76,1);
     }
   }
   networkStatus11 = -1;
@@ -30841,7 +30850,7 @@ NetworkHandle ValidateNetworkBufferAccess(longlong *connectionContext,int packet
   lVar7 = 0;
   if (packetData != 0) {
     if (packetData * 0x1c - 1U < 0x3fffffff) {
-      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x1c,&g_NetworkSecurityValidationData,
+      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x1c,&NetworkSecurityValidationData,
                             0xf4,0,0,1);
       if (lVar7 != 0) {
         networkStatus3 = (int)connectionContext[1];
@@ -30873,7 +30882,7 @@ NetworkHandle ValidateNetworkBufferAccess(longlong *connectionContext,int packet
 LAB_180859535:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = lVar7;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -30905,14 +30914,14 @@ NetworkHandle FUN_180859494(void)
 LAB_180859535:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar7;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (unaff_EDI * 0x1c - 1U < 0x3fffffff) {
-    lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),unaff_EDI * 0x1c,&g_NetworkSecurityValidationData,
+    lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),unaff_EDI * 0x1c,&NetworkSecurityValidationData,
                           0xf4,0);
     if (lVar7 != 0) {
       networkStatus3 = (int)unaff_RBX[1];
@@ -30982,7 +30991,7 @@ NetworkHandle ValidateNetworkBufferState(longlong *connectionContext,int packetD
   lVar7 = 0;
   if (packetData != 0) {
     if (packetData * 0x18 - 1U < 0x3fffffff) {
-      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x18,&g_NetworkSecurityValidationData,
+      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x18,&NetworkSecurityValidationData,
                             0xf4,0,0,1);
       if (lVar7 != 0) {
         networkStatus3 = (int)connectionContext[1];
@@ -31014,7 +31023,7 @@ NetworkHandle ValidateNetworkBufferState(longlong *connectionContext,int packetD
 LAB_180859665:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = lVar7;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -31046,14 +31055,14 @@ NetworkHandle FUN_1808595c4(NetworkHandle connectionContext,int packetData)
 LAB_180859665:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar7;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (packetData * 0x18 - 1U < 0x3fffffff) {
-    lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x18,&g_NetworkSecurityValidationData,0xf4
+    lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x18,&NetworkSecurityValidationData,0xf4
                           ,0);
     if (lVar7 != 0) {
       networkStatus3 = (int)unaff_RBX[1];
@@ -31755,7 +31764,7 @@ LAB_18085a4c4:
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lStack_b8,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lStack_b8,&UNK_180984d50,0x76,1);
     }
     return iVar5;
   }
@@ -31765,7 +31774,7 @@ LAB_18085a4fd:
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lStack_b8,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lStack_b8,&UNK_180984d50,0x76,1);
     }
   }
   return 0;
@@ -31972,7 +31981,7 @@ LAB_18085a91b:
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lStack_b8,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lStack_b8,&UNK_180984d50,0x76,1);
     }
   }
   return iVar5;
@@ -32173,7 +32182,7 @@ LAB_18085a91b:
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar17,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar17,&UNK_180984d50,0x76,1);
     }
   }
   return iVar6;
@@ -32193,7 +32202,7 @@ NetworkStatus ReportNetworkConnectionStatus(NetworkHandle connectionContext,long
   *pnetworkStatus1 = *pnetworkStatus1 + -1;
   if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData,&UNK_180984d50,0x76,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData,&UNK_180984d50,0x76,1);
   }
   return unaff_ESI;
 }
@@ -32273,7 +32282,7 @@ NetworkHandle GetNetworkConnectionInfo(longlong connectionContext)
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lStack_18,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lStack_18,&UNK_180984d50,0x76,1);
     }
   }
   networkStatus4 = GetConnectionContext(connectionContext + 0xb8);
@@ -32546,7 +32555,7 @@ LAB_180857f18:
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
     }
   }
   if (((longlong *)*plVar17 == plVar17) && (*(longlong **)(connectionContext + 0x78) == plVar17)) {
@@ -32562,7 +32571,7 @@ LAB_180857f18:
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
     }
   }
   if (iVar9 == 3) {
@@ -32793,7 +32802,7 @@ LAB_180859163:
           *(int *)networkPointer2 = (int)*networkPointer2 + -1;
           if ((int)*networkPointer2 == 0) {
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
           }
           return primaryNetworkFlag9;
         }
@@ -32811,7 +32820,7 @@ LAB_180859163:
       *(int *)networkPointer2 = (int)*networkPointer2 + -1;
       if ((int)*networkPointer2 == 0) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
       }
 LAB_180858c20:
       plVar17 = (longlong *)(connectionContext + 0x70);
@@ -32992,7 +33001,7 @@ LAB_180858c20:
             *(int *)networkPointer2 = (int)*networkPointer2 + -1;
             if ((int)*networkPointer2 == 0) {
                     // WARNING: Subroutine does not return
-              ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
+              ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
             }
           }
         }
@@ -33001,7 +33010,7 @@ LAB_180858c20:
           *(int *)networkPointer11 = (int)*networkPointer11 + -1;
           if ((int)*networkPointer11 == 0) {
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),puStack_148,&UNK_180984d50,0x76,1)
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),puStack_148,&UNK_180984d50,0x76,1)
             ;
           }
         }
@@ -33108,7 +33117,7 @@ joined_r0x0001808591a3:
             return 0x1c;
           }
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
         }
         *(NetworkByte *)(connectionContext + 0x13c) = 0;
         uStack_114 = 2;
@@ -33128,7 +33137,7 @@ joined_r0x0001808591a3:
             *(int *)networkPointer2 = (int)*networkPointer2 + -1;
             if ((int)*networkPointer2 == 0) {
                     // WARNING: Subroutine does not return
-              ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
+              ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
             }
           }
         }
@@ -33139,7 +33148,7 @@ LAB_180858e04:
             *(int *)networkPointer2 = (int)*networkPointer2 + -1;
             if ((int)*networkPointer2 == 0) {
                     // WARNING: Subroutine does not return
-              ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
+              ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
             }
           }
           if (secondaryNetworkFlag7 != 0) {
@@ -33262,7 +33271,7 @@ LAB_180858e04:
         *(int *)networkPointer2 = (int)*networkPointer2 + -1;
         if ((int)*networkPointer2 == 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer11,&UNK_180984d50,0x76,1);
         }
       }
       plVar17 = plStack_b8;
@@ -33739,7 +33748,7 @@ LAB_18085b8b5:
   *pnetworkStatus2 = *pnetworkStatus2 + -1;
   if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar15,&UNK_180984d50,0x76,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar15,&UNK_180984d50,0x76,1);
   }
   return iVar9;
 }
@@ -33891,7 +33900,7 @@ LAB_18085b8b5:
     return iVar7;
   }
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar13,&UNK_180984d50,0x76,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar13,&UNK_180984d50,0x76,1);
 }
 
 
@@ -33912,7 +33921,7 @@ void ValidateCriticalNetworkConnectionData(void)
 
 {
   // 验证网络连接表中的关键连接数据，失败时不返回
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0));
 }
 
 
@@ -33968,7 +33977,7 @@ longlong * FUN_18085b920(longlong connectionContext,longlong *packetData)
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar8,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar8,&UNK_180984d50,0x76,1);
     }
   }
   return packetData;
@@ -34033,7 +34042,7 @@ longlong * FUN_18085ba10(longlong connectionContext,longlong *packetData)
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar9,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar9,&UNK_180984d50,0x76,1);
     }
   }
   return packetData;
@@ -34165,7 +34174,7 @@ ProcessNetworkConnectionPacket(longlong connectionContext, uint packetData, char
         *piVar9 = *piVar9 + -1;
         if (*piVar9 == 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
         }
       }
       if (param_5 == (NetworkHandle *)0x0) {
@@ -34211,7 +34220,7 @@ ProcessNetworkConnectionPacket(longlong connectionContext, uint packetData, char
           *piVar9 = *piVar9 + -1;
           if (*piVar9 == 0) {
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
           }
         }
         return 0x1c;
@@ -34224,7 +34233,7 @@ ProcessNetworkConnectionPacket(longlong connectionContext, uint packetData, char
         *piVar9 = *piVar9 + -1;
         if (*piVar9 == 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
         }
       }
     }
@@ -34256,7 +34265,7 @@ ProcessNetworkConnectionPacket(longlong connectionContext, uint packetData, char
           *piVar9 = *piVar9 + -1;
           if (*piVar9 == 0) {
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
           }
         }
         *(longlong *)plVar2[1] = *plVar2;
@@ -34264,7 +34273,7 @@ ProcessNetworkConnectionPacket(longlong connectionContext, uint packetData, char
         plVar2[1] = (longlong)plVar2;
         *plVar2 = (longlong)plVar2;
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar2,&UNK_180984b50,0xe1,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar2,&UNK_180984b50,0xe1,1);
       }
       if (plVar2 == plVar1) break;
     }
@@ -34283,7 +34292,7 @@ ProcessNetworkConnectionPacket(longlong connectionContext, uint packetData, char
         plVar16[1] = (longlong)plVar16;
         *plVar16 = (longlong)plVar16;
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar16,&UNK_180984b50,0xe1,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar16,&UNK_180984b50,0xe1,1);
       }
       if (plVar16 == plVar2) break;
     }
@@ -34352,7 +34361,7 @@ ProcessNetworkConnectionPacket(longlong connectionContext, uint packetData, char
         *piVar9 = *piVar9 + -1;
         if (*piVar9 == 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
         }
       }
       if (param_5 == (NetworkHandle *)0x0) {
@@ -34399,7 +34408,7 @@ ProcessNetworkConnectionPacket(longlong connectionContext, uint packetData, char
       *piVar9 = *piVar9 + -1;
       if (*piVar9 == 0) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76,1);
       }
     }
     uVar8 = ValidateNetworkPacketFormat(connectionContext,primaryNetworkFlag8,packetData,param_5);
@@ -34513,7 +34522,7 @@ void FUN_18085c230(longlong connectionContext,ulonglong packetData)
         *pnetworkStatus1 = *pnetworkStatus1 + -1;
         if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),localContext,&UNK_180984d50,0x76,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),localContext,&UNK_180984d50,0x76,1);
         }
       }
     }
@@ -34536,7 +34545,7 @@ void FUN_18085c230(longlong connectionContext,ulonglong packetData)
         *pnetworkStatus1 = *pnetworkStatus1 + -1;
         if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),localContext,&UNK_180984d50,0x76,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),localContext,&UNK_180984d50,0x76,1);
         }
       }
       FUN_180855e40(connectionContext,connectionContext + 0x28);
@@ -34566,7 +34575,7 @@ FUN_18085c4b0(longlong connectionContext,longlong packetData,NetworkStatus dataS
     lVar2 = func_0x00018084d0b0(*(NetworkHandle *)(connectionContext + 0x110),packetData + 0x20);
     if (connectionDataPointer != 0) {
       plVar3 = (longlong *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x18,&UNK_180984dd0,0x3ce,0,0,1
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x18,&UNK_180984dd0,0x3ce,0,0,1
                             );
       if (plVar3 == (longlong *)0x0) {
         return 0x26;
@@ -34753,7 +34762,7 @@ longlong * FUN_18085c8a0(longlong connectionContext,longlong *packetData)
     *pnetworkStatus2 = *pnetworkStatus2 + -1;
     if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar8,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar8,&UNK_180984d50,0x76,1);
     }
   }
   return packetData;
@@ -34831,7 +34840,7 @@ void FUN_18085ca30(longlong connectionContext,ulonglong packetData)
       if (*pnetworkStatus2 == 0) {
         lStack_98 = CONCAT71(lStack_98._1_7_,1);
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76);
       }
     }
     if (1 < iVar8 - 4U) goto LAB_18085d424;
@@ -34856,7 +34865,7 @@ void FUN_18085ca30(longlong connectionContext,ulonglong packetData)
       if (*pnetworkStatus2 == 0) {
         lStack_98 = CONCAT71(lStack_98._1_7_,1);
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76);
       }
     }
     if (iVar8 != 0) goto LAB_18085d424;
@@ -34897,7 +34906,7 @@ void FUN_18085ca30(longlong connectionContext,ulonglong packetData)
       if (*pnetworkStatus2 == 0) {
         lStack_98 = CONCAT71(lStack_98._1_7_,1);
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76);
       }
     }
     if ((ppppuVar6 == pppnetworkPointer18) ||
@@ -34960,7 +34969,7 @@ void FUN_18085ca30(longlong connectionContext,ulonglong packetData)
         primaryNetworkFlag6 = *(uint *)(lVar17 + 0x20 + lVar14 * 0x28);
         if (primaryNetworkFlag6 == *(uint *)(plVar15 + 3)) {
           if (*(int *)(lVar17 + 0x18 + lVar14 * 0x28) < 1) {
-            pppuStack_88 = (NetworkHandle ***)&g_NetworkConnectionDataDefault;
+            pppuStack_88 = (NetworkHandle ***)&NetworkConnectionDataDefault;
           }
           else {
             pppuStack_88 = *(NetworkHandle ****)(lVar17 + 0x10 + lVar14 * 0x28);
@@ -35010,7 +35019,7 @@ LAB_18085ceec:
       plVar15[1] = (longlong)plVar15;
       *plVar15 = (longlong)plVar15;
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar15,&UNK_180984b50,0xe1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar15,&UNK_180984b50,0xe1);
     }
   }
   plVar15 = *(longlong **)(connectionContext + 0x70);
@@ -35032,7 +35041,7 @@ LAB_18085ceec:
         if (*pnetworkStatus2 == 0) {
           lStack_98 = CONCAT71(lStack_98._1_7_,1);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76);
         }
       }
       lStack_98 = CONCAT71(lStack_98._1_7_,1);
@@ -35041,7 +35050,7 @@ LAB_18085ceec:
       plVar15[1] = (longlong)plVar15;
       *plVar15 = (longlong)plVar15;
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar15,&UNK_180984b50,0xe1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar15,&UNK_180984b50,0xe1);
     }
   }
   if ((*(ulonglong *)(connectionContext + 0x40) != 0) && (*(ulonglong *)(connectionContext + 0x40) <= packetData)) {
@@ -35059,7 +35068,7 @@ LAB_18085ceec:
       if (*pnetworkStatus2 == 0) {
         lStack_98 = CONCAT71(lStack_98._1_7_,1);
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar14,&UNK_180984d50,0x76);
       }
     }
     networkPointer12 = (uint *)CreateNetworkStatus();
@@ -35343,7 +35352,7 @@ NetworkHandle FUN_18085d650(longlong connectionContext,NetworkByte *packetData)
       uStackX_8 = *(uint *)(lVar4 + 0xc);
       if (*pnetworkStatus2 == 0) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar4,&UNK_180984d50,0x76,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar4,&UNK_180984d50,0x76,1);
       }
     }
     else {
@@ -35397,7 +35406,7 @@ void FUN_18085d7f0(longlong *connectionContext,NetworkHandle packetData,NetworkS
   connectionContext[1] = (longlong)connectionContext;
   *connectionContext = (longlong)connectionContext;
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext,packetData,dataSize,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext,packetData,dataSize,1);
 }
 
 
@@ -35545,7 +35554,7 @@ uint FUN_18085dbf0(longlong *connectionContext)
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     tertiaryNetworkFlag = 0;
@@ -35566,7 +35575,7 @@ uint FUN_18085dbf0(longlong *connectionContext)
   }
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = 0;
   *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -35594,7 +35603,7 @@ void FUN_18085dca0(longlong *connectionContext)
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -35745,7 +35754,7 @@ void FUN_18085dff0(NetworkHandle *connectionContext)
     plVar5[1] = (longlong)plVar5;
     *plVar5 = (longlong)plVar5;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984ef0,0x40e,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984ef0,0x40e,1);
   }
   plVar9 = (longlong *)connectionContext[0x9a];
   if ((plVar9 < (longlong *)connectionContext[0x9a]) ||
@@ -35803,7 +35812,7 @@ void FUN_18085dff0(NetworkHandle *connectionContext)
     }
     (**(code **)(*plVar9 + 0x28))(plVar9,0);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar9,&UNK_180984ef0,0x418,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar9,&UNK_180984ef0,0x418,1);
   }
   lVar2 = *plVar9;
   uVar8 = *(uint *)(lVar2 + 0x14);
@@ -35815,7 +35824,7 @@ void FUN_18085dff0(NetworkHandle *connectionContext)
     if (0 < *(int *)(lVar2 + 0x10)) goto LAB_18085e1d5;
     if ((0 < (int)uVar8) && (*(longlong *)(lVar2 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(lVar2 + 8),&g_NetworkSecurityValidationData,
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(lVar2 + 8),&NetworkSecurityValidationData,
                     0x100,1);
     }
     *(NetworkHandle *)(lVar2 + 8) = 0;
@@ -35840,7 +35849,7 @@ void FUN_18085dff0(NetworkHandle *connectionContext)
   }
 LAB_18085e1d5:
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar2,&UNK_180984ef0,0x413,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar2,&UNK_180984ef0,0x413,1);
 }
 
 
@@ -35908,7 +35917,7 @@ void FUN_18085e003(NetworkHandle *connectionContext)
     plVar4[1] = (longlong)plVar4;
     *plVar4 = (longlong)plVar4;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar4,&UNK_180984ef0,0x40e,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar4,&UNK_180984ef0,0x40e,1);
   }
   plVar8 = (longlong *)connectionContext[0x9a];
   if ((plVar8 < (longlong *)connectionContext[0x9a]) ||
@@ -35966,7 +35975,7 @@ void FUN_18085e003(NetworkHandle *connectionContext)
     }
     (**(code **)(*plVar8 + 0x28))(plVar8,0);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar8,&UNK_180984ef0,0x418,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar8,&UNK_180984ef0,0x418,1);
   }
   lVar1 = *plVar8;
   uVar7 = *(uint *)(lVar1 + 0x14);
@@ -35978,7 +35987,7 @@ void FUN_18085e003(NetworkHandle *connectionContext)
     if (0 < *(int *)(lVar1 + 0x10)) goto LAB_18085e1d5;
     if ((0 < (int)uVar7) && (*(longlong *)(lVar1 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(lVar1 + 8),&g_NetworkSecurityValidationData,
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(lVar1 + 8),&NetworkSecurityValidationData,
                     0x100,1);
     }
     *(NetworkHandle *)(lVar1 + 8) = 0;
@@ -36003,7 +36012,7 @@ void FUN_18085e003(NetworkHandle *connectionContext)
   }
 LAB_18085e1d5:
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar1,&UNK_180984ef0,0x413,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar1,&UNK_180984ef0,0x413,1);
 }
 
 
@@ -36082,7 +36091,7 @@ void FUN_18085e112(void)
     }
     (**(code **)(*plVar2 + 0x28))(plVar2,0);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar2,&UNK_180984ef0,0x418,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar2,&UNK_180984ef0,0x418,1);
   }
   lVar1 = *unaff_R14;
   uVar6 = *(uint *)(lVar1 + 0x14);
@@ -36094,7 +36103,7 @@ void FUN_18085e112(void)
     if (0 < *(int *)(lVar1 + 0x10)) goto LAB_18085e1d5;
     if ((0 < (int)uVar6) && (*(longlong *)(lVar1 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(lVar1 + 8),&g_NetworkSecurityValidationData,
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(lVar1 + 8),&NetworkSecurityValidationData,
                     0x100,1);
     }
     *(NetworkHandle *)(lVar1 + 8) = unaff_RDI;
@@ -36120,7 +36129,7 @@ void FUN_18085e112(void)
   }
 LAB_18085e1d5:
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar1,&UNK_180984ef0,0x413,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar1,&UNK_180984ef0,0x413,1);
 }
 
 
@@ -36136,7 +36145,7 @@ void FUN_18085e221(void)
   
   (**(code **)(*unaff_RDI + 0x28))();
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0));
 }
 
 
@@ -36230,7 +36239,7 @@ void FUN_18085e4a0(longlong connectionContext)
       plVar4[1] = (longlong)plVar4;
       *plVar4 = (longlong)plVar4;
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar4,&UNK_180984b50,0xe1,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar4,&UNK_180984b50,0xe1,1);
     }
     plVar4 = (longlong *)*plVar7;
   }
@@ -36252,7 +36261,7 @@ void FUN_18085e4a0(longlong connectionContext)
         *pnetworkStatus1 = *pnetworkStatus1 + -1;
         if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar8,&UNK_180984d50,0x76,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar8,&UNK_180984d50,0x76,1);
         }
       }
       *(longlong *)plVar7[1] = *plVar7;
@@ -36260,7 +36269,7 @@ void FUN_18085e4a0(longlong connectionContext)
       plVar7[1] = (longlong)plVar7;
       *plVar7 = (longlong)plVar7;
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar7,&UNK_180984b50,0xe1,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar7,&UNK_180984b50,0xe1,1);
     }
     plVar7 = (longlong *)*plVar6;
   }
@@ -36274,7 +36283,7 @@ void FUN_18085e4a0(longlong connectionContext)
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar8,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar8,&UNK_180984d50,0x76,1);
     }
   }
   lVar8 = *(longlong *)(connectionContext + 0x38);
@@ -36283,7 +36292,7 @@ void FUN_18085e4a0(longlong connectionContext)
     *pnetworkStatus1 = *pnetworkStatus1 + -1;
     if (*pnetworkStatus1 == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar8,&UNK_180984d50,0x76,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar8,&UNK_180984d50,0x76,1);
     }
   }
   return;
@@ -36670,8 +36679,13 @@ LAB_18085ebc2:
 
 
 
-// 函数: void FUN_18085ec78(void)
-void FUN_18085ec78(void)
+/**
+ * @brief 网络系统空操作函数
+ * 
+ * 该函数是一个空操作函数，用于网络系统中的占位或同步操作。
+ * 不执行任何实际操作，直接返回。
+ */
+void NetworkSystemNoOperation(void)
 
 {
   return;
@@ -37096,8 +37110,13 @@ NetworkHandle FUN_18085f163(NetworkHandle *connectionContext)
 
 
 
-// 函数: void FUN_18085f294(void)
-void FUN_18085f294(void)
+/**
+ * @brief 网络连接状态同步函数
+ * 
+ * 该函数用于同步网络连接状态，是一个空操作函数。
+ * 可能用于网络系统中的状态同步占位。
+ */
+void NetworkConnectionStatusSync(void)
 
 {
   return;
@@ -37106,8 +37125,13 @@ void FUN_18085f294(void)
 
 
 
-// 函数: void FUN_18085f299(void)
-void FUN_18085f299(void)
+/**
+ * @brief 网络数据包处理初始化函数
+ * 
+ * 该函数用于初始化网络数据包处理系统，是一个空操作函数。
+ * 可能用于网络数据包处理的初始化占位。
+ */
+void NetworkPacketProcessingInitialize(void)
 
 {
   return;
@@ -37115,29 +37139,54 @@ void FUN_18085f299(void)
 
 
 
-NetworkHandle FUN_18085f2b0(longlong connectionContext)
+/**
+ * @brief 初始化网络连接缓冲区
+ * 
+ * 该函数负责初始化网络连接的缓冲区设置，包括：
+ * - 计算缓冲区地址
+ * - 设置缓冲区状态
+ * - 更新连接状态标志
+ * - 检查网络连接状态
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @return NetworkHandle 初始化成功返回0，失败返回非0值
+ */
+NetworkHandle InitializeNetworkConnectionBuffers(longlong connectionContext)
 
 {
-  NetworkStatus primaryNetworkFlag;
-  NetworkHandle secondaryNetworkFlag;
-  longlong lVar3;
+  NetworkStatus connectionStatus;
+  NetworkHandle initializationResult;
+  longlong bufferAddress;
   
-  secondaryNetworkFlag = FUN_18085ef10();
-  if ((int)secondaryNetworkFlag == 0) {
-    lVar3 = (ulonglong)*(uint *)(*(longlong *)(connectionContext + 0x2c8) + 0x778) +
-            *(longlong *)(*(longlong *)(connectionContext + 0x2b0) + 0x30);
-    *(longlong *)(connectionContext + 0x328) = lVar3;
-    FUN_1808d0490(connectionContext + 0x378,lVar3,1);
-    FUN_1808d0490(connectionContext + 0x3f8,*(NetworkHandle *)(connectionContext + 0x328),1);
-    lVar3 = *(longlong *)(connectionContext + 0x80);
+  // 检查网络连接是否已经初始化
+  initializationResult = FUN_18085ef10();
+  if ((int)initializationResult == 0) {
+    // 计算缓冲区地址
+    bufferAddress = (ulonglong)*(uint *)(*(longlong *)(connectionContext + 0x2c8) + 0x778) +
+                   *(longlong *)(*(longlong *)(connectionContext + 0x2b0) + 0x30);
+    
+    // 保存缓冲区地址
+    *(longlong *)(connectionContext + 0x328) = bufferAddress;
+    
+    // 初始化缓冲区
+    FUN_1808d0490(connectionContext + 0x378, bufferAddress, 1);
+    FUN_1808d0490(connectionContext + 0x3f8, *(NetworkHandle *)(connectionContext + 0x328), 1);
+    
+    // 获取连接管理器地址
+    bufferAddress = *(longlong *)(connectionContext + 0x80);
+    
+    // 设置连接状态为"初始化中"
     *(NetworkStatus *)(connectionContext + 0x2e4) = 5;
-    if (lVar3 != 0) {
-      primaryNetworkFlag = CheckNetworkConnectionStatus(connectionContext);
-      *(NetworkStatus *)(lVar3 + 0x80) = primaryNetworkFlag;
+    
+    // 如果存在连接管理器，检查连接状态
+    if (bufferAddress != 0) {
+      connectionStatus = CheckNetworkConnectionStatus(connectionContext);
+      *(NetworkStatus *)(bufferAddress + 0x80) = connectionStatus;
     }
-    secondaryNetworkFlag = 0;
+    
+    initializationResult = 0;
   }
-  return secondaryNetworkFlag;
+  return initializationResult;
 }
 
 
@@ -37506,7 +37555,15 @@ NetworkHandle FUN_18085f893(void)
 
 
 
-NetworkHandle FUN_18085f8bb(void)
+/**
+ * @brief 获取网络连接默认配置大小
+ * 
+ * 该函数返回网络连接默认配置的大小常量。
+ * 这个值用于初始化网络连接配置的大小。
+ * 
+ * @return NetworkHandle 默认配置大小值（0x1c = 28）
+ */
+NetworkHandle GetNetworkConnectionDefaultConfigSize(void)
 
 {
   return 0x1c;
@@ -37703,7 +37760,7 @@ thunk_FUN_18085fbb0(longlong connectionContext,NetworkHandle *packetData,Network
       *(NetworkHandle *)(lVar3 + lVar11) = *packetData;
       ((NetworkHandle *)(lVar3 + lVar11))[1] = uVar6;
       if (*(int *)(dataSize + 1) < 1) {
-        networkPointer10 = &g_NetworkConnectionDataDefault;
+        networkPointer10 = &NetworkConnectionDataDefault;
       }
       else {
         networkPointer10 = (NetworkData *)*dataSize;
@@ -37796,7 +37853,7 @@ FUN_18085fbb0(longlong connectionContext,NetworkHandle *packetData,NetworkHandle
       *(NetworkHandle *)(lVar3 + lVar11) = *packetData;
       ((NetworkHandle *)(lVar3 + lVar11))[1] = uVar6;
       if (*(int *)(dataSize + 1) < 1) {
-        networkPointer10 = &g_NetworkConnectionDataDefault;
+        networkPointer10 = &NetworkConnectionDataDefault;
       }
       else {
         networkPointer10 = (NetworkData *)*dataSize;
@@ -37887,7 +37944,7 @@ NetworkHandle FUN_18085fc0e(void)
     *(NetworkHandle *)(lVar4 + lVar12) = *unaff_R12;
     ((NetworkHandle *)(lVar4 + lVar12))[1] = uVar7;
     if (*(int *)(unaff_R15 + 1) < 1) {
-      networkPointer11 = &g_NetworkConnectionDataDefault;
+      networkPointer11 = &NetworkConnectionDataDefault;
     }
     else {
       networkPointer11 = (NetworkData *)*unaff_R15;
@@ -38218,7 +38275,7 @@ NetworkHandle thunk_FUN_180865550(longlong connectionContext)
             *(NetworkStatus *)(lVar13 + -0x14) = uVar6;
             *(NetworkStatus *)(lVar13 + -0x10) = uVar7;
             if (*(int *)(lVar9 + -4 + lVar13) < 1) {
-              networkPointer12 = &g_NetworkConnectionDataDefault;
+              networkPointer12 = &NetworkConnectionDataDefault;
             }
             else {
               networkPointer12 = *(NetworkData **)(lVar9 + -0xc + lVar13);
@@ -38470,7 +38527,7 @@ void FUN_180860480(longlong connectionContext,NetworkHandle packetData,NetworkHa
     uStack_70 = 0;
     uStack_78 = 0;
     plVar2 = (longlong *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x30,&UNK_180984ef0,0x705);
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x30,&UNK_180984ef0,0x705);
     if (plVar2 == (longlong *)0x0) goto LAB_1808605b0;
     *plVar2 = (longlong)plVar2;
     plVar2[1] = (longlong)plVar2;
@@ -38814,7 +38871,7 @@ LAB_180860af6:
                       plVar21[1] = (longlong)plVar21;
                       *plVar21 = (longlong)plVar21;
                     // WARNING: Subroutine does not return
-                      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar21,&UNK_180984ef0,
+                      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar21,&UNK_180984ef0,
                                     0xa2c);
                     }
                     goto FUN_1808616bc;
@@ -39251,7 +39308,7 @@ joined_r0x000180861496:
                         plVar21[1] = (longlong)plVar21;
                         *plVar21 = (longlong)plVar21;
                     // WARNING: Subroutine does not return
-                        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar21,&UNK_180984ef0
+                        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar21,&UNK_180984ef0
                                       ,0xadc);
                       }
                       goto FUN_1808616bc;
@@ -39483,7 +39540,7 @@ LAB_180860af6:
             plVar20 = (longlong *)*plVar7;
             plVar22 = plVar20;
             while (plVar22 != plVar7) {
-              (**(code **)(*(longlong *)plVar20[2] + 0x30))((longlong *)plVar20[2],&stack0x00000078)
+              (**(code **)(*(longlong *)plVar20[2] + 0x30))((longlong *)plVar20[2],&NetworkStackBuffer78)
               ;
               if ((in_stack_00000078 == (longlong *)*plVar18) &&
                  (*(longlong *)(unaff_RBP + -0x80) == plVar18[1])) {
@@ -39501,7 +39558,7 @@ LAB_180860af6:
                     plVar20[1] = (longlong)plVar20;
                     *plVar20 = (longlong)plVar20;
                     // WARNING: Subroutine does not return
-                    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar20,&UNK_180984ef0,
+                    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar20,&UNK_180984ef0,
                                   0xa2c,1);
                   }
                   goto LAB_180861693;
@@ -39792,9 +39849,9 @@ LAB_180860f7b:
               cVar3 = func_0x0001808c57f0(networkPointer13,plVar7[2]);
               if ((cVar3 != '\0') && (plVar20 = (longlong *)plVar7[2], plVar20 != (longlong *)0x0))
               {
-                (**(code **)(*plVar20 + 0x30))(plVar20,&stack0x00000078);
+                (**(code **)(*plVar20 + 0x30))(plVar20,&NetworkStackBuffer78);
                 lVar14 = (**(code **)(*(longlong *)*networkPointer13 + 0x128))
-                                   ((longlong *)*networkPointer13,&stack0x00000078,1);
+                                   ((longlong *)*networkPointer13,&NetworkStackBuffer78,1);
                 if (lVar14 == 0) {
                     // WARNING: Subroutine does not return
                   ProcessNetworkBufferTemplate(unaff_RBP + 8,0x27,&NetworkPacketTemplateBuffer,
@@ -39825,7 +39882,7 @@ LAB_180860f7b:
                     } while (networkStatus21 < networkStatus16);
                   }
                   in_stack_00000078 = (longlong *)0x0;
-                  networkStatus16 = FUN_180860480(in_stack_00000070,plVar7,&stack0x00000078);
+                  networkStatus16 = FUN_180860480(in_stack_00000070,plVar7,&NetworkStackBuffer78);
                   plVar7 = in_stack_00000078;
                   if (networkStatus16 != 0) goto LAB_180861693;
                   *(uint *)((longlong)in_stack_00000078 + 0x1c) =
@@ -39855,7 +39912,7 @@ joined_r0x000180861496:
               if (plVar20 != plVar18) {
                 plVar22 = plVar20 + 2;
                 (**(code **)(*(longlong *)plVar20[2] + 0x30))
-                          ((longlong *)plVar20[2],&stack0x00000078);
+                          ((longlong *)plVar20[2],&NetworkStackBuffer78);
                 plVar7 = plVar20;
                 if (plVar20 != plVar18) {
                   plVar7 = (longlong *)*plVar20;
@@ -39931,7 +39988,7 @@ joined_r0x000180861496:
                       plVar20[1] = (longlong)plVar20;
                       *plVar20 = (longlong)plVar20;
                     // WARNING: Subroutine does not return
-                      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar20,&UNK_180984ef0,
+                      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar20,&UNK_180984ef0,
                                     0xadc,1);
                     }
                     goto LAB_180861693;
@@ -40001,7 +40058,7 @@ code_r0x0001808616d8:
         plVar10 = unaff_R14;
         if (plVar10 == unaff_R13) goto LAB_180861693;
         plVar1 = plVar10 + 2;
-        (**(code **)(*(longlong *)plVar10[2] + 0x30))((longlong *)plVar10[2],&stack0x00000078);
+        (**(code **)(*(longlong *)plVar10[2] + 0x30))((longlong *)plVar10[2],&NetworkStackBuffer78);
         unaff_R14 = plVar10;
         if (plVar10 != unaff_R13) {
           unaff_R14 = (longlong *)*plVar10;
@@ -40077,7 +40134,7 @@ LAB_18086154d:
     plVar10[1] = (longlong)plVar10;
     *plVar10 = (longlong)plVar10;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar10,&UNK_180984ef0,0xadc,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar10,&UNK_180984ef0,0xadc,1);
   }
 LAB_180861693:
                     // WARNING: Subroutine does not return
@@ -40857,7 +40914,7 @@ NetworkHandle FUN_180861ce0(longlong *connectionContext,int packetData)
   lVar7 = 0;
   if (packetData != 0) {
     if ((0x3ffffffe < packetData * 0x38 - 1U) ||
-       (lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x38,&g_NetworkSecurityValidationData,
+       (lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x38,&NetworkSecurityValidationData,
                               0xf4,0,0,1), lVar7 == 0)) {
       return 0x26;
     }
@@ -40882,7 +40939,7 @@ NetworkHandle FUN_180861ce0(longlong *connectionContext,int packetData)
           *(NetworkStatus *)(lVar11 + -0x14) = quinaryNetworkFlag;
           *(NetworkStatus *)(lVar11 + -0x10) = uVar6;
           if (*(int *)(lVar8 + -4 + lVar11) < 1) {
-            networkPointer10 = &g_NetworkConnectionDataDefault;
+            networkPointer10 = &NetworkConnectionDataDefault;
           }
           else {
             networkPointer10 = *(NetworkData **)(lVar8 + -0xc + lVar11);
@@ -40900,7 +40957,7 @@ NetworkHandle FUN_180861ce0(longlong *connectionContext,int packetData)
   }
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = lVar7;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -40934,8 +40991,8 @@ NetworkHandle FUN_180861d0b(void)
   lVar7 = 0;
   if (unaff_ESI != 0) {
     if ((0x3ffffffe < unaff_ESI * 0x38 - 1U) ||
-       (lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),unaff_ESI * 0x38,
-                              &g_NetworkSecurityValidationData,0xf4,0), lVar7 == 0)) {
+       (lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),unaff_ESI * 0x38,
+                              &NetworkSecurityValidationData,0xf4,0), lVar7 == 0)) {
       return 0x26;
     }
     networkStatus2 = (int)unaff_RDI[1];
@@ -40959,7 +41016,7 @@ NetworkHandle FUN_180861d0b(void)
           *(NetworkStatus *)(lVar11 + -0x14) = quinaryNetworkFlag;
           *(NetworkStatus *)(lVar11 + -0x10) = uVar6;
           if (*(int *)(lVar8 + -4 + lVar11) < 1) {
-            networkPointer10 = &g_NetworkConnectionDataDefault;
+            networkPointer10 = &NetworkConnectionDataDefault;
           }
           else {
             networkPointer10 = *(NetworkData **)(lVar8 + -0xc + lVar11);
@@ -40979,7 +41036,7 @@ NetworkHandle FUN_180861d0b(void)
   }
   if ((0 < *(int *)((longlong)unaff_RDI + 0xc)) && (*unaff_RDI != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RDI,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RDI,&NetworkSecurityValidationData,0x100,1);
   }
   *unaff_RDI = lVar7;
   *(int *)((longlong)unaff_RDI + 0xc) = unaff_ESI;
@@ -41028,7 +41085,7 @@ NetworkHandle FUN_180861d76(longlong connectionContext)
       *(NetworkStatus *)(lVar8 + -0x14) = quaternaryNetworkFlag;
       *(NetworkStatus *)(lVar8 + -0x10) = quinaryNetworkFlag;
       if (*(int *)(lVar6 + -4 + lVar8) < 1) {
-        puVar7 = &g_NetworkConnectionDataDefault;
+        puVar7 = &NetworkConnectionDataDefault;
       }
       else {
         puVar7 = *(NetworkData **)(lVar6 + -0xc + lVar8);
@@ -41047,7 +41104,7 @@ NetworkHandle FUN_180861d76(longlong connectionContext)
   }
   if ((0 < *(int *)((longlong)unaff_RDI + 0xc)) && (*unaff_RDI != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RDI,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RDI,&NetworkSecurityValidationData,0x100,1);
   }
   *unaff_RDI = unaff_RBP;
   *(NetworkStatus *)((longlong)unaff_RDI + 0xc) = unaff_ESI;
@@ -41096,7 +41153,7 @@ NetworkHandle FUN_180861d98(NetworkHandle connectionContext,NetworkHandle packet
     *(NetworkStatus *)(lVar7 + -0x14) = tertiaryNetworkFlag;
     *(NetworkStatus *)(lVar7 + -0x10) = quaternaryNetworkFlag;
     if (*(int *)(lVar5 + -4 + lVar7) < 1) {
-      puVar6 = &g_NetworkConnectionDataDefault;
+      puVar6 = &NetworkConnectionDataDefault;
     }
     else {
       puVar6 = *(NetworkData **)(lVar5 + -0xc + lVar7);
@@ -41112,7 +41169,7 @@ NetworkHandle FUN_180861d98(NetworkHandle connectionContext,NetworkHandle packet
   } while (unaff_R14 != 0);
   if ((0 < *(int *)((longlong)in_stack_000000a0 + 0xc)) && (*in_stack_000000a0 != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*in_stack_000000a0,&g_NetworkSecurityValidationData,0x100,1)
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*in_stack_000000a0,&NetworkSecurityValidationData,0x100,1)
     ;
   }
   *in_stack_000000a0 = in_stack_00000040;
@@ -41133,7 +41190,7 @@ NetworkHandle FUN_180861e7c(void)
   
   if ((0 < *(int *)((longlong)unaff_RDI + 0xc)) && (*unaff_RDI != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RDI,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RDI,&NetworkSecurityValidationData,0x100,1);
   }
   *unaff_RDI = unaff_RBP;
   *(NetworkStatus *)((longlong)unaff_RDI + 0xc) = unaff_ESI;
@@ -41153,7 +41210,7 @@ NetworkHandle FUN_180861e8b(void)
   
   if ((0 < *(int *)((longlong)unaff_RDI + 0xc)) && (*unaff_RDI != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RDI,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RDI,&NetworkSecurityValidationData,0x100,1);
   }
   *unaff_RDI = unaff_RBP;
   *(NetworkStatus *)((longlong)unaff_RDI + 0xc) = unaff_ESI;
@@ -41188,7 +41245,7 @@ NetworkHandle FUN_180861ef0(longlong *connectionContext,int packetData)
   if (packetData != 0) {
     if (packetData * 4 - 1U < 0x3fffffff) {
       ptertiaryNetworkFlag = (NetworkStatus *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 4,&g_NetworkSecurityValidationData,0xf4
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 4,&NetworkSecurityValidationData,0xf4
                              ,0,0,1);
       if (ptertiaryNetworkFlag != (NetworkStatus *)0x0) {
         networkStatus1 = (int)connectionContext[1];
@@ -41209,7 +41266,7 @@ NetworkHandle FUN_180861ef0(longlong *connectionContext,int packetData)
 LAB_180861f94:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = (longlong)ptertiaryNetworkFlag;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -41236,7 +41293,7 @@ NetworkHandle FUN_180861f14(NetworkHandle connectionContext,int packetData)
 LAB_180861f94:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = (longlong)ptertiaryNetworkFlag;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -41244,7 +41301,7 @@ LAB_180861f94:
   }
   if (packetData * 4 - 1U < 0x3fffffff) {
     ptertiaryNetworkFlag = (NetworkStatus *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 4,&g_NetworkSecurityValidationData,0xf4,0
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 4,&NetworkSecurityValidationData,0xf4,0
                           );
     if (ptertiaryNetworkFlag != (NetworkStatus *)0x0) {
       networkStatus1 = (int)unaff_RBX[1];
@@ -41401,7 +41458,7 @@ void FUN_180862080(longlong connectionContext,longlong *packetData,NetworkHandle
   uStack_148 = 0;
   plVar10 = (longlong *)0x0;
   plVar7 = (longlong *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x30,&UNK_180984ef0,0x705);
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x30,&UNK_180984ef0,0x705);
   if (plVar7 == (longlong *)0x0) goto FUN_18086247a;
   *plVar7 = (longlong)plVar7;
   plVar7[1] = (longlong)plVar7;
@@ -41952,7 +42009,7 @@ void FUN_1808629a0(longlong connectionContext,NetworkHandle packetData,char data
         plVar3[1] = (longlong)plVar3;
         *plVar3 = (longlong)plVar3;
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar3,&UNK_180984ef0,0x8a4);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar3,&UNK_180984ef0,0x8a4);
       }
     }
     else if (dataSize != '\0') {
@@ -42006,7 +42063,7 @@ void FUN_1808629e9(longlong *connectionContext)
       unaff_R14[1] = (longlong)unaff_R14;
       *unaff_R14 = (longlong)unaff_R14;
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0));
     }
   }
   else if (unaff_R13B != '\0') {
@@ -42059,7 +42116,7 @@ void FUN_1808629f1(longlong *connectionContext)
       unaff_R14[1] = (longlong)unaff_R14;
       *unaff_R14 = (longlong)unaff_R14;
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0));
     }
   }
   else if (unaff_R13B != '\0') {
@@ -42119,7 +42176,7 @@ void FUN_180862ad1(void)
       unaff_R14[1] = (longlong)unaff_R14;
       *unaff_R14 = (longlong)unaff_R14;
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0));
     }
   }
   else if (unaff_R13B != '\0') {
@@ -42157,7 +42214,7 @@ void FUN_180862ae8(void)
     unaff_R14[1] = (longlong)unaff_R14;
     *unaff_R14 = (longlong)unaff_R14;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0));
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
@@ -42431,7 +42488,7 @@ ulonglong FUN_180862e00(longlong connectionContext,byte packetData)
               CleanupNetworkConnection(connectionContext + 200);
               (**(code **)(*(longlong *)(connectionContext + 8) + 0x28))(connectionContext + 8,0);
                     // WARNING: Subroutine does not return
-              ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext,&UNK_1809874b0,0x4c4,1);
+              ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext,&UNK_1809874b0,0x4c4,1);
             }
           }
         }
@@ -42688,7 +42745,7 @@ int FUN_180863420(longlong connectionContext)
   primaryNetworkFlag3 = 0;
   bVar11 = false;
   if (((*(byte *)(*(longlong *)(*(longlong *)(connectionContext + 0x2c8) + 0x4c0) + 0x7a) & 1) == 0) &&
-     (*(char *)(g_NetworkConnectionTable + 0x158) == '\0')) {
+     (*(char *)(NetworkConnectionTable + 0x158) == '\0')) {
     localContext = 0;
     primaryNetworkFlag0 = 0xffffbfff;
     primaryNetworkFlag2 = 0;
@@ -42853,7 +42910,7 @@ ulonglong FUN_180863430(ulonglong connectionContext)
   cVar14 = (char)unaff_R14;
   primaryNetworkFlag5 = (uint)unaff_R14;
   if (((*(byte *)(*(longlong *)(in_RAX + 0x4c0) + 0x7a) & 1) == 0) &&
-     (*(char *)(g_NetworkConnectionTable + 0x158) == cVar14)) {
+     (*(char *)(NetworkConnectionTable + 0x158) == cVar14)) {
     primaryNetworkFlag0 = 0xffffbfff;
     uVar7 = primaryNetworkFlag5;
     primaryNetworkFlag7 = unaff_R14;
@@ -43812,7 +43869,7 @@ int FUN_180864040(longlong connectionContext)
     return 0;
   }
   if (((*(byte *)(*(longlong *)(*(longlong *)(connectionContext + 0x2c8) + 0x4c0) + 0x7a) & 1) == 0) &&
-     (*(char *)(g_NetworkConnectionTable + 0x158) == '\0')) {
+     (*(char *)(NetworkConnectionTable + 0x158) == '\0')) {
     lStack_48 = 0;
   }
   else {
@@ -45834,7 +45891,7 @@ NetworkHandle FUN_180865550(longlong connectionContext,char packetData)
               *(NetworkStatus *)(lVar14 + -0x14) = uVar6;
               *(NetworkStatus *)(lVar14 + -0x10) = uVar7;
               if (*(int *)(lVar10 + -4 + lVar14) < 1) {
-                networkPointer13 = &g_NetworkConnectionDataDefault;
+                networkPointer13 = &NetworkConnectionDataDefault;
               }
               else {
                 networkPointer13 = *(NetworkData **)(lVar10 + -0xc + lVar14);
@@ -45936,7 +45993,7 @@ NetworkHandle FUN_1808655bb(void)
           *(NetworkStatus *)(lVar14 + -0x14) = uVar6;
           *(NetworkStatus *)(lVar14 + -0x10) = uVar7;
           if (*(int *)(lVar10 + -4 + lVar14) < 1) {
-            networkPointer13 = &g_NetworkConnectionDataDefault;
+            networkPointer13 = &NetworkConnectionDataDefault;
           }
           else {
             networkPointer13 = *(NetworkData **)(lVar10 + -0xc + lVar14);
@@ -46375,7 +46432,7 @@ NetworkHandle FUN_180865c20(longlong connectionContext,longlong packetData,Netwo
   }
   *(NetworkStatus *)(connectionContext + 0x40) = tertiaryNetworkFlag;
   puVar6 = (NetworkStatus *)
-           FUN_180742050(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x39,&UNK_180985080,0x322,0);
+           FUN_180742050(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x39,&UNK_180985080,0x322,0);
   if (puVar6 == (NetworkStatus *)0x0) {
     uVar7 = 0x26;
   }
@@ -46507,7 +46564,7 @@ NetworkHandle FUN_180865ec0(longlong *connectionContext)
     }
     if ((0 < (int)quinaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -46599,7 +46656,7 @@ NetworkHandle FUN_180865fc0(longlong connectionContext,NetworkData2 packetData,N
     return quinaryNetworkFlag;
   }
   puVar6 = (NetworkStatus *)
-           FUN_180742050(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x39,&UNK_180985080,0x249,
+           FUN_180742050(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x39,&UNK_180985080,0x249,
                          primaryNetworkFlag1 & 0xffffffff00000000);
   if (puVar6 == (NetworkStatus *)0x0) {
     return 0x26;
@@ -46703,7 +46760,7 @@ NetworkHandle FUN_1808661e0(longlong *connectionContext,longlong packetData,int 
       }
       if ((0 < (int)quinaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
       }
       *connectionContext = 0;
       *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -46756,7 +46813,7 @@ NetworkHandle FUN_180866340(longlong connectionContext,NetworkHandle *packetData
     secondaryNetworkFlag = (*(code *)**(NetworkHandle **)*packetData)((NetworkHandle *)*packetData,primaryNetworkFlag,secondaryNetworkFlag);
     if ((int)secondaryNetworkFlag == 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),**(NetworkHandle **)(connectionContext + 0x28),
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),**(NetworkHandle **)(connectionContext + 0x28),
                     &UNK_180985080,0x1bf,1);
     }
   }
@@ -47023,7 +47080,7 @@ NetworkHandle FUN_180866ba0(longlong connectionContext,NetworkHandle packetData)
   int iVar7;
   
   networkPointer2 = (NetworkStatus *)
-           FUN_180742050(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x39,&UNK_180985080,0x303,0);
+           FUN_180742050(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x39,&UNK_180985080,0x303,0);
   if (networkPointer2 == (NetworkStatus *)0x0) {
     return 0x26;
   }
@@ -47081,7 +47138,7 @@ void FUN_180866c90(longlong connectionContext)
     *(longlong **)(connectionContext + 0x10) = plVar1;
     *plVar1 = (longlong)plVar1;
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext,&UNK_180985080,0x1a4,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext,&UNK_180985080,0x1a4,1);
   }
   return;
 }
@@ -47166,7 +47223,7 @@ NetworkHandle FUN_180866d00(longlong connectionContext,int packetData,char dataS
   }
   if (0 < *(int *)(connectionContext + 0x30)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),**(NetworkHandle **)(connectionContext + 0x28),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),**(NetworkHandle **)(connectionContext + 0x28),
                   &UNK_180985080,0x196,1);
   }
   FUN_180865ec0(connectionContext + 0x28);
@@ -47221,7 +47278,7 @@ NetworkHandle FUN_180866e25(void)
   
   if (unaff_EBX < *(int *)(unaff_RDI + 0x30)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),
                   *(NetworkHandle *)(unaff_R13 + *(longlong *)(unaff_RDI + 0x28)),&UNK_180985080,0x196,
                   1);
   }
@@ -47347,7 +47404,7 @@ NetworkHandle FUN_180866fe0(NetworkHandle *connectionContext,longlong *packetDat
     plVar4 = (longlong *)(**(code **)(*packetData + 0x28))(packetData);
     if (plVar4 != (longlong *)0x0) {
       tertiaryNetworkFlag = (**(code **)(*plVar4 + 0x30))(plVar4);
-      piStack_48 = (int *)ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),tertiaryNetworkFlag + 0x10,
+      piStack_48 = (int *)ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),tertiaryNetworkFlag + 0x10,
                                         &UNK_180985080,0x2af,0,0,1);
       if (piStack_48 == (int *)0x0) {
         return 0x26;
@@ -47628,7 +47685,7 @@ NetworkHandle FUN_1808673a0(longlong connectionContext)
     }
     if (999 < aiStackX_8[0] - *(int *)(connectionContext + 0x78)) {
       if (*(int *)(connectionContext + 0x90) < 1) {
-        networkPointer2 = &g_NetworkConnectionDataDefault;
+        networkPointer2 = &NetworkConnectionDataDefault;
       }
       else {
         networkPointer2 = *(NetworkData **)(connectionContext + 0x88);
@@ -47772,7 +47829,7 @@ NetworkHandle FUN_1808676f0(longlong *connectionContext,int packetData)
   if (packetData != 0) {
     if (packetData * 0x18 - 1U < 0x3fffffff) {
       puVar7 = (NetworkStatus *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x18,&g_NetworkSecurityValidationData,
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x18,&NetworkSecurityValidationData,
                              0xf4,0,0,1);
       if (puVar7 != (NetworkStatus *)0x0) {
         networkStatus2 = (int)connectionContext[1];
@@ -47802,7 +47859,7 @@ NetworkHandle FUN_1808676f0(longlong *connectionContext,int packetData)
 LAB_1808677af:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = (longlong)puVar7;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -47833,7 +47890,7 @@ NetworkHandle FUN_180867714(NetworkHandle connectionContext,int packetData)
 LAB_1808677af:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = (longlong)puVar7;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -47841,7 +47898,7 @@ LAB_1808677af:
   }
   if (packetData * 0x18 - 1U < 0x3fffffff) {
     puVar7 = (NetworkStatus *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x18,&g_NetworkSecurityValidationData,
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x18,&NetworkSecurityValidationData,
                            0xf4,0);
     if (puVar7 != (NetworkStatus *)0x0) {
       networkStatus2 = (int)unaff_RBX[1];
@@ -48066,7 +48123,7 @@ FUN_180867b40(longlong connectionContext,longlong packetData,NetworkHandle dataS
     uStack_20 = 0;
     uStack_14 = 0;
     if (*(int *)(param_4 + 1) < 1) {
-      puStack_28 = &g_NetworkConnectionDataDefault;
+      puStack_28 = &NetworkConnectionDataDefault;
     }
     else {
       puStack_28 = (NetworkData *)*param_4;
@@ -48092,7 +48149,7 @@ NetworkHandle FUN_180867bc0(NetworkHandle *connectionContext)
   NetworkHandle *networkPointer1;
   
   networkPointer1 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0xc0,&UNK_180985170,0x40,0,0,1);
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0xc0,&UNK_180985170,0x40,0,0,1);
   if (networkPointer1 == (NetworkHandle *)0x0) {
     return 0x26;
   }
@@ -48149,7 +48206,7 @@ FUN_180867cf0(longlong connectionContext,longlong packetData,NetworkHandle dataS
   if ((*(uint *)(connectionContext + 0x74) & 0x100) != 0) {
     uStack_14 = 0;
     if (*(int *)(param_4 + 1) < 1) {
-      puStack_28 = &g_NetworkConnectionDataDefault;
+      puStack_28 = &NetworkConnectionDataDefault;
     }
     else {
       puStack_28 = (NetworkData *)*param_4;
@@ -48238,7 +48295,7 @@ LAB_180867ef8:
         FUN_180868700(connectionContext + 4,*(int *)(connectionContext + 5));
       }
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext,&UNK_180985170,0xa6,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext,&UNK_180985170,0xa6,1);
     }
     if (((*(byte *)(lVar2 + 0x2d8) & 1) == 0) || (networkStatus4 = FUN_180863b30(lVar2), networkStatus4 == 0)) {
       if (*(NetworkHandle **)(lVar2 + 0x80) == (NetworkHandle *)0x0) goto LAB_180867ef8;
@@ -48734,7 +48791,7 @@ NetworkHandle FUN_180868640(longlong connectionContext,longlong packetData,Netwo
   }
   if ((*(uint *)(connectionContext + 0x74) & 0x200) != 0) {
     if (*(int *)(dataSize + 1) < 1) {
-      puStack_18 = &g_NetworkConnectionDataDefault;
+      puStack_18 = &NetworkConnectionDataDefault;
     }
     else {
       puStack_18 = (NetworkData *)*dataSize;
@@ -48762,7 +48819,7 @@ NetworkHandle FUN_1808686a0(longlong connectionContext,longlong packetData,Netwo
   }
   if ((*(uint *)(connectionContext + 0x74) & 0x400) != 0) {
     if (*(int *)(dataSize + 1) < 1) {
-      puStack_18 = &g_NetworkConnectionDataDefault;
+      puStack_18 = &NetworkConnectionDataDefault;
     }
     else {
       puStack_18 = (NetworkData *)*dataSize;
@@ -48791,7 +48848,7 @@ NetworkHandle FUN_180868700(longlong *connectionContext,int packetData)
   lVar1 = 0;
   if (packetData != 0) {
     if (packetData * 0x18 - 1U < 0x3fffffff) {
-      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x18,&g_NetworkSecurityValidationData,
+      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x18,&NetworkSecurityValidationData,
                             0xf4,0,0,1);
       if (lVar1 != 0) {
         if ((int)connectionContext[1] != 0) {
@@ -48806,7 +48863,7 @@ NetworkHandle FUN_180868700(longlong *connectionContext,int packetData)
 LAB_180868794:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = lVar1;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -48829,14 +48886,14 @@ NetworkHandle FUN_180868724(NetworkHandle connectionContext,int packetData)
 LAB_180868794:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (packetData * 0x18 - 1U < 0x3fffffff) {
-    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x18,&g_NetworkSecurityValidationData,0xf4
+    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x18,&NetworkSecurityValidationData,0xf4
                           ,0);
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -57447,7 +57504,7 @@ LAB_18086d8a4:
         if (lVar3 != 0) {
           (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x55d,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x55d,1);
         }
       }
       lVar6 = lVar6 + 1;
@@ -57511,7 +57568,7 @@ LAB_18086da04:
         if (lVar3 != 0) {
           (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x55d,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x55d,1);
         }
       }
       lVar6 = lVar6 + 1;
@@ -57962,7 +58019,7 @@ LAB_18086de7b:
           *(int *)(connectionContext + 0x1a8) = networkStatus2 + -1;
           (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
         }
                     // WARNING: Subroutine does not return
         memmove(lVar1,lVar1 + 8,(longlong)iVar6 << 3);
@@ -58018,7 +58075,7 @@ LAB_18086de7b:
           *(int *)(connectionContext + 0x1a8) = networkStatus2 + -1;
           (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
         }
                     // WARNING: Subroutine does not return
         memmove(lVar1,lVar1 + 8,(longlong)iVar6 << 3);
@@ -58163,7 +58220,7 @@ LAB_18086e15b:
           *(int *)(connectionContext + 0xe8) = networkStatus2 + -1;
           (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
         }
                     // WARNING: Subroutine does not return
         memmove(lVar1,lVar1 + 8,(longlong)iVar6 << 3);
@@ -58296,7 +58353,7 @@ LAB_18086e3eb:
           *(int *)(connectionContext + 0x48) = networkStatus2 + -1;
           (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
         }
                     // WARNING: Subroutine does not return
         memmove(lVar1,lVar1 + 8,(longlong)iVar6 << 3);
@@ -58429,7 +58486,7 @@ LAB_18086e67b:
           *(int *)(connectionContext + 0x38) = networkStatus2 + -1;
           (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
         }
                     // WARNING: Subroutine does not return
         memmove(lVar1,lVar1 + 8,(longlong)iVar6 << 3);
@@ -58556,7 +58613,7 @@ LAB_18086e91b:
         }
         (**(code **)*networkPointer1)(networkPointer1,0);
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer1,&UNK_180985b90,0xc2f,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer1,&UNK_180985b90,0xc2f,1);
       }
     }
     iVar7 = iVar7 + 1;
@@ -58686,7 +58743,7 @@ LAB_18086ebcb:
           *(int *)(connectionContext + 0x1c8) = networkStatus2 + -1;
           (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
         }
                     // WARNING: Subroutine does not return
         memmove(lVar1,lVar1 + 8,(longlong)iVar6 << 3);
@@ -58819,7 +58876,7 @@ LAB_18086ee5b:
           *(int *)(connectionContext + 0x58) = networkStatus2 + -1;
           (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
         }
                     // WARNING: Subroutine does not return
         memmove(lVar1,lVar1 + 8,(longlong)iVar6 << 3);
@@ -58952,7 +59009,7 @@ LAB_18086f10b:
           *(int *)(connectionContext + 0x1f8) = networkStatus2 + -1;
           (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
         }
                     // WARNING: Subroutine does not return
         memmove(lVar1,lVar1 + 8,(longlong)iVar6 << 3);
@@ -59085,7 +59142,7 @@ LAB_18086f3cb:
           *(int *)(connectionContext + 200) = networkStatus2 + -1;
           (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
         }
                     // WARNING: Subroutine does not return
         memmove(lVar1,lVar1 + 8,(longlong)iVar6 << 3);
@@ -59275,7 +59332,7 @@ void FUN_18086f610(longlong connectionContext,longlong packetData,NetworkHandle 
                     *(int *)(connectionContext + 0x68) = networkStatus2 + -1;
                     (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-                    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,
+                    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,
                                   0xc2f,1);
                   }
                 }
@@ -59334,7 +59391,7 @@ void FUN_18086f69d(void)
         *(int *)(unaff_RDI + 0x68) = networkStatus2 + -1;
         (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0xc2f,1);
       }
     }
     uVar6 = (ulonglong)(iVar5 + 1);
@@ -60102,7 +60159,7 @@ uint FUN_180872300(longlong *connectionContext)
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     tertiaryNetworkFlag = 0;
@@ -60125,7 +60182,7 @@ uint FUN_180872300(longlong *connectionContext)
   }
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = 0;
   *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -60160,7 +60217,7 @@ uint FUN_1808723c0(longlong *connectionContext)
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     tertiaryNetworkFlag = 0;
@@ -60183,7 +60240,7 @@ uint FUN_1808723c0(longlong *connectionContext)
   }
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = 0;
   *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -60216,7 +60273,7 @@ uint FUN_180872480(longlong *connectionContext)
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     tertiaryNetworkFlag = 0;
@@ -60239,7 +60296,7 @@ uint FUN_180872480(longlong *connectionContext)
   }
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = 0;
   *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -60276,7 +60333,7 @@ LAB_18087257d:
     }
     if ((0 < (int)quaternaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -60517,7 +60574,7 @@ NetworkHandle FUN_180872630(longlong *connectionContext)
     }
     if ((0 < (int)quaternaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     quaternaryNetworkFlag = 0;
@@ -60615,7 +60672,7 @@ NetworkHandle FUN_180872cc0(longlong *connectionContext)
     }
     if ((0 < (int)quaternaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     quaternaryNetworkFlag = 0;
@@ -60655,8 +60712,8 @@ void FUN_180872ef0(longlong connectionContext)
     if (*(int *)(connectionContext + 0x78) < 1) {
       if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x70) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x70),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x70),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(NetworkHandle *)(connectionContext + 0x70) = 0;
       *(NetworkStatus *)(connectionContext + 0x7c) = 0;
@@ -60683,8 +60740,8 @@ LAB_180872f61:
     if (*(int *)(connectionContext + 0x68) < 1) {
       if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x60) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x60),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x60),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(NetworkHandle *)(connectionContext + 0x60) = 0;
       *(NetworkStatus *)(connectionContext + 0x6c) = 0;
@@ -60730,8 +60787,8 @@ LAB_180872ff9:
     if (*(int *)(connectionContext + 0x58) < 1) {
       if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x50) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x50),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x50),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(NetworkHandle *)(connectionContext + 0x50) = 0;
       *(NetworkStatus *)(connectionContext + 0x5c) = 0;
@@ -60759,8 +60816,8 @@ LAB_1808730e3:
     if (*(int *)(connectionContext + 0x48) < 1) {
       if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x40) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x40),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x40),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(NetworkHandle *)(connectionContext + 0x40) = 0;
       *(NetworkStatus *)(connectionContext + 0x4c) = 0;
@@ -60785,8 +60842,8 @@ LAB_18087317c:
     if (*(int *)(connectionContext + 0x38) < 1) {
       if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x30) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x30),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x30),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(NetworkHandle *)(connectionContext + 0x30) = 0;
       *(NetworkStatus *)(connectionContext + 0x3c) = 0;
@@ -60811,8 +60868,8 @@ LAB_18087320a:
     if (0 < *(int *)(connectionContext + 0x28)) goto LAB_1808732e4;
     if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x20),
-                    &g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x20),
+                    &NetworkSecurityValidationData,0x100,1);
     }
     *(NetworkHandle *)(connectionContext + 0x20) = 0;
     *(NetworkStatus *)(connectionContext + 0x2c) = 0;
@@ -60839,7 +60896,7 @@ LAB_1808732e4:
     }
     if ((0 < (int)quinaryNetworkFlag) && (*plVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar1,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar1,&NetworkSecurityValidationData,0x100,1);
     }
     *plVar1 = 0;
     *(NetworkStatus *)(connectionContext + 0x1c) = 0;
@@ -60882,8 +60939,8 @@ void FUN_180872f02(longlong connectionContext,NetworkHandle packetData,uint data
     if (*(int *)(connectionContext + 0x78) <= (int)uVar7) {
       if ((0 < (int)dataSize) && (*(longlong *)(connectionContext + 0x70) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x70),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x70),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(connectionContext + 0x70) = unaff_R14;
       *(uint *)(connectionContext + 0x7c) = uVar7;
@@ -60910,8 +60967,8 @@ LAB_180872f61:
     if (*(int *)(connectionContext + 0x68) <= (int)uVar7) {
       if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x60) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x60),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x60),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(connectionContext + 0x60) = unaff_R14;
       *(uint *)(connectionContext + 0x6c) = uVar7;
@@ -60957,8 +61014,8 @@ LAB_180872ff9:
     if (*(int *)(connectionContext + 0x58) <= (int)uVar7) {
       if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x50) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x50),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x50),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(connectionContext + 0x50) = unaff_R14;
       *(uint *)(connectionContext + 0x5c) = uVar7;
@@ -60986,8 +61043,8 @@ LAB_1808730e3:
     if (*(int *)(connectionContext + 0x48) <= (int)uVar7) {
       if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x40) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x40),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x40),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(connectionContext + 0x40) = unaff_R14;
       *(uint *)(connectionContext + 0x4c) = uVar7;
@@ -61012,8 +61069,8 @@ LAB_18087317c:
     if (*(int *)(connectionContext + 0x38) <= (int)uVar7) {
       if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x30) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x30),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x30),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(connectionContext + 0x30) = unaff_R14;
       *(uint *)(connectionContext + 0x3c) = uVar7;
@@ -61038,8 +61095,8 @@ LAB_18087320a:
     if ((int)uVar7 < *(int *)(connectionContext + 0x28)) goto LAB_1808732e4;
     if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x20),
-                    &g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x20),
+                    &NetworkSecurityValidationData,0x100,1);
     }
     *(longlong *)(connectionContext + 0x20) = unaff_R14;
     *(uint *)(connectionContext + 0x2c) = uVar7;
@@ -61066,7 +61123,7 @@ LAB_1808732e4:
     }
     if ((0 < (int)quinaryNetworkFlag) && (*plVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar1,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar1,&NetworkSecurityValidationData,0x100,1);
     }
     *plVar1 = unaff_R14;
     *(uint *)(connectionContext + 0x1c) = uVar7;
@@ -61110,8 +61167,8 @@ void FUN_180872f0b(longlong connectionContext,uint packetData,uint dataSize)
     if (*(int *)(connectionContext + 0x78) <= (int)uVar7) {
       if ((0 < (int)dataSize) && (*(longlong *)(connectionContext + 0x70) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x70),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x70),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(connectionContext + 0x70) = unaff_R14;
       *(uint *)(connectionContext + 0x7c) = uVar7;
@@ -61138,8 +61195,8 @@ LAB_180872f61:
     if (*(int *)(connectionContext + 0x68) <= (int)uVar7) {
       if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x60) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x60),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x60),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(connectionContext + 0x60) = unaff_R14;
       *(uint *)(connectionContext + 0x6c) = uVar7;
@@ -61185,8 +61242,8 @@ LAB_180872ff9:
     if (*(int *)(connectionContext + 0x58) <= (int)uVar7) {
       if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x50) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x50),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x50),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(connectionContext + 0x50) = unaff_R14;
       *(uint *)(connectionContext + 0x5c) = uVar7;
@@ -61214,8 +61271,8 @@ LAB_1808730e3:
     if (*(int *)(connectionContext + 0x48) <= (int)uVar7) {
       if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x40) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x40),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x40),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(connectionContext + 0x40) = unaff_R14;
       *(uint *)(connectionContext + 0x4c) = uVar7;
@@ -61240,8 +61297,8 @@ LAB_18087317c:
     if (*(int *)(connectionContext + 0x38) <= (int)uVar7) {
       if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x30) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x30),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x30),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(connectionContext + 0x30) = unaff_R14;
       *(uint *)(connectionContext + 0x3c) = uVar7;
@@ -61266,8 +61323,8 @@ LAB_18087320a:
     if ((int)uVar7 < *(int *)(connectionContext + 0x28)) goto LAB_1808732e4;
     if ((0 < (int)quinaryNetworkFlag) && (*(longlong *)(connectionContext + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x20),
-                    &g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x20),
+                    &NetworkSecurityValidationData,0x100,1);
     }
     *(longlong *)(connectionContext + 0x20) = unaff_R14;
     *(uint *)(connectionContext + 0x2c) = uVar7;
@@ -61294,7 +61351,7 @@ LAB_1808732e4:
     }
     if ((0 < (int)quinaryNetworkFlag) && (*plVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar1,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar1,&NetworkSecurityValidationData,0x100,1);
     }
     *plVar1 = unaff_R14;
     *(uint *)(connectionContext + 0x1c) = uVar7;
@@ -61349,8 +61406,8 @@ void FUN_18087304a(longlong connectionContext)
     if (*(int *)(unaff_RBP + 0x58) <= (int)quinaryNetworkFlag) {
       if ((0 < (int)tertiaryNetworkFlag) && (*(longlong *)(unaff_RBP + 0x50) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x50),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x50),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(unaff_RBP + 0x50) = unaff_R14;
       *(uint *)(unaff_RBP + 0x5c) = quinaryNetworkFlag;
@@ -61378,8 +61435,8 @@ LAB_1808730e3:
     if (*(int *)(unaff_RBP + 0x48) <= (int)quinaryNetworkFlag) {
       if ((0 < (int)tertiaryNetworkFlag) && (*(longlong *)(unaff_RBP + 0x40) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x40),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x40),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(unaff_RBP + 0x40) = unaff_R14;
       *(uint *)(unaff_RBP + 0x4c) = quinaryNetworkFlag;
@@ -61404,8 +61461,8 @@ LAB_18087317c:
     if (*(int *)(unaff_RBP + 0x38) <= (int)quinaryNetworkFlag) {
       if ((0 < (int)tertiaryNetworkFlag) && (*(longlong *)(unaff_RBP + 0x30) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x30),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x30),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(unaff_RBP + 0x30) = unaff_R14;
       *(uint *)(unaff_RBP + 0x3c) = quinaryNetworkFlag;
@@ -61430,8 +61487,8 @@ LAB_18087320a:
     if ((int)quinaryNetworkFlag < *(int *)(unaff_RBP + 0x28)) goto LAB_1808732e4;
     if ((0 < (int)tertiaryNetworkFlag) && (*(longlong *)(unaff_RBP + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x20),
-                    &g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x20),
+                    &NetworkSecurityValidationData,0x100,1);
     }
     *(longlong *)(unaff_RBP + 0x20) = unaff_R14;
     *(uint *)(unaff_RBP + 0x2c) = quinaryNetworkFlag;
@@ -61458,7 +61515,7 @@ LAB_1808732e4:
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*plVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar1,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar1,&NetworkSecurityValidationData,0x100,1);
     }
     *plVar1 = unaff_R14;
     *(uint *)(unaff_RBP + 0x1c) = quinaryNetworkFlag;
@@ -61505,8 +61562,8 @@ void FUN_18087306d(void)
     if (*(int *)(unaff_RBP + 0x58) <= (int)quaternaryNetworkFlag) {
       if ((0 < (int)tertiaryNetworkFlag) && (*(longlong *)(unaff_RBP + 0x50) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x50),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x50),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(unaff_RBP + 0x50) = unaff_R14;
       *(uint *)(unaff_RBP + 0x5c) = quaternaryNetworkFlag;
@@ -61534,8 +61591,8 @@ LAB_1808730e3:
     if (*(int *)(unaff_RBP + 0x48) <= (int)quaternaryNetworkFlag) {
       if ((0 < (int)tertiaryNetworkFlag) && (*(longlong *)(unaff_RBP + 0x40) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x40),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x40),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(unaff_RBP + 0x40) = unaff_R14;
       *(uint *)(unaff_RBP + 0x4c) = quaternaryNetworkFlag;
@@ -61560,8 +61617,8 @@ LAB_18087317c:
     if (*(int *)(unaff_RBP + 0x38) <= (int)quaternaryNetworkFlag) {
       if ((0 < (int)tertiaryNetworkFlag) && (*(longlong *)(unaff_RBP + 0x30) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x30),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x30),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(unaff_RBP + 0x30) = unaff_R14;
       *(uint *)(unaff_RBP + 0x3c) = quaternaryNetworkFlag;
@@ -61586,8 +61643,8 @@ LAB_18087320a:
     if ((int)quaternaryNetworkFlag < *(int *)(unaff_RBP + 0x28)) goto LAB_1808732e4;
     if ((0 < (int)tertiaryNetworkFlag) && (*(longlong *)(unaff_RBP + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x20),
-                    &g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x20),
+                    &NetworkSecurityValidationData,0x100,1);
     }
     *(longlong *)(unaff_RBP + 0x20) = unaff_R14;
     *(uint *)(unaff_RBP + 0x2c) = quaternaryNetworkFlag;
@@ -61614,7 +61671,7 @@ LAB_1808732e4:
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*plVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar1,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar1,&NetworkSecurityValidationData,0x100,1);
     }
     *plVar1 = unaff_R14;
     *(uint *)(unaff_RBP + 0x1c) = quaternaryNetworkFlag;
@@ -61654,8 +61711,8 @@ void FUN_18087309b(NetworkHandle connectionContext,NetworkHandle packetData,int 
   if (*(int *)(unaff_RBP + 0x58) <= (int)quaternaryNetworkFlag) {
     if ((0 < dataSize) && (*(longlong *)(unaff_RBP + 0x50) != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x50),
-                    &g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x50),
+                    &NetworkSecurityValidationData,0x100,1);
     }
     *(longlong *)(unaff_RBP + 0x50) = unaff_R14;
     *(uint *)(unaff_RBP + 0x5c) = quaternaryNetworkFlag;
@@ -61677,8 +61734,8 @@ void FUN_18087309b(NetworkHandle connectionContext,NetworkHandle packetData,int 
     if (*(int *)(unaff_RBP + 0x48) <= (int)quaternaryNetworkFlag) {
       if ((0 < (int)tertiaryNetworkFlag) && (*(longlong *)(unaff_RBP + 0x40) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x40),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x40),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(unaff_RBP + 0x40) = unaff_R14;
       *(uint *)(unaff_RBP + 0x4c) = quaternaryNetworkFlag;
@@ -61703,8 +61760,8 @@ LAB_18087317c:
     if (*(int *)(unaff_RBP + 0x38) <= (int)quaternaryNetworkFlag) {
       if ((0 < (int)tertiaryNetworkFlag) && (*(longlong *)(unaff_RBP + 0x30) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x30),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x30),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(longlong *)(unaff_RBP + 0x30) = unaff_R14;
       *(uint *)(unaff_RBP + 0x3c) = quaternaryNetworkFlag;
@@ -61729,8 +61786,8 @@ LAB_18087320a:
     if ((int)quaternaryNetworkFlag < *(int *)(unaff_RBP + 0x28)) goto LAB_1808732e4;
     if ((0 < (int)tertiaryNetworkFlag) && (*(longlong *)(unaff_RBP + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x20),
-                    &g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + 0x20),
+                    &NetworkSecurityValidationData,0x100,1);
     }
     *(longlong *)(unaff_RBP + 0x20) = unaff_R14;
     *(uint *)(unaff_RBP + 0x2c) = quaternaryNetworkFlag;
@@ -61757,7 +61814,7 @@ LAB_1808732e4:
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*plVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar1,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar1,&NetworkSecurityValidationData,0x100,1);
     }
     *plVar1 = unaff_R14;
     *(uint *)(unaff_RBP + 0x1c) = quaternaryNetworkFlag;
@@ -61796,7 +61853,7 @@ void FUN_1808732fb(void)
   if ((int)unaff_RBX[1] <= (int)secondaryNetworkFlag) {
     if ((0 < in_R10D) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = unaff_R14;
     *(uint *)((longlong)unaff_RBX + 0xc) = secondaryNetworkFlag;
@@ -61841,7 +61898,7 @@ uint FUN_1808733a0(longlong *connectionContext)
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     tertiaryNetworkFlag = 0;
@@ -61864,7 +61921,7 @@ uint FUN_1808733a0(longlong *connectionContext)
   }
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = 0;
   *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -62318,7 +62375,7 @@ NetworkHandle FUN_180873cd0(longlong *connectionContext)
     }
     if ((0 < (int)quaternaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     quaternaryNetworkFlag = 0;
@@ -62568,7 +62625,7 @@ NetworkHandle FUN_180874340(longlong *connectionContext)
     }
     if ((0 < (int)secondaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -62728,7 +62785,7 @@ NetworkHandle FUN_1808744f0(longlong *connectionContext)
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     tertiaryNetworkFlag = 0;
@@ -62765,7 +62822,7 @@ NetworkHandle FUN_1808745b0(longlong *connectionContext)
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     tertiaryNetworkFlag = 0;
@@ -62808,7 +62865,7 @@ NetworkHandle FUN_180874670(longlong *connectionContext)
     }
     if ((0 < (int)uVar7) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -62991,7 +63048,7 @@ LAB_1808747d2:
   }
   (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180984cd0,0x62,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180984cd0,0x62,1);
 }
 
 
@@ -63072,7 +63129,7 @@ NetworkHandle FUN_180874940(longlong *connectionContext)
   }
   (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180984cd0,0x62,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180984cd0,0x62,1);
 }
 
 
@@ -63162,7 +63219,7 @@ NetworkHandle FUN_18087494c(longlong *connectionContext)
   }
   (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180984cd0,0x62,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180984cd0,0x62,1);
 }
 
 
@@ -63218,7 +63275,7 @@ void FUN_180874980(NetworkStatus connectionContext)
   }
   (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180984cd0,0x62,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180984cd0,0x62,1);
 }
 
 
@@ -63311,7 +63368,7 @@ NetworkHandle FUN_180874b30(longlong connectionContext)
     if (networkPointer2 != (NetworkHandle *)0x0) {
       (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x3bd,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x3bd,1);
     }
   }
   if (*(longlong *)(connectionContext + 0x98) != 0) {
@@ -63323,7 +63380,7 @@ NetworkHandle FUN_180874b30(longlong connectionContext)
     if (lVar3 != 0) {
       FreeNetworkMemory(lVar3);
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar3,&UNK_180985b90,0x3c3,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar3,&UNK_180985b90,0x3c3,1);
     }
   }
   if (*(longlong *)(connectionContext + 0xac8) != 0) {
@@ -63337,7 +63394,7 @@ NetworkHandle FUN_180874b30(longlong connectionContext)
       FUN_180872540(lVar3 + 0x30);
       FUN_180872540(lVar3 + 0x10);
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar3,&UNK_180985b90,0x3ca,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar3,&UNK_180985b90,0x3ca,1);
     }
   }
   if ((((*(longlong **)(connectionContext + 0x88) == (longlong *)0x0) ||
@@ -63370,109 +63427,109 @@ NetworkHandle FUN_180874b30(longlong connectionContext)
         if (lVar3 != 0) {
           FUN_1808bbb80(lVar3);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar3,&UNK_180985b90,0x3f4,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar3,&UNK_180985b90,0x3f4,1);
         }
         if (*(longlong *)(connectionContext + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8c8),
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8c8),
                         &UNK_180985b90,0x3f5,1);
         }
         if (*(longlong *)(connectionContext + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8d0),
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8d0),
                         &UNK_180985b90,0x3f6,1);
         }
         if (*(longlong *)(connectionContext + 0x8d8) != 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8d8),
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8d8),
                         &UNK_180985b90,0x3f7,1);
         }
         if (*(longlong *)(connectionContext + 0x8e0) != 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8e0),
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8e0),
                         &UNK_180985b90,0x3f8,1);
         }
         if (*(longlong *)(connectionContext + 0x8e8) != 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8e8),
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8e8),
                         &UNK_180985b90,0x3f9,1);
         }
         if (*(longlong *)(connectionContext + 0x8f0) != 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8f0),
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8f0),
                         &UNK_180985b90,0x3fa,1);
         }
         if (*(longlong *)(connectionContext + 0x8f8) != 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8f8),
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x8f8),
                         &UNK_180985b90,0x3fb,1);
         }
         if (*(longlong *)(connectionContext + 0x900) != 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x900),
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x900),
                         &UNK_180985b90,0x3fc,1);
         }
         if (*(longlong *)(connectionContext + 0x908) != 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x908),
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x908),
                         &UNK_180985b90,0x3fd,1);
         }
         if (*(longlong *)(connectionContext + 0x910) != 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x910),
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x910),
                         &UNK_180985b90,0x3fe,1);
         }
         if (*(longlong *)(connectionContext + 0x918) != 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x918),
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x918),
                         &UNK_180985b90,0x3ff,1);
         }
         if (*(longlong *)(connectionContext + 0xa60) != 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa60),
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa60),
                         &UNK_180985b90,0x400,1);
         }
         if (*(longlong *)(connectionContext + 0xa68) != 0) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa68),
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa68),
                         &UNK_180985b90,0x401,1);
         }
         if (*(longlong *)(connectionContext + 0xa78) == 0) {
           if (*(longlong *)(connectionContext + 0xa80) != 0) {
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa80),
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa80),
                           &UNK_180985b90,0x403,1);
           }
           if (*(longlong *)(connectionContext + 0xa88) != 0) {
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa88),
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa88),
                           &UNK_180985b90,0x404,1);
           }
           if (*(longlong *)(connectionContext + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa90),
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa90),
                           &UNK_180985b90,0x405,1);
           }
           if (*(longlong *)(connectionContext + 0xa98) != 0) {
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa98),
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa98),
                           &UNK_180985b90,0x406,1);
           }
           if (*(longlong *)(connectionContext + 0xa70) != 0) {
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa70),
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa70),
                           &UNK_180985b90,0x407,1);
           }
           if (*(longlong *)(connectionContext + 0xaa0) != 0) {
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xaa0),
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xaa0),
                           &UNK_180985b90,0x408,1);
           }
           networkPointer2 = *(NetworkHandle **)(connectionContext + 800);
           if (networkPointer2 != (NetworkHandle *)0x0) {
             (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x409,1);
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x409,1);
           }
           if (*(longlong **)(connectionContext + 0x80) != (longlong *)0x0) {
             (**(code **)(**(longlong **)(connectionContext + 0x80) + 0x10))();
@@ -63517,15 +63574,15 @@ NetworkHandle FUN_180874b30(longlong connectionContext)
               return 0;
             }
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x2d8),
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x2d8),
                           &UNK_180985b90,0x432,1);
           }
           (**(code **)(*plVar4 + 0x60))(plVar4,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar4,&UNK_180985b90,0x417,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar4,&UNK_180985b90,0x417,1);
         }
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa78),
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0xa78),
                       &UNK_180985b90,0x402,1);
       }
       uStack_20 = 0xffffffffffffffff;
@@ -63588,97 +63645,97 @@ NetworkHandle FUN_180874ce3(void)
   if (connectionDataPointer != 0) {
     FUN_1808bbb80(lVar2);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar2,&UNK_180985b90,0x3f4,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar2,&UNK_180985b90,0x3f4,1);
   }
   if (*(longlong *)(unaff_RBX + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8c8),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8c8),
                   &UNK_180985b90,0x3f5,1);
   }
   if (*(longlong *)(unaff_RBX + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8d0),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8d0),
                   &UNK_180985b90,0x3f6,1);
   }
   if (*(longlong *)(unaff_RBX + 0x8d8) != 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8d8),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8d8),
                   &UNK_180985b90,0x3f7,1);
   }
   if (*(longlong *)(unaff_RBX + 0x8e0) != 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8e0),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8e0),
                   &UNK_180985b90,0x3f8,1);
   }
   if (*(longlong *)(unaff_RBX + 0x8e8) != 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8e8),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8e8),
                   &UNK_180985b90,0x3f9,1);
   }
   if (*(longlong *)(unaff_RBX + 0x8f0) != 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8f0),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8f0),
                   &UNK_180985b90,0x3fa,1);
   }
   if (*(longlong *)(unaff_RBX + 0x8f8) != 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8f8),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x8f8),
                   &UNK_180985b90,0x3fb,1);
   }
   if (*(longlong *)(unaff_RBX + 0x900) != 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x900),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x900),
                   &UNK_180985b90,0x3fc,1);
   }
   if (*(longlong *)(unaff_RBX + 0x908) != 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x908),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x908),
                   &UNK_180985b90,0x3fd,1);
   }
   if (*(longlong *)(unaff_RBX + 0x910) != 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x910),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x910),
                   &UNK_180985b90,0x3fe,1);
   }
   if (*(longlong *)(unaff_RBX + 0x918) != 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x918),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x918),
                   &UNK_180985b90,0x3ff,1);
   }
   if (*(longlong *)(unaff_RBX + 0xa60) == 0) {
     if (*(longlong *)(unaff_RBX + 0xa68) != 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa68),
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa68),
                     &UNK_180985b90,0x401,1);
     }
     if (*(longlong *)(unaff_RBX + 0xa78) != 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa78),
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa78),
                     &UNK_180985b90,0x402,1);
     }
     if (*(longlong *)(unaff_RBX + 0xa80) != 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa80),
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa80),
                     &UNK_180985b90,0x403,1);
     }
     if (*(longlong *)(unaff_RBX + 0xa88) != 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa88),
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa88),
                     &UNK_180985b90,0x404,1);
     }
     if (*(longlong *)(unaff_RBX + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa90),
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa90),
                     &UNK_180985b90,0x405,1);
     }
     if (*(longlong *)(unaff_RBX + 0xa98) != 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa98),
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa98),
                     &UNK_180985b90,0x406,1);
     }
     if (*(longlong *)(unaff_RBX + 0xa70) != 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa70),
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa70),
                     &UNK_180985b90,0x407,1);
     }
     if (*(longlong *)(unaff_RBX + 0xaa0) == 0) {
@@ -63686,7 +63743,7 @@ NetworkHandle FUN_180874ce3(void)
       if (ptertiaryNetworkFlag != (NetworkHandle *)0x0) {
         (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0x409,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0x409,1);
       }
       if (*(longlong **)(unaff_RBX + 0x80) != (longlong *)0x0) {
         (**(code **)(**(longlong **)(unaff_RBX + 0x80) + 0x10))();
@@ -63703,7 +63760,7 @@ NetworkHandle FUN_180874ce3(void)
       if (plVar4 != (longlong *)0x0) {
         (**(code **)(*plVar4 + 0x60))(plVar4,0);
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar4,&UNK_180985b90,0x417,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar4,&UNK_180985b90,0x417,1);
       }
       *(NetworkHandle *)(unaff_RBX + 0xa8) = unaff_R14;
       if (*(longlong *)(unaff_RBX + 0x78) != 0) {
@@ -63734,15 +63791,15 @@ NetworkHandle FUN_180874ce3(void)
         return 0;
       }
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x2d8),
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x2d8),
                     &UNK_180985b90,0x432,1);
     }
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xaa0),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xaa0),
                   &UNK_180985b90,0x408,1);
   }
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa60),
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0xa60),
                 &UNK_180985b90,0x400,1);
 }
 
@@ -63828,28 +63885,28 @@ NetworkHandle FUN_180875520(longlong *connectionContext)
   lVar7 = lStackX_8;
   if ((int)secondaryNetworkFlag == 0) {
     uVar9 = (ulonglong)primaryNetworkFlag << 0x20;
-    lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x7c8,&UNK_180985b90,0xb4,uVar9,0,
+    lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x7c8,&UNK_180985b90,0xb4,uVar9,0,
                           1);
     if (lVar3 != 0) {
       lVar3 = func_0x0001808bad50(lVar3);
       uVar9 = uVar9 & 0xffffffff00000000;
-      lVar4 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0xd0,&UNK_180985b90,0xbb,uVar9,0
+      lVar4 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0xd0,&UNK_180985b90,0xbb,uVar9,0
                             ,1);
       if (lVar4 != 0) {
         plVar5 = (longlong *)FUN_180865b00(lVar4);
         uVar9 = uVar9 & 0xffffffff00000000;
         puVar6 = (NetworkHandle *)
-                 ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x10,&UNK_180985b90,0xc0,
+                 ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x10,&UNK_180985b90,0xc0,
                                uVar9,0,1);
         if (puVar6 != (NetworkHandle *)0x0) {
           puVar6[1] = 0;
           *puVar6 = &UNK_180985738;
-          lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0xc40,&UNK_180985b90,0xc4,
+          lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0xc40,&UNK_180985b90,0xc4,
                                 uVar9 & 0xffffffff00000000,0,1);
           if (lVar7 == 0) {
             (**(code **)*puVar6)(puVar6,0);
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),puVar6,&UNK_18095b500,0xc6,1);
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),puVar6,&UNK_18095b500,0xc6,1);
           }
           lVar7 = FUN_1808719a0(lVar7,lStackX_8,lVar3,plVar5,puVar6);
           primaryNetworkFlag = _NetworkConnectionSequenceNumber;
@@ -63864,7 +63921,7 @@ NetworkHandle FUN_180875520(longlong *connectionContext)
             if (7 < iVar8) {
               FUN_180873460(lVar7);
                     // WARNING: Subroutine does not return
-              ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar7,&UNK_180985b90,0xd8,1);
+              ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar7,&UNK_180985b90,0xd8,1);
             }
           }
           *(longlong *)((longlong)(int)primaryNetworkFlag * 8 + 0x180c4eab0) = lVar7;
@@ -63880,7 +63937,7 @@ NetworkHandle FUN_180875520(longlong *connectionContext)
       if (lVar3 != 0) {
         FUN_1808bbb80(lVar3);
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar3,&UNK_18095b500,0xc6,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar3,&UNK_18095b500,0xc6,1);
       }
     }
     secondaryNetworkFlag = 0x26;
@@ -63918,26 +63975,26 @@ NetworkHandle FUN_180875538(void)
   lVar7 = lStack0000000000000070;
   if ((int)secondaryNetworkFlag == 0) {
     uVar9 = (ulonglong)primaryNetworkFlag << 0x20;
-    lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x7c8,&UNK_180985b90,0xb4,uVar9);
+    lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x7c8,&UNK_180985b90,0xb4,uVar9);
     if (lVar3 != 0) {
       lVar3 = func_0x0001808bad50(lVar3);
       uVar9 = uVar9 & 0xffffffff00000000;
-      lVar4 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0xd0,&UNK_180985b90,0xbb,uVar9);
+      lVar4 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0xd0,&UNK_180985b90,0xbb,uVar9);
       if (lVar4 != 0) {
         plVar5 = (longlong *)FUN_180865b00(lVar4);
         uVar9 = uVar9 & 0xffffffff00000000;
         puVar6 = (NetworkHandle *)
-                 ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x10,&UNK_180985b90,0xc0,
+                 ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x10,&UNK_180985b90,0xc0,
                                uVar9);
         if (puVar6 != (NetworkHandle *)0x0) {
           puVar6[1] = 0;
           *puVar6 = &UNK_180985738;
-          lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0xc40,&UNK_180985b90,0xc4,
+          lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0xc40,&UNK_180985b90,0xc4,
                                 uVar9 & 0xffffffff00000000);
           if (lVar7 == 0) {
             (**(code **)*puVar6)(puVar6,0);
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),puVar6,&UNK_18095b500,0xc6,1);
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),puVar6,&UNK_18095b500,0xc6,1);
           }
           lVar7 = FUN_1808719a0(lVar7,lStack0000000000000070,lVar3,plVar5,puVar6);
           primaryNetworkFlag = _NetworkConnectionSequenceNumber;
@@ -63952,7 +64009,7 @@ NetworkHandle FUN_180875538(void)
             if (7 < iVar8) {
               FUN_180873460(lVar7);
                     // WARNING: Subroutine does not return
-              ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar7,&UNK_180985b90,0xd8,1);
+              ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar7,&UNK_180985b90,0xd8,1);
             }
           }
           *(longlong *)((longlong)(int)primaryNetworkFlag * 8 + 0x180c4eab0) = lVar7;
@@ -63968,7 +64025,7 @@ NetworkHandle FUN_180875538(void)
       if (lVar3 != 0) {
         FUN_1808bbb80(lVar3);
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar3,&UNK_18095b500,0xc6,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar3,&UNK_18095b500,0xc6,1);
       }
     }
     secondaryNetworkFlag = 0x26;
@@ -64015,26 +64072,26 @@ ulonglong FUN_180875569(longlong connectionContext,NetworkHandle packetData,Netw
     lVar2 = func_0x0001808bad50(lVar2);
     uStack0000000000000030 = 1;
     uStack0000000000000028 = uVar8;
-    lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0xd0,&UNK_180985b90,0xbb,
+    lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0xd0,&UNK_180985b90,0xbb,
                           CONCAT44(primaryNetworkFlag1,iVar9));
     if (lVar3 != 0) {
       plVar4 = (longlong *)FUN_180865b00(lVar3);
       uStack0000000000000030 = 1;
       uStack0000000000000028 = uVar8;
       networkPointer5 = (NetworkHandle *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),iVar9 + 0x10,&UNK_180985b90,
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),iVar9 + 0x10,&UNK_180985b90,
                              0xc0,unaff_RDI & 0xffffffff);
       if (networkPointer5 != (NetworkHandle *)0x0) {
         networkPointer5[1] = unaff_RDI;
         *networkPointer5 = &UNK_180985738;
         uStack0000000000000030 = 1;
         uStack0000000000000028 = uVar8;
-        lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0xc40,&UNK_180985b90,0xc4,
+        lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0xc40,&UNK_180985b90,0xc4,
                               unaff_RDI & 0xffffffff);
         if (processedEntry == 0) {
           (**(code **)*networkPointer5)(networkPointer5,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer5,&UNK_18095b500,0xc6,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer5,&UNK_18095b500,0xc6,1);
         }
         lVar2 = FUN_1808719a0(lVar3,in_stack_00000070,lVar2,plVar4,networkPointer5);
         uVar7 = unaff_RDI & 0xffffffff;
@@ -64051,7 +64108,7 @@ ulonglong FUN_180875569(longlong connectionContext,NetworkHandle packetData,Netw
           if (7 < (int)uVar6) {
             FUN_180873460(lVar2);
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar2,&UNK_180985b90,0xd8,1);
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar2,&UNK_180985b90,0xd8,1);
           }
         }
         *(longlong *)((longlong)(int)primaryNetworkFlag * 8 + 0x180c4eab0) = lVar2;
@@ -64067,7 +64124,7 @@ ulonglong FUN_180875569(longlong connectionContext,NetworkHandle packetData,Netw
     if (connectionDataPointer != 0) {
       FUN_1808bbb80(lVar2);
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar2,&UNK_18095b500,0xc6,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar2,&UNK_18095b500,0xc6,1);
     }
   }
   unaff_RDI = 0x26;
@@ -65188,7 +65245,7 @@ LAB_1808769aa:
       (**(code **)*networkPointer2)(networkPointer2,0);
       pplStack_9a8 = (longlong **)CONCAT71(pplStack_9a8._1_7_,1);
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0xd1b);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0xd1b);
     }
   }
   goto LAB_180876b83;
@@ -65541,7 +65598,7 @@ LAB_1808769aa:
         (iVar5 = FUN_1808dea80(), primaryNetworkFlag5 = extraout_XMM0_Da_06, iVar5 == 0)))) {
       (**(code **)*unaff_RSI)(primaryNetworkFlag5,0);
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0));
     }
   }
 LAB_180876b83:
@@ -66243,7 +66300,7 @@ void FUN_180877970(longlong connectionContext,longlong *packetData)
             uStack_130 = uStack_130 & 0xffffff00;
             uStack_138 = 0;
             plVar6 = (longlong *)
-                     ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x10,&UNK_180985b90,0xa0d
+                     ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x10,&UNK_180985b90,0xa0d
                                   );
             if (plVar6 == (longlong *)0x0) goto LAB_180877e87;
             *parrayIndex = 0;
@@ -66318,7 +66375,7 @@ LAB_180877e87:
     if ((0 < (int)primaryNetworkFlag0) && (*plVar6 != 0)) {
       uStack_138 = CONCAT31(uStack_138._1_3_,1);
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar6,&g_NetworkSecurityValidationData,0x100);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar6,&NetworkSecurityValidationData,0x100);
     }
     *parrayIndex = 0;
     *(NetworkStatus *)((longlong)plVar6 + 0xc) = 0;
@@ -66336,7 +66393,7 @@ LAB_180877e87:
 LAB_180877dfe:
   uStack_138 = CONCAT31(uStack_138._1_3_,1);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar6,&UNK_180985b90,0xa71);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),plVar6,&UNK_180985b90,0xa71);
 }
 
 
@@ -66662,8 +66719,8 @@ LAB_1808784e0:
                     uStack_e8 = CONCAT31(uStack_e8._1_3_,1);
                     uStack_f0 = uStack_f0 & 0xffffff00;
                     uStack_f8 = 0;
-                    lVar10 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkStatus11 * 0x10,
-                                           &g_NetworkSecurityValidationData,0xf4);
+                    lVar10 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkStatus11 * 0x10,
+                                           &NetworkSecurityValidationData,0xf4);
                     if (lVar10 == 0) goto LAB_180878734;
                     if (*(int *)(lVar7 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
@@ -66674,8 +66731,8 @@ LAB_1808784e0:
                   if ((0 < *(int *)(lVar7 + 100)) && (*(longlong *)(lVar7 + 0x58) != 0)) {
                     uStack_f8 = CONCAT31(uStack_f8._1_3_,1);
                     // WARNING: Subroutine does not return
-                    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),
-                                  *(longlong *)(lVar7 + 0x58),&g_NetworkSecurityValidationData,0x100);
+                    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),
+                                  *(longlong *)(lVar7 + 0x58),&NetworkSecurityValidationData,0x100);
                   }
                   *(longlong *)(lVar7 + 0x58) = lVar10;
                   *(int *)(lVar7 + 100) = networkStatus11;
@@ -66888,8 +66945,8 @@ LAB_1808784e0:
                   lVar10 = 0;
                   if (networkStatus11 != 0) {
                     if ((0x3ffffffe < networkStatus11 * 0x10 - 1U) ||
-                       (lVar10 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkStatus11 * 0x10
-                                               ,&g_NetworkSecurityValidationData,0xf4,0), lVar10 == 0))
+                       (lVar10 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkStatus11 * 0x10
+                                               ,&NetworkSecurityValidationData,0xf4,0), lVar10 == 0))
                     goto LAB_180878734;
                     if (*(int *)(lVar7 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
@@ -66899,8 +66956,8 @@ LAB_1808784e0:
                   }
                   if ((0 < *(int *)(lVar7 + 100)) && (*(longlong *)(lVar7 + 0x58) != 0)) {
                     // WARNING: Subroutine does not return
-                    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),
-                                  *(longlong *)(lVar7 + 0x58),&g_NetworkSecurityValidationData,0x100,1);
+                    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),
+                                  *(longlong *)(lVar7 + 0x58),&NetworkSecurityValidationData,0x100,1);
                   }
                   *(longlong *)(lVar7 + 0x58) = lVar10;
                   *(int *)(lVar7 + 100) = networkStatus11;
@@ -67078,8 +67135,8 @@ LAB_1808784e0:
               lVar7 = 0;
               if (networkStatus10 != 0) {
                 if ((0x3ffffffe < networkStatus10 * 0x10 - 1U) ||
-                   (lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkStatus10 * 0x10,
-                                          &g_NetworkSecurityValidationData,0xf4,0), lVar7 == 0)) goto LAB_180878734;
+                   (lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkStatus10 * 0x10,
+                                          &NetworkSecurityValidationData,0xf4,0), lVar7 == 0)) goto LAB_180878734;
                 if (*(int *)(lVar9 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
                   memcpy(lVar7,*(NetworkHandle *)(lVar9 + 0x58),(longlong)*(int *)(lVar9 + 0x60) << 4);
@@ -67087,8 +67144,8 @@ LAB_1808784e0:
               }
               if ((0 < *(int *)(lVar9 + 100)) && (*(longlong *)(lVar9 + 0x58) != 0)) {
                     // WARNING: Subroutine does not return
-                ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(lVar9 + 0x58),
-                              &g_NetworkSecurityValidationData,0x100,1);
+                ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(lVar9 + 0x58),
+                              &NetworkSecurityValidationData,0x100,1);
               }
               *(longlong *)(lVar9 + 0x58) = lVar7;
               *(int *)(lVar9 + 100) = networkStatus10;
@@ -68565,11 +68622,11 @@ int FUN_1808797a0(longlong connectionContext,longlong packetData,int dataSize)
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x24);
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x20);
   networkStatus3 = ValidateNetworkBufferTimeout(packetData,dataSize,&uStack_18);
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferCopy(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -68596,15 +68653,15 @@ int FUN_180879880(longlong connectionContext,longlong packetData,int dataSize)
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x24);
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x20);
   networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180985ae8);
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkBufferCompressData(networkStatus3 + packetData,dataSize - networkStatus3,&uStack_18);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferCopy(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -73392,7 +73449,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   primaryNetworkFlag1 = 0;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x27c,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x27c,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73408,7 +73465,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x27d,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x27d,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73424,7 +73481,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x27e,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x27e,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73440,7 +73497,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x27f,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x27f,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73456,7 +73513,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x280,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x280,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73473,7 +73530,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x281,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x281,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73490,7 +73547,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x282,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x282,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73505,7 +73562,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x283,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x283,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73520,7 +73577,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x284,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x284,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73536,7 +73593,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x285,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x285,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73551,7 +73608,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x286,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x286,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73565,7 +73622,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x287,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x287,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73581,7 +73638,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x288,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x288,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73595,7 +73652,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x289,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x289,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73609,7 +73666,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x18,&UNK_180985b90,0x28a,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x18,&UNK_180985b90,0x28a,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73622,7 +73679,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x28b,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180985b90,0x28b,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73638,7 +73695,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x40,&UNK_180985b90,0x28d,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x40,&UNK_180985b90,0x28d,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73660,7 +73717,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x28e,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x28e,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73675,7 +73732,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x28f,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x28f,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73690,7 +73747,7 @@ int FUN_18087cbd0(longlong connectionContext,NetworkStatus packetData,ulonglong 
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   networkPointer5 = (NetworkHandle *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x290,
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x20,&UNK_180985b90,0x290,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (networkPointer5 == (NetworkHandle *)0x0) {
     networkStatus4 = 0x26;
@@ -73715,7 +73772,7 @@ LAB_18087d6de:
     if ((primaryNetworkFlag0 & 1) != 0) goto LAB_18087d6e3;
   }
   else {
-    *(NetworkByte *)(g_NetworkConnectionTable + 0x158) = 1;
+    *(NetworkByte *)(NetworkConnectionTable + 0x158) = 1;
     alStack_38[0] = 0;
     networkStatus4 = FUN_180749e60(*(NetworkHandle *)(connectionContext + 0x78),alStack_38,0);
     if ((networkStatus4 != 0) || (networkStatus4 = FUN_1807455f0(alStack_38[0]), networkStatus4 != 0)) goto LAB_18087dbb3;
@@ -73736,7 +73793,7 @@ LAB_18087d6e3:
     }
   }
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  lVar6 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x538,&UNK_180985b90,0x2b3,
+  lVar6 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x538,&UNK_180985b90,0x2b3,
                         in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0 & 0xffffffffffffff00,1);
   primaryNetworkFlag7 = (NetworkStatus)(in_stack_ffffffffffffff98 >> 0x20);
   if (lVar6 == 0) {
@@ -73762,7 +73819,7 @@ LAB_18087d6e3:
                                 *(NetworkHandle *)(connectionContext + 800),primaryNetworkFlag0,primaryNetworkFlag6,connectionContext + 0x60,primaryNetworkFlag1,
                                 *(NetworkStatus *)(connectionContext + 0x2d0),*(NetworkStatus *)(connectionContext + 0x2d4));
           if (networkStatus4 == 0) {
-            lVar6 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x70,&UNK_180985b90,0x2c6,
+            lVar6 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x70,&UNK_180985b90,0x2c6,
                                   primaryNetworkFlag6 & 0xffffffff00000000,0,1);
             if (lVar6 == 0) {
               networkStatus4 = 0x26;
@@ -73848,7 +73905,7 @@ LAB_18087d6e3:
                   *(NetworkHandle *)(connectionContext + 600) = *(NetworkHandle *)(connectionContext + 0x108);
                   *(NetworkHandle *)(connectionContext + 0x2b4) = *(NetworkHandle *)(connectionContext + 0x260);
                   *(NetworkStatus *)(connectionContext + 700) = *(NetworkStatus *)(connectionContext + 0x268);
-                  lVar6 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x1a8,&UNK_180985b90
+                  lVar6 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x1a8,&UNK_180985b90
                                         ,0x2e5,primaryNetworkFlag6 & 0xffffffff00000000,
                                         primaryNetworkFlag0 & 0xffffffffffffff00,1);
                   if (lVar6 == 0) {
@@ -74213,7 +74270,7 @@ NetworkHandle FUN_18087df20(longlong *connectionContext,int packetData,NetworkHa
     lVar2 = 0;
     if (iVar5 != 0) {
       if ((0x3ffffffe < iVar5 * 8 - 1U) ||
-         (lVar2 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),iVar5 * 8,&g_NetworkSecurityValidationData,
+         (lVar2 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),iVar5 * 8,&NetworkSecurityValidationData,
                                 0xf4,0,0,1), lVar2 == 0)) {
         return 0x26;
       }
@@ -74224,7 +74281,7 @@ NetworkHandle FUN_18087df20(longlong *connectionContext,int packetData,NetworkHa
     }
     if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = lVar2;
     *(int *)((longlong)connectionContext + 0xc) = iVar5;
@@ -74271,7 +74328,7 @@ NetworkHandle FUN_18087df50(int connectionContext,uint packetData)
     lVar2 = 0;
     if (networkStatus3 != 0) {
       if ((0x3ffffffe < networkStatus3 * 8 - 1U) ||
-         (lVar2 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkStatus3 * 8,&g_NetworkSecurityValidationData,
+         (lVar2 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkStatus3 * 8,&NetworkSecurityValidationData,
                                 0xf4,0), lVar2 == 0)) {
         return 0x26;
       }
@@ -74282,7 +74339,7 @@ NetworkHandle FUN_18087df50(int connectionContext,uint packetData)
     }
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar2;
     *(int *)((longlong)unaff_RBX + 0xc) = networkStatus3;
@@ -74318,7 +74375,7 @@ NetworkHandle FUN_18087dfaf(void)
 LAB_18087e01e:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -74334,7 +74391,7 @@ LAB_18087e01e:
   }
   else {
     if (unaff_EDI * 8 - 1U < 0x3fffffff) {
-      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),unaff_EDI * 8,&g_NetworkSecurityValidationData,
+      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),unaff_EDI * 8,&NetworkSecurityValidationData,
                             0xf4,0);
       if (lVar1 != 0) {
         if ((int)unaff_RBX[1] != 0) {
@@ -75790,7 +75847,7 @@ LAB_180880413:
           if (lVar3 != 0) {
             (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x55d,1);
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x55d,1);
           }
         }
         lVar6 = lVar6 + 1;
@@ -75830,7 +75887,7 @@ LAB_180880513:
             if (lVar3 != 0) {
               (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-              ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x55d,1);
+              ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x55d,1);
             }
           }
           lVar6 = lVar6 + 1;
@@ -75870,7 +75927,7 @@ LAB_180880613:
               if (lVar3 != 0) {
                 (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x55d,1)
+                ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x55d,1)
                 ;
               }
             }
@@ -75911,7 +75968,7 @@ LAB_180880713:
                 if (lVar3 != 0) {
                   (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x55d,
+                  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,0x55d,
                                 1);
                 }
               }
@@ -75952,7 +76009,7 @@ LAB_180880813:
                   if (lVar3 != 0) {
                     (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,
+                    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,
                                   0x55d,1);
                   }
                 }
@@ -75993,7 +76050,7 @@ LAB_180880913:
                     if (lVar3 != 0) {
                       (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,
+                      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,
                                     0x55d,1);
                     }
                   }
@@ -76034,7 +76091,7 @@ LAB_180880a13:
                       if (lVar3 != 0) {
                         (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,
+                        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180985b90,
                                       0x55d,1);
                       }
                     }
@@ -76075,7 +76132,7 @@ LAB_180880b13:
                         if (lVar3 != 0) {
                           (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,
+                          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,
                                         &UNK_180985b90,0x55d,1);
                         }
                       }
@@ -76117,7 +76174,7 @@ LAB_180880c13:
                           if (lVar3 != 0) {
                             (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,
+                            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,
                                           &UNK_180985b90,0x55d,1);
                           }
                         }
@@ -76159,7 +76216,7 @@ LAB_180880d13:
                             if (lVar3 != 0) {
                               (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                              ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,
+                              ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,
                                             &UNK_180985b90,0x55d,1);
                             }
                           }
@@ -76201,7 +76258,7 @@ LAB_180880e13:
                               if (lVar3 != 0) {
                                 (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                                ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,
+                                ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,
                                               &UNK_180985b90,0x55d,1);
                               }
                             }
@@ -76243,7 +76300,7 @@ LAB_180880f13:
                                 if (lVar3 != 0) {
                                   (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                                  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,
+                                  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,
                                                 &UNK_180985b90,0x55d,1);
                                 }
                               }
@@ -76286,7 +76343,7 @@ LAB_180881013:
                                   if (lVar3 != 0) {
                                     (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                                    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,
+                                    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,
                                                   &UNK_180985b90,0x55d,1);
                                   }
                                 }
@@ -76329,7 +76386,7 @@ LAB_180881113:
                                     if (lVar3 != 0) {
                                       (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                                      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,
+                                      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,
                                                     &UNK_180985b90,0x55d,1);
                                     }
                                   }
@@ -76373,7 +76430,7 @@ LAB_180881213:
                                       if (lVar3 != 0) {
                                         (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                                        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2
+                                        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2
                                                       ,&UNK_180985b90,0x55d,1);
                                       }
                                     }
@@ -76419,7 +76476,7 @@ LAB_180881313:
                                         if (lVar3 != 0) {
                                           (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                                          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),
+                                          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),
                                                         networkPointer2,&UNK_180985b90,0x55d,1);
                                         }
                                       }
@@ -76465,7 +76522,7 @@ LAB_180881413:
                                           if (lVar3 != 0) {
                                             (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                                            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),
+                                            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),
                                                           networkPointer2,&UNK_180985b90,0x55d,1);
                                           }
                                         }
@@ -76511,7 +76568,7 @@ LAB_180881513:
                                             if (lVar3 != 0) {
                                               (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-                                              ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),
+                                              ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),
                                                             networkPointer2,&UNK_180985b90,0x55d,1);
                                             }
                                           }
@@ -76559,7 +76616,7 @@ LAB_180881613:
                                                 (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
                                                 ValidateNetworkConnectionData(*(NetworkHandle *)
-                                                               (g_NetworkConnectionTable + 0x1a0),networkPointer2,
+                                                               (NetworkConnectionTable + 0x1a0),networkPointer2,
                                                               &UNK_180985b90,0x55d,1);
                                               }
                                             }
@@ -76608,7 +76665,7 @@ LAB_180881713:
                                                   (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
                                                   ValidateNetworkConnectionData(*(NetworkHandle *)
-                                                                 (g_NetworkConnectionTable + 0x1a0),networkPointer2,
+                                                                 (NetworkConnectionTable + 0x1a0),networkPointer2,
                                                                 &UNK_180985b90,0x55d,1);
                                                 }
                                               }
@@ -76659,7 +76716,7 @@ LAB_180881813:
                                                     (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
                                                     ValidateNetworkConnectionData(*(NetworkHandle *)
-                                                                   (g_NetworkConnectionTable + 0x1a0),networkPointer2,
+                                                                   (NetworkConnectionTable + 0x1a0),networkPointer2,
                                                                   &UNK_180985b90,0x55d,1);
                                                   }
                                                 }
@@ -76710,7 +76767,7 @@ LAB_180881913:
                                                       (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
                                                       ValidateNetworkConnectionData(*(NetworkHandle *)
-                                                                     (g_NetworkConnectionTable + 0x1a0),networkPointer2
+                                                                     (NetworkConnectionTable + 0x1a0),networkPointer2
                                                                     ,&UNK_180985b90,0x55d,1);
                                                     }
                                                   }
@@ -76761,7 +76818,7 @@ LAB_180881a13:
                                                         (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
                                                         ValidateNetworkConnectionData(*(NetworkHandle *)
-                                                                       (g_NetworkConnectionTable + 0x1a0),
+                                                                       (NetworkConnectionTable + 0x1a0),
                                                                       networkPointer2,&UNK_180985b90,0x55d,1)
                                                         ;
                                                       }
@@ -76814,7 +76871,7 @@ LAB_180881b13:
                                                           (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
                                                           ValidateNetworkConnectionData(*(NetworkHandle *)
-                                                                         (g_NetworkConnectionTable + 0x1a0),
+                                                                         (NetworkConnectionTable + 0x1a0),
                                                                         networkPointer2,&UNK_180985b90,0x55d,
                                                                         1);
                                                         }
@@ -76870,7 +76927,7 @@ LAB_180881c13:
                                                             (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
                                                             ValidateNetworkConnectionData(*(NetworkHandle *)
-                                                                           (g_NetworkConnectionTable + 0x1a0),
+                                                                           (NetworkConnectionTable + 0x1a0),
                                                                           networkPointer2,&UNK_180985b90,
                                                                           0x55d,1);
                                                           }
@@ -76927,7 +76984,7 @@ LAB_180881d13:
                                                               (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
                                                               ValidateNetworkConnectionData(*(NetworkHandle *)
-                                                                             (g_NetworkConnectionTable + 0x1a0
+                                                                             (NetworkConnectionTable + 0x1a0
                                                                              ),networkPointer2,&UNK_180985b90
                                                                             ,0x55d,1);
                                                             }
@@ -76986,7 +77043,7 @@ LAB_180881e13:
                                                                 (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
                                                                 ValidateNetworkConnectionData(*(NetworkHandle *)
-                                                                               (g_NetworkConnectionTable +
+                                                                               (NetworkConnectionTable +
                                                                                0x1a0),networkPointer2,
                                                                               &UNK_180985b90,0x55d,1
                                                                              );
@@ -78235,7 +78292,7 @@ NetworkHandle FreeNetworkConnection(longlong *connectionContext,int packetData)
   if (packetData != 0) {
     if (packetData * 0x6c - 1U < 0x3fffffff) {
       networkPointer5 = (NetworkHandle *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x6c,&g_NetworkSecurityValidationData,
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x6c,&NetworkSecurityValidationData,
                              0xf4,0,0,1);
       if (networkPointer5 != (NetworkHandle *)0x0) {
         networkStatus3 = (int)connectionContext[1];
@@ -78282,7 +78339,7 @@ NetworkHandle FreeNetworkConnection(longlong *connectionContext,int packetData)
 LAB_180882d69:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = (longlong)networkPointer5;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -78312,7 +78369,7 @@ NetworkHandle GetNetworkErrorCode(void)
 LAB_180882d69:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = (longlong)networkPointer5;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_ESI;
@@ -78320,7 +78377,7 @@ LAB_180882d69:
   }
   if (unaff_ESI * 0x6c - 1U < 0x3fffffff) {
     networkPointer5 = (NetworkHandle *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),unaff_ESI * 0x6c,&g_NetworkSecurityValidationData,
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),unaff_ESI * 0x6c,&NetworkSecurityValidationData,
                            0xf4,0);
     if (networkPointer5 != (NetworkHandle *)0x0) {
       networkStatus3 = (int)unaff_RBX[1];
@@ -78396,7 +78453,7 @@ NetworkHandle ReleaseNetworkHandle(longlong *connectionContext,int packetData)
   if (packetData != 0) {
     if (packetData * 0x28 - 1U < 0x3fffffff) {
       networkPointer5 = (NetworkHandle *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x28,&g_NetworkSecurityValidationData,
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x28,&NetworkSecurityValidationData,
                              0xf4,0,0,1);
       if (networkPointer5 != (NetworkHandle *)0x0) {
         networkStatus3 = (int)connectionContext[1];
@@ -78426,7 +78483,7 @@ NetworkHandle ReleaseNetworkHandle(longlong *connectionContext,int packetData)
 LAB_180882e99:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = (longlong)networkPointer5;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -78456,7 +78513,7 @@ NetworkHandle DestroyNetworkSocket(NetworkHandle connectionContext,int packetDat
 LAB_180882e99:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = (longlong)networkPointer5;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -78464,7 +78521,7 @@ LAB_180882e99:
   }
   if (packetData * 0x28 - 1U < 0x3fffffff) {
     networkPointer5 = (NetworkHandle *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x28,&g_NetworkSecurityValidationData,
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x28,&NetworkSecurityValidationData,
                            0xf4,0);
     if (networkPointer5 != (NetworkHandle *)0x0) {
       networkStatus3 = (int)unaff_RBX[1];
@@ -78520,7 +78577,7 @@ NetworkHandle AllocateNetworkBuffer(longlong *connectionContext,int packetData)
   if (packetData != 0) {
     if (packetData * 8 - 1U < 0x3fffffff) {
       ptertiaryNetworkFlag = (NetworkHandle *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 8,&g_NetworkSecurityValidationData,0xf4
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 8,&NetworkSecurityValidationData,0xf4
                              ,0,0,1);
       if (ptertiaryNetworkFlag != (NetworkHandle *)0x0) {
         networkStatus1 = (int)connectionContext[1];
@@ -78541,7 +78598,7 @@ NetworkHandle AllocateNetworkBuffer(longlong *connectionContext,int packetData)
 LAB_180882fa1:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = (longlong)ptertiaryNetworkFlag;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -78568,7 +78625,7 @@ NetworkHandle CreateNetworkSocket(NetworkHandle connectionContext,int packetData
 LAB_180882fa1:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = (longlong)ptertiaryNetworkFlag;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -78576,7 +78633,7 @@ LAB_180882fa1:
   }
   if (packetData * 8 - 1U < 0x3fffffff) {
     ptertiaryNetworkFlag = (NetworkHandle *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 8,&g_NetworkSecurityValidationData,0xf4,0
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 8,&NetworkSecurityValidationData,0xf4,0
                           );
     if (ptertiaryNetworkFlag != (NetworkHandle *)0x0) {
       networkStatus1 = (int)unaff_RBX[1];
@@ -78618,7 +78675,7 @@ NetworkHandle ReserveNetworkMemory(longlong *connectionContext,int packetData)
   lVar1 = 0;
   if (packetData != 0) {
     if (packetData * 0x278 - 1U < 0x3fffffff) {
-      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x278,&g_NetworkSecurityValidationData,
+      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x278,&NetworkSecurityValidationData,
                             0xf4,0,0,1);
       if (lVar1 != 0) {
         if ((int)connectionContext[1] != 0) {
@@ -78633,7 +78690,7 @@ NetworkHandle ReserveNetworkMemory(longlong *connectionContext,int packetData)
 LAB_1808830a3:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = lVar1;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -78656,14 +78713,14 @@ NetworkHandle GetNetworkMemorySize(void)
 LAB_1808830a3:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (unaff_EDI * 0x278 - 1U < 0x3fffffff) {
-    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),unaff_EDI * 0x278,&g_NetworkSecurityValidationData,
+    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),unaff_EDI * 0x278,&NetworkSecurityValidationData,
                           0xf4,0);
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -78723,7 +78780,7 @@ NetworkHandle PrepareNetworkTransfer(longlong *connectionContext,int packetData)
   if (packetData != 0) {
     if (packetData * 0x118 - 1U < 0x3fffffff) {
       puVar9 = (NetworkHandle *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x118,&g_NetworkSecurityValidationData,
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x118,&NetworkSecurityValidationData,
                              0xf4,0,0,1);
       if (puVar9 != (NetworkHandle *)0x0) {
         networkStatus1 = (int)connectionContext[1];
@@ -78785,7 +78842,7 @@ NetworkHandle PrepareNetworkTransfer(longlong *connectionContext,int packetData)
 LAB_18088322e:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = (longlong)puVar9;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -78821,7 +78878,7 @@ NetworkHandle GetNetworkTransferStatus(void)
 LAB_18088322e:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = (longlong)puVar9;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_ESI;
@@ -78829,7 +78886,7 @@ LAB_18088322e:
   }
   if (unaff_ESI * 0x118 - 1U < 0x3fffffff) {
     puVar9 = (NetworkHandle *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),unaff_ESI * 0x118,&g_NetworkSecurityValidationData,
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),unaff_ESI * 0x118,&NetworkSecurityValidationData,
                            0xf4,0);
     if (puVar9 != (NetworkHandle *)0x0) {
       networkStatus1 = (int)unaff_RBX[1];
@@ -78926,7 +78983,7 @@ NetworkHandle StartNetworkTransfer(longlong *connectionContext,int packetData)
   if (packetData != 0) {
     if (packetData * 0x128 - 1U < 0x3fffffff) {
       puVar9 = (NetworkHandle *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x128,&g_NetworkSecurityValidationData,
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x128,&NetworkSecurityValidationData,
                              0xf4,0,0,1);
       if (puVar9 != (NetworkHandle *)0x0) {
         networkStatus1 = (int)connectionContext[1];
@@ -78991,7 +79048,7 @@ NetworkHandle StartNetworkTransfer(longlong *connectionContext,int packetData)
 LAB_1808833ba:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = (longlong)puVar9;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -79027,7 +79084,7 @@ NetworkHandle FUN_1808832b4(void)
 LAB_1808833ba:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = (longlong)puVar9;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_ESI;
@@ -79035,7 +79092,7 @@ LAB_1808833ba:
   }
   if (unaff_ESI * 0x128 - 1U < 0x3fffffff) {
     puVar9 = (NetworkHandle *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),unaff_ESI * 0x128,&g_NetworkSecurityValidationData,
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),unaff_ESI * 0x128,&NetworkSecurityValidationData,
                            0xf4,0);
     if (puVar9 != (NetworkHandle *)0x0) {
       networkStatus1 = (int)unaff_RBX[1];
@@ -79121,7 +79178,7 @@ NetworkHandle InitializeNetworkStream(longlong *connectionContext,int packetData
   lVar1 = 0;
   if (packetData != 0) {
     if (packetData * 0x24 - 1U < 0x3fffffff) {
-      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x24,&g_NetworkSecurityValidationData,
+      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x24,&NetworkSecurityValidationData,
                             0xf4,0,0,1);
       if (lVar1 != 0) {
         if ((int)connectionContext[1] != 0) {
@@ -79136,7 +79193,7 @@ NetworkHandle InitializeNetworkStream(longlong *connectionContext,int packetData
 LAB_1808834b4:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = lVar1;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -79159,14 +79216,14 @@ NetworkHandle FUN_180883444(NetworkHandle connectionContext,int packetData)
 LAB_1808834b4:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (packetData * 0x24 - 1U < 0x3fffffff) {
-    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x24,&g_NetworkSecurityValidationData,0xf4
+    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x24,&NetworkSecurityValidationData,0xf4
                           ,0);
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -79202,7 +79259,7 @@ NetworkHandle SetupNetworkConnection(longlong *connectionContext,int packetData)
   lVar1 = 0;
   if (packetData != 0) {
     if (packetData * 0x30 - 1U < 0x3fffffff) {
-      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x30,&g_NetworkSecurityValidationData,
+      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x30,&NetworkSecurityValidationData,
                             0xf4,0,0,1);
       if (lVar1 != 0) {
         if ((int)connectionContext[1] != 0) {
@@ -79217,7 +79274,7 @@ NetworkHandle SetupNetworkConnection(longlong *connectionContext,int packetData)
 LAB_1808835b4:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = lVar1;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -79240,14 +79297,14 @@ NetworkHandle BindNetworkSocket(NetworkHandle connectionContext,int packetData)
 LAB_1808835b4:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (packetData * 0x30 - 1U < 0x3fffffff) {
-    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x30,&g_NetworkSecurityValidationData,0xf4
+    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x30,&NetworkSecurityValidationData,0xf4
                           ,0);
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -79293,7 +79350,7 @@ NetworkHandle EstablishNetworkStream(longlong *connectionContext,int packetData)
   if (packetData != 0) {
     if (packetData * 0x1c - 1U < 0x3fffffff) {
       puVar7 = (NetworkStatus *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x1c,&g_NetworkSecurityValidationData,
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x1c,&NetworkSecurityValidationData,
                              0xf4,0,0,1);
       if (puVar7 != (NetworkStatus *)0x0) {
         networkStatus3 = (int)connectionContext[1];
@@ -79325,7 +79382,7 @@ NetworkHandle EstablishNetworkStream(longlong *connectionContext,int packetData)
 LAB_1808836e7:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = (longlong)puVar7;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -79357,7 +79414,7 @@ NetworkHandle GetNetworkStreamInfo(void)
 LAB_1808836e7:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = (longlong)puVar7;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -79365,7 +79422,7 @@ LAB_1808836e7:
   }
   if (unaff_EDI * 0x1c - 1U < 0x3fffffff) {
     puVar7 = (NetworkStatus *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),unaff_EDI * 0x1c,&g_NetworkSecurityValidationData,
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),unaff_EDI * 0x1c,&NetworkSecurityValidationData,
                            0xf4,0);
     if (puVar7 != (NetworkStatus *)0x0) {
       networkStatus3 = (int)unaff_RBX[1];
@@ -79434,7 +79491,7 @@ NetworkHandle ProcessNetworkStream(longlong *connectionContext,int packetData)
 LAB_1808838fe:
     if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = lVar7;
     uVar9 = 0;
@@ -79442,7 +79499,7 @@ LAB_1808838fe:
   }
   else {
     if (packetData * 0x1c - 1U < 0x3fffffff) {
-      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x1c,&g_NetworkSecurityValidationData,
+      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x1c,&NetworkSecurityValidationData,
                             0xf4,0,0,1);
       if (lVar7 != 0) {
         lVar8 = (longlong)(int)connectionContext[1];
@@ -79551,7 +79608,7 @@ NetworkHandle GetNetworkStreamStatus(void)
 LAB_1808838fe:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar7;
     uVar9 = 0;
@@ -79559,7 +79616,7 @@ LAB_1808838fe:
   }
   else {
     if (unaff_EBP * 0x1c - 1U < 0x3fffffff) {
-      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),unaff_EBP * 0x1c,&g_NetworkSecurityValidationData,
+      lVar7 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),unaff_EBP * 0x1c,&NetworkSecurityValidationData,
                             0xf4,0);
       if (lVar7 != 0) {
         lVar8 = (longlong)(int)unaff_RBX[1];
@@ -79710,7 +79767,7 @@ void GetNetworkConnectionStatus(NetworkHandle connectionContext)
   if (networkStatus1 == 0) {
     FUN_180873460(connectionContext);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext,&UNK_180985b90,0x43b,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext,&UNK_180985b90,0x43b,1);
   }
   return;
 }
@@ -86171,7 +86228,7 @@ NetworkHandle ValidateNetworkConnection(longlong connectionContext,uint *packetD
   if (((packetData != (uint *)0x0) && (primaryNetworkFlag = *packetData, primaryNetworkFlag - 4 < 0x1d)) && ((primaryNetworkFlag & 3) == 0)) {
     if (*(longlong *)(connectionContext + 0x2d8) != 0) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x2d8),
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x2d8),
                     &UNK_180985b90,0x1a9,1);
     }
                     // WARNING: Subroutine does not return
@@ -86193,7 +86250,7 @@ void FUN_180889f60(NetworkHandle connectionContext,longlong packetData)
   
   if (packetData != 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData,&UNK_180985b90,0x1a9,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData,&UNK_180985b90,0x1a9,1);
   }
                     // WARNING: Subroutine does not return
   memcpy(unaff_RDI + 0x2c0);
@@ -87161,7 +87218,7 @@ void FUN_18088af30(longlong connectionContext,NetworkHandle packetData,NetworkBy
       (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
       plStack_298 = (longlong *)CONCAT71(plStack_298._1_7_,1);
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0x17a);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0x17a);
     }
   }
   else if (*(longlong *)(connectionContext + 0xb0) == 0) {
@@ -87169,7 +87226,7 @@ void FUN_18088af30(longlong connectionContext,NetworkHandle packetData,NetworkBy
     uStack_288 = 1;
     uStack_290 = 0;
     plStack_298 = (longlong *)((ulonglong)plStack_298 & 0xffffffff00000000);
-    lVar4 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x38,&UNK_180985b90,0x171);
+    lVar4 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x38,&UNK_180985b90,0x171);
     if (lVar4 != 0) {
       quinaryNetworkFlag = func_0x0001808967b0(lVar4,connectionContext,(bVar1 & 1) << 0x18);
       *(NetworkHandle *)(connectionContext + 0xb0) = quinaryNetworkFlag;
@@ -87244,7 +87301,7 @@ void FUN_18088afd0(void)
     iVar6 = FUN_180738630(unaff_RBP + 0x124,0,0);
     if (((iVar6 != 0) ||
         (iVar6 = func_0x00018088e470(*(NetworkHandle *)(unaff_RDI + 0x98),&stack0x00000048), iVar6 != 0
-        )) || (iVar6 = FUN_180739890(*(NetworkHandle *)(unaff_RDI + 0x78),&stack0x00000078), iVar6 != 0
+        )) || (iVar6 = FUN_180739890(*(NetworkHandle *)(unaff_RDI + 0x78),&NetworkStackBuffer78), iVar6 != 0
               )) goto LAB_18088b4fb;
     secondaryNetworkFlag = *(NetworkHandle *)(unaff_RDI + 0x78);
     *(NetworkHandle *)(unaff_RBP + 0x134) = in_stack_00000078;
@@ -87335,11 +87392,11 @@ void FUN_18088afd0(void)
       ptertiaryNetworkFlag = *(NetworkHandle **)(unaff_RDI + 0xb0);
       (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0x17a,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_180985b90,0x17a,1);
     }
   }
   else if ((*(longlong *)(unaff_RDI + 0xb0) == 0) &&
-          (lVar4 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x38,&UNK_180985b90,0x171,
+          (lVar4 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x38,&UNK_180985b90,0x171,
                                  (ulonglong)in_stack_00000020 & 0xffffffff00000000), lVar4 != 0)) {
     secondaryNetworkFlag = func_0x0001808967b0(lVar4);
     *(NetworkHandle *)(unaff_RDI + 0xb0) = secondaryNetworkFlag;
@@ -87953,7 +88010,7 @@ NetworkHandle FUN_18088c290(longlong connectionContext)
       return 0x1c;
     }
     connectionIndex = 0;
-    lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x10000,&UNK_180985f90,0xbb,0,0,1)
+    lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x10000,&UNK_180985f90,0xbb,0,0,1)
     ;
     *(longlong *)(lVar1 + 0x180c4ec50) = lVar3;
     if (lVar3 != 0) {
@@ -88086,7 +88143,7 @@ NetworkHandle GetBufferSize(uint connectionContext)
   {
     if (0 < *(int *)(lVar1 + 0x180c4eb2c)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),
                     *(NetworkHandle *)
                      ((longlong)(*(int *)(lVar1 + 0x180c4eb30) << 5) * 8 + 0x180c4ec50),
                     &UNK_180985f90,0xec,1);
@@ -88111,7 +88168,7 @@ NetworkHandle FUN_18088c449(void)
   
   if (0 < *(int *)(unaff_RSI + 0xc4eb2c + unaff_R14)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),
                   *(NetworkHandle *)
                    (unaff_R14 + 0xc4ec50 +
                    (longlong)(*(int *)(unaff_RSI + 0xc4eb30 + unaff_R14) << 5) * 8),&UNK_180985f90,
@@ -88136,7 +88193,7 @@ void FUN_18088c46a(void)
   longlong unaff_R14;
   
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),
                 *(NetworkHandle *)(unaff_R14 + 0xc4ec50 + (longlong)(in_EAX << 5) * 8),&UNK_180985f90,
                 0xec,1);
 }
@@ -88259,7 +88316,7 @@ NetworkHandle FUN_18088c7c0(longlong connectionContext,longlong packetData,Netwo
     return 0x1c;
   }
   networkPointer1 = (NetworkStatus *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x38,&UNK_180986010,0x24,0,0,1);
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x38,&UNK_180986010,0x24,0,0,1);
   if (networkPointer1 == (NetworkStatus *)0x0) {
     secondaryNetworkFlag = 0x26;
   }
@@ -88311,7 +88368,7 @@ NetworkStatus InitializeNetworkConfiguration(int *connectionContext)
       *(NetworkHandle *)(*(longlong *)(connectionContext + 4) + 0x68) = 0;
     }
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext,&UNK_180986010,0x4d,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext,&UNK_180986010,0x4d,1);
   }
 LAB_18088c94a:
                     // WARNING: Subroutine does not return
@@ -88378,7 +88435,7 @@ NetworkHandle FUN_18088ca20(longlong connectionContext,longlong packetData,Netwo
     return 0x1c;
   }
   networkPointer1 = (NetworkStatus *)
-           ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x20,&UNK_180986090,0x1d,0,0,1);
+           ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x20,&UNK_180986090,0x1d,0,0,1);
   if (networkPointer1 == (NetworkStatus *)0x0) {
     secondaryNetworkFlag = 0x26;
   }
@@ -88426,7 +88483,7 @@ NetworkStatus FUN_18088cae0(int *connectionContext)
       *(NetworkHandle *)(*(longlong *)(connectionContext + 4) + 0x48) = 0;
     }
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext,&UNK_180986090,0x44,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),connectionContext,&UNK_180986090,0x44,1);
   }
 LAB_18088cb8a:
                     // WARNING: Subroutine does not return
@@ -88512,7 +88569,7 @@ uint FUN_18088ccd0(longlong *connectionContext)
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     tertiaryNetworkFlag = 0;
@@ -88533,7 +88590,7 @@ uint FUN_18088ccd0(longlong *connectionContext)
   }
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = 0;
   *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -88568,7 +88625,7 @@ uint FUN_18088cd80(longlong *connectionContext)
     }
     if ((0 < (int)quinaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     quinaryNetworkFlag = 0;
@@ -88602,7 +88659,7 @@ uint FUN_18088cd80(longlong *connectionContext)
   }
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = 0;
   *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -88876,7 +88933,7 @@ void FUN_18088d2be(void)
            (longlong)*(int *)(in_stack_00000060 + (longlong)(iStack0000000000000068 + -1) * 4) * 8);
   FUN_180894fb0(primaryNetworkFlag);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x2ca,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x2ca,1);
 }
 
 
@@ -88906,7 +88963,7 @@ void FUN_18088d388(void)
              (longlong)*(int *)(in_stack_00000060 + (longlong)(in_stack_00000068 + -1) * 4) * 8);
     FUN_180894fb0(primaryNetworkFlag);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x2ca,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x2ca,1);
   }
   FUN_18088ccd0(&stack0x00000060);
                     // WARNING: Subroutine does not return
@@ -88967,7 +89024,7 @@ void FUN_18088d510(longlong connectionContext)
       LOCK();
       *(int *)(connectionContext + 0x198) = networkStatus4;
       UNLOCK();
-      if ((networkStatus4 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
+      if ((networkStatus4 != 0) && ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0)) {
         auStack_128[0] = 0;
         puStack_138 = auStack_128;
                     // WARNING: Subroutine does not return
@@ -89021,7 +89078,7 @@ void FUN_18088d575(void)
       LOCK();
       *(int *)(unaff_RDI + 0x198) = networkStatus2;
       UNLOCK();
-      if ((networkStatus2 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
+      if ((networkStatus2 != 0) && ((*(byte *)(NetworkConnectionTable + 0x10) & 0x80) != 0)) {
         in_stack_00000030 = 0;
                     // WARNING: Subroutine does not return
         LogNetworkConnectionError(networkStatus2,0xb,0,&UNK_180986208,&stack0x00000030);
@@ -89142,7 +89199,7 @@ void ValidateMemoryPool(longlong connectionContext)
         *(NetworkHandle *)(connectionContext + 0x158) = 0;
         FUN_1808e6410(primaryNetworkFlag);
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x83,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x83,1);
       }
     }
   }
@@ -89187,7 +89244,7 @@ void FUN_18088d880(void)
       *(NetworkHandle *)(unaff_RDI + 0x158) = 0;
       FUN_1808e6410(primaryNetworkFlag);
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x83,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x83,1);
     }
   }
   return;
@@ -89211,7 +89268,7 @@ void FUN_18088d902(void)
   *(NetworkHandle *)(unaff_RDI + 0x158) = unaff_RSI;
   FUN_1808e6410(primaryNetworkFlag);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x83,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x83,1);
 }
 
 
@@ -89230,7 +89287,7 @@ void FUN_18088d90e(void)
   *(NetworkHandle *)(unaff_RDI + 0x158) = unaff_RSI;
   FUN_1808e6410();
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0));
 }
 
 
@@ -89250,7 +89307,7 @@ void FUN_18088d9d0(void)
     primaryNetworkFlag = *(NetworkHandle *)(unaff_RSI + *(longlong *)(unaff_RDI + 0x1e8));
     FUN_180894fb0(primaryNetworkFlag);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x1e7,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x1e7,1);
   }
   ValidateConnectionResource(unaff_RDI + 0x1e8);
   return;
@@ -89292,7 +89349,7 @@ NetworkHandle ProcessNetworkConnection(longlong connectionContext)
     tertiaryNetworkFlag = **(NetworkHandle **)(connectionContext + 0x1e8);
     FUN_180894fb0(tertiaryNetworkFlag);
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),tertiaryNetworkFlag,&UNK_180986190,0x1e7,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),tertiaryNetworkFlag,&UNK_180986190,0x1e7,1);
   }
   plVar1 = (longlong *)(connectionContext + 0x1e8);
   quaternaryNetworkFlag = *(uint *)(connectionContext + 500);
@@ -89302,7 +89359,7 @@ NetworkHandle ProcessNetworkConnection(longlong connectionContext)
     }
     if ((0 < (int)quaternaryNetworkFlag) && (*plVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar1,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar1,&NetworkSecurityValidationData,0x100,1);
     }
     *plVar1 = 0;
     quaternaryNetworkFlag = 0;
@@ -89337,7 +89394,7 @@ void FUN_18088da6d(void)
   primaryNetworkFlag = *(NetworkHandle *)((ulonglong)unaff_EDI + *(longlong *)(unaff_RBP + 0x1e8));
   FUN_180894fb0(primaryNetworkFlag);
                     // WARNING: Subroutine does not return
-  ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x1e7,1);
+  ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),primaryNetworkFlag,&UNK_180986190,0x1e7,1);
 }
 
 
@@ -89361,7 +89418,7 @@ NetworkHandle FUN_18088dad3(void)
     }
     if ((0 < (int)quaternaryNetworkFlag) && (*plVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar1,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar1,&NetworkSecurityValidationData,0x100,1);
     }
     *plVar1 = 0;
     quaternaryNetworkFlag = 0;
@@ -89416,7 +89473,7 @@ NetworkHandle SendNetworkData(longlong connectionContext)
           }
           (**(code **)*networkPointer2)(networkPointer2,0);
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180986190,0x1d2,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer2,&UNK_180986190,0x1d2,1);
         }
         return 0x1c;
       }
@@ -89907,7 +89964,7 @@ NetworkHandle InitializeNetworkEvents(longlong connectionContext,longlong packet
   if ((int)tertiaryNetworkFlag != 0) {
     return tertiaryNetworkFlag;
   }
-  lVar4 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x30,&UNK_180986190,0x59,0,
+  lVar4 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x30,&UNK_180986190,0x59,0,
                         (char)tertiaryNetworkFlag,1);
   if (lVar4 == 0) {
     return 0x26;
@@ -89931,8 +89988,8 @@ NetworkHandle InitializeNetworkEvents(longlong connectionContext,longlong packet
       }
       if ((0 < (int)primaryNetworkFlag) && (*(longlong *)(connectionContext + 0x210) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x210),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(connectionContext + 0x210),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(NetworkHandle *)(connectionContext + 0x210) = 0;
       *(NetworkStatus *)(connectionContext + 0x21c) = 0;
@@ -89987,7 +90044,7 @@ NetworkHandle FUN_18088e4e4(void)
   if ((int)tertiaryNetworkFlag != 0) {
     return tertiaryNetworkFlag;
   }
-  lVar4 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x30,&UNK_180986190,0x59,0);
+  lVar4 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x30,&UNK_180986190,0x59,0);
   if (lVar4 == 0) {
     return 0x26;
   }
@@ -90010,8 +90067,8 @@ NetworkHandle FUN_18088e4e4(void)
       }
       if ((0 < (int)primaryNetworkFlag) && (*(longlong *)(unaff_RBX + 0x210) != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x210),
-                      &g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x210),
+                      &NetworkSecurityValidationData,0x100,1);
       }
       *(NetworkHandle *)(unaff_RBX + 0x210) = 0;
       *(NetworkStatus *)(unaff_RBX + 0x21c) = 0;
@@ -90095,7 +90152,7 @@ NetworkHandle FUN_18088e780(longlong *connectionContext,int packetData)
   if (packetData != 0) {
     if (packetData * 0x30 - 1U < 0x3fffffff) {
       puVar9 = (NetworkHandle *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x30,&g_NetworkSecurityValidationData,
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x30,&NetworkSecurityValidationData,
                              0xf4,0,0,1);
       if (puVar9 != (NetworkHandle *)0x0) {
         networkStatus4 = (int)connectionContext[1];
@@ -90132,7 +90189,7 @@ NetworkHandle FUN_18088e780(longlong *connectionContext,int packetData)
 LAB_18088e847:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = (longlong)puVar9;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -90166,7 +90223,7 @@ NetworkHandle FUN_18088e7a4(NetworkHandle connectionContext,int packetData)
 LAB_18088e847:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = (longlong)puVar9;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -90174,7 +90231,7 @@ LAB_18088e847:
   }
   if (packetData * 0x30 - 1U < 0x3fffffff) {
     puVar9 = (NetworkHandle *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0x30,&g_NetworkSecurityValidationData,
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0x30,&NetworkSecurityValidationData,
                            0xf4,0);
     if (puVar9 != (NetworkHandle *)0x0) {
       networkStatus4 = (int)unaff_RBX[1];
@@ -94402,7 +94459,7 @@ int FUN_180891280(longlong connectionContext)
   }
   if (connectionDataPointer != 0) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar2,&UNK_18095b500,0xb8,1);
+    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar2,&UNK_18095b500,0xb8,1);
   }
   return networkStatus1;
 }
@@ -94461,7 +94518,7 @@ ulonglong FUN_1808913c0(longlong connectionContext,NetworkHandle packetData)
         secondaryNetworkFlag = 0;
       }
       else if (lVar3 != 0) {
-        FUN_180741df0(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar3,&g_NetworkSecurityValidationData,0xe9);
+        FUN_180741df0(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar3,&NetworkSecurityValidationData,0xe9);
         return secondaryNetworkFlag;
       }
       return secondaryNetworkFlag;
@@ -94502,7 +94559,7 @@ int FUN_1808913ff(NetworkStatus connectionContext)
     networkStatus1 = 0;
   }
   else if (connectionDataPointer != 0) {
-    FUN_180741df0(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),lVar2,&g_NetworkSecurityValidationData,0xe9,tertiaryNetworkFlag);
+    FUN_180741df0(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),lVar2,&NetworkSecurityValidationData,0xe9,tertiaryNetworkFlag);
     return networkStatus1;
   }
   return networkStatus1;
@@ -95019,7 +95076,7 @@ void FUN_180891e40(longlong connectionContext,longlong packetData)
     if (networkStatus1 < *(int *)(lStackX_18 + 0x28)) goto LAB_180891fc0;
     if (networkStatus1 != 0) {
       if ((0x3ffffffe < networkStatus1 * 8 - 1U) ||
-         (lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkStatus1 * 8,&g_NetworkSecurityValidationData,
+         (lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkStatus1 * 8,&NetworkSecurityValidationData,
                                 0xf4,0,0,1), lVar3 == 0)) goto LAB_180891fc0;
       if (*(int *)(lStackX_18 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -95028,8 +95085,8 @@ void FUN_180891e40(longlong connectionContext,longlong packetData)
     }
     if ((0 < *(int *)(lStackX_18 + 0x2c)) && (*(longlong *)(lStackX_18 + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(lStackX_18 + 0x20),
-                    &g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(lStackX_18 + 0x20),
+                    &NetworkSecurityValidationData,0x100,1);
     }
     *(longlong *)(lStackX_18 + 0x20) = lVar3;
     *(int *)(lStackX_18 + 0x2c) = networkStatus1;
@@ -95088,7 +95145,7 @@ void FUN_180891e7d(NetworkHandle connectionContext,NetworkHandle packetData)
     if (networkStatus1 < *(int *)(in_stack_00000070 + 0x28)) goto LAB_180891fc0;
     if (networkStatus1 != 0) {
       if ((0x3ffffffe < networkStatus1 * 8 - 1U) ||
-         (lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkStatus1 * 8,&g_NetworkSecurityValidationData,
+         (lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkStatus1 * 8,&NetworkSecurityValidationData,
                                 0xf4,0), lVar3 == 0)) goto LAB_180891fc0;
       if (*(int *)(in_stack_00000070 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -95099,8 +95156,8 @@ void FUN_180891e7d(NetworkHandle connectionContext,NetworkHandle packetData)
     if ((0 < *(int *)(in_stack_00000070 + 0x2c)) && (*(longlong *)(in_stack_00000070 + 0x20) != 0))
     {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(in_stack_00000070 + 0x20),
-                    &g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(in_stack_00000070 + 0x20),
+                    &NetworkSecurityValidationData,0x100,1);
     }
     *(longlong *)(in_stack_00000070 + 0x20) = lVar3;
     *(int *)(in_stack_00000070 + 0x2c) = networkStatus1;
@@ -95156,7 +95213,7 @@ void FUN_180891ea1(void)
     if (networkStatus1 < *(int *)(unaff_RBX + 0x28)) goto LAB_180891fc0;
     if (networkStatus1 != 0) {
       if (0x3ffffffe < networkStatus1 * 8 - 1U) goto LAB_180891fc0;
-      lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkStatus1 * 8,&g_NetworkSecurityValidationData,0xf4,0)
+      lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkStatus1 * 8,&NetworkSecurityValidationData,0xf4,0)
       ;
       if (lVar3 == 0) goto LAB_180891fc0;
       if (*(int *)(unaff_RBX + 0x28) != 0) {
@@ -95166,8 +95223,8 @@ void FUN_180891ea1(void)
     }
     if ((0 < *(int *)(unaff_RBX + 0x2c)) && (*(longlong *)(unaff_RBX + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x20),
-                    &g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x20),
+                    &NetworkSecurityValidationData,0x100,1);
     }
     *(longlong *)(unaff_RBX + 0x20) = lVar3;
     *(int *)(unaff_RBX + 0x2c) = networkStatus1;
@@ -95209,7 +95266,7 @@ void FUN_180891ec9(int connectionContext,int packetData)
     if (networkStatus2 < connectionContext) goto LAB_180891fc0;
     if (networkStatus2 != 0) {
       if (0x3ffffffe < networkStatus2 * 8 - 1U) goto LAB_180891fc0;
-      unaff_RSI = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkStatus2 * 8,&g_NetworkSecurityValidationData,
+      unaff_RSI = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkStatus2 * 8,&NetworkSecurityValidationData,
                                 0xf4);
       if (unaff_RSI == 0) goto LAB_180891fc0;
       if (*(int *)(unaff_RBX + 0x28) != 0) {
@@ -95220,8 +95277,8 @@ void FUN_180891ec9(int connectionContext,int packetData)
     }
     if ((0 < *(int *)(unaff_RBX + 0x2c)) && (*(longlong *)(unaff_RBX + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x20),
-                    &g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBX + 0x20),
+                    &NetworkSecurityValidationData,0x100,1);
     }
     *(longlong *)(unaff_RBX + 0x20) = unaff_RSI;
     *(int *)(unaff_RBX + 0x2c) = networkStatus2;
@@ -95484,7 +95541,7 @@ NetworkHandle FUN_180892270(longlong connectionContext,longlong packetData)
           return 0x1e;
         }
         if (*(int *)(lVar1 + 0x58) < 1) {
-          networkPointer4 = &g_NetworkConnectionDataDefault;
+          networkPointer4 = &NetworkConnectionDataDefault;
         }
         else {
           networkPointer4 = *(NetworkData **)(lVar1 + 0x50);
@@ -95540,7 +95597,7 @@ NetworkHandle FUN_1808922ad(void)
         return 0x1e;
       }
       if (*(int *)(lVar1 + 0x58) < 1) {
-        networkPointer4 = &g_NetworkConnectionDataDefault;
+        networkPointer4 = &NetworkConnectionDataDefault;
       }
       else {
         networkPointer4 = *(NetworkData **)(lVar1 + 0x50);
@@ -96998,7 +97055,7 @@ int FUN_180893760(longlong connectionContext,longlong packetData)
       networkStatus1 = 0x1f;
     }
     else {
-      lVar2 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(int *)(connectionContext + 0x20),
+      lVar2 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(int *)(connectionContext + 0x20),
                             &UNK_1809862d0,0x315,0,0,1);
       if (connectionDataPointer != 0) {
                     // WARNING: Subroutine does not return
@@ -97041,7 +97098,7 @@ int FUN_18089379d(longlong connectionContext,NetworkHandle packetData)
     networkStatus1 = 0x1f;
   }
   else {
-    lVar2 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData,&UNK_1809862d0,0x315,0);
+    lVar2 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData,&UNK_1809862d0,0x315,0);
     if (connectionDataPointer != 0) {
                     // WARNING: Subroutine does not return
       memcpy(lVar2,*(NetworkHandle *)(unaff_RDI + 0x18),(longlong)*(int *)(unaff_RDI + 0x20));
@@ -97100,8 +97157,8 @@ int FUN_180893930(longlong connectionContext,longlong packetData)
   if ((((primaryNetworkFlag != 1) || ((*(byte *)(connectionContext + 0x10) & 0x1f) == 0)) && (0 < *(int *)(connectionContext + 0x18))
       ) && (primaryNetworkFlag < 2)) {
     if (primaryNetworkFlag == 0) {
-      lVar3 = FUN_180741d10(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(int *)(connectionContext + 0x18),0x20,
-                            &g_NetworkSecurityValidationData,0xdd,0,0);
+      lVar3 = FUN_180741d10(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(int *)(connectionContext + 0x18),0x20,
+                            &NetworkSecurityValidationData,0xdd,0,0);
       if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
         memcpy(lVar3,*(NetworkHandle *)(connectionContext + 0x10),(longlong)*(int *)(connectionContext + 0x18));
@@ -97140,7 +97197,7 @@ int FUN_180893964(NetworkHandle connectionContext,NetworkHandle packetData)
   longlong in_stack_00000060;
   
   if (in_EAX == 0) {
-    lVar2 = FUN_180741d10(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData,0x20,&g_NetworkSecurityValidationData,0xdd);
+    lVar2 = FUN_180741d10(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData,0x20,&NetworkSecurityValidationData,0xdd);
     if (connectionDataPointer != 0) {
                     // WARNING: Subroutine does not return
       memcpy(lVar2,*(NetworkHandle *)(unaff_RDI + 0x10),(longlong)*(int *)(unaff_RDI + 0x18));
@@ -97681,16 +97738,16 @@ int FUN_180894380(longlong connectionContext,longlong packetData,int dataSize)
   int networkStatus2;
   
   networkStatus1 = ProcessNetworkBufferCopy(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = ProcessNetworkDataValidation(networkStatus1 + packetData,dataSize - networkStatus1,*(NetworkStatus *)(connectionContext + 0x18));
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18074b970(networkStatus1 + packetData,dataSize - networkStatus1,connectionContext + 0x20,
                         *(NetworkStatus *)(connectionContext + 0x18));
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18074bb00(networkStatus1 + packetData,dataSize - networkStatus1,
                         connectionContext + 0x20 + (longlong)*(int *)(connectionContext + 0x18) * 4);
@@ -97706,21 +97763,21 @@ int FUN_180894460(longlong connectionContext,longlong packetData,int dataSize)
   int networkStatus2;
   
   networkStatus1 = ProcessNetworkBufferCopy(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = ProcessNetworkDataValidation(networkStatus1 + packetData,dataSize - networkStatus1,*(NetworkStatus *)(connectionContext + 0x18));
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18088ed70(networkStatus1 + packetData,dataSize - networkStatus1,connectionContext + 0x20,
                         *(NetworkStatus *)(connectionContext + 0x18));
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18074bb00(networkStatus1 + packetData,dataSize - networkStatus1,
                         connectionContext + 0x20 + (longlong)*(int *)(connectionContext + 0x18) * 8);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = ProcessNetworkBufferWithEncryption(networkStatus1 + packetData,dataSize - networkStatus1,*(NetworkByte *)(connectionContext + 0x1c));
   return networkStatus2 + networkStatus1;
@@ -97735,17 +97792,17 @@ int FUN_180894570(longlong connectionContext,longlong packetData,int dataSize)
   int networkStatus2;
   
   networkStatus1 = ProcessNetworkDataValidation(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18088ed70(networkStatus1 + packetData,dataSize - networkStatus1,connectionContext + 0x18,
                         *(NetworkStatus *)(connectionContext + 0x10));
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18074bb00(networkStatus1 + packetData,dataSize - networkStatus1,
                         connectionContext + 0x18 + (longlong)*(int *)(connectionContext + 0x10) * 8);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = ProcessNetworkBufferWithEncryption(networkStatus1 + packetData,dataSize - networkStatus1,*(NetworkByte *)(connectionContext + 0x14));
   return networkStatus2 + networkStatus1;
@@ -97760,11 +97817,11 @@ int FUN_180894650(longlong *connectionContext,longlong packetData,int dataSize)
   int networkStatus2;
   
   networkStatus1 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180986298);
-  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = ProcessNetworkDataValidation(networkStatus1 + packetData,dataSize - networkStatus1,(int)connectionContext[3] * 8 + 0x20);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = (**(code **)(*connectionContext + 8))(connectionContext,networkStatus1 + packetData,dataSize - networkStatus1);
   return networkStatus2 + networkStatus1;
@@ -97779,11 +97836,11 @@ int FUN_180894700(longlong *connectionContext,longlong packetData,int dataSize)
   int networkStatus2;
   
   networkStatus1 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180984010);
-  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = ProcessNetworkDataValidation(networkStatus1 + packetData,dataSize - networkStatus1,(int)connectionContext[3] * 0xc + 0x20);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = (**(code **)(*connectionContext + 8))(connectionContext,networkStatus1 + packetData,dataSize - networkStatus1);
   return networkStatus2 + networkStatus1;
@@ -97798,11 +97855,11 @@ int FUN_1808947b0(longlong *connectionContext,longlong packetData,int dataSize)
   int networkStatus2;
   
   networkStatus1 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982240);
-  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = ProcessNetworkDataValidation(networkStatus1 + packetData,dataSize - networkStatus1,((int)connectionContext[2] + 2) * 0xc);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = (**(code **)(*connectionContext + 8))(connectionContext,networkStatus1 + packetData,dataSize - networkStatus1);
   return networkStatus2 + networkStatus1;
@@ -98290,7 +98347,7 @@ uint FUN_180894ef0(longlong *connectionContext)
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     tertiaryNetworkFlag = 0;
@@ -98313,7 +98370,7 @@ uint FUN_180894ef0(longlong *connectionContext)
   }
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = 0;
   *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -98357,7 +98414,7 @@ NetworkHandle FUN_180894fb0(longlong connectionContext)
     }
     if ((0 < (int)quaternaryNetworkFlag) && (*plVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*plVar1,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*plVar1,&NetworkSecurityValidationData,0x100,1);
     }
     *plVar1 = 0;
     quaternaryNetworkFlag = 0;
@@ -98394,7 +98451,7 @@ NetworkHandle FUN_180895070(longlong *connectionContext)
     }
     if ((0 < (int)tertiaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     tertiaryNetworkFlag = 0;
@@ -98433,7 +98490,7 @@ NetworkHandle FUN_180895130(longlong *connectionContext)
     }
     if ((0 < (int)quinaryNetworkFlag) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0xc) = 0;
@@ -99347,7 +99404,7 @@ NetworkHandle FUN_180895f20(longlong *connectionContext,int packetData)
   if (packetData != 0) {
     if (packetData * 0xc - 1U < 0x3fffffff) {
       ptertiaryNetworkFlag = (NetworkHandle *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0xc,&g_NetworkSecurityValidationData,
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0xc,&NetworkSecurityValidationData,
                              0xf4,0,0,1);
       if (ptertiaryNetworkFlag != (NetworkHandle *)0x0) {
         networkStatus1 = (int)connectionContext[1];
@@ -99370,7 +99427,7 @@ NetworkHandle FUN_180895f20(longlong *connectionContext,int packetData)
 LAB_180895fdc:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = (longlong)ptertiaryNetworkFlag;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -99397,7 +99454,7 @@ NetworkHandle FUN_180895f44(NetworkHandle connectionContext,int packetData)
 LAB_180895fdc:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = (longlong)ptertiaryNetworkFlag;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -99405,7 +99462,7 @@ LAB_180895fdc:
   }
   if (packetData * 0xc - 1U < 0x3fffffff) {
     ptertiaryNetworkFlag = (NetworkHandle *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0xc,&g_NetworkSecurityValidationData,0xf4
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0xc,&NetworkSecurityValidationData,0xf4
                            ,0);
     if (ptertiaryNetworkFlag != (NetworkHandle *)0x0) {
       networkStatus1 = (int)unaff_RBX[1];
@@ -99449,7 +99506,7 @@ NetworkHandle FUN_180896040(longlong *connectionContext,int packetData)
   lVar1 = 0;
   if (packetData != 0) {
     if (packetData * 0xc - 1U < 0x3fffffff) {
-      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0xc,&g_NetworkSecurityValidationData,
+      lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0xc,&NetworkSecurityValidationData,
                             0xf4,0,0,1);
       if (lVar1 != 0) {
         if ((int)connectionContext[1] != 0) {
@@ -99464,7 +99521,7 @@ NetworkHandle FUN_180896040(longlong *connectionContext,int packetData)
 LAB_1808960d4:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = lVar1;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -99487,14 +99544,14 @@ NetworkHandle FUN_180896064(NetworkHandle connectionContext,int packetData)
 LAB_1808960d4:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (packetData * 0xc - 1U < 0x3fffffff) {
-    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 0xc,&g_NetworkSecurityValidationData,0xf4,
+    lVar1 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 0xc,&NetworkSecurityValidationData,0xf4,
                           0);
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -99703,7 +99760,7 @@ ulonglong FUN_180896140(longlong connectionContext)
                   }
                   if ((0 < (int)uStack_110._4_4_) && (uStack_118 != 0)) {
                     // WARNING: Subroutine does not return
-                    ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),uStack_118,&g_NetworkSecurityValidationData,
+                    ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),uStack_118,&NetworkSecurityValidationData,
                                   0x100,1);
                   }
                   uStack_118 = 0;
@@ -99785,7 +99842,7 @@ LAB_1808962af:
       if (0 < networkStatus16) goto LAB_18089638e;
       if ((0 < networkStatus4) && (uVar6 != 0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),uVar6,&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),uVar6,&NetworkSecurityValidationData,0x100,1);
       }
       uStack_118 = 0;
       uStack_110 = 0;
@@ -99926,7 +99983,7 @@ NetworkHandle FUN_1808968a0(longlong connectionContext)
         iVar5 = ((int)lVar2 - (int)lVar1) + 1;
       }
     }
-    pnetworkStatus3 = (int *)ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),iVar5 + 0x19,
+    pnetworkStatus3 = (int *)ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),iVar5 + 0x19,
                                   &UNK_1809868b0,0x278,0,0,1);
     pnetworkStatus3[0] = 0;
     pnetworkStatus3[1] = 0;
@@ -99994,11 +100051,11 @@ int FUN_180896b20(longlong connectionContext,longlong packetData,int dataSize)
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x14);
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180986470);
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferCopy(networkStatus3 + packetData,dataSize - networkStatus3,primaryNetworkFlag);
   return networkStatus4 + networkStatus3;
@@ -100846,7 +100903,7 @@ void FUN_1808975e0(longlong connectionContext,longlong packetData)
               uStack_e8 = *(NetworkHandle *)(*(longlong *)(lVar9 + 0x90) + lVar8 * 8);
               uStack_ec = 0;
               if (*(int *)(lVar3 + 0x58) < 1) {
-                networkPointer12 = &g_NetworkConnectionDataDefault;
+                networkPointer12 = &NetworkConnectionDataDefault;
               }
               else {
                 networkPointer12 = *(NetworkData **)(lVar3 + 0x50);
@@ -101087,7 +101144,7 @@ void FUN_180897644(void)
             *unaff_RBP = *(NetworkHandle *)(*(longlong *)(lVar15 + 0x90) + secondaryNetworkFlag3 * 8);
             *(NetworkByte *)((longlong)unaff_RBP + -4) = 0;
             if (*(int *)(lVar2 + 0x58) < 1) {
-              networkPointer18 = &g_NetworkConnectionDataDefault;
+              networkPointer18 = &NetworkConnectionDataDefault;
             }
             else {
               networkPointer18 = *(NetworkData **)(lVar2 + 0x50);
@@ -101333,7 +101390,7 @@ void FUN_1808976b0(void)
         *unaff_RBP = *(NetworkHandle *)(*(longlong *)(lVar15 + 0x90) + secondaryNetworkFlag2 * 8);
         *(NetworkByte *)((longlong)unaff_RBP + -4) = 0;
         if (*(int *)(lVar2 + 0x58) < 1) {
-          networkPointer18 = &g_NetworkConnectionDataDefault;
+          networkPointer18 = &NetworkConnectionDataDefault;
         }
         else {
           networkPointer18 = *(NetworkData **)(lVar2 + 0x50);
@@ -102085,7 +102142,7 @@ void FUN_180898040(longlong *connectionContext)
             puStack_2d8 = &NetworkProtocolTemplate;
             uStack_2c4 = uStack_2c4 & 0xffffff00;
             if (*(int *)(lVar11 + 0x58) < 1) {
-              networkPointer12 = &g_NetworkConnectionDataDefault;
+              networkPointer12 = &NetworkConnectionDataDefault;
             }
             else {
               networkPointer12 = *(NetworkData **)(lVar11 + 0x50);
@@ -102924,7 +102981,7 @@ NetworkHandle FUN_180898d60(longlong *connectionContext,int packetData)
   if (packetData != 0) {
     if (packetData * 3 - 1U < 0x3fffffff) {
       ptertiaryNetworkFlag = (NetworkData2 *)
-               ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 3,&g_NetworkSecurityValidationData,0xf4
+               ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 3,&NetworkSecurityValidationData,0xf4
                              ,0,0,1);
       if (ptertiaryNetworkFlag != (NetworkData2 *)0x0) {
         networkStatus1 = (int)connectionContext[1];
@@ -102947,7 +103004,7 @@ NetworkHandle FUN_180898d60(longlong *connectionContext,int packetData)
 LAB_180898e0b:
   if ((0 < *(int *)((longlong)connectionContext + 0xc)) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*connectionContext,&NetworkSecurityValidationData,0x100,1);
   }
   *connectionContext = (longlong)ptertiaryNetworkFlag;
   *(int *)((longlong)connectionContext + 0xc) = packetData;
@@ -102974,7 +103031,7 @@ NetworkHandle FUN_180898d84(NetworkHandle connectionContext,int packetData)
 LAB_180898e0b:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*unaff_RBX,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*unaff_RBX,&NetworkSecurityValidationData,0x100,1);
     }
     *unaff_RBX = (longlong)ptertiaryNetworkFlag;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -102982,7 +103039,7 @@ LAB_180898e0b:
   }
   if (packetData * 3 - 1U < 0x3fffffff) {
     ptertiaryNetworkFlag = (NetworkData2 *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),packetData * 3,&g_NetworkSecurityValidationData,0xf4,0
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),packetData * 3,&NetworkSecurityValidationData,0xf4,0
                           );
     if (ptertiaryNetworkFlag != (NetworkData2 *)0x0) {
       networkStatus1 = (int)unaff_RBX[1];
@@ -105156,7 +105213,7 @@ ulonglong FUN_18089a8b4(void)
       case 0x20:
         in_stack_00000078 = unaff_RDI[1];
         primaryNetworkFlag = (**(code **)**(NetworkHandle **)(unaff_RSI + 8))
-                          (*(NetworkHandle **)(unaff_RSI + 8),&stack0x00000078,4);
+                          (*(NetworkHandle **)(unaff_RSI + 8),&NetworkStackBuffer78,4);
         if ((int)primaryNetworkFlag != 0) {
           return primaryNetworkFlag;
         }
@@ -105445,10 +105502,10 @@ NetworkHandle FUN_18089ace4(void)
           if (ptertiaryNetworkFlag != (NetworkHandle *)0x0) {
             (**(code **)*ptertiaryNetworkFlag)(ptertiaryNetworkFlag,0);
                     // WARNING: Subroutine does not return
-            ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_1809869a0,0x130,1);
+            ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),ptertiaryNetworkFlag,&UNK_1809869a0,0x130,1);
           }
           ptertiaryNetworkFlag = (NetworkHandle *)
-                   ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x20,&UNK_1809869a0,0x119);
+                   ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x20,&UNK_1809869a0,0x119);
           if (ptertiaryNetworkFlag == (NetworkHandle *)0x0) {
             return 0x26;
           }
@@ -107675,7 +107732,7 @@ LAB_18089c40a:
         }
         if ((0 < (int)uStack_80._4_4_) && (puStack_88 != (NetworkHandle *)0x0)) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),puStack_88,&g_NetworkSecurityValidationData,0x100,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),puStack_88,&NetworkSecurityValidationData,0x100,1);
         }
         puStack_88 = (NetworkHandle *)0x0;
         uStack_80 = uStack_80 & 0xffffffff;
@@ -107747,7 +107804,7 @@ LAB_18089c40a:
       if (0 < networkStatus13) goto LAB_18089c586;
       if ((0 < (int)uStack_80._4_4_) && (puStack_88 != (NetworkHandle *)0x0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),puStack_88,&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),puStack_88,&NetworkSecurityValidationData,0x100,1);
       }
       puStack_88 = (NetworkHandle *)0x0;
       uStack_80 = uStack_80 & 0xffffffff;
@@ -107916,8 +107973,8 @@ LAB_18089c40a:
         }
         if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
-                        &g_NetworkSecurityValidationData,0x100,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
+                        &NetworkSecurityValidationData,0x100,1);
         }
         *(NetworkHandle *)(unaff_RBP + -0x29) = 0;
         *(NetworkStatus *)(unaff_RBP + -0x1d) = 0;
@@ -107998,7 +108055,7 @@ LAB_18089c40a:
       if (0 < networkStatus19) goto LAB_18089c586;
       if ((0 < (int)uVar9) && (networkPointer13 != (NetworkHandle *)0x0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer13,&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer13,&NetworkSecurityValidationData,0x100,1);
       }
       *(NetworkHandle *)(unaff_RBP + -0x29) = 0;
       *(NetworkStatus *)(unaff_RBP + -0x1d) = 0;
@@ -108163,8 +108220,8 @@ LAB_18089c40a:
         }
         if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
-                        &g_NetworkSecurityValidationData,0x100,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
+                        &NetworkSecurityValidationData,0x100,1);
         }
         *(NetworkHandle *)(unaff_RBP + -0x29) = 0;
         *(NetworkStatus *)(unaff_RBP + -0x1d) = 0;
@@ -108245,7 +108302,7 @@ LAB_18089c40a:
       if (0 < networkStatus19) goto LAB_18089c586;
       if ((0 < (int)uVar9) && (networkPointer12 != (NetworkHandle *)0x0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer12,&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer12,&NetworkSecurityValidationData,0x100,1);
       }
       *(NetworkHandle *)(unaff_RBP + -0x29) = 0;
       *(NetworkStatus *)(unaff_RBP + -0x1d) = 0;
@@ -108374,8 +108431,8 @@ LAB_18089c40a:
         }
         if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
-          ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
-                        &g_NetworkSecurityValidationData,0x100,1);
+          ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
+                        &NetworkSecurityValidationData,0x100,1);
         }
         *(NetworkHandle **)(unaff_RBP + -0x29) = unaff_R12;
         *(uint *)(unaff_RBP + -0x1d) = uVar8;
@@ -108457,7 +108514,7 @@ LAB_18089c40a:
       if (0 < networkStatus18) goto LAB_18089c586;
       if ((0 < (int)uVar9) && (networkPointer14 != (NetworkHandle *)0x0)) {
                     // WARNING: Subroutine does not return
-        ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer14,&g_NetworkSecurityValidationData,0x100,1);
+        ValidateNetworkConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),networkPointer14,&NetworkSecurityValidationData,0x100,1);
       }
       *(NetworkHandle **)(unaff_RBP + -0x29) = unaff_R12;
       *(uint *)(unaff_RBP + -0x1d) = uVar8;
@@ -112183,7 +112240,7 @@ LAB_18089e70b:
         if ((int)uStack_80 != 0) {
           for (; (puStack_88 <= networkPointer5 && (networkPointer5 < puStack_88 + (int)uStack_80));
               networkPointer5 = networkPointer5 + 1) {
-            lVar6 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180986e70,0xc1c,
+            lVar6 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180986e70,0xc1c,
                                   0,0,1);
             if (lVar6 == 0) {
               quaternaryNetworkFlag = 0x26;
@@ -112296,7 +112353,7 @@ LAB_18089e70b:
         puVar7 = *(NetworkStatus **)(unaff_RBP + -0x29);
         for (networkPointer10 = puVar7; (puVar7 <= networkPointer10 && (networkPointer10 < puVar7 + iVar6));
             networkPointer10 = networkPointer10 + 1) {
-          lVar9 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180986e70,0xc1c,0)
+          lVar9 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180986e70,0xc1c,0)
           ;
           if (lVar9 == 0) {
             uVar8 = 0x26;
@@ -112367,7 +112424,7 @@ LAB_18089e70b:
     if (networkStatus3 != 0) {
       puVar6 = *(NetworkStatus **)(unaff_RBP + -0x29);
       for (puVar7 = puVar6; (puVar6 <= puVar7 && (puVar7 < puVar6 + networkStatus3)); puVar7 = puVar7 + 1) {
-        lVar5 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0x28,&UNK_180986e70,0xc1c);
+        lVar5 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0),0x28,&UNK_180986e70,0xc1c);
         if (lVar5 == 0) {
           quaternaryNetworkFlag = 0x26;
           goto LAB_18089e70b;
