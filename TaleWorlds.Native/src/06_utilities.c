@@ -11984,7 +11984,7 @@ LAB_1808962af:
     if (-1 < ResourceIndex6 + -1) {
       do {
         ResourceHandlerParam = ResourceHandlerParam & 0xffffffff00000000;
-        DataHandlerContextPointer = (int64_t *)&SystemDataTemplateA;
+        DataHandlerContextPointer = (int64_t *)&SystemDataTemplateActive;
         ResourceHandlerArray[0] = *(int *)(ContextValidationResult + ResourceTablePointer * 4);
         NormalizeData(&DataHandlerContextPointer,*(uint8_t *)(ObjectContextParameter + 0x58));
         ResourceTablePointer = ResourceTablePointer + -1;
@@ -12438,7 +12438,7 @@ LAB_180896ce3:
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
           GraphicsOperationFlag2 = CONCAT44(GraphicsOperationFlag2._4_4_,GraphicsTransformMatrix[0]);
-          GraphicsDataPointer = &SystemDataTypeTemplateA;
+          GraphicsDataPointer = &SystemDataTypeTemplateActive;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           GraphicsDataIndex = tableEntry;
           tableEntry = GetAndValidateResourceData(ObjectContextParameter,&GraphicsDataPointer);
@@ -12446,7 +12446,7 @@ LAB_180896ce3:
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
           GraphicsDataIndex = 0;
-          GraphicsDataPointer = &SystemDataTypeTemplateB;
+          GraphicsDataPointer = &SystemDataTypeTemplateBuffer;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           GraphicsOperationFlag2 = CONCAT71(GraphicsOperationFlag2._1_7_,1);
           tableEntry = GetAndValidateResourceData(ObjectContextParameter,&GraphicsDataPointer);
@@ -12485,7 +12485,7 @@ LAB_180896ce3:
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
           GraphicsOperationFlag2 = CONCAT44(GraphicsOperationFlag2._4_4_,GraphicsTransformMatrix[0]);
-          GraphicsDataPointer = &SystemDataTypeTemplateA;
+          GraphicsDataPointer = &SystemDataTypeTemplateActive;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           GraphicsDataIndex = tableEntry;
           tableEntry = GetAndValidateResourceData(ObjectContextParameter,&GraphicsDataPointer);
@@ -12493,7 +12493,7 @@ LAB_180896ce3:
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
           GraphicsDataIndex = 0;
-          GraphicsDataPointer = &SystemDataTypeTemplateB;
+          GraphicsDataPointer = &SystemDataTypeTemplateBuffer;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           GraphicsOperationFlag2 = CONCAT71(GraphicsOperationFlag2._1_7_,1);
           tableEntry = GetAndValidateResourceData(ObjectContextParameter,&GraphicsDataPointer);
@@ -12532,7 +12532,7 @@ LAB_180896ce3:
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
           GraphicsOperationFlag2 = CONCAT44(GraphicsOperationFlag2._4_4_,GraphicsTransformMatrix[0]);
-          GraphicsDataPointer = &SystemDataTypeTemplateA;
+          GraphicsDataPointer = &SystemDataTypeTemplateActive;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           GraphicsDataIndex = tableEntry;
           tableEntry = GetAndValidateResourceData(ObjectContextParameter,&GraphicsDataPointer);
@@ -12540,7 +12540,7 @@ LAB_180896ce3:
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
           GraphicsDataIndex = 0;
-          GraphicsDataPointer = &SystemDataTypeTemplateB;
+          GraphicsDataPointer = &SystemDataTypeTemplateBuffer;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           GraphicsOperationFlag2 = CONCAT71(GraphicsOperationFlag2._1_7_,1);
           tableEntry = GetAndValidateResourceData(ObjectContextParameter,&GraphicsDataPointer);
@@ -12579,7 +12579,7 @@ LAB_180896ce3:
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
           GraphicsOperationFlag2 = CONCAT44(GraphicsOperationFlag2._4_4_,GraphicsTransformMatrix[0]);
-          GraphicsDataPointer = &SystemDataTypeTemplateA;
+          GraphicsDataPointer = &SystemDataTypeTemplateActive;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           GraphicsDataIndex = tableEntry;
           tableEntry = GetAndValidateResourceData(ObjectContextParameter,&GraphicsDataPointer);
@@ -12587,7 +12587,7 @@ LAB_180896ce3:
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
           GraphicsDataIndex = 0;
-          GraphicsDataPointer = &SystemDataTypeTemplateB;
+          GraphicsDataPointer = &SystemDataTypeTemplateBuffer;
           GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           GraphicsOperationFlag2 = CONCAT71(GraphicsOperationFlag2._1_7_,1);
           tableEntry = GetAndValidateResourceData(ObjectContextParameter,&GraphicsDataPointer);
@@ -12730,7 +12730,7 @@ void ProcessComplexResourceWithRegisters(void)
         resultFloat = stackFloat1;
         if (stackFloat1 != 1.0) {
           stackResourceValue = stackFloat1;
-          dataTypeTemplate = &SystemDataTypeTemplateA;
+          dataTypeTemplate = &SystemDataTypeTemplateActive;
           stackValidationFlags = contextFlags;
           validationErrorCode = validationErrorCode;
           validationErrorCode = GetAndValidateResourceData(stackFloat1,&ObjectStackBuffer30);
@@ -12739,7 +12739,7 @@ void ProcessComplexResourceWithRegisters(void)
         }
         if (*(char *)(resourceTablePointer + 0x28) != '\0') {
           validationErrorCode = 0;
-          dataTypeTemplate = &SystemDataTypeTemplateB;
+          dataTypeTemplate = &SystemDataTypeTemplateBuffer;
           stackValidationFlags = contextFlags;
           stackResourceValue = (float)CONCAT31(stackResourceValue._1_3_,1);
           validationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectStackBuffer30);
@@ -12783,7 +12783,7 @@ void ProcessComplexResourceWithRegisters(void)
         resultFloat = stackFloat1;
         if (stackFloat1 != 1.0) {
           stackResourceValue = stackFloat1;
-          dataTypeTemplate = &SystemDataTypeTemplateA;
+          dataTypeTemplate = &SystemDataTypeTemplateActive;
           stackValidationFlags = contextFlags;
           validationErrorCode = validationErrorCode;
           validationErrorCode = GetAndValidateResourceData(stackFloat1,&ObjectStackBuffer30);
@@ -12792,7 +12792,7 @@ void ProcessComplexResourceWithRegisters(void)
         }
         if (*(char *)(resourceTablePointer + 0x28) != '\0') {
           validationErrorCode = 0;
-          dataTypeTemplate = &SystemDataTypeTemplateB;
+          dataTypeTemplate = &SystemDataTypeTemplateBuffer;
           stackValidationFlags = contextFlags;
           stackResourceValue = (float)CONCAT31(stackResourceValue._1_3_,1);
           validationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectStackBuffer30);
@@ -12836,7 +12836,7 @@ void ProcessComplexResourceWithRegisters(void)
         resultFloat = stackFloat1;
         if (stackFloat1 != 1.0) {
           stackResourceValue = stackFloat1;
-          dataTypeTemplate = &SystemDataTypeTemplateA;
+          dataTypeTemplate = &SystemDataTypeTemplateActive;
           stackValidationFlags = contextFlags;
           validationErrorCode = validationErrorCode;
           validationErrorCode = GetAndValidateResourceData(stackFloat1,&ObjectStackBuffer30);
@@ -12845,7 +12845,7 @@ void ProcessComplexResourceWithRegisters(void)
         }
         if (*(char *)(resourceTablePointer + 0x28) != '\0') {
           validationErrorCode = 0;
-          dataTypeTemplate = &SystemDataTypeTemplateB;
+          dataTypeTemplate = &SystemDataTypeTemplateBuffer;
           stackValidationFlags = contextFlags;
           stackResourceValue = (float)CONCAT31(stackResourceValue._1_3_,1);
           validationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectStackBuffer30);
@@ -12889,7 +12889,7 @@ void ProcessComplexResourceWithRegisters(void)
         resultFloat = stackFloat1;
         if (stackFloat1 != 1.0) {
           stackResourceValue = stackFloat1;
-          dataTypeTemplate = &SystemDataTypeTemplateA;
+          dataTypeTemplate = &SystemDataTypeTemplateActive;
           stackValidationFlags = contextFlags;
           validationErrorCode = validationErrorCode;
           validationErrorCode = GetAndValidateResourceData(stackFloat1,&ObjectStackBuffer30);
@@ -12898,7 +12898,7 @@ void ProcessComplexResourceWithRegisters(void)
         }
         if (*(char *)(resourceTablePointer + 0x28) != '\0') {
           validationErrorCode = 0;
-          dataTypeTemplate = &SystemDataTypeTemplateB;
+          dataTypeTemplate = &SystemDataTypeTemplateBuffer;
           stackValidationFlags = contextFlags;
           stackResourceValue = (float)CONCAT31(stackResourceValue._1_3_,1);
           validationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectStackBuffer30);

@@ -30662,6 +30662,8 @@ void InitializeSystemResourceAllocator(void)
  * @note 这是系统资源管理的委托处理函数
  */
 void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+ */
+void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   ReleaseMemoryRegion(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
