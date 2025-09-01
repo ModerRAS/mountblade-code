@@ -2896,54 +2896,54 @@ uint8_t SystemEventHandlerCustom24;
 uint8_t SystemEventHandlerCustom25;
 uint8_t SystemEventHandlerCustom26;
 uint8_t SystemEventHandlerCustom27;
-uint8_t SystemEventHandlerSlot42;
-uint8_t SystemEventHandlerSlot43;
-uint8_t SystemEventHandlerSlot44;
-uint8_t SystemEventHandlerSlot45;
-uint8_t SystemEventHandlerSlot46;
-uint8_t SystemEventHandlerSlot47;
-uint8_t SystemEventHandlerSlot48;
-uint8_t SystemEventHandlerSlot49;
-uint8_t SystemEventHandlerSlot50;
-uint8_t SystemEventHandlerSlot51;
-uint8_t SystemEventHandlerSlot52;
-uint8_t SystemEventHandlerSlot53;
-uint8_t SystemEventHandlerSlot54;
-uint8_t SystemEventHandlerSlot55;
-uint8_t SystemEventHandlerSlot56;
-uint8_t SystemEventHandlerSlot57;
-uint8_t SystemEventHandlerSlot58;
-uint8_t SystemEventHandlerSlot59;
-uint8_t SystemEventHandlerSlot60;
-uint8_t SystemEventHandlerSlot61;
-uint8_t SystemEventHandlerSlot62;
-uint8_t SystemEventHandlerSlot63;
-uint8_t SystemEventHandlerSlot64;
-uint8_t SystemEventHandlerSlot65;
-uint8_t SystemEventHandlerSlot66;
-uint8_t SystemEventHandlerSlot67;
-uint8_t SystemEventHandlerSlot68;
-uint8_t SystemEventHandlerSlot69;
-uint8_t SystemEventHandlerSlot70;
-uint8_t SystemEventHandlerSlot71;
-uint8_t SystemEventHandlerSlot72;
-uint8_t SystemEventHandlerSlot73;
-uint8_t SystemEventHandlerSlot74;
-uint8_t SystemEventHandlerSlot75;
-uint8_t SystemEventHandlerSlot76;
-uint8_t SystemEventHandlerSlot77;
-uint8_t SystemEventHandlerSlot78;
-uint8_t SystemEventHandlerSlot79;
-uint8_t SystemEventHandlerSlot80;
-uint8_t SystemEventHandlerSlot81;
-uint8_t SystemEventHandlerSlot82;
-uint8_t SystemEventHandlerSlot83;
-uint8_t SystemEventHandlerSlot84;
-uint8_t SystemEventHandlerSlot85;
-uint8_t SystemEventHandlerSlot86;
-uint8_t SystemEventHandlerSlot87;
-uint8_t SystemEventHandlerSlot88;
-uint8_t SystemEventHandlerSlot89;
+uint8_t SystemEventHandlerCustom28;
+uint8_t SystemEventHandlerCustom29;
+uint8_t SystemEventHandlerCustom30;
+uint8_t SystemEventHandlerCustom31;
+uint8_t SystemEventHandlerCustom32;
+uint8_t SystemEventHandlerCustom33;
+uint8_t SystemEventHandlerCustom34;
+uint8_t SystemEventHandlerCustom35;
+uint8_t SystemEventHandlerCustom36;
+uint8_t SystemEventHandlerCustom37;
+uint8_t SystemEventHandlerCustom38;
+uint8_t SystemEventHandlerCustom39;
+uint8_t SystemEventHandlerCustom40;
+uint8_t SystemEventHandlerCustom41;
+uint8_t SystemEventHandlerCustom42;
+uint8_t SystemEventHandlerCustom43;
+uint8_t SystemEventHandlerCustom44;
+uint8_t SystemEventHandlerCustom45;
+uint8_t SystemEventHandlerCustom46;
+uint8_t SystemEventHandlerCustom47;
+uint8_t SystemEventHandlerCustom48;
+uint8_t SystemEventHandlerCustom49;
+uint8_t SystemEventHandlerCustom50;
+uint8_t SystemEventHandlerCustom51;
+uint8_t SystemEventHandlerCustom52;
+uint8_t SystemEventHandlerCustom53;
+uint8_t SystemEventHandlerCustom54;
+uint8_t SystemEventHandlerCustom55;
+uint8_t SystemEventHandlerCustom56;
+uint8_t SystemEventHandlerCustom57;
+uint8_t SystemEventHandlerCustom58;
+uint8_t SystemEventHandlerCustom59;
+uint8_t SystemEventHandlerCustom60;
+uint8_t SystemEventHandlerCustom61;
+uint8_t SystemEventHandlerCustom62;
+uint8_t SystemEventHandlerCustom63;
+uint8_t SystemEventHandlerCustom64;
+uint8_t SystemEventHandlerCustom65;
+uint8_t SystemEventHandlerCustom66;
+uint8_t SystemEventHandlerCustom67;
+uint8_t SystemEventHandlerCustom68;
+uint8_t SystemEventHandlerCustom69;
+uint8_t SystemEventHandlerCustom70;
+uint8_t SystemEventHandlerCustom71;
+uint8_t SystemEventHandlerCustom72;
+uint8_t SystemEventHandlerCustom73;
+uint8_t SystemEventHandlerCustom74;
+uint8_t SystemEventHandlerCustom75;
 uint8_t SystemEventHandlerSlot90;
 uint8_t SystemEventHandlerSlot91;
 uint8_t SystemEventHandlerSlot92;
@@ -30310,11 +30310,22 @@ void Unwind_1809026b0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809026c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 处理资源操作的异常恢复
+ * 
+ * 该函数在资源操作异常时进行恢复处理
+ * 确保资源状态的一致性和系统的稳定性
+ * 
+ * @param objectContext 对象上下文
+ * @param validationContext 验证上下文
+ * @param resourceDataParam 资源数据参数
+ * @param validationFlagsParam 验证标志参数
+ */
+void HandleResourceOperationExceptionRecovery(uint8_t objectContext,int64_t validationContext,uint8_t resourceDataParam,uint8_t validationFlagsParam)
 
 {
-  ProcessResourceOperationEx(*(int64_t *)(validationContextParam + 0x70) + 0x98,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0xa8),param_3,param_4,
+  ProcessResourceOperationEx(*(int64_t *)(validationContext + 0x70) + 0x98,
+                *(uint8_t *)(*(int64_t *)(validationContext + 0x70) + 0xa8),resourceDataParam,validationFlagsParam,
                 0xfffffffffffffffe);
   return;
 }
