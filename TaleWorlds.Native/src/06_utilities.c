@@ -9959,8 +9959,8 @@ void ValidateResourceHashAndProcessEntries(void)
 
 
 
- 4cd2(void)
-4cd2(void)
+ void EmptyResourceValidationFunction(void)
+void EmptyResourceValidationFunction(void)
 
 {
   return;
@@ -9969,8 +9969,8 @@ void ValidateResourceHashAndProcessEntries(void)
 
 
 
- 4ce0(longlong param_1,undefined8 param_2)
-4ce0(longlong param_1,undefined8 param_2)
+ void ProcessResourceValidationAndFinalization(longlong param_1,undefined8 param_2)
+void ProcessResourceValidationAndFinalization(longlong param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -9988,8 +9988,8 @@ void ValidateResourceHashAndProcessEntries(void)
 
 
 
- 4d04(void)
-4d04(void)
+ void ValidateResourceHashAndTable(void)
+void ValidateResourceHashAndTable(void)
 
 {
   int iVar1;
@@ -10010,8 +10010,8 @@ void ValidateResourceHashAndProcessEntries(void)
 
 
 
- 4d52(void)
-4d52(void)
+ void EmptyResourceProcessingFunction(void)
+void EmptyResourceProcessingFunction(void)
 
 {
   return;
@@ -10020,8 +10020,8 @@ void ValidateResourceHashAndProcessEntries(void)
 
 
 
- 4d60(longlong param_1,undefined8 param_2)
-4d60(longlong param_1,undefined8 param_2)
+ void ValidateAndCleanupResourceEntry(longlong param_1,undefined8 param_2)
+void ValidateAndCleanupResourceEntry(longlong param_1,undefined8 param_2)
 
 {
   int iVar1;

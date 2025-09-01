@@ -201,8 +201,118 @@ def beautify_networking_functions():
     
     print(f"文件已保存: {file_path}")
     
+    # UNK_ 变量替换
+    variable_replacements = {
+        # 网络配置表和缓冲区
+        'UNK_180983618': 'NetworkPacketBuffer',
+        'UNK_180983680': 'NetworkErrorBuffer',
+        'UNK_180983738': 'NetworkStreamBuffer',
+        'UNK_1809837a0': 'NetworkTransferBuffer',
+        'UNK_1809837c0': 'NetworkConnectionBuffer',
+        'UNK_180983828': 'NetworkEventBuffer',
+        'UNK_180983840': 'NetworkSecurityBuffer',
+        'UNK_1809838a8': 'NetworkConfigBuffer',
+        'UNK_180983950': 'NetworkDataBuffer',
+        'UNK_1809839b8': 'NetworkMemoryBuffer',
+        'UNK_180983a40': 'NetworkProtocolBuffer',
+        'UNK_180983a60': 'NetworkSocketBuffer',
+        'UNK_180983ac8': 'NetworkPacketHeader',
+        'UNK_180983ae8': 'NetworkStreamHeader',
+        'UNK_180983b50': 'NetworkConnectionHeader',
+        'UNK_180983b68': 'NetworkEventHeader',
+        'UNK_180983be8': 'NetworkSecurityHeader',
+        'UNK_180983c50': 'NetworkConfigHeader',
+        'UNK_180983c78': 'NetworkDataHeader',
+        'UNK_180983cf8': 'NetworkMemoryHeader',
+        
+        # 网络处理表
+        'UNK_180983e88': 'NetworkProcessingTable',
+        'UNK_180983f78': 'NetworkPacketTable',
+        'UNK_180984038': 'NetworkStreamTable',
+        'UNK_1809840a0': 'NetworkConnectionTable',
+        'UNK_180984130': 'NetworkEventTable',
+        'UNK_1809841b0': 'NetworkSecurityTable',
+        'UNK_180984228': 'NetworkConfigTable',
+        'UNK_1809842c8': 'NetworkDataTable',
+        'UNK_180984350': 'NetworkMemoryTable',
+        'UNK_1809843e0': 'NetworkProtocolTable',
+        'UNK_180984460': 'NetworkSocketTable',
+        'UNK_1809844c8': 'NetworkTransferTable',
+        'UNK_180984530': 'NetworkValidationTable',
+        'UNK_180984540': 'NetworkCompressionTable',
+        'UNK_1809845a0': 'NetworkEncryptionTable',
+        'UNK_1809845c0': 'NetworkAuthenticationTable',
+        'UNK_180984630': 'NetworkErrorTable',
+        'UNK_180984690': 'NetworkLogTable',
+        'UNK_1809846b0': 'NetworkDebugTable',
+        'UNK_1809846e0': 'NetworkStatusTable',
+        'UNK_180984700': 'NetworkMonitorTable',
+        'UNK_180984730': 'NetworkPerformanceTable',
+        'UNK_180984768': 'NetworkStatisticsTable',
+        'UNK_180984790': 'NetworkMetricTable',
+        'UNK_1809847d8': 'NetworkAnalysisTable',
+        'UNK_180984830': 'NetworkOptimizationTable',
+        'UNK_180984908': 'NetworkSecurityContextTable',
+        'UNK_180984928': 'NetworkConnectionContextTable',
+        'UNK_180984948': 'NetworkPacketContextTable',
+        'UNK_180984968': 'NetworkStreamContextTable',
+        'UNK_180984990': 'NetworkEventContextTable',
+        'UNK_1809849d0': 'NetworkConfigContextTable',
+        'UNK_180984a30': 'NetworkDataContextTable',
+        'UNK_180984a60': 'NetworkMemoryContextTable',
+        'UNK_180984a70': 'NetworkProtocolContextTable',
+        'UNK_180984aa0': 'NetworkSocketContextTable',
+        'UNK_180984ab8': 'NetworkTransferContextTable',
+        'UNK_180984ac0': 'NetworkValidationContextTable',
+        'UNK_180984ac8': 'NetworkCompressionContextTable',
+        'UNK_180984ad0': 'NetworkEncryptionContextTable',
+        'UNK_180984b50': 'NetworkAuthenticationContextTable',
+        'UNK_180984be0': 'NetworkErrorContextTable',
+        'UNK_180984c90': 'NetworkLogContextTable',
+        'UNK_180984ca0': 'NetworkDebugContextTable',
+        'UNK_180984cb0': 'NetworkStatusContextTable',
+        'UNK_180984cc0': 'NetworkMonitorContextTable',
+        'UNK_180984cd0': 'NetworkPerformanceContextTable',
+        'UNK_180984d50': 'NetworkStatisticsContextTable',
+        
+        # 网络系统变量
+        'UNK_180986258': 'NetworkSecuritySystemTable',
+        'UNK_180986f68': 'NetworkConnectionSystemTable',
+        'UNK_180986f90': 'NetworkPacketSystemTable',
+        'UNK_180986fc0': 'NetworkStreamSystemTable',
+        'UNK_180987020': 'NetworkEventSystemTable',
+        'UNK_180987050': 'NetworkConfigSystemTable',
+        'UNK_180987080': 'NetworkDataSystemTable',
+        'UNK_1809870b0': 'NetworkProtocolSystemTable',
+        'UNK_1809870e0': 'NetworkSocketSystemTable',
+        
+        # 网络高级系统变量
+        'UNK_180958180': 'NetworkAdvancedSystemTable',
+        'UNK_1809570e8': 'NetworkAdvancedErrorTable',
+        'UNK_180957208': 'NetworkAdvancedLogTable',
+        'UNK_180957310': 'NetworkAdvancedDebugTable',
+        'UNK_180957410': 'NetworkAdvancedStatusTable',
+        'UNK_180957600': 'NetworkAdvancedMonitorTable',
+        'UNK_18095af38': 'NetworkAdvancedPerformanceTable',
+        'UNK_18095b500': 'NetworkAdvancedStatisticsTable',
+        
+        # 网络应用层变量
+        'UNK_180a0b198': 'NetworkApplicationTable',
+    }
+    
+    # 执行变量替换
+    variable_replaced_count = 0
+    for old_name, new_name in variable_replacements.items():
+        pattern = r'\b' + re.escape(old_name) + r'\b'
+        if re.search(pattern, content):
+            content = re.sub(pattern, new_name, content)
+            variable_replaced_count += 1
+            print(f"替换变量: {old_name} -> {new_name}")
+    
     # 验证替换结果
-    remaining_funs = re.findall(r'FUN_18085[0-9a-f]+', content)
+    remaining_funs = re.findall(r'FUN_1808[58][0-9a-f]+', content)
+    remaining_unks = re.findall(r'UNK_1809[8a][0-9a-f]+', content)
+    
     if remaining_funs:
         print(f"警告：仍有 {len(set(remaining_funs))} 个FUN_函数未替换")
         print("未替换的函数：")
@@ -210,6 +320,17 @@ def beautify_networking_functions():
             print(f"  - {fun}")
     else:
         print("所有FUN_函数已成功替换！")
+    
+    if remaining_unks:
+        print(f"警告：仍有 {len(set(remaining_unks))} 个UNK_变量未替换")
+        print("未替换的变量：")
+        for unk in sorted(set(remaining_unks)):
+            print(f"  - {unk}")
+    else:
+        print("所有UNK_变量已成功替换！")
+    
+    print(f"\n总共替换了 {replaced_count} 个函数名称")
+    print(f"总共替换了 {variable_replaced_count} 个变量名称")
 
 if __name__ == "__main__":
     beautify_networking_functions()
