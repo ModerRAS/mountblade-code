@@ -20093,12 +20093,12 @@ void InitializeSystemController(long long *SystemResourcePointer,void* *SystemCo
   SystemStatusFlag = 0;
   ResourceStackPointer = SystemResourcePointer;
   puStackX_10 = SystemConfigurationPointer;
-  FUN_180047fc0();
+  SystemMemoryCleanupHandler();
   PrimaryResourcePointer = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,200,8,3,SystemStatusFlag,SystemMemoryHandle);
   ResourceStackPointer = PrimaryResourcePointer;
   InitializeSystemDataTableManager(PrimaryResourcePointer);
   *PrimaryResourcePointer = (long long)&SystemDataTableTemplate;
-  PrimaryResourcePointer[0x18] = (long long)&UNK_180046dd0;
+  PrimaryResourcePointer[0x18] = (long long)&SystemMemoryCleanupCallback;
   MemoryStackPointer = PrimaryResourcePointer;
   (**(code **)(*PrimaryResourcePointer + 0x28))(PrimaryResourcePointer);
   SystemMemoryHandle = SystemAllocationFlagsTemplate;
