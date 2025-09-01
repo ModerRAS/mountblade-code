@@ -4721,18 +4721,18 @@ void InitializeSystemDebugManager(void)
 void InitializeSystemStringProcessor(void)
 
 {
-  long long stringParameter;
-  void* *callbackPointer;
-  uint8_t *dataBufferPointer;
-  int bufferSize;
-  uint8_t dataBuffer [136];
+  long long StringParameter;
+  void* *CallbackPointer;
+  uint8_t *DataBufferPointer;
+  int BufferSize;
+  uint8_t DataBuffer [136];
   
-  callbackPointer = &SystemStringProcessorNode;
-  dataBufferPointer = dataBuffer;
-  dataBuffer[0] = 0;
-  bufferSize = 8;
+  CallbackPointer = &SystemStringProcessorNode;
+  DataBufferPointer = DataBuffer;
+  DataBuffer[0] = 0;
+  BufferSize = 8;
   strcpy_s(DataBuffer,0x80,&SystemStringProcessorTemplate,StringParameter,0xfffffffffffffffe);
-  SystemStringProcessorHandle = InitializeStringProcessorCallback(&callbackPointer);
+  SystemStringProcessorHandle = InitializeStringProcessorCallback(&CallbackPointer);
   return;
 }
 
@@ -4751,8 +4751,8 @@ void InitializeSystemStringProcessor(void)
 int InitializeSystemDataManager(void)
 
 {
-  long long systemDataOffset;
-  void* systemParameter;
+  long long SystemDataOffset;
+  void* SystemParameter;
   
   SystemConfigDataPointerE = &SystemGlobalDataPointerB;
   SystemConfigDataPointerG = &SystemConfigDataPointerH;
