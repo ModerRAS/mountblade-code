@@ -446,7 +446,7 @@ engine_base_data_offset_80;
 engine_base_data_offset_b0;
 engine_base_data_offset_e0;
 engine_base_data_offset_20;
-uint32 UNK_1801b9b60;
+uint32 engine_data_1801b9b60;
 
 // 函数: engine_initialize_scripting;
 engine_initialize_scripting;
@@ -20887,8 +20887,8 @@ longlong FUN_18005926c(longlong engine_engine_param_1,uint64 engine_engine_param
 
 
 
-// 函数: void FUN_1800592e4(void)
-void FUN_1800592e4(void)
+// 函数: void engine_return_empty_function(void)
+void engine_return_empty_function(void)
 
 {
   return;
@@ -20896,29 +20896,41 @@ void FUN_1800592e4(void)
 
 
 
-longlong FUN_180059300(longlong engine_engine_param_1,longlong engine_engine_param_2,longlong engine_param_3)
+/**
+ * @brief 复制数据块，每次复制32字节
+ * @param source_start 源数据起始地址
+ * @param source_end 源数据结束地址
+ * @param destination 目标地址
+ * @return 返回目标地址的结束位置
+ */
+longlong engine_copy_data_block_32byte(longlong source_start,longlong source_end,longlong destination)
 
 {
-  if (engine_engine_param_1 != engine_engine_param_2) {
+  if (source_start != source_end) {
     do {
-      engine_call_data_writer(engine_param_3,engine_engine_param_1);
-      engine_engine_param_1 = engine_engine_param_1 + 0x20;
-      engine_param_3 = engine_param_3 + 0x20;
-    } while (engine_engine_param_1 != engine_engine_param_2);
+      engine_call_data_writer(destination,source_start);
+      source_start = source_start + 0x20;
+      destination = destination + 0x20;
+    } while (source_start != source_end);
   }
-  return engine_param_3;
+  return destination;
 }
 
 
 
 
-// 函数: void FUN_180059350(longlong engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3)
-void FUN_180059350(longlong engine_engine_param_1,longlong engine_engine_param_2,uint64 engine_param_3)
+/**
+ * @brief 移动内存数据块
+ * @param source 源地址
+ * @param destination 目标地址
+ * @param size 数据大小
+ */
+void engine_move_memory_block(longlong source,longlong destination,uint64 size)
 
 {
-  if (engine_engine_param_1 != engine_engine_param_2) {
+  if (source != destination) {
                     // WARNING: Subroutine does not return
-    memmove(engine_param_3,engine_engine_param_1,engine_engine_param_2 - engine_engine_param_1);
+    memmove(destination,source,destination - source);
   }
   return;
 }
@@ -20926,22 +20938,25 @@ void FUN_180059350(longlong engine_engine_param_1,longlong engine_engine_param_2
 
 
 
-// 函数: void FUN_180059380(uint64_t *engine_engine_param_1)
-void FUN_180059380(uint64_t *engine_engine_param_1)
+/**
+ * @brief 重置数据结构指针
+ * @param data_ptr 数据结构指针
+ */
+void engine_reset_data_structure(uint64_t *data_ptr)
 
 {
-  if (engine_engine_param_1[4] != 0) {
+  if (data_ptr[4] != 0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
   }
-  *engine_engine_param_1 = &UNK_180a3c3e0;
-  if (engine_engine_param_1[1] != 0) {
+  *data_ptr = &engine_global_data_buffer;
+  if (data_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
   }
-  engine_engine_param_1[1] = 0;
-  *(uint32*)(engine_engine_param_1 + 3) = 0;
-  *engine_engine_param_1 = &UNK_18098bcb0;
+  data_ptr[1] = 0;
+  *(uint32*)(data_ptr + 3) = 0;
+  *data_ptr = &engine_system_data_buffer;
   return;
 }
 
@@ -62083,17 +62098,26 @@ LAB_18009ca70:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18009cb10(longlong engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3,uint64 engine_param_4,
-void FUN_18009cb10(longlong engine_engine_param_1,uint64 engine_engine_param_2,longlong engine_param_3,uint64 engine_param_4,
-                  longlong param_5)
+// 函数: engine_process_data_structure_comparison
+// 功能: 处理数据结构比较操作，用于比较两个数据结构的内容
+// 参数:
+//   engine_structure_ptr - 主数据结构指针
+//   engine_operation_flag - 操作标志
+//   engine_comparison_target - 比较目标数据结构
+//   engine_validation_flag - 验证标志
+//   engine_control_data - 控制数据
+// 返回值: 无
+// 注意: 这是一个简化实现，主要用于数据结构比较和验证操作
+void engine_process_data_structure_comparison(longlong engine_structure_ptr,uint64 engine_operation_flag,longlong engine_comparison_target,uint64 engine_validation_flag,
+                  longlong engine_control_data)
 
 {
-  byte engine_temp_byte;
-  byte *pbVar2;
-  uint engine_temp_uint_3;
-  longlong lVar4;
-  longlong engine_result_value;
-  uint64 uVar6;
+  byte engine_comparison_byte;
+  byte *engine_string_ptr1;
+  uint engine_string_char2;
+  longlong engine_data_offset;
+  longlong engine_memory_block;
+  uint64 engine_comparison_result;
   
   if (((char)engine_param_4 == '\0') && (engine_param_3 != engine_engine_param_1)) {
     if (*(int *)(engine_param_3 + 0x30) == 0) {
