@@ -85604,8 +85604,16 @@ void InitializeSystemDataStructureBX(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942480(void)
-void FUN_180942480(void)
+ /**
+ * 初始化系统数据结构BY
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureBY(void)
+/**
+ * 初始化系统数据结构BY
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureBY(void)
 
 {
   _DAT_180bfa230 = &SystemDataStructure;
@@ -85617,8 +85625,16 @@ void FUN_180942480(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809424a0(void)
-void FUN_1809424a0(void)
+ /**
+ * 初始化系统数据结构BZ
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureBZ(void)
+/**
+ * 初始化系统数据结构BZ
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureBZ(void)
 
 {
   _DAT_180bfa290 = &SystemDataStructure;
@@ -85630,8 +85646,24 @@ void FUN_1809424a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ /**
+ * 处理系统操作A
+ * 执行系统级别的操作，包括资源验证和处理
+ * @param param_1 操作参数1
+ * @param param_2 操作参数2
+ * @param param_3 操作参数3
+ * @param param_4 操作参数4
+ */
+void ProcessSystemOperationA(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 处理系统操作A
+ * 执行系统级别的操作，包括资源验证和处理
+ * @param param_1 操作参数1
+ * @param param_2 操作参数2
+ * @param param_3 操作参数3
+ * @param param_4 操作参数4
+ */
+void ProcessSystemOperationA(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *presourceHash;
@@ -85659,8 +85691,24 @@ void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ /**
+ * 处理系统操作B
+ * 执行系统级别的操作，包括资源验证和处理
+ * @param param_1 操作参数1
+ * @param param_2 操作参数2
+ * @param param_3 操作参数3
+ * @param param_4 操作参数4
+ */
+void ProcessSystemOperationB(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 处理系统操作B
+ * 执行系统级别的操作，包括资源验证和处理
+ * @param param_1 操作参数1
+ * @param param_2 操作参数2
+ * @param param_3 操作参数3
+ * @param param_4 操作参数4
+ */
+void ProcessSystemOperationB(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *presourceHash;
@@ -85688,8 +85736,24 @@ void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ /**
+ * 处理系统操作C
+ * 执行系统级别的操作，包括资源验证和处理
+ * @param param_1 操作参数1
+ * @param param_2 操作参数2
+ * @param param_3 操作参数3
+ * @param param_4 操作参数4
+ */
+void ProcessSystemOperationC(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 处理系统操作C
+ * 执行系统级别的操作，包括资源验证和处理
+ * @param param_1 操作参数1
+ * @param param_2 操作参数2
+ * @param param_3 操作参数3
+ * @param param_4 操作参数4
+ */
+void ProcessSystemOperationC(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *presourceHash;
@@ -85715,8 +85779,16 @@ void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
- void FUN_1809425e0(void)
-void FUN_1809425e0(void)
+ /**
+ * 初始化系统数据结构CA
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCA(void)
+/**
+ * 初始化系统数据结构CA
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCA(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809425f8. Too many branches
@@ -85728,8 +85800,16 @@ void FUN_1809425e0(void)
 
 
 
- void FUN_180942660(void)
-void FUN_180942660(void)
+ /**
+ * 初始化系统数据结构CB
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCB(void)
+/**
+ * 初始化系统数据结构CB
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCB(void)
 
 {
   longlong lVar1;
@@ -85759,8 +85839,16 @@ void FUN_180942660(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942690(void)
-void FUN_180942690(void)
+ /**
+ * 初始化系统数据结构CC
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCC(void)
+/**
+ * 初始化系统数据结构CC
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCC(void)
 
 {
   longlong lVar1;
@@ -85781,8 +85869,16 @@ void FUN_180942690(void)
   _DAT_180bfc110 = 0;
   _DAT_180bfc118 = 0xf;
 
- void FUN_180942700(void)
-void FUN_180942700(void)
+ /**
+ * 初始化系统数据结构CD
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCD(void)
+/**
+ * 初始化系统数据结构CD
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCD(void)
 
 {
   longlong lVar1;
@@ -85809,8 +85905,16 @@ void FUN_180942700(void)
 
 
 
- void FUN_180942720(void)
-void FUN_180942720(void)
+ /**
+ * 初始化系统数据结构CE
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCE(void)
+/**
+ * 初始化系统数据结构CE
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCE(void)
 
 {
   longlong lVar1;
