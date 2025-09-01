@@ -5393,21 +5393,21 @@ int InitializeSystemManager(longlong managerHandle)
 {
   int operationResult;
   longlong resourceTable;
-  uint8_t1 ArrayUnionStackX8 [8];
-  uint8_t1 ArrayUnionStack50 [72];
+  uint8_t1 validationContextBuffer [8];
+  uint8_t1 objectDataBuffer [72];
   
   resourceTable = 0;
   if (0 < *(int *)(objectContextParam + 0x20)) {
     resourceTable = *(longlong *)(objectContextParam + 0x18);
   }
-  integerValue1 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x4c),ArrayUnionStackX8);
-  if (integerValue1 == 0) {
-    integerValue1 = *(int *)(objectContextParam + 0x10);
+  operationResult = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x4c),validationContextBuffer);
+  if (operationResult == 0) {
+    operationResult = *(int *)(objectContextParam + 0x10);
     if (0x38 < *(int *)(objectContextParam + 0x10)) {
-      integerValue1 = 0x38;
+      operationResult = 0x38;
     }
                     // WARNING: Subroutine does not return
-    memcpy(ArrayUnionStack50,objectContextParam + 0x10,(longlong)integerValue1);
+    memcpy(objectDataBuffer,objectContextParam + 0x10,(longlong)operationResult);
   }
   if (resourceTable != 0) {
                     // WARNING: Subroutine does not return
