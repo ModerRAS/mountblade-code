@@ -31049,7 +31049,19 @@ void ReleaseIndexBufferLock(uint8_t objectContextParam,int64_t validationContext
 
 
 
-void Unwind_1809028a0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 进程控制器资源释放
+ * 
+ * 该函数负责释放进程控制器中的资源引用
+ * 包括引用计数递减和资源清理
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于进程控制器资源释放
+ * @warning 引用计数为零时将触发系统清理
+ */
+void UnwindProcessController001(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int *pintegerValue1;
