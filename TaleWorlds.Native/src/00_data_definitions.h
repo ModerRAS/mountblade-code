@@ -2,9 +2,9 @@
 #define DATA_DEFINITIONS_H
 
 // 全局系统数据指针
-void* g_systemGlobalData;
+void* SystemGlobalData;
 // 未知全局数据指针
-void* g_unknownGlobalData;
+void* UnknownGlobalData;
 
 /**
  * 初始化渲染系统模块
@@ -15,11 +15,11 @@ void* g_unknownGlobalData;
 int InitializeRenderingSystem(void)
 {
   longlong callbackResult;
-  g_renderingSystemEnabled = 1;
-  g_renderingSystemFlags = 0;
-  g_renderingSystemMaxValue = 0x7fffffffffffffff;
-  g_renderingSystemStatus = 0;
-  callbackResult = RegisterSystemCallback(renderingSystemCallback);
+  RenderingSystemEnabled = 1;
+  RenderingSystemFlags = 0;
+  RenderingSystemMaxValue = 0x7fffffffffffffff;
+  RenderingSystemStatus = 0;
+  callbackResult = RegisterSystemCallback(RenderingSystemCallback);
   return (callbackResult != 0) - 1;
 }
 /**
@@ -31,10 +31,10 @@ int InitializeRenderingSystem(void)
 int InitializePhysicsEngine(void)
 {
   longlong callbackResult;
-  g_physicsEngineData = &g_unknownGlobalData;
-  g_physicsEngineConfig = &g_physicsEngineState;
-  g_physicsEngineFlags = 0;
-  g_physicsEngineState = 0;
+  PhysicsEngineData = &UnknownGlobalData;
+  PhysicsEngineConfig = &PhysicsEngineState;
+  PhysicsEngineFlags = 0;
+  PhysicsEngineState = 0;
   callbackResult = RegisterSystemCallback(PhysicsEngineCallback);
   return (callbackResult != 0) - 1;
 }
@@ -47,10 +47,10 @@ int InitializePhysicsEngine(void)
 int InitializeAudioSystem(void)
 {
   longlong callbackResult;
-  g_audioSystemData = &g_unknownGlobalData;
-  g_audioSystemConfig = &g_audioSystemState;
-  g_audioSystemFlags = 0;
-  g_audioSystemState = 0;
+  AudioSystemData = &UnknownGlobalData;
+  AudioSystemConfig = &AudioSystemState;
+  AudioSystemFlags = 0;
+  AudioSystemState = 0;
   callbackResult = RegisterSystemCallback(AudioSystemCallback);
   return (callbackResult != 0) - 1;
 }
@@ -63,10 +63,10 @@ int InitializeAudioSystem(void)
 int InitializeInputSystem(void)
 {
   longlong callbackResult;
-  g_inputSystemData = &g_unknownInputData;
-  g_inputSystemConfig = &g_inputSystemState;
-  g_inputSystemFlags = 0;
-  g_inputSystemState = 0;
+  InputSystemData = &UnknownInputData;
+  InputSystemConfig = &InputSystemState;
+  InputSystemFlags = 0;
+  InputSystemState = 0;
   callbackResult = RegisterSystemCallback(InputSystemCallback);
   return (callbackResult != 0) - 1;
 }
@@ -79,10 +79,10 @@ int InitializeInputSystem(void)
 int InitializeNetworkSystem(void)
 {
   longlong callbackResult;
-  g_networkSystemData = &g_unknownNetworkData;
-  g_networkSystemConfig = &g_networkSystemState;
-  g_networkSystemFlags = 0;
-  g_networkSystemState = 0;
+  NetworkSystemData = &UnknownNetworkData;
+  NetworkSystemConfig = &NetworkSystemState;
+  NetworkSystemFlags = 0;
+  NetworkSystemState = 0;
   callbackResult = RegisterSystemCallback(NetworkSystemCallback);
   return (callbackResult != 0) - 1;
 }
@@ -95,10 +95,10 @@ int InitializeNetworkSystem(void)
 int InitializeFileSystem(void)
 {
   longlong callbackResult;
-  g_fileSystemData = &g_unknownGlobalData;
-  g_fileSystemConfig = &g_fileSystemState;
-  g_fileSystemFlags = 0;
-  g_fileSystemState = 0;
+  FileSystemData = &UnknownGlobalData;
+  FileSystemConfig = &FileSystemState;
+  FileSystemFlags = 0;
+  FileSystemState = 0;
   callbackResult = RegisterSystemCallback(FileSystemCallback);
   return (callbackResult != 0) - 1;
 }
@@ -111,10 +111,10 @@ int InitializeFileSystem(void)
 int InitializeMemoryManager(void)
 {
   longlong callbackResult;
-  g_memoryManagerData = &g_unknownGlobalData;
-  g_memoryManagerConfig = &g_memoryManagerState;
-  g_memoryManagerFlags = 0;
-  g_memoryManagerState = 0;
+  MemoryManagerData = &UnknownGlobalData;
+  MemoryManagerConfig = &MemoryManagerState;
+  MemoryManagerFlags = 0;
+  MemoryManagerState = 0;
   callbackResult = RegisterSystemCallback(MemoryManagerCallback);
   return (callbackResult != 0) - 1;
 }
@@ -591,92 +591,131 @@ int InitializeStringProcessorL(void)
   callbackResult = RegisterSystemCallback(InitializeStringProcessorL_Callback);
   return (callbackResult != 0) - 1;
 }
-int FUN_1800314b0(void)
+/**
+ * 初始化多字符串处理器系统
+ * 设置多个字符串处理器所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeMultiStringProcessorSystem(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf7370 = &UNK_1809fcc28;
-  _DAT_180bf7378 = &DAT_180bf7388;
-  DAT_180bf7388 = 0;
-  _DAT_180bf7380 = 0xb;
-  strcpy_s(&DAT_180bf7388,0x80,&UNK_180a0fd60,in_R9,0xfffffffffffffffe);
-  _DAT_180bf7408 = &UNK_1809fcc28;
-  _DAT_180bf7410 = &DAT_180bf7420;
-  DAT_180bf7420 = 0;
-  _DAT_180bf7418 = 0x10;
-  strcpy_s(&DAT_180bf7420,0x80,&UNK_180a0fd70);
-  _DAT_180bf74a0 = &UNK_1809fcc28;
-  _DAT_180bf74a8 = &DAT_180bf74b8;
-  DAT_180bf74b8 = 0;
-  _DAT_180bf74b0 = 0xd;
-  strcpy_s(&DAT_180bf74b8,0x80,&UNK_180a0fd40);
-  _DAT_180bf7538 = &UNK_1809fcc28;
-  _DAT_180bf7540 = &DAT_180bf7550;
-  DAT_180bf7550 = 0;
-  _DAT_180bf7548 = 0xd;
-  strcpy_s(&DAT_180bf7550,0x80,&UNK_180a0fd50);
-  _DAT_180bf75d0 = &UNK_1809fcc28;
-  _DAT_180bf75d8 = &DAT_180bf75e8;
-  DAT_180bf75e8 = 0;
-  _DAT_180bf75e0 = 0xc;
-  strcpy_s(&DAT_180bf75e8,0x80,&UNK_180a0fda8);
-  _DAT_180bf7668 = &UNK_1809fcc28;
-  _DAT_180bf7670 = &DAT_180bf7680;
-  DAT_180bf7680 = 0;
-  _DAT_180bf7678 = 0x13;
-  strcpy_s(&DAT_180bf7680,0x80,&UNK_180a0fdb8);
-  _DAT_180bf7700 = &UNK_1809fcc28;
-  _DAT_180bf7708 = &DAT_180bf7718;
-  DAT_180bf7718 = 0;
-  _DAT_180bf7710 = 10;
-  strcpy_s(&DAT_180bf7718,0x80,&UNK_180a0fd88);
-  _DAT_180bf7798 = &UNK_1809fcc28;
-  _DAT_180bf77a0 = &DAT_180bf77b0;
-  DAT_180bf77b0 = 0;
-  _DAT_180bf77a8 = 0xc;
-  strcpy_s(&DAT_180bf77b0,0x80,&UNK_180a0fd98);
-  _DAT_180bf7830 = &UNK_1809fcc28;
-  _DAT_180bf7838 = &DAT_180bf7848;
-  DAT_180bf7848 = 0;
-  _DAT_180bf7840 = 0x11;
-  strcpy_s(&DAT_180bf7848,0x80,&UNK_180a0fe10);
-  _DAT_180bf78c8 = &UNK_1809fcc28;
-  _DAT_180bf78d0 = &DAT_180bf78e0;
-  DAT_180bf78e0 = 0;
-  _DAT_180bf78d8 = 0x11;
-  strcpy_s(&DAT_180bf78e0,0x80,&UNK_180a0fe28);
-  _DAT_180bf7960 = &UNK_1809fcc28;
-  _DAT_180bf7968 = &DAT_180bf7978;
-  DAT_180bf7978 = 0;
-  _DAT_180bf7970 = 0x19;
-  strcpy_s(&DAT_180bf7978,0x80,&UNK_180a0fdd0);
-  _DAT_180bf79f8 = &UNK_1809fcc28;
-  _DAT_180bf7a00 = &DAT_180bf7a10;
-  DAT_180bf7a10 = 0;
-  _DAT_180bf7a08 = 0x1a;
-  strcpy_s(&DAT_180bf7a10,0x80,&UNK_180a0fdf0);
-  _DAT_180bf7a90 = &UNK_1809fcc28;
-  _DAT_180bf7a98 = &DAT_180bf7aa8;
-  DAT_180bf7aa8 = 0;
-  _DAT_180bf7aa0 = 0x1b;
-  strcpy_s(&DAT_180bf7aa8,0x80,&UNK_180a0fe70);
-  _DAT_180bf7b28 = &UNK_1809fcc28;
-  _DAT_180bf7b30 = &DAT_180bf7b40;
-  DAT_180bf7b40 = 0;
-  _DAT_180bf7b38 = 0xc;
-  strcpy_s(&DAT_180bf7b40,0x80,&UNK_180a0fe90);
-  _DAT_180bf7bc0 = &UNK_1809fcc28;
-  _DAT_180bf7bc8 = &DAT_180bf7bd8;
-  DAT_180bf7bd8 = 0;
-  _DAT_180bf7bd0 = 0x11;
-  strcpy_s(&DAT_180bf7bd8,0x80,&UNK_180a0fe40);
-  _DAT_180bf7c58 = &UNK_1809fcc28;
-  _DAT_180bf7c60 = &DAT_180bf7c70;
-  DAT_180bf7c70 = 0;
-  _DAT_180bf7c68 = 0x11;
-  strcpy_s(&DAT_180bf7c70,0x80,&UNK_180a0fe58);
-  lVar1 = FUN_1808fc7d0(&UNK_180941cc0);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 systemFlags;
+  
+  // 初始化字符串处理器N
+  g_stringProcessorN_Base = &unknownData_1809fcc28;
+  g_stringProcessorN_BufferPtr = &g_stringProcessorN_Buffer;
+  g_stringProcessorN_Buffer = 0;
+  g_stringProcessorN_Length = 0xb;
+  strcpy_s(&g_stringProcessorN_Buffer,0x80,&unknownData_180a0fd60,systemFlags,0xfffffffffffffffe);
+  
+  // 初始化字符串处理器O
+  g_stringProcessorO_Base = &unknownData_1809fcc28;
+  g_stringProcessorO_BufferPtr = &g_stringProcessorO_Buffer;
+  g_stringProcessorO_Buffer = 0;
+  g_stringProcessorO_Length = 0x10;
+  strcpy_s(&g_stringProcessorO_Buffer,0x80,&unknownData_180a0fd70);
+  
+  // 初始化字符串处理器P
+  g_stringProcessorP_Base = &unknownData_1809fcc28;
+  g_stringProcessorP_BufferPtr = &g_stringProcessorP_Buffer;
+  g_stringProcessorP_Buffer = 0;
+  g_stringProcessorP_Length = 0xd;
+  strcpy_s(&g_stringProcessorP_Buffer,0x80,&unknownData_180a0fd40);
+  
+  // 初始化字符串处理器Q
+  g_stringProcessorQ_Base = &unknownData_1809fcc28;
+  g_stringProcessorQ_BufferPtr = &g_stringProcessorQ_Buffer;
+  g_stringProcessorQ_Buffer = 0;
+  g_stringProcessorQ_Length = 0xd;
+  strcpy_s(&g_stringProcessorQ_Buffer,0x80,&unknownData_180a0fd50);
+  
+  // 初始化字符串处理器R
+  g_stringProcessorR_Base = &unknownData_1809fcc28;
+  g_stringProcessorR_BufferPtr = &g_stringProcessorR_Buffer;
+  g_stringProcessorR_Buffer = 0;
+  g_stringProcessorR_Length = 0xc;
+  strcpy_s(&g_stringProcessorR_Buffer,0x80,&unknownData_180a0fda8);
+  
+  // 初始化字符串处理器S
+  g_stringProcessorS_Base = &unknownData_1809fcc28;
+  g_stringProcessorS_BufferPtr = &g_stringProcessorS_Buffer;
+  g_stringProcessorS_Buffer = 0;
+  g_stringProcessorS_Length = 0x13;
+  strcpy_s(&g_stringProcessorS_Buffer,0x80,&unknownData_180a0fdb8);
+  
+  // 初始化字符串处理器T
+  g_stringProcessorT_Base = &unknownData_1809fcc28;
+  g_stringProcessorT_BufferPtr = &g_stringProcessorT_Buffer;
+  g_stringProcessorT_Buffer = 0;
+  g_stringProcessorT_Length = 10;
+  strcpy_s(&g_stringProcessorT_Buffer,0x80,&unknownData_180a0fd88);
+  
+  // 初始化字符串处理器U
+  g_stringProcessorU_Base = &unknownData_1809fcc28;
+  g_stringProcessorU_BufferPtr = &g_stringProcessorU_Buffer;
+  g_stringProcessorU_Buffer = 0;
+  g_stringProcessorU_Length = 0xc;
+  strcpy_s(&g_stringProcessorU_Buffer,0x80,&unknownData_180a0fd98);
+  
+  // 初始化字符串处理器V
+  g_stringProcessorV_Base = &unknownData_1809fcc28;
+  g_stringProcessorV_BufferPtr = &g_stringProcessorV_Buffer;
+  g_stringProcessorV_Buffer = 0;
+  g_stringProcessorV_Length = 0x11;
+  strcpy_s(&g_stringProcessorV_Buffer,0x80,&unknownData_180a0fe10);
+  
+  // 初始化字符串处理器W
+  g_stringProcessorW_Base = &unknownData_1809fcc28;
+  g_stringProcessorW_BufferPtr = &g_stringProcessorW_Buffer;
+  g_stringProcessorW_Buffer = 0;
+  g_stringProcessorW_Length = 0x11;
+  strcpy_s(&g_stringProcessorW_Buffer,0x80,&unknownData_180a0fe28);
+  
+  // 初始化字符串处理器X
+  g_stringProcessorX_Base = &unknownData_1809fcc28;
+  g_stringProcessorX_BufferPtr = &g_stringProcessorX_Buffer;
+  g_stringProcessorX_Buffer = 0;
+  g_stringProcessorX_Length = 0x19;
+  strcpy_s(&g_stringProcessorX_Buffer,0x80,&unknownData_180a0fdd0);
+  
+  // 初始化字符串处理器Y
+  g_stringProcessorY_Base = &unknownData_1809fcc28;
+  g_stringProcessorY_BufferPtr = &g_stringProcessorY_Buffer;
+  g_stringProcessorY_Buffer = 0;
+  g_stringProcessorY_Length = 0x1a;
+  strcpy_s(&g_stringProcessorY_Buffer,0x80,&unknownData_180a0fdf0);
+  
+  // 初始化字符串处理器Z
+  g_stringProcessorZ_Base = &unknownData_1809fcc28;
+  g_stringProcessorZ_BufferPtr = &g_stringProcessorZ_Buffer;
+  g_stringProcessorZ_Buffer = 0;
+  g_stringProcessorZ_Length = 0x1b;
+  strcpy_s(&g_stringProcessorZ_Buffer,0x80,&unknownData_180a0fe70);
+  
+  // 初始化字符串处理器AA
+  g_stringProcessorAA_Base = &unknownData_1809fcc28;
+  g_stringProcessorAA_BufferPtr = &g_stringProcessorAA_Buffer;
+  g_stringProcessorAA_Buffer = 0;
+  g_stringProcessorAA_Length = 0xc;
+  strcpy_s(&g_stringProcessorAA_Buffer,0x80,&unknownData_180a0fe90);
+  
+  // 初始化字符串处理器AB
+  g_stringProcessorAB_Base = &unknownData_1809fcc28;
+  g_stringProcessorAB_BufferPtr = &g_stringProcessorAB_Buffer;
+  g_stringProcessorAB_Buffer = 0;
+  g_stringProcessorAB_Length = 0x11;
+  strcpy_s(&g_stringProcessorAB_Buffer,0x80,&unknownData_180a0fe40);
+  
+  // 初始化字符串处理器AC
+  g_stringProcessorAC_Base = &unknownData_1809fcc28;
+  g_stringProcessorAC_BufferPtr = &g_stringProcessorAC_Buffer;
+  g_stringProcessorAC_Buffer = 0;
+  g_stringProcessorAC_Length = 0x11;
+  strcpy_s(&g_stringProcessorAC_Buffer,0x80,&unknownData_180a0fe58);
+  
+  callbackResult = RegisterSystemCallback(InitializeMultiStringProcessorSystem_Callback);
+  return (callbackResult != 0) - 1;
 }
   DAT_180bf7ea8 = 0;
   _DAT_180bf7ea0 = 0x13;
@@ -845,17 +884,23 @@ int FUN_1800314b0(void)
   lVar1 = FUN_1808fc7d0(FUN_180941d00);
   return (lVar1 != 0) - 1;
 }
-int FUN_180036c50(void)
+/**
+ * 初始化字符串处理器AD
+ * 设置字符串处理所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorAD(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf5b88 = &UNK_18098bc80;
-  _DAT_180bf5b90 = &DAT_180bf5ba0;
-  DAT_180bf5ba0 = 0;
-  _DAT_180bf5b98 = 9;
-  strcpy_s(&DAT_180bf5ba0,0x20,&UNK_180a01330,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941d20);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorADFlags;
+  g_stringProcessorAD_Base = &unknownData_18098bc80;
+  g_stringProcessorAD_BufferPtr = &g_stringProcessorAD_Buffer;
+  g_stringProcessorAD_Buffer = 0;
+  g_stringProcessorAD_Length = 9;
+  strcpy_s(&g_stringProcessorAD_Buffer,0x20,&unknownData_180a01330,stringProcessorADFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorAD_Callback);
+  return (callbackResult != 0) - 1;
 }
   DAT_180bf91c8 = 0;
   _DAT_180bf91c0 = 0x10;
@@ -863,29 +908,41 @@ int FUN_180036c50(void)
   lVar1 = FUN_1808fc7d0(FUN_180941f00);
   return (lVar1 != 0) - 1;
 }
-int FUN_18003adb0(void)
+/**
+ * 初始化字符串处理器AE
+ * 设置字符串处理所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorAE(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf9210 = &UNK_1809fcc58;
-  _DAT_180bf9218 = &DAT_180bf9228;
-  DAT_180bf9228 = 0;
-  _DAT_180bf9220 = 0x13;
-  strcpy_s(&DAT_180bf9228,0x40,&UNK_180a22b90,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941f20);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorAEFlags;
+  g_stringProcessorAE_Base = &unknownData_1809fcc58;
+  g_stringProcessorAE_BufferPtr = &g_stringProcessorAE_Buffer;
+  g_stringProcessorAE_Buffer = 0;
+  g_stringProcessorAE_Length = 0x13;
+  strcpy_s(&g_stringProcessorAE_Buffer,0x40,&unknownData_180a22b90,stringProcessorAEFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorAE_Callback);
+  return (callbackResult != 0) - 1;
 }
-int FUN_18003ae20(void)
+/**
+ * 初始化字符串处理器AF
+ * 设置字符串处理所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorAF(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf9270 = &UNK_1809fcc58;
-  _DAT_180bf9278 = &DAT_180bf9288;
-  DAT_180bf9288 = 0;
-  _DAT_180bf9280 = 0x12;
-  strcpy_s(&DAT_180bf9288,0x40,&UNK_180a22b78,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941f40);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorAFFlags;
+  g_stringProcessorAF_Base = &unknownData_1809fcc58;
+  g_stringProcessorAF_BufferPtr = &g_stringProcessorAF_Buffer;
+  g_stringProcessorAF_Buffer = 0;
+  g_stringProcessorAF_Length = 0x12;
+  strcpy_s(&g_stringProcessorAF_Buffer,0x40,&unknownData_180a22b78,stringProcessorAFFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorAF_Callback);
+  return (callbackResult != 0) - 1;
 }
 int FUN_18003ae90(void)
 {
