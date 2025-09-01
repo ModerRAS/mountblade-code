@@ -86881,7 +86881,7 @@ void InitializeSystemDataStructureCW(void)
 {
   if (DAT_180c961d8 != '\0') {
     SystemValidationHandler(&DAT_180c961b0);
-    FUN_1804c42a0(&DAT_180c961b0);
+    SystemVerificationHandler(&DAT_180c961b0);
 
  /**
  * 初始化系统数据结构CX
@@ -86943,7 +86943,7 @@ void InitializeSystemDataStructureCZ(void)
 
 {
   if (DAT_180c96210 != '\0') {
-    FUN_1804a5bc0();
+    SystemTerminator();
 
  /**
  * 初始化系统数据结构DA

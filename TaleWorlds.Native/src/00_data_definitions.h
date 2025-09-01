@@ -3442,7 +3442,7 @@ LAB_18005122d:
     uStack_318 = 0x20000;
     puStack_320 = &UNK_1809fdfc0;
     pplStack_328 = (longlong **)&uStack_308;
-    FUN_180114450(&UNK_1809fd970,4,_DAT_180c86950 + 0x1688,&plStack_2f8);
+    RegisterSystemConfigurationParameter(&UNK_1809fd970,4,_DAT_180c86950 + 0x1688,&plStack_2f8);
     FinalizeSystemComponent();
     _DAT_180c8a9b0 = pModuleInitializationResult4;
     iVar4 = _Mtx_unlock(0x180c91970);
