@@ -32577,8 +32577,8 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
   uint64 engine_stack_uint_68;
   uint64 engine_stack_value_60;
   float engine_stack_float_58;
-  float fStack_54;
-  float fStack_50;
+  float engine_stack_float_54;
+  float engine_stack_float_50;
   float fStack_4c;
   uint64 engine_stack_uint_48;
   uint64 engine_stack_uint_40;
@@ -32649,8 +32649,8 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
       engine_stack_uint_68 = *(void*)(engine_data_structure_ptr + 0x4c);
       engine_stack_value_60 = *(void*)(engine_data_structure_ptr + 0x4e);
       engine_stack_float_58 = engine_data_structure_ptr[0x50];
-      fStack_54 = engine_data_structure_ptr[0x51];
-      fStack_50 = engine_data_structure_ptr[0x52];
+      engine_stack_float_54 = engine_data_structure_ptr[0x51];
+      engine_stack_float_50 = engine_data_structure_ptr[0x52];
       fStack_4c = engine_data_structure_ptr[0x53];
       engine_stack_uint_48 = *(void*)(engine_data_structure_ptr + 0x54);
       engine_stack_uint_40 = *(void*)(engine_data_structure_ptr + 0x56);
@@ -32663,8 +32663,8 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
         engine_stack_uint_68 = *(void*)(engine_data_structure_ptr + 0x4c);
         engine_stack_value_60 = *(void*)(engine_data_structure_ptr + 0x4e);
         engine_stack_float_58 = engine_data_structure_ptr[0x50];
-        fStack_54 = engine_data_structure_ptr[0x51];
-        fStack_50 = engine_data_structure_ptr[0x52];
+        engine_stack_float_54 = engine_data_structure_ptr[0x51];
+        engine_stack_float_50 = engine_data_structure_ptr[0x52];
         fStack_4c = engine_data_structure_ptr[0x53];
         engine_stack_uint_48 = *(void*)(engine_data_structure_ptr + 0x54);
         engine_stack_uint_40 = *(void*)(engine_data_structure_ptr + 0x56);
@@ -32675,8 +32675,8 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
         engine_stack_uint_68 = *(void*)(engine_data_structure_ptr + 0x4c);
         engine_stack_value_60 = *(void*)(engine_data_structure_ptr + 0x4e);
         engine_stack_float_58 = engine_data_structure_ptr[0x50];
-        fStack_54 = engine_data_structure_ptr[0x51];
-        fStack_50 = engine_data_structure_ptr[0x52];
+        engine_stack_float_54 = engine_data_structure_ptr[0x51];
+        engine_stack_float_50 = engine_data_structure_ptr[0x52];
         fStack_4c = engine_data_structure_ptr[0x53];
         engine_stack_uint_48 = *(void*)(engine_data_structure_ptr + 0x54);
         engine_stack_uint_40 = *(void*)(engine_data_structure_ptr + 0x56);
@@ -35358,8 +35358,8 @@ ulonglong engine_unnamed_function_1390(longlong engine_data_structure_ptr,uint64
   uint64 engine_stack_uint_68;
   ulonglong engine_stack_value_60;
   float engine_stack_float_58;
-  float fStack_54;
-  float fStack_50;
+  float engine_stack_float_54;
+  float engine_stack_float_50;
   uint32 engine_stack_uint_4c;
   
   engine_temp_long_22 = *(longlong *)(engine_data_structure_ptr + 0x1b8);
@@ -35396,8 +35396,8 @@ LAB_180077fcf:
         engine_stack_uint_68 = *(void*)(engine_system_parameter_4 + 8);
         engine_stack_value_60._0_4_ = (float)*(void*)(engine_system_parameter_4 + 10);
         engine_stack_float_58 = engine_system_parameter_4[0xc];
-        fStack_54 = engine_system_parameter_4[0xd];
-        fStack_50 = engine_system_parameter_4[0xe];
+        engine_stack_float_54 = engine_system_parameter_4[0xd];
+        engine_stack_float_50 = engine_system_parameter_4[0xe];
       }
       else {
         engine_temp_float_10 = engine_system_parameter_4[4];
@@ -35431,8 +35431,8 @@ LAB_180077fcf:
         engine_stack_uint_68 = CONCAT44(engine_temp_float_4 * engine_temp_float_11 + engine_temp_float_9 * engine_temp_float_14 + engine_temp_float * engine_temp_float_17,
                              engine_temp_float_4 * engine_temp_float_10 + engine_temp_float_9 * engine_temp_float_13 + engine_temp_float * engine_temp_float_16);
         engine_stack_float_58 = engine_temp_float_5 * engine_temp_float_10 + engine_temp_float_2 * engine_temp_float_13 + engine_temp_float_6 * engine_temp_float_16 + engine_system_parameter_4[0xc];
-        fStack_54 = engine_temp_float_5 * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_14 + engine_temp_float_6 * engine_temp_float_17 + engine_system_parameter_4[0xd];
-        fStack_50 = engine_temp_float_5 * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_15 + engine_temp_float_6 * engine_temp_float_18 + engine_system_parameter_4[0xe];
+        engine_stack_float_54 = engine_temp_float_5 * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_14 + engine_temp_float_6 * engine_temp_float_17 + engine_system_parameter_4[0xd];
+        engine_stack_float_50 = engine_temp_float_5 * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_15 + engine_temp_float_6 * engine_temp_float_18 + engine_system_parameter_4[0xe];
       }
       engine_stack_uint_4c = 0x3f800000;
       engine_stack_value_60 = (ulonglong)(uint)(float)engine_stack_value_60;
@@ -38331,7 +38331,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
   uint64 engine_stack_uint_68;
   uint64 engine_stack_value_60;
   void* engine_stack_pointer_58;
-  float fStack_50;
+  float engine_stack_float_50;
   float fStack_4c;
   void* pengine_stack_uint_48;
   uint64 engine_stack_uint_40;
@@ -38359,7 +38359,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
       engine_stack_uint_40 = CONCAT44(engine_stack_uint_40._4_4_,*(uint32*)(*(longlong *)(engine_data_structure_ptr + 0x84) + 0x60));
       engine_stack_pointer_58 = &engine_base_data_offset_30;
       engine_stack_value_80 = 0x18007967a;
-      fStack_50 = engine_temp_float_6;
+      engine_stack_float_50 = engine_temp_float_6;
       engine_call_buffer_manager(_engine_data_28,0,0x80000000000,3);
     }
     engine_data_structure_ptr[0x40] = (float)((uint)engine_data_structure_ptr[0x40] | 0x10000);
@@ -38431,7 +38431,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
       engine_stack_uint_68 = *(void*)(engine_data_structure_ptr + 0x4c);
       engine_stack_value_60 = *(void*)(engine_data_structure_ptr + 0x4e);
       engine_stack_pointer_58 = *(undefined **)(engine_data_structure_ptr + 0x50);
-      fStack_50 = engine_data_structure_ptr[0x52];
+      engine_stack_float_50 = engine_data_structure_ptr[0x52];
       fStack_4c = engine_data_structure_ptr[0x53];
       pengine_stack_uint_48 = *(undefined **)(engine_data_structure_ptr + 0x54);
       engine_stack_uint_40 = *(void*)(engine_data_structure_ptr + 0x56);
@@ -38444,7 +38444,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
         engine_stack_uint_68 = *(void*)(engine_data_structure_ptr + 0x4c);
         engine_stack_value_60 = *(void*)(engine_data_structure_ptr + 0x4e);
         engine_stack_pointer_58 = *(undefined **)(engine_data_structure_ptr + 0x50);
-        fStack_50 = engine_data_structure_ptr[0x52];
+        engine_stack_float_50 = engine_data_structure_ptr[0x52];
         fStack_4c = engine_data_structure_ptr[0x53];
         pengine_stack_uint_48 = *(undefined **)(engine_data_structure_ptr + 0x54);
         engine_stack_uint_40 = *(void*)(engine_data_structure_ptr + 0x56);
@@ -38455,7 +38455,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
         engine_stack_uint_68 = *(void*)(engine_data_structure_ptr + 0x4c);
         engine_stack_value_60 = *(void*)(engine_data_structure_ptr + 0x4e);
         engine_stack_pointer_58 = *(undefined **)(engine_data_structure_ptr + 0x50);
-        fStack_50 = engine_data_structure_ptr[0x52];
+        engine_stack_float_50 = engine_data_structure_ptr[0x52];
         fStack_4c = engine_data_structure_ptr[0x53];
         pengine_stack_uint_48 = *(undefined **)(engine_data_structure_ptr + 0x54);
         engine_stack_uint_40 = *(void*)(engine_data_structure_ptr + 0x56);
