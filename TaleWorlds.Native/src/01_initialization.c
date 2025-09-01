@@ -33698,8 +33698,17 @@ void FUN_1800595c0(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180059620(long long *SystemResourcePointer)
-void FUN_180059620(long long *SystemResourcePointer)
+/**
+ * @brief 系统资源清理函数
+ * 
+ * 该函数负责清理系统资源，遍历系统资源并调用清理函数。
+ * 它会遍历系统资源链表，对每个资源调用清理函数，最后进行系统清理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_180059620，现已重命名为CleanupSystemResources
+ */
+void CleanupSystemResources(long long *SystemResourcePointer)
 
 {
   long long localMemoryPointer;
@@ -41115,7 +41124,7 @@ long long InitializeSecurityCallbackStructure(long long SystemResourcePointer)
 
 {
   *(void* *)(SystemResourcePointer + 0x10) = 0;
-  *(code **)(SystemResourcePointer + 0x18) = FUN_180066dd0;
+  *(code **)(SystemResourcePointer + 0x18) = SystemSecurityValidationCallback;
   return SystemResourcePointer;
 }
 
