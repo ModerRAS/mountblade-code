@@ -21304,7 +21304,7 @@ void ProcessSystemTimestampHandler(void* param_1,void* *param_2,long long *param
 
 
 
-uint8_t FUN_1800496b0(long long param_1,void* param_2,void* param_3,void* param_4)
+uint8_t SystemInitializationProcessData(long long param_1,void* param_2,void* param_3,void* param_4)
 
 {
   uint8_t uVar1;
@@ -22332,7 +22332,7 @@ FUN_18004a4b0(void* *param_1,ulong long param_2,void* param_3,void* param_4)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-bool FUN_18004a500(void)
+bool SystemNodeCheckStatus(void)
 
 {
   char systemNodeFlag;
@@ -22780,7 +22780,7 @@ void* FUN_18004b1f0(char param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-bool FUN_18004b390(void)
+bool SystemThreadCheckStatus(void)
 
 {
   int iVar1;
@@ -23235,7 +23235,7 @@ void* * FUN_18004b960(void* *param_1,ulong long param_2)
 
 
 
-int FUN_18004b9b0(void* param_1,void* param_2,void* param_3,void* param_4)
+int SystemStringFormatProcess(void* param_1,void* param_2,void* param_3,void* param_4)
 
 {
   int iVar1;
