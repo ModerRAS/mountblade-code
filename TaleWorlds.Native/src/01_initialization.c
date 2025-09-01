@@ -909,10 +909,10 @@ void system_memory_init(void)
   int system_memory_comparison_result;
   int64_t *system_global_context;
   int64_t system_context_offset;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   uint8_t system_initialization_system_stack_function;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -920,24 +920,24 @@ void system_memory_init(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4666df49b97e0f10;
   system_context_current_pointer[7] = 0x4e4b0d63a6ad1d8f;
@@ -974,34 +974,34 @@ void system_thread_init(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_memory_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x46ecbd4daf41613e;
   system_context_current_pointer[7] = 0xdc42c056bbde8482;
@@ -1034,34 +1034,34 @@ void system_initialize_config(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_thread_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c868a42644030f6;
   system_context_current_pointer[7] = 0xc29193aa9d9b35b9;
@@ -1094,34 +1094,34 @@ void system_initialize_resource(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_resource_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40ea3a798283cbbb;
   system_context_current_pointer[7] = 0x7f74eb2c5a7fadae;
@@ -1139,34 +1139,34 @@ void system_initialize_audio(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45b8d074df27d12f;
   system_context_current_pointer[7] = 0x8d98f4c06880eda4;
@@ -1184,34 +1184,34 @@ void system_initialize_network(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_audio_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x42d293584c8cf3e5;
   system_context_current_pointer[7] = 0x355ffeb2d29e668a;
@@ -1229,10 +1229,10 @@ void system_initialize_render(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -1240,24 +1240,24 @@ void system_initialize_render(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_initialize_core_components;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_network_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_network_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_network_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x421c3cedd07d816d;
   system_context_current_pointer[7] = 0xbec25de793b7afa6;
@@ -1275,34 +1275,34 @@ void system_initialize_input(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c22bb0c326587ce;
   system_context_current_pointer[7] = 0x5e3cf00ce2978287;
@@ -1339,34 +1339,34 @@ void system_initialize_module(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_memory_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x42bea5b911d9c4bf;
   system_context_current_pointer[7] = 0x1aa83fc0020dc1b6;
@@ -1419,10 +1419,10 @@ void system_initialize_plugin(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -1430,24 +1430,24 @@ void system_initialize_plugin(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_plugin_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x406be72011d07d37;
   system_context_current_pointer[7] = 0x71876af946c867ab;
@@ -1465,10 +1465,10 @@ void system_initialize_security(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -1476,24 +1476,24 @@ void system_initialize_security(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_graphics_system_init_function;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40afa5469b6ac06d;
   system_context_current_pointer[7] = 0x2f4bab01d34055a5;
@@ -1545,10 +1545,10 @@ void system_initialize_monitor(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -1556,24 +1556,24 @@ void system_initialize_monitor(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -1591,10 +1591,10 @@ void system_initialize_log(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -1602,24 +1602,24 @@ void system_initialize_log(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -1637,34 +1637,34 @@ void system_initialize_cleanup(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -1682,10 +1682,10 @@ void system_initialize_sync(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -1693,24 +1693,24 @@ void system_initialize_sync(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -1728,34 +1728,34 @@ void system_initialize_performance(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -1773,10 +1773,10 @@ void system_initialize_error(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -1784,24 +1784,24 @@ void system_initialize_error(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -1834,34 +1834,34 @@ void system_initialize_resource_manager(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -1894,10 +1894,10 @@ void system_initialize_audio_manager(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -1905,24 +1905,24 @@ void system_initialize_audio_manager(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00e28,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00e28,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00e28,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x449bafe9b77ddd3c;
   system_context_current_pointer[7] = 0xc160408bde99e59f;
@@ -1955,10 +1955,10 @@ void system_initialize_network_manager(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -1966,24 +1966,24 @@ void system_initialize_network_manager(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00d48,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00d48,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00d48,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45425dc186a5d575;
   system_context_current_pointer[7] = 0xfab48faa65382fa5;
@@ -2016,10 +2016,10 @@ void system_initialize_graphics_manager(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -2027,24 +2027,24 @@ void system_initialize_graphics_manager(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_plugin_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x406be72011d07d37;
   system_context_current_pointer[7] = 0x71876af946c867ab;
@@ -2077,10 +2077,10 @@ void system_initialize_input_manager(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -2088,24 +2088,24 @@ void system_initialize_input_manager(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_graphics_system_init_function;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40afa5469b6ac06d;
   system_context_current_pointer[7] = 0x2f4bab01d34055a5;
@@ -2134,34 +2134,34 @@ void system_initialize_context_manager(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_memory_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x42bea5b911d9c4bf;
   system_context_current_pointer[7] = 0x1aa83fc0020dc1b6;
@@ -2189,10 +2189,10 @@ void system_initialize_memory_pool(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -2200,24 +2200,24 @@ void system_initialize_memory_pool(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00bb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00bb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00bb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40db4257e97d3df8;
   system_context_current_pointer[7] = 0x81d539e33614429f;
@@ -2245,10 +2245,10 @@ void system_initialize_thread_scheduler(void)
 {
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -2256,24 +2256,24 @@ void system_initialize_thread_scheduler(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00b88,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00b88,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00b88,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4e33c4803e67a08f;
   system_context_current_pointer[7] = 0x703a29a844ce399;
@@ -2367,10 +2367,10 @@ void system_initialize_module_manager(void)
 void system_handle_resource_allocation(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -2378,24 +2378,24 @@ void system_handle_resource_allocation(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -2411,10 +2411,10 @@ void system_handle_resource_allocation(void)
 void system_manage_memory_pool(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -2422,24 +2422,24 @@ void system_manage_memory_pool(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -2455,34 +2455,34 @@ void system_manage_memory_pool(void)
 void system_configure_thread_scheduler(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -2498,10 +2498,10 @@ void system_configure_thread_scheduler(void)
 void system_initialize_subsystem_component(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -2509,24 +2509,24 @@ void system_initialize_subsystem_component(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -2542,10 +2542,10 @@ void system_initialize_subsystem_component(void)
 void system_validate_system_state(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
@@ -2564,22 +2564,22 @@ void system_validate_system_state(void)
  */
 void system_initialize_security_manager(void)
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -2595,10 +2595,10 @@ void system_initialize_security_manager(void)
 void system_process_configuration_data(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -2606,24 +2606,24 @@ void system_process_configuration_data(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -2639,34 +2639,34 @@ void system_process_configuration_data(void)
 void system_handle_module_loading(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -2682,10 +2682,10 @@ void system_handle_module_loading(void)
 void system_manage_resource_cache(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -2693,24 +2693,24 @@ void system_manage_resource_cache(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00d48,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00d48,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00d48,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45425dc186a5d575;
   system_context_current_pointer[7] = 0xfab48faa65382fa5;
@@ -2726,10 +2726,10 @@ void system_manage_resource_cache(void)
 void system_process_event_queue(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -2737,24 +2737,24 @@ void system_process_event_queue(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -2770,10 +2770,10 @@ void system_process_event_queue(void)
 void system_initialize_audio_component(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -2781,24 +2781,24 @@ void system_initialize_audio_component(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -2814,34 +2814,34 @@ void system_initialize_audio_component(void)
 void system_configure_network_settings(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -2857,10 +2857,10 @@ void system_configure_network_settings(void)
 void system_setup_render_pipeline(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -2868,24 +2868,24 @@ void system_setup_render_pipeline(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -2901,34 +2901,34 @@ void system_setup_render_pipeline(void)
 void system_handle_input_processing(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -2944,10 +2944,10 @@ void system_handle_input_processing(void)
 void system_initialize_debug_interface(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -2955,24 +2955,24 @@ void system_initialize_debug_interface(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -2988,34 +2988,34 @@ void system_initialize_debug_interface(void)
 void system_process_performance_metrics(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -3031,10 +3031,10 @@ void system_process_performance_metrics(void)
 void system_manage_security_context(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3042,24 +3042,24 @@ void system_manage_security_context(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -3075,10 +3075,10 @@ void system_manage_security_context(void)
 void system_initialize_plugin_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3086,24 +3086,24 @@ void system_initialize_plugin_system(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -3119,34 +3119,34 @@ void system_initialize_plugin_system(void)
 void system_configure_logging_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -3162,10 +3162,10 @@ void system_configure_logging_system(void)
 void system_handle_error_processing(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3173,24 +3173,24 @@ void system_handle_error_processing(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -3206,34 +3206,34 @@ void system_handle_error_processing(void)
 void system_initialize_monitoring_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -3249,10 +3249,10 @@ void system_initialize_monitoring_system(void)
 void system_process_data_synchronization(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3260,24 +3260,24 @@ void system_process_data_synchronization(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -3293,34 +3293,34 @@ void system_process_data_synchronization(void)
 void system_manage_thread_pool(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -3336,34 +3336,34 @@ void system_manage_thread_pool(void)
 void system_configure_memory_allocator(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_memory_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x42bea5b911d9c4bf;
   system_context_current_pointer[7] = 0x1aa83fc0020dc1b6;
@@ -3379,10 +3379,10 @@ void system_configure_memory_allocator(void)
 void system_initialize_resource_manager(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3390,24 +3390,24 @@ void system_initialize_resource_manager(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00d48,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00d48,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00d48,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45425dc186a5d575;
   system_context_current_pointer[7] = 0xfab48faa65382fa5;
@@ -3423,10 +3423,10 @@ void system_initialize_resource_manager(void)
 void system_handle_system_events(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3434,24 +3434,24 @@ void system_handle_system_events(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -3467,10 +3467,10 @@ void system_handle_system_events(void)
 void system_process_configuration_updates(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3478,24 +3478,24 @@ void system_process_configuration_updates(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -3511,34 +3511,34 @@ void system_process_configuration_updates(void)
 void system_manage_component_lifecycle(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -3554,10 +3554,10 @@ void system_manage_component_lifecycle(void)
 void system_initialize_script_engine(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3565,24 +3565,24 @@ void system_initialize_script_engine(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -3598,34 +3598,34 @@ void system_initialize_script_engine(void)
 void system_configure_physics_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -3641,10 +3641,10 @@ void system_configure_physics_system(void)
 void system_handle_audio_processing(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3652,24 +3652,24 @@ void system_handle_audio_processing(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -3685,34 +3685,34 @@ void system_handle_audio_processing(void)
 void system_manage_network_connections(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -3753,10 +3753,10 @@ int system_initialize_input_system(void)
 void system_configure_display_settings(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3764,24 +3764,24 @@ void system_configure_display_settings(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_plugin_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x406be72011d07d37;
   system_context_current_pointer[7] = 0x71876af946c867ab;
@@ -3797,10 +3797,10 @@ void system_configure_display_settings(void)
 void system_handle_file_operations(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3808,24 +3808,24 @@ void system_handle_file_operations(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_graphics_system_init_function;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40afa5469b6ac06d;
   system_context_current_pointer[7] = 0x2f4bab01d34055a5;
@@ -3841,10 +3841,10 @@ void system_handle_file_operations(void)
 void system_manage_data_streams(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3852,24 +3852,24 @@ void system_manage_data_streams(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_plugin_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x406be72011d07d37;
   system_context_current_pointer[7] = 0x71876af946c867ab;
@@ -3885,10 +3885,10 @@ void system_manage_data_streams(void)
 void system_process_animation_data(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3896,24 +3896,24 @@ void system_process_animation_data(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_graphics_system_init_function;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40afa5469b6ac06d;
   system_context_current_pointer[7] = 0x2f4bab01d34055a5;
@@ -3929,10 +3929,10 @@ void system_process_animation_data(void)
 void system_initialize_particle_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3940,24 +3940,24 @@ void system_initialize_particle_system(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -3973,10 +3973,10 @@ void system_initialize_particle_system(void)
 void system_configure_lighting_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -3984,24 +3984,24 @@ void system_configure_lighting_system(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -4017,34 +4017,34 @@ void system_configure_lighting_system(void)
 void system_handle_collision_detection(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -4060,10 +4060,10 @@ void system_handle_collision_detection(void)
 void system_manage_shader_programs(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -4071,24 +4071,24 @@ void system_manage_shader_programs(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -4104,34 +4104,34 @@ void system_manage_shader_programs(void)
 void system_process_texture_data(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -4147,10 +4147,10 @@ void system_process_texture_data(void)
 void system_initialize_ui_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -4158,24 +4158,24 @@ void system_initialize_ui_system(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -4191,34 +4191,34 @@ void system_initialize_ui_system(void)
 void system_configure_window_manager(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -4253,10 +4253,10 @@ void system_handle_user_input(void)
 void system_manage_state_machine(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -4264,24 +4264,24 @@ void system_manage_state_machine(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -4297,10 +4297,10 @@ void system_manage_state_machine(void)
 void system_process_game_logic(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -4308,24 +4308,24 @@ void system_process_game_logic(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -4341,34 +4341,34 @@ void system_process_game_logic(void)
 void system_initialize_ai_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -4384,10 +4384,10 @@ void system_initialize_ai_system(void)
 void system_configure_pathfinding(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -4395,24 +4395,24 @@ void system_configure_pathfinding(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -4428,34 +4428,34 @@ void system_configure_pathfinding(void)
 void system_handle_entity_management(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -4471,10 +4471,10 @@ void system_handle_entity_management(void)
 void system_manage_scene_graph(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -4482,24 +4482,24 @@ void system_manage_scene_graph(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -4515,34 +4515,34 @@ void system_manage_scene_graph(void)
 void system_process_transform_data(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -4676,10 +4676,10 @@ void system_configure_shader_parameters(void)
 void system_handle_buffer_operations(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -4687,24 +4687,24 @@ void system_handle_buffer_operations(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00bb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00bb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00bb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40db4257e97d3df8;
   system_context_current_pointer[7] = 0x81d539e33614429f;
@@ -4720,10 +4720,10 @@ void system_handle_buffer_operations(void)
 void system_manage_vertex_data(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -4731,24 +4731,24 @@ void system_manage_vertex_data(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00b88,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00b88,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00b88,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4e33c4803e67a08f;
   system_context_current_pointer[7] = 0x703a29a844ce399;
@@ -4764,10 +4764,10 @@ void system_manage_vertex_data(void)
 void system_process_index_buffers(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -4775,24 +4775,24 @@ void system_process_index_buffers(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -4808,10 +4808,10 @@ void system_process_index_buffers(void)
 void system_initialize_texture_manager(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -4819,24 +4819,24 @@ void system_initialize_texture_manager(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -4852,34 +4852,34 @@ void system_initialize_texture_manager(void)
 void system_configure_mipmap_generation(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -4895,10 +4895,10 @@ void system_configure_mipmap_generation(void)
 void system_handle_texture_compression(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -4906,24 +4906,24 @@ void system_handle_texture_compression(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -4939,34 +4939,34 @@ void system_handle_texture_compression(void)
 void system_manage_material_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -4982,10 +4982,10 @@ void system_manage_material_system(void)
 void system_process_lighting_calculations(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -4993,24 +4993,24 @@ void system_process_lighting_calculations(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -5026,34 +5026,34 @@ void system_process_lighting_calculations(void)
 void system_initialize_animation_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -5069,10 +5069,10 @@ void system_initialize_animation_system(void)
 void system_configure_skeletal_animation(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5080,24 +5080,24 @@ void system_configure_skeletal_animation(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -5113,10 +5113,10 @@ void system_configure_skeletal_animation(void)
 void system_handle_bone_transforms(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5124,24 +5124,24 @@ void system_handle_bone_transforms(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -5157,34 +5157,34 @@ void system_handle_bone_transforms(void)
 void system_manage_animation_states(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -5200,10 +5200,10 @@ void system_manage_animation_states(void)
 void system_process_morph_targets(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5211,24 +5211,24 @@ void system_process_morph_targets(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -5244,34 +5244,34 @@ void system_process_morph_targets(void)
 void system_initialize_physics_engine(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -5287,10 +5287,10 @@ void system_initialize_physics_engine(void)
 void system_configure_rigid_body_dynamics(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5298,24 +5298,24 @@ void system_configure_rigid_body_dynamics(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -5331,34 +5331,34 @@ void system_configure_rigid_body_dynamics(void)
 void system_handle_collision_response(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -5439,10 +5439,10 @@ void system_manage_constraint_system(void)
 void system_process_force_calculations(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5450,24 +5450,24 @@ void system_process_force_calculations(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00d48,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00d48,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00d48,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45425dc186a5d575;
   system_context_current_pointer[7] = 0xfab48faa65382fa5;
@@ -5483,10 +5483,10 @@ void system_process_force_calculations(void)
 void system_initialize_audio_engine(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5494,24 +5494,24 @@ void system_initialize_audio_engine(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00e28,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00e28,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00e28,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x449bafe9b77ddd3c;
   system_context_current_pointer[7] = 0xc160408bde99e59f;
@@ -5527,10 +5527,10 @@ void system_initialize_audio_engine(void)
 void system_configure_sound_spatialization(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5538,24 +5538,24 @@ void system_configure_sound_spatialization(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_plugin_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x406be72011d07d37;
   system_context_current_pointer[7] = 0x71876af946c867ab;
@@ -5571,10 +5571,10 @@ void system_configure_sound_spatialization(void)
 void system_handle_audio_mixing(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5582,24 +5582,24 @@ void system_handle_audio_mixing(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_graphics_system_init_function;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40afa5469b6ac06d;
   system_context_current_pointer[7] = 0x2f4bab01d34055a5;
@@ -5615,10 +5615,10 @@ void system_handle_audio_mixing(void)
 void system_manage_sound_resources(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5626,24 +5626,24 @@ void system_manage_sound_resources(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -5659,10 +5659,10 @@ void system_manage_sound_resources(void)
 void system_process_audio_effects(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5670,24 +5670,24 @@ void system_process_audio_effects(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -5703,34 +5703,34 @@ void system_process_audio_effects(void)
 void system_initialize_network_layer(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -5746,10 +5746,10 @@ void system_initialize_network_layer(void)
 void system_configure_protocol_handlers(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5757,24 +5757,24 @@ void system_configure_protocol_handlers(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -5790,34 +5790,34 @@ void system_configure_protocol_handlers(void)
 void system_handle_data_serialization(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -5833,10 +5833,10 @@ void system_handle_data_serialization(void)
 void system_manage_connection_pool(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5844,24 +5844,24 @@ void system_manage_connection_pool(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -5877,34 +5877,34 @@ void system_manage_connection_pool(void)
 void system_process_network_events(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -5920,10 +5920,10 @@ void system_process_network_events(void)
 void system_initialize_security_layer(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5931,24 +5931,24 @@ void system_initialize_security_layer(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00bb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00bb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00bb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40db4257e97d3df8;
   system_context_current_pointer[7] = 0x81d539e33614429f;
@@ -5964,10 +5964,10 @@ void system_initialize_security_layer(void)
 void system_configure_encryption_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -5975,24 +5975,24 @@ void system_configure_encryption_system(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00b88,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00b88,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00b88,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4e33c4803e67a08f;
   system_context_current_pointer[7] = 0x703a29a844ce399;
@@ -6008,10 +6008,10 @@ void system_configure_encryption_system(void)
 void system_handle_authentication(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6019,24 +6019,24 @@ void system_handle_authentication(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -6052,10 +6052,10 @@ void system_handle_authentication(void)
 void system_manage_permission_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6063,24 +6063,24 @@ void system_manage_permission_system(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -6096,34 +6096,34 @@ void system_manage_permission_system(void)
 void system_process_security_events(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -6139,10 +6139,10 @@ void system_process_security_events(void)
 void system_initialize_script_runtime(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6150,24 +6150,24 @@ void system_initialize_script_runtime(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -6183,34 +6183,34 @@ void system_initialize_script_runtime(void)
 void system_configure_virtual_machine(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -6226,10 +6226,10 @@ void system_configure_virtual_machine(void)
 void system_handle_script_execution(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6237,24 +6237,24 @@ void system_handle_script_execution(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -6270,34 +6270,34 @@ void system_handle_script_execution(void)
 void system_manage_script_objects(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -6313,10 +6313,10 @@ void system_manage_script_objects(void)
 void system_process_script_events(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6324,24 +6324,24 @@ void system_process_script_events(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00e28,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00e28,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00e28,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x449bafe9b77ddd3c;
   system_context_current_pointer[7] = 0xc160408bde99e59f;
@@ -6357,10 +6357,10 @@ void system_process_script_events(void)
 void system_initialize_resource_pipeline(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6368,24 +6368,24 @@ void system_initialize_resource_pipeline(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00d48,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00d48,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00d48,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45425dc186a5d575;
   system_context_current_pointer[7] = 0xfab48faa65382fa5;
@@ -6401,10 +6401,10 @@ void system_initialize_resource_pipeline(void)
 void system_configure_asset_loading(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6412,24 +6412,24 @@ void system_configure_asset_loading(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00bb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00bb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00bb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40db4257e97d3df8;
   system_context_current_pointer[7] = 0x81d539e33614429f;
@@ -6445,10 +6445,10 @@ void system_configure_asset_loading(void)
 void system_handle_resource_streaming(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6456,24 +6456,24 @@ void system_handle_resource_streaming(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00b88,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00b88,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00b88,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4e33c4803e67a08f;
   system_context_current_pointer[7] = 0x703a29a844ce399;
@@ -6489,34 +6489,34 @@ void system_handle_resource_streaming(void)
 void system_manage_memory_arena(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_memory_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x42bea5b911d9c4bf;
   system_context_current_pointer[7] = 0x1aa83fc0020dc1b6;
@@ -6532,10 +6532,10 @@ void system_manage_memory_arena(void)
 void system_process_resource_requests(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6543,24 +6543,24 @@ void system_process_resource_requests(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -6576,10 +6576,10 @@ void system_process_resource_requests(void)
 void system_initialize_job_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6587,24 +6587,24 @@ void system_initialize_job_system(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -6620,34 +6620,34 @@ void system_initialize_job_system(void)
 void system_configure_task_scheduler(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -6663,10 +6663,10 @@ void system_configure_task_scheduler(void)
 void system_handle_job_distribution(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6674,24 +6674,24 @@ void system_handle_job_distribution(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -6707,34 +6707,34 @@ void system_handle_job_distribution(void)
 void system_manage_worker_threads(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -6750,10 +6750,10 @@ void system_manage_worker_threads(void)
 void system_process_job_completion(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6761,24 +6761,24 @@ void system_process_job_completion(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -6794,34 +6794,34 @@ void system_process_job_completion(void)
 void system_initialize_profiling_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -6898,10 +6898,10 @@ void system_process_performance_reports(void)
 void system_initialize_debug_renderer(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6909,24 +6909,24 @@ void system_initialize_debug_renderer(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -6942,10 +6942,10 @@ void system_initialize_debug_renderer(void)
 void system_configure_debug_overlay(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -6953,24 +6953,24 @@ void system_configure_debug_overlay(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -6986,34 +6986,34 @@ void system_configure_debug_overlay(void)
 void system_handle_debug_visualization(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -7029,10 +7029,10 @@ void system_handle_debug_visualization(void)
 void system_manage_debug_context(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -7040,24 +7040,24 @@ void system_manage_debug_context(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -7073,34 +7073,34 @@ void system_manage_debug_context(void)
 void system_process_debug_commands(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -7116,10 +7116,10 @@ void system_process_debug_commands(void)
 void system_initialize_save_system(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -7127,24 +7127,24 @@ void system_initialize_save_system(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -7160,34 +7160,34 @@ void system_initialize_save_system(void)
 void system_configure_serialization_format(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -7203,34 +7203,34 @@ void system_configure_serialization_format(void)
 void system_handle_data_persistence(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_memory_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x42bea5b911d9c4bf;
   system_context_current_pointer[7] = 0x1aa83fc0020dc1b6;
@@ -7265,10 +7265,10 @@ void system_manage_save_slots(void)
 void system_process_load_operations(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -7276,24 +7276,24 @@ void system_process_load_operations(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_initialize_main;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&init_config_data,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&init_config_data,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&init_config_data,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4fc124d23d41985f;
   system_context_current_pointer[7] = 0xe2f4a30d6e6ae482;
@@ -7309,34 +7309,34 @@ void system_process_load_operations(void)
 void system_initialize_localization(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_subsystem_config_data,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4770584fbb1df897;
   system_context_current_pointer[7] = 0x47f249e43f66f2ab;
@@ -7352,34 +7352,34 @@ void system_initialize_localization(void)
 void system_configure_language_settings(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4666df49b97e0f10;
   system_context_current_pointer[7] = 0x4e4b0d63a6ad1d8f;
@@ -7395,34 +7395,34 @@ void system_configure_language_settings(void)
 void system_handle_text_translation(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_memory_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x46ecbd4daf41613e;
   system_context_current_pointer[7] = 0xdc42c056bbde8482;
@@ -7438,34 +7438,34 @@ void system_handle_text_translation(void)
 void system_manage_locale_data(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_thread_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c868a42644030f6;
   system_context_current_pointer[7] = 0xc29193aa9d9b35b9;
@@ -7481,34 +7481,34 @@ void system_manage_locale_data(void)
 void system_process_string_resources(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_resource_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40ea3a798283cbbb;
   system_context_current_pointer[7] = 0x7f74eb2c5a7fadae;
@@ -7524,34 +7524,34 @@ void system_process_string_resources(void)
 void system_initialize_mod_support(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45b8d074df27d12f;
   system_context_current_pointer[7] = 0x8d98f4c06880eda4;
@@ -7567,34 +7567,34 @@ void system_initialize_mod_support(void)
 void system_configure_plugin_interface(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_audio_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x42d293584c8cf3e5;
   system_context_current_pointer[7] = 0x355ffeb2d29e668a;
@@ -7610,10 +7610,10 @@ void system_configure_plugin_interface(void)
 void system_handle_mod_loading(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -7621,24 +7621,24 @@ void system_handle_mod_loading(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_initialize_core_components;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_network_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_network_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_network_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x421c3cedd07d816d;
   system_context_current_pointer[7] = 0xbec25de793b7afa6;
@@ -7654,34 +7654,34 @@ void system_handle_mod_loading(void)
 void system_manage_mod_dependencies(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c22bb0c326587ce;
   system_context_current_pointer[7] = 0x5e3cf00ce2978287;
@@ -7697,10 +7697,10 @@ void system_manage_mod_dependencies(void)
 void system_process_mod_events(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -7708,24 +7708,24 @@ void system_process_mod_events(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00d48,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00d48,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00d48,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45425dc186a5d575;
   system_context_current_pointer[7] = 0xfab48faa65382fa5;
@@ -7912,10 +7912,10 @@ void system_manage_resource_cache_2(void)
 void system_process_event_queue_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -7923,24 +7923,24 @@ void system_process_event_queue_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -7956,10 +7956,10 @@ void system_process_event_queue_2(void)
 void system_initialize_audio_component_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -7967,24 +7967,24 @@ void system_initialize_audio_component_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -8000,34 +8000,34 @@ void system_initialize_audio_component_2(void)
 void system_configure_network_settings_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -8043,10 +8043,10 @@ void system_configure_network_settings_2(void)
 void system_setup_render_pipeline_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -8054,24 +8054,24 @@ void system_setup_render_pipeline_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -8087,34 +8087,34 @@ void system_setup_render_pipeline_2(void)
 void system_handle_input_processing_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -8130,10 +8130,10 @@ void system_handle_input_processing_2(void)
 void system_initialize_debug_interface_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -8141,24 +8141,24 @@ void system_initialize_debug_interface_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -8174,34 +8174,34 @@ void system_initialize_debug_interface_2(void)
 void system_process_performance_metrics_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -8217,10 +8217,10 @@ void system_process_performance_metrics_2(void)
 void system_manage_security_context_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -8228,24 +8228,24 @@ void system_manage_security_context_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -8261,10 +8261,10 @@ void system_manage_security_context_2(void)
 void system_initialize_plugin_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -8272,24 +8272,24 @@ void system_initialize_plugin_system_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -8305,34 +8305,34 @@ void system_initialize_plugin_system_2(void)
 void system_configure_logging_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -8348,10 +8348,10 @@ void system_configure_logging_system_2(void)
 void system_handle_error_processing_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -8359,24 +8359,24 @@ void system_handle_error_processing_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -8392,34 +8392,34 @@ void system_handle_error_processing_2(void)
 void system_initialize_monitoring_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -8435,10 +8435,10 @@ void system_initialize_monitoring_system_2(void)
 void system_process_data_synchronization_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -8446,24 +8446,24 @@ void system_process_data_synchronization_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -8479,34 +8479,34 @@ void system_process_data_synchronization_2(void)
 void system_manage_thread_pool_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -8522,10 +8522,10 @@ void system_manage_thread_pool_2(void)
 void system_configure_memory_allocator_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -8533,24 +8533,24 @@ void system_configure_memory_allocator_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -8566,10 +8566,10 @@ void system_configure_memory_allocator_2(void)
 void system_initialize_resource_manager_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -8577,24 +8577,24 @@ void system_initialize_resource_manager_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -8610,34 +8610,34 @@ void system_initialize_resource_manager_2(void)
 void system_handle_system_events_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -8653,10 +8653,10 @@ void system_handle_system_events_2(void)
 void system_process_configuration_updates_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -8664,24 +8664,24 @@ void system_process_configuration_updates_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -8697,34 +8697,34 @@ void system_process_configuration_updates_2(void)
 void system_manage_component_lifecycle_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -8740,10 +8740,10 @@ void system_manage_component_lifecycle_2(void)
 void system_initialize_script_engine_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -8751,24 +8751,24 @@ void system_initialize_script_engine_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -8784,34 +8784,34 @@ void system_initialize_script_engine_2(void)
 void system_configure_physics_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -8827,10 +8827,10 @@ void system_configure_physics_system_2(void)
 void system_handle_audio_processing_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -8838,24 +8838,24 @@ void system_handle_audio_processing_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -8871,10 +8871,10 @@ void system_handle_audio_processing_2(void)
 void system_manage_network_connections_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -8882,24 +8882,24 @@ void system_manage_network_connections_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -8915,34 +8915,34 @@ void system_manage_network_connections_2(void)
 void system_process_render_commands_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -8958,10 +8958,10 @@ void system_process_render_commands_2(void)
 void system_initialize_input_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -8969,24 +8969,24 @@ void system_initialize_input_system_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -9002,34 +9002,34 @@ void system_initialize_input_system_2(void)
 void system_configure_display_settings_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -9045,10 +9045,10 @@ void system_configure_display_settings_2(void)
 void system_handle_file_operations_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -9056,24 +9056,24 @@ void system_handle_file_operations_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -9089,34 +9089,34 @@ void system_handle_file_operations_2(void)
 void system_manage_data_streams_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -9132,10 +9132,10 @@ void system_manage_data_streams_2(void)
 void system_process_animation_data_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -9143,24 +9143,24 @@ void system_process_animation_data_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_initialize_main;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&init_config_data,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&init_config_data,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&init_config_data,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4fc124d23d41985f;
   system_context_current_pointer[7] = 0xe2f4a30d6e6ae482;
@@ -9176,34 +9176,34 @@ void system_process_animation_data_2(void)
 void system_initialize_particle_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_subsystem_config_data,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4770584fbb1df897;
   system_context_current_pointer[7] = 0x47f249e43f66f2ab;
@@ -9219,34 +9219,34 @@ void system_initialize_particle_system_2(void)
 void system_configure_lighting_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4666df49b97e0f10;
   system_context_current_pointer[7] = 0x4e4b0d63a6ad1d8f;
@@ -9262,34 +9262,34 @@ void system_configure_lighting_system_2(void)
 void system_handle_collision_detection_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_memory_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x46ecbd4daf41613e;
   system_context_current_pointer[7] = 0xdc42c056bbde8482;
@@ -9305,34 +9305,34 @@ void system_handle_collision_detection_2(void)
 void system_manage_shader_programs_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_thread_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c868a42644030f6;
   system_context_current_pointer[7] = 0xc29193aa9d9b35b9;
@@ -9348,34 +9348,34 @@ void system_manage_shader_programs_2(void)
 void system_process_texture_data_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_resource_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40ea3a798283cbbb;
   system_context_current_pointer[7] = 0x7f74eb2c5a7fadae;
@@ -9391,34 +9391,34 @@ void system_process_texture_data_2(void)
 void system_initialize_ui_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45b8d074df27d12f;
   system_context_current_pointer[7] = 0x8d98f4c06880eda4;
@@ -9434,34 +9434,34 @@ void system_initialize_ui_system_2(void)
 void system_configure_window_manager_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_audio_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x42d293584c8cf3e5;
   system_context_current_pointer[7] = 0x355ffeb2d29e668a;
@@ -9477,10 +9477,10 @@ void system_configure_window_manager_2(void)
 void system_handle_user_input_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -9488,24 +9488,24 @@ void system_handle_user_input_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_initialize_core_components;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_network_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_network_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_network_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x421c3cedd07d816d;
   system_context_current_pointer[7] = 0xbec25de793b7afa6;
@@ -9521,34 +9521,34 @@ void system_handle_user_input_2(void)
 void system_manage_state_machine_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c22bb0c326587ce;
   system_context_current_pointer[7] = 0x5e3cf00ce2978287;
@@ -9589,10 +9589,10 @@ int system_initialize_ai_system_2(void)
 void system_configure_pathfinding_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -9600,24 +9600,24 @@ void system_configure_pathfinding_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_initialize_main;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&init_config_data,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&init_config_data,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&init_config_data,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4fc124d23d41985f;
   system_context_current_pointer[7] = 0xe2f4a30d6e6ae482;
@@ -9633,34 +9633,34 @@ void system_configure_pathfinding_2(void)
 void system_handle_entity_management_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_subsystem_config_data,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4770584fbb1df897;
   system_context_current_pointer[7] = 0x47f249e43f66f2ab;
@@ -9676,34 +9676,34 @@ void system_handle_entity_management_2(void)
 void system_manage_scene_graph_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4666df49b97e0f10;
   system_context_current_pointer[7] = 0x4e4b0d63a6ad1d8f;
@@ -9719,34 +9719,34 @@ void system_manage_scene_graph_2(void)
 void system_process_transform_data_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_memory_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x46ecbd4daf41613e;
   system_context_current_pointer[7] = 0xdc42c056bbde8482;
@@ -9762,34 +9762,34 @@ void system_process_transform_data_2(void)
 void system_initialize_camera_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_thread_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c868a42644030f6;
   system_context_current_pointer[7] = 0xc29193aa9d9b35b9;
@@ -9805,34 +9805,34 @@ void system_initialize_camera_system_2(void)
 void system_configure_projection_matrix_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_resource_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40ea3a798283cbbb;
   system_context_current_pointer[7] = 0x7f74eb2c5a7fadae;
@@ -9848,34 +9848,34 @@ void system_configure_projection_matrix_2(void)
 void system_handle_view_frustum_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45b8d074df27d12f;
   system_context_current_pointer[7] = 0x8d98f4c06880eda4;
@@ -9891,34 +9891,34 @@ void system_handle_view_frustum_2(void)
 void system_manage_render_targets_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_audio_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x42d293584c8cf3e5;
   system_context_current_pointer[7] = 0x355ffeb2d29e668a;
@@ -9934,10 +9934,10 @@ void system_manage_render_targets_2(void)
 void system_process_shadow_mapping_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -9945,24 +9945,24 @@ void system_process_shadow_mapping_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_initialize_core_components;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_network_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_network_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_network_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x421c3cedd07d816d;
   system_context_current_pointer[7] = 0xbec25de793b7afa6;
@@ -9978,34 +9978,34 @@ void system_process_shadow_mapping_2(void)
 void system_initialize_post_processing_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c22bb0c326587ce;
   system_context_current_pointer[7] = 0x5e3cf00ce2978287;
@@ -10059,10 +10059,10 @@ void system_handle_buffer_operations_2(void)
 void system_manage_vertex_data_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -10070,24 +10070,24 @@ void system_manage_vertex_data_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -10103,10 +10103,10 @@ void system_manage_vertex_data_2(void)
 void system_process_index_buffers_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -10114,24 +10114,24 @@ void system_process_index_buffers_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -10147,34 +10147,34 @@ void system_process_index_buffers_2(void)
 void system_initialize_texture_manager_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -10190,10 +10190,10 @@ void system_initialize_texture_manager_2(void)
 void system_configure_mipmap_generation_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -10201,24 +10201,24 @@ void system_configure_mipmap_generation_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -10234,34 +10234,34 @@ void system_configure_mipmap_generation_2(void)
 void system_handle_texture_compression_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -10277,10 +10277,10 @@ void system_handle_texture_compression_2(void)
 void system_manage_material_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -10288,24 +10288,24 @@ void system_manage_material_system_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -10321,34 +10321,34 @@ void system_manage_material_system_2(void)
 void system_process_lighting_calculations_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -10370,10 +10370,10 @@ int system_initialize_animation_system_2(void)
 void system_configure_skeletal_animation_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -10381,24 +10381,24 @@ void system_configure_skeletal_animation_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00d48,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00d48,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00d48,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45425dc186a5d575;
   system_context_current_pointer[7] = 0xfab48faa65382fa5;
@@ -10414,10 +10414,10 @@ void system_configure_skeletal_animation_2(void)
 void system_handle_bone_transforms_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -10425,24 +10425,24 @@ void system_handle_bone_transforms_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -10458,10 +10458,10 @@ void system_handle_bone_transforms_2(void)
 void system_manage_animation_states_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -10469,24 +10469,24 @@ void system_manage_animation_states_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -10502,34 +10502,34 @@ void system_manage_animation_states_2(void)
 void system_process_morph_targets_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -10545,10 +10545,10 @@ void system_process_morph_targets_2(void)
 void system_initialize_physics_engine_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -10556,24 +10556,24 @@ void system_initialize_physics_engine_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -10589,34 +10589,34 @@ void system_initialize_physics_engine_2(void)
 void system_configure_rigid_body_dynamics_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -10632,10 +10632,10 @@ void system_configure_rigid_body_dynamics_2(void)
 void system_handle_collision_response_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -10643,24 +10643,24 @@ void system_handle_collision_response_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -10676,34 +10676,34 @@ void system_handle_collision_response_2(void)
 void system_manage_constraint_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -10719,10 +10719,10 @@ void system_manage_constraint_system_2(void)
 void system_process_force_calculations_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -10730,24 +10730,24 @@ void system_process_force_calculations_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -10763,10 +10763,10 @@ void system_process_force_calculations_2(void)
 void system_initialize_audio_engine_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -10774,24 +10774,24 @@ void system_initialize_audio_engine_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -10807,34 +10807,34 @@ void system_initialize_audio_engine_2(void)
 void system_configure_sound_spatialization_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -10850,10 +10850,10 @@ void system_configure_sound_spatialization_2(void)
 void system_handle_audio_mixing_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -10861,24 +10861,24 @@ void system_handle_audio_mixing_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -10894,34 +10894,34 @@ void system_handle_audio_mixing_2(void)
 void system_manage_sound_resources_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -10937,10 +10937,10 @@ void system_manage_sound_resources_2(void)
 void system_process_audio_effects_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -10948,24 +10948,24 @@ void system_process_audio_effects_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -10981,34 +10981,34 @@ void system_process_audio_effects_2(void)
 void system_initialize_network_layer_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -11091,10 +11091,10 @@ int system_configure_encryption_system_2(void)
 void system_handle_authentication_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -11102,24 +11102,24 @@ void system_handle_authentication_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_initialize_main;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&init_config_data,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&init_config_data,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&init_config_data,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4fc124d23d41985f;
   system_context_current_pointer[7] = 0xe2f4a30d6e6ae482;
@@ -11135,34 +11135,34 @@ void system_handle_authentication_2(void)
 void system_manage_permission_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_subsystem_config_data,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4770584fbb1df897;
   system_context_current_pointer[7] = 0x47f249e43f66f2ab;
@@ -11178,34 +11178,34 @@ void system_manage_permission_system_2(void)
 void system_process_security_events_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4666df49b97e0f10;
   system_context_current_pointer[7] = 0x4e4b0d63a6ad1d8f;
@@ -11221,34 +11221,34 @@ void system_process_security_events_2(void)
 void system_initialize_script_runtime_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_memory_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x46ecbd4daf41613e;
   system_context_current_pointer[7] = 0xdc42c056bbde8482;
@@ -11264,34 +11264,34 @@ void system_initialize_script_runtime_2(void)
 void system_configure_virtual_machine_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_thread_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c868a42644030f6;
   system_context_current_pointer[7] = 0xc29193aa9d9b35b9;
@@ -11307,34 +11307,34 @@ void system_configure_virtual_machine_2(void)
 void system_handle_script_execution_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_resource_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40ea3a798283cbbb;
   system_context_current_pointer[7] = 0x7f74eb2c5a7fadae;
@@ -11350,34 +11350,34 @@ void system_handle_script_execution_2(void)
 void system_manage_script_objects_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45b8d074df27d12f;
   system_context_current_pointer[7] = 0x8d98f4c06880eda4;
@@ -11393,34 +11393,34 @@ void system_manage_script_objects_2(void)
 void system_process_script_events_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_audio_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x42d293584c8cf3e5;
   system_context_current_pointer[7] = 0x355ffeb2d29e668a;
@@ -11436,10 +11436,10 @@ void system_process_script_events_2(void)
 void system_initialize_resource_pipeline_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -11447,24 +11447,24 @@ void system_initialize_resource_pipeline_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_initialize_core_components;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_network_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_network_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_network_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x421c3cedd07d816d;
   system_context_current_pointer[7] = 0xbec25de793b7afa6;
@@ -11480,34 +11480,34 @@ void system_initialize_resource_pipeline_2(void)
 void system_configure_asset_loading_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c22bb0c326587ce;
   system_context_current_pointer[7] = 0x5e3cf00ce2978287;
@@ -11605,34 +11605,34 @@ int system_configure_task_scheduler_2(void)
 void system_handle_job_distribution_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a2d660,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a2d660,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a2d660,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x46c54bc98fc3fc2a;
   system_context_current_pointer[7] = 0x727b256e3af32585;
@@ -11648,34 +11648,34 @@ void system_handle_job_distribution_2(void)
 void system_manage_worker_threads_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a2d590,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a2d590,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a2d590,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x41ffd0b76c1e136f;
   system_context_current_pointer[7] = 0x25db30365f277abb;
@@ -11691,10 +11691,10 @@ void system_manage_worker_threads_2(void)
 void system_process_job_completion_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -11702,24 +11702,24 @@ void system_process_job_completion_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_initialize_main;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&init_config_data,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&init_config_data,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&init_config_data,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4fc124d23d41985f;
   system_context_current_pointer[7] = 0xe2f4a30d6e6ae482;
@@ -11735,34 +11735,34 @@ void system_process_job_completion_2(void)
 void system_initialize_profiling_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_subsystem_config_data,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4770584fbb1df897;
   system_context_current_pointer[7] = 0x47f249e43f66f2ab;
@@ -11778,34 +11778,34 @@ void system_initialize_profiling_system_2(void)
 void system_configure_performance_counters_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4666df49b97e0f10;
   system_context_current_pointer[7] = 0x4e4b0d63a6ad1d8f;
@@ -11821,34 +11821,34 @@ void system_configure_performance_counters_2(void)
 void system_handle_metrics_collection_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_memory_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x46ecbd4daf41613e;
   system_context_current_pointer[7] = 0xdc42c056bbde8482;
@@ -11864,34 +11864,34 @@ void system_handle_metrics_collection_2(void)
 void system_manage_profiling_data_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_thread_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c868a42644030f6;
   system_context_current_pointer[7] = 0xc29193aa9d9b35b9;
@@ -11907,34 +11907,34 @@ void system_manage_profiling_data_2(void)
 void system_process_performance_reports_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_resource_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40ea3a798283cbbb;
   system_context_current_pointer[7] = 0x7f74eb2c5a7fadae;
@@ -11950,34 +11950,34 @@ void system_process_performance_reports_2(void)
 void system_initialize_debug_renderer_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45b8d074df27d12f;
   system_context_current_pointer[7] = 0x8d98f4c06880eda4;
@@ -11993,34 +11993,34 @@ void system_initialize_debug_renderer_2(void)
 void system_configure_debug_overlay_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_audio_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x42d293584c8cf3e5;
   system_context_current_pointer[7] = 0x355ffeb2d29e668a;
@@ -12036,10 +12036,10 @@ void system_configure_debug_overlay_2(void)
 void system_handle_debug_visualization_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -12047,24 +12047,24 @@ void system_handle_debug_visualization_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_initialize_core_components;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_network_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_network_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_network_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x421c3cedd07d816d;
   system_context_current_pointer[7] = 0xbec25de793b7afa6;
@@ -12080,34 +12080,34 @@ void system_handle_debug_visualization_2(void)
 void system_manage_debug_context_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c22bb0c326587ce;
   system_context_current_pointer[7] = 0x5e3cf00ce2978287;
@@ -12123,34 +12123,34 @@ void system_manage_debug_context_2(void)
 void system_process_debug_commands_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a2d660,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a2d660,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a2d660,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x46c54bc98fc3fc2a;
   system_context_current_pointer[7] = 0x727b256e3af32585;
@@ -12166,34 +12166,34 @@ void system_process_debug_commands_2(void)
 void system_initialize_save_system_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a2d590,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a2d590,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a2d590,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x41ffd0b76c1e136f;
   system_context_current_pointer[7] = 0x25db30365f277abb;
@@ -12209,10 +12209,10 @@ void system_initialize_save_system_2(void)
 void system_configure_serialization_format_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -12220,24 +12220,24 @@ void system_configure_serialization_format_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00d48,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00d48,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00d48,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45425dc186a5d575;
   system_context_current_pointer[7] = 0xfab48faa65382fa5;
@@ -12253,10 +12253,10 @@ void system_configure_serialization_format_2(void)
 void system_handle_data_persistence_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -12264,24 +12264,24 @@ void system_handle_data_persistence_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00e28,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00e28,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00e28,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x449bafe9b77ddd3c;
   system_context_current_pointer[7] = 0xc160408bde99e59f;
@@ -12297,10 +12297,10 @@ void system_handle_data_persistence_2(void)
 void system_manage_save_slots_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -12308,24 +12308,24 @@ void system_manage_save_slots_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_plugin_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x406be72011d07d37;
   system_context_current_pointer[7] = 0x71876af946c867ab;
@@ -12341,10 +12341,10 @@ void system_manage_save_slots_2(void)
 void system_process_load_operations_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -12352,24 +12352,24 @@ void system_process_load_operations_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_graphics_system_init_function;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40afa5469b6ac06d;
   system_context_current_pointer[7] = 0x2f4bab01d34055a5;
@@ -12385,10 +12385,10 @@ void system_process_load_operations_2(void)
 void system_initialize_localization_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -12396,24 +12396,24 @@ void system_initialize_localization_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -12429,10 +12429,10 @@ void system_initialize_localization_2(void)
 void system_configure_language_settings_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -12440,24 +12440,24 @@ void system_configure_language_settings_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -12473,34 +12473,34 @@ void system_configure_language_settings_2(void)
 void system_handle_text_translation_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -12516,10 +12516,10 @@ void system_handle_text_translation_2(void)
 void system_manage_locale_data_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -12527,24 +12527,24 @@ void system_manage_locale_data_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -12560,34 +12560,34 @@ void system_manage_locale_data_2(void)
 void system_process_string_resources_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -12603,10 +12603,10 @@ void system_process_string_resources_2(void)
 void system_initialize_mod_support_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -12614,24 +12614,24 @@ void system_initialize_mod_support_2(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -12647,34 +12647,34 @@ void system_initialize_mod_support_2(void)
 void system_configure_plugin_interface_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -12690,34 +12690,34 @@ void system_configure_plugin_interface_2(void)
 void system_handle_mod_loading_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_memory_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x42bea5b911d9c4bf;
   system_context_current_pointer[7] = 0x1aa83fc0020dc1b6;
@@ -12733,34 +12733,34 @@ void system_handle_mod_loading_2(void)
 void system_manage_mod_dependencies_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a2d660,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a2d660,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a2d660,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x46c54bc98fc3fc2a;
   system_context_current_pointer[7] = 0x727b256e3af32585;
@@ -12776,34 +12776,34 @@ void system_manage_mod_dependencies_2(void)
 void system_process_mod_events_2(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a2d590,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a2d590,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a2d590,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x41ffd0b76c1e136f;
   system_context_current_pointer[7] = 0x25db30365f277abb;
@@ -12852,34 +12852,34 @@ int system_handle_resource_allocation_3(void)
 void system_manage_memory_pool_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a2d660,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a2d660,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a2d660,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x46c54bc98fc3fc2a;
   system_context_current_pointer[7] = 0x727b256e3af32585;
@@ -12895,34 +12895,34 @@ void system_manage_memory_pool_3(void)
 void system_configure_thread_scheduler_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a2d590,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a2d590,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a2d590,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x41ffd0b76c1e136f;
   system_context_current_pointer[7] = 0x25db30365f277abb;
@@ -12938,34 +12938,34 @@ void system_configure_thread_scheduler_3(void)
 void system_initialize_subsystem_component_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a2d660,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a2d660,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a2d660,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x46c54bc98fc3fc2a;
   system_context_current_pointer[7] = 0x727b256e3af32585;
@@ -12981,34 +12981,34 @@ void system_initialize_subsystem_component_3(void)
 void system_validate_system_state_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a2d590,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a2d590,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a2d590,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x41ffd0b76c1e136f;
   system_context_current_pointer[7] = 0x25db30365f277abb;
@@ -13054,34 +13054,34 @@ int system_initialize_system_input_system(uint8_t system_context_ptr,uint8_t sys
 void system_handle_module_loading_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a2d660,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a2d660,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a2d660,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x46c54bc98fc3fc2a;
   system_context_current_pointer[7] = 0x727b256e3af32585;
@@ -13097,34 +13097,34 @@ void system_handle_module_loading_3(void)
 void system_manage_resource_cache_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a2d590,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a2d590,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a2d590,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x41ffd0b76c1e136f;
   system_context_current_pointer[7] = 0x25db30365f277abb;
@@ -13140,10 +13140,10 @@ void system_manage_resource_cache_3(void)
 void system_process_event_queue_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -13151,24 +13151,24 @@ void system_process_event_queue_3(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_plugin_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x406be72011d07d37;
   system_context_current_pointer[7] = 0x71876af946c867ab;
@@ -13184,10 +13184,10 @@ void system_process_event_queue_3(void)
 void system_initialize_audio_component_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -13195,24 +13195,24 @@ void system_initialize_audio_component_3(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_graphics_system_init_function;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40afa5469b6ac06d;
   system_context_current_pointer[7] = 0x2f4bab01d34055a5;
@@ -13228,10 +13228,10 @@ void system_initialize_audio_component_3(void)
 void system_configure_network_settings_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -13239,24 +13239,24 @@ void system_configure_network_settings_3(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_a0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_a0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x43330a43fcdb3653;
   system_context_current_pointer[7] = 0xdcfdc333a769ec93;
@@ -13272,10 +13272,10 @@ void system_configure_network_settings_3(void)
 void system_setup_render_pipeline_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -13283,24 +13283,24 @@ void system_setup_render_pipeline_3(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x431d7c8d7c475be2;
   system_context_current_pointer[7] = 0xb97f048d2153e1b0;
@@ -13316,34 +13316,34 @@ void system_setup_render_pipeline_3(void)
 void system_handle_input_processing_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4b2d79e470ee4e2c;
   system_context_current_pointer[7] = 0x9c552acd3ed5548d;
@@ -13359,10 +13359,10 @@ void system_handle_input_processing_3(void)
 void system_initialize_debug_interface_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -13370,24 +13370,24 @@ void system_initialize_debug_interface_3(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_default_function_call;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_data_ptr_var,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_data_ptr_var,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x49086ba08ab981a7;
   system_context_current_pointer[7] = 0xa9191d34ad910696;
@@ -13403,34 +13403,34 @@ void system_initialize_debug_interface_3(void)
 void system_process_performance_metrics_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a01000,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a01000,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a01000,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x402feffe4481676e;
   system_context_current_pointer[7] = 0xd4c2151109de93a0;
@@ -13446,10 +13446,10 @@ void system_process_performance_metrics_3(void)
 void system_manage_security_context_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void* *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -13457,24 +13457,24 @@ void system_manage_security_context_3(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = &system_null_ptr;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fd8,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fd8,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fd8,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4384dcc4b6d3f417;
   system_context_current_pointer[7] = 0x92a15d52fe2679bd;
@@ -13490,34 +13490,34 @@ void system_manage_security_context_3(void)
 void system_initialize_plugin_system_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_data_a00fb0,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_data_a00fb0,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_data_a00fb0,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4140994454d56503;
   system_context_current_pointer[7] = 0x399eced9bb5517ad;
@@ -13533,10 +13533,10 @@ void system_initialize_plugin_system_3(void)
 void system_configure_logging_system_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -13544,24 +13544,24 @@ void system_configure_logging_system_3(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_initialize_main;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&init_config_data,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&init_config_data,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&init_config_data,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4fc124d23d41985f;
   system_context_current_pointer[7] = 0xe2f4a30d6e6ae482;
@@ -13577,34 +13577,34 @@ void system_configure_logging_system_3(void)
 void system_handle_error_processing_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_subsystem_config_data,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4770584fbb1df897;
   system_context_current_pointer[7] = 0x47f249e43f66f2ab;
@@ -13620,34 +13620,34 @@ void system_handle_error_processing_3(void)
 void system_initialize_monitoring_system_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4666df49b97e0f10;
   system_context_current_pointer[7] = 0x4e4b0d63a6ad1d8f;
@@ -13663,34 +13663,34 @@ void system_initialize_monitoring_system_3(void)
 void system_process_data_synchronization_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_memory_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_memory_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x46ecbd4daf41613e;
   system_context_current_pointer[7] = 0xdc42c056bbde8482;
@@ -13706,34 +13706,34 @@ void system_process_data_synchronization_3(void)
 void system_manage_thread_pool_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_thread_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_thread_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c868a42644030f6;
   system_context_current_pointer[7] = 0xc29193aa9d9b35b9;
@@ -13749,34 +13749,34 @@ void system_manage_thread_pool_3(void)
 void system_configure_memory_allocator_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_resource_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_resource_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x40ea3a798283cbbb;
   system_context_current_pointer[7] = 0x7f74eb2c5a7fadae;
@@ -13792,34 +13792,34 @@ void system_configure_memory_allocator_3(void)
 void system_initialize_resource_manager_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_graphics_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_graphics_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x45b8d074df27d12f;
   system_context_current_pointer[7] = 0x8d98f4c06880eda4;
@@ -13835,34 +13835,34 @@ void system_initialize_resource_manager_3(void)
 void system_handle_system_events_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_audio_system_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_audio_system_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x42d293584c8cf3e5;
   system_context_current_pointer[7] = 0x355ffeb2d29e668a;
@@ -13878,10 +13878,10 @@ void system_handle_system_events_3(void)
 void system_process_configuration_updates_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   code *system_initialization_system_stack_function_ptr;
   
   system_global_context = (int64_t *)get_context_manager();
@@ -13889,24 +13889,24 @@ void system_process_configuration_updates_3(void)
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function_ptr = system_initialize_core_components;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_network_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_network_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_network_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x421c3cedd07d816d;
   system_context_current_pointer[7] = 0xbec25de793b7afa6;
@@ -13922,34 +13922,34 @@ void system_process_configuration_updates_3(void)
 void system_manage_component_lifecycle_3(void)
   uint8_t *system_context_base;
   int64_t *system_global_context;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
   system_initialization_system_stack_function = 0;
   system_context_current_pointer = system_context_base;
-  system_buffer_pointer = (uint8_t *)system_context_base[1];
+  system_initialization_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_config_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_initialization_buffer_pointer + 4,&system_config_data_ptr,0x10);
     if (system_memory_comparison_result < 0) {
-      system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
-      system_buffer_pointer = system_context_current_pointer;
+      system_next_context_ptr = (uint8_t *)system_initialization_buffer_pointer[2];
+      system_initialization_buffer_pointer = system_context_current_pointer;
     }
     else {
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
-    system_context_current_pointer = system_buffer_pointer;
-    system_buffer_pointer = system_next_context_ptr;
+    system_context_current_pointer = system_initialization_buffer_pointer;
+    system_initialization_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
   if ((system_context_current_pointer == system_context_base) || (system_memory_comparison_result = memcmp(&system_config_data_ptr,system_context_current_pointer + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
-    context_init_function(system_global_context,&system_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
-    system_context_current_pointer = system_stack_context_result;
+    context_init_function(system_global_context,&system_initialization_stack_context_result,system_context_current_pointer,system_context_offset + 0x20,system_context_offset);
+    system_context_current_pointer = system_initialization_stack_context_result;
   }
   system_context_current_pointer[6] = 0x4c22bb0c326587ce;
   system_context_current_pointer[7] = 0x5e3cf00ce2978287;
@@ -15764,14 +15764,14 @@ system_label:
 void system_handle_audio_mixing_3(void)
   int64_t *system_primary_data_ptr;
   int64_t *system_system_stack_ptr;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   int64_t *system_system_stack_ptr;
   int64_t **pplStackX_20;
   
   system_parameter_value_secondary = 0xfffffffffffffffe;
   system_parameter_value_primary = 0;
   system_system_stack_ptr = system_context_ptr;
-  system_stack_context_result = system_config_array;
+  system_initialization_stack_context_result = system_config_array;
   system_process_context_data();
   system_primary_data_ptr = (int64_t *)system_process_context_data(system_global_data_ptr,200,8,3,system_parameter_value_primary,system_parameter_value_secondary);
   system_system_stack_ptr = system_primary_data_ptr;
@@ -16547,7 +16547,7 @@ int64_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
 
 {
   uint8_t *system_context_ptr_1;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
   uint8_t *system_byte_ptr_i;
@@ -16605,9 +16605,9 @@ int64_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
     *(uint8_t **)(system_context_ptr + 0xe0) = system_byte_ptr_i;
     system_next_context_ptr = (uint8_t *)*system_byte_ptr_i;
     system_context_current_pointer = system_byte_ptr_i;
-    while (system_buffer_pointer = system_next_context_ptr, system_buffer_pointer != (uint8_t *)0x0) {
-      system_context_current_pointer = system_buffer_pointer;
-      system_next_context_ptr = (uint8_t *)*system_buffer_pointer;
+    while (system_initialization_buffer_pointer = system_next_context_ptr, system_initialization_buffer_pointer != (uint8_t *)0x0) {
+      system_context_current_pointer = system_initialization_buffer_pointer;
+      system_next_context_ptr = (uint8_t *)*system_initialization_buffer_pointer;
     }
     *system_context_ptr_1 = system_context_current_pointer;
     system_context_ptr_1 = (uint8_t *)system_byte_ptr_i[1];
@@ -17555,7 +17555,7 @@ uint8_t system_process_context_data(int64_t system_context_ptr,uint32_t* system_
 {
   uint8_t *system_byte_pointer_d;
   uint8_t *system_byte_pointer_e;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   
   system_byte_operation_result = 0xfffffffffffffffe;
   system_parameter_value_primary = system_process_context_data(system_global_data_ptr,system_config_array,3,system_memory_size_array,0xfffffffffffffffe);
@@ -17563,19 +17563,19 @@ uint8_t system_process_context_data(int64_t system_context_ptr,uint32_t* system_
   if (system_operation_result != 0) {
     __Throw_C_system_error_varstd__YAXH_Z(system_operation_result);
   }
-  system_buffer_pointer = *(uint8_t **)(system_context_ptr + 0x10);
-  if (system_buffer_pointer < *(uint8_t **)(system_context_ptr + 0x18)) {
-    *(uint8_t **)(system_context_ptr + 0x10) = system_buffer_pointer + 1;
-    *system_buffer_pointer = system_parameter_value_primary;
+  system_initialization_buffer_pointer = *(uint8_t **)(system_context_ptr + 0x10);
+  if (system_initialization_buffer_pointer < *(uint8_t **)(system_context_ptr + 0x18)) {
+    *(uint8_t **)(system_context_ptr + 0x10) = system_initialization_buffer_pointer + 1;
+    *system_initialization_buffer_pointer = system_parameter_value_primary;
   }
   system_byte_pointer_e = *(uint8_t **)(system_context_ptr + 8);
-  system_context_data_handle = (int64_t)system_buffer_pointer - (int64_t)system_byte_pointer_e >> 3;
+  system_context_data_handle = (int64_t)system_initialization_buffer_pointer - (int64_t)system_byte_pointer_e >> 3;
   if (system_context_data_handle == 0) {
     system_context_data_handle = 1;
 system_label:
     system_byte_pointer_d = (uint8_t *)
              system_process_context_data(system_global_data_ptr,system_context_data_handle * 8,*(uint8_t* *)(system_context_ptr + 0x20),system_memory_size_array,system_byte_operation_result);
-    system_buffer_pointer = *(uint8_t **)(system_context_ptr + 0x10);
+    system_initialization_buffer_pointer = *(uint8_t **)(system_context_ptr + 0x10);
     system_byte_pointer_e = *(uint8_t **)(system_context_ptr + 8);
   }
   else {
@@ -17583,9 +17583,9 @@ system_label:
     if (system_context_data_handle != 0) goto system_label;
     system_byte_pointer_d = (uint8_t *)0x0;
   }
-  if (system_byte_pointer_e != system_buffer_pointer) {
+  if (system_byte_pointer_e != system_initialization_buffer_pointer) {
                     // WARNING: Subroutine does not return
-    memmove(system_byte_pointer_d,system_byte_pointer_e,(int64_t)system_buffer_pointer - (int64_t)system_byte_pointer_e);
+    memmove(system_byte_pointer_d,system_byte_pointer_e,(int64_t)system_initialization_buffer_pointer - (int64_t)system_byte_pointer_e);
   }
   *system_byte_pointer_d = system_parameter_value_primary;
   if (*(int64_t *)(system_context_ptr + 8) != 0) {
@@ -18959,7 +18959,7 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr)
   int64_t *system_alternate_data_ptr;
   int64_t *system_secondary_data_ptr;
   uint32_t* *system_byte_pointer_e;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   int64_t *system_data_pointer;
   uint32_t* *system_next_context_ptr;
   uint32_t* *system_byte_ptr_i;
@@ -19044,11 +19044,11 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr)
   system_context_ptr[0x5b] = 0;
   system_context_ptr[0x59] = 0;
   *(uint32_t* *)(system_context_ptr + 0x5a) = 0;
-  system_buffer_pointer = system_context_ptr + 0x5c;
+  system_initialization_buffer_pointer = system_context_ptr + 0x5c;
   system_context_ptr[0x5f] = 0;
   *(uint32_t* *)(system_context_ptr + 0x61) = 3;
-  *system_buffer_pointer = system_buffer_pointer;
-  system_context_ptr[0x5d] = system_buffer_pointer;
+  *system_initialization_buffer_pointer = system_initialization_buffer_pointer;
+  system_context_ptr[0x5d] = system_initialization_buffer_pointer;
   system_context_ptr[0x5e] = 0;
   *(uint8_t* *)(system_context_ptr + 0x5f) = 0;
   system_context_ptr[0x60] = 0;
@@ -19144,12 +19144,12 @@ system_label:
       *(uint8_t* *)((int64_t)system_context_ptr + 0x22c) = 0;
       *(uint32_t* *)(system_context_ptr + 0x40) = 0;
       system_context_ptr[0x41] = 0;
-      system_buffer_pointer = system_global_data_ptr;
+      system_initialization_buffer_pointer = system_global_data_ptr;
       if (system_global_data_ptr == (uint8_t *)0x0) {
         QueryPerformanceCounter(asystem_ptr_varsystem_system_stack_varx10);
-        system_buffer_pointer = asystem_ptr_varsystem_system_stack_varx10[0];
+        system_initialization_buffer_pointer = asystem_ptr_varsystem_system_stack_varx10[0];
       }
-      system_context_ptr[0x42] = (double)((int64_t)system_buffer_pointer - system_global_data_ptr) * system_global_data_ptr;
+      system_context_ptr[0x42] = (double)((int64_t)system_initialization_buffer_pointer - system_global_data_ptr) * system_global_data_ptr;
       *(uint32_t* *)(system_context_ptr + 0x44) = 0;
       *(uint8_t* *)((int64_t)system_context_ptr + 0x264) = 0;
       *(uint32_t* *)(system_context_ptr + 0x4d) = 0;
@@ -19166,21 +19166,21 @@ system_label:
       *(uint32_t* *)((int64_t)system_context_ptr + 0x3c) = 0xffffffff;
       system_context_ptr[0x43] = 0;
       *(uint32_t* *)(system_context_ptr + 0x26) = 0xffffffff;
-      system_buffer_pointer = (uint8_t *)system_process_context_data(system_global_data_ptr,0x30,8,3);
-      system_buffer_pointer[1] = 0;
-      system_buffer_pointer[2] = 0;
-      system_buffer_pointer[3] = 0;
-      system_buffer_pointer[4] = 0;
-      system_buffer_pointer[5] = 0;
-      *system_buffer_pointer = &system_null_ptr;
-      *system_buffer_pointer = &system_null_ptr;
-      *(uint32_t* *)(system_buffer_pointer + 1) = 0;
-      *system_buffer_pointer = &system_null_ptr;
-      system_buffer_pointer[2] = 0;
-      system_buffer_pointer[3] = 0;
-      system_buffer_pointer[4] = 0;
-      *(uint32_t* *)(system_buffer_pointer + 5) = 3;
-      system_context_ptr[0x78] = system_buffer_pointer;
+      system_initialization_buffer_pointer = (uint8_t *)system_process_context_data(system_global_data_ptr,0x30,8,3);
+      system_initialization_buffer_pointer[1] = 0;
+      system_initialization_buffer_pointer[2] = 0;
+      system_initialization_buffer_pointer[3] = 0;
+      system_initialization_buffer_pointer[4] = 0;
+      system_initialization_buffer_pointer[5] = 0;
+      *system_initialization_buffer_pointer = &system_null_ptr;
+      *system_initialization_buffer_pointer = &system_null_ptr;
+      *(uint32_t* *)(system_initialization_buffer_pointer + 1) = 0;
+      *system_initialization_buffer_pointer = &system_null_ptr;
+      system_initialization_buffer_pointer[2] = 0;
+      system_initialization_buffer_pointer[3] = 0;
+      system_initialization_buffer_pointer[4] = 0;
+      *(uint32_t* *)(system_initialization_buffer_pointer + 5) = 3;
+      system_context_ptr[0x78] = system_initialization_buffer_pointer;
     }
   } while( true );
 }
@@ -19833,7 +19833,7 @@ void system_process_render_commands_4(void)
 
 void system_initialize_input_system_4(void)
   int *system_int_ptr_5;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint32_t* *system_context_current_pointer;
   void* *system_next_context_ptr;
   char system_status_char;
@@ -19921,15 +19921,15 @@ void system_initialize_input_system_4(void)
   system_system_stack_buffer_150[0] = 0;
   system_system_stack_uint_value = 0xd;
   system_strcpy_s(system_system_stack_buffer_150,0x10,&system_null_ptr);
-  system_buffer_pointer = (uint8_t *)system_process_context_data(system_global_data_ptr,0x208,8,3);
+  system_initialization_buffer_pointer = (uint8_t *)system_process_context_data(system_global_data_ptr,0x208,8,3);
   system_system_stack_storage = system_context_data_handle + 0x70;
-  system_system_stack_array_1c8[0] = system_buffer_pointer;
-  system_process_context_data(system_buffer_pointer,&system_system_stack_byte_ptr,3,system_context_data_handle + 0x2e0);
-  *system_buffer_pointer = &system_null_ptr;
-  system_system_stack_array_1c8[0] = system_buffer_pointer;
-  system_process_context_data(system_buffer_pointer);
+  system_system_stack_array_1c8[0] = system_initialization_buffer_pointer;
+  system_process_context_data(system_initialization_buffer_pointer,&system_system_stack_byte_ptr,3,system_context_data_handle + 0x2e0);
+  *system_initialization_buffer_pointer = &system_null_ptr;
+  system_system_stack_array_1c8[0] = system_initialization_buffer_pointer;
+  system_process_context_data(system_initialization_buffer_pointer);
   system_process_context_data(system_context_data_handle + 0x48,system_system_stack_array_1c8);
-  *(uint8_t **)(system_offset_value + 0x18) = system_buffer_pointer;
+  *(uint8_t **)(system_offset_value + 0x18) = system_initialization_buffer_pointer;
   system_system_stack_byte_ptr = &system_null_ptr;
   system_next_context_ptr = &system_data_value_bc73;
   if (*(void* **)(system_context_data_handle + 0x278) != (void* *)0x0) {
@@ -20425,7 +20425,7 @@ void system_initialize_particle_system_4(void)
 
 void system_configure_lighting_system_4(void)
   int64_t *system_primary_data_ptr;
-  uint8_t* *system_buffer_pointer;
+  uint8_t* *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t *system_next_context_ptr;
   int64_t *psystem_temp_long_primary;
@@ -21838,7 +21838,7 @@ void system_process_transform_data_4(void)
   uint8_t *system_byte_system_pointer_c;
   char system_temp_char_result;
   uint8_t *system_byte_pointer_e;
-  uint8_t* *system_buffer_pointer;
+  uint8_t* *system_initialization_buffer_pointer;
   uint32_t* *system_context_current_pointer;
   int system_int_var_9;
   uint8_t *system_context_ptr_12;
@@ -21954,11 +21954,11 @@ system_label:
         system_byte_system_pointer_c = system_system_stack_byte_ptr;
         system_context_data_handle = (int64_t)system_system_stack_byte_ptr - (int64_t)system_system_stack_byte_ptr;
         system_process_context_data(&system_system_stack_byte_ptr);
-        system_buffer_pointer = &system_data_value_bc73;
+        system_initialization_buffer_pointer = &system_data_value_bc73;
         if (system_system_stack_byte_ptr != (uint8_t* *)0x0) {
-          system_buffer_pointer = system_system_stack_byte_ptr;
+          system_initialization_buffer_pointer = system_system_stack_byte_ptr;
         }
-        system_process_context_data(&system_system_stack_byte_ptr,&system_null_ptr,system_buffer_pointer);
+        system_process_context_data(&system_system_stack_byte_ptr,&system_null_ptr,system_initialization_buffer_pointer);
         system_temp_char_result = system_process_context_data(&system_system_stack_byte_ptr);
         if (system_temp_char_result == '\0') {
           system_process_context_data(&system_system_stack_byte_ptr);
@@ -21994,36 +21994,36 @@ system_label:
             *system_byte_pointer_e = 0x782e656e6563732f;
             *(uint32_t* *)(system_byte_pointer_e + 1) = 0x6e656373;
             *(void*2 *)((int64_t)system_byte_pointer_e + 0xc) = 0x65;
-            system_buffer_pointer = &system_data_value_bc73;
+            system_initialization_buffer_pointer = &system_data_value_bc73;
             if (system_system_stack_byte_ptr != (uint8_t* *)0x0) {
-              system_buffer_pointer = system_system_stack_byte_ptr;
+              system_initialization_buffer_pointer = system_system_stack_byte_ptr;
             }
             system_system_stack_uint_value = system_int_var_9;
-            system_context_data_handle = strstr(system_buffer_pointer,&system_null_ptr);
+            system_context_data_handle = strstr(system_initialization_buffer_pointer,&system_null_ptr);
             if (system_context_data_handle == 0) {
-              system_buffer_pointer = &system_data_value_bc73;
+              system_initialization_buffer_pointer = &system_data_value_bc73;
               if (system_system_stack_byte_ptr != (uint8_t* *)0x0) {
-                system_buffer_pointer = system_system_stack_byte_ptr;
+                system_initialization_buffer_pointer = system_system_stack_byte_ptr;
               }
-              system_context_data_handle = strstr(system_buffer_pointer,&system_null_ptr);
+              system_context_data_handle = strstr(system_initialization_buffer_pointer,&system_null_ptr);
               if (system_context_data_handle != 0) goto system_label;
-              system_buffer_pointer = &system_data_value_bc73;
+              system_initialization_buffer_pointer = &system_data_value_bc73;
               if (system_system_stack_byte_ptr != (uint8_t* *)0x0) {
-                system_buffer_pointer = system_system_stack_byte_ptr;
+                system_initialization_buffer_pointer = system_system_stack_byte_ptr;
               }
-              system_context_data_handle = strstr(system_buffer_pointer,&system_null_ptr);
+              system_context_data_handle = strstr(system_initialization_buffer_pointer,&system_null_ptr);
               if (system_context_data_handle != 0) goto system_label;
-              system_buffer_pointer = &system_data_value_bc73;
+              system_initialization_buffer_pointer = &system_data_value_bc73;
               if (system_system_stack_byte_ptr != (uint8_t* *)0x0) {
-                system_buffer_pointer = system_system_stack_byte_ptr;
+                system_initialization_buffer_pointer = system_system_stack_byte_ptr;
               }
-              system_context_data_handle = strstr(system_buffer_pointer,&system_null_ptr);
+              system_context_data_handle = strstr(system_initialization_buffer_pointer,&system_null_ptr);
               if (system_context_data_handle != 0) goto system_label;
-              system_buffer_pointer = &system_data_value_bc73;
+              system_initialization_buffer_pointer = &system_data_value_bc73;
               if (system_system_stack_byte_ptr != (uint8_t* *)0x0) {
-                system_buffer_pointer = system_system_stack_byte_ptr;
+                system_initialization_buffer_pointer = system_system_stack_byte_ptr;
               }
-              system_context_data_handle = strstr(system_buffer_pointer,&system_null_ptr);
+              system_context_data_handle = strstr(system_initialization_buffer_pointer,&system_null_ptr);
               if (system_context_data_handle != 0) goto system_label;
               system_temp_char_result = system_process_context_data(&system_system_stack_byte_ptr);
               if (system_temp_char_result == '\0') {
@@ -22738,7 +22738,7 @@ uint8_t system_process_context_data(uint8_t system_context_ptr,uint64_t system_c
 void system_handle_texture_compression_4(void)
   double system_double_var_b;
   uint32_t* *system_byte_pointer_e;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   void* *system_byte_ptr_i;
   uint8_t* system_system_stack_buffer_c8 [32];
   void* *system_system_stack_context_ptr_b;
@@ -22815,10 +22815,10 @@ void system_handle_texture_compression_4(void)
     if (0 < system_operation_result) break;
     system_temp_unsigned_value_primary = system_system_stack_uint_value + 10;
     system_process_context_data(&system_system_stack_context_ptr_b,system_temp_unsigned_value_primary);
-    system_buffer_pointer = (uint8_t *)(system_system_stack_byte_ptr + system_system_stack_uint_value);
-    *system_buffer_pointer = 0x73646e6f63657320;
-    *(void*2 *)(system_buffer_pointer + 1) = 0x2021;
-    *(uint8_t* *)((int64_t)system_buffer_pointer + 10) = 0;
+    system_initialization_buffer_pointer = (uint8_t *)(system_system_stack_byte_ptr + system_system_stack_uint_value);
+    *system_initialization_buffer_pointer = 0x73646e6f63657320;
+    *(void*2 *)(system_initialization_buffer_pointer + 1) = 0x2021;
+    *(uint8_t* *)((int64_t)system_initialization_buffer_pointer + 10) = 0;
     system_system_stack_uint_value = system_temp_unsigned_value_primary;
     system_process_context_data(&system_system_stack_context_ptr_b,system_parameter_value_secondary + 0x2b);
     system_byte_pointer_e = (uint32_t* *)(system_system_stack_byte_ptr + system_system_stack_uint_value);
@@ -25259,7 +25259,7 @@ void system_process_event_queue_5(void)
   uint8_t *system_byte_system_pointer_c;
   uint8_t *system_byte_pointer_d;
   uint8_t *system_byte_pointer_e;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t* *system_context_ptr_11;
   void* *system_context_ptr_13;
   uint8_t *******system_context_sextuple_ptr_14;
@@ -25536,14 +25536,14 @@ void system_process_event_queue_5(void)
           system_context_data_handle = system_system_stack_storage;
         } while ((uint64_t)(int64_t)system_system_stack_varint_var < system_system_stack_uint_value);
       }
-      for (; system_buffer_pointer = system_system_stack_byte_ptr, system_byte_pointer_e = system_system_stack_byte_ptr, system_context_base != system_system_stack_byte_ptr; system_context_base = system_context_base + 4)
+      for (; system_initialization_buffer_pointer = system_system_stack_byte_ptr, system_byte_pointer_e = system_system_stack_byte_ptr, system_context_base != system_system_stack_byte_ptr; system_context_base = system_context_base + 4)
       {
         system_system_stack_byte_ptr = system_byte_system_pointer_c;
         system_system_stack_byte_ptr = system_byte_pointer_d;
         (**(code **)*system_context_base)(system_context_base,0);
         system_byte_system_pointer_c = system_system_stack_byte_ptr;
         system_byte_pointer_d = system_system_stack_byte_ptr;
-        system_system_stack_byte_ptr = system_buffer_pointer;
+        system_system_stack_byte_ptr = system_initialization_buffer_pointer;
         system_system_stack_byte_ptr = system_byte_pointer_e;
       }
       if (system_system_stack_byte_ptr != (uint8_t *)0x0) {
@@ -29377,7 +29377,7 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr)
 
 {
   uint8_t *system_byte_system_pointer_c;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   
   system_unsigned_result_value = 0;
   system_byte_system_pointer_c = system_context_ptr + 0xb;
@@ -29387,10 +29387,10 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr)
   system_context_ptr[2] = 0;
   system_context_ptr[5] = 0;
   system_temp_storage_value = 0x20;
-  system_buffer_pointer = system_byte_system_pointer_c;
+  system_initialization_buffer_pointer = system_byte_system_pointer_c;
   do {
-    system_generic_function(system_buffer_pointer);
-    system_buffer_pointer = system_buffer_pointer + 2;
+    system_generic_function(system_initialization_buffer_pointer);
+    system_initialization_buffer_pointer = system_initialization_buffer_pointer + 2;
     system_temp_storage_value = system_temp_storage_value + -1;
   } while (system_temp_storage_value != 0);
   *(uint8_t *)((int64_t)system_context_ptr + 0x25c) = 0;
@@ -29831,9 +29831,9 @@ uint8_t * system_process_context_data(int64_t *system_context_ptr,char system_co
   int64_t *system_primary_data_ptr;
   uint8_t *system_context_base;
   uint8_t *system_byte_pointer_e;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   
-  system_buffer_pointer = (uint8_t *)0x0;
+  system_initialization_buffer_pointer = (uint8_t *)0x0;
   system_context_base = (uint8_t *)*system_context_ptr;
   do {
     if (system_context_base == (uint8_t *)0x0) {
@@ -29896,7 +29896,7 @@ uint8_t * system_process_context_data(int64_t *system_context_ptr,char system_co
         }
         system_process_context_data(system_context_base,0);
       }
-      system_byte_pointer_e = system_buffer_pointer;
+      system_byte_pointer_e = system_initialization_buffer_pointer;
       if (system_context_base != (uint8_t *)0x0) {
         LOCK();
         *(int *)(system_context_ptr + 1) = (int)system_context_ptr[1] + 1;
@@ -29905,7 +29905,7 @@ uint8_t * system_process_context_data(int64_t *system_context_ptr,char system_co
         do {
           system_byte_pointer_e = (uint8_t *)(system_context_data_handle + 8);
           if (system_context_data_handle == 0) {
-            system_byte_pointer_e = system_buffer_pointer;
+            system_byte_pointer_e = system_initialization_buffer_pointer;
           }
           system_context_base[1] = system_byte_pointer_e;
           LOCK();
@@ -29937,7 +29937,7 @@ uint8_t * system_process_context_data(int64_t *system_context_ptr,char system_co
     system_primary_data_ptr = system_context_base + 1;
     system_context_base = (uint8_t *)(*system_primary_data_ptr + -8);
     if (*system_primary_data_ptr == 0) {
-      system_context_base = system_buffer_pointer;
+      system_context_base = system_initialization_buffer_pointer;
     }
   } while( true );
 }
@@ -30115,7 +30115,7 @@ uint8_t * system_process_context_data(int64_t system_context_ptr)
   int64_t *system_primary_data_ptr;
   uint8_t *system_byte_pointer_d;
   uint8_t *system_byte_pointer_e;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_ptr_10;
   uint8_t *system_context_ptr_11;
   
@@ -30139,20 +30139,20 @@ uint8_t * system_process_context_data(int64_t system_context_ptr)
     if (system_primary_data_ptr != (int64_t *)0x0) {
       system_parameter_value_primary = system_primary_data_ptr[1];
       system_byte_operation_result = system_parameter_value_primary;
-      system_buffer_pointer = system_context_ptr_10;
+      system_initialization_buffer_pointer = system_context_ptr_10;
       do {
         system_byte_operation_result = *system_primary_data_ptr - 1U & system_byte_operation_result + 1;
-        *system_buffer_pointer = *(uint8_t *)(system_primary_data_ptr[3] + system_byte_operation_result * 8);
-        system_buffer_pointer = system_buffer_pointer + 1;
+        *system_initialization_buffer_pointer = *(uint8_t *)(system_primary_data_ptr[3] + system_byte_operation_result * 8);
+        system_initialization_buffer_pointer = system_initialization_buffer_pointer + 1;
       } while (system_byte_operation_result != system_parameter_value_primary);
     }
     if (system_context_data_handle != 0) {
-      system_buffer_pointer = system_context_ptr_10 + system_context_data_handle;
+      system_initialization_buffer_pointer = system_context_ptr_10 + system_context_data_handle;
       system_byte_pointer_e = system_context_ptr_11;
       do {
         *system_byte_pointer_e = 1;
-        *system_buffer_pointer = system_byte_pointer_e;
-        system_buffer_pointer = system_buffer_pointer + 1;
+        *system_initialization_buffer_pointer = system_byte_pointer_e;
+        system_initialization_buffer_pointer = system_initialization_buffer_pointer + 1;
         system_byte_pointer_e = system_byte_pointer_e + 2;
         system_context_data_handle = system_context_data_handle + -1;
       } while (system_context_data_handle != 0);
@@ -30179,11 +30179,11 @@ uint8_t system_process_context_data(void)
   int64_t *system_register_rdi;
   uint8_t *system_cpu_register_r9;
   uint8_t *system_byte_pointer_e;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   
-  system_buffer_pointer = (uint8_t *)((uint64_t)(-(int)in_RAX & 7) + in_RAX);
+  system_initialization_buffer_pointer = (uint8_t *)((uint64_t)(-(int)in_RAX & 7) + in_RAX);
   system_byte_pointer_e = (uint8_t *)
-           ((uint64_t)(-(int)(system_buffer_pointer + unaff_RBX * 2) & 7) + (int64_t)(system_buffer_pointer + unaff_RBX * 2));
+           ((uint64_t)(-(int)(system_initialization_buffer_pointer + unaff_RBX * 2) & 7) + (int64_t)(system_initialization_buffer_pointer + unaff_RBX * 2));
   if (system_register_rdi != (int64_t *)0x0) {
     system_temp_unsigned_value_primary = system_register_rdi[1];
     system_unsigned_counter_value = system_temp_unsigned_value_primary;
@@ -30196,7 +30196,7 @@ uint8_t system_process_context_data(void)
   }
   if (unaff_RBX != 0) {
     system_byte_system_pointer_c = system_byte_pointer_e + unaff_RBP;
-    system_context_base = system_buffer_pointer;
+    system_context_base = system_initialization_buffer_pointer;
     do {
       *system_context_base = 1;
       *system_byte_system_pointer_c = system_context_base;
@@ -30206,7 +30206,7 @@ uint8_t system_process_context_data(void)
     } while (unaff_RBX != 0);
   }
   system_cpu_register_r9[4] = system_register_rdi;
-  system_cpu_register_r9[2] = system_buffer_pointer;
+  system_cpu_register_r9[2] = system_initialization_buffer_pointer;
   system_cpu_register_r9[3] = system_byte_pointer_e;
   *system_cpu_register_r9 = *(uint8_t *)(unaff_RSI + 0x58);
   system_cpu_register_r9[1] = *(int64_t *)(unaff_RSI + 0x58) - 1U & unaff_RBP - 1U;
@@ -31234,7 +31234,7 @@ bool system_initialize_resource_pipeline_5(void)
 uint64_t system_configure_asset_loading_5(void)
   uint64_t *system_byte_pointer_d;
   uint64_t *system_byte_pointer_e;
-  uint64_t *system_buffer_pointer;
+  uint64_t *system_initialization_buffer_pointer;
   uint64_t *system_next_context_ptr;
   
   system_context_data_handle = *system_context_ptr;
@@ -31259,12 +31259,12 @@ uint64_t system_configure_asset_loading_5(void)
         if (system_byte_pointer_d == (uint64_t *)0x0) {
           system_byte_pointer_d = (uint64_t *)&system_data_null_ptr;
         }
-        system_buffer_pointer = (uint64_t *)(*system_byte_pointer_d - 8);
+        system_initialization_buffer_pointer = (uint64_t *)(*system_byte_pointer_d - 8);
         if (*system_byte_pointer_d == 0) {
-          system_buffer_pointer = system_next_context_ptr;
+          system_initialization_buffer_pointer = system_next_context_ptr;
         }
-        system_byte_pointer_d = system_buffer_pointer + 1;
-        if (system_buffer_pointer == (uint64_t *)0x0) {
+        system_byte_pointer_d = system_initialization_buffer_pointer + 1;
+        if (system_initialization_buffer_pointer == (uint64_t *)0x0) {
           system_byte_pointer_d = system_next_context_ptr;
         }
         *(uint64_t **)(system_config_array + 6) = system_byte_pointer_d;
@@ -32795,7 +32795,7 @@ void system_manage_locale_data_5(void)
 uint64_t system_process_string_resources_5(void)
   void* *system_byte_system_pointer_c;
   uint8_t *system_byte_pointer_d;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   void* *system_system_stack_byte_ptr;
   uint8_t *system_system_stack_context_ptr_b;
@@ -32810,11 +32810,11 @@ uint64_t system_process_string_resources_5(void)
   system_system_stack_uint_value = 3;
   system_initialization_status = system_process_context_data(&system_system_stack_context_ptr_b);
   system_context_current_pointer = system_system_stack_byte_ptr;
-  system_buffer_pointer = system_system_stack_context_ptr_b;
+  system_initialization_buffer_pointer = system_system_stack_context_ptr_b;
   if ((system_initialization_status == '\0') || (system_system_stack_context_ptr_b == system_system_stack_byte_ptr)) {
     system_process_context_data(system_global_data_ptr,5,3,&system_null_ptr);
     system_parameter_value_primary = system_process_context_data();
-    system_byte_pointer_d = system_buffer_pointer;
+    system_byte_pointer_d = system_initialization_buffer_pointer;
   }
   else {
     system_system_stack_uint_value = 0;
@@ -32825,13 +32825,13 @@ uint64_t system_process_string_resources_5(void)
       system_byte_system_pointer_c = system_system_stack_byte_ptr;
     }
     system_process_context_data(&system_system_stack_uint_value,system_byte_system_pointer_c,&system_null_ptr);
-    system_parameter_value_primary = (int64_t)system_context_current_pointer - (int64_t)system_buffer_pointer >> 5;
+    system_parameter_value_primary = (int64_t)system_context_current_pointer - (int64_t)system_initialization_buffer_pointer >> 5;
     system_system_stack_byte_ptr = &system_null_ptr;
     system_system_stack_uint_value = 0;
     system_system_stack_storage = 0;
     system_system_stack_varint_var = 0;
     if ((int)system_parameter_value_primary != 0) {
-      system_byte_pointer_d = system_buffer_pointer + 1;
+      system_byte_pointer_d = system_initialization_buffer_pointer + 1;
       system_parameter_value_primary = system_parameter_value_primary & 0xffffffff;
       do {
         system_byte_system_pointer_c = &system_data_value_bc73;
@@ -32852,7 +32852,7 @@ uint64_t system_process_string_resources_5(void)
       system_parameter_value_primary = (uint64_t)system_global_data_ptr;
       UNLOCK();
       system_context_offset = 0;
-      system_buffer_pointer = system_system_stack_context_ptr_b;
+      system_initialization_buffer_pointer = system_system_stack_context_ptr_b;
       system_context_current_pointer = system_system_stack_byte_ptr;
       system_global_data_ptr = system_global_data_ptr - 1;
     }
@@ -32872,20 +32872,20 @@ uint64_t system_process_string_resources_5(void)
     system_system_stack_byte_ptr = (void* *)0x0;
     system_system_stack_uint_value = 0;
     system_system_stack_byte_ptr = &system_null_ptr;
-    system_byte_pointer_d = system_buffer_pointer;
+    system_byte_pointer_d = system_initialization_buffer_pointer;
     if (system_context_offset != 0) {
       system_parameter_value_primary = fclose(system_context_offset);
       system_system_stack_storage = 0;
       LOCK();
       system_global_data_ptr = system_global_data_ptr - 1;
       UNLOCK();
-      system_buffer_pointer = system_system_stack_context_ptr_b;
+      system_initialization_buffer_pointer = system_system_stack_context_ptr_b;
       system_context_current_pointer = system_system_stack_byte_ptr;
       system_byte_pointer_d = system_system_stack_context_ptr_b;
     }
   }
-  for (; system_buffer_pointer != system_context_current_pointer; system_buffer_pointer = system_buffer_pointer + 4) {
-    system_parameter_value_primary = (**(code **)*system_buffer_pointer)(system_buffer_pointer,0);
+  for (; system_initialization_buffer_pointer != system_context_current_pointer; system_initialization_buffer_pointer = system_initialization_buffer_pointer + 4) {
+    system_parameter_value_primary = (**(code **)*system_initialization_buffer_pointer)(system_initialization_buffer_pointer,0);
   }
   if (system_byte_pointer_d != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -32902,7 +32902,7 @@ void system_initialize_mod_support_5(void)
   uint8_t *system_byte_system_pointer_c;
   uint8_t *system_byte_pointer_d;
   uint8_t* *system_byte_pointer_e;
-  void* *system_buffer_pointer;
+  void* *system_initialization_buffer_pointer;
   uint *system_context_current_pointer;
   uint8_t *system_context_ptr_14;
   uint8_t* system_system_stack_data_array [32];
@@ -32918,9 +32918,9 @@ void system_initialize_mod_support_5(void)
   system_system_stack_uint_value = system_global_data_ptr ^ (uint64_t)system_system_stack_data_array;
   system_system_stack_uint_value = 0;
   system_process_context_data();
-  system_buffer_pointer = &system_data_value_bc73;
+  system_initialization_buffer_pointer = &system_data_value_bc73;
   if (*(void* **)(system_config_array + 8) != (void* *)0x0) {
-    system_buffer_pointer = *(void* **)(system_config_array + 8);
+    system_initialization_buffer_pointer = *(void* **)(system_config_array + 8);
   }
   system_system_stack_byte_ptr = (uint8_t *)0x0;
   system_system_stack_uint_value = 0xf;
@@ -32929,19 +32929,19 @@ void system_initialize_mod_support_5(void)
   system_context_data_handle = -1;
   do {
     system_context_data_handle = system_context_data_handle + 1;
-  } while (system_buffer_pointer[system_context_data_handle] != '\0');
+  } while (system_initialization_buffer_pointer[system_context_data_handle] != '\0');
   system_process_context_data(&system_system_stack_uint_value);
-  system_buffer_pointer = &system_data_value_bc73;
+  system_initialization_buffer_pointer = &system_data_value_bc73;
   if (*(void* **)(system_thread_count + 8) != (void* *)0x0) {
-    system_buffer_pointer = *(void* **)(system_thread_count + 8);
+    system_initialization_buffer_pointer = *(void* **)(system_thread_count + 8);
   }
   system_system_stack_storage = 0;
   system_system_stack_uint_value = 0xf;
   system_system_stack_uint_value = 0;
   do {
     system_context_data_handle = system_context_data_handle + 1;
-  } while (system_buffer_pointer[system_context_data_handle] != '\0');
-  system_process_context_data(&system_system_stack_uint_value,system_buffer_pointer,system_context_data_handle);
+  } while (system_initialization_buffer_pointer[system_context_data_handle] != '\0');
+  system_process_context_data(&system_system_stack_uint_value,system_initialization_buffer_pointer,system_context_data_handle);
   system_context_data_handle = system_system_stack_storage;
   system_temp_unsigned_value_primary = system_system_stack_uint_value;
   system_system_stack_uint_value = 0;
@@ -33158,7 +33158,7 @@ void system_configure_plugin_interface_5(void)
   byte *system_byte_system_pointer_a;
   uint8_t *system_byte_pointer_d;
   uint8_t *system_byte_pointer_e;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   byte *system_byte_ptr_;
   void* *system_context_ptr_16;
   uint8_t *system_context_ptr_17;
@@ -33516,14 +33516,14 @@ system_label:
       system_context_ptr_18 = system_system_stack_byte_ptr;
       system_context_ptr_17 = system_system_stack_byte_ptr;
     }
-    for (; system_buffer_pointer = system_system_stack_byte_ptr, system_byte_pointer_e = system_system_stack_byte_ptr, system_context_ptr_19 != system_system_stack_byte_ptr; system_context_ptr_19 = system_context_ptr_19 + 4
+    for (; system_initialization_buffer_pointer = system_system_stack_byte_ptr, system_byte_pointer_e = system_system_stack_byte_ptr, system_context_ptr_19 != system_system_stack_byte_ptr; system_context_ptr_19 = system_context_ptr_19 + 4
         ) {
       system_system_stack_byte_ptr = system_context_ptr_18;
       system_system_stack_byte_ptr = system_context_ptr_17;
       (**(code **)*system_context_ptr_19)(system_context_ptr_19,0);
       system_context_ptr_18 = system_system_stack_byte_ptr;
       system_context_ptr_17 = system_system_stack_byte_ptr;
-      system_system_stack_byte_ptr = system_buffer_pointer;
+      system_system_stack_byte_ptr = system_initialization_buffer_pointer;
       system_system_stack_byte_ptr = system_byte_pointer_e;
     }
     if (system_system_stack_byte_ptr != (uint8_t *)0x0) {
@@ -34561,7 +34561,7 @@ void system_initialize_plugin_system_6(void)
   int64_t *system_alternate_data_ptr;
   uint8_t *system_context_current_pointer;
   int64_t *system_data_pointer;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   void*2 system_system_stack_uint_value;
   uint8_t* system_system_stack_data_array [64];
   
@@ -34606,9 +34606,9 @@ void system_initialize_plugin_system_6(void)
   if (system_int_var_9 != 0) {
     __Throw_C_system_error_varstd__YAXH_Z(system_int_var_9);
   }
-  system_stack_context_result = *(uint8_t **)(system_context_ptr[1] + 0x1b0);
+  system_initialization_stack_context_result = *(uint8_t **)(system_context_ptr[1] + 0x1b0);
   system_context_data_handle = *system_context_ptr;
-  system_process_context_data(system_context_data_handle + 0x10,&system_stack_context_result);
+  system_process_context_data(system_context_data_handle + 0x10,&system_initialization_stack_context_result);
   system_int_var_9 = _Cnd_signal(system_context_data_handle + 0x278);
   if (system_int_var_9 != 0) {
     __Throw_C_system_error_varstd__YAXH_Z(system_int_var_9);
@@ -34647,7 +34647,7 @@ void system_initialize_plugin_system_6(void)
   system_context_data_handle = system_offset_value + 0x200380;
   system_system_stack_uint_value = 0x180068808;
   system_system_stack_varlong_var_x = system_context_data_handle;
-  system_stack_context_result = system_context_current_pointer;
+  system_initialization_stack_context_result = system_context_current_pointer;
   system_int_var_9 = _Mtx_lock(system_context_data_handle);
   if (system_int_var_9 != 0) {
     system_system_stack_uint_value = 0x180068815;
@@ -34797,7 +34797,7 @@ void system_process_data_synchronization_6(void)
 uint8_t system_process_context_data(int64_t system_context_ptr,int64_t system_config_array,int64_t system_thread_count)
 
 {
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   
   system_temp_byte_primary = *(uint64_t *)(system_thread_count + 0x118) & 0xfffffffffffff000;
   system_unsigned_result_value = (*(int64_t *)(system_thread_count + 0x120) - system_temp_byte_primary) + *(uint64_t *)(system_thread_count + 0x118);
@@ -34806,8 +34806,8 @@ uint8_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
   if (system_memory_comparison_result != 0) {
     __Throw_C_system_error_varstd__YAXH_Z(system_memory_comparison_result);
   }
-  system_buffer_pointer = *(uint8_t **)(system_context_ptr + 0x200378);
-  if (system_buffer_pointer == (uint8_t *)0x0) {
+  system_initialization_buffer_pointer = *(uint8_t **)(system_context_ptr + 0x200378);
+  if (system_initialization_buffer_pointer == (uint8_t *)0x0) {
     system_temp_unsigned_value_primary = *(uint64_t *)(system_context_ptr + 0x200370);
     if (0xfff < system_temp_unsigned_value_primary) {
       system_memory_comparison_result = _Mtx_unlock(system_context_ptr + 0x200380);
@@ -34849,15 +34849,15 @@ uint8_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
         system_unsigned_counter_value = 1;
       }
     }
-    system_buffer_pointer = (uint8_t *)(system_temp_unsigned_value_primary * 0x200 + system_context_ptr + 0x370);
+    system_initialization_buffer_pointer = (uint8_t *)(system_temp_unsigned_value_primary * 0x200 + system_context_ptr + 0x370);
     *(uint64_t *)(system_context_ptr + 0x200370) = system_temp_unsigned_value_primary + 1;
   }
   else {
-    *(uint8_t *)(system_context_ptr + 0x200378) = *system_buffer_pointer;
-    *system_buffer_pointer = 0;
+    *(uint8_t *)(system_context_ptr + 0x200378) = *system_initialization_buffer_pointer;
+    *system_initialization_buffer_pointer = 0;
   }
                     // WARNING: Subroutine does not return
-  memset(system_buffer_pointer,0,0x200);
+  memset(system_initialization_buffer_pointer,0,0x200);
 }
 
 
@@ -35849,7 +35849,7 @@ system_label:
 
 uint64_t system_configure_display_settings_6(void)
   int64_t *system_alternate_data_ptr;
-  uint64_t *system_buffer_pointer;
+  uint64_t *system_initialization_buffer_pointer;
   
   system_offset_value = system_process_context_data();
   if (system_offset_value == 0) {
@@ -35861,9 +35861,9 @@ uint64_t system_configure_display_settings_6(void)
     if ((0x8000000000000000 < system_unsigned_result_value) &&
        (system_alternate_data_ptr = *(int64_t **)(system_offset_value + 0x60), system_alternate_data_ptr != (int64_t *)0x0)) {
       system_unsigned_result_value = *system_alternate_data_ptr - 1U & system_alternate_data_ptr[1] + 1U;
-      system_buffer_pointer = *(uint64_t **)(system_alternate_data_ptr[3] + system_unsigned_result_value * 8);
-      if ((*system_buffer_pointer == 1) || (system_buffer_pointer[1] == 0)) {
-        *system_buffer_pointer = system_temp_unsigned_value_primary;
+      system_initialization_buffer_pointer = *(uint64_t **)(system_alternate_data_ptr[3] + system_unsigned_result_value * 8);
+      if ((*system_initialization_buffer_pointer == 1) || (system_initialization_buffer_pointer[1] == 0)) {
+        *system_initialization_buffer_pointer = system_temp_unsigned_value_primary;
         system_alternate_data_ptr[1] = system_unsigned_result_value;
       }
       else {
@@ -35871,20 +35871,20 @@ uint64_t system_configure_display_settings_6(void)
         if ((char)system_unsigned_result_value == '\0') goto system_label;
         system_alternate_data_ptr = *(int64_t **)(system_offset_value + 0x60);
         system_unsigned_result_value = *system_alternate_data_ptr - 1U & system_alternate_data_ptr[1] + 1U;
-        system_buffer_pointer = *(uint64_t **)(system_alternate_data_ptr[3] + system_unsigned_result_value * 8);
-        *system_buffer_pointer = system_temp_unsigned_value_primary;
+        system_initialization_buffer_pointer = *(uint64_t **)(system_alternate_data_ptr[3] + system_unsigned_result_value * 8);
+        *system_initialization_buffer_pointer = system_temp_unsigned_value_primary;
         system_alternate_data_ptr[1] = system_unsigned_result_value;
       }
       system_unsigned_result_value = system_process_context_data(*(uint8_t *)(system_offset_value + 0x50));
       if (system_unsigned_result_value != 0) {
         *(uint8_t *)(system_unsigned_result_value + 0x108) = 0;
-        system_buffer_pointer[1] = system_unsigned_result_value;
+        system_initialization_buffer_pointer[1] = system_unsigned_result_value;
         *(uint64_t *)(system_offset_value + 0x40) = system_unsigned_result_value;
       }
       system_alternate_data_ptr = *(int64_t **)(system_offset_value + 0x60);
       system_unsigned_result_value = system_alternate_data_ptr[1] - 1;
       system_alternate_data_ptr[1] = *system_alternate_data_ptr - 1U & system_unsigned_result_value;
-      system_buffer_pointer[1] = 0;
+      system_initialization_buffer_pointer[1] = 0;
     }
 system_label:
     system_unsigned_result_value = system_unsigned_result_value & 0xffffffffffffff00;
@@ -36637,7 +36637,7 @@ void system_process_game_logic_6(void)
   int *system_context_int_pointer;
   byte *system_byte_system_pointer_c;
   uint8_t *system_byte_pointer_e;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   bool system_system_temp_byte_7;
   int64_t *psystem_long_var_11;
   byte *system_byte_ptr_;
@@ -36950,15 +36950,15 @@ system_label:
                 system_context_data_handle = *psystem_long_value_23;
               }
               system_byte_pointer_e = (uint8_t *)*system_extended_data_ptr;
-              system_buffer_pointer = (uint8_t *)system_byte_pointer_e[0x24];
+              system_initialization_buffer_pointer = (uint8_t *)system_byte_pointer_e[0x24];
               if (system_byte_pointer_e == system_pointer_variable_20) {
-                *system_extended_data_ptr = (int64_t)system_buffer_pointer;
+                *system_extended_data_ptr = (int64_t)system_initialization_buffer_pointer;
               }
               else {
-                for (; system_buffer_pointer != system_pointer_variable_20; system_buffer_pointer = (uint8_t *)system_buffer_pointer[0x24]) {
-                  system_byte_pointer_e = system_buffer_pointer;
+                for (; system_initialization_buffer_pointer != system_pointer_variable_20; system_initialization_buffer_pointer = (uint8_t *)system_initialization_buffer_pointer[0x24]) {
+                  system_byte_pointer_e = system_initialization_buffer_pointer;
                 }
-                system_byte_pointer_e[0x24] = system_buffer_pointer[0x24];
+                system_byte_pointer_e[0x24] = system_initialization_buffer_pointer[0x24];
               }
               *system_pointer_variable_20 = &system_null_ptr;
               psystem_system_stack_ptr_248 = (void* **)system_pointer_variable_20;
@@ -38572,7 +38572,7 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint8_t system
 
 {
   uint8_t *system_byte_pointer_e;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   
   system_process_context_data();
   *system_context_ptr = &system_null_ptr;
@@ -38580,10 +38580,10 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint8_t system
   *(uint32_t* *)(system_context_ptr + 0x1a) = 0;
   system_context_ptr[0x1b] = 0;
   system_context_ptr[0x1e] = 0;
-  system_buffer_pointer = system_context_ptr + 0x24;
+  system_initialization_buffer_pointer = system_context_ptr + 0x24;
   system_temp_storage_value = 0x20;
   system_offset_value = 0x20;
-  system_byte_pointer_e = system_buffer_pointer;
+  system_byte_pointer_e = system_initialization_buffer_pointer;
   do {
     system_generic_function(system_byte_pointer_e);
     system_byte_pointer_e = system_byte_pointer_e + 2;
@@ -38594,10 +38594,10 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint8_t system
   *(uint32_t* *)(system_context_ptr + 100) = 0;
   system_context_ptr[0x20] = 0;
   system_context_ptr[0x21] = 0x20;
-  system_context_ptr[0x22] = system_buffer_pointer;
+  system_context_ptr[0x22] = system_initialization_buffer_pointer;
   do {
-    *(uint32_t* *)system_buffer_pointer = 0;
-    system_buffer_pointer = system_buffer_pointer + 2;
+    *(uint32_t* *)system_initialization_buffer_pointer = 0;
+    system_initialization_buffer_pointer = system_initialization_buffer_pointer + 2;
     system_temp_storage_value = system_temp_storage_value + -1;
   } while (system_temp_storage_value != 0);
   system_context_ptr[0x23] = 0;
@@ -39354,7 +39354,7 @@ uint64_t system_handle_audio_mixing_6(void)
 
 uint64_t system_manage_sound_resources_6(void)
   code *system_function_ptr;
-  uint8_t* *system_buffer_pointer;
+  uint8_t* *system_initialization_buffer_pointer;
   void* **psystem_ptr_var_8;
   uint8_t *system_byte_ptr_i;
   void* *system_context_ptr_10;
@@ -39370,11 +39370,11 @@ uint64_t system_manage_sound_resources_6(void)
   system_context_data_handle = system_global_data_ptr;
   system_system_stack_uint_value = 0xfffffffffffffffe;
   bStack_d8 = 0;
-  system_buffer_pointer = (uint8_t* *)register0x00000020;
+  system_initialization_buffer_pointer = (uint8_t* *)register0x00000020;
   if (((system_data_c82860 == '\0') ||
-      (system_buffer_pointer = (uint8_t* *)system_process_context_data(system_config_array), (char)system_buffer_pointer != '\0')) ||
-     (system_buffer_pointer = (uint8_t* *)WaitForSingleObject(_system_c9_system_data_,0), (int)system_buffer_pointer != 0)) {
-    return (uint64_t)system_buffer_pointer & 0xffffffffffffff00;
+      (system_initialization_buffer_pointer = (uint8_t* *)system_process_context_data(system_config_array), (char)system_initialization_buffer_pointer != '\0')) ||
+     (system_initialization_buffer_pointer = (uint8_t* *)WaitForSingleObject(_system_c9_system_data_,0), (int)system_initialization_buffer_pointer != 0)) {
+    return (uint64_t)system_initialization_buffer_pointer & 0xffffffffffffff00;
   }
   if (system_context_data_handle != 0) {
     system_process_context_data(system_context_data_handle);
@@ -39606,7 +39606,7 @@ system_label:
 
 
 void system_process_audio_effects_6(void)
-  void* *system_buffer_pointer;
+  void* *system_initialization_buffer_pointer;
   void* *system_next_context_ptr;
   void* *system_system_stack_byte_ptr;
   void* *system_system_stack_byte_ptr;
@@ -39651,16 +39651,16 @@ void system_process_audio_effects_6(void)
   system_system_stack_uint_value = 0;
   system_process_context_data(&system_system_stack_byte_ptr,&system_memory_system_ptr_vara,system_config_array);
   system_process_context_data(system_global_data_ptr,5,0xffffffff00000000,&system_memory_system_ptr_varb);
-  system_buffer_pointer = &system_data_value_bc73;
+  system_initialization_buffer_pointer = &system_data_value_bc73;
   if (system_system_stack_byte_ptr != (void* *)0x0) {
-    system_buffer_pointer = system_system_stack_byte_ptr;
+    system_initialization_buffer_pointer = system_system_stack_byte_ptr;
   }
-  system_process_context_data(system_global_data_ptr,5,0xffffffff00000000,&system_memory_system_ptr_varc,system_buffer_pointer);
-  system_buffer_pointer = &system_data_value_bc73;
+  system_process_context_data(system_global_data_ptr,5,0xffffffff00000000,&system_memory_system_ptr_varc,system_initialization_buffer_pointer);
+  system_initialization_buffer_pointer = &system_data_value_bc73;
   if (system_next_context_ptr != (void* *)0x0) {
-    system_buffer_pointer = system_next_context_ptr;
+    system_initialization_buffer_pointer = system_next_context_ptr;
   }
-  system_process_context_data(system_global_data_ptr,5,0xffffffff00000000,3,system_buffer_pointer);
+  system_process_context_data(system_global_data_ptr,5,0xffffffff00000000,3,system_initialization_buffer_pointer);
   system_process_context_data();
   system_next_context_ptr = &system_data_value_bc73;
   if (system_system_stack_byte_ptr != (void* *)0x0) {
@@ -40270,7 +40270,7 @@ system_label:
 
 void system_configure_protocol_handlers_6(void)
   void* *system_byte_pointer_e;
-  uint32_t* *system_buffer_pointer;
+  uint32_t* *system_initialization_buffer_pointer;
   uint8_t *system_context_current_pointer;
   uint8_t* *system_next_context_ptr;
   void* *system_byte_ptr_i;
@@ -40316,12 +40316,12 @@ void system_configure_protocol_handlers_6(void)
   *system_system_stack_byte_ptr = 0;
   system_parameter_value_primary = system_process_context_data(system_system_stack_byte_ptr);
   system_system_stack_uint_value = CONCAT44(system_system_stack_uint_value._4_4_,system_parameter_value_primary);
-  system_buffer_pointer = (uint32_t* *)(system_system_stack_byte_ptr + system_system_stack_uint_value);
-  *system_buffer_pointer = 0x65737341;
-  system_buffer_pointer[1] = 0x6f697472;
-  system_buffer_pointer[2] = 0x6146206e;
-  system_buffer_pointer[3] = 0x64656c69;
-  *(void*2 *)(system_buffer_pointer + 4) = 0x21;
+  system_initialization_buffer_pointer = (uint32_t* *)(system_system_stack_byte_ptr + system_system_stack_uint_value);
+  *system_initialization_buffer_pointer = 0x65737341;
+  system_initialization_buffer_pointer[1] = 0x6f697472;
+  system_initialization_buffer_pointer[2] = 0x6146206e;
+  system_initialization_buffer_pointer[3] = 0x64656c69;
+  *(void*2 *)(system_initialization_buffer_pointer + 4) = 0x21;
   system_system_stack_uint_value = 0x11;
   if (system_system_stack_byte_ptr == (uint8_t* *)0x0) {
     system_system_stack_uint_value = 0x11;
@@ -41089,7 +41089,7 @@ void system_manage_connection_pool_6(void)
 
 bool system_process_network_events_6(void)
   uint8_t *system_byte_pointer_e;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   uint8_t **psystem_ptr_var_7;
   uint8_t* *system_next_context_ptr;
   void*2 *system_context_ptr_10;
@@ -41137,17 +41137,17 @@ bool system_process_network_events_6(void)
   system_process_context_data(system_global_data_ptr,&system_system_stack_byte_ptr);
   if (system_system_stack_byte_ptr != system_system_stack_byte_ptr) {
     system_process_context_data(&system_system_stack_byte_ptr,&system_internal_status_flag_ptr_2fe62c,&system_memory_system_ptr_varp);
-    system_buffer_pointer = system_byte_pointer_e;
+    system_initialization_buffer_pointer = system_byte_pointer_e;
     system_context_ptr_12 = system_byte_pointer_e;
     if ((int64_t)system_system_stack_byte_ptr - (int64_t)system_system_stack_byte_ptr >> 5 != 0) {
       do {
         system_context_ptr_13 = &system_data_value_bc73;
-        if (*(void* **)((int64_t)(system_buffer_pointer + 1) + (int64_t)system_system_stack_byte_ptr) != (void* *)0x0) {
-          system_context_ptr_13 = *(void* **)((int64_t)(system_buffer_pointer + 1) + (int64_t)system_system_stack_byte_ptr);
+        if (*(void* **)((int64_t)(system_initialization_buffer_pointer + 1) + (int64_t)system_system_stack_byte_ptr) != (void* *)0x0) {
+          system_context_ptr_13 = *(void* **)((int64_t)(system_initialization_buffer_pointer + 1) + (int64_t)system_system_stack_byte_ptr);
         }
         system_process_context_data(&system_system_stack_byte_ptr,&system_internal_status_flag_ptr_2fe62c,system_context_ptr_13);
         system_temp_unsigned_value = (int)system_context_ptr_12 + 1;
-        system_buffer_pointer = system_buffer_pointer + 4;
+        system_initialization_buffer_pointer = system_initialization_buffer_pointer + 4;
         system_context_ptr_12 = (uint8_t *)(uint64_t)system_temp_unsigned_value;
       } while ((uint64_t)(int64_t)(int)system_temp_unsigned_value <
                (uint64_t)((int64_t)system_system_stack_byte_ptr - (int64_t)system_system_stack_byte_ptr >> 5));
@@ -41156,11 +41156,11 @@ bool system_process_network_events_6(void)
     system_process_context_data(&system_system_stack_byte_ptr);
     if (system_system_stack_varint_var != 0) {
       system_process_context_data(&system_system_stack_byte_ptr,&system_internal_status_flag_ptr_2fe62c,&system_memory_system_ptr_vars);
-      system_buffer_pointer = (uint8_t *)&system_data_value_bc73;
+      system_initialization_buffer_pointer = (uint8_t *)&system_data_value_bc73;
       if (system_system_stack_byte_ptr != (uint8_t *)0x0) {
-        system_buffer_pointer = system_system_stack_byte_ptr;
+        system_initialization_buffer_pointer = system_system_stack_byte_ptr;
       }
-      system_process_context_data(&system_system_stack_byte_ptr,&system_memory_system_ptr_vart,system_buffer_pointer);
+      system_process_context_data(&system_system_stack_byte_ptr,&system_memory_system_ptr_vart,system_initialization_buffer_pointer);
       system_process_context_data(&system_system_stack_byte_ptr,&system_memory_system_ptr_varr,&system_memory_system_ptr_varq);
     }
     system_system_stack_byte_ptr = &system_null_ptr;
@@ -41210,20 +41210,20 @@ bool system_process_network_events_6(void)
     system_system_stack_uint_value = 0;
     system_system_stack_byte_ptr = (uint8_t *)0x0;
     system_system_stack_varint_var = 0;
-    system_buffer_pointer = (uint8_t *)system_process_context_data(system_global_data_ptr,0x34,0x13);
-    *(uint8_t* *)system_buffer_pointer = 0;
-    system_system_stack_byte_ptr = system_buffer_pointer;
-    system_temp_unsigned_value_primary = system_process_context_data(system_buffer_pointer);
+    system_initialization_buffer_pointer = (uint8_t *)system_process_context_data(system_global_data_ptr,0x34,0x13);
+    *(uint8_t* *)system_initialization_buffer_pointer = 0;
+    system_system_stack_byte_ptr = system_initialization_buffer_pointer;
+    system_temp_unsigned_value_primary = system_process_context_data(system_initialization_buffer_pointer);
     system_system_stack_uint_value = CONCAT44(system_system_stack_uint_value._4_4_,system_temp_unsigned_value_primary);
-    *system_buffer_pointer = 0x7270706d75645c5c;
-    system_buffer_pointer[1] = 0x2e726f737365636f;
-    system_buffer_pointer[2] = 0x6c726f77656c6174;
-    system_buffer_pointer[3] = 0x445c6d6f632e7364;
-    *(uint32_t* *)(system_buffer_pointer + 4) = 0x50706d75;
-    *(uint32_t* *)((int64_t)system_buffer_pointer + 0x24) = 0x65636f72;
-    *(uint32_t* *)(system_buffer_pointer + 5) = 0x6e697373;
-    *(uint32_t* *)((int64_t)system_buffer_pointer + 0x2c) = 0x6c6f4667;
-    *(uint32_t* *)(system_buffer_pointer + 6) = 0x726564;
+    *system_initialization_buffer_pointer = 0x7270706d75645c5c;
+    system_initialization_buffer_pointer[1] = 0x2e726f737365636f;
+    system_initialization_buffer_pointer[2] = 0x6c726f77656c6174;
+    system_initialization_buffer_pointer[3] = 0x445c6d6f632e7364;
+    *(uint32_t* *)(system_initialization_buffer_pointer + 4) = 0x50706d75;
+    *(uint32_t* *)((int64_t)system_initialization_buffer_pointer + 0x24) = 0x65636f72;
+    *(uint32_t* *)(system_initialization_buffer_pointer + 5) = 0x6e697373;
+    *(uint32_t* *)((int64_t)system_initialization_buffer_pointer + 0x2c) = 0x6c6f4667;
+    *(uint32_t* *)(system_initialization_buffer_pointer + 6) = 0x726564;
     system_memory_comparison_result = 0x33;
     system_system_stack_varint_var = 0x33;
     system_temp_unsigned_value = 2;
@@ -41262,7 +41262,7 @@ bool system_process_network_events_6(void)
     system_temp_unsigned_value = 1;
     system_operation_result_15 = 1;
     psystem_ptr_var_7 = &system_system_stack_byte_ptr;
-    system_buffer_pointer = system_system_stack_byte_ptr;
+    system_initialization_buffer_pointer = system_system_stack_byte_ptr;
   }
   system_system_stack_byte_ptr = &system_null_ptr;
   system_system_stack_uint_value = 0;
@@ -41287,9 +41287,9 @@ bool system_process_network_events_6(void)
   if ((system_temp_unsigned_value & 2) != 0) {
     system_operation_result_15 = system_temp_unsigned_value & 0xfffffffd;
     system_system_stack_byte_ptr = &system_null_ptr;
-    if (system_buffer_pointer != (uint8_t *)0x0) {
+    if (system_initialization_buffer_pointer != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
-      system_process_context_data(system_buffer_pointer);
+      system_process_context_data(system_initialization_buffer_pointer);
     }
     system_system_stack_byte_ptr = (uint8_t *)0x0;
     system_system_stack_uint_value = system_system_stack_uint_value & 0xffffffff00000000;
@@ -42555,7 +42555,7 @@ void system_handle_resource_streaming_6(void)
 void system_manage_memory_arena_6(void)
   int64_t *unaff_RBX;
   int64_t unaff_R13;
-  uint64_t *system_buffer_pointer;
+  uint64_t *system_initialization_buffer_pointer;
   
   system_unsigned_result_value = unaff_RSI & 0xffffffff;
   do {
@@ -42563,32 +42563,32 @@ void system_manage_memory_arena_6(void)
     system_offset_value = *unaff_RBX;
     *(int **)(system_register_rdi + 8) = (int *)(system_context_data_handle + 8);
     system_operation_result = *(int *)(system_context_data_handle + 8);
-    system_buffer_pointer = (uint64_t *)(system_offset_value + system_unsigned_result_value);
+    system_initialization_buffer_pointer = (uint64_t *)(system_offset_value + system_unsigned_result_value);
     *(int64_t *)(system_register_rdi + 8) = system_context_data_handle + 0xc;
     if (0 < system_operation_result) {
-      *(short *)(system_buffer_pointer + 2) = (short)system_operation_result;
-      if (system_buffer_pointer[1] != 0) {
+      *(short *)(system_initialization_buffer_pointer + 2) = (short)system_operation_result;
+      if (system_initialization_buffer_pointer[1] != 0) {
                     // WARNING: Subroutine does not return
         system_process_context_data();
       }
-      system_buffer_pointer[1] = unaff_RSI;
-      if (*system_buffer_pointer == 0) {
-        *system_buffer_pointer = unaff_RSI;
-        if ((uint64_t)(ushort)system_buffer_pointer[2] == 0) {
+      system_initialization_buffer_pointer[1] = unaff_RSI;
+      if (*system_initialization_buffer_pointer == 0) {
+        *system_initialization_buffer_pointer = unaff_RSI;
+        if ((uint64_t)(ushort)system_initialization_buffer_pointer[2] == 0) {
           system_unsigned_result_value = 0;
           system_parameter_value_primary = unaff_RSI;
         }
         else {
-          system_parameter_value_primary = system_process_context_data(system_global_data_ptr,(uint64_t)(ushort)system_buffer_pointer[2] * 4,4);
-          system_unsigned_result_value = (uint64_t)(ushort)system_buffer_pointer[2];
+          system_parameter_value_primary = system_process_context_data(system_global_data_ptr,(uint64_t)(ushort)system_initialization_buffer_pointer[2] * 4,4);
+          system_unsigned_result_value = (uint64_t)(ushort)system_initialization_buffer_pointer[2];
         }
-        system_buffer_pointer[1] = system_parameter_value_primary;
+        system_initialization_buffer_pointer[1] = system_parameter_value_primary;
         if (system_unsigned_result_value != 0) {
           unaff_RSI = system_process_context_data(system_global_data_ptr,system_unsigned_result_value << 4,4);
         }
-        *system_buffer_pointer = unaff_RSI;
+        *system_initialization_buffer_pointer = unaff_RSI;
                     // WARNING: Subroutine does not return
-        memcpy(system_buffer_pointer[1],*(uint8_t *)(system_register_rdi + 8),(int64_t)(system_operation_result * 4));
+        memcpy(system_initialization_buffer_pointer[1],*(uint8_t *)(system_register_rdi + 8),(int64_t)(system_operation_result * 4));
       }
                     // WARNING: Subroutine does not return
       system_process_context_data();
@@ -42995,7 +42995,7 @@ void system_manage_worker_threads_6(void)
 
 void system_process_job_completion_6(void)
   uint32_t* *system_byte_pointer_e;
-  uint8_t* *system_buffer_pointer;
+  uint8_t* *system_initialization_buffer_pointer;
   
   system_byte_pointer_e = (uint32_t* *)system_config_array[1];
   if ((uint64_t)((*system_config_array - (int64_t)system_byte_pointer_e) + system_config_array[2]) < 5) {
@@ -43016,14 +43016,14 @@ void system_process_job_completion_6(void)
   system_byte_pointer_e[1] = system_parameter_value_primary;
   system_byte_pointer_e[2] = system_parameter_value_secondary;
   system_byte_pointer_e[3] = system_unsigned_counter_value;
-  system_buffer_pointer = (uint8_t* *)(system_config_array[1] + 0x10);
-  system_config_array[1] = (int64_t)system_buffer_pointer;
+  system_initialization_buffer_pointer = (uint8_t* *)(system_config_array[1] + 0x10);
+  system_config_array[1] = (int64_t)system_initialization_buffer_pointer;
   system_temp_unsigned_value_primary = *(uint8_t* *)(system_context_ptr + 0x28);
-  if ((uint64_t)((*system_config_array - (int64_t)system_buffer_pointer) + system_config_array[2]) < 2) {
-    system_process_context_data(system_config_array,system_buffer_pointer + (1 - *system_config_array));
-    system_buffer_pointer = (uint8_t* *)system_config_array[1];
+  if ((uint64_t)((*system_config_array - (int64_t)system_initialization_buffer_pointer) + system_config_array[2]) < 2) {
+    system_process_context_data(system_config_array,system_initialization_buffer_pointer + (1 - *system_config_array));
+    system_initialization_buffer_pointer = (uint8_t* *)system_config_array[1];
   }
-  *system_buffer_pointer = system_temp_unsigned_value_primary;
+  *system_initialization_buffer_pointer = system_temp_unsigned_value_primary;
   system_byte_pointer_e = (uint32_t* *)(system_config_array[1] + 1);
   system_config_array[1] = (int64_t)system_byte_pointer_e;
   if ((uint64_t)((*system_config_array - (int64_t)system_byte_pointer_e) + system_config_array[2]) < 0x11) {
@@ -44688,7 +44688,7 @@ int system_handle_data_persistence_6(void)
   uint64_t *system_byte_system_pointer_c;
   char *psystem_char_var;
   uint64_t *system_context_ptr_12;
-  uint8_t *system_stack_context_result;
+  uint8_t *system_initialization_stack_context_result;
   uint8_t *system_initialization_system_stack_function_ptr;
   uint in_system_system_stack_varffffffffffffff38;
   uint64_t *system_system_stack_byte_ptr;
@@ -44734,11 +44734,11 @@ int system_handle_data_persistence_6(void)
   system_system_stack_uint_value = 0;
   system_system_stack_uint_value = 0;
   system_system_stack_uint_value = 3;
-  system_stack_context_result = *(uint8_t **)(system_context_ptr + 0x1b8);
+  system_initialization_stack_context_result = *(uint8_t **)(system_context_ptr + 0x1b8);
   system_temp_unsigned_value = *(uint *)(system_context_ptr + 0x100) >> 0x16;
   psystem_char_var = "";
-  if ((char *)system_stack_context_result[3] != (char *)0x0) {
-    psystem_char_var = (char *)system_stack_context_result[3];
+  if ((char *)system_initialization_stack_context_result[3] != (char *)0x0) {
+    psystem_char_var = (char *)system_initialization_stack_context_result[3];
   }
   system_iteration_counter_value = 0x1505;
   system_temp_char_result = *psystem_char_var;
@@ -44785,9 +44785,9 @@ int system_handle_data_persistence_6(void)
   }
   system_initialization_system_stack_function_ptr = &system_system_stack_uint_value_x;
   system_system_stack_uint_value_x = 0;
-  system_operation_result_15 = system_process_context_data(system_context_data_handle,system_stack_context_result,&system_system_stack_uint_value,0,in_system_system_stack_varffffffffffffff38 & 0xffffff00,0,
+  system_operation_result_15 = system_process_context_data(system_context_data_handle,system_initialization_stack_context_result,&system_system_stack_uint_value,0,in_system_system_stack_varffffffffffffff38 & 0xffffff00,0,
                          (byte)system_temp_unsigned_value & 1,system_primary_data_ptr,1,0,0,&system_system_stack_uint_value_x,system_temp_unsigned_value);
-  system_stack_context_result = &system_system_stack_uint_value_x;
+  system_initialization_stack_context_result = &system_system_stack_uint_value_x;
   system_system_stack_uint_value_x = 0;
   system_temp_char_result = system_process_context_data(system_operation_result_15,system_primary_data_ptr,&system_system_stack_uint_value_x);
   if (system_temp_char_result == '\0') {
@@ -45159,7 +45159,7 @@ uint64_t system_handle_text_translation_6(void)
   uint *psystem_temp_unsigned_value;
   bool system_system_temp_byte_36;
   uint32_t* system_system_stack_arrayx8 [2];
-  uint *system_stack_context_result;
+  uint *system_initialization_stack_context_result;
   float *pfStackX_18;
   uint32_t* system_system_stack_data_array [2];
   uint8_t *asystem_system_stack_ptr_128 [2];
@@ -45174,7 +45174,7 @@ uint64_t system_handle_text_translation_6(void)
   float fStack_90;
   float fStack_8c;
   
-  system_stack_context_result = system_config_array;
+  system_initialization_stack_context_result = system_config_array;
   pfStackX_18 = system_thread_count;
   system_system_stack_varlong_var_x = system_memory_size_array;
   if (*(char *)(system_context_ptr + 0xf9) == '\0') {
@@ -45328,7 +45328,7 @@ system_label:
               system_system_temp_byte_31 = system_generic_function();
               *(byte *)(system_context_data_handle + 0x38c) = system_system_temp_byte_31;
             }
-            system_config_array = system_stack_context_result;
+            system_config_array = system_initialization_stack_context_result;
             system_context_data_handle = *(int64_t *)(system_context_data_handle + 0x1e0);
             *system_pointer_variable_26 = *(uint8_t *)(system_context_data_handle + (uint64_t)system_system_temp_byte_31 * 0x18);
             system_pointer_variable_26[1] = *(uint8_t *)(system_context_data_handle + 8 + (uint64_t)system_system_temp_byte_31 * 0x18);
@@ -45394,15 +45394,15 @@ system_label:
                (0 < *(int *)(*(int64_t *)(system_context_ptr + 600) + 0x1c))) {
               *(uint8_t* *)((int64_t)asystem_system_stack_ptr_128[0] + 0x4d) = 0;
             }
-            if (*(uint **)(system_stack_context_result + 10) == (uint *)0x0) {
+            if (*(uint **)(system_initialization_stack_context_result + 10) == (uint *)0x0) {
               system_system_stack_data_array[0] = 0xffffffff;
               system_pointer_variable_29 = system_system_stack_data_array;
-              psystem_temp_unsigned_value = system_stack_context_result;
+              psystem_temp_unsigned_value = system_initialization_stack_context_result;
             }
             else {
               system_system_stack_arrayx8[0] = 0xffffffff;
               system_pointer_variable_29 = system_system_stack_arrayx8;
-              psystem_temp_unsigned_value = *(uint **)(system_stack_context_result + 10);
+              psystem_temp_unsigned_value = *(uint **)(system_initialization_stack_context_result + 10);
             }
             system_process_context_data(psystem_temp_unsigned_value + 0xce2,system_pointer_variable_29,asystem_system_stack_ptr_128);
             system_thread_count = pfStackX_18;
@@ -46876,7 +46876,7 @@ void system_process_configuration_data_7(void)
 void system_handle_module_loading_7(void)
   int64_t *system_secondary_data_ptr;
   float *system_float_ptr_quinary;
-  void* *system_buffer_pointer;
+  void* *system_initialization_buffer_pointer;
   int64_t *system_data_pointer;
   float system_float_;
   float system_float_;
@@ -46906,11 +46906,11 @@ void system_handle_module_loading_7(void)
     }
     if ((((*(char *)(system_config_array + 0x380) != '\0') && (*(char *)(system_config_array + 0x381) == '\0')) &&
         (system_context_data_handle = *system_data_pointer, system_context_data_handle != 0)) && ((*(uint *)(system_context_data_handle + 0x328) & 0x200000) == 0)) {
-      system_buffer_pointer = &system_data_value_bc73;
+      system_initialization_buffer_pointer = &system_data_value_bc73;
       if (*(void* **)(system_context_data_handle + 0x18) != (void* *)0x0) {
-        system_buffer_pointer = *(void* **)(system_context_data_handle + 0x18);
+        system_initialization_buffer_pointer = *(void* **)(system_context_data_handle + 0x18);
       }
-      system_process_context_data(&system_memory_ptr_aj,system_buffer_pointer);
+      system_process_context_data(&system_memory_ptr_aj,system_initialization_buffer_pointer);
     }
     system_int_var_9 = system_int_var_9 + 1;
     system_data_pointer = system_data_pointer + 1;
@@ -52717,7 +52717,7 @@ void system_initialize_ai_system_7(void)
   uint8_t *system_byte_system_pointer_c;
   uint8_t *system_byte_pointer_d;
   int *psystem_operation_result_7;
-  uint8_t *system_buffer_pointer;
+  uint8_t *system_initialization_buffer_pointer;
   
   system_temp_unsigned_value = (uint64_t)system_thread_count;
   if (**(int64_t **)(system_context_ptr + 0x2d0) != 0) {
@@ -52731,10 +52731,10 @@ void system_initialize_ai_system_7(void)
     if (system_thread_count != 0) {
       system_context_base = (uint8_t *)system_process_context_data(system_global_data_ptr,system_temp_unsigned_value * 8,3);
       system_byte_system_pointer_c = system_context_base;
-      system_buffer_pointer = system_byte_pointer_d;
+      system_initialization_buffer_pointer = system_byte_pointer_d;
       do {
-        system_unsigned_result_value = (int)system_buffer_pointer + 1;
-        system_buffer_pointer = (uint8_t *)(uint64_t)system_unsigned_result_value;
+        system_unsigned_result_value = (int)system_initialization_buffer_pointer + 1;
+        system_initialization_buffer_pointer = (uint8_t *)(uint64_t)system_unsigned_result_value;
         *system_byte_system_pointer_c = 0;
         system_byte_system_pointer_c = system_byte_system_pointer_c + 1;
       } while ((uint64_t)(int64_t)(int)system_unsigned_result_value < system_temp_unsigned_value);
@@ -54156,7 +54156,7 @@ void system_initialize_texture_manager_7(void)
 void system_configure_mipmap_generation_7(void)
   char *psystem_char_var;
   uint *unaff_RBP;
-  uint32_t* *system_buffer_pointer;
+  uint32_t* *system_initialization_buffer_pointer;
   uint8_t *unaff_R13;
   uint *system_next_context_ptr;
   
@@ -54205,15 +54205,15 @@ void system_configure_mipmap_generation_7(void)
     } while (system_context_data_handle != 0);
     unaff_R13 = (uint8_t *)(system_register_rdi + 0x38);
   }
-  system_buffer_pointer = (uint32_t* *)*unaff_R13;
+  system_initialization_buffer_pointer = (uint32_t* *)*unaff_R13;
   system_parameter_value_secondary = system_unsigned_result_value >> 0xb;
   *(uint *)(system_register_rdi + 0x2c) = system_unsigned_result_value;
   if (system_parameter_value_secondary != unaff_R12D + system_unsigned_result_value >> 0xb) {
     if (unaff_R12D != 0) {
       system_byte_operation_result = (uint64_t)unaff_R12D;
       do {
-        system_temp_unsigned_value_primary = *system_buffer_pointer;
-        system_buffer_pointer = system_buffer_pointer + 1;
+        system_temp_unsigned_value_primary = *system_initialization_buffer_pointer;
+        system_initialization_buffer_pointer = system_initialization_buffer_pointer + 1;
         *(uint32_t* *)
          (*(int64_t *)(unaff_RBP + (uint64_t)(system_unsigned_result_value >> 0xb) * 2 + 2) +
          (uint64_t)(system_unsigned_result_value + (system_unsigned_result_value >> 0xb) * -0x800) * 4) = system_temp_unsigned_value_primary;
@@ -54225,7 +54225,7 @@ void system_configure_mipmap_generation_7(void)
   }
                     // WARNING: Subroutine does not return
   memcpy(*(int64_t *)(unaff_RBP + (uint64_t)system_parameter_value_secondary * 2 + 2) +
-         (uint64_t)(system_unsigned_result_value + system_parameter_value_secondary * -0x800) * 4,system_buffer_pointer,(uint64_t)unaff_R12D << 2);
+         (uint64_t)(system_unsigned_result_value + system_parameter_value_secondary * -0x800) * 4,system_initialization_buffer_pointer,(uint64_t)unaff_R12D << 2);
 }
 
 
