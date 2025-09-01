@@ -11461,11 +11461,11 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePool,
   int64_t UnaffectedRegisterValue;
   uint8_t *RegisterR14;
   uint32_t *RegisterR15;
-  uint8_t uStack0000000000000028;
+  uint8_t StackValidationByte;
   
   ResourceCount = *(int *)(RegisterRDI + 0x20);
   if (ResourceCount == -1) {
-    uStack0000000000000028 = *RegisterR14;
+    StackValidationByte = *RegisterR14;
     ResourceCount = *(int *)(RegisterRDI + 0x18);
     CapacityIndex = ResourceCount + 1;
     ContextValidationResult = (int)*(uint *)(RegisterRDI + 0x1c) >> 0x1f;
@@ -11490,17 +11490,17 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePool,
     pValidationResult = (uint8_t *)
              ((int64_t)*(int *)(RegisterRDI + 0x18) * 0x10 + *(int64_t *)(RegisterRDI + 0x10));
     *pValidationResult = CONCAT44(0xffffffff,ValidationContextParameter);
-    pValidationResult[1] = uStack0000000000000028;
+    pValidationResult[1] = StackValidationByte;
     *(int *)(RegisterRDI + 0x18) = *(int *)(RegisterRDI + 0x18) + 1;
   }
   else {
-    resourcePointer5 = (uint32_t *)((int64_t)iVar8 * 0x10 + *(int64_t *)(RegisterRDI + 0x10));
+    resourcePointer5 = (uint32_t *)((int64_t)ResourceCount * 0x10 + *(int64_t *)(RegisterRDI + 0x10));
     *(uint32_t *)(RegisterRDI + 0x20) = resourcePointer5[1];
     resourcePointer5[1] = 0xffffffff;
     *resourcePointer5 = *RegisterR15;
     *(uint8_t *)(resourcePointer5 + 2) = *RegisterR14;
   }
-  *ResourceContextPointer = iVar8;
+  *ResourceContextPointer = ResourceCount;
   *(int *)(RegisterRDI + 0x24) = *(int *)(RegisterRDI + 0x24) + 1;
   return 0;
 }
