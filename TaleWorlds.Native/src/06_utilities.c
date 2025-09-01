@@ -2130,8 +2130,8 @@ uint8_t SystemMemoryConfigDataTemplateTenth;               // 第10配置项
 void ConfigureLogOutput(void);
 // 日志输出配置数据模板变量
 uint8_t SystemMemoryConfigDataTemplateB;                   // 备用内存配置B
-uint8_t LogOutputConfigDataTemplateA;                     // 日志输出配置A
-uint8_t LogOutputConfigDataTemplateB;                     // 日志输出配置B
+uint8_t LogOutputConfigDataTemplatePrimary;               // 主要日志输出配置
+uint8_t LogOutputConfigDataTemplateSecondary;             // 次要日志输出配置
 
  void ProcessLogMessage(void);
 /**
@@ -2142,15 +2142,15 @@ uint8_t LogOutputConfigDataTemplateB;                     // 日志输出配置B
  */
 void ProcessLogMessage(void);
 // 日志消息处理器数据模板变量
-uint8_t LogMessageProcessorDataTemplateA;                 // 日志处理器模板A
-uint8_t LogMessageProcessorDataTemplateB;                 // 日志处理器模板B
-uint8_t LogMessageProcessorDataTemplateC;                 // 日志处理器模板C
-uint8_t LogMessageProcessorDataTemplateD;                 // 日志处理器模板D
+uint8_t LogMessageProcessorDataTemplatePrimary;           // 主要日志处理器模板
+uint8_t LogMessageProcessorDataTemplateSecondary;         // 次要日志处理器模板
+uint8_t LogMessageProcessorDataTemplateTertiary;          // 第三日志处理器模板
+uint8_t LogMessageProcessorDataTemplateQuaternary;         // 第四日志处理器模板
 uint8_t SystemMemoryPool;                                  // 系统内存池
 uint8_t SystemMemoryManager;                               // 系统内存管理器
-uint8_t LogMessageProcessorDataTemplateE;                 // 日志处理器模板E
-uint8_t LogMessageProcessorContextDataA;                  // 日志处理器上下文A
-uint8_t LogMessageProcessorContextDataB;                  // 日志处理器上下文B
+uint8_t LogMessageProcessorDataTemplateQuinary;            // 第五日志处理器模板
+uint8_t LogMessageProcessorContextDataPrimary;              // 主要日志处理器上下文
+uint8_t LogMessageProcessorContextDataSecondary;            // 次要日志处理器上下文
 uint8_t LogMessageProcessorContextDataC;                  // 日志处理器上下文C
 // 系统内存和本地化变量
 uint8_t SystemMemoryController;                            // 系统内存控制器
