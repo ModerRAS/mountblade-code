@@ -4986,14 +4986,14 @@ uint32_t ValidateAndExecuteSystemExit(void)
 
 
 
- void ExecuteNonReturningFunction180862e00(void)
+ void ExecuteSystemEmergencyExit(void)
 /**
- * @brief 执行不返回的函数
+ * @brief 执行系统紧急退出
  * 
- * 该函数调用一个不会返回的函数
- * 用于处理某些特殊情况下的程序退出
+ * 该函数负责执行系统的紧急退出操作，用于处理不可恢复的错误情况
+ * 这是一个不会返回的函数，调用后程序将立即终止
  */
-void ExecuteNonReturningFunction180862e00(void)
+void ExecuteSystemEmergencyExit(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -5075,14 +5075,14 @@ uint32_t ValidateStackLocationAndExecuteExit(void)
 
 
 
- void ExecuteNonReturningFunctionAtLocation180d49f90(void)
+ void ExecuteSystemCriticalShutdown(void)
 /**
- * @brief 执行位于0x180d49f90的不返回函数
+ * @brief 执行系统关键关闭
  * 
- * 该函数调用位于0x180d49f90地址的函数，该函数不会返回
- * 用于处理特殊情况下的程序退出
+ * 该函数负责执行系统的关键关闭操作，用于处理严重的系统错误
+ * 这是一个不会返回的函数，调用后程序将立即终止
  */
-void ExecuteNonReturningFunctionAtLocation180d49f90(void)
+void ExecuteSystemCriticalShutdown(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -10753,8 +10753,8 @@ LAB_180895b69:
 
 
 
- 5b89(void)
-5b89(void)
+ void FinalizeSecurityOperationWithStack(void)
+void FinalizeSecurityOperationWithStack(void)
 
 {
   longlong unaff_RBP;
@@ -10766,8 +10766,8 @@ LAB_180895b69:
 
 
 
- 5bb0(longlong param_1,int param_2,undefined8 *param_3)
-5bb0(longlong param_1,int param_2,undefined8 *param_3)
+ void ProcessResourceHashAndIndex(longlong param_1,int param_2,undefined8 *param_3)
+void ProcessResourceHashAndIndex(longlong param_1,int param_2,undefined8 *param_3)
 
 {
   undefined8 resourceHash;
@@ -11977,8 +11977,8 @@ undefined8 * InitializeAlternativeDataStructure(undefined8 *dataPointer, ulonglo
 
 
 
- 6880(longlong *param_1)
-6880(longlong *param_1)
+ void ProcessPointerOperationAndReset(longlong *param_1)
+void ProcessPointerOperationAndReset(longlong *param_1)
 
 {
   int iVar1;
@@ -12162,8 +12162,8 @@ undefined8 ValidateAndGetBufferContext(longlong param_1,undefined8 param_2,undef
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- 6c60(undefined8 param_1,longlong param_2,uint param_3,char param_4)
-6c60(undefined8 param_1,longlong param_2,uint param_3,char param_4)
+ void ProcessComplexResourceOperation(undefined8 param_1,longlong param_2,uint param_3,char param_4)
+void ProcessComplexResourceOperation(undefined8 param_1,longlong param_2,uint param_3,char param_4)
 
 {
   longlong lVar1;
@@ -12512,8 +12512,8 @@ void ModuleProcessErrorHandler(void)
 
 
 
- 6e11(void)
-6e11(void)
+ void ProcessComplexResourceWithRegisters(void)
+void ProcessComplexResourceWithRegisters(void)
 
 {
   longlong lVar1;

@@ -342,6 +342,27 @@ void* SystemMemoryPoolConfiguration;
 void* SystemInitializationProgressStatus;
 
 // 系统内存分配器 - 负责动态内存分配和管理
+
+// 系统数据比较模板和节点指针
+void* SystemDataComparisonTemplateA;  // DAT_18098c8f0
+void* SystemDataComparisonTemplateB;  // DAT_18098c8c8
+void* SystemNodeLinkPointerA;        // UNK_18098c880
+void* SystemNodeLinkPointerB;        // UNK_18098c898
+void* SystemRootNodePointer;         // UNK_18098c870
+
+// 系统初始化状态变量
+uint32_t SystemInitializationStatusA;  // _DAT_180bf5268
+uint32_t SystemInitializationStatusB;  // _DAT_180bf5270
+uint32_t SystemInitializationStatusC;  // _DAT_180bf5280
+uint32_t SystemInitializationStatusD;  // _DAT_180bf5288
+uint32_t SystemInitializationStatusE;  // _DAT_180bf5290
+uint32_t SystemInitializationStatusF;  // _DAT_180bf52a0
+
+// 系统回调函数指针
+void* SystemEventCallbackPointer;     // FUN_180262b00
+void* SystemInitializationCallbackA;  // FUN_18025c000
+void* SystemInitializationCallbackB;  // FUN_18025d270
+void* SystemDebugCallback;            // FUN_18025e330
 /**
  * @brief 系统内存分配器函数
  * 
@@ -1136,7 +1157,7 @@ void InitializeSystemResourceManager(void)
   }
   systemPreviousNode[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
-  puVar7[8] = &UNK_18098c870;
+  puVar7[8] = &SystemRootNodePointer;
   systemPreviousNode[9] = 0;
   puVar7[10] = resourceInitializationCallback;
   return;
@@ -1170,7 +1191,7 @@ void initializeSystemCoreData(void)
   previousNode = systemRootPointer;
   currentNode = (undefined8 *)systemRootPointer[1];
   while (statusFlag == '\0') {
-    comparisonResult = memcmp(currentNode + 4,&DAT_18098c8f0,0x10);
+    comparisonResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateA,0x10);
     if (comparisonResult < 0) {
       nextNode = (undefined8 *)currentNode[2];
       currentNode = previousNode;
@@ -9106,7 +9127,7 @@ void InitializeSystemConfigurationManager(void)
   }
   systemPreviousNode[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
-  puVar7[8] = &UNK_18098c870;
+  puVar7[8] = &SystemRootNodePointer;
   systemPreviousNode[9] = 0;
   puVar7[10] = resourceInitializationCallback;
   return;
@@ -11373,7 +11394,7 @@ void InitializeSystemResourceNode(void)
   }
   systemPreviousNode[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
-  puVar7[8] = &UNK_18098c870;
+  puVar7[8] = &SystemRootNodePointer;
   systemPreviousNode[9] = 0;
   puVar7[10] = resourceInitializationCallback;
   return;
@@ -11995,7 +12016,7 @@ void InitializeSystemResourceNode(void)
   }
   systemPreviousNode[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
-  puVar7[8] = &UNK_18098c870;
+  puVar7[8] = &SystemRootNodePointer;
   systemPreviousNode[9] = 0;
   puVar7[10] = resourceInitializationCallback;
   return;
@@ -13924,7 +13945,7 @@ void InitializeSystemResourceManagerH(void)
   }
   systemPreviousNode[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
-  puVar7[8] = &UNK_18098c870;
+  puVar7[8] = &SystemRootNodePointer;
   systemPreviousNode[9] = 0;
   puVar7[10] = resourceInitializationCallback;
   return;
@@ -14678,7 +14699,7 @@ void InitializeSystemMemoryComponent(void)
   }
   systemPreviousNode[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
-  puVar7[8] = &UNK_18098c870;
+  puVar7[8] = &SystemRootNodePointer;
   systemPreviousNode[9] = 0;
   puVar7[10] = resourceInitializationCallback;
   return;
@@ -16871,7 +16892,7 @@ void FUN_1800431d0(void)
   }
   systemPreviousNode[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
-  puVar7[8] = &UNK_18098c870;
+  puVar7[8] = &SystemRootNodePointer;
   systemPreviousNode[9] = 0;
   puVar7[10] = resourceInitializationCallback;
   return;

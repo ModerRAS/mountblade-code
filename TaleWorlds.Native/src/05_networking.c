@@ -74744,7 +74744,7 @@ LAB_1808801be:
 
 
 
-int FUN_1808801f0(longlong *connectionContext,uint *packetData,NetworkHandle dataSize,longlong *param_4)
+int ProcessNetworkConnectionRequest(longlong *connectionContext,uint *packetData,NetworkHandle dataSize,longlong *param_4)
 
 {
   longlong lVar1;
@@ -74823,7 +74823,7 @@ LAB_180880327:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_180880350(longlong connectionContext,longlong *packetData)
+NetworkHandle ValidateNetworkConnectionData(longlong connectionContext,longlong *packetData)
 
 {
   int networkStatus1;
@@ -76115,7 +76115,7 @@ LAB_180881e13:
 
 
 
-NetworkHandle FUN_180881eb0(longlong connectionContext,longlong packetData)
+NetworkHandle EstablishNetworkConnection(longlong connectionContext,longlong packetData)
 
 {
   longlong lVar1;
@@ -76153,8 +76153,8 @@ NetworkHandle FUN_180881eb0(longlong connectionContext,longlong packetData)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180881fa0(longlong connectionContext,NetworkHandle packetData,NetworkStatus *dataSize)
-void FUN_180881fa0(longlong connectionContext,NetworkHandle packetData,NetworkStatus *dataSize)
+// 函数: void ProcessNetworkPacketData(longlong connectionContext,NetworkHandle packetData,NetworkStatus *dataSize)
+void ProcessNetworkPacketData(longlong connectionContext,NetworkHandle packetData,NetworkStatus *dataSize)
 
 {
   longlong lVar1;
@@ -76248,8 +76248,8 @@ LAB_1808820fa:
 
 
 
-// 函数: void FUN_180881fbc(longlong connectionContext,NetworkHandle packetData,NetworkStatus *dataSize,NetworkHandle param_4,
-void FUN_180881fbc(longlong connectionContext,NetworkHandle packetData,NetworkStatus *dataSize,NetworkHandle param_4,
+// 函数: void HandleNetworkPacketStream(longlong connectionContext,NetworkHandle packetData,NetworkStatus *dataSize,NetworkHandle param_4,
+void HandleNetworkPacketStream(longlong connectionContext,NetworkHandle packetData,NetworkStatus *dataSize,NetworkHandle param_4,
                   NetworkHandle param_5,int param_6,ulonglong param_7)
 
 {
