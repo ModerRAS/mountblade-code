@@ -34281,8 +34281,17 @@ void FUN_180059fc0(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005a010(long long SystemResourcePointer)
-void FUN_18005a010(long long SystemResourcePointer)
+// 函数: void ProcessSystemResourceCleanup(long long SystemResourcePointer)
+/**
+ * @brief 处理系统资源清理
+ * 
+ * 该函数负责处理系统资源的清理操作，包括资源引用计数的管理和资源释放。
+ * 主要用于系统资源的生命周期管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @note 这是系统资源管理的清理函数
+ */
+void ProcessSystemResourceCleanup(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
@@ -34319,8 +34328,17 @@ void FUN_18005a010(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005a050(long long SystemResourcePointer)
-void FUN_18005a050(long long SystemResourcePointer)
+// 函数: void CleanupSystemResourceArray(long long SystemResourcePointer)
+/**
+ * @brief 清理系统资源数组
+ * 
+ * 该函数负责清理系统资源数组中的所有资源，遍历数组并释放每个资源。
+ * 主要用于系统资源的批量清理和内存管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @note 这是系统资源管理的批量清理函数
+ */
+void CleanupSystemResourceArray(long long SystemResourcePointer)
 
 {
   ulong long unsignedSystemValue1;
@@ -34356,8 +34374,17 @@ void FUN_18005a050(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005a100(long long SystemResourcePointer)
-void FUN_18005a100(long long SystemResourcePointer)
+// 函数: void ValidateSystemResourcePointer(long long SystemResourcePointer)
+/**
+ * @brief 验证系统资源指针
+ * 
+ * 该函数负责验证系统资源指针的有效性，检查资源指针的完整性和状态。
+ * 主要用于系统资源的安全检查和错误预防。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @note 这是系统资源管理的验证函数
+ */
+void ValidateSystemResourcePointer(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;

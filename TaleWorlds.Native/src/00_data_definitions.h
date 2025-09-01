@@ -4268,7 +4268,7 @@ LAB_1800d3d65:
     } while ((ulonglong)(longlong)(int)BufferSize1 < (ulonglong)(ModuleInitializationResult8 - ModuleInitializationResult6 >> 3));
   }
   MemoryAddress4 = AllocateSystemMemory(_DAT_180c8ed18,0x100,8,3);
-  pModuleInitializationResult7 = (longlong *)FUN_18005ce30(MemoryAddress4,&puStack_198);
+  pModuleInitializationResult7 = (longlong *)InitializeModuleWithMemory(MemoryAddress4,&puStack_198);
   ppuStack_1b0 = (void **)pModuleInitializationResult7;
   if (pModuleInitializationResult7 != (longlong *)0x0) {
     (**(code **)(*pModuleInitializationResult7 + 0x28))(pModuleInitializationResult7);
