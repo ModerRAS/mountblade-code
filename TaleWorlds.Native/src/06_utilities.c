@@ -6836,6 +6836,16 @@ void FUN_1808924c8(void)
 
 
 undefined8 FUN_1808924f0(longlong param_1,longlong param_2)
+/**
+ * @brief 验证矩阵变换数据
+ * 
+ * 该函数验证3D矩阵变换数据的有效性，检查矩阵元素是否为无穷大或NaN值
+ * 确保矩阵数据可以安全用于3D变换计算
+ * 
+ * @param matrixDataPointer 矩阵数据指针，包含变换矩阵的所有元素
+ * @param contextPointer 上下文指针，包含系统状态和配置信息
+ * @return 验证状态，0表示成功，0x1f表示验证失败
+ */
 
 {
   float fVar1;
