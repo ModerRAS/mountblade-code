@@ -17702,9 +17702,9 @@ void SetInputSystemPointer(void)
   int systemStatus;
   
   systemStatus = GetSystemStatus(0);
-  _DAT_180c108d0 = 0x180be2ad8;
+  SystemInputContextA = 0x180be2ad8;
   if (systemStatus != 0) {
-    _DAT_180c108d0 = 0x180be2af8;
+    SystemInputContextA = 0x180be2af8;
   }
   return;
 }
