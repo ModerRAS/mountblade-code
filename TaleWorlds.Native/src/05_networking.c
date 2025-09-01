@@ -1033,7 +1033,7 @@ void SendNetworkPacketEx(NetworkHandle packetId,NetworkHandle connectionId,Netwo
       lVar4 = unaff_RSI * 0x10 + *(longlong *)(param_6 + 0x80);
       plVar1 = *(longlong **)(param_5 + 800);
       lVar3 = (**(code **)(*plVar1 + 0x270))(plVar1,lVar4,1,param_4,connectionContext);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
         ProcessNetworkPacketArray(lVar4,&stack0x00000040);
       }
@@ -8733,7 +8733,7 @@ NetworkContextValidationFailed:
         tertiaryNetworkFlag = ProcessNetworkBufferValidation(networkPointer10);
         networkPointer10 = networkPointer10 + -2;
         *puVar8 = tertiaryNetworkFlag;
-        iVar5 = iVar5 + -1;
+        connectionCount = connectionCount + -1;
         *puVar7 = 0;
         puVar8 = puVar8 + -1;
         puVar7 = puVar7 + -2;
@@ -11609,7 +11609,7 @@ void NetworkDataTransferProcessor(longlong *connectionContext,longlong packetDat
   cVar1 = (**(code **)(*connectionContext + 0x50))(connectionContext);
   if (cVar1 != '\0') {
     lVar3 = (**(code **)(*dataSize + 0x2f0))(dataSize,packetData + 0x30,1);
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
       ProcessNetworkPacketArray(packetData + 0x30,auStack_58);
     }
@@ -11792,7 +11792,7 @@ NetworkErrorHandlerLabel:
         tertiaryNetworkFlag = ProcessNetworkBufferValidation(networkPointer10);
         networkPointer10 = networkPointer10 + -2;
         *puVar8 = tertiaryNetworkFlag;
-        iVar5 = iVar5 + -1;
+        connectionCount = connectionCount + -1;
         *puVar7 = 0;
         puVar8 = puVar8 + -1;
         puVar7 = puVar7 + -2;
@@ -15332,7 +15332,7 @@ void ProcessNetworkResourceCleanup(longlong *connectionContext)
       do {
         *(NetworkHandle *)(lVar1 + -0xc) = 0;
         *(NetworkHandle *)(lVar1 + -4) = 0;
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar2 = lVar2 + -1;
       } while (lVar2 != 0);
     }
@@ -16731,7 +16731,7 @@ LAB_18084f283:
     FUN_180768400(lVar9);
   }
   if (lVar3 != 0) {
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
       return 0x1c;
     }
     LeaveCriticalSection();
@@ -17005,7 +17005,7 @@ LAB_18084f513:
     FUN_180768400(lVar9);
   }
   if (lVar3 != 0) {
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
       return 0x1c;
     }
     LeaveCriticalSection();
@@ -17270,7 +17270,7 @@ LAB_18084f7a3:
     FUN_180768400(lVar9);
   }
   if (lVar3 != 0) {
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
       return 0x1c;
     }
     LeaveCriticalSection();
@@ -24696,7 +24696,7 @@ LAB_180854bfc:
       lVar3 = 0;
     }
     plVar8 = (longlong *)(lVar3 + 0x20);
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
       plVar8 = (longlong *)0x0;
     }
   } while( true );
@@ -26160,7 +26160,7 @@ NetworkHandle FUN_1808559c0(NetworkHandle *connectionContext)
     if (plVar4 == plVar2) break;
     lVar3 = *plVar4;
     plVar8 = (longlong *)(lVar3 + -0x18);
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
       plVar8 = plVar10;
     }
     plVar9 = plVar10;
@@ -26916,7 +26916,7 @@ NetworkHandle FUN_1808560c0(longlong connectionContext)
   }
   lVar3 = func_0x00018084d100(*(NetworkHandle *)(connectionContext + 0x110),*(longlong *)(connectionContext + 0x140) + 0x10
                              );
-  if (lVar3 == 0) {
+  if (processedEntry == 0) {
     quaternaryNetworkFlag = FUN_180855810(connectionContext,0);
     if ((int)quaternaryNetworkFlag != 0) {
       return quaternaryNetworkFlag;
@@ -36775,7 +36775,7 @@ FUN_18085f790(longlong connectionContext,NetworkHandle packetData,NetworkHandle 
   NetworkByte auStack_28 [16];
   
   lVar3 = FindNetworkConnectionHandle();
-  if (lVar3 == 0) {
+  if (processedEntry == 0) {
     return 0x1c;
   }
   primaryNetworkFlag = (uint)param_6 * 4 + 4;
@@ -37828,7 +37828,7 @@ void FUN_180860480(longlong connectionContext,NetworkHandle packetData,NetworkHa
   if (plVar2 == (longlong *)0x0) {
     lVar3 = (**(code **)(**(longlong **)(connectionContext + 0x458) + 0x128))
                       (*(longlong **)(connectionContext + 0x458),packetData,1);
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
       ProcessNetworkPacketArray(packetData,auStack_58);
     }
@@ -41353,7 +41353,7 @@ void FUN_1808629e9(longlong *connectionContext)
   (**(code **)(*connectionContext + 0x30))();
   lVar3 = (**(code **)(**(longlong **)(unaff_R15 + 0x458) + 0x128))
                     (*(longlong **)(unaff_R15 + 0x458),&stack0x00000070,1);
-  if (lVar3 == 0) {
+  if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
     ProcessNetworkBufferTemplate(&stack0x00000080,0x27,&UNK_180958180,uStack0000000000000070,uStack0000000000000074
                  );
@@ -41406,7 +41406,7 @@ void FUN_1808629f1(longlong *connectionContext)
   (**(code **)(*connectionContext + 0x30))();
   lVar3 = (**(code **)(**(longlong **)(unaff_R15 + 0x458) + 0x128))
                     (*(longlong **)(unaff_R15 + 0x458),&stack0x00000070,1);
-  if (lVar3 == 0) {
+  if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
     ProcessNetworkBufferTemplate(&stack0x00000080,0x27,&UNK_180958180,uStack0000000000000070,uStack0000000000000074
                  );
@@ -43548,7 +43548,7 @@ LAB_18086428a:
       goto LAB_180864624;
     }
     lVar3 = *(longlong *)(*(longlong *)(unaff_RDI + 0x2b0) + 0x78);
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
       primaryNetworkFlag2 = 0x1c;
       goto LAB_180864627;
     }
@@ -47923,7 +47923,7 @@ LAB_1808683fc:
           if (networkStatus2 != -1) {
             lVar3 = (**(code **)(*(longlong *)*packetData + 0x278))
                               ((longlong *)*packetData,lVar1 + 0x10,1);
-            if (lVar3 == 0) {
+            if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
               ProcessNetworkPacketArray(lVar1 + 0x10,auStack_58);
             }
@@ -47997,7 +47997,7 @@ LAB_1808683fc:
         if (networkStatus2 != -1) {
           lVar3 = (**(code **)(*(longlong *)*unaff_R15 + 0x278))
                             ((longlong *)*unaff_R15,lVar1 + 0x10,1);
-          if (lVar3 == 0) {
+          if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
             ProcessNetworkPacketArray(lVar1 + 0x10,auStackX_20);
           }
@@ -48516,7 +48516,7 @@ LAB_180868b10:
           }
           lVar4 = plVar6[4];
           lVar3 = (**(code **)(*param_4 + 0x298))(param_4,lVar4,1);
-          if (lVar3 == 0) {
+          if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
             ProcessNetworkPacketArray(lVar4,auStack_78);
           }
@@ -49244,7 +49244,7 @@ LAB_180869c7a:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x2a0))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -49315,29 +49315,29 @@ LAB_180869c7a:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x140) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x148) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2a0))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x148);
         if (lVar3 == 0) goto LAB_180869c7a;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x140)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x140));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_180869c72;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x140)) = lVar3;
@@ -49389,11 +49389,11 @@ LAB_180869c7a:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2a0))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x148);
       if (lVar3 == 0) goto LAB_180869c7a;
@@ -49410,7 +49410,7 @@ LAB_180869c61:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x140));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_180869c61;
@@ -49499,7 +49499,7 @@ LAB_180869e7a:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x318))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -49570,29 +49570,29 @@ LAB_180869e7a:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x80) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x88) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x318))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x88);
         if (lVar3 == 0) goto LAB_180869e7a;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x80)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x80));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_180869e72;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x80)) = lVar3;
@@ -49644,11 +49644,11 @@ LAB_180869e7a:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x318))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x88);
       if (lVar3 == 0) goto LAB_180869e7a;
@@ -49665,7 +49665,7 @@ LAB_180869e61:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x80));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_180869e61;
@@ -49754,7 +49754,7 @@ LAB_18086a07a:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x2d8))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -49825,29 +49825,29 @@ LAB_18086a07a:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x110) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x118) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2d8))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x118);
         if (lVar3 == 0) goto LAB_18086a07a;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x110)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x110));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086a072;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x110)) = lVar3;
@@ -49899,11 +49899,11 @@ LAB_18086a07a:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2d8))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x118);
       if (lVar3 == 0) goto LAB_18086a07a;
@@ -49920,7 +49920,7 @@ LAB_18086a061:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x110));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086a061;
@@ -50009,7 +50009,7 @@ LAB_18086a27a:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x298))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -50085,35 +50085,35 @@ LAB_18086a27a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
           if (0 < networkStatus) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x180) + (longlong)networkStatus4 * 8;
+            arrayIndex = *(longlong *)(connectionContext + 0x180) + (longlong)cleanupIndex * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
-          *(int *)(unaff_RBP + 0x188) = iVar5;
+          connectionCount = connectionCount + -1;
+          *(int *)(connectionContext + 0x188) = connectionCount;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
-        lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x298))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        connectionEntry = connectionEntry + 0x10;
+        processedEntry = (**(code **)(*(longlong *)*connectionManager + 0x298))((longlong *)*connectionManager,connectionEntry,1);
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
-        iVar5 = *(int *)(unaff_RBP + 0x188);
-        if (lVar3 == 0) goto LAB_18086a27a;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
-            (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x180)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
-            lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x180));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+        connectionCount = *(int *)(connectionContext + 0x188);
+        if (processedEntry == 0) goto LAB_18086a27a;
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
+            (networkStatus = memcmp(*(longlong *)(arrayIndex + -8 + *(longlong *)(connectionContext + 0x180)) + 0x10,
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
+            connectionEntry = *(longlong *)(arrayIndex + 8 + *(longlong *)(connectionContext + 0x180));
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086a272;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x180)) = lVar3;
-          iVar5 = *(int *)(unaff_RBP + 0x188);
+          connectionCount = *(int *)(connectionContext + 0x188);
         }
 LAB_18086a272:
         networkStatus4 = networkStatus4 + 1;
@@ -50161,14 +50161,14 @@ LAB_18086a27a:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
-      lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x298))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      connectionEntry = connectionEntry + 0x10;
+      processedEntry = (**(code **)(*(longlong *)*connectionManager + 0x298))((longlong *)*connectionManager,connectionEntry,1);
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x188);
-      if (lVar3 == 0) goto LAB_18086a27a;
+      if (processedEntry == 0) goto LAB_18086a27a;
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         if (unaff_ESI != 0) {
           networkStatus2 = memcmp(*(longlong *)(lVar4 + -8 + *(longlong *)(unaff_RBP + 0x180)) + 0x10,
@@ -50182,7 +50182,7 @@ LAB_18086a261:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x180));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086a261;
@@ -50271,7 +50271,7 @@ LAB_18086a47a:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x268))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -50342,29 +50342,29 @@ LAB_18086a47a:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1d0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x1d8) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x268))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1d8);
         if (lVar3 == 0) goto LAB_18086a47a;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x1d0)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x1d0));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086a472;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1d0)) = lVar3;
@@ -50416,11 +50416,11 @@ LAB_18086a47a:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x268))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1d8);
       if (lVar3 == 0) goto LAB_18086a47a;
@@ -50437,7 +50437,7 @@ LAB_18086a461:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x1d0));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086a461;
@@ -50526,7 +50526,7 @@ LAB_18086a67a:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x2e0))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -50597,29 +50597,29 @@ LAB_18086a67a:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x100) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x108) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2e0))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x108);
         if (lVar3 == 0) goto LAB_18086a67a;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x100)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x100));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086a672;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x100)) = lVar3;
@@ -50671,11 +50671,11 @@ LAB_18086a67a:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2e0))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x108);
       if (lVar3 == 0) goto LAB_18086a67a;
@@ -50692,7 +50692,7 @@ LAB_18086a661:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x100));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086a661;
@@ -50781,7 +50781,7 @@ LAB_18086a87a:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x2e8))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -50852,29 +50852,29 @@ LAB_18086a87a:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0xe0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0xe8) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2e8))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0xe8);
         if (lVar3 == 0) goto LAB_18086a87a;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0xe0)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0xe0));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086a872;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xe0)) = lVar3;
@@ -50926,11 +50926,11 @@ LAB_18086a87a:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2e8))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0xe8);
       if (lVar3 == 0) goto LAB_18086a87a;
@@ -50947,7 +50947,7 @@ LAB_18086a861:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0xe0));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086a861;
@@ -51036,7 +51036,7 @@ LAB_18086aa7a:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x288))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -51107,29 +51107,29 @@ LAB_18086aa7a:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1a0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x1a8) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x288))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1a8);
         if (lVar3 == 0) goto LAB_18086aa7a;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x1a0)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x1a0));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086aa72;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1a0)) = lVar3;
@@ -51181,11 +51181,11 @@ LAB_18086aa7a:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x288))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1a8);
       if (lVar3 == 0) goto LAB_18086aa7a;
@@ -51202,7 +51202,7 @@ LAB_18086aa61:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x1a0));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086aa61;
@@ -51291,7 +51291,7 @@ LAB_18086ac60:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x338))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -51362,29 +51362,29 @@ LAB_18086ac60:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x40) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x48) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x338))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x48);
         if (lVar3 == 0) goto LAB_18086ac60;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x40)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x40));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086ac58;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x40)) = lVar3;
@@ -51436,11 +51436,11 @@ LAB_18086ac60:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x338))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x48);
       if (lVar3 == 0) goto LAB_18086ac60;
@@ -51457,7 +51457,7 @@ LAB_18086ac4d:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x40));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086ac4d;
@@ -51546,7 +51546,7 @@ LAB_18086ae40:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x340))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -51617,29 +51617,29 @@ LAB_18086ae40:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x30) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x38) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x340))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x38);
         if (lVar3 == 0) goto LAB_18086ae40;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x30)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x30));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086ae38;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x30)) = lVar3;
@@ -51691,11 +51691,11 @@ LAB_18086ae40:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x340))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x38);
       if (lVar3 == 0) goto LAB_18086ae40;
@@ -51712,7 +51712,7 @@ LAB_18086ae2d:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x30));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086ae2d;
@@ -51801,7 +51801,7 @@ LAB_18086b03a:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x2a8))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -51872,29 +51872,29 @@ LAB_18086b03a:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x130) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x138) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2a8))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x138);
         if (lVar3 == 0) goto LAB_18086b03a;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x130)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x130));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086b032;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x130)) = lVar3;
@@ -51946,11 +51946,11 @@ LAB_18086b03a:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2a8))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x138);
       if (lVar3 == 0) goto LAB_18086b03a;
@@ -51967,7 +51967,7 @@ LAB_18086b021:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x130));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086b021;
@@ -52056,7 +52056,7 @@ LAB_18086b23a:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x260))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -52127,29 +52127,29 @@ LAB_18086b23a:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1e0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x1e8) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x260))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1e8);
         if (lVar3 == 0) goto LAB_18086b23a;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x1e0)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x1e0));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086b232;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1e0)) = lVar3;
@@ -52201,11 +52201,11 @@ LAB_18086b23a:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x260))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1e8);
       if (lVar3 == 0) goto LAB_18086b23a;
@@ -52222,7 +52222,7 @@ LAB_18086b221:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x1e0));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086b221;
@@ -52311,7 +52311,7 @@ LAB_18086b420:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x330))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -52382,29 +52382,29 @@ LAB_18086b420:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x60) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x68) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x330))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x68);
         if (lVar3 == 0) goto LAB_18086b420;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x60)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x60));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086b418;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x60)) = lVar3;
@@ -52456,11 +52456,11 @@ LAB_18086b420:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x330))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x68);
       if (lVar3 == 0) goto LAB_18086b420;
@@ -52477,7 +52477,7 @@ LAB_18086b40d:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x60));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086b40d;
@@ -52566,7 +52566,7 @@ LAB_18086b61a:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x290))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -52637,29 +52637,29 @@ LAB_18086b61a:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 400) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x198) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x290))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x198);
         if (lVar3 == 0) goto LAB_18086b61a;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 400)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 400));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086b612;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 400)) = lVar3;
@@ -52711,11 +52711,11 @@ LAB_18086b61a:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x290))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x198);
       if (lVar3 == 0) goto LAB_18086b61a;
@@ -52732,7 +52732,7 @@ LAB_18086b601:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 400));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086b601;
@@ -52821,7 +52821,7 @@ LAB_18086b81a:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x2c0))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -52892,29 +52892,29 @@ LAB_18086b81a:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x150) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x158) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2c0))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x158);
         if (lVar3 == 0) goto LAB_18086b81a;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x150)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x150));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086b812;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x150)) = lVar3;
@@ -52966,11 +52966,11 @@ LAB_18086b81a:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2c0))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x158);
       if (lVar3 == 0) goto LAB_18086b81a;
@@ -52987,7 +52987,7 @@ LAB_18086b801:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x150));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086b801;
@@ -53076,7 +53076,7 @@ LAB_18086ba00:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 800))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -53154,29 +53154,29 @@ LAB_18086ba00:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x70) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x78) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 800))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x78);
         if (lVar3 == 0) goto LAB_18086ba00;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x70)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x70));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086b9f8;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x70)) = lVar3;
@@ -53237,11 +53237,11 @@ LAB_18086ba00:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 800))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x78);
       if (lVar3 == 0) goto LAB_18086ba00;
@@ -53258,7 +53258,7 @@ LAB_18086b9ed:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x70));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086b9ed;
@@ -53347,7 +53347,7 @@ LAB_18086bbfa:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x270))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -53418,29 +53418,29 @@ LAB_18086bbfa:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1c0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x1c8) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x270))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1c8);
         if (lVar3 == 0) goto LAB_18086bbfa;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x1c0)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x1c0));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086bbf2;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1c0)) = lVar3;
@@ -53492,11 +53492,11 @@ LAB_18086bbfa:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x270))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1c8);
       if (lVar3 == 0) goto LAB_18086bbfa;
@@ -53513,7 +53513,7 @@ LAB_18086bbe1:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x1c0));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086bbe1;
@@ -53602,7 +53602,7 @@ LAB_18086bdfa:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x278))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -53673,29 +53673,29 @@ LAB_18086bdfa:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1b0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x1b8) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x278))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1b8);
         if (lVar3 == 0) goto LAB_18086bdfa;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x1b0)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x1b0));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086bdf2;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1b0)) = lVar3;
@@ -53747,11 +53747,11 @@ LAB_18086bdfa:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x278))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1b8);
       if (lVar3 == 0) goto LAB_18086bdfa;
@@ -53768,7 +53768,7 @@ LAB_18086bde1:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x1b0));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086bde1;
@@ -53857,7 +53857,7 @@ LAB_18086bffa:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x310))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -53928,29 +53928,29 @@ LAB_18086bffa:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x90) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x98) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x310))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x98);
         if (lVar3 == 0) goto LAB_18086bffa;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x90)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x90));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086bff2;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x90)) = lVar3;
@@ -54002,11 +54002,11 @@ LAB_18086bffa:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x310))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x98);
       if (lVar3 == 0) goto LAB_18086bffa;
@@ -54023,7 +54023,7 @@ LAB_18086bfe1:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x90));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086bfe1;
@@ -54112,7 +54112,7 @@ LAB_18086c1fa:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x2b0))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -54183,29 +54183,29 @@ LAB_18086c1fa:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x170) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x178) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2b0))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x178);
         if (lVar3 == 0) goto LAB_18086c1fa;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x170)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x170));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086c1f2;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x170)) = lVar3;
@@ -54257,11 +54257,11 @@ LAB_18086c1fa:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2b0))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x178);
       if (lVar3 == 0) goto LAB_18086c1fa;
@@ -54278,7 +54278,7 @@ LAB_18086c1e1:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x170));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086c1e1;
@@ -54367,7 +54367,7 @@ LAB_18086c3e0:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x328))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -54438,29 +54438,29 @@ LAB_18086c3e0:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x50) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x58) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x328))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x58);
         if (lVar3 == 0) goto LAB_18086c3e0;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x50)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x50));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086c3d8;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x50)) = lVar3;
@@ -54512,11 +54512,11 @@ LAB_18086c3e0:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x328))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x58);
       if (lVar3 == 0) goto LAB_18086c3e0;
@@ -54533,7 +54533,7 @@ LAB_18086c3cd:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x50));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086c3cd;
@@ -54622,7 +54622,7 @@ LAB_18086c5da:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x2b8))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -54693,29 +54693,29 @@ LAB_18086c5da:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x160) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x168) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2b8))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x168);
         if (lVar3 == 0) goto LAB_18086c5da;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x160)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x160));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086c5d2;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x160)) = lVar3;
@@ -54767,11 +54767,11 @@ LAB_18086c5da:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2b8))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x168);
       if (lVar3 == 0) goto LAB_18086c5da;
@@ -54788,7 +54788,7 @@ LAB_18086c5c1:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x160));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086c5c1;
@@ -54877,7 +54877,7 @@ LAB_18086c7da:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x308))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -54948,29 +54948,29 @@ LAB_18086c7da:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0xa0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0xa8) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x308))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0xa8);
         if (lVar3 == 0) goto LAB_18086c7da;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0xa0)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0xa0));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086c7d2;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xa0)) = lVar3;
@@ -55022,11 +55022,11 @@ LAB_18086c7da:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x308))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0xa8);
       if (lVar3 == 0) goto LAB_18086c7da;
@@ -55043,7 +55043,7 @@ LAB_18086c7c1:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0xa0));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086c7c1;
@@ -55132,7 +55132,7 @@ LAB_18086c9da:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x300))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -55203,29 +55203,29 @@ LAB_18086c9da:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0xb0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0xb8) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x300))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0xb8);
         if (lVar3 == 0) goto LAB_18086c9da;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0xb0)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0xb0));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086c9d2;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xb0)) = lVar3;
@@ -55277,11 +55277,11 @@ LAB_18086c9da:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x300))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0xb8);
       if (lVar3 == 0) goto LAB_18086c9da;
@@ -55298,7 +55298,7 @@ LAB_18086c9c1:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0xb0));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086c9c1;
@@ -55387,7 +55387,7 @@ LAB_18086cbda:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x2d0))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -55458,29 +55458,29 @@ LAB_18086cbda:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x120) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x128) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2d0))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x128);
         if (lVar3 == 0) goto LAB_18086cbda;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x120)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x120));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086cbd2;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x120)) = lVar3;
@@ -55532,11 +55532,11 @@ LAB_18086cbda:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2d0))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x128);
       if (lVar3 == 0) goto LAB_18086cbda;
@@ -55553,7 +55553,7 @@ LAB_18086cbc1:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x120));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086cbc1;
@@ -55642,7 +55642,7 @@ LAB_18086cdda:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x280))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -55713,29 +55713,29 @@ LAB_18086cdda:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1f0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0x1f8) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x280))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1f8);
         if (lVar3 == 0) goto LAB_18086cdda;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x1f0)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x1f0));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086cdd2;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1f0)) = lVar3;
@@ -55787,11 +55787,11 @@ LAB_18086cdda:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x280))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1f8);
       if (lVar3 == 0) goto LAB_18086cdda;
@@ -55808,7 +55808,7 @@ LAB_18086cdc1:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0x1f0));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086cdc1;
@@ -55897,7 +55897,7 @@ LAB_18086cfda:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x2f0))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -55968,29 +55968,29 @@ LAB_18086cfda:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0xd0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0xd8) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2f0))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0xd8);
         if (lVar3 == 0) goto LAB_18086cfda;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0xd0)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0xd0));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086cfd2;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xd0)) = lVar3;
@@ -56042,11 +56042,11 @@ LAB_18086cfda:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2f0))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0xd8);
       if (lVar3 == 0) goto LAB_18086cfda;
@@ -56063,7 +56063,7 @@ LAB_18086cfc1:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0xd0));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086cfc1;
@@ -56152,7 +56152,7 @@ LAB_18086d1da:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x2f8))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -56223,29 +56223,29 @@ LAB_18086d1da:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0xc0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 200) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2f8))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 200);
         if (lVar3 == 0) goto LAB_18086d1da;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0xc0)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0xc0));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086d1d2;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xc0)) = lVar3;
@@ -56297,11 +56297,11 @@ LAB_18086d1da:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2f8))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 200);
       if (lVar3 == 0) goto LAB_18086d1da;
@@ -56318,7 +56318,7 @@ LAB_18086d1c1:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0xc0));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086d1c1;
@@ -56407,7 +56407,7 @@ LAB_18086d3da:
           }
         }
         else {
-          lVar1 = lVar1 + 0x10;
+          connectionEntry = connectionEntry + 0x10;
           lVar4 = (**(code **)(*(longlong *)*packetData + 0x2c8))((longlong *)*packetData,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -56478,29 +56478,29 @@ LAB_18086d3da:
           if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0xf0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
+            memmove(arrayIndex,arrayIndex + 8,(longlong)networkStatus << 3);
           }
-          iVar5 = iVar5 + -1;
+          connectionCount = connectionCount + -1;
           *(int *)(unaff_RBP + 0xf8) = iVar5;
         }
       }
       else {
-        lVar1 = lVar1 + 0x10;
+        connectionEntry = connectionEntry + 0x10;
         lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2c8))((longlong *)*unaff_R14,lVar1,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-          ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+          ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0xf8);
         if (lVar3 == 0) goto LAB_18086d3da;
-        if (((-1 < networkStatus4) && (networkStatus4 < iVar5)) &&
-           ((networkStatus4 == 0 ||
+        if (((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) &&
+           ((cleanupIndex == 0 ||
             (networkStatus2 = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0xf0)) + 0x10,
-                            lVar3 + 0x10,0x10), networkStatus2 < 0)))) {
-          if (networkStatus4 != iVar5 + -1) {
+                            processedEntry + 0x10,0x10), networkStatus < 0)))) {
+          if (cleanupIndex != connectionCount + -1) {
             lVar1 = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0xf0));
-            networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
-            if ((networkStatus2 < 0) || (networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10), -1 < networkStatus2))
+            networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
+            if ((networkStatus < 0) || (networkStatus = memcmp(processedEntry + 0x10,connectionEntry + 0x10,0x10), -1 < networkStatus))
             goto LAB_18086d3d2;
           }
           *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xf0)) = lVar3;
@@ -56552,11 +56552,11 @@ LAB_18086d3da:
       }
     }
     else {
-      lVar1 = lVar1 + 0x10;
+      connectionEntry = connectionEntry + 0x10;
       lVar3 = (**(code **)(*(longlong *)*unaff_R14 + 0x2c8))((longlong *)*unaff_R14,lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
-        ProcessNetworkPacketArray(lVar1,&stack0x00000028);
+        ProcessNetworkPacketArray(connectionEntry,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0xf8);
       if (lVar3 == 0) goto LAB_18086d3da;
@@ -56573,7 +56573,7 @@ LAB_18086d3c1:
         }
         else {
           lVar1 = *(longlong *)(lVar4 + 8 + *(longlong *)(unaff_RBP + 0xf0));
-          networkStatus2 = memcmp(lVar1 + 0x10,lVar3 + 0x10,0x10);
+          networkStatus = memcmp(connectionEntry + 0x10,processedEntry + 0x10,0x10);
           if (-1 < networkStatus2) {
             networkStatus2 = memcmp(lVar3 + 0x10,lVar1 + 0x10,0x10);
             if (networkStatus2 < 0) goto LAB_18086d3c1;
@@ -63391,7 +63391,7 @@ ulonglong FUN_180875569(longlong connectionContext,NetworkHandle packetData,Netw
         uStack0000000000000028 = uVar8;
         lVar3 = ProcessNetworkConnectionRequest(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),0xc40,&UNK_180985b90,0xc4,
                               unaff_RDI & 0xffffffff);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
           (**(code **)*networkPointer5)(networkPointer5,0);
                     // WARNING: Subroutine does not return
           ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),networkPointer5,&UNK_18095b500,0xc6,1);
@@ -64978,7 +64978,7 @@ void FUN_180876d90(longlong connectionContext,longlong *packetData)
   uStack_10 = NetworkSecurityGuardValue ^ (ulonglong)auStack_58;
   if (*(int *)(connectionContext + 0x48) == 0) {
     lVar3 = (**(code **)(*packetData + 0x110))(packetData,connectionContext + 0x30,1);
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
       ProcessNetworkPacketArray(connectionContext + 0x30,anetworkBuffer);
     }
@@ -64998,7 +64998,7 @@ void FUN_180876d90(longlong connectionContext,longlong *packetData)
           lVar3 = 0;
         }
         if ((sVar2 != 0) && (sVar2 == 1)) {
-          if (lVar3 == 0) {
+          if (processedEntry == 0) {
             quinaryNetworkFlag = 0xc2a00000;
           }
           else {
@@ -65458,7 +65458,7 @@ void FUN_180877810(longlong connectionContext,longlong *packetData)
           (uVar8 < (longlong)*(int *)(connectionContext + 0x88) * 0x10 + *(ulonglong *)(connectionContext + 0x80)));
           uVar8 = uVar8 + 0x10) {
         lVar3 = (**(code **)(*packetData + 0x270))(packetData,uVar8,1);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
           ProcessNetworkPacketArray(uVar8,auStack_68);
         }
@@ -65732,7 +65732,7 @@ void FUN_180877f00(longlong connectionContext,longlong *packetData)
   while ((*(NetworkStatus **)(connectionContext + 0x80) <= networkPointer5 &&
          (networkPointer5 < *(NetworkStatus **)(connectionContext + 0x80) + (longlong)*(int *)(connectionContext + 0x88) * 4))) {
     lVar3 = (**(code **)(*packetData + 0x270))(packetData,networkPointer5,1);
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
       uStack_60 = (uint)*(byte *)((longlong)networkPointer5 + 0xf);
       uStack_68 = (uint)*(byte *)((longlong)networkPointer5 + 0xe);
       uStack_70 = (uint)*(byte *)((longlong)networkPointer5 + 0xd);
@@ -65747,7 +65747,7 @@ void FUN_180877f00(longlong connectionContext,longlong *packetData)
       ProcessNetworkBufferTemplate(auStack_58,0x27,&UNK_180958180,*networkPointer5);
     }
     lVar3 = (**(code **)(*packetData + 0x278))(packetData,lVar3 + 0x38,1);
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
       networkStatus2 = (int)((longlong)networkPointer5 - *(longlong *)(connectionContext + 0x80) >> 4);
       if ((networkStatus2 < 0) || (networkStatus1 = *(int *)(connectionContext + 0x88), networkStatus1 <= networkStatus2)) break;
       networkStatus4 = (networkStatus1 - networkStatus2) + -1;
@@ -77457,7 +77457,7 @@ NetworkHandle ParseNetworkPacketHeader(ulonglong *connectionContext,longlong pac
       if (packetData == -8) {
         lVar3 = lVar5;
       }
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
         return 0x44;
       }
       auStackX_8[0] = 1;
@@ -77489,7 +77489,7 @@ LAB_180882bf3:
         if (packetData == -8) {
           lVar3 = lVar5;
         }
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
           return 0x44;
         }
         auStackX_8[0] = 1;
@@ -77505,7 +77505,7 @@ LAB_180882bf3:
         if (packetData == -8) {
           lVar3 = lVar5;
         }
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
           return 0x44;
         }
         auStackX_8[0] = 1;
@@ -77521,7 +77521,7 @@ LAB_180882bf3:
         if (packetData == -8) {
           lVar3 = lVar5;
         }
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
           return 0x44;
         }
         auStackX_8[0] = 1;
@@ -77537,7 +77537,7 @@ LAB_180882bf3:
         if (packetData == -8) {
           lVar3 = lVar5;
         }
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
           return 0x44;
         }
         auStackX_8[0] = 1;
@@ -90051,15 +90051,15 @@ NetworkHandle FUN_18088ef0e(NetworkStatus connectionContext)
   if (in_CL != '\0') {
     cVar1 = *unaff_RBX;
     lVar3 = FUN_18076b7c0(connectionContext,&UNK_180986240);
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
       lVar3 = FUN_18076b7c0(extraout_XMM0_Da,&UNK_180986244);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
         lVar3 = FUN_18076b7c0(extraout_XMM0_Da_00,&UNK_180986248);
-        if (lVar3 == 0) {
+        if (processedEntry == 0) {
           lVar3 = FUN_18076b7c0(extraout_XMM0_Da_01,&UNK_18098624c);
-          if (lVar3 == 0) {
+          if (processedEntry == 0) {
             lVar3 = FUN_18076b7c0(extraout_XMM0_Da_02,&UNK_180986250);
-            if (lVar3 == 0) {
+            if (processedEntry == 0) {
               return 0x13;
             }
           }
@@ -95027,7 +95027,7 @@ void FUN_180892410(longlong connectionContext,longlong packetData)
       lVar1 = *(longlong *)(lStack_48 + 0x18) + 0x30;
       lVar3 = (**(code **)(**(longlong **)(packetData + 800) + 0x2f0))
                         (*(longlong **)(packetData + 800),lVar1,1);
-      if (lVar3 == 0) {
+      if (processedEntry == 0) {
                     // WARNING: Subroutine does not return
         ProcessNetworkPacketArray(lVar1,auStack_40);
       }
@@ -95633,7 +95633,7 @@ NetworkHandle FUN_180892bd0(longlong connectionContext,longlong packetData,Netwo
   }
   lVar5 = *(longlong *)(lVar5 + 0x20) + (longlong)networkStatus2 * 0x18;
   lVar3 = *(longlong *)(lVar5 + 0x10);
-  if (lVar3 == 0) {
+  if (processedEntry == 0) {
     return 0x1e;
   }
   if ((*(byte *)(lVar3 + 0x34) & 0x11) == 0) {
@@ -97207,7 +97207,7 @@ void FUN_180894860(longlong connectionContext,NetworkStatus *packetData,longlong
     uStack_50 = packetData[2];
     uStack_4c = packetData[3];
     lVar3 = (**(code **)(*plVar1 + 0x150))(plVar1,&uStack_58,1);
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
       uStack_80 = uStack_50 >> 0x18;
       uStack_60 = uStack_4c >> 0x18;
       uStack_a0 = uStack_54 >> 0x10;
@@ -97293,7 +97293,7 @@ void FUN_1808949c0(longlong connectionContext,NetworkStatus *packetData,longlong
     uStack_40 = packetData[2];
     uStack_3c = packetData[3];
     lVar3 = (**(code **)(*plVar1 + 0x288))(plVar1,&uStack_48,1);
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
       uStack_70 = uStack_40 >> 0x18;
       uStack_50 = uStack_3c >> 0x18;
       uStack_90 = uStack_44 >> 0x10;
@@ -97400,7 +97400,7 @@ void FUN_180894b00(longlong connectionContext,NetworkStatus *packetData,longlong
     uStack_50 = packetData[2];
     uStack_4c = packetData[3];
     lVar3 = (**(code **)(*plVar1 + 0x2f8))(plVar1,&uStack_58,1);
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
       uStack_80 = uStack_50 >> 0x18;
       uStack_60 = uStack_4c >> 0x18;
       uStack_a0 = uStack_54 >> 0x10;
@@ -101162,7 +101162,7 @@ NetworkHandle FUN_180897d90(longlong *connectionContext)
   if ((int)secondaryNetworkFlag == 0) {
     lVar1 = *(longlong *)(connectionContext[1] + 0x78);
     lVar3 = func_0x000180879a40();
-    if (lVar3 == 0) {
+    if (processedEntry == 0) {
       secondaryNetworkFlag = 0x1c;
     }
     else {
