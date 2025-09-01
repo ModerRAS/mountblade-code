@@ -110691,32 +110691,42 @@ NetworkHandle FUN_18089fed0(longlong connectionContext,NetworkHandle *packetData
 
 
 
-NetworkHandle FUN_18089ffe0(NetworkHandle connectionContext,longlong packetData)
+/**
+ * @brief 处理网络连接数据包
+ * 
+ * 该函数负责处理网络连接中的数据包，根据数据包类型和内容
+ * 执行相应的网络协议处理和数据解析
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据指针
+ * @return 处理结果，成功返回0，失败返回错误码
+ */
+NetworkHandle ProcessNetworkPacketData(NetworkHandle connectionContext,longlong packetData)
 
 {
-  NetworkHandle uVar1;
-  NetworkByte auStack_28 [32];
+  NetworkHandle processResult;
+  NetworkByte packetBuffer [32];
   
   if (*(uint *)(packetData + 0x40) < 0x31) {
-    uVar1 = FUN_1808a3d50(connectionContext,packetData,0x544e5645);
-    if ((int)uVar1 == 0) {
-      uVar1 = 0;
+    processResult = ValidateNetworkPacketHeader(connectionContext,packetData,0x544e5645);
+    if ((int)processResult == 0) {
+      processResult = 0;
     }
   }
   else {
-    uVar1 = FUN_1808ddd30(packetData,auStack_28,1,0x5453494c,0x544e5645);
-    if ((int)uVar1 == 0) {
-      uVar1 = FUN_1808a3d50(connectionContext,packetData,0x42545645);
-      if ((int)uVar1 == 0) {
-        uVar1 = FUN_1808a1610(connectionContext,packetData);
-        if ((int)uVar1 == 0) {
+    processResult = DecodePacketDataStream(packetData,packetBuffer,1,0x5453494c,0x544e5645);
+    if ((int)processResult == 0) {
+      processResult = ValidateNetworkPacketHeader(connectionContext,packetData,0x42545645);
+      if ((int)processResult == 0) {
+        processResult = ProcessNetworkConnectionData(connectionContext,packetData);
+        if ((int)processResult == 0) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000(packetData,auStack_28);
+          FinalizePacketProcessing(packetData,packetBuffer);
         }
       }
     }
   }
-  return uVar1;
+  return processResult;
 }
 
 
