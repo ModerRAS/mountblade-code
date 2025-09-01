@@ -14987,7 +14987,24 @@ NetworkHandle GetNetworkConnectionInvalidStatus(void)
 
 
 
-NetworkStatus FUN_18084d840(longlong connectionContext,uint packetData,uint dataSize,double *param_4)
+// 函数: NetworkStatus FUN_18084d840(longlong connectionContext,uint packetData,uint dataSize,double *param_4)
+/**
+ * @brief 网络连接数据传输处理器
+ * 
+ * 该函数负责处理网络连接数据传输，包括：
+ * - 数据包的发送和接收
+ * - 传输状态的管理
+ * - 数据完整性的验证
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据
+ * @param dataSize 数据大小
+ * @param param_4 参数指针
+ * @return 传输状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkStatus ProcessNetworkDataTransfer(longlong connectionContext,uint packetData,uint dataSize,double *param_4)
 
 {
   NetworkByte *networkPointer1;
@@ -15064,7 +15081,18 @@ NetworkStatus FUN_18084d840(longlong connectionContext,uint packetData,uint data
 
 
 
-NetworkHandle FUN_18084d86d(void)
+// 函数: NetworkHandle FUN_18084d86d(void)
+/**
+ * @brief 网络连接状态获取器
+ * 
+ * 该函数负责获取当前网络连接状态
+ * 主要用于查询网络连接的运行状态
+ * 
+ * @return 网络连接状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle GetNetworkConnectionCurrentState(void)
 
 {
   NetworkByte *networkPointer1;
