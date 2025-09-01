@@ -437,10 +437,10 @@ int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mut
   _DAT_180bf6a78 = 0x13;
   strcpy_s(&SystemConfigBufferF,0x40,&UNK_180a0cbc8);
   _DAT_180bf6ac0 = &UNK_1809fcc58;
-  _DAT_180bf6ac8 = &DAT_180bf6ad8;
-  DAT_180bf6ad8 = 0;
+  _DAT_180bf6ac8 = &SystemConfigBufferG;
+  SystemConfigBufferG = 0;
   _DAT_180bf6ad0 = 0x14;
-  strcpy_s(&DAT_180bf6ad8,0x40,&UNK_180a0cc30);
+  strcpy_s(&SystemConfigBufferG,0x40,&UNK_180a0cc30);
   _DAT_180bf6b18 = &UNK_1809fcc58;
   _DAT_180bf6b20 = &DAT_180bf6b30;
   DAT_180bf6b30 = 0;
