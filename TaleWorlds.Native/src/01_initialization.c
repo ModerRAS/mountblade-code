@@ -35003,8 +35003,17 @@ void ValidateSystemResourcePointer(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005a130(long long SystemResourcePointer)
-void FUN_18005a130(long long SystemResourcePointer)
+/**
+ * @brief 系统资源表验证和清理函数
+ * 
+ * 该函数负责验证系统资源表的有效性，并清理无效的资源条目。
+ * 它会遍历资源表，检查每个资源的状态，并进行必要的清理操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源表信息
+ * 
+ * 原始函数名为FUN_18005a130，现已重命名为ValidateAndCleanupSystemResourceTable
+ */
+void ValidateAndCleanupSystemResourceTable(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
