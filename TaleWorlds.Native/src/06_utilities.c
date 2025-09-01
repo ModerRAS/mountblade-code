@@ -2046,12 +2046,12 @@ uint8_t ResourceBufferConfigTertiary;
 uint8_t SystemConfigDataEighth;
 uint8_t SystemConfigDataNinth;
 // 系统内存配置数据模板中级变量
-uint8_t SystemMemoryConfigDataTemplateTwelfth;         // 第12配置项
-uint8_t SystemMemoryConfigDataTemplateThirteenth;       // 第13配置项
-uint8_t SystemMemoryConfigDataTemplateFourteenth;       // 第14配置项
+uint8_t SystemMemoryConfigDataTemplateDuodecimal;       // 第十二配置项
+uint8_t SystemMemoryConfigDataTemplateTerdenary;        // 第十三配置项
+uint8_t SystemMemoryConfigDataTemplateQuattuordenary;    // 第十四配置项
 uint8_t SecurityEncryptionKey;                          // 安全加密密钥
-uint8_t SystemMemoryConfigDataTemplateFourteenthAlt;    // 第14配置项备用
-uint8_t SystemMemoryConfigDataTemplateFifteenth;        // 第15配置项
+uint8_t SystemMemoryConfigDataTemplateQuattuordenaryAlt; // 第十四配置项备用
+uint8_t SystemMemoryConfigDataTemplateQuindenary;       // 第十五配置项
 uint8_t SystemMemoryConfigDataTemplateSecureSixteenth;   // 安全第16配置项
 uint8_t SystemMemoryConfigDataTemplateSecureSeventeenth; // 安全第17配置项
 uint8_t SystemMemoryConfigDataTemplateEighteenth;        // 第18配置项
@@ -2129,7 +2129,7 @@ uint8_t SystemMemoryConfigDataTemplateTenth;               // 第10配置项
  */
 void ConfigureLogOutput(void);
 // 日志输出配置数据模板变量
-uint8_t SystemMemoryConfigDataTemplateB;                   // 备用内存配置B
+uint8_t SystemMemoryConfigDataTemplateSecondary;           // 次要内存配置模板
 uint8_t LogOutputConfigDataTemplatePrimary;               // 主要日志输出配置
 uint8_t LogOutputConfigDataTemplateSecondary;             // 次要日志输出配置
 
@@ -2151,26 +2151,26 @@ uint8_t SystemMemoryManager;                               // 系统内存管理
 uint8_t LogMessageProcessorDataTemplateQuinary;            // 第五日志处理器模板
 uint8_t LogMessageProcessorContextDataPrimary;              // 主要日志处理器上下文
 uint8_t LogMessageProcessorContextDataSecondary;            // 次要日志处理器上下文
-uint8_t LogMessageProcessorContextDataC;                  // 日志处理器上下文C
+uint8_t LogMessageProcessorContextDataTertiary;             // 第三日志处理器上下文
 // 系统内存和本地化变量
 uint8_t SystemMemoryController;                            // 系统内存控制器
 uint8_t* LocaleConversionTablePointer;                     // 本地化转换表指针
-uint8_t SystemLocaleConversionDataA;                       // 系统本地化数据A
-uint8_t SystemModuleDataTemplateD;                          // 系统模块模板D
-uint8_t SystemModuleDataTemplateA;                          // 系统模块模板A
+uint8_t SystemLocaleConversionDataPrimary;                 // 主要系统本地化数据
+uint8_t SystemModuleDataTemplateQuaternary;                  // 第四系统模块模板
+uint8_t SystemModuleDataTemplatePrimary;                    // 主要系统模块模板
 // 系统模块数据模板变量
-uint8_t SystemModuleDataTemplateB;                         // 系统模块模板B
-uint8_t SystemModuleDataTemplateC;                         // 系统模块模板C
-uint8_t SystemModuleDataTemplateE;                         // 系统模块模板E
-uint8_t SystemModuleDataTemplateF;                         // 系统模块模板F
+uint8_t SystemModuleDataTemplateSecondary;                  // 次要系统模块模板
+uint8_t SystemModuleDataTemplateTertiary;                   // 第三系统模块模板
+uint8_t SystemModuleDataTemplateQuinary;                    // 第五系统模块模板
+uint8_t SystemModuleDataTemplateSenary;                     // 第六系统模块模板
 // 系统模块数据模板扩展变量
-uint8_t SystemModuleDataTemplateG;                         // 系统模块模板G
-uint8_t SystemModuleDataTemplateH;                         // 系统模块模板H
-uint8_t SystemModuleDataTemplateI;                         // 系统模块模板I
-uint8_t SystemModuleDataTemplateJ;                         // 系统模块模板J
+uint8_t SystemModuleDataTemplateSeptenary;                  // 第七系统模块模板
+uint8_t SystemModuleDataTemplateOctonary;                  // 第八系统模块模板
+uint8_t SystemModuleDataTemplateNonary;                     // 第九系统模块模板
+uint8_t SystemModuleDataTemplateDenary;                     // 第十系统模块模板
 // 系统模块数据模板最终变量
-uint8_t SystemModuleDataTemplateK;                         // 系统模块模板K
-uint8_t SystemModuleDataTemplateL;                         // 系统模块模板L
+uint8_t SystemModuleDataTemplateUndenary;                   // 第十一系统模块模板
+uint8_t SystemModuleDataTemplateDuodenary;                  // 第十二系统模块模板
 
  void FlushLogBuffer(void);
 /**
