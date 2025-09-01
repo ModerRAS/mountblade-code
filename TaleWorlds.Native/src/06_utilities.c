@@ -87697,11 +87697,11 @@ void CleanupSystemResources(uint8_t8 resourceType, uint8_t8 resourceInstance, ui
 {
   uint8_t8 *resourceManager;
   
-  resource_manager = SystemResourceManagerPointer;
+  resourceManager = SystemResourceManagerPointer;
   if (SystemResourceManagerPointer == (uint8_t8 *)0x0) {
     return;
   }
-  ReleaseSystemResources(&SystemResourceData, *SystemResourceManagerPointer, cleanup_options, cleanup_flags, 0xfffffffffffffffe);
+  ReleaseSystemResources(&SystemResourceData, *SystemResourceManagerPointer, cleanupOptions, cleanupFlags, 0xfffffffffffffffe);
   resource_manager[4] = &ResourceCleanupMarker;
   if (resource_manager[5] != 0) {
                     // WARNING: Subroutine does not return
