@@ -15907,7 +15907,7 @@ ulonglong ValidateNetworkConnectionState(longlong connectionContext)
     if ((*(byte *)(lVar2 + 0xc4) & 1) == 0) {
       return 0x1c;
     }
-    uVar6 = FUN_18084edf0(connectionContext);
+    uVar6 = GetNetworkConnectionInfo(connectionContext);
     if ((int)uVar6 != 0) {
       return uVar6;
     }

@@ -354,9 +354,9 @@ void* SystemRootNodePointer;         // UNK_18098c870
 uint32_t SystemInitializationStatusA;  // SystemInitializationStatusA
 uint32_t SystemInitializationStatusB;  // SystemInitializationStatusB
 uint32_t SystemInitializationStatusC;  // SystemInitializationStatusC
-uint32_t SystemInitializationStatusD;  // _DAT_180bf5288
-uint32_t SystemInitializationStatusE;  // _DAT_180bf5290
-uint32_t SystemInitializationStatusF;  // _DAT_180bf52a0
+uint32_t SystemInitializationStatusD;  // SystemInitializationStatusD
+uint32_t SystemInitializationStatusE;  // SystemInitializationStatusE
+uint32_t SystemInitializationStatusF;  // SystemInitializationStatusF
 
 // 系统回调函数指针
 void* SystemEventCallbackPointer;     // SystemEventNotificationHandler
@@ -373,10 +373,10 @@ void* SystemGlobalDataPointerB;        // UNK_1809fcc58
 void* SystemGlobalDataPointerC;        // UNK_1809fcc28
 
 // 系统配置数据指针
-void* SystemConfigDataPointerA;        // _DAT_180bf52c0
-void* SystemConfigDataPointerB;        // _DAT_180bf52d8
-void* SystemConfigDataPointerC;        // _DAT_180bf52c8
-void* SystemConfigDataPointerD;        // _DAT_180bf52d0
+void* SystemConfigDataPointerA;        // SystemConfigDataPointerA
+void* SystemConfigDataPointerB;        // SystemConfigDataPointerB
+void* SystemConfigDataPointerC;        // SystemConfigDataPointerC
+void* SystemConfigDataPointerD;        // SystemConfigDataPointerD
 void* SystemConfigDataPointerE;        // _DAT_180bf6750
 void* SystemConfigDataPointerF;        // _DAT_180bf7e90
 /**
@@ -19582,8 +19582,8 @@ void InitializeSystemCoreEngine(void)
   fVar12 = (float)FUN_180095720(uVar10,&puStack_308);
   puStack_308 = &SystemMemoryAllocatorReference;
   uVar5 = FUN_180623ce0();
-  if (0 < _DAT_180bf52d0) {
-    FUN_180629a40(&DAT_180bf52c0,&puStack_558,0,_DAT_180bf52d0 + -1);
+  if (0 < SystemConfigDataPointerD) {
+    FUN_180629a40(&DAT_180bf52c0,&puStack_558,0,SystemConfigDataPointerD + -1);
     iStack_548 = iStack_548 + -1;
     lVar6 = (longlong)iStack_548;
     iVar3 = -1;

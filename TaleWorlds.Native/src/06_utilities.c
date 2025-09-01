@@ -86098,8 +86098,16 @@ void InitializeSystemDataStructureCJ(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942850(void)
-void FUN_180942850(void)
+ /**
+ * 初始化系统数据结构CK
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCK(void)
+/**
+ * 初始化系统数据结构CK
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCK(void)
 
 {
   _DAT_180d49bf0 = &SystemDataStructure;
@@ -86190,8 +86198,16 @@ void ReleaseResourceReferenceWithParameter(void)
 
 
 
- void FUN_1809428d8(void)
-void FUN_1809428d8(void)
+ /**
+ * 初始化系统数据结构CL
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCL(void)
+/**
+ * 初始化系统数据结构CL
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCL(void)
 
 {
   return;
@@ -86202,8 +86218,16 @@ void FUN_1809428d8(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809428e0(void)
-void FUN_1809428e0(void)
+ /**
+ * 初始化系统数据结构CM
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCM(void)
+/**
+ * 初始化系统数据结构CM
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCM(void)
 
 {
   longlong *plVar1;
@@ -86237,8 +86261,16 @@ void FUN_1809428e0(void)
 
 
 
- void FUN_1809428f2(void)
-void FUN_1809428f2(void)
+ /**
+ * 初始化系统数据结构CN
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCN(void)
+/**
+ * 初始化系统数据结构CN
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCN(void)
 
 {
   longlong *plVar1;

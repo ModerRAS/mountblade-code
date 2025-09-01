@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# 美化01_initialization.c文件中的函数名和变量名
+# 这个脚本会批量替换一些简单的函数名和变量名
+
+# 定义文件路径
+FILE_PATH="/dev/shm/mountblade-code/TaleWorlds.Native/src/01_initialization.c"
+
+# 备份原文件
+cp "$FILE_PATH" "$FILE_PATH.backup"
+
+# 替换函数名为语义化名称
+sed -i 's/FUN_180033b50/InitializeSystemMemoryManagerNode/g' "$FILE_PATH"
+sed -i 's/FUN_180033c50/InitializeSystemDataTableNode/g' "$FILE_PATH"
+sed -i 's/FUN_180033d50/InitializeSystemConfigurationNode/g' "$FILE_PATH"
+sed -i 's/FUN_180033e50/InitializeSystemEventNode/g' "$FILE_PATH"
+sed -i 's/FUN_180033f50/InitializeSystemNodeTreeProcessor/g' "$FILE_PATH"
+sed -i 's/FUN_180034050/InitializeSystemMemoryPoolManager/g' "$FILE_PATH"
+sed -i 's/FUN_180034150/InitializeSystemServiceManager/g' "$FILE_PATH"
+sed -i 's/FUN_180034250/InitializeSystemResourceManager/g' "$FILE_PATH"
+sed -i 's/FUN_180034350/InitializeSystemEventHandler/g' "$FILE_PATH"
+sed -i 's/FUN_180034450/InitializeSystemTaskManager/g' "$FILE_PATH"
+sed -i 's/FUN_180034550/InitializeSystemDataProcessor/g' "$FILE_PATH"
+sed -i 's/FUN_180034650/InitializeSystemCommunicationManager/g' "$FILE_PATH"
+sed -i 's/FUN_180034750/InitializeSystemMemoryManager/g' "$FILE_PATH"
+sed -i 's/FUN_180034850/InitializeSystemThreadManager/g' "$FILE_PATH"
+sed -i 's/FUN_180034c40/InitializeSystemSearchManager/g' "$FILE_PATH"
+sed -i 's/FUN_180034d40/InitializeSystemIndexManager/g' "$FILE_PATH"
+sed -i 's/FUN_180034e40/InitializeSystemCacheManager/g' "$FILE_PATH"
+sed -i 's/FUN_180034f40/InitializeSystemLogManager/g' "$FILE_PATH"
+sed -i 's/FUN_180035040/InitializeSystemPerformanceMonitor/g' "$FILE_PATH"
+sed -i 's/FUN_180036ff0/InitializeSystemResourceNode/g' "$FILE_PATH"
+sed -i 's/FUN_180037d80/InitializeSystemConfigurationManager/g' "$FILE_PATH"
+sed -i 's/FUN_180037e80/InitializeSystemEventConfigurationManager/g' "$FILE_PATH"
+sed -i 's/FUN_180037f80/InitializeSystemNetworkConfigurationManager/g' "$FILE_PATH"
+sed -i 's/FUN_180038080/InitializeSystemSearchConfigurationManager/g' "$FILE_PATH"
+sed -i 's/FUN_180038180/InitializeSystemDebugInfoManager/g' "$FILE_PATH"
+sed -i 's/FUN_180038210/InitializeSystemLogManagerEx/g' "$FILE_PATH"
+sed -i 's/FUN_18003a7b0/InitializeSystemConfigurationDataManager/g' "$FILE_PATH"
+sed -i 's/FUN_18003a8b0/InitializeSystemEventDataManager/g' "$FILE_PATH"
+sed -i 's/FUN_18003a9b0/InitializeSystemResourceNodeEx/g' "$FILE_PATH"
+sed -i 's/FUN_18003aab0/InitializeSystemMemoryNodeManager/g' "$FILE_PATH"
+sed -i 's/FUN_18003abb0/InitializeSystemDeviceNodeManager/g' "$FILE_PATH"
+sed -i 's/FUN_18003e610/InitializeSystemEventManagerG/g' "$FILE_PATH"
+sed -i 's/FUN_18003e710/InitializeSystemEventManagerH/g' "$FILE_PATH"
+sed -i 's/FUN_18003e810/InitializeSystemEventManagerI/g' "$FILE_PATH"
+
+# 替换一些变量名
+sed -i 's/UNK_18098c880/SystemNodeLinkPointerA/g' "$FILE_PATH"
+sed -i 's/UNK_18098c898/SystemNodeLinkPointerB/g' "$FILE_PATH"
+sed -i 's/UNK_18098c870/SystemRootNodePointer/g' "$FILE_PATH"
+sed -i 's/DAT_18098c8f0/SystemDataComparisonTemplateA/g' "$FILE_PATH"
+sed -i 's/DAT_18098c8c8/SystemDataComparisonTemplateB/g' "$FILE_PATH"
+sed -i 's/_DAT_180bf5268/SystemInitializationStatusA/g' "$FILE_PATH"
+sed -i 's/_DAT_180bf5270/SystemInitializationStatusB/g' "$FILE_PATH"
+sed -i 's/_DAT_180bf5280/SystemInitializationStatusC/g' "$FILE_PATH"
+sed -i 's/_DAT_180bf5288/SystemInitializationStatusD/g' "$FILE_PATH"
+sed -i 's/_DAT_180bf5290/SystemInitializationStatusE/g' "$FILE_PATH"
+sed -i 's/_DAT_180bf52a0/SystemInitializationStatusF/g' "$FILE_PATH"
+sed -i 's/UNK_180a3c3e0/SystemGlobalDataPointerA/g' "$FILE_PATH"
+sed -i 's/UNK_1809fcc58/SystemGlobalDataPointerB/g' "$FILE_PATH"
+sed -i 's/UNK_1809fcc28/SystemGlobalDataPointerC/g' "$FILE_PATH"
+sed -i 's/_DAT_180bf52c0/SystemConfigDataPointerA/g' "$FILE_PATH"
+sed -i 's/_DAT_180bf52d8/SystemConfigDataPointerB/g' "$FILE_PATH"
+sed -i 's/_DAT_180bf52c8/SystemConfigDataPointerC/g' "$FILE_PATH"
+sed -i 's/_DAT_180bf52d0/SystemConfigDataPointerD/g' "$FILE_PATH"
+sed -i 's/_DAT_180bf6750/SystemConfigDataPointerE/g' "$FILE_PATH"
+sed -i 's/_DAT_180bf7e90/SystemConfigDataPointerF/g' "$FILE_PATH"
+
+echo "函数名和变量名替换完成"
