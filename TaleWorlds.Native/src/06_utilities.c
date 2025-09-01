@@ -138,7 +138,7 @@ static uint32 utility_system_file_handle_offset = 0;                 // 系统�
 static uint64 utility_system_file_position_offset = 0;               // 系统文件位置偏移量，用于文件位置管理
 
 // 数据处理变量
-static float utility_system_buffer_position_float = 0.0f;              // 系统缓冲区位置，用于缓冲区位置管理
+static float utility_system_buffer_position_float = 0.0f;           // 系统缓冲区位置浮点值，用于浮点精度缓冲区位置管理
 static longlong utility_system_primary_data = 0;                  // 系统主要数据，用于主要数据存储
 static uint32 utility_system_calculation_result = 0;                      // 系统计算结果，用于存储本地计算结果
 static longlong utility_system_buffer_position = 0;                  // 系统缓冲区位置，用于缓冲区位置管理
