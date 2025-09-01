@@ -1482,14 +1482,14 @@ uint8_t GarbageCollectionContext;
  */
 void CompactMemory(void);
 
- void AllocateMemoryBlock;
+ void AllocateMemoryBlock(void);
 /**
  * @brief 分配内存块
  * 
  * 该函数负责分配指定大小的内存块
  * 管理内存分配和地址映射
  */
-void AllocateMemoryBlock;
+void AllocateMemoryBlock(void);
 uint8_t MemoryBlockConfig;
 uint8_t MemoryBlockStatus;
 uint8_t MemoryBlockHandle;
@@ -1497,14 +1497,14 @@ uint8_t MemoryBlockDataBuffer;
 uint8_t MemoryBlockContext;
 uint8_t MemoryBlockTable;
 
- void FreeMemoryBlock;
+ void FreeMemoryBlock(void);
 /**
  * @brief 释放内存块
  * 
  * 该函数负责释放指定的内存块
  * 回收内存资源到内存池
  */
-void FreeMemoryBlock;
+void FreeMemoryBlock(void);
 uint8_t FreeMemoryConfig;
 uint8_t FreeMemoryStatus;
 uint8_t FreeMemoryHandle;
@@ -1512,14 +1512,14 @@ uint8_t FreeMemoryContext;
 uint8_t FreeMemoryTableBuffer;
 uint8_t FreeMemoryDataBuffer;
 
- void ReallocateMemoryBlock;
+ void ReallocateMemoryBlock(void);
 /**
  * @brief 重新分配内存块
  * 
  * 该函数负责重新分配内存块大小
  * 调整已分配内存块的大小
  */
-void ReallocateMemoryBlock;
+void ReallocateMemoryBlock(void);
 uint8_t ReallocConfig;
 uint8_t ReallocStatus;
 uint8_t ReallocContext;
@@ -2336,14 +2336,14 @@ uint8_t SystemSecurityContextTemplate;
 uint8_t SystemEventTableTemplate;
 uint8_t SystemNetworkTableTemplate;
 
- void AllocateMemoryBlock;
+ void AllocateMemoryBlock(void);
 /**
  * @brief 分配内存块
  * 
  * 该函数负责分配指定大小的内存块
  * 返回分配的内存指针
  */
-void AllocateMemoryBlock;
+void AllocateMemoryBlock(void);
 uint8_t MemoryPoolManagerData;
 uint8_t MemoryAllocatorData;
 uint8_t MemoryDeallocatorData;
@@ -2400,14 +2400,14 @@ uint8_t MemoryAllocationTree;
 uint8_t MemoryAllocationGraph;
 uint8_t MemoryAllocationNetwork;
 
- void FreeMemoryBlock;
+ void FreeMemoryBlock(void);
 /**
  * @brief 释放内存块
  * 
  * 该函数负责释放之前分配的内存块
  * 回收内存资源供后续使用
  */
-void FreeMemoryBlock;
+void FreeMemoryBlock(void);
 uint8_t SystemMemoryPoolManager;
 uint8_t SystemMemoryAllocator;
 uint8_t SystemMemoryDescriptor;
@@ -2416,14 +2416,14 @@ uint8_t SystemMemoryCache;
 uint8_t SystemMemoryHeap;
 uint8_t SystemMemoryStack;
 
- void ReallocateMemoryBlock;
+ void ReallocateMemoryBlock(void);
 /**
  * @brief 重新分配内存块
  * 
  * 该函数负责重新调整已分配内存块的大小
  * 保留原有数据并调整内存空间
  */
-void ReallocateMemoryBlock;
+void ReallocateMemoryBlock(void);
 void* SystemMemoryConfigDataTemplateD497D0;
 
  void GetMemoryBlockSize;
