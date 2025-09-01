@@ -163,10 +163,14 @@ uint32_t GetGraphicsSystemStatusFlag(void);
 bool SystemStatusGraphicsInitialized;
 
  /**
- * @brief 获取系统状态标志4
+ * @brief 获取音频系统状态标志
  * 
- * 该函数负责获取系统的第四个状态标志
- * 用于判断系统是否处于特定的运行状态
+ * 该函数负责获取音频系统的状态标志
+ * 用于判断音频系统是否已初始化并处于正常运行状态
+ * 
+ * @return uint32_t 返回音频系统的状态标志值
+ * @note 此函数返回的状态标志可用于诊断音频系统状态
+ * @warning 状态标志值的含义取决于具体的音频系统实现
  */
 uint32_t GetAudioSystemStatusFlag(void);
 bool SystemStatusAudioInitialized;
@@ -87934,17 +87938,11 @@ void InitializeSystemContext(uint8_t8 contextPtr, uint8_t8 setupParam, uint8_t8 
 
 
 /**
- * @brief 重置线程本地存储并清理相关资源
- * 
- * 该函数负责重置线程本地存储状态，清理不再需要的资源
- * 并将线程恢复到初始状态
- * 重置线程数据结构和资源指针
- */
-/**
  * @brief 重置线程本地存储
  * 
  * 该函数负责重置线程本地存储状态，清理不再需要的资源
  * 并将线程恢复到初始状态
+ * 重置线程数据结构和资源指针
  * 
  * @return 无返回值
  */
