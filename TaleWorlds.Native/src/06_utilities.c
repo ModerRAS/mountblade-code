@@ -18091,24 +18091,32 @@ uint8_t8 GetResourceTableStatus(void)
 
 
 
- ac96(void)
-ac96(void)
+ /**
+ * @brief 验证资源完整性
+ * 
+ * 该函数负责验证资源的完整性，检查资源数据是否有效
+ * 根据不同的条件进行验证，确保资源处于可用状态
+ * 
+ * @return 无返回值
+ * @note 如果验证失败，会调用资源清理函数
+ */
+void ValidateResourceIntegrity(void)
 
 {
-  int iVar1;
-  uint8_t8 *unaff_RBX;
-  longlong unaff_RDI;
+  int validationResult;
+  uint8_t8 *resourceManager;
+  longlong resourceContext;
   
-  if (*(uint *)(unaff_RBX + 8) < 0x3d) {
-    iVar1 = 0;
+  if (*(uint *)(resourceManager + 8) < 0x3d) {
+    validationResult = 0;
   }
-  else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    iVar1 = ProcessResourceHash(*unaff_RBX,unaff_RDI + 0x40);
+  else if (*(int *)(resourceManager[1] + 0x18) == 0) {
+    validationResult = ProcessResourceHash(*resourceManager,resourceContext + 0x40);
   }
   else {
-    iVar1 = 0x1c;
+    validationResult = 0x1c;
   }
-  if (iVar1 == 0) {
+  if (validationResult == 0) {
                     // WARNING: Subroutine does not return
     CleanupResourceData();
   }
@@ -18189,8 +18197,15 @@ LAB_18089ae18:
 
 
 
- ae2d(void)
-ae2d(void)
+ /**
+ * @brief 初始化内存管理器
+ * 
+ * 该函数负责初始化系统的内存管理器
+ * 设置内存分配和回收的基础设施
+ * 
+ * @return 无返回值
+ */
+void InitializeMemoryManager(void)
 
 {
   return;
