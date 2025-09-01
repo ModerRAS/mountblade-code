@@ -1005,6 +1005,16 @@ void* GetSystemInitializationFunction;
  * @note 函数依赖GetSystemRootPointer和GetGameCoreSystemInitializationFunction等辅助函数
  * @note 函数会设置GAME_CORE_NODE_DATA相关配置
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 该函数负责初始化游戏的核心系统组件，包括内存分配、
+ * 数据表设置和核心系统功能的启用。这是游戏启动过程中的
+ * 关键初始化步骤。
+ * 
+ * @note 该函数在系统启动时自动调用，确保所有核心系统
+ * 组件都正确初始化并准备就绪。
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsNodeActive;
@@ -1083,6 +1093,16 @@ void InitializeGameCoreSystem(void)
  * @note 函数依赖GetSystemRootPointer和GetSystemMemorySize等辅助函数
  * @note 函数会设置BaseAllocatorNodeData相关配置
  */
+/**
+ * @brief 初始化系统数据表基础分配器
+ * 
+ * 该函数负责初始化系统数据表的基础分配器，为数据表的内存分配
+ * 和管理提供基础支持。它会遍历系统节点树，查找合适的位置
+ * 来初始化基础分配器功能。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保数据表的基础
+ * 分配功能正常工作。
+ */
 void InitializeSystemDataTableBaseAllocator(void)
 {
   bool IsNodeActive;
@@ -1140,6 +1160,16 @@ void InitializeSystemDataTableBaseAllocator(void)
  * 
  * 该函数负责初始化系统数据表的内存分配器，
  * 设置内存分配策略和数据结构管理。
+ */
+/**
+ * @brief 初始化系统数据表分配器
+ * 
+ * 该函数负责初始化系统数据表的分配器，为系统数据表的内存分配
+ * 和管理提供支持。它会遍历系统节点树，查找合适的位置来初始化
+ * 数据表分配器功能。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保数据表的分配功能
+ * 正常工作。
  */
 void InitializeSystemDataTableAllocator(void)
 {
@@ -1201,6 +1231,15 @@ void InitializeSystemDataTableAllocator(void)
  * 该函数负责初始化系统核心配置参数，
  * 设置系统运行的基本配置和状态。
  */
+/**
+ * @brief 初始化系统核心配置
+ * 
+ * 该函数负责初始化系统的核心配置，包括系统参数设置、
+ * 配置文件加载和系统环境准备。这是系统初始化过程中的
+ * 重要步骤。
+ * 
+ * @note 该函数在系统启动时调用，确保所有核心配置都正确设置。
+ */
 void InitializeSystemCoreConfig(void)
 {
   char IsSystemNodeActive;
@@ -1261,6 +1300,14 @@ void InitializeSystemCoreConfig(void)
  * 该函数负责初始化系统内存池，
  * 设置内存分配策略和管理机制。
  */
+/**
+ * @brief 初始化系统内存池
+ * 
+ * 该函数负责初始化系统的内存池，为系统运行提供内存管理基础。
+ * 它会设置内存池的大小、分配策略和管理机制。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保内存池功能正常工作。
+ */
 void InitializeSystemMemoryPool(void)
 
 {
@@ -1319,6 +1366,14 @@ void InitializeSystemMemoryPool(void)
  * 该函数负责初始化系统线程池，
  * 设置线程创建、同步和管理机制。
  */
+/**
+ * @brief 初始化系统线程池
+ * 
+ * 该函数负责初始化系统的线程池，为系统提供多线程处理能力。
+ * 它会设置线程池的大小、工作线程和管理机制。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保线程池功能正常工作。
+ */
 void InitializeSystemThreadPool(void)
 
 {
@@ -1376,6 +1431,14 @@ void InitializeSystemThreadPool(void)
  * 
  * 该函数负责初始化系统事件管理器，
  * 设置事件创建、分发和处理机制。
+ */
+/**
+ * @brief 初始化系统事件管理器
+ * 
+ * 该函数负责初始化系统的事件管理器，为系统提供事件处理和
+ * 分发机制。它会设置事件队列、事件处理器和事件分发机制。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保事件管理功能正常工作。
  */
 void InitializeSystemEventManager(void)
 
