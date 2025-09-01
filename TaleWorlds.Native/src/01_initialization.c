@@ -40138,17 +40138,29 @@ void* * FUN_1800605d0(void* *SystemResourcePointer,ulong long ConfigurationDataP
 
 
 // 函数: void FUN_180060610(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_180060610(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源配置器函数
+ * 
+ * 该函数负责配置系统资源，设置资源参数和属性。
+ * 它会处理资源的初始化配置，并设置相应的标志位。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组，包含需要配置的资源信息
+ * @param ConfigurationDataPointer 配置数据指针，包含配置参数
+ * @param AdditionalParameter 额外参数，用于特殊配置
+ * @param ConfigurationFlag 配置标志，用于控制配置行为
+ * @note 这是系统资源管理的重要组成部分，用于资源的配置和初始化
+ */
+void ConfigureSystemResources(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   char SystemNodeFlag;
-  void* unsignedSystemValue2;
+  void* ConfigurationMask;
   
-  unsignedSystemValue2 = 0xfffffffffffffffe;
+  ConfigurationMask = 0xfffffffffffffffe;
   *SystemResourcePointer = &UNK_180a10098;
   cVar1 = FUN_18020eba0(SystemResourcePointer,1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   while (cVar1 != '\0') {
-    cVar1 = FUN_18020eba0(SystemResourcePointer,1,AdditionalParameter,ConfigurationFlag,unsignedSystemValue2);
+    cVar1 = FUN_18020eba0(SystemResourcePointer,1,AdditionalParameter,ConfigurationFlag,ConfigurationMask);
   }
   if (SystemResourcePointer[1] == 0) {
     SystemResourcePointer[1] = 0;
@@ -40211,7 +40223,16 @@ int InitializeProcessSystem(void* SystemResourcePointer,void* ConfigurationDataP
 
 
 // 函数: void FUN_1800606e0(long long *SystemResourcePointer)
-void FUN_1800606e0(long long *SystemResourcePointer)
+/**
+ * @brief 系统资源初始化器函数
+ * 
+ * 该函数负责初始化系统资源，设置资源的基本参数和状态。
+ * 它会处理资源的预初始化工作，为后续的资源分配做准备。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含需要初始化的资源信息
+ * @note 这是系统资源管理的重要组成部分，用于资源的初始化和准备
+ */
+void InitializeSystemResource(long long *SystemResourcePointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -40722,7 +40743,17 @@ bool FUN_180060f50(long long SystemResourcePointer,void* ConfigurationDataPointe
 
 
 // 函数: void FUN_180060fc0(long long *SystemResourcePointer,long long *ConfigurationDataPointer)
-void FUN_180060fc0(long long *SystemResourcePointer,long long *ConfigurationDataPointer)
+/**
+ * @brief 系统资源同步器函数
+ * 
+ * 该函数负责同步系统资源，确保资源状态的一致性。
+ * 它会处理资源数据的同步操作，保持资源的最新状态。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含需要同步的资源信息
+ * @param ConfigurationDataPointer 配置数据指针，包含同步所需的配置信息
+ * @note 这是系统资源管理的重要组成部分，用于资源的同步和状态管理
+ */
+void SynchronizeSystemResources(long long *SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -40807,7 +40838,19 @@ void FUN_180060fc0(long long *SystemResourcePointer,long long *ConfigurationData
 
 
 // 函数: void FUN_1800611a0(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_1800611a0(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源验证器函数
+ * 
+ * 该函数负责验证系统资源的有效性和完整性。
+ * 它会检查资源的状态和配置，确保资源可用。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含需要验证的资源信息
+ * @param ConfigurationDataPointer 配置数据指针，包含验证所需的配置信息
+ * @param AdditionalParameter 额外参数，用于特殊验证
+ * @param ConfigurationFlag 配置标志，用于控制验证行为
+ * @note 这是系统资源管理的重要组成部分，用于资源的验证和检查
+ */
+void ValidateSystemResourceEx(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;

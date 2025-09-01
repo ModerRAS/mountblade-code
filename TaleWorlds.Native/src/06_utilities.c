@@ -5555,7 +5555,7 @@ int ValidateSystemConfigurationParameter(uint32_t configParameter)
     resourceTable = StackMemoryOffset;
   }
   else {
-    int64_t *LocalStackPointer28 = *(int64_t *)(RegisterRDI + 0x10);
+    int64_t *LocalContextPointer = *(int64_t *)(ObjectContextParameter + 0x10);
     ValidationResult = 2;
   }
   int64_t *StackPointer30 = ObjectContextParameter;
@@ -6279,11 +6279,11 @@ void ExpandDynamicBufferCapacity(int64_t objectContext, int64_t SystemContext)
     if (validationStatus < 8) {
       validationStatus = 8;
     }
-    if (validationStatus < *(int *)(bufferContext + 0x28)) goto LAB_180891fc0;
+    if (validationStatus < *(int *)(bufferContext + 0x28)) goto ErrorHandler;
     if (validationStatus != 0) {
       if ((0x3ffffffe < validationStatus * 8 - 1U) ||
          (newBufferPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContextPointer + 0x1a0),validationStatus * 8,&ResourceTableTemplate,
-                                0xf4,0,0,1), newBufferPointer == 0)) goto LAB_180891fc0;
+                                0xf4,0,0,1), newBufferPointer == 0)) goto ErrorHandler;
       if (*(int *)(bufferContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(newBufferPointer,*(uint8_t *)(bufferContext + 0x20),(int64_t)*(int *)(bufferContext + 0x28) << 3);
@@ -6300,7 +6300,7 @@ void ExpandDynamicBufferCapacity(int64_t objectContext, int64_t SystemContext)
   *(int64_t *)(*(int64_t *)(bufferContext + 0x20) + (int64_t)*(int *)(bufferContext + 0x28) * 8) =
        temporaryStackBuffer;
   *(int *)(bufferContext + 0x28) = *(int *)(bufferContext + 0x28) + 1;
-LAB_180891fc0:
+ErrorHandler:
                     // WARNING: Subroutine does not return
   ReleaseSystemContextResources(*(uint8_t *)(ValidationContextParameter + 0x98),ObjectContextParameter);
 }
@@ -6356,11 +6356,11 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
     if (ResourceIndex < 8) {
       ResourceIndex = 8;
     }
-    if (ResourceIndex < *(int *)(StackParameterBuffer70 + 0x28)) goto LAB_180891fc0;
+    if (ResourceIndex < *(int *)(StackParameterBuffer70 + 0x28)) goto ResourceErrorHandler;
     if (ResourceIndex != 0) {
       if ((0x3ffffffe < ResourceIndex * 8 - 1U) ||
          (ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContextPointer + 0x1a0),ResourceIndex * 8,&ResourceTableTemplate,
-                                0xf4,0), ResourceIndex == 0)) goto LAB_180891fc0;
+                                0xf4,0), ResourceIndex == 0)) goto ResourceErrorHandler;
       if (*(int *)(StackParameterBuffer70 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(ResourceIndex,*(uint8_t *)(StackParameterBuffer70 + 0x20),
@@ -6380,9 +6380,9 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
    (*(int64_t *)(StackParameterBuffer70 + 0x20) + (int64_t)*(int *)(StackParameterBuffer70 + 0x28) * 8) =
        StackParameterContext60;
   *(int *)(StackParameterBuffer70 + 0x28) = *(int *)(StackParameterBuffer70 + 0x28) + 1;
-LAB_180891fc0:
+ResourceErrorHandler:
                     // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(RegisterR14 + 0x98));
+  ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
 }
 
 
@@ -6432,12 +6432,12 @@ void ProcessDynamicBufferReallocation(void)
     if (ResourceIndex < 8) {
       ResourceIndex = 8;
     }
-    if (ResourceIndex < *(int *)(ResourceContextPointer + 0x28)) goto LAB_180891fc0;
+    if (ResourceIndex < *(int *)(ResourceContextPointer + 0x28)) goto MemoryErrorHandler;
     if (ResourceIndex != 0) {
-      if (0x3ffffffe < ResourceIndex * 8 - 1U) goto LAB_180891fc0;
+      if (0x3ffffffe < ResourceIndex * 8 - 1U) goto MemoryErrorHandler;
       ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContextPointer + 0x1a0),ResourceIndex * 8,&ResourceTableTemplate,0xf4,0)
       ;
-      if (ResourceIndex == 0) goto LAB_180891fc0;
+      if (ResourceIndex == 0) goto MemoryErrorHandler;
       if (*(int *)(ResourceContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(ResourceIndex,*(uint8_t *)(ResourceContextPointer + 0x20),(int64_t)*(int *)(ResourceContextPointer + 0x28) << 3);
@@ -6454,9 +6454,9 @@ void ProcessDynamicBufferReallocation(void)
   *(uint8_t *)(*(int64_t *)(ResourceContextPointer + 0x20) + (int64_t)*(int *)(ResourceContextPointer + 0x28) * 8) =
        StackParameterContext60;
   *(int *)(ResourceContextPointer + 0x28) = *(int *)(ResourceContextPointer + 0x28) + 1;
-LAB_180891fc0:
+MemoryErrorHandler:
                     // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(RegisterR14 + 0x98));
+  ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
 }
 
 
@@ -6493,12 +6493,12 @@ void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationS
     if (OperationResult < 8) {
       OperationResult = 8;
     }
-    if (OperationResult < ObjectContextParameter) goto LAB_180891fc0;
+    if (OperationResult < ObjectContextParameter) goto SystemErrorHandler;
     if (OperationResult != 0) {
-      if (0x3ffffffe < OperationResult * 8 - 1U) goto LAB_180891fc0;
+      if (0x3ffffffe < OperationResult * 8 - 1U) goto SystemErrorHandler;
       SystemContextPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContextPointer + 0x1a0),OperationResult * 8,&ResourceTableTemplate,
                                 0xf4);
-      if (SystemContextPointer == 0) goto LAB_180891fc0;
+      if (SystemContextPointer == 0) goto SystemErrorHandler;
       if (*(int *)(ResourceContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(SystemContextPointer,*(uint8_t *)(ResourceContextPointer + 0x20),(int64_t)*(int *)(ResourceContextPointer + 0x28) << 3
@@ -6516,9 +6516,9 @@ void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationS
   *(uint8_t *)(*(int64_t *)(ResourceContextPointer + 0x20) + (int64_t)*(int *)(ResourceContextPointer + 0x28) * 8) =
        StackParameterContext60;
   *(int *)(ResourceContextPointer + 0x28) = *(int *)(ResourceContextPointer + 0x28) + 1;
-LAB_180891fc0:
+SystemErrorHandler:
                     // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(RegisterR14 + 0x98));
+  ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
 }
 
 
@@ -7680,9 +7680,9 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t parameter)
   int64_t objectContext;
   int64_t stackBuffer;
   
-  ResourceValidationResult = ValidateObjectContextAndProcessData(ObjectContextParameter,RegisterRDI + 0x25,RegisterRDI + 0x20);
+  ResourceValidationResult = ValidateObjectContextAndProcessData(ObjectContextParameter,ProcessingContext + 0x25,ProcessingContext + 0x20);
   if ((int)ResourceValidationResult == 0) {
-    floatValue1 = *(float *)(RegisterRDI + 0x20);
+    floatValue1 = *(float *)(ProcessingContext + 0x20);
     if ((*(float *)(ResourceContextPointer + 0x38) <= floatValue1) &&
        (floatValue1 < *(float *)(ResourceContextPointer + 0x3c) || floatValue1 == *(float *)(ResourceContextPointer + 0x3c))) {
       ResourceValidationResult = *(uint8_t *)(ExecutionContextPointer + 0x98);
@@ -7920,7 +7920,7 @@ uint8_t ValidateObjectContextAndProcessParameterizedComplexFloatOperation(int64_
     ResourceTablePointer = *(int64_t *)(ValidationContextParameter + 0x98);
     if ((*(int *)(ResourceTablePointer + 0x180) != 0) || (*(int *)(ResourceTablePointer + 0x184) != 0)) {
       securityContextBuffer = 0;
-      InitializeSecurityContext(&securityContextBuffer,ObjectContextParameter,parameter3,parameter4,RegisterRDI);
+      InitializeSecurityContext(&securityContextBuffer,ObjectContextParameter,parameter3,parameter4,SecurityContext);
       if (securityContextBuffer == *(int64_t *)((int64_t)*(int *)(ResourceTablePointer + 0x17c) * 8 + 0x180c4f450)) {
         LoopIncrement = ProcessResourceValidation(ResourceTablePointer,ObjectContextParameter);
         if ((int)LoopCondition == 0) {
@@ -8262,7 +8262,7 @@ uint8_t ValidateAndProcessObjectContextWithParameters(int64_t objectContext,int6
   contextPointer = *(int64_t *)(ValidationContextParameter + 0x98);
   if ((*(int *)(contextPointer + 0x180) != 0) || (*(int *)(contextPointer + 0x184) != 0)) {
     stackBuffer = 0;
-    InitializeSecurityContext(&stackBuffer,ObjectContextParameter,securityFlags,operationMode,RegisterRDI);
+    InitializeSecurityContext(&stackBuffer,ObjectContextParameter,securityFlags,operationMode,SecurityContextParameter);
     if (stackBuffer == *(int64_t *)((int64_t)*(int *)(contextPointer + 0x17c) * 8 + 0x180c4f450)) {
       ResourceValidationResult = ProcessResourceValidation(contextPointer,ObjectContextParameter);
       if ((int)ResourceValidationResult == 0) {
@@ -8792,13 +8792,13 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(int64_t ObjectContextPar
   int operationResult;
   int64_t resourceTable;
   int64_t UnaffectedRegisterValue;
-  int64_t RegisterR15;
+  int64_t ResourceContextHandle;
   int64_t StackParameterContext60;
   
   if ((int)ValidationContextParameter < 1) {
     ResourceIndex = ProcessDataValidation();
     if ((ResourceIndex == 0) &&
-       (ResourceIndex = ValidateObjectContext(*(uint32_t *)(RegisterRDI + 0x4c),&ObjectContextBuffer), ResourceIndex == 0)
+       (ResourceIndex = ValidateObjectContext(*(uint32_t *)(SecurityContext + 0x4c),&ObjectContextBuffer), ResourceIndex == 0)
        ) {
       if (*(int *)(StackParameterContext60 + 0x30) == 1) {
         *(uint32_t *)(StackParameterContext60 + 0x30) = 2;
@@ -9198,7 +9198,7 @@ uint8_t ValidateFloatDataAndExecute(void)
       ValidationResult = ValidateResourceParameters(RegisterR14 + 0x60,StackParameterContext48);
       if ((int)ValidationResult == 0) {
                     // WARNING: Subroutine does not return
-        ReleaseSystemContextResources(*(uint8_t *)(RegisterR14 + 0x98));
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
       }
     }
   }
@@ -9236,7 +9236,7 @@ uint8_t ValidateFloatDataAndExecuteSimple(void)
       ResourceValidationResult = ValidateResourceParameters(RegisterR14 + 0x60,StackParameterContext48);
       if ((int)ResourceValidationResult == 0) {
                     // WARNING: Subroutine does not return
-        ReleaseSystemContextResources(*(uint8_t *)(RegisterR14 + 0x98));
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
       }
     }
   }
@@ -9500,7 +9500,7 @@ uint8_t ProcessFloatRangeValidationAndDataHandlingNoParams(void)
                  GetResourcePointer(RegisterR14 + 0x60,&ObjectStackBufferResource40,StackParameterBuffer50);
         *(uint8_t *)(RegisterRDI + 0x18) = *pLoopIncrement;
                     // WARNING: Subroutine does not return
-        ReleaseSystemContextResources(*(uint8_t *)(RegisterR14 + 0x98));
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
       }
     }
   }
@@ -9542,7 +9542,7 @@ uint64_t ProcessFloatDataValidation(void)
                  GetResourcePointer(RegisterR14 + 0x60,&ObjectStackBufferResource40,StackParameterBuffer50);
         *(uint8_t *)(RegisterRDI + 0x18) = *pValidationResult;
                     // WARNING: Subroutine does not return
-        ReleaseSystemContextResources(*(uint8_t *)(RegisterR14 + 0x98));
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
       }
     }
   }
@@ -10322,7 +10322,7 @@ uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext,uint8_t C
           LinkPointer = (int64_t *)*LinkPointer;
           EntryCounter = EntryCounter + 1;
         } while (LinkPointer != ResourceContextPointer);
-        if (EntryCounter != 0) goto LAB_180894ebf;
+        if (EntryCounter != 0) goto CleanupHandler;
       }
       *(uint8_t *)(resultBuffer + 0x10) = *(uint8_t *)(SystemContext + 0x58);
       *ResourceContextPointer = SystemContext + 0x50;
@@ -10332,7 +10332,7 @@ uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext,uint8_t C
       ProcessDataBlockOperation(SystemContext,StackContextBuffer);
     }
   }
-LAB_180894ebf:
+CleanupHandler:
                     // WARNING: Subroutine does not return
   CleanupProcessingQueue(dataChecksumBuffer);
 }
@@ -11093,13 +11093,13 @@ uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext,int 
               *hashOutput = HashValueParam;
               return 0;
             }
-            goto LAB_180895ccb;
+            goto HashValueHandler;
           }
           tableEntry = *(int *)(resourceTable + 4 + ResourceIndex * 0x10);
         } while (tableEntry != -1);
       }
       HashValueParam = 0;
-LAB_180895ccb:
+HashValueHandler:
       pLoopIncrement = (uint8_t *)
                ((int64_t)*(int *)(*(int64_t *)(ObjectContextParameter + 0x18) + (int64_t)ValidationContextParameter * 0xc) +
                *(int64_t *)(ObjectContextParameter + 8));
@@ -11152,13 +11152,13 @@ uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uin
           *RegisterRDI = StackVariableIndex;
           return 0;
         }
-        goto LAB_180895ccb;
+        goto StackVariableHandler;
       }
       OperationResult = *(int *)(LocalContextData + 4 + resourceTable * 0x10);
     } while (OperationResult != -1);
   }
   StackVariableIndex = 0;
-LAB_180895ccb:
+StackVariableHandler:
   pValidationResult = (uint8_t *)
            ((int64_t)*(int *)(*(int64_t *)(RegisterValueR10 + 0x18) + CleanupOption * 0xc) +
            *(int64_t *)(RegisterValueR10 + 8));
