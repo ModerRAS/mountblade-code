@@ -23688,30 +23688,40 @@ void SystemMutexMemoryCleaner(long long mutexPointer)
 
 
 
-// 函数: void FUN_18004bf50(long long *param_1)
-void FUN_18004bf50(long long *param_1)
+// 函数: 系统队列处理器 - 处理系统队列中的项目
+/**
+ * @brief 系统队列处理器
+ * 
+ * 该函数负责处理系统队列中的项目，根据队列项目的状态执行相应的操作
+ * 包括队列清理、回调函数调用和系统资源管理
+ * 
+ * @param QueuePointer 队列指针，指向需要处理的系统队列
+ * 
+ * 该函数会检查队列状态，调用相应的回调函数，并管理相关的系统资源
+ */
+void ProcessSystemQueueItem(long long *QueuePointer)
 
 {
-  long long lVar1;
+  long long QueueItemValue;
   
-  lVar1 = *param_1;
-  if (lVar1 == 0) {
-    *param_1 = 0;
-    if ((long long *)param_1[2] != (long long *)0x0) {
-      (**(code **)(*(long long *)param_1[2] + 0x38))();
+  QueueItemValue = *QueuePointer;
+  if (QueueItemValue == 0) {
+    *QueuePointer = 0;
+    if ((long long *)QueuePointer[2] != (long long *)0x0) {
+      (**(code **)(*(long long *)QueuePointer[2] + 0x38))();
     }
-    if ((long long *)param_1[1] != (long long *)0x0) {
-      (**(code **)(*(long long *)param_1[1] + 0x38))();
+    if ((long long *)QueuePointer[1] != (long long *)0x0) {
+      (**(code **)(*(long long *)QueuePointer[1] + 0x38))();
     }
     return;
   }
-  if (*(long long *)(lVar1 + 8) != 0) {
+  if (*(long long *)(QueueItemValue + 8) != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
   _Mtx_destroy_in_situ();
                     // WARNING: Subroutine does not return
-  SystemCleanupFunction(lVar1);
+  SystemCleanupFunction(QueueItemValue);
 }
 
 
