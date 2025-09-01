@@ -37161,52 +37161,65 @@ void FormatSystemResourceOutput(void* SystemResourcePointer,void* ConfigurationD
 
 
 
-void* * FUN_18005d400(long long SystemResourcePointer,char *ConfigurationDataPointer)
+/**
+ * @brief 系统资源字符串搜索函数
+ * 
+ * 该函数负责在系统资源中搜索指定的字符串。它会遍历资源表，
+ * 比较字符串长度和内容，返回匹配的资源指针。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源表信息
+ * @param ConfigurationDataPointer 要搜索的字符串指针
+ * @return 匹配的资源指针，如果未找到则返回NULL
+ * @note 此函数使用字符串长度和内容比较进行精确匹配
+ * 
+ * 原始函数名为FUN_18005d400，现已重命名为SearchSystemResourceString
+ */
+void* * SearchSystemResourceString(long long SystemResourcePointer,char *ConfigurationDataPointer)
 
 {
-  char *pcVar1;
-  char cVar2;
-  void* *pointerToUnsigned3;
-  char *pcVar4;
-  long long SystemTimeValue;
-  char *pcVar6;
+  char *stringEndPointer;
+  char currentChar;
+  void* *resourceTablePointer;
+  char *resourceString;
+  long long stringLength;
+  char *searchString;
   
   if (ConfigurationDataPointer == (char *)0x0) {
     return *(void* **)(SystemResourcePointer + 0x58);
   }
-  cVar2 = *ConfigurationDataPointer;
-  pcVar6 = ConfigurationDataPointer;
-  while (cVar2 != '\0') {
-    pcVar6 = pcVar6 + 1;
-    cVar2 = *pcVar6;
+  currentChar = *ConfigurationDataPointer;
+  searchString = ConfigurationDataPointer;
+  while (currentChar != '\0') {
+    searchString = searchString + 1;
+    currentChar = *searchString;
   }
-  pointerToUnsigned3 = *(void* **)(SystemResourcePointer + 0x58);
+  resourceTablePointer = *(void* **)(SystemResourcePointer + 0x58);
   do {
-    if (pointerToUnsigned3 == (void* *)0x0) {
+    if (resourceTablePointer == (void* *)0x0) {
       return (void* *)0x0;
     }
-    pcVar4 = (char *)*pointerToUnsigned3;
-    if (pcVar4 == (char *)0x0) {
-      localSystemPointer = 0;
-      pcVar4 = (char *)0x180d48d24;
+    resourceString = (char *)*resourceTablePointer;
+    if (resourceString == (char *)0x0) {
+      stringLength = 0;
+      resourceString = (char *)0x180d48d24;
     }
     else {
-      localSystemPointer = pointerToUnsigned3[2];
+      stringLength = resourceTablePointer[2];
     }
-    if (localSystemPointer == (long long)pcVar6 - (long long)ConfigurationDataPointer) {
-      pcVar1 = pcVar4 + localSystemPointer;
-      if (pcVar1 <= pcVar4) {
-        return pointerToUnsigned3;
+    if (stringLength == (long long)searchString - (long long)ConfigurationDataPointer) {
+      stringEndPointer = resourceString + stringLength;
+      if (stringEndPointer <= resourceString) {
+        return resourceTablePointer;
       }
-      localSystemPointer = (long long)ConfigurationDataPointer - (long long)pcVar4;
-      while (*pcVar4 == pcVar4[localSystemPointer]) {
-        pcVar4 = pcVar4 + 1;
-        if (pcVar1 <= pcVar4) {
-          return pointerToUnsigned3;
+      stringLength = (long long)ConfigurationDataPointer - (long long)resourceString;
+      while (*resourceString == resourceString[stringLength]) {
+        resourceString = resourceString + 1;
+        if (stringEndPointer <= resourceString) {
+          return resourceTablePointer;
         }
       }
     }
-    pointerToUnsigned3 = (void* *)pointerToUnsigned3[0xb];
+    resourceTablePointer = (void* *)resourceTablePointer[0xb];
   } while( true );
 }
 
