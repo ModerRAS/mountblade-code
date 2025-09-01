@@ -5513,7 +5513,7 @@ int ValidateSystemConfigurationParameter(uint32_t configParameter)
     int64_t *LocalContextPointer = *(int64_t *)(ObjectContextParameter + 0x10);
     ValidationResult = 2;
   }
-  int64_t *StackPointer30 = ObjectContextParameter;
+  int64_t *ContextParameterPointer = ObjectContextParameter;
   ResourceIndex = ProcessResourceOperationEx();
   if (ResourceIndex == 0) {
     ResourceIndex = 0;
@@ -7633,11 +7633,11 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t parameter)
   
   ResourceValidationResult = ValidateObjectContextAndProcessData(ObjectContextParameter,ProcessingContext + 0x25,ProcessingContext + 0x20);
   if ((int)ResourceValidationResult == 0) {
-    floatValue1 = *(float *)(ProcessingContext + 0x20);
-    if ((*(float *)(ResourceContextPointer + 0x38) <= floatValue1) &&
-       (floatValue1 < *(float *)(ResourceContextPointer + 0x3c) || floatValue1 == *(float *)(ResourceContextPointer + 0x3c))) {
+    FirstFloatValue = *(float *)(ProcessingContext + 0x20);
+    if ((*(float *)(ResourceContextPointer + 0x38) <= FirstFloatValue) &&
+       (FirstFloatValue < *(float *)(ResourceContextPointer + 0x3c) || FirstFloatValue == *(float *)(ResourceContextPointer + 0x3c))) {
       ResourceValidationResult = *(uint8_t *)(ExecutionContextPointer + 0x98);
-      *(float *)(StackParameterContextSecondary + 4) = floatValue1;
+      *(float *)(StackParameterContextSecondary + 4) = FirstFloatValue;
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(ResourceValidationResult);
     }
