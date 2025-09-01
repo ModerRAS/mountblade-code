@@ -253,11 +253,11 @@ void* InputEventQueue;
  * 设置网络连接、数据传输和通信协议
  */
 void InitializeNetworkManager(void);
-void* g_networkSystemInstance;
-void* g_networkConnectionManager;
-void* g_packetHandler;
-void* g_networkProtocolManager;
-void* g_networkEventDispatcher;
+void* NetworkSystemInstance;
+void* NetworkConnectionManager;
+void* PacketHandler;
+void* NetworkProtocolManager;
+void* NetworkEventDispatcher;
 
 // 函数: void* InitializeRenderingSystem;
 /**
@@ -267,11 +267,11 @@ void* g_networkEventDispatcher;
  * 设置图形设备、着色器和渲染队列等相关组件
  */
 void* InitializeRenderingSystem;
-void* g_renderingEngineInstance;
-void* g_graphicsDeviceHandle;
-void* g_shaderManager;
-void* g_renderQueueManager;
-void* g_graphicsMemoryPool;
+void* RenderingEngineInstance;
+void* GraphicsDeviceHandle;
+void* ShaderManager;
+void* RenderQueueManager;
+void* GraphicsMemoryPool;
 
 // 函数: void* InitializeAnimationSystem;
 /**
@@ -281,11 +281,11 @@ void* g_graphicsMemoryPool;
  * 设置骨骼管理、动画剪辑和状态控制等相关组件
  */
 void* InitializeAnimationSystem;
-void* g_animationEngineInstance;
-void* g_skeletonManager;
-void* g_animationClipManager;
-void* g_boneTransformManager;
-void* g_animationStateController;
+void* AnimationEngineInstance;
+void* SkeletonManager;
+void* AnimationClipManager;
+void* BoneTransformManager;
+void* AnimationStateController;
 
 // 函数: void* InitializeMemoryManager;
 /**
@@ -295,11 +295,11 @@ void* g_animationStateController;
  * 设置堆分配器、内存池和垃圾回收等相关组件
  */
 void* InitializeMemoryManager;
-void* g_memoryManagerInstance;
-void* g_heapAllocator;
-void* g_memoryPoolManager;
-void* g_garbageCollector;
-void* g_memoryDebugger;
+void* MemoryManagerInstance;
+void* HeapAllocator;
+void* MemoryPoolManager;
+void* GarbageCollector;
+void* MemoryDebugger;
 
 // 函数: void* InitializeScriptingSystem;
 /**
