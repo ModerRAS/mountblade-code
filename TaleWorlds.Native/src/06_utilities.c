@@ -149,8 +149,8 @@ bool systemStatusFlag4Initialized;
  * @warning 调用此函数后，所有相关的同步对象将不再可用
  */
 void DestroyThreadSyncObjects(void);
-void* ThreadSyncObjectHandle;
-void* ThreadSyncContext;
+void* threadSyncObjectHandle;
+void* threadSyncContext;
 
  /**
  * @brief 关闭系统句柄
