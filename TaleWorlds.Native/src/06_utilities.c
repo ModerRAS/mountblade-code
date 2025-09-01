@@ -41,7 +41,7 @@ void InitializeGlobalModuleA(void);
 void* GlobalModuleAInstance;
 void* GlobalModuleAConfiguration;
 uint32_t GlobalModuleA_Status;
-void* GlobalModuleA_Handle;
+void* GlobalModuleAHandle;
 
 // 函数: void InitializeGlobalModuleB(void)
 /**
@@ -51,10 +51,10 @@ void* GlobalModuleA_Handle;
  * 设置模块B所需的数据结构和运行环境
  */
 void InitializeGlobalModuleB(void);
-void* GlobalModuleB_Instance;
-void* GlobalModuleB_Config;
+void* GlobalModuleBInstance;
+void* GlobalModuleBConfiguration;
 uint32_t GlobalModuleB_Status;
-void* GlobalModuleB_Handle;
+void* GlobalModuleBHandle;
 void* GlobalModuleB_Context;
 
 // 函数: void InitializeGlobalModuleC(void)
@@ -3736,19 +3736,19 @@ void resetSystemState(void)
 
 /**
  * @brief 处理复杂对象句柄验证和操作
- * @param objectContext 对象上下文指针
+ * @param ObjectContext 对象上下文指针
  * @return 返回操作结果，0表示成功，非0表示错误代码
  * 
  * 该函数执行复杂的对象句柄验证流程，包括句柄调整、子对象获取和验证
  */
-undefined8 processComplexObjectHandle(longlong objectContext)
+undefined8 ProcessComplexObjectHandle(longlong ObjectContext)
 
 {
   undefined8 operationResult;
   longlong resultBuffer[2];
   longlong handleBuffer[2];
   
-  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10), handleBuffer);
+  operationResult = func_0x00018088c530(*(undefined4 *)(ObjectContext + 0x10), handleBuffer);
   if ((int)operationResult == 0) {
     if (handleBuffer[0] == 0) {
       handleBuffer[0] = 0;

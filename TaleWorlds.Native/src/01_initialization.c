@@ -10,22 +10,20 @@
  */
 
 // 全局函数指针 - 系统初始化相关
-void* SystemInitializationEntryPoint;
-void* GlobalSystemDataPointer;
-void* SystemMemoryPool;
-void* SystemDataTablePointer;
-void* SystemMemoryPoolA;
-void* SystemDataTableA;
-void* SystemMemoryPoolB;
-void* SystemDataTableB;
-void* SystemMemoryPoolC;
-void* SystemDataTableC;
-void* SystemMemoryPoolD;
-void* SystemDataTableD;
-void* SystemMemoryPoolE;
-void* SystemDataTableE;
-void* SystemMemoryPoolF;
-void* SystemDataTableF;
+void* GameSystemInitializationEntryPoint;
+void* GlobalSystemDataReference;
+void* SystemMemoryPoolPrimary;
+void* SystemDataTableReference;
+void* SystemMemoryPoolSecondary;
+void* SystemDataTableSecondary;
+void* SystemMemoryPoolTertiary;
+void* SystemDataTableTertiary;
+void* SystemMemoryPoolQuaternary;
+void* SystemDataTableQuaternary;
+void* SystemMemoryPoolQuinary;
+void* SystemDataTableQuinary;
+void* SystemMemoryPoolSenary;
+void* SystemDataTableSenary;
 
 // 核心系统函数指针和相关数据
 void* CoreSystemEntryPoint;
