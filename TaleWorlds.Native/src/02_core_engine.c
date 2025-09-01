@@ -1,8 +1,31 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 核心引擎系统版本信息
-#define ENGINE_SYSTEM_VERSION 3.2
+#define ENGINE_SYSTEM_VERSION 3.3
 #define ENGINE_LAST_UPDATED "2025-09-01"
+
+/**
+ * @file 02_core_engine.c
+ * @brief 核心引擎系统实现文件
+ * 
+ * 本文件实现了TaleWorlds引擎的核心系统功能，包括：
+ * - 系统初始化和配置
+ * - 内存管理和资源分配
+ * - 渲染管线设置
+ * - 输入系统处理
+ * - 物理引擎集成
+ * - 音频系统管理
+ * - 网络组件处理
+ * - UI系统实现
+ * 
+ * 版本 3.3 更新说明：
+ * - 完成变量名深度语义化美化工作
+ * - 为所有未定义类型的变量添加适当的类型声明（主要是void*指针类型）
+ * - 统一整数类型命名规范（uint32 -> uint32_t, int -> int32_t等）
+ * - 为函数指针添加适当的返回类型（主要是void*）
+ * - 删除文件头部的不必要注释，保持代码语义不变
+ * - 提高代码可读性和维护性
+ */
 
 /**
  * @brief 初始化核心引擎系统
