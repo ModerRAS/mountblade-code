@@ -43509,7 +43509,20 @@ LAB_180066ec4:
 
 
 
-long long FUN_180066f90(long long SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,char *ConfigurationFlag,
+/**
+ * @brief 在内存中搜索数据模式
+ * 
+ * 该函数负责在指定的内存区域中搜索特定的数据模式。
+ * 它会使用memchr和memcmp函数来查找匹配的数据模式。
+ * 
+ * @param SystemResourcePointer 系统资源指针（搜索起始地址）
+ * @param ConfigurationDataPointer 配置数据指针（搜索区域大小）
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志（搜索模式）
+ * @param DataSize 数据大小
+ * @return 返回找到的数据偏移量，如果没有找到则返回-1
+ */
+long long SearchDataPatternInMemory(long long SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,char *ConfigurationFlag,
                       ulong long DataSize)
 
 {
@@ -44271,7 +44284,17 @@ void* FUN_180068250(long long SystemResourcePointer,long long ConfigurationDataP
 
 
 
-long long FUN_180068490(long long SystemResourcePointer,long long ConfigurationDataPointer)
+/**
+ * @brief 复制系统配置数据
+ * 
+ * 该函数负责复制系统配置数据，将配置数据从一个资源复制到另一个资源。
+ * 它会复制字符串模板、指针和各个配置字段，并调用相应的回调函数。
+ * 
+ * @param SystemResourcePointer 目标系统资源指针
+ * @param ConfigurationDataPointer 源配置数据指针
+ * @return 返回目标系统资源指针
+ */
+long long CopySystemConfigurationData(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
