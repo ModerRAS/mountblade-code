@@ -30240,24 +30240,35 @@ void ResourceLoopCleanupHandler(uint8_t objectContextParam, int64_t validationCo
 
 
 
-void Unwind_180902670(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 资源指针清理处理器
+ * 
+ * 该函数负责清理资源指针并调用相应的析构函数
+ * 遍历资源指针数组，调用每个指针的析构函数进行资源清理
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象状态信息
+ * @param validationContextParam 验证上下文参数，包含资源指针信息
+ * @note 此函数在异常处理过程中被调用
+ * @warning 如果资源指针异常，将触发系统紧急退出
+ */
+void ResourcePointerCleanupHandler(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   int64_t *processPointer;
-  int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceTable;
+  int64_t *pResourceIndex;
   
-  presourceTable = (int64_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x50);
-  plocalContextPointer = *(int64_t **)(*(int64_t *)(validationContextParam + 0x70) + 0x58);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != plocalContextPointer; presourceIndex = presourceIndex + 3) {
-    if ((int64_t *)presourceIndex[1] != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)presourceIndex[1] + 0x38))();
+  pResourceTable = (int64_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x50);
+  pLocalContextPointer = *(int64_t **)(*(int64_t *)(validationContextParam + 0x70) + 0x58);
+  for (pResourceIndex = (int64_t *)*pResourceTable; pResourceIndex != pLocalContextPointer; pResourceIndex = pResourceIndex + 3) {
+    if ((int64_t *)pResourceIndex[1] != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)pResourceIndex[1] + 0x38))();
     }
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
-  if (*presourceTable == 0) {
+  if (*pResourceTable == 0) {
     return;
   }
                     // WARNING: Subroutine does not return

@@ -24861,11 +24861,6 @@ LAB_18004c7ef:
 
 /**
  * 系统组件初始化器 - 初始化核心系统组件
- * 负责调用系统组件的初始化函数指针
- * 
- * @param SystemResourcePointer 系统组件指针的指针
- */
-/**
  * @brief 执行系统资源回调函数
  * 
  * 该函数负责执行系统资源的回调函数，用于处理系统资源的异步操作。
@@ -24916,7 +24911,14 @@ SystemMemoryTemplateManager(void* *SystemResourcePointer,ulong long param_2,void
 
 
 
-// 函数: void SystemMemoryTemplateCleanup(void* *SystemResourcePointer)
+/**
+ * @brief 系统内存模板清理函数
+ * 
+ * 该函数负责清理系统内存模板，释放相关资源。
+ * 当系统资源不再需要时，调用此函数进行内存模板的清理工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ */
 void SystemMemoryTemplateCleanup(void* *SystemResourcePointer)
 
 {
@@ -25189,7 +25191,15 @@ void SystemResourceCleanupManager(long long *SystemResourcePointer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ProcessSystemResourceAllocation(void* SystemResourcePointer,long long param_2)
+/**
+ * @brief 处理系统资源分配
+ * 
+ * 该函数负责处理系统资源的分配和管理操作。
+ * 根据传入的参数分配相应的系统资源，并设置资源状态。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 分配参数
+ */
 void ProcessSystemResourceAllocation(void* SystemResourcePointer,long long param_2)
 
 {
@@ -25371,7 +25381,14 @@ void ProcessSystemResourceAllocation(void* SystemResourcePointer,long long param
         }
         if (bVar31) {
 
-// 函数: void UpdateSystemRenderManager(long long SystemResourcePointer)
+/**
+ * @brief 更新系统渲染管理器
+ * 
+ * 该函数负责更新系统渲染管理器的状态和参数。
+ * 根据系统资源的信息更新渲染管理器的配置。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ */
 void UpdateSystemRenderManager(long long SystemResourcePointer)
 
 {
@@ -25436,6 +25453,14 @@ LAB_18004e721:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 获取系统资源状态
+ * 
+ * 该函数负责获取当前系统资源的状态信息。
+ * 返回系统资源的当前状态值，用于监控系统运行情况。
+ * 
+ * @return 系统资源状态值
+ */
 uint32_t GetSystemResourceStatus(void)
 
 {
