@@ -2103,7 +2103,7 @@ int InitializeSystemSecurityManager(void)
   ModuleInitializationResult = RegisterSystemModule(InitializeSecurityManagerModule);
   return (ModuleInitializationResult != 0) - 1;
 }
-  DAT_180c82841 = 1;
+  SystemConfigurationStatus = 1;
   SystemInitializationStatus = 0;
   auStackX_18[0] = GetModuleHandleA(0);
   InitializeSystemData(param_1,auStackX_18);
@@ -2114,7 +2114,7 @@ int InitializeSystemSecurityManager(void)
 void InitializeNativeSDLL(uint64_t initFlags)
 {
   uint64_t auStackX_18 [2];
-  DAT_180c82841 = 0;
+  SystemConfigurationStatus = 0;
   SystemInitializationStatus = 0;
   auStackX_18[0] = GetModuleHandleA(0);
   InitializeSystemData(param_1,auStackX_18);
@@ -2209,7 +2209,7 @@ LAB_1800451ca:
   }
   CleanupSystemResources();
 }
-  DAT_180c82841 = 1;
+  SystemConfigurationStatus = 1;
   SystemInitializationStatus = 0;
   auStackX_18[0] = GetModuleHandleA(0);
   InitializeSystemData(param_1,auStackX_18);
@@ -2220,7 +2220,7 @@ LAB_1800451ca:
 void InitializeNativeCore(uint64_t initFlags)
 {
   uint64_t auStackX_18 [2];
-  DAT_180c82841 = 0;
+  SystemConfigurationStatus = 0;
   SystemInitializationStatus = 0;
   auStackX_18[0] = GetModuleHandleA(0);
   InitializeSystemData(param_1,auStackX_18);
@@ -2231,15 +2231,15 @@ void InitializeNativeCore(uint64_t initFlags)
 void InitializeNativeCoreCLR(uint64_t initFlags)
 {
   uint64_t auStackX_18 [2];
-  DAT_180c82841 = 0;
-  DAT_180c82840 = 1;
+  SystemConfigurationStatus = 0;
+  SystemInitializationStatus = 1;
   auStackX_18[0] = GetModuleHandleA(0);
   InitializeSystemData(param_1,auStackX_18);
   ProcessSystemInitialization();
   FinalizeSystemSetup();
   return;
 }
-    DAT_180c82852 = iVar8 != 0xb7;
+    SystemValidationStatus = iVar8 != 0xb7;
   }
   ProcessSystemStringData(_DAT_180c86928,0,0xd,&SystemStringProcessingTemplate,DAT_180c82852);
   if (puStack_28 == (void *)0x0) {
@@ -2247,7 +2247,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
   }
   CleanupSystemResources();
 }
-    DAT_180c82870 = 0;
+    SystemBufferStatus = 0;
   }
   uStack_68 = 0;
   uStack_60 = 0;
@@ -2277,7 +2277,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
   }
   memcpy(&DAT_180c82870,pMemoryAddress,(longlong)(int)uStack_98);
 }
-    DAT_180c84870 = 0;
+    SystemDataBufferStatus = 0;
     return;
   }
   lVar2 = -1;
@@ -2290,8 +2290,8 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
   }
   memcpy(&DAT_180c84870,param_1,(longlong)(int)MemoryAddress);
 }
-          DAT_180c82860 = 1;
-          DAT_180c82853 = 0;
+          SystemOperationStatus = 1;
+          SystemProcessStatus = 0;
           *(uint8_t *)(_DAT_180c86870 + 0x1f0) = 0;
           puStack_2c8 = &UNK_180a3c3e0;
           uStack_2b0 = 0;
@@ -2324,7 +2324,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
           strstr(&DAT_18098bc73,&UNK_1809fd190);
           strstr(&DAT_18098bc73,&UNK_1809fd1a0);
           strstr(&DAT_18098bc73,&UNK_1809fd1b0);
-          DAT_180c82842 = 1;
+          SystemModuleStatus = 1;
           DAT_180c8ecec = 1;
           lVar20 = strstr(pMemoryAddress7,&UNK_1809fd1c0);
           if (lVar20 == 0) {
@@ -2341,7 +2341,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
               *(uint8_t *)(lVar24 + 0x28) = 1;
             }
             else {
-              DAT_180c82851 = 1;
+              SystemNetworkStatus = 1;
             }
           }
           else {
@@ -2354,9 +2354,9 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
         else if (uVar8 == 0xb) {
           iVar6 = strcmp(pMemoryAddress1,&UNK_1809fd298);
           if (iVar6 != 0) goto LAB_18004d668;
-          DAT_180c82860 = 1;
-          DAT_180c82853 = 0;
-          DAT_180c82842 = 1;
+          SystemOperationStatus = 1;
+          SystemProcessStatus = 0;
+          SystemModuleStatus = 1;
           lVar24 = strstr(pMemoryAddress7,&UNK_1809fd2a8);
           if (lVar24 != 0) {
             pMemoryAddress7 = &UNK_1809fd2c0;
@@ -2609,8 +2609,8 @@ LAB_18004da0a:
                 if (uVar8 == 0x16) {
                   iVar6 = strcmp(pMemoryAddress1,&UNK_1809fd350);
                   if (iVar6 == 0) {
-                    DAT_180c82844 = 1;
-                    DAT_180c82843 = 1;
+                    SystemResourceStatus = 1;
+                    SystemMemoryStatus = 1;
                     goto LAB_18004d527;
                   }
 LAB_18004dbe3:
@@ -2687,7 +2687,7 @@ LAB_18004dc6a:
                   if (uVar8 == 0x17) {
                     iVar6 = strcmp(pMemoryAddress1,&UNK_1809fd380);
                     if (iVar6 == 0) {
-                      DAT_180c82842 = 1;
+                      SystemModuleStatus = 1;
                       goto LAB_18004d527;
                     }
 LAB_18004dda1:
@@ -2703,7 +2703,7 @@ LAB_18004dda1:
                     SystemBufferSetup(&puStack_178);
                     SystemBufferCleanup(&puStack_178);
                     InitializeDataBuffer(&DAT_180bf5770,&puStack_178);
-                    DAT_180c82842 = 1;
+                    SystemModuleStatus = 1;
                     puStack_178 = &UNK_180a3c3e0;
                     if (lStack_170 != 0) {
                       CleanupSystemResources();
@@ -3311,7 +3311,7 @@ LAB_18004e062:
   }
   return;
 }
-    DAT_180c82862 = DAT_180c82862 == '\0';
+    SystemThreadStatus = SystemThreadStatus == '\0';
   }
   lVar9 = 0xe0;
   puVar6 = _DAT_180c868d0;
@@ -3628,7 +3628,7 @@ uint64_t * InitializeMemoryBuffer(uint64_t *param_1)
   *(uint32_t *)(param_1 + 0x46) = 3;
   return param_1;
 }
-    DAT_180c84870 = 0;
+    SystemDataBufferStatus = 0;
   }
   do {
     lVar3 = lVar5 + 1;
@@ -3719,7 +3719,7 @@ ProcessMemoryAllocation(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uin
   }
   return param_1;
 }
-      DAT_180c82850 = '\x01';
+      SystemSemaphoreStatus = '\x01';
       do {
         iVar3 = ReleaseSemaphore(_DAT_180c91900,1);
       } while (iVar3 == 0);
@@ -4160,7 +4160,7 @@ LAB_1800d3d65:
   }
   return &DAT_180d49290 + (longlong)param_1 * 0x58;
 }
-  DAT_180c82862 = DAT_180c82862 == '\0';
+  SystemThreadStatus = SystemThreadStatus == '\0';
   *param_1 = &SystemBufferTemplate;
   param_1[1] = 0;
   *(uint32_t *)(param_1 + 2) = 0;
@@ -4476,7 +4476,7 @@ uint64_t* InitializeSystemBufferTemplate(uint64_t *BufferTemplate, longlong Data
   *(int *)(param_1 + 2) = LoopCounter + 0xd;
   return param_1;
 }
-  DAT_180c82842 = 1;
+  SystemModuleStatus = 1;
   uStack_160 = 3;
   pppppppuStack_188 = &pppppppuStack_188;
   pppppppuStack_180 = &pppppppuStack_188;
