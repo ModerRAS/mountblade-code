@@ -199,7 +199,8 @@ void utility_memory_cleanup_handler(void)
  * 简化实现：使用语义化变量名，提高代码可读性。
  * 原本实现：使用未语义化的变量名，如iVar1、puVar1等。
  * 
- * 注意：这是简化实现，实际功能可能更复杂。
+ * @note 这是简化实现，实际功能可能更复杂。
+ * @warning 调用此函数前确保resource_handle有效
  */
 uint64 utility_process_resource_data(longlong resource_handle)
 {
