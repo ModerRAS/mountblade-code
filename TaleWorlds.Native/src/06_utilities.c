@@ -34792,6 +34792,17 @@ void RegisterResourceCleanupHandler(uint8_t ObjectContextParameter,int64_t Valid
 
 
 
+/**
+ * @brief 注册内存清理处理器
+ * 
+ * 该函数在异常处理过程中注册内存清理处理器
+ * 用于在系统异常时确保内存资源得到正确清理
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ * @note 此函数通常在异常处理流程中调用
+ */
 void UnwindRegisterMemoryCleanupHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
@@ -34801,6 +34812,17 @@ void UnwindRegisterMemoryCleanupHandler(uint8_t ObjectContextParameter,int64_t V
 
 
 
+/**
+ * @brief 注册次要内存清理处理器
+ * 
+ * 该函数在异常处理过程中注册次要内存清理处理器
+ * 用于处理系统异常时的次要内存资源清理
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ * @note 此函数处理偏移量为1000的内存资源
+ */
 void UnwindRegisterSecondaryMemoryCleanupHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
@@ -50073,8 +50095,18 @@ void ResetResourceHashPointers(uint8_t ObjectContextParameter, int64_t Validatio
 
 
 
-void Unwind_180906e80(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
-
+/**
+ * @brief 设置资源哈希表003
+ * 
+ * 该函数负责在系统清理过程中设置资源哈希表003
+ * 将验证上下文中的资源哈希表指针指向资源哈希表003
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含资源哈希表指针信息
+ * @return 无返回值
+ * @note 此函数通常在系统清理或资源重置时调用
+ */
+void SetResourceHashTable003(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 {
   **(uint8_t **)(ValidationContextParameter + 0x178) = &ResourceHashTable003;
   return;
@@ -50082,10 +50114,20 @@ void Unwind_180906e80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906e90(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
-
+/**
+ * @brief 执行资源上下文清理操作
+ * 
+ * 该函数负责在系统清理过程中执行资源上下文相关的清理操作
+ * 从验证上下文中获取资源上下文指针并调用相应的清理函数
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含资源上下文信息
+ * @return 无返回值
+ * @note 此函数通常在系统清理或资源释放时调用
+ */
+void ExecuteResourceContextCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 {
-  int64_t *processPointer;
+  int64_t *cleanupProcessPointer;
   
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x178) + 0x20);
   if (ResourceContextPointer != (int64_t *)0x0) {
@@ -50096,8 +50138,18 @@ void Unwind_180906e90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906ea0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
-
+/**
+ * @brief 执行D0偏移量清理操作
+ * 
+ * 该函数负责在系统清理过程中执行验证上下文中D0偏移量位置的清理操作
+ * 检查特定偏移量处的指针并调用相应的清理函数
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含清理所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统清理时调用
+ */
+void ExecuteD0OffsetCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 {
   if (*(int64_t **)(ValidationContextParameter + 0xd0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(ValidationContextParameter + 0xd0) + 0x38))();
@@ -50107,8 +50159,18 @@ void Unwind_180906ea0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906eb0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
-
+/**
+ * @brief 执行B0偏移量清理操作
+ * 
+ * 该函数负责在系统清理过程中执行验证上下文中B0偏移量位置的清理操作
+ * 检查特定偏移量处的指针并调用相应的清理函数
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含清理所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统清理时调用
+ */
+void ExecuteB0OffsetCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 {
   if (*(int64_t **)(ValidationContextParameter + 0xb0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(ValidationContextParameter + 0xb0) + 0x38))();
