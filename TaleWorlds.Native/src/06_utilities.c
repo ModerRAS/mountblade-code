@@ -4300,6 +4300,12 @@ uint32_t ProcessResourceTask(void)
 
 
 // 函数: void TriggerSystemTermination(void)
+/**
+ * @brief 触发系统终止
+ * 
+ * 该函数负责触发系统的终止过程，调用系统终止相关的函数
+ * 确保系统能够安全地关闭和清理资源
+ */
 void TriggerSystemTermination(void)
 
 {
@@ -4310,8 +4316,14 @@ void TriggerSystemTermination(void)
 
 
 
-// 函数: void FUN_180890d39(void)
-void FUN_180890d39(void)
+// 函数: void ReturnEmptyFunction(void)
+/**
+ * @brief 空函数返回
+ * 
+ * 该函数是一个空函数，直接返回而不执行任何操作
+ * 用于占位或作为默认的空实现
+ */
+void ReturnEmptyFunction(void)
 
 {
   return;

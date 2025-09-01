@@ -621,7 +621,7 @@ void ValidateNetworkConnection(undefined8 connectionId,ulonglong *connectionStat
   validationStatus = func_0x00018088c590(connectionId,connectionInfo);
   if (validationStatus == 0) {
     if ((*(uint *)(connectionInfo[0] + 0x24) >> 1 & 1) == 0) goto cleanup;
-    connectionStatus = FUN_18088c740(connectionInfo + 1);
+    connectionStatus = ValidateNetworkConnection(connectionInfo + 1);
     if (connectionStatus == 0) goto validation_failed;
   }
   else {
@@ -629,22 +629,22 @@ validation_failed:
     connectionStatus = validationStatus;
   }
   if ((connectionStatus == 0) &&
-     (validationStatus = FUN_18088dec0(*(undefined8 *)(connectionInfo[0] + 0x98),connectionDetails,0x20), validationStatus == 0))
+     (validationStatus = ProcessNetworkPacketData(*(undefined8 *)(connectionInfo[0] + 0x98),connectionDetails,0x20), validationStatus == 0))
   {
     *connectionDetails[0] = &UNK_1809832b8;
     *(undefined4 *)(connectionDetails[0] + 3) = 0;
     *(undefined4 *)(connectionDetails[0] + 1) = 0x20;
     *(int *)(connectionDetails[0] + 2) = (int)connectionId;
-    validationStatus = func_0x00018088e0d0(*(undefined8 *)(connectionInfo[0] + 0x98),connectionDetails[0]);
+    validationStatus = SendNetworkPacket(*(undefined8 *)(connectionInfo[0] + 0x98),connectionDetails[0]);
     if (validationStatus == 0) {
       *connectionStatus = (ulonglong)*(uint *)(connectionDetails[0] + 3);
                     // WARNING: Subroutine does not return
-      FUN_18088c790(connectionInfo + 1);
+      CleanupNetworkConnection(connectionInfo + 1);
     }
   }
 cleanup:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(connectionInfo + 1);
+  CleanupNetworkConnection(connectionInfo + 1);
 }
 
 

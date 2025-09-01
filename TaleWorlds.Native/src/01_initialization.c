@@ -62637,25 +62637,25 @@ undefined8 FUN_180779d6c(void)
 
 
 
-// 函数: undefined FUN_180058c20;
-undefined FUN_180058c20;
+// 函数: 系统模块加载器 - 负责加载系统模块
+undefined SystemModuleLoader;
 
-// 函数: undefined FUN_18004bb30;
-undefined FUN_18004bb30;
-undefined DAT_180d49830;
-undefined8 UNK_180d498a0;
-undefined4 UNK_180d498a8;
-undefined *UNK_180d498b0;
-undefined1 *UNK_180d498b8;
-undefined4 UNK_180d498c0;
-longlong UNK_180d49908;
-longlong UNK_180d49910;
-longlong UNK_180d49928;
-longlong UNK_180d49930;
-undefined4 UNK_180d49948;
-undefined4 UNK_180d4994c;
-undefined DAT_180d49950;
-undefined DAT_180d49970;
+// 函数: 系统接口管理器 - 负责管理系统接口
+undefined SystemInterfaceManager;
+undefined SystemModuleLoadFlag;
+undefined8 SystemInterfaceHandle;
+undefined4 SystemInterfaceVersion;
+undefined *SystemInterfaceTable;
+undefined1 *SystemInterfaceData;
+undefined4 SystemInterfaceConfig;
+longlong SystemInterfaceMemoryBase;
+longlong SystemInterfaceMemorySize;
+longlong SystemInterfaceDataOffset;
+longlong SystemInterfaceDataSize;
+undefined4 SystemInterfaceFlags;
+undefined4 SystemInterfaceStatus;
+undefined SystemModuleConfigData;
+undefined SystemModuleRuntimeData;
 undefined DAT_180bfc140;
 undefined DAT_1803f48b2;
 undefined UNK_180d49d58;
