@@ -20710,7 +20710,7 @@ LAB_18089bfc7:
  * @return 无返回值
  * @note 此函数不执行任何操作
  */
-void EmptyFunctionPlaceholderC019(void)
+void EmptyFunctionPlaceholderHash2(void)
 
 {
   return;
@@ -28350,7 +28350,7 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @param ObjectContextParameter 异常上下文参数
  * @param ValidationContextParameter 系统上下文指针
  */
-void UnwindExceptionHandlerType1(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindExceptionHandlerTypeOne(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContextParameter + 0xc0) != (int64_t *)0x0) {
@@ -28369,7 +28369,7 @@ void UnwindExceptionHandlerType1(uint8_t ObjectContextParameter,int64_t Validati
  * @param ObjectContextParameter 异常上下文参数
  * @param ValidationContextParameter 系统上下文指针
  */
-void UnwindExceptionHandlerType2(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindExceptionHandlerTypeTwo(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   if (*(int64_t **)(ValidationContextParameter + 0x58) != (int64_t *)0x0) {
@@ -28388,7 +28388,7 @@ void UnwindExceptionHandlerType2(uint8_t ObjectContextParameter,int64_t Validati
  * @param ObjectContextParameter 异常上下文参数
  * @param ValidationContextParameter 系统上下文指针
  */
-void UnwindExceptionHandlerType3(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindExceptionHandlerTypeThree(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContextParameter + 0x48) != (int64_t *)0x0) {
@@ -28407,7 +28407,7 @@ void UnwindExceptionHandlerType3(uint8_t ObjectContextParameter,int64_t Validati
  * @param ObjectContextParameter 异常上下文参数
  * @param ValidationContextParameter 系统上下文指针
  */
-void UnwindExceptionHandlerType4(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindExceptionHandlerTypeFour(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   uint8_t *presourceHash;
@@ -28429,7 +28429,7 @@ void UnwindExceptionHandlerType4(uint8_t ObjectContextParameter,int64_t Validati
  * @param ObjectContextParameter 异常上下文参数
  * @param ValidationContextParameter 系统上下文指针
  */
-void UnwindExceptionHandlerType5(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindExceptionHandlerTypeFive(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   uint8_t *presourceHash;
@@ -28450,7 +28450,7 @@ void UnwindExceptionHandlerType5(uint8_t ObjectContextParameter,int64_t Validati
  * @param ObjectContextParameter 异常上下文参数
  * @param ValidationContextParameter 系统上下文指针
  */
-void UnwindExceptionHandlerType6(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindExceptionHandlerTypeSix(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   **(uint8_t **)(ValidationContextParameter + 0x48) = &ResourceCacheTemplate;
@@ -28758,7 +28758,7 @@ void ReleaseSystemResourceFlag(uint8_t exceptionCode, int64_t exceptionContext)
  * @param exceptionCode 异常代码
  * @param exceptionContext 异常上下文
  */
-void ReleaseSystemResourceFlagVariant1(uint8_t exceptionCode, int64_t exceptionContext)
+void ReleaseSystemResourceFlagVariantOne(uint8_t exceptionCode, int64_t exceptionContext)
 
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
@@ -28779,7 +28779,7 @@ void ReleaseSystemResourceFlagVariant1(uint8_t exceptionCode, int64_t exceptionC
  * @param exceptionCode 异常代码
  * @param exceptionContext 异常上下文
  */
-void ReleaseSystemResourceFlagVariant2(uint8_t exceptionCode, int64_t exceptionContext)
+void ReleaseSystemResourceFlagVariantTwo(uint8_t exceptionCode, int64_t exceptionContext)
 
 {
   if ((*(uint *)(resourceData + 0x20) & 2) != 0) {
@@ -30633,7 +30633,7 @@ void DestroyMutexResource(void)
  * @param resourceDataParam 资源数据参数
  * @param validationFlagsParam 验证标志参数
  */
-void HandleResourceOperationExceptionRecoveryV2(uint8_t objectContext,int64_t validationContext,uint8_t resourceDataParam,uint8_t validationFlagsParam)
+void HandleResourceOperationExceptionRecoveryAlternative(uint8_t objectContext,int64_t validationContext,uint8_t resourceDataParam,uint8_t validationFlagsParam)
 
 {
   ProcessResourceOperationEx(*(int64_t *)(validationContext + 0x78),*(uint8_t *)(*(int64_t *)(validationContext + 0x78) + 0x10),
@@ -30785,7 +30785,7 @@ void ResourceCommandExecutor(uint8_t ObjectContextParameter, int64_t ValidationC
  * @param flagsParam 标志参数
  * @note 此函数在异常处理过程中被调用
  */
-void ResourceCommandExecutorV2(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t commandParam, uint8_t flagsParam)
+void ResourceCommandExecutorAlternative(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t commandParam, uint8_t flagsParam)
 
 {
   uint8_t *pResourceHash;
@@ -30857,7 +30857,7 @@ void ResourceRequestHandler(uint8_t ObjectContextParameter, int64_t ValidationCo
  * @param flagsParam 标志参数
  * @note 此函数在异常处理过程中被调用
  */
-void ResourceRequestHandlerV2(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t requestParam, uint8_t flagsParam)
+void ResourceRequestHandlerAlternative(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t requestParam, uint8_t flagsParam)
 
 {
   ProcessResourceRequest(*(int64_t *)(ValidationContextParameter + 0x78),*(uint8_t *)(*(int64_t *)(ValidationContextParameter + 0x78) + 0x10),
@@ -30964,7 +30964,7 @@ void SystemResourceHandlerInitializer(uint8_t ObjectContextParameter, int64_t Va
  * @note 此函数用于系统上下文恢复
  * @warning 如果系统资源处理器已初始化，将触发紧急退出
  */
-void UnwindSystemContext001(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindSystemContextBase(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;
@@ -31135,7 +31135,7 @@ void ReleaseVertexBufferLock(uint8_t ObjectContextParameter,int64_t ValidationCo
  * @note 此函数用于资源处理器回调执行
  * @warning 需要确保本地上下文指针有效
  */
-void UnwindResourceHandler001(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindResourceHandlerBase(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -31161,7 +31161,7 @@ void UnwindResourceHandler001(uint8_t ObjectContextParameter,int64_t ValidationC
  * @note 此函数用于内存管理器引用验证
  * @warning 验证失败时可能导致系统清理
  */
-void UnwindMemoryManager001(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindMemoryManagerBase(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *referenceCount;
