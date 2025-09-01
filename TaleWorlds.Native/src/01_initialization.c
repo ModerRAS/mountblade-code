@@ -19987,10 +19987,10 @@ LAB_180046c5e:
         }
       }
       else if (systemResult == 0) goto LAB_180046c5e;
-      unsignedSystemValue9 = (int)unsignedSystemValue10 + 1;
-      unsignedSystemValue10 = (ulong long)unsignedSystemValue9;
-      unsignedSystemValue11 = unsignedSystemValue11 + 0x100;
-    } while ((ulong long)(long long)(int)unsignedSystemValue9 < unsignedSystemValue7);
+      indexCounter = (int)comparisonIndex + 1;
+      comparisonIndex = (ulong long)indexCounter;
+      loopCounter = loopCounter + 0x100;
+    } while ((ulong long)(long long)(int)indexCounter < dataSizeLimit);
   }
   return 0xffffffff;
 }

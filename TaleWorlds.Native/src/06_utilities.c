@@ -5377,15 +5377,15 @@ void ProcessObjectConfiguration(int64_t objectPointer, uint8_t configData)
 uint64_t ProcessFloatParameterAndUpdateSystem(int64_t parameterObject)
 
 {
-  int64_t systemData;
-  uint statusFlags1;
-  uint statusFlags2;
-  uint64_t processResult;
-  uint8_t *dataPointer;
-  int intValue;
-  float floatValue;
-  uint8_t1 vectorData [16];
-  int64_t stackOffset;
+  int64_t SystemData;
+  uint FirstStatusFlags;
+  uint SecondStatusFlags;
+  uint64_t ProcessResult;
+  uint8_t *DataPointer;
+  int IntegerValue;
+  float FloatValue;
+  uint8_t1 VectorData [16];
+  int64_t StackOffset;
   
   processResult = ValidateObjectContext(*(uint32_t *)(parameterObject + 0x10),&stackOffset);
   if ((int)processResult != 0) {
