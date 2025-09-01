@@ -32383,7 +32383,17 @@ void CopySystemResourceData(long long *SystemResourcePointer,long long Configura
 
 
 // 函数: void FUN_180058b3e(long long SystemResourcePointer,long long ConfigurationDataPointer)
-void FUN_180058b3e(long long SystemResourcePointer,long long ConfigurationDataPointer)
+/**
+ * @brief 系统资源大小计算器函数
+ * 
+ * 该函数负责计算系统资源的大小和空间需求。
+ * 它会根据资源指针计算所需的内存空间，并进行相应的调整。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源的基本信息
+ * @param ConfigurationDataPointer 配置数据指针，包含系统的配置信息
+ * @note 这是系统资源管理的重要组成部分，用于计算资源空间需求
+ */
+void CalculateSystemResourceSize(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   void* unsignedSystemValue1;
