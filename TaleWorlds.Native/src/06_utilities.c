@@ -3156,15 +3156,15 @@ uint8_t MemoryBuffer131;
 uint8_t MemoryBuffer132;
 uint8_t MemoryBuffer133;
 uint8_t SystemBuffer001;
-uint8_t DAT_180c92510;
-char DAT_180c8aa68;
+uint8_t SystemConfigurationFlagA;
+char SystemStatusCharB;
 uint8_t SystemBuffer002;
 
  uint8_t MonitorResourcePerformance;
 uint8_t MonitorResourcePerformance;
 uint8_t1 SystemMemoryConfigDataTemplateBF66D8;
-uint8_t DAT_180c96858;
-uint8_t DAT_180bfbf64;
+uint8_t SystemControlByteC;
+uint8_t SystemDataBufferD;
 uint8_t DAT_180bfbf7c;
 uint8_t DAT_180bfbf60;
 uint8_t DAT_180bf7308;
@@ -27889,14 +27889,23 @@ void UnwindExceptionHandlerType6(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_180901f40(uint8_t8 param_1,longlong param_2)
+/**
+ * @brief 解锁互斥量并处理异常
+ * 
+ * 该函数在异常处理过程中解锁指定的互斥量
+ * 如果解锁失败，则抛出C标准错误
+ * 
+ * @param exceptionHandlerType 异常处理器类型
+ * @param exceptionContext 异常上下文指针
+ */
+void UnlockMutexAndHandleException(uint8_t8 exceptionHandlerType, longlong exceptionContext)
 
 {
-  int iVar1;
+  int unlockResult;
   
-  iVar1 = _Mtx_unlock(*(uint8_t8 *)(param_2 + 0x60));
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  unlockResult = _Mtx_unlock(*(uint8_t8 *)(exceptionContext + 0x60));
+  if (unlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(unlockResult);
   }
   return;
 }
