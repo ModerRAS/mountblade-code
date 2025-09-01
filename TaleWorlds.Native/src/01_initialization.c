@@ -62656,11 +62656,11 @@ undefined4 SystemInterfaceFlags;
 undefined4 SystemInterfaceStatus;
 undefined SystemModuleConfigData;
 undefined SystemModuleRuntimeData;
-undefined DAT_180bfc140;
-undefined DAT_1803f48b2;
-undefined UNK_180d49d58;
-longlong UNK_180d49d68;
-undefined8 UNK_180d49d70;
-longlong UNK_180d49d78;
-longlong *UNK_180c96358;
+undefined SystemGlobalConfigFlag;
+undefined SystemRuntimeDataFlag;
+undefined SystemModuleLoadStatus;
+longlong SystemModuleLoadTime;
+undefined8 SystemModuleUnloadTime;
+longlong SystemModuleExecutionTime;
+longlong *SystemModuleExecutionCounter;
 
