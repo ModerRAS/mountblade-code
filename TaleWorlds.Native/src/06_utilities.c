@@ -87431,7 +87431,7 @@ void InitializeSystemDataStructureDA(void)
 void InitializeSystemDataStructureDA(void)
 
 {
-  _DAT_180bf64f8 = &SystemDataStructure;
+  SystemDataStructurePointerDA = &SystemDataStructure;
   return;
 }
 
