@@ -5363,8 +5363,16 @@ undefined8 GetSystemVersionInfo(void)
 
 
 
- void FUN_1808914e0(longlong param_1,longlong param_2)
-void FUN_1808914e0(longlong param_1,longlong param_2)
+ /**
+ * @brief 处理系统数据包传输
+ * 
+ * 该函数处理系统数据包的传输操作，从数据包中提取信息
+ * 并调用相应的处理函数进行数据传输
+ * 
+ * @param packetHandle 数据包句柄，包含要传输的数据包信息
+ * @param transmissionConfig 传输配置，包含传输参数和设置
+ */
+void ProcessSystemDataPacketTransmission(longlong packetHandle, longlong transmissionConfig)
 
 {
   int iVar1;
@@ -6138,32 +6146,39 @@ void FUN_180891ff0(longlong param_1,longlong param_2)
 
 
  void FUN_180892011(void)
-void FUN_180892011(void)
+/**
+ * @brief 验证并处理系统状态数据
+ * 
+ * 该函数验证系统状态数据的有效性，根据验证结果设置相应的状态标志
+ * 如果验证通过则执行系统数据处理操作
+ * 
+ */
+void ValidateAndProcessSystemStatusData(void)
 
 {
-  int iVar1;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  undefined8 in_stack_00000030;
+  int validationStatus;
+  longlong systemBasePointer;
+  longlong systemStatusPointer;
+  undefined8 systemParameter;
   
-  iVar1 = func_0x0001808c8710(in_stack_00000030);
-  if (iVar1 < 1) {
-    iVar1 = func_0x0001808c8700(in_stack_00000030);
-    *(uint *)(unaff_RSI + 0x18) = (uint)(iVar1 < 1);
+  validationStatus = func_0x0001808c8710(systemParameter);
+  if (validationStatus < 1) {
+    validationStatus = func_0x0001808c8700(systemParameter);
+    *(uint *)(systemStatusPointer + 0x18) = (uint)(validationStatus < 1);
   }
   else {
-    iVar1 = func_0x0001808c8700(in_stack_00000030);
-    if (iVar1 < 1) {
-      *(undefined4 *)(unaff_RSI + 0x18) = 2;
+    validationStatus = func_0x0001808c8700(systemParameter);
+    if (validationStatus < 1) {
+      *(undefined4 *)(systemStatusPointer + 0x18) = 2;
     }
     else {
-      iVar1 = FUN_1808c7f30(in_stack_00000030,unaff_RSI + 0x18);
-      if (iVar1 != 0) {
+      validationStatus = ProcessSystemData(systemParameter, systemStatusPointer + 0x18);
+      if (validationStatus != 0) {
         return;
       }
     }
   }
-  FUN_18088d7c0(*(undefined8 *)(unaff_RBP + 0x98));
+  UpdateSystemStatus(*(undefined8 *)(systemBasePointer + 0x98));
   return;
 }
 
@@ -6171,7 +6186,13 @@ void FUN_180892011(void)
 
 
  void FUN_18089207b(void)
-void FUN_18089207b(void)
+/**
+ * @brief 空操作函数
+ * 
+ * 该函数不执行任何操作，直接返回
+ * 用作占位符或空操作
+ */
+void EmptyOperationFunction(void)
 
 {
   return;
