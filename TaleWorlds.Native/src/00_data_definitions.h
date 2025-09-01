@@ -129,8 +129,8 @@ char StringProcessingSystemADConfigBuffer[64];
 uint32_t StringProcessingSystemADConfigSize;
 
 // 字符串处理系统AE的配置变量
-void* StringProcessingSystemAEMemoryPoolPointer;
-void* StringProcessingSystemAEConfigBufferPointer;
+void* StringProcessingSystemAEMemoryPool;
+void* StringProcessingSystemAEConfigBuffer;
 char StringProcessingSystemAEConfigBuffer[64];
 uint32_t StringProcessingSystemAEConfigSize;
 
@@ -159,8 +159,8 @@ char StringProcessingSystemAIConfigBuffer[64];
 uint32_t StringProcessingSystemAIConfigSize;
 
 // 字符串处理系统AJ的配置变量
-void* StringProcessingSystemAJMemoryPoolPointer;
-void* StringProcessingSystemAJConfigBufferPointer;
+void* StringProcessingSystemAJMemoryPool;
+void* StringProcessingSystemAJConfigBuffer;
 char StringProcessingSystemAJConfigBuffer[64];
 uint32_t StringProcessingSystemAJConfigSize;
 
@@ -178,14 +178,14 @@ void* SystemEngineConstant;
 void* SystemFrameworkConstant;
 
 // 系统内存管理器指针 - 用于管理核心内存分配
-void* SystemMemoryManagerPointer;
-void* SystemMemoryAllocatorPointer;
-void* SystemMemoryPoolManagerPointer;
-void* SystemMemoryBufferManagerPointer;
-void* SystemMemoryCachePointer;
-void* SystemMemoryHeapPointer;
-void* SystemMemoryStackPointer;
-void* SystemMemoryPagePointer;
+void* SystemMemoryManager;
+void* SystemMemoryAllocator;
+void* SystemMemoryPoolManager;
+void* SystemMemoryBufferManager;
+void* SystemMemoryCache;
+void* SystemMemoryHeap;
+void* SystemMemoryStack;
+void* SystemMemoryPage;
 // 系统引擎内部数据指针 - 用于存储引擎核心内部数据
 void* SystemEngineInternalDataPointer01;
 void* SystemEngineInternalDataPointer02;
