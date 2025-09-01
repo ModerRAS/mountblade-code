@@ -33981,7 +33981,7 @@ ulonglong engine_unnamed_function_1320(longlong engine_data_structure_ptr,uint *
   float engine_stack_float_c8;
   float engine_stack_float_c4;
   float engine_stack_float_c0;
-  float fStack_bc;
+  float engine_stack_float_bc;
   float engine_stack_float_b8;
   float engine_stack_float_b4;
   float engine_stack_float_b0;
@@ -33991,9 +33991,9 @@ ulonglong engine_unnamed_function_1320(longlong engine_data_structure_ptr,uint *
   float engine_stack_float_a0;
   float engine_stack_float_9c;
   float engine_stack_float_98;
-  float fStack_94;
-  float fStack_90;
-  float fStack_8c;
+  float engine_stack_float_94;
+  float engine_stack_float_90;
+  float engine_stack_float_8c;
   
   local_resource_node = engine_result_flag_ptr;
   pfStackX_18 = engine_comparison_params;
@@ -34270,7 +34270,7 @@ LAB_180077879:
       engine_stack_float_9c = engine_temp_float_3 * engine_temp_float_16 + engine_temp_float_2 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20;
       engine_temp_float = *(float *)(engine_data_structure_ptr + 0x158);
       engine_stack_float_98 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17 + engine_comparison_params[0xc];
-      fStack_94 = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18 + engine_comparison_params[0xd];
+      engine_stack_float_94 = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18 + engine_comparison_params[0xd];
       fStack_90 = engine_temp_float_4 * engine_temp_float_15 + engine_temp_float_5 * engine_temp_float_11 + engine_temp_float * engine_temp_float_19 + engine_comparison_params[0xe];
       fStack_8c = engine_temp_float_4 * engine_temp_float_16 + engine_temp_float_5 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20 + engine_comparison_params[0xf];
       engine_comparison_params = &engine_stack_float_c8;
