@@ -4954,8 +4954,13 @@ void ExecuteNonReturningFunctionAtLocation180d49fe0(void)
 
 
 
- void FUN_18089107f(void)
-void FUN_18089107f(void)
+ /**
+ * @brief 空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何操作直接返回
+ * 用于占位或测试目的
+ */
+void EmptyOperationFunction(void)
 
 {
   return;
@@ -7387,24 +7392,33 @@ void FUN_180892e50(longlong param_1,undefined8 param_2)
 
 
  void FUN_180893080(longlong param_1,longlong param_2)
-void FUN_180893080(longlong param_1,longlong param_2)
+/**
+ * @brief 更新系统配置数据并执行相关操作
+ * 
+ * 该函数验证系统配置数据的有效性，如果验证通过则更新配置数据
+ * 并执行相应的系统操作
+ * 
+ * @param configObject 配置对象，包含系统配置信息
+ * @param systemContext 系统上下文，用于执行系统操作
+ */
+void UpdateSystemConfigurationAndExecute(longlong configObject, longlong systemContext)
 
 {
-  int iVar1;
-  longlong lVar2;
-  undefined8 uStackX_8;
+  int validationStatus;
+  longlong configOffset;
+  undefined8 configBuffer;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10));
-  if (iVar1 == 0) {
-    if (uStackX_8 == 0) {
-      lVar2 = 0;
+  validationStatus = func_0x00018088c530(*(undefined4 *)(configObject + 0x10));
+  if (validationStatus == 0) {
+    if (configBuffer == 0) {
+      configOffset = 0;
     }
     else {
-      lVar2 = uStackX_8 + -8;
+      configOffset = configBuffer + -8;
     }
-    *(undefined1 *)(lVar2 + 0xbc) = *(undefined1 *)(param_1 + 0x18);
+    *(undefined1 *)(configOffset + 0xbc) = *(undefined1 *)(configObject + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    ExecuteSystemOperation(*(undefined8 *)(systemContext + 0x98), configObject);
   }
   return;
 }
