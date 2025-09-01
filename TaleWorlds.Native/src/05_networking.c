@@ -691,7 +691,7 @@ void ProcessNetworkPacket(NetworkStatus packetId,int packetIndex,longlong packet
   networkContext = 0;
   processingStatus = NetworkConnectionIdInitialize(0,&networkContext);
   if ((((processingStatus == 0) && (processingStatus = ValidateNetworkConnection(&connectionHandle,networkContext), processingStatus == 0)) &&
-      (processingStatus = func_0x00018088c530(packetId,&packetInfo), processingStatus == 0)) &&
+      (processingStatus = NetworkConnectionFlagsValidate(packetId,&packetInfo), processingStatus == 0)) &&
      ((packetTable = *(longlong *)(packetInfo + 8), -1 < packetIndex &&
       (packetIndex < *(int *)(packetTable + 0x88))))) {
     packetArray = (longlong)packetIndex * 0x10 + *(longlong *)(packetTable + 0x80);
@@ -730,7 +730,7 @@ void SendNetworkPacket(NetworkHandle packetId,NetworkHandle connectionId,Network
   param_5 = 0;
   iVar2 = NetworkConnectionIdInitialize(0,&param_5,dataSize,param_4,0);
   if (((iVar2 == 0) && (iVar2 = ValidateNetworkConnection(&stack0x00000020,param_5), iVar2 == 0)) &&
-     (iVar2 = func_0x00018088c530(unaff_EBP,&param_7), iVar2 == 0)) {
+     (iVar2 = NetworkConnectionFlagsValidate(unaff_EBP,&param_7), iVar2 == 0)) {
     param_6 = *(longlong *)(param_7 + 8);
     if ((-1 < (int)unaff_RSI) && ((int)unaff_RSI < *(int *)(param_6 + 0x88))) {
       lVar4 = unaff_RSI * 0x10 + *(longlong *)(param_6 + 0x80);
@@ -788,7 +788,7 @@ void SendNetworkPacketEx(NetworkHandle packetId,NetworkHandle connectionId,Netwo
   param_5 = in_XMM0_Qb;
   iVar2 = NetworkConnectionIdInitialize();
   if (((iVar2 == 0) && (iVar2 = NetworkStackInitialize(&stack0x00000020,param_5), iVar2 == 0)) &&
-     (iVar2 = func_0x00018088c530(unaff_EBP,&param_7), iVar2 == 0)) {
+     (iVar2 = NetworkConnectionFlagsValidate(unaff_EBP,&param_7), iVar2 == 0)) {
     param_6 = *(longlong *)(param_7 + 8);
     if ((-1 < (int)unaff_RSI) && ((int)unaff_RSI < *(int *)(param_6 + 0x88))) {
       lVar4 = unaff_RSI * 0x10 + *(longlong *)(param_6 + 0x80);
@@ -899,7 +899,7 @@ uint32_t InitializeNetworkConnectionContext(uint32_t connectionFlags, int64_t co
   connectionId = 0;
   status = NetworkConnectionIdInitialize(0,&connectionId);
   if (((status == 0) && (status = NetworkContextInitialize(&networkContext,connectionId), status == 0)) &&
-     (status = func_0x00018088c530(connectionFlags,connectionParams), status == 0)) {
+     (status = NetworkConnectionFlagsValidate(connectionFlags,connectionParams), status == 0)) {
     connectionOffset = *(int64_t *)(connectionParams[0] + 8);
   }
   else if (status != 0) goto LAB_1808408dd;
@@ -992,7 +992,7 @@ void ProcessNetworkConnectionContext(NetworkHandle connectionContext, NetworkHan
   stackParameter1 = timeoutRegister;
   operationStatus = NetworkConnectionIdInitialize(contextRegister,&stack0x00000028,dataSize,param_4,connectionContext);
   if (((operationStatus == 0) && (operationStatus = NetworkStackInitialize(&stack0x00000020,stackParameter1), operationStatus == 0))
-     && (operationStatus = func_0x00018088c530(connectionFlags,&stack0x00000070), operationStatus == 0)) {
+     && (operationStatus = NetworkConnectionFlagsValidate(connectionFlags,&stack0x00000070), operationStatus == 0)) {
     stackParameter2 = *(longlong *)(stackParameter3 + 8);
   }
   else if (operationStatus != 0) goto LAB_1808408dd;
@@ -4052,7 +4052,7 @@ void FUN_180844f40(ulonglong connectionContext,NetworkHandle *packetData)
   lStack_138 = 0;
   iVar5 = NetworkConnectionIdInitialize(0,&uStack_140);
   if (((iVar5 == 0) && (iVar5 = FUN_18088c740(&uStack_148,uStack_140), iVar5 == 0)) &&
-     (iVar5 = func_0x00018088c530(connectionContext & 0xffffffff,&lStack_130), iVar5 == 0)) {
+     (iVar5 = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&lStack_130), iVar5 == 0)) {
     lStack_138 = 0;
     if (lStack_130 != 0) {
       lStack_138 = lStack_130 + -8;
@@ -4598,7 +4598,7 @@ void FUN_180845ef0(ulonglong connectionContext,uint *packetData)
   lStack_128 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&lStack_130);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,lStack_130), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext & 0xffffffff,&lStack_120), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&lStack_120), iVar1 == 0)) {
     lStack_128 = *(longlong *)(lStack_120 + 8);
   }
   else if (iVar1 != 0) {
@@ -4645,7 +4645,7 @@ void FUN_180846050(NetworkStatus connectionContext,NetworkStatus *packetData,Net
   uStack_150 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&uStack_150);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158,uStack_150), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext,alStack_140), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext,alStack_140), iVar1 == 0)) {
     lStack_148 = *(longlong *)(alStack_140[0] + 8);
   }
   else if (iVar1 != 0) goto LAB_18084610f;
@@ -4830,7 +4830,7 @@ void FUN_1808464f0(ulonglong connectionContext,NetworkStatus *packetData)
   lStack_128 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&uStack_130);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,uStack_130), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext & 0xffffffff,&lStack_120), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&lStack_120), iVar1 == 0)) {
     lStack_128 = *(longlong *)(lStack_120 + 8);
   }
   else if (iVar1 != 0) {
@@ -4879,7 +4879,7 @@ void FUN_180846610(ulonglong connectionContext,NetworkByte *packetData,int dataS
     uStack_170 = 0;
     iVar1 = NetworkConnectionIdInitialize(0,&uStack_170);
     if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_178,uStack_170), iVar1 == 0)) &&
-       (iVar1 = func_0x00018088c530(connectionContext & 0xffffffff,&lStack_160), iVar1 == 0)) {
+       (iVar1 = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&lStack_160), iVar1 == 0)) {
       lStack_168 = *(longlong *)(lStack_160 + 8);
     }
     else if (iVar1 != 0) {
@@ -4983,7 +4983,7 @@ void FUN_180846810(ulonglong connectionContext,NetworkByte *packetData)
   lStack_138 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&uStack_140);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_148,uStack_140), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext & 0xffffffff,&lStack_130), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&lStack_130), iVar1 == 0)) {
     lStack_138 = 0;
     if (lStack_130 != 0) {
       lStack_138 = lStack_130 + -8;
@@ -5027,7 +5027,7 @@ void FUN_180846930(NetworkStatus connectionContext,NetworkStatus *packetData,Net
   uStack_150 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&uStack_150);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158,uStack_150), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext,alStack_140), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext,alStack_140), iVar1 == 0)) {
     lStack_148 = 0;
     if (alStack_140[0] != 0) {
       lStack_148 = alStack_140[0] + -8;
@@ -5077,7 +5077,7 @@ void FUN_180846a90(ulonglong connectionContext,NetworkStatus *packetData)
   lStack_138 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&uStack_140);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_148,uStack_140), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext & 0xffffffff,&lStack_130), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&lStack_130), iVar1 == 0)) {
     lStack_138 = 0;
     if (lStack_130 != 0) {
       lStack_138 = lStack_130 + -8;
@@ -5122,7 +5122,7 @@ void FUN_180846bc0(ulonglong connectionContext,uint packetData,NetworkStatus *da
       uStack_150 = 0;
       iVar1 = NetworkConnectionIdInitialize(0,&uStack_150);
       if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158,uStack_150), iVar1 == 0)) &&
-         (iVar1 = func_0x00018088c530(connectionContext & 0xffffffff,&lStack_140), iVar1 == 0)) {
+         (iVar1 = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&lStack_140), iVar1 == 0)) {
         lStack_148 = 0;
         if (lStack_140 != 0) {
           lStack_148 = lStack_140 + -8;
@@ -5247,7 +5247,7 @@ void FUN_180846e90(ulonglong connectionContext,uint *packetData)
   lStack_138 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&uStack_140);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_148,uStack_140), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext & 0xffffffff,&lStack_130), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&lStack_130), iVar1 == 0)) {
     if (lStack_130 == 0) {
       lStack_138 = 0;
     }
@@ -5304,7 +5304,7 @@ void FUN_180846fe0(ulonglong connectionContext,NetworkHandle *packetData)
   lStack_128 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&uStack_130);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,uStack_130), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext & 0xffffffff,&lStack_120), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&lStack_120), iVar1 == 0)) {
     lStack_128 = *(longlong *)(lStack_120 + 8);
   }
   else if (iVar1 != 0) {
@@ -5352,7 +5352,7 @@ void FUN_180847110(ulonglong connectionContext,NetworkHandle *packetData)
   lStack_138 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&uStack_140);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_148,uStack_140), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext & 0xffffffff,&lStack_130), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&lStack_130), iVar1 == 0)) {
     lStack_138 = 0;
     if (lStack_130 != 0) {
       lStack_138 = lStack_130 + -8;
@@ -5520,7 +5520,7 @@ void FUN_1808473f0(NetworkStatus connectionContext,NetworkStatus *packetData,Net
   uStack_150 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&uStack_150);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158,uStack_150), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext,alStack_140), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext,alStack_140), iVar1 == 0)) {
     lStack_148 = 0;
     if (alStack_140[0] != 0) {
       lStack_148 = alStack_140[0] + -8;
@@ -5751,7 +5751,7 @@ void FUN_180847890(ulonglong connectionContext,NetworkByte *packetData)
   lStack_130 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&lStack_130);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,lStack_130), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext & 0xffffffff,&lStack_120), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&lStack_120), iVar1 == 0)) {
     uStack_128 = *(NetworkHandle *)(lStack_120 + 8);
   }
   else if (iVar1 != 0) {
@@ -5965,7 +5965,7 @@ void FUN_180847df0(ulonglong connectionContext,NetworkByte *packetData)
   lStack_130 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&lStack_130);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,lStack_130), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext & 0xffffffff,&lStack_120), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext & 0xffffffff,&lStack_120), iVar1 == 0)) {
     uStack_128 = *(NetworkHandle *)(lStack_120 + 8);
   }
   else if (iVar1 != 0) {
@@ -5985,7 +5985,7 @@ bool FUN_180847f30(NetworkHandle connectionContext)
   int iVar1;
   NetworkByte auStackX_8 [32];
   
-  iVar1 = func_0x00018088c530(connectionContext,auStackX_8);
+  iVar1 = NetworkConnectionFlagsValidate(connectionContext,auStackX_8);
   return iVar1 == 0;
 }
 
@@ -7512,7 +7512,7 @@ void FUN_1808496c0(NetworkStatus connectionContext,longlong packetData,NetworkSt
   uStack_150 = 0;
   iVar2 = NetworkConnectionIdInitialize(0,&uStack_150);
   if (((iVar2 == 0) && (iVar2 = FUN_18088c740(&uStack_158,uStack_150), iVar2 == 0)) &&
-     (iVar2 = func_0x00018088c530(connectionContext,alStack_140), iVar2 == 0)) {
+     (iVar2 = NetworkConnectionFlagsValidate(connectionContext,alStack_140), iVar2 == 0)) {
     lStack_148 = *(longlong *)(alStack_140[0] + 8);
   }
   else if (iVar2 != 0) goto LAB_180849763;
@@ -7584,7 +7584,7 @@ void FUN_180849820(NetworkStatus connectionContext,longlong packetData,NetworkSt
   uStack_150 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&uStack_150);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158,uStack_150), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext,alStack_140), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext,alStack_140), iVar1 == 0)) {
     if (alStack_140[0] == 0) {
       lStack_148 = alStack_140[0];
     }
@@ -8080,7 +8080,7 @@ void FUN_18084a680(NetworkStatus connectionContext,NetworkHandle packetData)
   uStack_130 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&uStack_130);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,uStack_130), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext,alStack_120), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext,alStack_120), iVar1 == 0)) {
     lStack_128 = *(longlong *)(alStack_120[0] + 8);
   }
   else if (iVar1 != 0) goto LAB_18084a719;
@@ -8113,7 +8113,7 @@ void FUN_18084a7a0(NetworkStatus connectionContext,NetworkHandle packetData)
   uStack_130 = 0;
   iVar1 = NetworkConnectionIdInitialize(0,&uStack_130);
   if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,uStack_130), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(connectionContext,alStack_120), iVar1 == 0)) {
+     (iVar1 = NetworkConnectionFlagsValidate(connectionContext,alStack_120), iVar1 == 0)) {
     if (alStack_120[0] == 0) {
       lStack_128 = alStack_120[0];
     }
@@ -8370,7 +8370,7 @@ LAB_18084af68:
     iVar3 = iVar2;
   }
   if (iVar3 == 0) {
-    func_0x00018088c530(uVar1,auStackX_20);
+    NetworkConnectionFlagsValidate(uVar1,auStackX_20);
   }
 LAB_18084af88:
                     // WARNING: Subroutine does not return
@@ -87672,7 +87672,7 @@ longlong * FUN_18088f810(NetworkHandle connectionContext,longlong packetData)
   int iVar12;
   longlong lStackX_18;
   
-  plVar8 = (longlong *)func_0x00018088c530(connectionContext,&lStackX_18);
+  plVar8 = (longlong *)NetworkConnectionFlagsValidate(connectionContext,&lStackX_18);
   if ((int)plVar8 == 0) {
     lVar1 = *(longlong *)(packetData + 0x90);
     lVar2 = *(longlong *)(lVar1 + 0x130);
@@ -87891,7 +87891,7 @@ longlong FUN_18088fa00(NetworkHandle connectionContext,longlong packetData)
   longlong lVar7;
   longlong lStackX_18;
   
-  lVar3 = func_0x00018088c530(connectionContext,&lStackX_18);
+  lVar3 = NetworkConnectionFlagsValidate(connectionContext,&lStackX_18);
   if ((int)lVar3 == 0) {
     lVar3 = *(longlong *)(packetData + 0x90);
     lVar1 = *(longlong *)(lVar3 + 0x200);
@@ -88429,7 +88429,7 @@ NetworkHandle FUN_18088fdb0(longlong connectionContext,NetworkHandle packetData)
   NetworkHandle uVar3;
   longlong lStackX_8;
   
-  uVar3 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar3 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   lVar1 = lStackX_8;
   if ((int)uVar3 != 0) {
     return uVar3;
@@ -88533,7 +88533,7 @@ NetworkHandle FUN_18088fe60(longlong connectionContext,longlong packetData)
   NetworkHandle uStack_18;
   longlong lStack_10;
   
-  uVar3 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
+  uVar3 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -88576,7 +88576,7 @@ NetworkHandle FUN_18088fea0(longlong connectionContext,NetworkHandle packetData)
   NetworkHandle uVar3;
   longlong lStackX_8;
   
-  uVar3 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar3 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   lVar1 = lStackX_8;
   if ((int)uVar3 != 0) {
     return uVar3;
@@ -88691,7 +88691,7 @@ NetworkHandle FUN_18088ff60(longlong connectionContext,longlong packetData)
   NetworkStatus uStack_10;
   NetworkStatus uStack_c;
   
-  uVar2 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_18);
+  uVar2 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_18);
   if ((int)uVar2 == 0) {
     lStackX_8 = 0;
     lVar1 = *(longlong *)(alStackX_18[0] + 0x10);
@@ -88765,7 +88765,7 @@ NetworkHandle FUN_18088fff0(longlong connectionContext)
   NetworkHandle uVar1;
   longlong alStackX_8 [4];
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
   if ((int)uVar1 == 0) {
     *(NetworkByte *)(*(longlong *)(alStackX_8[0] + 0x10) + 0x75) = *(NetworkByte *)(connectionContext + 0x18);
     if ((*(longlong *)(alStackX_8[0] + 8) != 0) && (uVar1 = FUN_18084ec10(), (int)uVar1 != 0)) {
@@ -88784,7 +88784,7 @@ NetworkHandle FUN_180890040(longlong connectionContext)
   NetworkHandle uVar1;
   longlong alStackX_8 [4];
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
   if ((int)uVar1 == 0) {
     *(NetworkByte *)(*(longlong *)(alStackX_8[0] + 0x10) + 0x74) = *(NetworkByte *)(connectionContext + 0x18);
     if ((*(longlong *)(alStackX_8[0] + 8) != 0) && (uVar1 = FUN_18084ec60(), (int)uVar1 != 0)) {
@@ -88803,7 +88803,7 @@ NetworkHandle FUN_180890090(longlong connectionContext)
   NetworkHandle uVar1;
   longlong alStackX_8 [4];
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
   if ((int)uVar1 == 0) {
     *(NetworkStatus *)(*(longlong *)(alStackX_8[0] + 0x10) + 0x70) = *(NetworkStatus *)(connectionContext + 0x18);
     if ((*(longlong *)(alStackX_8[0] + 8) != 0) && (uVar1 = FUN_18084ed10(), (int)uVar1 != 0)) {
@@ -88850,7 +88850,7 @@ void ProcessNetworkConnectionResources(longlong connectionHandle, longlong netwo
   ulonglong stackGuard;
   
   stackGuard = _DAT_180bf00a8 ^ (ulonglong)securityStackBuffer;
-  operationStatus = func_0x00018088c530(*(NetworkStatus *)(connectionHandle + 0x10), connectionInfo);
+  operationStatus = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionHandle + 0x10), connectionInfo);
   if ((operationStatus == 0) && (*(longlong *)(connectionInfo[0] + 8) != 0)) {
     resourceBuffer = processingBuffer;
     resourceCount = 0;
@@ -88993,7 +88993,7 @@ NetworkHandle FUN_180890270(longlong connectionContext)
   longlong in_stack_00000008;
   char acStackX_18 [16];
   
-  uVar4 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&stack0x00000008);
+  uVar4 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&stack0x00000008);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -89085,7 +89085,7 @@ ulonglong FUN_1808902b0(longlong connectionContext,longlong packetData)
   longlong lStackX_8;
   longlong lStackX_18;
   
-  uVar6 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x18),&lStackX_18);
+  uVar6 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x18),&lStackX_18);
   iVar4 = (int)uVar6;
   if (iVar4 == 0) {
     plVar10 = (longlong *)0x0;
@@ -89093,7 +89093,7 @@ ulonglong FUN_1808902b0(longlong connectionContext,longlong packetData)
     if (lStackX_18 != 0) {
       plVar9 = (longlong *)(lStackX_18 + -8);
     }
-    uVar6 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_18);
+    uVar6 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_18);
     iVar4 = (int)uVar6;
     if (iVar4 == 0) {
       lStackX_8 = 0;
@@ -89168,7 +89168,7 @@ NetworkHandle FUN_180890450(longlong connectionContext,longlong packetData)
   NetworkHandle uVar3;
   longlong alStackX_8 [2];
   
-  uVar3 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
+  uVar3 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
   lVar1 = alStackX_8[0];
   if ((int)uVar3 != 0) {
     return uVar3;
@@ -89203,7 +89203,7 @@ NetworkHandle FUN_180890490(longlong connectionContext)
   longlong *plVar4;
   longlong alStackX_8 [4];
   
-  uVar3 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
+  uVar3 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
   if ((int)uVar3 == 0) {
     plVar4 = *(longlong **)(alStackX_8[0] + 0x20);
     while ((*(longlong **)(alStackX_8[0] + 0x20) <= plVar4 &&
@@ -89231,7 +89231,7 @@ NetworkHandle FUN_180890500(longlong connectionContext,NetworkHandle packetData)
   int iVar3;
   longlong alStackX_8 [2];
   
-  uVar2 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
+  uVar2 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
   lVar1 = alStackX_8[0];
   if ((int)uVar2 != 0) {
     return uVar2;
@@ -89269,7 +89269,7 @@ NetworkHandle FUN_180890540(longlong connectionContext)
   NetworkHandle uVar2;
   longlong alStackX_8 [4];
   
-  uVar2 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
+  uVar2 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -89295,7 +89295,7 @@ NetworkHandle FUN_180890590(longlong connectionContext)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 == 0) {
     if (lStackX_8 == 0) {
       lStackX_8 = 0;
@@ -89363,7 +89363,7 @@ NetworkHandle FUN_180890650(longlong connectionContext)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -89430,7 +89430,7 @@ NetworkHandle FUN_180890700(longlong connectionContext)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -89498,7 +89498,7 @@ NetworkHandle FUN_1808907b0(longlong connectionContext)
   longlong alStackX_8 [2];
   longlong alStackX_18 [2];
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_18);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_18);
   if ((int)uVar1 == 0) {
     if (alStackX_18[0] == 0) {
       alStackX_18[0] = 0;
@@ -89534,7 +89534,7 @@ NetworkHandle FUN_180890830(longlong connectionContext)
   longlong alStackX_8 [2];
   longlong alStackX_18 [2];
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_18);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_18);
   if ((int)uVar1 == 0) {
     if (alStackX_18[0] == 0) {
       alStackX_18[0] = 0;
@@ -89580,7 +89580,7 @@ NetworkHandle FUN_1808908b0(longlong connectionContext)
   NetworkByte auVar8 [16];
   longlong lStackX_8;
   
-  uVar4 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x1c),&lStackX_8);
+  uVar4 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x1c),&lStackX_8);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -89638,7 +89638,7 @@ NetworkHandle FUN_180890900(longlong connectionContext)
   longlong lVar8;
   longlong lStackX_8;
   
-  uVar3 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar3 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar3 == 0) {
     uVar7 = 0;
     uVar5 = lStackX_8 - 8;
@@ -89747,7 +89747,7 @@ NetworkHandle FUN_1808909d0(longlong connectionContext)
   longlong lStackX_8;
   ulonglong uVar5;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 == 0) {
     uVar5 = 0;
     uVar6 = lStackX_8 - 8;
@@ -89862,7 +89862,7 @@ NetworkHandle FUN_180890ad0(longlong connectionContext)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -89929,7 +89929,7 @@ NetworkHandle FUN_180890b70(longlong connectionContext)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -89997,7 +89997,7 @@ NetworkHandle FUN_180890c10(longlong connectionContext)
   longlong lVar2;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -90060,7 +90060,7 @@ NetworkHandle FUN_180890d60(longlong connectionContext)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -90127,7 +90127,7 @@ NetworkHandle FUN_180890e10(longlong connectionContext)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -90194,7 +90194,7 @@ NetworkHandle FUN_180890ee0(longlong connectionContext)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -90261,7 +90261,7 @@ NetworkHandle FUN_180890f90(longlong connectionContext)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -90332,7 +90332,7 @@ NetworkHandle FUN_180891090(longlong connectionContext)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -90437,7 +90437,7 @@ NetworkHandle FUN_180891210(longlong connectionContext)
   NetworkByte auVar8 [16];
   longlong lStackX_8;
   
-  uVar4 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar4 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -90496,7 +90496,7 @@ int FUN_180891280(longlong connectionContext)
   if (0 < *(int *)(connectionContext + 0x20)) {
     lVar2 = *(longlong *)(connectionContext + 0x18);
   }
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x4c),auStackX_8);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x4c),auStackX_8);
   if (iVar1 == 0) {
     iVar1 = *(int *)(connectionContext + 0x10);
     if (0x38 < *(int *)(connectionContext + 0x10)) {
@@ -90523,7 +90523,7 @@ void FUN_180891360(longlong connectionContext,NetworkHandle packetData)
   int aiStack_58 [2];
   longlong lStack_50;
   
-  aiStack_58[0] = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
+  aiStack_58[0] = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
   if (aiStack_58[0] == 0) {
     lStack_50 = connectionContext + 0x18;
     FUN_180894dd0(packetData,aiStack_58,*(NetworkStatus *)(connectionContext + 0x14),uStackX_8);
@@ -90546,7 +90546,7 @@ ulonglong FUN_1808913c0(longlong connectionContext,NetworkHandle packetData)
   longlong lStack_50;
   int iStack_48;
   
-  uVar2 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x24),&uStackX_8);
+  uVar2 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x24),&uStackX_8);
   if ((int)uVar2 == 0) {
     iStack_48 = *(int *)(connectionContext + 0x18);
     if ((0 < iStack_48) && (*(uint *)(connectionContext + 0x1c) < 2)) {
@@ -90765,7 +90765,7 @@ NetworkHandle FUN_180891820(longlong connectionContext)
   NetworkHandle uVar1;
   longlong alStackX_8 [4];
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
   if ((int)uVar1 == 0) {
     *(NetworkStatus *)(*(longlong *)(alStackX_8[0] + 0x10) + 0x50) = *(NetworkStatus *)(connectionContext + 0x18);
     if ((*(longlong *)(alStackX_8[0] + 8) != 0) && (uVar1 = FUN_1808c44f0(), (int)uVar1 != 0)) {
@@ -90833,7 +90833,7 @@ void FUN_180891970(longlong connectionContext,longlong packetData)
   int iVar1;
   longlong lStackX_8;
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if (iVar1 == 0) {
     *(NetworkStatus *)(connectionContext + 0x18) = *(NetworkStatus *)(lStackX_8 + 0x30);
     *(NetworkStatus *)(connectionContext + 0x1c) = *(NetworkStatus *)(lStackX_8 + 0x34);
@@ -90852,7 +90852,7 @@ void FUN_1808919c0(longlong connectionContext,longlong packetData)
   int iVar1;
   NetworkHandle uStackX_8;
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
   if (iVar1 == 0) {
     iVar1 = FUN_1808deb90(uStackX_8,connectionContext + 0x18);
     if (iVar1 == 0) {
@@ -90894,7 +90894,7 @@ NetworkHandle FUN_180891a80(longlong connectionContext,longlong packetData)
   NetworkHandle uVar2;
   longlong lStackX_8;
   
-  uVar2 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar2 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar2 == 0) {
     if (*(int *)(lStackX_8 + 0x34) != 0) {
       return 0x2e;
@@ -90920,7 +90920,7 @@ void FUN_180891af0(longlong connectionContext,longlong packetData)
   int iVar1;
   longlong lStackX_8;
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if (iVar1 == 0) {
     *(NetworkStatus *)(lStackX_8 + 0x30) = 0;
                     // WARNING: Subroutine does not return
@@ -90938,7 +90938,7 @@ NetworkHandle FUN_180891b40(longlong connectionContext,longlong packetData)
   NetworkHandle uVar2;
   longlong lStackX_8;
   
-  uVar2 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar2 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar2 == 0) {
     if (*(int *)(lStackX_8 + 0x34) != 0) {
       return 0x2e;
@@ -90968,7 +90968,7 @@ NetworkHandle FUN_180891bd0(longlong connectionContext,longlong packetData)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 == 0) {
     if (*(longlong *)(lStackX_8 + 8) == 0) {
       return 0x4c;
@@ -90987,7 +90987,7 @@ NetworkHandle FUN_180891c40(longlong connectionContext,longlong packetData)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -91009,7 +91009,7 @@ void FUN_180891ca0(longlong connectionContext,longlong packetData)
   int iVar1;
   longlong lStackX_8;
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if (iVar1 == 0) {
     *(NetworkByte *)(lStackX_8 + 0x29) = *(NetworkByte *)(connectionContext + 0x18);
                     // WARNING: Subroutine does not return
@@ -91028,7 +91028,7 @@ void FUN_180891cf0(longlong connectionContext,longlong packetData)
   int iVar1;
   longlong lStackX_8;
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if (iVar1 == 0) {
     *(NetworkByte *)(lStackX_8 + 0x28) = *(NetworkByte *)(connectionContext + 0x18);
                     // WARNING: Subroutine does not return
@@ -91050,7 +91050,7 @@ NetworkHandle FUN_180891d40(longlong connectionContext,longlong packetData)
   if ((uStackX_8 & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
   if ((int)uVar1 == 0) {
     *(NetworkStatus *)(CONCAT44(uStackX_c,uStackX_8) + 0x24) = *(NetworkStatus *)(connectionContext + 0x18);
                     // WARNING: Subroutine does not return
@@ -91067,7 +91067,7 @@ NetworkHandle FUN_180891de0(longlong connectionContext,longlong packetData)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -91096,7 +91096,7 @@ void FUN_180891e40(longlong connectionContext,longlong packetData)
   longlong lStackX_8;
   longlong lStackX_18;
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_18);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_18);
   if (((iVar1 != 0) || (iVar1 = FUN_180867bc0(&lStackX_8), iVar1 != 0)) ||
      (iVar1 = FUN_180868490(lStackX_8,packetData,*(NetworkHandle *)(lStackX_18 + 8)), iVar1 != 0)) {
     return;
@@ -91379,7 +91379,7 @@ void FUN_180891ff0(longlong connectionContext,longlong packetData)
   int iVar1;
   NetworkHandle uStackX_8;
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
   if (iVar1 == 0) {
     iVar1 = func_0x0001808c8710(uStackX_8);
     if (iVar1 < 1) {
@@ -91456,7 +91456,7 @@ void FUN_180892090(longlong connectionContext,longlong packetData)
   int iVar1;
   NetworkHandle uStackX_8;
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
   if (iVar1 == 0) {
     iVar1 = func_0x0001808c8470(uStackX_8);
     if (iVar1 == 0) {
@@ -91477,7 +91477,7 @@ void FUN_1808920e0(longlong connectionContext,longlong packetData)
   int iVar1;
   NetworkByte auStackX_8 [8];
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),auStackX_8);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),auStackX_8);
   if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
     FUN_18088d720(*(NetworkHandle *)(packetData + 0x98),connectionContext);
@@ -91495,7 +91495,7 @@ void FUN_180892120(longlong connectionContext,longlong packetData)
   int iVar1;
   NetworkHandle uStackX_8;
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
   if (iVar1 == 0) {
     iVar1 = func_0x0001808c7d30(uStackX_8);
     if (iVar1 == 0) {
@@ -91514,7 +91514,7 @@ NetworkHandle FUN_180892170(longlong connectionContext,longlong packetData)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 == 0) {
     if (lStackX_8 != 0) {
       lStackX_8 = lStackX_8 + -8;
@@ -91537,7 +91537,7 @@ NetworkHandle FUN_1808921f0(longlong connectionContext,longlong packetData)
   NetworkHandle uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar1 == 0) {
     if (lStackX_8 != 0) {
       lStackX_8 = lStackX_8 + -8;
@@ -91573,7 +91573,7 @@ NetworkHandle FUN_180892270(longlong connectionContext,longlong packetData)
   if (connectionContext + 0x1c == 0) {
     return 0x1f;
   }
-  uVar3 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar3 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar3 == 0) {
     uVar6 = 0;
     uVar8 = uVar6;
@@ -91704,7 +91704,7 @@ NetworkHandle FUN_180892370(longlong connectionContext,longlong packetData)
   longlong lVar3;
   longlong lStackX_8;
   
-  uVar2 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar2 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -91763,7 +91763,7 @@ void FUN_180892410(longlong connectionContext,longlong packetData)
   ulonglong uStack_18;
   
   uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
-  iVar2 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStack_48);
+  iVar2 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStack_48);
   if (iVar2 == 0) {
     if (lStack_48 != 0) {
       lStack_48 = lStack_48 + -8;
@@ -91915,7 +91915,7 @@ NetworkHandle FUN_1808924f0(longlong connectionContext,longlong packetData)
     if (((fStackX_20 == 0.0) && (*(float *)(connectionContext + 0x40) == 0.0)) && (fVar1 == 0.0)) {
       return 0x1f;
     }
-    uVar5 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
+    uVar5 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -91972,7 +91972,7 @@ void FUN_180892720(longlong connectionContext,longlong packetData)
   longlong lVar2;
   NetworkHandle uStackX_8;
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10));
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10));
   if (iVar1 == 0) {
     if (uStackX_8 == 0) {
       lVar2 = 0;
@@ -92003,7 +92003,7 @@ NetworkHandle FUN_180892780(longlong connectionContext,longlong packetData)
   if ((*(uint *)(connectionContext + 0x20) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar3 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_18);
+  uVar3 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_18);
   if ((int)uVar3 == 0) {
     if (alStackX_18[0] == 0) {
       alStackX_18[0] = 0;
@@ -92050,7 +92050,7 @@ NetworkHandle FUN_180892880(longlong connectionContext,longlong packetData)
   longlong lStackX_8;
   longlong alStackX_18 [2];
   
-  uVar3 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStackX_18);
+  uVar3 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_18);
   if ((int)uVar3 == 0) {
     if (alStackX_18[0] == 0) {
       alStackX_18[0] = 0;
@@ -92254,7 +92254,7 @@ NetworkHandle FUN_180892990(longlong connectionContext,longlong packetData)
     return 0x1d;
   }
   if (connectionContext + 0x28 != 0) {
-    uVar4 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_18);
+    uVar4 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_18);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -92306,7 +92306,7 @@ NetworkHandle FUN_180892ac0(longlong connectionContext,longlong packetData)
   longlong lStackX_18;
   
   if (connectionContext + 0x28 != 0) {
-    uVar4 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_18);
+    uVar4 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_18);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -92364,7 +92364,7 @@ NetworkHandle FUN_180892bd0(longlong connectionContext,longlong packetData,Netwo
   if ((*(uint *)(connectionContext + 0x20) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar4 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar4 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -92435,7 +92435,7 @@ NetworkHandle FUN_180892cc0(longlong connectionContext,longlong packetData)
   NetworkStatus uStackX_c;
   ulonglong uVar10;
   
-  uVar3 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&fStackX_8);
+  uVar3 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&fStackX_8);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -92611,7 +92611,7 @@ void FUN_180892e50(longlong connectionContext,NetworkHandle packetData)
   
   uStack_30 = _DAT_180bf00a8 ^ (ulonglong)alStack_58;
   uStack_38 = packetData;
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),alStack_58);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStack_58);
   if (iVar1 == 0) {
     bVar4 = alStack_58[0] == 0;
     alStack_58[0] = alStack_58[0] + -8;
@@ -92642,7 +92642,7 @@ void FUN_180893080(longlong connectionContext,longlong packetData)
   longlong lVar2;
   NetworkHandle uStackX_8;
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10));
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10));
   if (iVar1 == 0) {
     if (uStackX_8 == 0) {
       lVar2 = 0;
@@ -92676,7 +92676,7 @@ NetworkHandle FUN_1808930e0(longlong connectionContext,longlong packetData,Netwo
   if ((fVar1 < 0.0) || (3.4028235e+38 <= fVar1)) {
     return 0x1f;
   }
-  uVar2 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  uVar2 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -92744,7 +92744,7 @@ code_r0x000180893206:
     }
   }
 code_r0x00018089322c:
-  uVar2 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10));
+  uVar2 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10));
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -92792,7 +92792,7 @@ NetworkHandle FUN_180893290(longlong connectionContext,longlong packetData)
   if ((*(uint *)(connectionContext + 0x1c) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10));
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10));
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -92838,7 +92838,7 @@ NetworkHandle FUN_180893330(longlong connectionContext,longlong packetData)
   if ((uStackX_8 & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
   if ((int)uVar1 == 0) {
     if (CONCAT44(uStackX_c,uStackX_8) == 0) {
       lVar2 = 0;
@@ -92863,7 +92863,7 @@ void FUN_1808933c0(longlong connectionContext,longlong packetData)
   int iVar1;
   longlong lStackX_8;
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if (iVar1 == 0) {
     if (lStackX_8 != 0) {
       lStackX_8 = lStackX_8 + -8;
@@ -92886,7 +92886,7 @@ void FUN_180893420(longlong connectionContext,longlong packetData)
   int iVar1;
   longlong lStackX_8;
   
-  iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+  iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
   if (iVar1 == 0) {
     if (lStackX_8 != 0) {
       lStackX_8 = lStackX_8 + -8;
@@ -92915,7 +92915,7 @@ NetworkHandle FUN_180893480(longlong connectionContext,longlong packetData)
   if ((uStackX_8 & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar3 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
+  uVar3 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -93091,7 +93091,7 @@ int FUN_180893760(longlong connectionContext,longlong packetData)
     if (*(int *)(connectionContext + 0x20) < 1) {
       iVar1 = FUN_1808de900(packetData,connectionContext + 0x4c);
       if ((iVar1 == 0) &&
-         (iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x4c),&lStackX_8), iVar1 == 0)) {
+         (iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x4c),&lStackX_8), iVar1 == 0)) {
         if (*(int *)(lStackX_8 + 0x30) == 1) {
           *(NetworkStatus *)(lStackX_8 + 0x30) = 2;
         }
@@ -93133,7 +93133,7 @@ int FUN_18089379d(longlong connectionContext,NetworkHandle packetData)
   if ((int)packetData < 1) {
     iVar1 = FUN_1808de900();
     if ((iVar1 == 0) &&
-       (iVar1 = func_0x00018088c530(*(NetworkStatus *)(unaff_RDI + 0x4c),&stack0x00000060), iVar1 == 0)
+       (iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(unaff_RDI + 0x4c),&stack0x00000060), iVar1 == 0)
        ) {
       if (*(int *)(in_stack_00000060 + 0x30) == 1) {
         *(NetworkStatus *)(in_stack_00000060 + 0x30) = 2;
@@ -93176,7 +93176,7 @@ void FUN_1808938c0(longlong connectionContext,longlong packetData)
   
   iVar1 = FUN_1808de900(packetData,connectionContext + 0x10);
   if (iVar1 == 0) {
-    iVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
+    iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&lStackX_8);
     if (iVar1 == 0) {
       if (*(int *)(lStackX_8 + 0x30) == 1) {
         *(NetworkStatus *)(lStackX_8 + 0x30) = 2;
@@ -93216,7 +93216,7 @@ int FUN_180893930(longlong connectionContext,longlong packetData)
     else {
       iVar2 = FUN_1808de900(packetData,connectionContext + 0x24);
       if ((iVar2 == 0) &&
-         (iVar2 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x24),&lStackX_8), iVar2 == 0)) {
+         (iVar2 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x24),&lStackX_8), iVar2 == 0)) {
         if (*(int *)(lStackX_8 + 0x30) == 1) {
           *(NetworkStatus *)(lStackX_8 + 0x30) = 2;
         }
@@ -93255,7 +93255,7 @@ int FUN_180893964(NetworkHandle connectionContext,NetworkHandle packetData)
   else {
     iVar1 = FUN_1808de900();
     if ((iVar1 == 0) &&
-       (iVar1 = func_0x00018088c530(*(NetworkStatus *)(unaff_RDI + 0x24),&stack0x00000060), iVar1 == 0)
+       (iVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(unaff_RDI + 0x24),&stack0x00000060), iVar1 == 0)
        ) {
       if (*(int *)(in_stack_00000060 + 0x30) == 1) {
         *(NetworkStatus *)(in_stack_00000060 + 0x30) = 2;
@@ -93768,7 +93768,7 @@ NetworkHandle FUN_180894300(longlong connectionContext,longlong packetData)
   if ((uStackX_8 & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar1 = func_0x00018088c530(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
+  uVar1 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),&uStackX_8);
   if ((int)uVar1 == 0) {
     *(NetworkStatus *)(CONCAT44(uStackX_c,uStackX_8) + 0x18) = *(NetworkStatus *)(connectionContext + 0x18);
                     // WARNING: Subroutine does not return
@@ -94825,7 +94825,7 @@ LAB_18089555d:
         uStack_6f4 = *(NetworkStatus *)(lVar9 + 0x20);
         iVar4 = FUN_180895c60(connectionContext,iVar4,&uStack_6f4);
         if (iVar4 != 0) goto FUN_180895b89;
-        iVar4 = func_0x00018088c530(uStack_6f4,alStack_6b0);
+        iVar4 = NetworkConnectionFlagsValidate(uStack_6f4,alStack_6b0);
         if ((iVar4 != 0) || (*(int *)(alStack_6b0[0] + 0x30) != 2)) goto LAB_18089555d;
       }
     }
@@ -94947,7 +94947,7 @@ LAB_18089555d:
       in_stack_00000040._4_4_ = *(NetworkStatus *)(lVar8 + 0x20);
       iVar4 = FUN_180895c60(connectionContext,unaff_EBX,(longlong)&stack0x00000040 + 4);
       if (iVar4 != 0) goto LAB_180895b69;
-      iVar4 = func_0x00018088c530(in_stack_00000040._4_4_,unaff_RBP + -0x78);
+      iVar4 = NetworkConnectionFlagsValidate(in_stack_00000040._4_4_,unaff_RBP + -0x78);
       if ((iVar4 != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + 0x30) != 2))
       goto LAB_18089555d;
     }
@@ -95697,7 +95697,7 @@ ulonglong FUN_180896140(longlong connectionContext)
           lVar15 = (longlong)aiStackX_8[0];
           iVar4 = *(int *)(lVar5 + 8 + lVar15 * 0x10);
           if (iVar4 == 2) {
-            iVar4 = func_0x00018088c530(*(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10),&uStackX_18);
+            iVar4 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10),&uStackX_18);
             uVar3 = uStackX_18;
             plVar13 = plStack_108;
             if ((iVar4 == 0) &&
@@ -95714,7 +95714,7 @@ ulonglong FUN_180896140(longlong connectionContext)
             }
           }
           else if (iVar4 == 3) {
-            iVar4 = func_0x00018088c530(*(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10),auStackX_20);
+            iVar4 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10),auStackX_20);
             plVar13 = plStack_108;
             if (iVar4 == 0) {
               puStack_d8 = &UNK_180983b68;
@@ -95730,7 +95730,7 @@ ulonglong FUN_180896140(longlong connectionContext)
             }
           }
           else if (iVar4 == 5) {
-            iVar4 = func_0x00018088c530(*(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10),auStack_78);
+            iVar4 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10),auStack_78);
             plVar13 = plStack_108;
             if (iVar4 == 0) {
               puStack_d8 = &UNK_1809842e0;
@@ -95756,7 +95756,7 @@ ulonglong FUN_180896140(longlong connectionContext)
             }
           }
           else if (iVar4 == 6) {
-            iVar4 = func_0x00018088c530(*(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10),auStack_70);
+            iVar4 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10),auStack_70);
             plVar13 = plStack_108;
             if (iVar4 == 0) {
               puStack_b8 = &UNK_1809844c8;
@@ -95768,7 +95768,7 @@ ulonglong FUN_180896140(longlong connectionContext)
             }
           }
           else if ((iVar4 == 7) &&
-                  (iVar4 = func_0x00018088c530(*(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10),
+                  (iVar4 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10),
                                                auStack_68), plVar13 = plStack_108, iVar4 == 0)) {
             uVar2 = *(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10);
             iVar7 = (int)uVar6 + 1;
