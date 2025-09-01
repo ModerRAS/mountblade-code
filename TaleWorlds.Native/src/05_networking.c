@@ -3093,43 +3093,55 @@ int ValidateNetworkPacketHeader(longlong connectionContext,longlong packetData,i
 
 
 
-int FUN_1808431b0(longlong connectionContext,longlong packetData,int dataSize)
+// 函数: int ProcessNetworkConnectionProtocol(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络连接协议
+ * 
+ * 该函数负责处理网络连接的协议相关操作
+ * 包括协议版本检查、参数协商和连接状态管理
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理结果，成功返回0，失败返回错误码
+ */
+int ProcessNetworkConnectionProtocol(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  int networkStatus2;
-  int networkStatus3;
-  NetworkHandle networkBuffer;
-  NetworkHandle uStack_30;
-  NetworkStatus uStack_28;
-  NetworkStatus uStack_24;
-  NetworkStatus uStack_20;
-  NetworkStatus uStack_1c;
-  NetworkStatus uStack_18;
-  NetworkStatus uStack_14;
-  NetworkStatus uStack_10;
-  NetworkStatus uStack_c;
+  NetworkStatus connectionFlags;
+  int dataOffset;
+  int processedSize;
+  NetworkHandle primaryBuffer;
+  NetworkHandle secondaryBuffer;
+  NetworkStatus protocolVersion;
+  NetworkStatus connectionTimeout;
+  NetworkStatus retryCount;
+  NetworkStatus maxRetries;
+  NetworkStatus backoffFactor;
+  NetworkStatus connectionState;
+  NetworkStatus errorCode;
+  NetworkStatus statusFlags;
   
-  networkBuffer = *(NetworkHandle *)(connectionContext + 0x18);
-  uStack_30 = *(NetworkHandle *)(connectionContext + 0x20);
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
-  uStack_28 = *(NetworkStatus *)(connectionContext + 0x28);
-  uStack_24 = *(NetworkStatus *)(connectionContext + 0x2c);
-  uStack_20 = *(NetworkStatus *)(connectionContext + 0x30);
-  uStack_1c = *(NetworkStatus *)(connectionContext + 0x34);
-  uStack_18 = *(NetworkStatus *)(connectionContext + 0x38);
-  uStack_14 = *(NetworkStatus *)(connectionContext + 0x3c);
-  uStack_10 = *(NetworkStatus *)(connectionContext + 0x40);
-  uStack_c = *(NetworkStatus *)(connectionContext + 0x44);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_1809838a8);
-  networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18088ebb0(networkStatus2 + packetData,dataSize - networkStatus2,&networkBuffer);
-  return networkStatus3 + networkStatus2;
+  primaryBuffer = *(NetworkHandle *)(connectionContext + 0x18);
+  secondaryBuffer = *(NetworkHandle *)(connectionContext + 0x20);
+  connectionFlags = *(NetworkStatus *)(connectionContext + 0x10);
+  protocolVersion = *(NetworkStatus *)(connectionContext + 0x28);
+  connectionTimeout = *(NetworkStatus *)(connectionContext + 0x2c);
+  retryCount = *(NetworkStatus *)(connectionContext + 0x30);
+  maxRetries = *(NetworkStatus *)(connectionContext + 0x34);
+  backoffFactor = *(NetworkStatus *)(connectionContext + 0x38);
+  connectionState = *(NetworkStatus *)(connectionContext + 0x3c);
+  errorCode = *(NetworkStatus *)(connectionContext + 0x40);
+  statusFlags = *(NetworkStatus *)(connectionContext + 0x44);
+  dataOffset = FUN_18074b880(packetData,dataSize,&UNK_1809838a8);
+  processedSize = NetworkBufferCopyData(packetData + dataOffset,dataSize - dataOffset,&NetworkBufferDataTemplate);
+  dataOffset = dataOffset + processedSize;
+  processedSize = func_0x00018074b800(dataOffset + packetData,dataSize - dataOffset,connectionFlags);
+  dataOffset = dataOffset + processedSize;
+  processedSize = FUN_18074b880(dataOffset + packetData,dataSize - dataOffset,&g_NetworkBufferDataTemplate);
+  dataOffset = dataOffset + processedSize;
+  processedSize = FUN_18088ebb0(dataOffset + packetData,dataSize - dataOffset,&primaryBuffer);
+  return processedSize + dataOffset;
 }
 
 

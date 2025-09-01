@@ -119,20 +119,19 @@ bool SystemStatusFlag2Initialized;
  * 该函数负责获取系统的第三个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t SystemStatusFlag3;
+uint32_t GetSystemStatusFlag3(void);
 bool SystemStatusFlag3Initialized;
 
- uint32_t GetSystemStatusFlag4;
-/**
+ /**
  * @brief 获取系统状态标志4
  * 
  * 该函数负责获取系统的第四个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t SystemStatusFlag4;
+uint32_t GetSystemStatusFlag4(void);
 bool SystemStatusFlag4Initialized;
 
- void DestroyThreadSyncObjects(void)
+
 /**
  * @brief 销毁线程同步对象
  * 
@@ -143,8 +142,7 @@ void DestroyThreadSyncObjects(void);
 void* ThreadSyncObjectHandle;
 void* ThreadSyncContext;
 
- void CloseSystemHandle(void)
-/**
+ /**
  * @brief 关闭系统句柄
  * 
  * 该函数负责关闭系统的句柄资源
@@ -152,8 +150,7 @@ void* ThreadSyncContext;
  */
 void CloseSystemHandle(void);
 
- void CleanupThreadResources(void)
-/**
+ /**
  * @brief 清理线程资源
  * 
  * 该函数负责清理线程运行过程中使用的资源
@@ -166,8 +163,7 @@ void* CleanupContextData2;
 void* CleanupResourceHandle;
 void* CleanupContextData3;
 
- void InitializeResourceManager(void)
-/**
+ /**
  * @brief 初始化资源管理器
  * 
  * 该函数负责初始化游戏资源管理器
@@ -182,8 +178,7 @@ void* ResourceSmallBufferPool;
 void* ResourceMediumBufferPool;
 void* ResourceLargeBufferPool;
 
- void InitializeTextureManager(void)
-/**
+ /**
  * @brief 初始化纹理管理器
  * 
  * 该函数负责初始化游戏中的纹理管理系统
@@ -197,8 +192,7 @@ void* TextureLoaderHandle;
 void* TextureMemoryPool;
 void* TextureDescriptorTable;
 
- void InitializeAudioSystem(void)
-/**
+ /**
  * @brief 初始化音频系统
  * 
  * 该函数负责初始化游戏音频系统
@@ -211,8 +205,7 @@ void* AudioMixerHandle;
 void* AudioBufferPool;
 void* AudioStreamManager;
 
- void InitializePhysicsEngine(void)
-/**
+ /**
  * @brief 初始化物理引擎
  * 
  * 该函数负责初始化游戏物理引擎
@@ -225,8 +218,7 @@ void* CollisionSystemHandle;
 void* RigidBodyManager;
 void* PhysicsConstraintSolver;
 
- void InitializeInputManager(void)
-/**
+ /**
  * @brief 初始化输入管理器
  * 
  * 该函数负责初始化游戏输入管理系统
@@ -240,8 +232,7 @@ void* MouseHandler;
 void* ControllerManager;
 void* InputEventQueue;
 
- void InitializeNetworkManager(void)
-/**
+ /**
  * @brief 初始化网络管理器
  * 
  * 该函数负责初始化游戏网络管理系统
@@ -254,14 +245,13 @@ void* PacketHandler;
 void* NetworkProtocolManager;
 void* NetworkEventDispatcher;
 
- void* InitializeRenderingSystem;
-/**
+ /**
  * @brief 初始化渲染系统
  * 
  * 该函数负责初始化游戏渲染系统
  * 设置图形设备、着色器和渲染队列等相关组件
  */
-void* InitializeRenderingSystem;
+void* InitializeRenderingSystem(void);
 void* RenderingEngineInstance;
 void* GraphicsDeviceHandle;
 void* ShaderManager;
@@ -425,12 +415,12 @@ undefined SystemTimerConfig;
 undefined SystemSyncConfig;
 undefined SystemLockConfig;
 undefined SystemSemaphoreConfig;
-undefined DAT_180bf6fa0;
-undefined DAT_180bf6fa8;
-undefined DAT_180bf6fe8;
-undefined DAT_180bf6ff0;
-undefined DAT_180bf6ff8;
-undefined DAT_180bf7000;
+undefined SystemMutexConfig;
+undefined SystemConditionConfig;
+undefined SystemBarrierConfig;
+undefined SystemPoolConfig;
+undefined SystemQueueConfig;
+undefined SystemStackConfig;
 undefined DAT_180bf7040;
 undefined DAT_180bf7048;
 undefined DAT_180bf7050;
