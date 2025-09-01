@@ -5594,7 +5594,7 @@ void InitializeSystemMemoryManagerNode(void)
 
 
 
-// 函数: void FUN_180033c50(void)
+// 函数: void InitializeSystemDataTableNode(void)
 /**
  * @brief 初始化系统数据表节点
  * 
@@ -5652,7 +5652,7 @@ void InitializeSystemDataTableNode(void)
 
 
 
-// 函数: void FUN_180033d50(void)
+// 函数: void InitializeSystemConfigurationNode(void)
 /**
  * @brief 初始化系统配置节点
  * 
@@ -5710,7 +5710,7 @@ void InitializeSystemConfigurationNode(void)
 
 
 
-// 函数: void FUN_180033e50(void)
+// 函数: void InitializeSystemEventNode(void)
 /**
  * @brief 初始化系统事件节点
  * 
@@ -5768,7 +5768,7 @@ void InitializeSystemEventNode(void)
 
 
 
-// 函数: void FUN_180033f50(void)
+// 函数: void InitializeSystemNodeTreeProcessor(void)
 /**
  * @brief 初始化系统节点树处理器
  * 
@@ -5826,7 +5826,7 @@ void InitializeSystemNodeTreeProcessor(void)
 
 
 
-// 函数: void FUN_180034050(void)
+// 函数: void InitializeSystemMemoryPoolManager(void)
 /**
  * @brief 初始化系统内存池管理器
  * 
@@ -5884,7 +5884,7 @@ void InitializeSystemMemoryPoolManager(void)
 
 
 
-// 函数: void FUN_180034150(void)
+// 函数: void InitializeSystemServiceManager(void)
 /**
  * @brief 初始化系统服务管理器
  * 
@@ -5942,7 +5942,7 @@ void InitializeSystemServiceManager(void)
 
 
 
-// 函数: void FUN_180034250(void)
+// 函数: void InitializeSystemResourceManager(void)
 /**
  * @brief 初始化系统资源管理器
  * 
@@ -6000,7 +6000,7 @@ void InitializeSystemResourceManager(void)
 
 
 
-// 函数: void FUN_180034350(void)
+// 函数: void InitializeSystemEventHandler(void)
 /**
  * @brief 初始化系统事件处理器
  * 
@@ -6058,7 +6058,7 @@ void InitializeSystemEventHandler(void)
 
 
 
-// 函数: void FUN_180034450(void)
+// 函数: void InitializeSystemTaskManager(void)
 /**
  * @brief 初始化系统任务管理器
  * 
@@ -6116,7 +6116,7 @@ void InitializeSystemTaskManager(void)
 
 
 
-// 函数: void FUN_180034550(void)
+// 函数: void InitializeSystemDataProcessor(void)
 /**
  * @brief 初始化系统数据处理器
  * 
@@ -6174,7 +6174,7 @@ void InitializeSystemDataProcessor(void)
 
 
 
-// 函数: void FUN_180034650(void)
+// 函数: void InitializeSystemCommunicationManager(void)
 /**
  * @brief 初始化系统通信管理器
  * 
@@ -6232,7 +6232,7 @@ void InitializeSystemCommunicationManager(void)
 
 
 
-// 函数: void FUN_180034750(void)
+// 函数: void InitializeSystemMemoryManagerEx(void)
 /**
  * @brief 初始化系统内存管理器
  * 
@@ -6290,7 +6290,7 @@ void InitializeSystemMemoryManager(void)
 
 
 
-// 函数: void FUN_180034850(void)
+// 函数: void InitializeSystemThreadManager(void)
 /**
  * @brief 初始化系统线程管理器
  * 
@@ -6528,7 +6528,7 @@ void InitializeSystemEventManager(void)
 
 
 
-// 函数: void FUN_180034c40(void)
+// 函数: void InitializeSystemSearchManager(void)
 /**
  * @brief 初始化系统搜索管理器
  * 
@@ -6586,7 +6586,7 @@ void InitializeSystemSearchManager(void)
 
 
 
-// 函数: void FUN_180034d40(void)
+// 函数: void InitializeSystemIndexManager(void)
 /**
  * @brief 初始化系统索引管理器
  * 
@@ -6644,7 +6644,7 @@ void InitializeSystemIndexManager(void)
 
 
 
-// 函数: void FUN_180034e40(void)
+// 函数: void InitializeSystemCacheManager(void)
 /**
  * @brief 初始化系统缓存管理器
  * 
@@ -6702,7 +6702,7 @@ void InitializeSystemCacheManager(void)
 
 
 
-// 函数: void FUN_180034f40(void)
+// 函数: void InitializeSystemLogManager(void)
 /**
  * @brief 初始化系统日志管理器
  * 
@@ -6760,7 +6760,7 @@ void InitializeSystemLogManager(void)
 
 
 
-// 函数: void FUN_180035040(void)
+// 函数: void InitializeSystemPerformanceMonitor(void)
 /**
  * @brief 初始化系统性能监控器
  * 
