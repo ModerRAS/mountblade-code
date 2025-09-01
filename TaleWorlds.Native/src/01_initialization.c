@@ -37225,34 +37225,47 @@ void* * SearchSystemResourceString(long long SystemResourcePointer,char *Configu
 
 
 
-void* * FUN_18005d430(void* SystemResourcePointer,void* *ConfigurationDataPointer)
+/**
+ * @brief 系统资源字符串比较搜索函数
+ * 
+ * 该函数负责在系统资源中搜索并比较字符串。它会遍历配置数据指针链表，
+ * 比较字符串长度和内容，返回匹配的配置数据指针。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针链表
+ * @return 匹配的配置数据指针，如果未找到则返回NULL
+ * @note 此函数使用字符串长度和内容比较进行精确匹配
+ * 
+ * 原始函数名为FUN_18005d430，现已重命名为SearchAndCompareSystemResourceString
+ */
+void* * SearchAndCompareSystemResourceString(void* SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
-  char *pcVar1;
-  char *pcVar2;
-  long long localResourceOffset;
-  long long in_R10;
-  long long in_R11;
+  char *stringEndPointer;
+  char *resourceString;
+  long long stringLength;
+  long long searchStringLength;
+  long long stringOffset;
   
   if (ConfigurationDataPointer != (void* *)0x0) {
     do {
-      pcVar2 = (char *)*ConfigurationDataPointer;
-      if (pcVar2 == (char *)0x0) {
-        localResourceOffset = 0;
-        pcVar2 = (char *)0x180d48d24;
+      resourceString = (char *)*ConfigurationDataPointer;
+      if (resourceString == (char *)0x0) {
+        stringLength = 0;
+        resourceString = (char *)0x180d48d24;
       }
       else {
-        localResourceOffset = ConfigurationDataPointer[2];
+        stringLength = ConfigurationDataPointer[2];
       }
-      if (localResourceOffset == in_R10) {
-        pcVar1 = pcVar2 + localResourceOffset;
-        if (pcVar1 <= pcVar2) {
+      if (stringLength == searchStringLength) {
+        stringEndPointer = resourceString + stringLength;
+        if (stringEndPointer <= resourceString) {
           return ConfigurationDataPointer;
         }
-        localResourceOffset = in_R11 - (long long)pcVar2;
-        while (*pcVar2 == pcVar2[localResourceOffset]) {
-          pcVar2 = pcVar2 + 1;
-          if (pcVar1 <= pcVar2) {
+        stringOffset = stringOffset - (long long)resourceString;
+        while (*resourceString == resourceString[stringOffset]) {
+          resourceString = resourceString + 1;
+          if (stringEndPointer <= resourceString) {
             return ConfigurationDataPointer;
           }
         }
