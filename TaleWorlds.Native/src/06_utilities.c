@@ -4161,23 +4161,23 @@ uint8_t8 InitializeObjectHandleB(longlong objectContext)
   uint8_t8 byteValue4;
   uint8_t8 *bytePointer5;
   int integerValue6;
-  float fVar7;
-  uint8_t1 auVar8 [16];
+  float floatValue7;
+  uint8_t1 byteArray8 [16];
   longlong lStackX_8;
   
-  uVar4 = ValidateObjectContext(*(uint8_t4 *)(param_1 + 0x1c),&lStackX_8);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  byteValue4 = ValidateObjectContext(*(uint8_t4 *)(param_1 + 0x1c),&lStackX_8);
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
-  lVar1 = *(longlong *)(lStackX_8 + 8);
-  if (lVar1 != 0) {
-    fVar7 = *(float *)(param_1 + 0x20);
-    for (puVar5 = *(uint8_t8 **)(lVar1 + 0x48);
+  loopCounter = *(longlong *)(lStackX_8 + 8);
+  if (loopCounter != 0) {
+    floatValue7 = *(float *)(param_1 + 0x20);
+    for (bytePointer5 = *(uint8_t8 **)(lVar1 + 0x48);
         (*(uint8_t8 **)(lVar1 + 0x48) <= puVar5 &&
         (puVar5 < *(uint8_t8 **)(lVar1 + 0x48) + *(int *)(lVar1 + 0x50))); puVar5 = puVar5 + 1) {
       uVar4 = ProcessResourceOperation(*puVar5,fVar7,0);
-      if ((int)uVar4 != 0) {
-        return uVar4;
+      if ((int)byteValue4 != 0) {
+        return byteValue4;
       }
     }
     if ((*(char *)(lVar1 + 0x34) == '\0') ||
@@ -4245,8 +4245,8 @@ uint8_t8 InitializeObjectHandleC(longlong objectContext)
       do {
         iVar2 = *(int *)(lVar8 + (longlong)puVar4);
         if (iVar2 != -1) {
-          lVar1 = *(longlong *)(uVar5 + 0x20) + (longlong)iVar2 * 0x18;
-          if ((lVar1 == 0) || (lVar1 = *(longlong *)(lVar1 + 8), lVar1 == 0)) {
+          loopCounter = *(longlong *)(uVar5 + 0x20) + (longlong)iVar2 * 0x18;
+          if ((lVar1 == 0) || (loopCounter = *(longlong *)(lVar1 + 8), lVar1 == 0)) {
             return 0x1c;
           }
           uVar3 = ProcessResourceOperation(lVar1,*puVar4,0);
@@ -4299,8 +4299,8 @@ uint8_t8 InitializeObjectHandleD(void)
     do {
       iVar2 = *(int *)(lVar8 + (longlong)puVar4);
       if (iVar2 != -1) {
-        lVar1 = *(longlong *)(uVar5 + 0x20) + (longlong)iVar2 * 0x18;
-        if ((lVar1 == 0) || (lVar1 = *(longlong *)(lVar1 + 8), lVar1 == 0)) {
+        loopCounter = *(longlong *)(uVar5 + 0x20) + (longlong)iVar2 * 0x18;
+        if ((lVar1 == 0) || (loopCounter = *(longlong *)(lVar1 + 8), lVar1 == 0)) {
           return 0x1c;
         }
         uVar3 = ProcessResourceOperation(lVar1,*puVar4,0);
@@ -4403,7 +4403,7 @@ uint8_t8 InitializeObjectHandleE(longlong objectContext)
         uVar5 = (ulonglong)uVar4;
         puVar3 = puVar3 + 1;
         piVar2 = piVar2 + 2;
-      } while ((int)uVar4 < *(int *)(param_1 + 0x18));
+      } while ((int)byteValue4 < *(int *)(param_1 + 0x18));
     }
     resourceHash = 0;
   }
@@ -4464,7 +4464,7 @@ uint8_t8 InitializeObjectHandleF(void)
       uVar5 = (ulonglong)uVar4;
       puVar3 = puVar3 + 1;
       piVar2 = piVar2 + 2;
-    } while ((int)uVar4 < *(int *)(unaff_RBP + 0x18));
+    } while ((int)byteValue4 < *(int *)(unaff_RBP + 0x18));
   }
   return 0;
 }
@@ -7783,9 +7783,9 @@ uint8_t8 ValidateObjectContextAndProcessParameterizedComplexFloatOperation(longl
   if ((*(uint *)(param_1 + 0x20) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar4 = ValidateObjectContext(*(uint8_t4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  byteValue4 = ValidateObjectContext(*(uint8_t4 *)(param_1 + 0x10),&lStackX_8);
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   lVar5 = lStackX_8;
   if (lStackX_8 != 0) {
@@ -7810,8 +7810,8 @@ uint8_t8 ValidateObjectContextAndProcessParameterizedComplexFloatOperation(longl
     *(float *)(param_1 + 0x20) = fVar6;
     *(float *)(lVar5 + 4) = fVar6;
     uVar4 = ValidateBufferContext(lVar5,param_1 + 0x1c);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    if ((int)byteValue4 != 0) {
+      return byteValue4;
     }
     lVar5 = *(longlong *)(param_2 + 0x98);
     if ((*(int *)(lVar5 + 0x180) != 0) || (*(int *)(lVar5 + 0x184) != 0)) {
@@ -7819,18 +7819,18 @@ uint8_t8 ValidateObjectContextAndProcessParameterizedComplexFloatOperation(longl
       InitializeSecurityContext(&lStackX_8,param_1,param_3,param_4,unaff_RDI);
       if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar5 + 0x17c) * 8 + 0x180c4f450)) {
         uVar4 = ProcessResourceValidation(lVar5,param_1);
-        if ((int)uVar4 == 0) {
+        if ((int)byteValue4 == 0) {
           return 0;
         }
-        return uVar4;
+        return byteValue4;
       }
     }
     *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
     uVar4 = func_0x0001808e64d0(*(uint8_t8 *)(lVar5 + 0x1e0));
-    if ((int)uVar4 == 0) {
+    if ((int)byteValue4 == 0) {
       return 0;
     }
-    return uVar4;
+    return byteValue4;
   }
   return 0x1f;
 }
@@ -8519,7 +8519,7 @@ uint8_t8 ProcessSimplifiedParameterizedFloatComparison(longlong param_1, longlon
   if ((int)validationResult != 0) {
     return validationResult;
   }
-  lVar1 = *(longlong *)(param_2 + 0x98);
+  loopCounter = *(longlong *)(param_2 + 0x98);
   if (*(int *)(lVar1 + 0x200) != 0) {
     if (((*(int *)(lVar1 + 0x180) == 0) && (*(int *)(lVar1 + 0x184) == 0)) ||
        (InitializeSecurityContext(&stack0x00000008),
@@ -10286,11 +10286,11 @@ uint64_t ProcessObjectLifecycleManagement(longlong objectHandle)
   InitializeResourceEntryData(param_1 + 0x18);
   plVar1 = (longlong *)(param_1 + 8);
   uVar4 = *(uint *)(param_1 + 0x14);
-  if ((int)((uVar4 ^ (int)uVar4 >> 0x1f) - ((int)uVar4 >> 0x1f)) < 0) {
+  if ((int)((uVar4 ^ (int)byteValue4 >> 0x1f) - ((int)byteValue4 >> 0x1f)) < 0) {
     if (0 < *(int *)(param_1 + 0x10)) {
       return 0x1c;
     }
-    if ((0 < (int)uVar4) && (*plVar1 != 0)) {
+    if ((0 < (int)byteValue4) && (*plVar1 != 0)) {
                     // WARNING: Subroutine does not return
       ProcessResourceAllocation(*(uint8_t8 *)(SystemContextPointer + 0x1a0),*plVar1,&ResourceTableTemplate,0x100,1);
     }
@@ -10304,7 +10304,7 @@ uint64_t ProcessObjectLifecycleManagement(longlong objectHandle)
     memset((longlong)iVar2 + *plVar1,0,(longlong)-iVar2);
   }
   *(uint8_t4 *)(param_1 + 0x10) = 0;
-  if ((0 < (int)((uVar4 ^ (int)uVar4 >> 0x1f) - ((int)uVar4 >> 0x1f))) &&
+  if ((0 < (int)((uVar4 ^ (int)byteValue4 >> 0x1f) - ((int)byteValue4 >> 0x1f))) &&
      (uVar3 = CheckResourceTableStatus(plVar1,0), (int)uVar3 != 0)) {
     return uVar3;
   }
@@ -10765,7 +10765,7 @@ void ProcessModuleInitialization(longlong param_1,void* param_2,int *param_3)
     if ((9.223372e+18 <= fVar9) && (fVar9 = fVar9 - 9.223372e+18, fVar9 < 9.223372e+18)) {
       lVar5 = -0x8000000000000000;
     }
-    lVar1 = *(longlong *)(param_1 + 0xa0);
+    loopCounter = *(longlong *)(param_1 + 0xa0);
     lVar7 = *(longlong *)(param_1 + 0x98);
     if (lVar7 == 0) {
       fVar10 = (float)*(uint *)(param_1 + 0x68) * fVar10;
@@ -10976,7 +10976,7 @@ uint64_t ProcessExtendedParameterizedDataValidation(longlong extendedContext, ui
   if (((!in_ZF) && (*(int *)(dataContext + 0x78) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(in_R10 + 0x70) +
                       (longlong)(int)(*(int *)(dataContext + 0x78) - 1U & param_4) * 4), iVar4 != -1)) {
-    lVar1 = *(longlong *)(in_R10 + 0x80);
+    loopCounter = *(longlong *)(in_R10 + 0x80);
     do {
       resourceTable = (longlong)iVar4;
       if (*(uint *)(lVar1 + resourceTable * 0x10) == param_4) {
@@ -12095,7 +12095,7 @@ uint8_t8 ExpandResourceTableCapacity(longlong param_1)
   int tableEntry;
   
   if ((*(longlong *)(param_1 + 8) != 0) && (tableEntry = *(int *)(param_1 + 0x30), 0 < tableEntry)) {
-    lVar1 = *(longlong *)(param_1 + 0x28);
+    loopCounter = *(longlong *)(param_1 + 0x28);
     if (0x40000 < tableEntry) {
       resourceTable = func_0x00018076b3e0(lVar1 + 0x40000,10);
       if (resourceTable != 0) {
@@ -12348,7 +12348,7 @@ LAB_180896ce3:
   if (((param_4 != '\0') || (*(int *)(*(longlong *)(param_2 + 0x2e8) + 0x34) == 0)) &&
      (iVar3 = ProcessResourceOperation(param_1,param_2,param_3), iVar3 == 0)) {
     for (iVar3 = 0; (-1 < iVar3 && (iVar3 < *(int *)(param_2 + 0x48))); iVar3 = iVar3 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + (longlong)iVar3 * 8);
+      loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + (longlong)iVar3 * 8);
       resourceTable = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         uStack_308 = 0;
@@ -12395,7 +12395,7 @@ LAB_180896ce3:
       }
     }
     for (iVar3 = 0; (-1 < iVar3 && (iVar3 < *(int *)(param_2 + 0x58))); iVar3 = iVar3 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + (longlong)iVar3 * 8);
+      loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x50) + (longlong)iVar3 * 8);
       resourceTable = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         uStack_308 = 0;
@@ -12442,7 +12442,7 @@ LAB_180896ce3:
       }
     }
     for (iVar3 = 0; (-1 < iVar3 && (iVar3 < *(int *)(param_2 + 0x68))); iVar3 = iVar3 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x60) + (longlong)iVar3 * 8);
+      loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x60) + (longlong)iVar3 * 8);
       resourceTable = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         uStack_308 = 0;
@@ -12489,7 +12489,7 @@ LAB_180896ce3:
       }
     }
     for (iVar3 = 0; (-1 < iVar3 && (iVar3 < *(int *)(param_2 + 0x78))); iVar3 = iVar3 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + (longlong)iVar3 * 8);
+      loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + (longlong)iVar3 * 8);
       resourceTable = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         uStack_308 = 0;
@@ -12539,7 +12539,7 @@ LAB_180896ce3:
     iVar3 = 0;
     do {
       if ((iVar3 < 0) || (*(int *)(param_2 + 200) <= iVar3)) break;
-      lVar1 = *(longlong *)(*(longlong *)(param_2 + 0xc0) + (longlong)iVar3 * 8);
+      loopCounter = *(longlong *)(*(longlong *)(param_2 + 0xc0) + (longlong)iVar3 * 8);
       resourceTable = *(longlong *)(lVar1 + 0x48);
       if (resourceTable != 0) {
         uStack_308 = 0;
@@ -12630,7 +12630,7 @@ void ProcessComplexResourceWithRegisters(void)
   if (((unaff_R15B != '\0') || (*(int *)(*(longlong *)(unaff_R13 + 0x2e8) + 0x34) == unaff_R12D)) &&
      (iVar7 = ProcessResourceOperation(), iVar7 == 0)) {
     for (iVar7 = 0; (-1 < iVar7 && (iVar7 < *(int *)(unaff_R13 + 0x48))); iVar7 = iVar7 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(unaff_R13 + 0x40) + (longlong)iVar7 * 8);
+      loopCounter = *(longlong *)(*(longlong *)(unaff_R13 + 0x40) + (longlong)iVar7 * 8);
       resourceTable = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         uStackX_20 = 0;
@@ -12683,7 +12683,7 @@ void ProcessComplexResourceWithRegisters(void)
       }
     }
     for (iVar7 = 0; (-1 < iVar7 && (iVar7 < *(int *)(unaff_R13 + 0x58))); iVar7 = iVar7 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(unaff_R13 + 0x50) + (longlong)iVar7 * 8);
+      loopCounter = *(longlong *)(*(longlong *)(unaff_R13 + 0x50) + (longlong)iVar7 * 8);
       resourceTable = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         uStackX_20 = 0;
@@ -12736,7 +12736,7 @@ void ProcessComplexResourceWithRegisters(void)
       }
     }
     for (iVar7 = 0; (-1 < iVar7 && (iVar7 < *(int *)(unaff_R13 + 0x68))); iVar7 = iVar7 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(unaff_R13 + 0x60) + (longlong)iVar7 * 8);
+      loopCounter = *(longlong *)(*(longlong *)(unaff_R13 + 0x60) + (longlong)iVar7 * 8);
       resourceTable = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         uStackX_20 = 0;
@@ -12789,7 +12789,7 @@ void ProcessComplexResourceWithRegisters(void)
       }
     }
     for (iVar7 = 0; (-1 < iVar7 && (iVar7 < *(int *)(unaff_R13 + 0x78))); iVar7 = iVar7 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(unaff_R13 + 0x70) + (longlong)iVar7 * 8);
+      loopCounter = *(longlong *)(*(longlong *)(unaff_R13 + 0x70) + (longlong)iVar7 * 8);
       resourceTable = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         uStackX_20 = 0;
@@ -12845,7 +12845,7 @@ void ProcessComplexResourceWithRegisters(void)
     iVar7 = 0;
     do {
       if ((iVar7 < 0) || (*(int *)(unaff_R13 + 200) <= iVar7)) break;
-      lVar1 = *(longlong *)(*(longlong *)(unaff_R13 + 0xc0) + (longlong)iVar7 * 8);
+      loopCounter = *(longlong *)(*(longlong *)(unaff_R13 + 0xc0) + (longlong)iVar7 * 8);
       resourceTable = *(longlong *)(lVar1 + 0x48);
       if (resourceTable != 0) {
         uStackX_20 = 0;
@@ -13978,7 +13978,7 @@ LAB_180897af6:
   iVar7 = 0;
   do {
     if ((iVar7 < 0) || (*(int *)(param_2 + 0x1a8) <= iVar7)) goto LAB_180897ce8;
-    lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x1a0) + (longlong)iVar7 * 8);
+    loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x1a0) + (longlong)iVar7 * 8);
     if (**(int **)(lVar1 + 0xd0) != 0) {
       dataChecksumBuffer8[0] = 0;
       iVar3 = ValidateBufferContext(*(int **)(lVar1 + 0xd0),dataChecksumBuffer8);
@@ -14086,7 +14086,7 @@ uint8_t8 InitializeResourceRenderingConfiguration(longlong *param_1)
   uStack_14 = 0x20214;
   validationResult = GetAndValidateResourceData(param_1,&puStack_28);
   if ((int)validationResult == 0) {
-    lVar1 = *(longlong *)(param_1[1] + 0x78);
+    loopCounter = *(longlong *)(param_1[1] + 0x78);
     resourceIndex = func_0x000180879a40();
     if (resourceIndex == 0) {
       validationResult = 0x1c;
@@ -14624,7 +14624,7 @@ uint8_t8 ProcessResourceTimeSynchronization(longlong *param_1,char param_2)
       param_1[2] = uVar3;
       uStack_20 = 0;
       uStack_18 = 0;
-      if (lVar1 != 0) {
+      if (loopCounter != 0) {
         uStack_18 = uVar4;
       }
       puStack_28 = &SystemMemoryTemplateF;
@@ -16332,11 +16332,11 @@ uint8_t8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
         uVar4 = uVar6;
         if (0 < iVar1) {
           do {
-            iVar2 = ResourceDataAccessor(param_1,(longlong)(int)uVar4 * 0x6c + *(longlong *)(param_2 + 8));
+            iVar2 = ResourceDataAccessor(param_1,(longlong)(int)byteValue4 * 0x6c + *(longlong *)(param_2 + 8));
             if (iVar2 != 0) {
               return;
             }
-            uVar3 = (int)uVar4 + 1;
+            uVar3 = (int)byteValue4 + 1;
             uVar4 = (ulonglong)uVar3;
           } while ((int)uVar3 < iVar1);
         }
@@ -16348,12 +16348,12 @@ uint8_t8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
           uVar4 = uVar6;
           if (0 < iVar1) {
             do {
-              iVar2 = GetResourceEntry(param_1,(longlong)(int)uVar4 * 0x10 +
+              iVar2 = GetResourceEntry(param_1,(longlong)(int)byteValue4 * 0x10 +
                                             *(longlong *)(param_2 + 0xc));
               if (iVar2 != 0) {
                 return;
               }
-              uVar3 = (int)uVar4 + 1;
+              uVar3 = (int)byteValue4 + 1;
               uVar4 = (ulonglong)uVar3;
             } while ((int)uVar3 < iVar1);
           }
@@ -16494,7 +16494,7 @@ uint8_t8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
         uVar4 = (int)uVar5 + 1;
         uVar5 = (ulonglong)uVar4;
         uVar9 = extraout_XMM0_Da_00;
-      } while ((int)uVar4 < iVar3);
+      } while ((int)byteValue4 < iVar3);
     }
     presourceHash = *(uint8_t8 **)(unaff_RBX + 8);
     iVar3 = *(int *)(unaff_R14 + 0x38);
@@ -16513,7 +16513,7 @@ uint8_t8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
           uVar4 = (int)uVar5 + 1;
           uVar5 = (ulonglong)uVar4;
           uVar9 = extraout_XMM0_Da_02;
-        } while ((int)uVar4 < iVar3);
+        } while ((int)byteValue4 < iVar3);
       }
       presourceHash = *(uint8_t8 **)(unaff_RBX + 8);
       iVar3 = *(int *)(unaff_R14 + 0x48);
@@ -17353,35 +17353,35 @@ uint8_t8 ValidateResourceStatusFlags(longlong resourceContext, longlong statusPo
     uVar5 = uVar5 | 0x100;
   }
   uVar4 = GetResourceEntry(param_1);
-  if ((int)uVar4 == 0) {
+  if ((int)byteValue4 == 0) {
     aiStack_48[0] = *(int *)(param_2 + 0x20);
     uVar4 = (**(code **)**(uint8_t8 **)(param_1 + 8))(*(uint8_t8 **)(param_1 + 8),aiStack_48,4);
-    if ((int)uVar4 == 0) {
+    if ((int)byteValue4 == 0) {
       aiStack_48[0] = CONCAT22(aiStack_48[0]._2_2_,uVar5);
       uVar4 = (**(code **)**(uint8_t8 **)(param_1 + 8))
                         (*(uint8_t8 **)(param_1 + 8),aiStack_48,2);
-      if (((int)uVar4 == 0) && (uVar4 = VerifyResourceIntegrity(param_1,param_2 + 0x24), (int)uVar4 == 0)) {
+      if (((int)byteValue4 == 0) && (uVar4 = VerifyResourceIntegrity(param_1,param_2 + 0x24), (int)byteValue4 == 0)) {
         if ((uVar5 & 1) != 0) {
           aiStack_48[0] = *(int *)(param_2 + 0x28);
           uVar4 = (**(code **)**(uint8_t8 **)(param_1 + 8))
                             (*(uint8_t8 **)(param_1 + 8),aiStack_48,4);
-          if ((int)uVar4 != 0) {
-            return uVar4;
+          if ((int)byteValue4 != 0) {
+            return byteValue4;
           }
         }
         if (((((uVar5 & 2) == 0) ||
-             ((uVar4 = CheckResourceAvailability(param_1,param_2 + 0x2c), (int)uVar4 == 0 &&
-              (uVar4 = CheckResourceAvailability(param_1,param_2 + 0x30), (int)uVar4 == 0)))) &&
-            (((uVar5 & 4) == 0 || (uVar4 = QueryResourceInfo(param_1,param_2 + 0x48), (int)uVar4 == 0)))
+             ((uVar4 = CheckResourceAvailability(param_1,param_2 + 0x2c), (int)byteValue4 == 0 &&
+              (uVar4 = CheckResourceAvailability(param_1,param_2 + 0x30), (int)byteValue4 == 0)))) &&
+            (((uVar5 & 4) == 0 || (uVar4 = QueryResourceInfo(param_1,param_2 + 0x48), (int)byteValue4 == 0)))
             ) && (((uVar5 & 8) == 0 ||
-                  (uVar4 = QueryResourceInfo(param_1,param_2 + 0x150), (int)uVar4 == 0)))) {
+                  (uVar4 = QueryResourceInfo(param_1,param_2 + 0x150), (int)byteValue4 == 0)))) {
           if ((uVar5 & 0x10) != 0) {
             iVar2 = *(int *)(param_2 + 0x260);
             aiStack_48[0] = iVar2;
             uVar4 = (**(code **)**(uint8_t8 **)(param_1 + 8))
                               (*(uint8_t8 **)(param_1 + 8),aiStack_48,4);
-            if ((int)uVar4 != 0) {
-              return uVar4;
+            if ((int)byteValue4 != 0) {
+              return byteValue4;
             }
             lVar8 = lVar7;
             if (0 < iVar2) {
@@ -17389,18 +17389,18 @@ uint8_t8 ValidateResourceStatusFlags(longlong resourceContext, longlong statusPo
                 lVar6 = *(longlong *)(param_2 + 600) + lVar7;
                 sVar1 = *(short *)(lVar6 + 0x114);
                 uVar4 = GetResourceEntry(param_1,lVar6);
-                if ((int)uVar4 != 0) {
-                  return uVar4;
+                if ((int)byteValue4 != 0) {
+                  return byteValue4;
                 }
                 aiStack_48[0] = CONCAT31(aiStack_48[0]._1_3_,sVar1 != 0);
                 uVar4 = (**(code **)**(uint8_t8 **)(param_1 + 8))
                                   (*(uint8_t8 **)(param_1 + 8),aiStack_48,1);
-                if ((int)uVar4 != 0) {
-                  return uVar4;
+                if ((int)byteValue4 != 0) {
+                  return byteValue4;
                 }
-                if ((sVar1 != 0) && (uVar4 = QueryResourceInfo(param_1,lVar6 + 0x10), (int)uVar4 != 0))
+                if ((sVar1 != 0) && (uVar4 = QueryResourceInfo(param_1,lVar6 + 0x10), (int)byteValue4 != 0))
                 {
-                  return uVar4;
+                  return byteValue4;
                 }
                 lVar8 = lVar8 + 1;
                 lVar7 = lVar7 + 0x118;
@@ -17408,22 +17408,22 @@ uint8_t8 ValidateResourceStatusFlags(longlong resourceContext, longlong statusPo
             }
           }
           if ((((((uVar5 & 0x20) == 0) ||
-                (uVar4 = ValidateResourceContext(param_1,param_2 + 0x268), (int)uVar4 == 0)) &&
+                (uVar4 = ValidateResourceContext(param_1,param_2 + 0x268), (int)byteValue4 == 0)) &&
                (((uVar5 & 0x40) == 0 ||
-                ((uVar4 = ValidateResourceEntry(param_1,param_2 + 0x34), (int)uVar4 == 0 &&
-                 (uVar4 = ValidateResourceEntry(param_1,param_2 + 0x38), (int)uVar4 == 0)))))) &&
-              ((-1 < (char)uVar5 || (uVar4 = GetResourceEntry(param_1,param_2 + 0x10), (int)uVar4 == 0)
+                ((uVar4 = ValidateResourceEntry(param_1,param_2 + 0x34), (int)byteValue4 == 0 &&
+                 (uVar4 = ValidateResourceEntry(param_1,param_2 + 0x38), (int)byteValue4 == 0)))))) &&
+              ((-1 < (char)uVar5 || (uVar4 = GetResourceEntry(param_1,param_2 + 0x10), (int)byteValue4 == 0)
                ))) && (((uVar5 & 0x100) == 0 ||
-                       (((uVar4 = CheckResourceAvailability(param_1,param_2 + 0x3c), (int)uVar4 == 0 &&
-                         (uVar4 = CheckResourceAvailability(param_1,param_2 + 0x40), (int)uVar4 == 0)) &&
-                        (uVar4 = CheckResourceAvailability(param_1,param_2 + 0x44), (int)uVar4 == 0)))))) {
+                       (((uVar4 = CheckResourceAvailability(param_1,param_2 + 0x3c), (int)byteValue4 == 0 &&
+                         (uVar4 = CheckResourceAvailability(param_1,param_2 + 0x40), (int)byteValue4 == 0)) &&
+                        (uVar4 = CheckResourceAvailability(param_1,param_2 + 0x44), (int)byteValue4 == 0)))))) {
             uVar4 = 0;
           }
         }
       }
     }
   }
-  return uVar4;
+  return byteValue4;
 }
 
 
@@ -18367,24 +18367,24 @@ LAB_18089af81:
       uVar4 = (ulonglong)unaff_EDI;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = ValidateResourceData();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = ValidateResourceHash();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = ValidateResourceHash();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = ProcessResourceValidation();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = uVar5;
   if (0x41 < *(uint *)(unaff_RBX + 8)) {
@@ -18395,8 +18395,8 @@ LAB_18089af81:
       uVar4 = (ulonglong)unaff_EDI;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = uVar5;
   if (0x41 < *(uint *)(unaff_RBX + 8)) {
@@ -18407,17 +18407,17 @@ LAB_18089af81:
       uVar4 = (ulonglong)unaff_EDI;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (0x5a < *(uint *)(unaff_RBX + 8)) {
     uVar4 = ProcessResourceHash();
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    if ((int)byteValue4 != 0) {
+      return byteValue4;
     }
     uVar4 = ProcessResourceHash();
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    if ((int)byteValue4 != 0) {
+      return byteValue4;
     }
   }
   if (0x6e < *(uint *)(unaff_RBX + 8)) {
@@ -19277,7 +19277,7 @@ uint8_t8 ValidateResourceHash(longlong ResourceContext,uint8_t8 *ResourceData)
             }
             iVar2 = iVar2 + 1;
             auStackX_18[0] = auStackX_18[0] & -uVar3;
-          } while (iVar2 < (int)uVar4);
+          } while (iVar2 < (int)byteValue4);
         }
                     // WARNING: Subroutine does not return
         CleanupResourceData(param_2,auStack_68);
@@ -20041,7 +20041,7 @@ bc10(longlong param_1,uint8_t8 *param_2)
             }
             if (*(int *)(resourceData[1] + 0x18) == 0) {
               validationResult = *param_2;
-              lVar1 = *(longlong *)(param_1 + 0x20) + (longlong)iVar4 * 8;
+              loopCounter = *(longlong *)(param_1 + 0x20) + (longlong)iVar4 * 8;
               tableEntry = CalculateResourceHash(validationResult,lVar1);
               if (tableEntry != 0) {
                 return;
@@ -20103,7 +20103,7 @@ bc5a(void)
           }
           if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
             validationResult = *unaff_RDI;
-            lVar1 = *(longlong *)(unaff_RBX + 0x20) + (longlong)iVar4 * 8;
+            loopCounter = *(longlong *)(unaff_RBX + 0x20) + (longlong)iVar4 * 8;
             tableEntry = CalculateResourceHash(validationResult,lVar1);
             if (tableEntry != 0) {
               return;
@@ -20315,12 +20315,12 @@ ValidateResourceIntegrity(void)
   }
   uVar3 = (int)*(uint *)(unaff_R15 + 0x1c) >> 0x1f;
   uVar4 = uStack0000000000000068 >> 1;
-  if (((int)((*(uint *)(unaff_R15 + 0x1c) ^ uVar3) - uVar3) < (int)uVar4) &&
+  if (((int)((*(uint *)(unaff_R15 + 0x1c) ^ uVar3) - uVar3) < (int)byteValue4) &&
      (iVar1 = ValidateResourcePointer(unaff_R15 + 0x10,uVar4), iVar1 != 0)) {
     return;
   }
   iVar1 = *(int *)(unaff_R15 + 0x18);
-  if (iVar1 < (int)uVar4) {
+  if (iVar1 < (int)byteValue4) {
                     // WARNING: Subroutine does not return
     memset((longlong)iVar1 * 0x10 + *(longlong *)(unaff_R15 + 0x10),0,
            (longlong)(int)(uVar4 - iVar1) << 4);
@@ -20349,7 +20349,7 @@ ValidateResourceIntegrity(void)
       }
       iVar1 = iVar1 + 1;
       in_stack_00000050 = in_stack_00000050 & -(uStack0000000000000068 & 1);
-    } while (iVar1 < (int)uVar4);
+    } while (iVar1 < (int)byteValue4);
   }
   in_stack_00000050 = 0;
   iVar2 = LoadResourceData(*unaff_RBX,&stack0x00000050);
@@ -20439,21 +20439,21 @@ ulonglong ProcessResourceDataReadAndValidate(longlong param_1,uint8_t8 *param_2)
     return 0x1c;
   }
   uVar4 = ReadResourceData(*param_2,param_1,4);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   aiStackX_10[0] = 0;
   uVar4 = LoadResourceData(*param_2,aiStackX_10);
   iVar2 = aiStackX_10[0];
   uVar3 = 0x1c;
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   lVar7 = (longlong)aiStackX_10[0];
   uVar5 = (int)*(uint *)(param_1 + 0x14) >> 0x1f;
   if (((int)((*(uint *)(param_1 + 0x14) ^ uVar5) - uVar5) < aiStackX_10[0]) &&
-     (uVar4 = CheckResourceStatus(param_1 + 8,aiStackX_10[0]), (int)uVar4 != 0)) {
-    return uVar4;
+     (uVar4 = CheckResourceStatus(param_1 + 8,aiStackX_10[0]), (int)byteValue4 != 0)) {
+    return byteValue4;
   }
   iVar1 = *(int *)(param_1 + 0x10);
   if (iVar1 < iVar2) {
@@ -20473,18 +20473,18 @@ ulonglong ProcessResourceDataReadAndValidate(longlong param_1,uint8_t8 *param_2)
   if (iVar2 != 0) {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
       uVar4 = ReadResourceData(*param_2,*(uint8_t8 *)(param_1 + 8),lVar7 << 3);
-      if ((int)uVar4 == 0) goto LAB_18089c131;
+      if ((int)byteValue4 == 0) goto LAB_18089c131;
     }
     else {
       uVar4 = 0x1c;
     }
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    if ((int)byteValue4 != 0) {
+      return byteValue4;
     }
   }
 LAB_18089c131:
   uVar4 = ValidateResourceStructure(param_2,param_1 + 0x18);
-  if ((int)uVar4 == 0) {
+  if ((int)byteValue4 == 0) {
     if (*(uint *)(resourceData + 8) < 0x7c) {
       uVar3 = 0;
     }
@@ -20498,7 +20498,7 @@ LAB_18089c131:
       uVar4 = (ulonglong)uVar3;
     }
   }
-  return uVar4;
+  return byteValue4;
 }
 
 
@@ -20758,7 +20758,7 @@ uint8_t8 * GetResourceDataPointerA(void)
   uint8_t4 uVar4;
   float fVar5;
   float fVar6;
-  float fVar7;
+  float floatValue7;
   uint uVar8;
   uint uVar9;
   uint resourceHash0;
@@ -21021,7 +21021,7 @@ uint8_t8 * GetResourceDataPointerB(void)
   uint8_t4 uVar4;
   float fVar5;
   float fVar6;
-  float fVar7;
+  float floatValue7;
   uint uVar8;
   uint uVar9;
   uint resourceHash0;
@@ -21921,8 +21921,8 @@ ulonglong ResourceProcessingHandlerAlt1(void)
       uVar4 = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar8 = uVar6;
   if (*(uint *)(unaff_RBX + 8) < 0x70) {
@@ -21980,8 +21980,8 @@ LAB_18089c78f:
     if (plVar1[2] != 0) {
       *(uint8_t4 *)(unaff_RBP + 0x77) = 0;
       uVar4 = func_0x00018076a7d0(resourceTable,unaff_RBP + 0x77);
-      if ((int)uVar4 != 0) {
-        return uVar4;
+      if ((int)byteValue4 != 0) {
+        return byteValue4;
       }
       if ((ulonglong)plVar1[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + (ulonglong)uVar5) {
         uVar4 = 0x11;
@@ -21991,8 +21991,8 @@ LAB_18089c78f:
     uVar4 = CalculateResourceHash(*plVar1,unaff_RBP + -0x25,unaff_R14D,uVar5,0);
   }
 LAB_18089c808:
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   switch(*(uint8_t4 *)(unaff_RBP + -0x25)) {
   case 0:
@@ -22031,50 +22031,50 @@ LAB_18089c808:
   *(uint *)(unaff_R13 + 0x30) = uVar5;
   uVar4 = uVar7;
 LAB_18089c878:
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
   uVar4 = GetResourceHash(*unaff_RBX,unaff_R13 + 0x50);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
   uVar4 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x38);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
   uVar4 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x3c);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
   uVar4 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x4c);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
   uVar4 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x40);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
   uVar4 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x44);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = uVar7;
   fVar9 = extraout_XMM0_Da;
@@ -22119,12 +22119,12 @@ LAB_18089c9a8:
       uVar4 = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if ((*(uint *)(unaff_RBX + 8) < 0x60) &&
-     (uVar4 = func_0x0001808de610(), fVar9 = extraout_XMM0_Da_02, (int)uVar4 != 0)) {
-    return uVar4;
+     (uVar4 = func_0x0001808de610(), fVar9 = extraout_XMM0_Da_02, (int)byteValue4 != 0)) {
+    return byteValue4;
   }
   uVar4 = uVar7;
   if (0x51 < *(uint *)(unaff_RBX + 8)) {
@@ -22136,8 +22136,8 @@ LAB_18089c9a8:
       uVar4 = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = uVar7;
   if (0x1d < (int)unaff_RBX[8] - 0x52U) goto LAB_18089cad8;
@@ -22174,8 +22174,8 @@ LAB_18089ca9c:
     uVar4 = uVar7;
   }
 LAB_18089cad8:
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar3 = *(uint *)(unaff_RBX + 8);
   if (uVar3 < 0x70) {
@@ -22194,13 +22194,13 @@ LAB_18089cad8:
     resourceTable = *unaff_RBX;
     *(uint8_t4 *)(unaff_RBP + 0x7f) = 0;
     uVar4 = LoadResourceData(resourceTable,unaff_RBP + 0x7f);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    if ((int)byteValue4 != 0) {
+      return byteValue4;
     }
     uVar5 = *(uint *)(unaff_RBP + 0x7f);
     uVar4 = ProcessResourceTransform(unaff_R13 + 0x60,uVar5 >> 1);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    if ((int)byteValue4 != 0) {
+      return byteValue4;
     }
     *(uint8_t4 *)(unaff_RBP + 0x77) = 0;
     uVar4 = uVar7;
@@ -22208,8 +22208,8 @@ LAB_18089cad8:
     if (uVar5 >> 1 != 0) {
       do {
         uVar4 = ExtractResourceInfo(fVar9,uVar4);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        if ((int)byteValue4 != 0) {
+          return byteValue4;
         }
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
           uVar4 = GetResourceHash(*unaff_RBX,
@@ -22220,12 +22220,12 @@ LAB_18089cad8:
           uVar4 = 0x1c;
           resourceHash0 = extraout_XMM0_Da_07;
         }
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        if ((int)byteValue4 != 0) {
+          return byteValue4;
         }
         uVar4 = ParseResourceMetadata(resourceHash0,unaff_RBP + 0x77);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        if ((int)byteValue4 != 0) {
+          return byteValue4;
         }
         uVar6 = (int)uVar7 + 1;
         uVar7 = (ulonglong)uVar6;
@@ -24919,7 +24919,7 @@ ulonglong ProcessResourceDataExtraction(longlong param_1,longlong *param_2)
       uVar5 = (ulonglong)uVar4;
       auStackX_18[0] = auStackX_18[0] & -uVar3;
       validationResult = (ulonglong)auStackX_18[0];
-    } while ((int)uVar4 < (int)uVar6);
+    } while ((int)byteValue4 < (int)uVar6);
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
@@ -25358,9 +25358,9 @@ ulonglong ProcessComplexResourceOperations(longlong param_1,uint8_t8 *param_2)
   uint8_t1 auStack_38 [32];
   
   uVar4 = ComputeDataChecksum(param_2,auStack_38,1,0x4e4c4d54);
-  if ((((int)uVar4 == 0) &&
-      (uVar4 = ComputeDataChecksum(param_2,auStack_58,0,0x424e4c54), (int)uVar4 == 0)) &&
-     (uVar4 = ValidateResourceHash(param_2,param_1 + 0x10), (int)uVar4 == 0)) {
+  if ((((int)byteValue4 == 0) &&
+      (uVar4 = ComputeDataChecksum(param_2,auStack_58,0,0x424e4c54), (int)byteValue4 == 0)) &&
+     (uVar4 = ValidateResourceHash(param_2,param_1 + 0x10), (int)byteValue4 == 0)) {
     puVar5 = (uint8_t4 *)AllocateMemoryBlock();
     uVar4 = 0;
     uStack_78 = *puVar5;
@@ -25371,16 +25371,16 @@ ulonglong ProcessComplexResourceOperations(longlong param_1,uint8_t8 *param_2)
       if (*(int *)(resourceData[1] + 0x18) == 0) {
         validationResult = *param_2;
         uVar4 = ReadResourceData(validationResult,&uStack_78,4);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        if ((int)byteValue4 != 0) {
+          return byteValue4;
         }
         uVar4 = ReadResourceData(validationResult,&uStack_74,2);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        if ((int)byteValue4 != 0) {
+          return byteValue4;
         }
         uVar4 = ReadResourceData(validationResult,(longlong)&uStack_74 + 2,2);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        if ((int)byteValue4 != 0) {
+          return byteValue4;
         }
         uVar4 = ReadResourceData(validationResult,&uStack_70,8);
       }
@@ -25388,8 +25388,8 @@ ulonglong ProcessComplexResourceOperations(longlong param_1,uint8_t8 *param_2)
         uVar4 = 0x1c;
       }
     }
-    if ((((int)uVar4 == 0) && (uVar4 = CheckResourceHash(param_2,param_1 + 0x38,0), (int)uVar4 == 0)) &&
-       (uVar4 = CheckResourceHash(param_2,param_1 + 0x48,0), (int)uVar4 == 0)) {
+    if ((((int)byteValue4 == 0) && (uVar4 = CheckResourceHash(param_2,param_1 + 0x38,0), (int)byteValue4 == 0)) &&
+       (uVar4 = CheckResourceHash(param_2,param_1 + 0x48,0), (int)byteValue4 == 0)) {
       if (*(uint *)(resourceData + 8) < 0x84) {
         puStack_88 = (uint8_t4 *)0x0;
         uStack_80 = 0;
@@ -25398,7 +25398,7 @@ ulonglong ProcessComplexResourceOperations(longlong param_1,uint8_t8 *param_2)
         if (uVar3 != 0) {
 LAB_18089e70b:
           ReleaseResourceBuffer(&puStack_88);
-          return uVar4;
+          return byteValue4;
         }
         puVar5 = puStack_88;
         if ((int)uStack_80 != 0) {
@@ -25425,18 +25425,18 @@ LAB_18089e70b:
       }
       else {
         uVar4 = GetResourceIdentifier(param_2,param_1 + 0x58);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        if ((int)byteValue4 != 0) {
+          return byteValue4;
         }
       }
       uVar4 = ProcessResourceData(param_2,dataContext + 0x78,0);
-      if (((int)uVar4 == 0) && (uVar4 = CheckResourceFinalization(param_2,param_1 + 0x88,0), (int)uVar4 == 0)) {
+      if (((int)byteValue4 == 0) && (uVar4 = CheckResourceFinalization(param_2,param_1 + 0x88,0), (int)byteValue4 == 0)) {
                     // WARNING: Subroutine does not return
         CleanupResourceData(param_2,auStack_58);
       }
     }
   }
-  return uVar4;
+  return byteValue4;
 }
 
 
@@ -25604,7 +25604,7 @@ ulonglong ProcessResourceValidationAndMemoryAllocation(void)
     if (validationResult != 0) {
 LAB_18089e70b:
       ReleaseResourceBuffer(unaff_RBP + -0x29);
-      return uVar4;
+      return byteValue4;
     }
     iVar3 = *(int *)(unaff_RBP + -0x21);
     if (iVar3 != 0) {
@@ -25632,16 +25632,16 @@ LAB_18089e70b:
   }
   else {
     uVar4 = GetResourceIdentifier();
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    if ((int)byteValue4 != 0) {
+      return byteValue4;
     }
   }
   uVar4 = ProcessResourceData();
-  if (((int)uVar4 == 0) && (uVar4 = CheckResourceFinalization(), (int)uVar4 == 0)) {
+  if (((int)byteValue4 == 0) && (uVar4 = CheckResourceFinalization(), (int)byteValue4 == 0)) {
                     // WARNING: Subroutine does not return
     CleanupResourceData();
   }
-  return uVar4;
+  return byteValue4;
 }
 
 
@@ -25700,12 +25700,12 @@ ulonglong ProcessResourceTableOperationsAndDataValidation(longlong param_1,longl
   
   uVar6 = 1;
   uVar4 = ComputeDataChecksum(param_2,auStack_58,1,0x4e415254);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = ComputeDataChecksum(param_2,auStack_78,0,0x424e5254);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
@@ -25725,12 +25725,12 @@ ulonglong ProcessResourceTableOperationsAndDataValidation(longlong param_1,longl
       }
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = ValidateResourceHash(param_2,param_1 + 0x20);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
@@ -25747,12 +25747,12 @@ ulonglong ProcessResourceTableOperationsAndDataValidation(longlong param_1,longl
     return (ulonglong)uVar3;
   }
   uVar4 = ValidateResourceChecksum(param_1,param_2);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = ResourceDataValidator(param_2,param_1 + 0x50);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
@@ -25777,14 +25777,14 @@ LAB_18089ea0f:
   else {
     auStackX_18[0] = 0;
     uVar4 = func_0x00018076a7d0(*presourceTable,auStackX_18);
-    if ((int)uVar4 == 0) {
+    if ((int)byteValue4 == 0) {
       if ((ulonglong)auStackX_18[0] + 4 <= (ulonglong)presourceTable[2]) goto LAB_18089ea0f;
       uVar4 = 0x11;
     }
   }
   uVar5 = 0;
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   bVar7 = *(uint *)(resourceData + 8) < 0x34;
   cStackX_20 = (char)uVar4;
@@ -25862,8 +25862,8 @@ LAB_18089eb22:
       uVar4 = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = 0;
   if (0x78 < *(uint *)(resourceData + 8)) {
@@ -25896,8 +25896,8 @@ LAB_18089ebaa:
       uVar4 = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = 0;
   if (0x79 < *(uint *)(resourceData + 8)) {
@@ -25928,8 +25928,8 @@ LAB_18089ec32:
       uVar4 = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = 0;
   if (0x7a < *(uint *)(resourceData + 8)) {
@@ -25962,8 +25962,8 @@ LAB_18089ecba:
       uVar4 = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if ((((!bVar7) && ((char)auStackX_18[0] == '\0')) && (cStackX_20 == '\0')) && (!bVar9)) {
     uVar6 = 0;
@@ -25976,11 +25976,11 @@ LAB_18089ed1b:
     uVar3 = ReadResourceData(*param_2,param_1 + 0x38,4);
     uVar4 = (ulonglong)uVar3;
   }
-  if ((int)uVar4 == 0) {
+  if ((int)byteValue4 == 0) {
                     // WARNING: Subroutine does not return
     CleanupResourceData(param_2,auStack_78);
   }
-  return uVar4;
+  return byteValue4;
 }
 
 
@@ -26030,12 +26030,12 @@ ulonglong ProcessResourceTableValidationAndOperations(void)
       }
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = ValidateResourceHash();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) != 0) {
     return 0x1c;
@@ -26052,12 +26052,12 @@ ulonglong ProcessResourceTableValidationAndOperations(void)
     return (ulonglong)uVar3;
   }
   uVar4 = ValidateResourceChecksum();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = ResourceDataValidator();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) != 0) {
     return 0x1c;
@@ -26083,14 +26083,14 @@ LAB_18089ea0f:
   else {
     *(uint8_t4 *)(unaff_RBP + 0x77) = 0;
     uVar4 = func_0x00018076a7d0(lVar1,unaff_RBP + 0x77);
-    if ((int)uVar4 == 0) {
+    if ((int)byteValue4 == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + 0x77) + 4 <= (ulonglong)presourceTable[2]) goto LAB_18089ea0f;
       uVar4 = 0x11;
     }
   }
   uVar5 = 0;
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   bVar6 = *(uint *)(unaff_RDI + 8) < 0x34;
   *(char *)(unaff_RBP + 0x77) = (char)uVar4;
@@ -26171,8 +26171,8 @@ LAB_18089eb22:
       uVar4 = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = 0;
   if (0x78 < *(uint *)(unaff_RDI + 8)) {
@@ -26207,8 +26207,8 @@ LAB_18089ebaa:
       uVar4 = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = 0;
   if (0x79 < *(uint *)(unaff_RDI + 8)) {
@@ -26243,8 +26243,8 @@ LAB_18089ec32:
       uVar4 = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   uVar4 = 0;
   if (0x7a < *(uint *)(unaff_RDI + 8)) {
@@ -26279,8 +26279,8 @@ LAB_18089ecba:
       uVar4 = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if ((((!bVar6) && (*(char *)(unaff_RBP + 0x77) == '\0')) && (*(char *)(unaff_RBP + 0x7f) == '\0'))
      && (!bVar8)) {
@@ -26294,11 +26294,11 @@ LAB_18089ed1b:
     uVar3 = ReadResourceData(*unaff_RDI,unaff_R15 + 0x38,4);
     uVar4 = (ulonglong)uVar3;
   }
-  if ((int)uVar4 == 0) {
+  if ((int)byteValue4 == 0) {
                     // WARNING: Subroutine does not return
     CleanupResourceData();
   }
-  return uVar4;
+  return byteValue4;
 }
 
 
@@ -26338,7 +26338,7 @@ LAB_18089ea0f:
     else {
       *(int *)(unaff_RBP + 0x77) = (int)param_3;
       uVar4 = func_0x00018076a7d0(resourceTable,unaff_RBP + 0x77);
-      if ((int)uVar4 == 0) {
+      if ((int)byteValue4 == 0) {
         param_3 = 0;
         if ((ulonglong)plVar1[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + 4) {
           uVar4 = 0x11;
@@ -26350,8 +26350,8 @@ LAB_18089ea0f:
     param_3 = 0;
   }
 LAB_18089ea2c:
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   bVar6 = *(uint *)(unaff_RDI + 8) < 0x34;
   *(char *)(unaff_RBP + 0x77) = (char)uVar4;
@@ -26398,8 +26398,8 @@ LAB_18089ea93:
   else {
     uVar4 = 0x1c;
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x67) {
     uVar4 = param_3 & 0xffffffff;
@@ -26441,8 +26441,8 @@ LAB_18089eb3c:
   else {
     uVar4 = 0x1c;
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x79) {
     uVar4 = param_3 & 0xffffffff;
@@ -26484,8 +26484,8 @@ LAB_18089ebc4:
   else {
     uVar4 = 0x1c;
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x7a) {
     uVar4 = param_3 & 0xffffffff;
@@ -26527,8 +26527,8 @@ LAB_18089ec4c:
   else {
     uVar4 = 0x1c;
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x7b) {
     uVar4 = param_3 & 0xffffffff;
@@ -26570,8 +26570,8 @@ LAB_18089ecd4:
   else {
     uVar4 = 0x1c;
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if ((((!bVar6) && (*(char *)(unaff_RBP + 0x77) == '\0')) && (*(char *)(unaff_RBP + 0x7f) == '\0'))
      && (!bVar8)) {
@@ -27355,8 +27355,8 @@ ulonglong ProcessResourceCertificateValidation(longlong param_1,longlong *param_
   uStack_48 = puVar3[2];
   uStack_44 = puVar3[3];
   uVar4 = CalculateDataChecksum(param_2,auStack_40,0,0x4c525443,0);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)byteValue4 != 0) {
+    return byteValue4;
   }
   if (*(int *)(resourceData[1] + 0x18) == 0) {
     validationResult = GetResourceEntry(*param_2,param_1 + 0x10);
@@ -27398,8 +27398,8 @@ ulonglong ProcessResourceCertificateValidation(longlong param_1,longlong *param_
           uVar4 = (ulonglong)validationResult;
           if (validationResult == 0) {
             uVar4 = VerifyResourceSignature(param_2,param_1 + 0x40);
-            if ((int)uVar4 != 0) {
-              return uVar4;
+            if ((int)byteValue4 != 0) {
+              return byteValue4;
             }
                     // WARNING: Subroutine does not return
             CleanupResourceBuffer(param_2,auStack_40);
@@ -27407,7 +27407,7 @@ ulonglong ProcessResourceCertificateValidation(longlong param_1,longlong *param_
         }
       }
     }
-    return uVar4;
+    return byteValue4;
   }
   return 0x1c;
 }
@@ -29170,7 +29170,7 @@ void Unwind_180902540(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x70);
+  loopCounter = *(longlong *)(param_2 + 0x70);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerA;
   if (*(char *)(lVar1 + 0xd1) != '\0') {
     SystemMemoryCleanup();
@@ -29203,7 +29203,7 @@ void Unwind_180902550(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x70);
+  loopCounter = *(longlong *)(param_2 + 0x70);
   *(uint8_t8 *)(lVar1 + 0xd8) = &SystemResourceHandlerA;
   if (*(char *)(lVar1 + 0x189) != '\0') {
     SystemMemoryCleanup();
@@ -29448,7 +29448,7 @@ void Unwind_180902650(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x50);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x58);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x58);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x48) {
     CleanupResourceHandle(resourceIndex);
   }
@@ -29542,7 +29542,7 @@ void Unwind_180902690(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x10);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x18);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x18);
   resourceIndex = *presourceTable;
   while( true ) {
     if (resourceIndex == lVar1) {
@@ -29792,7 +29792,7 @@ void Unwind_1809027c0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x70);
+  loopCounter = *(longlong *)(param_2 + 0x70);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -29811,7 +29811,7 @@ void Unwind_1809027d0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x70);
+  loopCounter = *(longlong *)(param_2 + 0x70);
   *(uint8_t8 *)(lVar1 + 0x50) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x58) != 0) {
                     // WARNING: Subroutine does not return
@@ -30059,7 +30059,7 @@ void Unwind_1809028e0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x70);
+  loopCounter = *(longlong *)(param_2 + 0x70);
   *(uint8_t8 *)(lVar1 + 0x40) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
@@ -30294,7 +30294,7 @@ void Unwind_180902970(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x70);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x78);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x78);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x18) {
     HandleBufferOperations(resourceIndex);
   }
@@ -30476,7 +30476,7 @@ void Unwind_180902a70(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x70);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -30514,7 +30514,7 @@ void Unwind_180902a80(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x78);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -30552,7 +30552,7 @@ void Unwind_180902a90(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x78);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -30731,7 +30731,7 @@ void Unwind_180902b60(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -30769,7 +30769,7 @@ void Unwind_180902b70(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -30801,7 +30801,7 @@ void Unwind_180902b80(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x20);
+  loopCounter = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -30820,7 +30820,7 @@ void Unwind_180902b90(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -30839,7 +30839,7 @@ void Unwind_180902ba0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -30922,7 +30922,7 @@ void Unwind_180902be0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x90);
+  loopCounter = *(longlong *)(param_2 + 0x90);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -31402,7 +31402,7 @@ void Unwind_180902d40(uint8_t8 param_1,longlong param_2)
   longlong loopCounter;
   uint8_t8 validationResult;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
   RegisterResourceHandler(lVar1 + 0x3e0,0x20,0x20,ReleaseSystemResource,validationResult);
@@ -31562,7 +31562,7 @@ void Unwind_180902e40(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x50);
+  loopCounter = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -31732,7 +31732,7 @@ void Unwind_180902e90(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x148) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x150) != 0) {
                     // WARNING: Subroutine does not return
@@ -31959,7 +31959,7 @@ void Unwind_180902fa0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x918) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x920) != 0) {
                     // WARNING: Subroutine does not return
@@ -32201,7 +32201,7 @@ void Unwind_1809030f0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x68);
+  loopCounter = *(longlong *)(param_2 + 0x68);
   FinalizeResourceOperation(lVar1 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
@@ -32222,7 +32222,7 @@ void Unwind_180903100(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   longlong loopCounter;
   uint8_t8 validationResult;
   
-  lVar1 = *(longlong *)(param_2 + 0x70);
+  loopCounter = *(longlong *)(param_2 + 0x70);
   validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
   ProcessResourceOperation(lVar1 + 0x110,*(uint8_t8 *)(lVar1 + 0x120),param_3,param_4,validationResult);
@@ -32241,7 +32241,7 @@ void Unwind_180903110(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x68);
+  loopCounter = *(longlong *)(param_2 + 0x68);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -32260,7 +32260,7 @@ void Unwind_180903120(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x78);
+  loopCounter = *(longlong *)(param_2 + 0x78);
   if (*(longlong *)(lVar1 + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -32355,7 +32355,7 @@ void Unwind_180903150(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x78);
+  loopCounter = *(longlong *)(param_2 + 0x78);
   if (*(longlong *)(lVar1 + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -32414,7 +32414,7 @@ void Unwind_180903170(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x48);
+  loopCounter = *(longlong *)(param_2 + 0x48);
   if (*(longlong *)(lVar1 + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -32495,7 +32495,7 @@ void Unwind_1809031a0(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x28);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x30);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x30);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x548) {
     ReleaseResourceMemory(resourceIndex);
   }
@@ -32549,7 +32549,7 @@ void Unwind_1809031e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   longlong loopCounter;
   uint8_t8 validationResult;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
   ProcessResourceOperation(lVar1 + 0x110,*(uint8_t8 *)(lVar1 + 0x120),param_3,param_4,validationResult);
@@ -32811,7 +32811,7 @@ void Unwind_180903320(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x78);
+  loopCounter = *(longlong *)(param_2 + 0x78);
   InitializeResourceSystem();
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
@@ -32879,7 +32879,7 @@ void Unwind_180903360(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x50);
+  loopCounter = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x40) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
@@ -33633,7 +33633,7 @@ void Unwind_180903620(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x140) != (code *)0x0) {
     (**(code **)(lVar1 + 0x140))(lVar1 + 0x130,0,0,param_4,0xfffffffffffffffe);
   }
@@ -33663,7 +33663,7 @@ void Unwind_180903640(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1b0))(lVar1 + 0x1a0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -33693,7 +33693,7 @@ void Unwind_180903660(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x220) != (code *)0x0) {
     (**(code **)(lVar1 + 0x220))(lVar1 + 0x210,0,0,param_4,0xfffffffffffffffe);
   }
@@ -33723,7 +33723,7 @@ void Unwind_180903680(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x290) != (code *)0x0) {
     (**(code **)(lVar1 + 0x290))(lVar1 + 0x280,0,0,param_4,0xfffffffffffffffe);
   }
@@ -33753,7 +33753,7 @@ void Unwind_1809036a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x300) != (code *)0x0) {
     (**(code **)(lVar1 + 0x300))(lVar1 + 0x2f0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -33783,7 +33783,7 @@ void Unwind_1809036c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x370) != (code *)0x0) {
     (**(code **)(lVar1 + 0x370))(lVar1 + 0x360,0,0,param_4,0xfffffffffffffffe);
   }
@@ -33813,7 +33813,7 @@ void Unwind_1809036e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x3e0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x3e0))(lVar1 + 0x3d0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -33843,7 +33843,7 @@ void Unwind_180903700(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x450) != (code *)0x0) {
     (**(code **)(lVar1 + 0x450))(lVar1 + 0x440,0,0,param_4,0xfffffffffffffffe);
   }
@@ -33873,7 +33873,7 @@ void Unwind_180903720(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x510) != (code *)0x0) {
     (**(code **)(lVar1 + 0x510))(lVar1 + 0x500,0,0,param_4,0xfffffffffffffffe);
   }
@@ -33927,7 +33927,7 @@ void Unwind_180903740(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x580) != (code *)0x0) {
     (**(code **)(lVar1 + 0x580))(lVar1 + 0x570,0,0,param_4,0xfffffffffffffffe);
   }
@@ -33994,7 +33994,7 @@ void Unwind_180903770(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x140) != (code *)0x0) {
     (**(code **)(lVar1 + 0x140))(lVar1 + 0x130,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34024,7 +34024,7 @@ void Unwind_180903790(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1b0))(lVar1 + 0x1a0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34054,7 +34054,7 @@ void Unwind_1809037b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x220) != (code *)0x0) {
     (**(code **)(lVar1 + 0x220))(lVar1 + 0x210,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34084,7 +34084,7 @@ void Unwind_1809037d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x290) != (code *)0x0) {
     (**(code **)(lVar1 + 0x290))(lVar1 + 0x280,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34114,7 +34114,7 @@ void Unwind_1809037f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x300) != (code *)0x0) {
     (**(code **)(lVar1 + 0x300))(lVar1 + 0x2f0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34144,7 +34144,7 @@ void Unwind_180903810(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x370) != (code *)0x0) {
     (**(code **)(lVar1 + 0x370))(lVar1 + 0x360,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34174,7 +34174,7 @@ void Unwind_180903830(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x3e0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x3e0))(lVar1 + 0x3d0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34204,7 +34204,7 @@ void Unwind_180903850(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x450) != (code *)0x0) {
     (**(code **)(lVar1 + 0x450))(lVar1 + 0x440,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34234,7 +34234,7 @@ void Unwind_180903870(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x510) != (code *)0x0) {
     (**(code **)(lVar1 + 0x510))(lVar1 + 0x500,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34288,7 +34288,7 @@ void Unwind_180903890(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x580) != (code *)0x0) {
     (**(code **)(lVar1 + 0x580))(lVar1 + 0x570,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34318,7 +34318,7 @@ void Unwind_1809038b0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x88);
+  loopCounter = *(longlong *)(param_2 + 0x88);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -34337,7 +34337,7 @@ void Unwind_1809038c0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x88);
+  loopCounter = *(longlong *)(param_2 + 0x88);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -34384,7 +34384,7 @@ void Unwind_1809038f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x4c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x4c0))(lVar1 + 0x4b0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34414,7 +34414,7 @@ void Unwind_180903910(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x530) != (code *)0x0) {
     (**(code **)(lVar1 + 0x530))(lVar1 + 0x520,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34444,7 +34444,7 @@ void Unwind_180903930(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x5a0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x5a0))(lVar1 + 0x590,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34474,7 +34474,7 @@ void Unwind_180903950(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x610) != (code *)0x0) {
     (**(code **)(lVar1 + 0x610))(lVar1 + 0x600,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34504,7 +34504,7 @@ void Unwind_180903970(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x680) != (code *)0x0) {
     (**(code **)(lVar1 + 0x680))(lVar1 + 0x670,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34534,7 +34534,7 @@ void Unwind_180903990(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x6f0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x6f0))(lVar1 + 0x6e0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34564,7 +34564,7 @@ void Unwind_1809039b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x760) != (code *)0x0) {
     (**(code **)(lVar1 + 0x760))(lVar1 + 0x750,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34594,7 +34594,7 @@ void Unwind_1809039d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 2000) != (code *)0x0) {
     (**(code **)(lVar1 + 2000))(lVar1 + 0x7c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34624,7 +34624,7 @@ void Unwind_1809039f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x840) != (code *)0x0) {
     (**(code **)(lVar1 + 0x840))(lVar1 + 0x830,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34654,7 +34654,7 @@ void Unwind_180903a10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x8b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x8b0))(lVar1 + 0x8a0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34684,7 +34684,7 @@ void Unwind_180903a30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x920) != (code *)0x0) {
     (**(code **)(lVar1 + 0x920))(lVar1 + 0x910,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34714,7 +34714,7 @@ void Unwind_180903a50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x990) != (code *)0x0) {
     (**(code **)(lVar1 + 0x990))(lVar1 + 0x980,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34744,7 +34744,7 @@ void Unwind_180903a70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xa08) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa08))(lVar1 + 0x9f8,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34774,7 +34774,7 @@ void Unwind_180903a90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xa80) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa80))(lVar1 + 0xa70,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34818,7 +34818,7 @@ void Unwind_180903ac0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x50);
+  loopCounter = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x10) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x18) != 0) {
                     // WARNING: Subroutine does not return
@@ -34837,7 +34837,7 @@ void Unwind_180903ad0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x50);
+  loopCounter = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x30) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
@@ -34884,7 +34884,7 @@ void Unwind_180903b00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x4c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x4c0))(lVar1 + 0x4b0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34914,7 +34914,7 @@ void Unwind_180903b20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x530) != (code *)0x0) {
     (**(code **)(lVar1 + 0x530))(lVar1 + 0x520,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34944,7 +34944,7 @@ void Unwind_180903b40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x5a0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x5a0))(lVar1 + 0x590,0,0,param_4,0xfffffffffffffffe);
   }
@@ -34974,7 +34974,7 @@ void Unwind_180903b60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x610) != (code *)0x0) {
     (**(code **)(lVar1 + 0x610))(lVar1 + 0x600,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35004,7 +35004,7 @@ void Unwind_180903b80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x680) != (code *)0x0) {
     (**(code **)(lVar1 + 0x680))(lVar1 + 0x670,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35034,7 +35034,7 @@ void Unwind_180903ba0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x6f0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x6f0))(lVar1 + 0x6e0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35064,7 +35064,7 @@ void Unwind_180903bc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x760) != (code *)0x0) {
     (**(code **)(lVar1 + 0x760))(lVar1 + 0x750,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35094,7 +35094,7 @@ void Unwind_180903be0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 2000) != (code *)0x0) {
     (**(code **)(lVar1 + 2000))(lVar1 + 0x7c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35124,7 +35124,7 @@ void Unwind_180903c00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x840) != (code *)0x0) {
     (**(code **)(lVar1 + 0x840))(lVar1 + 0x830,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35154,7 +35154,7 @@ void Unwind_180903c20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x8b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x8b0))(lVar1 + 0x8a0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35184,7 +35184,7 @@ void Unwind_180903c40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x920) != (code *)0x0) {
     (**(code **)(lVar1 + 0x920))(lVar1 + 0x910,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35214,7 +35214,7 @@ void Unwind_180903c60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x990) != (code *)0x0) {
     (**(code **)(lVar1 + 0x990))(lVar1 + 0x980,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35244,7 +35244,7 @@ void Unwind_180903c80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xa08) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa08))(lVar1 + 0x9f8,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35274,7 +35274,7 @@ void Unwind_180903ca0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xa80) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa80))(lVar1 + 0xa70,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35304,7 +35304,7 @@ void Unwind_180903cc0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x88);
+  loopCounter = *(longlong *)(param_2 + 0x88);
   *(uint8_t8 *)(lVar1 + 0x10) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x18) != 0) {
                     // WARNING: Subroutine does not return
@@ -35323,7 +35323,7 @@ void Unwind_180903cd0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x88);
+  loopCounter = *(longlong *)(param_2 + 0x88);
   *(uint8_t8 *)(lVar1 + 0x30) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
@@ -35356,7 +35356,7 @@ void Unwind_180903cf0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 400) != (code *)0x0) {
     (**(code **)(lVar1 + 400))(lVar1 + 0x180,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35410,7 +35410,7 @@ void Unwind_180903d10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x250) != (code *)0x0) {
     (**(code **)(lVar1 + 0x250))(lVar1 + 0x240,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35464,7 +35464,7 @@ void Unwind_180903d30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x310) != (code *)0x0) {
     (**(code **)(lVar1 + 0x310))(lVar1 + 0x300,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35518,7 +35518,7 @@ void Unwind_180903d50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x3d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x3d0))(lVar1 + 0x3c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35572,7 +35572,7 @@ void Unwind_180903d70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x490) != (code *)0x0) {
     (**(code **)(lVar1 + 0x490))(lVar1 + 0x480,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35626,7 +35626,7 @@ void Unwind_180903d90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x550) != (code *)0x0) {
     (**(code **)(lVar1 + 0x550))(lVar1 + 0x540,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35680,7 +35680,7 @@ void Unwind_180903db0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x610) != (code *)0x0) {
     (**(code **)(lVar1 + 0x610))(lVar1 + 0x600,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35734,7 +35734,7 @@ void Unwind_180903dd0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x6d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x6d0))(lVar1 + 0x6c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35788,7 +35788,7 @@ void Unwind_180903df0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x790) != (code *)0x0) {
     (**(code **)(lVar1 + 0x790))(lVar1 + 0x780,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35842,7 +35842,7 @@ void Unwind_180903e10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x850) != (code *)0x0) {
     (**(code **)(lVar1 + 0x850))(lVar1 + 0x840,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35896,7 +35896,7 @@ void Unwind_180903e30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x910) != (code *)0x0) {
     (**(code **)(lVar1 + 0x910))(lVar1 + 0x900,0,0,param_4,0xfffffffffffffffe);
   }
@@ -35950,7 +35950,7 @@ void Unwind_180903e50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x9d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x9d0))(lVar1 + 0x9c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36004,7 +36004,7 @@ void Unwind_180903e70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xa90) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa90))(lVar1 + 0xa80,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36058,7 +36058,7 @@ void Unwind_180903e90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xb50) != (code *)0x0) {
     (**(code **)(lVar1 + 0xb50))(lVar1 + 0xb40,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36112,7 +36112,7 @@ void Unwind_180903eb0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xc10) != (code *)0x0) {
     (**(code **)(lVar1 + 0xc10))(lVar1 + 0xc00,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36166,7 +36166,7 @@ void Unwind_180903ed0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xcd0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xcd0))(lVar1 + 0xcc0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36220,7 +36220,7 @@ void Unwind_180903ef0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xd40) != (code *)0x0) {
     (**(code **)(lVar1 + 0xd40))(lVar1 + 0xd30,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36250,7 +36250,7 @@ void Unwind_180903f10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xdb0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xdb0))(lVar1 + 0xda0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36280,7 +36280,7 @@ void Unwind_180903f30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xe20) != (code *)0x0) {
     (**(code **)(lVar1 + 0xe20))(lVar1 + 0xe10,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36310,7 +36310,7 @@ void Unwind_180903f50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xee0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xee0))(lVar1 + 0xed0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36364,7 +36364,7 @@ void Unwind_180903f70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 4000) != (code *)0x0) {
     (**(code **)(lVar1 + 4000))(lVar1 + 0xf90,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36418,7 +36418,7 @@ void Unwind_180903f90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1060) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1060))(lVar1 + 0x1050,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36472,7 +36472,7 @@ void Unwind_180903fb0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x10d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x10d0))(lVar1 + 0x10c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36502,7 +36502,7 @@ void Unwind_180903fd0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1140) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1140))(lVar1 + 0x1130,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36532,7 +36532,7 @@ void Unwind_180903ff0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x11b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x11b0))(lVar1 + 0x11a0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36562,7 +36562,7 @@ void Unwind_180904010(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1220) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1220))(lVar1 + 0x1210,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36592,7 +36592,7 @@ void Unwind_180904030(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1290) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1290))(lVar1 + 0x1280,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36622,7 +36622,7 @@ void Unwind_180904050(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1300) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1300))(lVar1 + 0x12f0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36652,7 +36652,7 @@ void Unwind_180904070(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1370) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1370))(lVar1 + 0x1360,0,0,param_4,0xfffffffffffffffe);
   }
@@ -36728,7 +36728,7 @@ void Unwind_1809040d0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x20);
+  loopCounter = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -36775,7 +36775,7 @@ void Unwind_180904100(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x50);
+  loopCounter = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -36827,7 +36827,7 @@ void Unwind_180904130(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x20);
+  loopCounter = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -36846,7 +36846,7 @@ void Unwind_180904140(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x20);
+  loopCounter = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 0x40) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
@@ -36865,7 +36865,7 @@ void Unwind_180904150(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x20);
+  loopCounter = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 0x60) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x68) != 0) {
                     // WARNING: Subroutine does not return
@@ -36884,7 +36884,7 @@ void Unwind_180904160(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x20);
+  loopCounter = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 0x80) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x88) != 0) {
                     // WARNING: Subroutine does not return
@@ -36917,7 +36917,7 @@ void Unwind_1809041a0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x50);
+  loopCounter = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x60) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x68) != 0) {
                     // WARNING: Subroutine does not return
@@ -36950,7 +36950,7 @@ void Unwind_1809041d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 400) != (code *)0x0) {
     (**(code **)(lVar1 + 400))(lVar1 + 0x180,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37004,7 +37004,7 @@ void Unwind_1809041f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x250) != (code *)0x0) {
     (**(code **)(lVar1 + 0x250))(lVar1 + 0x240,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37058,7 +37058,7 @@ void Unwind_180904210(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x310) != (code *)0x0) {
     (**(code **)(lVar1 + 0x310))(lVar1 + 0x300,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37112,7 +37112,7 @@ void Unwind_180904230(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x3d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x3d0))(lVar1 + 0x3c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37166,7 +37166,7 @@ void Unwind_180904250(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x490) != (code *)0x0) {
     (**(code **)(lVar1 + 0x490))(lVar1 + 0x480,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37220,7 +37220,7 @@ void Unwind_180904270(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x550) != (code *)0x0) {
     (**(code **)(lVar1 + 0x550))(lVar1 + 0x540,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37274,7 +37274,7 @@ void Unwind_180904290(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x610) != (code *)0x0) {
     (**(code **)(lVar1 + 0x610))(lVar1 + 0x600,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37328,7 +37328,7 @@ void Unwind_1809042b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x6d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x6d0))(lVar1 + 0x6c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37382,7 +37382,7 @@ void Unwind_1809042d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x790) != (code *)0x0) {
     (**(code **)(lVar1 + 0x790))(lVar1 + 0x780,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37436,7 +37436,7 @@ void Unwind_1809042f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x850) != (code *)0x0) {
     (**(code **)(lVar1 + 0x850))(lVar1 + 0x840,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37490,7 +37490,7 @@ void Unwind_180904310(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x910) != (code *)0x0) {
     (**(code **)(lVar1 + 0x910))(lVar1 + 0x900,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37544,7 +37544,7 @@ void Unwind_180904330(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x9d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x9d0))(lVar1 + 0x9c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37598,7 +37598,7 @@ void Unwind_180904350(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xa90) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa90))(lVar1 + 0xa80,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37652,7 +37652,7 @@ void Unwind_180904370(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xb50) != (code *)0x0) {
     (**(code **)(lVar1 + 0xb50))(lVar1 + 0xb40,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37706,7 +37706,7 @@ void Unwind_180904390(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xc10) != (code *)0x0) {
     (**(code **)(lVar1 + 0xc10))(lVar1 + 0xc00,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37760,7 +37760,7 @@ void Unwind_1809043b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xcd0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xcd0))(lVar1 + 0xcc0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37814,7 +37814,7 @@ void Unwind_1809043d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xd40) != (code *)0x0) {
     (**(code **)(lVar1 + 0xd40))(lVar1 + 0xd30,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37844,7 +37844,7 @@ void Unwind_1809043f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xdb0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xdb0))(lVar1 + 0xda0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37874,7 +37874,7 @@ void Unwind_180904410(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xe20) != (code *)0x0) {
     (**(code **)(lVar1 + 0xe20))(lVar1 + 0xe10,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37904,7 +37904,7 @@ void Unwind_180904430(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xee0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xee0))(lVar1 + 0xed0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -37958,7 +37958,7 @@ void Unwind_180904450(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 4000) != (code *)0x0) {
     (**(code **)(lVar1 + 4000))(lVar1 + 0xf90,0,0,param_4,0xfffffffffffffffe);
   }
@@ -38012,7 +38012,7 @@ void Unwind_180904470(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1060) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1060))(lVar1 + 0x1050,0,0,param_4,0xfffffffffffffffe);
   }
@@ -38066,7 +38066,7 @@ void Unwind_180904490(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x10d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x10d0))(lVar1 + 0x10c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -38096,7 +38096,7 @@ void Unwind_1809044b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1140) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1140))(lVar1 + 0x1130,0,0,param_4,0xfffffffffffffffe);
   }
@@ -38126,7 +38126,7 @@ void Unwind_1809044d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x11b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x11b0))(lVar1 + 0x11a0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -38156,7 +38156,7 @@ void Unwind_1809044f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1220) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1220))(lVar1 + 0x1210,0,0,param_4,0xfffffffffffffffe);
   }
@@ -38186,7 +38186,7 @@ void Unwind_180904510(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1290) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1290))(lVar1 + 0x1280,0,0,param_4,0xfffffffffffffffe);
   }
@@ -38216,7 +38216,7 @@ void Unwind_180904530(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1300) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1300))(lVar1 + 0x12f0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -38246,7 +38246,7 @@ void Unwind_180904550(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1370) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1370))(lVar1 + 0x1360,0,0,param_4,0xfffffffffffffffe);
   }
@@ -38491,7 +38491,7 @@ void Unwind_1809046c0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
@@ -38510,7 +38510,7 @@ void Unwind_1809046d0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
@@ -38720,7 +38720,7 @@ void Unwind_180904810(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x40) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
@@ -38747,7 +38747,7 @@ void Unwind_180904820(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -38867,7 +38867,7 @@ void Unwind_1809048e0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x48);
+  loopCounter = *(longlong *)(param_2 + 0x48);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -38886,7 +38886,7 @@ void Unwind_1809048f0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x68);
+  loopCounter = *(longlong *)(param_2 + 0x68);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -39736,7 +39736,7 @@ void Catch_180904b10(uint8_t8 param_1,longlong param_2)
   longlong loopCounter;
   longlong resourceTable;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x60) = *(uint8_t8 *)(param_2 + 0x70);
   resourceTable = *(longlong *)(param_2 + 0x78);
   if (resourceTable == 0) {
@@ -39754,7 +39754,7 @@ void Catch_180904b50(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x50);
+  loopCounter = *(longlong *)(param_2 + 0x50);
   func_0x00018005f320(lVar1);
   func_0x000180060c00(*(longlong *)(param_2 + 0x60) + 8,0);
   func_0x000180060c10(*(uint8_t8 *)(lVar1 + 0x50),*(uint8_t8 *)(param_2 + 0x68));
@@ -39830,7 +39830,7 @@ void Catch_180904c60(uint8_t8 param_1,longlong param_2)
   longlong lVar9;
   
   uVar8 = *(ulonglong *)(param_2 + 0x20);
-  lVar1 = *(longlong *)(param_2 + 0x90);
+  loopCounter = *(longlong *)(param_2 + 0x90);
   lVar9 = *(longlong *)(lVar1 + 0x40);
   uVar4 = *(ulonglong *)(param_2 + 0x30);
   resourceTable = *(longlong *)(param_2 + 0xa0);
@@ -40278,7 +40278,7 @@ void Unwind_180904f70(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x30) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
@@ -41816,7 +41816,7 @@ void Unwind_180905640(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0xa8);
+  loopCounter = *(longlong *)(param_2 + 0xa8);
   if (*(code **)(lVar1 + 0x198) != (code *)0x0) {
     (**(code **)(lVar1 + 0x198))(lVar1 + 0x188,0,0,param_4,0xfffffffffffffffe);
   }
@@ -41834,7 +41834,7 @@ void Unwind_180905650(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x48);
+  loopCounter = *(longlong *)(param_2 + 0x48);
   if (*(code **)(lVar1 + 0x198) != (code *)0x0) {
     (**(code **)(lVar1 + 0x198))(lVar1 + 0x188,0,0,param_4,0xfffffffffffffffe);
   }
@@ -42030,7 +42030,7 @@ void Unwind_1809057b0(uint8_t8 param_1,longlong param_2)
   longlong *plStackX_20;
   ulonglong resourceHash0;
   
-  puVar5 = *(uint8_t8 **)(param_2 + 0x40);
+  bytePointer5 = *(uint8_t8 **)(param_2 + 0x40);
   *puVar5 = &ResourceHashTable003;
   *(uint8_t1 *)((longlong)puVar5 + 0x162) = 1;
   presourceTable = puVar5 + 0x1a;
@@ -42141,7 +42141,7 @@ void Unwind_1809057c0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0xc0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 200) != 0) {
                     // WARNING: Subroutine does not return
@@ -42627,7 +42627,7 @@ void Unwind_180905950(uint8_t8 param_1,longlong param_2)
   longlong *plStackX_20;
   ulonglong resourceHash0;
   
-  puVar5 = *(uint8_t8 **)(param_2 + 0x2e8);
+  bytePointer5 = *(uint8_t8 **)(param_2 + 0x2e8);
   *puVar5 = &ResourceHashTable003;
   *(uint8_t1 *)((longlong)puVar5 + 0x162) = 1;
   presourceTable = puVar5 + 0x1a;
@@ -43048,7 +43048,7 @@ void Unwind_180905b40(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -43311,7 +43311,7 @@ void Unwind_180905c10(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x38);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -43347,7 +43347,7 @@ void Unwind_180905c20(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x38);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -43383,7 +43383,7 @@ void Unwind_180905c30(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -43419,7 +43419,7 @@ void Unwind_180905c40(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -43519,7 +43519,7 @@ void Unwind_180905c60(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   uVar4 = *(ulonglong *)(resourceIndex + 0x340);
-  lVar1 = *(longlong *)(resourceIndex + 0x338);
+  loopCounter = *(longlong *)(resourceIndex + 0x338);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -43555,7 +43555,7 @@ void Unwind_180905c80(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x48);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -43591,7 +43591,7 @@ void Unwind_180905c90(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x48);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -43852,7 +43852,7 @@ void Catch_180905e00(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   func_0x00018005f320(lVar1);
   func_0x000180060c00(*(longlong *)(param_2 + 0x70) + 8,0);
   func_0x00018006d490(*(uint8_t8 *)(lVar1 + 0x50),*(uint8_t8 *)(param_2 + 0x78));
@@ -44036,7 +44036,7 @@ void Unwind_180905ec0(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x50) + 0x3c8);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x3d0);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x3d0);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x1a8) {
     ProcessResourceIndex(resourceIndex);
   }
@@ -44347,7 +44347,7 @@ void Unwind_180905fc0(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x3c8);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x3d0);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x3d0);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x1a8) {
     ProcessResourceIndex(resourceIndex);
   }
@@ -45316,7 +45316,7 @@ void Unwind_1809064e0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(longlong *)(lVar1 + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -45337,7 +45337,7 @@ void Unwind_1809064f0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(longlong *)(lVar1 + 0x52) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -45498,7 +45498,7 @@ void Unwind_180906560(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x58);
+  loopCounter = *(longlong *)(param_2 + 0x58);
   if (*(longlong *)(lVar1 + 0x12) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -45540,7 +45540,7 @@ void Unwind_180906580(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x50);
+  loopCounter = *(longlong *)(param_2 + 0x50);
   if (*(longlong *)(lVar1 + 0x12) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -45582,7 +45582,7 @@ void Unwind_1809065a0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   if (*(longlong *)(lVar1 + 0x12) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -45842,7 +45842,7 @@ void Unwind_1809067b0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x48);
+  loopCounter = *(longlong *)(param_2 + 0x48);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -48347,7 +48347,7 @@ void Unwind_180907230(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x20);
+  loopCounter = *(longlong *)(param_2 + 0x20);
   ReleaseSystemResourceHandle(*(uint8_t8 *)(lVar1 + 0xb0));
   *(uint8_t8 *)(lVar1 + 0xb0) = 0;
   if (*(longlong *)(lVar1 + 0xb8) != 0) {
@@ -48425,7 +48425,7 @@ void Unwind_1809072c0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   ReleaseSystemResourceHandle(*(uint8_t8 *)(lVar1 + 0xb0));
   *(uint8_t8 *)(lVar1 + 0xb0) = 0;
   if (*(longlong *)(lVar1 + 0xb8) != 0) {
@@ -49230,7 +49230,7 @@ void Unwind_180907700(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -49455,7 +49455,7 @@ void Unwind_180907800(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x20) + 8);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x10);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x10);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x60) {
     CheckResourceVersion(resourceIndex);
   }
@@ -49819,7 +49819,7 @@ void Unwind_1809079a0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
@@ -49838,7 +49838,7 @@ void Unwind_1809079b0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x38) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x40) != 0) {
                     // WARNING: Subroutine does not return
@@ -49857,7 +49857,7 @@ void Unwind_1809079c0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x58) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
@@ -50142,7 +50142,7 @@ void Unwind_180907a90(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x28);
+  loopCounter = *(longlong *)(param_2 + 0x28);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -52241,7 +52241,7 @@ void Unwind_180908660(uint8_t8 param_1,longlong param_2)
   longlong loopCounter;
   uint8_t8 validationResult;
   
-  lVar1 = *(longlong *)(param_2 + 0x50);
+  loopCounter = *(longlong *)(param_2 + 0x50);
   validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
   RegisterResourceHandler(lVar1 + 0x3e0,0x20,0x20,ReleaseSystemResource,validationResult);
@@ -52785,7 +52785,7 @@ void Unwind_180908900(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x70);
+  loopCounter = *(longlong *)(param_2 + 0x70);
   *(uint8_t8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
@@ -52804,7 +52804,7 @@ void Unwind_180908910(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x20);
+  loopCounter = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
@@ -53435,7 +53435,7 @@ void Unwind_180908b00(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x30);
+  loopCounter = *(longlong *)(param_2 + 0x30);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -53640,7 +53640,7 @@ void Unwind_180908bd0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x1b8);
+  loopCounter = *(longlong *)(param_2 + 0x1b8);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
@@ -53764,7 +53764,7 @@ void Unwind_180908c60(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x1b8);
+  loopCounter = *(longlong *)(param_2 + 0x1b8);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -53938,7 +53938,7 @@ void Unwind_180908dc0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x108);
+  loopCounter = *(longlong *)(param_2 + 0x108);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -54211,7 +54211,7 @@ void Unwind_180908e80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   longlong loopCounter;
   uint8_t8 validationResult;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
   ProcessResourceOperation(lVar1 + 0x110,*(uint8_t8 *)(lVar1 + 0x120),param_3,param_4,validationResult);
@@ -54230,7 +54230,7 @@ void Unwind_180908e90(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -54594,7 +54594,7 @@ void Unwind_1809090a0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   if (*(longlong **)(lVar1 + 0x1d50) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x1d50) + 0x38))();
   }
@@ -55472,7 +55472,7 @@ void Unwind_180909480(uint8_t8 param_1,longlong param_2)
   longlong loopCounter;
   longlong resourceTable;
   
-  lVar1 = *(longlong *)(param_2 + 0x148);
+  loopCounter = *(longlong *)(param_2 + 0x148);
   for (resourceTable = *(longlong *)(param_2 + 0x140); resourceTable != lVar1; resourceTable = resourceTable + 0x78) {
     UpdateResourceTable(resourceTable);
   }
@@ -55509,7 +55509,7 @@ void Unwind_1809094b0(uint8_t8 param_1,longlong param_2)
   longlong loopCounter;
   longlong resourceTable;
   
-  lVar1 = *(longlong *)(param_2 + 0x148);
+  loopCounter = *(longlong *)(param_2 + 0x148);
   for (resourceTable = *(longlong *)(param_2 + 0x140); resourceTable != lVar1; resourceTable = resourceTable + 0x78) {
     UpdateResourceTable(resourceTable);
   }
@@ -55549,7 +55549,7 @@ void Unwind_1809094d0(uint8_t8 param_1,longlong param_2)
   longlong loopCounter;
   longlong resourceTable;
   
-  lVar1 = *(longlong *)(param_2 + 0x1c0);
+  loopCounter = *(longlong *)(param_2 + 0x1c0);
   for (resourceTable = *(longlong *)(param_2 + 0x1b8); resourceTable != lVar1; resourceTable = resourceTable + 0x78) {
     UpdateResourceTable(resourceTable);
   }
@@ -55844,7 +55844,7 @@ void Unwind_180909650(uint8_t8 param_1,longlong param_2)
   longlong loopCounter;
   longlong resourceTable;
   
-  lVar1 = *(longlong *)(param_2 + 0x1c0);
+  loopCounter = *(longlong *)(param_2 + 0x1c0);
   for (resourceTable = *(longlong *)(param_2 + 0x1b8); resourceTable != lVar1; resourceTable = resourceTable + 0x78) {
     UpdateResourceTable(resourceTable);
   }
@@ -56250,7 +56250,7 @@ void Unwind_180909740(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x58) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
@@ -56294,7 +56294,7 @@ void Unwind_180909770(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x78);
+  loopCounter = *(longlong *)(param_2 + 0x78);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -56313,7 +56313,7 @@ void Unwind_180909780(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -57172,7 +57172,7 @@ void Unwind_180909ce0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x560) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x568) != 0) {
                     // WARNING: Subroutine does not return
@@ -57792,7 +57792,7 @@ void Unwind_18090a1d0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x560) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x568) != 0) {
                     // WARNING: Subroutine does not return
@@ -58947,7 +58947,7 @@ void Unwind_18090a910(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(longlong **)(lVar1 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x40) + 0x38))();
   }
@@ -59824,7 +59824,7 @@ void Unwind_18090af70(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x50);
   uVar4 = *(ulonglong *)(resourceIndex + 0x2b0);
-  lVar1 = *(longlong *)(resourceIndex + 0x2a8);
+  loopCounter = *(longlong *)(resourceIndex + 0x2a8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -60431,7 +60431,7 @@ void Unwind_18090b4b0(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x58);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -60469,7 +60469,7 @@ void Unwind_18090b4c0(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x58);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -60525,7 +60525,7 @@ void Unwind_18090b4f0(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -60563,7 +60563,7 @@ void Unwind_18090b500(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -60866,7 +60866,7 @@ void Unwind_18090b7d0(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   uVar4 = *(ulonglong *)(resourceIndex + 0x2b0);
-  lVar1 = *(longlong *)(resourceIndex + 0x2a8);
+  loopCounter = *(longlong *)(resourceIndex + 0x2a8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -61473,7 +61473,7 @@ void Unwind_18090bd10(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x48);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -61511,7 +61511,7 @@ void Unwind_18090bd20(uint8_t8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x48);
   uVar4 = *(ulonglong *)(resourceIndex + 0x10);
-  lVar1 = *(longlong *)(resourceIndex + 8);
+  loopCounter = *(longlong *)(resourceIndex + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -62213,7 +62213,7 @@ void Unwind_18090c150(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x48);
+  loopCounter = *(longlong *)(param_2 + 0x48);
   if (*(longlong **)(lVar1 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x40) + 0x38))();
   }
@@ -62249,7 +62249,7 @@ void Unwind_18090c170(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x68);
+  loopCounter = *(longlong *)(param_2 + 0x68);
   if (*(longlong **)(lVar1 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x40) + 0x38))();
   }
@@ -62639,7 +62639,7 @@ void Unwind_18090c310(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x78);
+  loopCounter = *(longlong *)(param_2 + 0x78);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -62971,7 +62971,7 @@ void Unwind_18090c4b0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x118);
+  loopCounter = *(longlong *)(param_2 + 0x118);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
@@ -63057,7 +63057,7 @@ void Unwind_18090c510(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x118);
+  loopCounter = *(longlong *)(param_2 + 0x118);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -63138,13 +63138,13 @@ void Unwind_18090c540(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -63184,13 +63184,13 @@ void Unwind_18090c550(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -63260,13 +63260,13 @@ void Unwind_18090c590(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -63327,13 +63327,13 @@ void Unwind_18090c5c0(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -63373,13 +63373,13 @@ void Unwind_18090c5d0(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -63431,13 +63431,13 @@ void Unwind_18090c5f0(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -63477,13 +63477,13 @@ void Unwind_18090c600(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -64166,13 +64166,13 @@ void Unwind_18090ca20(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -64224,13 +64224,13 @@ void Unwind_18090ca40(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -64294,13 +64294,13 @@ void Unwind_18090ca70(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -64361,13 +64361,13 @@ void Unwind_18090caa0(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -64428,13 +64428,13 @@ void Unwind_18090cad0(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -64495,13 +64495,13 @@ void Unwind_18090cb00(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -64550,13 +64550,13 @@ void Unwind_18090cb20(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -64605,13 +64605,13 @@ void Unwind_18090cb40(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -64663,13 +64663,13 @@ void Unwind_18090cb60(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -64718,13 +64718,13 @@ void Unwind_18090cb80(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -64809,13 +64809,13 @@ void Unwind_18090cbd0(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -64876,13 +64876,13 @@ void Unwind_18090cc00(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -65042,13 +65042,13 @@ void Unwind_18090cce0(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -65167,7 +65167,7 @@ void Unwind_18090ce00(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x38);
+  loopCounter = *(longlong *)(param_2 + 0x38);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
@@ -65214,7 +65214,7 @@ void Unwind_18090ce20(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x98);
+  loopCounter = *(longlong *)(param_2 + 0x98);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
@@ -65327,7 +65327,7 @@ void Unwind_18090ce70(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
@@ -65404,7 +65404,7 @@ void Unwind_18090cec0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x38);
+  loopCounter = *(longlong *)(param_2 + 0x38);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -68467,7 +68467,7 @@ void Unwind_18090d530(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x130);
+  loopCounter = *(longlong *)(param_2 + 0x130);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
@@ -68515,7 +68515,7 @@ void Unwind_18090d560(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x130);
+  loopCounter = *(longlong *)(param_2 + 0x130);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -68570,7 +68570,7 @@ void Unwind_18090d590(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x150);
+  loopCounter = *(longlong *)(param_2 + 0x150);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
@@ -68729,7 +68729,7 @@ void Unwind_18090d660(uint8_t8 param_1,longlong param_2)
   longlong loopCounter;
   uint8_t8 validationResult;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   validationResult = 0xfffffffffffffffe;
   if (*(longlong **)(lVar1 + 0xed0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xed0) + 0x38))();
@@ -69503,7 +69503,7 @@ void Unwind_18090de80(uint8_t8 param_1,longlong param_2)
   longlong loopCounter;
   uint8_t8 validationResult;
   
-  lVar1 = *(longlong *)(param_2 + 0xe0);
+  loopCounter = *(longlong *)(param_2 + 0xe0);
   validationResult = 0xfffffffffffffffe;
   if (*(longlong **)(lVar1 + 0xed0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xed0) + 0x38))();
@@ -70315,13 +70315,13 @@ void Unwind_18090e760(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -70373,13 +70373,13 @@ void Unwind_18090e7a0(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -70419,13 +70419,13 @@ void Unwind_18090e7b0(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -70465,13 +70465,13 @@ void Unwind_18090e7c0(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -70511,13 +70511,13 @@ void Unwind_18090e7d0(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -70557,13 +70557,13 @@ void Unwind_18090e7e0(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -70603,13 +70603,13 @@ void Unwind_18090e7f0(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -70649,13 +70649,13 @@ void Unwind_18090e800(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -70707,13 +70707,13 @@ void Unwind_18090e820(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -70765,13 +70765,13 @@ void Unwind_18090e840(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -70823,13 +70823,13 @@ void Unwind_18090e860(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -70936,7 +70936,7 @@ void Unwind_18090e8e0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x28);
+  loopCounter = *(longlong *)(param_2 + 0x28);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
@@ -71044,7 +71044,7 @@ void Unwind_18090e950(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x28);
+  loopCounter = *(longlong *)(param_2 + 0x28);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -71262,13 +71262,13 @@ void Unwind_18090eb00(uint8_t8 param_1,longlong param_2)
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      loopCounter = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(longlong *)(lVar1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
       }
       resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
+      loopCounter = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
       iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
       if (-1 < iVar2) {
         lVar5 = (longlong)iVar2;
@@ -71305,7 +71305,7 @@ void Unwind_18090eb20(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x108);
+  loopCounter = *(longlong *)(param_2 + 0x108);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
@@ -71353,7 +71353,7 @@ void Unwind_18090eb50(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x108);
+  loopCounter = *(longlong *)(param_2 + 0x108);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -71444,7 +71444,7 @@ void Unwind_18090ec00(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x30);
+  loopCounter = *(longlong *)(param_2 + 0x30);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
@@ -71507,7 +71507,7 @@ void Unwind_18090ec40(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x30);
+  loopCounter = *(longlong *)(param_2 + 0x30);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -71682,7 +71682,7 @@ void Unwind_18090ed30(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
@@ -71745,7 +71745,7 @@ void Unwind_18090ed70(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -72285,7 +72285,7 @@ void Unwind_18090efe0(uint8_t8 param_1,longlong param_2)
   longlong lVar4;
   longlong *plVar5;
   
-  lVar1 = *(longlong *)(param_2 + 0x70);
+  loopCounter = *(longlong *)(param_2 + 0x70);
   presourceTable = (longlong *)(lVar1 + 0x300);
   resourceIndex = *(longlong *)(lVar1 + 0x310);
   lVar4 = *(longlong *)(lVar1 + 800);
@@ -72713,7 +72713,7 @@ void Unwind_18090f140(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x78);
+  loopCounter = *(longlong *)(param_2 + 0x78);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -72732,7 +72732,7 @@ void Unwind_18090f150(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -72751,7 +72751,7 @@ void Unwind_18090f160(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x78);
+  loopCounter = *(longlong *)(param_2 + 0x78);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -72798,7 +72798,7 @@ void Unwind_18090f190(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -73144,7 +73144,7 @@ void Unwind_18090f2d0(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x180);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x188);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x188);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x30) {
     ExecuteResourceFinalization();
   }
@@ -73256,7 +73256,7 @@ void Unwind_18090f370(uint8_t8 param_1,longlong param_2)
   uint unsignedValue3;
   longlong *plVar4;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   uVar3 = 0;
   plVar4 = (longlong *)(lVar1 + 600);
   do {
@@ -73290,7 +73290,7 @@ void Unwind_18090f3b0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   if (*(longlong **)(lVar1 + 0x398) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x398) + 0x38))();
   }
@@ -73572,7 +73572,7 @@ void Unwind_18090f650(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x4140) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4148) != 0) {
                     // WARNING: Subroutine does not return
@@ -73591,7 +73591,7 @@ void Unwind_18090f670(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x4190) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4198) != 0) {
                     // WARNING: Subroutine does not return
@@ -74281,7 +74281,7 @@ void Unwind_18090fac0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x120);
+  loopCounter = *(longlong *)(param_2 + 0x120);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
@@ -74329,7 +74329,7 @@ void Unwind_18090faf0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x120);
+  loopCounter = *(longlong *)(param_2 + 0x120);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
@@ -74753,7 +74753,7 @@ void Unwind_18090fe50(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x70) + 8);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x10);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x10);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x128) {
     ProcessResourceCleanup(resourceIndex);
   }
@@ -74880,7 +74880,7 @@ void Unwind_18090ff10(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x100) + 0x18);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x100) + 0x20);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x100) + 0x20);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x128) {
     ProcessResourceCleanup(resourceIndex);
   }
@@ -75020,7 +75020,7 @@ void Unwind_18090ffe0(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x58) + 8);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x58) + 0x10);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x58) + 0x10);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x128) {
     ProcessResourceCleanup(resourceIndex);
   }
@@ -75076,7 +75076,7 @@ void Unwind_180910010(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x60) + 8);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x10);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x10);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x128) {
     ProcessResourceCleanup(resourceIndex);
   }
@@ -75141,7 +75141,7 @@ void Unwind_180910040(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x70) + 8);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x10);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x10);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x18) {
     if (*(longlong **)(resourceIndex + 8) != (longlong *)0x0) {
       (**(code **)(**(longlong **)(resourceIndex + 8) + 0x38))();
@@ -75198,7 +75198,7 @@ void Unwind_180910070(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x48);
+  loopCounter = *(longlong *)(param_2 + 0x48);
   if (*(longlong **)(lVar1 + 0x88) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x88) + 0x38))();
   }
@@ -75248,7 +75248,7 @@ void Unwind_180910080(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x50);
+  loopCounter = *(longlong *)(param_2 + 0x50);
   if (*(longlong **)(lVar1 + 0x68) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x68) + 0x38))();
   }
@@ -75333,7 +75333,7 @@ void Unwind_1809100d0(uint8_t8 param_1,longlong param_2)
   longlong resourceIndex;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x40) + 8);
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x10);
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x10);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x18) {
     if (*(longlong **)(resourceIndex + 8) != (longlong *)0x0) {
       (**(code **)(**(longlong **)(resourceIndex + 8) + 0x38))();
@@ -75376,7 +75376,7 @@ void Unwind_1809100f0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(longlong **)(lVar1 + 0x68) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x68) + 0x38))();
   }
@@ -75449,7 +75449,7 @@ void Unwind_180910110(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
+  loopCounter = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x108) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
@@ -75468,7 +75468,7 @@ void Unwind_180910130(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x50);
+  loopCounter = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x108) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
@@ -75526,7 +75526,7 @@ void Unwind_1809101c0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x108) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
@@ -75545,7 +75545,7 @@ void Unwind_1809101e0(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x20);
+  loopCounter = *(longlong *)(param_2 + 0x20);
   if (*(longlong **)(lVar1 + 0x68) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x68) + 0x38))();
   }
@@ -76782,7 +76782,7 @@ void Unwind_1809107a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xa00) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa00))(lVar1 + 0x9f0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -76812,7 +76812,7 @@ void Unwind_1809107c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xa70) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa70))(lVar1 + 0xa60,0,0,param_4,0xfffffffffffffffe);
   }
@@ -76842,7 +76842,7 @@ void Unwind_1809107e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xae0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xae0))(lVar1 + 0xad0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -76872,7 +76872,7 @@ void Unwind_180910800(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xb50) != (code *)0x0) {
     (**(code **)(lVar1 + 0xb50))(lVar1 + 0xb40,0,0,param_4,0xfffffffffffffffe);
   }
@@ -76902,7 +76902,7 @@ void Unwind_180910820(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xbc0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xbc0))(lVar1 + 0xbb0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -76932,7 +76932,7 @@ void Unwind_180910840(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xc30) != (code *)0x0) {
     (**(code **)(lVar1 + 0xc30))(lVar1 + 0xc20,0,0,param_4,0xfffffffffffffffe);
   }
@@ -76962,7 +76962,7 @@ void Unwind_180910860(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xca0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xca0))(lVar1 + 0xc90,0,0,param_4,0xfffffffffffffffe);
   }
@@ -76992,7 +76992,7 @@ void Unwind_180910880(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xd10) != (code *)0x0) {
     (**(code **)(lVar1 + 0xd10))(lVar1 + 0xd00,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77022,7 +77022,7 @@ void Unwind_1809108a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xd80) != (code *)0x0) {
     (**(code **)(lVar1 + 0xd80))(lVar1 + 0xd70,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77052,7 +77052,7 @@ void Unwind_1809108c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xdf0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xdf0))(lVar1 + 0xde0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77082,7 +77082,7 @@ void Unwind_1809108e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xe60) != (code *)0x0) {
     (**(code **)(lVar1 + 0xe60))(lVar1 + 0xe50,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77112,7 +77112,7 @@ void Unwind_180910900(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xed0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xed0))(lVar1 + 0xec0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77142,7 +77142,7 @@ void Unwind_180910920(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xf40) != (code *)0x0) {
     (**(code **)(lVar1 + 0xf40))(lVar1 + 0xf30,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77172,7 +77172,7 @@ void Unwind_180910940(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xfb0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xfb0))(lVar1 + 4000,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77202,7 +77202,7 @@ void Unwind_180910960(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1020) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1020))(lVar1 + 0x1010,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77232,7 +77232,7 @@ void Unwind_180910980(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1090) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1090))(lVar1 + 0x1080,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77262,7 +77262,7 @@ void Unwind_1809109a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1100) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1100))(lVar1 + 0x10f0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77292,7 +77292,7 @@ void Unwind_1809109c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1170) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1170))(lVar1 + 0x1160,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77322,7 +77322,7 @@ void Unwind_1809109e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x11e0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x11e0))(lVar1 + 0x11d0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77352,7 +77352,7 @@ void Unwind_180910a00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1250) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1250))(lVar1 + 0x1240,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77382,7 +77382,7 @@ void Unwind_180910a20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x12c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x12c0))(lVar1 + 0x12b0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77412,7 +77412,7 @@ void Unwind_180910a40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1330) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1330))(lVar1 + 0x1320,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77442,7 +77442,7 @@ void Unwind_180910a60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x13a0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x13a0))(lVar1 + 0x1390,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77472,7 +77472,7 @@ void Unwind_180910a80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1410) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1410))(lVar1 + 0x1400,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77502,7 +77502,7 @@ void Unwind_180910aa0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1480) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1480))(lVar1 + 0x1470,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77532,7 +77532,7 @@ void Unwind_180910ac0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x14f0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x14f0))(lVar1 + 0x14e0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77562,7 +77562,7 @@ void Unwind_180910ae0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1560) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1560))(lVar1 + 0x1550,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77592,7 +77592,7 @@ void Unwind_180910b00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x15d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x15d0))(lVar1 + 0x15c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77622,7 +77622,7 @@ void Unwind_180910b20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1640) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1640))(lVar1 + 0x1630,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77652,7 +77652,7 @@ void Unwind_180910b40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x16b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x16b0))(lVar1 + 0x16a0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77682,7 +77682,7 @@ void Unwind_180910b60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1720) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1720))(lVar1 + 0x1710,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77712,7 +77712,7 @@ void Unwind_180910b80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1790) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1790))(lVar1 + 0x1780,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77742,7 +77742,7 @@ void Unwind_180910ba0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1800) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1800))(lVar1 + 0x17f0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77772,7 +77772,7 @@ void Unwind_180910bc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1870) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1870))(lVar1 + 0x1860,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77802,7 +77802,7 @@ void Unwind_180910be0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x18e0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x18e0))(lVar1 + 0x18d0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77832,7 +77832,7 @@ void Unwind_180910c00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1950) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1950))(lVar1 + 0x1940,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77862,7 +77862,7 @@ void Unwind_180910c20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x19c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x19c0))(lVar1 + 0x19b0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77892,7 +77892,7 @@ void Unwind_180910c40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1a30) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1a30))(lVar1 + 0x1a20,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77922,7 +77922,7 @@ void Unwind_180910c60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1aa0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1aa0))(lVar1 + 0x1a90,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77952,7 +77952,7 @@ void Unwind_180910c80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1b10) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1b10))(lVar1 + 0x1b00,0,0,param_4,0xfffffffffffffffe);
   }
@@ -77982,7 +77982,7 @@ void Unwind_180910ca0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1b80) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1b80))(lVar1 + 0x1b70,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78012,7 +78012,7 @@ void Unwind_180910cc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1bf0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1bf0))(lVar1 + 0x1be0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78042,7 +78042,7 @@ void Unwind_180910ce0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1c60) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1c60))(lVar1 + 0x1c50,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78072,7 +78072,7 @@ void Unwind_180910d00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1cd0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1cd0))(lVar1 + 0x1cc0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78102,7 +78102,7 @@ void Unwind_180910d20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1d40) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1d40))(lVar1 + 0x1d30,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78132,7 +78132,7 @@ void Unwind_180910d40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1db0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1db0))(lVar1 + 0x1da0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78162,7 +78162,7 @@ void Unwind_180910d60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1e20) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1e20))(lVar1 + 0x1e10,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78192,7 +78192,7 @@ void Unwind_180910d80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1e90) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1e90))(lVar1 + 0x1e80,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78222,7 +78222,7 @@ void Unwind_180910da0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1f00) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1f00))(lVar1 + 0x1ef0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78252,7 +78252,7 @@ void Unwind_180910dc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1f70) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1f70))(lVar1 + 0x1f60,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78282,7 +78282,7 @@ void Unwind_180910de0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1fe0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1fe0))(lVar1 + 0x1fd0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78312,7 +78312,7 @@ void Unwind_180910e00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2050) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2050))(lVar1 + 0x2040,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78342,7 +78342,7 @@ void Unwind_180910e20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x20c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x20c0))(lVar1 + 0x20b0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78372,7 +78372,7 @@ void Unwind_180910e40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2130) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2130))(lVar1 + 0x2120,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78402,7 +78402,7 @@ void Unwind_180910e60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x21a0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x21a0))(lVar1 + 0x2190,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78432,7 +78432,7 @@ void Unwind_180910e80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2210) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2210))(lVar1 + 0x2200,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78462,7 +78462,7 @@ void Unwind_180910ea0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2280) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2280))(lVar1 + 0x2270,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78492,7 +78492,7 @@ void Unwind_180910ec0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x22f0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x22f0))(lVar1 + 0x22e0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78522,7 +78522,7 @@ void Unwind_180910ee0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2360) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2360))(lVar1 + 0x2350,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78552,7 +78552,7 @@ void Unwind_180910f00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x23d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x23d0))(lVar1 + 0x23c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78582,7 +78582,7 @@ void Unwind_180910f20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2440) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2440))(lVar1 + 0x2430,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78612,7 +78612,7 @@ void Unwind_180910f40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x24b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x24b0))(lVar1 + 0x24a0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78642,7 +78642,7 @@ void Unwind_180910f60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2520) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2520))(lVar1 + 0x2510,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78672,7 +78672,7 @@ void Unwind_180910f80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2590) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2590))(lVar1 + 0x2580,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78702,7 +78702,7 @@ void Unwind_180910fa0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2600) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2600))(lVar1 + 0x25f0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78778,7 +78778,7 @@ void Unwind_180911000(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xa00) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa00))(lVar1 + 0x9f0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78808,7 +78808,7 @@ void Unwind_180911020(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xa70) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa70))(lVar1 + 0xa60,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78838,7 +78838,7 @@ void Unwind_180911040(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xae0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xae0))(lVar1 + 0xad0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78868,7 +78868,7 @@ void Unwind_180911060(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xb50) != (code *)0x0) {
     (**(code **)(lVar1 + 0xb50))(lVar1 + 0xb40,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78898,7 +78898,7 @@ void Unwind_180911080(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xbc0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xbc0))(lVar1 + 0xbb0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78928,7 +78928,7 @@ void Unwind_1809110a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xc30) != (code *)0x0) {
     (**(code **)(lVar1 + 0xc30))(lVar1 + 0xc20,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78958,7 +78958,7 @@ void Unwind_1809110c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xca0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xca0))(lVar1 + 0xc90,0,0,param_4,0xfffffffffffffffe);
   }
@@ -78988,7 +78988,7 @@ void Unwind_1809110e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xd10) != (code *)0x0) {
     (**(code **)(lVar1 + 0xd10))(lVar1 + 0xd00,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79018,7 +79018,7 @@ void Unwind_180911100(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xd80) != (code *)0x0) {
     (**(code **)(lVar1 + 0xd80))(lVar1 + 0xd70,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79048,7 +79048,7 @@ void Unwind_180911120(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xdf0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xdf0))(lVar1 + 0xde0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79078,7 +79078,7 @@ void Unwind_180911140(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xe60) != (code *)0x0) {
     (**(code **)(lVar1 + 0xe60))(lVar1 + 0xe50,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79108,7 +79108,7 @@ void Unwind_180911160(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xed0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xed0))(lVar1 + 0xec0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79138,7 +79138,7 @@ void Unwind_180911180(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xf40) != (code *)0x0) {
     (**(code **)(lVar1 + 0xf40))(lVar1 + 0xf30,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79168,7 +79168,7 @@ void Unwind_1809111a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xfb0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xfb0))(lVar1 + 4000,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79198,7 +79198,7 @@ void Unwind_1809111c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1020) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1020))(lVar1 + 0x1010,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79228,7 +79228,7 @@ void Unwind_1809111e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1090) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1090))(lVar1 + 0x1080,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79258,7 +79258,7 @@ void Unwind_180911200(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1100) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1100))(lVar1 + 0x10f0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79288,7 +79288,7 @@ void Unwind_180911220(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1170) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1170))(lVar1 + 0x1160,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79318,7 +79318,7 @@ void Unwind_180911240(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x11e0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x11e0))(lVar1 + 0x11d0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79348,7 +79348,7 @@ void Unwind_180911260(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1250) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1250))(lVar1 + 0x1240,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79378,7 +79378,7 @@ void Unwind_180911280(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x12c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x12c0))(lVar1 + 0x12b0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79408,7 +79408,7 @@ void Unwind_1809112a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1330) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1330))(lVar1 + 0x1320,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79438,7 +79438,7 @@ void Unwind_1809112c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x13a0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x13a0))(lVar1 + 0x1390,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79468,7 +79468,7 @@ void Unwind_1809112e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1410) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1410))(lVar1 + 0x1400,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79498,7 +79498,7 @@ void Unwind_180911300(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1480) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1480))(lVar1 + 0x1470,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79528,7 +79528,7 @@ void Unwind_180911320(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x14f0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x14f0))(lVar1 + 0x14e0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79558,7 +79558,7 @@ void Unwind_180911340(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1560) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1560))(lVar1 + 0x1550,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79588,7 +79588,7 @@ void Unwind_180911360(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x15d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x15d0))(lVar1 + 0x15c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79618,7 +79618,7 @@ void Unwind_180911380(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1640) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1640))(lVar1 + 0x1630,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79648,7 +79648,7 @@ void Unwind_1809113a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x16b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x16b0))(lVar1 + 0x16a0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79678,7 +79678,7 @@ void Unwind_1809113c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1720) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1720))(lVar1 + 0x1710,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79708,7 +79708,7 @@ void Unwind_1809113e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1790) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1790))(lVar1 + 0x1780,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79738,7 +79738,7 @@ void Unwind_180911400(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1800) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1800))(lVar1 + 0x17f0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79768,7 +79768,7 @@ void Unwind_180911420(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1870) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1870))(lVar1 + 0x1860,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79798,7 +79798,7 @@ void Unwind_180911440(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x18e0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x18e0))(lVar1 + 0x18d0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79828,7 +79828,7 @@ void Unwind_180911460(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1950) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1950))(lVar1 + 0x1940,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79858,7 +79858,7 @@ void Unwind_180911480(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x19c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x19c0))(lVar1 + 0x19b0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79888,7 +79888,7 @@ void Unwind_1809114a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1a30) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1a30))(lVar1 + 0x1a20,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79918,7 +79918,7 @@ void Unwind_1809114c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1aa0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1aa0))(lVar1 + 0x1a90,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79948,7 +79948,7 @@ void Unwind_1809114e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1b10) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1b10))(lVar1 + 0x1b00,0,0,param_4,0xfffffffffffffffe);
   }
@@ -79978,7 +79978,7 @@ void Unwind_180911500(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1b80) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1b80))(lVar1 + 0x1b70,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80008,7 +80008,7 @@ void Unwind_180911520(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1bf0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1bf0))(lVar1 + 0x1be0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80038,7 +80038,7 @@ void Unwind_180911540(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1c60) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1c60))(lVar1 + 0x1c50,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80068,7 +80068,7 @@ void Unwind_180911560(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1cd0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1cd0))(lVar1 + 0x1cc0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80098,7 +80098,7 @@ void Unwind_180911580(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1d40) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1d40))(lVar1 + 0x1d30,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80128,7 +80128,7 @@ void Unwind_1809115a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1db0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1db0))(lVar1 + 0x1da0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80158,7 +80158,7 @@ void Unwind_1809115c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1e20) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1e20))(lVar1 + 0x1e10,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80188,7 +80188,7 @@ void Unwind_1809115e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1e90) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1e90))(lVar1 + 0x1e80,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80218,7 +80218,7 @@ void Unwind_180911600(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1f00) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1f00))(lVar1 + 0x1ef0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80248,7 +80248,7 @@ void Unwind_180911620(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1f70) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1f70))(lVar1 + 0x1f60,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80278,7 +80278,7 @@ void Unwind_180911640(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1fe0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1fe0))(lVar1 + 0x1fd0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80308,7 +80308,7 @@ void Unwind_180911660(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2050) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2050))(lVar1 + 0x2040,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80338,7 +80338,7 @@ void Unwind_180911680(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x20c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x20c0))(lVar1 + 0x20b0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80368,7 +80368,7 @@ void Unwind_1809116a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2130) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2130))(lVar1 + 0x2120,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80398,7 +80398,7 @@ void Unwind_1809116c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x21a0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x21a0))(lVar1 + 0x2190,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80428,7 +80428,7 @@ void Unwind_1809116e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2210) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2210))(lVar1 + 0x2200,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80458,7 +80458,7 @@ void Unwind_180911700(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2280) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2280))(lVar1 + 0x2270,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80488,7 +80488,7 @@ void Unwind_180911720(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x22f0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x22f0))(lVar1 + 0x22e0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80518,7 +80518,7 @@ void Unwind_180911740(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2360) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2360))(lVar1 + 0x2350,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80548,7 +80548,7 @@ void Unwind_180911760(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x23d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x23d0))(lVar1 + 0x23c0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80578,7 +80578,7 @@ void Unwind_180911780(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2440) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2440))(lVar1 + 0x2430,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80608,7 +80608,7 @@ void Unwind_1809117a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x24b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x24b0))(lVar1 + 0x24a0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80638,7 +80638,7 @@ void Unwind_1809117c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2520) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2520))(lVar1 + 0x2510,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80668,7 +80668,7 @@ void Unwind_1809117e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2590) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2590))(lVar1 + 0x2580,0,0,param_4,0xfffffffffffffffe);
   }
@@ -80698,7 +80698,7 @@ void Unwind_180911800(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2600) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2600))(lVar1 + 0x25f0,0,0,param_4,0xfffffffffffffffe);
   }
@@ -81305,8 +81305,8 @@ void Unwind_180911b00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81325,8 +81325,8 @@ void Unwind_180911b10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x18);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x18);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81345,8 +81345,8 @@ void Unwind_180911b20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x28);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x28);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81365,8 +81365,8 @@ void Unwind_180911b30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x68);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x68);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81385,8 +81385,8 @@ void Unwind_180911b40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x78);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x78);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81405,8 +81405,8 @@ void Unwind_180911b50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x88);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x88);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81425,8 +81425,8 @@ void Unwind_180911b70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xa0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xa0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81443,7 +81443,7 @@ void Unwind_180911b90(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x50);
+  loopCounter = *(longlong *)(param_2 + 0x50);
   *(uint8_t1 *)(lVar1 + 0x88) = 0;
   *(uint8_t8 *)(lVar1 + 0x90) = 0;
   *(uint8_t8 *)(lVar1 + 0x9c) = 0;
@@ -81489,8 +81489,8 @@ void Unwind_180911c30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1538);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1538);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81509,16 +81509,16 @@ void Unwind_180911c40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1620);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1620);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1608);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1608);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81537,8 +81537,8 @@ void Unwind_180911c60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1aa8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1aa8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81557,8 +81557,8 @@ void Unwind_180911c80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ab8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ab8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81577,8 +81577,8 @@ void Unwind_180911ca0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ac8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ac8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81597,8 +81597,8 @@ void Unwind_180911cc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ad8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ad8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81617,8 +81617,8 @@ void Unwind_180911ce0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ae8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ae8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81637,8 +81637,8 @@ void Unwind_180911d00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1b88);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1b88);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81657,8 +81657,8 @@ void Unwind_180911d20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1b98);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1b98);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81677,8 +81677,8 @@ void Unwind_180911d40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ba8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ba8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81697,8 +81697,8 @@ void Unwind_180911d60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1bb8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1bb8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81717,8 +81717,8 @@ void Unwind_180911d80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1bc8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1bc8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81737,8 +81737,8 @@ void Unwind_180911da0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1c70);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1c70);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81757,8 +81757,8 @@ void Unwind_180911dc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1e50);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1e50);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81852,8 +81852,8 @@ void Unwind_180911e00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1e90);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1e90);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81872,8 +81872,8 @@ void Unwind_180911e20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ea0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ea0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81894,24 +81894,24 @@ void Unwind_180911e40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x70);
-  lVar1 = *(longlong *)(resourceTable + 0x1ed8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x1ed8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x1ec8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x1ec8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x1eb8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x1eb8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81935,24 +81935,24 @@ void Unwind_180911e60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   resourceTable = *(longlong *)(param_2 + 0x70);
   uVar3 = 0xfffffffffffffffe;
   ExecuteSystemFinalization();
-  lVar1 = *(longlong *)(resourceTable + 0x2d68);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x2d68);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x2d58);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x2d58);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x2d48);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x2d48);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81971,8 +81971,8 @@ void Unwind_180911e80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2dd8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2dd8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -81991,8 +81991,8 @@ void Unwind_180911ea0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e10);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e10);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82011,8 +82011,8 @@ void Unwind_180911ec0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e20);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e20);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82031,8 +82031,8 @@ void Unwind_180911ee0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e30);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e30);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82051,8 +82051,8 @@ void Unwind_180911f00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e50);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e50);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82081,8 +82081,8 @@ void Unwind_180911f50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 200);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x78) + 200);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82101,8 +82101,8 @@ void Unwind_180911f70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0xe0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0xe0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82121,8 +82121,8 @@ void Unwind_180911f90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x78) + 8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82141,8 +82141,8 @@ void Unwind_180911fa0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x18);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x18);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82161,8 +82161,8 @@ void Unwind_180911fb0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x80) + 8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x80) + 8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82181,8 +82181,8 @@ void Unwind_180911fc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x10);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x10);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82201,8 +82201,8 @@ void Unwind_180911fd0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x20);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x20);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82221,8 +82221,8 @@ void Unwind_180911fe0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x30);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x30);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82241,8 +82241,8 @@ void Unwind_180911ff0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x48);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x48);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82261,8 +82261,8 @@ void Unwind_180912000(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x58);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x58);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82281,8 +82281,8 @@ void Unwind_180912010(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x68);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x68);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82301,8 +82301,8 @@ void Unwind_180912020(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x1530);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x1530);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82321,8 +82321,8 @@ void Unwind_180912040(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 200);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 200);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82341,8 +82341,8 @@ void Unwind_180912060(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xe0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xe0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82361,8 +82361,8 @@ void Unwind_180912080(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x10);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x10);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82381,8 +82381,8 @@ void Unwind_180912090(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x20);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x20);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82401,8 +82401,8 @@ void Unwind_1809120a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x30);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x30);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82421,8 +82421,8 @@ void Unwind_1809120b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x90);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x90);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82441,8 +82441,8 @@ void Unwind_1809120d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xc0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xc0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82461,8 +82461,8 @@ void Unwind_1809120f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xd0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xd0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82481,8 +82481,8 @@ void Unwind_180912110(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xe0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xe0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82501,8 +82501,8 @@ void Unwind_180912130(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xf0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xf0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82521,8 +82521,8 @@ void Unwind_180912150(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x1530);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x1530);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82541,8 +82541,8 @@ void Unwind_180912170(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0x40);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82563,40 +82563,40 @@ void Unwind_180912180(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x70);
-  lVar1 = *(longlong *)(resourceTable + 0x1f0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x1f0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x1e0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x1e0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x1d0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x1d0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x1c0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x1c0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar1 = *(longlong *)(resourceTable + 400);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 400);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82615,8 +82615,8 @@ void Unwind_1809121a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x220);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x220);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82635,8 +82635,8 @@ void Unwind_1809121c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2c0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2c0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82655,8 +82655,8 @@ void Unwind_1809121e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2d0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2d0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82680,56 +82680,56 @@ void Unwind_180912200(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   resourceTable = *(longlong *)(param_2 + 0x70);
   uVar3 = 0xfffffffffffffffe;
   SystemResourceInitializationComplete();
-  lVar1 = *(longlong *)(resourceTable + 0x390);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x390);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x378);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x378);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x368);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x368);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x358);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x358);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x318);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x318);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x308);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x308);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x2f8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x2f8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82748,8 +82748,8 @@ void Unwind_180912220(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x90);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x90);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82768,8 +82768,8 @@ void Unwind_180912240(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xc0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xc0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82788,8 +82788,8 @@ void Unwind_180912260(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xd0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xd0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82808,8 +82808,8 @@ void Unwind_180912280(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xf0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xf0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82830,40 +82830,40 @@ void Unwind_1809122a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x40);
-  lVar1 = *(longlong *)(resourceTable + 0x1f0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x1f0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x1e0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x1e0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x1d0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x1d0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x1c0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x1c0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar1 = *(longlong *)(resourceTable + 400);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 400);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82882,8 +82882,8 @@ void Unwind_1809122c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x220);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x220);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82902,8 +82902,8 @@ void Unwind_1809122e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x2c0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x2c0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82922,8 +82922,8 @@ void Unwind_180912300(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x2d0);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x2d0);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -82947,56 +82947,56 @@ void Unwind_180912320(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   resourceTable = *(longlong *)(param_2 + 0x40);
   uVar3 = 0xfffffffffffffffe;
   SystemResourceInitializationComplete();
-  lVar1 = *(longlong *)(resourceTable + 0x390);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x390);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x378);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x378);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x368);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x368);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x358);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x358);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x318);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x318);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x308);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x308);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
-  lVar1 = *(longlong *)(resourceTable + 0x2f8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(resourceTable + 0x2f8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83015,8 +83015,8 @@ void Unwind_180912340(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x48) + 0x38);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x48) + 0x38);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83035,8 +83035,8 @@ void Unwind_180912350(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x48) + 8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x48) + 8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83055,8 +83055,8 @@ void Unwind_180912360(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x38);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x38);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83105,8 +83105,8 @@ void Unwind_180912400(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 200) + 8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 200) + 8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83125,8 +83125,8 @@ void Unwind_180912410(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 200) + 0x18);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 200) + 0x18);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83145,8 +83145,8 @@ void Unwind_180912420(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 200) + 0x28);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 200) + 0x28);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83165,8 +83165,8 @@ void Unwind_180912430(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x28) + 8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83185,8 +83185,8 @@ void Unwind_180912440(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x48);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x48);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83205,8 +83205,8 @@ void Unwind_180912450(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x58);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x58);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83225,8 +83225,8 @@ void Unwind_180912460(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x68);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x68);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83265,8 +83265,8 @@ void Unwind_1809124d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0x60);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83285,8 +83285,8 @@ void Unwind_1809124e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x60);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0x60);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83306,14 +83306,14 @@ void Unwind_1809124f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   longlong loopCounter;
   uint8_t8 validationResult;
   
-  lVar1 = *(longlong *)(param_2 + 0x50);
+  loopCounter = *(longlong *)(param_2 + 0x50);
   validationResult = 0xfffffffffffffffe;
   SystemResourceCleanupHandler(*(uint8_t8 *)(lVar1 + 0x30));
   *(uint8_t8 *)(lVar1 + 0x30) = 0;
   *(uint8_t8 *)(lVar1 + 0x18) = 0;
   *(uint8_t8 *)(lVar1 + 0x10) = 0;
-  lVar1 = *(longlong *)(lVar1 + 0x28);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(lVar1 + 0x28);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83332,8 +83332,8 @@ void Unwind_180912500(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x58) + 0x28);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x58) + 0x28);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83352,8 +83352,8 @@ void Unwind_180912510(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x28);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x28);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83372,8 +83372,8 @@ void Unwind_180912520(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x50) + 8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83392,8 +83392,8 @@ void Unwind_180912530(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x18);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x18);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83412,8 +83412,8 @@ void Unwind_180912540(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x50) + 8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83442,8 +83442,8 @@ void Unwind_180912580(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x48) + 0x28);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x48) + 0x28);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83462,8 +83462,8 @@ void Unwind_180912590(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x58);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0x58);
+  if (loopCounter != 0) {
     *(uint8_t8 *)(param_2 + 0x50) = 0;
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
@@ -83471,8 +83471,8 @@ void Unwind_180912590(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar1 = *(longlong *)(param_2 + 0x48);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0x48);
+  if (loopCounter != 0) {
     *(uint8_t8 *)(param_2 + 0x40) = 0;
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
@@ -83481,16 +83481,16 @@ void Unwind_180912590(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   *(uint8_t4 *)(param_2 + 0x60) = 0;
-  lVar1 = *(longlong *)(param_2 + 0x58);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0x58);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar1 = *(longlong *)(param_2 + 0x48);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0x48);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83509,8 +83509,8 @@ void Unwind_1809125a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x48);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0x48);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83529,8 +83529,8 @@ void Unwind_1809125b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x58);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0x58);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83549,8 +83549,8 @@ void Unwind_1809125c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0xc0) + 8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0xc0) + 8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83599,8 +83599,8 @@ void Unwind_180912660(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0xa8) + 8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0xa8) + 8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83629,8 +83629,8 @@ void Unwind_1809126a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x28);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x28);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83688,8 +83688,8 @@ void Unwind_180912770(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x30);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0x30);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83714,8 +83714,8 @@ void Unwind_180912780(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   *(uint8_t8 *)(param_2 + 0x1d0) = 0;
   *(uint8_t8 *)(param_2 + 0x1b8) = 0;
   *(uint8_t8 *)(param_2 + 0x1b0) = 0;
-  lVar1 = *(longlong *)(param_2 + 0x1c8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0x1c8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83740,8 +83740,8 @@ void Unwind_180912790(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   *(uint8_t8 *)(param_2 + 0xc0) = 0;
   *(uint8_t8 *)(param_2 + 0xa8) = 0;
   *(uint8_t8 *)(param_2 + 0xa0) = 0;
-  lVar1 = *(longlong *)(param_2 + 0xb8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0xb8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83766,8 +83766,8 @@ void Unwind_1809127a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   *(uint8_t8 *)(param_2 + 0xc0) = 0;
   *(uint8_t8 *)(param_2 + 0xa8) = 0;
   *(uint8_t8 *)(param_2 + 0xa0) = 0;
-  lVar1 = *(longlong *)(param_2 + 0xb8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0xb8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83792,8 +83792,8 @@ void Unwind_1809127b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   *(uint8_t8 *)(param_2 + 0x1d0) = 0;
   *(uint8_t8 *)(param_2 + 0x1b8) = 0;
   *(uint8_t8 *)(param_2 + 0x1b0) = 0;
-  lVar1 = *(longlong *)(param_2 + 0x1c8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(param_2 + 0x1c8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83813,14 +83813,14 @@ void Unwind_1809127c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   longlong loopCounter;
   uint8_t8 validationResult;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   validationResult = 0xfffffffffffffffe;
   SystemResourceCleanupHandler(*(uint8_t8 *)(lVar1 + 0x30));
   *(uint8_t8 *)(lVar1 + 0x30) = 0;
   *(uint8_t8 *)(lVar1 + 0x18) = 0;
   *(uint8_t8 *)(lVar1 + 0x10) = 0;
-  lVar1 = *(longlong *)(lVar1 + 0x28);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(lVar1 + 0x28);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83866,8 +83866,8 @@ void Unwind_1809127e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x18);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x18);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83886,8 +83886,8 @@ void Unwind_1809127f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x18);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x18);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83906,8 +83906,8 @@ void Unwind_180912800(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x58) + 8);
-  if (lVar1 != 0) {
+  loopCounter = *(longlong *)(*(longlong *)(param_2 + 0x58) + 8);
+  if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -83924,7 +83924,7 @@ void Unwind_180912810(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
+  loopCounter = *(longlong *)(param_2 + 0x40);
   *(uint8_t1 *)(lVar1 + 0x88) = 0;
   *(uint8_t8 *)(lVar1 + 0x90) = 0;
   *(uint8_t8 *)(lVar1 + 0x9c) = 0;
@@ -84007,7 +84007,7 @@ void Unwind_180912910(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x218) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x220) != 0) {
                     // WARNING: Subroutine does not return
@@ -84070,7 +84070,7 @@ void Unwind_180912950(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x388) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x390) != 0) {
                     // WARNING: Subroutine does not return
@@ -84089,7 +84089,7 @@ void Unwind_180912970(uint8_t8 param_1,longlong param_2)
 {
   longlong loopCounter;
   
-  lVar1 = *(longlong *)(param_2 + 0x80);
+  loopCounter = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x3a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
@@ -85146,7 +85146,7 @@ void InitializeSystemDataStructureAI(void)
     validationResult = _DAT_180c91f28 - _DAT_180c91f18 & 0xfffffffffffffff8;
     lVar1 = _DAT_180c91f18;
     if (0xfff < validationResult) {
-      lVar1 = *(longlong *)(_DAT_180c91f18 + -8);
+      loopCounter = *(longlong *)(_DAT_180c91f18 + -8);
       validationResult = validationResult + 0x27;
       if (0x1f < (_DAT_180c91f18 - lVar1) - 8U) {
                     // WARNING: Subroutine does not return
@@ -86971,7 +86971,7 @@ void ReleaseValidationResultTable(void)
     validationResult = lRam0000000180d49da0 - lRam0000000180d49d90 & 0xfffffffffffffff0;
     lVar1 = lRam0000000180d49d90;
     if (0xfff < validationResult) {
-      lVar1 = *(longlong *)(lRam0000000180d49d90 + -8);
+      loopCounter = *(longlong *)(lRam0000000180d49d90 + -8);
       if (0x1f < (lRam0000000180d49d90 - lVar1) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn(lRam0000000180d49d90 - lVar1,validationResult + 0x27);
