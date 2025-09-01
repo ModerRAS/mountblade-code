@@ -20285,11 +20285,11 @@ void InitializeSystemCoreEngine(void)
   auStack_2f0[0] = 0;
   uStack_2f8 = 0x18;
   unsignedSystemValue10 = strcpy_s(auStack_2f0,0x40,&SystemDataBufferTemplateJ);
-  fVar12 = (float)FUN_180095720(unsignedSystemValue10,&puStack_308);
+  fVar12 = (float)GetSystemResolutionFactor(unsignedSystemValue10,&puStack_308);
   puStack_308 = &SystemMemoryAllocatorReference;
-  unsignedSystemValue5 = FUN_180623ce0();
+  unsignedSystemValue5 = GetSystemInitializationStatus();
   if (0 < SystemConfigDataPointerD) {
-    FUN_180629a40(&DAT_180bf52c0,&puStack_558,0,SystemConfigDataPointerD + -1);
+    InitializeSystemConfiguration(&DAT_180bf52c0,&puStack_558,0,SystemConfigDataPointerD + -1);
     iStack_548 = iStack_548 + -1;
     localSystemFlags = (long long)iStack_548;
     iVar3 = -1;
@@ -20302,7 +20302,7 @@ void InitializeSystemCoreEngine(void)
         iVar3 = -1;
       } while (-1 < localSystemFlags);
     }
-    FUN_180629a40(&puStack_558,&puStack_538,iVar3 + 1,0xffffffff);
+    InitializeSystemConfiguration(&puStack_558,&puStack_538,iVar3 + 1,0xffffffff);
     iVar3 = FUN_180046b80(&DAT_180bf5240,&puStack_538);
     if (iVar3 == -1) {
       iVar3 = FUN_180046890(&DAT_180bf5240,&puStack_538);
