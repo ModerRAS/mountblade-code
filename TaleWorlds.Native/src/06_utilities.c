@@ -9009,36 +9009,44 @@ uint8_t GetDefaultErrorStatus(void)
 uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
-  float CalculatedFloatValue;
-  uint8_t validationResult;
-  int64_t resourceIndex;
-  float SecondaryFloatValue;
-  uint32_t aSecurityValidationContext [2];
+  float InputFloatValue;
+  uint8_t ValidationResult;
+  int64_t ResourceIndex;
+  float RangeMinValue;
+  float RangeMaxValue;
+  float ClampedFloatValue;
+  uint32_t SecurityValidationBuffer [2];
   
   if ((*(uint *)(ObjectContextParameter + 0x18) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  aSecurityValidationContext[0] = 0;
-  validationResult = ProcessDataHashing(ValidationContextParameter + 0x60,ObjectContextParameter + 0x10,aSecurityValidationContext);
-  if ((int)validationResult == 0) {
-    resourceIndex = LookupResourceIndex(ValidationContextParameter + 0x60,aSecurityValidationContext[0]);
-    if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
+  SecurityValidationBuffer[0] = 0;
+  ValidationResult = ProcessDataHashing(ValidationContextParameter + 0x60,ObjectContextParameter + 0x10,SecurityValidationBuffer);
+  if ((int)ValidationResult == 0) {
+    ResourceIndex = LookupResourceIndex(ValidationContextParameter + 0x60,SecurityValidationBuffer[0]);
+    if ((*(uint *)(ResourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    floatValue1 = *(float *)(ObjectContextParameter + 0x18);
-    floatValue4 = *(float *)(resourceIndex + 0x38);
-    if ((*(float *)(resourceIndex + 0x38) <= floatValue1) &&
-       (floatValue4 = *(float *)(resourceIndex + 0x3c), floatValue1 <= *(float *)(resourceIndex + 0x3c))) {
-      floatValue4 = floatValue1;
+    InputFloatValue = *(float *)(ObjectContextParameter + 0x18);
+    RangeMinValue = *(float *)(ResourceIndex + 0x38);
+    RangeMaxValue = *(float *)(ResourceIndex + 0x3c);
+    if ((RangeMinValue <= InputFloatValue) && (InputFloatValue <= RangeMaxValue)) {
+      ClampedFloatValue = InputFloatValue;
     }
-    *(float *)(ObjectContextParameter + 0x18) = floatValue4;
-    validationResult = ValidateResourceParameters(ValidationContextParameter + 0x60,aSecurityValidationContext[0],floatValue4);
-    if ((int)validationResult == 0) {
+    else if (InputFloatValue < RangeMinValue) {
+      ClampedFloatValue = RangeMinValue;
+    }
+    else {
+      ClampedFloatValue = RangeMaxValue;
+    }
+    *(float *)(ObjectContextParameter + 0x18) = ClampedFloatValue;
+    ValidationResult = ValidateResourceParameters(ValidationContextParameter + 0x60,SecurityValidationBuffer[0],ClampedFloatValue);
+    if ((int)ValidationResult == 0) {
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(uint8_t *)(ValidationContextParameter + 0x98),ObjectContextParameter);
     }
   }
-  return validationResult;
+  return ValidationResult;
 }
 
 
@@ -9052,35 +9060,43 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContextParameter, 
 uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t ObjectContextParameter, uint8_t ValidationContextParameter)
 
 {
-  float CalculatedFloatValue;
-  uint8_t validationResult;
-  int64_t resourceIndex;
+  float InputFloatValue;
+  uint8_t ValidationResult;
+  int64_t ResourceIndex;
   int64_t ResourceContextPointer;
   int64_t SystemContextPointer;
-  float SecondaryFloatValue;
-  uint32_t StackProcessingBuffer;
+  float RangeMinValue;
+  float RangeMaxValue;
+  float ClampedFloatValue;
+  uint32_t SecurityValidationBuffer;
   
-  uStack0000000000000040 = 0;
-  validationResult = ProcessDataHashing(SystemContextPointer + 0x60,ValidationContextParameter,&ObjectStackBuffer40);
-  if ((int)validationResult == 0) {
-    resourceIndex = LookupResourceIndex(SystemContextPointer + 0x60,uStack0000000000000040);
-    if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
+  SecurityValidationBuffer = 0;
+  ValidationResult = ProcessDataHashing(SystemContextPointer + 0x60,ValidationContextParameter,&SecurityValidationBuffer);
+  if ((int)ValidationResult == 0) {
+    ResourceIndex = LookupResourceIndex(SystemContextPointer + 0x60,SecurityValidationBuffer);
+    if ((*(uint *)(ResourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    floatValue1 = *(float *)(ResourceContextPointer + 0x18);
-    floatValue4 = *(float *)(resourceIndex + 0x38);
-    if ((*(float *)(resourceIndex + 0x38) <= floatValue1) &&
-       (floatValue4 = *(float *)(resourceIndex + 0x3c), floatValue1 <= *(float *)(resourceIndex + 0x3c))) {
-      floatValue4 = floatValue1;
+    InputFloatValue = *(float *)(ResourceContextPointer + 0x18);
+    RangeMinValue = *(float *)(ResourceIndex + 0x38);
+    RangeMaxValue = *(float *)(ResourceIndex + 0x3c);
+    if ((RangeMinValue <= InputFloatValue) && (InputFloatValue <= RangeMaxValue)) {
+      ClampedFloatValue = InputFloatValue;
     }
-    *(float *)(ResourceContextPointer + 0x18) = floatValue4;
-    validationResult = ValidateResourceParameters(SystemContextPointer + 0x60,uStack0000000000000040,floatValue4);
-    if ((int)validationResult == 0) {
+    else if (InputFloatValue < RangeMinValue) {
+      ClampedFloatValue = RangeMinValue;
+    }
+    else {
+      ClampedFloatValue = RangeMaxValue;
+    }
+    *(float *)(ResourceContextPointer + 0x18) = ClampedFloatValue;
+    ValidationResult = ValidateResourceParameters(SystemContextPointer + 0x60,SecurityValidationBuffer,ClampedFloatValue);
+    if ((int)ValidationResult == 0) {
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + 0x98));
     }
   }
-  return validationResult;
+  return ValidationResult;
 }
 
 
@@ -33215,7 +33231,7 @@ void InitializeSystemResourceHandler(uint8_t ObjectContextParameter, int64_t Val
 
 
 
-void Unwind_180902e50(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindSystemContextInitializer(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -33343,7 +33359,7 @@ void ExecuteSystemResourceRelease(uint8_t ObjectContextParameter, int64_t Valida
 
 
 
-void Unwind_180902e80(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindResourceTableSetup(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -33386,7 +33402,7 @@ void Unwind_180902e80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902e90(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindMemoryPoolInitializer(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;
@@ -33405,7 +33421,7 @@ void Unwind_180902e90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902eb0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindProcessControllerSetup(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -33448,7 +33464,7 @@ void Unwind_180902eb0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902ec0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindExceptionHandlerSetup(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -33491,7 +33507,7 @@ void Unwind_180902ec0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902ed0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindStackFrameProcessor(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x20) = &SystemDataStructure;
@@ -33500,7 +33516,18 @@ void Unwind_180902ed0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902ee0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 异常处理类型六的展开处理函数
+ * 
+ * 该函数负责处理类型六的异常展开操作
+ * 设置系统数据结构指针到验证上下文中
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ * @note 此函数在异常处理过程中被调用
+ */
+void UnwindExceptionHandlerTypeSix(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x438) = &SystemDataStructure;
