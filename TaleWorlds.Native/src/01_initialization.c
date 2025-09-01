@@ -20536,12 +20536,12 @@ void InitializeSystemConfigurationData(void* param_1,void* param_2,void* param_3
   }
   iVar17 = 0;
   FUN_18062e0f0(puVar5,&SystemConfigurationTerminatorPointer);
-  if ((SystemInitializationStatusB - SystemInitializationStatusA) / 0x28 != 0) {
+  if ((SystemInitializationProgress - SystemInitializationStatusCode) / 0x28 != 0) {
     lVar11 = 0;
     do {
-      lVar6 = SystemInitializationStatusA;
+      lVar6 = SystemInitializationStatusCode;
       lVar13 = 0;
-      pcVar14 = *(char **)(SystemInitializationStatusA + 8 + lVar11);
+      pcVar14 = *(char **)(SystemInitializationStatusCode + 8 + lVar11);
       cVar2 = *pcVar14;
       while (cVar2 != '\0') {
         lVar7 = strchr(&SystemCharacterReplacementTable,(int)pcVar14[lVar13]);
@@ -20552,15 +20552,15 @@ void InitializeSystemConfigurationData(void* param_1,void* param_2,void* param_3
         pcVar14 = *(char **)(lVar6 + 8 + lVar11);
         cVar2 = pcVar14[lVar13];
       }
-      puVar9 = *(void* **)(SystemInitializationStatusA + 8 + lVar11);
+      puVar9 = *(void* **)(SystemInitializationStatusCode + 8 + lVar11);
       puVar15 = &SystemStringTemplate;
       if (puVar9 != (void* *)0x0) {
         puVar15 = puVar9;
       }
-      FUN_18062e0f0(puVar5,&SystemPropertyTemplate,puVar15,*(void* *)(SystemInitializationStatusA + 0x20 + lVar11));
+      FUN_18062e0f0(puVar5,&SystemPropertyTemplate,puVar15,*(void* *)(SystemInitializationStatusCode + 0x20 + lVar11));
       iVar17 = iVar17 + 1;
       lVar11 = lVar11 + 0x28;
-    } while ((ulong long)(long long)iVar17 < (ulong long)((SystemInitializationStatusB - SystemInitializationStatusA) / 0x28));
+    } while ((ulong long)(long long)iVar17 < (ulong long)((SystemInitializationProgress - SystemInitializationStatusCode) / 0x28));
   }
   if (puVar5[1] != 0) {
     fclose();
