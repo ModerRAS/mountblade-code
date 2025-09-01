@@ -2949,38 +2949,38 @@ undefined SystemVariable20;
 undefined SystemVariable21;
 undefined SystemVariable22;
 undefined SystemVariable23;
-undefined UNK_180a39c10;
-undefined UNK_180a39c30;
-undefined UNK_180a39c50;
-undefined UNK_180a39c60;
-undefined UNK_180a39c80;
-undefined UNK_180a39c98;
-undefined UNK_180a39cb8;
-undefined UNK_180a39ccc;
-undefined UNK_180a39cd0;
-undefined UNK_180a39cd4;
-undefined UNK_180a39cd8;
-undefined UNK_180a39ce0;
-undefined UNK_180a39cf8;
-undefined UNK_180a39d10;
-undefined UNK_180a39d28;
-undefined UNK_180a39d40;
-undefined UNK_180a39d58;
-undefined UNK_180a39d70;
-undefined UNK_180a39d88;
-undefined UNK_180a39d98;
-undefined UNK_180a39da8;
-undefined UNK_180a39db0;
-undefined UNK_180a39dc0;
-undefined UNK_180a39dd0;
-undefined UNK_180a39de0;
-undefined UNK_180a39df0;
-undefined UNK_180a39e08;
-undefined UNK_180a39e18;
-undefined UNK_180a39e30;
-undefined UNK_180a39e48;
-undefined UNK_180a39e58;
-undefined UNK_180a39e78;
+undefined MemoryAddressVariable01;
+undefined MemoryAddressVariable02;
+undefined MemoryAddressVariable03;
+undefined MemoryAddressVariable04;
+undefined MemoryAddressVariable05;
+undefined MemoryAddressVariable06;
+undefined MemoryAddressVariable07;
+undefined MemoryAddressVariable08;
+undefined MemoryAddressVariable09;
+undefined MemoryAddressVariable10;
+undefined MemoryAddressVariable11;
+undefined MemoryAddressVariable12;
+undefined MemoryAddressVariable13;
+undefined MemoryAddressVariable14;
+undefined MemoryAddressVariable15;
+undefined MemoryAddressVariable16;
+undefined MemoryAddressVariable17;
+undefined MemoryAddressVariable18;
+undefined MemoryAddressVariable19;
+undefined MemoryAddressVariable20;
+undefined MemoryAddressVariable21;
+undefined MemoryAddressVariable22;
+undefined MemoryAddressVariable23;
+undefined MemoryAddressVariable24;
+undefined MemoryAddressVariable25;
+undefined MemoryAddressVariable26;
+undefined MemoryAddressVariable27;
+undefined MemoryAddressVariable28;
+undefined MemoryAddressVariable29;
+undefined MemoryAddressVariable30;
+undefined MemoryAddressVariable31;
+undefined MemoryAddressVariable32;
 undefined UNK_180a39e90;
 undefined UNK_180a39ea8;
 undefined UNK_180a39eb8;
@@ -26608,9 +26608,9 @@ undefined8 ResourceBatchProcessor(longlong param_1,longlong *param_2)
             && (resourceHash = ComputeDataHash(param_2,param_1 + 0x68), (int)resourceHash == 0)) &&
            (((resourceHash = ComputeDataHash(param_2,param_1 + 0x6c), (int)resourceHash == 0 &&
              (resourceHash = ComputeDataHash(param_2,dataContext + 0x70), (int)resourceHash == 0)) &&
-            ((resourceHash = FUN_180898eb0(param_2,param_1 + 0x74), (int)resourceHash == 0 &&
-             (resourceHash = FUN_180898eb0(param_2,dataContext + 0x78), (int)resourceHash == 0)))))) {
-          resourceHash = FUN_1808a7c40(param_2,param_1 + 0x5c,0x74);
+            ((resourceHash = ComputeDataHash(param_2,param_1 + 0x74), (int)resourceHash == 0 &&
+             (resourceHash = ComputeDataHash(param_2,dataContext + 0x78), (int)resourceHash == 0)))))) {
+          resourceHash = ValidateResourceFormat(param_2,param_1 + 0x5c,0x74);
         }
       }
     }
@@ -27671,7 +27671,7 @@ undefined8 ValidateResourceId(longlong param_1,longlong *param_2)
       if ((int)resourceHash != 0) {
         return resourceHash;
       }
-      resourceHash = FUN_180898eb0(param_2,param_1 + 0x74);
+      resourceHash = ComputeDataHash(param_2,param_1 + 0x74);
       if ((int)resourceHash != 0) {
         return resourceHash;
       }
@@ -83709,12 +83709,11 @@ void ProcessNetworkConnectionDataTransfer(undefined8 ConnectionHandle, longlong 
 
 
  void ProcessNetworkSecondaryBuffer(undefined8 ConnectionHandle, longlong ConnectionContext)
-void ProcessNetworkSecondaryBuffer(undefined8 ConnectionHandle, longlong ConnectionContext)
 
 {
-  if (*(char *)(param_2 + 0x20) == '\0') {
-    FUN_1808fc914(*(undefined8 *)(param_2 + 0x60),*(undefined8 *)(param_2 + 0x68),
-                  *(undefined8 *)(param_2 + 0x70),*(undefined8 *)(param_2 + 0x78));
+  if (*(char *)(ConnectionContext + 0x20) == '\0') {
+    FUN_1808fc914(*(undefined8 *)(ConnectionContext + 0x60),*(undefined8 *)(ConnectionContext + 0x68),
+                  *(undefined8 *)(ConnectionContext + 0x70),*(undefined8 *)(ConnectionContext + 0x78));
   }
   return;
 }
@@ -83724,12 +83723,12 @@ void ProcessNetworkSecondaryBuffer(undefined8 ConnectionHandle, longlong Connect
 undefined4 InitializeNetworkBufferDataWithSecurity(undefined8 BufferHandle, longlong BufferContext)
 
 {
-  *(undefined8 *)(param_2 + 0x40) = param_1;
-  *(undefined8 *)(param_2 + 0x30) = param_1;
-  *(undefined8 *)(param_2 + 0x38) = **(undefined8 **)(param_2 + 0x30);
-  if (**(int **)(param_2 + 0x38) != -0x1f928c9d) {
-    *(undefined4 *)(param_2 + 0x20) = 0;
-    return *(undefined4 *)(param_2 + 0x20);
+  *(undefined8 *)(BufferContext + 0x40) = BufferHandle;
+  *(undefined8 *)(BufferContext + 0x30) = BufferHandle;
+  *(undefined8 *)(BufferContext + 0x38) = **(undefined8 **)(BufferContext + 0x30);
+  if (**(int **)(BufferContext + 0x38) != -0x1f928c9d) {
+    *(undefined4 *)(BufferContext + 0x20) = 0;
+    return *(undefined4 *)(BufferContext + 0x20);
   }
                     // WARNING: Subroutine does not return
   terminate();
