@@ -22799,10 +22799,10 @@ void InitializeSystemThreadPoolManager(void)
   uStack_40 = 0xfffffffffffffffe;
   uStack_10 = SystemEncryptionKeyTemplate ^ (ulong long)stackBuffer;
   uStack_68 = 0;
-  cVar1 = FUN_18004a500();
+  cVar1 = CheckSystemInitializationStatus();
   if (cVar1 == '\0') {
-    FUN_18004b1f0(1);
-    FUN_18004a500();
+    SetSystemInitializationFlag(1);
+    CheckSystemInitializationStatus();
   }
   puStack_38 = &UNK_1809fdc18;
   puStack_30 = auStack_20;
@@ -22810,11 +22810,11 @@ void InitializeSystemThreadPoolManager(void)
   uStack_28 = 6;
   strcpy_s(auStack_20,0x10,&SystemStringConstantWindowTitleJ);
   uStack_68 = 1;
-  FUN_1806279c0(auStack_60,&puStack_38);
+  ProcessSystemWindowTitle(auStack_60,&puStack_38);
   uStack_68 = 0;
   puStack_38 = &SystemMemoryAllocatorReference;
   iVar5 = uStack_50 + 0xf;
-  FUN_1806277c0(auStack_60,iVar5);
+  ProcessSystemStringData(auStack_60,iVar5);
   pointerToUnsigned2 = (uint32_t *)(puStack_58 + uStack_50);
   *pointerToUnsigned2 = 0x72657375;
   pointerToUnsigned2[1] = 0x6e6f635f;
