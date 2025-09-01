@@ -35316,8 +35316,19 @@ void* ProcessAndReleaseSystemResource(void* SystemResourcePointer,ulong long Con
 
 
 
-// 函数: void FUN_18005a9a0(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005a9a0(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源批量处理和清理函数
+ * 
+ * 该函数负责对系统资源进行批量处理和清理操作，包括多个偏移量的资源处理。
+ * 它会按顺序处理不同位置的资源，并进行必要的清理和检查。
+ * 
+ * @param SystemResourcePointer 系统资源指针的指针，包含需要处理的资源信息
+ * @param ConfigurationDataPointer 配置数据指针，包含处理操作的配置信息
+ * @param AdditionalParameter 额外参数，用于扩展处理功能
+ * @param ConfigurationFlag 配置标志，用于控制处理行为
+ * @note 这是系统资源批量处理的重要组成部分，用于处理复杂的资源清理操作
+ */
+void ProcessAndCleanupBatchSystemResources(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *SystemResourcePointer = &UNK_1809fddc8;
