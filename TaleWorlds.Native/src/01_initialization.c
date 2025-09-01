@@ -11325,7 +11325,15 @@ void InitializeSystemEventDataNodeManager(void)
 
 
 // 函数: void FUN_18003a9b0(void)
-void FUN_18003a9b0(void)
+/**
+ * @brief 初始化系统资源节点
+ * 
+ * 该函数负责初始化系统资源节点，设置资源节点的相关配置和回调函数。
+ * 它会遍历系统资源树，找到合适的位置插入新的资源节点，并设置节点的属性。
+ * 
+ * @note 这是一个系统资源管理的核心函数，确保资源节点的正确初始化
+ */
+void InitializeSystemResourceNode(void)
 
 {
   char systemNodeFlag;

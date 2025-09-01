@@ -20101,24 +20101,24 @@ NetworkHandle ProcessNetworkConnectionData(longlong connectionContext, longlong 
       if ((((int)networkResult == 0) &&
           (((connectionStatus == 0 ||
             (networkResult = FUN_1808c19d0(*(NetworkHandle *)(packetData + 0x38),connectionStatus), (int)networkResult == 0)) &&
-           (tertiaryNetworkFlag = func_0x0001808c1de0(*(NetworkHandle *)(connectionContext + 0x10),packetData), (int)tertiaryNetworkFlag == 0)))
-          ) && ((tertiaryNetworkFlag = func_0x000180853810(*(NetworkHandle *)(connectionContext + 0x10),packetData),
-                (int)tertiaryNetworkFlag == 0 &&
-                (tertiaryNetworkFlag = FUN_180853560(*(NetworkHandle *)(connectionContext + 8),packetData), (int)tertiaryNetworkFlag == 0)))) {
-        plVar1 = (longlong *)(packetData + 0xb0);
-        while (((longlong *)*plVar1 != plVar1 || (*(longlong **)(packetData + 0xb8) != plVar1))) {
-          tertiaryNetworkFlag = FUN_1808c4370(((longlong *)*plVar1)[2],packetData,0);
-          if ((int)tertiaryNetworkFlag != 0) {
-            return tertiaryNetworkFlag;
+           (networkResult = func_0x0001808c1de0(*(NetworkHandle *)(connectionContext + 0x10),packetData), (int)networkResult == 0)))
+          ) && ((networkResult = func_0x000180853810(*(NetworkHandle *)(connectionContext + 0x10),packetData),
+                (int)networkResult == 0 &&
+                (networkResult = FUN_180853560(*(NetworkHandle *)(connectionContext + 8),packetData), (int)networkResult == 0)))) {
+        dataPointer1 = (longlong *)(packetData + 0xb0);
+        while (((longlong *)*dataPointer1 != dataPointer1 || (*(longlong **)(packetData + 0xb8) != dataPointer1))) {
+          networkResult = FUN_1808c4370(((longlong *)*dataPointer1)[2],packetData,0);
+          if ((int)networkResult != 0) {
+            return networkResult;
           }
-          tertiaryNetworkFlag = FUN_1808c1c20(*(NetworkHandle *)(connectionContext + 0x10));
-          if ((int)tertiaryNetworkFlag != 0) {
-            return tertiaryNetworkFlag;
+          networkResult = FUN_1808c1c20(*(NetworkHandle *)(connectionContext + 0x10));
+          if ((int)networkResult != 0) {
+            return networkResult;
           }
         }
-        tertiaryNetworkFlag = FUN_1808b1f70(packetData);
-        if ((int)tertiaryNetworkFlag == 0) {
-          lVar2 = *(longlong *)(packetData + 0x48);
+        networkResult = FUN_1808b1f70(packetData);
+        if ((int)networkResult == 0) {
+          connectionStatus = *(longlong *)(packetData + 0x48);
           if (lVar2 != 0) {
             if (*(longlong *)(lVar2 + 8) != packetData) {
               return 0x1c;
