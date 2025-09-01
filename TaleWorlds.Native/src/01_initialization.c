@@ -18244,10 +18244,10 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long initializa
   }
   else {
 LAB_180044ee3:
-    if (plVar6[0xc] == 0) {
-      lVar7 = GetProcAddress(lVar7,&UNK_180a3c410);
-      plVar6[0xc] = lVar7;
-      if (lVar7 == 0) {
+    if (AllocatedMemoryPointer[0xc] == 0) {
+      FunctionAddress = GetProcAddress(LibraryHandle,&UNK_180a3c410);
+      AllocatedMemoryPointer[0xc] = FunctionAddress;
+      if (FunctionAddress == 0) {
         puStack_b8 = &SystemGlobalDataReference;
         if (puStack_b0 != (void* *)0x0) {
                     // WARNING: Subroutine does not return
