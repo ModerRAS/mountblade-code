@@ -33616,17 +33616,24 @@ void MoveSystemResourceData(long long SystemResourcePointer,long long Configurat
 
 
 
-// 函数: void FUN_180059380(void* *SystemResourcePointer)
-void FUN_180059380(void* *SystemResourcePointer)
+/**
+ * @brief 初始化系统资源指针
+ * 
+ * 该函数负责初始化系统资源指针，设置全局数据引用和内存分配器引用，
+ * 用于系统资源管理的前期准备工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组
+ * 
+ * 原始函数名为FUN_180059380，现已重命名为InitializeSystemResourcePointer
+ */
+void InitializeSystemResourcePointer(void* *SystemResourcePointer)
 
 {
   if (SystemResourcePointer[4] != 0) {
-                    // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
@@ -33638,24 +33645,34 @@ void FUN_180059380(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_1800593f0(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_1800593f0(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 递归初始化系统配置数据
+ * 
+ * 该函数负责递归地初始化系统配置数据，设置全局数据引用和内存分配器引用，
+ * 用于系统配置的深度初始化处理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_1800593f0，现已重名为InitializeSystemConfigurationDataRecursive
+ */
+void InitializeSystemConfigurationDataRecursive(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (ConfigurationDataPointer == (void* *)0x0) {
     return;
   }
-  FUN_1800593f0(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  InitializeSystemConfigurationDataRecursive(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   StartSystemInitialization();
   ConfigurationDataPointer[4] = &SystemGlobalDataReference;
   if (ConfigurationDataPointer[5] != 0) {
-                    // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
   ConfigurationDataPointer[5] = 0;
   *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
   ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
   SystemCleanupFunction(ConfigurationDataPointer);
 }
 

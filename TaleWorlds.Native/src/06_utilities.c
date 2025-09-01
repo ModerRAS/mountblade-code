@@ -6417,7 +6417,7 @@ void ProcessDynamicBufferReallocation(void)
   int64_t bufferPointer;
   uint ResourceContextOffset;
   int64_t ResourceContextPointer;
-  int64_t RegisterR14;
+  int64_t ResourceContextData;
   uint8_t StackParameter60;
   
   ResourceIndex = 0;
@@ -8245,7 +8245,7 @@ uint8_t ValidateAndProcessObjectContextWithParameters(int64_t objectContext,int6
   float validationFloat;
   uint8_t ResourceValidationResult;
   int64_t contextPointer;
-  uint8_t RegisterRDI;
+  uint8_t ObjectContextData;
   int64_t stackBuffer;
   
   validationFloat = *(float *)(ObjectContextParameter + 0x18);
