@@ -2475,19 +2475,19 @@ undefined SystemResourceChecker;
 undefined ResourceTrackerTable;
 undefined SystemResourceMonitor;
 undefined ResourceMonitorTable;
-undefined DAT_180c96410;
+undefined ResourceAuditorTable;
 undefined SystemResourceAuditor;
 undefined SystemResourceInspector;
-undefined DAT_180d49ec0;
-undefined DAT_180d49ec4;
-undefined DAT_180c9642c;
-undefined DAT_180c96430;
+undefined ResourceCacheTable;
+undefined ResourceBufferTable;
+undefined ResourcePoolTable;
+undefined ResourceQueueTable;
 
  undefined ValidateResourceIntegrity;
 undefined ValidateResourceIntegrity;
-undefined DAT_180c963e8;
-undefined DAT_180d49f60;
-undefined DAT_180d49f64;
+undefined ResourceStackTable;
+undefined ResourceAnalyzerTable;
+undefined ResourceProfilerTable;
 undefined SystemResourceAnalyzer;
 undefined SystemResourceProfiler;
 undefined SystemResourceTracker;
@@ -2506,17 +2506,17 @@ undefined SystemConfigEntry09;
 undefined SystemConfigEntry10;
 undefined SystemConfigEntry11;
 undefined SystemConfigEntry12;
-undefined DAT_180c963d4;
-undefined DAT_180c963dc;
-undefined DAT_180c963d8;
-undefined DAT_180c9644c;
-undefined DAT_180c96450;
+undefined ThreadConfigTable;
+undefined ThreadPriorityTable;
+undefined ThreadAffinityTable;
+undefined ThreadLocalStorageTable;
+undefined ThreadSynchronizationTable;
 undefined SystemThreadManager;
 undefined SystemThreadScheduler;
 undefined SystemThreadPool;
 undefined SystemThreadQueue;
 undefined SystemThreadMonitor;
-undefined DAT_180d49128;
+undefined ThreadMonitorTable;
 undefined SystemMemoryBufferA;
 undefined SystemMemoryBufferB;
 undefined SystemMemoryBufferC;
@@ -2534,7 +2534,7 @@ undefined SystemConfigurationData;
 undefined SystemRuntimeData;
 undefined SystemCacheManager;
 undefined SystemBufferPool;
-undefined DAT_180bfbcc0;
+undefined SystemEventTable;
 undefined SystemThreadManager;
 undefined SystemProcessManager;
 undefined SystemMemoryAllocator;
@@ -4274,10 +4274,10 @@ uint64_t GetSystemErrorSuccessCode(void)
  * 该函数负责处理对象句柄的初始化操作，包括句柄分配、
  * 状态检查和初始化设置等步骤
  * 
- * @param param_1 对象上下文参数
+ * @param objectContext 对象上下文参数
  * @return 操作结果状态码
  */
-undefined8 InitializeObjectHandleE(longlong param_1)
+undefined8 InitializeObjectHandleE(longlong objectContext)
 
 {
   undefined8 resourceHash;
@@ -30835,16 +30835,16 @@ void Unwind_180902c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   presourceHash = *(undefined8 **)(param_2 + 0x38);
   uVar3 = 0xfffffffffffffffe;
   *presourceHash = &UNK_180a10098;
-  cVar2 = FUN_18020eba0(presourceHash,1,param_3,param_4,0xfffffffffffffffe);
+  cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,0xfffffffffffffffe);
   while (cVar2 != '\0') {
-    cVar2 = FUN_18020eba0(presourceHash,1,param_3,param_4,uVar3);
+    cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,uVar3);
   }
   if (presourceHash[1] == 0) {
     presourceHash[1] = 0;
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(presourceHash + 0x2a);
     _Mtx_destroy_in_situ();
-    FUN_18020f530();
+    CleanupResourceHashOperation();
     if (presourceHash[0xe] != 0) {
       *(undefined8 *)(presourceHash[0xe] + 0x10) = 0;
       *(undefined1 *)(presourceHash[0xe] + 8) = 1;
@@ -31036,7 +31036,7 @@ void Unwind_180902cf0(undefined8 param_1,longlong param_2)
 void Unwind_180902d00(undefined8 param_1,longlong param_2)
 
 {
-  FUN_180057010(*(longlong *)(param_2 + 0x20) + 0x60);
+  CleanupSystemMemoryHandle(*(longlong *)(param_2 + 0x20) + 0x60);
   return;
 }
 
@@ -31045,7 +31045,7 @@ void Unwind_180902d00(undefined8 param_1,longlong param_2)
 void Unwind_180902d10(undefined8 param_1,longlong param_2)
 
 {
-  FUN_180057010(*(longlong *)(param_2 + 0x20) + 0x60);
+  CleanupSystemMemoryHandle(*(longlong *)(param_2 + 0x20) + 0x60);
   return;
 }
 
@@ -31089,7 +31089,7 @@ void Unwind_180902d40(undefined8 param_1,longlong param_2)
   validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
   RegisterResourceHandler(lVar1 + 0x3e0,0x20,0x20,ReleaseSystemResource,validationResult);
-  FUN_18005d580();
+  InitializeResourceSystem();
   RegisterResourceHandler(lVar1 + 0x138,8,0x20,FUN_180045af0);
   RegisterResourceHandler(lVar1 + 0x38,8,0x20,FUN_180045af0);
   return;
@@ -31108,7 +31108,7 @@ void Unwind_180902d50(undefined8 param_1,longlong param_2)
   uVar3 = 0xfffffffffffffffe;
   *(longlong *)(resourceTable + 0x15d8) =
        *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(resourceTable + 0x15e0) * 8) + -100000;
-  FUN_180090b80((longlong *)(resourceTable + 0x8b0));
+  SetupResourceTableContext((longlong *)(resourceTable + 0x8b0));
   *(undefined4 *)(resourceTable + 0x15e8) = 0;
   plVar1 = *(longlong **)(resourceTable + 0x15d0);
   *(undefined8 *)(resourceTable + 0x15d0) = 0;
@@ -32629,7 +32629,7 @@ void Unwind_180903440(undefined8 param_1,longlong param_2)
   presourceTable = *(longlong **)(param_2 + 0x40);
   lVar1 = presourceTable[1];
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x50) {
-    FUN_1800596a0(resourceIndex);
+    ReleaseResourceIndex(resourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -32881,7 +32881,7 @@ void Unwind_1809034f0(undefined8 param_1,longlong param_2)
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
-  FUN_18005a050();
+  CleanupResourceSystem();
   if ((1 < *(ulonglong *)(resourceIndex + 0x10)) &&
      (pvalidationResult = *(undefined8 **)(resourceIndex + 8), pvalidationResult != (undefined8 *)0x0)) {
     uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
@@ -32919,7 +32919,7 @@ void Unwind_180903500(undefined8 param_1,longlong param_2)
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
-  FUN_18005a050();
+  CleanupResourceSystem();
   if ((1 < *(ulonglong *)(resourceIndex + 0x10)) &&
      (pvalidationResult = *(undefined8 **)(resourceIndex + 8), pvalidationResult != (undefined8 *)0x0)) {
     uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
@@ -33070,7 +33070,7 @@ void Unwind_180903560(undefined8 param_1,longlong param_2)
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x70);
-  FUN_18005a050();
+  CleanupResourceSystem();
   if ((1 < *(ulonglong *)(resourceIndex + 0x340)) &&
      (pvalidationResult = *(undefined8 **)(resourceIndex + 0x338), pvalidationResult != (undefined8 *)0x0)) {
     uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
@@ -33196,7 +33196,7 @@ void Unwind_1809035e0(undefined8 param_1,longlong param_2)
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x80);
-  FUN_18005a050();
+  CleanupResourceSystem();
   if ((1 < *(ulonglong *)(resourceIndex + 0x10)) &&
      (pvalidationResult = *(undefined8 **)(resourceIndex + 8), pvalidationResult != (undefined8 *)0x0)) {
     uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
@@ -33234,7 +33234,7 @@ void Unwind_1809035f0(undefined8 param_1,longlong param_2)
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x80);
-  FUN_18005a050();
+  CleanupResourceSystem();
   if ((1 < *(ulonglong *)(resourceIndex + 0x10)) &&
      (pvalidationResult = *(undefined8 **)(resourceIndex + 8), pvalidationResult != (undefined8 *)0x0)) {
     uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
@@ -33289,7 +33289,7 @@ void Unwind_180903610(undefined8 param_1,longlong param_2,undefined8 param_3,und
   presourceHash[0x19] = 0;
   *(undefined4 *)(presourceHash + 0x1b) = 0;
   presourceHash[0x18] = &SystemDataStructure;
-  FUN_18005d260(presourceHash + 0x12,presourceHash[0x14],param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceValidation(presourceHash + 0x12,presourceHash[0x14],param_3,param_4,0xfffffffffffffffe);
   if (presourceHash[0xd] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33650,7 +33650,7 @@ void Unwind_180903760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   presourceHash[0x19] = 0;
   *(undefined4 *)(presourceHash + 0x1b) = 0;
   presourceHash[0x18] = &SystemDataStructure;
-  FUN_18005d260(presourceHash + 0x12,presourceHash[0x14],param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceValidation(presourceHash + 0x12,presourceHash[0x14],param_3,param_4,0xfffffffffffffffe);
   if (presourceHash[0xd] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -39309,16 +39309,16 @@ void Unwind_180904ab0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   presourceHash = *(undefined8 **)(param_2 + 0x160);
   uVar3 = 0xfffffffffffffffe;
   *presourceHash = &UNK_180a10098;
-  cVar2 = FUN_18020eba0(presourceHash,1,param_3,param_4,0xfffffffffffffffe);
+  cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,0xfffffffffffffffe);
   while (cVar2 != '\0') {
-    cVar2 = FUN_18020eba0(presourceHash,1,param_3,param_4,uVar3);
+    cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,uVar3);
   }
   if (presourceHash[1] == 0) {
     presourceHash[1] = 0;
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(presourceHash + 0x2a);
     _Mtx_destroy_in_situ();
-    FUN_18020f530();
+    CleanupResourceHashOperation();
     if (presourceHash[0xe] != 0) {
       *(undefined8 *)(presourceHash[0xe] + 0x10) = 0;
       *(undefined1 *)(presourceHash[0xe] + 8) = 1;
@@ -39377,16 +39377,16 @@ void Unwind_180904af0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   presourceHash = *(undefined8 **)(param_2 + 0x50);
   uVar3 = 0xfffffffffffffffe;
   *presourceHash = &UNK_180a10098;
-  cVar2 = FUN_18020eba0(presourceHash,1,param_3,param_4,0xfffffffffffffffe);
+  cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,0xfffffffffffffffe);
   while (cVar2 != '\0') {
-    cVar2 = FUN_18020eba0(presourceHash,1,param_3,param_4,uVar3);
+    cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,uVar3);
   }
   if (presourceHash[1] == 0) {
     presourceHash[1] = 0;
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(presourceHash + 0x2a);
     _Mtx_destroy_in_situ();
-    FUN_18020f530();
+    CleanupResourceHashOperation();
     if (presourceHash[0xe] != 0) {
       *(undefined8 *)(presourceHash[0xe] + 0x10) = 0;
       *(undefined1 *)(presourceHash[0xe] + 8) = 1;
@@ -39484,7 +39484,7 @@ void Catch_180904b90(undefined8 param_1,longlong param_2)
     if (uVar5 != uVar8) {
       do {
         uVar6 = uVar5 + 1;
-        FUN_180060bd0(lVar7 + (ulonglong)((uint)uVar5 & 0x1f) * 8);
+        ReleaseSystemResource(lVar7 + (ulonglong)((uint)uVar5 & 0x1f) * 8);
         uVar5 = uVar6;
       } while (uVar6 != uVar8);
       *(ulonglong *)(param_2 + 0x20) = uVar6;
@@ -39531,7 +39531,7 @@ void Catch_180904c60(undefined8 param_1,longlong param_2)
     if (uVar4 != uVar7) {
       do {
         uVar5 = uVar4 + 1;
-        FUN_180060bd0(lVar6 + (ulonglong)((uint)uVar4 & 0x1f) * 8);
+        ReleaseSystemResource(lVar6 + (ulonglong)((uint)uVar4 & 0x1f) * 8);
         uVar4 = uVar5;
       } while (uVar5 != uVar7);
       *(ulonglong *)(param_2 + 0x20) = uVar5;
@@ -39725,16 +39725,16 @@ void Unwind_180904e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   presourceHash = *(undefined8 **)(param_2 + 0x30);
   uVar3 = 0xfffffffffffffffe;
   *presourceHash = &UNK_180a10098;
-  cVar2 = FUN_18020eba0(presourceHash,1,param_3,param_4,0xfffffffffffffffe);
+  cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,0xfffffffffffffffe);
   while (cVar2 != '\0') {
-    cVar2 = FUN_18020eba0(presourceHash,1,param_3,param_4,uVar3);
+    cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,uVar3);
   }
   if (presourceHash[1] == 0) {
     presourceHash[1] = 0;
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(presourceHash + 0x2a);
     _Mtx_destroy_in_situ();
-    FUN_18020f530();
+    CleanupResourceHashOperation();
     if (presourceHash[0xe] != 0) {
       *(undefined8 *)(presourceHash[0xe] + 0x10) = 0;
       *(undefined1 *)(presourceHash[0xe] + 8) = 1;
@@ -40292,7 +40292,7 @@ void Unwind_180905050(undefined8 param_1,longlong param_2)
 void Unwind_180905060(undefined8 param_1,longlong param_2)
 
 {
-  FUN_180067070(param_2 + 0x70);
+  ReleaseSystemComponent(param_2 + 0x70);
   return;
 }
 
@@ -40301,7 +40301,7 @@ void Unwind_180905060(undefined8 param_1,longlong param_2)
 void Unwind_180905070(undefined8 param_1,longlong param_2)
 
 {
-  FUN_180067070(param_2 + 0xb0);
+  ReleaseSystemComponent(param_2 + 0xb0);
   return;
 }
 
@@ -40310,7 +40310,7 @@ void Unwind_180905070(undefined8 param_1,longlong param_2)
 void Unwind_180905080(undefined8 param_1,longlong param_2)
 
 {
-  FUN_180067070(param_2 + 0x90);
+  ReleaseSystemComponent(param_2 + 0x90);
   return;
 }
 
@@ -40321,7 +40321,7 @@ void Unwind_180905090(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x50) & 1) != 0) {
     *(uint *)(resourceData + 0x50) = *(uint *)(resourceData + 0x50) & 0xfffffffe;
-    FUN_1800670d0(param_2 + 0xd0);
+    ReleaseSystemComponentEx(param_2 + 0xd0);
   }
   return;
 }
@@ -41279,10 +41279,10 @@ void Unwind_1809054f0(undefined8 param_1,longlong param_2)
   
   presourceHash = *(undefined8 **)(param_2 + 0x50);
   *presourceHash = &UNK_1809ff498;
-  FUN_18006cb90();
+  InitializeSystemCleanup();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  FUN_180059ee0(presourceHash + 2);
+  ValidateResourceHash(presourceHash + 2);
   if ((longlong *)presourceHash[1] != (longlong *)0x0) {
     (**(code **)(*(longlong *)presourceHash[1] + 0x38))();
   }
@@ -41650,7 +41650,7 @@ void Unwind_180905740(undefined8 param_1,uint *param_2)
 {
   if ((*param_2 & 1) != 0) {
     *param_2 = *param_2 & 0xfffffffe;
-    FUN_18006b760(*(undefined8 *)(param_2 + 10));
+    ProcessResourceBuffer(*(undefined8 *)(param_2 + 10));
   }
   return;
 }
@@ -41685,7 +41685,7 @@ void Unwind_180905780(undefined8 param_1,uint *param_2)
 {
   if ((*param_2 & 1) != 0) {
     *param_2 = *param_2 & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 10));
+    ReleaseResourceHandle(*(undefined8 *)(param_2 + 10));
   }
   return;
 }
@@ -41735,9 +41735,9 @@ void Unwind_1809057b0(undefined8 param_1,longlong param_2)
           break;
         }
       }
-      FUN_18066c220(puVar5 + 10,&plStackX_10,(ulonglong)*(uint *)(puVar5 + 8),
+      InitializeResourceBuffer(puVar5 + 10,&plStackX_10,(ulonglong)*(uint *)(puVar5 + 8),
                     *(undefined4 *)(puVar5 + 9),1);
-      piVar7 = (int *)FUN_18062b420(ResourceBufferPool,0x18,*(undefined1 *)((longlong)puVar5 + 0x5c));
+      piVar7 = (int *)AllocateResourceBuffer(ResourceBufferPool,0x18,*(undefined1 *)((longlong)puVar5 + 0x5c));
       *piVar7 = iVar6;
       piVar7[2] = 0;
       piVar7[3] = 0;
@@ -41745,7 +41745,7 @@ void Unwind_1809057b0(undefined8 param_1,longlong param_2)
       piVar7[5] = 0;
       if ((char)plStackX_10 != '\0') {
         resourceHash2 = resourceHash1 % ((ulonglong)plStackX_10 >> 0x20);
-        FUN_18015bdc0(puVar5 + 6);
+        CleanupResourceBuffer(puVar5 + 6);
       }
       *(undefined8 *)(piVar7 + 4) = *(undefined8 *)(puVar5[7] + resourceHash2 * 8);
       *(int **)(puVar5[7] + resourceHash2 * 8) = piVar7;
@@ -41763,7 +41763,7 @@ LAB_1801571ef:
     } while ((ulonglong)(longlong)(int)uVar9 < (ulonglong)puVar5[9]);
   }
   plVar1 = puVar5 + 6;
-  FUN_18015b450(plVar1);
+  ValidateResourceBuffer(plVar1);
   presourceIndex = puVar5 + 0x2d;
   plVar4 = (longlong *)puVar5[0x2e];
   plVar8 = (longlong *)*presourceIndex;
@@ -41786,16 +41786,16 @@ LAB_1801571ef:
     puVar5[0x4a] = 0;
   }
   plStackX_10 = puVar5 + 0x44;
-  FUN_18015b4f0();
+  FinalizeResourceBuffer();
   if ((longlong *)puVar5[0x3d] != (longlong *)0x0) {
     (**(code **)(*(longlong *)puVar5[0x3d] + 0x38))();
   }
   plStackX_10 = presourceIndex;
-  FUN_180057830(presourceIndex);
+  UpdateResourceIndex(presourceIndex);
   plStackX_10 = puVar5 + 0x28;
-  FUN_180048980();
+  ResetResourceSystem();
   plStackX_10 = puVar5 + 0x24;
-  FUN_180048980();
+  ResetResourceSystem();
   plStackX_10 = presourceTable;
   _Mtx_destroy_in_situ(presourceTable);
   plStackX_10 = puVar5 + 0x16;
@@ -41806,7 +41806,7 @@ LAB_1801571ef:
   plStackX_10 = puVar5 + 0xc;
   _Mtx_destroy_in_situ();
   plStackX_10 = plVar1;
-  FUN_18015b450(plVar1);
+  ValidateResourceBuffer(plVar1);
   if ((1 < (ulonglong)puVar5[8]) && (puVar5[7] != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -42332,9 +42332,9 @@ void Unwind_180905950(undefined8 param_1,longlong param_2)
           break;
         }
       }
-      FUN_18066c220(puVar5 + 10,&plStackX_10,(ulonglong)*(uint *)(puVar5 + 8),
+      InitializeResourceBuffer(puVar5 + 10,&plStackX_10,(ulonglong)*(uint *)(puVar5 + 8),
                     *(undefined4 *)(puVar5 + 9),1);
-      piVar7 = (int *)FUN_18062b420(ResourceBufferPool,0x18,*(undefined1 *)((longlong)puVar5 + 0x5c));
+      piVar7 = (int *)AllocateResourceBuffer(ResourceBufferPool,0x18,*(undefined1 *)((longlong)puVar5 + 0x5c));
       *piVar7 = iVar6;
       piVar7[2] = 0;
       piVar7[3] = 0;
@@ -42342,7 +42342,7 @@ void Unwind_180905950(undefined8 param_1,longlong param_2)
       piVar7[5] = 0;
       if ((char)plStackX_10 != '\0') {
         resourceHash2 = resourceHash1 % ((ulonglong)plStackX_10 >> 0x20);
-        FUN_18015bdc0(puVar5 + 6);
+        CleanupResourceBuffer(puVar5 + 6);
       }
       *(undefined8 *)(piVar7 + 4) = *(undefined8 *)(puVar5[7] + resourceHash2 * 8);
       *(int **)(puVar5[7] + resourceHash2 * 8) = piVar7;
@@ -42360,7 +42360,7 @@ LAB_1801571ef:
     } while ((ulonglong)(longlong)(int)uVar9 < (ulonglong)puVar5[9]);
   }
   plVar1 = puVar5 + 6;
-  FUN_18015b450(plVar1);
+  ValidateResourceBuffer(plVar1);
   presourceIndex = puVar5 + 0x2d;
   plVar4 = (longlong *)puVar5[0x2e];
   plVar8 = (longlong *)*presourceIndex;
@@ -42383,16 +42383,16 @@ LAB_1801571ef:
     puVar5[0x4a] = 0;
   }
   plStackX_10 = puVar5 + 0x44;
-  FUN_18015b4f0();
+  FinalizeResourceBuffer();
   if ((longlong *)puVar5[0x3d] != (longlong *)0x0) {
     (**(code **)(*(longlong *)puVar5[0x3d] + 0x38))();
   }
   plStackX_10 = presourceIndex;
-  FUN_180057830(presourceIndex);
+  UpdateResourceIndex(presourceIndex);
   plStackX_10 = puVar5 + 0x28;
-  FUN_180048980();
+  ResetResourceSystem();
   plStackX_10 = puVar5 + 0x24;
-  FUN_180048980();
+  ResetResourceSystem();
   plStackX_10 = presourceTable;
   _Mtx_destroy_in_situ(presourceTable);
   plStackX_10 = puVar5 + 0x16;
@@ -42403,7 +42403,7 @@ LAB_1801571ef:
   plStackX_10 = puVar5 + 0xc;
   _Mtx_destroy_in_situ();
   plStackX_10 = plVar1;
-  FUN_18015b450(plVar1);
+  ValidateResourceBuffer(plVar1);
   if ((1 < (ulonglong)puVar5[8]) && (puVar5[7] != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -51882,7 +51882,7 @@ void Unwind_180908660(undefined8 param_1,longlong param_2)
   validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
   RegisterResourceHandler(lVar1 + 0x3e0,0x20,0x20,ReleaseSystemResource,validationResult);
-  FUN_18005d580();
+  InitializeResourceSystem();
   RegisterResourceHandler(lVar1 + 0x138,8,0x20,FUN_180045af0);
   RegisterResourceHandler(lVar1 + 0x38,8,0x20,FUN_180045af0);
   return;
@@ -51901,7 +51901,7 @@ void Unwind_180908670(undefined8 param_1,longlong param_2)
   uVar3 = 0xfffffffffffffffe;
   *(longlong *)(resourceTable + 0x15d8) =
        *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(resourceTable + 0x15e0) * 8) + -100000;
-  FUN_180090b80((longlong *)(resourceTable + 0x8b0));
+  SetupResourceTableContext((longlong *)(resourceTable + 0x8b0));
   *(undefined4 *)(resourceTable + 0x15e8) = 0;
   plVar1 = *(longlong **)(resourceTable + 0x15d0);
   *(undefined8 *)(resourceTable + 0x15d0) = 0;
@@ -83838,7 +83838,7 @@ void InitializeResourceTableManager(void)
   _DAT_180bf52d8 = 0;
   _DAT_180bf52c0 = &SystemDataStructure;
   if (_DAT_180bf5288 == 0) {
-    FUN_180048980();
+    ResetResourceSystem();
     lVar1 = _DAT_180bf5250;
     for (resourceTable = _DAT_180bf5248; resourceTable != lVar1; resourceTable = resourceTable + 0x100) {
       FUN_180046b10(resourceTable);
@@ -84534,7 +84534,7 @@ void ExecuteSystemStatusCheckAndCleanup(void)
 
 {
   if (DAT_180c91d50 != '\0') {
-    FUN_18005a050();
+    CleanupResourceSystem();
     if ((1 < _DAT_180c91d30) && (_DAT_180c91d28 != 0)) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
