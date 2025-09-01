@@ -11328,7 +11328,7 @@ void FUN_180045380(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 FUN_180045580(void)
+uint32 FUN_180045580(void)
 
 {
   void* puVar1;
@@ -39808,7 +39808,7 @@ uint FUN_180080380(uint *engine_param_1,int engine_param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 FUN_1800803c8(longlong engine_param_1)
+uint32 FUN_1800803c8(longlong engine_param_1)
 
 {
   longlong *plVar1;
@@ -39866,7 +39866,7 @@ undefined4 FUN_1800803c8(longlong engine_param_1)
 
 
 
-undefined4 FUN_180080460(void)
+uint32 FUN_180080460(void)
 
 {
   uint32 unaff_R15D;
@@ -39954,7 +39954,7 @@ uint FUN_180080480(uint *engine_param_1,int engine_param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 FUN_1800804c8(longlong engine_param_1)
+uint32 FUN_1800804c8(longlong engine_param_1)
 
 {
   longlong *plVar1;
@@ -40021,7 +40021,7 @@ undefined4 FUN_1800804c8(longlong engine_param_1)
 
 
 
-undefined4 FUN_1800805aa(void)
+uint32 FUN_1800805aa(void)
 
 {
   uint32 unaff_R15D;
