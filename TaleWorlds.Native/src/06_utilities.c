@@ -33812,7 +33812,7 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContextParameter,int64_t Validat
 
 
 
-void Unwind_1809030b0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindSystemStateValidator(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -33829,7 +33829,7 @@ void Unwind_1809030b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809030c0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindProcessTerminator(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   **(uint8_t **)(ValidationContextParameter + 0x60) = &SystemDataStructure;
@@ -33838,7 +33838,7 @@ void Unwind_1809030c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809030d0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindMemoryDeallocator(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -33852,7 +33852,7 @@ void Unwind_1809030d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809030f0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindContextResetter(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;
