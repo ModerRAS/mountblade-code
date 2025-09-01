@@ -40011,6 +40011,18 @@ void Unwind_180904820(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
+/**
+ * @brief 重置系统数据结构
+ * 
+ * 该函数负责重置系统数据结构指针，将其恢复到初始状态
+ * 主要用于系统清理和资源释放过程中的数据结构重置
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，用于验证和重置数据结构
+ * @return 无返回值
+ * @note 此函数通常在系统清理或资源释放时调用
+ * @warning 调用此函数会修改系统数据结构指针
+ */
 void ResetSystemDataStructure(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
@@ -40020,6 +40032,18 @@ void ResetSystemDataStructure(uint8_t objectContextParam,int64_t validationConte
 
 
 
+/**
+ * @brief 释放资源索引句柄
+ * 
+ * 该函数负责释放资源索引句柄，清理资源相关的标记和索引
+ * 当资源标记为活跃状态时，会清除标记并释放对应的资源索引
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，用于验证和清理资源索引
+ * @return 无返回值
+ * @note 此函数会检查资源状态并执行相应的清理操作
+ * @warning 调用此函数后，被清理的资源索引将不再可用
+ */
 void FreeResourceIndexHandle(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
@@ -40032,6 +40056,19 @@ void FreeResourceIndexHandle(uint8_t objectContextParam,int64_t validationContex
 
 
 
+/**
+ * @brief 重置系统资源处理器
+ * 
+ * 该函数负责重置系统资源处理器，将其恢复到初始状态
+ * 设置资源处理器模板，检查系统状态，并在必要时执行紧急退出
+ * 清理资源处理器的相关状态和标记
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，用于验证和重置资源处理器
+ * @return 无返回值
+ * @note 此函数会检查系统状态并在异常时执行紧急退出
+ * @warning 如果系统状态异常，此函数可能会调用紧急退出程序并不返回
+ */
 void ResetSystemResourceHandler(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
@@ -40131,12 +40168,12 @@ void CleanupSystemResourceContextA(uint8_t objectContextParam,int64_t validation
 
 
 
-void Unwind_1809048f0(uint8_t objectContextParam,int64_t validationContextParam)
+void CleanupSystemResourceContextB(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
-  int64_t loopCounter;
+  int64_t contextIndex;
   
-  loopCounter = *(int64_t *)(validationContextParam + 0x68);
+  contextIndex = *(int64_t *)(validationContextParam + 0x68);
   *(uint8_t *)(localContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -40150,7 +40187,7 @@ void Unwind_1809048f0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904900(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessResourceCleanupA(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
@@ -40160,7 +40197,7 @@ void Unwind_180904900(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904910(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessResourceCleanupB(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
