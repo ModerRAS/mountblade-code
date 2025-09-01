@@ -1041,21 +1041,33 @@ undefined g_memoryPoolHandle;
 undefined g_memoryPoolData;
 undefined g_memoryPoolContext;
 
-// 函数: undefined FUN_180942240;
-undefined FUN_180942240;
-undefined DAT_180bf9bd0;
-undefined DAT_180bf9bd8;
-undefined DAT_180bf9be0;
-undefined DAT_180bf9be8;
-undefined UNK_180a22df8;
+// 函数: void CleanupMemoryPool;
+/**
+ * @brief 清理内存池
+ * 
+ * 该函数负责清理系统内存池
+ * 释放所有分配的内存块
+ */
+void CleanupMemoryPool;
+undefined g_cleanupMemoryConfig;
+undefined g_cleanupMemoryStatus;
+undefined g_cleanupMemoryHandle;
+undefined g_cleanupMemoryData;
+undefined g_cleanupMemoryContext;
 
-// 函数: undefined FUN_180942260;
-undefined FUN_180942260;
-undefined DAT_180bf9c30;
-undefined DAT_180bf9c38;
-undefined DAT_180bf9c40;
-undefined DAT_180bf9c48;
-undefined UNK_180a22dd0;
+// 函数: void ResizeMemoryPool;
+/**
+ * @brief 调整内存池大小
+ * 
+ * 该函数负责调整系统内存池的大小
+ * 根据需要扩展或收缩内存池
+ */
+void ResizeMemoryPool;
+undefined g_resizeMemoryConfig;
+undefined g_resizeMemoryStatus;
+undefined g_resizeMemoryHandle;
+undefined g_resizeMemoryData;
+undefined g_resizeMemoryContext;
 
 // 函数: undefined FUN_180942280;
 undefined FUN_180942280;
