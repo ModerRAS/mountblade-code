@@ -12,169 +12,169 @@
 // 全局系统数据指针
 void* GlobalSystemData;
 // 未知全局数据指针
-void* GlobalUnknownData;
+void* GlobalUnknownDataPointer;
 
 // 系统内存池 - 用于动态内存分配
-void* SystemMemoryPool;
+void* SystemMemoryPoolPointer;
 
 // 字符串处理器数据基址 - 用于存储字符串处理器的数据结构
-void* StringProcessorDataBaseMain;
-void* StringProcessorDataBaseBackup;
-void* StringProcessorDataBaseCache;
-void* StringProcessorDataBaseTemp;
-void* StringProcessorDataBaseReserved;
-void* StringProcessorDataBaseSecure;
-void* StringProcessorDataBaseDebug;
-void* StringProcessorDataBaseLog;
-void* StringProcessorDataBaseConfig;
-void* StringProcessorDataBaseState;
-void* StringProcessorDataBaseEvent;
-void* StringProcessorDataBaseCallback;
-void* StringProcessorDataBaseHandler;
-void* StringProcessorDataBaseManager;
-void* StringProcessorDataBaseController;
-void* StringProcessorDataBaseProcessor;
-void* StringProcessorDataBaseEncoder;
-void* StringProcessorDataBaseDecoder;
-void* StringProcessorDataBaseValidator;
-void* StringProcessorDataBaseFormatter;
-void* StringProcessorDataBaseParser;
-void* StringProcessorDataBaseOptimizer;
-void* StringProcessorDataBaseCompressor;
-void* StringProcessorDataBaseEncryptor;
-void* StringProcessorDataBaseDecryptor;
-void* StringProcessorDataBaseHasher;
-void* StringProcessorDataBaseSigner;
-void* StringProcessorDataBaseVerifier;
-void* StringProcessorDataBaseConverter;
-void* StringProcessorDataBaseTransformer;
-void* StringProcessorDataBaseNormalizer;
-void* StringProcessorDataBaseSanitizer;
-void* StringProcessorDataBaseSerializer;
-void* StringProcessorDataBaseDeserializer;
-void* StringProcessorDataBaseMarshaller;
-void* StringProcessorDataBaseUnmarshaller;
-void* StringProcessorDataBaseAllocator;
-void* StringProcessorDataBaseDeallocator;
-void* StringProcessorDataBaseCollector;
-void* StringProcessorDataBaseCleaner;
+void* StringProcessorDatabaseMain;
+void* StringProcessorDatabaseBackup;
+void* StringProcessorDatabaseCache;
+void* StringProcessorDatabaseTemp;
+void* StringProcessorDatabaseReserved;
+void* StringProcessorDatabaseSecure;
+void* StringProcessorDatabaseDebug;
+void* StringProcessorDatabaseLog;
+void* StringProcessorDatabaseConfig;
+void* StringProcessorDatabaseState;
+void* StringProcessorDatabaseEvent;
+void* StringProcessorDatabaseCallback;
+void* StringProcessorDatabaseHandler;
+void* StringProcessorDatabaseManager;
+void* StringProcessorDatabaseController;
+void* StringProcessorDatabaseProcessor;
+void* StringProcessorDatabaseEncoder;
+void* StringProcessorDatabaseDecoder;
+void* StringProcessorDatabaseValidator;
+void* StringProcessorDatabaseFormatter;
+void* StringProcessorDatabaseParser;
+void* StringProcessorDatabaseOptimizer;
+void* StringProcessorDatabaseCompressor;
+void* StringProcessorDatabaseEncryptor;
+void* StringProcessorDatabaseDecryptor;
+void* StringProcessorDatabaseHasher;
+void* StringProcessorDatabaseSigner;
+void* StringProcessorDatabaseVerifier;
+void* StringProcessorDatabaseConverter;
+void* StringProcessorDatabaseTransformer;
+void* StringProcessorDatabaseNormalizer;
+void* StringProcessorDatabaseSanitizer;
+void* StringProcessorDatabaseSerializer;
+void* StringProcessorDatabaseDeserializer;
+void* StringProcessorDatabaseMarshaller;
+void* StringProcessorDatabaseUnmarshaller;
+void* StringProcessorDatabaseAllocator;
+void* StringProcessorDatabaseDeallocator;
+void* StringProcessorDatabaseCollector;
+void* StringProcessorDatabaseCleaner;
 
 // 字符串处理器数据模板 - 用于存储字符串处理器的模板数据
-void* StringProcessorDataTemplateMain;
-void* StringProcessorDataTemplateBackup;
-void* StringProcessorDataTemplateCache;
-void* StringProcessorDataTemplateTemp;
-void* StringProcessorDataTemplateReserved;
-void* StringProcessorDataTemplateSecure;
-void* StringProcessorDataTemplateDebug;
-void* StringProcessorDataTemplateLog;
-void* StringProcessorDataTemplateConfig;
-void* StringProcessorDataTemplateState;
-void* StringProcessorDataTemplateEvent;
-void* StringProcessorDataTemplateCallback;
-void* StringProcessorDataTemplateHandler;
-void* StringProcessorDataTemplateManager;
-void* StringProcessorDataTemplateController;
-void* StringProcessorDataTemplateProcessor;
-void* StringProcessorDataTemplateEncoder;
-void* StringProcessorDataTemplateDecoder;
-void* StringProcessorDataTemplateValidator;
-void* StringProcessorDataTemplateFormatter;
-void* StringProcessorDataTemplateParser;
-void* StringProcessorDataTemplateOptimizer;
-void* StringProcessorDataTemplateCompressor;
-void* StringProcessorDataTemplateEncryptor;
-void* StringProcessorDataTemplateDecryptor;
-void* StringProcessorDataTemplateHasher;
-void* StringProcessorDataTemplateSigner;
-void* StringProcessorDataTemplateVerifier;
-void* StringProcessorDataTemplateConverter;
-void* StringProcessorDataTemplateTransformer;
-void* StringProcessorDataTemplateNormalizer;
-void* StringProcessorDataTemplateSanitizer;
-void* StringProcessorDataTemplateSerializer;
-void* StringProcessorDataTemplateDeserializer;
-void* StringProcessorDataTemplateMarshaller;
-void* StringProcessorDataTemplateUnmarshaller;
-void* StringProcessorDataTemplateAllocator;
-void* StringProcessorDataTemplateDeallocator;
-void* StringProcessorDataTemplateCollector;
-void* StringProcessorDataTemplateCleaner;
+void* StringProcessorTemplateMain;
+void* StringProcessorTemplateBackup;
+void* StringProcessorTemplateCache;
+void* StringProcessorTemplateTemp;
+void* StringProcessorTemplateReserved;
+void* StringProcessorTemplateSecure;
+void* StringProcessorTemplateDebug;
+void* StringProcessorTemplateLog;
+void* StringProcessorTemplateConfig;
+void* StringProcessorTemplateState;
+void* StringProcessorTemplateEvent;
+void* StringProcessorTemplateCallback;
+void* StringProcessorTemplateHandler;
+void* StringProcessorTemplateManager;
+void* StringProcessorTemplateController;
+void* StringProcessorTemplateProcessor;
+void* StringProcessorTemplateEncoder;
+void* StringProcessorTemplateDecoder;
+void* StringProcessorTemplateValidator;
+void* StringProcessorTemplateFormatter;
+void* StringProcessorTemplateParser;
+void* StringProcessorTemplateOptimizer;
+void* StringProcessorTemplateCompressor;
+void* StringProcessorTemplateEncryptor;
+void* StringProcessorTemplateDecryptor;
+void* StringProcessorTemplateHasher;
+void* StringProcessorTemplateSigner;
+void* StringProcessorTemplateVerifier;
+void* StringProcessorTemplateConverter;
+void* StringProcessorTemplateTransformer;
+void* StringProcessorTemplateNormalizer;
+void* StringProcessorTemplateSanitizer;
+void* StringProcessorTemplateSerializer;
+void* StringProcessorTemplateDeserializer;
+void* StringProcessorTemplateMarshaller;
+void* StringProcessorTemplateUnmarshaller;
+void* StringProcessorTemplateAllocator;
+void* StringProcessorTemplateDeallocator;
+void* StringProcessorTemplateCollector;
+void* StringProcessorTemplateCleaner;
 
 // 全局字符串数据指针和缓冲区 - 用于存储全局字符串数据
-void* GlobalStringDataPointerMain;
-void* GlobalStringDataBufferMain;
-void* GlobalStringDataLengthMain;
+void* GlobalStringDataMainPointer;
+void* GlobalStringDataMainBuffer;
+void* GlobalStringDataMainLength;
 
 // 系统配置数据指针和缓冲区 - 用于存储系统配置数据
-void* SystemConfigDataPointerMain;
-void* SystemConfigDataPointerBackup;
-void* SystemConfigDataPointerCache;
-void* SystemConfigDataPointerTemp;
-void* SystemConfigDataPointerReserved;
-void* SystemConfigDataPointerSecure;
-void* SystemConfigDataPointerDebug;
-void* SystemConfigDataPointerLog;
-void* SystemConfigDataPointerConfig;
-void* SystemConfigDataPointerState;
-void* SystemConfigDataPointerEvent;
-void* SystemConfigDataPointerCallback;
-void* SystemConfigDataPointerHandler;
-void* SystemConfigDataPointerManager;
-void* SystemConfigDataPointerController;
-void* SystemConfigDataPointerProcessor;
-void* SystemConfigDataPointerEncoder;
-void* SystemConfigDataPointerDecoder;
-void* SystemConfigDataPointerValidator;
-void* SystemConfigDataPointerFormatter;
-void* SystemConfigDataPointerParser;
-void* SystemConfigDataPointerOptimizer;
+void* SystemConfigMainPointer;
+void* SystemConfigBackupPointer;
+void* SystemConfigCachePointer;
+void* SystemConfigTempPointer;
+void* SystemConfigReservedPointer;
+void* SystemConfigSecurePointer;
+void* SystemConfigDebugPointer;
+void* SystemConfigLogPointer;
+void* SystemConfigConfigPointer;
+void* SystemConfigStatePointer;
+void* SystemConfigEventPointer;
+void* SystemConfigCallbackPointer;
+void* SystemConfigHandlerPointer;
+void* SystemConfigManagerPointer;
+void* SystemConfigControllerPointer;
+void* SystemConfigProcessorPointer;
+void* SystemConfigEncoderPointer;
+void* SystemConfigDecoderPointer;
+void* SystemConfigValidatorPointer;
+void* SystemConfigFormatterPointer;
+void* SystemConfigParserPointer;
+void* SystemConfigOptimizerPointer;
 
 // 系统配置数据缓冲区 - 用于存储系统配置数据
-void* SystemConfigDataBufferMain;
-void* SystemConfigDataBufferBackup;
-void* SystemConfigDataBufferCache;
-void* SystemConfigDataBufferTemp;
-void* SystemConfigDataBufferReserved;
-void* SystemConfigDataBufferSecure;
-void* SystemConfigDataBufferDebug;
-void* SystemConfigDataBufferLog;
-void* SystemConfigDataBufferConfig;
-void* SystemConfigDataBufferState;
-void* SystemConfigDataBufferEvent;
+void* SystemConfigMainBuffer;
+void* SystemConfigBackupBuffer;
+void* SystemConfigCacheBuffer;
+void* SystemConfigTempBuffer;
+void* SystemConfigReservedBuffer;
+void* SystemConfigSecureBuffer;
+void* SystemConfigDebugBuffer;
+void* SystemConfigLogBuffer;
+void* SystemConfigConfigBuffer;
+void* SystemConfigStateBuffer;
+void* SystemConfigEventBuffer;
 
 // 系统配置数据长度 - 用于存储系统配置数据的长度
-void* SystemConfigDataLengthMain;
-void* SystemConfigDataLengthBackup;
-void* SystemConfigDataLengthCache;
-void* SystemConfigDataLengthTemp;
-void* SystemConfigDataLengthReserved;
-void* SystemConfigDataLengthSecure;
-void* SystemConfigDataLengthDebug;
-void* SystemConfigDataLengthLog;
-void* SystemConfigDataLengthConfig;
-void* SystemConfigDataLengthState;
-void* SystemConfigDataLengthEvent;
+void* SystemConfigMainLength;
+void* SystemConfigBackupLength;
+void* SystemConfigCacheLength;
+void* SystemConfigTempLength;
+void* SystemConfigReservedLength;
+void* SystemConfigSecureLength;
+void* SystemConfigDebugLength;
+void* SystemConfigLogLength;
+void* SystemConfigConfigLength;
+void* SystemConfigStateLength;
+void* SystemConfigEventLength;
 
 // 系统配置缓冲区组 - 用于存储各种系统配置数据
-char SystemConfigBufferMain[0x40];
-char SystemConfigBufferBackup[0x40];
-char SystemConfigBufferCache[0x40];
-char SystemConfigBufferTemp[0x40];
-char SystemConfigBufferReserved[0x40];
-char SystemConfigBufferSecure[0x40];
-char SystemConfigBufferDebug[0x40];
-char SystemConfigBufferLog[0x40];
-char SystemConfigBufferConfig[0x40];
-char SystemConfigBufferState[0x40];
+char SystemConfigMainArray[0x40];
+char SystemConfigBackupArray[0x40];
+char SystemConfigCacheArray[0x40];
+char SystemConfigTempArray[0x40];
+char SystemConfigReservedArray[0x40];
+char SystemConfigSecureArray[0x40];
+char SystemConfigDebugArray[0x40];
+char SystemConfigLogArray[0x40];
+char SystemConfigConfigArray[0x40];
+char SystemConfigStateArray[0x40];
 
 // 系统地址常量定义
-#define ConditionMutexAddressMain 0x180c911e8
-#define ConditionMutexAddressBackup 0x180c91288
-#define SystemMutexAddressMain 0x180c91970
-#define EventMutexAddress 0x180c91f70
-#define RequestMutexAddress 0x180c91ff0
-#define SystemMutexFlags 0xfffffffffffffffe
+#define SystemConditionMutexMainAddress 0x180c911e8
+#define SystemConditionMutexBackupAddress 0x180c91288
+#define SystemMutexMainAddress 0x180c91970
+#define SystemEventMutexAddress 0x180c91f70
+#define SystemRequestMutexAddress 0x180c91ff0
+#define SystemMutexFlagsMask 0xfffffffffffffffe
 
 // 未知数据模板常量定义
 #define SystemConfigTemplateAlpha SystemConfigDataAlpha
@@ -283,13 +283,13 @@ char SystemModuleConfigTemplateTerdenaryTertiary[] = "SystemModuleConfigTerdenar
  */
 int InitializeRenderingSystem(void)
 {
-  int64_t SystemCallbackRegistrationResult;
+  int64_t CallbackRegistrationResult;
   GlobalRenderingSystemEnabled = 1;
   GlobalRenderingSystemFlags = 0;
   GlobalRenderingSystemMaxValue = 0x7fffffffffffffff;
   GlobalRenderingSystemStatus = 0;
-  SystemCallbackRegistrationResult = RegisterSystemCallback(RenderingSystemCallback);
-  return (SystemCallbackRegistrationResult != 0) - 1;
+  CallbackRegistrationResult = RegisterSystemCallback(RenderingSystemCallback);
+  return (CallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化物理引擎模块
@@ -299,13 +299,13 @@ int InitializeRenderingSystem(void)
  */
 int InitializePhysicsEngine(void)
 {
-  int64_t SystemCallbackRegistrationResult;
-  GlobalPhysicsEngineData = &GlobalUnknownData;
+  int64_t CallbackRegistrationResult;
+  GlobalPhysicsEngineData = &GlobalUnknownDataPointer;
   GlobalPhysicsEngineConfig = &GlobalPhysicsEngineState;
   GlobalPhysicsEngineFlags = 0;
   GlobalPhysicsEngineState = 0;
-  SystemCallbackRegistrationResult = RegisterSystemCallback(PhysicsEngineCallback);
-  return (SystemCallbackRegistrationResult != 0) - 1;
+  CallbackRegistrationResult = RegisterSystemCallback(PhysicsEngineCallback);
+  return (CallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化音频系统模块
@@ -315,13 +315,13 @@ int InitializePhysicsEngine(void)
  */
 int InitializeAudioSystem(void)
 {
-  int64_t SystemCallbackRegistrationResult;
-  GlobalAudioSystemData = &GlobalUnknownData;
+  int64_t CallbackRegistrationResult;
+  GlobalAudioSystemData = &GlobalUnknownDataPointer;
   GlobalAudioSystemConfig = &GlobalAudioSystemState;
   GlobalAudioSystemFlags = 0;
   GlobalAudioSystemState = 0;
-  SystemCallbackRegistrationResult = RegisterSystemCallback(AudioSystemCallback);
-  return (SystemCallbackRegistrationResult != 0) - 1;
+  CallbackRegistrationResult = RegisterSystemCallback(AudioSystemCallback);
+  return (CallbackRegistrationResult != 0) - 1;
 }
 /**
  * 初始化输入系统模块
@@ -332,7 +332,7 @@ int InitializeAudioSystem(void)
 int InitializeInputSystem(void)
 {
   int64_t CallbackRegistrationResult;
-  GlobalInputSystemData = &GlobalUnknownInputData;
+  GlobalInputSystemData = &GlobalUnknownInputDataPointer;
   GlobalInputSystemConfig = &GlobalInputSystemState;
   GlobalInputSystemFlags = 0;
   GlobalInputSystemState = 0;
@@ -348,7 +348,7 @@ int InitializeInputSystem(void)
 int InitializeNetworkSystem(void)
 {
   int64_t CallbackRegistrationResult;
-  GlobalNetworkSystemData = &GlobalUnknownNetworkData;
+  GlobalNetworkSystemData = &GlobalUnknownNetworkDataPointer;
   GlobalNetworkSystemConfig = &GlobalNetworkSystemState;
   GlobalNetworkSystemFlags = 0;
   GlobalNetworkSystemState = 0;
@@ -364,7 +364,7 @@ int InitializeNetworkSystem(void)
 int InitializeFileSystem(void)
 {
   int64_t CallbackRegistrationResult;
-  GlobalFileSystemData = &GlobalUnknownData;
+  GlobalFileSystemData = &GlobalUnknownDataPointer;
   GlobalFileSystemConfig = &GlobalFileSystemState;
   GlobalFileSystemFlags = 0;
   GlobalFileSystemState = 0;
@@ -380,7 +380,7 @@ int InitializeFileSystem(void)
 int InitializeMemoryManager(void)
 {
   int64_t CallbackRegistrationResult;
-  GlobalMemoryManagerData = &GlobalUnknownData;
+  GlobalMemoryManagerData = &GlobalUnknownDataPointer;
   GlobalMemoryManagerConfig = &GlobalMemoryManagerState;
   GlobalMemoryManagerFlags = 0;
   GlobalMemoryManagerState = 0;
