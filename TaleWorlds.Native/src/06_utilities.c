@@ -4180,62 +4180,69 @@ uint8_t ValidateAndProcessObjectStatus(int64_t objectContext)
 // WARNING: Removing unreachable block (ram,0x0001808d74b1)
 
 /**
- * @brief 处理对象句柄初始化操作B
+ * @brief 初始化对象句柄操作B
  * 
- * 该函数负责处理对象句柄的初始化操作，包括句柄分配、
- * 状态检查和初始化设置等步骤
+ * 该函数负责处理对象句柄的初始化操作，包括句柄验证、
+ * 资源处理和浮点数转换等步骤
  * 
- * @param objectContextParam 对象上下文参数
- * @return 操作结果状态码
+ * @param objectContext 对象上下文参数，包含对象初始化所需的信息
+ * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
 uint8_t InitializeObjectHandleB(int64_t objectContext)
 
 {
-  int64_t loopCounter;
-  uint validationResult;
-  uint unsignedValue3;
-  uint8_t byteValue4;
-  uint8_t *bytePointer5;
-  int FloatToIntConversionResult;
-  float ProcessedFloatValue;
-  uint8_t1 byteArray8 [16];
-  int64_t lStackX_8;
+  int64_t resourceCount;
+  uint validationStatus;
+  uint resourceHash;
+  uint8_t contextValidationResult;
+  uint8_t *resourcePointer;
+  int floatConversionResult;
+  float processedFloatValue;
+  uint8_t resourceMetadata[16];
+  int64_t contextHandle;
   
-  byteValue4 = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x1c),&lStackX_8);
-  if ((int)byteValue4 != 0) {
-    return byteValue4;
+  contextValidationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x1c), &contextHandle);
+  if ((int)contextValidationResult != 0) {
+    return contextValidationResult;
   }
-  loopCounter = *(int64_t *)(lStackX_8 + 8);
-  if (loopCounter != 0) {
-    ProcessedFloatValue = *(float *)(objectContextParam + 0x20);
-    for (bytePointer5 = *(uint8_t **)(localContextPointer + 0x48);
-        (*(uint8_t **)(localContextPointer + 0x48) <= resourcePointer5 &&
-        (resourcePointer5 < *(uint8_t **)(localContextPointer + 0x48) + *(int *)(localContextPointer + 0x50))); resourcePointer5 = resourcePointer5 + 1) {
-      unsignedResult4 = ProcessResourceOperation(*resourcePointer5,ProcessedFloatValue,0);
-      if ((int)byteValue4 != 0) {
-        return byteValue4;
+  resourceCount = *(int64_t *)(contextHandle + 8);
+  if (resourceCount != 0) {
+    processedFloatValue = *(float *)(objectContext + 0x20);
+    for (resourcePointer = *(uint8_t **)(contextHandle + 0x48);
+        (*(uint8_t **)(contextHandle + 0x48) <= resourcePointer &&
+        (resourcePointer < *(uint8_t **)(contextHandle + 0x48) + *(int *)(contextHandle + 0x50))); resourcePointer = resourcePointer + 1) {
+      resourceHash = ProcessResourceOperation(*resourcePointer, processedFloatValue, 0);
+      if ((int)resourceHash != 0) {
+        return resourceHash;
       }
     }
-    if ((*(char *)(localContextPointer + 0x34) == '\0') ||
-       ((*(uint *)(*(int64_t *)(localContextPointer + 0x18) + 0x34) >> 1 & 1) == 0)) {
-      unsignedResult3 = *(uint *)(*(int64_t *)(localContextPointer + 0x18) + 0x34);
-      validationResult = unsignedResult3 >> 4;
-      if ((validationResult & 1) == 0) {
-        if ((((unsignedResult3 >> 3 & 1) != 0) && (FloatToIntConversionResult = (int)ProcessedFloatValue, FloatToIntConversionResult != -0x80000000)) &&
-           ((float)FloatToIntConversionResult != ProcessedFloatValue)) {
-          auVar8._4_4_ = ProcessedFloatValue;
-          auVar8._0_4_ = ProcessedFloatValue;
-          auVar8._8_8_ = 0;
-          unsignedResult3 = movmskps(validationResult,auVar8);
-          ProcessedFloatValue = (float)(int)(FloatToIntConversionResult - (unsignedResult3 & 1));
+    if ((*(char *)(contextHandle + 0x34) == '\0') ||
+       ((*(uint *)(*(int64_t *)(contextHandle + 0x18) + 0x34) >> 1 & 1) == 0)) {
+      uint configurationFlags = *(uint *)(*(int64_t *)(contextHandle + 0x18) + 0x34);
+      validationStatus = configurationFlags >> 4;
+      if ((validationStatus & 1) == 0) {
+        if ((((configurationFlags >> 3 & 1) != 0) && (floatConversionResult = (int)processedFloatValue, floatConversionResult != -0x80000000)) &&
+           ((float)floatConversionResult != processedFloatValue)) {
+          union {
+            float floatValue;
+            struct {
+              uint32_t low;
+              uint32_t high;
+            } parts;
+            uint64_t value;
+          } floatUnion;
+          floatUnion.floatValue = processedFloatValue;
+          floatUnion.parts.high = 0;
+          resourceHash = movmskps(validationStatus, floatUnion.value);
+          processedFloatValue = (float)(int)(floatConversionResult - (resourceHash & 1));
         }
-        ProcessedFloatValue = (float)CalculateFloatValue(*(int64_t *)(localContextPointer + 0x18),ProcessedFloatValue);
-        if (((*(char *)(localContextPointer + 0x34) == '\0') ||
-            ((*(uint *)(*(int64_t *)(localContextPointer + 0x18) + 0x34) >> 1 & 1) == 0)) &&
-           (ProcessedFloatValue != *(float *)(localContextPointer + 0x20))) {
-          *(float *)(localContextPointer + 0x20) = ProcessedFloatValue;
-          ReleaseResourceHandle(localContextPointer);
-          *(uint8_t1 *)(localContextPointer + 0x35) = 0;
+        processedFloatValue = (float)CalculateFloatValue(*(int64_t *)(contextHandle + 0x18), processedFloatValue);
+        if (((*(char *)(contextHandle + 0x34) == '\0') ||
+            ((*(uint *)(*(int64_t *)(contextHandle + 0x18) + 0x34) >> 1 & 1) == 0)) &&
+           (processedFloatValue != *(float *)(contextHandle + 0x20))) {
+          *(float *)(contextHandle + 0x20) = processedFloatValue;
+          ReleaseResourceHandle(contextHandle);
+          *(uint8_t *)(contextHandle + 0x35) = 0;
         }
       }
     }
@@ -4247,57 +4254,58 @@ uint8_t InitializeObjectHandleB(int64_t objectContext)
 
 
 /**
- * @brief 处理对象句柄初始化操作C
+ * @brief 初始化对象句柄操作C
  * 
- * 该函数负责处理对象句柄的初始化操作，包括句柄分配、
- * 状态检查和初始化设置等步骤
+ * 该函数负责处理对象句柄的初始化操作，包括上下文验证、
+ * 资源遍历和批量处理等步骤
  * 
- * @param objectContext 对象上下文参数
- * @return 操作结果状态码
+ * @param objectContext 对象上下文参数，包含对象初始化所需的信息
+ * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
 uint8_t InitializeObjectHandleC(int64_t objectContext)
 
 {
-  int64_t loopCounter;
-  int integerValue2;
-  uint8_t unsignedResult3;
-  uint32_t *punsignedResult4;
-  uint64_t unsignedValue5;
+  int64_t resourceOffset;
+  int resourceIndex;
+  uint8_t operationResult;
+  uint32_t *resourceIdPointer;
+  uint64_t contextHandle;
   uint configurationFlags;
-  uint64_t unsignedValue7;
-  int64_t longValue8;
-  int64_t lStackX_8;
+  uint64_t iterationCounter;
+  int64_t baseAddressOffset;
+  int64_t validatedContext;
   
-  unsignedResult3 = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&lStackX_8);
-  if ((int)unsignedResult3 == 0) {
-    unsignedValue7 = 0;
-    unsignedValue5 = lStackX_8 - 8;
-    if (lStackX_8 == 0) {
-      unsignedValue5 = unsignedValue7;
+  operationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10), &validatedContext);
+  if ((int)operationResult == 0) {
+    iterationCounter = 0;
+    contextHandle = validatedContext - 8;
+    if (validatedContext == 0) {
+      contextHandle = iterationCounter;
     }
-    punsignedResult4 = (uint32_t *)(objectContextParam + 0x20 + (int64_t)*(int *)(objectContextParam + 0x18) * 4);
-    if (0 < *(int *)(objectContextParam + 0x18)) {
-      longValue8 = (objectContextParam + 0x20) - (int64_t)punsignedResult4;
+    resourceIdPointer = (uint32_t *)(objectContext + 0x20 + (int64_t)*(int *)(objectContext + 0x18) * 4);
+    if (0 < *(int *)(objectContext + 0x18)) {
+      baseAddressOffset = (objectContext + 0x20) - (int64_t)resourceIdPointer;
       do {
-        integerValue2 = *(int *)(longValue8 + (int64_t)punsignedResult4);
-        if (integerValue2 != -1) {
-          loopCounter = *(int64_t *)(unsignedValue5 + 0x20) + (int64_t)integerValue2 * 0x18;
-          if ((localContextPointer == 0) || (loopCounter = *(int64_t *)(localContextPointer + 8), localContextPointer == 0)) {
+        resourceIndex = *(int *)(baseAddressOffset + (int64_t)resourceIdPointer);
+        if (resourceIndex != -1) {
+          resourceOffset = *(int64_t *)(contextHandle + 0x20) + (int64_t)resourceIndex * 0x18;
+          int64_t resourceContext = *(int64_t *)(resourceOffset + 8);
+          if ((resourceContext == 0)) {
             return 0x1c;
           }
-          unsignedResult3 = ProcessResourceOperation(localContextPointer,*punsignedResult4,0);
-          if ((int)unsignedResult3 != 0) {
-            return unsignedResult3;
+          operationResult = ProcessResourceOperation(resourceContext, *resourceIdPointer, 0);
+          if ((int)operationResult != 0) {
+            return operationResult;
           }
         }
-        unsignedValue6 = (int)unsignedValue7 + 1;
-        unsignedValue7 = (uint64_t)unsignedValue6;
-        punsignedResult4 = punsignedResult4 + 1;
-      } while ((int)unsignedValue6 < *(int *)(objectContextParam + 0x18));
+        uint32_t nextIteration = (uint32_t)iterationCounter + 1;
+        iterationCounter = (uint64_t)nextIteration;
+        resourceIdPointer = resourceIdPointer + 1;
+      } while ((int)nextIteration < *(int *)(objectContext + 0x18));
     }
-    unsignedResult3 = 0;
+    operationResult = 0;
   }
-  return unsignedResult3;
+  return operationResult;
 }
 
 
@@ -8012,12 +8020,12 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
         if (*(uint *)(lVar5 + 0x30) != in_R9D) {
           return 0x1f;
         }
-        fVar9 = *(float *)(lVar5 + 0x38);
+        floatValue9 = *(float *)(lVar5 + 0x38);
         if ((*(float *)(lVar5 + 0x38) <= floatValue1) &&
-           (fVar9 = *(float *)(lVar5 + 0x3c), floatValue1 <= *(float *)(lVar5 + 0x3c))) {
-          fVar9 = floatValue1;
+           (floatValue9 = *(float *)(lVar5 + 0x3c), floatValue1 <= *(float *)(lVar5 + 0x3c))) {
+          floatValue9 = floatValue1;
         }
-        *pfloatValue4 = fVar9;
+        *pfloatValue4 = floatValue9;
       }
       uVar8 = uVar8 + 1;
       pfloatValue4 = pfloatValue4 + 1;
@@ -10810,18 +10818,18 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       *(int *)(objectContextParam + 0xac) = unaff_EBX + 1;
       goto LAB_180895b69;
     }
-    fVar9 = *(float *)(longValue8 + 0x18);
-    floatValue10 = fVar9;
+    floatValue9 = *(float *)(longValue8 + 0x18);
+    floatValue10 = floatValue9;
     if (iVar4 != -1) {
       floatValue10 = *(float *)(objectContextParam + 0xb4);
       iVar4 = -1;
       *(uint32_t *)(objectContextParam + 0xb0) = 0xffffffff;
       *(uint32_t *)(objectContextParam + 0xb4) = 0xbf800000;
     }
-    *(float *)(objectContextParam + 0xa8) = fVar9;
+    *(float *)(objectContextParam + 0xa8) = floatValue9;
     lVar5 = 0;
-    fVar9 = (float)*(uint *)(objectContextParam + 0x68) * fVar9;
-    if ((9.223372e+18 <= fVar9) && (fVar9 = fVar9 - 9.223372e+18, fVar9 < 9.223372e+18)) {
+    floatValue9 = (float)*(uint *)(objectContextParam + 0x68) * floatValue9;
+    if ((9.223372e+18 <= floatValue9) && (floatValue9 = floatValue9 - 9.223372e+18, floatValue9 < 9.223372e+18)) {
       lVar5 = -0x8000000000000000;
     }
     loopCounter = *(int64_t *)(objectContextParam + 0xa0);
@@ -10835,7 +10843,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       lVar7 = localContextPointer - ((int64_t)floatValue10 + lVar7);
       *(int64_t *)(unaff_RDI + 0x98) = lVar7;
     }
-    cVar2 = (int64_t)fVar9 + lVar5 < localContextPointer - lVar7;
+    cVar2 = (int64_t)floatValue9 + lVar5 < localContextPointer - lVar7;
     if ((*(byte *)(unaff_RDI + 0x6c) & 2) != 0) {
       cVar2 = in_R11B;
     }
@@ -22278,7 +22286,7 @@ LAB_18089c878:
     return byteValue4;
   }
   unsignedResult4 = unsignedValue7;
-  fVar9 = extraout_XMM0_Da;
+  floatValue9 = extraout_XMM0_Da;
   unsignedValue5 = unsignedValue6;
   uVar8 = unaff_R14D;
   if (*(uint *)(ResourceContextPointer + 8) < 0x70) {
@@ -22291,12 +22299,12 @@ LAB_18089c878:
       else if (plocalContextPointer[2] == 0) {
 LAB_18089c9a8:
         unsignedResult3 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + 0x77,unaff_R14D,unaff_R14D,0);
-        fVar9 = extraout_XMM0_Da_01;
+        floatValue9 = extraout_XMM0_Da_01;
       }
       else {
         *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
         unsignedResult3 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x25);
-        fVar9 = extraout_XMM0_Da_00;
+        floatValue9 = extraout_XMM0_Da_00;
         if (unsignedResult3 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x25) + 1 <= (uint64_t)plocalContextPointer[2])
           goto LAB_18089c9a8;
@@ -22324,14 +22332,14 @@ LAB_18089c9a8:
     return byteValue4;
   }
   if ((*(uint *)(ResourceContextPointer + 8) < 0x60) &&
-     (unsignedResult4 = CheckSecurityValidation(), fVar9 = extraout_XMM0_Da_02, (int)byteValue4 != 0)) {
+     (unsignedResult4 = CheckSecurityValidation(), floatValue9 = extraout_XMM0_Da_02, (int)byteValue4 != 0)) {
     return byteValue4;
   }
   unsignedResult4 = unsignedValue7;
   if (0x51 < *(uint *)(ResourceContextPointer + 8)) {
     if (*(int *)(ResourceContextPointer[1] + 0x18) == 0) {
       unsignedResult4 = CalculateResourceHash(*ResourceContextPointer,unaff_R13 + 0x48);
-      fVar9 = extraout_XMM0_Da_03;
+      floatValue9 = extraout_XMM0_Da_03;
     }
     else {
       unsignedResult4 = 0x1c;
@@ -22354,12 +22362,12 @@ LAB_18089c9a8:
   else if (plocalContextPointer[2] == 0) {
 LAB_18089ca9c:
     unsignedResult3 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + 0x77,unaff_R14D,unaff_R14D,0);
-    fVar9 = extraout_XMM0_Da_05;
+    floatValue9 = extraout_XMM0_Da_05;
   }
   else {
     *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
     unsignedResult3 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x25);
-    fVar9 = extraout_XMM0_Da_04;
+    floatValue9 = extraout_XMM0_Da_04;
     if (unsignedResult3 == 0) {
       if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x25) + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089ca9c;
       unsignedResult3 = 0x11;
@@ -22387,8 +22395,8 @@ LAB_18089cad8:
     unsignedResult3 = *(uint *)(ResourceContextPointer + 8);
   }
   if ((unsignedResult3 < 0x87) && ((*(uint *)(unaff_R13 + 0x34) >> 3 & 1) != 0)) {
-    fVar9 = *(float *)(unaff_R13 + 0x3c) - 1.0;
-    *(float *)(unaff_R13 + 0x3c) = fVar9;
+    floatValue9 = *(float *)(unaff_R13 + 0x3c) - 1.0;
+    *(float *)(unaff_R13 + 0x3c) = floatValue9;
     unsignedResult3 = *(uint *)(ResourceContextPointer + 8);
   }
   if (0x8a < unsignedResult3) {
@@ -22405,10 +22413,10 @@ LAB_18089cad8:
     }
     *(uint32_t *)(ExecutionContextPointer + 0x77) = 0;
     unsignedResult4 = unsignedValue7;
-    fVar9 = extraout_XMM0_Da_06;
+    floatValue9 = extraout_XMM0_Da_06;
     if (unsignedValue5 >> 1 != 0) {
       do {
-        unsignedResult4 = ExtractResourceInfo(fVar9,unsignedResult4);
+        unsignedResult4 = ExtractResourceInfo(floatValue9,unsignedResult4);
         if ((int)byteValue4 != 0) {
           return byteValue4;
         }
@@ -22433,12 +22441,12 @@ LAB_18089cad8:
         uVar8 = *(uint *)(ExecutionContextPointer + 0x77) & -(unsignedValue5 & 1);
         unsignedResult4 = (uint64_t)uVar8;
         *(uint *)(ExecutionContextPointer + 0x77) = uVar8;
-        fVar9 = extraout_XMM0_Da_09;
+        floatValue9 = extraout_XMM0_Da_09;
       } while ((int)unsignedValue6 < (int)(unsignedValue5 >> 1));
     }
   }
                     // WARNING: Subroutine does not return
-  CleanupResourceData(fVar9,ExecutionContextPointer + -0x21);
+  CleanupResourceData(floatValue9,ExecutionContextPointer + -0x21);
 }
 
 
@@ -31435,7 +31443,18 @@ void CleanupResourceTableAndReleaseHandles(uint8_t objectContextParam,int64_t va
 
 
 
-void Unwind_180902970(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 清理资源表缓冲区
+ * 
+ * 该函数负责清理资源表缓冲区，遍历资源表并处理缓冲区操作
+ * 主要用于系统资源清理和内存管理
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于资源表清理
+ */
+void CleanupResourceTableBuffer(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int64_t loopCounter;
@@ -31456,7 +31475,18 @@ void Unwind_180902970(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902980(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 注册主要资源处理器
+ * 
+ * 该函数负责注册系统的主要资源处理器，设置资源处理的基本参数
+ * 主要用于系统资源管理和处理机制
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于注册主要资源处理器
+ */
+void RegisterPrimaryResourceHandler(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   RegisterResourceHandler(*(int64_t *)(validationContextParam + 0x70) + 0x98,0x20,0x10,SystemResourceHandler);
@@ -31465,7 +31495,18 @@ void Unwind_180902980(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809029c0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 注册扩展资源处理器
+ * 
+ * 该函数负责注册系统的扩展资源处理器，设置资源处理的扩展参数
+ * 主要用于系统资源管理和处理机制
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于注册扩展资源处理器
+ */
+void RegisterExtendedResourceHandler(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   RegisterResourceHandler(*(int64_t *)(validationContextParam + 0x70) + 0x2a0,0x20,0x10,SystemResourceHandlerEx);
@@ -31474,7 +31515,18 @@ void Unwind_1809029c0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902a00(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 注册高级资源处理器
+ * 
+ * 该函数负责注册系统的高级资源处理器，设置资源处理的高级参数
+ * 主要用于系统资源管理和处理机制
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于注册高级资源处理器
+ */
+void RegisterAdvancedResourceHandler(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   RegisterResourceHandler(*(int64_t *)(validationContextParam + 0x70) + 0x4a0,0x20,0x10,SystemResourceHandlerAdvanced);
@@ -31483,7 +31535,18 @@ void Unwind_180902a00(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902a40(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 释放资源句柄表
+ * 
+ * 该函数负责释放资源句柄表中的所有资源句柄
+ * 遍历资源表并释放所有有效的资源句柄
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于批量资源句柄释放
+ */
+void ReleaseResourceHandleTable(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int *pintegerValue1;
@@ -31538,7 +31601,18 @@ void Unwind_180902a40(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902a50(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 验证内存访问权限
+ * 
+ * 该函数负责验证内存访问权限，确保内存访问的安全性
+ * 主要用于系统内存管理和安全检查
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于内存访问权限验证
+ */
+void ValidateMemoryAccessPermissions(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int *pintegerValue1;
