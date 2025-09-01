@@ -15688,8 +15688,10 @@ void InitializeSystemSubcomponentL(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180041f10(void)
-void FUN_180041f10(void)
+// 函数: void InitializeSystemSubcomponentM(void)
+// 功能: 初始化系统子组件M - 负责系统备份管理组件的初始化
+// 该函数初始化系统备份管理相关的数据结构和备份策略
+void InitializeSystemSubcomponentM(void)
 
 {
   undefined8 in_R9;
@@ -15722,8 +15724,10 @@ int FUN_180041fa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_180041fd0(void)
-void FUN_180041fd0(void)
+// 函数: void InitializeSystemSubcomponentN(void)
+// 功能: 初始化系统子组件N - 负责系统更新管理组件的初始化
+// 该函数初始化系统更新管理相关的数据结构和更新机制
+void InitializeSystemSubcomponentN(void)
 
 {
   char systemNodeFlag;
