@@ -32393,7 +32393,7 @@ void SystemResourceCleanupHandler(uint8_t ObjectContextParameter,int64_t Validat
 
 
 
-void Unwind_180902bf0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void MemoryValidationCleanupHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -32429,7 +32429,7 @@ void Unwind_180902bf0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902c00(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ExceptionHandlerCleanup(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
