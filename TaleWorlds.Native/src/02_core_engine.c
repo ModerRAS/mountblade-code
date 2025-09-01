@@ -11871,8 +11871,8 @@ longlong engine_core_thread_operations(uint32_t *engine_engine_param_1,uint32_t 
     if (engine_temp_char_flag == '\0') {
       if (engine_data_60 == '\0') {
         engine_data_ptr_3 = &engine_data_73;
-        if (*(undefined **)(engine_engine_param_1 + 4) != (void*)0x0) {
-          engine_data_ptr_3 = *(undefined **)(engine_engine_param_1 + 4);
+        if (*(void**)(engine_engine_param_1 + 4) != (void*)0x0) {
+          engine_data_ptr_3 = *(void**)(engine_engine_param_1 + 4);
         }
         engine_call_buffer_allocator(&engine_data_18098bc00,engine_data_ptr_3);
       }
@@ -11905,8 +11905,8 @@ void engine_core_registry_operations(uint64 engine_engine_param_1,uint32_t engin
      engine_engine_param_2 = auStackX_10[0], engine_temp_char_flag == '\0')) {
     if (engine_data_60 == '\0') {
       engine_data_ptr_3 = &engine_data_73;
-      if (*(undefined **)(engine_temp_long + 0x22a0) != (void*)0x0) {
-        engine_data_ptr_3 = *(undefined **)(engine_temp_long + 0x22a0);
+      if (*(void**)(engine_temp_long + 0x22a0) != (void*)0x0) {
+        engine_data_ptr_3 = *(void**)(engine_temp_long + 0x22a0);
       }
       engine_call_buffer_allocator(&engine_data_18098bc00,engine_data_ptr_3);
     }
@@ -12166,7 +12166,16 @@ void engine_setup_render_pipeline(longlong *engine_engine_param_1)
 
 
 
-// 函数: void engine_execute_render_pipeline(longlong *engine_engine_param_1)
+/**
+ * @brief 执行渲染管线
+ * @param engine_engine_param_1 渲染管线执行参数指针
+ * @return void
+ * 
+ * 该函数负责执行渲染管线，处理渲染数据和绘制命令。
+ * 
+ * @note 这是简化实现，主要处理渲染管线的基本执行
+ * @warning 调用此函数前需要确保参数有效
+ */
 void engine_execute_render_pipeline(longlong *engine_engine_param_1)
 
 {
