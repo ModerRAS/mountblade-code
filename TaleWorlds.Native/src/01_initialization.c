@@ -10,16 +10,16 @@
  */
 
 // 全局函数指针 - 系统初始化相关
-void* GameSystemEntryPoint;
-void* GlobalSystemDataReference;
-void* SystemMemoryPoolPrimary;
-void* SystemDataTableReference;
-void* SystemMemoryPoolSecondary;
+void* GameSystemEntryPoint;                    // 游戏系统主入口点
+void* GlobalSystemDataReference;              // 全局系统数据引用
+void* SystemMemoryPoolPrimary;                 // 主系统内存池
+void* SystemDataTableReference;                // 系统数据表引用
+void* SystemMemoryPoolSecondary;               // 次级系统内存池
 void* SystemDataTableSecondary;
-void* SystemMemoryPoolTertiary;
-void* SystemDataTableTertiary;
-void* SystemMemoryPoolQuaternary;
-void* SystemDataTableQuaternary;
+void* SystemMemoryPoolTertiary;                // 第三级系统内存池
+void* SystemDataTableTertiary;                 // 第三级系统数据表
+void* SystemMemoryPoolQuaternary;              // 第四级系统内存池
+void* SystemDataTableQuaternary;               // 第四级系统数据表
 void* SystemMemoryPoolQuinary;
 void* SystemDataTableQuinary;
 void* SystemMemoryPoolSenary;
@@ -682,7 +682,7 @@ void InitializeGameCoreSystem(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -738,8 +738,8 @@ void initializeSystemDataTable_BaseAllocator(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fc768,0x10);
-    if (systemComparisonResult < 0) {
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -750,12 +750,12 @@ void initializeSystemDataTable_BaseAllocator(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4770584fbb1df897;
+  systemPreviousNode[6] = 0x4770584fbb1df897;
   puVar7[7] = 0x47f249e43f66f2ab;
   puVar7[8] = &UNK_18098c7a0;
   puVar7[9] = 1;
@@ -794,7 +794,7 @@ void InitializeSystemDataTableAllocator(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9b8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -849,7 +849,7 @@ void InitializeSystemCoreConfig(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -904,7 +904,7 @@ void InitializeSystemMemoryPool(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c918,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -959,7 +959,7 @@ void InitializeSystemThreadPool(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c968,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -1014,7 +1014,7 @@ void InitializeSystemEventManager(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c990,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -1069,7 +1069,7 @@ void InitializeSystemResourceManager(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9e0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -1363,7 +1363,7 @@ void InitializeSystemMemoryManager(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9e8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -1418,7 +1418,7 @@ void InitializeSystemMemoryAllocator(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9c0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -1527,7 +1527,7 @@ void InitializeSystemThreadManager(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -1582,7 +1582,7 @@ void InitializeSystemEventManager(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -1918,7 +1918,7 @@ void InitializeSystemDataTableStructureC(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00e28,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -1974,7 +1974,7 @@ void InitializeSystemDataTableStructureD(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2030,7 +2030,7 @@ void InitializeSystemDataTableStructureE(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9e8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2086,7 +2086,7 @@ void InitializeSystemDataTableStructureF(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9c0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2142,7 +2142,7 @@ void InitializeSystemDataTableStructureG(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2198,7 +2198,7 @@ void InitializeSystemDataTableStructureH(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00bb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2254,7 +2254,7 @@ void InitializeSystemDataTableStructureI(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00b88,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2350,7 +2350,7 @@ void InitializeSystemMemoryManager(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2400,7 +2400,7 @@ void FUN_18002ea70(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2450,7 +2450,7 @@ void FUN_18002eb70(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2500,7 +2500,7 @@ void FUN_18002ec70(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2550,7 +2550,7 @@ void FUN_18002ed70(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2600,7 +2600,7 @@ void FUN_18002ee70(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2650,7 +2650,7 @@ void FUN_18002ef70(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2700,7 +2700,7 @@ void FUN_18002f070(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2750,7 +2750,7 @@ void FUN_18002f170(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2800,7 +2800,7 @@ void FUN_18002f270(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2850,7 +2850,7 @@ void FUN_18002f370(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2900,7 +2900,7 @@ void FUN_18002f470(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -2950,7 +2950,7 @@ void FUN_18002f570(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3000,7 +3000,7 @@ void FUN_18002f670(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3050,7 +3050,7 @@ void FUN_18002f770(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3100,7 +3100,7 @@ void FUN_18002f870(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3150,7 +3150,7 @@ void FUN_18002f970(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3200,7 +3200,7 @@ void FUN_18002fa70(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3250,7 +3250,7 @@ void FUN_18002fb70(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3300,7 +3300,7 @@ void FUN_18002fc70(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3350,7 +3350,7 @@ void FUN_18002fd70(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3400,7 +3400,7 @@ void FUN_18002fe70(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3450,7 +3450,7 @@ void FUN_18002ff70(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3500,7 +3500,7 @@ void FUN_180030070(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3550,7 +3550,7 @@ void FUN_180030170(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3600,7 +3600,7 @@ void FUN_180030270(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3650,7 +3650,7 @@ void FUN_180030370(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3700,7 +3700,7 @@ void FUN_180030470(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3750,7 +3750,7 @@ void FUN_180030570(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3800,7 +3800,7 @@ void FUN_180030670(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3850,7 +3850,7 @@ void FUN_180030770(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3934,7 +3934,7 @@ void FUN_180031a10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9e8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -3984,7 +3984,7 @@ void FUN_180031b10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9c0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4034,7 +4034,7 @@ void FUN_180031c10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9e8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4084,7 +4084,7 @@ void FUN_180031d10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9c0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4134,7 +4134,7 @@ void FUN_180031e10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4184,7 +4184,7 @@ void FUN_180031f10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4234,7 +4234,7 @@ void FUN_180032010(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4284,7 +4284,7 @@ void FUN_180032110(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4334,7 +4334,7 @@ void FUN_180032210(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4384,7 +4384,7 @@ void FUN_180032310(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4434,7 +4434,7 @@ void FUN_180032410(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4508,7 +4508,7 @@ void FUN_1800325a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4558,7 +4558,7 @@ void FUN_1800326a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4608,7 +4608,7 @@ void FUN_1800327a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4658,7 +4658,7 @@ void FUN_1800328a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4708,7 +4708,7 @@ void FUN_1800329a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4758,7 +4758,7 @@ void FUN_180032aa0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -4808,7 +4808,7 @@ void FUN_180032ba0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5010,7 +5010,7 @@ void FUN_180033a50(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00bb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5060,7 +5060,7 @@ void FUN_180033b50(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00b88,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5110,7 +5110,7 @@ void FUN_180033c50(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5160,7 +5160,7 @@ void FUN_180033d50(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5210,7 +5210,7 @@ void FUN_180033e50(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5260,7 +5260,7 @@ void FUN_180033f50(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5310,7 +5310,7 @@ void FUN_180034050(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5360,7 +5360,7 @@ void FUN_180034150(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5410,7 +5410,7 @@ void FUN_180034250(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5460,7 +5460,7 @@ void FUN_180034350(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5510,7 +5510,7 @@ void FUN_180034450(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5560,7 +5560,7 @@ void FUN_180034550(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5610,7 +5610,7 @@ void FUN_180034650(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5660,7 +5660,7 @@ void FUN_180034750(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5710,7 +5710,7 @@ void FUN_180034850(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5760,7 +5760,7 @@ void FUN_180034950(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5867,7 +5867,7 @@ void FUN_180034b40(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5917,7 +5917,7 @@ void FUN_180034c40(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00e28,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -5967,7 +5967,7 @@ void FUN_180034d40(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9e8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6017,7 +6017,7 @@ void FUN_180034e40(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9c0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6067,7 +6067,7 @@ void FUN_180034f40(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6117,7 +6117,7 @@ void FUN_180035040(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6167,7 +6167,7 @@ void FUN_180035140(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6217,7 +6217,7 @@ void FUN_180035240(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6267,7 +6267,7 @@ void FUN_180035340(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6317,7 +6317,7 @@ void FUN_180035440(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6367,7 +6367,7 @@ void FUN_180035540(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6417,7 +6417,7 @@ void FUN_180035640(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00bb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6467,7 +6467,7 @@ void FUN_180035740(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00b88,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6517,7 +6517,7 @@ void FUN_180035840(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6567,7 +6567,7 @@ void FUN_180035940(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6617,7 +6617,7 @@ void FUN_180035a40(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6667,7 +6667,7 @@ void FUN_180035b40(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6717,7 +6717,7 @@ void FUN_180035c40(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6767,7 +6767,7 @@ void FUN_180035d40(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6817,7 +6817,7 @@ void FUN_180035e40(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6867,7 +6867,7 @@ void FUN_180035f50(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00e28,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6917,7 +6917,7 @@ void FUN_180036050(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -6967,7 +6967,7 @@ void FUN_180036150(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00bb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7017,7 +7017,7 @@ void FUN_180036250(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00b88,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7067,7 +7067,7 @@ void FUN_180036350(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7117,7 +7117,7 @@ void FUN_180036450(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7167,7 +7167,7 @@ void FUN_180036550(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7217,7 +7217,7 @@ void FUN_180036650(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7267,7 +7267,7 @@ void FUN_180036750(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7317,7 +7317,7 @@ void FUN_180036850(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7367,7 +7367,7 @@ void FUN_180036950(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7417,7 +7417,7 @@ void FUN_180036a50(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7547,7 +7547,7 @@ void FUN_180036df0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7597,7 +7597,7 @@ void FUN_180036ef0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7647,7 +7647,7 @@ void FUN_180036ff0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7697,7 +7697,7 @@ void FUN_1800370f0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7747,7 +7747,7 @@ void FUN_1800371f0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7797,7 +7797,7 @@ void FUN_1800372f0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7847,7 +7847,7 @@ void FUN_1800373f0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7897,7 +7897,7 @@ void FUN_1800374f0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -7971,7 +7971,7 @@ void FUN_180037680(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8020,8 +8020,8 @@ void FUN_180037780(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fc768,0x10);
-    if (systemComparisonResult < 0) {
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8032,12 +8032,12 @@ void FUN_180037780(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4770584fbb1df897;
+  systemPreviousNode[6] = 0x4770584fbb1df897;
   puVar7[7] = 0x47f249e43f66f2ab;
   puVar7[8] = &UNK_18098c7a0;
   puVar7[9] = 1;
@@ -8071,7 +8071,7 @@ void FUN_180037880(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9b8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8121,7 +8121,7 @@ void FUN_180037980(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8171,7 +8171,7 @@ void FUN_180037a80(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c918,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8221,7 +8221,7 @@ void FUN_180037b80(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c968,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8271,7 +8271,7 @@ void FUN_180037c80(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c990,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8321,7 +8321,7 @@ void FUN_180037d80(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9e0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8371,7 +8371,7 @@ void FUN_180037e80(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8f0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8421,7 +8421,7 @@ void FUN_180037f80(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8471,7 +8471,7 @@ void FUN_180038080(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8737,7 +8737,7 @@ void FUN_1800386a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8787,7 +8787,7 @@ void FUN_1800387a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8837,7 +8837,7 @@ void FUN_1800388a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8887,7 +8887,7 @@ void FUN_1800389a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8937,7 +8937,7 @@ void FUN_180038aa0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -8987,7 +8987,7 @@ void FUN_180038ba0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9037,7 +9037,7 @@ void FUN_180038ca0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9087,7 +9087,7 @@ void FUN_180038da0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9137,7 +9137,7 @@ void FUN_180038ea0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9187,7 +9187,7 @@ void FUN_180038fa0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9237,7 +9237,7 @@ void FUN_1800390a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9287,7 +9287,7 @@ void FUN_1800391a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9337,7 +9337,7 @@ void FUN_1800392a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9387,7 +9387,7 @@ void FUN_1800393a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9437,7 +9437,7 @@ void FUN_1800394a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9487,7 +9487,7 @@ void FUN_1800395a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9537,7 +9537,7 @@ void FUN_1800396a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9587,7 +9587,7 @@ void FUN_1800397a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9637,7 +9637,7 @@ void FUN_1800398a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9687,7 +9687,7 @@ void FUN_1800399a0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9737,7 +9737,7 @@ void FUN_180039aa0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9787,7 +9787,7 @@ void FUN_180039bb0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9837,7 +9837,7 @@ void FUN_180039cb0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9887,7 +9887,7 @@ void FUN_180039db0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9937,7 +9937,7 @@ void FUN_180039eb0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -9987,7 +9987,7 @@ void FUN_180039fb0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10037,7 +10037,7 @@ void FUN_18003a0b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10087,7 +10087,7 @@ void FUN_18003a1b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10142,7 +10142,7 @@ void InitializeSystemMemoryAllocatorSetup(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10196,8 +10196,8 @@ void InitializeSystemDataTableConfigurator(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fc768,0x10);
-    if (systemComparisonResult < 0) {
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10208,12 +10208,12 @@ void InitializeSystemDataTableConfigurator(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4770584fbb1df897;
+  systemPreviousNode[6] = 0x4770584fbb1df897;
   puVar7[7] = 0x47f249e43f66f2ab;
   puVar7[8] = &UNK_18098c7a0;
   puVar7[9] = 1;
@@ -10247,7 +10247,7 @@ void FUN_18003a4b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9b8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10297,7 +10297,7 @@ void FUN_18003a5b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10347,7 +10347,7 @@ void FUN_18003a6b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c918,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10397,7 +10397,7 @@ void FUN_18003a7b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c968,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10447,7 +10447,7 @@ void FUN_18003a8b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c990,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10497,7 +10497,7 @@ void FUN_18003a9b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9e0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10547,7 +10547,7 @@ void FUN_18003aab0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8f0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10597,7 +10597,7 @@ void FUN_18003abb0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10681,7 +10681,7 @@ void FUN_18003c1f0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10730,8 +10730,8 @@ void FUN_18003c2f0(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fc768,0x10);
-    if (systemComparisonResult < 0) {
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10742,12 +10742,12 @@ void FUN_18003c2f0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4770584fbb1df897;
+  systemPreviousNode[6] = 0x4770584fbb1df897;
   puVar7[7] = 0x47f249e43f66f2ab;
   puVar7[8] = &UNK_18098c7a0;
   puVar7[9] = 1;
@@ -10781,7 +10781,7 @@ void FUN_18003c3f0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9b8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10831,7 +10831,7 @@ void FUN_18003c4f0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10881,7 +10881,7 @@ void FUN_18003c5f0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c918,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10931,7 +10931,7 @@ void FUN_18003c6f0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c968,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -10981,7 +10981,7 @@ void FUN_18003c7f0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c990,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11031,7 +11031,7 @@ void FUN_18003c8f0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9e0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11081,7 +11081,7 @@ void FUN_18003c9f0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8f0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11131,7 +11131,7 @@ void FUN_18003caf0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11229,7 +11229,7 @@ void FUN_18003cd10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11279,7 +11279,7 @@ void FUN_18003ce10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11329,7 +11329,7 @@ void FUN_18003cf10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11379,7 +11379,7 @@ void FUN_18003d010(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11429,7 +11429,7 @@ void FUN_18003d110(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11479,7 +11479,7 @@ void FUN_18003d210(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11529,7 +11529,7 @@ void FUN_18003d310(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11589,7 +11589,7 @@ void FUN_18003de10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11639,7 +11639,7 @@ void FUN_18003df10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11689,7 +11689,7 @@ void FUN_18003e010(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11739,7 +11739,7 @@ void FUN_18003e110(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11789,7 +11789,7 @@ void FUN_18003e210(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11839,7 +11839,7 @@ void FUN_18003e310(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11889,7 +11889,7 @@ void FUN_18003e410(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11939,7 +11939,7 @@ void FUN_18003e510(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -11989,7 +11989,7 @@ void FUN_18003e610(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12039,7 +12039,7 @@ void FUN_18003e710(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12089,7 +12089,7 @@ void FUN_18003e810(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12139,7 +12139,7 @@ void FUN_18003e910(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12189,7 +12189,7 @@ void FUN_18003ea10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12239,7 +12239,7 @@ void FUN_18003eb10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12289,7 +12289,7 @@ void FUN_18003ec10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12426,7 +12426,7 @@ void FUN_18003ee90(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12475,8 +12475,8 @@ void FUN_18003ef90(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fc768,0x10);
-    if (systemComparisonResult < 0) {
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12487,12 +12487,12 @@ void FUN_18003ef90(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4770584fbb1df897;
+  systemPreviousNode[6] = 0x4770584fbb1df897;
   puVar7[7] = 0x47f249e43f66f2ab;
   puVar7[8] = &UNK_18098c7a0;
   puVar7[9] = 1;
@@ -12526,7 +12526,7 @@ void FUN_18003f090(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9b8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12576,7 +12576,7 @@ void FUN_18003f190(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12626,7 +12626,7 @@ void FUN_18003f290(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c918,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12676,7 +12676,7 @@ void FUN_18003f390(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c968,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12726,7 +12726,7 @@ void FUN_18003f490(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c990,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12776,7 +12776,7 @@ void FUN_18003f590(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9e0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12826,7 +12826,7 @@ void FUN_18003f690(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8f0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -12876,7 +12876,7 @@ void FUN_18003f790(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13032,7 +13032,7 @@ void FUN_18003fbb0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d660,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13082,7 +13082,7 @@ void FUN_18003fcb0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d590,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13132,7 +13132,7 @@ void FUN_18003fdb0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13181,8 +13181,8 @@ void FUN_18003feb0(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fc768,0x10);
-    if (systemComparisonResult < 0) {
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13193,12 +13193,12 @@ void FUN_18003feb0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4770584fbb1df897;
+  systemPreviousNode[6] = 0x4770584fbb1df897;
   puVar7[7] = 0x47f249e43f66f2ab;
   puVar7[8] = &UNK_18098c7a0;
   puVar7[9] = 1;
@@ -13232,7 +13232,7 @@ void FUN_18003ffb0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9b8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13282,7 +13282,7 @@ void FUN_1800400b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13332,7 +13332,7 @@ void FUN_1800401b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c918,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13382,7 +13382,7 @@ void FUN_1800402b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c968,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13432,7 +13432,7 @@ void FUN_1800403b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c990,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13482,7 +13482,7 @@ void FUN_1800404b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9e0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13532,7 +13532,7 @@ void FUN_1800405b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8f0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13582,7 +13582,7 @@ void FUN_1800406b0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13632,7 +13632,7 @@ void FUN_1800408d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d660,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13682,7 +13682,7 @@ void FUN_1800409d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d590,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13732,7 +13732,7 @@ void FUN_180040ae0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13782,7 +13782,7 @@ void FUN_180040be0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00e28,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13832,7 +13832,7 @@ void FUN_180040ce0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9e8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13882,7 +13882,7 @@ void FUN_180040de0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9c0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13932,7 +13932,7 @@ void FUN_180040ee0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -13982,7 +13982,7 @@ void FUN_180040fe0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14032,7 +14032,7 @@ void FUN_1800410e0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14082,7 +14082,7 @@ void FUN_1800411e0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14132,7 +14132,7 @@ void FUN_1800412e0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14182,7 +14182,7 @@ void FUN_1800413e0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14232,7 +14232,7 @@ void FUN_1800414e0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14282,7 +14282,7 @@ void FUN_1800415e0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14332,7 +14332,7 @@ void FUN_1800416e0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d660,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14382,7 +14382,7 @@ void FUN_1800417e0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d590,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14472,7 +14472,7 @@ void FUN_180041af0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d660,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14522,7 +14522,7 @@ void FUN_180041bf0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d590,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14572,7 +14572,7 @@ void FUN_180041d10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d660,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14622,7 +14622,7 @@ void FUN_180041e10(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d590,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14708,7 +14708,7 @@ void FUN_180041fd0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d660,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14758,7 +14758,7 @@ void FUN_1800420d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d590,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14808,7 +14808,7 @@ void FUN_1800421d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9e8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14858,7 +14858,7 @@ void FUN_1800422d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9c0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14908,7 +14908,7 @@ void FUN_1800423d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -14958,7 +14958,7 @@ void FUN_1800424d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15008,7 +15008,7 @@ void FUN_1800425d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15058,7 +15058,7 @@ void FUN_1800426d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15108,7 +15108,7 @@ void FUN_1800427d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15158,7 +15158,7 @@ void FUN_1800428d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15208,7 +15208,7 @@ void FUN_1800429d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15258,7 +15258,7 @@ void FUN_180042ad0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     systemComparisonResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15307,8 +15307,8 @@ void FUN_180042bd0(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fc768,0x10);
-    if (systemComparisonResult < 0) {
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15319,12 +15319,12 @@ void FUN_180042bd0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = getSystemMemorySize(systemDataTable);
     allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4770584fbb1df897;
+  systemPreviousNode[6] = 0x4770584fbb1df897;
   puVar7[7] = 0x47f249e43f66f2ab;
   puVar7[8] = &UNK_18098c7a0;
   puVar7[9] = 1;
@@ -15358,7 +15358,7 @@ void FUN_180042cd0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9b8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15408,7 +15408,7 @@ void FUN_180042dd0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15458,7 +15458,7 @@ void FUN_180042ed0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c918,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15508,7 +15508,7 @@ void FUN_180042fd0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c968,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15558,7 +15558,7 @@ void FUN_1800430d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c990,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15608,7 +15608,7 @@ void FUN_1800431d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9e0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15658,7 +15658,7 @@ void FUN_1800432d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8f0,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
@@ -15708,7 +15708,7 @@ void FUN_1800433d0(void)
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
-    if (systemComparisonResult < 0) {
+    if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }

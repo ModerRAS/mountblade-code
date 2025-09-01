@@ -400,8 +400,10 @@ void* DatabaseTransactionStateManager;
 void* DatabaseTransactionRollbackManager;
 // 数据库事务提交管理器
 void* DatabaseTransactionCommitManager;
-undefined DAT_180bf6b70;
-undefined DAT_180bf6b78;
+// 数据库系统配置表指针
+undefined DatabaseSystemConfigTable;
+// 数据库系统状态表指针
+undefined DatabaseSystemStatusTable;
 undefined DAT_180bf6b80;
 undefined DAT_180bf6b88;
 undefined DAT_180bf6bc8;
@@ -2251,8 +2253,14 @@ undefined UNK_180a19e88;
 void ReallocateMemoryBlock;
 undefined DAT_180d497d0;
 
-// 函数: undefined FUN_180941e00;
-undefined FUN_180941e00;
+// 函数: void GetMemoryBlockSize;
+/**
+ * @brief 获取内存块大小
+ * 
+ * 该函数负责获取已分配内存块的大小
+ * 用于内存管理和调试目的
+ */
+void GetMemoryBlockSize;
 undefined DAT_180d49990;
 undefined DAT_180d48de0;
 undefined DAT_180d48de8;
@@ -2268,8 +2276,14 @@ undefined UNK_180a1b150;
 undefined UNK_180a1b118;
 undefined UNK_18033cd70;
 
-// 函数: undefined FUN_180942830;
-undefined FUN_180942830;
+// 函数: void InitializeThreadManager;
+/**
+ * @brief 初始化线程管理器
+ * 
+ * 该函数负责初始化系统的线程管理器
+ * 设置线程池和调度策略
+ */
+void InitializeThreadManager;
 undefined UNK_180a02fc8;
 undefined UNK_180a02fa0;
 undefined DAT_180d49d08;
@@ -2280,8 +2294,14 @@ undefined DAT_180d49c08;
 undefined UNK_18045f200;
 undefined UNK_18045f210;
 
-// 函数: undefined FUN_180942850;
-undefined FUN_180942850;
+// 函数: void CreateWorkerThread;
+/**
+ * @brief 创建工作线程
+ * 
+ * 该函数负责创建工作线程来处理任务
+ * 设置线程的执行环境和参数
+ */
+void CreateWorkerThread;
 undefined DAT_180c91038;
 undefined UNK_180a3e440;
 undefined UNK_180a2a8a0;
@@ -3582,7 +3602,16 @@ undefined8 IncrementObjectReferenceCount(longlong objectContext)
 
 
 
-undefined8 FUN_180890590(longlong param_1)
+/**
+ * @brief 处理对象句柄初始化操作A
+ * 
+ * 该函数负责处理对象句柄的初始化操作，包括句柄分配、
+ * 状态检查和初始化设置等步骤
+ * 
+ * @param param_1 对象上下文参数
+ * @return 操作结果状态码
+ */
+undefined8 InitializeObjectHandleA(longlong param_1)
 
 {
   undefined8 uVar1;
@@ -3940,7 +3969,16 @@ undefined8 ValidateAndProcessObjectStatus(longlong objectContext)
 // WARNING: Removing unreachable block (ram,0x0001808d74a4)
 // WARNING: Removing unreachable block (ram,0x0001808d74b1)
 
-undefined8 FUN_1808908b0(longlong param_1)
+/**
+ * @brief 处理对象句柄初始化操作B
+ * 
+ * 该函数负责处理对象句柄的初始化操作，包括句柄分配、
+ * 状态检查和初始化设置等步骤
+ * 
+ * @param param_1 对象上下文参数
+ * @return 操作结果状态码
+ */
+undefined8 InitializeObjectHandleB(longlong param_1)
 
 {
   longlong lVar1;
@@ -3998,7 +4036,16 @@ undefined8 FUN_1808908b0(longlong param_1)
 
 
 
-undefined8 FUN_180890900(longlong param_1)
+/**
+ * @brief 处理对象句柄初始化操作C
+ * 
+ * 该函数负责处理对象句柄的初始化操作，包括句柄分配、
+ * 状态检查和初始化设置等步骤
+ * 
+ * @param param_1 对象上下文参数
+ * @return 操作结果状态码
+ */
+undefined8 InitializeObjectHandleC(longlong param_1)
 
 {
   longlong lVar1;
@@ -4045,7 +4092,15 @@ undefined8 FUN_180890900(longlong param_1)
 
 
 
-undefined8 FUN_180890923(void)
+/**
+ * @brief 处理对象句柄初始化操作D
+ * 
+ * 该函数负责处理对象句柄的初始化操作，包括句柄分配、
+ * 状态检查和初始化设置等步骤
+ * 
+ * @return 操作结果状态码
+ */
+undefined8 InitializeObjectHandleD(void)
 
 {
   longlong lVar1;
@@ -4123,7 +4178,16 @@ uint64_t GetSystemErrorSuccessCode(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808909d0(longlong param_1)
+/**
+ * @brief 处理对象句柄初始化操作E
+ * 
+ * 该函数负责处理对象句柄的初始化操作，包括句柄分配、
+ * 状态检查和初始化设置等步骤
+ * 
+ * @param param_1 对象上下文参数
+ * @return 操作结果状态码
+ */
+undefined8 InitializeObjectHandleE(longlong param_1)
 
 {
   undefined8 uVar1;
@@ -4176,7 +4240,15 @@ undefined8 FUN_1808909d0(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808909f3(void)
+/**
+ * @brief 处理对象句柄初始化操作F
+ * 
+ * 该函数负责处理对象句柄的初始化操作，包括句柄分配、
+ * 状态检查和初始化设置等步骤
+ * 
+ * @return 操作结果状态码
+ */
+undefined8 InitializeObjectHandleF(void)
 
 {
   longlong in_RAX;
