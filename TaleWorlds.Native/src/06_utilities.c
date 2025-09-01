@@ -45782,16 +45782,28 @@ void CleanupResourceTableAndExecuteCallbacks(uint8_t ObjectContextParameter,int6
 
 
 
-void Unwind_180905920(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 执行资源哈希回调函数
+ * 
+ * 该函数负责从验证上下文中获取资源哈希指针，并执行相应的回调函数
+ * 如果资源哈希指针有效，则调用回调函数并返回
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含资源哈希信息
+ * @return 无返回值
+ * @note 此函数通常在资源处理过程中调用
+ * @warning 此函数包含间接跳转，可能影响程序稳定性
+ */
+void ExecuteResourceHashCallback(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
-  uint8_t *presourceHash;
+  uint8_t *ResourceHashPointer;
   
-  presourceHash = (uint8_t *)**(int64_t **)(ValidationContextParameter + 0x40);
-  if (presourceHash != (uint8_t *)0x0) {
+  ResourceHashPointer = (uint8_t *)**(int64_t **)(ValidationContextParameter + 0x40);
+  if (ResourceHashPointer != (uint8_t *)0x0) {
                     // WARNING: Could not recover jumptable at 0x00018009f9c0. Too many branches
                     // WARNING: Treating indirect jump as call
-    (**(code **)*presourceHash)(presourceHash,1);
+    (**(code **)*ResourceHashPointer)(ResourceHashPointer,1);
     return;
   }
   return;
@@ -45799,16 +45811,28 @@ void Unwind_180905920(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180905930(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 执行资源表哈希回调函数
+ * 
+ * 该函数负责从验证上下文中获取资源表哈希指针，并执行相应的回调函数
+ * 如果资源表哈希指针有效，则调用回调函数并返回
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含资源表哈希信息
+ * @return 无返回值
+ * @note 此函数通常在资源表处理过程中调用
+ * @warning 此函数包含间接跳转，可能影响程序稳定性
+ */
+void ExecuteResourceTableHashCallback(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
-  uint8_t *presourceHash;
+  uint8_t *ResourceTableHashPointer;
   
-  presourceHash = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 8);
-  if (presourceHash != (uint8_t *)0x0) {
+  ResourceTableHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 8);
+  if (ResourceTableHashPointer != (uint8_t *)0x0) {
                     // WARNING: Could not recover jumptable at 0x00018009f9c0. Too many branches
                     // WARNING: Treating indirect jump as call
-    (**(code **)*presourceHash)(presourceHash,1);
+    (**(code **)*ResourceTableHashPointer)(ResourceTableHashPointer,1);
     return;
   }
   return;
@@ -45816,14 +45840,26 @@ void Unwind_180905930(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180905940(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 处理资源验证和清理操作
+ * 
+ * 该函数负责处理资源验证结果，执行资源清理操作
+ * 包括资源索引管理、系统清理处理等
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含资源验证信息
+ * @return 无返回值
+ * @note 此函数通常在资源验证和清理过程中调用
+ * @warning 此函数涉及复杂的内存操作，需要谨慎处理
+ */
+void ProcessResourceValidationAndCleanup(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
-  int *pResourceIndex;
-  uint8_t *pResourceValidationResult;
-  uint64_t *pValidationResult;
+  int *ResourceIndexPointer;
+  uint8_t *ResourceValidationResultPointer;
+  uint64_t *ValidationResultPointer;
   int64_t DataOffset;
-  uint8_t *bytePointer5;
+  uint8_t *ResourceIteratorPointer;
   uint64_t ContextValidationResult;
   
   pValidationResult = *(uint64_t **)(ValidationContextParameter + 0x48);
