@@ -1286,11 +1286,11 @@ int InitializeSystemGlobalVariables(void)
   longlong initializationStatus;
   
   SystemInitializationStatusA = 0;
-  _DAT_180bf5270 = 0;
+  SystemInitializationStatusB = 0;
   uRam0000000180bf5278 = 0;
-  _DAT_180bf5280 = 3;
-  _DAT_180bf5288 = 0;
-  _DAT_180bf5290 = 0;
+  SystemInitializationStatusC = 3;
+  SystemInitializationStatusD = 0;
+  SystemInitializationStatusE = 0;
   uRam0000000180bf5298 = 0;
   _DAT_180bf52a0 = 3;
   _DAT_180bf52c0 = &UNK_180a3c3e0;
