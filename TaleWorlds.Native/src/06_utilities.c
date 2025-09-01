@@ -4096,7 +4096,7 @@ undefined8 InitializeObjectHandleB(longlong param_1)
 
 {
   longlong lVar1;
-  uint uVar2;
+  uint validationResult;
   uint uVar3;
   undefined8 uVar4;
   undefined8 *puVar5;
@@ -4123,14 +4123,14 @@ undefined8 InitializeObjectHandleB(longlong param_1)
     if ((*(char *)(lVar1 + 0x34) == '\0') ||
        ((*(uint *)(*(longlong *)(lVar1 + 0x18) + 0x34) >> 1 & 1) == 0)) {
       uVar3 = *(uint *)(*(longlong *)(lVar1 + 0x18) + 0x34);
-      uVar2 = uVar3 >> 4;
-      if ((uVar2 & 1) == 0) {
+      validationResult = uVar3 >> 4;
+      if ((validationResult & 1) == 0) {
         if ((((uVar3 >> 3 & 1) != 0) && (iVar6 = (int)fVar7, iVar6 != -0x80000000)) &&
            ((float)iVar6 != fVar7)) {
           auVar8._4_4_ = fVar7;
           auVar8._0_4_ = fVar7;
           auVar8._8_8_ = 0;
-          uVar3 = movmskps(uVar2,auVar8);
+          uVar3 = movmskps(validationResult,auVar8);
           fVar7 = (float)(int)(iVar6 - (uVar3 & 1));
         }
         fVar7 = (float)CalculateFloatValue(*(longlong *)(lVar1 + 0x18),fVar7);
@@ -5402,15 +5402,15 @@ ulonglong ProcessSystemResourceAllocation(longlong resourceHandle, undefined8 op
 
 {
   uint resourceHash;
-  ulonglong uVar2;
+  ulonglong validationResult;
   longlong resourceIndex;
   undefined8 uStackX_8;
   undefined4 auStack_58 [2];
   longlong lStack_50;
   int iStack_48;
   
-  uVar2 = ValidateObjectContext(*(undefined4 *)(resourceHandle + 0x24),&uStackX_8);
-  if ((int)uVar2 == 0) {
+  validationResult = ValidateObjectContext(*(undefined4 *)(resourceHandle + 0x24),&uStackX_8);
+  if ((int)validationResult == 0) {
     iStack_48 = *(int *)(resourceHandle + 0x18);
     if ((0 < iStack_48) && (*(uint *)(resourceHandle + 0x1c) < 2)) {
       resourceIndex = 0;
@@ -5424,19 +5424,19 @@ ulonglong ProcessSystemResourceAllocation(longlong resourceHandle, undefined8 op
         auStack_58[0] = 2;
       }
       resourceHash = ProcessResourceOperationEx(operationFlag,auStack_58,*(undefined4 *)(resourceHandle + 0x20),uStackX_8);
-      uVar2 = (ulonglong)resourceHash;
+      validationResult = (ulonglong)resourceHash;
       if (resourceHash == 0) {
-        uVar2 = 0;
+        validationResult = 0;
       }
       else if (resourceIndex != 0) {
         ProcessResourceRelease(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resourceIndex,&ResourceTableTemplate,0xe9);
-        return uVar2;
+        return validationResult;
       }
-      return uVar2;
+      return validationResult;
     }
-    uVar2 = 0x1f;
+    validationResult = 0x1f;
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -7177,18 +7177,18 @@ undefined8 ValidateMatrixTransformationData(longlong matrixDataPointer,longlong 
     uVar5 = *(undefined8 *)(param_1 + 0x20);
     *(undefined8 *)(lVar10 + 0x38) = *(undefined8 *)(param_1 + 0x18);
     *(undefined8 *)(lVar10 + 0x40) = uVar5;
-    uVar2 = *(undefined4 *)(param_1 + 0x2c);
+    validationResult = *(undefined4 *)(param_1 + 0x2c);
     uVar3 = *(undefined4 *)(param_1 + 0x30);
     uVar4 = *(undefined4 *)(param_1 + 0x34);
     *(undefined4 *)(lVar10 + 0x48) = *(undefined4 *)(param_1 + 0x28);
-    *(undefined4 *)(lVar10 + 0x4c) = uVar2;
+    *(undefined4 *)(lVar10 + 0x4c) = validationResult;
     *(undefined4 *)(lVar10 + 0x50) = uVar3;
     *(undefined4 *)(lVar10 + 0x54) = uVar4;
-    uVar2 = *(undefined4 *)(param_1 + 0x3c);
+    validationResult = *(undefined4 *)(param_1 + 0x3c);
     uVar3 = *(undefined4 *)(param_1 + 0x40);
     uVar4 = *(undefined4 *)(param_1 + 0x44);
     *(undefined4 *)(lVar10 + 0x58) = *(undefined4 *)(param_1 + 0x38);
-    *(undefined4 *)(lVar10 + 0x5c) = uVar2;
+    *(undefined4 *)(lVar10 + 0x5c) = validationResult;
     *(undefined4 *)(lVar10 + 0x60) = uVar3;
     *(undefined4 *)(lVar10 + 100) = uVar4;
     lVar10 = *(longlong *)(param_2 + 0x98);
@@ -7516,19 +7516,19 @@ undefined8 ProcessSimplifiedParameterizedFloatComparison(undefined4 parameter)
   longlong objectContext;
   longlong stackBuffer;
   
-  uVar2 = ValidateObjectContextAndProcessData(param_1,unaff_RDI + 0x25,unaff_RDI + 0x20);
-  if ((int)uVar2 == 0) {
+  validationResult = ValidateObjectContextAndProcessData(param_1,unaff_RDI + 0x25,unaff_RDI + 0x20);
+  if ((int)validationResult == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x20);
     if ((*(float *)(unaff_RBX + 0x38) <= fVar1) &&
        (fVar1 < *(float *)(unaff_RBX + 0x3c) || fVar1 == *(float *)(unaff_RBX + 0x3c))) {
-      uVar2 = *(undefined8 *)(unaff_RBP + 0x98);
+      validationResult = *(undefined8 *)(unaff_RBP + 0x98);
       *(float *)(in_stack_00000040 + 4) = fVar1;
                     // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(uVar2);
+      ReleaseSystemContextResources(validationResult);
     }
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -8137,7 +8137,7 @@ undefined8 ValidateObjectContextAndProcessFloatRange(longlong param_1, longlong 
 
 {
   float fVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   longlong resourceIndex;
   longlong lStackX_8;
   
@@ -8168,9 +8168,9 @@ code_r0x000180893206:
     }
   }
 code_r0x00018089322c:
-  uVar2 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10));
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10));
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   if (lStackX_8 == 0) {
     resourceIndex = 0;
@@ -8185,19 +8185,19 @@ code_r0x00018089322c:
     lStackX_8 = 0;
     InitializeSecurityContext(&lStackX_8);
     if (lStackX_8 == *(longlong *)((longlong)*(int *)(resourceIndex + 0x17c) * 8 + 0x180c4f450)) {
-      uVar2 = ProcessResourceValidation(resourceIndex,param_1);
-      if ((int)uVar2 == 0) {
+      validationResult = ProcessResourceValidation(resourceIndex,param_1);
+      if ((int)validationResult == 0) {
         return 0;
       }
-      return uVar2;
+      return validationResult;
     }
   }
   *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-  uVar2 = func_0x0001808e64d0(*(undefined8 *)(resourceIndex + 0x1e0));
-  if ((int)uVar2 == 0) {
+  validationResult = func_0x0001808e64d0(*(undefined8 *)(resourceIndex + 0x1e0));
+  if ((int)validationResult == 0) {
     return 0;
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -8403,7 +8403,7 @@ undefined8 ProcessParameterizedFloatComparison(longlong param_1, longlong param_
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   undefined4 uStack_18;
   undefined4 uStack_14;
   undefined4 uStack_10;
@@ -8416,16 +8416,16 @@ undefined8 ProcessParameterizedFloatComparison(longlong param_1, longlong param_
   lVar1 = (**(code **)(**(longlong **)(param_2 + 800) + 600))
                     (*(longlong **)(param_2 + 800),&uStack_18,1);
   if ((lVar1 == 0) || (*(longlong *)(lVar1 + 0x2e8) == 0)) {
-    uVar2 = 0x4a;
+    validationResult = 0x4a;
   }
   else {
-    uVar2 = ValidateBufferContext(*(longlong *)(lVar1 + 0x2e8),param_1 + 0x20);
-    if ((int)uVar2 == 0) {
-      uVar2 = CleanupSystemContextData(*(undefined8 *)(param_2 + 0x98),param_1);
-      return uVar2;
+    validationResult = ValidateBufferContext(*(longlong *)(lVar1 + 0x2e8),param_1 + 0x20);
+    if ((int)validationResult == 0) {
+      validationResult = CleanupSystemContextData(*(undefined8 *)(param_2 + 0x98),param_1);
+      return validationResult;
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -8440,7 +8440,7 @@ undefined8 ProcessSimplifiedParameterizedFloatComparison(longlong param_1, longl
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   undefined4 uStack_18;
   undefined4 uStack_14;
   undefined4 uStack_10;
@@ -8455,9 +8455,9 @@ undefined8 ProcessSimplifiedParameterizedFloatComparison(longlong param_1, longl
   if ((lVar1 == 0) || (*(longlong *)(lVar1 + 0x2e8) == 0)) {
     return 0x4a;
   }
-  uVar2 = ValidateBufferContext(*(longlong *)(lVar1 + 0x2e8),param_1 + 0x20);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = ValidateBufferContext(*(longlong *)(lVar1 + 0x2e8),param_1 + 0x20);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   lVar1 = *(longlong *)(param_2 + 0x98);
   if (*(int *)(lVar1 + 0x200) != 0) {
@@ -8465,13 +8465,13 @@ undefined8 ProcessSimplifiedParameterizedFloatComparison(longlong param_1, longl
        (InitializeSecurityContext(&stack0x00000008),
        *(longlong *)((longlong)*(int *)(lVar1 + 0x17c) * 8 + 0x180c4f450) != 0)) {
       *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-      uVar2 = func_0x0001808e64d0(*(undefined8 *)(lVar1 + 0x1e0));
+      validationResult = func_0x0001808e64d0(*(undefined8 *)(lVar1 + 0x1e0));
     }
     else {
-      uVar2 = ProcessResourceValidation(lVar1,param_1);
+      validationResult = ProcessResourceValidation(lVar1,param_1);
     }
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
   }
   return 0;
@@ -8821,7 +8821,7 @@ undefined8 ProcessFloatDataValidationAndConversion(longlong param_1, longlong pa
 
 {
   float fVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   longlong resourceIndex;
   float fVar4;
   undefined4 auStackX_18 [2];
@@ -8830,8 +8830,8 @@ undefined8 ProcessFloatDataValidationAndConversion(longlong param_1, longlong pa
     return 0x1d;
   }
   auStackX_18[0] = 0;
-  uVar2 = ProcessDataHashing(param_2 + 0x60,param_1 + 0x10,auStackX_18);
-  if ((int)uVar2 == 0) {
+  validationResult = ProcessDataHashing(param_2 + 0x60,param_1 + 0x10,auStackX_18);
+  if ((int)validationResult == 0) {
     resourceIndex = func_0x000180867680(param_2 + 0x60,auStackX_18[0]);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
@@ -8843,13 +8843,13 @@ undefined8 ProcessFloatDataValidationAndConversion(longlong param_1, longlong pa
       fVar4 = fVar1;
     }
     *(float *)(param_1 + 0x18) = fVar4;
-    uVar2 = func_0x000180867960(param_2 + 0x60,auStackX_18[0],fVar4);
-    if ((int)uVar2 == 0) {
+    validationResult = func_0x000180867960(param_2 + 0x60,auStackX_18[0],fVar4);
+    if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(undefined8 *)(param_2 + 0x98),param_1);
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -8864,7 +8864,7 @@ undefined8 ProcessFloatDataValidationAndConversionNoParams(undefined8 param_1, u
 
 {
   float fVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   longlong resourceIndex;
   longlong unaff_RBX;
   longlong unaff_RSI;
@@ -8872,8 +8872,8 @@ undefined8 ProcessFloatDataValidationAndConversionNoParams(undefined8 param_1, u
   undefined4 uStack0000000000000040;
   
   uStack0000000000000040 = 0;
-  uVar2 = ProcessDataHashing(unaff_RSI + 0x60,param_2,&stack0x00000040);
-  if ((int)uVar2 == 0) {
+  validationResult = ProcessDataHashing(unaff_RSI + 0x60,param_2,&stack0x00000040);
+  if ((int)validationResult == 0) {
     resourceIndex = func_0x000180867680(unaff_RSI + 0x60,uStack0000000000000040);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
@@ -8885,13 +8885,13 @@ undefined8 ProcessFloatDataValidationAndConversionNoParams(undefined8 param_1, u
       fVar4 = fVar1;
     }
     *(float *)(unaff_RBX + 0x18) = fVar4;
-    uVar2 = func_0x000180867960(unaff_RSI + 0x60,uStack0000000000000040,fVar4);
-    if ((int)uVar2 == 0) {
+    validationResult = func_0x000180867960(unaff_RSI + 0x60,uStack0000000000000040,fVar4);
+    if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(undefined8 *)(unaff_RSI + 0x98));
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -8949,34 +8949,34 @@ undefined8 ProcessFloatDataValidationAndConversion(longlong param_1,longlong par
 
 {
   float fVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   longlong resourceIndex;
   undefined4 auStackX_10 [2];
   
   auStackX_10[0] = 0;
-  uVar2 = ProcessDataHashing(param_2 + 0x60,param_1 + 0x10,auStackX_10);
-  if ((int)uVar2 == 0) {
+  validationResult = ProcessDataHashing(param_2 + 0x60,param_1 + 0x10,auStackX_10);
+  if ((int)validationResult == 0) {
     resourceIndex = func_0x000180867680(param_2 + 0x60,auStackX_10[0]);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    uVar2 = ValidateObjectContextAndProcessData(resourceIndex,param_1 + 0x1d,param_1 + 0x18);
-    if ((int)uVar2 == 0) {
+    validationResult = ValidateObjectContextAndProcessData(resourceIndex,param_1 + 0x1d,param_1 + 0x18);
+    if ((int)validationResult == 0) {
       fVar1 = *(float *)(param_1 + 0x18);
       if ((fVar1 < *(float *)(resourceIndex + 0x38)) ||
          (*(float *)(resourceIndex + 0x3c) <= fVar1 && fVar1 != *(float *)(resourceIndex + 0x3c))) {
-        uVar2 = 0x1c;
+        validationResult = 0x1c;
       }
       else {
-        uVar2 = func_0x000180867960(param_2 + 0x60,auStackX_10[0]);
-        if ((int)uVar2 == 0) {
+        validationResult = func_0x000180867960(param_2 + 0x60,auStackX_10[0]);
+        if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
           ReleaseSystemContextResources(*(undefined8 *)(param_2 + 0x98),param_1);
         }
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -9035,28 +9035,28 @@ undefined8 ValidateFloatDataAndExecuteSimple(void)
 
 {
   float fVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   longlong unaff_RBX;
   longlong unaff_RDI;
   longlong unaff_R14;
   undefined4 in_stack_00000048;
   
-  uVar2 = ValidateObjectContextAndProcessData();
-  if ((int)uVar2 == 0) {
+  validationResult = ValidateObjectContextAndProcessData();
+  if ((int)validationResult == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x18);
     if ((fVar1 < *(float *)(unaff_RBX + 0x38)) ||
        (*(float *)(unaff_RBX + 0x3c) <= fVar1 && fVar1 != *(float *)(unaff_RBX + 0x3c))) {
-      uVar2 = 0x1c;
+      validationResult = 0x1c;
     }
     else {
-      uVar2 = func_0x000180867960(unaff_R14 + 0x60,in_stack_00000048);
-      if ((int)uVar2 == 0) {
+      validationResult = func_0x000180867960(unaff_R14 + 0x60,in_stack_00000048);
+      if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(undefined8 *)(unaff_R14 + 0x98));
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -9090,7 +9090,7 @@ undefined8 ProcessDataValidationAndSystemOperation(longlong param_1,longlong par
 
 {
   float fVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   longlong resourceIndex;
   undefined8 *puVar4;
   float fVar5;
@@ -9102,8 +9102,8 @@ undefined8 ProcessDataValidationAndSystemOperation(longlong param_1,longlong par
     return 0x1d;
   }
   auStackX_18[0] = 0;
-  uVar2 = ProcessDataValidationAdvanced(param_2,param_1 + 0x20,auStackX_18);
-  if ((int)uVar2 == 0) {
+  validationResult = ProcessDataValidationAdvanced(param_2,param_1 + 0x20,auStackX_18);
+  if ((int)validationResult == 0) {
     resourceIndex = func_0x000180867680(param_2 + 0x60,auStackX_18[0]);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
@@ -9115,15 +9115,15 @@ undefined8 ProcessDataValidationAndSystemOperation(longlong param_1,longlong par
       fVar5 = fVar1;
     }
     *(float *)(param_1 + 0x10) = fVar5;
-    uVar2 = func_0x000180867960(param_2 + 0x60,auStackX_18[0],fVar5);
-    if ((int)uVar2 == 0) {
+    validationResult = func_0x000180867960(param_2 + 0x60,auStackX_18[0],fVar5);
+    if ((int)validationResult == 0) {
       puVar4 = (undefined8 *)func_0x000180867660(param_2 + 0x60,auStackX_8,auStackX_18[0]);
       *(undefined8 *)(param_1 + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(undefined8 *)(param_2 + 0x98),param_1);
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -9186,7 +9186,7 @@ uint64_t GetSystemRuntimeStatus(void)
 void ProcessFloatRangeClamping(void)
 {
   float fVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined4 in_EAX;
   int iVar3;
   undefined4 in_register_00000004;
@@ -9204,8 +9204,8 @@ void ProcessFloatRangeClamping(void)
   *(float *)(unaff_RBX + 0x10) = fVar4;
   iVar3 = func_0x000180867960(unaff_RDI + 0x60,in_stack_00000040,fVar4);
   if (iVar3 == 0) {
-    puVar2 = (undefined8 *)func_0x000180867660(unaff_RDI + 0x60,&stack0x00000030,in_stack_00000040);
-    *(undefined8 *)(unaff_RBX + 0x18) = *puVar2;
+    pvalidationResult = (undefined8 *)func_0x000180867660(unaff_RDI + 0x60,&stack0x00000030,in_stack_00000040);
+    *(undefined8 *)(unaff_RBX + 0x18) = *pvalidationResult;
                     // WARNING: Subroutine does not return
     ReleaseSystemContextResources(*(undefined8 *)(unaff_RDI + 0x98));
   }
@@ -9243,29 +9243,29 @@ undefined8 ProcessFloatRangeValidationAndDataHandling(longlong param_1,longlong 
 
 {
   float fVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   longlong resourceIndex;
   undefined8 *puVar4;
   undefined1 auStackX_8 [8];
   undefined4 auStackX_18 [2];
   
   auStackX_18[0] = 0;
-  uVar2 = ProcessDataValidationAdvanced(param_2,param_1 + 0x20,auStackX_18);
-  if ((int)uVar2 == 0) {
+  validationResult = ProcessDataValidationAdvanced(param_2,param_1 + 0x20,auStackX_18);
+  if ((int)validationResult == 0) {
     resourceIndex = func_0x000180867680(param_2 + 0x60,auStackX_18[0]);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    uVar2 = ValidateObjectContextAndProcessData(resourceIndex,param_1 + 0xa0,param_1 + 0x10);
-    if ((int)uVar2 == 0) {
+    validationResult = ValidateObjectContextAndProcessData(resourceIndex,param_1 + 0xa0,param_1 + 0x10);
+    if ((int)validationResult == 0) {
       fVar1 = *(float *)(param_1 + 0x10);
       if ((fVar1 < *(float *)(resourceIndex + 0x38)) ||
          (*(float *)(resourceIndex + 0x3c) <= fVar1 && fVar1 != *(float *)(resourceIndex + 0x3c))) {
-        uVar2 = 0x1c;
+        validationResult = 0x1c;
       }
       else {
-        uVar2 = func_0x000180867960(param_2 + 0x60,auStackX_18[0]);
-        if ((int)uVar2 == 0) {
+        validationResult = func_0x000180867960(param_2 + 0x60,auStackX_18[0]);
+        if ((int)validationResult == 0) {
           puVar4 = (undefined8 *)func_0x000180867660(param_2 + 0x60,auStackX_8,auStackX_18[0]);
           *(undefined8 *)(param_1 + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
@@ -9274,7 +9274,7 @@ undefined8 ProcessFloatRangeValidationAndDataHandling(longlong param_1,longlong 
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -9337,23 +9337,23 @@ uint64_t ProcessFloatDataValidation(void)
 
 {
   float fVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   undefined8 *puVar3;
   longlong unaff_RBX;
   longlong unaff_RDI;
   longlong unaff_R14;
   undefined4 in_stack_00000050;
   
-  uVar2 = ValidateObjectContextAndProcessData();
-  if ((int)uVar2 == 0) {
+  validationResult = ValidateObjectContextAndProcessData();
+  if ((int)validationResult == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x10);
     if ((fVar1 < *(float *)(unaff_RBX + 0x38)) ||
        (*(float *)(unaff_RBX + 0x3c) <= fVar1 && fVar1 != *(float *)(unaff_RBX + 0x3c))) {
-      uVar2 = 0x1c;
+      validationResult = 0x1c;
     }
     else {
-      uVar2 = func_0x000180867960(unaff_R14 + 0x60,in_stack_00000050);
-      if ((int)uVar2 == 0) {
+      validationResult = func_0x000180867960(unaff_R14 + 0x60,in_stack_00000050);
+      if ((int)validationResult == 0) {
         puVar3 = (undefined8 *)
                  func_0x000180867660(unaff_R14 + 0x60,&stack0x00000040,in_stack_00000050);
         *(undefined8 *)(unaff_RDI + 0x18) = *puVar3;
@@ -9362,7 +9362,7 @@ uint64_t ProcessFloatDataValidation(void)
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -10058,25 +10058,25 @@ uint32_t ProcessSystemConfigurationAndValidation(longlong systemContext,undefine
 
 {
   longlong *plVar1;
-  uint uVar2;
+  uint validationResult;
   int iVar3;
   longlong *plVar4;
   int tableEntry;
   uint uVar6;
   undefined8 uStackX_20;
-  undefined8 auStack_28 [2];
+  undefined8 dataChecksumBuffer [2];
   
   if (param_4 == 0) {
     return 0x1f;
   }
   tableEntry = 0;
-  uVar2 = *(uint *)(param_1 + 0x20);
-  auStack_28[0] = 0;
-  iVar3 = InitializeProcessingQueue(auStack_28,param_1);
+  validationResult = *(uint *)(param_1 + 0x20);
+  dataChecksumBuffer[0] = 0;
+  iVar3 = InitializeProcessingQueue(dataChecksumBuffer,param_1);
   if (iVar3 == 0) {
     uStackX_20 = 0;
     uVar6 = param_3 | 0x10000000;
-    if ((uVar2 & 1) == 0) {
+    if ((validationResult & 1) == 0) {
       uVar6 = param_3;
     }
     iVar3 = ProcessConfigurationData(param_1,param_2,uVar6,&uStackX_20);
@@ -10099,7 +10099,7 @@ uint32_t ProcessSystemConfigurationAndValidation(longlong systemContext,undefine
   }
 LAB_180894ebf:
                     // WARNING: Subroutine does not return
-  CleanupProcessingQueue(auStack_28);
+  CleanupProcessingQueue(dataChecksumBuffer);
 }
 
 
@@ -10125,14 +10125,14 @@ uint ValidateAndProcessDataContainer(longlong *param_1)
 
 {
   int iVar1;
-  uint uVar2;
+  uint validationResult;
   uint uVar3;
   
   uVar3 = *(uint *)((longlong)param_1 + 0xc);
-  uVar2 = uVar3 ^ (int)uVar3 >> 0x1f;
-  if ((int)(uVar2 - ((int)uVar3 >> 0x1f)) < 0) {
+  validationResult = uVar3 ^ (int)uVar3 >> 0x1f;
+  if ((int)(validationResult - ((int)uVar3 >> 0x1f)) < 0) {
     if (0 < (int)param_1[1]) {
-      return uVar2;
+      return validationResult;
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
@@ -10249,7 +10249,7 @@ undefined8 CleanupResourcePoolAndReleaseMemory(longlong *param_1)
 
 {
   int iVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   uint uVar3;
   
   uVar3 = *(uint *)((longlong)param_1 + 0xc);
@@ -10272,8 +10272,8 @@ undefined8 CleanupResourcePoolAndReleaseMemory(longlong *param_1)
   }
   *(undefined4 *)(param_1 + 1) = 0;
   if ((0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) &&
-     (uVar2 = InitializeSystemComponent(param_1,0), (int)uVar2 != 0)) {
-    return uVar2;
+     (validationResult = InitializeSystemComponent(param_1,0), (int)validationResult != 0)) {
+    return validationResult;
   }
   return 0;
 }
@@ -10431,7 +10431,7 @@ undefined8 ExpandResourcePoolCapacitySimple(void)
 {
   longlong lVar1;
   int in_EAX;
-  undefined8 uVar2;
+  undefined8 validationResult;
   ulonglong uVar3;
   longlong lVar4;
   uint uVar5;
@@ -10452,12 +10452,12 @@ undefined8 ExpandResourcePoolCapacitySimple(void)
     }
     uVar5 = (int)*(uint *)((longlong)unaff_RBX + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((longlong)unaff_RBX + 0x1c) ^ uVar5) - uVar5) < iVar7) &&
-       (uVar2 = ResourcePoolOperation(unaff_RBX + 2,iVar7), (int)uVar2 != 0)) {
-      return uVar2;
+       (validationResult = ResourcePoolOperation(unaff_RBX + 2,iVar7), (int)validationResult != 0)) {
+      return validationResult;
     }
-    uVar2 = InitializeResourcePool();
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    validationResult = InitializeResourcePool();
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
     uVar8 = 0;
     uVar3 = uVar8;
@@ -11174,7 +11174,7 @@ uint64_t ProcessExtendedResourcePoolDataValidation(undefined8 extendedResourcePo
 
 {
   int iVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   undefined8 *puVar3;
   int iVar4;
   undefined4 *puVar5;
@@ -11206,9 +11206,9 @@ uint64_t ProcessExtendedResourcePoolDataValidation(undefined8 extendedResourcePo
       else if (iVar7 < iVar4) {
         iVar7 = iVar4;
       }
-      uVar2 = ResourcePoolOperation(unaff_RDI + 0x10,iVar7);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = ResourcePoolOperation(unaff_RDI + 0x10,iVar7);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
     }
     puVar3 = (undefined8 *)
@@ -11270,7 +11270,7 @@ uint64_t ValidateAndProcessParameters(int minValue,int maxValue,undefined8 syste
 
 {
   undefined8 resourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined4 *unaff_RBX;
   undefined4 unaff_EBP;
   longlong unaff_RDI;
@@ -11281,10 +11281,10 @@ uint64_t ValidateAndProcessParameters(int minValue,int maxValue,undefined8 syste
   }
   resourceHash = ResourcePoolOperation(unaff_RDI + 0x10,maxValue);
   if ((int)resourceHash == 0) {
-    puVar2 = (undefined8 *)
+    pvalidationResult = (undefined8 *)
              ((longlong)*(int *)(unaff_RDI + 0x18) * 0x10 + *(longlong *)(unaff_RDI + 0x10));
-    *puVar2 = uStackX_20;
-    puVar2[1] = additionalData;
+    *pvalidationResult = uStackX_20;
+    pvalidationResult[1] = additionalData;
     *(int *)(unaff_RDI + 0x18) = *(int *)(unaff_RDI + 0x18) + 1;
     *unaff_RBX = unaff_EBP;
     *(int *)(unaff_RDI + 0x24) = *(int *)(unaff_RDI + 0x24) + 1;
@@ -11591,7 +11591,7 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
 
 {
   byte *pbVar1;
-  undefined4 uVar2;
+  undefined4 validationResult;
   undefined8 uVar3;
   int iVar4;
   longlong lVar5;
@@ -11733,7 +11733,7 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
           else if ((iVar4 == 7) &&
                   (iVar4 = ValidateObjectContext(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),
                                                auStack_68), plVar13 = plStack_108, iVar4 == 0)) {
-            uVar2 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
+            validationResult = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
             iVar7 = (int)uVar6 + 1;
             iVar4 = iVar16;
             if (iVar16 < 0) {
@@ -11804,7 +11804,7 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
             auStackX_10[0] = iVar14 + 1;
             uVar6 = (ulonglong)auStackX_10[0];
             uStack_110 = CONCAT44(uStack_110._4_4_,auStackX_10[0]);
-            *(undefined4 *)(uStack_118 + (longlong)iVar14 * 4) = uVar2;
+            *(undefined4 *)(uStack_118 + (longlong)iVar14 * 4) = validationResult;
             plVar13 = plStack_108;
           }
           iVar4 = (int)resourceHash0;
@@ -12113,16 +12113,16 @@ int ProcessDataBlockOperationWithSimplifiedValidator(longlong param_1,longlong p
 
 {
   undefined4 resourceHash;
-  undefined4 uVar2;
+  undefined4 validationResult;
   int iVar3;
   int iVar4;
   
   resourceHash = *(undefined4 *)(param_1 + 0x14);
-  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  validationResult = *(undefined4 *)(param_1 + 0x10);
   iVar3 = ProcessStringOperation(param_2,param_3,&UNK_180986470);
   iVar4 = ProcessStringOperation(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
   iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,validationResult);
   iVar3 = iVar3 + iVar4;
   iVar4 = ProcessStringOperation(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
   iVar3 = iVar3 + iVar4;
@@ -13180,17 +13180,17 @@ void BufferValidationErrorHandler(void)
   undefined8 resourceHash7;
   undefined *presourceHash8;
   float fVar19;
-  ulonglong uVar20;
+  ulonglong validationResult0;
   float *pfVar21;
   undefined8 *unaff_RBP;
   longlong unaff_RSI;
-  undefined8 *puVar22;
+  undefined8 *pvalidationResult2;
   float unaff_R13D;
   longlong unaff_R14;
-  ulonglong uVar23;
+  ulonglong validationResult3;
   longlong unaff_R15;
   undefined4 extraout_XMM0_Da;
-  undefined4 uVar24;
+  undefined4 validationResult4;
   undefined4 extraout_XMM0_Da_00;
   undefined4 extraout_XMM0_Da_01;
   undefined4 extraout_XMM0_Da_02;
@@ -13220,10 +13220,10 @@ void BufferValidationErrorHandler(void)
   undefined4 in_stack_000001a0;
   undefined4 in_stack_000001a8;
   
-  puVar22 = (undefined8 *)(unaff_R14 + 8);
+  pvalidationResult2 = (undefined8 *)(unaff_R14 + 8);
   fStack0000000000000048 = unaff_R13D;
-  puStack0000000000000058 = puVar22;
-  lVar15 = (*(code *)*in_RAX)(puVar22);
+  puStack0000000000000058 = pvalidationResult2;
+  lVar15 = (*(code *)*in_RAX)(pvalidationResult2);
   iVar13 = ValidateBufferContext(*(undefined8 *)(lVar15 + 0xd0),&stack0x00000048);
   if (iVar13 == 0) {
     in_stack_00000070 = &UNK_1809832b8;
@@ -13234,23 +13234,23 @@ void BufferValidationErrorHandler(void)
     if (iVar13 == 0) {
       in_stack_00000060 = (longlong)*(int *)(unaff_R15 + 0x28);
       if (0 < in_stack_00000060) {
-        uVar23 = (ulonglong)(uint)unaff_R13D;
-        uVar20 = (ulonglong)(uint)unaff_R13D;
+        validationResult3 = (ulonglong)(uint)unaff_R13D;
+        validationResult0 = (ulonglong)(uint)unaff_R13D;
         do {
           lVar15 = *(longlong *)(unaff_R15 + 0x20);
-          resourceTable = *(longlong *)(uVar20 + 0x10 + lVar15);
-          resourceIndex = *(longlong *)(uVar20 + 8 + lVar15);
+          resourceTable = *(longlong *)(validationResult0 + 0x10 + lVar15);
+          resourceIndex = *(longlong *)(validationResult0 + 8 + lVar15);
           cVar12 = func_0x000180894c50(resourceTable,1);
-          puVar22 = puStack0000000000000058;
+          pvalidationResult2 = puStack0000000000000058;
           if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(resourceIndex + 0x28))) {
-            uVar24 = *(undefined4 *)(uVar20 + 4 + lVar15);
+            validationResult4 = *(undefined4 *)(validationResult0 + 4 + lVar15);
             unaff_RBP[-4] = &UNK_180984038;
             *(undefined4 *)(unaff_RBP + -2) = uStackX_20;
             puVar4 = (undefined8 *)*puStack0000000000000058;
-            *(undefined4 *)(unaff_RBP + -1) = uVar24;
+            *(undefined4 *)(unaff_RBP + -1) = validationResult4;
             *(undefined4 *)(unaff_RBP + -3) = 0;
             lVar15 = (*(code *)*puVar4)(puStack0000000000000058);
-            *unaff_RBP = *(undefined8 *)(*(longlong *)(lVar15 + 0x90) + uVar23 * 8);
+            *unaff_RBP = *(undefined8 *)(*(longlong *)(lVar15 + 0x90) + validationResult3 * 8);
             *(undefined1 *)((longlong)unaff_RBP + -4) = 0;
             if (*(int *)(resourceTable + 0x58) < 1) {
               presourceHash8 = &DAT_18098bc73;
@@ -13258,29 +13258,29 @@ void BufferValidationErrorHandler(void)
             else {
               presourceHash8 = *(undefined **)(resourceTable + 0x50);
             }
-            uVar24 = func_0x00018076b450(unaff_RBP + 1,presourceHash8,0x80);
-            iVar13 = GetAndValidateResourceData(uVar24,unaff_RBP + -4);
+            validationResult4 = func_0x00018076b450(unaff_RBP + 1,presourceHash8,0x80);
+            iVar13 = GetAndValidateResourceData(validationResult4,unaff_RBP + -4);
             if (iVar13 != 0) goto FUN_180897b0e;
           }
           unaff_R13D = 0.0;
-          uVar23 = uVar23 + 1;
-          uVar20 = uVar20 + 0x18;
+          validationResult3 = validationResult3 + 1;
+          validationResult0 = validationResult0 + 0x18;
           unaff_R14 = in_stack_00000068;
-        } while ((longlong)uVar23 < in_stack_00000060);
+        } while ((longlong)validationResult3 < in_stack_00000060);
       }
       resourceHash7 = *(undefined8 *)(*(longlong *)(unaff_RSI + 8) + 800);
-      resourceHash6 = (**(code **)*puVar22)(puVar22);
+      resourceHash6 = (**(code **)*pvalidationResult2)(pvalidationResult2);
       iVar13 = CalculateDataHash(resourceHash6,resourceHash7,acStackX_24);
       if (iVar13 == 0) {
-        uVar24 = extraout_XMM0_Da_00;
+        validationResult4 = extraout_XMM0_Da_00;
         if (acStackX_24[0] != '\0') {
           resourceHash7 = func_0x00018085fa80();
           iVar13 = memcmp(unaff_R15 + 0x38,resourceHash7,0x30);
-          uVar24 = extraout_XMM0_Da_01;
+          validationResult4 = extraout_XMM0_Da_01;
           if (iVar13 != 0) {
             resourceHash7 = *(undefined8 *)(unaff_R15 + 0x38);
             resourceHash6 = *(undefined8 *)(unaff_R15 + 0x40);
-            uVar24 = *(undefined4 *)(unaff_R15 + 0x48);
+            validationResult4 = *(undefined4 *)(unaff_R15 + 0x48);
             uVar5 = *(undefined4 *)(unaff_R15 + 0x4c);
             uVar6 = *(undefined4 *)(unaff_R15 + 0x50);
             uVar7 = *(undefined4 *)(unaff_R15 + 0x54);
@@ -13293,7 +13293,7 @@ void BufferValidationErrorHandler(void)
             resourceHash0 = *(undefined4 *)(unaff_R15 + 0x60);
             resourceHash1 = *(undefined4 *)(unaff_R15 + 100);
             *(undefined4 *)(unaff_RBP + -0xc) = uStackX_20;
-            *(undefined4 *)(unaff_RBP + -9) = uVar24;
+            *(undefined4 *)(unaff_RBP + -9) = validationResult4;
             *(undefined4 *)((longlong)unaff_RBP + -0x44) = uVar5;
             *(undefined4 *)(unaff_RBP + -8) = uVar6;
             *(undefined4 *)((longlong)unaff_RBP + -0x3c) = uVar7;
@@ -13302,11 +13302,11 @@ void BufferValidationErrorHandler(void)
             *(undefined4 *)(unaff_RBP + -6) = resourceHash0;
             *(undefined4 *)((longlong)unaff_RBP + -0x2c) = resourceHash1;
             iVar13 = GetAndValidateResourceData(uVar8,unaff_RBP + -0xe);
-            uVar24 = extraout_XMM0_Da_02;
+            validationResult4 = extraout_XMM0_Da_02;
             if (iVar13 != 0) goto FUN_180897b0e;
           }
         }
-        iVar13 = ValidateResourceTable(uVar24,(longlong)&stack0x00000048 + 4,0);
+        iVar13 = ValidateResourceTable(validationResult4,(longlong)&stack0x00000048 + 4,0);
         if (iVar13 == 0) {
           in_stack_000001a0 = unaff_XMM6_Da;
           in_stack_000001a8 = unaff_XMM6_Dc;
@@ -13362,14 +13362,14 @@ void BufferValidationErrorHandler(void)
               pfVar21 = pfVar21 + 1;
             } while ((int)fVar19 < 6);
             resourceHash4 = func_0x000180855b70(unaff_R14 + 200);
-            uVar24 = extraout_XMM0_Da_04;
+            validationResult4 = extraout_XMM0_Da_04;
             if ((float)(resourceHash4 / 0x30) != 0.0) {
               in_stack_00000028 = &UNK_180983be8;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = (float)(resourceHash4 / 0x30);
               iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_04,&stack0x00000028);
-              uVar24 = extraout_XMM0_Da_05;
+              validationResult4 = extraout_XMM0_Da_05;
               if (iVar13 != 0) goto FUN_180897b0e;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
@@ -13377,7 +13377,7 @@ void BufferValidationErrorHandler(void)
               in_stack_00000038 = uStackX_20;
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               in_stack_00000030 = unaff_R13D;
-              iVar13 = GetAndValidateResourceData(uVar24,&stack0x00000028);
+              iVar13 = GetAndValidateResourceData(validationResult4,&stack0x00000028);
               if (iVar13 != 0) goto FUN_180897b0e;
             }
             iVar13 = GetResourceType(unaff_R14);
@@ -13389,21 +13389,21 @@ void BufferValidationErrorHandler(void)
               if (iVar13 != 0) goto FUN_180897b0e;
             }
             iVar13 = GetResourceType(unaff_R14);
-            uVar24 = extraout_XMM0_Da_07;
+            validationResult4 = extraout_XMM0_Da_07;
             if (iVar13 == 4) {
               in_stack_00000028 = &UNK_180983b68;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = unaff_R13D;
               iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_07,&stack0x00000028);
-              uVar24 = extraout_XMM0_Da_08;
+              validationResult4 = extraout_XMM0_Da_08;
               if (iVar13 != 0) goto FUN_180897b0e;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
               in_stack_00000028 = &UNK_180983cf8;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
-              GetAndValidateResourceData(uVar24,&stack0x00000028);
+              GetAndValidateResourceData(validationResult4,&stack0x00000028);
             }
           }
         }
@@ -13457,16 +13457,16 @@ void DataProcessingErrorHandler(void)
   undefined8 resourceHash7;
   undefined *presourceHash8;
   float fVar19;
-  ulonglong uVar20;
+  ulonglong validationResult0;
   float *pfVar21;
   undefined8 *unaff_RBP;
   longlong unaff_RSI;
   undefined8 *unaff_R12;
   float unaff_R13D;
   longlong unaff_R14;
-  ulonglong uVar22;
+  ulonglong validationResult2;
   longlong unaff_R15;
-  undefined4 uVar23;
+  undefined4 validationResult3;
   undefined4 extraout_XMM0_Da;
   undefined4 extraout_XMM0_Da_00;
   undefined4 extraout_XMM0_Da_01;
@@ -13494,24 +13494,24 @@ void DataProcessingErrorHandler(void)
   undefined4 in_stack_000001a8;
   
   if (0 < in_RAX) {
-    uVar22 = (ulonglong)(uint)unaff_R13D;
-    uVar20 = (ulonglong)(uint)unaff_R13D;
+    validationResult2 = (ulonglong)(uint)unaff_R13D;
+    validationResult0 = (ulonglong)(uint)unaff_R13D;
     lStack0000000000000060 = in_RAX;
     do {
       lVar15 = *(longlong *)(unaff_R15 + 0x20);
-      resourceTable = *(longlong *)(uVar20 + 0x10 + lVar15);
-      resourceIndex = *(longlong *)(uVar20 + 8 + lVar15);
+      resourceTable = *(longlong *)(validationResult0 + 0x10 + lVar15);
+      resourceIndex = *(longlong *)(validationResult0 + 8 + lVar15);
       cVar12 = func_0x000180894c50(resourceTable,1);
       unaff_R12 = in_stack_00000058;
       if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(resourceIndex + 0x28))) {
-        uVar23 = *(undefined4 *)(uVar20 + 4 + lVar15);
+        validationResult3 = *(undefined4 *)(validationResult0 + 4 + lVar15);
         unaff_RBP[-4] = &UNK_180984038;
         *(undefined4 *)(unaff_RBP + -2) = uStackX_20;
         puVar4 = (undefined8 *)*in_stack_00000058;
-        *(undefined4 *)(unaff_RBP + -1) = uVar23;
+        *(undefined4 *)(unaff_RBP + -1) = validationResult3;
         *(undefined4 *)(unaff_RBP + -3) = 0;
         lVar15 = (*(code *)*puVar4)(in_stack_00000058);
-        *unaff_RBP = *(undefined8 *)(*(longlong *)(lVar15 + 0x90) + uVar22 * 8);
+        *unaff_RBP = *(undefined8 *)(*(longlong *)(lVar15 + 0x90) + validationResult2 * 8);
         *(undefined1 *)((longlong)unaff_RBP + -4) = 0;
         if (*(int *)(resourceTable + 0x58) < 1) {
           presourceHash8 = &DAT_18098bc73;
@@ -13519,29 +13519,29 @@ void DataProcessingErrorHandler(void)
         else {
           presourceHash8 = *(undefined **)(resourceTable + 0x50);
         }
-        uVar23 = func_0x00018076b450(unaff_RBP + 1,presourceHash8,0x80);
-        iVar13 = GetAndValidateResourceData(uVar23,unaff_RBP + -4);
+        validationResult3 = func_0x00018076b450(unaff_RBP + 1,presourceHash8,0x80);
+        iVar13 = GetAndValidateResourceData(validationResult3,unaff_RBP + -4);
         if (iVar13 != 0) goto FUN_180897afe;
       }
       unaff_R13D = 0.0;
-      uVar22 = uVar22 + 1;
-      uVar20 = uVar20 + 0x18;
+      validationResult2 = validationResult2 + 1;
+      validationResult0 = validationResult0 + 0x18;
       unaff_R14 = in_stack_00000068;
-    } while ((longlong)uVar22 < lStack0000000000000060);
+    } while ((longlong)validationResult2 < lStack0000000000000060);
   }
   resourceHash7 = *(undefined8 *)(*(longlong *)(unaff_RSI + 8) + 800);
   resourceHash6 = (**(code **)*unaff_R12)(unaff_R12);
   iVar13 = CalculateDataHash(resourceHash6,resourceHash7,acStackX_24);
   if (iVar13 == 0) {
-    uVar23 = extraout_XMM0_Da;
+    validationResult3 = extraout_XMM0_Da;
     if (acStackX_24[0] != '\0') {
       resourceHash7 = func_0x00018085fa80();
       iVar13 = memcmp(unaff_R15 + 0x38,resourceHash7,0x30);
-      uVar23 = extraout_XMM0_Da_00;
+      validationResult3 = extraout_XMM0_Da_00;
       if (iVar13 != 0) {
         resourceHash7 = *(undefined8 *)(unaff_R15 + 0x38);
         resourceHash6 = *(undefined8 *)(unaff_R15 + 0x40);
-        uVar23 = *(undefined4 *)(unaff_R15 + 0x48);
+        validationResult3 = *(undefined4 *)(unaff_R15 + 0x48);
         uVar5 = *(undefined4 *)(unaff_R15 + 0x4c);
         uVar6 = *(undefined4 *)(unaff_R15 + 0x50);
         uVar7 = *(undefined4 *)(unaff_R15 + 0x54);
@@ -13554,7 +13554,7 @@ void DataProcessingErrorHandler(void)
         resourceHash0 = *(undefined4 *)(unaff_R15 + 0x60);
         resourceHash1 = *(undefined4 *)(unaff_R15 + 100);
         *(undefined4 *)(unaff_RBP + -0xc) = uStackX_20;
-        *(undefined4 *)(unaff_RBP + -9) = uVar23;
+        *(undefined4 *)(unaff_RBP + -9) = validationResult3;
         *(undefined4 *)((longlong)unaff_RBP + -0x44) = uVar5;
         *(undefined4 *)(unaff_RBP + -8) = uVar6;
         *(undefined4 *)((longlong)unaff_RBP + -0x3c) = uVar7;
@@ -13563,11 +13563,11 @@ void DataProcessingErrorHandler(void)
         *(undefined4 *)(unaff_RBP + -6) = resourceHash0;
         *(undefined4 *)((longlong)unaff_RBP + -0x2c) = resourceHash1;
         iVar13 = GetAndValidateResourceData(uVar8,unaff_RBP + -0xe);
-        uVar23 = extraout_XMM0_Da_01;
+        validationResult3 = extraout_XMM0_Da_01;
         if (iVar13 != 0) goto FUN_180897afe;
       }
     }
-    iVar13 = ValidateResourceTable(uVar23,(longlong)&stack0x00000048 + 4,0);
+    iVar13 = ValidateResourceTable(validationResult3,(longlong)&stack0x00000048 + 4,0);
     if (iVar13 == 0) {
       in_stack_000001a0 = unaff_XMM6_Da;
       in_stack_000001a8 = unaff_XMM6_Dc;
@@ -13623,14 +13623,14 @@ void DataProcessingErrorHandler(void)
           pfVar21 = pfVar21 + 1;
         } while ((int)fVar19 < 6);
         resourceHash4 = func_0x000180855b70(unaff_R14 + 200);
-        uVar23 = extraout_XMM0_Da_03;
+        validationResult3 = extraout_XMM0_Da_03;
         if ((float)(resourceHash4 / 0x30) != 0.0) {
           in_stack_00000028 = &UNK_180983be8;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = (float)(resourceHash4 / 0x30);
           iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_03,&stack0x00000028);
-          uVar23 = extraout_XMM0_Da_04;
+          validationResult3 = extraout_XMM0_Da_04;
           if (iVar13 != 0) goto FUN_180897afe;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
@@ -13638,7 +13638,7 @@ void DataProcessingErrorHandler(void)
           in_stack_00000038 = uStackX_20;
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           in_stack_00000030 = unaff_R13D;
-          iVar13 = GetAndValidateResourceData(uVar23,&stack0x00000028);
+          iVar13 = GetAndValidateResourceData(validationResult3,&stack0x00000028);
           if (iVar13 != 0) goto FUN_180897afe;
         }
         iVar13 = GetResourceType(unaff_R14);
@@ -13650,21 +13650,21 @@ void DataProcessingErrorHandler(void)
           if (iVar13 != 0) goto FUN_180897afe;
         }
         iVar13 = GetResourceType(unaff_R14);
-        uVar23 = extraout_XMM0_Da_06;
+        validationResult3 = extraout_XMM0_Da_06;
         if (iVar13 == 4) {
           in_stack_00000028 = &UNK_180983b68;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = unaff_R13D;
           iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_06,&stack0x00000028);
-          uVar23 = extraout_XMM0_Da_07;
+          validationResult3 = extraout_XMM0_Da_07;
           if (iVar13 != 0) goto FUN_180897afe;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
           in_stack_00000028 = &UNK_180983cf8;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
-          GetAndValidateResourceData(uVar23,&stack0x00000028);
+          GetAndValidateResourceData(validationResult3,&stack0x00000028);
         }
       }
     }
@@ -13877,7 +13877,7 @@ LAB_180897af6:
   int iVar6;
   int iVar7;
   undefined1 auStack_2a8 [32];
-  undefined4 auStack_288 [2];
+  undefined4 dataChecksumBuffer8 [2];
   undefined *puStack_280;
   undefined4 uStack_278;
   undefined4 uStack_270;
@@ -13900,8 +13900,8 @@ LAB_180897af6:
     if ((iVar7 < 0) || (*(int *)(param_2 + 0x1a8) <= iVar7)) goto LAB_180897ce8;
     lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x1a0) + (longlong)iVar7 * 8);
     if (**(int **)(lVar1 + 0xd0) != 0) {
-      auStack_288[0] = 0;
-      iVar3 = ValidateBufferContext(*(int **)(lVar1 + 0xd0),auStack_288);
+      dataChecksumBuffer8[0] = 0;
+      iVar3 = ValidateBufferContext(*(int **)(lVar1 + 0xd0),dataChecksumBuffer8);
       if (iVar3 != 0) {
 LAB_180897ce8:
                     // WARNING: Subroutine does not return
@@ -13914,7 +13914,7 @@ LAB_180897ce8:
       uStack_260 = 0;
       iVar3 = iVar4 + 1;
       puStack_268 = &UNK_180982f38;
-      uStack_23c = auStack_288[0];
+      uStack_23c = dataChecksumBuffer8[0];
       uStack_258 = param_3;
       iStack_250 = iVar4;
       iVar4 = GetAndValidateResourceData(param_1,&puStack_268);
@@ -13927,7 +13927,7 @@ LAB_180897ce8:
           uStack_278 = 0;
           resourceTable = param_1[4];
           puStack_280 = &UNK_1809834f8;
-          uStack_270 = auStack_288[0];
+          uStack_270 = dataChecksumBuffer8[0];
           if (((char)resourceTable == '\0') && (iVar3 = CheckSystemStatus(param_1,1), iVar3 != 0))
           goto LAB_180897ce8;
           iVar3 = (**(code **)(puStack_280 + 0x10))(&puStack_280,auStack_238,0x200);
@@ -13988,7 +13988,7 @@ undefined8 InitializeResourceRenderingConfiguration(longlong *param_1)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   longlong resourceIndex;
   undefined4 uVar4;
   undefined4 uVar5;
@@ -14004,58 +14004,58 @@ undefined8 InitializeResourceRenderingConfiguration(longlong *param_1)
   puStack_28 = &UNK_180986408;
   uStack_18 = 2;
   uStack_14 = 0x20214;
-  uVar2 = GetAndValidateResourceData(param_1,&puStack_28);
-  if ((int)uVar2 == 0) {
+  validationResult = GetAndValidateResourceData(param_1,&puStack_28);
+  if ((int)validationResult == 0) {
     lVar1 = *(longlong *)(param_1[1] + 0x78);
     resourceIndex = func_0x000180879a40();
     if (resourceIndex == 0) {
-      uVar2 = 0x1c;
+      validationResult = 0x1c;
     }
     else {
-      uVar2 = (**(code **)(*param_1 + 8))(param_1,&UNK_1809864dc);
-      if ((int)uVar2 == 0) {
+      validationResult = (**(code **)(*param_1 + 8))(param_1,&UNK_1809864dc);
+      if ((int)validationResult == 0) {
         uVar4 = 0x14;
-        uVar2 = ProcessNetworkRequest(param_1,&ResourceConfigTable,2,2,0x14);
-        if (((((int)uVar2 == 0) &&
-             (uVar2 = ProcessNetworkRequest(param_1,&ResourceMetadataTable,*(undefined4 *)(lVar1 + 0x116bc)),
-             (int)uVar2 == 0)) &&
-            (uVar2 = ProcessNetworkRequest(param_1,&ResourceDataTable,(ulonglong)*(uint *)(lVar1 + 0x6d8),
+        validationResult = ProcessNetworkRequest(param_1,&ResourceConfigTable,2,2,0x14);
+        if (((((int)validationResult == 0) &&
+             (validationResult = ProcessNetworkRequest(param_1,&ResourceMetadataTable,*(undefined4 *)(lVar1 + 0x116bc)),
+             (int)validationResult == 0)) &&
+            (validationResult = ProcessNetworkRequest(param_1,&ResourceDataTable,(ulonglong)*(uint *)(lVar1 + 0x6d8),
                                    (ulonglong)*(uint *)(lVar1 + 0x6dc) /
-                                   (ulonglong)*(uint *)(lVar1 + 0x6d8),uVar4), (int)uVar2 == 0)) &&
-           (uVar2 = ProcessNetworkRequest(param_1,&UNK_180986590,*(undefined4 *)(lVar1 + 0x6d0),
+                                   (ulonglong)*(uint *)(lVar1 + 0x6d8),uVar4), (int)validationResult == 0)) &&
+           (validationResult = ProcessNetworkRequest(param_1,&UNK_180986590,*(undefined4 *)(lVar1 + 0x6d0),
                                   *(undefined4 *)(lVar1 + 0x1193c),*(undefined4 *)(lVar1 + 0x6d4)),
-           (int)uVar2 == 0)) {
+           (int)validationResult == 0)) {
           uVar4 = *(undefined4 *)(lVar1 + 0x11668);
           uVar8 = *(undefined4 *)(lVar1 + 0x11624);
           uVar7 = *(undefined4 *)(lVar1 + 0x11620);
           uVar6 = *(undefined4 *)(lVar1 + 0x1161c);
-          uVar2 = ProcessNetworkRequest(param_1,&UNK_1809865f0,*(undefined4 *)(lVar1 + 0x1160c),
+          validationResult = ProcessNetworkRequest(param_1,&UNK_1809865f0,*(undefined4 *)(lVar1 + 0x1160c),
                                 *(undefined4 *)(lVar1 + 0x11610),*(undefined4 *)(lVar1 + 0x11614),
                                 *(undefined4 *)(lVar1 + 0x11618),uVar6,uVar7,uVar8,uVar4);
-          if (((int)uVar2 == 0) &&
-             (uVar2 = ProcessNetworkRequest(param_1,&UNK_1809866c0,*(undefined4 *)(lVar1 + 0x11628),
+          if (((int)validationResult == 0) &&
+             (validationResult = ProcessNetworkRequest(param_1,&UNK_1809866c0,*(undefined4 *)(lVar1 + 0x11628),
                                     (double)*(float *)(lVar1 + 0x11640),
                                     *(undefined4 *)(lVar1 + 0x11644),
                                     *(undefined4 *)(lVar1 + 0x1164c),uVar6,uVar7,uVar8,uVar4),
-             (int)uVar2 == 0)) {
+             (int)validationResult == 0)) {
             uVar6 = *(undefined4 *)(lVar1 + 0x11660);
-            uVar2 = ProcessNetworkRequest(param_1,&UNK_180986730,(double)*(float *)(lVar1 + 0x11650),
+            validationResult = ProcessNetworkRequest(param_1,&UNK_180986730,(double)*(float *)(lVar1 + 0x11650),
                                   *(undefined4 *)(lVar1 + 0x11654),*(undefined4 *)(lVar1 + 0x11658),
                                   *(undefined4 *)(lVar1 + 0x1165c),uVar6,uVar7,uVar8,uVar4);
-            if ((int)uVar2 == 0) {
+            if ((int)validationResult == 0) {
               uVar5 = *(undefined4 *)(resourceIndex + 0x10);
-              uVar2 = ProcessNetworkRequest(param_1,&UNK_1809867b0,*(undefined4 *)(resourceIndex + 4),
+              validationResult = ProcessNetworkRequest(param_1,&UNK_1809867b0,*(undefined4 *)(resourceIndex + 4),
                                     *(undefined4 *)(resourceIndex + 8),*(undefined4 *)(resourceIndex + 0xc),uVar5,
                                     uVar6,uVar7,uVar8,uVar4);
-              if ((((int)uVar2 == 0) &&
-                  (uVar2 = ProcessNetworkRequest(param_1,&UNK_180986850,*(undefined4 *)(lVar1 + 0x1e0),
+              if ((((int)validationResult == 0) &&
+                  (validationResult = ProcessNetworkRequest(param_1,&UNK_180986850,*(undefined4 *)(lVar1 + 0x1e0),
                                          *(undefined4 *)(param_1[1] + 0x20),
                                          *(undefined4 *)(lVar1 + 0x78),uVar5,uVar6,uVar7,uVar8,uVar4
-                                        ), (int)uVar2 == 0)) &&
-                 ((uVar2 = (**(code **)(*param_1 + 8))(param_1,&UNK_1809864dc), (int)uVar2 == 0 &&
+                                        ), (int)validationResult == 0)) &&
+                 ((validationResult = (**(code **)(*param_1 + 8))(param_1,&UNK_1809864dc), (int)validationResult == 0 &&
                   (((*(uint *)(param_1 + 3) & 2) != 0 ||
-                   (uVar2 = ValidateNetworkConnection(param_1), (int)uVar2 == 0)))))) {
-                uVar2 = 0;
+                   (validationResult = ValidateNetworkConnection(param_1), (int)validationResult == 0)))))) {
+                validationResult = 0;
               }
             }
           }
@@ -14063,7 +14063,7 @@ undefined8 InitializeResourceRenderingConfiguration(longlong *param_1)
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -14080,31 +14080,31 @@ undefined8 ValidateResourceRenderingState(void)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   longlong *unaff_RBX;
   
   lVar1 = func_0x000180879a40();
   if (lVar1 == 0) {
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
   else {
-    uVar2 = (**(code **)(*unaff_RBX + 8))();
-    if ((((((((int)uVar2 == 0) && (uVar2 = ProcessNetworkRequest(), (int)uVar2 == 0)) &&
-           (uVar2 = ProcessNetworkRequest(), (int)uVar2 == 0)) &&
-          ((uVar2 = ProcessNetworkRequest(), (int)uVar2 == 0 && (uVar2 = ProcessNetworkRequest(), (int)uVar2 == 0)))
-          ) && ((uVar2 = ProcessNetworkRequest(), (int)uVar2 == 0 &&
-                ((uVar2 = ProcessNetworkRequest(), (int)uVar2 == 0 &&
-                 (uVar2 = ProcessNetworkRequest(), (int)uVar2 == 0)))))) &&
-        (uVar2 = ProcessNetworkRequest(), (int)uVar2 == 0)) &&
-       ((uVar2 = ProcessNetworkRequest(), (int)uVar2 == 0 &&
-        (uVar2 = (**(code **)(*unaff_RBX + 8))(), (int)uVar2 == 0)))) {
-      if (((*(uint *)(unaff_RBX + 3) & 2) == 0) && (uVar2 = ValidateNetworkConnection(), (int)uVar2 != 0)) {
-        return uVar2;
+    validationResult = (**(code **)(*unaff_RBX + 8))();
+    if ((((((((int)validationResult == 0) && (validationResult = ProcessNetworkRequest(), (int)validationResult == 0)) &&
+           (validationResult = ProcessNetworkRequest(), (int)validationResult == 0)) &&
+          ((validationResult = ProcessNetworkRequest(), (int)validationResult == 0 && (validationResult = ProcessNetworkRequest(), (int)validationResult == 0)))
+          ) && ((validationResult = ProcessNetworkRequest(), (int)validationResult == 0 &&
+                ((validationResult = ProcessNetworkRequest(), (int)validationResult == 0 &&
+                 (validationResult = ProcessNetworkRequest(), (int)validationResult == 0)))))) &&
+        (validationResult = ProcessNetworkRequest(), (int)validationResult == 0)) &&
+       ((validationResult = ProcessNetworkRequest(), (int)validationResult == 0 &&
+        (validationResult = (**(code **)(*unaff_RBX + 8))(), (int)validationResult == 0)))) {
+      if (((*(uint *)(unaff_RBX + 3) & 2) == 0) && (validationResult = ValidateNetworkConnection(), (int)validationResult != 0)) {
+        return validationResult;
       }
-      uVar2 = 0;
+      validationResult = 0;
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -14128,7 +14128,7 @@ undefined8 ValidateResourceRenderingState(void)
 
 {
   float fVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined4 *puVar3;
   longlong lVar4;
   char cVar5;
@@ -14247,9 +14247,9 @@ undefined8 ValidateResourceRenderingState(void)
           uStack_2c0 = (undefined4)((ulonglong)lVar11 >> 0x20);
           uStack_2bc = (undefined4)uVar9;
           uStack_2b8 = (undefined4)(uVar9 >> 0x20);
-          puVar2 = (undefined8 *)(lVar15 + 0xf0 + (longlong)plVar10);
-          uStack_2b4 = *puVar2;
-          uStack_2ac = puVar2[1];
+          pvalidationResult = (undefined8 *)(lVar15 + 0xf0 + (longlong)plVar10);
+          uStack_2b4 = *pvalidationResult;
+          uStack_2ac = pvalidationResult[1];
           puVar3 = (undefined4 *)(lVar15 + 0x100 + (longlong)plVar10);
           uStack_2a4 = *puVar3;
           uStack_2a0 = puVar3[1];
@@ -14491,13 +14491,13 @@ undefined8 ProcessResourceDataExpansion(longlong *param_1,int param_2)
 
 {
   int iVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   uint uVar3;
   
   uVar3 = (int)*(uint *)((longlong)param_1 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((longlong)param_1 + 0xc) ^ uVar3) - uVar3) < param_2) &&
-     (uVar2 = CheckResourceTableStatus(param_1,param_2), (int)uVar2 != 0)) {
-    return uVar2;
+     (validationResult = CheckResourceTableStatus(param_1,param_2), (int)validationResult != 0)) {
+    return validationResult;
   }
   iVar1 = (int)param_1[1];
   if (param_2 <= iVar1) {
@@ -14524,7 +14524,7 @@ undefined8 ProcessResourceTimeSynchronization(longlong *param_1,char param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   ulonglong uVar3;
   ulonglong uVar4;
   undefined8 uStackX_8;
@@ -14534,9 +14534,9 @@ undefined8 ProcessResourceTimeSynchronization(longlong *param_1,char param_2)
   ulonglong uStack_18;
   
   *(undefined1 *)(param_1 + 4) = 1;
-  uVar2 = InitializeResourceContext(*(undefined8 *)(param_1[1] + 0x78),&uStackX_8);
-  if ((((int)uVar2 == 0) && (uVar2 = SetupResourceEnvironment(uStackX_8,alStackX_18,0), (int)uVar2 == 0)) &&
-     (uVar2 = (**(code **)(*param_1 + 0x10))(param_1), (int)uVar2 == 0)) {
+  validationResult = InitializeResourceContext(*(undefined8 *)(param_1[1] + 0x78),&uStackX_8);
+  if ((((int)validationResult == 0) && (validationResult = SetupResourceEnvironment(uStackX_8,alStackX_18,0), (int)validationResult == 0)) &&
+     (validationResult = (**(code **)(*param_1 + 0x10))(param_1), (int)validationResult == 0)) {
     uVar3 = (ulonglong)(alStackX_18[0] * 48000) / (ulonglong)*(uint *)((longlong)param_1 + 0x1c);
     lVar1 = param_1[2];
     uVar4 = uVar3 - lVar1;
@@ -14548,14 +14548,14 @@ undefined8 ProcessResourceTimeSynchronization(longlong *param_1,char param_2)
         uStack_18 = uVar4;
       }
       puStack_28 = &UNK_180986390;
-      uVar2 = GetAndValidateResourceData(param_1,&puStack_28);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = GetAndValidateResourceData(param_1,&puStack_28);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
     }
-    uVar2 = 0;
+    validationResult = 0;
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -14575,7 +14575,7 @@ undefined8 FindResourceHashTableEntry(longlong *param_1,char *param_2,undefined8
 
 {
   char *pcVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   byte bVar3;
   undefined8 uVar4;
   char cVar5;
@@ -14642,9 +14642,9 @@ LAB_1808989b1:
 LAB_1808989f7:
     uVar8 = presourceHash1[1] & 0xffffff;
     if (((char)(presourceHash1[1] >> 0x18) == '\0') && ((int)uVar8 < (int)param_1[3])) {
-      puVar2 = (undefined8 *)(param_1[2] + (ulonglong)uVar8 * 0x10);
-      uVar4 = puVar2[1];
-      *param_3 = *puVar2;
+      pvalidationResult = (undefined8 *)(param_1[2] + (ulonglong)uVar8 * 0x10);
+      uVar4 = pvalidationResult[1];
+      *param_3 = *pvalidationResult;
       param_3[1] = uVar4;
       return 0;
     }
@@ -14877,7 +14877,7 @@ undefined4 ExtractResourceHashData(undefined8 param_1,int param_2,undefined4 *pa
 
 {
   undefined4 *presourceHash;
-  undefined1 uVar2;
+  undefined1 validationResult;
   uint uVar3;
   uint3 uVar4;
   undefined4 uVar5;
@@ -14931,9 +14931,9 @@ undefined4 ExtractResourceHashData(undefined8 param_1,int param_2,undefined4 *pa
             presourceHash0 = unaff_RSI + (int)resourceHash2;
             resourceHash2 = resourceHash2 + iVar9;
             do {
-              uVar2 = *presourceHash5;
+              validationResult = *presourceHash5;
               presourceHash5 = presourceHash5 + -1;
-              *presourceHash0 = uVar2;
+              *presourceHash0 = validationResult;
               presourceHash0 = presourceHash0 + 1;
               iVar9 = iVar9 + -1;
             } while (iVar9 != 0);
@@ -14952,10 +14952,10 @@ undefined4 ExtractResourceHashData(undefined8 param_1,int param_2,undefined4 *pa
       presourceHash5 = presourceHash0 + -1;
       if (unaff_RSI < presourceHash5) {
         do {
-          uVar2 = *unaff_RSI;
+          validationResult = *unaff_RSI;
           *unaff_RSI = *presourceHash5;
           unaff_RSI = unaff_RSI + 1;
-          *presourceHash5 = uVar2;
+          *presourceHash5 = validationResult;
           presourceHash5 = presourceHash5 + -1;
         } while (unaff_RSI < presourceHash5);
       }
@@ -14968,20 +14968,20 @@ undefined4 ExtractResourceHashData(undefined8 param_1,int param_2,undefined4 *pa
       presourceHash0 = unaff_RSI;
       if (unaff_RSI < presourceHash5) {
         do {
-          uVar2 = *presourceHash0;
+          validationResult = *presourceHash0;
           *presourceHash0 = *presourceHash5;
           presourceHash0 = presourceHash0 + 1;
-          *presourceHash5 = uVar2;
+          *presourceHash5 = validationResult;
           presourceHash5 = presourceHash5 + -1;
         } while (presourceHash0 < presourceHash5);
       }
       presourceHash5 = presourceHash1 + (longlong)(int)(iVar13 - resourceHash2) + -1;
       if (presourceHash1 < presourceHash5) {
         do {
-          uVar2 = *presourceHash1;
+          validationResult = *presourceHash1;
           *presourceHash1 = *presourceHash5;
           presourceHash1 = presourceHash1 + 1;
-          *presourceHash5 = uVar2;
+          *presourceHash5 = validationResult;
           presourceHash5 = presourceHash5 + -1;
         } while (presourceHash1 < presourceHash5);
       }
@@ -15124,7 +15124,7 @@ undefined4 GetResourceTableStatus(void)
 
 {
   undefined1 resourceHash;
-  undefined1 *puVar2;
+  undefined1 *pvalidationResult;
   undefined1 *puVar3;
   int unaff_EBX;
   int iVar4;
@@ -15139,40 +15139,40 @@ undefined4 GetResourceTableStatus(void)
   if (iVar4 != 0) {
     if (unaff_R15D < iVar4) {
       puVar5 = unaff_RSI + unaff_R15D;
-      puVar2 = puVar5 + -1;
-      if (unaff_RSI < puVar2) {
+      pvalidationResult = puVar5 + -1;
+      if (unaff_RSI < pvalidationResult) {
         do {
           resourceHash = *unaff_RSI;
-          *unaff_RSI = *puVar2;
+          *unaff_RSI = *pvalidationResult;
           unaff_RSI = unaff_RSI + 1;
-          *puVar2 = resourceHash;
-          puVar2 = puVar2 + -1;
-        } while (unaff_RSI < puVar2);
+          *pvalidationResult = resourceHash;
+          pvalidationResult = pvalidationResult + -1;
+        } while (unaff_RSI < pvalidationResult);
       }
       *puVar5 = (char)unaff_R13D;
     }
     else {
       puVar3 = unaff_RSI + unaff_EBX;
-      puVar2 = puVar3 + -1;
+      pvalidationResult = puVar3 + -1;
       puVar5 = unaff_RSI;
-      if (unaff_RSI < puVar2) {
+      if (unaff_RSI < pvalidationResult) {
         do {
           resourceHash = *puVar5;
-          *puVar5 = *puVar2;
+          *puVar5 = *pvalidationResult;
           puVar5 = puVar5 + 1;
-          *puVar2 = resourceHash;
-          puVar2 = puVar2 + -1;
-        } while (puVar5 < puVar2);
+          *pvalidationResult = resourceHash;
+          pvalidationResult = pvalidationResult + -1;
+        } while (puVar5 < pvalidationResult);
       }
-      puVar2 = puVar3 + (longlong)(iVar4 - unaff_EBX) + -1;
-      if (puVar3 < puVar2) {
+      pvalidationResult = puVar3 + (longlong)(iVar4 - unaff_EBX) + -1;
+      if (puVar3 < pvalidationResult) {
         do {
           resourceHash = *puVar3;
-          *puVar3 = *puVar2;
+          *puVar3 = *pvalidationResult;
           puVar3 = puVar3 + 1;
-          *puVar2 = resourceHash;
-          puVar2 = puVar2 + -1;
-        } while (puVar3 < puVar2);
+          *pvalidationResult = resourceHash;
+          pvalidationResult = pvalidationResult + -1;
+        } while (puVar3 < pvalidationResult);
       }
       unaff_RSI[unaff_RBP + -1] = (char)unaff_R13D;
       unaff_R13D = 0x41;
@@ -15424,17 +15424,17 @@ undefined8 ProcessResourceHashValidation(undefined8 *resourceHandle,longlong off
 
 {
   undefined8 resourceHash;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
   if (*(int *)(param_1[1] + 0x18) != 0) {
     return 0x1c;
   }
   resourceHash = *param_1;
-  uVar2 = CalculateResourceHash(resourceHash);
-  if ((int)uVar2 == 0) {
-    uVar2 = CalculateResourceHash(resourceHash,param_2 + 4);
+  validationResult = CalculateResourceHash(resourceHash);
+  if ((int)validationResult == 0) {
+    validationResult = CalculateResourceHash(resourceHash,param_2 + 4);
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -15452,7 +15452,7 @@ undefined8 ProcessResourceDataParsing(longlong *dataContext,undefined4 *dataBuff
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   undefined4 auStackX_8 [2];
   undefined4 auStackX_18 [4];
@@ -15462,12 +15462,12 @@ undefined8 ProcessResourceDataParsing(longlong *dataContext,undefined4 *dataBuff
   }
   auStackX_8[0] = *param_2;
   lVar1 = *param_1;
-  puVar2 = *(undefined8 **)(lVar1 + 8);
-  uVar3 = (**(code **)*puVar2)(puVar2,auStackX_8,4);
+  pvalidationResult = *(undefined8 **)(lVar1 + 8);
+  uVar3 = (**(code **)*pvalidationResult)(pvalidationResult,auStackX_8,4);
   if ((int)uVar3 == 0) {
-    puVar2 = *(undefined8 **)(lVar1 + 8);
+    pvalidationResult = *(undefined8 **)(lVar1 + 8);
     auStackX_18[0] = param_2[1];
-    uVar3 = (**(code **)*puVar2)(puVar2,auStackX_18,4);
+    uVar3 = (**(code **)*pvalidationResult)(pvalidationResult,auStackX_18,4);
   }
   return uVar3;
 }
@@ -15582,29 +15582,29 @@ undefined8 ProcessResourceDataValidation(undefined8 *resourceHandle,longlong off
 
 {
   undefined8 resourceHash;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
   if (*(int *)(param_1[1] + 0x18) != 0) {
     return 0x1c;
   }
   resourceHash = *param_1;
-  uVar2 = ReadResourceData(resourceHash,param_2,4);
-  if ((int)uVar2 == 0) {
-    uVar2 = ReadResourceData(resourceHash,param_2 + 4,2);
-    if ((int)uVar2 == 0) {
-      uVar2 = ReadResourceData(resourceHash,param_2 + 6,2);
-      if ((int)uVar2 == 0) {
-        uVar2 = ReadResourceData(resourceHash,param_2 + 8,8);
-        if ((int)uVar2 == 0) {
-          uVar2 = CalculateResourceHash(resourceHash,param_2 + 0x10);
-          if ((int)uVar2 == 0) {
-            uVar2 = CalculateResourceHash(resourceHash,param_2 + 0x14);
+  validationResult = ReadResourceData(resourceHash,param_2,4);
+  if ((int)validationResult == 0) {
+    validationResult = ReadResourceData(resourceHash,param_2 + 4,2);
+    if ((int)validationResult == 0) {
+      validationResult = ReadResourceData(resourceHash,param_2 + 6,2);
+      if ((int)validationResult == 0) {
+        validationResult = ReadResourceData(resourceHash,param_2 + 8,8);
+        if ((int)validationResult == 0) {
+          validationResult = CalculateResourceHash(resourceHash,param_2 + 0x10);
+          if ((int)validationResult == 0) {
+            validationResult = CalculateResourceHash(resourceHash,param_2 + 0x14);
           }
         }
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -15730,7 +15730,7 @@ undefined8 ProcessResourceDataSerialization(longlong *dataContext,undefined4 *da
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   undefined4 auStackX_8 [2];
   undefined4 auStackX_18 [4];
@@ -15740,12 +15740,12 @@ undefined8 ProcessResourceDataSerialization(longlong *dataContext,undefined4 *da
   }
   auStackX_8[0] = *param_2;
   lVar1 = *param_1;
-  puVar2 = *(undefined8 **)(lVar1 + 8);
-  uVar3 = (**(code **)*puVar2)(puVar2,auStackX_8,4);
+  pvalidationResult = *(undefined8 **)(lVar1 + 8);
+  uVar3 = (**(code **)*pvalidationResult)(pvalidationResult,auStackX_8,4);
   if ((int)uVar3 == 0) {
     auStackX_18[0] = param_2[1];
-    puVar2 = *(undefined8 **)(lVar1 + 8);
-    uVar3 = (**(code **)*puVar2)(puVar2,auStackX_18,4);
+    pvalidationResult = *(undefined8 **)(lVar1 + 8);
+    uVar3 = (**(code **)*pvalidationResult)(pvalidationResult,auStackX_18,4);
   }
   return uVar3;
 }
@@ -15765,23 +15765,23 @@ undefined8 ProcessResourceDataRead(undefined8 *resourceHandle,longlong offset)
 
 {
   undefined8 resourceHash;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
   if (*(int *)(param_1[1] + 0x18) != 0) {
     return 0x1c;
   }
   resourceHash = *param_1;
-  uVar2 = ReadResourceData(resourceHash,param_2,4);
-  if ((int)uVar2 == 0) {
-    uVar2 = ReadResourceData(resourceHash,param_2 + 4,2);
-    if ((int)uVar2 == 0) {
-      uVar2 = ReadResourceData(resourceHash,param_2 + 6,2);
-      if ((int)uVar2 == 0) {
-        uVar2 = ReadResourceData(resourceHash,param_2 + 8,8);
+  validationResult = ReadResourceData(resourceHash,param_2,4);
+  if ((int)validationResult == 0) {
+    validationResult = ReadResourceData(resourceHash,param_2 + 4,2);
+    if ((int)validationResult == 0) {
+      validationResult = ReadResourceData(resourceHash,param_2 + 6,2);
+      if ((int)validationResult == 0) {
+        validationResult = ReadResourceData(resourceHash,param_2 + 8,8);
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -16078,16 +16078,16 @@ undefined8 QueryResourceTable(undefined8 param_1, longlong *param_2)
 
 {
   int iVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   uint uVar3;
   longlong lVar4;
   int tableEntry;
   int aiStackX_18 [2];
   
   aiStackX_18[0] = 0;
-  uVar2 = LoadResourceData(param_1,aiStackX_18);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = LoadResourceData(param_1,aiStackX_18);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   lVar4 = (longlong)aiStackX_18[0];
   if (aiStackX_18[0] == 0) {
@@ -16097,8 +16097,8 @@ undefined8 QueryResourceTable(undefined8 param_1, longlong *param_2)
     tableEntry = aiStackX_18[0] + 1;
     uVar3 = (int)*(uint *)((longlong)param_2 + 0xc) >> 0x1f;
     if (((int)((*(uint *)((longlong)param_2 + 0xc) ^ uVar3) - uVar3) < tableEntry) &&
-       (uVar2 = CheckResourceTableStatus(param_2,tableEntry), (int)uVar2 != 0)) {
-      return uVar2;
+       (validationResult = CheckResourceTableStatus(param_2,tableEntry), (int)validationResult != 0)) {
+      return validationResult;
     }
     iVar1 = (int)param_2[1];
     if (iVar1 < tableEntry) {
@@ -16106,9 +16106,9 @@ undefined8 QueryResourceTable(undefined8 param_1, longlong *param_2)
       memset((longlong)iVar1 + *param_2,0,(longlong)(tableEntry - iVar1));
     }
     *(int *)(param_2 + 1) = tableEntry;
-    uVar2 = ReadResourceData(param_1,*param_2,lVar4);
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    validationResult = ReadResourceData(param_1,*param_2,lVar4);
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
     *(undefined1 *)(lVar4 + *param_2) = 0;
   }
@@ -16129,7 +16129,7 @@ undefined8 InitializeResourceBuffer(void)
 
 {
   int iVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   uint uVar3;
   longlong *unaff_RBX;
   int iVar4;
@@ -16142,8 +16142,8 @@ undefined8 InitializeResourceBuffer(void)
     iVar4 = in_stack_00000040 + 1;
     uVar3 = (int)*(uint *)((longlong)unaff_RBX + 0xc) >> 0x1f;
     if (((int)((*(uint *)((longlong)unaff_RBX + 0xc) ^ uVar3) - uVar3) < iVar4) &&
-       (uVar2 = CheckResourceTableStatus(), (int)uVar2 != 0)) {
-      return uVar2;
+       (validationResult = CheckResourceTableStatus(), (int)validationResult != 0)) {
+      return validationResult;
     }
     iVar1 = (int)unaff_RBX[1];
     if (iVar1 < iVar4) {
@@ -16151,9 +16151,9 @@ undefined8 InitializeResourceBuffer(void)
       memset((longlong)iVar1 + *unaff_RBX,0,(longlong)(iVar4 - iVar1));
     }
     *(int *)(unaff_RBX + 1) = iVar4;
-    uVar2 = ReadResourceData();
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    validationResult = ReadResourceData();
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
     *(undefined1 *)((longlong)in_stack_00000040 + *unaff_RBX) = 0;
   }
@@ -16536,7 +16536,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
 
 {
   uint resourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   int iVar3;
   int iVar4;
   longlong unaff_RBX;
@@ -16565,7 +16565,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
           return;
         }
         resourceHash = *(uint *)(lVar5 + 0x10);
-        puVar2 = *(undefined8 **)(unaff_RBX + 8);
+        pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
         if (resourceHash < 0x8000) {
           *(short *)(unaff_RBP + 0x20) = (short)resourceHash;
           uVar8 = 2;
@@ -16574,7 +16574,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
           uVar8 = 4;
           *(uint *)(unaff_RBP + 0x20) = (resourceHash & 0xffffc000 | 0x4000) * 2 | resourceHash & 0x7fff;
         }
-        iVar3 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,uVar8);
+        iVar3 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,uVar8);
         if (iVar3 != 0) {
           return;
         }
@@ -16589,32 +16589,32 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
     }
     iVar3 = FUN_1808aca30(uVar8,unaff_R14 + 0x60);
     if (iVar3 == 0) {
-      puVar2 = *(undefined8 **)(unaff_RBX + 8);
+      pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
       iVar3 = *(int *)(unaff_R14 + 0x78);
       *(int *)(unaff_RBP + 0x20) = iVar3;
-      iVar4 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+      iVar4 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
       if (iVar4 == 0) {
         if (0 < iVar3) {
           do {
             lVar6 = *(longlong *)(unaff_R14 + 0x70);
-            puVar2 = *(undefined8 **)(unaff_RBX + 8);
+            pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
             *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(lVar6 + unaff_RDI * 8);
-            iVar4 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+            iVar4 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
             if (iVar4 != 0) {
               return;
             }
-            puVar2 = *(undefined8 **)(unaff_RBX + 8);
+            pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
             *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(lVar6 + 4 + unaff_RDI * 8);
-            iVar4 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+            iVar4 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
             if (iVar4 != 0) {
               return;
             }
             unaff_RDI = unaff_RDI + 1;
           } while (unaff_RDI < iVar3);
         }
-        puVar2 = *(undefined8 **)(unaff_RBX + 8);
+        pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
         *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_R14 + 0x80);
-        (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+        (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
       }
     }
   }
@@ -17067,7 +17067,7 @@ a059(undefined4 param_1)
 
 {
   uint resourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   int iVar3;
   longlong unaff_RBX;
   longlong unaff_RBP;
@@ -17107,7 +17107,7 @@ a059(undefined4 param_1)
     } while (iVar6 < *(int *)(unaff_RDI + 0x1a0));
   }
   resourceHash = *(uint *)(unaff_RDI + 400);
-  puVar2 = *(undefined8 **)(unaff_RBX + 8);
+  pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
   if (resourceHash < 0x8000) {
     *(short *)(unaff_RBP + 0x20) = (short)resourceHash;
     uVar5 = 2;
@@ -17116,65 +17116,65 @@ a059(undefined4 param_1)
     uVar5 = 4;
     *(uint *)(unaff_RBP + 0x20) = (resourceHash & 0xffffc000 | 0x4000) * 2 | resourceHash & 0x7fff;
   }
-  iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,uVar5);
+  iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,uVar5);
   if (iVar6 == 0) {
-    puVar2 = *(undefined8 **)(unaff_RBX + 8);
+    pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
     *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x194);
-    iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+    iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
     if (((iVar6 == 0) && (iVar6 = CheckResourceAvailability(extraout_XMM0_Da_03,unaff_RDI + 0x198), iVar6 == 0))
        && (iVar6 = CheckResourceAvailability(extraout_XMM0_Da_04,unaff_RDI + 0x19c), iVar6 == 0)) {
-      puVar2 = *(undefined8 **)(unaff_RBX + 8);
+      pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
       *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1a4);
-      iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+      iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
       if (iVar6 == 0) {
-        puVar2 = *(undefined8 **)(unaff_RBX + 8);
+        pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
         *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1a8);
-        iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+        iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
         if (iVar6 == 0) {
-          puVar2 = *(undefined8 **)(unaff_RBX + 8);
+          pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
           *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1ac);
-          iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+          iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
           if (iVar6 == 0) {
-            puVar2 = *(undefined8 **)(unaff_RBX + 8);
+            pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
             *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1b4);
-            iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+            iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
             if (iVar6 == 0) {
-              puVar2 = *(undefined8 **)(unaff_RBX + 8);
+              pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
               *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1b8);
-              iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+              iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
               if (iVar6 == 0) {
-                puVar2 = *(undefined8 **)(unaff_RBX + 8);
+                pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
                 *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1b0);
-                iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+                iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
                 if (iVar6 == 0) {
-                  puVar2 = *(undefined8 **)(unaff_RBX + 8);
+                  pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
                   *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1bc);
-                  iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+                  iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
                   if (iVar6 == 0) {
-                    puVar2 = *(undefined8 **)(unaff_RBX + 8);
+                    pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
                     *(undefined8 *)(unaff_RBP + 0x20) = *(undefined8 *)(unaff_RDI + 0x1c0);
-                    iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,8);
+                    iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,8);
                     if (iVar6 == 0) {
-                      puVar2 = *(undefined8 **)(unaff_RBX + 8);
+                      pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
                       *(undefined8 *)(unaff_RBP + 0x20) = *(undefined8 *)(unaff_RDI + 0x1c8);
-                      iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,8);
+                      iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,8);
                       if (iVar6 == 0) {
-                        puVar2 = *(undefined8 **)(unaff_RBX + 8);
+                        pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
                         *(undefined8 *)(unaff_RBP + 0x20) = *(undefined8 *)(unaff_RDI + 0x1d0);
-                        iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,8);
+                        iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,8);
                         if (iVar6 == 0) {
-                          puVar2 = *(undefined8 **)(unaff_RBX + 8);
+                          pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
                           *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1dc);
-                          iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+                          iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
                           if (iVar6 == 0) {
-                            puVar2 = *(undefined8 **)(unaff_RBX + 8);
+                            pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
                             *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1d8);
-                            iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+                            iVar6 = (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
                             if (iVar6 == 0) {
-                              puVar2 = *(undefined8 **)(unaff_RBX + 8);
+                              pvalidationResult = *(undefined8 **)(unaff_RBX + 8);
                               *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1e0)
                               ;
-                              (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+                              (**(code **)*pvalidationResult)(pvalidationResult,unaff_RBP + 0x20,4);
                             }
                           }
                         }
@@ -17421,36 +17421,36 @@ undefined8 ProcessResourceConfigurationData(longlong configContext, undefined4 *
 
 {
   int iVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   int iVar3;
   undefined8 uStackX_8;
   
   uStackX_8 = CONCAT44(uStackX_8._4_4_,*param_2);
-  uVar2 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),&uStackX_8,4);
-  if ((int)uVar2 == 0) {
+  validationResult = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),&uStackX_8,4);
+  if ((int)validationResult == 0) {
     uStackX_8 = *(undefined8 *)(param_2 + 2);
-    uVar2 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),&uStackX_8,8);
-    if ((int)uVar2 == 0) {
+    validationResult = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),&uStackX_8,8);
+    if ((int)validationResult == 0) {
       iVar1 = param_2[6];
       uStackX_8 = CONCAT44(uStackX_8._4_4_,iVar1);
-      uVar2 = (**(code **)**(undefined8 **)(param_1 + 8))
+      validationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                         (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
-      if ((int)uVar2 == 0) {
+      if ((int)validationResult == 0) {
         iVar3 = 0;
         if (0 < iVar1) {
           do {
-            uVar2 = ProcessResourceOperation(param_1,(longlong)iVar3 * 0x278 + *(longlong *)(param_2 + 4));
-            if ((int)uVar2 != 0) {
-              return uVar2;
+            validationResult = ProcessResourceOperation(param_1,(longlong)iVar3 * 0x278 + *(longlong *)(param_2 + 4));
+            if ((int)validationResult != 0) {
+              return validationResult;
             }
             iVar3 = iVar3 + 1;
           } while (iVar3 < iVar1);
         }
-        uVar2 = 0;
+        validationResult = 0;
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -17469,28 +17469,28 @@ undefined8 ProcessResourceOperation(undefined8 *resourceHandle, undefined8 opera
 
 {
   int iVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   int iVar3;
   longlong unaff_RSI;
   int iStack0000000000000030;
   
   iVar1 = *(int *)(unaff_RSI + 0x18);
   iStack0000000000000030 = iVar1;
-  uVar2 = (**(code **)*param_1)(param_1,param_2,4);
-  if ((int)uVar2 == 0) {
+  validationResult = (**(code **)*param_1)(param_1,param_2,4);
+  if ((int)validationResult == 0) {
     iVar3 = 0;
     if (0 < iVar1) {
       do {
-        uVar2 = ProcessResourceOperation();
-        if ((int)uVar2 != 0) {
-          return uVar2;
+        validationResult = ProcessResourceOperation();
+        if ((int)validationResult != 0) {
+          return validationResult;
         }
         iVar3 = iVar3 + 1;
       } while (iVar3 < iVar1);
     }
-    uVar2 = 0;
+    validationResult = 0;
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -18029,7 +18029,7 @@ undefined8 InitializeResourceTableCache(void)
 {
   float fVar1;
   int in_EAX;
-  undefined8 uVar2;
+  undefined8 validationResult;
   undefined8 *puVar3;
   longlong unaff_RBX;
   undefined8 unaff_RBP;
@@ -18037,9 +18037,9 @@ undefined8 InitializeResourceTableCache(void)
   
   if (in_EAX == 0x1b) {
     if (*(uint *)(unaff_RBX + 0x40) < 0x3b) {
-      uVar2 = FUN_18089cc80();
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = FUN_18089cc80();
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
       if (*(int *)(unaff_RDI + 0x50) == 0x14) {
         puVar3 = (undefined8 *)**(longlong **)(unaff_RDI + 0x48);
@@ -18068,15 +18068,15 @@ undefined8 InitializeResourceTableCache(void)
     }
   }
   else if ((in_EAX == 0x12) && (*(uint *)(unaff_RBX + 0x40) < 0x40)) {
-    uVar2 = FUN_1808a8620();
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    validationResult = FUN_1808a8620();
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
     goto LAB_18089ae18;
   }
-  uVar2 = FUN_18089cc80();
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = FUN_18089cc80();
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
 LAB_18089ae18:
                     // WARNING: Subroutine does not return
@@ -18143,7 +18143,7 @@ ulonglong ValidateAndProcessResourceData(void)
 
 {
   longlong *plVar1;
-  uint uVar2;
+  uint validationResult;
   uint in_EAX;
   uint uVar3;
   ulonglong uVar4;
@@ -18181,16 +18181,16 @@ LAB_18089af81:
         }
       }
     }
-    uVar2 = unaff_ESI;
+    validationResult = unaff_ESI;
     if (uVar3 == 0) {
       uVar6 = (uint)(cStack0000000000000030 != '\0');
       uVar3 = uVar7;
-      uVar2 = (uint)(cStack0000000000000030 == '\0');
+      validationResult = (uint)(cStack0000000000000030 == '\0');
     }
     if (uVar3 != 0) {
       return (ulonglong)uVar3;
     }
-    *(uint *)(unaff_RBP + 0xc4) = (*(uint *)(unaff_RBP + 0xc4) | uVar6) & ~uVar2;
+    *(uint *)(unaff_RBP + 0xc4) = (*(uint *)(unaff_RBP + 0xc4) | uVar6) & ~validationResult;
     in_EAX = *(uint *)(unaff_RBX + 8);
   }
   uVar4 = uVar5;
@@ -18400,21 +18400,21 @@ ulonglong ProcessResourceDataReadAndValidate(longlong ResourceHandle,undefined8 
 
 {
   undefined8 resourceHash;
-  undefined4 *puVar2;
+  undefined4 *pvalidationResult;
   ulonglong uVar3;
   uint uVar4;
   undefined4 uStack_38;
   undefined4 uStack_34;
   undefined4 uStack_30;
   undefined4 uStack_2c;
-  undefined1 auStack_28 [32];
+  undefined1 dataChecksumBuffer [32];
   
-  puVar2 = (undefined4 *)AllocateMemoryBlock();
-  uStack_38 = *puVar2;
-  uStack_34 = puVar2[1];
-  uStack_30 = puVar2[2];
-  uStack_2c = puVar2[3];
-  uVar3 = ComputeDataChecksum(param_2,auStack_28,0,0x4c525443);
+  pvalidationResult = (undefined4 *)AllocateMemoryBlock();
+  uStack_38 = *pvalidationResult;
+  uStack_34 = pvalidationResult[1];
+  uStack_30 = pvalidationResult[2];
+  uStack_2c = pvalidationResult[3];
+  uVar3 = ComputeDataChecksum(param_2,dataChecksumBuffer,0,0x4c525443);
   if ((((int)uVar3 == 0) && (uVar3 = ValidateResourceHash(param_2,param_1 + 0x10), (int)uVar3 == 0)) &&
      (uVar3 = ValidateResourceHash(param_2,param_1 + 0x20), (int)uVar3 == 0)) {
     uVar4 = 0x1c;
@@ -18443,7 +18443,7 @@ ulonglong ProcessResourceDataReadAndValidate(longlong ResourceHandle,undefined8 
         if ((*(int *)(resourceData[1] + 0x18) == 0) &&
            (uVar4 = ReadResourceData(*param_2,param_1 + 0x40,4), uVar4 == 0)) {
                     // WARNING: Subroutine does not return
-          FUN_1808ddf80(param_2,auStack_28);
+          FUN_1808ddf80(param_2,dataChecksumBuffer);
         }
       }
       return (ulonglong)uVar4;
@@ -18467,7 +18467,7 @@ ulonglong ExecuteResourceDataValidation(void)
 {
   undefined8 resourceHash;
   int in_EAX;
-  ulonglong uVar2;
+  ulonglong validationResult;
   undefined8 *unaff_RBX;
   longlong unaff_RBP;
   uint uVar3;
@@ -18480,26 +18480,26 @@ ulonglong ExecuteResourceDataValidation(void)
   if (in_CF) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
       resourceHash = *unaff_RBX;
-      uVar2 = ReadResourceData(resourceHash,auStackX_20,4);
-      if ((((int)uVar2 == 0) && (uVar2 = ReadResourceData(resourceHash,auStackX_24,2), (int)uVar2 == 0)) &&
-         (uVar2 = ReadResourceData(resourceHash,auStackX_26,2), (int)uVar2 == 0)) {
-        uVar2 = ReadResourceData(resourceHash,&stack0x00000028,8);
+      validationResult = ReadResourceData(resourceHash,auStackX_20,4);
+      if ((((int)validationResult == 0) && (validationResult = ReadResourceData(resourceHash,auStackX_24,2), (int)validationResult == 0)) &&
+         (validationResult = ReadResourceData(resourceHash,auStackX_26,2), (int)validationResult == 0)) {
+        validationResult = ReadResourceData(resourceHash,&stack0x00000028,8);
       }
     }
     else {
-      uVar2 = (ulonglong)uVar3;
+      validationResult = (ulonglong)uVar3;
     }
   }
   else {
-    uVar2 = 0;
+    validationResult = 0;
   }
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar2 = GetResourceHashValue(*unaff_RBX,unaff_RBP + 0x30);
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    validationResult = GetResourceHashValue(*unaff_RBX,unaff_RBP + 0x30);
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
     if ((*(int *)(unaff_RBX[1] + 0x18) == 0) &&
        (uVar3 = ReadResourceData(*unaff_RBX,unaff_RBP + 0x40,4), uVar3 == 0)) {
@@ -18524,7 +18524,7 @@ ulonglong GetResourceHashA(void)
 
 {
   undefined8 resourceHash;
-  uint uVar2;
+  uint validationResult;
   ulonglong uVar3;
   undefined8 *unaff_RBX;
   longlong unaff_RBP;
@@ -18548,9 +18548,9 @@ ulonglong GetResourceHashA(void)
       return uVar3;
     }
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar2 = ReadResourceData(*unaff_RBX,unaff_RBP + 0x40,4);
-      unaff_RDI = (ulonglong)uVar2;
-      if (uVar2 == 0) {
+      validationResult = ReadResourceData(*unaff_RBX,unaff_RBP + 0x40,4);
+      unaff_RDI = (ulonglong)validationResult;
+      if (validationResult == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808ddf80();
       }
@@ -18573,15 +18573,15 @@ ulonglong GetResourceHashB(void)
 
 {
   uint resourceHash;
-  ulonglong uVar2;
+  ulonglong validationResult;
   undefined8 *unaff_RBX;
   longlong unaff_RBP;
   ulonglong unaff_RDI;
   
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar2 = GetResourceHashValue(*unaff_RBX,unaff_RBP + 0x30);
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    validationResult = GetResourceHashValue(*unaff_RBX,unaff_RBP + 0x30);
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
       resourceHash = ReadResourceData(*unaff_RBX,unaff_RBP + 0x40,4);
@@ -18624,14 +18624,14 @@ b400(longlong param_1,undefined8 param_2)
 
 {
   int iVar1;
-  undefined1 auStack_28 [32];
+  undefined1 dataChecksumBuffer [32];
   
-  iVar1 = ComputeDataChecksum(param_2,auStack_28,0,0x4f525443);
+  iVar1 = ComputeDataChecksum(param_2,dataChecksumBuffer,0,0x4f525443);
   if (iVar1 == 0) {
     iVar1 = FUN_1808a79f0(param_2,param_1 + 8);
     if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,auStack_28);
+      FUN_1808ddf80(param_2,dataChecksumBuffer);
     }
   }
   return;
@@ -18653,7 +18653,7 @@ undefined8 ProcessResourceBufferData(longlong ResourceContext, longlong *Resourc
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   char unaff_BPL;
   char in_stack_00000008;
   
@@ -18661,70 +18661,70 @@ undefined8 ProcessResourceBufferData(longlong ResourceContext, longlong *Resourc
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0x50);
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    validationResult = CalculateResourceHash(*resourceData,resourceContext + 0x50);
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0x54);
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    validationResult = CalculateResourceHash(*resourceData,resourceContext + 0x54);
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
   }
   else {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = CalculateResourceHash(*param_2,dataContext + 0x78);
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    validationResult = CalculateResourceHash(*param_2,dataContext + 0x78);
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0x58);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = CalculateResourceHash(*resourceData,resourceContext + 0x58);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0x5c);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = CalculateResourceHash(*resourceData,resourceContext + 0x5c);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   if (*(uint *)(resourceData + 8) < 0x53) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
     lVar1 = *param_2;
-    uVar2 = ReadResourceData(lVar1,param_1 + 0x60,4);
-    if ((((int)uVar2 == 0) && (uVar2 = ReadResourceData(lVar1,param_1 + 100,2), (int)uVar2 == 0)) &&
-       (uVar2 = ReadResourceData(lVar1,param_1 + 0x66,2), (int)uVar2 == 0)) {
-      uVar2 = ReadResourceData(lVar1,param_1 + 0x68,8);
+    validationResult = ReadResourceData(lVar1,param_1 + 0x60,4);
+    if ((((int)validationResult == 0) && (validationResult = ReadResourceData(lVar1,param_1 + 100,2), (int)validationResult == 0)) &&
+       (validationResult = ReadResourceData(lVar1,param_1 + 0x66,2), (int)validationResult == 0)) {
+      validationResult = ReadResourceData(lVar1,param_1 + 0x68,8);
     }
     in_stack_00000008 = unaff_BPL;
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
   }
   else {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = CalculateResourceHash(*param_2,dataContext + 0x70);
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    validationResult = CalculateResourceHash(*param_2,dataContext + 0x70);
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0x74);
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    validationResult = CalculateResourceHash(*resourceData,resourceContext + 0x74);
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
   }
   if (*(uint *)(resourceData + 8) < 0x7d) {
@@ -18735,26 +18735,26 @@ undefined8 ProcessResourceBufferData(longlong ResourceContext, longlong *Resourc
   }
   param_2 = (longlong *)*param_2;
   if (*param_2 == 0) {
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
   else {
     if (param_2[2] != 0) {
-      uVar2 = func_0x00018076a7d0(*param_2,&stack0x00000018);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = func_0x00018076a7d0(*param_2,&stack0x00000018);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
       if (param_2[2] == 0) {
-        uVar2 = 0x11;
+        validationResult = 0x11;
         goto LAB_1808a2e6d;
       }
     }
-    uVar2 = CalculateResourceHash(*param_2,&stack0x00000008,1,1,0);
+    validationResult = CalculateResourceHash(*param_2,&stack0x00000008,1,1,0);
   }
 LAB_1808a2e6d:
-  if ((int)uVar2 == 0) {
-    *(bool *)(param_1 + 0x7c) = in_stack_00000008 != (char)uVar2;
+  if ((int)validationResult == 0) {
+    *(bool *)(param_1 + 0x7c) = in_stack_00000008 != (char)validationResult;
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -18926,7 +18926,7 @@ undefined8 InitializeSystemResourceCheck(int ResourceCheckFlag)
 
 {
   longlong *plVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   longlong *unaff_RBX;
   longlong unaff_RDI;
   char in_stack_00000030;
@@ -18937,16 +18937,16 @@ undefined8 InitializeSystemResourceCheck(int ResourceCheckFlag)
   if (param_1 != 0) {
     return 0x1c;
   }
-  uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x70);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x70);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x74);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x74);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   if (*(uint *)(unaff_RBX + 8) < 0x7d) {
     return 0;
@@ -18957,27 +18957,27 @@ undefined8 InitializeSystemResourceCheck(int ResourceCheckFlag)
   plVar1 = (longlong *)*unaff_RBX;
   in_stack_00000038 = CONCAT44(uStack0000000000000044,uStack0000000000000040);
   if (*plVar1 == 0) {
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
   else {
     if (plVar1[2] != 0) {
       uStack0000000000000040 = 0;
-      uVar2 = func_0x00018076a7d0(*plVar1,&stack0x00000040);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = func_0x00018076a7d0(*plVar1,&stack0x00000040);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
       if ((ulonglong)plVar1[2] < (ulonglong)uStack0000000000000040 + 1) {
-        uVar2 = 0x11;
+        validationResult = 0x11;
         goto LAB_1808a2e6d;
       }
     }
-    uVar2 = CalculateResourceHash(*plVar1,&stack0x00000030,1,1,0);
+    validationResult = CalculateResourceHash(*plVar1,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
-  if ((int)uVar2 == 0) {
-    *(bool *)(unaff_RDI + 0x7c) = in_stack_00000030 != (char)uVar2;
+  if ((int)validationResult == 0) {
+    *(bool *)(unaff_RDI + 0x7c) = in_stack_00000030 != (char)validationResult;
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -19063,9 +19063,9 @@ undefined8 ValidateResourceHash(longlong ResourceContext,undefined8 *ResourceDat
   uint auStackX_18 [2];
   uint auStackX_20 [2];
   undefined1 auStack_68 [32];
-  undefined1 auStack_48 [32];
+  undefined1 resourceValidationBuffer [32];
   
-  resourceHash = ComputeDataChecksum(param_2,auStack_48,1,0x54495645);
+  resourceHash = ComputeDataChecksum(param_2,resourceValidationBuffer,1,0x54495645);
   if (((((int)resourceHash == 0) &&
        (resourceHash = ComputeDataChecksum(param_2,auStack_68,0,0x42495645), (int)resourceHash == 0)) &&
       (resourceHash = ValidateResourceHash(param_2,param_1 + 0x10), (int)resourceHash == 0)) &&
@@ -19183,9 +19183,9 @@ ulonglong ProcessResourceDataA(longlong param_1,longlong *param_2)
   ulonglong uVar8;
   char acStackX_18 [8];
   uint auStackX_20 [2];
-  undefined1 auStack_48 [32];
+  undefined1 resourceValidationBuffer [32];
   
-  uVar5 = ComputeDataChecksum(param_2,auStack_48,0,0x54534e49);
+  uVar5 = ComputeDataChecksum(param_2,resourceValidationBuffer,0,0x54534e49);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -19321,7 +19321,7 @@ LAB_18089b91c:
               if (*(uint *)(resourceData + 8) < 0x82) {
 LAB_18089bbcc:
                     // WARNING: Subroutine does not return
-                FUN_1808ddf80(param_2,auStack_48);
+                FUN_1808ddf80(param_2,resourceValidationBuffer);
               }
               uVar6 = uVar8;
               if (*(int *)(resourceData[1] + 0x18) == 0) {
@@ -19832,7 +19832,7 @@ bc10(longlong param_1,undefined8 *param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   uint uVar3;
   int iVar4;
   int tableEntry;
@@ -19840,9 +19840,9 @@ bc10(longlong param_1,undefined8 *param_2)
   uint uVar7;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
-  undefined1 auStack_48 [32];
+  undefined1 resourceValidationBuffer [32];
   
-  iVar4 = ComputeDataChecksum(param_2,auStack_48,0,0x2050414d);
+  iVar4 = ComputeDataChecksum(param_2,resourceValidationBuffer,0,0x2050414d);
   if ((iVar4 == 0) && (iVar4 = ValidateResourceHash(param_2,param_1 + 0x10), iVar4 == 0)) {
     auStackX_20[0] = 0;
     iVar4 = LoadResourceData(*param_2,auStackX_20);
@@ -19861,13 +19861,13 @@ bc10(longlong param_1,undefined8 *param_2)
               return;
             }
             if (*(int *)(resourceData[1] + 0x18) == 0) {
-              uVar2 = *param_2;
+              validationResult = *param_2;
               lVar1 = *(longlong *)(param_1 + 0x20) + (longlong)iVar4 * 8;
-              tableEntry = CalculateResourceHash(uVar2,lVar1);
+              tableEntry = CalculateResourceHash(validationResult,lVar1);
               if (tableEntry != 0) {
                 return;
               }
-              tableEntry = CalculateResourceHash(uVar2,lVar1 + 4);
+              tableEntry = CalculateResourceHash(validationResult,lVar1 + 4);
             }
             else {
               tableEntry = 0x1c;
@@ -19884,7 +19884,7 @@ bc10(longlong param_1,undefined8 *param_2)
           } while (iVar4 < (int)uVar7);
         }
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80(param_2,auStack_48);
+        FUN_1808ddf80(param_2,resourceValidationBuffer);
       }
     }
   }
@@ -19899,7 +19899,7 @@ bc5a(void)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   uint uVar3;
   int iVar4;
   int tableEntry;
@@ -19923,13 +19923,13 @@ bc5a(void)
             return;
           }
           if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-            uVar2 = *unaff_RDI;
+            validationResult = *unaff_RDI;
             lVar1 = *(longlong *)(unaff_RBX + 0x20) + (longlong)iVar4 * 8;
-            tableEntry = CalculateResourceHash(uVar2,lVar1);
+            tableEntry = CalculateResourceHash(validationResult,lVar1);
             if (tableEntry != 0) {
               return;
             }
-            tableEntry = CalculateResourceHash(uVar2,lVar1 + 4);
+            tableEntry = CalculateResourceHash(validationResult,lVar1 + 4);
           }
           else {
             tableEntry = 0x1c;
@@ -20317,7 +20317,7 @@ ulonglong ProcessResourceAllocation(longlong ResourceHandle,undefined8 *Resource
 
 {
   undefined8 resourceHash;
-  undefined4 uVar2;
+  undefined4 validationResult;
   undefined4 uVar3;
   undefined4 uVar4;
   uint uVar5;
@@ -20337,9 +20337,9 @@ ulonglong ProcessResourceAllocation(longlong ResourceHandle,undefined8 *Resource
   undefined4 uStack_70;
   undefined4 uStack_6c;
   undefined1 auStack_68 [32];
-  undefined1 auStack_48 [32];
+  undefined1 resourceValidationBuffer [32];
   
-  uVar7 = ComputeDataChecksum(param_2,auStack_48,1,0x4f4c4d50);
+  uVar7 = ComputeDataChecksum(param_2,resourceValidationBuffer,1,0x4f4c4d50);
   if ((int)uVar7 != 0) {
     return uVar7;
   }
@@ -20427,11 +20427,11 @@ LAB_18089c40a:
           lVar11 = (longlong)iVar13 * 0x18 + 0x14 + (longlong)puStack_88;
           do {
             puVar8 = (undefined4 *)AllocateMemoryBlock();
-            uVar2 = puVar8[1];
+            validationResult = puVar8[1];
             uVar3 = puVar8[2];
             uVar4 = puVar8[3];
             *(undefined4 *)(lVar11 + -0x14) = *puVar8;
-            *(undefined4 *)(lVar11 + -0x10) = uVar2;
+            *(undefined4 *)(lVar11 + -0x10) = validationResult;
             *(undefined4 *)(lVar11 + -0xc) = uVar3;
             *(undefined4 *)(lVar11 + -8) = uVar4;
             *(undefined8 *)(lVar11 + -4) = 0;
@@ -20499,11 +20499,11 @@ LAB_18089c40a:
         lVar11 = (longlong)iVar13 * 0x18 + 0x14 + (longlong)puStack_88;
         do {
           puVar8 = (undefined4 *)AllocateMemoryBlock();
-          uVar2 = puVar8[1];
+          validationResult = puVar8[1];
           uVar3 = puVar8[2];
           uVar4 = puVar8[3];
           *(undefined4 *)(lVar11 + -0x14) = *puVar8;
-          *(undefined4 *)(lVar11 + -0x10) = uVar2;
+          *(undefined4 *)(lVar11 + -0x10) = validationResult;
           *(undefined4 *)(lVar11 + -0xc) = uVar3;
           *(undefined4 *)(lVar11 + -8) = uVar4;
           *(undefined8 *)(lVar11 + -4) = 0;
@@ -20561,7 +20561,7 @@ undefined8 * GetResourceDataPointerA(void)
 
 {
   undefined8 resourceHash;
-  undefined4 uVar2;
+  undefined4 validationResult;
   undefined4 uVar3;
   undefined4 uVar4;
   float fVar5;
@@ -20584,7 +20584,7 @@ undefined8 * GetResourceDataPointerA(void)
   longlong lVar18;
   int iVar19;
   undefined4 extraout_XMM0_Da;
-  undefined4 uVar20;
+  undefined4 validationResult0;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
   float extraout_XMM0_Da_02;
@@ -20602,12 +20602,12 @@ undefined8 * GetResourceDataPointerA(void)
   presourceHash2 = (undefined4 *)AllocateMemoryBlock();
   presourceHash1 = (undefined8 *)0x0;
   uVar9 = *(uint *)(unaff_RDI + 8);
-  uVar20 = *presourceHash2;
-  uVar2 = presourceHash2[1];
+  validationResult0 = *presourceHash2;
+  validationResult = presourceHash2[1];
   uVar3 = presourceHash2[2];
   uVar4 = presourceHash2[3];
-  *(undefined4 *)(unaff_RBP + -0x19) = uVar20;
-  *(undefined4 *)(unaff_RBP + -0x15) = uVar2;
+  *(undefined4 *)(unaff_RBP + -0x19) = validationResult0;
+  *(undefined4 *)(unaff_RBP + -0x15) = validationResult;
   *(undefined4 *)(unaff_RBP + -0x11) = uVar3;
   *(undefined4 *)(unaff_RBP + -0xd) = uVar4;
   uVar8 = 0;
@@ -20628,7 +20628,7 @@ undefined8 * GetResourceDataPointerA(void)
         return presourceHash3;
       }
       presourceHash3 = (undefined8 *)ReadResourceData(resourceHash,unaff_RBP + -0x11,8);
-      uVar20 = extraout_XMM0_Da;
+      validationResult0 = extraout_XMM0_Da;
     }
     else {
       presourceHash3 = (undefined8 *)0x1c;
@@ -20638,7 +20638,7 @@ undefined8 * GetResourceDataPointerA(void)
     return presourceHash3;
   }
   if (0x81 < *(uint *)(unaff_RDI + 8)) {
-    presourceHash1 = (undefined8 *)FUN_1808a79f0(uVar20,unaff_RSI + 0x58);
+    presourceHash1 = (undefined8 *)FUN_1808a79f0(validationResult0,unaff_RSI + 0x58);
     fVar21 = extraout_XMM0_Da_00;
     if ((int)presourceHash1 != 0) {
       return presourceHash1;
@@ -20648,7 +20648,7 @@ undefined8 * GetResourceDataPointerA(void)
   if (*(uint *)(unaff_RDI + 8) < 0x6a) {
     *(undefined8 *)(unaff_RBP + -0x29) = 0;
     *(undefined8 *)(unaff_RBP + -0x21) = 0;
-    uVar9 = FUN_1808a54c0(uVar20,unaff_RBP + -0x29,0);
+    uVar9 = FUN_1808a54c0(validationResult0,unaff_RBP + -0x29,0);
     presourceHash3 = (undefined8 *)(ulonglong)uVar9;
     if (uVar9 != 0) {
 LAB_18089c40a:
@@ -20680,12 +20680,12 @@ LAB_18089c40a:
           lVar17 = (longlong)iVar19 * 0x18 + 0x14 + (longlong)presourceHash1;
           do {
             presourceHash2 = (undefined4 *)AllocateMemoryBlock();
-            uVar20 = presourceHash2[1];
-            uVar2 = presourceHash2[2];
+            validationResult0 = presourceHash2[1];
+            validationResult = presourceHash2[2];
             uVar3 = presourceHash2[3];
             *(undefined4 *)(lVar17 + -0x14) = *presourceHash2;
-            *(undefined4 *)(lVar17 + -0x10) = uVar20;
-            *(undefined4 *)(lVar17 + -0xc) = uVar2;
+            *(undefined4 *)(lVar17 + -0x10) = validationResult0;
+            *(undefined4 *)(lVar17 + -0xc) = validationResult;
             *(undefined4 *)(lVar17 + -8) = uVar3;
             *(undefined8 *)(lVar17 + -4) = 0;
             lVar18 = lVar18 + -1;
@@ -20783,7 +20783,7 @@ LAB_18089c40a:
     }
   }
   else {
-    presourceHash1 = (undefined8 *)OptimizeMemoryUsage(uVar20,unaff_RSI + 0x48);
+    presourceHash1 = (undefined8 *)OptimizeMemoryUsage(validationResult0,unaff_RSI + 0x48);
     fVar21 = extraout_XMM0_Da_02;
     if ((int)presourceHash1 != 0) {
       return presourceHash1;
@@ -20812,11 +20812,19 @@ LAB_18089c300:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18089c22e(void)
+/**
+ * @brief 获取资源数据指针B
+ * 
+ * 该函数负责获取系统的资源数据指针B
+ * 用于访问和操作资源数据
+ * 
+ * @return 返回资源数据指针
+ */
+undefined8 * GetResourceDataPointerB(void)
 
 {
   undefined8 resourceHash;
-  undefined4 uVar2;
+  undefined4 validationResult;
   undefined4 uVar3;
   undefined4 uVar4;
   float fVar5;
@@ -20838,7 +20846,7 @@ undefined8 * FUN_18089c22e(void)
   longlong lVar18;
   int iVar19;
   undefined4 extraout_XMM0_Da;
-  undefined4 uVar20;
+  undefined4 validationResult0;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
   float extraout_XMM0_Da_02;
@@ -20849,12 +20857,12 @@ undefined8 * FUN_18089c22e(void)
   presourceHash1 = (undefined4 *)AllocateMemoryBlock();
   presourceHash3 = (undefined8 *)0x0;
   uVar9 = *(uint *)(unaff_RDI + 8);
-  uVar20 = *presourceHash1;
-  uVar2 = presourceHash1[1];
+  validationResult0 = *presourceHash1;
+  validationResult = presourceHash1[1];
   uVar3 = presourceHash1[2];
   uVar4 = presourceHash1[3];
-  *(undefined4 *)(unaff_RBP + -0x19) = uVar20;
-  *(undefined4 *)(unaff_RBP + -0x15) = uVar2;
+  *(undefined4 *)(unaff_RBP + -0x19) = validationResult0;
+  *(undefined4 *)(unaff_RBP + -0x15) = validationResult;
   *(undefined4 *)(unaff_RBP + -0x11) = uVar3;
   *(undefined4 *)(unaff_RBP + -0xd) = uVar4;
   uVar8 = 0;
@@ -20875,7 +20883,7 @@ undefined8 * FUN_18089c22e(void)
         return presourceHash2;
       }
       presourceHash2 = (undefined8 *)ReadResourceData(resourceHash,unaff_RBP + -0x11,8);
-      uVar20 = extraout_XMM0_Da;
+      validationResult0 = extraout_XMM0_Da;
     }
     else {
       presourceHash2 = (undefined8 *)0x1c;
@@ -20885,7 +20893,7 @@ undefined8 * FUN_18089c22e(void)
     return presourceHash2;
   }
   if (0x81 < *(uint *)(unaff_RDI + 8)) {
-    presourceHash3 = (undefined8 *)FUN_1808a79f0(uVar20,unaff_RSI + 0x58);
+    presourceHash3 = (undefined8 *)FUN_1808a79f0(validationResult0,unaff_RSI + 0x58);
     fVar21 = extraout_XMM0_Da_00;
     if ((int)presourceHash3 != 0) {
       return presourceHash3;
@@ -20895,7 +20903,7 @@ undefined8 * FUN_18089c22e(void)
   if (*(uint *)(unaff_RDI + 8) < 0x6a) {
     *(undefined8 *)(unaff_RBP + -0x29) = 0;
     *(undefined8 *)(unaff_RBP + -0x21) = 0;
-    uVar9 = FUN_1808a54c0(uVar20,unaff_RBP + -0x29,0);
+    uVar9 = FUN_1808a54c0(validationResult0,unaff_RBP + -0x29,0);
     presourceHash2 = (undefined8 *)(ulonglong)uVar9;
     if (uVar9 != 0) {
 LAB_18089c40a:
@@ -20927,12 +20935,12 @@ LAB_18089c40a:
           lVar17 = (longlong)iVar19 * 0x18 + 0x14 + (longlong)presourceHash3;
           do {
             presourceHash1 = (undefined4 *)AllocateMemoryBlock();
-            uVar20 = presourceHash1[1];
-            uVar2 = presourceHash1[2];
+            validationResult0 = presourceHash1[1];
+            validationResult = presourceHash1[2];
             uVar3 = presourceHash1[3];
             *(undefined4 *)(lVar17 + -0x14) = *presourceHash1;
-            *(undefined4 *)(lVar17 + -0x10) = uVar20;
-            *(undefined4 *)(lVar17 + -0xc) = uVar2;
+            *(undefined4 *)(lVar17 + -0x10) = validationResult0;
+            *(undefined4 *)(lVar17 + -0xc) = validationResult;
             *(undefined4 *)(lVar17 + -8) = uVar3;
             *(undefined8 *)(lVar17 + -4) = 0;
             lVar18 = lVar18 + -1;
@@ -21030,7 +21038,7 @@ LAB_18089c40a:
     }
   }
   else {
-    presourceHash3 = (undefined8 *)OptimizeMemoryUsage(uVar20,unaff_RSI + 0x48);
+    presourceHash3 = (undefined8 *)OptimizeMemoryUsage(validationResult0,unaff_RSI + 0x48);
     fVar21 = extraout_XMM0_Da_02;
     if ((int)presourceHash3 != 0) {
       return presourceHash3;
@@ -21063,7 +21071,7 @@ ulonglong FUN_18089c2d8(undefined8 param_1)
 
 {
   undefined4 resourceHash;
-  undefined4 uVar2;
+  undefined4 validationResult;
   undefined4 uVar3;
   float fVar4;
   float fVar5;
@@ -21140,11 +21148,11 @@ LAB_18089c40a:
           do {
             presourceHash2 = (undefined4 *)AllocateMemoryBlock();
             resourceHash = presourceHash2[1];
-            uVar2 = presourceHash2[2];
+            validationResult = presourceHash2[2];
             uVar3 = presourceHash2[3];
             *(undefined4 *)(lVar16 + -0x14) = *presourceHash2;
             *(undefined4 *)(lVar16 + -0x10) = resourceHash;
-            *(undefined4 *)(lVar16 + -0xc) = uVar2;
+            *(undefined4 *)(lVar16 + -0xc) = validationResult;
             *(undefined4 *)(lVar16 + -8) = uVar3;
             *(undefined8 **)(lVar16 + -4) = unaff_R12;
             lVar17 = lVar17 + -1;
@@ -21304,7 +21312,7 @@ ulonglong FUN_18089c630(longlong param_1,longlong *param_2)
 
 {
   longlong *plVar1;
-  uint uVar2;
+  uint validationResult;
   ulonglong uVar3;
   undefined4 uVar4;
   uint uVar5;
@@ -21505,30 +21513,30 @@ LAB_18089c878:
     }
     plVar1 = (longlong *)*param_2;
     if (*plVar1 == 0) {
-      uVar2 = 0x1c;
+      validationResult = 0x1c;
     }
     else if (plVar1[2] == 0) {
 LAB_18089c9a8:
-      uVar2 = CalculateResourceHash(*plVar1,auStackX_18,1,1,0);
+      validationResult = CalculateResourceHash(*plVar1,auStackX_18,1,1,0);
     }
     else {
       uStack_84 = 0;
-      uVar2 = func_0x00018076a7d0(*plVar1,&uStack_84);
-      if (uVar2 == 0) {
+      validationResult = func_0x00018076a7d0(*plVar1,&uStack_84);
+      if (validationResult == 0) {
         if ((ulonglong)uStack_84 + 1 <= (ulonglong)plVar1[2]) goto LAB_18089c9a8;
-        uVar2 = 0x11;
+        validationResult = 0x11;
       }
     }
     uVar9 = 0;
-    if (uVar2 == 0) {
+    if (validationResult == 0) {
       uVar9 = (uint)((char)auStackX_18[0] != '\0');
       uVar7 = (uint)((char)auStackX_18[0] == '\0');
       uVar3 = 0;
     }
     else {
       uVar7 = 1;
-      uVar3 = (ulonglong)uVar2;
-      if (uVar2 == 0) {
+      uVar3 = (ulonglong)validationResult;
+      if (validationResult == 0) {
         uVar3 = uVar6;
       }
     }
@@ -21561,28 +21569,28 @@ LAB_18089c9ee:
     if (*(int *)(resourceData[1] + 0x18) == 0) {
       plVar1 = (longlong *)*param_2;
       if (*plVar1 == 0) {
-        uVar2 = 0x1c;
+        validationResult = 0x1c;
       }
       else if (plVar1[2] == 0) {
 LAB_18089ca9c:
-        uVar2 = CalculateResourceHash(*plVar1,auStackX_18,1,1,0);
+        validationResult = CalculateResourceHash(*plVar1,auStackX_18,1,1,0);
       }
       else {
         uStack_84 = 0;
-        uVar2 = func_0x00018076a7d0(*plVar1,&uStack_84);
-        if (uVar2 == 0) {
+        validationResult = func_0x00018076a7d0(*plVar1,&uStack_84);
+        if (validationResult == 0) {
           if ((ulonglong)uStack_84 + 1 <= (ulonglong)plVar1[2]) goto LAB_18089ca9c;
-          uVar2 = 0x11;
+          validationResult = 0x11;
         }
       }
       uVar8 = 0;
       uVar5 = 1;
-      if (uVar2 == 0) {
+      if (validationResult == 0) {
         uVar8 = (uint)((char)auStackX_18[0] != '\0');
         uVar5 = (uint)((char)auStackX_18[0] == '\0');
       }
-      uVar3 = (ulonglong)uVar2;
-      if (uVar2 == 0) {
+      uVar3 = (ulonglong)validationResult;
+      if (validationResult == 0) {
         uVar3 = uVar6;
       }
     }
@@ -21591,18 +21599,18 @@ LAB_18089ca9c:
     }
   }
   if ((int)uVar3 == 0) {
-    uVar2 = *(uint *)(resourceData + 8);
-    if (uVar2 < 0x70) {
+    validationResult = *(uint *)(resourceData + 8);
+    if (validationResult < 0x70) {
       *(uint *)(param_1 + 0x34) =
            (((auStackX_20[0] | *(uint *)(param_1 + 0x34)) & ~uStack_88 | uVar9 * 2) & ~(uVar7 * 2) |
            uVar8 * 4) & ~(uVar5 * 4);
-      uVar2 = *(uint *)(resourceData + 8);
+      validationResult = *(uint *)(resourceData + 8);
     }
-    if ((uVar2 < 0x87) && ((*(uint *)(param_1 + 0x34) >> 3 & 1) != 0)) {
+    if ((validationResult < 0x87) && ((*(uint *)(param_1 + 0x34) >> 3 & 1) != 0)) {
       *(float *)(param_1 + 0x3c) = *(float *)(param_1 + 0x3c) - 1.0;
-      uVar2 = *(uint *)(resourceData + 8);
+      validationResult = *(uint *)(resourceData + 8);
     }
-    if (uVar2 < 0x8b) {
+    if (validationResult < 0x8b) {
 LAB_18089cbf6:
                     // WARNING: Subroutine does not return
       FUN_1808ddf80(param_2,auStack_80);
@@ -22756,7 +22764,7 @@ ulonglong FUN_18089cc80(longlong param_1,longlong *param_2)
 
 {
   longlong *plVar1;
-  uint uVar2;
+  uint validationResult;
   ulonglong uVar3;
   int iVar4;
   uint auStackX_18 [2];
@@ -22768,7 +22776,7 @@ ulonglong FUN_18089cc80(longlong param_1,longlong *param_2)
     return uVar3;
   }
   auStackX_18[0] = *(uint *)(param_1 + 0x50);
-  uVar2 = 0x1c;
+  validationResult = 0x1c;
   if (*(int *)(resourceData[1] + 0x18) == 0) {
     plVar1 = (longlong *)*param_2;
     if (*plVar1 == 0) {
@@ -22816,16 +22824,16 @@ LAB_18089cd76:
     } while (iVar4 < (int)auStackX_18[0]);
   }
   if (*(uint *)(resourceData + 8) < 0x6e) {
-    uVar2 = 0;
+    validationResult = 0;
   }
   else if (*(int *)(resourceData[1] + 0x18) == 0) {
-    uVar2 = FUN_1808a2e00(*param_2,param_1 + 0x5c);
+    validationResult = FUN_1808a2e00(*param_2,param_1 + 0x5c);
   }
-  if (uVar2 == 0) {
+  if (validationResult == 0) {
                     // WARNING: Subroutine does not return
     FUN_1808ddf80(param_2,auStack_38);
   }
-  return (ulonglong)uVar2;
+  return (ulonglong)validationResult;
 }
 
 
@@ -22834,7 +22842,7 @@ ulonglong FUN_18089ccb9(void)
 
 {
   longlong *plVar1;
-  uint uVar2;
+  uint validationResult;
   longlong in_RAX;
   ulonglong uVar3;
   int iVar4;
@@ -22843,7 +22851,7 @@ ulonglong FUN_18089ccb9(void)
   uint in_stack_00000080;
   uint in_stack_00000088;
   
-  uVar2 = 0x1c;
+  validationResult = 0x1c;
   if (*(int *)(in_RAX + 0x18) == 0) {
     plVar1 = (longlong *)*unaff_RSI;
     if (*plVar1 == 0) {
@@ -22891,13 +22899,13 @@ LAB_18089cd76:
     } while (iVar4 < (int)in_stack_00000080);
   }
   if (*(uint *)(unaff_RSI + 8) < 0x6e) {
-    uVar2 = 0;
+    validationResult = 0;
   }
   else if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
-    uVar2 = FUN_1808a2e00(*unaff_RSI,unaff_RBP + 0x5c);
+    validationResult = FUN_1808a2e00(*unaff_RSI,unaff_RBP + 0x5c);
   }
-  if (uVar2 != 0) {
-    return (ulonglong)uVar2;
+  if (validationResult != 0) {
+    return (ulonglong)validationResult;
   }
                     // WARNING: Subroutine does not return
   FUN_1808ddf80();
@@ -22945,16 +22953,16 @@ ulonglong FUN_18089ce30(longlong param_1,longlong *param_2)
 
 {
   longlong *plVar1;
-  ulonglong uVar2;
+  ulonglong validationResult;
   uint uVar3;
   bool bVar4;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
-  undefined1 auStack_48 [32];
+  undefined1 resourceValidationBuffer [32];
   
-  uVar2 = ComputeDataChecksum(param_2,auStack_48,0,0x54534c50);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = ComputeDataChecksum(param_2,resourceValidationBuffer,0,0x54534c50);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
@@ -22962,70 +22970,70 @@ ulonglong FUN_18089ce30(longlong param_1,longlong *param_2)
   plVar1 = (longlong *)*param_2;
   uVar3 = 0x1c;
   if (*plVar1 == 0) {
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
   else {
     if (plVar1[2] != 0) {
       auStackX_18[0] = 0;
-      uVar2 = func_0x00018076a7d0(*plVar1,auStackX_18);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = func_0x00018076a7d0(*plVar1,auStackX_18);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
       if ((ulonglong)plVar1[2] < (ulonglong)auStackX_18[0] + 4) {
-        uVar2 = 0x11;
+        validationResult = 0x11;
         goto LAB_18089cef2;
       }
     }
-    uVar2 = CalculateResourceHash(*plVar1,auStackX_20,1,4,0);
+    validationResult = CalculateResourceHash(*plVar1,auStackX_20,1,4,0);
   }
 LAB_18089cef2:
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   *(uint *)(param_1 + 0x10) = auStackX_20[0];
-  uVar2 = 0xd;
+  validationResult = 0xd;
   if (auStackX_20[0] < 5) {
-    uVar2 = 0;
+    validationResult = 0;
   }
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
   plVar1 = (longlong *)*param_2;
   if (*plVar1 == 0) {
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
   else {
     if (plVar1[2] != 0) {
       auStackX_18[0] = 0;
-      uVar2 = func_0x00018076a7d0(*plVar1,auStackX_18);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = func_0x00018076a7d0(*plVar1,auStackX_18);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
       if ((ulonglong)plVar1[2] < (ulonglong)auStackX_18[0] + 4) {
-        uVar2 = 0x11;
+        validationResult = 0x11;
         goto LAB_18089cf93;
       }
     }
-    uVar2 = CalculateResourceHash(*plVar1,auStackX_20,1,4,0);
+    validationResult = CalculateResourceHash(*plVar1,auStackX_20,1,4,0);
   }
 LAB_18089cf93:
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   *(uint *)(param_1 + 0x14) = auStackX_20[0];
-  uVar2 = 0xd;
+  validationResult = 0xd;
   if (auStackX_20[0] < 3) {
-    uVar2 = 0;
+    validationResult = 0;
   }
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  uVar2 = FUN_1808a5150(param_2,param_1,0);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = FUN_1808a5150(param_2,param_1,0);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   if (2 < (int)param_2[8] - 0x65U) goto LAB_18089d07f;
   bVar4 = false;
@@ -23058,7 +23066,7 @@ LAB_18089d06e:
   }
 LAB_18089d07f:
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(param_2,auStack_48);
+  FUN_1808ddf80(param_2,resourceValidationBuffer);
 }
 
 
@@ -23068,7 +23076,7 @@ ulonglong FUN_18089ce60(void)
 {
   longlong *plVar1;
   longlong in_RAX;
-  ulonglong uVar2;
+  ulonglong validationResult;
   uint uVar3;
   longlong *unaff_RDI;
   longlong unaff_R14;
@@ -23082,70 +23090,70 @@ ulonglong FUN_18089ce60(void)
   plVar1 = (longlong *)*unaff_RDI;
   uVar3 = 0x1c;
   if (*plVar1 == 0) {
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
   else {
     if (plVar1[2] != 0) {
       _cStack0000000000000090 = 0;
-      uVar2 = func_0x00018076a7d0(*plVar1,&stack0x00000090);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = func_0x00018076a7d0(*plVar1,&stack0x00000090);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
       if ((ulonglong)plVar1[2] < (ulonglong)_cStack0000000000000090 + 4) {
-        uVar2 = 0x11;
+        validationResult = 0x11;
         goto LAB_18089cef2;
       }
     }
-    uVar2 = CalculateResourceHash(*plVar1,&stack0x00000098,1,4,0);
+    validationResult = CalculateResourceHash(*plVar1,&stack0x00000098,1,4,0);
   }
 LAB_18089cef2:
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   *(uint *)(unaff_R14 + 0x10) = in_stack_00000098;
-  uVar2 = 0xd;
+  validationResult = 0xd;
   if (in_stack_00000098 < 5) {
-    uVar2 = 0;
+    validationResult = 0;
   }
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) != 0) {
     return 0x1c;
   }
   plVar1 = (longlong *)*unaff_RDI;
   if (*plVar1 == 0) {
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
   else {
     if (plVar1[2] != 0) {
       _cStack0000000000000090 = 0;
-      uVar2 = func_0x00018076a7d0(*plVar1,&stack0x00000090);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = func_0x00018076a7d0(*plVar1,&stack0x00000090);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
       if ((ulonglong)plVar1[2] < (ulonglong)_cStack0000000000000090 + 4) {
-        uVar2 = 0x11;
+        validationResult = 0x11;
         goto LAB_18089cf93;
       }
     }
-    uVar2 = CalculateResourceHash(*plVar1,&stack0x00000098,1,4,0);
+    validationResult = CalculateResourceHash(*plVar1,&stack0x00000098,1,4,0);
   }
 LAB_18089cf93:
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   *(uint *)(unaff_R14 + 0x14) = in_stack_00000098;
-  uVar2 = 0xd;
+  validationResult = 0xd;
   if (in_stack_00000098 < 3) {
-    uVar2 = 0;
+    validationResult = 0;
   }
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  uVar2 = FUN_1808a5150();
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = FUN_1808a5150();
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   if (2 < (int)unaff_RDI[8] - 0x65U) goto LAB_18089d07f;
   bVar4 = false;
@@ -23188,7 +23196,7 @@ ulonglong FUN_18089cfd6(void)
 {
   longlong *plVar1;
   uint in_EAX;
-  uint uVar2;
+  uint validationResult;
   ulonglong unaff_RBX;
   longlong *unaff_RDI;
   longlong unaff_R14;
@@ -23196,33 +23204,33 @@ ulonglong FUN_18089cfd6(void)
   char in_stack_00000090;
   uint in_stack_00000098;
   
-  uVar2 = (uint)unaff_RBX;
+  validationResult = (uint)unaff_RBX;
   if (2 < in_EAX) goto LAB_18089d07f;
   if (*(uint *)(unaff_RDI[1] + 0x18) != (uint)unaff_R15) goto LAB_18089d06e;
   plVar1 = (longlong *)*unaff_RDI;
   if (*plVar1 != 0) {
     if (plVar1[2] == unaff_R15) {
 LAB_18089d034:
-      uVar2 = CalculateResourceHash(*plVar1,&stack0x00000090,1);
+      validationResult = CalculateResourceHash(*plVar1,&stack0x00000090,1);
     }
     else {
       in_stack_00000098 = (uint)unaff_R15;
-      uVar2 = func_0x00018076a7d0(*plVar1,&stack0x00000098);
-      if (uVar2 == 0) {
+      validationResult = func_0x00018076a7d0(*plVar1,&stack0x00000098);
+      if (validationResult == 0) {
         if ((ulonglong)in_stack_00000098 + 1 <= (ulonglong)plVar1[2]) goto LAB_18089d034;
-        uVar2 = 0x11;
+        validationResult = 0x11;
       }
     }
   }
-  unaff_RBX = (ulonglong)uVar2;
-  if (uVar2 == 0) {
+  unaff_RBX = (ulonglong)validationResult;
+  if (validationResult == 0) {
     unaff_RBX = unaff_R15 & 0xffffffff;
   }
   if ((int)unaff_RBX != 0) {
 LAB_18089d06e:
     return unaff_RBX & 0xffffffff;
   }
-  if (uVar2 == 0 && in_stack_00000090 != (char)unaff_R15) {
+  if (validationResult == 0 && in_stack_00000090 != (char)unaff_R15) {
     *(undefined4 *)(unaff_R14 + 0x10) = 3;
   }
 LAB_18089d07f:
@@ -23272,31 +23280,31 @@ ulonglong FUN_18089d0f0(longlong param_1,undefined8 *param_2)
 
 {
   uint resourceHash;
-  ulonglong uVar2;
+  ulonglong validationResult;
   ulonglong uVar3;
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
+  undefined1 resourceValidationBuffer [32];
+  undefined1 dataChecksumBuffer [32];
   
-  uVar2 = ComputeDataChecksum(param_2,auStack_28,1,0x46464550);
-  if (((((int)uVar2 != 0) ||
-       (uVar2 = ComputeDataChecksum(param_2,auStack_48,0,0x42464550), (int)uVar2 != 0)) ||
-      (uVar2 = ValidateResourceHash(param_2,param_1 + 0x10), (int)uVar2 != 0)) ||
+  validationResult = ComputeDataChecksum(param_2,dataChecksumBuffer,1,0x46464550);
+  if (((((int)validationResult != 0) ||
+       (validationResult = ComputeDataChecksum(param_2,resourceValidationBuffer,0,0x42464550), (int)validationResult != 0)) ||
+      (validationResult = ValidateResourceHash(param_2,param_1 + 0x10), (int)validationResult != 0)) ||
      ((*(uint *)(resourceData + 8) < 0x5b &&
-      (uVar2 = FUN_1808afc70(param_2,param_1 + 0x44), (int)uVar2 != 0)))) {
-    return uVar2;
+      (validationResult = FUN_1808afc70(param_2,param_1 + 0x44), (int)validationResult != 0)))) {
+    return validationResult;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
   resourceHash = FUN_1808a2740(*param_2,param_1 + 0x60);
-  uVar2 = (ulonglong)resourceHash;
+  validationResult = (ulonglong)resourceHash;
   if (resourceHash == 0) {
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
     if (*(uint *)(resourceData + 8) < 0x36) {
       uVar3 = 0;
     }
     else {
-      uVar3 = uVar2;
+      uVar3 = validationResult;
       if (*(int *)(resourceData[1] + 0x18) == 0) {
         uVar3 = FUN_1808a2740(*param_2,dataContext + 0x70);
       }
@@ -23305,18 +23313,18 @@ ulonglong FUN_18089d0f0(longlong param_1,undefined8 *param_2)
       return uVar3;
     }
     if (*(uint *)(resourceData + 8) < 0x3d) {
-      uVar2 = 0;
+      validationResult = 0;
     }
     else if (*(int *)(resourceData[1] + 0x18) == 0) {
       resourceHash = FUN_1808a2e00(*param_2,param_1 + 0x40);
-      uVar2 = (ulonglong)resourceHash;
+      validationResult = (ulonglong)resourceHash;
     }
-    if ((int)uVar2 == 0) {
+    if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,auStack_48);
+      FUN_1808ddf80(param_2,resourceValidationBuffer);
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -23326,7 +23334,7 @@ ulonglong FUN_18089d171(void)
 {
   uint resourceHash;
   longlong in_RAX;
-  ulonglong uVar2;
+  ulonglong validationResult;
   undefined8 *unaff_RBX;
   longlong unaff_RSI;
   ulonglong uVar3;
@@ -23339,16 +23347,16 @@ ulonglong FUN_18089d171(void)
   if (resourceHash == 0) {
     uVar3 = 0x1c;
     if (*(uint *)(unaff_RBX + 8) < 0x36) {
-      uVar2 = 0;
+      validationResult = 0;
     }
     else {
-      uVar2 = uVar3;
+      validationResult = uVar3;
       if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        uVar2 = FUN_1808a2740(*unaff_RBX,unaff_RSI + 0x70);
+        validationResult = FUN_1808a2740(*unaff_RBX,unaff_RSI + 0x70);
       }
     }
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
     if (*(uint *)(unaff_RBX + 8) < 0x3d) {
       uVar3 = 0;
@@ -23371,7 +23379,7 @@ ulonglong FUN_18089d193(void)
 
 {
   uint resourceHash;
-  ulonglong uVar2;
+  ulonglong validationResult;
   undefined8 *unaff_RBX;
   longlong unaff_RSI;
   ulonglong uVar3;
@@ -23381,16 +23389,16 @@ ulonglong FUN_18089d193(void)
   if (resourceHash == 0) {
     uVar3 = 0x1c;
     if (*(uint *)(unaff_RBX + 8) < 0x36) {
-      uVar2 = 0;
+      validationResult = 0;
     }
     else {
-      uVar2 = uVar3;
+      validationResult = uVar3;
       if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        uVar2 = FUN_1808a2740(*unaff_RBX,unaff_RSI + 0x70);
+        validationResult = FUN_1808a2740(*unaff_RBX,unaff_RSI + 0x70);
       }
     }
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
     if (*(uint *)(unaff_RBX + 8) < 0x3d) {
       uVar3 = 0;
@@ -23707,11 +23715,11 @@ d520(longlong param_1,undefined8 *param_2)
 
 {
   int iVar1;
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
+  undefined1 resourceValidationBuffer [32];
+  undefined1 dataChecksumBuffer [32];
   
-  iVar1 = ComputeDataChecksum(param_2,auStack_28,1,0x4a4f5250);
-  if (((iVar1 == 0) && (iVar1 = ComputeDataChecksum(param_2,auStack_48,0,0x494b4e42), iVar1 == 0)) &&
+  iVar1 = ComputeDataChecksum(param_2,dataChecksumBuffer,1,0x4a4f5250);
+  if (((iVar1 == 0) && (iVar1 = ComputeDataChecksum(param_2,resourceValidationBuffer,0,0x494b4e42), iVar1 == 0)) &&
      (iVar1 = ValidateResourceHash(param_2,param_1 + 0x10), iVar1 == 0)) {
     if (*(uint *)(resourceData + 8) < 0x37) {
       iVar1 = 0;
@@ -23749,7 +23757,7 @@ d520(longlong param_1,undefined8 *param_2)
           *(undefined4 *)(param_1 + 0x208) = *(undefined4 *)(param_1 + 0x18);
           *(undefined4 *)(param_1 + 0x20c) = *(undefined4 *)(param_1 + 0x1c);
                     // WARNING: Subroutine does not return
-          FUN_1808ddf80(param_2,auStack_48);
+          FUN_1808ddf80(param_2,resourceValidationBuffer);
         }
       }
     }
@@ -23834,7 +23842,7 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 resourceHash;
-  uint uVar2;
+  uint validationResult;
   ulonglong uVar3;
   ulonglong uVar4;
   undefined1 auStackX_18 [4];
@@ -23854,9 +23862,9 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
       return uVar3;
     }
     if (*(int *)(resourceData[1] + 0x18) == 0) {
-      uVar2 = ReadResourceData(*param_2,param_1 + 0xf8,4);
-      uVar3 = (ulonglong)uVar2;
-      if (uVar2 == 0) {
+      validationResult = ReadResourceData(*param_2,param_1 + 0xf8,4);
+      uVar3 = (ulonglong)validationResult;
+      if (validationResult == 0) {
         if (((*(uint *)(resourceData + 8) < 0x8a) && (*(int *)(param_1 + 0xf8) == 0)) ||
            ((*(uint *)(resourceData + 8) < 0x8e && (*(int *)(param_1 + 0xf8) == 0x7fffffff)))) {
           *(undefined4 *)(param_1 + 0xf8) = 0x21;
@@ -23894,8 +23902,8 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
               else {
                 uVar3 = uVar4;
                 if (*(int *)(resourceData[1] + 0x18) == 0) {
-                  uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0xfc);
-                  uVar3 = (ulonglong)uVar2;
+                  validationResult = CalculateResourceHash(*resourceData,resourceContext + 0xfc);
+                  uVar3 = (ulonglong)validationResult;
                 }
               }
               if (((int)uVar3 == 0) &&
@@ -23922,7 +23930,7 @@ ulonglong FUN_18089dd54(void)
 
 {
   undefined8 resourceHash;
-  uint uVar2;
+  uint validationResult;
   longlong in_RAX;
   ulonglong uVar3;
   undefined8 *unaff_RBX;
@@ -23935,9 +23943,9 @@ ulonglong FUN_18089dd54(void)
   uVar3 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf0,4);
   if ((int)uVar3 == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar2 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf8,4);
-      uVar3 = (ulonglong)uVar2;
-      if (uVar2 == 0) {
+      validationResult = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf8,4);
+      uVar3 = (ulonglong)validationResult;
+      if (validationResult == 0) {
         if (((*(uint *)(unaff_RBX + 8) < 0x8a) && (*(int *)(unaff_RSI + 0xf8) == 0)) ||
            ((*(uint *)(unaff_RBX + 8) < 0x8e && (*(int *)(unaff_RSI + 0xf8) == 0x7fffffff)))) {
           *(undefined4 *)(unaff_RSI + 0xf8) = 0x21;
@@ -23975,8 +23983,8 @@ ulonglong FUN_18089dd54(void)
               else {
                 uVar3 = uVar4;
                 if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                  uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xfc);
-                  uVar3 = (ulonglong)uVar2;
+                  validationResult = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xfc);
+                  uVar3 = (ulonglong)validationResult;
                 }
               }
               if (((int)uVar3 == 0) &&
@@ -24004,7 +24012,7 @@ ulonglong FUN_18089dd78(void)
 
 {
   undefined8 resourceHash;
-  uint uVar2;
+  uint validationResult;
   ulonglong uVar3;
   undefined8 *unaff_RBX;
   longlong unaff_RSI;
@@ -24015,9 +24023,9 @@ ulonglong FUN_18089dd78(void)
     return uVar3;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar2 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf8,4);
-    uVar3 = (ulonglong)uVar2;
-    if (uVar2 == 0) {
+    validationResult = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf8,4);
+    uVar3 = (ulonglong)validationResult;
+    if (validationResult == 0) {
       if (((*(uint *)(unaff_RBX + 8) < 0x8a) && (*(int *)(unaff_RSI + 0xf8) == 0)) ||
          ((*(uint *)(unaff_RBX + 8) < 0x8e && (*(int *)(unaff_RSI + 0xf8) == 0x7fffffff)))) {
         *(undefined4 *)(unaff_RSI + 0xf8) = 0x21;
@@ -24055,8 +24063,8 @@ ulonglong FUN_18089dd78(void)
             else {
               uVar3 = uVar4;
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xfc);
-                uVar3 = (ulonglong)uVar2;
+                validationResult = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xfc);
+                uVar3 = (ulonglong)validationResult;
               }
             }
             if (((int)uVar3 == 0) &&
@@ -24081,16 +24089,16 @@ ulonglong FUN_18089dda2(void)
 
 {
   undefined8 resourceHash;
-  uint uVar2;
+  uint validationResult;
   ulonglong uVar3;
   undefined8 *unaff_RBX;
   longlong unaff_RSI;
   ulonglong uVar4;
   
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar2 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf8,4);
-    uVar3 = (ulonglong)uVar2;
-    if (uVar2 == 0) {
+    validationResult = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf8,4);
+    uVar3 = (ulonglong)validationResult;
+    if (validationResult == 0) {
       if (((*(uint *)(unaff_RBX + 8) < 0x8a) && (*(int *)(unaff_RSI + 0xf8) == 0)) ||
          ((*(uint *)(unaff_RBX + 8) < 0x8e && (*(int *)(unaff_RSI + 0xf8) == 0x7fffffff)))) {
         *(undefined4 *)(unaff_RSI + 0xf8) = 0x21;
@@ -24128,8 +24136,8 @@ ulonglong FUN_18089dda2(void)
             else {
               uVar3 = uVar4;
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xfc);
-                uVar3 = (ulonglong)uVar2;
+                validationResult = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xfc);
+                uVar3 = (ulonglong)validationResult;
               }
             }
             if (((int)uVar3 == 0) &&
@@ -24154,27 +24162,27 @@ ulonglong FUN_18089de39(void)
 
 {
   undefined8 resourceHash;
-  ulonglong uVar2;
+  ulonglong validationResult;
   undefined8 *unaff_RBX;
   longlong unaff_RSI;
   uint unaff_EDI;
   
   resourceHash = *unaff_RBX;
-  uVar2 = CalculateResourceHash(resourceHash,&stack0x00000090);
-  if ((int)uVar2 == 0) {
-    uVar2 = CalculateResourceHash(resourceHash,&stack0x00000094);
+  validationResult = CalculateResourceHash(resourceHash,&stack0x00000090);
+  if ((int)validationResult == 0) {
+    validationResult = CalculateResourceHash(resourceHash,&stack0x00000094);
   }
-  if ((int)uVar2 == 0) {
+  if ((int)validationResult == 0) {
     if (*(uint *)(unaff_RBX + 8) < 0x39) {
-      uVar2 = 0;
+      validationResult = 0;
     }
     else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar2 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf4,4);
+      validationResult = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf4,4);
     }
     else {
-      uVar2 = (ulonglong)unaff_EDI;
+      validationResult = (ulonglong)unaff_EDI;
     }
-    if ((int)uVar2 == 0) {
+    if ((int)validationResult == 0) {
       if (*(uint *)(unaff_RBX + 8) < 0x5e) {
         unaff_EDI = 0;
       }
@@ -24182,16 +24190,16 @@ ulonglong FUN_18089de39(void)
         unaff_EDI = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xfc);
       }
       if (unaff_EDI == 0) {
-        if ((0x84 < *(uint *)(unaff_RBX + 8)) && (uVar2 = FUN_180899220(), (int)uVar2 != 0)) {
-          return uVar2;
+        if ((0x84 < *(uint *)(unaff_RBX + 8)) && (validationResult = FUN_180899220(), (int)validationResult != 0)) {
+          return validationResult;
         }
                     // WARNING: Subroutine does not return
         FUN_1808ddf80();
       }
-      uVar2 = (ulonglong)unaff_EDI;
+      validationResult = (ulonglong)unaff_EDI;
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -24259,58 +24267,58 @@ undefined8 ResourceValidationHandler(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 resourceHash;
-  undefined8 uVar2;
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
+  undefined8 validationResult;
+  undefined1 resourceValidationBuffer [32];
+  undefined1 dataChecksumBuffer [32];
   
-  uVar2 = ComputeDataChecksum(param_2,auStack_28,1,0x46464553);
-  if (((((int)uVar2 == 0) &&
-       (uVar2 = ComputeDataChecksum(param_2,auStack_48,0,0x42464553), (int)uVar2 == 0)) &&
-      (uVar2 = ValidateResourceHash(param_2,param_1 + 0x10), (int)uVar2 == 0)) &&
+  validationResult = ComputeDataChecksum(param_2,dataChecksumBuffer,1,0x46464553);
+  if (((((int)validationResult == 0) &&
+       (validationResult = ComputeDataChecksum(param_2,resourceValidationBuffer,0,0x42464553), (int)validationResult == 0)) &&
+      (validationResult = ValidateResourceHash(param_2,param_1 + 0x10), (int)validationResult == 0)) &&
      ((0x5a < *(uint *)(resourceData + 8) ||
-      (uVar2 = FUN_1808afc70(param_2,param_1 + 0x44), (int)uVar2 == 0)))) {
+      (validationResult = FUN_1808afc70(param_2,param_1 + 0x44), (int)validationResult == 0)))) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
     resourceHash = *param_2;
-    uVar2 = ReadResourceData(resourceHash,param_1 + 0x4c,4);
-    if ((((int)uVar2 == 0) && (uVar2 = ReadResourceData(resourceHash,param_1 + 0x50,2), (int)uVar2 == 0)) &&
-       (uVar2 = ReadResourceData(resourceHash,param_1 + 0x52,2), (int)uVar2 == 0)) {
-      uVar2 = ReadResourceData(resourceHash,param_1 + 0x54,8);
+    validationResult = ReadResourceData(resourceHash,param_1 + 0x4c,4);
+    if ((((int)validationResult == 0) && (validationResult = ReadResourceData(resourceHash,param_1 + 0x50,2), (int)validationResult == 0)) &&
+       (validationResult = ReadResourceData(resourceHash,param_1 + 0x52,2), (int)validationResult == 0)) {
+      validationResult = ReadResourceData(resourceHash,param_1 + 0x54,8);
     }
-    if ((int)uVar2 == 0) {
+    if ((int)validationResult == 0) {
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0x48);
-      if ((int)uVar2 == 0) {
+      validationResult = CalculateResourceHash(*resourceData,resourceContext + 0x48);
+      if ((int)validationResult == 0) {
         if (*(uint *)(resourceData + 8) < 0x3d) {
-          uVar2 = 0;
+          validationResult = 0;
         }
         else if (*(int *)(resourceData[1] + 0x18) == 0) {
-          uVar2 = FUN_1808a2e00(*param_2,param_1 + 0x40);
+          validationResult = FUN_1808a2e00(*param_2,param_1 + 0x40);
         }
         else {
-          uVar2 = 0x1c;
+          validationResult = 0x1c;
         }
-        if ((int)uVar2 == 0) {
+        if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-          FUN_1808ddf80(param_2,auStack_48);
+          FUN_1808ddf80(param_2,resourceValidationBuffer);
         }
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
 
-undefined8 FUN_18089dfc1(void)
+undefined8 ResourceDataProcessor(void)
 
 {
   undefined8 resourceHash;
   longlong in_RAX;
-  undefined8 uVar2;
+  undefined8 validationResult;
   undefined8 *unaff_RBX;
   longlong unaff_RDI;
   
@@ -24318,33 +24326,33 @@ undefined8 FUN_18089dfc1(void)
     return 0x1c;
   }
   resourceHash = *unaff_RBX;
-  uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x4c,4);
-  if ((((int)uVar2 == 0) && (uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x50,2), (int)uVar2 == 0)) &&
-     (uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x52,2), (int)uVar2 == 0)) {
-    uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x54,8);
+  validationResult = ReadResourceData(resourceHash,unaff_RDI + 0x4c,4);
+  if ((((int)validationResult == 0) && (validationResult = ReadResourceData(resourceHash,unaff_RDI + 0x50,2), (int)validationResult == 0)) &&
+     (validationResult = ReadResourceData(resourceHash,unaff_RDI + 0x52,2), (int)validationResult == 0)) {
+    validationResult = ReadResourceData(resourceHash,unaff_RDI + 0x54,8);
   }
-  if ((int)uVar2 == 0) {
+  if ((int)validationResult == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x48);
-    if ((int)uVar2 == 0) {
+    validationResult = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x48);
+    if ((int)validationResult == 0) {
       if (*(uint *)(unaff_RBX + 8) < 0x3d) {
-        uVar2 = 0;
+        validationResult = 0;
       }
       else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        uVar2 = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+        validationResult = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
       }
       else {
-        uVar2 = 0x1c;
+        validationResult = 0x1c;
       }
-      if ((int)uVar2 == 0) {
+      if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808ddf80();
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -24353,43 +24361,43 @@ undefined8 FUN_18089dfe4(void)
 
 {
   undefined8 resourceHash;
-  undefined8 uVar2;
+  undefined8 validationResult;
   undefined8 *unaff_RBX;
   longlong unaff_RDI;
   
   resourceHash = *unaff_RBX;
-  uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x4c,4);
-  if ((int)uVar2 == 0) {
-    uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x50,2);
-    if ((int)uVar2 == 0) {
-      uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x52,2);
-      if ((int)uVar2 == 0) {
-        uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x54,8);
+  validationResult = ReadResourceData(resourceHash,unaff_RDI + 0x4c,4);
+  if ((int)validationResult == 0) {
+    validationResult = ReadResourceData(resourceHash,unaff_RDI + 0x50,2);
+    if ((int)validationResult == 0) {
+      validationResult = ReadResourceData(resourceHash,unaff_RDI + 0x52,2);
+      if ((int)validationResult == 0) {
+        validationResult = ReadResourceData(resourceHash,unaff_RDI + 0x54,8);
       }
     }
   }
-  if ((int)uVar2 == 0) {
+  if ((int)validationResult == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x48);
-    if ((int)uVar2 == 0) {
+    validationResult = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x48);
+    if ((int)validationResult == 0) {
       if (*(uint *)(unaff_RBX + 8) < 0x3d) {
-        uVar2 = 0;
+        validationResult = 0;
       }
       else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        uVar2 = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+        validationResult = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
       }
       else {
-        uVar2 = 0x1c;
+        validationResult = 0x1c;
       }
-      if ((int)uVar2 == 0) {
+      if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808ddf80();
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -24439,14 +24447,14 @@ undefined8 FUN_18089e0d0(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 resourceHash;
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
+  undefined1 resourceValidationBuffer [32];
+  undefined1 dataChecksumBuffer [32];
   
   if ((0x87 < *(uint *)(resourceData + 8)) &&
-     (resourceHash = ComputeDataChecksum(param_2,auStack_28,1,0x46464353), (int)resourceHash != 0)) {
+     (resourceHash = ComputeDataChecksum(param_2,dataChecksumBuffer,1,0x46464353), (int)resourceHash != 0)) {
     return resourceHash;
   }
-  resourceHash = ComputeDataChecksum(param_2,auStack_48,0,0x46454353);
+  resourceHash = ComputeDataChecksum(param_2,resourceValidationBuffer,0,0x46454353);
   if (((int)resourceHash == 0) && (resourceHash = ValidateResourceHash(param_2,param_1 + 0x10), (int)resourceHash == 0)) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
@@ -24472,7 +24480,7 @@ undefined8 FUN_18089e0d0(longlong param_1,undefined8 *param_2)
       }
       if ((int)resourceHash == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80(param_2,auStack_48);
+        FUN_1808ddf80(param_2,resourceValidationBuffer);
       }
     }
   }
@@ -24485,7 +24493,7 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
 
 {
   longlong *plVar1;
-  ulonglong uVar2;
+  ulonglong validationResult;
   uint uVar3;
   uint uVar4;
   uint uVar6;
@@ -24493,57 +24501,57 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
   uint auStackX_18 [2];
   uint auStackX_20 [2];
   undefined1 auStack_68 [32];
-  undefined1 auStack_48 [32];
+  undefined1 resourceValidationBuffer [32];
   ulonglong uVar5;
   
-  uVar2 = ComputeDataChecksum(param_2,auStack_48,1,0x50414e53);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = ComputeDataChecksum(param_2,resourceValidationBuffer,1,0x50414e53);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  uVar2 = ComputeDataChecksum(param_2,auStack_68,0,0x42414e53);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = ComputeDataChecksum(param_2,auStack_68,0,0x42414e53);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  uVar2 = ValidateResourceHash(param_2,param_1 + 0x10);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = ValidateResourceHash(param_2,param_1 + 0x10);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar2 = ReadResourceData(*param_2,param_1 + 0x44,4);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = ReadResourceData(*param_2,param_1 + 0x44,4);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   uVar7 = 0;
   auStackX_20[0] = 0;
-  uVar2 = LoadResourceData(*param_2,auStackX_20);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = LoadResourceData(*param_2,auStackX_20);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   auStackX_18[0] = 0;
   uVar3 = auStackX_20[0] & 1;
   uVar6 = auStackX_20[0] >> 1;
-  uVar2 = uVar7;
+  validationResult = uVar7;
   uVar5 = uVar7;
   if (uVar6 != 0) {
     do {
-      uVar2 = ExtractResourceInfo(param_2,uVar2);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = ExtractResourceInfo(param_2,validationResult);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
-      uVar2 = FUN_1808a8120(param_2,param_1 + 0x30,uVar5,param_1);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = FUN_1808a8120(param_2,param_1 + 0x30,uVar5,param_1);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
-      uVar2 = ParseResourceMetadata(param_2,auStackX_18);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = ParseResourceMetadata(param_2,auStackX_18);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
       uVar4 = (int)uVar5 + 1;
       uVar5 = (ulonglong)uVar4;
       auStackX_18[0] = auStackX_18[0] & -uVar3;
-      uVar2 = (ulonglong)auStackX_18[0];
+      validationResult = (ulonglong)auStackX_18[0];
     } while ((int)uVar4 < (int)uVar6);
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
@@ -24558,42 +24566,42 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
   }
   plVar1 = (longlong *)*param_2;
   if (*plVar1 == 0) {
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
   else {
     if (plVar1[2] != 0) {
       auStackX_18[0] = 0;
-      uVar2 = func_0x00018076a7d0(*plVar1,auStackX_18);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = func_0x00018076a7d0(*plVar1,auStackX_18);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
       if ((ulonglong)plVar1[2] < (ulonglong)auStackX_18[0] + 4) {
-        uVar2 = 0x11;
+        validationResult = 0x11;
         goto LAB_18089e447;
       }
     }
-    uVar2 = CalculateResourceHash(*plVar1,auStackX_20,1,4,0);
+    validationResult = CalculateResourceHash(*plVar1,auStackX_20,1,4,0);
   }
 LAB_18089e447:
-  if ((int)uVar2 == 0) {
+  if ((int)validationResult == 0) {
     *(uint *)(param_1 + 0x4c) = auStackX_20[0];
-    uVar2 = 0xd;
+    validationResult = 0xd;
     if (auStackX_20[0] < 7) {
-      uVar2 = uVar7;
+      validationResult = uVar7;
     }
-    if ((int)uVar2 == 0) {
-      uVar2 = uVar7;
-      if ((0x32 < *(uint *)(resourceData + 8)) && (uVar2 = 0x1c, *(int *)(resourceData[1] + 0x18) == 0)) {
+    if ((int)validationResult == 0) {
+      validationResult = uVar7;
+      if ((0x32 < *(uint *)(resourceData + 8)) && (validationResult = 0x1c, *(int *)(resourceData[1] + 0x18) == 0)) {
         uVar3 = CalculateResourceHash(*resourceData,resourceContext + 0x40);
-        uVar2 = (ulonglong)uVar3;
+        validationResult = (ulonglong)uVar3;
       }
-      if ((int)uVar2 == 0) {
+      if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808ddf80(param_2,auStack_68);
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -24603,7 +24611,7 @@ ulonglong FUN_18089e297(void)
 {
   longlong *plVar1;
   longlong in_RAX;
-  ulonglong uVar2;
+  ulonglong validationResult;
   ulonglong uVar3;
   longlong *unaff_RBX;
   uint uVar4;
@@ -24617,20 +24625,20 @@ ulonglong FUN_18089e297(void)
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
   }
-  uVar2 = ReadResourceData(*unaff_RBX,unaff_RSI + 0x44,4);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = ReadResourceData(*unaff_RBX,unaff_RSI + 0x44,4);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   uVar7 = 0;
   in_stack_000000b8 = 0;
-  uVar2 = LoadResourceData(*unaff_RBX,&stack0x000000b8);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = LoadResourceData(*unaff_RBX,&stack0x000000b8);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   in_stack_000000b0 = 0;
   uVar4 = in_stack_000000b8 & 1;
   uVar6 = in_stack_000000b8 >> 1;
-  uVar2 = uVar7;
+  validationResult = uVar7;
   if (uVar6 != 0) {
     do {
       uVar3 = ExtractResourceInfo();
@@ -24645,8 +24653,8 @@ ulonglong FUN_18089e297(void)
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      uVar5 = (int)uVar2 + 1;
-      uVar2 = (ulonglong)uVar5;
+      uVar5 = (int)validationResult + 1;
+      validationResult = (ulonglong)uVar5;
       in_stack_000000b0 = in_stack_000000b0 & -uVar4;
     } while ((int)uVar5 < (int)uVar6);
   }
@@ -24662,42 +24670,42 @@ ulonglong FUN_18089e297(void)
   }
   plVar1 = (longlong *)*unaff_RBX;
   if (*plVar1 == 0) {
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
   else {
     if (plVar1[2] != 0) {
       in_stack_000000b0 = 0;
-      uVar2 = func_0x00018076a7d0(*plVar1,&stack0x000000b0);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = func_0x00018076a7d0(*plVar1,&stack0x000000b0);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
       if ((ulonglong)plVar1[2] < (ulonglong)in_stack_000000b0 + 4) {
-        uVar2 = 0x11;
+        validationResult = 0x11;
         goto LAB_18089e447;
       }
     }
-    uVar2 = CalculateResourceHash(*plVar1,&stack0x000000b8,1,4,0);
+    validationResult = CalculateResourceHash(*plVar1,&stack0x000000b8,1,4,0);
   }
 LAB_18089e447:
-  if ((int)uVar2 == 0) {
+  if ((int)validationResult == 0) {
     *(uint *)(unaff_RSI + 0x4c) = in_stack_000000b8;
-    uVar2 = 0xd;
+    validationResult = 0xd;
     if (in_stack_000000b8 < 7) {
-      uVar2 = uVar7;
+      validationResult = uVar7;
     }
-    if ((int)uVar2 == 0) {
-      uVar2 = uVar7;
-      if ((0x32 < *(uint *)(unaff_RBX + 8)) && (uVar2 = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
+    if ((int)validationResult == 0) {
+      validationResult = uVar7;
+      if ((0x32 < *(uint *)(unaff_RBX + 8)) && (validationResult = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
         uVar4 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x40);
-        uVar2 = (ulonglong)uVar4;
+        validationResult = (ulonglong)uVar4;
       }
-      if ((int)uVar2 == 0) {
+      if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808ddf80();
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -24706,7 +24714,7 @@ ulonglong FUN_18089e2be(void)
 
 {
   longlong *plVar1;
-  ulonglong uVar2;
+  ulonglong validationResult;
   ulonglong uVar3;
   longlong *unaff_RBX;
   uint uVar4;
@@ -24717,20 +24725,20 @@ ulonglong FUN_18089e2be(void)
   uint in_stack_000000b0;
   uint in_stack_000000b8;
   
-  uVar2 = ReadResourceData(*unaff_RBX,unaff_RSI + 0x44,4);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = ReadResourceData(*unaff_RBX,unaff_RSI + 0x44,4);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   uVar7 = 0;
   in_stack_000000b8 = 0;
-  uVar2 = LoadResourceData(*unaff_RBX,&stack0x000000b8);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = LoadResourceData(*unaff_RBX,&stack0x000000b8);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   in_stack_000000b0 = 0;
   uVar4 = in_stack_000000b8 & 1;
   uVar6 = in_stack_000000b8 >> 1;
-  uVar2 = uVar7;
+  validationResult = uVar7;
   if (uVar6 != 0) {
     do {
       uVar3 = ExtractResourceInfo();
@@ -24745,8 +24753,8 @@ ulonglong FUN_18089e2be(void)
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      uVar5 = (int)uVar2 + 1;
-      uVar2 = (ulonglong)uVar5;
+      uVar5 = (int)validationResult + 1;
+      validationResult = (ulonglong)uVar5;
       in_stack_000000b0 = in_stack_000000b0 & -uVar4;
     } while ((int)uVar5 < (int)uVar6);
   }
@@ -24762,42 +24770,42 @@ ulonglong FUN_18089e2be(void)
   }
   plVar1 = (longlong *)*unaff_RBX;
   if (*plVar1 == 0) {
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
   else {
     if (plVar1[2] != 0) {
       in_stack_000000b0 = 0;
-      uVar2 = func_0x00018076a7d0(*plVar1,&stack0x000000b0);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = func_0x00018076a7d0(*plVar1,&stack0x000000b0);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
       if ((ulonglong)plVar1[2] < (ulonglong)in_stack_000000b0 + 4) {
-        uVar2 = 0x11;
+        validationResult = 0x11;
         goto LAB_18089e447;
       }
     }
-    uVar2 = CalculateResourceHash(*plVar1,&stack0x000000b8,1,4,0);
+    validationResult = CalculateResourceHash(*plVar1,&stack0x000000b8,1,4,0);
   }
 LAB_18089e447:
-  if ((int)uVar2 == 0) {
+  if ((int)validationResult == 0) {
     *(uint *)(unaff_RSI + 0x4c) = in_stack_000000b8;
-    uVar2 = 0xd;
+    validationResult = 0xd;
     if (in_stack_000000b8 < 7) {
-      uVar2 = uVar7;
+      validationResult = uVar7;
     }
-    if ((int)uVar2 == 0) {
-      uVar2 = uVar7;
-      if ((0x32 < *(uint *)(unaff_RBX + 8)) && (uVar2 = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
+    if ((int)validationResult == 0) {
+      validationResult = uVar7;
+      if ((0x32 < *(uint *)(unaff_RBX + 8)) && (validationResult = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
         uVar4 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x40);
-        uVar2 = (ulonglong)uVar4;
+        validationResult = (ulonglong)uVar4;
       }
-      if ((int)uVar2 == 0) {
+      if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808ddf80();
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -24806,7 +24814,7 @@ ulonglong FUN_18089e2e8(void)
 
 {
   longlong *plVar1;
-  ulonglong uVar2;
+  ulonglong validationResult;
   ulonglong uVar3;
   longlong *unaff_RBX;
   uint uVar4;
@@ -24819,14 +24827,14 @@ ulonglong FUN_18089e2e8(void)
   
   uVar7 = 0;
   uStack00000000000000b8 = 0;
-  uVar2 = LoadResourceData(*unaff_RBX,&stack0x000000b8);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = LoadResourceData(*unaff_RBX,&stack0x000000b8);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   in_stack_000000b0 = 0;
   uVar4 = uStack00000000000000b8 & 1;
   uVar6 = uStack00000000000000b8 >> 1;
-  uVar2 = uVar7;
+  validationResult = uVar7;
   if (uVar6 != 0) {
     do {
       uVar3 = ExtractResourceInfo();
@@ -24841,8 +24849,8 @@ ulonglong FUN_18089e2e8(void)
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      uVar5 = (int)uVar2 + 1;
-      uVar2 = (ulonglong)uVar5;
+      uVar5 = (int)validationResult + 1;
+      validationResult = (ulonglong)uVar5;
       in_stack_000000b0 = in_stack_000000b0 & -uVar4;
     } while ((int)uVar5 < (int)uVar6);
   }
@@ -24858,42 +24866,42 @@ ulonglong FUN_18089e2e8(void)
   }
   plVar1 = (longlong *)*unaff_RBX;
   if (*plVar1 == 0) {
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
   else {
     if (plVar1[2] != 0) {
       in_stack_000000b0 = 0;
-      uVar2 = func_0x00018076a7d0(*plVar1,&stack0x000000b0);
-      if ((int)uVar2 != 0) {
-        return uVar2;
+      validationResult = func_0x00018076a7d0(*plVar1,&stack0x000000b0);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
       if ((ulonglong)plVar1[2] < (ulonglong)in_stack_000000b0 + 4) {
-        uVar2 = 0x11;
+        validationResult = 0x11;
         goto LAB_18089e447;
       }
     }
-    uVar2 = CalculateResourceHash(*plVar1,&stack0x000000b8,1,4,0);
+    validationResult = CalculateResourceHash(*plVar1,&stack0x000000b8,1,4,0);
   }
 LAB_18089e447:
-  if ((int)uVar2 == 0) {
+  if ((int)validationResult == 0) {
     *(uint *)(unaff_RSI + 0x4c) = uStack00000000000000b8;
-    uVar2 = 0xd;
+    validationResult = 0xd;
     if (uStack00000000000000b8 < 7) {
-      uVar2 = uVar7;
+      validationResult = uVar7;
     }
-    if ((int)uVar2 == 0) {
-      uVar2 = uVar7;
-      if ((0x32 < *(uint *)(unaff_RBX + 8)) && (uVar2 = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
+    if ((int)validationResult == 0) {
+      validationResult = uVar7;
+      if ((0x32 < *(uint *)(unaff_RBX + 8)) && (validationResult = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
         uVar4 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x40);
-        uVar2 = (ulonglong)uVar4;
+        validationResult = (ulonglong)uVar4;
       }
-      if ((int)uVar2 == 0) {
+      if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808ddf80();
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -24914,7 +24922,7 @@ ulonglong FUN_18089e4f0(longlong param_1,undefined8 *param_2)
 
 {
   undefined4 resourceHash;
-  undefined8 uVar2;
+  undefined8 validationResult;
   uint uVar3;
   ulonglong uVar4;
   undefined4 *puVar5;
@@ -24940,20 +24948,20 @@ ulonglong FUN_18089e4f0(longlong param_1,undefined8 *param_2)
     uStack_6c = puVar5[3];
     if (*(uint *)(resourceData + 8) < 0x6d) {
       if (*(int *)(resourceData[1] + 0x18) == 0) {
-        uVar2 = *param_2;
-        uVar4 = ReadResourceData(uVar2,&uStack_78,4);
+        validationResult = *param_2;
+        uVar4 = ReadResourceData(validationResult,&uStack_78,4);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
-        uVar4 = ReadResourceData(uVar2,&uStack_74,2);
+        uVar4 = ReadResourceData(validationResult,&uStack_74,2);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
-        uVar4 = ReadResourceData(uVar2,(longlong)&uStack_74 + 2,2);
+        uVar4 = ReadResourceData(validationResult,(longlong)&uStack_74 + 2,2);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
-        uVar4 = ReadResourceData(uVar2,&uStack_70,8);
+        uVar4 = ReadResourceData(validationResult,&uStack_70,8);
       }
       else {
         uVar4 = 0x1c;
@@ -25018,7 +25026,7 @@ ulonglong FUN_18089e558(void)
 
 {
   undefined8 resourceHash;
-  undefined4 uVar2;
+  undefined4 validationResult;
   undefined4 uVar3;
   undefined4 uVar4;
   uint uVar5;
@@ -25042,11 +25050,11 @@ ulonglong FUN_18089e558(void)
   uVar8 = 0;
   uVar5 = *(uint *)(unaff_RDI + 8);
   resourceHash1 = *puVar7;
-  uVar2 = puVar7[1];
+  validationResult = puVar7[1];
   uVar3 = puVar7[2];
   uVar4 = puVar7[3];
   *(undefined4 *)(unaff_RBP + -0x19) = resourceHash1;
-  *(undefined4 *)(unaff_RBP + -0x15) = uVar2;
+  *(undefined4 *)(unaff_RBP + -0x15) = validationResult;
   *(undefined4 *)(unaff_RBP + -0x11) = uVar3;
   *(undefined4 *)(unaff_RBP + -0xd) = uVar4;
   if (uVar5 < 0x6d) {
@@ -25134,7 +25142,7 @@ ulonglong FUN_18089e624(void)
 
 {
   undefined4 resourceHash;
-  uint uVar2;
+  uint validationResult;
   int iVar3;
   ulonglong uVar4;
   longlong lVar5;
@@ -25148,9 +25156,9 @@ ulonglong FUN_18089e624(void)
   if (*(uint *)(unaff_RDI + 0x40) < 0x84) {
     *(undefined8 *)(unaff_RBP + -0x29) = unaff_RBX;
     *(undefined8 *)(unaff_RBP + -0x21) = unaff_RBX;
-    uVar2 = FUN_1808a4a20();
-    uVar4 = (ulonglong)uVar2;
-    if (uVar2 != 0) {
+    validationResult = FUN_1808a4a20();
+    uVar4 = (ulonglong)validationResult;
+    if (validationResult != 0) {
 LAB_18089e70b:
       FUN_18084c150(unaff_RBP + -0x29);
       return uVar4;
@@ -25170,9 +25178,9 @@ LAB_18089e70b:
         *(undefined4 *)(lVar5 + 0x10) = resourceHash;
         *(undefined8 *)(lVar5 + 0x18) = unaff_RBX;
         *(int *)(lVar5 + 0x20) = (int)unaff_RBX;
-        uVar2 = func_0x0001808aec10(unaff_R15 + 0x58,lVar5);
-        uVar4 = (ulonglong)uVar2;
-        if (uVar2 != 0) goto LAB_18089e70b;
+        validationResult = func_0x0001808aec10(unaff_R15 + 0x58,lVar5);
+        uVar4 = (ulonglong)validationResult;
+        if (validationResult != 0) goto LAB_18089e70b;
         iVar3 = *(int *)(unaff_RBP + -0x21);
         puVar6 = *(undefined4 **)(unaff_RBP + -0x29);
       }
@@ -26147,31 +26155,31 @@ undefined8 FUN_18089ede0(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 resourceHash;
-  undefined8 uVar2;
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
+  undefined8 validationResult;
+  undefined1 resourceValidationBuffer [32];
+  undefined1 dataChecksumBuffer [32];
   
-  uVar2 = ComputeDataChecksum(param_2,auStack_28,1,0x54494157);
-  if (((((int)uVar2 == 0) &&
-       (uVar2 = ComputeDataChecksum(param_2,auStack_48,0,0x42494157), (int)uVar2 == 0)) &&
-      (uVar2 = ValidateResourceHash(param_2,param_1 + 0x10), (int)uVar2 == 0)) &&
+  validationResult = ComputeDataChecksum(param_2,dataChecksumBuffer,1,0x54494157);
+  if (((((int)validationResult == 0) &&
+       (validationResult = ComputeDataChecksum(param_2,resourceValidationBuffer,0,0x42494157), (int)validationResult == 0)) &&
+      (validationResult = ValidateResourceHash(param_2,param_1 + 0x10), (int)validationResult == 0)) &&
      ((0x45 < *(uint *)(resourceData + 8) ||
-      (uVar2 = FUN_1808a2d50(param_2,param_1 + 0xd8), (int)uVar2 == 0)))) {
+      (validationResult = FUN_1808a2d50(param_2,param_1 + 0xd8), (int)validationResult == 0)))) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
     resourceHash = *param_2;
-    uVar2 = ReadResourceData(resourceHash,param_1 + 0xdc,4);
-    if ((((int)uVar2 == 0) && (uVar2 = ReadResourceData(resourceHash,param_1 + 0xe0,2), (int)uVar2 == 0)) &&
-       (uVar2 = ReadResourceData(resourceHash,param_1 + 0xe2,2), (int)uVar2 == 0)) {
-      uVar2 = ReadResourceData(resourceHash,param_1 + 0xe4,8);
+    validationResult = ReadResourceData(resourceHash,param_1 + 0xdc,4);
+    if ((((int)validationResult == 0) && (validationResult = ReadResourceData(resourceHash,param_1 + 0xe0,2), (int)validationResult == 0)) &&
+       (validationResult = ReadResourceData(resourceHash,param_1 + 0xe2,2), (int)validationResult == 0)) {
+      validationResult = ReadResourceData(resourceHash,param_1 + 0xe4,8);
     }
-    if ((int)uVar2 == 0) {
+    if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,auStack_48);
+      FUN_1808ddf80(param_2,resourceValidationBuffer);
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -26181,7 +26189,7 @@ undefined8 FUN_18089ee64(void)
 {
   undefined8 resourceHash;
   longlong in_RAX;
-  undefined8 uVar2;
+  undefined8 validationResult;
   undefined8 *unaff_RBX;
   longlong unaff_RDI;
   
@@ -26189,21 +26197,21 @@ undefined8 FUN_18089ee64(void)
     return 0x1c;
   }
   resourceHash = *unaff_RBX;
-  uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0xdc,4);
-  if ((int)uVar2 == 0) {
-    uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0xe0,2);
-    if ((int)uVar2 == 0) {
-      uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0xe2,2);
-      if ((int)uVar2 == 0) {
-        uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0xe4,8);
+  validationResult = ReadResourceData(resourceHash,unaff_RDI + 0xdc,4);
+  if ((int)validationResult == 0) {
+    validationResult = ReadResourceData(resourceHash,unaff_RDI + 0xe0,2);
+    if ((int)validationResult == 0) {
+      validationResult = ReadResourceData(resourceHash,unaff_RDI + 0xe2,2);
+      if ((int)validationResult == 0) {
+        validationResult = ReadResourceData(resourceHash,unaff_RDI + 0xe4,8);
       }
     }
   }
-  if ((int)uVar2 == 0) {
+  if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
     FUN_1808ddf80();
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -26314,9 +26322,9 @@ undefined8 FUN_18089f0b0(longlong param_1,longlong *param_2)
   undefined8 resourceHash;
   undefined4 auStackX_18 [2];
   undefined1 auStack_68 [64];
-  undefined1 auStack_28 [32];
+  undefined1 dataChecksumBuffer [32];
   
-  resourceHash = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x46464542);
+  resourceHash = FUN_1808ddd30(param_2,dataChecksumBuffer,1,0x5453494c,0x46464542);
   if (((int)resourceHash == 0) &&
      (resourceHash = FUN_1808ddd30(param_2,auStack_68,0,0x42464542,0), (int)resourceHash == 0)) {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
@@ -26699,27 +26707,27 @@ ulonglong FUN_18089f530(longlong param_1,undefined8 *param_2,undefined4 param_3,
 
 {
   uint resourceHash;
-  ulonglong uVar2;
+  ulonglong validationResult;
   undefined1 auStack_70 [64];
   undefined1 auStack_30 [40];
   
-  uVar2 = FUN_1808ddd30(param_2,auStack_30,1,0x5453494c,param_3);
-  if (((int)uVar2 == 0) && (uVar2 = FUN_1808ddd30(param_2,auStack_70,0,param_4,0), (int)uVar2 == 0))
+  validationResult = FUN_1808ddd30(param_2,auStack_30,1,0x5453494c,param_3);
+  if (((int)validationResult == 0) && (validationResult = FUN_1808ddd30(param_2,auStack_70,0,param_4,0), (int)validationResult == 0))
   {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
       resourceHash = GetResourceEntry(*param_2,param_1 + 0x10);
-      uVar2 = (ulonglong)resourceHash;
+      validationResult = (ulonglong)resourceHash;
       if ((resourceHash == 0) &&
-         ((param_5 == '\0' || (uVar2 = FUN_1808a1870(param_1 + 0x48,param_2), (int)uVar2 == 0)))) {
+         ((param_5 == '\0' || (validationResult = FUN_1808a1870(param_1 + 0x48,param_2), (int)validationResult == 0)))) {
                     // WARNING: Subroutine does not return
         FUN_1808de000(param_2,auStack_70);
       }
     }
     else {
-      uVar2 = 0x1c;
+      validationResult = 0x1c;
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -26728,28 +26736,28 @@ ulonglong FUN_18089f571(void)
 
 {
   uint resourceHash;
-  ulonglong uVar2;
+  ulonglong validationResult;
   undefined8 *unaff_RBX;
   longlong unaff_RBP;
   char in_stack_000000d0;
   
-  uVar2 = FUN_1808ddd30();
-  if ((int)uVar2 == 0) {
+  validationResult = FUN_1808ddd30();
+  if ((int)validationResult == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
       resourceHash = GetResourceEntry(*unaff_RBX,unaff_RBP + 0x10);
-      uVar2 = (ulonglong)resourceHash;
+      validationResult = (ulonglong)resourceHash;
       if ((resourceHash == 0) &&
-         ((in_stack_000000d0 == '\0' || (uVar2 = FUN_1808a1870(unaff_RBP + 0x48), (int)uVar2 == 0)))
+         ((in_stack_000000d0 == '\0' || (validationResult = FUN_1808a1870(unaff_RBP + 0x48), (int)validationResult == 0)))
          ) {
                     // WARNING: Subroutine does not return
         FUN_1808de000();
       }
     }
     else {
-      uVar2 = 0x1c;
+      validationResult = 0x1c;
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -26769,12 +26777,12 @@ undefined8 FUN_18089f830(longlong param_1,longlong *param_2)
 {
   undefined8 resourceHash;
   undefined4 auStackX_18 [4];
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
+  undefined1 resourceValidationBuffer [32];
+  undefined1 dataChecksumBuffer [32];
   
-  resourceHash = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x49444d43);
+  resourceHash = FUN_1808ddd30(param_2,dataChecksumBuffer,1,0x5453494c,0x49444d43);
   if (((int)resourceHash == 0) &&
-     (resourceHash = FUN_1808ddd30(param_2,auStack_48,0,0x42444d43,0), (int)resourceHash == 0)) {
+     (resourceHash = FUN_1808ddd30(param_2,resourceValidationBuffer,0,0x42444d43,0), (int)resourceHash == 0)) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -26794,7 +26802,7 @@ undefined8 FUN_18089f830(longlong param_1,longlong *param_2)
         if (((int)resourceHash == 0) &&
            (resourceHash = FUN_1808a7c40(param_2,param_1 + 0xec,0x80), (int)resourceHash == 0)) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000(param_2,auStack_48);
+          FUN_1808de000(param_2,resourceValidationBuffer);
         }
       }
     }
@@ -26808,7 +26816,7 @@ ulonglong FUN_18089f970(longlong param_1,longlong *param_2)
 
 {
   longlong lVar1;
-  uint uVar2;
+  uint validationResult;
   undefined4 *puVar3;
   ulonglong uVar4;
   undefined2 auStackX_18 [4];
@@ -26830,44 +26838,44 @@ ulonglong FUN_18089f970(longlong param_1,longlong *param_2)
     return uVar4;
   }
   if (*(int *)(resourceData[1] + 0x18) == 0) {
-    uVar2 = GetResourceEntry(*param_2,param_1 + 0x10);
-    uVar4 = (ulonglong)uVar2;
-    if (uVar2 == 0) {
+    validationResult = GetResourceEntry(*param_2,param_1 + 0x10);
+    uVar4 = (ulonglong)validationResult;
+    if (validationResult == 0) {
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar2 = GetResourceEntry(*param_2,param_1 + 0x20);
-      uVar4 = (ulonglong)uVar2;
-      if (uVar2 == 0) {
+      validationResult = GetResourceEntry(*param_2,param_1 + 0x20);
+      uVar4 = (ulonglong)validationResult;
+      if (validationResult == 0) {
         uVar4 = 0x1c;
-        uVar2 = 0;
-        if ((*(uint *)(resourceData + 8) < 0x5a) && (uVar2 = 0x1c, *(int *)(resourceData[1] + 0x18) == 0)) {
+        validationResult = 0;
+        if ((*(uint *)(resourceData + 8) < 0x5a) && (validationResult = 0x1c, *(int *)(resourceData[1] + 0x18) == 0)) {
           auStack_58[0] = uStack_50;
           lVar1 = *param_2;
-          uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+          validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                             (*(undefined8 **)(lVar1 + 8),auStack_58,4);
-          if (uVar2 == 0) {
+          if (validationResult == 0) {
             auStackX_18[0] = (undefined2)uStack_4c;
-            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+            validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                               (*(undefined8 **)(lVar1 + 8),auStackX_18,2);
-            if (uVar2 == 0) {
+            if (validationResult == 0) {
               auStackX_20[0] = uStack_4c._2_2_;
-              uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+              validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                                 (*(undefined8 **)(lVar1 + 8),auStackX_20,2);
-              if (uVar2 == 0) {
-                uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+              if (validationResult == 0) {
+                validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                                   (*(undefined8 **)(lVar1 + 8),&uStack_48,8);
               }
             }
           }
         }
-        if (uVar2 != 0) {
-          return (ulonglong)uVar2;
+        if (validationResult != 0) {
+          return (ulonglong)validationResult;
         }
         if (*(int *)(resourceData[1] + 0x18) == 0) {
-          uVar2 = GetResourceEntry(*param_2,param_1 + 0x30);
-          uVar4 = (ulonglong)uVar2;
-          if (uVar2 == 0) {
+          validationResult = GetResourceEntry(*param_2,param_1 + 0x30);
+          uVar4 = (ulonglong)validationResult;
+          if (validationResult == 0) {
             uVar4 = FUN_180898e70(param_2,param_1 + 0x40);
             if ((int)uVar4 != 0) {
               return uVar4;
@@ -26889,7 +26897,7 @@ ulonglong FUN_18089f9b3(void)
 
 {
   longlong lVar1;
-  uint uVar2;
+  uint validationResult;
   longlong in_RAX;
   ulonglong uVar3;
   longlong unaff_RBP;
@@ -26905,45 +26913,45 @@ ulonglong FUN_18089f9b3(void)
   if (*(uint *)(in_RAX + 0x18) != unaff_ESI) {
     return 0x1c;
   }
-  uVar2 = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x10);
-  uVar3 = (ulonglong)uVar2;
-  if (uVar2 == 0) {
+  validationResult = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x10);
+  uVar3 = (ulonglong)validationResult;
+  if (validationResult == 0) {
     if (*(uint *)(unaff_RDI[1] + 0x18) != unaff_ESI) {
       return 0x1c;
     }
-    uVar2 = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x20);
-    uVar3 = (ulonglong)uVar2;
-    if (uVar2 == 0) {
+    validationResult = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x20);
+    uVar3 = (ulonglong)validationResult;
+    if (validationResult == 0) {
       uVar3 = 0x1c;
-      uVar2 = unaff_ESI;
+      validationResult = unaff_ESI;
       if ((*(uint *)(unaff_RDI + 8) < 0x5a) &&
-         (uVar2 = 0x1c, *(uint *)(unaff_RDI[1] + 0x18) == unaff_ESI)) {
+         (validationResult = 0x1c, *(uint *)(unaff_RDI[1] + 0x18) == unaff_ESI)) {
         in_stack_00000030 = uStack0000000000000038;
         lVar1 = *unaff_RDI;
-        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+        validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                           (*(undefined8 **)(lVar1 + 8),&stack0x00000030,4);
-        if (uVar2 == 0) {
+        if (validationResult == 0) {
           in_stack_000000a0 = uStack000000000000003c;
-          uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+          validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                             (*(undefined8 **)(lVar1 + 8),&stack0x000000a0,2);
-          if (uVar2 == 0) {
+          if (validationResult == 0) {
             in_stack_000000a8 = uStack000000000000003e;
-            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+            validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                               (*(undefined8 **)(lVar1 + 8),&stack0x000000a8,2);
-            if (uVar2 == 0) {
-              uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+            if (validationResult == 0) {
+              validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                                 (*(undefined8 **)(lVar1 + 8),&stack0x00000040,8);
             }
           }
         }
       }
-      if (uVar2 != 0) {
-        return (ulonglong)uVar2;
+      if (validationResult != 0) {
+        return (ulonglong)validationResult;
       }
       if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-        uVar2 = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
-        uVar3 = (ulonglong)uVar2;
-        if (uVar2 == 0) {
+        validationResult = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
+        uVar3 = (ulonglong)validationResult;
+        if (validationResult == 0) {
           uVar3 = FUN_180898e70();
           if ((int)uVar3 == 0) {
                     // WARNING: Subroutine does not return
@@ -26963,7 +26971,7 @@ ulonglong FUN_18089f9f6(void)
 
 {
   longlong lVar1;
-  uint uVar2;
+  uint validationResult;
   ulonglong uVar3;
   longlong unaff_RBP;
   uint unaff_ESI;
@@ -26975,39 +26983,39 @@ ulonglong FUN_18089f9f6(void)
   undefined2 in_stack_000000a0;
   undefined2 in_stack_000000a8;
   
-  uVar2 = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x20);
-  uVar3 = (ulonglong)uVar2;
-  if (uVar2 == 0) {
+  validationResult = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x20);
+  uVar3 = (ulonglong)validationResult;
+  if (validationResult == 0) {
     uVar3 = 0x1c;
-    uVar2 = unaff_ESI;
+    validationResult = unaff_ESI;
     if ((*(uint *)(unaff_RDI + 8) < 0x5a) &&
-       (uVar2 = 0x1c, *(uint *)(unaff_RDI[1] + 0x18) == unaff_ESI)) {
+       (validationResult = 0x1c, *(uint *)(unaff_RDI[1] + 0x18) == unaff_ESI)) {
       in_stack_00000030 = uStack0000000000000038;
       lVar1 = *unaff_RDI;
-      uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+      validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                         (*(undefined8 **)(lVar1 + 8),&stack0x00000030,4);
-      if (uVar2 == 0) {
+      if (validationResult == 0) {
         in_stack_000000a0 = uStack000000000000003c;
-        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+        validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                           (*(undefined8 **)(lVar1 + 8),&stack0x000000a0,2);
-        if (uVar2 == 0) {
+        if (validationResult == 0) {
           in_stack_000000a8 = uStack000000000000003e;
-          uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+          validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                             (*(undefined8 **)(lVar1 + 8),&stack0x000000a8,2);
-          if (uVar2 == 0) {
-            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+          if (validationResult == 0) {
+            validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                               (*(undefined8 **)(lVar1 + 8),&stack0x00000040,8);
           }
         }
       }
     }
-    if (uVar2 != 0) {
-      return (ulonglong)uVar2;
+    if (validationResult != 0) {
+      return (ulonglong)validationResult;
     }
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-      uVar2 = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
-      uVar3 = (ulonglong)uVar2;
-      if (uVar2 == 0) {
+      validationResult = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
+      uVar3 = (ulonglong)validationResult;
+      if (validationResult == 0) {
         uVar3 = FUN_180898e70();
         if ((int)uVar3 != 0) {
           return uVar3;
@@ -27026,7 +27034,7 @@ ulonglong FUN_18089fa3c(void)
 
 {
   longlong lVar1;
-  uint uVar2;
+  uint validationResult;
   ulonglong uVar3;
   ulonglong unaff_RBX;
   longlong unaff_RBP;
@@ -27036,28 +27044,28 @@ ulonglong FUN_18089fa3c(void)
   undefined2 in_stack_000000a8;
   
   lVar1 = *unaff_RDI;
-  uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))();
-  if (uVar2 == 0) {
+  validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))();
+  if (validationResult == 0) {
     in_stack_000000a0 = in_stack_00000038._4_2_;
-    uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+    validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                       (*(undefined8 **)(lVar1 + 8),&stack0x000000a0,2);
-    if (uVar2 == 0) {
+    if (validationResult == 0) {
       in_stack_000000a8 = in_stack_00000038._6_2_;
-      uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+      validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                         (*(undefined8 **)(lVar1 + 8),&stack0x000000a8,2);
-      if (uVar2 == 0) {
-        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+      if (validationResult == 0) {
+        validationResult = (**(code **)**(undefined8 **)(lVar1 + 8))
                           (*(undefined8 **)(lVar1 + 8),&stack0x00000040,8);
       }
     }
   }
-  if (uVar2 != 0) {
-    return (ulonglong)uVar2;
+  if (validationResult != 0) {
+    return (ulonglong)validationResult;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    uVar2 = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
-    unaff_RBX = (ulonglong)uVar2;
-    if (uVar2 == 0) {
+    validationResult = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
+    unaff_RBX = (ulonglong)validationResult;
+    if (validationResult == 0) {
       uVar3 = FUN_180898e70();
       if ((int)uVar3 == 0) {
                     // WARNING: Subroutine does not return
@@ -27075,7 +27083,7 @@ ulonglong FUN_18089fac2(void)
 
 {
   uint resourceHash;
-  ulonglong uVar2;
+  ulonglong validationResult;
   ulonglong unaff_RBX;
   longlong unaff_RBP;
   uint unaff_ESI;
@@ -27088,12 +27096,12 @@ ulonglong FUN_18089fac2(void)
     resourceHash = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (ulonglong)resourceHash;
     if (resourceHash == 0) {
-      uVar2 = FUN_180898e70();
-      if ((int)uVar2 == 0) {
+      validationResult = FUN_180898e70();
+      if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808de000();
       }
-      return uVar2;
+      return validationResult;
     }
   }
   return unaff_RBX & 0xffffffff;
@@ -27105,7 +27113,7 @@ ulonglong FUN_18089fad8(void)
 
 {
   uint resourceHash;
-  ulonglong uVar2;
+  ulonglong validationResult;
   ulonglong unaff_RBX;
   longlong unaff_RBP;
   undefined8 *unaff_RDI;
@@ -27114,12 +27122,12 @@ ulonglong FUN_18089fad8(void)
     resourceHash = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (ulonglong)resourceHash;
     if (resourceHash == 0) {
-      uVar2 = FUN_180898e70();
-      if ((int)uVar2 == 0) {
+      validationResult = FUN_180898e70();
+      if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808de000();
       }
-      return uVar2;
+      return validationResult;
     }
   }
   return unaff_RBX & 0xffffffff;
@@ -27160,14 +27168,14 @@ fb40(longlong param_1,undefined8 param_2)
 
 {
   int iVar1;
-  undefined1 auStack_28 [32];
+  undefined1 dataChecksumBuffer [32];
   
-  iVar1 = FUN_1808ddd30(param_2,auStack_28,0,0x4f525443,0);
+  iVar1 = FUN_1808ddd30(param_2,dataChecksumBuffer,0,0x4f525443,0);
   if (iVar1 == 0) {
     iVar1 = FUN_1808a7b00(param_2,param_1 + 8);
     if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808de000(param_2,auStack_28);
+      FUN_1808de000(param_2,dataChecksumBuffer);
     }
   }
   return;
@@ -27179,9 +27187,9 @@ undefined8 FUN_18089fba0(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 resourceHash;
-  undefined1 auStack_28 [32];
+  undefined1 dataChecksumBuffer [32];
   
-  resourceHash = FUN_1808ddd30(param_2,auStack_28,0,0x56525543,0);
+  resourceHash = FUN_1808ddd30(param_2,dataChecksumBuffer,0,0x56525543,0);
   if ((int)resourceHash == 0) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
@@ -27195,7 +27203,7 @@ undefined8 FUN_18089fba0(longlong param_1,undefined8 *param_2)
       if (((int)resourceHash == 0) && (resourceHash = FUN_1808a4fb0(param_2,param_1 + 0x30,1,0), (int)resourceHash == 0))
       {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,auStack_28);
+        FUN_1808de000(param_2,dataChecksumBuffer);
       }
     }
   }
@@ -27208,12 +27216,12 @@ undefined8 FUN_18089fc50(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 resourceHash;
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
+  undefined1 resourceValidationBuffer [32];
+  undefined1 dataChecksumBuffer [32];
   
-  resourceHash = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x54494645);
+  resourceHash = FUN_1808ddd30(param_2,dataChecksumBuffer,1,0x5453494c,0x54494645);
   if (((int)resourceHash == 0) &&
-     (resourceHash = FUN_1808ddd30(param_2,auStack_48,0,0x42494645,0), (int)resourceHash == 0)) {
+     (resourceHash = FUN_1808ddd30(param_2,resourceValidationBuffer,0,0x42494645,0), (int)resourceHash == 0)) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -27225,7 +27233,7 @@ undefined8 FUN_18089fc50(longlong param_1,undefined8 *param_2)
       resourceHash = GetResourceEntry(*param_2,param_1 + 0xd8);
       if ((int)resourceHash == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,auStack_48);
+        FUN_1808de000(param_2,resourceValidationBuffer);
       }
     }
   }
@@ -27338,12 +27346,12 @@ undefined8 ProcessResourceIdList(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 resourceHash;
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
+  undefined1 resourceValidationBuffer [32];
+  undefined1 dataChecksumBuffer [32];
   
-  resourceHash = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x54495645);
+  resourceHash = FUN_1808ddd30(param_2,dataChecksumBuffer,1,0x5453494c,0x54495645);
   if (((int)resourceHash == 0) &&
-     (resourceHash = FUN_1808ddd30(param_2,auStack_48,0,0x42495645,0), (int)resourceHash == 0)) {
+     (resourceHash = FUN_1808ddd30(param_2,resourceValidationBuffer,0,0x42495645,0), (int)resourceHash == 0)) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -27356,7 +27364,7 @@ undefined8 ProcessResourceIdList(longlong param_1,undefined8 *param_2)
       if ((((int)resourceHash == 0) && (resourceHash = FUN_180898eb0(param_2,param_1 + 0xf8), (int)resourceHash == 0)) &&
          (resourceHash = FUN_1808a6e50(param_2,param_1 + 0xe8,1,param_1), (int)resourceHash == 0)) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,auStack_48);
+        FUN_1808de000(param_2,resourceValidationBuffer);
       }
     }
   }
@@ -27379,7 +27387,7 @@ undefined8 ValidateTextureResourceId(undefined8 param_1,longlong param_2)
 
 {
   undefined8 resourceHash;
-  undefined1 auStack_28 [32];
+  undefined1 dataChecksumBuffer [32];
   
   if (*(uint *)(resourceData + 0x40) < 0x31) {
     resourceHash = FUN_1808a3d50(param_1,param_2,0x544e5645);
@@ -27388,14 +27396,14 @@ undefined8 ValidateTextureResourceId(undefined8 param_1,longlong param_2)
     }
   }
   else {
-    resourceHash = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x544e5645);
+    resourceHash = FUN_1808ddd30(param_2,dataChecksumBuffer,1,0x5453494c,0x544e5645);
     if ((int)resourceHash == 0) {
       resourceHash = FUN_1808a3d50(param_1,param_2,0x42545645);
       if ((int)resourceHash == 0) {
         resourceHash = FUN_1808a1610(param_1,param_2);
         if ((int)resourceHash == 0) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000(param_2,auStack_28);
+          FUN_1808de000(param_2,dataChecksumBuffer);
         }
       }
     }
@@ -27576,21 +27584,21 @@ void Unwind_180901f60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2b8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x2b8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -27600,7 +27608,7 @@ void Unwind_180901f60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -27612,21 +27620,21 @@ void Unwind_180901f70(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2b8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x2b8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -27636,7 +27644,7 @@ void Unwind_180901f70(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -27665,21 +27673,21 @@ void Unwind_180901fa0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x218);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x218);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -27689,7 +27697,7 @@ void Unwind_180901fa0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -27701,21 +27709,21 @@ void Unwind_180901fc0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x218);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x218);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -27725,7 +27733,7 @@ void Unwind_180901fc0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -28170,13 +28178,13 @@ void Unwind_1809023d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x50);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x48); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x48); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x48) == 0) {
     return;
@@ -28191,13 +28199,13 @@ void Unwind_1809023e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x50);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x48); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x48); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x48) == 0) {
     return;
@@ -28212,21 +28220,21 @@ void Unwind_1809023f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -28236,7 +28244,7 @@ void Unwind_1809023f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -28380,13 +28388,13 @@ void Unwind_1809024d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x128);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x120); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x120); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x120) == 0) {
     return;
@@ -28433,13 +28441,13 @@ void Unwind_180902500(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x128);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x120); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x120); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x120) == 0) {
     return;
@@ -28454,21 +28462,21 @@ void Unwind_180902510(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x120);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x120);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -28478,7 +28486,7 @@ void Unwind_180902510(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -28707,21 +28715,21 @@ void Unwind_180902600(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0xc0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0xc0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -28731,7 +28739,7 @@ void Unwind_180902600(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -29294,21 +29302,21 @@ void Unwind_180902880(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x18);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x18);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -29318,7 +29326,7 @@ void Unwind_180902880(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -29341,21 +29349,21 @@ void Unwind_1809028a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x98);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x98);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -29365,7 +29373,7 @@ void Unwind_1809028a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -29416,21 +29424,21 @@ void Unwind_1809028f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x68);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -29440,7 +29448,7 @@ void Unwind_1809028f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -29452,21 +29460,21 @@ void Unwind_180902900(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x88);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x88);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -29476,7 +29484,7 @@ void Unwind_180902900(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -29932,21 +29940,21 @@ void Unwind_180902ab0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x30);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -29956,7 +29964,7 @@ void Unwind_180902ab0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -30196,21 +30204,21 @@ void Unwind_180902bb0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -30220,7 +30228,7 @@ void Unwind_180902bb0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -30279,21 +30287,21 @@ void Unwind_180902bf0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x90) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x90) + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -30303,7 +30311,7 @@ void Unwind_180902bf0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -30315,21 +30323,21 @@ void Unwind_180902c00(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x98);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x98);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -30339,7 +30347,7 @@ void Unwind_180902c00(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -30351,21 +30359,21 @@ void Unwind_180902c10(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x98);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x98);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -30375,7 +30383,7 @@ void Unwind_180902c10(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -30396,21 +30404,21 @@ void Unwind_180902c30(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x28);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x28);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -30420,7 +30428,7 @@ void Unwind_180902c30(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -30432,21 +30440,21 @@ void Unwind_180902c40(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x28);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x28);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -30456,7 +30464,7 @@ void Unwind_180902c40(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -30598,21 +30606,21 @@ void Unwind_180902cd0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -30622,7 +30630,7 @@ void Unwind_180902cd0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -30634,21 +30642,21 @@ void Unwind_180902ce0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -30658,7 +30666,7 @@ void Unwind_180902ce0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -30739,12 +30747,12 @@ void Unwind_180902d40(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  uVar2 = 0xfffffffffffffffe;
+  validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  FUN_1808fc8a8(lVar1 + 0x3e0,0x20,0x20,FUN_180627b90,uVar2);
+  FUN_1808fc8a8(lVar1 + 0x3e0,0x20,0x20,FUN_180627b90,validationResult);
   FUN_18005d580();
   FUN_1808fc8a8(lVar1 + 0x138,8,0x20,FUN_180045af0);
   FUN_1808fc8a8(lVar1 + 0x38,8,0x20,FUN_180045af0);
@@ -30919,21 +30927,21 @@ void Unwind_180902e50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -30943,7 +30951,7 @@ void Unwind_180902e50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -30955,21 +30963,21 @@ void Unwind_180902e60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x58);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x58);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -30979,7 +30987,7 @@ void Unwind_180902e60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -30991,21 +30999,21 @@ void Unwind_180902e70(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x58);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x58);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -31015,7 +31023,7 @@ void Unwind_180902e70(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -31027,26 +31035,26 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   ulonglong *puVar3;
   longlong lVar4;
   undefined8 *puVar5;
   ulonglong uVar6;
   
   puVar3 = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x18);
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
-  for (puVar5 = (undefined8 *)*puVar3; puVar5 != puVar2; puVar5 = puVar5 + 0xe) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
+  for (puVar5 = (undefined8 *)*puVar3; puVar5 != pvalidationResult; puVar5 = puVar5 + 0xe) {
     *puVar5 = &UNK_18098bcb0;
   }
-  puVar2 = (undefined8 *)*puVar3;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  pvalidationResult = (undefined8 *)*puVar3;
+  if (pvalidationResult != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      lVar4 = uVar6 + 0x80 + ((longlong)pvalidationResult - uVar6 >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(lVar4 + 0x20);
+        *(undefined8 **)(lVar4 + 0x20) = pvalidationResult;
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -31056,7 +31064,7 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            pvalidationResult,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -31089,26 +31097,26 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong *puVar4;
   undefined8 *puVar5;
   ulonglong uVar6;
   
   puVar4 = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x18);
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
-  for (puVar5 = (undefined8 *)*puVar4; puVar5 != puVar2; puVar5 = puVar5 + 0xe) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
+  for (puVar5 = (undefined8 *)*puVar4; puVar5 != pvalidationResult; puVar5 = puVar5 + 0xe) {
     *puVar5 = &UNK_18098bcb0;
   }
-  puVar2 = (undefined8 *)*puVar4;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  pvalidationResult = (undefined8 *)*puVar4;
+  if (pvalidationResult != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      resourceIndex = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      resourceIndex = uVar6 + 0x80 + ((longlong)pvalidationResult - uVar6 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -31118,7 +31126,7 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            pvalidationResult,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -31132,26 +31140,26 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   ulonglong *puVar3;
   longlong lVar4;
   undefined8 *puVar5;
   ulonglong uVar6;
   
   puVar3 = *(ulonglong **)(param_2 + 0x40);
-  puVar2 = (undefined8 *)puVar3[1];
-  for (puVar5 = (undefined8 *)*puVar3; puVar5 != puVar2; puVar5 = puVar5 + 0xe) {
+  pvalidationResult = (undefined8 *)puVar3[1];
+  for (puVar5 = (undefined8 *)*puVar3; puVar5 != pvalidationResult; puVar5 = puVar5 + 0xe) {
     *puVar5 = &UNK_18098bcb0;
   }
-  puVar2 = (undefined8 *)*puVar3;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  pvalidationResult = (undefined8 *)*puVar3;
+  if (pvalidationResult != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      lVar4 = uVar6 + 0x80 + ((longlong)pvalidationResult - uVar6 >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(lVar4 + 0x20);
+        *(undefined8 **)(lVar4 + 0x20) = pvalidationResult;
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -31161,7 +31169,7 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            pvalidationResult,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -31250,21 +31258,21 @@ void Unwind_180902f60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x8c8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x8c8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -31274,7 +31282,7 @@ void Unwind_180902f60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -31478,13 +31486,13 @@ void Unwind_1809030a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x30);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x28); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x28); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x28) == 0) {
     return;
@@ -31559,12 +31567,12 @@ void Unwind_180903100(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
-  uVar2 = 0xfffffffffffffffe;
+  validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(lVar1 + 0x110,*(undefined8 *)(lVar1 + 0x120),param_3,param_4,uVar2);
+  FUN_180058370(lVar1 + 0x110,*(undefined8 *)(lVar1 + 0x120),param_3,param_4,validationResult);
   FUN_180058370(lVar1 + 0xe0,*(undefined8 *)(lVar1 + 0xf0));
   FUN_180058370(lVar1 + 0xb0,*(undefined8 *)(lVar1 + 0xc0));
   FUN_1800593f0(lVar1 + 0x80,*(undefined8 *)(lVar1 + 0x90));
@@ -31621,21 +31629,21 @@ void Unwind_180903130(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -31645,7 +31653,7 @@ void Unwind_180903130(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -31657,21 +31665,21 @@ void Unwind_180903140(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x88);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x88);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -31681,7 +31689,7 @@ void Unwind_180903140(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -31716,21 +31724,21 @@ void Unwind_180903160(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -31740,7 +31748,7 @@ void Unwind_180903160(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -31794,21 +31802,21 @@ void Unwind_180903190(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -31818,7 +31826,7 @@ void Unwind_180903190(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -31886,12 +31894,12 @@ void Unwind_1809031e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  uVar2 = 0xfffffffffffffffe;
+  validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(lVar1 + 0x110,*(undefined8 *)(lVar1 + 0x120),param_3,param_4,uVar2);
+  FUN_180058370(lVar1 + 0x110,*(undefined8 *)(lVar1 + 0x120),param_3,param_4,validationResult);
   FUN_180058370(lVar1 + 0xe0,*(undefined8 *)(lVar1 + 0xf0));
   FUN_180058370(lVar1 + 0xb0,*(undefined8 *)(lVar1 + 0xc0));
   FUN_1800593f0(lVar1 + 0x80,*(undefined8 *)(lVar1 + 0x90));
@@ -31906,21 +31914,21 @@ void Unwind_1809031f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -31930,7 +31938,7 @@ void Unwind_1809031f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -31942,21 +31950,21 @@ void Unwind_180903200(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -31966,7 +31974,7 @@ void Unwind_180903200(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -32113,21 +32121,21 @@ void Unwind_180903310(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -32137,7 +32145,7 @@ void Unwind_180903310(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -32388,21 +32396,21 @@ void Unwind_1809034b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x18);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x18);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -32412,7 +32420,7 @@ void Unwind_1809034b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -32424,21 +32432,21 @@ void Unwind_1809034c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x18);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x18);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -32448,7 +32456,7 @@ void Unwind_1809034c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -32460,21 +32468,21 @@ void Unwind_1809034d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x18);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x18);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -32484,7 +32492,7 @@ void Unwind_1809034d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -32496,21 +32504,21 @@ void Unwind_1809034e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x60);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x60);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -32520,7 +32528,7 @@ void Unwind_1809034e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -32532,21 +32540,21 @@ void Unwind_1809034f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(resourceIndex + 0x10)) &&
-     (puVar2 = *(undefined8 **)(resourceIndex + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+     (pvalidationResult = *(undefined8 **)(resourceIndex + 8), pvalidationResult != (undefined8 *)0x0)) {
+    uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+      resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -32556,7 +32564,7 @@ void Unwind_1809034f0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+                            pvalidationResult,uVar4,0xfffffffffffffffe);
       }
     }
     return;
@@ -32570,21 +32578,21 @@ void Unwind_180903500(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(resourceIndex + 0x10)) &&
-     (puVar2 = *(undefined8 **)(resourceIndex + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+     (pvalidationResult = *(undefined8 **)(resourceIndex + 8), pvalidationResult != (undefined8 *)0x0)) {
+    uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+      resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -32594,7 +32602,7 @@ void Unwind_180903500(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+                            pvalidationResult,uVar4,0xfffffffffffffffe);
       }
     }
     return;
@@ -32671,21 +32679,21 @@ void Unwind_180903520(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x300);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x300);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -32695,7 +32703,7 @@ void Unwind_180903520(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -32721,21 +32729,21 @@ void Unwind_180903560(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x70);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(resourceIndex + 0x340)) &&
-     (puVar2 = *(undefined8 **)(resourceIndex + 0x338), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+     (pvalidationResult = *(undefined8 **)(resourceIndex + 0x338), pvalidationResult != (undefined8 *)0x0)) {
+    uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+      resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -32745,7 +32753,7 @@ void Unwind_180903560(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+                            pvalidationResult,uVar4,0xfffffffffffffffe);
       }
     }
     return;
@@ -32847,21 +32855,21 @@ void Unwind_1809035e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x80);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(resourceIndex + 0x10)) &&
-     (puVar2 = *(undefined8 **)(resourceIndex + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+     (pvalidationResult = *(undefined8 **)(resourceIndex + 8), pvalidationResult != (undefined8 *)0x0)) {
+    uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+      resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -32871,7 +32879,7 @@ void Unwind_1809035e0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+                            pvalidationResult,uVar4,0xfffffffffffffffe);
       }
     }
     return;
@@ -32885,21 +32893,21 @@ void Unwind_1809035f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x80);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(resourceIndex + 0x10)) &&
-     (puVar2 = *(undefined8 **)(resourceIndex + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+     (pvalidationResult = *(undefined8 **)(resourceIndex + 8), pvalidationResult != (undefined8 *)0x0)) {
+    uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+      resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -32909,7 +32917,7 @@ void Unwind_1809035f0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+                            pvalidationResult,uVar4,0xfffffffffffffffe);
       }
     }
     return;
@@ -37701,21 +37709,21 @@ void Unwind_180904630(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x10400);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x10400);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -37725,7 +37733,7 @@ void Unwind_180904630(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -38263,21 +38271,21 @@ void Unwind_180904920(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x28);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x28);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -38287,7 +38295,7 @@ void Unwind_180904920(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -38299,21 +38307,21 @@ void Unwind_180904930(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -38323,7 +38331,7 @@ void Unwind_180904930(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -38557,21 +38565,21 @@ void Unwind_1809049d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -38581,7 +38589,7 @@ void Unwind_1809049d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -38593,21 +38601,21 @@ void Unwind_1809049e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x28);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x28);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -38617,7 +38625,7 @@ void Unwind_1809049e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -38629,21 +38637,21 @@ void Unwind_1809049f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -38653,7 +38661,7 @@ void Unwind_1809049f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -38878,21 +38886,21 @@ void Unwind_180904a80(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x70);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x70);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -38902,7 +38910,7 @@ void Unwind_180904a80(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -38914,21 +38922,21 @@ void Unwind_180904a90(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x70);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x70);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -38938,7 +38946,7 @@ void Unwind_180904a90(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -39412,13 +39420,13 @@ void Unwind_180904e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 200);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xc0); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0xc0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xc0) == 0) {
     return;
@@ -39433,13 +39441,13 @@ void Unwind_180904e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 200);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xc0); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0xc0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xc0) == 0) {
     return;
@@ -39454,21 +39462,21 @@ void Unwind_180904e70(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xc0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xc0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -39478,7 +39486,7 @@ void Unwind_180904e70(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -39526,13 +39534,13 @@ void Unwind_180904f10(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x98);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x90); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x90); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x90) == 0) {
     return;
@@ -39547,13 +39555,13 @@ void Unwind_180904f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x98);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x90); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x90); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x90) == 0) {
     return;
@@ -39568,21 +39576,21 @@ void Unwind_180904f30(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x90);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x90);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -39592,7 +39600,7 @@ void Unwind_180904f30(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -39654,13 +39662,13 @@ void Unwind_180904f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x28);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x20); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x20); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x20) == 0) {
     return;
@@ -39675,13 +39683,13 @@ void Unwind_180904fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x28);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x20); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x20); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x20) == 0) {
     return;
@@ -39696,21 +39704,21 @@ void Unwind_180904fb0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -39720,7 +39728,7 @@ void Unwind_180904fb0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -39748,13 +39756,13 @@ void Unwind_180904fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xa0);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x98); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x98); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x98) == 0) {
     return;
@@ -39835,13 +39843,13 @@ void Unwind_180905020(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x48);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x40); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x40); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x40) == 0) {
     return;
@@ -39856,21 +39864,21 @@ void Unwind_180905030(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x40);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x40);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -39880,7 +39888,7 @@ void Unwind_180905030(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -39892,13 +39900,13 @@ void Unwind_180905040(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xa0);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x98); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x98); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x98) == 0) {
     return;
@@ -39913,21 +39921,21 @@ void Unwind_180905050(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x98);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x98);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -39937,7 +39945,7 @@ void Unwind_180905050(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -40069,13 +40077,13 @@ void Unwind_180905110(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x150);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x148); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x148); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x148) == 0) {
     return;
@@ -40090,13 +40098,13 @@ void Unwind_180905120(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x210);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x208); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x208); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x208) == 0) {
     return;
@@ -40145,13 +40153,13 @@ void Unwind_180905160(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x110);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x108); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x108); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x108) == 0) {
     return;
@@ -40166,13 +40174,13 @@ void Unwind_180905170(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x230);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x228); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x228); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x228) == 0) {
     return;
@@ -40249,13 +40257,13 @@ void Unwind_1809051f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x150);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x148); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x148); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x148) == 0) {
     return;
@@ -40270,21 +40278,21 @@ void Unwind_180905200(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x148);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x148);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -40294,7 +40302,7 @@ void Unwind_180905200(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -40306,13 +40314,13 @@ void Unwind_180905210(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x210);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x208); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x208); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x208) == 0) {
     return;
@@ -40327,21 +40335,21 @@ void Unwind_180905220(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x208);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x208);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -40351,7 +40359,7 @@ void Unwind_180905220(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -40381,13 +40389,13 @@ void Unwind_180905250(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x110);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x108); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x108); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x108) == 0) {
     return;
@@ -40402,21 +40410,21 @@ void Unwind_180905260(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x108);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x108);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -40426,7 +40434,7 @@ void Unwind_180905260(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -40438,13 +40446,13 @@ void Unwind_180905270(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x230);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x228); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x228); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x228) == 0) {
     return;
@@ -40459,21 +40467,21 @@ void Unwind_180905280(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x228);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x228);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -40483,7 +40491,7 @@ void Unwind_180905280(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -40602,21 +40610,21 @@ void Unwind_180905380(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -40626,7 +40634,7 @@ void Unwind_180905380(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -40969,21 +40977,21 @@ void Unwind_180905540(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x213438);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x213438);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -40993,7 +41001,7 @@ void Unwind_180905540(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -41032,21 +41040,21 @@ void Unwind_1809055b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x30);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -41056,7 +41064,7 @@ void Unwind_1809055b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -41068,21 +41076,21 @@ void Unwind_1809055c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x30);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -41092,7 +41100,7 @@ void Unwind_1809055c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -41660,21 +41668,21 @@ void Unwind_180905880(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x2e8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x2e8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -41684,7 +41692,7 @@ void Unwind_180905880(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -41906,26 +41914,26 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   ulonglong *puVar3;
   longlong lVar4;
   undefined8 *puVar5;
   ulonglong uVar6;
   
   puVar3 = *(ulonglong **)(param_2 + 0x48);
-  puVar2 = (undefined8 *)puVar3[1];
-  for (puVar5 = (undefined8 *)*puVar3; puVar5 != puVar2; puVar5 = puVar5 + 0xe) {
+  pvalidationResult = (undefined8 *)puVar3[1];
+  for (puVar5 = (undefined8 *)*puVar3; puVar5 != pvalidationResult; puVar5 = puVar5 + 0xe) {
     *puVar5 = &UNK_18098bcb0;
   }
-  puVar2 = (undefined8 *)*puVar3;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  pvalidationResult = (undefined8 *)*puVar3;
+  if (pvalidationResult != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      lVar4 = uVar6 + 0x80 + ((longlong)pvalidationResult - uVar6 >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(lVar4 + 0x20);
+        *(undefined8 **)(lVar4 + 0x20) = pvalidationResult;
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -41935,7 +41943,7 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            pvalidationResult,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -42643,7 +42651,7 @@ void Unwind_180905c10(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   ulonglong uVar5;
@@ -42654,9 +42662,9 @@ void Unwind_180905c10(undefined8 param_1,longlong param_2)
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
-      puVar2 = *(undefined8 **)(lVar1 + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &UNK_18098bcb0;
+      pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
+      if (pvalidationResult != (undefined8 *)0x0) {
+        *pvalidationResult = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -42679,7 +42687,7 @@ void Unwind_180905c20(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   ulonglong uVar5;
@@ -42690,9 +42698,9 @@ void Unwind_180905c20(undefined8 param_1,longlong param_2)
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
-      puVar2 = *(undefined8 **)(lVar1 + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &UNK_18098bcb0;
+      pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
+      if (pvalidationResult != (undefined8 *)0x0) {
+        *pvalidationResult = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -42715,7 +42723,7 @@ void Unwind_180905c30(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   ulonglong uVar5;
@@ -42726,9 +42734,9 @@ void Unwind_180905c30(undefined8 param_1,longlong param_2)
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
-      puVar2 = *(undefined8 **)(lVar1 + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &UNK_18098bcb0;
+      pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
+      if (pvalidationResult != (undefined8 *)0x0) {
+        *pvalidationResult = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -42751,7 +42759,7 @@ void Unwind_180905c40(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   ulonglong uVar5;
@@ -42762,9 +42770,9 @@ void Unwind_180905c40(undefined8 param_1,longlong param_2)
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
-      puVar2 = *(undefined8 **)(lVar1 + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &UNK_18098bcb0;
+      pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
+      if (pvalidationResult != (undefined8 *)0x0) {
+        *pvalidationResult = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -42851,7 +42859,7 @@ void Unwind_180905c60(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   ulonglong uVar5;
@@ -42862,9 +42870,9 @@ void Unwind_180905c60(undefined8 param_1,longlong param_2)
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
-      puVar2 = *(undefined8 **)(lVar1 + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &UNK_18098bcb0;
+      pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
+      if (pvalidationResult != (undefined8 *)0x0) {
+        *pvalidationResult = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -42887,7 +42895,7 @@ void Unwind_180905c80(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   ulonglong uVar5;
@@ -42898,9 +42906,9 @@ void Unwind_180905c80(undefined8 param_1,longlong param_2)
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
-      puVar2 = *(undefined8 **)(lVar1 + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &UNK_18098bcb0;
+      pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
+      if (pvalidationResult != (undefined8 *)0x0) {
+        *pvalidationResult = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -42923,7 +42931,7 @@ void Unwind_180905c90(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   ulonglong uVar5;
@@ -42934,9 +42942,9 @@ void Unwind_180905c90(undefined8 param_1,longlong param_2)
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
-      puVar2 = *(undefined8 **)(lVar1 + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &UNK_18098bcb0;
+      pvalidationResult = *(undefined8 **)(lVar1 + uVar5 * 8);
+      if (pvalidationResult != (undefined8 *)0x0) {
+        *pvalidationResult = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -44008,21 +44016,21 @@ void Unwind_180906160(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0xa8) + 0x1d8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0xa8) + 0x1d8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -44032,7 +44040,7 @@ void Unwind_180906160(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -44044,21 +44052,21 @@ void Unwind_180906180(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xb0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0xb0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -44068,7 +44076,7 @@ void Unwind_180906180(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -44080,21 +44088,21 @@ void Unwind_180906190(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xb0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0xb0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -44104,7 +44112,7 @@ void Unwind_180906190(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -44172,21 +44180,21 @@ void Unwind_1809061f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x1d8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x1d8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -44196,7 +44204,7 @@ void Unwind_1809061f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -44352,13 +44360,13 @@ void Unwind_1809063f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xe8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xe0); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0xe0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xe0) == 0) {
     return;
@@ -44397,13 +44405,13 @@ void Unwind_180906460(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xe8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xe0); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0xe0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xe0) == 0) {
     return;
@@ -44418,21 +44426,21 @@ void Unwind_180906470(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xe0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xe0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -44442,7 +44450,7 @@ void Unwind_180906470(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -45711,18 +45719,18 @@ void Unwind_180906b10(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   
   presourceHash = *(undefined8 **)(param_2 + 0x90);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x88); puVar2 != presourceHash; puVar2 = puVar2 + 6) {
-    *puVar2 = &UNK_180a3c3e0;
-    if (puVar2[1] != 0) {
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x88); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 6) {
+    *pvalidationResult = &UNK_180a3c3e0;
+    if (pvalidationResult[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    puVar2[1] = 0;
-    *(undefined4 *)(puVar2 + 3) = 0;
-    *puVar2 = &UNK_18098bcb0;
+    pvalidationResult[1] = 0;
+    *(undefined4 *)(pvalidationResult + 3) = 0;
+    *pvalidationResult = &UNK_18098bcb0;
   }
   if (*(longlong *)(param_2 + 0x88) != 0) {
                     // WARNING: Subroutine does not return
@@ -45759,18 +45767,18 @@ void Unwind_180906b40(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   
   presourceHash = *(undefined8 **)(param_2 + 0x90);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x88); puVar2 != presourceHash; puVar2 = puVar2 + 6) {
-    *puVar2 = &UNK_180a3c3e0;
-    if (puVar2[1] != 0) {
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x88); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 6) {
+    *pvalidationResult = &UNK_180a3c3e0;
+    if (pvalidationResult[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    puVar2[1] = 0;
-    *(undefined4 *)(puVar2 + 3) = 0;
-    *puVar2 = &UNK_18098bcb0;
+    pvalidationResult[1] = 0;
+    *(undefined4 *)(pvalidationResult + 3) = 0;
+    *pvalidationResult = &UNK_18098bcb0;
   }
   if (*(longlong *)(param_2 + 0x88) != 0) {
                     // WARNING: Subroutine does not return
@@ -45785,21 +45793,21 @@ void Unwind_180906b50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x88);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x88);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -45809,7 +45817,7 @@ void Unwind_180906b50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -45910,21 +45918,21 @@ void Unwind_180906bb0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x58);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x58);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -45934,7 +45942,7 @@ void Unwind_180906bb0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -45946,21 +45954,21 @@ void Unwind_180906bc0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x58);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x58);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -45970,7 +45978,7 @@ void Unwind_180906bc0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46063,21 +46071,21 @@ void Unwind_180906c50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x118);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x118);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46087,7 +46095,7 @@ void Unwind_180906c50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46141,21 +46149,21 @@ void Unwind_180906c80(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xa8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xa8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46165,7 +46173,7 @@ void Unwind_180906c80(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46177,21 +46185,21 @@ void Unwind_180906c90(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x30);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46201,7 +46209,7 @@ void Unwind_180906c90(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46213,21 +46221,21 @@ void Unwind_180906ca0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x88);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x88);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46237,7 +46245,7 @@ void Unwind_180906ca0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46270,21 +46278,21 @@ void Unwind_180906cc0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x118);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x118);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46294,7 +46302,7 @@ void Unwind_180906cc0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46306,21 +46314,21 @@ void Unwind_180906cd0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x118);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x118);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46330,7 +46338,7 @@ void Unwind_180906cd0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46363,21 +46371,21 @@ void Unwind_180906cf0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xf8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xf8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46387,7 +46395,7 @@ void Unwind_180906cf0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46399,21 +46407,21 @@ void Unwind_180906d00(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x260);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x260);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46423,7 +46431,7 @@ void Unwind_180906d00(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46435,21 +46443,21 @@ void Unwind_180906d10(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x260);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x260);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46459,7 +46467,7 @@ void Unwind_180906d10(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46492,21 +46500,21 @@ void Unwind_180906d30(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xd8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xd8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46516,7 +46524,7 @@ void Unwind_180906d30(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46528,21 +46536,21 @@ void Unwind_180906d40(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xa8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xa8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46552,7 +46560,7 @@ void Unwind_180906d40(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46564,21 +46572,21 @@ void Unwind_180906d50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xa8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xa8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46588,7 +46596,7 @@ void Unwind_180906d50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46600,21 +46608,21 @@ void Unwind_180906d60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x30);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46624,7 +46632,7 @@ void Unwind_180906d60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46636,21 +46644,21 @@ void Unwind_180906d70(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x30);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46660,7 +46668,7 @@ void Unwind_180906d70(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46672,21 +46680,21 @@ void Unwind_180906d80(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x88);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x88);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46696,7 +46704,7 @@ void Unwind_180906d80(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46708,21 +46716,21 @@ void Unwind_180906d90(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x268);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x268);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46732,7 +46740,7 @@ void Unwind_180906d90(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46744,21 +46752,21 @@ void Unwind_180906da0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x268);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x268);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46768,7 +46776,7 @@ void Unwind_180906da0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -46801,21 +46809,21 @@ void Unwind_180906dc0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x30);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -46825,7 +46833,7 @@ void Unwind_180906dc0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -47243,7 +47251,16 @@ void Unwind_180906ff0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180907000(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理资源句柄A
+ * 
+ * 该函数负责清理系统的资源句柄A
+ * 释放相关资源并重置状态
+ * 
+ * @param param_1 清理参数，用于指定清理的类型和范围
+ * @param param_2 资源句柄，标识需要清理的资源
+ */
+void CleanupResourceHandleA(undefined8 param_1,longlong param_2)
 
 {
   longlong *plVar1;
@@ -47835,21 +47852,21 @@ void Unwind_180907350(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x40);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x40);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -47859,7 +47876,7 @@ void Unwind_180907350(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -47871,21 +47888,21 @@ void Unwind_180907360(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -47895,7 +47912,7 @@ void Unwind_180907360(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -47907,21 +47924,21 @@ void Unwind_180907370(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -47931,7 +47948,7 @@ void Unwind_180907370(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -48124,21 +48141,21 @@ void Unwind_1809074d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x50);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x50);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -48148,7 +48165,7 @@ void Unwind_1809074d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -48160,21 +48177,21 @@ void Unwind_1809074e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x50);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x50);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -48184,7 +48201,7 @@ void Unwind_1809074e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -48196,21 +48213,21 @@ void Unwind_1809074f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x40);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x40);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -48220,7 +48237,7 @@ void Unwind_1809074f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -48578,12 +48595,12 @@ void Unwind_180907710(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x50);
-  *puVar2 = &UNK_180a14bb8;
-  presourceHash = (undefined8 *)puVar2[0x11];
+  pvalidationResult = *(undefined8 **)(param_2 + 0x50);
+  *pvalidationResult = &UNK_180a14bb8;
+  presourceHash = (undefined8 *)pvalidationResult[0x11];
   if (presourceHash != (undefined8 *)0x0) {
     resourceIndex = __RTCastToVoid(presourceHash);
     (**(code **)*presourceHash)(presourceHash,0);
@@ -48592,21 +48609,21 @@ void Unwind_180907710(undefined8 param_1,longlong param_2)
       FUN_18064e900(resourceIndex);
     }
   }
-  puVar2[0x11] = 0;
-  if (puVar2[0x12] != 0) {
+  pvalidationResult[0x11] = 0;
+  if (pvalidationResult[0x12] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puVar2[0xd] = &UNK_180a3c3e0;
-  if (puVar2[0xe] != 0) {
+  pvalidationResult[0xd] = &UNK_180a3c3e0;
+  if (pvalidationResult[0xe] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puVar2[0xe] = 0;
-  *(undefined4 *)(puVar2 + 0x10) = 0;
-  puVar2[0xd] = &UNK_18098bcb0;
-  FUN_180179f00(puVar2 + 7,puVar2[9]);
-  *puVar2 = &UNK_180a14c60;
+  pvalidationResult[0xe] = 0;
+  *(undefined4 *)(pvalidationResult + 0x10) = 0;
+  pvalidationResult[0xd] = &UNK_18098bcb0;
+  FUN_180179f00(pvalidationResult + 7,pvalidationResult[9]);
+  *pvalidationResult = &UNK_180a14c60;
   return;
 }
 
@@ -48630,12 +48647,12 @@ void Unwind_180907740(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x40);
-  *puVar2 = &UNK_180a14bb8;
-  presourceHash = (undefined8 *)puVar2[0x11];
+  pvalidationResult = *(undefined8 **)(param_2 + 0x40);
+  *pvalidationResult = &UNK_180a14bb8;
+  presourceHash = (undefined8 *)pvalidationResult[0x11];
   if (presourceHash != (undefined8 *)0x0) {
     resourceIndex = __RTCastToVoid(presourceHash);
     (**(code **)*presourceHash)(presourceHash,0);
@@ -48644,21 +48661,21 @@ void Unwind_180907740(undefined8 param_1,longlong param_2)
       FUN_18064e900(resourceIndex);
     }
   }
-  puVar2[0x11] = 0;
-  if (puVar2[0x12] != 0) {
+  pvalidationResult[0x11] = 0;
+  if (pvalidationResult[0x12] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puVar2[0xd] = &UNK_180a3c3e0;
-  if (puVar2[0xe] != 0) {
+  pvalidationResult[0xd] = &UNK_180a3c3e0;
+  if (pvalidationResult[0xe] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puVar2[0xe] = 0;
-  *(undefined4 *)(puVar2 + 0x10) = 0;
-  puVar2[0xd] = &UNK_18098bcb0;
-  FUN_180179f00(puVar2 + 7,puVar2[9]);
-  *puVar2 = &UNK_180a14c60;
+  pvalidationResult[0xe] = 0;
+  *(undefined4 *)(pvalidationResult + 0x10) = 0;
+  pvalidationResult[0xd] = &UNK_18098bcb0;
+  FUN_180179f00(pvalidationResult + 7,pvalidationResult[9]);
+  *pvalidationResult = &UNK_180a14c60;
   return;
 }
 
@@ -48879,21 +48896,21 @@ void Unwind_180907880(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x110);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x110);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -48903,7 +48920,7 @@ void Unwind_180907880(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -49205,7 +49222,7 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
@@ -49217,14 +49234,14 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
   }
   FUN_1800ba100(resourceIndex + 0x78);
   if ((1 < *(ulonglong *)(resourceIndex + 0x88)) &&
-     (puVar2 = *(undefined8 **)(resourceIndex + 0x80), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+     (pvalidationResult = *(undefined8 **)(resourceIndex + 0x80), pvalidationResult != (undefined8 *)0x0)) {
+    uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+      resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -49234,7 +49251,7 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+                            pvalidationResult,uVar4,0xfffffffffffffffe);
       }
     }
     return;
@@ -49248,21 +49265,21 @@ void Unwind_1809079e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x180);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x180);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -49272,7 +49289,7 @@ void Unwind_1809079e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -49302,21 +49319,21 @@ void Unwind_180907a10(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x130);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x130);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -49326,7 +49343,7 @@ void Unwind_180907a10(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -49381,21 +49398,21 @@ void Unwind_180907a50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x130);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x130);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -49405,7 +49422,7 @@ void Unwind_180907a50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -49417,21 +49434,21 @@ void Unwind_180907a60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x130);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x130);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -49441,7 +49458,7 @@ void Unwind_180907a60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -49716,21 +49733,21 @@ void Unwind_180907c20(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x230);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x230);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -49740,7 +49757,7 @@ void Unwind_180907c20(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -49796,21 +49813,21 @@ void Unwind_180907c70(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x230);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x230);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -49820,7 +49837,7 @@ void Unwind_180907c70(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -49832,21 +49849,21 @@ void Unwind_180907c80(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x230);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x230);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -49856,7 +49873,7 @@ void Unwind_180907c80(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -49901,13 +49918,13 @@ void Unwind_180907cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x170);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x168); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x168); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x168) == 0) {
     return;
@@ -49992,13 +50009,13 @@ void Unwind_180907d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x170);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x168); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x168); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x168) == 0) {
     return;
@@ -50013,21 +50030,21 @@ void Unwind_180907d30(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x168);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x168);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50037,7 +50054,7 @@ void Unwind_180907d30(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -50175,13 +50192,13 @@ void Unwind_180907e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x30);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x28); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x28); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x28) == 0) {
     return;
@@ -50196,21 +50213,21 @@ void Unwind_180907e90(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x28);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x28);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50220,7 +50237,7 @@ void Unwind_180907e90(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -50232,21 +50249,21 @@ void Unwind_180907ea0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x38);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x38);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50256,7 +50273,7 @@ void Unwind_180907ea0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -50268,21 +50285,21 @@ void Unwind_180907eb0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x60);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x60);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50292,7 +50309,7 @@ void Unwind_180907eb0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -50304,21 +50321,21 @@ void Unwind_180907ec0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x38);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x38);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50328,7 +50345,7 @@ void Unwind_180907ec0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -50340,21 +50357,21 @@ void Unwind_180907ed0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x38);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x38);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50364,7 +50381,7 @@ void Unwind_180907ed0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -50567,21 +50584,21 @@ void Unwind_180908000(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50591,7 +50608,7 @@ void Unwind_180908000(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -50635,21 +50652,21 @@ void Unwind_180908030(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50659,7 +50676,7 @@ void Unwind_180908030(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -51408,21 +51425,21 @@ void Unwind_180908650(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x10);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x10);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -51432,7 +51449,7 @@ void Unwind_180908650(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -51444,12 +51461,12 @@ void Unwind_180908660(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
-  uVar2 = 0xfffffffffffffffe;
+  validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  FUN_1808fc8a8(lVar1 + 0x3e0,0x20,0x20,FUN_180627b90,uVar2);
+  FUN_1808fc8a8(lVar1 + 0x3e0,0x20,0x20,FUN_180627b90,validationResult);
   FUN_18005d580();
   FUN_1808fc8a8(lVar1 + 0x138,8,0x20,FUN_180045af0);
   FUN_1808fc8a8(lVar1 + 0x38,8,0x20,FUN_180045af0);
@@ -51663,21 +51680,21 @@ void Unwind_1809087c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xa0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xa0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -51687,7 +51704,7 @@ void Unwind_1809087c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -51773,21 +51790,21 @@ void Unwind_180908830(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xa0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xa0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -51797,7 +51814,7 @@ void Unwind_180908830(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -51809,21 +51826,21 @@ void Unwind_180908840(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xa0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xa0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -51833,7 +51850,7 @@ void Unwind_180908840(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -51877,21 +51894,21 @@ void Unwind_180908870(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x160);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x160);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -51901,7 +51918,7 @@ void Unwind_180908870(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -52189,21 +52206,21 @@ void Unwind_180908a20(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1a0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x1a0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52213,7 +52230,7 @@ void Unwind_180908a20(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -52225,21 +52242,21 @@ void Unwind_180908a30(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x160);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x160);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52249,7 +52266,7 @@ void Unwind_180908a30(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -52261,21 +52278,21 @@ void Unwind_180908a40(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x120);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x120);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52285,7 +52302,7 @@ void Unwind_180908a40(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -52297,21 +52314,21 @@ void Unwind_180908a50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1a0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x1a0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52321,7 +52338,7 @@ void Unwind_180908a50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -52333,21 +52350,21 @@ void Unwind_180908a60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1a0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x1a0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52357,7 +52374,7 @@ void Unwind_180908a60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -52369,21 +52386,21 @@ void Unwind_180908a70(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x160);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x160);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52393,7 +52410,7 @@ void Unwind_180908a70(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -52405,21 +52422,21 @@ void Unwind_180908a80(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x120);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x120);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52429,7 +52446,7 @@ void Unwind_180908a80(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -52441,21 +52458,21 @@ void Unwind_180908a90(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x68);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52465,7 +52482,7 @@ void Unwind_180908a90(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -52486,21 +52503,21 @@ void Unwind_180908ab0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52510,7 +52527,7 @@ void Unwind_180908ab0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -52522,21 +52539,21 @@ void Unwind_180908ac0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x68);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52546,7 +52563,7 @@ void Unwind_180908ac0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -52558,21 +52575,21 @@ void Unwind_180908ad0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x68);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52582,7 +52599,7 @@ void Unwind_180908ad0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -52631,21 +52648,21 @@ void Unwind_180908b10(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x30) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x30) + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52655,7 +52672,7 @@ void Unwind_180908b10(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -53134,21 +53151,21 @@ void Unwind_180908dd0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x108) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x108) + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -53158,7 +53175,7 @@ void Unwind_180908dd0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -53179,21 +53196,21 @@ void Unwind_180908df0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xa0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0xa0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -53203,7 +53220,7 @@ void Unwind_180908df0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -53215,21 +53232,21 @@ void Unwind_180908e00(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xa0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0xa0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -53239,7 +53256,7 @@ void Unwind_180908e00(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -53279,21 +53296,21 @@ void Unwind_180908e50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -53303,7 +53320,7 @@ void Unwind_180908e50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -53315,21 +53332,21 @@ void Unwind_180908e60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -53339,7 +53356,7 @@ void Unwind_180908e60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -53351,21 +53368,21 @@ void Unwind_180908e70(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -53375,7 +53392,7 @@ void Unwind_180908e70(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -53387,12 +53404,12 @@ void Unwind_180908e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
-  uVar2 = 0xfffffffffffffffe;
+  validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(lVar1 + 0x110,*(undefined8 *)(lVar1 + 0x120),param_3,param_4,uVar2);
+  FUN_180058370(lVar1 + 0x110,*(undefined8 *)(lVar1 + 0x120),param_3,param_4,validationResult);
   FUN_180058370(lVar1 + 0xe0,*(undefined8 *)(lVar1 + 0xf0));
   FUN_180058370(lVar1 + 0xb0,*(undefined8 *)(lVar1 + 0xc0));
   FUN_1800593f0(lVar1 + 0x80,*(undefined8 *)(lVar1 + 0x90));
@@ -53735,21 +53752,21 @@ void Unwind_180909090(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x48);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -53759,7 +53776,7 @@ void Unwind_180909090(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -53826,21 +53843,21 @@ void Unwind_1809090b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x121c0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x121c0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -53850,7 +53867,7 @@ void Unwind_1809090b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -54058,7 +54075,7 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong *puVar4;
   ulonglong uVar5;
@@ -54069,15 +54086,15 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
   for (uVar5 = *puVar4; uVar5 != uVar6; uVar5 = uVar5 + 0xd0) {
     *(undefined **)(uVar5 + 0x10) = &UNK_18098bcb0;
   }
-  puVar2 = (undefined8 *)*puVar4;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  pvalidationResult = (undefined8 *)*puVar4;
+  if (pvalidationResult != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      resourceIndex = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      resourceIndex = uVar6 + 0x80 + ((longlong)pvalidationResult - uVar6 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -54087,7 +54104,7 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            pvalidationResult,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -54115,7 +54132,7 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   ulonglong *puVar3;
   longlong lVar4;
   ulonglong uVar5;
@@ -54126,15 +54143,15 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
   for (uVar5 = *puVar3; uVar5 != uVar6; uVar5 = uVar5 + 0xd0) {
     *(undefined **)(uVar5 + 0x10) = &UNK_18098bcb0;
   }
-  puVar2 = (undefined8 *)*puVar3;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  pvalidationResult = (undefined8 *)*puVar3;
+  if (pvalidationResult != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      lVar4 = uVar6 + 0x80 + ((longlong)pvalidationResult - uVar6 >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(lVar4 + 0x20);
+        *(undefined8 **)(lVar4 + 0x20) = pvalidationResult;
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -54144,7 +54161,7 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            pvalidationResult,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -54158,7 +54175,7 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   ulonglong *puVar3;
   longlong lVar4;
   ulonglong uVar5;
@@ -54169,15 +54186,15 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
   for (uVar5 = *puVar3; uVar5 != uVar6; uVar5 = uVar5 + 0xd0) {
     *(undefined **)(uVar5 + 0x10) = &UNK_18098bcb0;
   }
-  puVar2 = (undefined8 *)*puVar3;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  pvalidationResult = (undefined8 *)*puVar3;
+  if (pvalidationResult != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      lVar4 = uVar6 + 0x80 + ((longlong)pvalidationResult - uVar6 >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(lVar4 + 0x20);
+        *(undefined8 **)(lVar4 + 0x20) = pvalidationResult;
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -54187,7 +54204,7 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            pvalidationResult,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -54228,7 +54245,7 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
 
 {
   longlong *plVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 *puVar3;
   longlong lVar4;
   longlong lVar5;
@@ -54244,31 +54261,31 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
   lVar4 = *plVar1;
   if (puVar3[0x1013] - lVar4 >> 3 != 0) {
     do {
-      puVar2 = *(undefined8 **)(uVar6 * 8 + lVar4);
-      if (puVar2 != (undefined8 *)0x0) {
-        if ((longlong *)puVar2[0xd] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xd] + 0x10))();
-          puVar2[0xd] = 0;
+      pvalidationResult = *(undefined8 **)(uVar6 * 8 + lVar4);
+      if (pvalidationResult != (undefined8 *)0x0) {
+        if ((longlong *)pvalidationResult[0xd] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xd] + 0x10))();
+          pvalidationResult[0xd] = 0;
         }
-        if ((longlong *)puVar2[0xe] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xe] + 0x10))();
-          puVar2[0xe] = 0;
+        if ((longlong *)pvalidationResult[0xe] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xe] + 0x10))();
+          pvalidationResult[0xe] = 0;
         }
-        if ((longlong *)puVar2[0xf] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xf] + 0x10))();
-          puVar2[0xf] = 0;
+        if ((longlong *)pvalidationResult[0xf] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xf] + 0x10))();
+          pvalidationResult[0xf] = 0;
         }
-        if ((longlong *)puVar2[0x10] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x10] + 0x10))();
-          puVar2[0x10] = 0;
+        if ((longlong *)pvalidationResult[0x10] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0x10] + 0x10))();
+          pvalidationResult[0x10] = 0;
         }
-        if ((longlong *)puVar2[0x11] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x11] + 0x10))();
-          puVar2[0x11] = 0;
+        if ((longlong *)pvalidationResult[0x11] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0x11] + 0x10))();
+          pvalidationResult[0x11] = 0;
         }
-        *puVar2 = &UNK_18098bcb0;
+        *pvalidationResult = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(puVar2);
+        FUN_18064e900(pvalidationResult);
       }
       *(undefined8 *)(uVar6 * 8 + *plVar1) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
@@ -54276,12 +54293,12 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
     } while (uVar6 < (ulonglong)(puVar3[0x1013] - lVar4 >> 3));
   }
   puVar3[0x1013] = lVar4;
-  puVar2 = (undefined8 *)puVar3[0x1043];
-  if (puVar2 != (undefined8 *)0x0) {
-    FUN_1800f74f0(puVar3 + 0x1041,*puVar2);
-    puVar2[4] = &UNK_18098bcb0;
+  pvalidationResult = (undefined8 *)puVar3[0x1043];
+  if (pvalidationResult != (undefined8 *)0x0) {
+    FUN_1800f74f0(puVar3 + 0x1041,*pvalidationResult);
+    pvalidationResult[4] = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar2);
+    FUN_18064e900(pvalidationResult);
   }
   FUN_180058370(puVar3 + 0x103b,puVar3[0x103d]);
   FUN_180058370(puVar3 + 0x1035,puVar3[0x1037]);
@@ -54376,7 +54393,7 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
 
 {
   longlong *plVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 *puVar3;
   longlong lVar4;
   longlong lVar5;
@@ -54392,31 +54409,31 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
   lVar4 = *plVar1;
   if (puVar3[0x1013] - lVar4 >> 3 != 0) {
     do {
-      puVar2 = *(undefined8 **)(uVar6 * 8 + lVar4);
-      if (puVar2 != (undefined8 *)0x0) {
-        if ((longlong *)puVar2[0xd] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xd] + 0x10))();
-          puVar2[0xd] = 0;
+      pvalidationResult = *(undefined8 **)(uVar6 * 8 + lVar4);
+      if (pvalidationResult != (undefined8 *)0x0) {
+        if ((longlong *)pvalidationResult[0xd] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xd] + 0x10))();
+          pvalidationResult[0xd] = 0;
         }
-        if ((longlong *)puVar2[0xe] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xe] + 0x10))();
-          puVar2[0xe] = 0;
+        if ((longlong *)pvalidationResult[0xe] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xe] + 0x10))();
+          pvalidationResult[0xe] = 0;
         }
-        if ((longlong *)puVar2[0xf] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xf] + 0x10))();
-          puVar2[0xf] = 0;
+        if ((longlong *)pvalidationResult[0xf] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xf] + 0x10))();
+          pvalidationResult[0xf] = 0;
         }
-        if ((longlong *)puVar2[0x10] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x10] + 0x10))();
-          puVar2[0x10] = 0;
+        if ((longlong *)pvalidationResult[0x10] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0x10] + 0x10))();
+          pvalidationResult[0x10] = 0;
         }
-        if ((longlong *)puVar2[0x11] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x11] + 0x10))();
-          puVar2[0x11] = 0;
+        if ((longlong *)pvalidationResult[0x11] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0x11] + 0x10))();
+          pvalidationResult[0x11] = 0;
         }
-        *puVar2 = &UNK_18098bcb0;
+        *pvalidationResult = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(puVar2);
+        FUN_18064e900(pvalidationResult);
       }
       *(undefined8 *)(uVar6 * 8 + *plVar1) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
@@ -54424,12 +54441,12 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
     } while (uVar6 < (ulonglong)(puVar3[0x1013] - lVar4 >> 3));
   }
   puVar3[0x1013] = lVar4;
-  puVar2 = (undefined8 *)puVar3[0x1043];
-  if (puVar2 != (undefined8 *)0x0) {
-    FUN_1800f74f0(puVar3 + 0x1041,*puVar2);
-    puVar2[4] = &UNK_18098bcb0;
+  pvalidationResult = (undefined8 *)puVar3[0x1043];
+  if (pvalidationResult != (undefined8 *)0x0) {
+    FUN_1800f74f0(puVar3 + 0x1041,*pvalidationResult);
+    pvalidationResult[4] = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar2);
+    FUN_18064e900(pvalidationResult);
   }
   FUN_180058370(puVar3 + 0x103b,puVar3[0x103d]);
   FUN_180058370(puVar3 + 0x1035,puVar3[0x1037]);
@@ -54457,7 +54474,7 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   longlong *plVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   longlong lVar4;
   longlong lVar5;
@@ -54469,31 +54486,31 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   lVar4 = *plVar1;
   if (*(longlong *)(resourceIndex + 0x8098) - lVar4 >> 3 != 0) {
     do {
-      puVar2 = *(undefined8 **)(uVar6 * 8 + lVar4);
-      if (puVar2 != (undefined8 *)0x0) {
-        if ((longlong *)puVar2[0xd] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xd] + 0x10))();
-          puVar2[0xd] = 0;
+      pvalidationResult = *(undefined8 **)(uVar6 * 8 + lVar4);
+      if (pvalidationResult != (undefined8 *)0x0) {
+        if ((longlong *)pvalidationResult[0xd] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xd] + 0x10))();
+          pvalidationResult[0xd] = 0;
         }
-        if ((longlong *)puVar2[0xe] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xe] + 0x10))();
-          puVar2[0xe] = 0;
+        if ((longlong *)pvalidationResult[0xe] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xe] + 0x10))();
+          pvalidationResult[0xe] = 0;
         }
-        if ((longlong *)puVar2[0xf] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xf] + 0x10))();
-          puVar2[0xf] = 0;
+        if ((longlong *)pvalidationResult[0xf] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xf] + 0x10))();
+          pvalidationResult[0xf] = 0;
         }
-        if ((longlong *)puVar2[0x10] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x10] + 0x10))();
-          puVar2[0x10] = 0;
+        if ((longlong *)pvalidationResult[0x10] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0x10] + 0x10))();
+          pvalidationResult[0x10] = 0;
         }
-        if ((longlong *)puVar2[0x11] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x11] + 0x10))();
-          puVar2[0x11] = 0;
+        if ((longlong *)pvalidationResult[0x11] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0x11] + 0x10))();
+          pvalidationResult[0x11] = 0;
         }
-        *puVar2 = &UNK_18098bcb0;
+        *pvalidationResult = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(puVar2);
+        FUN_18064e900(pvalidationResult);
       }
       *(undefined8 *)(uVar6 * 8 + *plVar1) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
@@ -54501,12 +54518,12 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     } while (uVar6 < (ulonglong)(*(longlong *)(resourceIndex + 0x8098) - lVar4 >> 3));
   }
   *(longlong *)(resourceIndex + 0x8098) = lVar4;
-  puVar2 = *(undefined8 **)(resourceIndex + 0x8218);
-  if (puVar2 != (undefined8 *)0x0) {
-    FUN_1800f74f0(resourceIndex + 0x8208,*puVar2);
-    puVar2[4] = &UNK_18098bcb0;
+  pvalidationResult = *(undefined8 **)(resourceIndex + 0x8218);
+  if (pvalidationResult != (undefined8 *)0x0) {
+    FUN_1800f74f0(resourceIndex + 0x8208,*pvalidationResult);
+    pvalidationResult[4] = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar2);
+    FUN_18064e900(pvalidationResult);
   }
   FUN_180058370(resourceIndex + 0x81d8,*(undefined8 *)(resourceIndex + 0x81e8),param_3,param_4,0xfffffffffffffffe);
   FUN_180058370(resourceIndex + 0x81a8,*(undefined8 *)(resourceIndex + 0x81b8));
@@ -55039,21 +55056,21 @@ void Unwind_180909660(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xd8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xd8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -55063,7 +55080,7 @@ void Unwind_180909660(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -55075,21 +55092,21 @@ void Unwind_180909670(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xd8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xd8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -55099,7 +55116,7 @@ void Unwind_180909670(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -55111,21 +55128,21 @@ void Unwind_180909680(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0xb8) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0xb8) + 8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -55135,7 +55152,7 @@ void Unwind_180909680(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -55147,21 +55164,21 @@ void Unwind_180909690(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xb8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0xb8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -55171,7 +55188,7 @@ void Unwind_180909690(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -55183,21 +55200,21 @@ void Unwind_1809096a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xb8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0xb8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -55207,7 +55224,7 @@ void Unwind_1809096a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -55219,7 +55236,7 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
 
 {
   longlong *plVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 *puVar3;
   longlong lVar4;
   longlong lVar5;
@@ -55235,31 +55252,31 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
   lVar4 = *plVar1;
   if (puVar3[0x1013] - lVar4 >> 3 != 0) {
     do {
-      puVar2 = *(undefined8 **)(uVar6 * 8 + lVar4);
-      if (puVar2 != (undefined8 *)0x0) {
-        if ((longlong *)puVar2[0xd] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xd] + 0x10))();
-          puVar2[0xd] = 0;
+      pvalidationResult = *(undefined8 **)(uVar6 * 8 + lVar4);
+      if (pvalidationResult != (undefined8 *)0x0) {
+        if ((longlong *)pvalidationResult[0xd] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xd] + 0x10))();
+          pvalidationResult[0xd] = 0;
         }
-        if ((longlong *)puVar2[0xe] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xe] + 0x10))();
-          puVar2[0xe] = 0;
+        if ((longlong *)pvalidationResult[0xe] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xe] + 0x10))();
+          pvalidationResult[0xe] = 0;
         }
-        if ((longlong *)puVar2[0xf] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xf] + 0x10))();
-          puVar2[0xf] = 0;
+        if ((longlong *)pvalidationResult[0xf] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xf] + 0x10))();
+          pvalidationResult[0xf] = 0;
         }
-        if ((longlong *)puVar2[0x10] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x10] + 0x10))();
-          puVar2[0x10] = 0;
+        if ((longlong *)pvalidationResult[0x10] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0x10] + 0x10))();
+          pvalidationResult[0x10] = 0;
         }
-        if ((longlong *)puVar2[0x11] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x11] + 0x10))();
-          puVar2[0x11] = 0;
+        if ((longlong *)pvalidationResult[0x11] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0x11] + 0x10))();
+          pvalidationResult[0x11] = 0;
         }
-        *puVar2 = &UNK_18098bcb0;
+        *pvalidationResult = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(puVar2);
+        FUN_18064e900(pvalidationResult);
       }
       *(undefined8 *)(uVar6 * 8 + *plVar1) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
@@ -55267,12 +55284,12 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
     } while (uVar6 < (ulonglong)(puVar3[0x1013] - lVar4 >> 3));
   }
   puVar3[0x1013] = lVar4;
-  puVar2 = (undefined8 *)puVar3[0x1043];
-  if (puVar2 != (undefined8 *)0x0) {
-    FUN_1800f74f0(puVar3 + 0x1041,*puVar2);
-    puVar2[4] = &UNK_18098bcb0;
+  pvalidationResult = (undefined8 *)puVar3[0x1043];
+  if (pvalidationResult != (undefined8 *)0x0) {
+    FUN_1800f74f0(puVar3 + 0x1041,*pvalidationResult);
+    pvalidationResult[4] = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar2);
+    FUN_18064e900(pvalidationResult);
   }
   FUN_180058370(puVar3 + 0x103b,puVar3[0x103d]);
   FUN_180058370(puVar3 + 0x1035,puVar3[0x1037]);
@@ -55300,7 +55317,7 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   longlong *plVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   longlong lVar4;
   longlong lVar5;
@@ -55312,31 +55329,31 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   lVar4 = *plVar1;
   if (*(longlong *)(resourceIndex + 0x8098) - lVar4 >> 3 != 0) {
     do {
-      puVar2 = *(undefined8 **)(uVar6 * 8 + lVar4);
-      if (puVar2 != (undefined8 *)0x0) {
-        if ((longlong *)puVar2[0xd] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xd] + 0x10))();
-          puVar2[0xd] = 0;
+      pvalidationResult = *(undefined8 **)(uVar6 * 8 + lVar4);
+      if (pvalidationResult != (undefined8 *)0x0) {
+        if ((longlong *)pvalidationResult[0xd] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xd] + 0x10))();
+          pvalidationResult[0xd] = 0;
         }
-        if ((longlong *)puVar2[0xe] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xe] + 0x10))();
-          puVar2[0xe] = 0;
+        if ((longlong *)pvalidationResult[0xe] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xe] + 0x10))();
+          pvalidationResult[0xe] = 0;
         }
-        if ((longlong *)puVar2[0xf] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xf] + 0x10))();
-          puVar2[0xf] = 0;
+        if ((longlong *)pvalidationResult[0xf] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0xf] + 0x10))();
+          pvalidationResult[0xf] = 0;
         }
-        if ((longlong *)puVar2[0x10] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x10] + 0x10))();
-          puVar2[0x10] = 0;
+        if ((longlong *)pvalidationResult[0x10] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0x10] + 0x10))();
+          pvalidationResult[0x10] = 0;
         }
-        if ((longlong *)puVar2[0x11] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x11] + 0x10))();
-          puVar2[0x11] = 0;
+        if ((longlong *)pvalidationResult[0x11] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)pvalidationResult[0x11] + 0x10))();
+          pvalidationResult[0x11] = 0;
         }
-        *puVar2 = &UNK_18098bcb0;
+        *pvalidationResult = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(puVar2);
+        FUN_18064e900(pvalidationResult);
       }
       *(undefined8 *)(uVar6 * 8 + *plVar1) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
@@ -55344,12 +55361,12 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     } while (uVar6 < (ulonglong)(*(longlong *)(resourceIndex + 0x8098) - lVar4 >> 3));
   }
   *(longlong *)(resourceIndex + 0x8098) = lVar4;
-  puVar2 = *(undefined8 **)(resourceIndex + 0x8218);
-  if (puVar2 != (undefined8 *)0x0) {
-    FUN_1800f74f0(resourceIndex + 0x8208,*puVar2);
-    puVar2[4] = &UNK_18098bcb0;
+  pvalidationResult = *(undefined8 **)(resourceIndex + 0x8218);
+  if (pvalidationResult != (undefined8 *)0x0) {
+    FUN_1800f74f0(resourceIndex + 0x8208,*pvalidationResult);
+    pvalidationResult[4] = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar2);
+    FUN_18064e900(pvalidationResult);
   }
   FUN_180058370(resourceIndex + 0x81d8,*(undefined8 *)(resourceIndex + 0x81e8),param_3,param_4,0xfffffffffffffffe);
   FUN_180058370(resourceIndex + 0x81a8,*(undefined8 *)(resourceIndex + 0x81b8));
@@ -55643,21 +55660,21 @@ void Unwind_180909860(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x68);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -55667,7 +55684,7 @@ void Unwind_180909860(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -55850,21 +55867,21 @@ void Unwind_180909a00(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x38);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x38);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -55874,7 +55891,7 @@ void Unwind_180909a00(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -55918,21 +55935,21 @@ void Unwind_180909a40(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x38);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x38);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -55942,7 +55959,7 @@ void Unwind_180909a40(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -55954,21 +55971,21 @@ void Unwind_180909a50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x38);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x38);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -55978,7 +55995,7 @@ void Unwind_180909a50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -56216,21 +56233,21 @@ void Unwind_180909c20(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x30) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x30) + 8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56240,7 +56257,7 @@ void Unwind_180909c20(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -56610,7 +56627,7 @@ void Unwind_180909f60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
@@ -56621,15 +56638,15 @@ void Unwind_180909f60(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puVar2 = *(undefined8 **)(resourceIndex + 0xac0);
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  pvalidationResult = *(undefined8 **)(resourceIndex + 0xac0);
+  if (pvalidationResult != (undefined8 *)0x0) {
+    uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+      resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -56639,7 +56656,7 @@ void Unwind_180909f60(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+                            pvalidationResult,uVar4,0xfffffffffffffffe);
       }
     }
     return;
@@ -57175,7 +57192,7 @@ void Unwind_18090a450(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
@@ -57186,15 +57203,15 @@ void Unwind_18090a450(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puVar2 = *(undefined8 **)(resourceIndex + 0xac0);
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  pvalidationResult = *(undefined8 **)(resourceIndex + 0xac0);
+  if (pvalidationResult != (undefined8 *)0x0) {
+    uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+      resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -57204,7 +57221,7 @@ void Unwind_18090a450(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+                            pvalidationResult,uVar4,0xfffffffffffffffe);
       }
     }
     return;
@@ -57381,21 +57398,21 @@ void Unwind_18090a5c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -57405,7 +57422,7 @@ void Unwind_18090a5c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -57417,21 +57434,21 @@ void Unwind_18090a5d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -57441,7 +57458,7 @@ void Unwind_18090a5d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -57625,21 +57642,21 @@ void Unwind_18090a780(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x40);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x40);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -57649,7 +57666,7 @@ void Unwind_18090a780(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -57675,21 +57692,21 @@ void Unwind_18090a7a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x40);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x40);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -57699,7 +57716,7 @@ void Unwind_18090a7a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -57854,21 +57871,21 @@ void Unwind_18090a880(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -57878,7 +57895,7 @@ void Unwind_18090a880(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -57890,21 +57907,21 @@ void Unwind_18090a890(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -57914,7 +57931,7 @@ void Unwind_18090a890(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -58114,21 +58131,21 @@ void Unwind_18090a930(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(resourceIndex + 0x10)) &&
-     (puVar2 = *(undefined8 **)(resourceIndex + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+     (pvalidationResult = *(undefined8 **)(resourceIndex + 8), pvalidationResult != (undefined8 *)0x0)) {
+    uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+      resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -58138,7 +58155,7 @@ void Unwind_18090a930(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+                            pvalidationResult,uVar4,0xfffffffffffffffe);
       }
     }
     return;
@@ -58152,21 +58169,21 @@ void Unwind_18090a940(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(resourceIndex + 0x10)) &&
-     (puVar2 = *(undefined8 **)(resourceIndex + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+     (pvalidationResult = *(undefined8 **)(resourceIndex + 8), pvalidationResult != (undefined8 *)0x0)) {
+    uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+      resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -58176,7 +58193,7 @@ void Unwind_18090a940(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+                            pvalidationResult,uVar4,0xfffffffffffffffe);
       }
     }
     return;
@@ -58190,21 +58207,21 @@ void Unwind_18090a950(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(resourceIndex + 0x10)) &&
-     (puVar2 = *(undefined8 **)(resourceIndex + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+     (pvalidationResult = *(undefined8 **)(resourceIndex + 8), pvalidationResult != (undefined8 *)0x0)) {
+    uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+      resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -58214,7 +58231,7 @@ void Unwind_18090a950(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+                            pvalidationResult,uVar4,0xfffffffffffffffe);
       }
     }
     return;
@@ -58228,21 +58245,21 @@ void Unwind_18090a960(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x50);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(resourceIndex + 0x10)) &&
-     (puVar2 = *(undefined8 **)(resourceIndex + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+     (pvalidationResult = *(undefined8 **)(resourceIndex + 8), pvalidationResult != (undefined8 *)0x0)) {
+    uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+      resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -58252,7 +58269,7 @@ void Unwind_18090a960(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+                            pvalidationResult,uVar4,0xfffffffffffffffe);
       }
     }
     return;
@@ -58266,21 +58283,21 @@ void Unwind_18090a970(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
   resourceIndex = *(longlong *)(param_2 + 0x50);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(resourceIndex + 0x10)) &&
-     (puVar2 = *(undefined8 **)(resourceIndex + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+     (pvalidationResult = *(undefined8 **)(resourceIndex + 8), pvalidationResult != (undefined8 *)0x0)) {
+    uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+      resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
       resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
       if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-        *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+        *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+        *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -58290,7 +58307,7 @@ void Unwind_18090a970(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+                            pvalidationResult,uVar4,0xfffffffffffffffe);
       }
     }
     return;
@@ -61299,21 +61316,21 @@ void Unwind_18090c140(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x50);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x50);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -61323,7 +61340,7 @@ void Unwind_18090c140(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -61444,21 +61461,21 @@ void Unwind_18090c1c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -61468,7 +61485,7 @@ void Unwind_18090c1c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -61599,21 +61616,21 @@ void Unwind_18090c280(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xe8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xe8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -61623,7 +61640,7 @@ void Unwind_18090c280(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -61671,21 +61688,21 @@ void Unwind_18090c2d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xe8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xe8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -61695,7 +61712,7 @@ void Unwind_18090c2d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -61707,21 +61724,21 @@ void Unwind_18090c2e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xe8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xe8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -61731,7 +61748,7 @@ void Unwind_18090c2e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -61855,21 +61872,21 @@ void Unwind_18090c3b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x1d8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x1d8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -61879,7 +61896,7 @@ void Unwind_18090c3b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -61914,21 +61931,21 @@ void Unwind_18090c400(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x2d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x2d0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -61938,7 +61955,7 @@ void Unwind_18090c400(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -62212,21 +62229,21 @@ void Unwind_18090c530(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xb8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xb8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -62236,7 +62253,7 @@ void Unwind_18090c530(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -62633,21 +62650,21 @@ void Unwind_18090c610(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xb8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xb8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -62657,7 +62674,7 @@ void Unwind_18090c610(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -62669,21 +62686,21 @@ void Unwind_18090c620(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xb8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xb8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -62693,7 +62710,7 @@ void Unwind_18090c620(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -64794,21 +64811,21 @@ void Unwind_18090d000(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xb0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xb0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -64818,7 +64835,7 @@ void Unwind_18090d000(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -64830,21 +64847,21 @@ void Unwind_18090d010(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xd0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xd0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -64854,7 +64871,7 @@ void Unwind_18090d010(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -64866,21 +64883,21 @@ void Unwind_18090d020(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xf0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xf0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -64890,7 +64907,7 @@ void Unwind_18090d020(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -64902,21 +64919,21 @@ void Unwind_18090d030(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x110);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x110);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -64926,7 +64943,7 @@ void Unwind_18090d030(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -64938,21 +64955,21 @@ void Unwind_18090d040(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x150);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x150);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -64962,7 +64979,7 @@ void Unwind_18090d040(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -64974,21 +64991,21 @@ void Unwind_18090d050(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x170);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x170);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -64998,7 +65015,7 @@ void Unwind_18090d050(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65010,21 +65027,21 @@ void Unwind_18090d060(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 400);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 400);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65034,7 +65051,7 @@ void Unwind_18090d060(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65046,21 +65063,21 @@ void Unwind_18090d070(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x1b0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65070,7 +65087,7 @@ void Unwind_18090d070(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65082,21 +65099,21 @@ void Unwind_18090d080(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x1d0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65106,7 +65123,7 @@ void Unwind_18090d080(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65118,21 +65135,21 @@ void Unwind_18090d090(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1f0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x1f0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65142,7 +65159,7 @@ void Unwind_18090d090(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65154,21 +65171,21 @@ void Unwind_18090d0a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x210);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x210);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65178,7 +65195,7 @@ void Unwind_18090d0a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65190,21 +65207,21 @@ void Unwind_18090d0b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x250);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x250);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65214,7 +65231,7 @@ void Unwind_18090d0b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65226,21 +65243,21 @@ void Unwind_18090d0c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x390);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x390);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65250,7 +65267,7 @@ void Unwind_18090d0c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65262,21 +65279,21 @@ void Unwind_18090d0d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x3b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x3b0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65286,7 +65303,7 @@ void Unwind_18090d0d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65298,21 +65315,21 @@ void Unwind_18090d0e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x490);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x490);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65322,7 +65339,7 @@ void Unwind_18090d0e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65334,21 +65351,21 @@ void Unwind_18090d0f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2f0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x2f0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65358,7 +65375,7 @@ void Unwind_18090d0f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65370,21 +65387,21 @@ void Unwind_18090d100(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x310);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x310);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65394,7 +65411,7 @@ void Unwind_18090d100(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65406,21 +65423,21 @@ void Unwind_18090d110(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x330);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x330);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65430,7 +65447,7 @@ void Unwind_18090d110(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65442,21 +65459,21 @@ void Unwind_18090d120(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x350);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x350);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65466,7 +65483,7 @@ void Unwind_18090d120(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65478,21 +65495,21 @@ void Unwind_18090d130(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x470);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x470);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65502,7 +65519,7 @@ void Unwind_18090d130(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65514,21 +65531,21 @@ void Unwind_18090d140(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x370);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x370);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65538,7 +65555,7 @@ void Unwind_18090d140(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65550,21 +65567,21 @@ void Unwind_18090d150(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x270);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x270);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65574,7 +65591,7 @@ void Unwind_18090d150(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65586,21 +65603,21 @@ void Unwind_18090d160(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x290);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x290);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65610,7 +65627,7 @@ void Unwind_18090d160(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65622,21 +65639,21 @@ void Unwind_18090d170(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x2b0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65646,7 +65663,7 @@ void Unwind_18090d170(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65658,21 +65675,21 @@ void Unwind_18090d180(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x2d0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65682,7 +65699,7 @@ void Unwind_18090d180(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65705,21 +65722,21 @@ void Unwind_18090d1a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xb0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xb0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65729,7 +65746,7 @@ void Unwind_18090d1a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65741,21 +65758,21 @@ void Unwind_18090d1b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xb0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xb0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65765,7 +65782,7 @@ void Unwind_18090d1b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65777,21 +65794,21 @@ void Unwind_18090d1c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xd0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xd0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65801,7 +65818,7 @@ void Unwind_18090d1c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65813,21 +65830,21 @@ void Unwind_18090d1d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xd0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xd0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65837,7 +65854,7 @@ void Unwind_18090d1d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65849,21 +65866,21 @@ void Unwind_18090d1e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xf0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xf0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65873,7 +65890,7 @@ void Unwind_18090d1e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65885,21 +65902,21 @@ void Unwind_18090d1f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xf0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xf0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65909,7 +65926,7 @@ void Unwind_18090d1f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65921,21 +65938,21 @@ void Unwind_18090d200(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x110);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x110);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65945,7 +65962,7 @@ void Unwind_18090d200(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65957,21 +65974,21 @@ void Unwind_18090d210(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x110);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x110);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65981,7 +65998,7 @@ void Unwind_18090d210(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -65993,21 +66010,21 @@ void Unwind_18090d220(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x150);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x150);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66017,7 +66034,7 @@ void Unwind_18090d220(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66029,21 +66046,21 @@ void Unwind_18090d230(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x150);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x150);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66053,7 +66070,7 @@ void Unwind_18090d230(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66065,21 +66082,21 @@ void Unwind_18090d240(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x170);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x170);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66089,7 +66106,7 @@ void Unwind_18090d240(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66101,21 +66118,21 @@ void Unwind_18090d250(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x170);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x170);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66125,7 +66142,7 @@ void Unwind_18090d250(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66137,21 +66154,21 @@ void Unwind_18090d260(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 400);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 400);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66161,7 +66178,7 @@ void Unwind_18090d260(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66173,21 +66190,21 @@ void Unwind_18090d270(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 400);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 400);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66197,7 +66214,7 @@ void Unwind_18090d270(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66209,21 +66226,21 @@ void Unwind_18090d280(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x1b0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66233,7 +66250,7 @@ void Unwind_18090d280(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66245,21 +66262,21 @@ void Unwind_18090d290(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x1b0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66269,7 +66286,7 @@ void Unwind_18090d290(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66281,21 +66298,21 @@ void Unwind_18090d2a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x1d0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66305,7 +66322,7 @@ void Unwind_18090d2a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66317,21 +66334,21 @@ void Unwind_18090d2b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x1d0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66341,7 +66358,7 @@ void Unwind_18090d2b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66353,21 +66370,21 @@ void Unwind_18090d2c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1f0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x1f0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66377,7 +66394,7 @@ void Unwind_18090d2c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66389,21 +66406,21 @@ void Unwind_18090d2d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1f0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x1f0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66413,7 +66430,7 @@ void Unwind_18090d2d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66425,21 +66442,21 @@ void Unwind_18090d2e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x210);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x210);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66449,7 +66466,7 @@ void Unwind_18090d2e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66461,21 +66478,21 @@ void Unwind_18090d2f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x210);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x210);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66485,7 +66502,7 @@ void Unwind_18090d2f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66497,21 +66514,21 @@ void Unwind_18090d300(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x250);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x250);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66521,7 +66538,7 @@ void Unwind_18090d300(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66533,21 +66550,21 @@ void Unwind_18090d310(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x250);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x250);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66557,7 +66574,7 @@ void Unwind_18090d310(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66625,21 +66642,21 @@ void Unwind_18090d360(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x390);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x390);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66649,7 +66666,7 @@ void Unwind_18090d360(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66661,21 +66678,21 @@ void Unwind_18090d370(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x390);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x390);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66685,7 +66702,7 @@ void Unwind_18090d370(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66697,21 +66714,21 @@ void Unwind_18090d380(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x3b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x3b0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66721,7 +66738,7 @@ void Unwind_18090d380(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66733,21 +66750,21 @@ void Unwind_18090d390(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x3b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x3b0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66757,7 +66774,7 @@ void Unwind_18090d390(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66769,21 +66786,21 @@ void Unwind_18090d3a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x490);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x490);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66793,7 +66810,7 @@ void Unwind_18090d3a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66805,21 +66822,21 @@ void Unwind_18090d3b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x490);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x490);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66829,7 +66846,7 @@ void Unwind_18090d3b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66841,21 +66858,21 @@ void Unwind_18090d3c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2f0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x2f0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66865,7 +66882,7 @@ void Unwind_18090d3c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66877,21 +66894,21 @@ void Unwind_18090d3d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2f0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x2f0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66901,7 +66918,7 @@ void Unwind_18090d3d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66913,21 +66930,21 @@ void Unwind_18090d3e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x310);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x310);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66937,7 +66954,7 @@ void Unwind_18090d3e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66949,21 +66966,21 @@ void Unwind_18090d3f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x310);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x310);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66973,7 +66990,7 @@ void Unwind_18090d3f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -66985,21 +67002,21 @@ void Unwind_18090d400(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x330);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x330);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67009,7 +67026,7 @@ void Unwind_18090d400(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67021,21 +67038,21 @@ void Unwind_18090d410(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x330);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x330);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67045,7 +67062,7 @@ void Unwind_18090d410(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67057,21 +67074,21 @@ void Unwind_18090d420(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x350);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x350);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67081,7 +67098,7 @@ void Unwind_18090d420(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67093,21 +67110,21 @@ void Unwind_18090d430(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x350);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x350);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67117,7 +67134,7 @@ void Unwind_18090d430(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67129,21 +67146,21 @@ void Unwind_18090d440(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x470);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x470);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67153,7 +67170,7 @@ void Unwind_18090d440(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67165,21 +67182,21 @@ void Unwind_18090d450(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x470);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x470);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67189,7 +67206,7 @@ void Unwind_18090d450(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67201,21 +67218,21 @@ void Unwind_18090d460(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x370);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x370);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67225,7 +67242,7 @@ void Unwind_18090d460(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67237,21 +67254,21 @@ void Unwind_18090d470(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x370);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x370);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67261,7 +67278,7 @@ void Unwind_18090d470(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67273,21 +67290,21 @@ void Unwind_18090d480(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x270);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x270);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67297,7 +67314,7 @@ void Unwind_18090d480(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67309,21 +67326,21 @@ void Unwind_18090d490(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x270);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x270);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67333,7 +67350,7 @@ void Unwind_18090d490(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67345,21 +67362,21 @@ void Unwind_18090d4a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x290);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x290);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67369,7 +67386,7 @@ void Unwind_18090d4a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67381,21 +67398,21 @@ void Unwind_18090d4b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x290);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x290);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67405,7 +67422,7 @@ void Unwind_18090d4b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67417,21 +67434,21 @@ void Unwind_18090d4c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x2b0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67441,7 +67458,7 @@ void Unwind_18090d4c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67453,21 +67470,21 @@ void Unwind_18090d4d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x2b0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67477,7 +67494,7 @@ void Unwind_18090d4d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67489,21 +67506,21 @@ void Unwind_18090d4e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x2d0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67513,7 +67530,7 @@ void Unwind_18090d4e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67525,21 +67542,21 @@ void Unwind_18090d4f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x2d0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67549,7 +67566,7 @@ void Unwind_18090d4f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -67850,21 +67867,21 @@ void Unwind_18090d660(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  uVar2 = 0xfffffffffffffffe;
+  validationResult = 0xfffffffffffffffe;
   if (*(longlong **)(lVar1 + 0xed0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xed0) + 0x38))();
   }
-  FUN_1808fc8a8(lVar1 + 0xec0,8,2,FUN_180045af0,uVar2);
+  FUN_1808fc8a8(lVar1 + 0xec0,8,2,FUN_180045af0,validationResult);
   if (*(longlong **)(lVar1 + 0xeb8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xeb8) + 0x38))();
   }
   if (*(longlong **)(lVar1 + 0xeb0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xeb0) + 0x38))();
   }
-  FUN_1808fc8a8(lVar1 + 0xea0,8,2,FUN_180045af0,uVar2);
+  FUN_1808fc8a8(lVar1 + 0xea0,8,2,FUN_180045af0,validationResult);
   FUN_1808fc8a8(lVar1 + 0xe90,8,2,FUN_180045af0);
   FUN_1808fc8a8(lVar1 + 0xe80,8,2,FUN_180045af0);
   FUN_1808fc8a8(lVar1 + 0xc28,0x128,2,FUN_1801b9690);
@@ -68004,7 +68021,7 @@ void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
@@ -68023,17 +68040,17 @@ void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puVar2 = *(undefined8 **)(resourceIndex + 0x1460);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(resourceIndex + 0x1460);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -68043,7 +68060,7 @@ void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -68542,21 +68559,21 @@ void Unwind_18090de40(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0xe0) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0xe0) + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -68566,7 +68583,7 @@ void Unwind_18090de40(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -68624,21 +68641,21 @@ void Unwind_18090de80(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0xe0);
-  uVar2 = 0xfffffffffffffffe;
+  validationResult = 0xfffffffffffffffe;
   if (*(longlong **)(lVar1 + 0xed0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xed0) + 0x38))();
   }
-  FUN_1808fc8a8(lVar1 + 0xec0,8,2,FUN_180045af0,uVar2);
+  FUN_1808fc8a8(lVar1 + 0xec0,8,2,FUN_180045af0,validationResult);
   if (*(longlong **)(lVar1 + 0xeb8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xeb8) + 0x38))();
   }
   if (*(longlong **)(lVar1 + 0xeb0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xeb0) + 0x38))();
   }
-  FUN_1808fc8a8(lVar1 + 0xea0,8,2,FUN_180045af0,uVar2);
+  FUN_1808fc8a8(lVar1 + 0xea0,8,2,FUN_180045af0,validationResult);
   FUN_1808fc8a8(lVar1 + 0xe90,8,2,FUN_180045af0);
   FUN_1808fc8a8(lVar1 + 0xe80,8,2,FUN_180045af0);
   FUN_1808fc8a8(lVar1 + 0xc28,0x128,2,FUN_1801b9690);
@@ -68778,7 +68795,7 @@ void Unwind_18090e000(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
@@ -68797,17 +68814,17 @@ void Unwind_18090e000(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puVar2 = *(undefined8 **)(resourceIndex + 0x1460);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(resourceIndex + 0x1460);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -68817,7 +68834,7 @@ void Unwind_18090e000(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -69104,21 +69121,21 @@ void Unwind_18090e3c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xe8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0xe8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69128,7 +69145,7 @@ void Unwind_18090e3c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -69140,21 +69157,21 @@ void Unwind_18090e3d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xe8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0xe8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69164,7 +69181,7 @@ void Unwind_18090e3d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -70258,13 +70275,13 @@ void Unwind_18090e9c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x40);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x38); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x38); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x38) == 0) {
     return;
@@ -70279,13 +70296,13 @@ void Unwind_18090e9d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x40);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x38); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x38); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x38) == 0) {
     return;
@@ -71138,21 +71155,21 @@ void Unwind_18090eeb0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71162,7 +71179,7 @@ void Unwind_18090eeb0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -71183,21 +71200,21 @@ void Unwind_18090eee0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 0x2d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 0x2d0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71207,7 +71224,7 @@ void Unwind_18090eee0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -71233,21 +71250,21 @@ void Unwind_18090ef20(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x1d8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x1d8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71257,7 +71274,7 @@ void Unwind_18090ef20(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -71283,21 +71300,21 @@ void Unwind_18090ef50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x10);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x10);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71307,7 +71324,7 @@ void Unwind_18090ef50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -71319,21 +71336,21 @@ void Unwind_18090ef60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x10);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x10);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71343,7 +71360,7 @@ void Unwind_18090ef60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -71953,21 +71970,21 @@ void Unwind_18090f1b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x130);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x130);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71977,7 +71994,7 @@ void Unwind_18090f1b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -71989,21 +72006,21 @@ void Unwind_18090f1d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x150);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x150);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -72013,7 +72030,7 @@ void Unwind_18090f1d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -72047,21 +72064,21 @@ void Unwind_18090f210(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0xc0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0xc0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -72071,7 +72088,7 @@ void Unwind_18090f210(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -72083,21 +72100,21 @@ void Unwind_18090f230(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0xe0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0xe0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -72107,7 +72124,7 @@ void Unwind_18090f230(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -72119,21 +72136,21 @@ void Unwind_18090f250(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x100);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x100);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -72143,7 +72160,7 @@ void Unwind_18090f250(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -72155,21 +72172,21 @@ void Unwind_18090f270(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x120);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x120);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -72179,7 +72196,7 @@ void Unwind_18090f270(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -72191,21 +72208,21 @@ void Unwind_18090f290(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x140);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x140);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -72215,7 +72232,7 @@ void Unwind_18090f290(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -72227,21 +72244,21 @@ void Unwind_18090f2b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x160);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x160);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -72251,7 +72268,7 @@ void Unwind_18090f2b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -72284,21 +72301,21 @@ void Unwind_18090f2f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x1a0);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x1a0);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -72308,7 +72325,7 @@ void Unwind_18090f2f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -74082,21 +74099,21 @@ void Unwind_18090ff90(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x158);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x158);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -74106,7 +74123,7 @@ void Unwind_18090ff90(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -74864,13 +74881,13 @@ void Unwind_1809102e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xf0);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xe8); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0xe8); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xe8) == 0) {
     return;
@@ -74885,13 +74902,13 @@ void Unwind_1809102f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xd0);
-  for (puVar2 = *(undefined8 **)(param_2 + 200); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 200); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 200) == 0) {
     return;
@@ -74906,13 +74923,13 @@ void Unwind_180910300(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xf0);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xe8); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0xe8); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xe8) == 0) {
     return;
@@ -74950,21 +74967,21 @@ void Unwind_180910320(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x150);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x150);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -74974,7 +74991,7 @@ void Unwind_180910320(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -74986,13 +75003,13 @@ void Unwind_180910330(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xd0);
-  for (puVar2 = *(undefined8 **)(param_2 + 200); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 200); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 200) == 0) {
     return;
@@ -75007,21 +75024,21 @@ void Unwind_180910340(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xa8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0xa8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75031,7 +75048,7 @@ void Unwind_180910340(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -75043,21 +75060,21 @@ void Unwind_180910350(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x150);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = (undefined8 *)**(ulonglong **)(param_2 + 0x150);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75067,7 +75084,7 @@ void Unwind_180910350(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -75118,21 +75135,21 @@ void Unwind_1809103c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75142,7 +75159,7 @@ void Unwind_1809103c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -75323,21 +75340,21 @@ void Unwind_1809104f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x338);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x338);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75347,7 +75364,7 @@ void Unwind_1809104f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -75359,21 +75376,21 @@ void Unwind_180910510(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x358);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x358);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75383,7 +75400,7 @@ void Unwind_180910510(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -75544,21 +75561,21 @@ void Unwind_180910640(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x338);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x338);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75568,7 +75585,7 @@ void Unwind_180910640(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -75580,21 +75597,21 @@ void Unwind_180910660(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x358);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x358);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75604,7 +75621,7 @@ void Unwind_180910660(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -75678,21 +75695,21 @@ void Unwind_1809106e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x78);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x78);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75702,7 +75719,7 @@ void Unwind_1809106e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -75738,21 +75755,21 @@ void Unwind_180910750(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x78);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x78);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75762,7 +75779,7 @@ void Unwind_180910750(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -75796,21 +75813,21 @@ void Unwind_180910770(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x30);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75820,7 +75837,7 @@ void Unwind_180910770(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -75832,21 +75849,21 @@ void Unwind_180910780(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x30);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75856,7 +75873,7 @@ void Unwind_180910780(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -75868,21 +75885,21 @@ void Unwind_180910790(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x58) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x58) + 8);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75892,7 +75909,7 @@ void Unwind_180910790(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -79896,13 +79913,13 @@ void Unwind_180911860(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x78);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x70); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x70); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x70) == 0) {
     return;
@@ -79917,13 +79934,13 @@ void Unwind_180911870(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x118);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x110); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x110); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x110) == 0) {
     return;
@@ -79938,13 +79955,13 @@ void Unwind_180911880(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xf8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xf0); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0xf0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xf0) == 0) {
     return;
@@ -79959,13 +79976,13 @@ void Unwind_180911890(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xd8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xd0); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0xd0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xd0) == 0) {
     return;
@@ -79980,13 +79997,13 @@ void Unwind_1809118a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xb8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xb0); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0xb0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xb0) == 0) {
     return;
@@ -80001,13 +80018,13 @@ void Unwind_1809118b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x138);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x130); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x130); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x130) == 0) {
     return;
@@ -80022,21 +80039,21 @@ void Unwind_1809118c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -80046,7 +80063,7 @@ void Unwind_1809118c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -80067,13 +80084,13 @@ void Unwind_1809118e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x78);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x70); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x70); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x70) == 0) {
     return;
@@ -80088,21 +80105,21 @@ void Unwind_1809118f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x70);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x70);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -80112,7 +80129,7 @@ void Unwind_1809118f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -80124,13 +80141,13 @@ void Unwind_180911900(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x118);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x110); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x110); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x110) == 0) {
     return;
@@ -80145,13 +80162,13 @@ void Unwind_180911910(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xf8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xf0); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0xf0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xf0) == 0) {
     return;
@@ -80166,13 +80183,13 @@ void Unwind_180911920(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xd8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xd0); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0xd0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xd0) == 0) {
     return;
@@ -80187,13 +80204,13 @@ void Unwind_180911930(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xb8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xb0); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0xb0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xb0) == 0) {
     return;
@@ -80208,13 +80225,13 @@ void Unwind_180911940(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x138);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x130); puVar2 != presourceHash; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (pvalidationResult = *(undefined8 **)(param_2 + 0x130); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x130) == 0) {
     return;
@@ -80229,21 +80246,21 @@ void Unwind_180911950(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(param_2 + 0x20);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -80253,7 +80270,7 @@ void Unwind_180911950(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -82427,10 +82444,10 @@ void Unwind_1809124f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
-  uVar2 = 0xfffffffffffffffe;
+  validationResult = 0xfffffffffffffffe;
   FUN_18013ea00(*(undefined8 *)(lVar1 + 0x30));
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined8 *)(lVar1 + 0x18) = 0;
@@ -82441,7 +82458,7 @@ void Unwind_1809124f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,uVar2);
+    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,validationResult);
   }
   return;
 }
@@ -82830,9 +82847,9 @@ void Unwind_180912780(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
-  uVar2 = 0xfffffffffffffffe;
+  validationResult = 0xfffffffffffffffe;
   FUN_18013ea00(*(undefined8 *)(param_2 + 0x1d0));
   *(undefined8 *)(param_2 + 0x1d0) = 0;
   *(undefined8 *)(param_2 + 0x1b8) = 0;
@@ -82843,7 +82860,7 @@ void Unwind_180912780(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,uVar2);
+    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,validationResult);
   }
   return;
 }
@@ -82856,9 +82873,9 @@ void Unwind_180912790(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
-  uVar2 = 0xfffffffffffffffe;
+  validationResult = 0xfffffffffffffffe;
   FUN_18013ea00(*(undefined8 *)(param_2 + 0xc0));
   *(undefined8 *)(param_2 + 0xc0) = 0;
   *(undefined8 *)(param_2 + 0xa8) = 0;
@@ -82869,7 +82886,7 @@ void Unwind_180912790(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,uVar2);
+    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,validationResult);
   }
   return;
 }
@@ -82882,9 +82899,9 @@ void Unwind_1809127a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
-  uVar2 = 0xfffffffffffffffe;
+  validationResult = 0xfffffffffffffffe;
   FUN_18013ea00(*(undefined8 *)(param_2 + 0xc0));
   *(undefined8 *)(param_2 + 0xc0) = 0;
   *(undefined8 *)(param_2 + 0xa8) = 0;
@@ -82895,7 +82912,7 @@ void Unwind_1809127a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,uVar2);
+    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,validationResult);
   }
   return;
 }
@@ -82908,9 +82925,9 @@ void Unwind_1809127b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
-  uVar2 = 0xfffffffffffffffe;
+  validationResult = 0xfffffffffffffffe;
   FUN_18013ea00(*(undefined8 *)(param_2 + 0x1d0));
   *(undefined8 *)(param_2 + 0x1d0) = 0;
   *(undefined8 *)(param_2 + 0x1b8) = 0;
@@ -82921,7 +82938,7 @@ void Unwind_1809127b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,uVar2);
+    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,validationResult);
   }
   return;
 }
@@ -82934,10 +82951,10 @@ void Unwind_1809127c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  undefined8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  uVar2 = 0xfffffffffffffffe;
+  validationResult = 0xfffffffffffffffe;
   FUN_18013ea00(*(undefined8 *)(lVar1 + 0x30));
   *(undefined8 *)(lVar1 + 0x30) = 0;
   *(undefined8 *)(lVar1 + 0x18) = 0;
@@ -82948,7 +82965,7 @@ void Unwind_1809127c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,uVar2);
+    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,validationResult);
   }
   return;
 }
@@ -83156,21 +83173,21 @@ void Unwind_180912930(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x360);
-  if (puVar2 == (undefined8 *)0x0) {
+  pvalidationResult = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x360);
+  if (pvalidationResult == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *pvalidationResult = *(undefined8 *)(resourceIndex + 0x20);
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -83180,7 +83197,7 @@ void Unwind_180912930(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+                          pvalidationResult,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -83803,11 +83820,11 @@ void FUN_180941ad0(void)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
   
-  puVar2 = _DAT_180d493f8;
+  pvalidationResult = _DAT_180d493f8;
   if (_DAT_180d493f8 == (undefined8 *)0x0) {
     return;
   }
@@ -83817,7 +83834,7 @@ void FUN_180941ad0(void)
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *_DAT_180d493f8 = *(undefined8 *)(resourceIndex + 0x20);
-      *(undefined8 **)(resourceIndex + 0x20) = puVar2;
+      *(undefined8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -84018,20 +84035,20 @@ void FUN_180941e90(void)
 
 {
   longlong lVar1;
-  ulonglong uVar2;
+  ulonglong validationResult;
   
   if (_DAT_180c91f18 != 0) {
-    uVar2 = _DAT_180c91f28 - _DAT_180c91f18 & 0xfffffffffffffff8;
+    validationResult = _DAT_180c91f28 - _DAT_180c91f18 & 0xfffffffffffffff8;
     lVar1 = _DAT_180c91f18;
-    if (0xfff < uVar2) {
+    if (0xfff < validationResult) {
       lVar1 = *(longlong *)(_DAT_180c91f18 + -8);
-      uVar2 = uVar2 + 0x27;
+      validationResult = validationResult + 0x27;
       if (0x1f < (_DAT_180c91f18 - lVar1) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn();
       }
     }
-    free(lVar1,uVar2);
+    free(lVar1,validationResult);
     _DAT_180c91f28 = 0;
     _DAT_180c91f18 = 0;
     uRam0000000180c91f20 = 0;
@@ -84659,17 +84676,17 @@ void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   presourceHash = _DAT_180bfa2f0;
   uVar3 = 0xfffffffffffffffe;
-  puVar2 = _DAT_180bfa2e8;
+  pvalidationResult = _DAT_180bfa2e8;
   if (_DAT_180bfa2e8 != _DAT_180bfa2f0) {
     do {
-      (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
-      puVar2 = puVar2 + 0xb;
-    } while (puVar2 != presourceHash);
+      (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+      pvalidationResult = pvalidationResult + 0xb;
+    } while (pvalidationResult != presourceHash);
   }
   if (_DAT_180bfa2e8 == (undefined8 *)0x0) {
     return;
@@ -84688,17 +84705,17 @@ void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   presourceHash = _DAT_180bfa310;
   uVar3 = 0xfffffffffffffffe;
-  puVar2 = _DAT_180bfa308;
+  pvalidationResult = _DAT_180bfa308;
   if (_DAT_180bfa308 != _DAT_180bfa310) {
     do {
-      (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
-      puVar2 = puVar2 + 0xb;
-    } while (puVar2 != presourceHash);
+      (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+      pvalidationResult = pvalidationResult + 0xb;
+    } while (pvalidationResult != presourceHash);
   }
   if (_DAT_180bfa308 == (undefined8 *)0x0) {
     return;
@@ -84717,17 +84734,17 @@ void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   undefined8 uVar3;
   
   presourceHash = _DAT_180bfa330;
   uVar3 = 0xfffffffffffffffe;
-  puVar2 = _DAT_180bfa328;
+  pvalidationResult = _DAT_180bfa328;
   if (_DAT_180bfa328 != _DAT_180bfa330) {
     do {
-      (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
-      puVar2 = puVar2 + 0xb;
-    } while (puVar2 != presourceHash);
+      (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+      pvalidationResult = pvalidationResult + 0xb;
+    } while (pvalidationResult != presourceHash);
   }
   if (_DAT_180bfa328 == (undefined8 *)0x0) {
     return;
@@ -84868,19 +84885,19 @@ void FUN_180942750(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 {
   undefined8 *presourceHash;
-  undefined8 *puVar2;
+  undefined8 *pvalidationResult;
   
   FUN_18005d260(&DAT_180bfaec0,_DAT_180bfaed0,param_3,param_4,0xfffffffffffffffe);
   presourceHash = _DAT_180bfaea8;
-  for (puVar2 = _DAT_180bfaea0; puVar2 != presourceHash; puVar2 = puVar2 + 7) {
-    *puVar2 = &UNK_180a3c3e0;
-    if (puVar2[1] != 0) {
+  for (pvalidationResult = _DAT_180bfaea0; pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 7) {
+    *pvalidationResult = &UNK_180a3c3e0;
+    if (pvalidationResult[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    puVar2[1] = 0;
-    *(undefined4 *)(puVar2 + 3) = 0;
-    *puVar2 = &UNK_18098bcb0;
+    pvalidationResult[1] = 0;
+    *(undefined4 *)(pvalidationResult + 3) = 0;
+    *pvalidationResult = &UNK_18098bcb0;
   }
   if (_DAT_180bfaea0 != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
@@ -85285,17 +85302,17 @@ void FUN_180942a20(void)
 
 {
   longlong lVar1;
-  ulonglong uVar2;
+  ulonglong validationResult;
   
   if (lRam0000000180d49d90 != 0) {
     FUN_180477be0(lRam0000000180d49d90,uRam0000000180d49d98);
-    uVar2 = lRam0000000180d49da0 - lRam0000000180d49d90 & 0xfffffffffffffff0;
+    validationResult = lRam0000000180d49da0 - lRam0000000180d49d90 & 0xfffffffffffffff0;
     lVar1 = lRam0000000180d49d90;
-    if (0xfff < uVar2) {
+    if (0xfff < validationResult) {
       lVar1 = *(longlong *)(lRam0000000180d49d90 + -8);
       if (0x1f < (lRam0000000180d49d90 - lVar1) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(lRam0000000180d49d90 - lVar1,uVar2 + 0x27);
+        _invalid_parameter_noinfo_noreturn(lRam0000000180d49d90 - lVar1,validationResult + 0x27);
       }
     }
     free(lVar1);
