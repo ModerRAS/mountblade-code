@@ -1048,11 +1048,11 @@ void* MemoryEncryptionReservedMemory;
  * 设置虚拟内存映射和管理
  */
 void InitializeMemoryVirtualization;
-undefined DAT_180bf96f0;
-undefined DAT_180bf96f8;
-undefined DAT_180bf9700;
-undefined DAT_180bf9708;
-undefined UNK_180a22c98;
+uint32_t MemoryVirtualizationConfigData1;
+uint32_t MemoryVirtualizationConfigData2;
+uint32_t MemoryVirtualizationConfigData3;
+uint32_t MemoryVirtualizationConfigData4;
+void* MemoryVirtualizationReservedMemory;
 
  void SetupMemoryPrefetch;
 /**
@@ -1062,11 +1062,11 @@ undefined UNK_180a22c98;
  * 配置数据预取和缓存策略
  */
 void SetupMemoryPrefetch;
-undefined DAT_180bf9750;
-undefined DAT_180bf9758;
-undefined DAT_180bf9760;
-undefined DAT_180bf9768;
-undefined UNK_180a22c70;
+uint32_t MemoryPrefetchConfigData1;
+uint32_t MemoryPrefetchConfigData2;
+uint32_t MemoryPrefetchConfigData3;
+uint32_t MemoryPrefetchConfigData4;
+void* MemoryPrefetchReservedMemory;
 
  void InitializeMemoryBandwidth;
 /**
@@ -1076,11 +1076,11 @@ undefined UNK_180a22c70;
  * 设置带宽分配和优先级策略
  */
 void InitializeMemoryBandwidth;
-undefined DAT_180bf97b0;
-undefined DAT_180bf97b8;
-undefined DAT_180bf97c0;
-undefined DAT_180bf97c8;
-undefined UNK_180a22c58;
+uint32_t MemoryBandwidthConfigData1;
+uint32_t MemoryBandwidthConfigData2;
+uint32_t MemoryBandwidthConfigData3;
+uint32_t MemoryBandwidthConfigData4;
+void* MemoryBandwidthReservedMemory;
 
  void ConfigureMemoryLatency;
 /**
@@ -1090,11 +1090,11 @@ undefined UNK_180a22c58;
  * 设置内存访问延迟优化策略
  */
 void ConfigureMemoryLatency;
-undefined DAT_180bf9810;
-undefined DAT_180bf9818;
-undefined DAT_180bf9820;
-undefined DAT_180bf9828;
-undefined UNK_180a22d28;
+uint32_t MemoryLatencyConfigData1;
+uint32_t MemoryLatencyConfigData2;
+uint32_t MemoryLatencyConfigData3;
+uint32_t MemoryLatencyConfigData4;
+void* MemoryLatencyReservedMemory;
 
  void InitializeMemoryThroughput;
 /**
@@ -1797,13 +1797,13 @@ undefined DAT_180bf64b0;
  * 释放分配的内存，防止内存泄漏
  */
 undefined CleanupMemoryBlock;
-undefined DAT_180a2d660;
-undefined UNK_180a2ca90;
-undefined DAT_180a2d590;
-undefined UNK_180a2cab0;
-undefined DAT_180c96310;
-undefined DAT_180c96320;
-undefined DAT_180c96328;
+undefined SecurityContextData;
+undefined SecurityContextFlags;
+undefined SecurityContextHandle;
+undefined SecurityContextConfig;
+undefined SecurityValidationData;
+undefined SecurityValidationFlags;
+undefined SecurityValidationHandle;
 
  undefined InitializeSecurityContext;
 /**
@@ -1813,10 +1813,10 @@ undefined DAT_180c96328;
  * 设置安全参数和访问控制
  */
 undefined InitializeSecurityContext;
-undefined DAT_180bf6558;
-undefined DAT_180bf6560;
-undefined DAT_180bf6568;
-undefined DAT_180bf6570;
+undefined SecurityTokenBuffer;
+undefined SecurityTokenLength;
+undefined SecurityTokenType;
+undefined SecurityTokenFlags;
 
  void ValidateSecurityToken;
 /**
@@ -1826,8 +1826,8 @@ undefined DAT_180bf6570;
  * 确保令牌的有效性和完整性
  */
 void ValidateSecurityToken;
-undefined DAT_180c95ecc;
-undefined UNK_180a33fb0;
+undefined AuthenticationContext;
+undefined AuthenticationConfig;
 
  void ProcessAuthenticationRequest;
 /**
@@ -1837,10 +1837,10 @@ undefined UNK_180a33fb0;
  * 验证用户身份和权限
  */
 void ProcessAuthenticationRequest;
-undefined DAT_180c9606c;
-undefined UNK_180a3c028;
-undefined DAT_180c96218;
-undefined UNK_180943130;
+undefined AuthRequestData;
+undefined AuthRequestConfig;
+undefined AuthResponseData;
+undefined AuthResponseConfig;
 
  void EncryptDataBuffer;
 /**
@@ -1859,8 +1859,8 @@ void EncryptDataBuffer;
  * 恢复加密的敏感数据
  */
 void DecryptDataBuffer;
-undefined DAT_180c96790;
-undefined DAT_180c96798;
+undefined EncryptionKey;
+undefined EncryptionIV;
 
  void HashDataBuffer;
 /**
@@ -1870,13 +1870,13 @@ undefined DAT_180c96798;
  * 用于数据完整性验证
  */
 void HashDataBuffer;
-undefined DAT_180c967a0;
-undefined DAT_180c967a8;
-undefined DAT_180c967b0;
-undefined DAT_180c967b8;
-undefined DAT_180c967d0;
-undefined UNK_180a3def0;
-undefined UNK_18098bcb0;
+undefined HashAlgorithm;
+undefined HashDigest;
+undefined HashSalt;
+undefined HashIterations;
+undefined HashOutputSize;
+undefined RandomSeed;
+undefined RandomGenerator;
 
  void GenerateSecureRandom;
 /**
@@ -6043,16 +6043,25 @@ undefined8 FUN_180891de0(longlong param_1,longlong param_2)
 
 
  void FUN_180891e40(longlong param_1,longlong param_2)
-void FUN_180891e40(longlong param_1,longlong param_2)
+/**
+ * @brief 扩展动态缓冲区容量
+ * 
+ * 该函数负责扩展动态缓冲区的容量，当缓冲区空间不足时自动扩容
+ * 采用1.5倍的增长策略，最小容量为8个元素
+ * 
+ * @param objectContext 对象上下文，包含缓冲区管理信息
+ * @param systemContext 系统上下文，用于系统级操作
+ */
+void ExpandDynamicBufferCapacity(longlong objectContext, longlong systemContext)
 
 {
-  int iVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong lVar4;
-  uint uVar5;
-  longlong lStackX_8;
-  longlong lStackX_18;
+  int validationStatus;
+  int newCapacity;
+  longlong newBufferPointer;
+  longlong bufferOffset;
+  uint capacityCheck;
+  longlong tempStackBuffer;
+  longlong bufferContext;
   
   iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
   if (((iVar1 != 0) || (iVar1 = FUN_180867bc0(&lStackX_8), iVar1 != 0)) ||
