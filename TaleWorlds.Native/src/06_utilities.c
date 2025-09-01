@@ -21080,7 +21080,16 @@ LAB_18089c300:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18089c2d8(undefined8 param_1)
+/**
+ * @brief 资源处理处理器
+ * 
+ * 该函数负责处理资源的哈希值和数据验证
+ * 用于资源管理和数据完整性检查
+ * 
+ * @param param_1 资源句柄
+ * @return 返回处理结果，成功返回0，失败返回错误码
+ */
+ulonglong ResourceProcessingHandler(undefined8 param_1)
 
 {
   undefined4 resourceHash;
@@ -27286,7 +27295,17 @@ fb40(longlong param_1,undefined8 param_2)
 
 
 
-undefined8 FUN_18089fba0(longlong param_1,undefined8 *param_2)
+/**
+ * @brief 纹理资源处理器
+ * 
+ * 该函数用于处理纹理资源，包括纹理数据的加载、验证和处理操作。
+ * 它接收纹理上下文参数和纹理数据句柄作为输入，专门用于处理纹理资源。
+ * 
+ * @param param_1 纹理上下文参数的指针
+ * @param param_2 纹理数据句柄的指针
+ * @return undefined8 返回处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 TextureResourceProcessor(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 resourceHash;
@@ -27315,7 +27334,17 @@ undefined8 FUN_18089fba0(longlong param_1,undefined8 *param_2)
 
 
 
-undefined8 FUN_18089fc50(longlong param_1,undefined8 *param_2)
+/**
+ * @brief 动画资源处理器
+ * 
+ * 该函数用于处理动画资源，包括动画数据的加载、验证和处理操作。
+ * 它接收动画上下文参数和动画数据句柄作为输入，专门用于处理动画资源。
+ * 
+ * @param param_1 动画上下文参数的指针
+ * @param param_2 动画数据句柄的指针
+ * @return undefined8 返回处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 AnimationResourceProcessor(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 resourceHash;

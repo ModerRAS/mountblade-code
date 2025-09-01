@@ -15968,8 +15968,14 @@ void InitializeSystemSubcomponentN(void)
 
 
 
-// 函数: void FUN_1800420d0(void)
-void FUN_1800420d0(void)
+// 函数: void InitializeSystemNodeManagerPrimary(void)
+/**
+ * @brief 初始化系统节点管理器（主节点）
+ * 
+ * 该函数负责初始化系统的节点管理器主节点，设置节点树结构，
+ * 进行内存比较和节点插入操作，确保系统节点管理器的正常运行。
+ */
+void InitializeSystemNodeManagerPrimary(void)
 
 {
   char systemNodeFlag;
@@ -16018,8 +16024,14 @@ void FUN_1800420d0(void)
 
 
 
-// 函数: void FUN_1800421d0(void)
-void FUN_1800421d0(void)
+// 函数: void InitializeSystemSearchManager(void)
+/**
+ * @brief 初始化系统搜索管理器
+ * 
+ * 该函数负责初始化系统的搜索管理器，设置搜索相关的数据结构和
+ * 搜索函数指针，为系统提供搜索功能支持。
+ */
+void InitializeSystemSearchManager(void)
 
 {
   char systemNodeFlag;
@@ -16031,7 +16043,7 @@ void FUN_1800421d0(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  code *pcStackX_18;
+  code *systemSearchCallback;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
@@ -17004,48 +17016,88 @@ void FUN_180043560(void)
 
 
 
-int FUN_180043580(void)
+/**
+ * @brief 初始化系统性能计数器
+ * 
+ * 该函数负责初始化系统的性能计数器组件，设置性能监控的基础结构。
+ * 它会调用性能计数器初始化函数，并返回初始化状态。
+ * 
+ * @return 初始化状态，成功返回0，失败返回-1
+ */
+int InitializeSystemPerformanceCounters(void)
 
 {
-  longlong lVar1;
+  longlong initializationStatus;
   
   InitializeSystemPerformanceCounters();
-  lVar1 = FUN_1808fc7d0(&UNK_180943130);
-  return (lVar1 != 0) - 1;
+  initializationStatus = FUN_1808fc7d0(&UNK_180943130);
+  return (initializationStatus != 0) - 1;
 }
 
 
 
-int FUN_1800435a0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 初始化系统互斥锁
+ * 
+ * 该函数负责初始化系统的互斥锁组件，设置线程同步的基础结构。
+ * 它会初始化互斥锁，并返回初始化状态。
+ * 
+ * @param param_1 互斥锁参数1
+ * @param param_2 互斥锁参数2
+ * @param param_3 互斥锁参数3
+ * @param param_4 互斥锁参数4
+ * @return 初始化状态，成功返回0，失败返回-1
+ */
+int InitializeSystemMutex(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  longlong lVar1;
+  longlong initializationStatus;
   
   _Mtx_init_in_situ(0x180c966f0,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180943140);
-  return (lVar1 != 0) - 1;
+  initializationStatus = FUN_1808fc7d0(FUN_180943140);
+  return (initializationStatus != 0) - 1;
 }
 
 
 
-int FUN_1800435e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 初始化系统信号量
+ * 
+ * 该函数负责初始化系统的信号量组件，设置线程同步的基础结构。
+ * 它会初始化信号量，并返回初始化状态。
+ * 
+ * @param param_1 信号量参数1
+ * @param param_2 信号量参数2
+ * @param param_3 信号量参数3
+ * @param param_4 信号量参数4
+ * @return 初始化状态，成功返回0，失败返回-1
+ */
+int InitializeSystemSemaphore(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  longlong lVar1;
+  longlong initializationStatus;
   
   _Mtx_init_in_situ(0x180c96740,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180943160);
-  return (lVar1 != 0) - 1;
+  initializationStatus = FUN_1808fc7d0(FUN_180943160);
+  return (initializationStatus != 0) - 1;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180043610(void)
+/**
+ * @brief 初始化系统线程池
+ * 
+ * 该函数负责初始化系统的线程池组件，设置线程池的基础结构。
+ * 它会初始化线程池的全局变量，并返回初始化状态。
+ * 
+ * @return 初始化状态，成功返回0，失败返回-1
+ */
+int InitializeSystemThreadPool(void)
 
 {
-  longlong lVar1;
+  longlong initializationStatus;
   
   _DAT_180c967b8 = 3;
   _DAT_180c96790 = &DAT_180c96790;
@@ -17053,8 +17105,8 @@ int FUN_180043610(void)
   _DAT_180c967a0 = 0;
   _DAT_180c967a8 = 0;
   _DAT_180c967b0 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180943180);
-  return (lVar1 != 0) - 1;
+  initializationStatus = FUN_1808fc7d0(FUN_180943180);
+  return (initializationStatus != 0) - 1;
 }
 
 
