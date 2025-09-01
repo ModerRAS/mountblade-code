@@ -40000,76 +40000,126 @@ void Unwind_180904590(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809045b0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源表清理操作
+ * 
+ * 该函数负责遍历资源表并对每个资源执行清理操作
+ * 释放资源占用的内存和相关系统资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要清理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的上下文信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会批量清理资源表中的所有资源
+ * @warning 如果资源表不为空，函数将执行系统紧急退出
+ */
+void ExecuteResourceTableCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  uint8_t *presourceHash;
-  int64_t *presourceTable;
-  uint8_t *pValidationResult;
-  uint8_t LoopCondition;
+  uint8_t *ResourceHashPointer;
+  int64_t *ResourceTablePointer;
+  uint8_t *ValidationResultPointer;
+  uint8_t LoopControlVariable;
   
-  presourceTable = *(int64_t **)(ValidationContextParameter + 0x88);
-  LoopIncrement = 0xfffffffffffffffe;
-  presourceHash = (uint8_t *)presourceTable[1];
-  for (pValidationResult = (uint8_t *)*presourceTable; pValidationResult != presourceHash; pValidationResult = pValidationResult + 4) {
-    (**(code **)*pValidationResult)(pValidationResult,0,CleanupOption,CleanupFlag,LoopIncrement);
+  ResourceTablePointer = *(int64_t **)(ValidationContextParameter + 0x88);
+  LoopControlVariable = 0xfffffffffffffffe;
+  ResourceHashPointer = (uint8_t *)ResourceTablePointer[1];
+  for (ValidationResultPointer = (uint8_t *)*ResourceTablePointer; ValidationResultPointer != ResourceHashPointer; ValidationResultPointer = ValidationResultPointer + 4) {
+    (**(code **)*ValidationResultPointer)(ValidationResultPointer, 0, CleanupOption, CleanupFlag, LoopControlVariable);
   }
-  if (*presourceTable == 0) {
+  if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  // WARNING: Subroutine does not return
   ExecuteSystemEmergencyExit();
 }
 
 
 
-void Unwind_1809045c0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 注册系统资源处理器
+ * 
+ * 该函数负责注册系统资源的处理器，用于管理资源的生命周期
+ * 设置资源处理的相关参数和回调函数
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要处理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数会注册系统资源处理器并设置相关参数
+ * @warning 注册后的资源处理器将用于管理所有系统资源
+ */
+void RegisterSystemResourceHandler(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
-  RegisterResourceHandler(*(uint8_t *)(ValidationContextParameter + 0x50),0x20,0x400,SystemResourceHandler);
+  RegisterResourceHandler(*(uint8_t *)(ValidationContextParameter + 0x50), 0x20, 0x400, SystemResourceHandler);
   return;
 }
 
 
 
-void Unwind_1809045f0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 注册扩展资源处理器
+ * 
+ * 该函数负责注册扩展区域的资源处理器，用于管理扩展资源的生命周期
+ * 设置扩展资源处理的相关参数和回调函数
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要处理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数会注册扩展区域的资源处理器
+ * @warning 扩展资源处理器将用于管理扩展区域的系统资源
+ */
+void RegisterExtendedResourceHandler(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContextParameter + 0x50) + 0x8000,0x20,0x400,SystemResourceHandler);
+  RegisterResourceHandler(*(int64_t *)(ValidationContextParameter + 0x50) + 0x8000, 0x20, 0x400, SystemResourceHandler);
   return;
 }
 
 
 
-void Unwind_180904630(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 验证并处理资源索引
+ * 
+ * 该函数负责验证资源索引的有效性并处理相关资源
+ * 包括资源索引计算、内存访问验证和资源清理
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要处理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数会验证资源索引并进行相应的处理
+ * @warning 如果资源索引无效，可能会触发系统清理操作
+ */
+void ValidateAndProcessResourceIndex(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
-  int *pResourceIndex;
-  uint8_t *pvalidationResult;
-  int64_t resourceIndex;
-  uint64_t LoopIncrement;
+  int *ResourceIndexPointer;
+  uint8_t *ValidationResultPointer;
+  int64_t ResourceIndexValue;
+  uint64_t LoopControlValue;
   
-  pvalidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x10400);
-  if (pvalidationResult == (uint8_t *)0x0) {
+  ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x10400);
+  if (ValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  LoopIncrement = (uint64_t)pvalidationResult & 0xffffffffffc00000;
-  if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pvalidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pvalidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pvalidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
-      *pResourceIndex = *pResourceIndex + -1;
-      if (*pResourceIndex == 0) {
+  LoopControlValue = (uint64_t)ValidationResultPointer & 0xffffffffffc00000;
+  if (LoopControlValue != 0) {
+    ResourceIndexValue = LoopControlValue + 0x80 + ((int64_t)ValidationResultPointer - LoopControlValue >> 0x10) * 0x50;
+    ResourceIndexValue = ResourceIndexValue - (uint64_t)*(uint *)(ResourceIndexValue + 4);
+    if ((*(void ***)(LoopControlValue + 0x70) == &ExceptionList) && (*(char *)(ResourceIndexValue + 0xe) == '\0')) {
+      *ValidationResultPointer = *(uint8_t *)(ResourceIndexValue + 0x20);
+      *(uint8_t **)(ResourceIndexValue + 0x20) = ValidationResultPointer;
+      ResourceIndexPointer = (int *)(ResourceIndexValue + 0x18);
+      *ResourceIndexPointer = *ResourceIndexPointer + -1;
+      if (*ResourceIndexPointer == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      ValidateMemoryAccess(LoopIncrement,CONCAT71(0xff000000,*(void ***)(LoopIncrement + 0x70) == &ExceptionList),
-                          pvalidationResult,LoopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(LoopControlValue, CONCAT71(0xff000000, *(void ***)(LoopControlValue + 0x70) == &ExceptionList),
+                          ValidationResultPointer, LoopControlValue, 0xfffffffffffffffe);
     }
   }
   return;
@@ -40077,84 +40127,164 @@ void Unwind_180904630(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180904650(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理回调
+ * 
+ * 该函数负责执行资源的清理回调函数
+ * 调用注册的清理函数来释放资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要处理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的上下文信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用注册的清理回调函数
+ * @warning 清理回调函数可能会修改系统状态
+ */
+void ExecuteResourceCleanupCallback(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *pcVar1;
+  code *CleanupCallbackPointer;
   
-  pcVar1 = *(code **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x30);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x20,0,0,CleanupFlag,0xfffffffffffffffe);
+  CleanupCallbackPointer = *(code **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x30);
+  if (CleanupCallbackPointer != (code *)0x0) {
+    (*CleanupCallbackPointer)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x20, 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904660(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行主资源清理回调
+ * 
+ * 该函数负责执行主资源的清理回调函数
+ * 调用注册的主清理函数来释放主要资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要处理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的上下文信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用注册的主清理回调函数
+ * @warning 主清理回调函数可能会修改系统核心状态
+ */
+void ExecuteMainResourceCleanupCallback(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *pcVar1;
+  code *MainCleanupCallbackPointer;
   
-  pcVar1 = *(code **)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(ValidationContextParameter + 0x50),0,0,CleanupFlag,0xfffffffffffffffe);
+  MainCleanupCallbackPointer = *(code **)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x10);
+  if (MainCleanupCallbackPointer != (code *)0x0) {
+    (*MainCleanupCallbackPointer)(*(int64_t *)(ValidationContextParameter + 0x50), 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904670(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行扩展资源清理回调
+ * 
+ * 该函数负责执行扩展资源的清理回调函数
+ * 调用注册的扩展清理函数来释放扩展资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要处理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的上下文信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用注册的扩展清理回调函数
+ * @warning 扩展清理回调函数可能会修改系统扩展状态
+ */
+void ExecuteExtendedResourceCleanupCallback(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *pcVar1;
+  code *ExtendedCleanupCallbackPointer;
   
-  pcVar1 = *(code **)(*(int64_t *)(ValidationContextParameter + 0x58) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(ValidationContextParameter + 0x58),0,0,CleanupFlag,0xfffffffffffffffe);
+  ExtendedCleanupCallbackPointer = *(code **)(*(int64_t *)(ValidationContextParameter + 0x58) + 0x10);
+  if (ExtendedCleanupCallbackPointer != (code *)0x0) {
+    (*ExtendedCleanupCallbackPointer)(*(int64_t *)(ValidationContextParameter + 0x58), 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904680(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 初始化资源模板
+ * 
+ * 该函数负责初始化资源处理所需的模板
+ * 设置资源哈希、资源表和资源缓存的模板
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要处理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数会初始化资源处理的各种模板
+ * @warning 模板初始化后会被用于后续的资源处理操作
+ */
+void InitializeResourceTemplates(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
-  uint8_t *presourceHash;
+  uint8_t *ResourceHashPointer;
   
-  presourceHash = *(uint8_t **)(ValidationContextParameter + 0x50);
-  *presourceHash = &ResourceHashTemplate;
-  *presourceHash = &ResourceTableTemplate;
-  *presourceHash = &ResourceCacheTemplate;
+  ResourceHashPointer = *(uint8_t **)(ValidationContextParameter + 0x50);
+  *ResourceHashPointer = &ResourceHashTemplate;
+  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
 
 
 
-void Unwind_180904690(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行主资源释放回调
+ * 
+ * 该函数负责执行主资源的释放回调函数
+ * 调用注册的主释放函数来释放主要资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要处理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的上下文信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用注册的主释放回调函数
+ * @warning 主释放回调函数会完全释放资源，不可恢复
+ */
+void ExecuteMainResourceReleaseCallback(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *pcVar1;
+  code *MainReleaseCallbackPointer;
   
-  pcVar1 = *(code **)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x30);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x20,0,0,CleanupFlag,0xfffffffffffffffe);
+  MainReleaseCallbackPointer = *(code **)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x30);
+  if (MainReleaseCallbackPointer != (code *)0x0) {
+    (*MainReleaseCallbackPointer)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x20, 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809046a0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 重置资源缓存模板
+ * 
+ * 该函数负责重置资源缓存模板
+ * 设置资源表和资源缓存的模板
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要处理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数会重置资源缓存相关的模板
+ * @warning 模板重置后会影响后续的资源缓存操作
+ */
+void ResetResourceCacheTemplates(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
-  uint8_t *presourceHash;
+  uint8_t *ResourceHashPointer;
   
-  presourceHash = *(uint8_t **)(ValidationContextParameter + 0x50);
-  *presourceHash = &ResourceTableTemplate;
-  *presourceHash = &ResourceCacheTemplate;
+  ResourceHashPointer = *(uint8_t **)(ValidationContextParameter + 0x50);
+  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
 
@@ -49874,7 +50004,19 @@ void Unwind_180907040(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180907050(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 处理对象清理操作
+ * 
+ * 该函数负责处理对象的清理操作，验证上下文参数并执行相应的清理流程
+ * 主要用于系统资源释放和内存管理
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的状态信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数通常在对象生命周期结束时调用
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ProcessObjectCleanupHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   if (*(int64_t **)(ValidationContextParameter + 0x48) != (int64_t *)0x0) {
@@ -49885,7 +50027,19 @@ void Unwind_180907050(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180907060(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 验证对象上下文处理
+ * 
+ * 该函数负责验证对象上下文的有效性，并执行相应的处理逻辑
+ * 主要用于系统状态验证和上下文管理
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的状态信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数通常在对象操作前调用以确保上下文有效
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ValidateObjectContextHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   if (*(int64_t **)(ValidationContextParameter + 0x50) != (int64_t *)0x0) {
@@ -49896,64 +50050,128 @@ void Unwind_180907060(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180907070(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 初始化资源处理程序
+ * 
+ * 该函数负责初始化系统资源处理程序，设置资源管理的上下文环境
+ * 主要用于系统资源的初始化和配置
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的状态信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数通常在系统资源初始化时调用
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void InitializeResourceHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
   
-  plocalContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0xd0) + 0x10);
-  if (plocalContextPointer != (int64_t *)0x0) {
-    (**(code **)(*plocalContextPointer + 0x38))();
+  LocalContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0xd0) + 0x10);
+  if (LocalContextPointer != (int64_t *)0x0) {
+    (**(code **)(*LocalContextPointer + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180907080(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 初始化主设备上下文处理程序
+ * 
+ * 该函数负责初始化主设备上下文的处理程序
+ * 设置主设备上下文的相关参数和回调函数
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要处理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数会初始化主设备上下文处理程序
+ * @warning 主设备上下文处理程序初始化后会影响设备管理
+ */
+void InitializeMainDeviceContextHandler(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
-  int64_t *processPointer;
+  int64_t *ProcessPointer;
   
-  plocalContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0xd0) + 0x18);
-  if (plocalContextPointer != (int64_t *)0x0) {
-    (**(code **)(*plocalContextPointer + 0x38))();
+  ProcessPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0xd0) + 0x18);
+  if (ProcessPointer != (int64_t *)0x0) {
+    (**(code **)(*ProcessPointer + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180907090(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行扩展设备清理回调
+ * 
+ * 该函数负责执行扩展设备的清理回调函数
+ * 调用注册的扩展设备清理函数来释放扩展设备资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要处理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的上下文信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用注册的扩展设备清理回调函数
+ * @warning 扩展设备清理函数会释放扩展设备相关的资源
+ */
+void ExecuteExtendedDeviceCleanupCallback(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContextParameter + 0xe8) != (code *)0x0) {
-    (**(code **)(ValidationContextParameter + 0xe8))(ValidationContextParameter + 0xd8,0,0,CleanupFlag,0xfffffffffffffffe);
+    (**(code **)(ValidationContextParameter + 0xe8))(ValidationContextParameter + 0xd8, 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809070a0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行主设备清理回调
+ * 
+ * 该函数负责执行主设备的清理回调函数
+ * 调用注册的主设备清理函数来释放主设备资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要处理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的上下文信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用注册的主设备清理回调函数
+ * @warning 主设备清理函数会释放主设备相关的资源
+ */
+void ExecuteMainDeviceCleanupCallback(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContextParameter + 0x68) != (code *)0x0) {
-    (**(code **)(ValidationContextParameter + 0x68))(ValidationContextParameter + 0x58,0,0,CleanupFlag,0xfffffffffffffffe);
+    (**(code **)(ValidationContextParameter + 0x68))(ValidationContextParameter + 0x58, 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809070b0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 配置系统处理程序
+ * 
+ * 该函数负责配置系统处理程序，设置系统运行的环境和参数
+ * 主要用于系统配置和环境设置
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的状态信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数通常在系统配置时调用
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ConfigureSystemHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
   
-  plocalContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x160) + 0x10);
-  if (plocalContextPointer != (int64_t *)0x0) {
-    (**(code **)(*plocalContextPointer + 0x38))();
+  LocalContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x160) + 0x10);
+  if (LocalContextPointer != (int64_t *)0x0) {
+    (**(code **)(*LocalContextPointer + 0x38))();
   }
   return;
 }
