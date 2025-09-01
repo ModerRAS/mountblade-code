@@ -1781,14 +1781,14 @@ void engine_initialize_resource_loader(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180030900(void)
+int engine_initialize_texture_system(void)
 
 {
   longlong engine_temp_long;
   uint64 in_R9;
   
-  _engine_data_50 = &UNK_1809fcc58;
-  _engine_data_58 = &engine_data_68;
+  engine_data_pointer_50 = &engine_global_config_data;
+  engine_data_pointer_58 = &engine_data_68;
 
 // 函数: void engine_setup_texture_manager(void)
 void engine_setup_texture_manager(void)
@@ -2240,8 +2240,8 @@ void engine_configure_shader_system(void)
 
 
 
-// 函数: void FUN_180032310(void)
-void FUN_180032310(void)
+// 函数: void engine_process_buffer_allocation(void)
+void engine_process_buffer_allocation(void)
 
 {
   char engine_status_flag;
@@ -2572,8 +2572,8 @@ void engine_setup_asset_streaming(void)
 
 
 
-// 函数: void FUN_1800329a0(void)
-void FUN_1800329a0(void)
+// 函数: void engine_initialize_shader_program(void)
+void engine_initialize_shader_program(void)
 
 {
   char engine_status_flag;
@@ -2747,13 +2747,13 @@ void engine_create_asset_index(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180032d30(void)
+int engine_setup_render_target(void)
 
 {
   longlong engine_temp_long;
   uint64 in_R9;
   
-  _engine_data_90 = &UNK_1809fcc58;
+  _engine_data_90 = &engine_global_config_data;
   _engine_data_98 = &engine_data_a8;
 
 // 函数: void engine_register_font_resource(void)
@@ -2804,8 +2804,8 @@ void engine_register_localization_resource(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800338a0(void)
-void FUN_1800338a0(void)
+// 函数: void engine_configure_viewport(void)
+void engine_configure_viewport(void)
 
 {
   uint64 in_R9;
@@ -2974,8 +2974,8 @@ void engine_setup_localization_manager(void)
 
 
 
-// 函数: void FUN_180033c50(void)
-void FUN_180033c50(void)
+// 函数: void engine_process_depth_buffer(void)
+void engine_process_depth_buffer(void)
 
 {
   char engine_status_flag;
@@ -3024,8 +3024,8 @@ void FUN_180033c50(void)
 
 
 
-// 函数: void FUN_180033d50(void)
-void FUN_180033d50(void)
+// 函数: void engine_setup_stencil_buffer(void)
+void engine_setup_stencil_buffer(void)
 
 {
   char engine_status_flag;
@@ -10806,9 +10806,9 @@ void engine_core_log_message(void)
   int engine_temp_int;
   
   engine_temp_int = FUN_1807681a0(0);
-  _engine_data_58 = 0x180bebac8;
+  engine_data_pointer_58 = 0x180bebac8;
   if (engine_temp_int != 0) {
-    _engine_data_58 = 0x180bebad8;
+    engine_data_pointer_58 = 0x180bebad8;
   }
   return;
 }
@@ -11292,13 +11292,13 @@ LAB_180044faf:
   if (engine_temp_int_2 == 0) {
     FUN_180626ee0(&UNK_180a3c090);
   }
-  _engine_data_50 = 1.0 / (double)(longlong)pplStackX_18;
+  engine_data_pointer_50 = 1.0 / (double)(longlong)pplStackX_18;
   timeBeginPeriod(1);
   QueryPerformanceCounter(&lStackX_20);
   if (engine_data_02 != '\0') {
-    _engine_data_48 = _engine_data_48 + (lStackX_20 - _engine_data_58);
+    _engine_data_48 = _engine_data_48 + (lStackX_20 - engine_data_pointer_58);
   }
-  _engine_data_58 = 0;
+  engine_data_pointer_58 = 0;
   _engine_data_40 = lStackX_20;
 
 // 函数: void engine_core_initialize_graphics(void)
@@ -12607,21 +12607,21 @@ void FUN_180046e20(void)
   if (engine_temp_char_flag == '\0') {
     FUN_180624910(&lStack_678);
   }
-  puStack_4e8 = &UNK_1809fcc58;
+  puStack_4e8 = &engine_global_config_data;
   puStack_4e0 = auStack_4d0;
   auStack_4d0[0] = 0;
   uStack_4d8 = 0x18;
   strcpy_s(auStack_4d0,0x40,&UNK_1809fc7b8);
   FUN_180097d40(_engine_data_60,&puStack_4e8,&lStack_678);
   puStack_4e8 = &UNK_18098bcb0;
-  puStack_488 = &UNK_1809fcc58;
+  puStack_488 = &engine_global_config_data;
   puStack_480 = auStack_470;
   auStack_470[0] = 0;
   uStack_478 = 0xb;
   strcpy_s(auStack_470,0x40,&UNK_1809fc790);
   FUN_180097d40(_engine_data_60,&puStack_488,&lStack_678);
   puStack_488 = &UNK_18098bcb0;
-  puStack_428 = &UNK_1809fcc58;
+  puStack_428 = &engine_global_config_data;
   puStack_420 = auStack_410;
   auStack_410[0] = 0;
   uStack_418 = 0x18;
@@ -12629,7 +12629,7 @@ void FUN_180046e20(void)
   _engine_data_b8 = (float)FUN_180095480(engine_temp_uint0,&puStack_428);
   _engine_data_b8 = 1.0 / _engine_data_b8;
   puStack_428 = &UNK_18098bcb0;
-  puStack_3c8 = &UNK_1809fcc58;
+  puStack_3c8 = &engine_global_config_data;
   puStack_3c0 = auStack_3b0;
   auStack_3b0[0] = 0;
   uStack_3b8 = 0xb;
@@ -12637,14 +12637,14 @@ void FUN_180046e20(void)
   _engine_data_bc = (float)FUN_180095480(engine_temp_uint0,&puStack_3c8);
   _engine_data_bc = 1.0 / _engine_data_bc;
   puStack_3c8 = &UNK_18098bcb0;
-  puStack_368 = &UNK_1809fcc58;
+  puStack_368 = &engine_global_config_data;
   puStack_360 = auStack_350;
   auStack_350[0] = 0;
   uStack_358 = 0xb;
   engine_temp_uint0 = strcpy_s(auStack_350,0x40,&UNK_1809fc790);
   fVar11 = (float)FUN_180095720(engine_temp_uint0,&puStack_368);
   puStack_368 = &UNK_18098bcb0;
-  puStack_308 = &UNK_1809fcc58;
+  puStack_308 = &engine_global_config_data;
   puStack_300 = auStack_2f0;
   auStack_2f0[0] = 0;
   uStack_2f8 = 0x18;
@@ -12971,7 +12971,7 @@ void FUN_180047fc0(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uin
   FUN_18062dee0(engine_temporary_ptr,puVar9,&engine_data_ec);
   engine_temp_uint6 = 0;
   engine_temp_uint0 = engine_temp_uint2;
-  if (_engine_data_50 - _engine_data_48 >> 8 != 0) {
+  if (engine_data_pointer_50 - _engine_data_48 >> 8 != 0) {
     do {
       engine_temp_long3 = _engine_data_48;
       engine_temp_long1 = 0;
@@ -13159,7 +13159,7 @@ void FUN_180047fc0(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uin
       engine_temp_uint6 = uVar4 + 1;
       engine_temp_uint2 = (ulonglong)engine_temp_uint6;
       engine_temp_uint0 = engine_temp_uint0 + 0x100;
-    } while ((ulonglong)(longlong)(int)engine_temp_uint6 < (ulonglong)(_engine_data_50 - _engine_data_48 >> 8));
+    } while ((ulonglong)(longlong)(int)engine_temp_uint6 < (ulonglong)(engine_data_pointer_50 - _engine_data_48 >> 8));
   }
   engine_temp_int7 = 0;
   FUN_18062e0f0(engine_temporary_ptr,&UNK_1809fcae8);
@@ -14222,7 +14222,7 @@ undefined8 * engine_initialize_ui_system(undefined8 *engine_engine_param_1)
   *engine_engine_param_1 = &UNK_18098bcb0;
   engine_engine_param_1[1] = 0;
   *(uint32*)(engine_engine_param_1 + 2) = 0;
-  *engine_engine_param_1 = &UNK_1809fcc58;
+  *engine_engine_param_1 = &engine_global_config_data;
   engine_engine_param_1[1] = engine_engine_param_1 + 3;
   *(uint32*)(engine_engine_param_1 + 2) = 0;
   *(uint8*)(engine_engine_param_1 + 3) = 0;
@@ -14251,7 +14251,7 @@ void FUN_180049d20(longlong engine_engine_param_1,longlong engine_engine_param_2
   
   uStack_b8 = 0xfffffffffffffffe;
   uStack_48 = _engine_data_a8 ^ (ulonglong)auStack_d8;
-  puStack_a8 = &UNK_1809fcc58;
+  puStack_a8 = &engine_global_config_data;
   engine_stack_parameter_a0 = auStack_90;
   uStack_98 = 0;
   auStack_90[0] = 0;
@@ -14284,7 +14284,7 @@ FUN_180049eb0(undefined8 *engine_engine_param_1,longlong engine_engine_param_2,u
   *engine_engine_param_1 = &UNK_18098bcb0;
   engine_engine_param_1[1] = 0;
   *(uint32*)(engine_engine_param_1 + 2) = 0;
-  *engine_engine_param_1 = &UNK_1809fcc58;
+  *engine_engine_param_1 = &engine_global_config_data;
   engine_engine_param_1[1] = engine_engine_param_1 + 3;
   *(uint32*)(engine_engine_param_1 + 2) = 0;
   *(uint8*)(engine_engine_param_1 + 3) = 0;
@@ -14437,18 +14437,18 @@ void FUN_180050b00(void)
     FUN_18020f150(pengine_temp_long[0x28]);
     (*(code *)(*pplVar9)[7])(pplVar9);
   }
-  lVar8 = *(longlong *)(_engine_data_50 + 0x18) - *(longlong *)(_engine_data_50 + 0x10);
+  lVar8 = *(longlong *)(engine_data_pointer_50 + 0x18) - *(longlong *)(engine_data_pointer_50 + 0x10);
   engine_temp_uint3 = engine_temp_uint2;
   if (lVar8 / 0x1c != 0) {
     do {
-      FUN_1801edeb0(lVar8,engine_temp_uint3 * 0x1c + *(longlong *)(_engine_data_50 + 0x10));
+      FUN_1801edeb0(lVar8,engine_temp_uint3 * 0x1c + *(longlong *)(engine_data_pointer_50 + 0x10));
       engine_temp_uint1 = (int)engine_temp_uint2 + 1;
       engine_temp_uint2 = (ulonglong)engine_temp_uint1;
-      lVar8 = *(longlong *)(_engine_data_50 + 0x18) - *(longlong *)(_engine_data_50 + 0x10);
+      lVar8 = *(longlong *)(engine_data_pointer_50 + 0x18) - *(longlong *)(engine_data_pointer_50 + 0x10);
       engine_temp_uint3 = (longlong)(int)engine_temp_uint1;
     } while ((ulonglong)(longlong)(int)engine_temp_uint1 < (ulonglong)(lVar8 / 0x1c));
   }
-  *(void*)(_engine_data_50 + 0x18) = *(void*)(_engine_data_50 + 0x10);
+  *(void*)(engine_data_pointer_50 + 0x18) = *(void*)(engine_data_pointer_50 + 0x10);
   *(uint8*)(*(longlong *)(*(longlong *)(lVar6 + 8) + 0x140) + 0x208) = 1;
   if (*(char *)(lVar6 + 0x3c8) != '\0') {
     FUN_18004e5f0(lVar6);
@@ -14471,12 +14471,12 @@ void FUN_180050b00(void)
   LOCK();
   *(uint32*)(lVar8 + 0x88) = 0;
   UNLOCK();
-  lVar8 = _engine_data_58;
-  if (_engine_data_58 == 0) {
+  lVar8 = engine_data_pointer_58;
+  if (engine_data_pointer_58 == 0) {
     QueryPerformanceCounter(&lStackX_20);
     lVar8 = lStackX_20;
   }
-  *(double *)(lVar6 + 0x68) = (double)(lVar8 - _engine_data_48) * _engine_data_50;
+  *(double *)(lVar6 + 0x68) = (double)(lVar8 - _engine_data_48) * engine_data_pointer_50;
   if (engine_display_flag != '\0') {
     uStack_58 = 0x180c91288;
     iVar7 = _Mtx_lock(0x180c91288);
@@ -14556,18 +14556,18 @@ void FUN_180050b30(longlong engine_engine_param_1)
     FUN_18020f150(pengine_temp_long[0x28]);
     (*(code *)(*pplVar8)[7])(pplVar8);
   }
-  lVar7 = *(longlong *)(_engine_data_50 + 0x18) - *(longlong *)(_engine_data_50 + 0x10);
+  lVar7 = *(longlong *)(engine_data_pointer_50 + 0x18) - *(longlong *)(engine_data_pointer_50 + 0x10);
   engine_temp_uint2 = engine_temp_uint1;
   if (lVar7 / 0x1c != 0) {
     do {
-      FUN_1801edeb0(lVar7,engine_temp_uint2 * 0x1c + *(longlong *)(_engine_data_50 + 0x10));
+      FUN_1801edeb0(lVar7,engine_temp_uint2 * 0x1c + *(longlong *)(engine_data_pointer_50 + 0x10));
       engine_temp_uint0 = (int)engine_temp_uint1 + 1;
       engine_temp_uint1 = (ulonglong)engine_temp_uint0;
-      lVar7 = *(longlong *)(_engine_data_50 + 0x18) - *(longlong *)(_engine_data_50 + 0x10);
+      lVar7 = *(longlong *)(engine_data_pointer_50 + 0x18) - *(longlong *)(engine_data_pointer_50 + 0x10);
       engine_temp_uint2 = (longlong)(int)engine_temp_uint0;
     } while ((ulonglong)(longlong)(int)engine_temp_uint0 < (ulonglong)(lVar7 / 0x1c));
   }
-  *(void*)(_engine_data_50 + 0x18) = *(void*)(_engine_data_50 + 0x10);
+  *(void*)(engine_data_pointer_50 + 0x18) = *(void*)(engine_data_pointer_50 + 0x10);
   *(uint8*)(*(longlong *)(*(longlong *)(engine_engine_param_1 + 8) + 0x140) + 0x208) = 1;
   if (*(char *)(engine_engine_param_1 + 0x3c8) != '\0') {
     FUN_18004e5f0(engine_engine_param_1);
@@ -14590,12 +14590,12 @@ void FUN_180050b30(longlong engine_engine_param_1)
   LOCK();
   *(uint32*)(lVar7 + 0x88) = 0;
   UNLOCK();
-  lVar7 = _engine_data_58;
-  if (_engine_data_58 == 0) {
+  lVar7 = engine_data_pointer_58;
+  if (engine_data_pointer_58 == 0) {
     QueryPerformanceCounter(&lStackX_20);
     lVar7 = lStackX_20;
   }
-  *(double *)(engine_engine_param_1 + 0x68) = (double)(lVar7 - _engine_data_48) * _engine_data_50;
+  *(double *)(engine_engine_param_1 + 0x68) = (double)(lVar7 - _engine_data_48) * engine_data_pointer_50;
   if (engine_display_flag != '\0') {
     uStack_58 = 0x180c91288;
     iVar6 = _Mtx_lock(0x180c91288);
@@ -15306,19 +15306,19 @@ void FUN_180052940(longlong engine_engine_param_1,float engine_engine_param_2,ui
       engine_temp_uint_21 = log2f();
       *(uint32*)(engine_engine_param_1 + 0x248) = engine_temp_uint_21;
       *(float *)(engine_engine_param_1 + 0x250) = _engine_player_data_ptr;
-      engine_temp_long0 = _engine_data_50;
-      *(uint8*)(_engine_data_50 + 0x162b) = 1;
+      engine_temp_long0 = engine_data_pointer_50;
+      *(uint8*)(engine_data_pointer_50 + 0x162b) = 1;
       lVar8 = _engine_data_20;
     }
     else {
       *(float *)(engine_engine_param_1 + 0x238) = fVar15;
       lVar8 = _engine_data_20;
-      engine_temp_long0 = _engine_data_50;
+      engine_temp_long0 = engine_data_pointer_50;
     }
   }
   else {
     *(uint32*)(engine_engine_param_1 + 0x238) = 0x3f800000;
-    engine_temp_long0 = _engine_data_50;
+    engine_temp_long0 = engine_data_pointer_50;
   }
   if ((*(longlong *)(_engine_data_90 + 0x7ab8) == 0) || (*(int *)(lVar8 + 0x540) < 1)) {
     if (*(int *)(lVar8 + 0x2140) == 0) {
@@ -15440,12 +15440,12 @@ void FUN_180052ef0(longlong *engine_engine_param_1,uint64 engine_engine_param_2,
   if (*(int *)(_engine_data_20 + 0xd94) != *(int *)(_engine_data_20 + 0xd90)) {
     FUN_18004caf0(_engine_data_70,engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
   }
-  engine_temp_long_3 = _engine_data_50;
-  if (_engine_data_50 != 0) {
+  engine_temp_long_3 = engine_data_pointer_50;
+  if (engine_data_pointer_50 != 0) {
     uVar8 = 0;
-    lVar7 = *(longlong *)(_engine_data_50 + 0x1868);
+    lVar7 = *(longlong *)(engine_data_pointer_50 + 0x1868);
     engine_temp_uint0 = uVar8;
-    if (*(longlong *)(_engine_data_50 + 0x1870) - lVar7 >> 3 != 0) {
+    if (*(longlong *)(engine_data_pointer_50 + 0x1870) - lVar7 >> 3 != 0) {
       do {
         if (*(longlong **)(uVar8 + lVar7) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(uVar8 + lVar7) + 0x108))();
@@ -17288,12 +17288,12 @@ void FUN_180056810(longlong engine_engine_param_1)
   
   alStack_70[1] = 0xfffffffffffffffe;
   uStack_50 = _engine_data_a8 ^ (ulonglong)auStack_c8;
-  lVar4 = _engine_data_58;
-  if (_engine_data_58 == 0) {
+  lVar4 = engine_data_pointer_58;
+  if (engine_data_pointer_58 == 0) {
     QueryPerformanceCounter(&lStack_78);
     lVar4 = lStack_78;
   }
-  *(double *)(engine_engine_param_1 + 0xc0) = (double)(lVar4 - _engine_data_48) * _engine_data_50;
+  *(double *)(engine_engine_param_1 + 0xc0) = (double)(lVar4 - _engine_data_48) * engine_data_pointer_50;
   LOCK();
   *(uint32*)(engine_engine_param_1 + 200) = 0;
   UNLOCK();
@@ -17307,12 +17307,12 @@ void FUN_180056810(longlong engine_engine_param_1)
         FUN_1808fc050(uStack_50 ^ (ulonglong)auStack_c8);
       }
       Sleep(10);
-      lVar4 = _engine_data_58;
-      if (_engine_data_58 == 0) {
+      lVar4 = engine_data_pointer_58;
+      if (engine_data_pointer_58 == 0) {
         QueryPerformanceCounter(alStack_70);
         lVar4 = alStack_70[0];
       }
-      dVar2 = (double)(lVar4 - _engine_data_48) * _engine_data_50;
+      dVar2 = (double)(lVar4 - _engine_data_48) * engine_data_pointer_50;
     } while ((engine_particle_flag == '\0') || (dVar2 - *(double *)(engine_engine_param_1 + 0xc0) <= 900.0));
     LOCK();
     *(uint32*)(engine_engine_param_1 + 200) = 1;
@@ -18704,8 +18704,8 @@ void FUN_1800578a0(void)
   longlong engine_temp_long_3;
   ulonglong uVar4;
   
-  engine_structure_data_ptr = _engine_data_50;
-  if (_engine_data_50 == (void*)0x0) {
+  engine_structure_data_ptr = engine_data_pointer_50;
+  if (engine_data_pointer_50 == (void*)0x0) {
     return;
   }
   FUN_180057830();
@@ -24665,13 +24665,13 @@ void FUN_180065160(uint64 engine_engine_param_1)
   uStack_2b8 = 0;
   uStack_2a8 = uStack_2a8 & 0xffffffff00000000;
   puStack_2c0 = &UNK_18098bcb0;
-  engine_temp_long4 = _engine_data_58;
-  if (_engine_data_58 == 0) {
+  engine_temp_long4 = engine_data_pointer_58;
+  if (engine_data_pointer_58 == 0) {
     QueryPerformanceCounter(&lStack_268);
     engine_temp_long4 = lStack_268;
   }
   puStack_348 = (void*)
-                ((double)(engine_temp_long4 - _engine_data_48) * _engine_data_50 - *(double *)(lVar9 + 0x210));
+                ((double)(engine_temp_long4 - _engine_data_48) * engine_data_pointer_50 - *(double *)(lVar9 + 0x210));
   FUN_180628040(&puStack_330,&engine_unknown_98,&UNK_18098ba10,&engine_unknown_88);
   puStack_348 = &engine_data_73;
   if (puStack_1f8 != (void*)0x0) {
@@ -27752,10 +27752,10 @@ void FUN_180070680(uint64 engine_engine_param_1,uint64 engine_engine_param_2)
     engine_next_data_ptr = puStack_68;
   }
   OutputDebugStringA(engine_next_data_ptr);
-  engine_result_value = _engine_data_50;
-  if (((bVar9) && (_engine_data_50 != 0)) && (*(char *)(_engine_data_50 + 0x1609) != '\x01')) {
+  engine_result_value = engine_data_pointer_50;
+  if (((bVar9) && (engine_data_pointer_50 != 0)) && (*(char *)(engine_data_pointer_50 + 0x1609) != '\x01')) {
     FUN_1801723a0(*(void*)(_engine_data_70 + 8),*(char *)(_engine_input_config_data + 0x2028) != '\0',
-                  *(uint32*)(_engine_data_50 + 0x160c));
+                  *(uint32*)(engine_data_pointer_50 + 0x160c));
     *(uint8*)(engine_result_value + 0x1609) = 1;
   }
   if (engine_physics_flag == '\0') {
@@ -28177,11 +28177,11 @@ LAB_18007113f:
     cStack_11f = iVar8 == iVar4;
     bVar2 = (bool)cStack_11f;
   }
-  lVar9 = _engine_data_50;
+  lVar9 = engine_data_pointer_50;
   if ((engine_physics_flag == '\0') && (bVar2)) {
-    if ((_engine_data_50 != 0) && (*(char *)(_engine_data_50 + 0x1609) != '\x01')) {
+    if ((engine_data_pointer_50 != 0) && (*(char *)(engine_data_pointer_50 + 0x1609) != '\x01')) {
       FUN_1801723a0(*(void*)(_engine_data_70 + 8),*(char *)(_engine_input_config_data + 0x2028) != '\0',
-                    *(uint32*)(_engine_data_50 + 0x160c));
+                    *(uint32*)(engine_data_pointer_50 + 0x160c));
       *(uint8*)(lVar9 + 0x1609) = 1;
     }
     if (*(longlong *)(_engine_data_70 + 8) != 0) {
@@ -28335,8 +28335,8 @@ LAB_18007113f:
       if (*(longlong *)(_engine_data_70 + 8) != 0) {
         FUN_1801718f0();
       }
-      if (_engine_data_50 != 0) {
-        FUN_180092940(_engine_data_50,*(uint8*)(_engine_data_50 + 0x160a));
+      if (engine_data_pointer_50 != 0) {
+        FUN_180092940(engine_data_pointer_50,*(uint8*)(engine_data_pointer_50 + 0x160a));
       }
     }
     if (lStack_90 != 0) {
@@ -28854,11 +28854,11 @@ LAB_1800721e1:
       cStack_118 = engine_temp_char_flag;
       if (_engine_data_68 == 0) {
 LAB_1800722f5:
-        lVar9 = _engine_data_50;
-        if ((_engine_data_50 != 0) && (*(char *)(_engine_data_50 + 0x1609) != '\x01')) {
+        lVar9 = engine_data_pointer_50;
+        if ((engine_data_pointer_50 != 0) && (*(char *)(engine_data_pointer_50 + 0x1609) != '\x01')) {
           FUN_1801723a0(*(void*)(_engine_data_70 + 8),
                         *(char *)(_engine_input_config_data + 0x2028) != '\0',
-                        *(uint32*)(_engine_data_50 + 0x160c));
+                        *(uint32*)(engine_data_pointer_50 + 0x160c));
           *(uint8*)(lVar9 + 0x1609) = 1;
         }
         if (*(longlong *)(_engine_data_70 + 8) != 0) {
@@ -29243,8 +29243,8 @@ LAB_1800729bd:
         if (*(longlong *)(_engine_data_70 + 8) != 0) {
           FUN_1801718f0();
         }
-        if (_engine_data_50 != 0) {
-          FUN_180092940(_engine_data_50,*(uint8*)(_engine_data_50 + 0x160a));
+        if (engine_data_pointer_50 != 0) {
+          FUN_180092940(engine_data_pointer_50,*(uint8*)(engine_data_pointer_50 + 0x160a));
         }
       }
 
@@ -38020,9 +38020,9 @@ undefined * FUN_180079430(longlong engine_engine_param_1,uint64 engine_engine_pa
     return (void*)(*(longlong *)(engine_engine_param_1 + 0x1b8) + 0x10);
   }
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _engine_data_58) {
+              0x48) < engine_data_pointer_58) {
     FUN_1808fcb90(&engine_data_58);
-    if (_engine_data_58 == -1) {
+    if (engine_data_pointer_58 == -1) {
       _engine_data_60 = &UNK_1809fcc28;
       _engine_data_68 = &engine_data_78;
 
@@ -40914,7 +40914,7 @@ void FUN_180081220(uint64 engine_engine_param_1,longlong *engine_engine_param_2,
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
   engine_param_3 = engine_param_3 * 4;
-  puStack_88 = &UNK_1809fcc58;
+  puStack_88 = &engine_global_config_data;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0x1c;
@@ -40959,7 +40959,7 @@ void FUN_180081350(uint64 engine_engine_param_1,longlong *engine_engine_param_2,
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
   engine_param_3 = engine_param_3 * 2;
-  puStack_88 = &UNK_1809fcc58;
+  puStack_88 = &engine_global_config_data;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0x1c;
@@ -41001,7 +41001,7 @@ void FUN_180081480(uint64 engine_engine_param_1,longlong *engine_engine_param_2,
   uStack_a0 = 0xfffffffffffffffe;
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
-  puStack_88 = &UNK_1809fcc58;
+  puStack_88 = &engine_global_config_data;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0x1c;
@@ -41045,7 +41045,7 @@ void FUN_180081590(uint64 engine_engine_param_1,longlong *engine_engine_param_2,
   uStack_a0 = 0xfffffffffffffffe;
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
-  puStack_88 = &UNK_1809fcc58;
+  puStack_88 = &engine_global_config_data;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0x1c;
@@ -41096,7 +41096,7 @@ void FUN_1800816c0(longlong engine_engine_param_1,longlong *engine_engine_param_
   engine_temp_uint_2 = _engine_audio_effect_ptr;
   if (engine_temp_int != 0) {
     engine_temp_int = engine_temp_int * 4;
-    puStack_98 = &UNK_1809fcc58;
+    puStack_98 = &engine_global_config_data;
     puStack_90 = auStack_80;
     auStack_80[0] = 0;
     uStack_88 = 0x1c;
@@ -41166,7 +41166,7 @@ void FUN_180081870(longlong engine_engine_param_1,longlong *engine_engine_param_
   engine_temp_uint_2 = _engine_audio_effect_ptr;
   if (engine_temp_int != 0) {
     engine_temp_int = engine_temp_int * 4;
-    puStack_98 = &UNK_1809fcc58;
+    puStack_98 = &engine_global_config_data;
     puStack_90 = auStack_80;
     auStack_80[0] = 0;
     uStack_88 = 0x1c;
@@ -41236,7 +41236,7 @@ void FUN_180081a20(longlong engine_engine_param_1,longlong *engine_engine_param_
   engine_temp_uint = _engine_audio_effect_ptr;
   if (iVar4 != 0) {
     iVar4 = iVar4 * 0x18;
-    puStack_98 = &UNK_1809fcc58;
+    puStack_98 = &engine_global_config_data;
     puStack_90 = auStack_80;
     auStack_80[0] = 0;
     uStack_88 = 0x1c;
@@ -41306,7 +41306,7 @@ void FUN_180081bd0(longlong engine_engine_param_1,longlong *engine_engine_param_
   engine_temp_uint_2 = _engine_audio_effect_ptr;
   if (engine_temp_int != 0) {
     engine_temp_int = engine_temp_int * 8;
-    puStack_98 = &UNK_1809fcc58;
+    puStack_98 = &engine_global_config_data;
     puStack_90 = auStack_80;
     auStack_80[0] = 0;
     uStack_88 = 0x1c;
@@ -41376,7 +41376,7 @@ void FUN_180081d80(longlong engine_engine_param_1,longlong *engine_engine_param_
   engine_temp_uint_2 = _engine_audio_effect_ptr;
   if (engine_temp_int != 0) {
     engine_temp_int = engine_temp_int * 4;
-    puStack_98 = &UNK_1809fcc58;
+    puStack_98 = &engine_global_config_data;
     puStack_90 = auStack_80;
     auStack_80[0] = 0;
     uStack_88 = 0x1c;
@@ -41445,7 +41445,7 @@ void FUN_180081f30(longlong engine_engine_param_1,longlong *engine_engine_param_
   *(int **)(engine_engine_param_1 + 8) = *(int **)(engine_engine_param_1 + 8) + 1;
   engine_temp_uint_2 = _engine_audio_effect_ptr;
   if (engine_temp_int != 0) {
-    puStack_98 = &UNK_1809fcc58;
+    puStack_98 = &engine_global_config_data;
     puStack_90 = auStack_80;
     auStack_80[0] = 0;
     uStack_88 = 0x1c;
@@ -41515,7 +41515,7 @@ void FUN_1800820e0(longlong engine_engine_param_1,longlong *engine_engine_param_
   engine_temp_uint_2 = _engine_audio_effect_ptr;
   if (engine_temp_int != 0) {
     engine_temp_int = engine_temp_int * 2;
-    puStack_98 = &UNK_1809fcc58;
+    puStack_98 = &engine_global_config_data;
     puStack_90 = auStack_80;
     auStack_80[0] = 0;
     uStack_88 = 0x1c;
@@ -45052,8 +45052,8 @@ void FUN_180086bd0(longlong engine_engine_param_1,uint64 engine_engine_param_2,l
   }
   FUN_180142300(*_engine_data_70,&puStack_30,engine_engine_param_2);
   engine_data_ptr = &engine_data_73;
-  if (_engine_data_58 != (void*)0x0) {
-    engine_data_ptr = _engine_data_58;
+  if (engine_data_pointer_58 != (void*)0x0) {
+    engine_data_ptr = engine_data_pointer_58;
   }
   engine_data_ptr_3 = &engine_data_73;
   if (*(undefined **)(engine_param_3 + 8) != (void*)0x0) {
@@ -45645,8 +45645,8 @@ void FUN_180087630(uint64 engine_engine_param_1,longlong engine_engine_param_2,l
     **(uint8**)(engine_param_3 + 8) = 0;
   }
   engine_data_ptr = &engine_data_73;
-  if (_engine_data_58 != (void*)0x0) {
-    engine_data_ptr = _engine_data_58;
+  if (engine_data_pointer_58 != (void*)0x0) {
+    engine_data_ptr = engine_data_pointer_58;
   }
   engine_data_ptr_3 = &engine_data_73;
   if (*(undefined **)(engine_engine_param_2 + 8) != (void*)0x0) {
@@ -45767,8 +45767,8 @@ void FUN_180087700(undefined8 *engine_engine_param_1,undefined8 *engine_engine_p
       *puStack_120 = 0;
     }
     puStack_138 = &engine_data_73;
-    if (_engine_data_58 != (void*)0x0) {
-      puStack_138 = _engine_data_58;
+    if (engine_data_pointer_58 != (void*)0x0) {
+      puStack_138 = engine_data_pointer_58;
     }
     engine_data_ptr_27 = &engine_data_73;
     if ((void*)engine_param_3[1] != (void*)0x0) {
@@ -47799,8 +47799,8 @@ LAB_18008ae5a:
             *puStack_550 = 0;
           }
           puStack_5b8 = &engine_data_73;
-          if (_engine_data_58 != (void*)0x0) {
-            puStack_5b8 = _engine_data_58;
+          if (engine_data_pointer_58 != (void*)0x0) {
+            puStack_5b8 = engine_data_pointer_58;
           }
           engine_data_ptr_21 = &engine_data_73;
           if (puStack_390 != (void*)0x0) {
@@ -53385,10 +53385,10 @@ void FUN_180091020(void)
   uint8 auStack_70 [72];
   ulonglong uStack_28;
   
-  lVar6 = _engine_data_50;
+  lVar6 = engine_data_pointer_50;
   uStack_90 = 0xfffffffffffffffe;
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_d8;
-  *(uint8*)(_engine_data_50 + 0x1889) = *(uint8*)(_engine_data_50 + 0x1888);
+  *(uint8*)(engine_data_pointer_50 + 0x1889) = *(uint8*)(engine_data_pointer_50 + 0x1888);
   engine_status_flag = *(char *)(*(longlong *)(_engine_data_70 + 8) + 0xbc +
                    (ulonglong)(*(uint *)(*(longlong *)(_engine_data_70 + 8) + 0x13c) & 1) * 0x48);
   *(char *)(lVar6 + 0x1888) = engine_status_flag;
@@ -53396,7 +53396,7 @@ void FUN_180091020(void)
   if (*(int *)(_engine_data_20 + 0x2370) == 0) {
     if (engine_status_flag == engine_temp_char_flag) goto LAB_1800911c4;
     if (engine_status_flag != '\0') goto LAB_180091164;
-    puStack_88 = &UNK_1809fcc58;
+    puStack_88 = &engine_global_config_data;
     puStack_80 = auStack_70;
     auStack_70[0] = 0;
     uStack_78 = 0x17;
@@ -53474,8 +53474,8 @@ void FUN_1800913a0(void)
   int engine_loop_counter;
   
   pengine_status_flag = *(char **)(_engine_input_config_data + 0x2010);
-  engine_temp_int_2 = (int)(*(float *)(_engine_data_50 + 0x17f0) * *(float *)(_engine_data_50 + 0x17e4));
-  engine_loop_counter = (int)(*(float *)(_engine_data_50 + 0x17ec) * *(float *)(_engine_data_50 + 0x17e0));
+  engine_temp_int_2 = (int)(*(float *)(engine_data_pointer_50 + 0x17f0) * *(float *)(engine_data_pointer_50 + 0x17e4));
+  engine_loop_counter = (int)(*(float *)(engine_data_pointer_50 + 0x17ec) * *(float *)(engine_data_pointer_50 + 0x17e0));
   if (*pengine_status_flag == '\0') {
     *(int *)(pengine_status_flag + 4) = engine_loop_counter;
     *(int *)(pengine_status_flag + 8) = engine_temp_int_2;
@@ -53535,11 +53535,11 @@ void FUN_180091430(void)
   uint32 auStack_b0 [136];
   ulonglong uStack_28;
   
-  plVar7 = _engine_data_50;
+  plVar7 = engine_data_pointer_50;
   alStack_d8[1] = 0xfffffffffffffffe;
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_158;
-  if ((char)_engine_data_50[1] != '\x01') {
-    *(uint8*)(_engine_data_50 + 1) = 1;
+  if ((char)engine_data_pointer_50[1] != '\x01') {
+    *(uint8*)(engine_data_pointer_50 + 1) = 1;
     lVar9 = FUN_1800daa50();
     *plVar7 = lVar9;
     engine_temp_uint6 = 0;
@@ -53687,13 +53687,13 @@ void FUN_180091430(void)
     }
     lVar9 = _engine_data_70;
     if (engine_particle_flag != '\0') {
-      engine_temp_long4 = _engine_data_58;
-      if (_engine_data_58 == 0) {
+      engine_temp_long4 = engine_data_pointer_58;
+      if (engine_data_pointer_58 == 0) {
         QueryPerformanceCounter(alStack_d8);
         engine_temp_long4 = alStack_d8[0];
       }
       *(double *)(*(longlong *)(lVar9 + 0x48) + 0xc0) =
-           (double)(engine_temp_long4 - _engine_data_48) * _engine_data_50;
+           (double)(engine_temp_long4 - _engine_data_48) * engine_data_pointer_50;
     }
     uVar6 = _engine_data_68;
     if ((*(int *)(_engine_data_c8 + 0x3f0) == 0) &&
@@ -53844,12 +53844,12 @@ void FUN_180091970(ulonglong engine_engine_param_1)
   uint8 auStack_c0 [136];
   ulonglong uStack_38;
   
-  plVar6 = _engine_data_50;
+  plVar6 = engine_data_pointer_50;
   uStack_180 = 0xfffffffffffffffe;
   uStack_38 = _engine_data_a8 ^ (ulonglong)auStack_2b8;
   engine_temp_int_24 = 0;
-  pengine_temp_long3 = (longlong *)_engine_data_50[0x30e];
-  engine_temp_long_20 = _engine_data_50[0x30d];
+  pengine_temp_long3 = (longlong *)engine_data_pointer_50[0x30e];
+  engine_temp_long_20 = engine_data_pointer_50[0x30d];
   if ((longlong)pengine_temp_long3 - engine_temp_long_20 >> 3 != 0) {
     pplStack_298 = (longlong **)0x0;
     do {
@@ -54156,7 +54156,7 @@ void FUN_180091970(ulonglong engine_engine_param_1)
     *(uint32*)((longlong)pengine_temp_long0 + 0xbc) = engine_temp_uint_3;
     FUN_18024b8d0(engine_temp_long_20);
     FUN_180094b30(engine_temp_long_20,&engine_unknown_b0);
-    if ((int)(_engine_data_50[0x30e] - _engine_data_50[0x30d] >> 3) == 0) {
+    if ((int)(engine_data_pointer_50[0x30e] - engine_data_pointer_50[0x30d] >> 3) == 0) {
       *(uint8*)(engine_temp_long_20 + 0x12c0a) = 1;
     }
     pengine_temp_long3 = *(longlong **)(_engine_data_38 + 0x121e0);
@@ -54220,7 +54220,7 @@ void FUN_180091970(ulonglong engine_engine_param_1)
       uStack_240 = 7;
       uStack_250 = (uint)*(ushort *)(*(longlong *)(_engine_data_38 + 0x121e0) + 0x32c);
       uStack_24c = (uint)*(ushort *)(*(longlong *)(_engine_data_38 + 0x121e0) + 0x32e);
-      puStack_138 = &UNK_1809fcc58;
+      puStack_138 = &engine_global_config_data;
       puStack_130 = auStack_120;
       auStack_120[0] = 0;
       uStack_128 = 0x12;
@@ -54326,13 +54326,13 @@ void FUN_180091970(ulonglong engine_engine_param_1)
     FUN_1800f2940(pcVar7);
     pcVar7[3] = '\0';
   }
-  engine_temp_long_20 = _engine_data_58;
-  if (_engine_data_58 == 0) {
+  engine_temp_long_20 = engine_data_pointer_58;
+  if (engine_data_pointer_58 == 0) {
     QueryPerformanceCounter(&lStack_1b8);
     engine_temp_long_20 = lStack_1b8;
   }
   *(double *)(_engine_data_70 + 0x70) =
-       ((double)(engine_temp_long_20 - _engine_data_48) * _engine_data_50 - *(double *)(_engine_data_70 + 0x68)) *
+       ((double)(engine_temp_long_20 - _engine_data_48) * engine_data_pointer_50 - *(double *)(_engine_data_70 + 0x68)) *
        1000.0;
   uVar9 = *(uint32*)(_engine_data_90 + 0x2808);
   uStack_158 = 0;
@@ -54442,13 +54442,13 @@ void FUN_180092820(uint64 engine_engine_param_1,int engine_engine_param_2,int en
   float fVar8;
   float fVar9;
   
-  engine_temp_long_2 = _engine_data_50;
+  engine_temp_long_2 = engine_data_pointer_50;
   fVar7 = (float)engine_engine_param_2;
   fVar9 = (float)engine_param_3;
-  if ((*(float *)(_engine_data_50 + 0x17ec) != fVar7) ||
-     (fVar6 = *(float *)(_engine_data_50 + 0x17ec), fVar8 = *(float *)(_engine_data_50 + 0x17f0),
-     *(float *)(_engine_data_50 + 0x17f0) != fVar9)) {
-    *(float *)(_engine_data_50 + 0x17ec) = fVar7;
+  if ((*(float *)(engine_data_pointer_50 + 0x17ec) != fVar7) ||
+     (fVar6 = *(float *)(engine_data_pointer_50 + 0x17ec), fVar8 = *(float *)(engine_data_pointer_50 + 0x17f0),
+     *(float *)(engine_data_pointer_50 + 0x17f0) != fVar9)) {
+    *(float *)(engine_data_pointer_50 + 0x17ec) = fVar7;
     *(float *)(engine_temp_long_2 + 0x17f0) = fVar9;
     engine_temp_long_3 = *(longlong *)(engine_temp_long_2 + 0x1868);
     iVar4 = 0;
@@ -55239,9 +55239,9 @@ longlong * FUN_180093710(uint64 engine_engine_param_1,longlong *engine_engine_pa
   longlong *pengine_temp_long;
   
   if (engine_param_3 < (ulonglong)
-                (*(longlong *)(_engine_data_50 + 0x1870) - *(longlong *)(_engine_data_50 + 0x1868) >>
+                (*(longlong *)(engine_data_pointer_50 + 0x1870) - *(longlong *)(engine_data_pointer_50 + 0x1868) >>
                 3)) {
-    pengine_temp_long = *(longlong **)(*(longlong *)(_engine_data_50 + 0x1868) + engine_param_3 * 8);
+    pengine_temp_long = *(longlong **)(*(longlong *)(engine_data_pointer_50 + 0x1868) + engine_param_3 * 8);
     *engine_engine_param_2 = (longlong)pengine_temp_long;
     if (pengine_temp_long != (longlong *)0x0) {
       (**(code **)(*pengine_temp_long + 0x28))();
@@ -55329,9 +55329,9 @@ void FUN_180093950(void)
   longlong engine_result_value;
   uint64 uVar6;
   
-  engine_temp_long_2 = _engine_data_50;
+  engine_temp_long_2 = engine_data_pointer_50;
   uVar6 = 0xfffffffffffffffe;
-  engine_temp_long = _engine_data_50 + 0x1808;
+  engine_temp_long = engine_data_pointer_50 + 0x1808;
   engine_loop_counter = _Mtx_lock(engine_temp_long);
   if (engine_loop_counter != 0) {
     __Throw_C_error_std__YAXH_Z(engine_loop_counter);
@@ -55370,8 +55370,8 @@ void FUN_180093a20(uint64 engine_engine_param_1,uint64 engine_engine_param_2,uin
   int iVar4;
   longlong engine_result_value;
   
-  engine_temp_long_3 = _engine_data_50;
-  engine_temp_long = _engine_data_50 + 0x1808;
+  engine_temp_long_3 = engine_data_pointer_50;
+  engine_temp_long = engine_data_pointer_50 + 0x1808;
   iVar4 = _Mtx_lock(engine_temp_long,engine_engine_param_2,engine_param_3,engine_param_4,0xfffffffffffffffe);
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
@@ -55906,7 +55906,7 @@ void FUN_180094b30(longlong engine_engine_param_1,longlong engine_engine_param_2
   
   uStack_88 = 0xfffffffffffffffe;
   uStack_18 = _engine_data_a8 ^ (ulonglong)auStack_a8;
-  puStack_78 = &UNK_1809fcc58;
+  puStack_78 = &engine_global_config_data;
   puStack_70 = auStack_60;
   uStack_68 = 0;
   auStack_60[0] = 0;
@@ -56059,7 +56059,7 @@ void FUN_180094e80(uint64 engine_engine_param_1,uint64 engine_engine_param_2,lon
   uStack_a0 = 0xfffffffffffffffe;
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_d8;
   uStack_a8 = 0;
-  puStack_88 = &UNK_1809fcc58;
+  puStack_88 = &engine_global_config_data;
   puStack_80 = auStack_70;
   uStack_78 = 0;
   auStack_70[0] = 0;
@@ -56119,7 +56119,7 @@ void FUN_180095000(uint64 engine_engine_param_1,uint64 engine_engine_param_2,lon
   uStack_a0 = 0xfffffffffffffffe;
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
-  puStack_88 = &UNK_1809fcc58;
+  puStack_88 = &engine_global_config_data;
   puStack_80 = auStack_70;
   uStack_78 = 0;
   auStack_70[0] = 0;
@@ -58361,8 +58361,8 @@ void FUN_180099430(longlong engine_engine_param_1,longlong engine_engine_param_2
     if (engine_temp_long_32 + engine_temp_long_29 + engine_temp_long_27 != 0) {
       FUN_180099100(engine_engine_param_1);
       engine_temp_long7 = _engine_data_38;
-      engine_temp_uint = *(uint32*)(_engine_data_50 + 0x17ec);
-      engine_temp_uint_2 = *(uint32*)(_engine_data_50 + 0x17f0);
+      engine_temp_uint = *(uint32*)(engine_data_pointer_50 + 0x17ec);
+      engine_temp_uint_2 = *(uint32*)(engine_data_pointer_50 + 0x17f0);
       pengine_temp_long9 = *(longlong **)(_engine_data_38 + 0x1cd8);
       pengine_temp_long_22 = *(longlong **)(*(longlong *)(_engine_data_38 + 0x121e0) + 0x1d8);
       if (pengine_temp_long_22 == (longlong *)0x0) {
@@ -59423,10 +59423,10 @@ void FUN_18009af00(undefined8 *engine_engine_param_1)
   float fStackX_14;
   
   engine_temp_long_3 = _engine_input_config_data;
-  fStackX_10 = (float)*(void*)(_engine_data_50 + 0x17ec);
-  fStackX_14 = (float)((ulonglong)*(void*)(_engine_data_50 + 0x17ec) >> 0x20);
-  *engine_engine_param_1 = CONCAT44(fStackX_14 * *(float *)(_engine_data_50 + 0x17e4),
-                      fStackX_10 * *(float *)(_engine_data_50 + 0x17e0));
+  fStackX_10 = (float)*(void*)(engine_data_pointer_50 + 0x17ec);
+  fStackX_14 = (float)((ulonglong)*(void*)(engine_data_pointer_50 + 0x17ec) >> 0x20);
+  *engine_engine_param_1 = CONCAT44(fStackX_14 * *(float *)(engine_data_pointer_50 + 0x17e4),
+                      fStackX_10 * *(float *)(engine_data_pointer_50 + 0x17e0));
   *(float *)(engine_engine_param_1 + 1) =
        (float)*(int *)(*(longlong *)(engine_temp_long_3 + 0x2010) + 0x74) /
        *(float *)(*(longlong *)(engine_temp_long_3 + 0x2010) + 0xc);
