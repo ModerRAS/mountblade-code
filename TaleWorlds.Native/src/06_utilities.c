@@ -31,22 +31,22 @@
  * @warning 调用此函数前必须确保系统已准备好处理模块依赖关系
  */
 void InitializeModuleDependencies(int64_t ModuleHandle, int64_t ModuleContext);
-void* ModuleDependencyTable;
-uint32_t ModuleDependencyEntryCount;
-uint32_t ModuleDependencyConfigurationFlags;
-uint32_t ModuleDependencyInitializationStatus;
-void* ModuleDependencyAccessLock;
-void* ModuleDependencySynchronizationMutex;
-bool ModuleDependencyInitialized;
-void* ModuleDependencyRuntimeContext;
-void* ModuleDependencySystemConfiguration;
-bool ModuleDependencyEnabled;
-void* ModuleDependencyDataStorage;
-void* ModuleDependencyCacheStorage;
-void* ModuleDependencyDataBuffer;
-uint32_t ModuleDependencyCurrentVersion;
-uint32_t ModuleDependencyBuildNumber;
-uint32_t ModuleDependencyDataChecksum;
+void* GlobalModuleDependencyTable;
+uint32_t ModuleDependencyRegistryEntryCount;
+uint32_t ModuleDependencySystemConfigurationFlags;
+uint32_t ModuleDependencySystemInitializationStatus;
+void* ModuleDependencyAccessControlLock;
+void* ModuleDependencyThreadSynchronizationMutex;
+bool ModuleDependencySystemInitialized;
+void* ModuleDependencyRuntimeExecutionContext;
+void* ModuleDependencyGlobalSystemConfiguration;
+bool ModuleDependencySystemEnabled;
+void* ModuleDependencyPersistentDataStorage;
+void* ModuleDependencySystemCacheStorage;
+void* ModuleDependencyRuntimeDataBuffer;
+uint32_t ModuleDependencyCurrentSystemVersion;
+uint32_t ModuleDependencySystemBuildNumber;
+uint32_t ModuleDependencyDataIntegrityChecksum;
 void* ModuleDependencyDigitalSignature;
 void* ModuleDependencySystemHandle;
 
@@ -62,10 +62,10 @@ void* ModuleDependencySystemHandle;
  * @warning 调用此函数前必须确保系统资源已准备就绪
  */
 void InitializeCoreEngineModule(void);
-void* CoreEngineModuleInstance;
-void* CoreEngineModuleConfiguration;
-uint32_t CoreEngineInitializationStatus;
-void* CoreEngineModuleHandle;
+void* CoreEngineSystemModuleInstance;
+void* CoreEngineSystemModuleConfiguration;
+uint32_t CoreEngineSystemInitializationStatus;
+void* CoreEngineSystemModuleHandle;
 
  /**
  * @brief 初始化渲染引擎模块
@@ -79,11 +79,11 @@ void* CoreEngineModuleHandle;
  * @warning 调用此函数前必须确保图形设备已初始化
  */
 void InitializeRenderingEngineModule(void);
-void* RenderingEngineModuleInstance;
-void* RenderingEngineModuleConfiguration;
-uint32_t RenderingEngineInitializationStatus;
-void* RenderingEngineModuleHandle;
-void* RenderingEngineExecutionContext;
+void* RenderingEngineSystemModuleInstance;
+void* RenderingEngineSystemModuleConfiguration;
+uint32_t RenderingEngineSystemInitializationStatus;
+void* RenderingEngineSystemModuleHandle;
+void* RenderingEngineRuntimeExecutionContext;
 /**
  * @brief 初始化图形系统模块
  * 
@@ -150,7 +150,7 @@ void* NetworkSystemModuleHandle;
  * @warning 状态标志值的含义取决于具体的系统实现
  */
 uint32_t GetCoreEngineSystemStatusFlag(void);
-bool SystemStatusCoreInitialized;
+bool CoreEngineSystemInitialized;
 
 
 /**
@@ -164,7 +164,7 @@ bool SystemStatusCoreInitialized;
  * @warning 状态标志值的含义取决于具体的渲染引擎实现
  */
 uint32_t GetRenderingEngineSystemStatusFlag(void);
-bool SystemStatusEngineInitialized;
+bool RenderingEngineSystemInitialized;
 
 
 /**
@@ -178,7 +178,7 @@ bool SystemStatusEngineInitialized;
  * @warning 状态标志值的含义取决于具体的图形系统实现
  */
 uint32_t GetGraphicsSystemStatusFlag(void);
-bool SystemStatusGraphicsInitialized;
+bool GraphicsSystemInitialized;
 
  /**
  * @brief 获取音频系统状态标志
@@ -191,7 +191,7 @@ bool SystemStatusGraphicsInitialized;
  * @warning 状态标志值的含义取决于具体的音频系统实现
  */
 uint32_t GetAudioSystemStatusFlag(void);
-bool SystemStatusAudioInitialized;
+bool AudioSystemInitialized;
 
 
 /**
@@ -231,7 +231,7 @@ void CloseSystemHandle(void);
  * @warning 调用此函数后，线程资源将被完全释放
  */
 void CleanupThreadResources(void);
-uint32_t ThreadResourceCleanupFlag;
+uint32_t SystemThreadResourceCleanupFlag;
 void* ThreadCleanupPrimaryDataStorage;
 void* ThreadCleanupSecondaryDataStorage;
 void* ThreadCleanupResourceHandle;
@@ -319,7 +319,7 @@ void OptimizeResourceUsage(void);
 void MonitorResourcePerformance(void);
 
 void* ResourceManagementSystemHandle;
-uint32_t ResourceManagementOperationStatus;
+uint32_t SystemResourceManagementOperationStatus;
 void* ResourceContextConfiguration;
 void* ResourceContextStatusMonitor;
 void* ResourceSmallBufferPool;
@@ -655,7 +655,7 @@ void* SecurityManagerInstance;
 void* SecurityContext;
 void* SecurityPermissionTable;
 void* SecurityEncryptionKey;
-uint32_t SecurityValidationFlags;
+uint32_t SystemSecurityValidationFlags;
 void* SecurityAuditLog;
 void* SecurityAccessControl;
 
@@ -668,7 +668,7 @@ void* SecurityAccessControl;
 void InitializeLoggingSystem(void);
 void* LoggingSystemInstance;
 void* LogFileHandle;
-uint32_t LogLevelConfig;
+uint32_t SystemLogLevelConfiguration;
 void* LogOutputBuffer;
 void* LogRotationManager;
 
@@ -683,7 +683,7 @@ void* PerformanceMonitorInstance;
 void* PerformanceCounterArray;
 void* PerformanceMetricsTable;
 void* ProfilingDataBuffer;
-uint32_t FpsCounter;
+uint32_t SystemPerformanceFpsCounter;
 void* MemoryUsageTracker;
 void* CpuUsageMonitor;
 void* GpuPerformanceTracker;
@@ -885,9 +885,9 @@ void* SystemDataBufferInputEventQueue;
 void* SystemDataBufferPhysicsCommandQueue;
 void* SystemDataBufferAnimationCommandQueue;
 void* SystemDataBufferScriptCommandQueue;
-uint8_t SystemDataBufferFileOperationQueue;
-uint8_t SystemDataBufferDataStorageQueue;
-uint8_t SystemDataBufferSecurityQueue;
+uint8_t SystemFileOperationQueue;
+uint8_t SystemDataStorageQueue;
+uint8_t SystemSecurityQueue;
 uint8_t SystemDataBufferLoggingQueue;
 uint8_t SystemDataBufferPerformanceQueue;
 uint8_t SystemDataBufferNetworkQueue;
@@ -37615,7 +37615,19 @@ void ValidateResourceContextAC0(uint8_t ObjectContextParameter,int64_t Validatio
 
 
 
-void Unwind_180903ad0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 执行系统资源处理器的初始化和验证
+ * 
+ * 该函数负责初始化系统资源处理器并进行验证检查
+ * 确保系统资源处于正确的状态，防止资源冲突
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含系统验证所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统资源初始化过程中调用
+ * @warning 如果检测到系统错误，将调用紧急退出函数
+ */
+void InitializeSystemResourceHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;
@@ -37634,7 +37646,21 @@ void Unwind_180903ad0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903ae0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行字符指针清理操作
+ * 
+ * 该函数负责清理和释放字符指针相关的资源
+ * 通过调用字符指针指向的清理函数来释放资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含系统验证所需的信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，用于控制清理过程的行为
+ * @return 无返回值
+ * @note 此函数通常在资源清理过程中调用
+ * @warning 清理过程中可能会调用其他清理函数
+ */
+void CleanupCharacterPointerResources(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CharPointer;
