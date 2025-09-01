@@ -36469,7 +36469,19 @@ void ProcessNodeManagerOperation(long long SystemResourcePointer,uint32_t Config
 
 
 
-void* * FUN_18005caa0(void* *SystemResourcePointer,long long ConfigurationDataPointer)
+/**
+ * @brief 系统资源配置器
+ * 
+ * 该函数负责配置系统资源，设置内存分配器引用和全局数据引用。
+ * 它会从配置数据中提取参数并应用到系统资源结构中，同时清理配置数据。
+ * 
+ * @param SystemResourcePointer 系统资源指针，需要配置的资源
+ * @param ConfigurationDataPointer 配置数据指针，包含配置信息
+ * @return 配置后的系统资源指针
+ * 
+ * 原始函数名为FUN_18005caa0，现已重命名为ConfigureSystemResources
+ */
+void* * ConfigureSystemResources(void* *SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
