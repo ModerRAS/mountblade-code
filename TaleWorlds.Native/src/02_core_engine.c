@@ -346,8 +346,10 @@ engine_setup_network_components;
 
 // 函数: engine_initialize_physics_engine;
 engine_initialize_physics_engine;
-int UNK_180d49150;
-float UNK_180d49154;
+// 物理引擎重力强度整数部分
+int engine_physics_gravity_int;
+// 物理引擎重力强度小数部分
+float engine_physics_gravity_float;
 engine_base_data_offset_70;
 engine_base_data_offset_b0;
 engine_base_data_offset_e0;
