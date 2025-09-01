@@ -23862,8 +23862,16 @@ LAB_18089d07f:
 
 
 
- d091(void)
-d091(void)
+ /**
+ * @brief 空操作函数 (地址: 0xd091)
+ * 
+ * 该函数是一个空操作函数，直接返回而不执行任何操作
+ * 通常用作占位符或默认处理函数
+ * 
+ * @return 无返回值
+ * @note 这是一个简化的空操作实现
+ */
+void EmptyOperationD091(void)
 
 {
   return;
@@ -23872,8 +23880,16 @@ d091(void)
 
 
 
- d0a3(void)
-d0a3(void)
+ /**
+ * @brief 空操作函数 (地址: 0xd0a3)
+ * 
+ * 该函数是一个空操作函数，直接返回而不执行任何操作
+ * 通常用作占位符或默认处理函数
+ * 
+ * @return 无返回值
+ * @note 这是一个简化的空操作实现
+ */
+void EmptyOperationD0A3(void)
 
 {
   return;
@@ -24066,8 +24082,17 @@ uint64_t ValidateResourceHashIntegrity(void)
 
 
 
- d208(void)
-d208(void)
+ /**
+ * @brief 资源清理函数 (地址: 0xd208)
+ * 
+ * 该函数负责清理系统资源数据
+ * 调用CleanupResourceData()函数来释放资源
+ * 
+ * @return 无返回值
+ * @note 此函数不会返回，调用后会执行资源清理流程
+ * @warning 调用此函数后程序流程将不会继续执行
+ */
+void CleanupResourceHandler(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -24077,8 +24102,16 @@ d208(void)
 
 
 
- d23a(void)
-d23a(void)
+ /**
+ * @brief 空操作函数 (地址: 0xd23a)
+ * 
+ * 该函数是一个空操作函数，直接返回而不执行任何操作
+ * 通常用作占位符或默认处理函数
+ * 
+ * @return 无返回值
+ * @note 这是一个简化的空操作实现
+ */
+void EmptyOperationD23A(void)
 
 {
   return;
@@ -24302,8 +24335,16 @@ LAB_18089d435:
 
 
 
- d47a(void)
-d47a(void)
+ /**
+ * @brief 空操作函数 (地址: 0xd47a)
+ * 
+ * 该函数是一个空操作函数，直接返回而不执行任何操作
+ * 通常用作占位符或默认处理函数
+ * 
+ * @return 无返回值
+ * @note 这是一个简化的空操作实现
+ */
+void EmptyOperationD47A(void)
 
 {
   return;
@@ -24358,8 +24399,19 @@ uint8_t ValidateResourceAccess(int64_t ResourceOffset,uint8_t *ResourceData)
 
 
 
- d520(int64_t ObjectContextParameter,uint8_t *ValidationContextParameter)
-d520(int64_t ObjectContextParameter,uint8_t *ValidationContextParameter)
+ /**
+ * @brief 处理资源验证和数据读取 (地址: 0xd520)
+ * 
+ * 该函数负责处理资源的验证、数据读取和清理操作
+ * 包括数据校验和计算、资源哈希验证、数据读取和资源清理
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含资源处理所需的上下文信息
+ * @param ValidationContextParameter 验证上下文参数，用于控制验证过程
+ * @return 无返回值
+ * @note 此函数在验证成功后会调用CleanupResourceData并终止执行
+ * @warning 调用此函数后程序流程将不会继续执行
+ */
+void ProcessResourceValidationAndReadData(int64_t ObjectContextParameter, uint8_t *ValidationContextParameter)
 
 {
   int operationResult;
@@ -37428,7 +37480,20 @@ void CleanupSystemResourceHandlerA70(uint8_t ObjectContextParameter,int64_t Vali
 
 
 
-void Unwind_180903a90(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器A90
+ * 
+ * 该函数负责清理系统资源处理器，释放相关资源
+ * 重置系统状态并执行必要的清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于系统资源清理和释放
+ */
+void CleanupSystemResourceHandlerA90(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -37458,7 +37523,20 @@ void Unwind_180903a90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903ab0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器AB0
+ * 
+ * 该函数负责清理系统资源处理器，释放相关资源
+ * 重置系统状态并执行必要的清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于系统资源清理和释放
+ */
+void CleanupSystemResourceHandlerAB0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CharPointer;
