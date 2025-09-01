@@ -37360,7 +37360,17 @@ void FUN_18005dade(void)
 
 
 // 函数: void FUN_18005db19(void)
-void FUN_18005db19(void)
+/**
+ * @brief 系统空操作函数C
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作
+ * 用于系统初始化过程中的占位符或默认处理
+ * 
+ * @note 这是一个空操作函数，仅用于系统初始化的完整性
+ * 
+ * 原始函数名为FUN_18005db19，现已重命名为SystemNoOperationC
+ */
+void SystemNoOperationC(void)
 
 {
   return;
@@ -37369,8 +37379,17 @@ void FUN_18005db19(void)
 
 
 
-// 函数: void FUN_18005db30(long long SystemResourcePointer)
-void FUN_18005db30(long long SystemResourcePointer)
+/**
+ * @brief 系统线程恢复函数
+ * 
+ * 该函数负责恢复系统中暂停的线程，遍历线程池并恢复所有非当前线程的线程
+ * 用于系统线程管理和调度
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含线程池信息
+ * 
+ * 原始函数名为FUN_18005db30，现已重命名为ResumeSystemThreads
+ */
+void ResumeSystemThreads(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
@@ -37396,8 +37415,17 @@ void FUN_18005db30(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005db5e(void)
-void FUN_18005db5e(void)
+/**
+ * @brief 系统线程恢复函数B
+ * 
+ * 该函数负责恢复系统中暂停的线程，遍历线程池并恢复所有非指定线程的线程
+ * 用于系统线程管理和调度
+ * 
+ * @note 这是一个系统线程恢复函数，使用寄存器变量进行线程管理
+ * 
+ * 原始函数名为FUN_18005db5e，现已重命名为ResumeSystemThreadsB
+ */
+void ResumeSystemThreadsB(void)
 
 {
   long long localMemoryPointer;
@@ -39078,8 +39106,17 @@ void* FUN_18005f490(void)
 
 
 
-// 函数: void FUN_18005f54c(void)
-void FUN_18005f54c(void)
+/**
+ * @brief 系统空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作
+ * 用于系统初始化过程中的占位符或默认处理
+ * 
+ * @note 这是一个空操作函数，仅用于系统初始化的完整性
+ * 
+ * 原始函数名为FUN_18005f54c，现已重命名为SystemNoOperation
+ */
+void SystemNoOperation(void)
 
 {
   return;
@@ -43924,8 +43961,17 @@ void FUN_18006720b(ulong long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18006729a(void)
-void FUN_18006729a(void)
+/**
+ * @brief 系统空操作函数B
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作
+ * 用于系统初始化过程中的占位符或默认处理
+ * 
+ * @note 这是一个空操作函数，仅用于系统初始化的完整性
+ * 
+ * 原始函数名为FUN_18006729a，现已重命名为SystemNoOperationB
+ */
+void SystemNoOperationB(void)
 
 {
   return;
@@ -58025,7 +58071,7 @@ void FUN_180078550(void* *SystemResourcePointer,void* ConfigurationDataPointer,v
   
   unsignedSystemValue5 = 0xfffffffffffffffe;
   if (0 < *(int *)(SystemDataBufferPointer + 0x40)) {
-    SystemResourcePointer[0x26] = *(void* *)(_DAT_180c8aa00 + 0x38);
+    SystemResourcePointer[0x26] = *(void* *)(SystemDataBufferPointer + 0x38);
   }
   SecondaryResourcePointer = SystemResourcePointer + 1;
   localResourceOffset = 7;
@@ -58161,8 +58207,8 @@ void FUN_1800786e0(void* *SystemResourcePointer,long long ConfigurationDataPoint
     plocalMemoryAddress = plocalMemoryAddress + 1;
   } while (systemId < 7);
   unsignedSystemValue4 = FUN_1801fc6c0(ConfigurationDataPointer,&uStack_58);
-  localMemoryPointer = _DAT_180c8aa00;
-  systemId = FUN_180191c00(_DAT_180c8aa00,unsignedSystemValue4);
+  localMemoryPointer = SystemDataBufferPointer;
+  systemId = FUN_180191c00(SystemDataBufferPointer,unsignedSystemValue4);
   if ((systemId == -1) || (localDataPointer = (long long)systemId * 0x68 + *(long long *)(localMemoryPointer + 0x38), localDataPointer == 0)) {
     localDataPointer = *(long long *)(localMemoryPointer + 0x28);
   }
@@ -58175,7 +58221,7 @@ void FUN_1800786e0(void* *SystemResourcePointer,long long ConfigurationDataPoint
   uStack_40 = 0;
   uStack_58 = &SystemMemoryAllocatorReference;
   if (localDataPointer == 0) {
-    localDataPointer = *(long long *)(_DAT_180c8aa00 + 0x38);
+    localDataPointer = *(long long *)(SystemDataBufferPointer + 0x38);
   }
   SystemResourcePointer[0x26] = localDataPointer;
   if ((*(char *)(ConfigurationDataPointer + 0x248) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
@@ -62522,7 +62568,7 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
       punsignedSystemValue12 = *(void* **)(SystemResourcePointer + 0x18);
     }
     FUN_180627020(&UNK_1809ffb88,punsignedSystemValue12);
-    plocalMemoryAddress = (long long *)FUN_1800be9a0(_DAT_180c86898,&plStack_30,0);
+    plocalMemoryAddress = (long long *)FUN_1800be9a0(SystemMemoryContextPointer,&plStack_30,0);
     localDataPointer = *plocalMemoryAddress;
     *plocalMemoryAddress = 0;
     plStack_40 = (long long *)*plocalSystemFlags;
@@ -63017,7 +63063,7 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long ConfigurationDataPointer
   }
   systemResult = *(int *)(ConfigurationDataPointer + 0x60);
   localSystemHandle7 = (long long)systemResult;
-  PrimaryResourcePointer0 = (long long *)FUN_180081480(_DAT_180c8a998,&plStackX_20,systemResult * systemCode);
+  PrimaryResourcePointer0 = (long long *)FUN_180081480(LocalBufferAddress,&plStackX_20,systemResult * systemCode);
   PrimaryResourcePointer0 = (long long *)*PrimaryResourcePointer0;
   if (PrimaryResourcePointer0 != (long long *)0x0) {
     (**(code **)(*PrimaryResourcePointer0 + 0x28))(PrimaryResourcePointer0);
