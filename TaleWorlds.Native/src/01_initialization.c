@@ -1012,18 +1012,27 @@ void* GetSystemInitializationFunction;
  * @note 该函数在系统启动时自动调用，确保所有核心系统
  * 组件都正确初始化并准备就绪。
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 该函数负责初始化游戏的核心系统组件，包括系统节点的遍历、
+ * 内存分配和核心系统数据的设置。这是游戏启动过程中的关键步骤。
+ * 
+ * @note 该函数会遍历系统节点树，查找或创建游戏核心系统节点，
+ *       并设置相关的系统数据和回调函数。
+ */
 void InitializeGameCoreSystem(void)
 {
-  bool IsNodeActive;
-  void** RootNodePointer;
+  bool IsSystemNodeActive;
+  void** SystemRootNodePointer;
   int MemoryComparisonResult;
-  long long* DataTablePointer;
-  long long MemoryAllocationSize;
-  void** CurrentNode;
-  void** PreviousNode;
-  void** NextNode;
-  void** AllocatedNode;
-  void* CoreSystemInitializationFunction;
+  long long* SystemDataTablePointer;
+  long long RequiredMemorySize;
+  void** CurrentSystemNode;
+  void** PreviousSystemNode;
+  void** NextSystemNode;
+  void** AllocatedSystemNode;
+  void* CoreSystemInitializationHandler;
   
   DataTablePointer = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*DataTablePointer;
@@ -23787,7 +23796,7 @@ void SystemMemoryReleaser(long long memoryOffset)
 void SystemMemoryOffsetHandler(long long memoryOffset)
 
 {
-  FUN_180057010(memoryOffset + 0x60);
+  SystemResourceCleaner(memoryOffset + 0x60);
   return;
 }
 
@@ -29369,11 +29378,18 @@ void* * FUN_180056e10(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180056e40(void)
-void FUN_180056e40(void)
+/**
+ * @brief 系统资源清理触发器
+ * 
+ * 该函数作为系统资源清理的触发器，调用系统资源清理器来释放资源。
+ * 这是一个简单的包装函数，用于在特定时机触发资源清理操作。
+ * 
+ * @note 这是系统资源管理的辅助函数，用于统一资源清理的调用接口
+ */
+void SystemResourceCleanupTrigger(void)
 
 {
-  FUN_180057010();
+  SystemResourceCleaner();
   return;
 }
 
@@ -29470,8 +29486,16 @@ void FUN_180056f70(long long SystemResourcePointer,long long param_2)
 
 
 
-// 函数: void FUN_180057010(long long *SystemResourcePointer)
-void FUN_180057010(long long *SystemResourcePointer)
+/**
+ * @brief 系统资源清理器
+ * 
+ * 该函数负责清理系统资源，遍历资源链表并释放每个资源的内存。
+ * 它会调用资源的清理函数或直接释放内存，确保系统资源的正确回收。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向要清理的资源链表
+ * @note 这是系统资源管理的重要组成部分，用于释放不再使用的系统资源
+ */
+void SystemResourceCleaner(long long *SystemResourcePointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -29498,52 +29522,80 @@ void FUN_180057010(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180057029(long long SystemResourcePointer)
-void FUN_180057029(long long SystemResourcePointer)
+/**
+ * @brief 系统资源链表清理器
+ * 
+ * 该函数负责清理系统资源链表，遍历链表中的每个资源节点并释放其内存。
+ * 它使用特定的链表遍历算法，确保所有资源节点都被正确清理。
+ * 
+ * @param SystemResourcePointer 系统资源指针，用于标识要清理的资源链表
+ * @note 这是系统资源管理的核心函数，用于清理复杂的资源链表结构
+ */
+void SystemResourceListCleaner(long long SystemResourcePointer)
 
 {
-  long long unaff_RSI;
-  long long *unaff_RDI;
+  long long ResourceListEnd;
+  long long *ResourceListHead;
   
   do {
     SystemResourcePointer = *(long long *)((ulong long)(-(int)SystemResourcePointer & 7) + SystemResourcePointer);
-    if ((code *)unaff_RDI[0x604] == (code *)0x0) {
+    if ((code *)ResourceListHead[0x604] == (code *)0x0) {
       free();
     }
     else {
-      (*(code *)unaff_RDI[0x604])();
+      (*(code *)ResourceListHead[0x604])();
     }
-    *unaff_RDI = SystemResourcePointer;
-  } while (SystemResourcePointer != unaff_RSI);
-  *unaff_RDI = unaff_RSI;
-  unaff_RDI[1] = (ulong long)(-(int)unaff_RSI & 7) + unaff_RSI;
-  unaff_RDI[2] = (long long)(unaff_RDI + 0x603);
+    *ResourceListHead = SystemResourcePointer;
+  } while (SystemResourcePointer != ResourceListEnd);
+  *ResourceListHead = ResourceListEnd;
+  ResourceListHead[1] = (ulong long)(-(int)ResourceListEnd & 7) + ResourceListEnd;
+  ResourceListHead[2] = (long long)(ResourceListHead + 0x603);
   return;
 }
 
 
 
 
-// 函数: void FUN_180057062(void)
-void FUN_180057062(void)
+/**
+ * @brief 系统资源链表初始化器
+ * 
+ * 该函数负责初始化系统资源链表，设置链表的头指针和基本结构。
+ * 这是一个低级别的链表初始化函数，用于准备资源管理的数据结构。
+ * 
+ * @note 这是系统资源管理的基础函数，用于初始化链表数据结构
+ */
+void SystemResourceListInitializer(void)
 
 {
-  long long unaff_RSI;
-  long long *unaff_RDI;
+  long long ListEndPointer;
+  long long *ListHeadPointer;
   
-  *unaff_RDI = unaff_RSI;
-  unaff_RDI[1] = (ulong long)(-(int)unaff_RSI & 7) + unaff_RSI;
-  unaff_RDI[2] = (long long)(unaff_RDI + 0x603);
+  *ListHeadPointer = ListEndPointer;
+  ListHeadPointer[1] = (ulong long)(-(int)ListEndPointer & 7) + ListEndPointer;
+  ListHeadPointer[2] = (long long)(ListHeadPointer + 0x603);
   return;
 }
 
 
 
+/**
+ * @brief 系统内存分配器配置器
+ * 
+ * 该函数负责配置系统内存分配器，设置内存分配器的引用和初始参数。
+ * 它会初始化内存分配器的基本结构，并根据需要配置字符串参数。
+ * 
+ * @param SystemResourcePointer 内存分配器指针的指针
+ * @param param_2 配置字符串参数（可选）
+ * @param param_3 保留参数
+ * @param param_4 保留参数
+ * @return 返回配置后的内存分配器指针
+ * @note 这是系统内存管理的重要函数，用于初始化和配置内存分配器
+ */
 void* *
-FUN_180057090(void* *SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+SystemMemoryAllocatorConfigurator(void* *SystemResourcePointer,long long param_2,void* param_3,void* param_4)
 
 {
-  long long localMemoryPointer;
+  long long stringLength;
   
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
   SystemResourcePointer[1] = 0;
@@ -29553,11 +29605,11 @@ FUN_180057090(void* *SystemResourcePointer,long long param_2,void* param_3,void*
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
   *(uint8_t *)(SystemResourcePointer + 3) = 0;
   if (param_2 != 0) {
-    localMemoryPointer = -1;
+    stringLength = -1;
     do {
-      localMemoryPointer = localMemoryPointer + 1;
-    } while (*(char *)(param_2 + localMemoryPointer) != '\0');
-    *(int *)(SystemResourcePointer + 2) = (int)localMemoryPointer;
+      stringLength = stringLength + 1;
+    } while (*(char *)(param_2 + stringLength) != '\0');
+    *(int *)(SystemResourcePointer + 2) = (int)stringLength;
     strcpy_s(SystemResourcePointer[1],0x10,param_2,param_4,0xfffffffffffffffe);
   }
   return SystemResourcePointer;
@@ -29566,24 +29618,32 @@ FUN_180057090(void* *SystemResourcePointer,long long param_2,void* param_3,void*
 
 
 
-// 函数: void FUN_180057110(long long *SystemResourcePointer)
-void FUN_180057110(long long *SystemResourcePointer)
+/**
+ * @brief 系统资源回调执行器
+ * 
+ * 该函数负责执行系统资源的回调函数，遍历资源链表并调用每个资源的回调函数。
+ * 这是一个重要的资源管理函数，用于在特定时机触发资源的回调操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向包含回调函数的资源链表
+ * @note 这是系统资源管理的关键函数，用于执行资源的生命周期回调
+ */
+void SystemResourceCallbackExecutor(long long *SystemResourcePointer)
 
 {
-  void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void* *ResourceListEnd;
+  void** CurrentResourceNode;
   
-  pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
-  pointerToUnsigned2 = (void* *)*SystemResourcePointer;
-  if (pointerToUnsigned2 != pointerToUnsigned1) {
+  ResourceListEnd = (void* *)SystemResourcePointer[1];
+  CurrentResourceNode = (void* *)*SystemResourcePointer;
+  if (CurrentResourceNode != ResourceListEnd) {
     do {
-      (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0);
-      pointerToUnsigned2 = pointerToUnsigned2 + 4;
-    } while (pointerToUnsigned2 != pointerToUnsigned1);
+      (**(code **)*CurrentResourceNode)(CurrentResourceNode,0);
+      CurrentResourceNode = CurrentResourceNode + 4;
+    } while (CurrentResourceNode != ResourceListEnd);
     SystemResourcePointer[1] = *SystemResourcePointer;
     return;
   }
-  SystemResourcePointer[1] = (long long)pointerToUnsigned2;
+  SystemResourcePointer[1] = (long long)CurrentResourceNode;
   return;
 }
 
