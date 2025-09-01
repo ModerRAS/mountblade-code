@@ -338,41 +338,51 @@ undefined SystemInitStatusBlock4;
 undefined SystemPerformanceBlock1;
 undefined SystemPerformanceBlock2;
 undefined SystemPerformanceBlock3;
-undefined SystemGlobalDataFlag;
-undefined SystemMemoryAllocatorState;
-undefined SystemMemoryPoolSize;
-undefined SystemMemoryPoolAlignment;
-undefined SystemMemoryPoolAttributes;
-undefined SystemMemoryPoolConfiguration;
-undefined SystemInitializationStatus;
+uint32_t SystemGlobalConfigurationFlag;
+void* SystemMemoryAllocatorState;
+uint32_t SystemMemoryPoolSize;
+uint32_t SystemMemoryPoolAlignment;
+uint32_t SystemMemoryPoolAttributes;
+void* SystemMemoryPoolConfiguration;
+void* SystemInitializationProgressStatus;
 
 // 系统内存分配器 - 负责动态内存分配和管理
-undefined SystemMemoryAllocatorFunction;
+/**
+ * @brief 系统内存分配器函数
+ * 
+ * 负责动态内存分配和管理，包括内存分配、释放和重新分配操作
+ */
+void* SystemMemoryAllocatorFunction;
 
 // 函数: 系统数据初始化器 - 负责初始化系统核心数据结构
-undefined SystemDataInitializer;
-undefined UNK_180a08fd0;
-undefined UNK_180a09008;
-undefined UNK_180a09048;
-undefined UNK_180a09078;
-undefined UNK_180a090c0;
-undefined UNK_180a090e8;
-undefined UNK_180a09118;
-undefined UNK_180a09140;
-undefined UNK_180a094b0;
-undefined UNK_180a094e8;
-undefined UNK_180a09520;
-undefined UNK_180a09548;
-undefined UNK_180a09578;
-undefined UNK_180a095b0;
-undefined UNK_180a095d0;
-undefined UNK_180a095f0;
-undefined UNK_180a09198;
-undefined UNK_180a09220;
-undefined UNK_180a09158;
-undefined UNK_180a091c8;
-undefined UNK_180a091f0;
-undefined UNK_180a09280;
+/**
+ * @brief 系统数据初始化器函数
+ * 
+ * 负责初始化系统核心数据结构，设置系统运行所需的基本数据
+ */
+void* SystemDataInitializerFunction;
+void* SystemDataBufferPrimary;
+void* SystemDataBufferSecondary;
+void* SystemDataBufferTertiary;
+void* SystemDataBufferQuaternary;
+void* SystemDataBufferQuinary;
+void* SystemDataBufferSenary;
+void* SystemDataTablePrimary;
+void* SystemDataTableSecondary;
+void* SystemDataStructurePrimary;
+void* SystemDataStructureSecondary;
+void* SystemMemoryRegionPrimary;
+void* SystemMemoryRegionSecondary;
+void* SystemMemoryRegionTertiary;
+void* SystemMemoryRegionQuaternary;
+void* SystemMemoryRegionQuinary;
+void* SystemMemoryRegionSenary;
+void* SystemConfigurationDataPrimary;
+void* SystemConfigurationDataSecondary;
+void* SystemConfigurationDataTertiary;
+void* SystemConfigurationDataQuaternary;
+void* SystemConfigurationDataQuinary;
+void* SystemConfigurationDataSenary;
 undefined UNK_180a09248;
 undefined UNK_180a193d8;
 undefined UNK_180a19458;
