@@ -32579,7 +32579,7 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
   float engine_stack_float_58;
   float engine_stack_float_54;
   float engine_stack_float_50;
-  float fStack_4c;
+  float engine_stack_float_4c;
   uint64 engine_stack_uint_48;
   uint64 engine_stack_uint_40;
   uint64 engine_stack_uint_38;
@@ -32651,7 +32651,7 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
       engine_stack_float_58 = engine_data_structure_ptr[0x50];
       engine_stack_float_54 = engine_data_structure_ptr[0x51];
       engine_stack_float_50 = engine_data_structure_ptr[0x52];
-      fStack_4c = engine_data_structure_ptr[0x53];
+      engine_stack_float_4c = engine_data_structure_ptr[0x53];
       engine_stack_uint_48 = *(void*)(engine_data_structure_ptr + 0x54);
       engine_stack_uint_40 = *(void*)(engine_data_structure_ptr + 0x56);
       engine_unnamed_function_2770(&engine_stack_value_78);
@@ -32665,7 +32665,7 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
         engine_stack_float_58 = engine_data_structure_ptr[0x50];
         engine_stack_float_54 = engine_data_structure_ptr[0x51];
         engine_stack_float_50 = engine_data_structure_ptr[0x52];
-        fStack_4c = engine_data_structure_ptr[0x53];
+        engine_stack_float_4c = engine_data_structure_ptr[0x53];
         engine_stack_uint_48 = *(void*)(engine_data_structure_ptr + 0x54);
         engine_stack_uint_40 = *(void*)(engine_data_structure_ptr + 0x56);
         engine_unnamed_function_2760(&engine_stack_value_78,0x3fc90fdb);
@@ -32677,7 +32677,7 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
         engine_stack_float_58 = engine_data_structure_ptr[0x50];
         engine_stack_float_54 = engine_data_structure_ptr[0x51];
         engine_stack_float_50 = engine_data_structure_ptr[0x52];
-        fStack_4c = engine_data_structure_ptr[0x53];
+        engine_stack_float_4c = engine_data_structure_ptr[0x53];
         engine_stack_uint_48 = *(void*)(engine_data_structure_ptr + 0x54);
         engine_stack_uint_40 = *(void*)(engine_data_structure_ptr + 0x56);
         engine_unnamed_function_2750(&engine_stack_value_78);
@@ -33149,7 +33149,7 @@ void engine_unnamed_function_1210(longlong *engine_data_structure_ptr,uint64 eng
   uint64 engine_stack_uint_28;
   longlong *pengine_stack_long_18;
   engine_undefined_value engine_stack_uint_10;
-  char cStack_e;
+  char engine_stack_char_e;
   
   engine_temp_uint_2 = 0xfffffffffffffffe;
   if (engine_data_structure_ptr[0x42] == 0) {
@@ -33183,7 +33183,7 @@ void engine_unnamed_function_1210(longlong *engine_data_structure_ptr,uint64 eng
     *(uint32*)(pengine_temp_long + 0x19) = 0;
     engine_stack_uint_10 = 0x101;
     if ((pengine_stack_long_40 != (longlong *)0x0) && (pengine_stack_long_38 != (longlong *)0x0)) {
-      if (cStack_e != '\0') {
+      if (engine_stack_char_e != '\0') {
         engine_unnamed_function_1180();
       }
       engine_unnamed_function_1740(aengine_stack_uint_30);
@@ -38332,7 +38332,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
   uint64 engine_stack_value_60;
   void* engine_stack_pointer_58;
   float engine_stack_float_50;
-  float fStack_4c;
+  float engine_stack_float_4c;
   void* pengine_stack_uint_48;
   uint64 engine_stack_uint_40;
   uint64 engine_stack_uint_38;
@@ -38432,7 +38432,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
       engine_stack_value_60 = *(void*)(engine_data_structure_ptr + 0x4e);
       engine_stack_pointer_58 = *(undefined **)(engine_data_structure_ptr + 0x50);
       engine_stack_float_50 = engine_data_structure_ptr[0x52];
-      fStack_4c = engine_data_structure_ptr[0x53];
+      engine_stack_float_4c = engine_data_structure_ptr[0x53];
       pengine_stack_uint_48 = *(undefined **)(engine_data_structure_ptr + 0x54);
       engine_stack_uint_40 = *(void*)(engine_data_structure_ptr + 0x56);
       engine_unnamed_function_2770(&engine_stack_value_78);
@@ -38445,7 +38445,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
         engine_stack_value_60 = *(void*)(engine_data_structure_ptr + 0x4e);
         engine_stack_pointer_58 = *(undefined **)(engine_data_structure_ptr + 0x50);
         engine_stack_float_50 = engine_data_structure_ptr[0x52];
-        fStack_4c = engine_data_structure_ptr[0x53];
+        engine_stack_float_4c = engine_data_structure_ptr[0x53];
         pengine_stack_uint_48 = *(undefined **)(engine_data_structure_ptr + 0x54);
         engine_stack_uint_40 = *(void*)(engine_data_structure_ptr + 0x56);
         engine_unnamed_function_2760(&engine_stack_value_78,0x3fc90fdb);
@@ -38456,7 +38456,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
         engine_stack_value_60 = *(void*)(engine_data_structure_ptr + 0x4e);
         engine_stack_pointer_58 = *(undefined **)(engine_data_structure_ptr + 0x50);
         engine_stack_float_50 = engine_data_structure_ptr[0x52];
-        fStack_4c = engine_data_structure_ptr[0x53];
+        engine_stack_float_4c = engine_data_structure_ptr[0x53];
         pengine_stack_uint_48 = *(undefined **)(engine_data_structure_ptr + 0x54);
         engine_stack_uint_40 = *(void*)(engine_data_structure_ptr + 0x56);
         engine_unnamed_function_2750(&engine_stack_value_78);
@@ -56157,7 +56157,7 @@ void engine_unnamed_function_4300(longlong *engine_data_structure_ptr,uint64 eng
   longlong *pengine_stack_long_18;
   char cStack_10;
   char cStack_f;
-  char cStack_e;
+  char engine_stack_char_e;
   
   engine_temp_uint_2 = 0xfffffffffffffffe;
   if (engine_data_structure_ptr != (longlong *)0x0) {
@@ -56174,7 +56174,7 @@ void engine_unnamed_function_4300(longlong *engine_data_structure_ptr,uint64 eng
   }
   engine_unnamed_function_5920(&pengine_stack_long_40,engine_result_flag_ptr,0,0x3f800000,engine_temp_uint_2);
   if ((pengine_stack_long_40 != (longlong *)0x0) && (pengine_stack_long_38 != (longlong *)0x0)) {
-    if (cStack_e != '\0') {
+    if (engine_stack_char_e != '\0') {
       engine_unnamed_function_1180();
     }
     engine_unnamed_function_1740(aengine_stack_uint_30);
