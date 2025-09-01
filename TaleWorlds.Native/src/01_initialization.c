@@ -2,71 +2,71 @@
 
 // 01_initialization.c - 901 个函数
 
-// 函数: undefined FUN_18007fcd0;
-undefined FUN_18007fcd0;
-undefined DAT_1809fc768;
-undefined UNK_18098c7a0;
-undefined DAT_18098c9b8;
-undefined UNK_18098c7b8;
-undefined DAT_18098c940;
-undefined UNK_18098c7c8;
-undefined DAT_18098c918;
-undefined UNK_18098c7d8;
-undefined DAT_18098c968;
-undefined UNK_18098c7f0;
-undefined DAT_18098c990;
-undefined UNK_18098c810;
-undefined DAT_18098c9e0;
-undefined UNK_18098c870;
-undefined DAT_18098c8f0;
+// 全局函数指针 - 系统初始化相关
+undefined systemInitializationFunction_18007fcd0;
+undefined globalDataPointer_1809fc768;
+undefined unknownMemoryBlock_18098c7a0;
+undefined dataTablePointer_18098c9b8;
+undefined memoryBlock_18098c7b8;
+undefined dataTablePointer_18098c940;
+undefined memoryBlock_18098c7c8;
+undefined dataTablePointer_18098c918;
+undefined memoryBlock_18098c7d8;
+undefined dataTablePointer_18098c968;
+undefined memoryBlock_18098c7f0;
+undefined dataTablePointer_18098c990;
+undefined memoryBlock_18098c810;
+undefined dataTablePointer_18098c9e0;
+undefined memoryBlock_18098c870;
+undefined dataTablePointer_18098c8f0;
 
-// 函数: undefined FUN_180073930;
-undefined FUN_180073930;
-undefined UNK_18098c880;
-undefined DAT_18098c8c8;
-undefined UNK_18098c898;
-undefined DAT_180bf5268;
-undefined DAT_180bf5270;
-undefined DAT_180bf5280;
-undefined DAT_180bf5288;
+// 核心系统函数指针和相关数据
+undefined coreSystemFunction_180073930;
+undefined systemMemoryBlock_18098c880;
+undefined systemDataTable_18098c8c8;
+undefined memoryBlock_18098c898;
+undefined systemConfigData_180bf5268;
+undefined systemConfigData_180bf5270;
+undefined systemConfigData_180bf5280;
+undefined systemConfigData_180bf5288;
 
-// 函数: undefined FUN_18005ab20;
-undefined FUN_18005ab20;
-undefined UNK_180941760;
+// 渲染系统初始化函数
+undefined renderInitFunction_18005ab20;
+undefined renderSystemData_180941760;
 
-// 函数: undefined FUN_1800637c0;
-undefined FUN_1800637c0;
-undefined UNK_180941780;
+// 网络系统初始化函数
+undefined networkInitFunction_1800637c0;
+undefined networkSystemData_180941780;
 
-// 函数: undefined FUN_1800637f0;
-undefined FUN_1800637f0;
-undefined DAT_180c91900;
+// 音频系统初始化函数
+undefined audioInitFunction_1800637f0;
+undefined audioSystemData_180c91900;
 
-// 函数: undefined FUN_180045af0;
-undefined FUN_180045af0;
-undefined DAT_180c96330;
-undefined DAT_180c96340;
-undefined DAT_180c96348;
-undefined DAT_180c96350;
-undefined DAT_180c96360;
-undefined DAT_180c96368;
-undefined DAT_180c96318;
-undefined DAT_180c96338;
-undefined SUB_18005d5f0;
-undefined UNK_180942f90;
-undefined DAT_180c96220;
-undefined8 UNK_180c96358;
-undefined DAT_180bf64f8;
-undefined DAT_180bf6500;
-undefined DAT_180bf6508;
-undefined DAT_180bf6510;
+// 输入系统初始化函数和相关数据
+undefined inputInitFunction_180045af0;
+undefined inputSystemData_180c96330;
+undefined inputSystemData_180c96340;
+undefined inputSystemData_180c96348;
+undefined inputSystemData_180c96350;
+undefined inputSystemData_180c96360;
+undefined inputSystemData_180c96368;
+undefined inputSystemData_180c96318;
+undefined inputSystemData_180c96338;
+undefined subsystemFunction_18005d5f0;
+undefined subsystemData_180942f90;
+undefined systemDataTable_180c96220;
+undefined8 systemFlag_180c96358;
+undefined systemConfigData_180bf64f8;
+undefined systemConfigData_180bf6500;
+undefined systemConfigData_180bf6508;
+undefined systemConfigData_180bf6510;
 
-// 函数: undefined FUN_180059ba0;
-undefined FUN_180059ba0;
-undefined UNK_180a092c4;
+// 物理系统初始化函数
+undefined physicsInitFunction_180059ba0;
+undefined physicsSystemData_180a092c4;
 
-// 函数: undefined FUN_180059620;
-undefined FUN_180059620;
+// 文件系统初始化函数
+undefined filesystemInitFunction_180059620;
 
 // 函数: undefined FUN_180044a30;
 undefined FUN_180044a30;
@@ -594,8 +594,11 @@ undefined UNK_180a25a6c;
 // 函数: undefined FUN_18006b8f0;
 undefined FUN_18006b8f0;
 
-// 函数: void FUN_18002c340(void)
-void FUN_18002c340(void)
+/**
+ * 初始化游戏核心系统组件
+ * 负责设置和配置游戏引擎的基础组件，包括内存管理、系统初始化等
+ */
+void initializeGameCoreSystem(void)
 
 {
   char cVar1;
@@ -644,8 +647,11 @@ void FUN_18002c340(void)
 
 
 
-// 函数: void FUN_18002c440(void)
-void FUN_18002c440(void)
+/**
+ * 初始化系统数据表 - 基础内存分配器
+ * 为系统初始化第一个数据表，用于管理基础的内存分配操作
+ */
+void initializeSystemDataTable_BaseAllocator(void)
 
 {
   char cVar1;
@@ -994,20 +1000,23 @@ void FUN_18002ca40(void)
 
 
 
-// 函数: void FUN_18002cb40(void)
-void FUN_18002cb40(void)
+/**
+ * 初始化系统核心数据结构
+ * 设置系统启动所需的基本数据结构和初始化参数
+ */
+void initializeSystemCoreData(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char statusFlag;
+  undefined8 *systemRootPointer;
+  int comparisonResult;
+  longlong *systemHandle;
+  longlong memorySize;
+  undefined8 *currentNode;
+  undefined8 *previousNode;
+  undefined8 *nextNode;
+  undefined8 *newNode;
+  code *initializationCallback;
   
   plVar4 = (longlong *)FUN_18008d070();
   puVar2 = (undefined8 *)*plVar4;
@@ -15584,39 +15593,45 @@ void FUN_180043690(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180043720(void)
+/**
+ * 初始化线程本地存储的回调函数表
+ * 设置线程本地存储中的函数指针和回调表
+ * 
+ * @return 成功返回0，失败返回-1
+ */
+uint64_t InitializeThreadLocalStorageCallbackTable(void)
 
 {
-  longlong lVar1;
-  int *piVar2;
+  uint64_t threadLocalStoragePtr;
+  int *callbackTable;
   
-  lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_18098bcb0;
-  *(undefined8 *)(lVar1 + 0x20) = 0;
-  *(undefined4 *)(lVar1 + 0x28) = 0;
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_180a3c3e0;
-  *(undefined8 *)(lVar1 + 0x30) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = 0;
-  *(undefined4 *)(lVar1 + 0x28) = 0;
-  lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  piVar2 = *(int **)(lVar1 + 0x50);
-  if (piVar2 == (int *)0x0) {
-    piVar2 = (int *)(lVar1 + 0x60);
+  threadLocalStoragePtr = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
+  *(uint64_t *)(threadLocalStoragePtr + 0x18) = &UNK_18098bcb0;
+  *(uint64_t *)(threadLocalStoragePtr + 0x20) = 0;
+  *(uint32_t *)(threadLocalStoragePtr + 0x28) = 0;
+  *(uint64_t *)(threadLocalStoragePtr + 0x18) = &UNK_180a3c3e0;
+  *(uint64_t *)(threadLocalStoragePtr + 0x30) = 0;
+  *(uint64_t *)(threadLocalStoragePtr + 0x20) = 0;
+  *(uint32_t *)(threadLocalStoragePtr + 0x28) = 0;
+  threadLocalStoragePtr = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
+  callbackTable = *(int **)(threadLocalStoragePtr + 0x50);
+  if (callbackTable == (int *)0x0) {
+    callbackTable = (int *)(threadLocalStoragePtr + 0x60);
   }
   else {
-    if (*piVar2 != 0x1e) goto LAB_1808fd14a;
-    piVar2 = (int *)malloc(0x100);
+    if (*callbackTable != 0x1e) goto LAB_1808fd14a;
+    callbackTable = (int *)malloc(0x100);
     free(0);
-    if (piVar2 == (int *)0x0) {
+    if (callbackTable == (int *)0x0) {
       return 0xffffffff;
     }
-    *(undefined8 *)(piVar2 + 2) = *(undefined8 *)(lVar1 + 0x50);
+    *(uint64_t *)(callbackTable + 2) = *(uint64_t *)(threadLocalStoragePtr + 0x50);
   }
-  *piVar2 = 0;
-  *(int **)(lVar1 + 0x50) = piVar2;
+  *callbackTable = 0;
+  *(int **)(threadLocalStoragePtr + 0x50) = callbackTable;
 LAB_1808fd14a:
-  *(code **)(piVar2 + (longlong)*piVar2 * 2 + 4) = FUN_1809431a0;
-  *piVar2 = *piVar2 + 1;
+  *(code **)(callbackTable + (uint64_t)*callbackTable * 2 + 4) = FUN_1809431a0;
+  *callbackTable = *callbackTable + 1;
   return 0;
 }
 
@@ -15625,22 +15640,25 @@ LAB_1808fd14a:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043790(void)
-void FUN_180043790(void)
+/**
+ * 初始化引擎模块A
+ * 设置引擎初始化参数和配置
+ */
+void InitializeEngineModuleA(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t registerR9;
+  void *paramStackPtr;
+  uint8_t *bufferPtr;
+  uint32_t bufferSize;
+  uint8_t stringBuffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x17;
-  strcpy_s(auStack_88,0x80,&UNK_180a3e3d8,in_R9,0xfffffffffffffffe);
-  _DAT_180c967d4 = FUN_180623800(&puStack_a0);
+  paramStackPtr = &UNK_1809fcc28;
+  bufferPtr = stringBuffer;
+  stringBuffer[0] = 0;
+  bufferSize = 0x17;
+  strcpy_s(stringBuffer,0x80,&UNK_180a3e3d8,registerR9,0xfffffffffffffffe);
+  _DAT_180c967d4 = FUN_180623800(&paramStackPtr);
   return;
 }
 
@@ -15649,22 +15667,25 @@ void FUN_180043790(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043820(void)
-void FUN_180043820(void)
+/**
+ * 初始化引擎模块B
+ * 设置引擎初始化参数和配置
+ */
+void InitializeEngineModuleB(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t registerR9;
+  void *paramStackPtr;
+  uint8_t *bufferPtr;
+  uint32_t bufferSize;
+  uint8_t stringBuffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x11;
-  strcpy_s(auStack_88,0x80,&UNK_180a3e3f0,in_R9,0xfffffffffffffffe);
-  _DAT_180c967d8 = FUN_180623800(&puStack_a0);
+  paramStackPtr = &UNK_1809fcc28;
+  bufferPtr = stringBuffer;
+  stringBuffer[0] = 0;
+  bufferSize = 0x11;
+  strcpy_s(stringBuffer,0x80,&UNK_180a3e3f0,registerR9,0xfffffffffffffffe);
+  _DAT_180c967d8 = FUN_180623800(&paramStackPtr);
   return;
 }
 
@@ -15672,10 +15693,16 @@ void FUN_180043820(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1800438b0(void)
+/**
+ * 初始化引擎核心系统
+ * 设置引擎核心系统的全局变量和初始状态
+ * 
+ * @return 成功返回0，失败返回-1
+ */
+int InitializeEngineCoreSystem(void)
 
 {
-  longlong lVar1;
+  uint64_t result;
   
   _DAT_180c96808 = 3;
   _DAT_180c967e0 = &DAT_180c967e0;
@@ -15683,8 +15710,8 @@ int FUN_1800438b0(void)
   _DAT_180c967f0 = 0;
   _DAT_180c967f8 = 0;
   _DAT_180c96800 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180943200);
-  return (lVar1 != 0) - 1;
+  result = FUN_1808fc7d0(FUN_180943200);
+  return (result != 0) - 1;
 }
 
 

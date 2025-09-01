@@ -3,11 +3,19 @@
 
 undefined globalData_1809fc740;
 undefined unknownData_18098c790;
+
+/**
+ * 初始化模块A
+ * 设置模块A所需的全局数据结构
+ */
+int initializeModuleA(void)
+{
+  longlong result;
   globalData_180bf5240 = 1;
   globalData_180bf52a8 = 0;
   globalData_180bf52b0 = 0x7fffffffffffffff;
   globalData_180bf52e0 = 0;
-  result = registerSystemCallback(initializeModuleA);
+  result = registerSystemCallback(initializeModuleA_Callback);
   return (result != 0) - 1;
 }
 /**
@@ -94,49 +102,65 @@ int initializeModuleG(void)
   result = registerSystemCallback(initializeModuleG_Callback);
   return (result != 0) - 1;
 }
-int FUN_18002d010(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 初始化条件变量和互斥锁A
+ * 设置线程同步所需的条件变量和互斥锁
+ */
+int initializeConditionMutexA(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  uVar2 = 0xfffffffffffffffe;
+  longlong result;
+  undefined8 mutexFlags;
+  mutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c910a8,2,param_3,param_4,uVar2);
-  DAT_180c910f8 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180941650);
-  return (lVar1 != 0) - 1;
+  _Mtx_init_in_situ(0x180c910a8,2,param_3,param_4,mutexFlags);
+  globalData_180c910f8 = 0;
+  result = registerSystemCallback(initializeConditionMutexA_Callback);
+  return (result != 0) - 1;
 }
-int FUN_18002d060(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 初始化条件变量和互斥锁B
+ * 设置线程同步所需的条件变量和互斥锁
+ */
+int initializeConditionMutexB(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  uVar2 = 0xfffffffffffffffe;
+  longlong result;
+  undefined8 mutexFlags;
+  mutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c91148,2,param_3,param_4,uVar2);
-  DAT_180c91198 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180941690);
-  return (lVar1 != 0) - 1;
+  _Mtx_init_in_situ(0x180c91148,2,param_3,param_4,mutexFlags);
+  globalData_180c91198 = 0;
+  result = registerSystemCallback(initializeConditionMutexB_Callback);
+  return (result != 0) - 1;
 }
-int FUN_18002d0b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 初始化条件变量和互斥锁C
+ * 设置线程同步所需的条件变量和互斥锁
+ */
+int initializeConditionMutexC(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  uVar2 = 0xfffffffffffffffe;
+  longlong result;
+  undefined8 mutexFlags;
+  mutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c911e8,2,param_3,param_4,uVar2);
-  DAT_180c91238 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_1809416d0);
-  return (lVar1 != 0) - 1;
+  _Mtx_init_in_situ(0x180c911e8,2,param_3,param_4,mutexFlags);
+  globalData_180c91238 = 0;
+  result = registerSystemCallback(initializeConditionMutexC_Callback);
+  return (result != 0) - 1;
 }
-int FUN_18002d100(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 初始化条件变量和互斥锁D
+ * 设置线程同步所需的条件变量和互斥锁
+ */
+int initializeConditionMutexD(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  uVar2 = 0xfffffffffffffffe;
+  longlong result;
+  undefined8 mutexFlags;
+  mutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c91288,2,param_3,param_4,uVar2);
-  DAT_180c912d8 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180941710);
-  return (lVar1 != 0) - 1;
+  _Mtx_init_in_situ(0x180c91288,2,param_3,param_4,mutexFlags);
+  globalData_180c912d8 = 0;
+  result = registerSystemCallback(initializeConditionMutexD_Callback);
+  return (result != 0) - 1;
 }
   DAT_180bf64e8 = 0;
   _DAT_180bf64e0 = 6;
@@ -144,41 +168,53 @@ int FUN_18002d100(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   lVar1 = FUN_1808fc7d0(FUN_180941800);
   return (lVar1 != 0) - 1;
 }
-int FUN_18002e450(void)
+/**
+ * 初始化字符串处理器A
+ * 设置字符串处理所需的数据结构和回调
+ */
+int initializeStringProcessorA(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf6530 = &UNK_1809fdc18;
-  _DAT_180bf6538 = &DAT_180bf6548;
-  DAT_180bf6548 = 0;
-  _DAT_180bf6540 = 0xd;
-  strcpy_s(&DAT_180bf6548,0x10,&UNK_180a004e8,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941820);
-  return (lVar1 != 0) - 1;
+  longlong result;
+  undefined8 stringFlags;
+  globalData_180bf6530 = &unknownData_1809fdc18;
+  globalData_180bf6538 = &globalData_180bf6548;
+  globalData_180bf6548 = 0;
+  globalData_180bf6540 = 0xd;
+  strcpy_s(&globalData_180bf6548,0x10,&unknownData_180a004e8,stringFlags,0xfffffffffffffffe);
+  result = registerSystemCallback(initializeStringProcessorA_Callback);
+  return (result != 0) - 1;
 }
-int FUN_18002e4c0(void)
+/**
+ * 初始化字符串处理器B
+ * 设置字符串处理所需的数据结构和回调
+ */
+int initializeStringProcessorB(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf6590 = &UNK_1809fdc18;
-  _DAT_180bf6598 = &DAT_180bf65a8;
-  DAT_180bf65a8 = 0;
-  _DAT_180bf65a0 = 0xf;
-  strcpy_s(&DAT_180bf65a8,0x10,&UNK_180a004f8,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941840);
-  return (lVar1 != 0) - 1;
+  longlong result;
+  undefined8 stringFlags;
+  globalData_180bf6590 = &unknownData_1809fdc18;
+  globalData_180bf6598 = &globalData_180bf65a8;
+  globalData_180bf65a8 = 0;
+  globalData_180bf65a0 = 0xf;
+  strcpy_s(&globalData_180bf65a8,0x10,&unknownData_180a004f8,stringFlags,0xfffffffffffffffe);
+  result = registerSystemCallback(initializeStringProcessorB_Callback);
+  return (result != 0) - 1;
 }
-int FUN_18002e530(void)
+/**
+ * 初始化字符串处理器C
+ * 设置字符串处理所需的数据结构和回调
+ */
+int initializeStringProcessorC(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf65c0 = &UNK_1809fdc18;
-  _DAT_180bf65c8 = &DAT_180bf65d8;
-  DAT_180bf65d8 = 0;
-  _DAT_180bf65d0 = 0xf;
-  strcpy_s(&DAT_180bf65d8,0x10,&UNK_180a00508,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941860);
-  return (lVar1 != 0) - 1;
+  longlong result;
+  undefined8 stringFlags;
+  globalData_180bf65c0 = &unknownData_1809fdc18;
+  globalData_180bf65c8 = &globalData_180bf65d8;
+  globalData_180bf65d8 = 0;
+  globalData_180bf65d0 = 0xf;
+  strcpy_s(&globalData_180bf65d8,0x10,&unknownData_180a00508,stringFlags,0xfffffffffffffffe);
+  result = registerSystemCallback(initializeStringProcessorC_Callback);
+  return (result != 0) - 1;
 }
 int FUN_18002e5a0(void)
 {

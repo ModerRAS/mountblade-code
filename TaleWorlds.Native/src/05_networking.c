@@ -196,45 +196,57 @@ undefined UNK_180987170;
 undefined UNK_180987150;
 
 // 函数: void FUN_180840074(void)
-void FUN_180840074(void)
+/**
+ * 初始化网络连接状态
+ * 
+ * 该函数负责初始化网络连接的基本状态和参数设置。
+ * 用于建立和维护网络通信的基础设施。
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void InitializeNetworkConnectionState(void)
 
 {
-  undefined1 *puVar1;
-  int iVar2;
-  longlong in_RAX;
-  int unaff_EBX;
-  undefined4 unaff_0000001c;
-  int unaff_ESI;
-  ulonglong *unaff_R14;
-  longlong in_stack_00000070;
+  uint8_t *connectionBuffer;
+  int networkStatus;
+  longlong systemContext;
+  int connectionHandle;
+  uint32_t connectionFlags;
+  int sessionID;
+  uint64_t *connectionPointer;
+  longlong stackParameter;
   
-  puVar1 = (undefined1 *)(CONCAT44(unaff_0000001c,unaff_EBX) + 0x28);
-  if (*(int *)(*(longlong *)(in_RAX + 0x98) + 0x200) == unaff_ESI) {
-    *puVar1 = 0;
-    *(uint *)(CONCAT44(unaff_0000001c,unaff_EBX) + 8) = ((int)puVar1 - unaff_EBX) + 4U & 0xfffffffc;
-    iVar2 = func_0x00018088e0d0(*(undefined8 *)(in_stack_00000070 + 0x98));
-    if (iVar2 == 0) {
-      *unaff_R14 = (ulonglong)*(uint *)(CONCAT44(unaff_0000001c,unaff_EBX) + 0x20);
+  connectionBuffer = (uint8_t *)(CONCAT44(connectionFlags,connectionHandle) + 0x28);
+  if (*(int *)(*(longlong *)(systemContext + 0x98) + 0x200) == sessionID) {
+    *connectionBuffer = 0;
+    *(uint *)(CONCAT44(connectionFlags,connectionHandle) + 8) = ((int)connectionBuffer - connectionHandle) + 4U & 0xfffffffc;
+    networkStatus = func_0x00018088e0d0(*(undefined8 *)(stackParameter + 0x98));
+    if (networkStatus == 0) {
+      *connectionPointer = (uint64_t)*(uint *)(CONCAT44(connectionFlags,connectionHandle) + 0x20);
     }
-                    // WARNING: Subroutine does not return
     FUN_18088c790(&stack0x00000078);
   }
-                    // WARNING: Subroutine does not return
-  memcpy(puVar1);
+  memcpy(connectionBuffer);
 }
 
 
 
 
-// 函数: void FUN_1808400da(void)
-void FUN_1808400da(void)
+/**
+ * 重置网络连接指针
+ * 
+ * 该函数负责重置网络连接的指针状态，确保连接状态的一致性。
+ * 主要用于网络连接失败或需要重新初始化时的清理工作。
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ResetNetworkConnectionPointer(void)
 
 {
-  longlong unaff_RBX;
-  ulonglong *unaff_R14;
+  longlong connectionContext;
+  uint64_t *connectionPtr;
   
-  *unaff_R14 = (ulonglong)*(uint *)(unaff_RBX + 0x20);
-                    // WARNING: Subroutine does not return
+  *connectionPtr = (uint64_t)*(uint *)(connectionContext + 0x20);
   FUN_18088c790(&stack0x00000078);
 }
 

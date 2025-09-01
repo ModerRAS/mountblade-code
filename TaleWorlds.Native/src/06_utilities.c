@@ -6773,38 +6773,44 @@ void execute_data_validation_and_processing(longlong data_context, longlong oper
 // WARNING: Removing unreachable block (ram,0x000180893a22)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180893930(longlong param_1,longlong param_2)
+/**
+ * @brief 处理数据块操作
+ * @param data_context 数据上下文指针
+ * @param operation_context 操作上下文指针
+ * @return 操作结果状态码
+ */
+int process_data_block_operation(longlong data_context, longlong operation_context)
 
 {
-  uint uVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong lStackX_8;
+  uint operation_mode;
+  int result_status;
+  longlong allocated_buffer;
+  longlong temp_stack_buffer;
   
-  uVar1 = *(uint *)(param_1 + 0x1c);
-  if ((((uVar1 != 1) || ((*(byte *)(param_1 + 0x10) & 0x1f) == 0)) && (0 < *(int *)(param_1 + 0x18))
-      ) && (uVar1 < 2)) {
-    if (uVar1 == 0) {
-      lVar3 = FUN_180741d10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(int *)(param_1 + 0x18),0x20,
-                            &UNK_180957f70,0xdd,0,0);
-      if (lVar3 != 0) {
+  operation_mode = *(uint *)(data_context + 0x1c);
+  if ((((operation_mode != 1) || ((*(byte *)(data_context + 0x10) & 0x1f) == 0)) && (0 < *(int *)(data_context + 0x18))
+      ) && (operation_mode < 2)) {
+    if (operation_mode == 0) {
+      allocated_buffer = allocate_buffer_memory(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *(int *)(data_context + 0x18), 0x20,
+                            &UNK_180957f70, 0xdd, 0, 0);
+      if (allocated_buffer != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(lVar3,*(undefined8 *)(param_1 + 0x10),(longlong)*(int *)(param_1 + 0x18));
+        memcpy(allocated_buffer, *(undefined8 *)(data_context + 0x10), (longlong)*(int *)(data_context + 0x18));
       }
-      iVar2 = 0x26;
+      result_status = 0x26;
     }
     else {
-      iVar2 = FUN_1808de900(param_2,param_1 + 0x24);
-      if ((iVar2 == 0) &&
-         (iVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x24),&lStackX_8), iVar2 == 0)) {
-        if (*(int *)(lStackX_8 + 0x30) == 1) {
-          *(undefined4 *)(lStackX_8 + 0x30) = 2;
+      result_status = validate_data_format(operation_context, data_context + 0x24);
+      if ((result_status == 0) &&
+         (result_status = check_data_integrity(*(undefined4 *)(data_context + 0x24), &temp_stack_buffer), result_status == 0)) {
+        if (*(int *)(temp_stack_buffer + 0x30) == 1) {
+          *(undefined4 *)(temp_stack_buffer + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+        execute_data_operation(*(undefined8 *)(operation_context + 0x98), data_context);
       }
     }
-    return iVar2;
+    return result_status;
   }
   return 0x1f;
 }
