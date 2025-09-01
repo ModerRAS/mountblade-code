@@ -28358,24 +28358,42 @@ void HandleExceptionResourceCleanup(uint8_t8 exceptionCode, longlong exceptionCo
 
 
 
-void Unwind_180901fe0(uint8_t8 param_1,longlong param_2)
+/**
+ * @brief 释放系统资源标记
+ * 
+ * 该函数负责在异常处理过程中释放系统资源
+ * 检查资源标记状态并在必要时释放资源
+ * 
+ * @param exceptionCode 异常代码
+ * @param exceptionContext 异常上下文
+ */
+void ReleaseSystemResourceFlag(uint8_t8 exceptionCode, longlong exceptionContext)
 
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    ReleaseSystemResource(*(uint8_t8 *)(param_2 + 0x48));
+    ReleaseSystemResource(*(uint8_t8 *)(exceptionContext + 0x48));
   }
   return;
 }
 
 
 
-void Unwind_180902010(uint8_t8 param_1,longlong param_2)
+/**
+ * @brief 释放系统资源标记（变体1）
+ * 
+ * 该函数负责在异常处理过程中释放系统资源
+ * 检查资源标记状态并在必要时释放资源
+ * 
+ * @param exceptionCode 异常代码
+ * @param exceptionContext 异常上下文
+ */
+void ReleaseSystemResourceFlagVariant1(uint8_t8 exceptionCode, longlong exceptionContext)
 
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    ReleaseSystemResource(*(uint8_t8 *)(param_2 + 0x58));
+    ReleaseSystemResource(*(uint8_t8 *)(exceptionContext + 0x58));
   }
   return;
 }

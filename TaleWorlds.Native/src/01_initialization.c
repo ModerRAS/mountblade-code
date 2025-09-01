@@ -17782,9 +17782,9 @@ void SetUISystemPointer(void)
     return;
   }
   systemStatus = GetSystemStatus(0);
-  _DAT_180c4ea60 = 0x180bebaf0;
+  UISystemPointer = 0x180bebaf0;
   if (systemStatus != 0) {
-    _DAT_180c4ea60 = 0x180bebb50;
+    UISystemPointer = 0x180bebb50;
   }
   return;
 }
