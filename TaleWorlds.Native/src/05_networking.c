@@ -8133,8 +8133,21 @@ void ProcessNetworkConnectionDataTransfer(longlong connectionContext,NetworkHand
 
 
 
-// 函数: void FUN_1808489e0(longlong connectionContext,NetworkHandle packetData)
-void FUN_1808489e0(longlong connectionContext,NetworkHandle packetData)
+// 函数: void ProcessNetworkConnectionDataTransfer(longlong connectionContext,NetworkHandle packetData)
+/**
+ * @brief 处理网络连接数据传输
+ * 
+ * 该函数负责处理网络连接中的数据传输操作，包括：
+ * - 网络状态检查
+ * - 数据包传输处理
+ * - 连接上下文管理
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 网络数据包数据
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionDataTransfer(longlong connectionContext,NetworkHandle packetData)
 
 {
   int networkStatus1;
