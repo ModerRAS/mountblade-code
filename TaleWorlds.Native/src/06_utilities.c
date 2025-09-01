@@ -2099,11 +2099,11 @@ uint8_t SystemMemoryConfigDataTemplateTwentySecond;
 uint8_t SystemMemoryConfigDataTemplateTwentyThird;
 uint8_t SystemMemoryConfigDataTemplateTwentyThirdAlt;
 uint8_t SystemMemoryConfigDataTemplateTwentyThirdExtra;
-uint8_t GlobalSystemMemoryPool;
+uint8_t GlobalSystemMemoryPoolSize;
 uint8_t SystemResourceAllocator;
 char SystemMemoryConfigFlag;
 uint8_t SystemMemoryConfigData;
-uint8_t SystemResourceCache;
+uint8_t SystemResourceCacheSize;
 uint8_t SystemMemoryBuffer;
 uint8_t SystemMemoryAllocator;
 uint8_t SystemMemoryConfigDataTemplateTwentyFourth;
@@ -17261,8 +17261,15 @@ void ValidateResourcePropertiesAndProcessHash(uint8_t4 resourceId)
 
 
 
- a365(void)
-a365(void)
+ /**
+ * @brief 空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作
+ * 通常用作占位符或函数指针的默认值
+ * 
+ * @return 无返回值
+ */
+void EmptyOperationFunction(void)
 
 {
   return;
@@ -17464,8 +17471,15 @@ uint8_t8 InitializeResourceProcessingContext(void)
 
 
 
- a685(void)
-a685(void)
+ /**
+ * @brief 初始化系统状态
+ * 
+ * 该函数负责初始化系统的基本状态
+ * 设置系统运行所需的初始状态值
+ * 
+ * @return 无返回值
+ */
+void InitializeSystemState(void)
 
 {
   return;
@@ -17562,8 +17576,15 @@ uint8_t8 ProcessResourceOperation(uint8_t8 *resourceHandle, uint8_t8 operationPa
 
 
 
- a73c(void)
-a73c(void)
+ /**
+ * @brief 清理系统缓存
+ * 
+ * 该函数负责清理系统的缓存数据
+ * 释放缓存占用的内存资源，重置缓存状态
+ * 
+ * @return 无返回值
+ */
+void ClearSystemCache(void)
 
 {
   return;
@@ -17572,28 +17593,37 @@ a73c(void)
 
 
 
- a750(longlong param_1,uint *param_2)
-a750(longlong param_1,uint *param_2)
+ /**
+ * @brief 处理资源哈希值
+ * 
+ * 该函数负责处理资源的哈希值，包括哈希值的格式转换和验证
+ * 根据哈希值的大小选择不同的处理方式，并检查资源可用性
+ * 
+ * @param resourceContext 资源上下文，包含资源处理的环境信息
+ * @param hashPointer 哈希值指针，指向要处理的资源哈希值
+ * @return 无返回值
+ */
+void ProcessResourceHash(longlong resourceContext, uint *hashPointer)
 
 {
   uint resourceHash;
-  int iVar2;
-  uint8_t8 uVar3;
-  uint8_t4 uStackX_10;
+  int processResult;
+  uint8_t8 hashType;
+  uint8_t4 formattedHash;
   
-  resourceHash = *param_2;
+  resourceHash = *hashPointer;
   if (resourceHash + 0x4000 < 0x8000) {
-    uStackX_10 = CONCAT22(uStackX_10._2_2_,(short)resourceHash) & 0xffff7fff;
-    uVar3 = 2;
+    formattedHash = CONCAT22(formattedHash._2_2_,(short)resourceHash) & 0xffff7fff;
+    hashType = 2;
   }
   else {
-    uStackX_10 = (resourceHash & 0xffffc000 | 0x4000) * 2 | resourceHash & 0x7fff;
-    uVar3 = 4;
+    formattedHash = (resourceHash & 0xffffc000 | 0x4000) * 2 | resourceHash & 0x7fff;
+    hashType = 4;
   }
-  iVar2 = (**(code **)**(uint8_t8 **)(param_1 + 8))
-                    (*(uint8_t8 **)(param_1 + 8),&uStackX_10,uVar3);
-  if (iVar2 == 0) {
-    CheckResourceAvailability(param_1,param_2 + 1);
+  processResult = (**(code **)**(uint8_t8 **)(resourceContext + 8))
+                    (*(uint8_t8 **)(resourceContext + 8),&formattedHash,hashType);
+  if (processResult == 0) {
+    CheckResourceAvailability(resourceContext,hashPointer + 1);
   }
   return;
 }
@@ -17804,8 +17834,15 @@ ulonglong ProcessResourceValidation(void)
 
 
 
- a9d5(void)
-a9d5(void)
+ /**
+ * @brief 重置系统状态
+ * 
+ * 该函数负责重置系统的状态到初始值
+ * 清理所有运行时状态，恢复到默认状态
+ * 
+ * @return 无返回值
+ */
+void ResetSystemState(void)
 
 {
   return;
