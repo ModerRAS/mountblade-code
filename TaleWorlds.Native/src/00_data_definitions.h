@@ -246,10 +246,10 @@ int InitializeStringProcessorD(void)
   longlong result;
   undefined8 stringFlags;
   g_stringProcessorD_Base = &unknownData_1809fdc18;
-  globalData_180bf65f8 = &globalData_180bf6608;
-  globalData_180bf6608 = 0;
-  globalData_180bf6600 = 0xd;
-  strcpy_s(&globalData_180bf6608,0x10,&unknownData_180a00518,stringFlags,0xfffffffffffffffe);
+  g_stringProcessorD_BufferPtr = &g_stringProcessorD_Buffer;
+  g_stringProcessorD_Buffer = 0;
+  g_stringProcessorD_Length = 0xd;
+  strcpy_s(&g_stringProcessorD_Buffer,0x10,&unknownData_180a00518,stringFlags,0xfffffffffffffffe);
   result = RegisterSystemCallback(InitializeStringProcessorD_Callback);
   return (result != 0) - 1;
 }

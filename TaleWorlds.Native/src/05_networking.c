@@ -428,14 +428,27 @@ void ProcessNetworkPacket(uint64_t packetHandle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180840270(longlong *param_1)
+/**
+ * 清理网络连接资源
+ * 
+ * 该函数负责清理网络连接相关的资源，包括：
+ * - 释放分配的内存
+ * - 重置连接状态
+ * - 清理临时数据
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @return 清理结果，0表示成功，非0表示错误代码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+undefined8 CleanupNetworkConnectionResources(longlong *connectionContext)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  uint uVar3;
+  int resourceCount;
+  undefined8 cleanupStatus;
+  uint parameterRange;
   
-  uVar3 = *(uint *)((longlong)param_1 + 0xc);
+  parameterRange = *(uint *)((longlong)connectionContext + 0xc);
   if ((int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f)) < 0) {
     if (0 < (int)param_1[1]) {
       return 0x1c;
