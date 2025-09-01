@@ -40061,7 +40061,18 @@ void SetSystemDataStructurePointerAlternate(uint8_t8 objectContextParam,longlong
 
 
 
-void Unwind_180904e30(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 执行系统回调函数
+ * 
+ * 该函数负责执行系统中的回调函数
+ * 从验证上下文中获取回调函数指针并调用
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数主要用于系统事件处理和回调机制
+ */
+void ExecuteSystemCallback(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   if ((longlong *)**(longlong **)(validationContextParam + 0xa8) != (longlong *)0x0) {
