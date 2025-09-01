@@ -14,16 +14,16 @@ void* SystemSecondaryMemoryPool;               // 次级系统内存池
 void* SystemSecondaryDataTable;                // 次级系统数据表
 void* SystemTertiaryMemoryPool;                // 第三级系统内存池
 void* SystemTertiaryDataTable;                 // 第三级系统数据表
-void* SystemMemoryPoolQuaternary;              // 第四级系统内存池
-void* SystemDataTableQuaternary;               // 第四级系统数据表
-void* SystemMemoryPoolQuinary;                 // 第五级系统内存池
-void* SystemDataTableQuinary;                  // 第五级系统数据表
-void* SystemMemoryPoolSenary;                  // 第六级系统内存池
-void* SystemDataTableSenary;                   // 第六级系统数据表
+void* SystemQuaternaryMemoryPool;              // 第四级系统内存池
+void* SystemQuaternaryDataTable;               // 第四级系统数据表
+void* SystemQuinaryMemoryPool;                 // 第五级系统内存池
+void* SystemQuinaryDataTable;                  // 第五级系统数据表
+void* SystemSenaryMemoryPool;                  // 第六级系统内存池
+void* SystemSenaryDataTable;                   // 第六级系统数据表
 
 // 核心系统函数指针和相关数据
-void* GameCoreSystemEntryPoint;                 // 游戏核心系统入口点
-void* CoreSystemMemoryAllocator;                // 核心系统内存分配器
+void* GameCoreSystemMainEntryPoint;                 // 游戏核心系统入口点
+void* CoreSystemMainMemoryAllocator;                // 核心系统内存分配器
 void* CoreSystemDataTable;                     // 核心系统数据表
 void* CoreSystemMemoryBuffer;                  // 核心系统内存缓冲区
 void* CoreSystemConfigMain;                    // 核心系统主配置
@@ -317,7 +317,7 @@ void* SystemMemoryRegionTrecenti;
 void* SystemMemoryRegionTrecentiUnus;
 // 系统全局数据常量块
 // 系统配置和状态数据块
-undefined SystemGlobalDataConfigBlock1;
+void* SystemGlobalDataConfigBlock1;
 undefined SystemGlobalDataConfigBlock2;
 undefined SystemGlobalDataConfigBlock3;
 undefined SystemGlobalDataConfigBlock4;

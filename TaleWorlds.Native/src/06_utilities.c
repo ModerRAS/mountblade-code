@@ -835,12 +835,12 @@ void* SystemResourceAllocationTable;
 void* SystemPerformanceMetricsTable;
 void* SystemNetworkStatusTable;
 void* SystemGraphicsStateTable;
-undefined SystemAudioSettingsTable;
-undefined SystemInputStateTable;
-undefined SystemPhysicsDataTable;
-undefined SystemAnimationStateTable;
-undefined SystemScriptingContextTable;
-undefined SystemFileSystemTable;
+void* SystemAudioSettingsTable;
+void* SystemInputStateTable;
+void* SystemPhysicsDataTable;
+void* SystemAnimationStateTable;
+void* SystemScriptingContextTable;
+void* SystemFileSystemTable;
 void* SystemScriptingConfigTable;
 void* SystemFileSystemTable;
 void* SystemMemoryConfigTable2;
@@ -875,11 +875,11 @@ void* SystemBufferConfigTable;
 void* SystemMemoryConfigTable3;
 void* SystemResourceConfigTable;
 void* SystemFileSystemConfigTable;
-undefined SystemMemoryConfigTable;
+void* SystemMemoryConfigTable;
 void* SystemThreadingConfigTable;
-undefined SystemThreadConfigTable;
+void* SystemThreadConfigTable;
 void* SystemProcessConfigTable3;
-undefined SystemProcessConfigTable;
+void* SystemProcessConfigTable;
 void* SystemEventConfigTable;
 void* SystemLoggingConfigTable;
 undefined SystemNetworkConfigTable;
@@ -2362,13 +2362,13 @@ undefined SystemMemoryConfigDataTemplateD49990;
 undefined SystemMemoryConfigDataTemplateD48DE0;
 undefined SystemMemoryConfigDataTemplateD48DE8;
 undefined SystemMemoryConfigDataTemplateD48DF0;
-undefined DAT_180d48df8;
+undefined AudioEffectProcessorTable;
 undefined SystemMemoryConfigDataTemplateD48E00;
-undefined DAT_180d48e08;
-undefined DAT_180c918d8;
-undefined DAT_180d48e10;
-undefined DAT_180d48e18;
-undefined DAT_180c918c0;
+undefined AudioMixerSettingsTable;
+undefined InputDeviceStateTable;
+undefined InputEventQueueTable;
+undefined InputMappingTable;
+undefined InputControllerTable;
 undefined SystemThreadScheduler;
 undefined ThreadContextManager;
 undefined ThreadLocalStorage;
@@ -2383,11 +2383,11 @@ undefined ThreadLocalStorage;
 void InitializeThreadManager;
 undefined ThreadManagerContextData;
 undefined ThreadSchedulerData;
-undefined DAT_180d49d08;
-undefined DAT_180d49bf0;
-undefined DAT_180d49bf8;
-undefined DAT_180d49c00;
-undefined DAT_180d49c08;
+undefined PhysicsWorldTable;
+undefined CollisionShapeTable;
+undefined RigidbodyTable;
+undefined PhysicsMaterialTable;
+undefined PhysicsConstraintTable;
 undefined WorkerThreadPoolData;
 undefined WorkerThreadQueueData;
 
@@ -2434,15 +2434,15 @@ undefined SystemMemoryConfigDataTemplateAAE0;
 undefined SystemMemoryConfigDataTemplateAAF0;
 undefined SystemMemoryConfigDataTemplateAB48;
 undefined SystemMemoryConfigDataTemplateAB58;
-undefined DAT_180d49d0c;
-undefined DAT_180d49d10;
-undefined DAT_180d49d18;
-undefined DAT_180d49d20;
-undefined DAT_180d49d28;
-undefined DAT_180d49d30;
-undefined DAT_180d49d38;
-undefined DAT_180d49d40;
-undefined DAT_180d49d48;
+undefined AnimationClipTable;
+undefined SkeletonTable;
+undefined AnimationStateTable;
+undefined AnimationBlendTreeTable;
+undefined AnimationControllerTable;
+undefined AnimationParameterTable;
+undefined AnimationEventTable;
+undefined AnimationLayerTable;
+undefined AnimationMixerTable;
 undefined SystemResourceTracker;
 undefined4 SystemResourceFlags;
 undefined4 SystemResourceState;
@@ -3422,7 +3422,7 @@ undefined8 ValidateObjectRegistration(longlong objectContext)
 
 
 
- ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
+ ulonglong ProcessSystemRequest(longlong requestParameters,longlong systemContext)
 /**
  * @brief 处理系统请求
  * 
@@ -3433,7 +3433,7 @@ undefined8 ValidateObjectRegistration(longlong objectContext)
  * @param systemContext 系统上下文，包含系统状态和上下文信息
  * @return 处理结果，成功返回0，失败返回错误码
  */
-ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
+ulonglong ProcessSystemRequest(longlong requestParameters,longlong systemContext)
 
 {
   longlong *plVar1;
@@ -3524,18 +3524,18 @@ ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
 
 
 
- undefined8 ValidateSystemAccess(longlong param_1,longlong param_2)
+ undefined8 ValidateSystemAccess(longlong accessRequestParameters,longlong systemContextParameters)
 /**
  * @brief 验证系统访问权限
  * 
  * 该函数负责验证对系统资源的访问权限
  * 检查访问权限等级和安全状态
  * 
- * @param param_1 访问请求参数，包含资源标识和访问类型
- * @param param_2 系统上下文参数，包含安全策略和权限信息
+ * @param accessRequestParameters 访问请求参数，包含资源标识和访问类型
+ * @param systemContextParameters 系统上下文参数，包含安全策略和权限信息
  * @return 验证结果，成功返回0，失败返回错误码
  */
-undefined8 ValidateSystemAccess(longlong param_1,longlong param_2)
+undefined8 ValidateSystemAccess(longlong accessRequestParameters,longlong systemContextParameters)
 
 {
   longlong lVar1;
@@ -3701,7 +3701,7 @@ undefined8 IncrementObjectReferenceCount(longlong objectContext)
  * @param param_1 对象上下文参数
  * @return 操作结果状态码
  */
-undefined8 InitializeObjectHandleA(longlong param_1)
+undefined8 InitializeObjectHandleA(longlong objectContext)
 
 {
   undefined8 resourceHash;
@@ -4068,7 +4068,7 @@ undefined8 ValidateAndProcessObjectStatus(longlong objectContext)
  * @param param_1 对象上下文参数
  * @return 操作结果状态码
  */
-undefined8 InitializeObjectHandleB(longlong param_1)
+undefined8 InitializeObjectHandleB(longlong objectContext)
 
 {
   longlong lVar1;

@@ -29157,14 +29157,26 @@ NetworkHandle ValidateNetworkConnectionPool(longlong connectionContext)
 
 
 
-NetworkHandle FUN_180857b40(longlong connectionContext)
+/**
+ * @brief 增加网络连接计数并验证连接
+ * 
+ * 该函数负责增加网络连接的计数器，并验证网络连接的有效性。
+ * 如果连接验证通过，返回验证结果，否则返回0。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @return NetworkHandle 连接验证结果，验证失败返回0
+ */
+NetworkHandle IncrementNetworkConnectionCountAndValidate(longlong connectionContext)
 
 {
-  NetworkHandle primaryNetworkFlag;
+  NetworkHandle validationResult;
   
+  // 增加连接计数器
   *(int *)(connectionContext + 300) = *(int *)(connectionContext + 300) + 1;
-  if ((*(char *)(connectionContext + 0x13c) != '\0') && (primaryNetworkFlag = ValidateNetworkConnectionData(), (int)primaryNetworkFlag != 0)) {
-    return primaryNetworkFlag;
+  
+  // 检查连接状态标志并验证连接数据
+  if ((*(char *)(connectionContext + 0x13c) != '\0') && (validationResult = ValidateNetworkConnectionData(), (int)validationResult != 0)) {
+    return validationResult;
   }
   return 0;
 }
@@ -30932,7 +30944,15 @@ LAB_180859535:
 
 
 
-NetworkHandle FUN_180859580(void)
+/**
+ * @brief 获取网络数据包最大大小
+ * 
+ * 该函数返回网络数据包的最大大小常量。
+ * 这个值用于限制网络数据包的大小，防止缓冲区溢出。
+ * 
+ * @return NetworkHandle 最大数据包大小值（0x26 = 38）
+ */
+NetworkHandle GetNetworkPacketMaximumSize(void)
 
 {
   return 0x26;
@@ -31065,7 +31085,15 @@ LAB_180859665:
 
 
 
-NetworkHandle FUN_1808596b0(void)
+/**
+ * @brief 获取网络连接默认缓冲区大小
+ * 
+ * 该函数返回网络连接的默认缓冲区大小常量。
+ * 这个值用于初始化网络连接的缓冲区大小。
+ * 
+ * @return NetworkHandle 默认缓冲区大小值（0x26 = 38）
+ */
+NetworkHandle GetNetworkConnectionDefaultBufferSize(void)
 
 {
   return 0x26;
