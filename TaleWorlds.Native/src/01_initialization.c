@@ -78,39 +78,38 @@ void* GameMemoryManagementMainInitializer;       // 游戏内存管理主初始�
 
 // 系统资源管理器初始化
 void* GameResourceManagementMainInitializer;     // 游戏资源管理主初始化器
-void* ResourceMemoryRegionPrimary;                // 资源内存区域主分区
-void* ResourceMemoryRegionSecondary;              // 资源内存区域次分区
-void* ResourceMemoryRegionTertiary;               // 资源内存区域第三分区
-void* ResourceMemoryRegionQuaternary;             // 资源内存区域第四分区
-void* ResourceMemoryRegionQuinary;                // 资源内存区域第五分区
-void* ResourceMemoryRegionSenary;                 // 资源内存区域第六分区
-void* ResourceMemoryRegionSeptenary;               // 资源内存区域第七分区
-void* ResourceMemoryRegionOctonary;               // 资源内存区域第八分区
-void* ResourceMemoryRegionNonary;                 // 资源内存区域第九分区
-void* ResourceMemoryRegionDecary;                  // 资源内存区域第十分区
-void* ResourceMemoryRegionUndenary;               // 资源内存区域第十一分区
-void* ResourceMemoryRegionDuodenary;              // 资源内存区域第十二分区
-void* ResourceFunctionPointerPrimary;             // 资源函数指针主入口
-void* ResourceFunctionPointerSecondary;           // 资源函数指针次入口
-void* ResourceMemoryRegionTridecary;              // 资源内存区域第十三分区
-void* ResourceMemoryRegionQuattuordecary;         // 资源内存区域第十四分区
-void* ResourceMemoryRegionQuindecary;             // 资源内存区域第十五分区
-void* ResourceMemoryRegionSexdecary;              // 资源内存区域第十六分区
+void* ResourceMemoryRegionMain;                   // 资源内存区域主分区
+void* ResourceMemoryRegionBackup;                 // 资源内存区域备份分区
+void* ResourceMemoryRegionCache;                  // 资源内存区域缓存分区
+void* ResourceMemoryRegionTemporary;              // 资源内存区域临时分区
+void* ResourceMemoryRegionReserved;               // 资源内存区域保留分区
+void* ResourceMemoryRegionEmergency;              // 资源内存区域紧急分区
+void* ResourceMemoryRegionSystem;                 // 资源内存区域系统分区
+void* ResourceMemoryRegionUser;                   // 资源内存区域用户分区
+void* ResourceMemoryRegionShared;                 // 资源内存区域共享分区
+void* ResourceMemoryRegionProtected;              // 资源内存区域保护分区
+void* ResourceMemoryRegionSecure;                 // 资源内存区域安全分区
+void* ResourceFunctionPointerMain;                // 资源函数指针主入口
+void* ResourceFunctionPointerBackup;              // 资源函数指针备份入口
+void* ResourceMemoryRegionDebug;                  // 资源内存区域调试分区
+void* ResourceMemoryRegionTest;                   // 资源内存区域测试分区
+void* ResourceMemoryRegionDevelopment;            // 资源内存区域开发分区
+void* ResourceMemoryRegionProduction;             // 资源内存区域生产分区
 void* ResourceSystemGlobalConstant;                // 资源系统全局常量
-void* ResourceDataBufferSecondary;                 // 资源数据缓冲区次级区域
-void* ResourceDataTableSecondary;
-void* ResourceMemoryRegionSeptendecary;
-void* ResourceDataTableTertiary;
-void* ResourceMemoryRegionOctodecary;
-void* ResourceDataTableQuaternary;
-void* ResourceEntryPointPrimary;
-void* ResourceMemoryRegionNovemdecary;
-void* ResourceMemoryRegionVigintary;
-void* ResourceMemoryRegionUnvigintary;
-void* ResourceMemoryRegionDuovigintary;
+void* ResourceDataBufferBackup;                   // 资源数据缓冲区备份区域
+void* ResourceDataTableBackup;
+void* ResourceMemoryRegionStaging;
+void* ResourceDataTableCache;
+void* ResourceMemoryRegionArchive;
+void* ResourceDataTableTemporary;
+void* ResourceEntryPointMain;
+void* ResourceMemoryRegionLegacy;
+void* ResourceMemoryRegionFuture;
+void* ResourceMemoryRegionExperimental;
+void* ResourceMemoryRegionDeprecated;
 int ResourceSystemStatusFlag;
 long long ResourceSystemTimestamp;
-void* ResourceMemoryRegionTrevigintary;
+void* ResourceMemoryRegionHotfix;
 
 // 函数: 系统初始化函数D - 数据表管理器初始化
 void* GameDataTableManagerInitializer;

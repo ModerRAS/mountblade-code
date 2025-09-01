@@ -1078,7 +1078,7 @@ void* SystemProcessConfigTableQuinary;
 void* SystemMemoryAllocator;
 void* SystemSecurityConfigTableQuaternary;
 void* SystemNetworkConfigTableTertiary;
-void* SystemEventConfigTable7;
+void* SystemEventConfigTableSeptenary;
 
  void InitializeMemoryCache(void);
 /**
@@ -1088,9 +1088,9 @@ void* SystemEventConfigTable7;
  * 设置缓存大小和替换策略
  */
 void InitializeMemoryCache(void);
-void* SystemLoggingConfigTable6;
+void* SystemLoggingConfigTableSenary;
 void* SystemMemoryCache;
-void* SystemFileSystemConfigTable3;
+void* SystemFileSystemConfigTableTertiary;
 void* SystemThreadingConfigTable5;
 void* SystemProcessConfigTable6;
 void* SystemSecurityConfigTable5;
