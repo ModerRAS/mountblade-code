@@ -29599,8 +29599,18 @@ void ManageSystemResourceBuffer(void* SystemResourcePointer,void* param_2,void* 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180056c50(void* SystemResourcePointer,void* *param_2,uint32_t param_3)
-void FUN_180056c50(void* SystemResourcePointer,void* *param_2,uint32_t param_3)
+/**
+ * @brief 系统资源初始化器
+ * 
+ * 该函数负责初始化系统资源，包括内存分配、参数设置和系统引用配置。
+ * 主要用于系统启动阶段的资源准备工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 参数指针数组
+ * @param param_3 参数标志
+ * @note 这是系统初始化的核心函数，负责资源的分配和配置
+ */
+void InitializeSystemResource(void* SystemResourcePointer,void* *param_2,uint32_t param_3)
 
 {
   void* unsignedSystemValue1;
@@ -29664,7 +29674,17 @@ void FUN_180056c50(void* SystemResourcePointer,void* *param_2,uint32_t param_3)
 
 
 
-void* * FUN_180056de0(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源指针初始化器
+ * 
+ * 该函数负责初始化系统资源指针，将其设置为默认状态。
+ * 主要用于资源指针的标准化初始化操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 返回初始化后的资源指针
+ * @note 这是资源指针初始化的标准函数
+ */
+void* * InitializeSystemResourcePointer(void* *SystemResourcePointer)
 
 {
   *SystemResourcePointer = 0;
@@ -29676,7 +29696,17 @@ void* * FUN_180056de0(void* *SystemResourcePointer)
 
 
 
-void* * FUN_180056e10(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源指针重置器
+ * 
+ * 该函数负责重置系统资源指针，将其恢复到默认状态。
+ * 主要用于资源指针的重置和清理操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 返回重置后的资源指针
+ * @note 这是资源指针重置的标准函数
+ */
+void* * ResetSystemResourcePointer(void* *SystemResourcePointer)
 
 {
   *SystemResourcePointer = 0;
@@ -29761,8 +29791,17 @@ long long * FUN_180056f10(long long *SystemResourcePointer,long long *param_2)
 
 
 
-// 函数: void FUN_180056f70(long long SystemResourcePointer,long long param_2)
-void FUN_180056f70(long long SystemResourcePointer,long long param_2)
+/**
+ * @brief 系统字符串处理器
+ * 
+ * 该函数负责处理系统字符串相关的操作，包括字符串模板的设置和字符串缓冲区的管理。
+ * 主要用于系统字符串的处理和配置工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 参数指针
+ * @note 这是系统字符串处理的核心函数
+ */
+void ProcessSystemString(long long SystemResourcePointer,long long param_2)
 
 {
   long long localMemoryPointer;
@@ -29961,8 +30000,19 @@ void SystemResourceCallbackExecutor(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180057170(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180057170(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统数据表处理器
+ * 
+ * 该函数负责处理系统数据表的操作，包括数据表的初始化、配置和管理。
+ * 主要用于系统数据结构的设置和维护工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @note 这是系统数据处理的核心函数
+ */
+void ProcessSystemDataTable(long long *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   void* *pointerToUnsigned1;
@@ -29986,8 +30036,17 @@ void FUN_180057170(long long *SystemResourcePointer,void* param_2,void* param_3,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800571e0(long long *SystemResourcePointer,uint32_t *param_2)
-void FUN_1800571e0(long long *SystemResourcePointer,uint32_t *param_2)
+/**
+ * @brief 系统资源数组扩展器
+ * 
+ * 该函数负责扩展系统资源数组，当数组空间不足时进行动态扩容。
+ * 主要用于系统资源数组的动态管理和内存分配。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 参数指针
+ * @note 这是系统资源管理的核心函数，负责动态扩容
+ */
+void ExpandSystemResourceArray(long long *SystemResourcePointer,uint32_t *param_2)
 
 {
   long long localMemoryPointer;
@@ -30035,8 +30094,16 @@ LAB_18005726e:
 
 
 
-// 函数: void FUN_1800572d0(long long SystemResourcePointer)
-void FUN_1800572d0(long long SystemResourcePointer)
+/**
+ * @brief 系统上下文初始化器
+ * 
+ * 该函数负责初始化系统上下文，设置系统上下文的基本参数和状态。
+ * 主要用于系统上下文的创建和配置工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @note 这是系统上下文管理的核心函数
+ */
+void InitializeSystemContext(long long SystemResourcePointer)
 
 {
   void* *pointerToUnsigned1;
