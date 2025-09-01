@@ -38652,10 +38652,10 @@ void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
   uint32 engine_stack_uint_1a8;
   uint64 engine_stack_uint_1a0;
   uint64 engine_stack_value_198;
-  int *piStack_190;
+  int *engine_stack_int_pointer_190;
   uint32 engine_stack_uint_188;
   uint64 engine_stack_uint_180;
-  float fStack_178;
+  float engine_stack_float_178;
   float fStack_174;
   longlong engine_stack_long_170;
   longlong *pengine_stack_long_168;
@@ -38817,20 +38817,20 @@ void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
         if (fStack_174 <= 0.0) {
           engine_temp_float_48 = 0.0;
           engine_temp_float_51 = 0.0;
-          fStack_178 = 1.0;
+          engine_stack_float_178 = 1.0;
           fStack_174 = 1.0;
         }
         else {
-          fStack_178 = 1.0 / fStack_174;
-          engine_temp_float_48 = engine_temp_float_48 * fStack_178;
-          engine_temp_float_51 = fStack_178 * engine_temp_float_51;
-          fStack_178 = fStack_178 * engine_temp_float_50;
+          engine_stack_float_178 = 1.0 / fStack_174;
+          engine_temp_float_48 = engine_temp_float_48 * engine_stack_float_178;
+          engine_temp_float_51 = engine_stack_float_178 * engine_temp_float_51;
+          engine_stack_float_178 = engine_stack_float_178 * engine_temp_float_50;
         }
         engine_stack_uint_180 = CONCAT44(engine_temp_float_51,engine_temp_float_48);
         pengine_temp_float_18 = (float *)(*(longlong *)(aengine_stack_uint_150._0_8_ + engine_temp_long_22) + engine_temp_uint_30);
         *pengine_temp_float_18 = engine_temp_float_48;
         pengine_temp_float_18[1] = engine_temp_float_51;
-        pengine_temp_float_18[2] = fStack_178;
+        pengine_temp_float_18[2] = engine_stack_float_178;
         pengine_temp_float_18[3] = fStack_174;
         engine_temp_uint_38 = engine_temp_uint_38 - 1;
         engine_temp_uint_41 = engine_temp_uint_41 + 0xc;
@@ -39423,7 +39423,7 @@ LAB_180079e40:
     if (!engine_temp_byte44) {
       engine_stack_uint_1a0 = (int *)0x0;
       engine_stack_value_198 = (int *)0x0;
-      piStack_190 = (int *)0x0;
+      engine_stack_int_pointer_190 = (int *)0x0;
       engine_stack_uint_188 = 3;
       pengine_temp_int4 = (int *)engine_call_memory_extender(_engine_data_18,4,CONCAT71((uint7)(uint3)(engine_stack_uint_18 >> 8),3));
       *pengine_temp_int4 = *pengine_temp_int_20;
@@ -39438,7 +39438,7 @@ LAB_180079e40:
       pengine_temp_int5 = pengine_temp_int_20;
       engine_stack_uint_1a0 = pengine_temp_int4;
       engine_stack_value_198 = pengine_temp_int_20;
-      piStack_190 = pengine_temp_int_20;
+      engine_stack_int_pointer_190 = pengine_temp_int_20;
       if (1 < (ulonglong)(*(longlong *)(*paengine_temp_uint_42 + engine_stack_long_170 + 8) - (longlong)piStack_1f8 >> 2)) {
         engine_stack_uint_20 = 4;
         pengine_temp_int_25 = (int *)0x0;
@@ -39575,7 +39575,7 @@ LAB_18007a142:
                     // WARNING: Subroutine does not return
                   engine_call_cleanup_routine(pengine_temp_int4);
                 }
-                piStack_190 = pengine_temp_int5 + engine_temp_long_21;
+                engine_stack_int_pointer_190 = pengine_temp_int5 + engine_temp_long_21;
                 pengine_temp_int6 = pengine_temp_int_25;
                 pengine_temp_int3 = piStack_1b0;
                 pengine_temp_int4 = pengine_temp_int5;
@@ -39589,7 +39589,7 @@ LAB_18007a142:
             pengine_temp_int_25 = pengine_temp_int6;
             pengine_temp_int_34 = (int *)(ulonglong)engine_temp_uint_33;
             pengine_temp_int0 = piStack_1f0;
-            pengine_temp_int5 = piStack_190;
+            pengine_temp_int5 = engine_stack_int_pointer_190;
             engine_temp_byte9 = engine_temp_byte44;
           } while ((ulonglong)(longlong)(int)engine_temp_uint_33 < engine_stack_uint_180);
         }
@@ -39629,7 +39629,7 @@ LAB_18007a312:
     *(int **)(*paengine_stack_uint_1e0 + engine_stack_long_170) = pengine_temp_int4;
     engine_stack_value_198 = *(int **)(*paengine_stack_uint_1e0 + engine_stack_long_170 + 8);
     *(int **)(*paengine_stack_uint_1e0 + engine_stack_long_170 + 8) = pengine_temp_int_20;
-    piStack_190 = *(int **)(paengine_stack_uint_1e0[1] + engine_stack_long_170);
+    engine_stack_int_pointer_190 = *(int **)(paengine_stack_uint_1e0[1] + engine_stack_long_170);
     *(int **)(paengine_stack_uint_1e0[1] + engine_stack_long_170) = pengine_temp_int5;
     engine_stack_uint_188 = *(uint32*)(paengine_stack_uint_1e0[1] + engine_stack_long_170 + 8);
     *(uint32*)(paengine_stack_uint_1e0[1] + engine_stack_long_170 + 8) = 3;
