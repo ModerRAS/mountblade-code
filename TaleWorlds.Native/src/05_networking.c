@@ -311,29 +311,39 @@ uint FUN_180840100(longlong *param_1)
 // WARNING: Type propagation algorithm not settling
 
 
-// 函数: void FUN_1808401c0(undefined8 param_1)
-void FUN_1808401c0(undefined8 param_1)
+/**
+ * 处理网络数据包
+ * 
+ * 该函数负责处理网络通信中的数据包，包括：
+ * - 数据包验证和解析
+ * - 网络状态检查
+ * - 数据包路由和处理
+ * 
+ * @param packetHandle 数据包句柄
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkPacket(uint64_t packetHandle)
 
 {
-  int iVar1;
-  int iVar2;
-  longlong alStackX_10 [2];
-  undefined8 *puStackX_20;
+  int processStatus;
+  int validationStatus;
+  longlong networkContext [2];
+  uint64_t *packetData;
   
-  alStackX_10[1] = 0;
-  iVar1 = func_0x00018088c590(param_1,alStackX_10);
-  if ((((iVar1 != 0) ||
-       (((*(uint *)(alStackX_10[0] + 0x24) >> 1 & 1) != 0 &&
-        (iVar2 = FUN_18088c740(alStackX_10 + 1), iVar2 == 0)))) && (iVar1 == 0)) &&
-     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStackX_10[0] + 0x98),&puStackX_20,0x18), iVar1 == 0))
+  networkContext[1] = 0;
+  processStatus = func_0x00018088c590(packetHandle,networkContext);
+  if ((((processStatus != 0) ||
+       (((*(uint *)(networkContext[0] + 0x24) >> 1 & 1) != 0 &&
+        (validationStatus = FUN_18088c740(networkContext + 1), validationStatus == 0)))) && (processStatus == 0)) &&
+     (processStatus = FUN_18088dec0(*(undefined8 *)(networkContext[0] + 0x98),&packetData,0x18), processStatus == 0))
   {
-    *puStackX_20 = &UNK_180982dc0;
-    *(undefined4 *)(puStackX_20 + 1) = 0x18;
-    *(int *)(puStackX_20 + 2) = (int)param_1;
-    func_0x00018088e0d0(*(undefined8 *)(alStackX_10[0] + 0x98));
+    *packetData = &UNK_180982dc0;
+    *(uint32_t *)(packetData + 1) = 0x18;
+    *(int *)(packetData + 2) = (int)packetHandle;
+    func_0x00018088e0d0(*(undefined8 *)(networkContext[0] + 0x98));
   }
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(alStackX_10 + 1);
+  FUN_18088c790(networkContext + 1);
 }
 
 
@@ -378,8 +388,20 @@ undefined8 FUN_180840270(longlong *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180840330(ulonglong *param_1,int param_2)
-void FUN_180840330(ulonglong *param_1,int param_2)
+// 函数: void InitializeNetworkConnection(ulonglong *connectionHandle,int connectionType)
+/**
+ * 初始化网络连接
+ * 
+ * 根据连接类型初始化网络连接并返回连接句柄。
+ * 处理不同类型的网络连接（0x20200-0x20300范围内的连接类型）。
+ * 
+ * @param connectionHandle 用于返回连接句柄的指针
+ * @param connectionType 连接类型，必须在0x20200-0x20300范围内
+ * @return 无返回值，结果通过connectionHandle返回
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void InitializeNetworkConnection(ulonglong *connectionHandle,int connectionType)
 
 {
   int iVar1;
