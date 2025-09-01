@@ -30238,8 +30238,9 @@ void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18005736b(long long SystemResourcePointer,ulong long param_2,void* param_3,long long param_4)
-void FUN_18005736b(long long SystemResourcePointer,ulong long param_2,void* param_3,long long param_4)
+// 函数: void AllocateSystemMemoryBlock(long long SystemResourcePointer,ulong long param_2,void* param_3,long long param_4)
+// 功能: 分配系统内存块，处理内存分配和初始化
+void AllocateSystemMemoryBlock(long long SystemResourcePointer,ulong long param_2,void* param_3,long long param_4)
 
 {
   long long in_RAX;
@@ -36597,7 +36598,7 @@ void FUN_18005dbb0(void)
   ppointerToUnsigned15 = (void* **)(localAllocationFlags + 8);
   localMemoryPointer1 = (long long)systemResult;
   ppuStack_170 = ppointerToUnsigned15;
-  FUN_180057340(ppointerToUnsigned15,localMemoryPointer1);
+  ResizeSystemMemoryPool(ppointerToUnsigned15,localMemoryPointer1);
   unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
   unsignedSystemValue9 = 0;
   puStack_160 = &UNK_1809fdc18;
@@ -36666,7 +36667,7 @@ void FUN_18005dbb0(void)
   }
   PrimaryResourcePointer = (long long *)(lStack_178 + 0x28);
   localMemoryPointer1 = (long long)systemStatus2;
-  FUN_180057340(PrimaryResourcePointer,localMemoryPointer1);
+  ResizeSystemMemoryPool(PrimaryResourcePointer,localMemoryPointer1);
   if (0 < localMemoryPointer1) {
     unsignedSystemValue8 = unsignedSystemValue9;
     unsignedSystemValue14 = unsignedSystemValue9;

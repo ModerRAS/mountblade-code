@@ -1780,8 +1780,8 @@ uint8_t SystemMemoryConfigDataTemplateNormalonary;
 uint8_t SystemMemoryConfigDataTemplateDenary;
 uint8_t SystemMemoryConfigDataTemplateUndenary;
 uint8_t SystemMemoryConfigDataTemplateTerdenary;
-uint8_t SystemMemoryConfigDataTemplateQuattuordenary;
-uint8_t SystemMemoryConfigDataTemplateQuindenary;
+uint8_t SystemMemoryConfigDataTemplateQuickuattuordenary;
+uint8_t SystemMemoryConfigDataTemplateQuickuindenary;
 uint8_t SystemMemoryConfigDataTemplateSexdenary;
 uint8_t SystemMemoryConfigDataTemplateSeptendenary;
 uint8_t SystemMemoryConfigDataTemplateOptimizedctodenary;
@@ -1790,7 +1790,7 @@ uint8_t SystemMemoryConfigDataTemplateVigesimal;
 uint8_t SystemMemoryConfigDataTemplateUnvigesimal;
 uint8_t SystemMemoryConfigDataTemplateDuovigesimal;
 uint8_t SystemMemoryConfigDataTemplateTervigesimal;
-uint8_t SystemMemoryConfigDataTemplateQuattuorvigesimal;
+uint8_t SystemMemoryConfigDataTemplateQuickuattuorvigesimal;
 uint8_t SystemMemoryConfigDataTemplateAlternate;
 uint8_t SystemMemoryPoolBufferPool;
 uint8_t SystemMemoryCachePool;
@@ -1880,7 +1880,7 @@ uint8_t SystemMemoryConfigDataTemplateMedium;
 uint8_t SystemMemoryConfigDataTemplateNormal;
 uint8_t SystemMemoryConfigDataTemplateOptimized;
 uint8_t SystemMemoryConfigDataTemplatePerformance;
-uint8_t SystemMemoryConfigDataTemplateQ;
+uint8_t SystemMemoryConfigDataTemplateQuick;
 
  void ConfigureMemoryDiagnostics(void);
 /**
@@ -1891,7 +1891,7 @@ uint8_t SystemMemoryConfigDataTemplateQ;
  */
 void ConfigureMemoryDiagnostics(void);
 uint8_t SystemMemoryConfigDataTemplateS;
-uint8_t SystemMemoryConfigDataTemplateR;
+uint8_t SystemMemoryConfigDataTemplateReliable;
 
  void InitializeSystemConfiguration(void)
 /**
@@ -2450,9 +2450,9 @@ void GetMemoryBlockSize;
 uint8_t SystemMemoryConfigDataPrimary;
 uint8_t SystemMemoryConfigDataSecondary;
 uint8_t SystemMemoryConfigDataTertiary;
-uint8_t SystemMemoryConfigDataTemplateQuaternary;
+uint8_t SystemMemoryConfigDataTemplateQuickuaternary;
 uint8_t AudioEffectProcessorTable;
-uint8_t SystemMemoryConfigDataTemplateQuinary;
+uint8_t SystemMemoryConfigDataTemplateQuickuinary;
 uint8_t AudioMixerSettingsTable;
 uint8_t InputDeviceStateTable;
 uint8_t InputEventQueueTable;
