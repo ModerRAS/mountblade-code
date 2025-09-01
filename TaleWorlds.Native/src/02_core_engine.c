@@ -44,8 +44,17 @@
  * - 网络组件处理
  * - UI系统实现
  * 
- * 版本 3.4 更新说明：
- * - 完成栈变量名深度语义化美化工作
+ * 版本 3.5 更新说明：
+ * - 完成变量名深度语义化美化工作
+ * - 将local_resource_node等变量名替换为语义化名称：
+ *   - local_resource_node -> engine_local_resource_node
+ *   - engine_data_pointer -> engine_data_buffer_ptr
+ *   - engine_comparison_result -> engine_data_compare_result
+ *   - engine_structure_ptr -> engine_structure_data_ptr
+ *   - engine_data_offset -> engine_structure_data_offset
+ *   - 以及其他变量名的语义化替换
+ * - 保持代码语义不变，这是简化实现，主要处理了变量名的语义化替换工作
+ * - 提高了代码的可读性和维护性，为后续开发提供了更好的基础
  * - 将所有未语义化的栈变量名替换为语义化名称：
  *   - plStackX_18 -> engine_stack_long_pointer_18
  *   - plStackX_20 -> engine_stack_long_pointer_20
@@ -453,7 +462,7 @@ uint32 engine_audio_config_param;
 
 // engine_initialize_audio_system;
 engine_initialize_audio_system;
-engine_data_98;
+engine_system_status;
 engine_base_data_offset_88;
 engine_base_data_offset_70;
 engine_base_data_offset_80;
@@ -492,7 +501,7 @@ engine_base_data_offset_f0;
 engine_base_data_offset_58;
 engine_base_data_offset_c0;
 engine_base_data_offset_98;
-engine_data_30;
+engine_render_status;
 engine_base_data_offset_f8;
 engine_base_data_offset_40;
 engine_base_data_offset_88;
@@ -505,7 +514,7 @@ engine_base_data_offset_e0;
 engine_base_data_offset_50;
 engine_base_data_offset_c8;
 engine_special_flag_5c;
-engine_data_64;
+engine_audio_status;
 engine_base_data_offset_68;
 engine_base_data_offset_80;
 engine_base_data_offset_98;
@@ -530,8 +539,8 @@ engine_start_main_loop;
 // engine_process_frame_update;
 engine_process_frame_update;
 engine_base_data_offset_50;
-engine_data_f8;
-engine_data_00;
+engine_network_status;
+engine_input_status;
 engine_system_flags;
 
 // engine_handle_render_frame;
@@ -556,12 +565,12 @@ engine_base_data_offset_b8;
 engine_process_input_events;
 engine_base_data_offset_c8;
 engine_base_data_offset_d8;
-char engine_data_46;
+char engine_ui_status;
 engine_frame_counter;
-engine_data_20;
-engine_data_18;
+engine_physics_status;
+engine_camera_status;
 engine_render_mode;
-engine_data_30;
+engine_render_status;
 
 // void engine_update_game_state(void);
 void engine_update_game_state(void);
@@ -576,14 +585,14 @@ engine_base_data_offset_80;
 engine_base_data_offset_b0;
 engine_base_data_offset_e0;
 engine_base_data_offset_20;
-uint32 engine_data_1801b9b60;
+uint32 engine_camera_status01b9b60;
 
 // engine_initialize_scripting;
 engine_initialize_scripting;
 engine_unknown_4c;
 engine_base_data_offset_68;
 engine_base_data_offset_80;
-uint32 engine_data_18013bff0;
+uint32 engine_camera_status013bff0;
 
 // engine_process_network_events;
 engine_process_network_events;
@@ -603,15 +612,15 @@ engine_base_data_offset_98;
 // engine_handle_debug_output;
 engine_handle_debug_output;
 engine_unknown_99;
-uint32 engine_data_180126ab0;
-uint32 engine_data_180a0649c;
+uint32 engine_camera_status0126ab0;
+uint32 engine_camera_status0a0649c;
 engine_base_data_offset_90;
 engine_base_data_offset_a8;
-uint32 engine_data_18012d10b;
+uint32 engine_camera_status012d10b;
 engine_special_flag_7c;
-uint32 engine_data_18098d180;
-uint32 engine_data_18098d184;
-uint32 engine_data_18098d188;
+uint32 engine_camera_status098d180;
+uint32 engine_camera_status098d184;
+uint32 engine_camera_status098d188;
 engine_base_data_offset_a0;
 engine_base_data_offset_b0;
 engine_base_data_offset_c0;
@@ -623,11 +632,11 @@ engine_base_data_zero;
 engine_base_data_offset_e8;
 engine_base_data_offset_60;
 engine_base_data_offset_58;
-uint32 engine_data_180135af0;
+uint32 engine_camera_status0135af0;
 engine_base_data_offset_78;
 engine_base_data_offset_a0;
 engine_base_data_offset_a8;
-uint32 engine_data_180137f40;
+uint32 engine_camera_status0137f40;
 engine_base_data_offset_b8;
 engine_base_data_offset_c8;
 engine_base_data_offset_e0;
@@ -673,7 +682,7 @@ engine_data_70;
 engine_data_80;
 engine_data_78;
 engine_data_7c;
-uint32 engine_data_180941a80;
+uint32 engine_camera_status0941a80;
 
 // engine_setup_physics_system;
 engine_setup_physics_system;
@@ -691,34 +700,34 @@ engine_base_data_offset_c8;
 engine_base_data_offset_d8;
 engine_data_88;
 engine_data_90;
-engine_data_98;
+engine_system_status;
 engine_data_a0;
 engine_data_a8;
 engine_data_e8;
 engine_data_f0;
-engine_data_f8;
-engine_data_00;
+engine_network_status;
+engine_input_status;
 engine_data_40;
 engine_data_48;
 engine_ui_flags;
 engine_data_58;
-engine_data_98;
+engine_system_status;
 engine_data_a0;
 engine_data_a8;
 engine_data_b0;
-uint32 engine_data_180941ab0;
-uint32 engine_data_180a06990;
-uint32 engine_data_180a06998;
-uint32 engine_data_180a069a0;
-uint32 engine_data_180a069a8;
-uint32 engine_data_18014f7f0;
+uint32 engine_camera_status0941ab0;
+uint32 engine_camera_status0a06990;
+uint32 engine_camera_status0a06998;
+uint32 engine_camera_status0a069a0;
+uint32 engine_camera_status0a069a8;
+uint32 engine_camera_status014f7f0;
 
 // engine_create_collision_handler;
 engine_create_collision_handler;
 
 // engine_setup_collision_system;
 engine_setup_collision_system;
-uint32 engine_data_18014f640;
+uint32 engine_camera_status014f640;
 
 // engine_initialize_rigid_body;
 engine_initialize_rigid_body;
@@ -726,28 +735,28 @@ engine_initialize_rigid_body;
 // engine_configure_physics_world;
 engine_configure_physics_world;
 engine_base_data_offset_48;
-uint32 engine_data_18014f3d0;
+uint32 engine_camera_status014f3d0;
 
 // engine_create_physics_material;
 engine_create_physics_material;
-uint32 engine_data_18014f180;
-uint32 engine_data_18014f190;
-uint32 engine_data_18014f1d0;
-uint32 engine_data_18014f1e0;
+uint32 engine_camera_status014f180;
+uint32 engine_camera_status014f190;
+uint32 engine_camera_status014f1d0;
+uint32 engine_camera_status014f1e0;
 
 // engine_setup_force_field;
 engine_setup_force_field;
 engine_base_data_zero;
 engine_base_data_offset_10;
-uint32 engine_data_180a072b8;
-uint32 engine_data_180a072d0;
+uint32 engine_camera_status0a072b8;
+uint32 engine_camera_status0a072d0;
 engine_base_data_offset_f0;
 
 // uint32 engine_process_animation_data;
 uint32 engine_process_animation_data;
 engine_data_f0;
-engine_data_f8;
-engine_data_00;
+engine_network_status;
+engine_input_status;
 char engine_data_52;
 engine_system_flags;
 engine_frame_counter;
@@ -756,15 +765,15 @@ engine_frame_counter;
 engine_create_particle_emitter;
 engine_special_flag_05;
 engine_base_data_offset_80;
-engine_data_98;
+engine_system_status;
 
 // uint32 engine_setup_shader_context;
 uint32 engine_setup_shader_context;
-uint32 engine_data_180991df0;
-uint32 engine_data_18098d770;
-uint32 engine_data_18098d780;
+uint32 engine_camera_status0991df0;
+uint32 engine_camera_status098d770;
+uint32 engine_camera_status098d780;
 engine_base_data_offset_10;
-uint32 engine_data_18098ba18;
+uint32 engine_camera_status098ba18;
 engine_base_data_offset_8;
 engine_base_data_offset_10;
 engine_base_data_offset_28;
@@ -778,7 +787,7 @@ engine_setup_animation_system;
 
 // uint32 engine_initialize_skeleton_system;
 uint32 engine_initialize_skeleton_system;
-uint32 engine_data_180a080cc;
+uint32 engine_camera_status0a080cc;
 engine_base_data_offset_d8;
 engine_base_data_zero;
 engine_base_data_zero;
@@ -789,12 +798,12 @@ engine_base_data_offset_78;
 // engine_initialize_bone_hierarchy;
 engine_initialize_bone_hierarchy;
 engine_data_3c;
-engine_data_20;
+engine_physics_status;
 byte engine_data_38;
 engine_data_3e;
 engine_data_44;
 engine_data_48;
-uint32 engine_data_180d49440;
+uint32 engine_camera_status0d49440;
 engine_base_data_offset_8;
 engine_base_data_offset_28;
 engine_base_data_offset_68;
@@ -815,65 +824,65 @@ engine_base_data_offset_18;
 // engine_setup_keyframe_system;
 engine_setup_keyframe_system;
 engine_base_data_offset_d0;
-uint32 engine_data_180a096c8;
-uint32 engine_data_180a096d8;
-uint32 engine_data_180a096e0;
-uint32 engine_data_180a096e8;
-uint32 engine_data_180a096f0;
-uint32 engine_data_180a096f8;
-uint32 engine_data_180a09710;
-uint32 engine_data_180a09718;
-uint32 engine_data_180a09728;
-uint32 engine_data_180a09750;
-uint32 engine_data_180a09768;
-uint32 engine_data_180a09780;
-uint32 engine_data_180a097a0;
-uint32 engine_data_180a097c0;
-uint32 engine_data_180a097e0;
-uint32 engine_data_180a09818;
+uint32 engine_camera_status0a096c8;
+uint32 engine_camera_status0a096d8;
+uint32 engine_camera_status0a096e0;
+uint32 engine_camera_status0a096e8;
+uint32 engine_camera_status0a096f0;
+uint32 engine_camera_status0a096f8;
+uint32 engine_camera_status0a09710;
+uint32 engine_camera_status0a09718;
+uint32 engine_camera_status0a09728;
+uint32 engine_camera_status0a09750;
+uint32 engine_camera_status0a09768;
+uint32 engine_camera_status0a09780;
+uint32 engine_camera_status0a097a0;
+uint32 engine_camera_status0a097c0;
+uint32 engine_camera_status0a097e0;
+uint32 engine_camera_status0a09818;
 engine_base_data_offset_b0;
 engine_base_data_offset_30;
 engine_base_data_offset_c8;
 engine_base_data_offset_98;
 engine_base_data_offset_a8;
 engine_base_data_offset_b8;
-uint32 engine_data_180a1d3d0;
-uint32 engine_data_180a1d3f0;
-uint32 engine_data_180a1d590;
-uint32 engine_data_180a1d700;
-uint32 engine_data_180a1d9a0;
-uint32 engine_data_180a1dbc0;
+uint32 engine_camera_status0a1d3d0;
+uint32 engine_camera_status0a1d3f0;
+uint32 engine_camera_status0a1d590;
+uint32 engine_camera_status0a1d700;
+uint32 engine_camera_status0a1d9a0;
+uint32 engine_camera_status0a1dbc0;
 engine_base_data_offset_b8;
 engine_base_data_offset_48;
-uint32 engine_data_180a09828;
+uint32 engine_camera_status0a09828;
 engine_base_data_offset_98;
-uint32 engine_data_180a09848;
-uint32 engine_data_180a09868;
-uint32 engine_data_180a09870;
-uint32 engine_data_180a09880;
-uint32 engine_data_180a09890;
-uint32 engine_data_180a09898;
-uint32 engine_data_180a098a8;
-uint32 engine_data_180a098b8;
-uint32 engine_data_180a098c8;
-uint32 engine_data_180a098e0;
-uint32 engine_data_180a098f0;
-uint32 engine_data_180a09928;
-uint32 engine_data_180a09e30;
-uint32 engine_data_180a09e38;
-uint32 engine_data_180a1dd48;
-uint32 engine_data_180a1dee0;
-uint32 engine_data_180a1e060;
-uint32 engine_data_180a1e220;
-uint32 engine_data_180a1e428;
-uint32 engine_data_180a1e5a0;
-uint32 engine_data_180a1e7d0;
+uint32 engine_camera_status0a09848;
+uint32 engine_camera_status0a09868;
+uint32 engine_camera_status0a09870;
+uint32 engine_camera_status0a09880;
+uint32 engine_camera_status0a09890;
+uint32 engine_camera_status0a09898;
+uint32 engine_camera_status0a098a8;
+uint32 engine_camera_status0a098b8;
+uint32 engine_camera_status0a098c8;
+uint32 engine_camera_status0a098e0;
+uint32 engine_camera_status0a098f0;
+uint32 engine_camera_status0a09928;
+uint32 engine_camera_status0a09e30;
+uint32 engine_camera_status0a09e38;
+uint32 engine_camera_status0a1dd48;
+uint32 engine_camera_status0a1dee0;
+uint32 engine_camera_status0a1e060;
+uint32 engine_camera_status0a1e220;
+uint32 engine_camera_status0a1e428;
+uint32 engine_camera_status0a1e5a0;
+uint32 engine_camera_status0a1e7d0;
 engine_data_68;
-uint32 engine_data_180a1e978;
+uint32 engine_camera_status0a1e978;
 engine_base_data_offset_28;
-engine_data_20;
-engine_data_20;
-engine_data_30;
+engine_physics_status;
+engine_physics_status;
+engine_render_status;
 
 // engine_initialize_lighting_system;
 engine_initialize_lighting_system;
@@ -911,11 +920,11 @@ engine_configure_shadow_quality;
 engine_create_ambient_occlusion;
 engine_base_data_offset_40;
 engine_base_data_offset_98;
-uint32 engine_data_180a1ff80;
-uint32 engine_data_180a1ff8c;
-uint32 engine_data_180a1ff90;
-uint32 engine_data_180a20018;
-uint32 engine_data_180a1ef60;
+uint32 engine_camera_status0a1ff80;
+uint32 engine_camera_status0a1ff8c;
+uint32 engine_camera_status0a1ff90;
+uint32 engine_camera_status0a20018;
+uint32 engine_camera_status0a1ef60;
 engine_base_data_offset_a8;
 engine_base_data_offset_58;
 
@@ -957,11 +966,11 @@ engine_base_data_offset_a0;
 // engine_setup_hdr_system;
 engine_setup_hdr_system;
 engine_data_e8;
-uint32 engine_data_180a04ee4;
+uint32 engine_camera_status0a04ee4;
 engine_base_data_offset_10;
 engine_base_data_offset_28;
 engine_base_data_offset_30;
-uint32 engine_data_180a0aea0;
+uint32 engine_camera_status0a0aea0;
 engine_base_data_offset_f8;
 engine_special_flag_54;
 engine_base_data_offset_a0;
@@ -997,17 +1006,17 @@ engine_setup_ui_layout;
 // engine_configure_ui_events;
 engine_configure_ui_events;
 engine_base_data_offset_c0;
-uint32 engine_data_180a0ff10;
+uint32 engine_camera_status0a0ff10;
 engine_data_e8;
 engine_base_data_offset_b8;
-engine_data_18;
+engine_camera_status;
 engine_base_data_offset_28;
 engine_base_data_offset_38;
 engine_base_data_offset_48;
 engine_base_data_offset_a8;
 engine_base_data_offset_b0;
 engine_base_data_offset_c0;
-uint32 engine_data_18020f868;
+uint32 engine_camera_status020f868;
 engine_base_data_offset_8;
 engine_base_data_offset_f8;
 
@@ -1015,15 +1024,15 @@ engine_base_data_offset_f8;
 engine_create_ui_animation;
 engine_base_data_offset_b0;
 engine_base_data_offset_d8;
-uint32 engine_data_180211f50;
+uint32 engine_camera_status0211f50;
 
 // engine_setup_ui_transitions;
 engine_setup_ui_transitions;
-uint32 engine_data_180211ec0;
+uint32 engine_camera_status0211ec0;
 engine_base_data_zero;
 engine_base_data_offset_8;
 engine_base_data_offset_20;
-uint32 engine_data_180a0e358;
+uint32 engine_camera_status0a0e358;
 engine_base_data_offset_68;
 engine_base_data_offset_b8;
 engine_base_data_offset_d8;
@@ -1064,7 +1073,7 @@ engine_base_data_offset_98;
 engine_base_data_offset_d0;
 engine_base_data_offset_78;
 engine_base_data_offset_b0;
-uint32 engine_data_18098bc74;
+uint32 engine_camera_status098bc74;
 engine_base_data_offset_8;
 engine_data_dc;
 engine_base_data_offset_d0;
@@ -1072,7 +1081,7 @@ engine_base_data_offset_88;
 engine_base_data_offset_b8;
 engine_data_f0;
 engine_base_data_offset_38;
-uint32 engine_data_180a27158;
+uint32 engine_camera_status0a27158;
 engine_base_data_offset_60;
 engine_base_data_offset_20;
 engine_base_data_offset_d8;
@@ -1087,7 +1096,7 @@ engine_base_data_offset_e0;
 engine_base_data_offset_c0;
 engine_base_data_offset_f0;
 engine_data_f0;
-uint32 engine_data_180957a48;
+uint32 engine_camera_status0957a48;
 engine_base_data_offset_10;
 engine_base_data_offset_e0;
 engine_base_data_offset_f0;
@@ -1097,7 +1106,7 @@ engine_base_data_offset_98;
 
 // uint32 engine_initialize_input_system;
 uint32 engine_initialize_input_system;
-uint32 engine_data_18020dbe0;
+uint32 engine_camera_status020dbe0;
 engine_base_data_offset_68;
 
 // engine_create_input_handler;
@@ -1123,7 +1132,7 @@ engine_render_state_buffer;
 engine_display_config_buffer;
 engine_input_config_buffer;
 engine_audio_config_buffer;
-uint32 engine_data_180a02618;
+uint32 engine_camera_status0a02618;
 engine_base_data_offset_70;
 engine_base_data_offset_80;
 engine_base_data_offset_a0;
@@ -1220,26 +1229,26 @@ engine_render_mode;
 engine_frame_counter;
 engine_data_70;
 engine_base_data_offset_f0;
-uint32 engine_data_18022a4a0;
-uint32 engine_data_18022a4b0;
-uint32 engine_data_18022a4f0;
-uint32 engine_data_18022a500;
+uint32 engine_camera_status022a4a0;
+uint32 engine_camera_status022a4b0;
+uint32 engine_camera_status022a4f0;
+uint32 engine_camera_status022a500;
 engine_base_data_offset_e0;
-uint32 engine_data_180a27738;
+uint32 engine_camera_status0a27738;
 engine_base_data_offset_c0;
 
 // engine_configure_keyboard_input;
 engine_configure_keyboard_input;
 engine_base_data_offset_d0;
-uint32 engine_data_180a0ba58;
-uint32 engine_data_180a0d580;
+uint32 engine_camera_status0a0ba58;
+uint32 engine_camera_status0a0d580;
 engine_base_data_offset_a8;
 engine_base_data_offset_b8;
 engine_base_data_offset_e8;
 engine_base_data_offset_b8;
 engine_base_data_offset_30;
 engine_base_data_offset_70;
-engine_data_30;
+engine_render_status;
 engine_base_data_offset_8;
 engine_base_data_offset_8;
 engine_base_data_offset_48;
@@ -1260,27 +1269,27 @@ engine_base_data_offset_8;
 engine_base_data_offset_98;
 engine_base_data_offset_f0;
 engine_base_data_zero;
-uint32 engine_data_1802a11b8;
-char engine_data_180d48da9;
+uint32 engine_camera_status02a11b8;
+char engine_camera_status0d48da9;
 char engine_data_a8;
-uint32 engine_data_1802a1b10;
+uint32 engine_camera_status02a1b10;
 engine_base_data_offset_70;
 engine_base_data_offset_98;
 engine_base_data_offset_c8;
 engine_base_data_offset_f0;
 uint8 engine_data_a8;
-uint32 engine_data_1802a1d4c;
-engine_data_18;
+uint32 engine_camera_status02a1d4c;
+engine_camera_status;
 engine_render_mode;
 engine_unknown_03;
 engine_base_data_offset_18;
-uint32 engine_data_180a27cb0;
-uint32 engine_data_180bf5c1c;
-uint32 engine_data_180bf5c20;
-uint32 engine_data_180bf5c24;
+uint32 engine_camera_status0a27cb0;
+uint32 engine_camera_status0bf5c1c;
+uint32 engine_camera_status0bf5c20;
+uint32 engine_camera_status0bf5c24;
 engine_data_d0;
 char engine_data_ac;
-uint32 engine_data_18042d5d0;
+uint32 engine_camera_status042d5d0;
 engine_base_data_offset_30;
 engine_base_data_offset_80;
 engine_data_b0;
@@ -1336,7 +1345,7 @@ engine_base_data_offset_c0;
 engine_base_data_zero;
 engine_base_data_offset_58;
 engine_base_data_offset_90;
-uint32 engine_data_180a09dc0;
+uint32 engine_camera_status0a09dc0;
 engine_base_data_offset_e0;
 engine_base_data_offset_28;
 engine_base_data_offset_48;
@@ -1379,104 +1388,104 @@ engine_setup_touch_input;
 
 // engine_configure_gesture_system;
 engine_configure_gesture_system;
-uint32 engine_data_180a241c8;
-uint32 engine_data_1803c8870;
-uint32 engine_data_180a23c38;
-uint32 engine_data_180a23c2c;
+uint32 engine_camera_status0a241c8;
+uint32 engine_camera_status03c8870;
+uint32 engine_camera_status0a23c38;
+uint32 engine_camera_status0a23c2c;
 engine_data_94;
-engine_data_98;
-uint32 engine_data_180a23c70;
-uint32 engine_data_180a23d50;
-uint32 engine_data_180a24298;
-uint32 engine_data_180a23d30;
-uint32 engine_data_180a23cf0;
-uint32 engine_data_180a23d10;
-uint32 engine_data_180a23cb0;
-uint32 engine_data_180a23cd0;
+engine_system_status;
+uint32 engine_camera_status0a23c70;
+uint32 engine_camera_status0a23d50;
+uint32 engine_camera_status0a24298;
+uint32 engine_camera_status0a23d30;
+uint32 engine_camera_status0a23cf0;
+uint32 engine_camera_status0a23d10;
+uint32 engine_camera_status0a23cb0;
+uint32 engine_camera_status0a23cd0;
 engine_data_ec;
-uint32 engine_data_180a24358;
+uint32 engine_camera_status0a24358;
 
 // engine_initialize_network_system;
 engine_initialize_network_system;
-uint32 engine_data_180a25980;
+uint32 engine_camera_status0a25980;
 engine_data_70;
-uint32 engine_data_180a258e0;
-uint32 engine_data_180a258ec;
-uint32 engine_data_180a258f8;
-uint32 engine_data_180a259c0;
-uint32 engine_data_180a259c8;
-uint32 engine_data_180a259e0;
-uint32 engine_data_180a25a10;
-uint32 engine_data_180a0af70;
-uint32 engine_data_180a25998;
-uint32 engine_data_180a259a8;
-uint32 engine_data_180a25a74;
-uint32 engine_data_180a25a28;
-uint32 engine_data_180a25a80;
-uint32 engine_data_180a25a98;
-engine_data_98;
-uint32 engine_data_180a25a50;
-uint32 engine_data_180a25a60;
-uint32 engine_data_180a25aa0;
-uint32 engine_data_180a25ab0;
-uint32 engine_data_180a25ae8;
-uint32 engine_data_180a25af0;
-uint32 engine_data_180a25b00;
-uint32 engine_data_180a25ab8;
-uint32 engine_data_180a25ac8;
-uint32 engine_data_180a25b10;
-uint32 engine_data_180a25b20;
-uint32 engine_data_180a25b30;
-uint32 engine_data_180a25b40;
-uint32 engine_data_180a25b48;
-uint32 engine_data_180a25b60;
-uint32 engine_data_180a25b6c;
-uint32 engine_data_180a25b80;
-uint32 engine_data_180a25b88;
-uint32 engine_data_180a25bc8;
-uint32 engine_data_180a25bd4;
-uint32 engine_data_180a25be0;
-uint32 engine_data_180a25c58;
-uint32 engine_data_180a25c84;
-uint32 engine_data_180a25c90;
-uint32 engine_data_180a2b468;
-uint32 engine_data_180a25c04;
-uint32 engine_data_180a25c10;
-uint32 engine_data_180a25c20;
-uint32 engine_data_180a25ca0;
-uint32 engine_data_180a25cdc;
+uint32 engine_camera_status0a258e0;
+uint32 engine_camera_status0a258ec;
+uint32 engine_camera_status0a258f8;
+uint32 engine_camera_status0a259c0;
+uint32 engine_camera_status0a259c8;
+uint32 engine_camera_status0a259e0;
+uint32 engine_camera_status0a25a10;
+uint32 engine_camera_status0a0af70;
+uint32 engine_camera_status0a25998;
+uint32 engine_camera_status0a259a8;
+uint32 engine_camera_status0a25a74;
+uint32 engine_camera_status0a25a28;
+uint32 engine_camera_status0a25a80;
+uint32 engine_camera_status0a25a98;
+engine_system_status;
+uint32 engine_camera_status0a25a50;
+uint32 engine_camera_status0a25a60;
+uint32 engine_camera_status0a25aa0;
+uint32 engine_camera_status0a25ab0;
+uint32 engine_camera_status0a25ae8;
+uint32 engine_camera_status0a25af0;
+uint32 engine_camera_status0a25b00;
+uint32 engine_camera_status0a25ab8;
+uint32 engine_camera_status0a25ac8;
+uint32 engine_camera_status0a25b10;
+uint32 engine_camera_status0a25b20;
+uint32 engine_camera_status0a25b30;
+uint32 engine_camera_status0a25b40;
+uint32 engine_camera_status0a25b48;
+uint32 engine_camera_status0a25b60;
+uint32 engine_camera_status0a25b6c;
+uint32 engine_camera_status0a25b80;
+uint32 engine_camera_status0a25b88;
+uint32 engine_camera_status0a25bc8;
+uint32 engine_camera_status0a25bd4;
+uint32 engine_camera_status0a25be0;
+uint32 engine_camera_status0a25c58;
+uint32 engine_camera_status0a25c84;
+uint32 engine_camera_status0a25c90;
+uint32 engine_camera_status0a2b468;
+uint32 engine_camera_status0a25c04;
+uint32 engine_camera_status0a25c10;
+uint32 engine_camera_status0a25c20;
+uint32 engine_camera_status0a25ca0;
+uint32 engine_camera_status0a25cdc;
 engine_base_data_offset_f8;
-uint32 engine_data_180a25bfc;
-uint32 engine_data_180a25ce8;
-uint32 engine_data_180a25cf8;
+uint32 engine_camera_status0a25bfc;
+uint32 engine_camera_status0a25ce8;
+uint32 engine_camera_status0a25cf8;
 engine_render_mode;
-uint32 engine_data_180a0209c;
-uint32 engine_data_180a022f0;
-uint32 engine_data_180a02320;
-uint32 engine_data_180a25ca8;
+uint32 engine_camera_status0a0209c;
+uint32 engine_camera_status0a022f0;
+uint32 engine_camera_status0a02320;
+uint32 engine_camera_status0a25ca8;
 engine_data_b4;
-uint32 engine_data_180a25cc0;
-uint32 engine_data_180a25cd0;
-uint32 engine_data_180a25d78;
-uint32 engine_data_180a25d90;
-uint32 engine_data_180a25d98;
-uint32 engine_data_180a25da8;
-uint32 engine_data_180a02030;
-uint32 engine_data_180a0206c;
-uint32 engine_data_180a02080;
-uint32 engine_data_180a25e58;
-uint32 engine_data_180a25e70;
-uint32 engine_data_180a25e80;
-uint32 engine_data_180a25e90;
-uint32 engine_data_180a25ebc;
-uint32 engine_data_180a25ec4;
-uint32 engine_data_180a25ed0;
-uint32 engine_data_180a25ee0;
-uint32 engine_data_180a25ef0;
-uint32 engine_data_180a25ef8;
-uint32 engine_data_180a25900;
-uint32 engine_data_180a25ad0;
-uint32 engine_data_180a25a6c;
+uint32 engine_camera_status0a25cc0;
+uint32 engine_camera_status0a25cd0;
+uint32 engine_camera_status0a25d78;
+uint32 engine_camera_status0a25d90;
+uint32 engine_camera_status0a25d98;
+uint32 engine_camera_status0a25da8;
+uint32 engine_camera_status0a02030;
+uint32 engine_camera_status0a0206c;
+uint32 engine_camera_status0a02080;
+uint32 engine_camera_status0a25e58;
+uint32 engine_camera_status0a25e70;
+uint32 engine_camera_status0a25e80;
+uint32 engine_camera_status0a25e90;
+uint32 engine_camera_status0a25ebc;
+uint32 engine_camera_status0a25ec4;
+uint32 engine_camera_status0a25ed0;
+uint32 engine_camera_status0a25ee0;
+uint32 engine_camera_status0a25ef0;
+uint32 engine_camera_status0a25ef8;
+uint32 engine_camera_status0a25900;
+uint32 engine_camera_status0a25ad0;
+uint32 engine_camera_status0a25a6c;
 
 /**
  * @brief 注册纹理资源到引擎资源管理器
@@ -1660,7 +1669,7 @@ void engine_register_mesh_resource(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1672,7 +1681,7 @@ void engine_register_mesh_resource(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -1760,7 +1769,7 @@ void engine_register_audio_resource(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1772,7 +1781,7 @@ void engine_register_audio_resource(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -1810,7 +1819,7 @@ void engine_register_ui_resource(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1822,7 +1831,7 @@ void engine_register_ui_resource(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -1860,7 +1869,7 @@ void engine_register_script_resource(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1872,7 +1881,7 @@ void engine_register_script_resource(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -1900,7 +1909,7 @@ void engine_initialize_resource_loader(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 8;
@@ -2244,7 +2253,7 @@ void engine_setup_script_manager(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2256,7 +2265,7 @@ void engine_setup_script_manager(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -2344,7 +2353,7 @@ void engine_configure_shader_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2356,7 +2365,7 @@ void engine_configure_shader_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -2394,7 +2403,7 @@ void engine_process_buffer_allocation(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2406,7 +2415,7 @@ void engine_process_buffer_allocation(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -2444,7 +2453,7 @@ void engine_configure_animation_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2456,7 +2465,7 @@ void engine_configure_animation_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -2484,7 +2493,7 @@ void engine_initialize_asset_pipeline(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0xb;
@@ -2626,7 +2635,7 @@ void engine_register_audio_resource(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2638,7 +2647,7 @@ void engine_register_audio_resource(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -2726,7 +2735,7 @@ void engine_initialize_shader_program(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2738,7 +2747,7 @@ void engine_initialize_shader_program(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -2776,7 +2785,7 @@ void engine_initialize_asset_manager(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2788,7 +2797,7 @@ void engine_initialize_asset_manager(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -2826,7 +2835,7 @@ void engine_setup_asset_database(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2838,7 +2847,7 @@ void engine_setup_asset_database(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -2866,7 +2875,7 @@ void engine_create_asset_index(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 10;
@@ -2886,7 +2895,7 @@ int engine_setup_render_target(void)
   uint64 engine_register_r9;
   
   _engine_data_90 = &engine_global_config_data;
-  _engine_data_98 = &engine_data_a8;
+  _engine_system_status = &engine_data_a8;
 
 // void engine_register_font_resource(void)
 void engine_register_font_resource(void)
@@ -2898,7 +2907,7 @@ void engine_register_font_resource(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 9;
@@ -2922,12 +2931,12 @@ void engine_register_localization_resource(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0xf;
   strcpy_s(engine_stack_buffer_88,0x80,&engine_base_data_offset_90,engine_register_r9,0xfffffffffffffffe);
-  _engine_data_64 = engine_calculate_resource_checksum(&engine_stack_param_a0);
+  _engine_audio_status = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
 
@@ -2946,7 +2955,7 @@ void engine_configure_viewport(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0xc;
@@ -2970,7 +2979,7 @@ void engine_register_save_resource(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 7;
@@ -2994,7 +3003,7 @@ void engine_register_network_resource(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x13;
@@ -3028,7 +3037,7 @@ void engine_setup_font_manager(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00bb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00bb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3040,7 +3049,7 @@ void engine_setup_font_manager(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00bb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00bb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -3228,7 +3237,7 @@ void engine_setup_database_manager(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3240,7 +3249,7 @@ void engine_setup_database_manager(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -3328,7 +3337,7 @@ void engine_configure_localization_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3340,7 +3349,7 @@ void engine_configure_localization_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -3378,7 +3387,7 @@ void engine_configure_config_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3390,7 +3399,7 @@ void engine_configure_config_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -3428,7 +3437,7 @@ void engine_configure_save_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3440,7 +3449,7 @@ void engine_configure_save_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -3578,7 +3587,7 @@ void engine_create_localization_cache(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3590,7 +3599,7 @@ void engine_create_localization_cache(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -3678,7 +3687,7 @@ void engine_create_save_cache(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3690,7 +3699,7 @@ void engine_create_save_cache(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -3728,7 +3737,7 @@ void engine_create_database_cache(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3740,7 +3749,7 @@ void engine_create_database_cache(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -3778,7 +3787,7 @@ void engine_initialize_text_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3790,7 +3799,7 @@ void engine_initialize_text_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -3935,7 +3944,7 @@ void engine_create_text_buffer(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00e28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00e28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3947,7 +3956,7 @@ void engine_create_text_buffer(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00e28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00e28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -4185,7 +4194,7 @@ void engine_configure_text_cache(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4197,7 +4206,7 @@ void engine_configure_text_cache(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -4285,7 +4294,7 @@ void engine_setup_text_database(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4297,7 +4306,7 @@ void engine_setup_text_database(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -4335,7 +4344,7 @@ void engine_create_text_index(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4347,7 +4356,7 @@ void engine_create_text_index(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -4385,7 +4394,7 @@ void engine_configure_text_compression(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4397,7 +4406,7 @@ void engine_configure_text_compression(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -4435,7 +4444,7 @@ void engine_register_video_resource(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00bb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00bb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4447,7 +4456,7 @@ void engine_register_video_resource(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00bb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00bb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -4635,7 +4644,7 @@ void engine_register_cubemap_resource(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4647,7 +4656,7 @@ void engine_register_cubemap_resource(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -4735,7 +4744,7 @@ void engine_register_buffer_resource(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4747,7 +4756,7 @@ void engine_register_buffer_resource(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -4785,7 +4794,7 @@ void engine_setup_input_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4797,7 +4806,7 @@ void engine_setup_input_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -4835,7 +4844,7 @@ void engine_configure_audio_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4847,7 +4856,7 @@ void engine_configure_audio_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -4885,7 +4894,7 @@ void engine_initialize_network_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00e28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00e28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4897,7 +4906,7 @@ void engine_initialize_network_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00e28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00e28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -4985,7 +4994,7 @@ void engine_setup_effect_manager(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00bb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00bb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4997,7 +5006,7 @@ void engine_setup_effect_manager(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00bb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00bb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -5104,7 +5113,7 @@ void engine_configure_ui_system(void)
   }
   current_data_pointer[6] = 0x42bea5b911d9c4bf;
   current_data_pointer[7] = 0x1aa83fc0020dc1b6;
-  current_data_pointer[8] = &engine_data_1809fd0d8;
+  current_data_pointer[8] = &engine_camera_status09fd0d8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -5235,7 +5244,7 @@ void engine_configure_database_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5247,7 +5256,7 @@ void engine_configure_database_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -5335,7 +5344,7 @@ void engine_initialize_logging_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5347,7 +5356,7 @@ void engine_initialize_logging_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -5385,7 +5394,7 @@ void engine_configure_performance_monitor(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5397,7 +5406,7 @@ void engine_configure_performance_monitor(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -5435,7 +5444,7 @@ void engine_setup_debug_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5447,7 +5456,7 @@ void engine_setup_debug_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -5475,7 +5484,7 @@ void engine_initialize_plugin_system(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0xc;
@@ -5494,7 +5503,7 @@ int engine_verify_initialization(void)
   longlong engine_temporary_long;
   uint64 engine_register_r9;
   
-  _engine_data_b0 = &engine_data_18098bc80;
+  _engine_data_b0 = &engine_camera_status098bc80;
   _engine_data_b8 = &engine_configuration_data;
 
 // void engine_complete_initialization(void)
@@ -5507,7 +5516,7 @@ void engine_complete_initialization(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x16;
@@ -5531,7 +5540,7 @@ void engine_core_initialize_system(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x16;
@@ -5665,7 +5674,7 @@ void engine_validate_structure_data(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5677,7 +5686,7 @@ void engine_validate_structure_data(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -5765,7 +5774,7 @@ void engine_allocate_structure_memory(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5777,7 +5786,7 @@ void engine_allocate_structure_memory(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -5815,7 +5824,7 @@ void engine_configure_structure_parameters(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5827,7 +5836,7 @@ void engine_configure_structure_parameters(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -5865,7 +5874,7 @@ void engine_update_structure_state(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5877,7 +5886,7 @@ void engine_update_structure_state(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -5934,7 +5943,7 @@ void engine_process_structure_events(void)
   }
   current_data_pointer[6] = 0x42bea5b911d9c4bf;
   current_data_pointer[7] = 0x1aa83fc0020dc1b6;
-  current_data_pointer[8] = &engine_data_1809fd0d8;
+  current_data_pointer[8] = &engine_camera_status09fd0d8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -5955,7 +5964,7 @@ void engine_handle_structure_callbacks(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x1c;
@@ -6008,7 +6017,7 @@ void engine_validate_structure_handles(void)
   }
   current_data_pointer[6] = 0x4fc124d23d41985f;
   current_data_pointer[7] = 0xe2f4a30d6e6ae482;
-  current_data_pointer[8] = &engine_data_18098c790;
+  current_data_pointer[8] = &engine_camera_status098c790;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
   return;
@@ -6058,7 +6067,7 @@ void engine_cleanup_structure_handles(void)
   }
   current_data_pointer[6] = 0x4770584fbb1df897;
   current_data_pointer[7] = 0x47f249e43f66f2ab;
-  current_data_pointer[8] = &engine_data_18098c7a0;
+  current_data_pointer[8] = &engine_camera_status098c7a0;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -6108,7 +6117,7 @@ void engine_initialize_structure_handles(void)
   }
   current_data_pointer[6] = 0x4666df49b97e0f10;
   current_data_pointer[7] = 0x4e4b0d63a6ad1d8f;
-  current_data_pointer[8] = &engine_data_18098c7b8;
+  current_data_pointer[8] = &engine_camera_status098c7b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -6158,7 +6167,7 @@ void engine_process_structure_requests(void)
   }
   current_data_pointer[6] = 0x46ecbd4daf41613e;
   current_data_pointer[7] = 0xdc42c056bbde8482;
-  current_data_pointer[8] = &engine_data_18098c7c8;
+  current_data_pointer[8] = &engine_camera_status098c7c8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -6189,7 +6198,7 @@ void engine_handle_structure_requests(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_18,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6201,14 +6210,14 @@ void engine_handle_structure_requests(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_18,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4c868a42644030f6;
   current_data_pointer[7] = 0xc29193aa9d9b35b9;
-  current_data_pointer[8] = &engine_data_18098c7d8;
+  current_data_pointer[8] = &engine_camera_status098c7d8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -6258,7 +6267,7 @@ void engine_validate_structure_requests(void)
   }
   current_data_pointer[6] = 0x40ea3a798283cbbb;
   current_data_pointer[7] = 0x7f74eb2c5a7fadae;
-  current_data_pointer[8] = &engine_data_18098c7f0;
+  current_data_pointer[8] = &engine_camera_status098c7f0;
   current_data_pointer[9] = 3;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -6308,7 +6317,7 @@ void engine_cleanup_structure_requests(void)
   }
   current_data_pointer[6] = 0x45b8d074df27d12f;
   current_data_pointer[7] = 0x8d98f4c06880eda4;
-  current_data_pointer[8] = &engine_data_18098c810;
+  current_data_pointer[8] = &engine_camera_status098c810;
   current_data_pointer[9] = 3;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -6358,7 +6367,7 @@ void engine_initialize_structure_requests(void)
   }
   current_data_pointer[6] = 0x42d293584c8cf3e5;
   current_data_pointer[7] = 0x355ffeb2d29e668a;
-  current_data_pointer[8] = &engine_data_18098c870;
+  current_data_pointer[8] = &engine_camera_status098c870;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -6529,12 +6538,12 @@ void engine_cleanup_structure_operations(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 9;
   strcpy_s(engine_stack_buffer_88,0x80,&engine_base_data_offset_f0,engine_register_r9,0xfffffffffffffffe);
-  _engine_data_f8 = engine_calculate_resource_checksum(&engine_stack_param_a0);
+  _engine_network_status = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
 
@@ -6553,7 +6562,7 @@ void engine_initialize_structure_operations(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 8;
@@ -6577,12 +6586,12 @@ void engine_process_structure_data(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0xb;
   strcpy_s(engine_stack_buffer_88,0x80,&engine_base_data_offset_f0,engine_register_r9,0xfffffffffffffffe);
-  _engine_data_00 = engine_calculate_resource_checksum(&engine_stack_param_a0);
+  _engine_input_status = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
 
@@ -6601,7 +6610,7 @@ void engine_handle_structure_data(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0xd;
@@ -6625,7 +6634,7 @@ void engine_validate_structure_data(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x1c;
@@ -6649,7 +6658,7 @@ void engine_start_main_loop(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x15;
@@ -6673,7 +6682,7 @@ void engine_cleanup_structure_data(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0xe;
@@ -6697,7 +6706,7 @@ void engine_initialize_structure_data(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x1a;
@@ -6721,12 +6730,12 @@ void engine_process_structure_buffers(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x13;
-  strcpy_s(engine_stack_buffer_88,0x80,&engine_data_180a1eb30,engine_register_r9,0xfffffffffffffffe);
-  _engine_data_30 = engine_calculate_resource_checksum(&engine_stack_param_a0);
+  strcpy_s(engine_stack_buffer_88,0x80,&engine_camera_status0a1eb30,engine_register_r9,0xfffffffffffffffe);
+  _engine_render_status = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
 
@@ -6855,7 +6864,7 @@ void engine_cleanup_structure_buffers(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6867,7 +6876,7 @@ void engine_cleanup_structure_buffers(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -6955,7 +6964,7 @@ void engine_process_structure_memory(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6967,7 +6976,7 @@ void engine_process_structure_memory(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7005,7 +7014,7 @@ void engine_handle_structure_memory(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7017,7 +7026,7 @@ void engine_handle_structure_memory(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7055,7 +7064,7 @@ void engine_validate_structure_memory(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7067,7 +7076,7 @@ void engine_validate_structure_memory(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7205,7 +7214,7 @@ void engine_process_structure_pointers(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7217,7 +7226,7 @@ void engine_process_structure_pointers(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7305,7 +7314,7 @@ void engine_validate_structure_pointers(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7317,7 +7326,7 @@ void engine_validate_structure_pointers(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7355,7 +7364,7 @@ void engine_cleanup_structure_pointers(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7367,7 +7376,7 @@ void engine_cleanup_structure_pointers(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7405,7 +7414,7 @@ void engine_initialize_structure_pointers(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7417,7 +7426,7 @@ void engine_initialize_structure_pointers(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7555,7 +7564,7 @@ void engine_validate_structure_arrays(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7567,7 +7576,7 @@ void engine_validate_structure_arrays(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7655,7 +7664,7 @@ void engine_initialize_structure_arrays(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7667,7 +7676,7 @@ void engine_initialize_structure_arrays(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7705,7 +7714,7 @@ void engine_process_structure_lists(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7717,7 +7726,7 @@ void engine_process_structure_lists(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7755,7 +7764,7 @@ void engine_handle_structure_lists(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7767,7 +7776,7 @@ void engine_handle_structure_lists(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7905,7 +7914,7 @@ void engine_initialize_structure_lists(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7917,7 +7926,7 @@ void engine_initialize_structure_lists(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -8005,7 +8014,7 @@ void engine_handle_structure_queues(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8017,7 +8026,7 @@ void engine_handle_structure_queues(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -8074,7 +8083,7 @@ void engine_core_initialize_updates(void)
   }
   current_data_pointer[6] = 0x46ecbd4daf41613e;
   current_data_pointer[7] = 0xdc42c056bbde8482;
-  current_data_pointer[8] = &engine_data_18098c7c8;
+  current_data_pointer[8] = &engine_camera_status098c7c8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -8105,7 +8114,7 @@ void engine_core_setup_updatesystem(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_18,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8117,14 +8126,14 @@ void engine_core_setup_updatesystem(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_18,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4c868a42644030f6;
   current_data_pointer[7] = 0xc29193aa9d9b35b9;
-  current_data_pointer[8] = &engine_data_18098c7d8;
+  current_data_pointer[8] = &engine_camera_status098c7d8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -8174,7 +8183,7 @@ void engine_core_initialize_drm(void)
   }
   current_data_pointer[6] = 0x40ea3a798283cbbb;
   current_data_pointer[7] = 0x7f74eb2c5a7fadae;
-  current_data_pointer[8] = &engine_data_18098c7f0;
+  current_data_pointer[8] = &engine_camera_status098c7f0;
   current_data_pointer[9] = 3;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -8224,7 +8233,7 @@ void engine_core_setup_drmsystem(void)
   }
   current_data_pointer[6] = 0x45b8d074df27d12f;
   current_data_pointer[7] = 0x8d98f4c06880eda4;
-  current_data_pointer[8] = &engine_data_18098c810;
+  current_data_pointer[8] = &engine_camera_status098c810;
   current_data_pointer[9] = 3;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -8274,7 +8283,7 @@ void engine_core_initialize_anticheat(void)
   }
   current_data_pointer[6] = 0x42d293584c8cf3e5;
   current_data_pointer[7] = 0x355ffeb2d29e668a;
-  current_data_pointer[8] = &engine_data_18098c870;
+  current_data_pointer[8] = &engine_camera_status098c870;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -8424,7 +8433,7 @@ void engine_core_setup_socialsystem(void)
   }
   current_data_pointer[6] = 0x46c54bc98fc3fc2a;
   current_data_pointer[7] = 0x727b256e3af32585;
-  current_data_pointer[8] = &engine_data_180a2ca90;
+  current_data_pointer[8] = &engine_camera_status0a2ca90;
   current_data_pointer[9] = 2;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -8474,7 +8483,7 @@ void engine_core_initialize_community(void)
   }
   current_data_pointer[6] = 0x41ffd0b76c1e136f;
   current_data_pointer[7] = 0x25db30365f277abb;
-  current_data_pointer[8] = &engine_data_180a2cab0;
+  current_data_pointer[8] = &engine_camera_status0a2cab0;
   current_data_pointer[9] = 2;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -8555,7 +8564,7 @@ void engine_core_initialize_content(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00e28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00e28,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8567,7 +8576,7 @@ void engine_core_initialize_content(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00e28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00e28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -8805,7 +8814,7 @@ void engine_core_setup_monetizationsystem(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8817,7 +8826,7 @@ void engine_core_setup_monetizationsystem(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -8905,7 +8914,7 @@ void engine_core_setup_advertisingsystem(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8917,7 +8926,7 @@ void engine_core_setup_advertisingsystem(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -8955,7 +8964,7 @@ void engine_core_initialize_partnerships(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8967,7 +8976,7 @@ void engine_core_initialize_partnerships(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -9005,7 +9014,7 @@ void engine_core_setup_partnershipsystem(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9017,7 +9026,7 @@ void engine_core_setup_partnershipsystem(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -9074,7 +9083,7 @@ void engine_core_initialize_branding(void)
   }
   current_data_pointer[6] = 0x42bea5b911d9c4bf;
   current_data_pointer[7] = 0x1aa83fc0020dc1b6;
-  current_data_pointer[8] = &engine_data_1809fd0d8;
+  current_data_pointer[8] = &engine_camera_status09fd0d8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -9124,7 +9133,7 @@ void engine_core_setup_brandingsystem(void)
   }
   current_data_pointer[6] = 0x46c54bc98fc3fc2a;
   current_data_pointer[7] = 0x727b256e3af32585;
-  current_data_pointer[8] = &engine_data_180a2ca90;
+  current_data_pointer[8] = &engine_camera_status0a2ca90;
   current_data_pointer[9] = 2;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -9174,7 +9183,7 @@ void engine_core_initialize_licensing(void)
   }
   current_data_pointer[6] = 0x41ffd0b76c1e136f;
   current_data_pointer[7] = 0x25db30365f277abb;
-  current_data_pointer[8] = &engine_data_180a2cab0;
+  current_data_pointer[8] = &engine_camera_status0a2cab0;
   current_data_pointer[9] = 2;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -9195,7 +9204,7 @@ int engine_core_setup_licensingsystem(void)
   _Mtx_init_in_situ(0x180c962c0,2);
   _engine_frame_counter = 0;
   _engine_audio_data = 0;
-  _engine_data_20 = 0;
+  _engine_physics_status = 0;
   _engine_render_mode = 3;
   _engine_game_data = 0;
   _engine_network_data = 0;
@@ -9220,7 +9229,7 @@ int engine_join_thread(void)
   longlong engine_temporary_long;
   uint64 engine_register_r9;
   
-  _engine_error_code = &engine_data_18098bc80;
+  _engine_error_code = &engine_camera_status098bc80;
   _engine_warning_count = &void* engine_log_buffer;
 
 // void engine_core_start_main_loop(void)
@@ -9264,7 +9273,7 @@ void engine_core_start_main_loop(void)
   }
   current_data_pointer[6] = 0x46c54bc98fc3fc2a;
   current_data_pointer[7] = 0x727b256e3af32585;
-  current_data_pointer[8] = &engine_data_180a2ca90;
+  current_data_pointer[8] = &engine_camera_status0a2ca90;
   current_data_pointer[9] = 2;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -9314,7 +9323,7 @@ void engine_core_process_frame(void)
   }
   current_data_pointer[6] = 0x41ffd0b76c1e136f;
   current_data_pointer[7] = 0x25db30365f277abb;
-  current_data_pointer[8] = &engine_data_180a2cab0;
+  current_data_pointer[8] = &engine_camera_status0a2cab0;
   current_data_pointer[9] = 2;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -9364,7 +9373,7 @@ void engine_core_update_physics(void)
   }
   current_data_pointer[6] = 0x46c54bc98fc3fc2a;
   current_data_pointer[7] = 0x727b256e3af32585;
-  current_data_pointer[8] = &engine_data_180a2ca90;
+  current_data_pointer[8] = &engine_camera_status0a2ca90;
   current_data_pointer[9] = 2;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -9414,7 +9423,7 @@ void engine_core_update_animations(void)
   }
   current_data_pointer[6] = 0x41ffd0b76c1e136f;
   current_data_pointer[7] = 0x25db30365f277abb;
-  current_data_pointer[8] = &engine_data_180a2cab0;
+  current_data_pointer[8] = &engine_camera_status0a2cab0;
   current_data_pointer[9] = 2;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -9435,11 +9444,11 @@ void engine_core_update_ai(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0xd;
-  strcpy_s(engine_stack_buffer_88,0x80,&engine_data_180a33fb0,engine_register_r9,0xfffffffffffffffe);
+  strcpy_s(engine_stack_buffer_88,0x80,&engine_camera_status0a33fb0,engine_register_r9,0xfffffffffffffffe);
   _engine_data_cc = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
@@ -9500,7 +9509,7 @@ void engine_core_update_ui(void)
   }
   current_data_pointer[6] = 0x46c54bc98fc3fc2a;
   current_data_pointer[7] = 0x727b256e3af32585;
-  current_data_pointer[8] = &engine_data_180a2ca90;
+  current_data_pointer[8] = &engine_camera_status0a2ca90;
   current_data_pointer[9] = 2;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -9550,7 +9559,7 @@ void engine_core_update_audio(void)
   }
   current_data_pointer[6] = 0x41ffd0b76c1e136f;
   current_data_pointer[7] = 0x25db30365f277abb;
-  current_data_pointer[8] = &engine_data_180a2cab0;
+  current_data_pointer[8] = &engine_camera_status0a2cab0;
   current_data_pointer[9] = 2;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -9781,7 +9790,7 @@ void engine_core_update_particles(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01050,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01050,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9793,7 +9802,7 @@ void engine_core_update_particles(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01050,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -9881,7 +9890,7 @@ void engine_core_update_time(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a01000,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a01000,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9893,7 +9902,7 @@ void engine_core_update_time(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a01000,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -9931,7 +9940,7 @@ void engine_core_update_debug(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fd8,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fd8,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9943,7 +9952,7 @@ void engine_core_update_debug(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fd8,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -9981,7 +9990,7 @@ void engine_core_update_profiling(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_180a00fb0,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status0a00fb0,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9993,7 +10002,7 @@ void engine_core_update_profiling(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_180a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status0a00fb0,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -10050,7 +10059,7 @@ void engine_core_update_logging(void)
   }
   current_data_pointer[6] = 0x4fc124d23d41985f;
   current_data_pointer[7] = 0xe2f4a30d6e6ae482;
-  current_data_pointer[8] = &engine_data_18098c790;
+  current_data_pointer[8] = &engine_camera_status098c790;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
   return;
@@ -10100,7 +10109,7 @@ void engine_core_update_config(void)
   }
   current_data_pointer[6] = 0x4770584fbb1df897;
   current_data_pointer[7] = 0x47f249e43f66f2ab;
-  current_data_pointer[8] = &engine_data_18098c7a0;
+  current_data_pointer[8] = &engine_camera_status098c7a0;
   current_data_pointer[9] = 1;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -10150,7 +10159,7 @@ void engine_core_update_localization(void)
   }
   current_data_pointer[6] = 0x4666df49b97e0f10;
   current_data_pointer[7] = 0x4e4b0d63a6ad1d8f;
-  current_data_pointer[8] = &engine_data_18098c7b8;
+  current_data_pointer[8] = &engine_camera_status098c7b8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -10200,7 +10209,7 @@ void engine_core_update_modding(void)
   }
   current_data_pointer[6] = 0x46ecbd4daf41613e;
   current_data_pointer[7] = 0xdc42c056bbde8482;
-  current_data_pointer[8] = &engine_data_18098c7c8;
+  current_data_pointer[8] = &engine_camera_status098c7c8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -10231,7 +10240,7 @@ void engine_core_update_multiplayer(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_18,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_camera_status,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -10243,14 +10252,14 @@ void engine_core_update_multiplayer(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_18,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_camera_status,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = 0x4c868a42644030f6;
   current_data_pointer[7] = 0xc29193aa9d9b35b9;
-  current_data_pointer[8] = &engine_data_18098c7d8;
+  current_data_pointer[8] = &engine_camera_status098c7d8;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -10300,7 +10309,7 @@ void engine_core_update_achievements(void)
   }
   current_data_pointer[6] = 0x40ea3a798283cbbb;
   current_data_pointer[7] = 0x7f74eb2c5a7fadae;
-  current_data_pointer[8] = &engine_data_18098c7f0;
+  current_data_pointer[8] = &engine_camera_status098c7f0;
   current_data_pointer[9] = 3;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -10350,7 +10359,7 @@ void engine_core_update_leaderboards(void)
   }
   current_data_pointer[6] = 0x45b8d074df27d12f;
   current_data_pointer[7] = 0x8d98f4c06880eda4;
-  current_data_pointer[8] = &engine_data_18098c810;
+  current_data_pointer[8] = &engine_camera_status098c810;
   current_data_pointer[9] = 3;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -10400,7 +10409,7 @@ void engine_core_update_statistics(void)
   }
   current_data_pointer[6] = 0x42d293584c8cf3e5;
   current_data_pointer[7] = 0x355ffeb2d29e668a;
-  current_data_pointer[8] = &engine_data_18098c870;
+  current_data_pointer[8] = &engine_camera_status098c870;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = engine_stack_uint_18;
   return;
@@ -10521,11 +10530,11 @@ void engine_core_update_crashreporting(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x1b;
-  strcpy_s(engine_stack_buffer_88,0x80,&engine_data_180a3c028,engine_register_r9,0xfffffffffffffffe);
+  strcpy_s(engine_stack_buffer_88,0x80,&engine_camera_status0a3c028,engine_register_r9,0xfffffffffffffffe);
   _engine_data_6c = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
@@ -10539,7 +10548,7 @@ void engine_core_update_crashreporting(void)
 void engine_core_update_updates(void)
 
 {
-  _engine_data_18 = GetCurrentProcess();
+  _engine_camera_status = GetCurrentProcess();
   return;
 }
 
@@ -10551,7 +10560,7 @@ int engine_core_update_drm(void)
   longlong engine_temporary_long;
   
   engine_call_system_preparer();
-  engine_temporary_long = engine_call_data_accessor(&engine_data_180943130);
+  engine_temporary_long = engine_call_data_accessor(&engine_camera_status0943130);
   return (engine_temporary_long != 0) - 1;
 }
 
@@ -10590,7 +10599,7 @@ int engine_core_update_community(void)
   
   _engine_data_b8 = 3;
   _engine_data_90 = &engine_data_90;
-  _engine_data_98 = &engine_data_90;
+  _engine_system_status = &engine_data_90;
   _engine_data_a0 = 0;
   _engine_data_a8 = 0;
   _engine_data_b0 = 0;
@@ -10613,11 +10622,11 @@ void engine_core_update_content(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x10;
-  strcpy_s(engine_stack_buffer_88,0x80,&engine_data_180a3def0,engine_register_r9,0xfffffffffffffffe);
+  strcpy_s(engine_stack_buffer_88,0x80,&engine_camera_status0a3def0,engine_register_r9,0xfffffffffffffffe);
   _engine_data_d0 = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
@@ -10633,7 +10642,7 @@ uint64 engine_core_update_marketplace(void)
   int *pengine_temp_int_2;
   
   engine_temporary_long = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  *(void*)(engine_temporary_long + 0x18) = &engine_data_18098bcb0;
+  *(void*)(engine_temporary_long + 0x18) = &engine_camera_status098bcb0;
   *(void*)(engine_temporary_long + MEMORY_OFFSET_0x20) = 0;
   *(uint32*)(engine_temporary_long + 0x28) = 0;
   *(void*)(engine_temporary_long + 0x18) = &engine_system_context_data;
@@ -10677,11 +10686,11 @@ void engine_core_update_monetization(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x17;
-  strcpy_s(engine_stack_buffer_88,0x80,&engine_data_180a3e3d8,engine_register_r9,0xfffffffffffffffe);
+  strcpy_s(engine_stack_buffer_88,0x80,&engine_camera_status0a3e3d8,engine_register_r9,0xfffffffffffffffe);
   _engine_data_d4 = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
@@ -10701,11 +10710,11 @@ void engine_core_update_advertising(void)
   uint32 engine_stack_uint_90;
   uint8 engine_stack_buffer_88 [136];
   
-  engine_stack_param_a0 = &engine_data_1809fcc28;
+  engine_stack_param_a0 = &engine_camera_status09fcc28;
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x11;
-  strcpy_s(engine_stack_buffer_88,0x80,&engine_data_180a3e3f0,engine_register_r9,0xfffffffffffffffe);
+  strcpy_s(engine_stack_buffer_88,0x80,&engine_camera_status0a3e3f0,engine_register_r9,0xfffffffffffffffe);
   _engine_physics_flags = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
@@ -10723,8 +10732,8 @@ int engine_core_update_partnerships(void)
   engine_checksum_result_e0 = &engine_data_e0;
   _engine_data_e8 = &engine_data_e0;
   _engine_data_f0 = 0;
-  _engine_data_f8 = 0;
-  _engine_data_00 = 0;
+  _engine_network_status = 0;
+  _engine_input_status = 0;
   engine_temporary_long = engine_call_data_accessor(engine_get_input_config_data);
   return (engine_temporary_long != 0) - 1;
 }
@@ -10747,7 +10756,7 @@ int engine_core_update_branding(void)
   } while (engine_temp_int_2 < 0xd);
   *(uint *)(_engine_data_a0 + 0x330) = *(uint *)(_engine_data_a0 + 0x330) | 4;
   _engine_data_24 = 0xffffffff;
-  engine_temporary_long = engine_call_data_accessor(&engine_data_180943250);
+  engine_temporary_long = engine_call_data_accessor(&engine_camera_status0943250);
   return (engine_temporary_long != 0) - 1;
 }
 
@@ -10759,7 +10768,7 @@ int engine_core_update_licensing(void)
   longlong engine_temporary_long;
   
   func_0x000180741c80(0x180c0c340);
-  engine_temporary_long = engine_call_data_accessor(&engine_data_180943260);
+  engine_temporary_long = engine_call_data_accessor(&engine_camera_status0943260);
   return (engine_temporary_long != 0) - 1;
 }
 
@@ -10818,9 +10827,9 @@ void engine_core_save_game_state(void)
   int engine_temporary_int;
   
   engine_temporary_int = engine_call_permission_checker(0);
-  _engine_data_00 = 0x180be1c00;
+  _engine_input_status = 0x180be1c00;
   if (engine_temporary_int != 0) {
-    _engine_data_00 = 0x180be1c08;
+    _engine_input_status = 0x180be1c08;
   }
   return;
 }
@@ -10918,11 +10927,11 @@ int engine_core_handle_error(void)
   engine_temp_long_2 = 0x10;
   do {
     func_0x000180767970(engine_data_pointer);
-    *engine_data_pointer = &engine_data_18097e888;
+    *engine_data_pointer = &engine_camera_status097e888;
     engine_data_pointer = engine_data_pointer + 0x2b;
     engine_temp_long_2 = engine_temp_long_2 + -1;
   } while (engine_temp_long_2 != 0);
-  engine_temp_long_2 = engine_call_data_accessor(&engine_data_180943270);
+  engine_temp_long_2 = engine_call_data_accessor(&engine_camera_status0943270);
   return (engine_temp_long_2 != 0) - 1;
 }
 
@@ -10982,7 +10991,7 @@ int engine_core_get_version(void)
   longlong engine_temporary_long;
   
   engine_call_module_loader(0x180c4f510);
-  engine_temporary_long = engine_call_data_accessor(&engine_data_180943310);
+  engine_temporary_long = engine_call_data_accessor(&engine_camera_status0943310);
   return (engine_temporary_long != 0) - 1;
 }
 
@@ -10994,7 +11003,7 @@ int engine_core_get_build_info(void)
   longlong engine_temporary_long;
   
   _Mtx_init_in_situ(0x180c82170,2);
-  engine_temporary_long = engine_call_data_accessor(&engine_data_180943320);
+  engine_temporary_long = engine_call_data_accessor(&engine_camera_status0943320);
   return (engine_temporary_long != 0) - 1;
 }
 
@@ -11022,10 +11031,10 @@ void engine_core_initialize_dll(longlong engine_data_structure_ptr)
   
   engine_temp_uint_4 = 0xfffffffffffffffe;
   engine_initialize_render_system();
-  _engine_data_64 = _engine_data_64 + 1;
+  _engine_audio_status = _engine_audio_status + 1;
   engine_call_system_cleanup();
   if (_engine_data_48 != (longlong *)0x0) {
-    if ((void*)*_engine_data_48 == &engine_data_1809fe100) {
+    if ((void*)*_engine_data_48 == &engine_camera_status09fe100) {
       engine_temp_char_flag_2 = (char)_engine_data_48[2] != '\0';
     }
     else {
@@ -11033,10 +11042,10 @@ void engine_core_initialize_dll(longlong engine_data_structure_ptr)
     }
     if (engine_temp_char_flag_2 == '\0') goto LAB_180043e47;
   }
-  pengine_temp_long_2 = (longlong *)engine_call_memory_allocator(_engine_data_18,0xc0,8,3,engine_temp_uint_4);
+  pengine_temp_long_2 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0xc0,8,3,engine_temp_uint_4);
   engine_stack_long_pointer_20 = pengine_temp_long_2;
   engine_call_data_processor(pengine_temp_long_2);
-  *pengine_temp_long_2 = (longlong)&engine_data_1809fe100;
+  *pengine_temp_long_2 = (longlong)&engine_camera_status09fe100;
   pengine_temp_long_2[3] = -4;
   pengine_stack_long_ptr_10 = (longlong **)pengine_temp_long_2;
   (**(code **)(*pengine_temp_long_2 + 0x28))(pengine_temp_long_2);
@@ -11048,7 +11057,7 @@ void engine_core_initialize_dll(longlong engine_data_structure_ptr)
     pengine_temp_long_2 = _engine_data_48;
   }
   _engine_data_48 = pengine_temp_long_2;
-  if ((void*)*_engine_data_48 == &engine_data_1809fe100) {
+  if ((void*)*_engine_data_48 == &engine_camera_status09fe100) {
     if (_engine_data_48 != 0) {
       engine_call_event_handler();
     }
@@ -11065,16 +11074,16 @@ void engine_core_initialize_dll(longlong engine_data_structure_ptr)
 LAB_180043e47:
   engine_bind_render_context(*(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20));
   if (*(char *)(_engine_data_70 + 0x1ed) != '\0') {
-    pengine_temp_long_2 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x28,8,3);
-    *pengine_temp_long_2 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_2 = (longlong)&engine_data_180a21720;
+    pengine_temp_long_2 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x28,8,3);
+    *pengine_temp_long_2 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_2 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_2 + 1) = 0;
-    *pengine_temp_long_2 = (longlong)&engine_data_18098bdc8;
+    *pengine_temp_long_2 = (longlong)&engine_camera_status098bdc8;
     LOCK();
     *(uint8*)(pengine_temp_long_2 + 2) = 0;
     UNLOCK();
     pengine_temp_long_2[3] = -1;
-    *pengine_temp_long_2 = (longlong)&engine_data_18098bd40;
+    *pengine_temp_long_2 = (longlong)&engine_camera_status098bd40;
     pengine_temp_long_2[4] = 0x180c91060;
     engine_stack_long_pointer_20 = pengine_temp_long_2;
     (**(code **)(*pengine_temp_long_2 + 0x28))(pengine_temp_long_2);
@@ -11103,10 +11112,10 @@ void*
 engine_core_setup_function_pointers(uint64 engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bd40;
-  *engine_data_structure_ptr = &engine_data_18098bdc8;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status098bd40;
+  *engine_data_structure_ptr = &engine_camera_status098bdc8;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x28,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -11131,7 +11140,7 @@ void engine_core_initialize_subsystems(void)
 void engine_configure_display_settings(uint64 engine_data_structure_ptr)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -11186,7 +11195,7 @@ void engine_core_start_rendering(void)
               (*(longlong **)(_engine_data_70 + 0x2b0),&engine_stack_ptr_1b8);
     engine_call_input_processor();
     engine_temp_long_3 = _engine_render_mode;
-    engine_temp_index = engine_call_memory_allocator(_engine_data_18,0x70,8,3);
+    engine_temp_index = engine_call_memory_allocator(_engine_camera_status,0x70,8,3);
     engine_temp_long_pointer = (longlong *)engine_call_memory_configurator(engine_temp_index,8,engine_temp_long_3);
     engine_stack_ptr_190 = engine_temp_long_pointer;
     if (engine_temp_long_pointer != (longlong *)0x0) {
@@ -11212,7 +11221,7 @@ void engine_core_start_rendering(void)
     engine_stack_ptr_208 = (longlong *)CONCAT44(engine_stack_ptr_208._4_4_,MEMORY_COMPARE_SIZE_0x10);
     engine_temp_int_4 = GetComputerNameA(engine_stack_ptr_array_150,&engine_stack_ptr_208);
     if (engine_temp_int_4 == 0) {
-      engine_call_data_initializer(&engine_data_180a3c110);
+      engine_call_data_initializer(&engine_camera_status0a3c110);
     }
     else {
       if (0xf < ((ulonglong)engine_stack_ptr_208 & 0xffffffff)) goto LAB_180044db8;
@@ -11222,7 +11231,7 @@ void engine_core_start_rendering(void)
     engine_stack_ptr_208 = (longlong *)CONCAT44(engine_stack_ptr_208._4_4_,MEMORY_COMPARE_SIZE_0x101);
     engine_temp_int_4 = GetUserNameA(engine_stack_buffer_138,&engine_stack_ptr_208);
     if (engine_temp_int_4 == 0) {
-      engine_call_data_initializer(&engine_data_180a3c138);
+      engine_call_data_initializer(&engine_camera_status0a3c138);
     }
     else {
       if (0x100 < ((ulonglong)engine_stack_ptr_208 & 0xffffffff)) {
@@ -11244,9 +11253,9 @@ LAB_180044db8:
     if (engine_stack_ptr_1d0 != (void*)0x0) {
       engine_stack_pointer_220 = engine_stack_ptr_1d0;
     }
-    engine_stack_pointer_228 = &engine_data_18098bab0;
+    engine_stack_pointer_228 = &engine_camera_status098bab0;
     engine_call_buffer_manager(_engine_render_mode,5,0xffffffffffffffff,4);
-    engine_stack_pointer_188 = &engine_data_18098bc80;
+    engine_stack_pointer_188 = &engine_camera_status098bc80;
     pengine_stack_uint_180 = engine_stack_array_170;
     engine_stack_uint_178 = 0;
     engine_stack_array_170[0] = 0;
@@ -11256,10 +11265,10 @@ LAB_180044db8:
     if (pengine_stack_uint_180 != (void*)0x0) {
       engine_stack_pointer_220 = pengine_stack_uint_180;
     }
-    engine_stack_pointer_228 = &engine_data_18098bac8;
+    engine_stack_pointer_228 = &engine_camera_status098bac8;
     engine_call_buffer_manager(_engine_render_mode,5,0xffffffffffffffff,4);
     engine_stack_uint_200 = 0;
-    engine_stack_pointer_188 = &engine_data_18098bcb0;
+    engine_stack_pointer_188 = &engine_camera_status098bcb0;
     engine_stack_ptr_1f8 = &engine_system_context_data;
     if (engine_stack_ptr_1f0 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -11267,7 +11276,7 @@ LAB_180044db8:
     }
     engine_stack_ptr_1f0 = (void*)0x0;
     engine_stack_uint_1e0 = engine_stack_uint_1e0 & 0xffffffff00000000;
-    engine_stack_ptr_1f8 = &engine_data_18098bcb0;
+    engine_stack_ptr_1f8 = &engine_camera_status098bcb0;
     engine_stack_ptr_1d8 = &engine_system_context_data;
     if (engine_stack_ptr_1d0 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -11275,7 +11284,7 @@ LAB_180044db8:
     }
     engine_stack_ptr_1d0 = (void*)0x0;
     engine_stack_uint_1c0 = engine_stack_uint_1c0 & 0xffffffff00000000;
-    engine_stack_ptr_1d8 = &engine_data_18098bcb0;
+    engine_stack_ptr_1d8 = &engine_camera_status098bcb0;
     engine_stack_ptr_1b8 = &engine_system_context_data;
     if (engine_stack_long_1b0 != 0) {
                     // WARNING: Subroutine does not return
@@ -11283,7 +11292,7 @@ LAB_180044db8:
     }
     engine_stack_long_1b0 = 0;
     engine_stack_uint_1a0 = 0;
-    engine_stack_ptr_1b8 = &engine_data_18098bcb0;
+    engine_stack_ptr_1b8 = &engine_camera_status098bcb0;
   }
   engine_stack_uint_200 = 0;
                     // WARNING: Subroutine does not return
@@ -11334,7 +11343,7 @@ void engine_core_setup_window(uint64 engine_data_structure_ptr,longlong engine_r
   engine_stack_value_58 = 0xfffffffffffffffe;
   engine_temp_index = engine_core_initialize_subsystems();
   engine_call_system_preparer();
-  engine_memory_allocation_pointer = (longlong *)engine_call_memory_allocator(_engine_data_18,0x68,8,3);
+  engine_memory_allocation_pointer = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x68,8,3);
   ppengine_temp_long = (longlong **)(engine_memory_allocation_pointer + 1);
   engine_stack_long_ptr_10 = engine_memory_allocation_pointer;
   engine_stack_long_ptr_ptr_x18 = ppengine_temp_long;
@@ -11355,10 +11364,10 @@ void engine_core_setup_window(uint64 engine_data_structure_ptr,longlong engine_r
   if (engine_stack_pointer_b0 != (void*)0x0) {
     engine_data_ptr3 = engine_stack_pointer_b0;
   }
-  SymSetSearchPath(_engine_data_18,engine_data_ptr3);
+  SymSetSearchPath(_engine_camera_status,engine_data_ptr3);
   engine_string_length_diff = engine_memory_allocation_pointer[0xb];
   if (engine_temp_long_7 == 0) {
-    engine_temp_long_7 = LoadLibraryA(&engine_data_180a3c428);
+    engine_temp_long_7 = LoadLibraryA(&engine_camera_status0a3c428);
     engine_temp_ptr_array_6[0xb] = engine_temp_long_7;
     if (engine_temp_long_7 != 0) goto LAB_180044ee3;
     engine_stack_pointer_b8 = &engine_system_context_data;
@@ -11370,7 +11379,7 @@ void engine_core_setup_window(uint64 engine_data_structure_ptr,longlong engine_r
   else {
 LAB_180044ee3:
     if (engine_temp_ptr_array_6[0xc] == 0) {
-      engine_temp_long_7 = GetProcAddress(engine_temp_long_7,&engine_data_180a3c410);
+      engine_temp_long_7 = GetProcAddress(engine_temp_long_7,&engine_camera_status0a3c410);
       engine_temp_ptr_array_6[0xc] = engine_temp_long_7;
       if (engine_temp_long_7 == 0) {
         engine_stack_pointer_b8 = &engine_system_context_data;
@@ -11385,7 +11394,7 @@ LAB_180044ee3:
     if (engine_stack_pointer_b0 != (void*)0x0) {
       engine_data_ptr3 = engine_stack_pointer_b0;
     }
-    engine_temp_int_2 = SymInitialize(_engine_data_18,engine_data_ptr3,1);
+    engine_temp_int_2 = SymInitialize(_engine_camera_status,engine_data_ptr3,1);
     if (engine_temp_int_2 == 0) {
       engine_stack_pointer_b8 = &engine_system_context_data;
       if (engine_stack_pointer_b0 != (void*)0x0) {
@@ -11405,33 +11414,33 @@ LAB_180044ee3:
 LAB_180044f8f:
   engine_stack_value_a0 = 0;
   engine_stack_pointer_b0 = (void*)0x0;
-  engine_stack_pointer_b8 = &engine_data_18098bcb0;
+  engine_stack_pointer_b8 = &engine_camera_status098bcb0;
   engine_temp_int_2 = _Mtx_unlock(ppengine_temp_long);
   if (engine_temp_int_2 != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temp_int_2);
   }
 LAB_180044faf:
-  next_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,8,8,3);
+  next_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,8,8,3);
   *next_data_pointer = 0;
-  engine_temp_data_pointer_9 = (void*)engine_call_memory_allocator(_engine_data_18,8,8,3);
-  *next_data_pointer = &engine_data_18098bb60;
-  *engine_temp_data_pointer_9 = &engine_data_18098bb88;
-  engine_data_ptr0 = (void*)engine_call_memory_allocator(_engine_data_18,0x20,8,3);
-  engine_data_ptr1 = (uint8*)engine_call_memory_allocator(_engine_data_18,1,1,3);
+  engine_temp_data_pointer_9 = (void*)engine_call_memory_allocator(_engine_camera_status,8,8,3);
+  *next_data_pointer = &engine_camera_status098bb60;
+  *engine_temp_data_pointer_9 = &engine_camera_status098bb88;
+  engine_data_ptr0 = (void*)engine_call_memory_allocator(_engine_camera_status,0x20,8,3);
+  engine_data_ptr1 = (uint8*)engine_call_memory_allocator(_engine_camera_status,1,1,3);
   *engine_data_ptr1 = 0;
   engine_data_ptr0[2] = engine_data_ptr1;
   _engine_system_flags = engine_data_ptr0;
   *engine_data_ptr0 = engine_temp_data_pointer_9;
   engine_data_ptr0[1] = next_data_pointer;
   engine_data_ptr0[3] = engine_temp_index;
-  engine_temp_index = engine_call_memory_allocator(_engine_data_18,0x198,8,3);
+  engine_temp_index = engine_call_memory_allocator(_engine_camera_status,0x198,8,3);
   _engine_data_68 = engine_call_service_initializer(engine_temp_index);
-  engine_temp_index = engine_call_memory_allocator(_engine_data_18,0xa8,8,3);
-  _engine_data_00 = engine_call_authenticator(engine_temp_index);
-  engine_call_memory_allocator(_engine_data_18,1,1,3);
+  engine_temp_index = engine_call_memory_allocator(_engine_camera_status,0xa8,8,3);
+  _engine_input_status = engine_call_authenticator(engine_temp_index);
+  engine_call_memory_allocator(_engine_camera_status,1,1,3);
   engine_temp_int_2 = QueryPerformanceFrequency(&engine_stack_long_ptr_ptr_x18);
   if (engine_temp_int_2 == 0) {
-    engine_call_context_initializer(&engine_data_180a3c090);
+    engine_call_context_initializer(&engine_camera_status0a3c090);
   }
   engine_data_pointer_50 = 1.0 / (double)(longlong)engine_stack_long_ptr_ptr_x18;
   timeBeginPeriod(1);
@@ -11459,7 +11468,7 @@ void engine_core_initialize_graphics(void)
   engine_stack_uint_50 = 0;
   pengine_stack_uint_60 = (void*)0x0;
   engine_stack_value_58 = 0;
-  engine_current_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13,engine_register_r9,0xfffffffffffffffe);
+  engine_current_node_ptr = (void*)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,0x13,engine_register_r9,0xfffffffffffffffe);
   *(uint8*)engine_current_node_ptr = 0;
   pengine_stack_uint_60 = engine_current_node_ptr;
   engine_temp_uint_2 = engine_call_resource_validator(engine_current_node_ptr);
@@ -11502,7 +11511,7 @@ uint32 engine_core_setup_render_pipeline(void)
   engine_temp_uint2 = 0xfffffffffffffffe;
   if (_engine_data_48 != (void*)0x0) {
     while( true ) {
-      if ((void*)*_engine_data_48 == &engine_data_1809fe100) {
+      if ((void*)*_engine_data_48 == &engine_camera_status09fe100) {
         resource_status_flag1 = *(char *)(_engine_data_48 + 2) != '\0';
       }
       else {
@@ -11512,7 +11521,7 @@ uint32 engine_core_setup_render_pipeline(void)
       Sleep(1);
     }
   }
-  pppengine_temp_ptr_array_6 = (longlong ****)engine_call_memory_allocator(_engine_data_18,0xc0,8,3,engine_temp_uint2);
+  pppengine_temp_ptr_array_6 = (longlong ****)engine_call_memory_allocator(_engine_camera_status,0xc0,8,3,engine_temp_uint2);
   pppengine_stack_long_ptr_8 = pppengine_temp_ptr_array_6;
   engine_call_data_processor(pppengine_temp_ptr_array_6);
   *pppengine_temp_ptr_array_6 = (longlong ***)&engine_base_data_offset_f8;
@@ -11535,7 +11544,7 @@ uint32 engine_core_setup_render_pipeline(void)
   }
   engine_call_memory_compactor();
   engine_temp_long0 = _engine_render_mode;
-  engine_temp_uint64_value = engine_call_memory_allocator(_engine_data_18,0x70,8,3);
+  engine_temp_uint64_value = engine_call_memory_allocator(_engine_camera_status,0x70,8,3);
   engine_temp_ptr_ptr_ptr_ptr_8 = (longlong ****)engine_call_memory_configurator(engine_temp_uint64_value,2,engine_temp_long0);
   ppppengine_temp_long4 = engine_temp_ptr_ptr_ptr_ptr_8;
   if (engine_temp_ptr_ptr_ptr_ptr_8 != (longlong ****)0x0) {
@@ -11549,7 +11558,7 @@ uint32 engine_core_setup_render_pipeline(void)
     (*(code *)(*engine_temp_ptr_ptr_ptr_ptr_8)[5])(engine_temp_ptr_ptr_ptr_ptr_8);
   }
   (*pengine_temp_char_flag)(engine_data_pointer,&ppengine_stack_long_ptr_10);
-  engine_temp_uint2 = engine_call_memory_allocator(_engine_data_18,0x70,8,3,engine_temp_uint2,pppppengine_temp_long3,ppppengine_temp_long4);
+  engine_temp_uint2 = engine_call_memory_allocator(_engine_camera_status,0x70,8,3,engine_temp_uint2,pppppengine_temp_long3,ppppengine_temp_long4);
   engine_temp_ptr_ptr_ptr_9 = (longlong ***)engine_call_memory_configurator(engine_temp_uint2,0,engine_temp_long0);
   if (engine_temp_ptr_ptr_ptr_9 != (longlong ***)0x0) {
     (*(code *)(*engine_temp_ptr_ptr_ptr_9)[5])(engine_temp_ptr_ptr_ptr_9);
@@ -11680,7 +11689,7 @@ void engine_core_string_operations(longlong engine_data_structure_ptr,longlong e
     strcpy_s(*(void*)(engine_data_structure_ptr + 8),MEMORY_COMPARE_SIZE_0x1000);
     return;
   }
-  engine_call_buffer_allocator(&engine_data_18098bc48,MEMORY_COMPARE_SIZE_0x1000,engine_result_flag_ptr);
+  engine_call_buffer_allocator(&engine_camera_status098bc48,MEMORY_COMPARE_SIZE_0x1000,engine_result_flag_ptr);
   *(uint32*)(engine_data_structure_ptr + 0x10) = 0;
   **(uint8**)(engine_data_structure_ptr + 8) = 0;
   return;
@@ -11753,7 +11762,7 @@ void*
 engine_core_handle_events(uint64 engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,MEMORY_COMPARE_SIZE_0x1018,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -11795,7 +11804,7 @@ uint64_t *
 engine_core_update_system(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x418,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -11827,7 +11836,7 @@ void engine_core_string_operations_2(longlong engine_data_structure_ptr,longlong
     strcpy_s(*(void*)(engine_data_structure_ptr + 8),0x400);
     return;
   }
-  engine_call_buffer_allocator(&engine_data_18098bc48,0x400,engine_result_flag_ptr);
+  engine_call_buffer_allocator(&engine_camera_status098bc48,0x400,engine_result_flag_ptr);
   *(uint32*)(engine_data_structure_ptr + 0x10) = 0;
   **(uint8**)(engine_data_structure_ptr + 8) = 0;
   return;
@@ -11896,7 +11905,7 @@ void engine_core_string_search(longlong engine_data_structure_ptr,longlong engin
   
   engine_stack_uint_478 = 0xfffffffffffffffe;
   engine_stack_uint_48 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_498;
-  pengine_stack_uint_468 = &engine_data_18098bb30;
+  pengine_stack_uint_468 = &engine_camera_status098bb30;
   pengine_stack_uint_460 = aengine_stack_uint_450;
   engine_stack_uint_458 = 0;
   aengine_stack_uint_450[0] = 0;
@@ -11913,7 +11922,7 @@ void engine_core_string_search(longlong engine_data_structure_ptr,longlong engin
                     // WARNING: Subroutine does not return
     memcpy(pengine_stack_uint_460,*(longlong *)(engine_data_structure_ptr + 8),engine_temporary_long - *(longlong *)(engine_data_structure_ptr + 8));
   }
-  pengine_stack_uint_468 = &engine_data_18098bcb0;
+  pengine_stack_uint_468 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_48 ^ (ulonglong)aengine_stack_uint_498);
 }
@@ -12004,7 +12013,7 @@ longlong engine_core_thread_operations(uint32_t *engine_data_structure_ptr,uint3
         if (*(void**)(engine_data_structure_ptr + 4) != (void*)0x0) {
           engine_current_node_ptr = *(void**)(engine_data_structure_ptr + 4);
         }
-        engine_call_buffer_allocator(&engine_data_18098bc00,engine_current_node_ptr);
+        engine_call_buffer_allocator(&engine_camera_status098bc00,engine_current_node_ptr);
       }
       *engine_data_structure_ptr = engine_data_structure_ptr[0x12];
       return (ulonglong)(uint3)((uint)engine_data_structure_ptr[0x12] >> 8) << 8;
@@ -12029,16 +12038,16 @@ void engine_core_registry_operations(uint64 engine_data_structure_ptr,uint32_t e
   void* engine_current_node_ptr;
   uint32_t engine_stack_array_10 [6];
   
-  engine_temporary_long = _engine_data_20;
-  if ((*(longlong *)(_engine_data_20 + 0x22f0) != 0) &&
-     (engine_stack_array_10[0] = engine_result_flag_ptr, engine_temp_char_flag = (**(code **)(_engine_data_20 + 0x22f8))(engine_stack_array_10),
+  engine_temporary_long = _engine_physics_status;
+  if ((*(longlong *)(_engine_physics_status + 0x22f0) != 0) &&
+     (engine_stack_array_10[0] = engine_result_flag_ptr, engine_temp_char_flag = (**(code **)(_engine_physics_status + 0x22f8))(engine_stack_array_10),
      engine_result_flag_ptr = engine_stack_array_10[0], engine_temp_char_flag == '\0')) {
     if (engine_audio_flags == '\0') {
       engine_current_node_ptr = &engine_data_73;
       if (*(void**)(engine_temporary_long + 0x22a0) != (void*)0x0) {
         engine_current_node_ptr = *(void**)(engine_temporary_long + 0x22a0);
       }
-      engine_call_buffer_allocator(&engine_data_18098bc00,engine_current_node_ptr);
+      engine_call_buffer_allocator(&engine_camera_status098bc00,engine_current_node_ptr);
     }
     *(uint32*)(engine_temporary_long + 0x2290) = *(uint32*)(engine_temporary_long + 0x22d8);
     return;
@@ -12053,7 +12062,7 @@ uint64_t *
 engine_core_cleanup_operations_3(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x38,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -12085,7 +12094,7 @@ void engine_core_string_operations_3(longlong engine_data_structure_ptr,longlong
     strcpy_s(*(void*)(engine_data_structure_ptr + 8),0x20);
     return;
   }
-  engine_call_buffer_allocator(&engine_data_18098bc48,0x20,engine_result_flag_ptr);
+  engine_call_buffer_allocator(&engine_camera_status098bc48,0x20,engine_result_flag_ptr);
   *(uint32*)(engine_data_structure_ptr + 0x10) = 0;
   **(uint8**)(engine_data_structure_ptr + 8) = 0;
   return;
@@ -12137,10 +12146,10 @@ void engine_clear_screen(uint8_t *engine_data_structure_ptr)
 uint64_t * engine_configure_keyboard_input(uint64_t *engine_data_structure_ptr)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bc80;
+  *engine_data_structure_ptr = &engine_camera_status098bc80;
   engine_data_structure_ptr[1] = engine_data_structure_ptr + 3;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
   *(uint8*)(engine_data_structure_ptr + 3) = 0;
@@ -12169,7 +12178,7 @@ void engine_setup_viewport(longlong engine_data_structure_ptr,longlong engine_re
   
   engine_stack_value_88 = 0xfffffffffffffffe;
   engine_stack_uint_48 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_a8;
-  pengine_stack_value_80 = &engine_data_18098bc80;
+  pengine_stack_value_80 = &engine_camera_status098bc80;
   engine_stack_pointer_78 = aengine_stack_uint_68;
   engine_stack_value_70 = 0;
   aengine_stack_uint_68[0] = 0;
@@ -12186,7 +12195,7 @@ void engine_setup_viewport(longlong engine_data_structure_ptr,longlong engine_re
                     // WARNING: Subroutine does not return
     memcpy(engine_stack_pointer_78,*(longlong *)(engine_data_structure_ptr + 8),engine_temporary_long - *(longlong *)(engine_data_structure_ptr + 8));
   }
-  pengine_stack_value_80 = &engine_data_18098bcb0;
+  pengine_stack_value_80 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_48 ^ (ulonglong)aengine_stack_uint_a8);
 }
@@ -12196,7 +12205,7 @@ void engine_setup_viewport(longlong engine_data_structure_ptr,longlong engine_re
 uint64_t * engine_create_render_context(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x18);
   }
@@ -12251,9 +12260,9 @@ void engine_bind_render_context(longlong engine_data_structure_ptr)
 void engine_configure_render_settings(uint64_t *engine_data_structure_ptr)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bdc8;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status098bdc8;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   return;
 }
 
@@ -12263,9 +12272,9 @@ uint64_t *
 engine_initialize_texture_resource(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bdc8;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status098bdc8;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x20,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -12321,7 +12330,7 @@ void engine_execute_render_pipeline(longlong *engine_data_structure_ptr)
     }
     structure_data_pointer[1] = 0;
     *(uint32*)(structure_data_pointer + 3) = 0;
-    *structure_data_pointer = &engine_data_18098bcb0;
+    *structure_data_pointer = &engine_camera_status098bcb0;
   }
   if (*engine_data_structure_ptr != 0) {
                     // WARNING: Subroutine does not return
@@ -12471,7 +12480,7 @@ int engine_validate_render_state(longlong engine_data_structure_ptr,longlong eng
   if (engine_temp_long_7 == 0) {
     engine_temp_long_7 = 1;
 LAB_1800469fd:
-    engine_temp_long_2 = engine_call_memory_extender(_engine_data_18,engine_temp_long_7 << 8,*(uint8*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20));
+    engine_temp_long_2 = engine_call_memory_extender(_engine_camera_status,engine_temp_long_7 << 8,*(uint8*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20));
     engine_temp_uint_8 = *(ulonglong *)(engine_data_structure_ptr + 0x10);
     engine_temp_long_4 = *(longlong *)(engine_data_structure_ptr + 8);
   }
@@ -12528,7 +12537,7 @@ void engine_draw_primitive(uint64_t *engine_data_structure_ptr,uint64 engine_res
   }
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 3) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -12629,10 +12638,10 @@ void engine_setup_render_target(longlong *engine_data_structure_ptr,uint64_t *en
   engine_stack_long_pointer_8 = engine_data_structure_ptr;
   local_resource_node = engine_result_flag_ptr;
   engine_initialize_memory_manager();
-  pengine_temp_long = (longlong *)engine_call_memory_allocator(_engine_data_18,200,8,3,engine_temp_uint_2,engine_temp_uint_3);
+  pengine_temp_long = (longlong *)engine_call_memory_allocator(_engine_camera_status,200,8,3,engine_temp_uint_2,engine_temp_uint_3);
   engine_stack_long_pointer_8 = pengine_temp_long;
   engine_call_data_processor(pengine_temp_long);
-  *pengine_temp_long = (longlong)&engine_data_1809fcb00;
+  *pengine_temp_long = (longlong)&engine_camera_status09fcb00;
   pengine_temp_long[0x18] = (longlong)&engine_base_data_offset_d0;
   engine_stack_long_pointer_18 = pengine_temp_long;
   (**(code **)(*pengine_temp_long + 0x28))(pengine_temp_long);
@@ -12651,7 +12660,7 @@ void engine_setup_render_target(longlong *engine_data_structure_ptr,uint64_t *en
   }
   engine_result_flag_ptr[1] = 0;
   *(uint32*)(engine_result_flag_ptr + 3) = 0;
-  *engine_result_flag_ptr = &engine_data_18098bcb0;
+  *engine_result_flag_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -12739,10 +12748,10 @@ void engine_initialize_render_system(void)
     engine_call_data_hasher(engine_stack_uint_68 ^ (ulonglong)aengine_stack_uint_698);
   }
   *(uint8*)(_engine_audio_flags + 0x39) = 1;
-  pppengine_temp_long_4 = (longlong ***)engine_call_memory_allocator(_engine_data_18,200,8,3);
+  pppengine_temp_long_4 = (longlong ***)engine_call_memory_allocator(_engine_camera_status,200,8,3);
   pppengine_stack_long_590 = pppengine_temp_long_4;
   engine_call_data_processor(pppengine_temp_long_4);
-  *pppengine_temp_long_4 = (longlong **)&engine_data_1809fcb00;
+  *pppengine_temp_long_4 = (longlong **)&engine_camera_status09fcb00;
   pppengine_temp_long_4[0x18] = (longlong **)&engine_base_data_offset_20;
   ppengine_stack_long_4f0 = (longlong **)pppengine_temp_long_4;
   (*(code *)(*pppengine_temp_long_4)[5])(pppengine_temp_long_4);
@@ -12756,7 +12765,7 @@ void engine_initialize_render_system(void)
   (*(code *)(*pppengine_temp_long_4)[7])(pppengine_temp_long_4);
   engine_call_data_writer(&engine_stack_long_678,&engine_control_data);
   if (engine_stack_int_668 == 0) {
-    (**(code **)(engine_stack_long_678 + 0x10))(&engine_stack_long_678,&engine_data_1809fc7a0);
+    (**(code **)(engine_stack_long_678 + 0x10))(&engine_stack_long_678,&engine_camera_status09fc7a0);
     engine_temp_char_flag = engine_call_condition_evaluator(&engine_stack_long_678);
     if (engine_temp_char_flag == '\0') {
       engine_call_logic_processor(&engine_stack_long_678);
@@ -12770,46 +12779,46 @@ void engine_initialize_render_system(void)
   pengine_stack_uint_4e0 = aengine_stack_uint_4d0;
   aengine_stack_uint_4d0[0] = 0;
   engine_stack_uint_4d8 = 0x18;
-  strcpy_s(aengine_stack_uint_4d0,0x40,&engine_data_1809fc7b8);
+  strcpy_s(aengine_stack_uint_4d0,0x40,&engine_camera_status09fc7b8);
   engine_call_data_transformer(_engine_audio_flags,&pengine_stack_uint_4e8,&engine_stack_long_678);
-  pengine_stack_uint_4e8 = &engine_data_18098bcb0;
+  pengine_stack_uint_4e8 = &engine_camera_status098bcb0;
   pengine_stack_uint_488 = &engine_global_config_data;
   pengine_stack_uint_480 = aengine_stack_uint_470;
   aengine_stack_uint_470[0] = 0;
   engine_stack_uint_478 = 0xb;
-  strcpy_s(aengine_stack_uint_470,0x40,&engine_data_1809fc790);
+  strcpy_s(aengine_stack_uint_470,0x40,&engine_camera_status09fc790);
   engine_call_data_transformer(_engine_audio_flags,&pengine_stack_uint_488,&engine_stack_long_678);
-  pengine_stack_uint_488 = &engine_data_18098bcb0;
+  pengine_stack_uint_488 = &engine_camera_status098bcb0;
   pengine_stack_uint_428 = &engine_global_config_data;
   pengine_stack_uint_420 = aengine_stack_uint_410;
   aengine_stack_uint_410[0] = 0;
   engine_stack_uint_418 = 0x18;
-  engine_temp_uint0 = strcpy_s(aengine_stack_uint_410,0x40,&engine_data_1809fc7b8);
+  engine_temp_uint0 = strcpy_s(aengine_stack_uint_410,0x40,&engine_camera_status09fc7b8);
   _engine_data_b8 = (float)engine_call_numeric_converter(engine_temp_uint0,&pengine_stack_uint_428);
   _engine_data_b8 = 1.0 / _engine_data_b8;
-  pengine_stack_uint_428 = &engine_data_18098bcb0;
+  pengine_stack_uint_428 = &engine_camera_status098bcb0;
   pengine_stack_uint_3c8 = &engine_global_config_data;
   pengine_stack_uint_3c0 = aengine_stack_uint_3b0;
   aengine_stack_uint_3b0[0] = 0;
   engine_stack_uint_3b8 = 0xb;
-  engine_temp_uint0 = strcpy_s(aengine_stack_uint_3b0,0x40,&engine_data_1809fc790);
+  engine_temp_uint0 = strcpy_s(aengine_stack_uint_3b0,0x40,&engine_camera_status09fc790);
   _engine_network_flags = (float)engine_call_numeric_converter(engine_temp_uint0,&pengine_stack_uint_3c8);
   _engine_network_flags = 1.0 / _engine_network_flags;
-  pengine_stack_uint_3c8 = &engine_data_18098bcb0;
+  pengine_stack_uint_3c8 = &engine_camera_status098bcb0;
   pengine_stack_uint_368 = &engine_global_config_data;
   pengine_stack_uint_360 = aengine_stack_uint_350;
   aengine_stack_uint_350[0] = 0;
   engine_stack_uint_358 = 0xb;
-  engine_temp_uint0 = strcpy_s(aengine_stack_uint_350,0x40,&engine_data_1809fc790);
+  engine_temp_uint0 = strcpy_s(aengine_stack_uint_350,0x40,&engine_camera_status09fc790);
   engine_temp_float_11 = (float)engine_call_coordinate_converter(engine_temp_uint0,&pengine_stack_uint_368);
-  pengine_stack_uint_368 = &engine_data_18098bcb0;
+  pengine_stack_uint_368 = &engine_camera_status098bcb0;
   pengine_stack_uint_308 = &engine_global_config_data;
   pengine_stack_uint_300 = aengine_stack_uint_2f0;
   aengine_stack_uint_2f0[0] = 0;
   engine_stack_uint_2f8 = 0x18;
-  engine_temp_uint0 = strcpy_s(aengine_stack_uint_2f0,0x40,&engine_data_1809fc7b8);
+  engine_temp_uint0 = strcpy_s(aengine_stack_uint_2f0,0x40,&engine_camera_status09fc7b8);
   engine_temp_float_12 = (float)engine_call_coordinate_converter(engine_temp_uint0,&pengine_stack_uint_308);
-  pengine_stack_uint_308 = &engine_data_18098bcb0;
+  pengine_stack_uint_308 = &engine_camera_status098bcb0;
   engine_temp_index = engine_call_data_counter();
   if (0 < _engine_data_d0) {
     engine_call_data_iterator(&engine_control_data,&pengine_stack_uint_558,0,_engine_data_d0 + -1);
@@ -12849,7 +12858,7 @@ void engine_initialize_render_system(void)
     }
     engine_stack_long_530 = 0;
     engine_stack_uint_520 = 0;
-    pengine_stack_uint_538 = &engine_data_18098bcb0;
+    pengine_stack_uint_538 = &engine_camera_status098bcb0;
     pengine_stack_uint_558 = &engine_system_context_data;
     if (engine_stack_long_550 != 0) {
                     // WARNING: Subroutine does not return
@@ -12857,7 +12866,7 @@ void engine_initialize_render_system(void)
     }
     engine_stack_long_550 = 0;
     engine_stack_uint_540 = 0;
-    pengine_stack_uint_558 = &engine_data_18098bcb0;
+    pengine_stack_uint_558 = &engine_camera_status098bcb0;
   }
   pengine_stack_uint_578 = &engine_system_context_data;
   engine_stack_uint_560 = 0;
@@ -12889,7 +12898,7 @@ void engine_initialize_render_system(void)
   next_data_pointer[3] = 0x78742e67;
   *(uint16*)(next_data_pointer + 4) = 0x74;
   engine_stack_uint_608 = comparison_result_index;
-  current_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x18,8,3);
+  current_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0x18,8,3);
   engine_temp_uint_ptr_9 = &engine_data_73;
   if (pengine_stack_uint_610 != (uint8*)0x0) {
     engine_temp_uint_ptr_9 = pengine_stack_uint_610;
@@ -12897,7 +12906,7 @@ void engine_initialize_render_system(void)
   *current_data_pointer = 0;
   *(uint8*)(current_data_pointer + 2) = 0;
   engine_call_structure_builder(current_data_pointer,engine_temp_uint_ptr_9,&engine_data_ec);
-  engine_call_object_registrar(_engine_data_20,current_data_pointer);
+  engine_call_object_registrar(_engine_physics_status,current_data_pointer);
   if (current_data_pointer[1] != 0) {
     fclose();
     current_data_pointer[1] = 0;
@@ -12945,7 +12954,7 @@ engine_allocate_memory(uint64_t *engine_data_structure_ptr,uint64_t *engine_resu
 void engine_free_memory(longlong engine_data_structure_ptr)
 
 {
-  *(undefined **)(engine_data_structure_ptr + 0x10) = &engine_data_18098bcb0;
+  *(undefined **)(engine_data_structure_ptr + 0x10) = &engine_camera_status098bcb0;
   return;
 }
 
@@ -12956,7 +12965,7 @@ void engine_free_memory(longlong engine_data_structure_ptr)
 void engine_reallocate_memory(uint64_t *engine_data_structure_ptr)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -13120,7 +13129,7 @@ void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 en
   next_data_pointer[3] = 0x2e676f6c;
   next_data_pointer[4] = 0x747874;
   engine_stack_uint_b8 = 0x18;
-  engine_temporary_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x18,8,3);
+  engine_temporary_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0x18,8,3);
   engine_temp_uint_ptr_9 = &engine_data_73;
   if (pengine_stack_uint_c0 != (void*)0x0) {
     engine_temp_uint_ptr_9 = pengine_stack_uint_c0;
@@ -13164,101 +13173,101 @@ void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 en
       if (engine_stack_char_pointer_80 != (char *)0x0) {
         presource_status_flag4 = engine_stack_char_pointer_80;
       }
-      engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc8e8,presource_status_flag4);
+      engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc8e8,presource_status_flag4);
       engine_temp_double = *(double *)(engine_temp_long3 + 0xa0 + engine_temp_uint0);
       engine_temp_double3 = (double)*(uint *)(engine_temp_long3 + 0xb0 + engine_temp_uint0);
       if (engine_temp_double3 != 0.0) {
-        engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,&engine_data_1809fc8f8,engine_temp_double3);
+        engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc908,&engine_camera_status09fc8f8,engine_temp_double3);
       }
       if (engine_temp_double != 0.0) {
-        engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,&engine_data_1809fc918,engine_temp_double);
+        engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc908,&engine_camera_status09fc918,engine_temp_double);
       }
       engine_temp_double = *(double *)(engine_temp_long3 + 0xb8 + engine_temp_uint0);
       engine_temp_double3 = (double)*(uint *)(engine_temp_long3 + 200 + engine_temp_uint0);
       if (engine_temp_double3 != 0.0) {
-        engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,&engine_data_1809fc928,engine_temp_double3);
+        engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc908,&engine_camera_status09fc928,engine_temp_double3);
       }
       if (engine_temp_double != 0.0) {
-        engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,&engine_data_1809fc940,engine_temp_double);
+        engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc908,&engine_camera_status09fc940,engine_temp_double);
       }
       engine_temp_double = *(double *)(engine_temp_long3 + MEMORY_OFFSET_0x20 + engine_temp_uint0);
       if (engine_temp_double != 0.0) {
-        engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,&engine_data_1809fc958,engine_temp_double);
+        engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc908,&engine_camera_status09fc958,engine_temp_double);
       }
       engine_temp_double = *(double *)(engine_temp_long3 + 0x28 + engine_temp_uint0);
       if (engine_temp_double != 0.0) {
-        engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,&engine_data_1809fc970,engine_temp_double);
+        engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc908,&engine_camera_status09fc970,engine_temp_double);
       }
       engine_temp_long1 = *(longlong *)(engine_temp_long3 + 0x30 + engine_temp_uint0);
       engine_temp_double = (double)engine_temp_long1;
       if (engine_temp_long1 < 0) {
         engine_temp_double = engine_temp_double + 1.8446744073709552e+19;
       }
-      engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc9a4,&engine_data_1809fc990,
+      engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc9a4,&engine_camera_status09fc990,
                     (double)(float)(engine_temp_double * 9.5367431640625e-07));
       engine_temp_long1 = *(longlong *)(engine_temp_long3 + 0x38 + engine_temp_uint0);
       engine_temp_double = (double)engine_temp_long1;
       if (engine_temp_long1 < 0) {
         engine_temp_double = engine_temp_double + 1.8446744073709552e+19;
       }
-      engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc9a4,&engine_data_1809fc9b0,
+      engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc9a4,&engine_camera_status09fc9b0,
                     (double)(float)(engine_temp_double * 9.5367431640625e-07));
       engine_temp_long1 = *(longlong *)(engine_temp_long3 + 0x40 + engine_temp_uint0);
       engine_temp_double = (double)engine_temp_long1;
       if (engine_temp_long1 < 0) {
         engine_temp_double = engine_temp_double + 1.8446744073709552e+19;
       }
-      engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc9a4,&engine_data_1809fc9d0,
+      engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc9a4,&engine_camera_status09fc9d0,
                     (double)(float)(engine_temp_double * 9.5367431640625e-07));
       engine_temp_long1 = *(longlong *)(engine_temp_long3 + 0x48 + engine_temp_uint0);
       engine_temp_double = (double)engine_temp_long1;
       if (engine_temp_long1 < 0) {
         engine_temp_double = engine_temp_double + 1.8446744073709552e+19;
       }
-      engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc9a4,&engine_data_1809fc9f8,
+      engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc9a4,&engine_camera_status09fc9f8,
                     (double)(float)(engine_temp_double * 9.5367431640625e-07));
       engine_temp_long1 = *(longlong *)(engine_temp_long3 + 0x50 + engine_temp_uint0);
       engine_temp_double = (double)engine_temp_long1;
       if (engine_temp_long1 < 0) {
         engine_temp_double = engine_temp_double + 1.8446744073709552e+19;
       }
-      engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc9a4,&engine_data_1809fca20,
+      engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc9a4,&engine_camera_status09fca20,
                     (double)(float)(engine_temp_double * 9.5367431640625e-07));
       engine_temp_long1 = *(longlong *)(engine_temp_long3 + 0x58 + engine_temp_uint0);
       engine_temp_double = (double)engine_temp_long1;
       if (engine_temp_long1 < 0) {
         engine_temp_double = engine_temp_double + 1.8446744073709552e+19;
       }
-      engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc9a4,&engine_data_1809fca48,
+      engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc9a4,&engine_camera_status09fca48,
                     (double)(float)(engine_temp_double * 9.5367431640625e-07));
       engine_temp_long1 = *(longlong *)(engine_temp_long3 + 0x60 + engine_temp_uint0);
       engine_temp_double = (double)engine_temp_long1;
       if (engine_temp_long1 < 0) {
         engine_temp_double = engine_temp_double + 1.8446744073709552e+19;
       }
-      engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc9a4,&engine_data_1809fca60,
+      engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc9a4,&engine_camera_status09fca60,
                     (double)(float)(engine_temp_double * 9.5367431640625e-07));
       engine_temp_long1 = *(longlong *)(engine_temp_long3 + 0x68 + engine_temp_uint0);
       engine_temp_double = (double)engine_temp_long1;
       if (engine_temp_long1 < 0) {
         engine_temp_double = engine_temp_double + 1.8446744073709552e+19;
       }
-      engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc9a4,&engine_base_data_offset_88,
+      engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc9a4,&engine_base_data_offset_88,
                     (double)(float)(engine_temp_double * 9.5367431640625e-07));
       engine_temp_long1 = *(longlong *)(engine_temp_long3 + 0x70 + engine_temp_uint0);
       engine_temp_double = (double)engine_temp_long1;
       if (engine_temp_long1 < 0) {
         engine_temp_double = engine_temp_double + 1.8446744073709552e+19;
       }
-      engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc9a4,&engine_data_1809fcaa8,
+      engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc9a4,&engine_camera_status09fcaa8,
                     (double)(float)(engine_temp_double * 9.5367431640625e-07));
       engine_temp_double = *(double *)(engine_temp_long3 + 0x78 + engine_temp_uint0);
       if (engine_temp_double != 0.0) {
-        engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,&engine_data_1809fcac8,engine_temp_double);
+        engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc908,&engine_camera_status09fcac8,engine_temp_double);
       }
       engine_temp_double = *(double *)(engine_temp_long3 + 0x80 + engine_temp_uint0);
       if (engine_temp_double != 0.0) {
-        engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,&engine_data_1809fcad8,engine_temp_double);
+        engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc908,&engine_camera_status09fcad8,engine_temp_double);
       }
       engine_temp_long3 = engine_temp_uint0 + 0xd0 + engine_temp_long3;
       engine_temp_long1 = *(longlong *)(engine_temp_long3 + 8);
@@ -13294,7 +13303,7 @@ void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 en
         if (engine_stack_char_pointer_a0 != (char *)0x0) {
           presource_status_flag4 = engine_stack_char_pointer_a0;
         }
-        engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,presource_status_flag4,*(void*)(engine_temp_long1 + 0x60));
+        engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc908,presource_status_flag4,*(void*)(engine_temp_long1 + 0x60));
         pengine_stack_uint_a8 = &engine_system_context_data;
         if (engine_stack_char_pointer_a0 != (char *)0x0) {
                     // WARNING: Subroutine does not return
@@ -13302,11 +13311,11 @@ void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 en
         }
         engine_stack_char_pointer_a0 = (char *)0x0;
         engine_stack_uint_90 = engine_stack_uint_90 & 0xffffffff00000000;
-        pengine_stack_uint_a8 = &engine_data_18098bcb0;
+        pengine_stack_uint_a8 = &engine_camera_status098bcb0;
         engine_temp_long1 = func_0x00018066bd70(engine_temp_long1);
         engine_temp_uint_4 = engine_temp_uint6;
       }
-      engine_call_property_setter(engine_temporary_pointer,&engine_data_18);
+      engine_call_property_setter(engine_temporary_pointer,&engine_camera_status);
       engine_stack_pointer_88 = &engine_system_context_data;
       if (engine_stack_char_pointer_80 != (char *)0x0) {
                     // WARNING: Subroutine does not return
@@ -13314,14 +13323,14 @@ void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 en
       }
       engine_stack_char_pointer_80 = (char *)0x0;
       engine_stack_value_70 = engine_stack_value_70 & 0xffffffff00000000;
-      engine_stack_pointer_88 = &engine_data_18098bcb0;
+      engine_stack_pointer_88 = &engine_camera_status098bcb0;
       engine_temp_uint6 = engine_temp_uint_4 + 1;
       engine_temp_uint2 = (ulonglong)engine_temp_uint6;
       engine_temp_uint0 = engine_temp_uint0 + 0x100;
     } while ((ulonglong)(longlong)(int)engine_temp_uint6 < (ulonglong)(engine_data_pointer_50 - _engine_data_48 >> 8));
   }
   engine_temp_int7 = 0;
-  engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fcae8);
+  engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fcae8);
   if ((_engine_frame_counter - _engine_render_state) / 0x28 != 0) {
     engine_temp_long1 = 0;
     do {
@@ -13343,7 +13352,7 @@ void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 en
       if (engine_temp_uint_ptr_9 != (void*)0x0) {
         engine_data_ptr5 = engine_temp_uint_ptr_9;
       }
-      engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,engine_data_ptr5,*(void*)(_engine_render_state + MEMORY_OFFSET_0x20 + engine_temp_long1));
+      engine_call_property_setter(engine_temporary_pointer,&engine_camera_status09fc908,engine_data_ptr5,*(void*)(_engine_render_state + MEMORY_OFFSET_0x20 + engine_temp_long1));
       engine_temp_int7 = engine_temp_int7 + 1;
       engine_temp_long1 = engine_temp_long1 + 0x28;
     } while ((ulonglong)(longlong)engine_temp_int7 < (ulonglong)((_engine_frame_counter - _engine_render_state) / 0x28));
@@ -13406,7 +13415,7 @@ void engine_validate_memory_block(longlong *engine_data_structure_ptr)
     }
     structure_data_pointer[1] = 0;
     *(uint32*)(structure_data_pointer + 3) = 0;
-    *structure_data_pointer = &engine_data_18098bcb0;
+    *structure_data_pointer = &engine_camera_status098bcb0;
   }
   if (*engine_data_structure_ptr != 0) {
                     // WARNING: Subroutine does not return
@@ -13743,14 +13752,14 @@ void engine_unmap_memory_region(longlong engine_data_structure_ptr,uint64 engine
   }
   engine_temp_uint_6 = 1;
 LAB_180048f62:
-  memory_allocation_result = engine_call_memory_extender(_engine_data_18,0x68,*(uint8*)(engine_data_structure_ptr + 0x28),engine_system_parameter_4,
+  memory_allocation_result = engine_call_memory_extender(_engine_camera_status,0x68,*(uint8*)(engine_data_structure_ptr + 0x28),engine_system_parameter_4,
                         0xfffffffffffffffe);
   engine_call_data_writer(memory_allocation_result + MEMORY_OFFSET_0x20,engine_param_5);
   engine_next_node_ptr = (void*)(memory_allocation_result + 0x40);
   *(void*)(memory_allocation_result + 0x50) = 0;
   *(void*)(memory_allocation_result + 0x58) = 0;
   *(void*)(memory_allocation_result + 0x60) = 0;
-  *engine_next_node_ptr = &engine_data_18098bcb0;
+  *engine_next_node_ptr = &engine_camera_status098bcb0;
   *(void*)(memory_allocation_result + 0x48) = 0;
   *(uint32*)(memory_allocation_result + 0x50) = 0;
   *engine_next_node_ptr = &engine_system_context_data;
@@ -13782,7 +13791,7 @@ uint64_t * engine_reserve_memory_address(longlong engine_data_structure_ptr,long
   }
   structure_data_pointer = engine_current_node_ptr;
   for (pengine_temp_long = (longlong *)engine_result_flag_ptr[1]; pengine_temp_long != (longlong *)0x0; pengine_temp_long = (longlong *)pengine_temp_long[1]) {
-    engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,0x68,*(uint8*)(engine_data_structure_ptr + 0x28));
+    engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_camera_status,0x68,*(uint8*)(engine_data_structure_ptr + 0x28));
     engine_call_data_writer(engine_next_node_ptr + 4,pengine_temp_long + 4);
     engine_call_data_writer(engine_next_node_ptr + 8,pengine_temp_long + 8);
     engine_next_node_ptr[0xc] = pengine_temp_long[0xc];
@@ -13810,7 +13819,7 @@ uint64_t * engine_commit_memory_pages(longlong engine_data_structure_ptr,longlon
   void* engine_data_pointer;
   
   engine_data_pointer = (void*)
-           engine_call_memory_extender(_engine_data_18,0x68,*(uint8*)(engine_data_structure_ptr + 0x28),engine_system_parameter_4,
+           engine_call_memory_extender(_engine_camera_status,0x68,*(uint8*)(engine_data_structure_ptr + 0x28),engine_system_parameter_4,
                          0xfffffffffffffffe);
   engine_call_data_writer(engine_data_pointer + 4,engine_result_flag_ptr + MEMORY_OFFSET_0x20);
   engine_call_data_writer(engine_data_pointer + 8,engine_result_flag_ptr + 0x40);
@@ -13838,7 +13847,7 @@ engine_setup_memory_mapping(uint64_t *engine_data_structure_ptr,longlong *engine
   if (engine_result_flag_ptr != engine_comparison_params) {
     engine_temp_ptr_5 = engine_result_flag_ptr + 0x1b;
     do {
-      *engine_system_parameter_4 = &engine_data_18098bcb0;
+      *engine_system_parameter_4 = &engine_camera_status098bcb0;
       engine_system_parameter_4[1] = 0;
       *(uint32*)(engine_system_parameter_4 + 2) = 0;
       *engine_system_parameter_4 = &engine_system_context_data;
@@ -13951,12 +13960,12 @@ engine_setup_memory_mapping(uint64_t *engine_data_structure_ptr,longlong *engine
 void engine_call_system_validator(uint64_t *engine_data_structure_ptr)
 
 {
-  *engine_data_structure_ptr = &engine_data_1809fcb90;
+  *engine_data_structure_ptr = &engine_camera_status09fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(engine_data_structure_ptr + 4);
-  *engine_data_structure_ptr = &engine_data_18098bdc8;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status098bdc8;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   return;
 }
 
@@ -14149,15 +14158,15 @@ engine_call_data_processor(uint64_t *engine_data_structure_ptr,uint64 engine_res
   uint64 engine_temporary_uint;
   
   engine_temporary_uint = 0xfffffffffffffffe;
-  *engine_data_structure_ptr = &engine_data_180a21690;
-  *engine_data_structure_ptr = &engine_data_180a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
   *(uint32*)(engine_data_structure_ptr + 1) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bdc8;
+  *engine_data_structure_ptr = &engine_camera_status098bdc8;
   LOCK();
   *(uint8*)(engine_data_structure_ptr + 2) = 0;
   UNLOCK();
   engine_data_structure_ptr[3] = 0xffffffffffffffff;
-  *engine_data_structure_ptr = &engine_data_1809fcb90;
+  *engine_data_structure_ptr = &engine_camera_status09fcb90;
   _Cnd_init_in_situ(engine_data_structure_ptr + 4);
   _Mtx_init_in_situ(engine_data_structure_ptr + 0xd,2,engine_comparison_params,engine_system_parameter_4,engine_temporary_uint);
   *(uint8*)(engine_data_structure_ptr + 0x17) = 0;
@@ -14170,7 +14179,7 @@ uint64_t *
 engine_allocate_resource_memory(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x98,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -14223,10 +14232,10 @@ void engine_handle_system_event(uint8_t *engine_data_structure_ptr)
 uint64_t * engine_create_ui_manager(uint64_t *engine_data_structure_ptr)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
-  *engine_data_structure_ptr = &engine_data_1809fcc28;
+  *engine_data_structure_ptr = &engine_camera_status09fcc28;
   engine_data_structure_ptr[1] = engine_data_structure_ptr + 3;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
   *(uint8*)(engine_data_structure_ptr + 3) = 0;
@@ -14255,7 +14264,7 @@ void engine_execute_system_command(longlong engine_data_structure_ptr,longlong e
   
   engine_stack_uint_f8 = 0xfffffffffffffffe;
   engine_stack_uint_48 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_118;
-  engine_stack_pointer_e8 = &engine_data_1809fcc28;
+  engine_stack_pointer_e8 = &engine_camera_status09fcc28;
   pengine_stack_uint_e0 = aengine_stack_uint_d0;
   engine_stack_uint_d8 = 0;
   aengine_stack_uint_d0[0] = 0;
@@ -14272,7 +14281,7 @@ void engine_execute_system_command(longlong engine_data_structure_ptr,longlong e
                     // WARNING: Subroutine does not return
     memcpy(pengine_stack_uint_e0,*(longlong *)(engine_data_structure_ptr + 8),engine_temporary_long - *(longlong *)(engine_data_structure_ptr + 8));
   }
-  engine_stack_pointer_e8 = &engine_data_18098bcb0;
+  engine_stack_pointer_e8 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_48 ^ (ulonglong)aengine_stack_uint_118);
 }
@@ -14285,10 +14294,10 @@ engine_setup_animation_system(uint64_t *engine_data_structure_ptr,longlong engin
 {
   void* engine_data_pointer;
   
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
-  *engine_data_structure_ptr = &engine_data_1809fcc28;
+  *engine_data_structure_ptr = &engine_camera_status09fcc28;
   engine_data_structure_ptr[1] = engine_data_structure_ptr + 3;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
   *(uint8*)(engine_data_structure_ptr + 3) = 0;
@@ -14307,7 +14316,7 @@ uint64_t *
 engine_free_resource_memory(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x58,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -14339,7 +14348,7 @@ void engine_process_system_operation(longlong engine_data_structure_ptr,longlong
     strcpy_s(*(void*)(engine_data_structure_ptr + 8),0x40);
     return;
   }
-  engine_call_buffer_allocator(&engine_data_18098bc48,0x40,engine_result_flag_ptr);
+  engine_call_buffer_allocator(&engine_camera_status098bc48,0x40,engine_result_flag_ptr);
   *(uint32*)(engine_data_structure_ptr + 0x10) = 0;
   **(uint8**)(engine_data_structure_ptr + 8) = 0;
   return;
@@ -14391,7 +14400,7 @@ void engine_update_system_state(uint8_t *engine_data_structure_ptr)
 uint64_t * engine_initialize_ui_system(uint64_t *engine_data_structure_ptr)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
   *engine_data_structure_ptr = &engine_global_config_data;
@@ -14440,7 +14449,7 @@ void engine_execute_system_task(longlong engine_data_structure_ptr,longlong engi
                     // WARNING: Subroutine does not return
     memcpy(engine_stack_param_a0,*(longlong *)(engine_data_structure_ptr + 8),engine_temporary_long - *(longlong *)(engine_data_structure_ptr + 8));
   }
-  pengine_stack_uint_a8 = &engine_data_18098bcb0;
+  pengine_stack_uint_a8 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_48 ^ (ulonglong)aengine_stack_uint_d8);
 }
@@ -14453,7 +14462,7 @@ engine_copy_resource_data(uint64_t *engine_data_structure_ptr,longlong engine_re
 {
   longlong engine_temporary_long;
   
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
   *engine_data_structure_ptr = &engine_global_config_data;
@@ -14485,7 +14494,7 @@ void engine_initialize_system_object(uint64_t *engine_data_structure_ptr)
   }
   engine_data_structure_ptr[5] = 0;
   *(uint32*)(engine_data_structure_ptr + 7) = 0;
-  engine_data_structure_ptr[4] = &engine_data_18098bcb0;
+  engine_data_structure_ptr[4] = &engine_camera_status098bcb0;
   *engine_data_structure_ptr = &engine_system_context_data;
   if (engine_data_structure_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -14493,7 +14502,7 @@ void engine_initialize_system_object(uint64_t *engine_data_structure_ptr)
   }
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 3) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -14515,7 +14524,7 @@ void engine_configure_system_component(uint64 engine_data_structure_ptr,uint64_t
   }
   engine_result_flag_ptr[9] = 0;
   *(uint32*)(engine_result_flag_ptr + 0xb) = 0;
-  engine_result_flag_ptr[8] = &engine_data_18098bcb0;
+  engine_result_flag_ptr[8] = &engine_camera_status098bcb0;
   engine_result_flag_ptr[4] = &engine_system_context_data;
   if (engine_result_flag_ptr[5] != 0) {
                     // WARNING: Subroutine does not return
@@ -14523,7 +14532,7 @@ void engine_configure_system_component(uint64 engine_data_structure_ptr,uint64_t
   }
   engine_result_flag_ptr[5] = 0;
   *(uint32*)(engine_result_flag_ptr + 7) = 0;
-  engine_result_flag_ptr[4] = &engine_data_18098bcb0;
+  engine_result_flag_ptr[4] = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_cleanup_routine(engine_result_flag_ptr);
 }
@@ -14585,11 +14594,11 @@ void engine_call_system_cleanup(void)
   _engine_render_config_data = 0;
   if (engine_graphics_flag != '\0') {
     pengine_temp_long = *(longlong **)(engine_temp_long_6 + 8);
-    engine_temp_ptr_ptr_long_9 = (longlong **)engine_call_memory_allocator(_engine_data_18,0x48,8,3);
-    *engine_temp_ptr_ptr_long_9 = (longlong *)&engine_data_180a21690;
-    *engine_temp_ptr_ptr_long_9 = (longlong *)&engine_data_180a21720;
+    engine_temp_ptr_ptr_long_9 = (longlong **)engine_call_memory_allocator(_engine_camera_status,0x48,8,3);
+    *engine_temp_ptr_ptr_long_9 = (longlong *)&engine_camera_status0a21690;
+    *engine_temp_ptr_ptr_long_9 = (longlong *)&engine_camera_status0a21720;
     *(uint32*)(engine_temp_ptr_ptr_long_9 + 1) = 0;
-    *engine_temp_ptr_ptr_long_9 = (longlong *)&engine_data_18098bdc8;
+    *engine_temp_ptr_ptr_long_9 = (longlong *)&engine_camera_status098bdc8;
     LOCK();
     *(uint8*)(engine_temp_ptr_ptr_long_9 + 2) = 0;
     UNLOCK();
@@ -14704,11 +14713,11 @@ void engine_process_system_message(longlong engine_data_structure_ptr)
   _engine_render_config_data = 0;
   if (engine_graphics_flag != '\0') {
     pengine_temp_long = *(longlong **)(engine_data_structure_ptr + 8);
-    ppengine_temp_long_8 = (longlong **)engine_call_memory_allocator(_engine_data_18,0x48,8,3);
-    *ppengine_temp_long_8 = (longlong *)&engine_data_180a21690;
-    *ppengine_temp_long_8 = (longlong *)&engine_data_180a21720;
+    ppengine_temp_long_8 = (longlong **)engine_call_memory_allocator(_engine_camera_status,0x48,8,3);
+    *ppengine_temp_long_8 = (longlong *)&engine_camera_status0a21690;
+    *ppengine_temp_long_8 = (longlong *)&engine_camera_status0a21720;
     *(uint32*)(ppengine_temp_long_8 + 1) = 0;
-    *ppengine_temp_long_8 = (longlong *)&engine_data_18098bdc8;
+    *ppengine_temp_long_8 = (longlong *)&engine_camera_status098bdc8;
     LOCK();
     *(uint8*)(ppengine_temp_long_8 + 2) = 0;
     UNLOCK();
@@ -14913,7 +14922,7 @@ uint64_t * engine_process_data_structure(uint64_t *engine_data_structure_ptr,uin
         engine_temp_long_6 = 0;
       }
       else {
-        engine_temp_long_6 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_9 * 4,*(uint8*)(engine_data_structure_ptr + 0x46));
+        engine_temp_long_6 = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_9 * 4,*(uint8*)(engine_data_structure_ptr + 0x46));
       }
       if (engine_temp_long_3 != engine_temp_long_2) {
                     // WARNING: Subroutine does not return
@@ -14983,7 +14992,7 @@ void engine_execute_system_function(longlong engine_data_structure_ptr)
       engine_temp_long_3 = 0;
     }
     else {
-      engine_temp_long_3 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_6 * 4,(char)unaff_RDI[3]);
+      engine_temp_long_3 = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_6 * 4,(char)unaff_RDI[3]);
     }
     if (engine_temp_long_2 != engine_temporary_long) {
                     // WARNING: Subroutine does not return
@@ -15044,7 +15053,7 @@ void engine_check_system_readiness(void)
     engine_temp_long_2 = 0;
   }
   else {
-    engine_temp_long_2 = engine_call_memory_extender(_engine_data_18,unaff_R14 * 4,(char)unaff_RDI[3]);
+    engine_temp_long_2 = engine_call_memory_extender(_engine_camera_status,unaff_R14 * 4,(char)unaff_RDI[3]);
   }
   if (unaff_RSI != unaff_RBP) {
                     // WARNING: Subroutine does not return
@@ -15290,7 +15299,7 @@ void engine_handle_system_data_operation(longlong engine_data_structure_ptr,long
   engine_stack_value_58 = 0;
   engine_stack_pointer_68 = (void*)0x0;
   engine_stack_value_60 = 0;
-  engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13,engine_system_parameter_4,0xfffffffffffffffe);
+  engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,0x13,engine_system_parameter_4,0xfffffffffffffffe);
   *(uint8*)engine_next_node_ptr = 0;
   engine_stack_pointer_68 = engine_next_node_ptr;
   engine_temp_uint_2 = engine_call_resource_validator(engine_next_node_ptr);
@@ -15305,7 +15314,7 @@ void engine_handle_system_data_operation(longlong engine_data_structure_ptr,long
     engine_stack_value_78 = 0;
     engine_stack_pointer_88 = (void*)0x0;
     engine_stack_value_80 = 0;
-    engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13,engine_system_parameter_4,engine_temp_uint64_value);
+    engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,0x13,engine_system_parameter_4,engine_temp_uint64_value);
     *(uint8*)engine_next_node_ptr = 0;
     engine_stack_pointer_88 = engine_next_node_ptr;
     engine_temp_uint_2 = engine_call_resource_validator(engine_next_node_ptr);
@@ -15353,7 +15362,7 @@ uint64 engine_calculate_system_metrics(uint64 engine_data_structure_ptr,uint64 e
   engine_stack_uint_50 = 0;
   pengine_stack_uint_60 = (void*)0x0;
   engine_stack_value_58 = 0;
-  engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
+  engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,0x13);
   *(uint8*)engine_next_node_ptr = 0;
   pengine_stack_uint_60 = engine_next_node_ptr;
   engine_temp_uint_2 = engine_call_resource_validator(engine_next_node_ptr);
@@ -15368,7 +15377,7 @@ uint64 engine_calculate_system_metrics(uint64 engine_data_structure_ptr,uint64 e
     engine_stack_value_70 = 0;
     pengine_stack_value_80 = (void*)0x0;
     engine_stack_value_78 = 0;
-    engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
+    engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,0x13);
     *(uint8*)engine_next_node_ptr = 0;
     pengine_stack_value_80 = engine_next_node_ptr;
     engine_temp_uint_2 = engine_call_resource_validator(engine_next_node_ptr);
@@ -15422,15 +15431,15 @@ void engine_process_system_calculation(longlong engine_data_structure_ptr,float 
   float engine_stack_float_x8;
   float engine_stack_float_xc;
   
-  engine_temp_long_8 = _engine_data_20;
-  if ((*(longlong *)(_engine_data_90 + 0x7ab8) == 0) || (*(int *)(_engine_data_20 + 0x540) < 1)) {
-    engine_temp_bool_14 = *(int *)(_engine_data_20 + 0x2140) != 0;
+  engine_temp_long_8 = _engine_physics_status;
+  if ((*(longlong *)(_engine_data_90 + 0x7ab8) == 0) || (*(int *)(_engine_physics_status + 0x540) < 1)) {
+    engine_temp_bool_14 = *(int *)(_engine_physics_status + 0x2140) != 0;
   }
   else {
     engine_temp_bool_14 = false;
   }
   if (engine_temp_bool_14) {
-    engine_temp_float_15 = (float)exp2f(_engine_data_20,in_RDX,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+    engine_temp_float_15 = (float)exp2f(_engine_physics_status,in_RDX,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
     if (*(char *)(engine_data_structure_ptr + 0x22d) == '\0') {
       engine_temp_long_8 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
       if ((*(int *)(engine_temp_long_8 + 0x48) < _engine_game_state_data) &&
@@ -15444,13 +15453,13 @@ void engine_process_system_calculation(longlong engine_data_structure_ptr,float 
       engine_temp_float_19 = (float)exp2f();
       engine_temp_float_20 = (float)exp2f();
       _engine_player_data_ptr = (1.0 - engine_temp_float_16) * _engine_player_data_ptr + engine_temp_float_16 * engine_result_flag_ptr;
-      engine_temp_float_2 = (float)*(int *)(_engine_data_20 + 0x21b0);
-      if (*(float *)(_engine_data_70 + 0x1f8) <= (float)*(int *)(_engine_data_20 + 0x21b0)) {
+      engine_temp_float_2 = (float)*(int *)(_engine_physics_status + 0x21b0);
+      if (*(float *)(_engine_data_70 + 0x1f8) <= (float)*(int *)(_engine_physics_status + 0x21b0)) {
         engine_temp_float_2 = *(float *)(_engine_data_70 + 0x1f8);
       }
-      engine_temp_float_22 = *(float *)(_engine_data_20 + 0x1e30);
-      if (0 < *(int *)(_engine_data_20 + 0x1f80)) {
-        engine_temp_float_22 = engine_temp_float_22 / (float)*(int *)(_engine_data_20 + 0x1f80);
+      engine_temp_float_22 = *(float *)(_engine_physics_status + 0x1e30);
+      if (0 < *(int *)(_engine_physics_status + 0x1f80)) {
+        engine_temp_float_22 = engine_temp_float_22 / (float)*(int *)(_engine_physics_status + 0x1f80);
       }
       engine_temp_float_3 = (float)((int)engine_temp_float_22 + -1);
       if (engine_temp_float_2 <= (float)((int)engine_temp_float_22 + -1)) {
@@ -15480,11 +15489,11 @@ void engine_process_system_calculation(longlong engine_data_structure_ptr,float 
       *(float *)(engine_data_structure_ptr + 0x250) = _engine_player_data_ptr;
       engine_temp_long0 = engine_data_pointer_50;
       *(uint8*)(engine_data_pointer_50 + 0x162b) = 1;
-      engine_temp_long_8 = _engine_data_20;
+      engine_temp_long_8 = _engine_physics_status;
     }
     else {
       *(float *)(engine_data_structure_ptr + 0x238) = engine_temp_float_15;
-      engine_temp_long_8 = _engine_data_20;
+      engine_temp_long_8 = _engine_physics_status;
       engine_temp_long0 = engine_data_pointer_50;
     }
   }
@@ -15609,7 +15618,7 @@ void engine_execute_system_validation(longlong *engine_data_structure_ptr,uint64
   
   engine_temp_long_2 = _engine_data_70;
   engine_stack_long_pointer_8 = engine_data_structure_ptr;
-  if (*(int *)(_engine_data_20 + 0xd94) != *(int *)(_engine_data_20 + 0xd90)) {
+  if (*(int *)(_engine_physics_status + 0xd94) != *(int *)(_engine_physics_status + 0xd90)) {
     engine_initialize_system_data(_engine_data_70,engine_result_flag_ptr,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
   engine_temp_long_3 = engine_data_pointer_50;
@@ -15632,18 +15641,18 @@ void engine_execute_system_validation(longlong *engine_data_structure_ptr,uint64
     (**(code **)(_engine_input_buffer_ptr + 0x40))();
   }
   (**(code **)(**(longlong **)(engine_temp_long_2 + 0x2b0) + 0xd0))();
-  if (((*(int *)(_engine_data_20 + 0x4d4) != *(int *)(_engine_data_20 + 0x4d0)) ||
-      (*(int *)(_engine_data_20 + 0x314) != *(int *)(_engine_data_20 + 0x310))) ||
-     (*(int *)(_engine_data_20 + 0x544) != *(int *)(_engine_data_20 + 0x540))) {
+  if (((*(int *)(_engine_physics_status + 0x4d4) != *(int *)(_engine_physics_status + 0x4d0)) ||
+      (*(int *)(_engine_physics_status + 0x314) != *(int *)(_engine_physics_status + 0x310))) ||
+     (*(int *)(_engine_physics_status + 0x544) != *(int *)(_engine_physics_status + 0x540))) {
     engine_stack_long_pointer_8 = aengine_stack_long_70;
     pengine_stack_uint_60 = &engine_config_manager_ptr;
     engine_stack_pointer_58 = &engine_file_system_ptr;
     engine_call_event_dispatcher(aengine_stack_long_70);
   }
   if ((_engine_scene_data_ptr != 0) &&
-     ((*(int *)(_engine_data_20 + 900) != *(int *)(_engine_data_20 + 0x380) ||
-      (*(int *)(_engine_data_20 + 0x3f4) != *(int *)(_engine_data_20 + 0x3f0))))) {
-    engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,0x40,8,3);
+     ((*(int *)(_engine_physics_status + 900) != *(int *)(_engine_physics_status + 0x380) ||
+      (*(int *)(_engine_physics_status + 0x3f4) != *(int *)(_engine_physics_status + 0x3f0))))) {
+    engine_temp_uint_4 = engine_call_memory_allocator(_engine_camera_status,0x40,8,3);
     engine_stack_long_pointer_8 = engine_stack_data_array_50;
     engine_stack_pointer_40 = &engine_thread_manager_ptr;
     engine_stack_pointer_38 = &engine_memory_manager_ptr;
@@ -15663,10 +15672,10 @@ void engine_execute_system_validation(longlong *engine_data_structure_ptr,uint64
       (**(code **)(*engine_temp_ptr_5 + 0x38))(engine_temp_ptr_5);
     }
   }
-  engine_temp_long_3 = _engine_data_20;
-  if ((*(longlong *)(_engine_data_90 + 0x7ab8) == 0) || (*(int *)(_engine_data_20 + 0x540) < 1)) {
-    if (*(int *)(_engine_data_20 + 0x2140) == 0) {
-      engine_temp_float_11 = *(float *)(_engine_data_20 + MEMORY_OFFSET_0x20d0);
+  engine_temp_long_3 = _engine_physics_status;
+  if ((*(longlong *)(_engine_data_90 + 0x7ab8) == 0) || (*(int *)(_engine_physics_status + 0x540) < 1)) {
+    if (*(int *)(_engine_physics_status + 0x2140) == 0) {
+      engine_temp_float_11 = *(float *)(_engine_physics_status + MEMORY_OFFSET_0x20d0);
     }
     else {
       engine_temp_float_11 = 100.0;
@@ -15773,9 +15782,9 @@ void engine_handle_system_resource(uint64 engine_data_structure_ptr,longlong eng
   engine_call_array_builder(engine_result_flag_ptr,engine_temp_int_2 + 0xc);
   *(uint16*)((ulonglong)*(uint *)(engine_result_flag_ptr + 0x10) + *(longlong *)(engine_result_flag_ptr + 8)) = 10;
   *(int *)(engine_result_flag_ptr + 0x10) = engine_temp_int_2 + 0xc;
-  engine_stack_pointer_198 = &engine_data_18098bcb0;
+  engine_stack_pointer_198 = &engine_camera_status098bcb0;
   ppengine_stack_uint_1a8 = &pengine_stack_uint_d8;
-  pengine_stack_uint_d8 = &engine_data_18098bcb0;
+  pengine_stack_uint_d8 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_18 ^ (ulonglong)aengine_stack_uint_1c8);
 }
@@ -16027,7 +16036,7 @@ LAB_1800535b0:
     if (engine_temp_int_4 < 0x10) {
       engine_temp_int_4 = 0x10;
     }
-    current_data_pointer = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)engine_temp_int_4,0x13);
+    current_data_pointer = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)engine_temp_int_4,0x13);
     *current_data_pointer = 0;
     pengine_stack_uint_1a8 = current_data_pointer;
     engine_temp_index = engine_call_resource_validator(current_data_pointer);
@@ -16046,13 +16055,13 @@ LAB_1800535b0:
       if ((int)engine_temp_uint_6 < 0x10) {
         engine_temp_uint_6 = 0x10;
       }
-      current_data_pointer = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint_6,0x13);
+      current_data_pointer = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint_6,0x13);
       *current_data_pointer = 0;
     }
     else {
       if (engine_temp_uint_6 <= engine_temp_uint1) goto LAB_18005364c;
       engine_stack_uint_208 = 0x13;
-      current_data_pointer = (uint8*)engine_update_system_data(_engine_data_18,current_data_pointer,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
+      current_data_pointer = (uint8*)engine_update_system_data(_engine_camera_status,current_data_pointer,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
     }
     pengine_stack_uint_1a8 = current_data_pointer;
     engine_temp_uint_3 = engine_call_resource_validator(current_data_pointer);
@@ -16172,7 +16181,7 @@ LAB_18005419d:
       }
       engine_stack_pointer_68 = (uint8*)0x0;
       engine_stack_value_58 = (ulonglong)engine_stack_value_58._4_4_ << 0x20;
-      engine_stack_pointer_70 = &engine_data_18098bcb0;
+      engine_stack_pointer_70 = &engine_camera_status098bcb0;
       engine_temp_uint2 = 1;
       goto joined_r0x00018005430b;
     }
@@ -16184,7 +16193,7 @@ LAB_18005419d:
   }
   engine_stack_pointer_68 = (uint8*)0x0;
   engine_stack_value_58 = (ulonglong)engine_stack_value_58._4_4_ << 0x20;
-  engine_stack_pointer_70 = &engine_data_18098bcb0;
+  engine_stack_pointer_70 = &engine_camera_status098bcb0;
   engine_temp_uint_8 = (int)engine_temp_uint3 + 1;
   engine_temp_uint3 = (ulonglong)engine_temp_uint_8;
   pengine_temp_int0 = pengine_temp_int0 + 8;
@@ -16280,7 +16289,7 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
   engine_prepare_system_context(&engine_stack_pointer_1c0,engine_temporary_pointer);
   engine_stack_uint_1a0 = 0;
   engine_stack_uint_19c = engine_stack_uint_19c & 0xffffff00;
-  engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x60d30,MEMORY_COMPARE_SIZE_0x10,0x1f);
+  engine_temp_uint_3 = engine_call_memory_allocator(_engine_camera_status,0x60d30,MEMORY_COMPARE_SIZE_0x10,0x1f);
   main_context_pointer = (longlong *)engine_create_main_structure(engine_temp_uint_3,&engine_stack_pointer_1c0);
   ppengine_stack_uint_170 = (undefined **)main_context_pointer;
   if (main_context_pointer != (longlong *)0x0) {
@@ -16305,7 +16314,7 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
   engine_stack_uint_107 = 0x1010101;
   engine_stack_uint_103 = 1;
   engine_stack_uint_108 = 1;
-  engine_stack_pointer_e8 = &engine_data_1809fcc28;
+  engine_stack_pointer_e8 = &engine_camera_status09fcc28;
   pengine_stack_uint_e0 = aengine_stack_uint_d0;
   aengine_stack_uint_d0[0] = 0;
   engine_stack_uint_d8 = *(uint32*)(engine_result_flag_ptr + 0x10);
@@ -16315,7 +16324,7 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
   }
   strcpy_s(aengine_stack_uint_d0,0x80,engine_temporary_pointer);
   engine_initialize_process_context(&engine_stack_pointer_190,&engine_stack_pointer_e8);
-  engine_stack_pointer_e8 = &engine_data_18098bcb0;
+  engine_stack_pointer_e8 = &engine_camera_status098bcb0;
   pengine_stack_uint_1e0 = &engine_system_context_data;
   engine_stack_uint_1c8 = 0;
   engine_stack_long_1d8 = 0;
@@ -16330,7 +16339,7 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
   }
   engine_stack_long_160 = 0;
   engine_stack_uint_150 = 0;
-  engine_stack_pointer_168 = &engine_data_18098bcb0;
+  engine_stack_pointer_168 = &engine_camera_status098bcb0;
   if ((engine_temp_int_2 < 0) ||
      (engine_temp_long_6 = *(longlong *)(*engine_data_structure_ptr + 0x888),
      (ulonglong)(*(longlong *)(*engine_data_structure_ptr + 0x890) - engine_temp_long_6 >> 5) <= (ulonglong)(longlong)engine_temp_int_2)) {
@@ -16369,7 +16378,7 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
   engine_stack_uint_1e8 = 0;
   engine_stack_long_200 = 0;
   engine_stack_uint_1f0 = 0;
-  pengine_stack_uint_208 = &engine_data_18098bcb0;
+  pengine_stack_uint_208 = &engine_camera_status098bcb0;
   engine_stack_uint_218 = 0xffffffff;
   engine_stack_uint_1d0 = engine_temporary_uint;
   engine_stack_uint_1c8._4_4_ = *(uint *)(engine_temp_long_6 + 0x1c);
@@ -16387,7 +16396,7 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
   }
   engine_stack_long_1d8 = 0;
   engine_stack_uint_1c8 = (ulonglong)engine_stack_uint_1c8._4_4_ << 0x20;
-  pengine_stack_uint_1e0 = &engine_data_18098bcb0;
+  pengine_stack_uint_1e0 = &engine_camera_status098bcb0;
   engine_stack_pointer_190 = &engine_system_context_data;
   if (engine_stack_long_188 != 0) {
                     // WARNING: Subroutine does not return
@@ -16395,7 +16404,7 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
   }
   engine_stack_long_188 = 0;
   engine_stack_uint_178 = 0;
-  engine_stack_pointer_190 = &engine_data_18098bcb0;
+  engine_stack_pointer_190 = &engine_camera_status098bcb0;
   if (main_context_pointer != (longlong *)0x0) {
     (**(code **)(*main_context_pointer + 0x38))(main_context_pointer);
   }
@@ -16407,7 +16416,7 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
   }
   engine_stack_long_1b8 = 0;
   engine_stack_uint_1a8 = engine_stack_uint_1a8 & 0xffffffff00000000;
-  engine_stack_pointer_1c0 = &engine_data_18098bcb0;
+  engine_stack_pointer_1c0 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_48 ^ (ulonglong)aengine_stack_uint_238);
 }
@@ -16551,7 +16560,7 @@ LAB_180054912:
         }
         pengine_stack_uint_110 = (uint8*)0x0;
         engine_stack_uint_100 = engine_stack_uint_100 & 0xffffffff00000000;
-        pengine_stack_uint_118 = &engine_data_18098bcb0;
+        pengine_stack_uint_118 = &engine_camera_status098bcb0;
         engine_stack_pointer_138 = &engine_system_context_data;
         if (pengine_stack_uint_130 != (uint8*)0x0) {
                     // WARNING: Subroutine does not return
@@ -16724,7 +16733,7 @@ LAB_180054d57:
                   }
                   engine_stack_pointer_e8 = (uint8*)0x0;
                   engine_stack_uint_d8 = engine_stack_uint_d8 & 0xffffffff00000000;
-                  engine_stack_pointer_f0 = &engine_data_18098bcb0;
+                  engine_stack_pointer_f0 = &engine_camera_status098bcb0;
                   engine_stack_pointer_78 = &engine_system_context_data;
                   if (engine_stack_long_70 != 0) {
                     // WARNING: Subroutine does not return
@@ -16732,7 +16741,7 @@ LAB_180054d57:
                   }
                   engine_stack_long_70 = 0;
                   engine_stack_value_60 = 0;
-                  engine_stack_pointer_78 = &engine_data_18098bcb0;
+                  engine_stack_pointer_78 = &engine_camera_status098bcb0;
                 }
                 engine_stack_pointer_98 = &engine_system_context_data;
                 if (engine_stack_pointer_90 != (void*)0x0) {
@@ -16741,7 +16750,7 @@ LAB_180054d57:
                 }
                 engine_stack_pointer_90 = (void*)0x0;
                 engine_stack_value_80 = 0;
-                engine_stack_pointer_98 = &engine_data_18098bcb0;
+                engine_stack_pointer_98 = &engine_camera_status098bcb0;
                 engine_stack_pointer_158 = &engine_system_context_data;
                 if (pengine_stack_uint_150 != (uint8*)0x0) {
                     // WARNING: Subroutine does not return
@@ -16760,7 +16769,7 @@ LAB_180054ec9:
               engine_stack_uint_140 = (ulonglong)engine_stack_uint_140._4_4_ << 0x20;
             }
             pengine_stack_uint_150 = (uint8*)0x0;
-            engine_stack_pointer_158 = &engine_data_18098bcb0;
+            engine_stack_pointer_158 = &engine_camera_status098bcb0;
             engine_temp_int3 = engine_temp_int3 + 1;
             engine_data_ptr5 = engine_data_ptr5 + 8;
             engine_temp_long0 = engine_temp_long0 + -1;
@@ -16776,7 +16785,7 @@ LAB_180054ec9:
         }
         engine_stack_long_c8 = 0;
         engine_stack_uint_b8 = 0;
-        engine_stack_pointer_d0 = &engine_data_18098bcb0;
+        engine_stack_pointer_d0 = &engine_camera_status098bcb0;
         for (engine_data_ptr2 = engine_current_node_ptr; engine_data_ptr2 != engine_temporary_pointer; engine_data_ptr2 = engine_data_ptr2 + 4) {
           (**(code **)*engine_data_ptr2)(engine_data_ptr2,0);
         }
@@ -16791,7 +16800,7 @@ LAB_180054ec9:
         }
         pengine_stack_uint_110 = (uint8*)0x0;
         engine_stack_uint_100 = engine_stack_uint_100 & 0xffffffff00000000;
-        pengine_stack_uint_118 = &engine_data_18098bcb0;
+        pengine_stack_uint_118 = &engine_camera_status098bcb0;
         engine_stack_pointer_138 = &engine_system_context_data;
         if (pengine_stack_uint_130 != (uint8*)0x0) {
                     // WARNING: Subroutine does not return
@@ -16799,10 +16808,10 @@ LAB_180054ec9:
         }
       }
       pengine_stack_uint_110 = (uint8*)0x0;
-      pengine_stack_uint_118 = &engine_data_18098bcb0;
+      pengine_stack_uint_118 = &engine_camera_status098bcb0;
       engine_stack_uint_120 = engine_stack_uint_120 & 0xffffffff00000000;
       pengine_stack_uint_130 = (uint8*)0x0;
-      engine_stack_pointer_138 = &engine_data_18098bcb0;
+      engine_stack_pointer_138 = &engine_camera_status098bcb0;
       engine_stack_int_f8 = engine_temp_int_9 + 1;
     } while (engine_stack_int_f8 < (int)engine_temp_long4);
   }
@@ -16824,7 +16833,7 @@ void engine_finalize_system_initialization(void)
   uint64 engine_temp_uint_3;
   longlong engine_temp_long_4;
   
-  structure_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x198,8,3);
+  structure_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0x198,8,3);
   engine_data_pointer = structure_data_pointer + 4;
   engine_call_authenticator(engine_data_pointer);
   *engine_data_pointer = &engine_network_protocol_ptr;
@@ -16844,11 +16853,11 @@ void engine_finalize_system_initialization(void)
   structure_data_pointer[2] = 0xffffffff00000000;
   *(uint32*)(structure_data_pointer + 1) = 0xe;
   _engine_render_mode = structure_data_pointer;
-  engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x480,8,3);
+  engine_temp_uint_3 = engine_call_memory_allocator(_engine_camera_status,0x480,8,3);
   _engine_audio_device_ptr = engine_initialize_audio_device(engine_temp_uint_3);
-  engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x10420,8,3);
+  engine_temp_uint_3 = engine_call_memory_allocator(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10420,8,3);
   _engine_sound_buffer_ptr = engine_create_sound_buffer(engine_temp_uint_3);
-  _engine_music_buffer_ptr = engine_call_memory_allocator(_engine_data_18,0x30,8,3);
+  _engine_music_buffer_ptr = engine_call_memory_allocator(_engine_camera_status,0x30,8,3);
   *(uint32*)(_engine_music_buffer_ptr + MEMORY_OFFSET_0x19) = 0;
   *(uint16*)(_engine_music_buffer_ptr + 0x1d) = 0;
   *(uint8*)(_engine_music_buffer_ptr + 0x1f) = 0;
@@ -16858,11 +16867,11 @@ void engine_finalize_system_initialization(void)
   *(void*)(_engine_music_buffer_ptr + 0x10) = 0;
   *(uint8*)(_engine_music_buffer_ptr + 0x18) = 0;
   *(void*)(_engine_music_buffer_ptr + MEMORY_OFFSET_0x20) = 0;
-  _engine_display_buffer_ptr = engine_call_memory_allocator(_engine_data_18,8,4,3);
+  _engine_display_buffer_ptr = engine_call_memory_allocator(_engine_camera_status,8,4,3);
   *(uint32*)(_engine_display_buffer_ptr + 4) = 0;
-  engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x80,8,3);
+  engine_temp_uint_3 = engine_call_memory_allocator(_engine_camera_status,0x80,8,3);
   _engine_voice_buffer_ptr = engine_setup_voice_buffer(engine_temp_uint_3);
-  engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,0xe8,8,3);
+  engine_temp_long_4 = engine_call_memory_allocator(_engine_camera_status,0xe8,8,3);
   _Mtx_init_in_situ(engine_temp_long_4,2);
   _Mtx_init_in_situ(engine_temp_long_4 + 0x50,2);
   *(void*)(engine_temp_long_4 + 0xa0) = 0;
@@ -16875,7 +16884,7 @@ void engine_finalize_system_initialization(void)
   *(uint32*)(engine_temp_long_4 + 0xd8) = 0x20;
   *(uint32*)(engine_temp_long_4 + 0xe0) = 0;
   _engine_audio_effect_ptr = engine_temp_long_4;
-  engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x70,8,3);
+  engine_temp_uint_3 = engine_call_memory_allocator(_engine_camera_status,0x70,8,3);
                     // WARNING: Subroutine does not return
   memset(engine_temp_uint_3,0,0x70);
 }
@@ -16955,7 +16964,7 @@ void engine_validate_system_parameters(longlong engine_data_structure_ptr)
 longlong engine_process_memory_allocation(longlong engine_data_structure_ptr)
 
 {
-  *(void*)(engine_data_structure_ptr + 8) = &engine_data_18098bcb0;
+  *(void*)(engine_data_structure_ptr + 8) = &engine_camera_status098bcb0;
   *(void*)(engine_data_structure_ptr + 0x10) = 0;
   *(uint32*)(engine_data_structure_ptr + 0x18) = 0;
   *(void*)(engine_data_structure_ptr + 8) = &engine_system_context_data;
@@ -16979,7 +16988,7 @@ void engine_configure_network_protocol(longlong engine_data_structure_ptr)
   }
   *(void*)(engine_data_structure_ptr + 0x10) = 0;
   *(uint32*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = 0;
-  *(void*)(engine_data_structure_ptr + 8) = &engine_data_18098bcb0;
+  *(void*)(engine_data_structure_ptr + 8) = &engine_camera_status098bcb0;
   return;
 }
 
@@ -17218,12 +17227,12 @@ LAB_180056228:
           if (engine_next_node_ptr[5] == 0) {
             engine_next_node_ptr[5] = 0;
             *(uint32*)(engine_next_node_ptr + 7) = 0;
-            engine_next_node_ptr[4] = &engine_data_18098bcb0;
+            engine_next_node_ptr[4] = &engine_camera_status098bcb0;
             *engine_next_node_ptr = &engine_system_context_data;
             if (engine_next_node_ptr[1] == 0) {
               engine_next_node_ptr[1] = 0;
               *(uint32*)(engine_next_node_ptr + 3) = 0;
-              *engine_next_node_ptr = &engine_data_18098bcb0;
+              *engine_next_node_ptr = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
               engine_call_cleanup_routine(engine_next_node_ptr);
             }
@@ -17297,12 +17306,12 @@ void engine_execute_system_process(longlong engine_data_structure_ptr,uint64 eng
         if (structure_data_pointer[5] == 0) {
           structure_data_pointer[5] = 0;
           *(uint32*)(structure_data_pointer + 7) = 0;
-          structure_data_pointer[4] = &engine_data_18098bcb0;
+          structure_data_pointer[4] = &engine_camera_status098bcb0;
           *structure_data_pointer = &engine_system_context_data;
           if (structure_data_pointer[1] == 0) {
             structure_data_pointer[1] = 0;
             *(uint32*)(structure_data_pointer + 3) = 0;
-            *structure_data_pointer = &engine_data_18098bcb0;
+            *structure_data_pointer = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
             engine_call_cleanup_routine(structure_data_pointer);
           }
@@ -17327,7 +17336,7 @@ void engine_execute_system_process(longlong engine_data_structure_ptr,uint64 eng
   engine_temp_long_9 = engine_temp_uint_4 - engine_temp_index;
   engine_temp_long_6 = engine_temp_long_9 >> 3;
   if (engine_temp_long_6 != 0) {
-    engine_temp_uint_3 = engine_call_memory_extender(_engine_data_18,engine_temp_long_6 * 8,engine_temp_uint64_value & 0xff,engine_system_parameter_4,engine_temp_uint0,0,0,0,engine_temp_uint64_value);
+    engine_temp_uint_3 = engine_call_memory_extender(_engine_camera_status,engine_temp_long_6 * 8,engine_temp_uint64_value & 0xff,engine_system_parameter_4,engine_temp_uint0,0,0,0,engine_temp_uint64_value);
   }
   engine_temp_long_6 = engine_temp_uint_3 + engine_temp_long_6 * 8;
   if (engine_temp_index == engine_temp_uint_4) {
@@ -17372,7 +17381,7 @@ void engine_manage_system_thread(longlong *engine_data_structure_ptr)
   
   engine_stack_value_58 = 0xfffffffffffffffe;
   engine_stack_uint_28 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_98;
-  main_context_pointer = (longlong *)engine_call_memory_allocator(_engine_data_18,0xd0,8,3);
+  main_context_pointer = (longlong *)engine_call_memory_allocator(_engine_camera_status,0xd0,8,3);
   ppengine_stack_long_60 = (longlong **)main_context_pointer;
   engine_call_data_processor(main_context_pointer);
   *main_context_pointer = (longlong)&engine_system_data_buffer_1;
@@ -17386,12 +17395,12 @@ void engine_manage_system_thread(longlong *engine_data_structure_ptr)
     (**(code **)(*pengine_stack_long_68 + 0x38))();
   }
   engine_temp_long_3 = _engine_data_68;
-  pengine_stack_uint_50 = &engine_data_1809fdc18;
+  pengine_stack_uint_50 = &engine_camera_status09fdc18;
   pengine_stack_uint_48 = aengine_stack_uint_38;
   aengine_stack_uint_38[0] = 0;
   engine_stack_uint_40 = 0xc;
   strcpy_s(aengine_stack_uint_38,MEMORY_COMPARE_SIZE_0x10,&engine_network_debug_ptr);
-  main_context_pointer = (longlong *)engine_call_memory_allocator(_engine_data_18,0x208,8,3);
+  main_context_pointer = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x208,8,3);
   engine_stack_long_78 = engine_temp_long_3 + 0x70;
   ppengine_stack_long_60 = (longlong **)main_context_pointer;
   engine_configure_display_settings(main_context_pointer,&pengine_stack_uint_50,3,engine_temp_long_3 + 0x2e0);
@@ -17400,7 +17409,7 @@ void engine_manage_system_thread(longlong *engine_data_structure_ptr)
   engine_setup_display_mode(main_context_pointer);
   engine_prepare_render_buffer(engine_temp_long_3 + 0x48,&pengine_stack_long_68);
   engine_data_structure_ptr[1] = (longlong)main_context_pointer;
-  pengine_stack_uint_50 = &engine_data_18098bcb0;
+  pengine_stack_uint_50 = &engine_camera_status098bcb0;
   engine_data_pointer = (void*)engine_data_structure_ptr[1];
   pengine_temp_char_flag = *(code **)*engine_data_pointer;
   ppengine_stack_long_60 = &pengine_stack_long_68;
@@ -17560,7 +17569,7 @@ void engine_handle_system_interruption(longlong engine_data_structure_ptr)
     }
     engine_stack_pointer_90 = (void*)0x0;
     engine_stack_value_80 = engine_stack_value_80 & 0xffffffff00000000;
-    engine_stack_pointer_98 = &engine_data_18098bcb0;
+    engine_stack_pointer_98 = &engine_camera_status098bcb0;
   }
   engine_call_array_builder(&engine_stack_pointer_98,engine_stack_value_88 + engine_temp_int_7);
                     // WARNING: Subroutine does not return
@@ -17641,16 +17650,16 @@ void engine_handle_system_data_transfer(uint64 engine_data_structure_ptr,uint64_
   engine_stack_uint_128 = 0xfffffffffffffffe;
   engine_stack_uint_28 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_158;
   pengine_stack_pointer_138 = &pengine_stack_uint_108;
-  pengine_stack_uint_108 = &engine_data_1809fcc28;
+  pengine_stack_uint_108 = &engine_camera_status09fcc28;
   pengine_stack_uint_100 = aengine_stack_uint_f0;
   engine_stack_uint_f8 = 0;
   aengine_stack_uint_f0[0] = 0;
   engine_stack_value_70 = 0x17;
   pengine_stack_uint_120 = engine_result_flag_ptr;
-  engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,0x20,8,3);
+  engine_temporary_uint = engine_call_memory_allocator(_engine_camera_status,0x20,8,3);
   engine_stack_value_58 = engine_call_data_writer(engine_temporary_uint,engine_result_flag_ptr);
   engine_stack_uint_50 = engine_comparison_params;
-  engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x100,8,3);
+  engine_temporary_uint = engine_call_memory_allocator(_engine_camera_status,MEMORY_COMPARE_SIZE_0x100,8,3);
   pengine_data_ptr_2 = (undefined **)engine_allocate_temporary_memory(engine_temporary_uint,&pengine_stack_uint_108);
   ppengine_stack_uint_118 = pengine_data_ptr_2;
   if (pengine_data_ptr_2 != (undefined **)0x0) {
@@ -17667,7 +17676,7 @@ void engine_handle_system_data_transfer(uint64 engine_data_structure_ptr,uint64_
     (**(code **)(*pengine_data_ptr_2 + 0x38))(pengine_data_ptr_2);
   }
   pppengine_stack_uint_130 = (undefined ***)&pengine_stack_uint_108;
-  pengine_stack_uint_108 = &engine_data_18098bcb0;
+  pengine_stack_uint_108 = &engine_camera_status098bcb0;
   *engine_result_flag_ptr = &engine_system_context_data;
   if (engine_result_flag_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -17675,7 +17684,7 @@ void engine_handle_system_data_transfer(uint64 engine_data_structure_ptr,uint64_
   }
   engine_result_flag_ptr[1] = 0;
   *(uint32*)(engine_result_flag_ptr + 3) = 0;
-  *engine_result_flag_ptr = &engine_data_18098bcb0;
+  *engine_result_flag_ptr = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_28 ^ (ulonglong)aengine_stack_uint_158);
 }
@@ -17799,7 +17808,7 @@ void engine_validate_system_operation(longlong engine_data_structure_ptr,longlon
     strcpy_s(*(void*)(engine_data_structure_ptr + 8),0x400);
     return;
   }
-  engine_call_buffer_allocator(&engine_data_18098bc48,0x400);
+  engine_call_buffer_allocator(&engine_camera_status098bc48,0x400);
   *(uint32*)(engine_data_structure_ptr + 0x10) = 0;
   **(uint8**)(engine_data_structure_ptr + 8) = 0;
   return;
@@ -17883,10 +17892,10 @@ engine_validate_data_integrity(uint64_t *engine_data_structure_ptr,longlong engi
 {
   longlong engine_temporary_long;
   
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
-  *engine_data_structure_ptr = &engine_data_1809fdc18;
+  *engine_data_structure_ptr = &engine_camera_status09fdc18;
   engine_data_structure_ptr[1] = engine_data_structure_ptr + 3;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
   *(uint8*)(engine_data_structure_ptr + 3) = 0;
@@ -17980,7 +17989,7 @@ void engine_manage_system_buffer(longlong *engine_data_structure_ptr,uint32_t *e
       goto LAB_18005726e;
     }
   }
-  structure_data_pointer = (uint32*)engine_call_memory_extender(_engine_data_18,engine_temporary_long * 4,(char)engine_data_structure_ptr[3]);
+  structure_data_pointer = (uint32*)engine_call_memory_extender(_engine_camera_status,engine_temporary_long * 4,(char)engine_data_structure_ptr[3]);
   engine_current_node_ptr = (uint32*)*engine_data_structure_ptr;
   engine_next_node_ptr = (uint32*)engine_data_structure_ptr[1];
 LAB_18005726e:
@@ -18094,7 +18103,7 @@ void engine_handle_system_io_request(longlong *engine_data_structure_ptr,ulonglo
     engine_temporary_long = 0;
   }
   else {
-    engine_temporary_long = engine_call_memory_extender(_engine_data_18,engine_temp_uint_3 * 8,(char)engine_data_structure_ptr[3]);
+    engine_temporary_long = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_3 * 8,(char)engine_data_structure_ptr[3]);
     engine_temp_long_6 = *engine_data_structure_ptr;
     memory_allocation_result = engine_data_structure_ptr[1];
   }
@@ -18152,7 +18161,7 @@ void engine_process_system_io_data(longlong engine_data_structure_ptr,ulonglong 
     engine_temporary_long = 0;
   }
   else {
-    engine_temporary_long = engine_call_memory_extender(_engine_data_18,engine_temp_uint_2 * 8,(char)engine_register_rbx[3]);
+    engine_temporary_long = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_2 * 8,(char)engine_register_rbx[3]);
     engine_system_parameter_4 = *engine_register_rbx;
     unaff_RDI = engine_register_rbx[1];
   }
@@ -18967,7 +18976,7 @@ void engine_execute_system_io_process(longlong engine_data_structure_ptr,longlon
         }
         engine_stack_long_48 = 0;
         engine_stack_uint_38 = engine_stack_uint_38 & 0xffffffff00000000;
-        pengine_stack_uint_50 = &engine_data_18098bcb0;
+        pengine_stack_uint_50 = &engine_camera_status098bcb0;
       }
       pengine_temp_char_flag_2 = pengine_temp_char_flag_2 + 1;
       resource_status_flag = *pengine_temp_char_flag_2;
@@ -19011,7 +19020,7 @@ longlong * engine_process_buffer_operation(longlong engine_data_structure_ptr,lo
   uint64 engine_temp_uint_7;
   char acStackX_8 [8];
   
-  engine_temp_long_3 = engine_call_memory_extender(_engine_data_18,0x40,*(uint8*)(engine_data_structure_ptr + 0x28));
+  engine_temp_long_3 = engine_call_memory_extender(_engine_camera_status,0x40,*(uint8*)(engine_data_structure_ptr + 0x28));
   engine_call_data_writer(engine_temp_long_3 + MEMORY_OFFSET_0x20,engine_comparison_params);
   engine_temp_long_4 = engine_process_data_structure_comparison(engine_data_structure_ptr,acStackX_8,engine_temp_long_3 + MEMORY_OFFSET_0x20);
   if (acStackX_8[0] == '\0') {
@@ -19065,7 +19074,7 @@ void engine_initialize_system_io_object(uint64_t *engine_data_structure_ptr)
   }
   engine_data_structure_ptr[5] = 0;
   *(uint32*)(engine_data_structure_ptr + 7) = 0;
-  engine_data_structure_ptr[4] = &engine_data_18098bcb0;
+  engine_data_structure_ptr[4] = &engine_camera_status098bcb0;
   *engine_data_structure_ptr = &engine_system_context_data;
   if (engine_data_structure_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -19073,7 +19082,7 @@ void engine_initialize_system_io_object(uint64_t *engine_data_structure_ptr)
   }
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 3) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_cleanup_routine(engine_data_structure_ptr);
 }
@@ -19095,7 +19104,7 @@ uint64_t * engine_handle_memory_management(uint64_t *engine_data_structure_ptr,u
   }
   engine_data_structure_ptr[0x2a] = 0;
   *(uint32*)(engine_data_structure_ptr + 0x2c) = 0;
-  engine_data_structure_ptr[0x29] = &engine_data_18098bcb0;
+  engine_data_structure_ptr[0x29] = &engine_camera_status098bcb0;
   engine_unnamed_function_5610();
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x170);
@@ -19124,14 +19133,14 @@ void engine_configure_system_io_component(longlong *engine_data_structure_ptr,ui
   }
   engine_data_structure_ptr[0x124] = 0;
   *(uint32*)(engine_data_structure_ptr + 0x126) = 0;
-  engine_data_structure_ptr[0x123] = (longlong)&engine_data_18098bcb0;
+  engine_data_structure_ptr[0x123] = (longlong)&engine_camera_status098bcb0;
   engine_handle_system_io_data_queue(engine_data_structure_ptr + 0x11d,engine_data_structure_ptr[0x11f],engine_comparison_params,engine_system_parameter_4,engine_temp_uint_3);
   if (engine_data_structure_ptr[0x119] == 0) {
     engine_unnamed_function_100();
     engine_unnamed_function_100();
     engine_process_system_io_request_queue(engine_data_structure_ptr + 0x10b,engine_data_structure_ptr[0x10d]);
-    engine_data_structure_ptr[0x87] = (longlong)&engine_data_18098bcb0;
-    engine_data_structure_ptr[4] = (longlong)&engine_data_18098bcb0;
+    engine_data_structure_ptr[0x87] = (longlong)&engine_camera_status098bcb0;
+    engine_data_structure_ptr[4] = (longlong)&engine_camera_status098bcb0;
     engine_temp_uint_3 = 0xfffffffffffffffe;
     engine_data_pointer = (void*)engine_data_structure_ptr[1];
     for (structure_data_pointer = (void*)*engine_data_structure_ptr; structure_data_pointer != engine_data_pointer; structure_data_pointer = structure_data_pointer + 4) {
@@ -19419,7 +19428,7 @@ void engine_configure_system_io_settings_queue(uint64 engine_data_structure_ptr,
     if ((longlong *)engine_result_flag_ptr[0x17] != (longlong *)0x0) {
       (**(code **)(*(longlong *)engine_result_flag_ptr[0x17] + 0x38))();
     }
-    engine_result_flag_ptr[4] = &engine_data_18098bcb0;
+    engine_result_flag_ptr[4] = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_result_flag_ptr);
   }
@@ -19445,7 +19454,7 @@ void engine_process_system_io_configuration_queue(uint64 engine_data_structure_p
   }
   engine_result_flag_ptr[5] = 0;
   *(uint32*)(engine_result_flag_ptr + 7) = 0;
-  engine_result_flag_ptr[4] = &engine_data_18098bcb0;
+  engine_result_flag_ptr[4] = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_cleanup_routine(engine_result_flag_ptr);
 }
@@ -19468,7 +19477,7 @@ void engine_handle_system_io_data_queue(uint64 engine_data_structure_ptr,uint64_
   }
   engine_result_flag_ptr[5] = 0;
   *(uint32*)(engine_result_flag_ptr + 7) = 0;
-  engine_result_flag_ptr[4] = &engine_data_18098bcb0;
+  engine_result_flag_ptr[4] = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_cleanup_routine(engine_result_flag_ptr);
 }
@@ -19495,7 +19504,7 @@ void engine_execute_system_io_validation_queue(uint64 engine_data_structure_ptr,
   }
   engine_result_flag_ptr[5] = 0;
   *(uint32*)(engine_result_flag_ptr + 7) = 0;
-  engine_result_flag_ptr[4] = &engine_data_18098bcb0;
+  engine_result_flag_ptr[4] = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_cleanup_routine(engine_result_flag_ptr);
 }
@@ -19529,7 +19538,7 @@ void engine_manage_system_io_memory_queue(uint64_t *engine_data_structure_ptr,lo
     if (memory_allocation_result == 0) goto LAB_18005856a;
   }
   structure_data_pointer = (void*)
-           engine_call_memory_extender(_engine_data_18,memory_allocation_result * 0x28,*(uint8*)(engine_data_structure_ptr + 3),engine_next_node_ptr,
+           engine_call_memory_extender(_engine_camera_status,memory_allocation_result * 0x28,*(uint8*)(engine_data_structure_ptr + 3),engine_next_node_ptr,
                          0xfffffffffffffffe);
   current_data_pointer = (void*)engine_data_structure_ptr[1];
   engine_next_node_ptr = (void*)*engine_data_structure_ptr;
@@ -19539,7 +19548,7 @@ LAB_18005856a:
     engine_temp_long_6 = (longlong)structure_data_pointer - (longlong)engine_next_node_ptr;
     engine_next_node_ptr = engine_next_node_ptr + 1;
     do {
-      *engine_current_node_ptr = &engine_data_18098bcb0;
+      *engine_current_node_ptr = &engine_camera_status098bcb0;
       *(void*)(engine_temp_long_6 + (longlong)engine_next_node_ptr) = 0;
       *(uint32*)(engine_temp_long_6 + 8 + (longlong)engine_next_node_ptr) = 0;
       *engine_current_node_ptr = &engine_system_context_data;
@@ -19559,7 +19568,7 @@ LAB_18005856a:
       engine_next_node_ptr = engine_next_node_ptr + 5;
     } while (engine_data_pointer != current_data_pointer);
   }
-  *engine_current_node_ptr = &engine_data_18098bcb0;
+  *engine_current_node_ptr = &engine_camera_status098bcb0;
   engine_current_node_ptr[1] = 0;
   *(uint32*)(engine_current_node_ptr + 2) = 0;
   *engine_current_node_ptr = &engine_system_context_data;
@@ -19585,7 +19594,7 @@ LAB_18005856a:
       }
       engine_next_node_ptr[1] = 0;
       *(uint32*)(engine_next_node_ptr + 3) = 0;
-      *engine_next_node_ptr = &engine_data_18098bcb0;
+      *engine_next_node_ptr = &engine_camera_status098bcb0;
       engine_next_node_ptr = engine_next_node_ptr + 5;
     } while (engine_next_node_ptr != current_data_pointer);
     engine_next_node_ptr = (void*)*engine_data_structure_ptr;
@@ -19635,7 +19644,7 @@ void engine_process_system_io_request_queue(uint64 engine_data_structure_ptr,uin
   }
   engine_result_flag_ptr[5] = 0;
   *(uint32*)(engine_result_flag_ptr + 7) = 0;
-  engine_result_flag_ptr[4] = &engine_data_18098bcb0;
+  engine_result_flag_ptr[4] = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_cleanup_routine(engine_result_flag_ptr);
 }
@@ -19699,7 +19708,7 @@ void engine_validate_system_io_response_data(uint64 engine_data_structure_ptr,lo
   }
   *(void*)(engine_result_flag_ptr + 0x28) = 0;
   *(uint32*)(engine_result_flag_ptr + 0x38) = 0;
-  *(void*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20) = &engine_data_18098bcb0;
+  *(void*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20) = &engine_camera_status098bcb0;
   if (engine_result_flag_ptr != 0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_result_flag_ptr);
@@ -19730,7 +19739,7 @@ void engine_process_system_io_response_operation(longlong *engine_data_structure
       engine_temp_long_2 = 0;
     }
     else {
-      engine_temp_long_2 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_6 << 5,(char)engine_data_structure_ptr[3]);
+      engine_temp_long_2 = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_6 << 5,(char)engine_data_structure_ptr[3]);
     }
     if (engine_result_flag_ptr != engine_comparison_params) {
       engine_temp_long_7 = engine_temp_long_2 - engine_result_flag_ptr;
@@ -19799,7 +19808,7 @@ void engine_handle_system_io_response_event(longlong engine_data_structure_ptr)
     engine_temp_long_2 = 0;
   }
   else {
-    engine_temp_long_2 = engine_call_memory_extender(_engine_data_18,unaff_RSI << 5,*(uint8*)(engine_data_structure_ptr + 0x18));
+    engine_temp_long_2 = engine_call_memory_extender(_engine_camera_status,unaff_RSI << 5,*(uint8*)(engine_data_structure_ptr + 0x18));
   }
   if (engine_register_rbx != unaff_R15) {
     engine_temp_long_4 = engine_temp_long_2 - engine_register_rbx;
@@ -19970,7 +19979,7 @@ void engine_execute_system_io_response_task(longlong *engine_data_structure_ptr,
       engine_temporary_uint = 0;
     }
     else {
-      engine_temporary_uint = engine_call_memory_extender(_engine_data_18,engine_temp_uint_4 * 8,(char)engine_data_structure_ptr[3]);
+      engine_temporary_uint = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_4 * 8,(char)engine_data_structure_ptr[3]);
       engine_temp_long_3 = *engine_data_structure_ptr;
     }
     if (engine_temp_long_3 != engine_result_flag_ptr) {
@@ -20034,7 +20043,7 @@ void engine_handle_system_io_response_callback(longlong *engine_data_structure_p
       engine_temporary_uint = 0;
     }
     else {
-      engine_temporary_uint = engine_call_memory_extender(_engine_data_18,engine_temp_uint_4 * 8,(char)engine_data_structure_ptr[3]);
+      engine_temporary_uint = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_4 * 8,(char)engine_data_structure_ptr[3]);
       engine_temp_long_3 = *engine_data_structure_ptr;
     }
     if (engine_temp_long_3 != engine_result_flag_ptr) {
@@ -20094,7 +20103,7 @@ void engine_manage_system_io_response_handler(longlong engine_data_structure_ptr
     engine_temporary_uint = 0;
   }
   else {
-    engine_temporary_uint = engine_call_memory_extender(_engine_data_18,engine_temp_uint_2 * 8,(char)unaff_RDI[3]);
+    engine_temporary_uint = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_2 * 8,(char)unaff_RDI[3]);
     engine_result_flag_ptr = *unaff_RDI;
   }
   if (engine_result_flag_ptr != unaff_RSI) {
@@ -20140,7 +20149,7 @@ void engine_create_network_manager(longlong engine_data_structure_ptr)
   }
   *(void*)(engine_data_structure_ptr + 0x10) = 0;
   *(uint32*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = 0;
-  *(void*)(engine_data_structure_ptr + 8) = &engine_data_18098bcb0;
+  *(void*)(engine_data_structure_ptr + 8) = &engine_camera_status098bcb0;
   return;
 }
 
@@ -20154,7 +20163,7 @@ void engine_initialize_system_io_response_object(uint64_t *engine_data_structure
   if ((longlong *)engine_data_structure_ptr[0x13] != (longlong *)0x0) {
     (**(code **)(*(longlong *)engine_data_structure_ptr[0x13] + 0x38))();
   }
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -20173,7 +20182,7 @@ void engine_configure_system_io_response_settings(uint64_t *engine_data_structur
   }
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 3) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -20195,7 +20204,7 @@ void engine_process_system_io_response_configuration(uint64_t *engine_data_struc
   }
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 3) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -20424,12 +20433,12 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
   uint64 engine_stack_uint_30;
   
   engine_stack_uint_30 = 0x180059023;
-  engine_temp_uint_9 = engine_call_memory_allocator(_engine_data_18,0x270,8,3);
+  engine_temp_uint_9 = engine_call_memory_allocator(_engine_camera_status,0x270,8,3);
   engine_stack_uint_30 = 0x18005902b;
   engine_temp_long0 = engine_unnamed_function_5620(engine_temp_uint_9);
-  engine_temp_uint64_value = *(uint32*)(_engine_data_20 + 0x1dc0);
+  engine_temp_uint64_value = *(uint32*)(_engine_physics_status + 0x1dc0);
   _engine_scene_data_ptr = engine_temp_long0;
-  *(uint32*)(engine_temp_long0 + 0x1e0) = *(uint32*)(_engine_data_20 + 0x1d50);
+  *(uint32*)(engine_temp_long0 + 0x1e0) = *(uint32*)(_engine_physics_status + 0x1d50);
   *(uint32*)(engine_temp_long0 + 0x1e4) = engine_temp_uint64_value;
   engine_stack_uint_30 = 0x180059066;
   (**(code **)(**(longlong **)(*engine_data_structure_ptr + 0x2b0) + 0xf8))();
@@ -20473,7 +20482,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
           if (engine_temp_int_20 < 0x10) {
             engine_temp_int_8 = 0x10;
           }
-          engine_data_ptr1 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)engine_temp_int_8,0x13);
+          engine_data_ptr1 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)engine_temp_int_8,0x13);
           *engine_data_ptr1 = 0;
           pengine_stack_uint_390 = engine_data_ptr1;
           engine_temp_uint64_value = engine_call_resource_validator(engine_data_ptr1);
@@ -20486,18 +20495,18 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
       engine_unnamed_function_5630(&engine_system_context_data,&pengine_stack_uint_2e8,&pengine_stack_uint_398);
       pengine_stack_uint_390 = (uint8*)0x0;
       engine_stack_uint_380 = engine_stack_uint_380 & 0xffffffff00000000;
-      pengine_stack_uint_398 = &engine_data_18098bcb0;
+      pengine_stack_uint_398 = &engine_camera_status098bcb0;
       pengine_stack_uint_308 = (void*)0x0;
       pengine_stack_uint_300 = (void*)0x0;
       engine_stack_uint_2f8 = 0;
       engine_stack_uint_2f0 = 3;
-      pengine_stack_uint_290 = &engine_data_1809fdc18;
+      pengine_stack_uint_290 = &engine_camera_status09fdc18;
       pengine_stack_uint_288 = aengine_stack_uint_278;
       aengine_stack_uint_278[0] = 0;
       engine_stack_uint_280 = 4;
       strcpy_s(aengine_stack_uint_278,MEMORY_COMPARE_SIZE_0x10,&engine_main_system_ptr);
       engine_unnamed_function_6370(&pengine_stack_uint_2e8,&pengine_stack_uint_308,&pengine_stack_uint_290);
-      pengine_stack_uint_290 = &engine_data_18098bcb0;
+      pengine_stack_uint_290 = &engine_camera_status098bcb0;
       engine_stack_int_374 = 0;
       engine_stack_long_2c8 = 0;
       engine_stack_uint_2c0 = (longlong)pengine_stack_uint_300 - (longlong)pengine_stack_uint_308 >> 5;
@@ -20554,7 +20563,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
             if (engine_temp_int_20 < 0x10) {
               engine_temp_int_8 = 0x10;
             }
-            pengine_stack_uint_328 = (void*)engine_call_memory_extender(_engine_data_18,(longlong)engine_temp_int_8,0x13);
+            pengine_stack_uint_328 = (void*)engine_call_memory_extender(_engine_camera_status,(longlong)engine_temp_int_8,0x13);
             *pengine_stack_uint_328 = 0;
             engine_temp_uint_22 = (ulonglong)pengine_stack_uint_328 & 0xffffffffffc00000;
             if (engine_temp_uint_22 != 0) {
@@ -20619,9 +20628,9 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
                 if ((ppppppengine_data_ptr4 != &ppppppengine_stack_uint_360) && (*(int *)(ppppppengine_data_ptr4 + 6) == 0)) {
                   engine_temp_uint64_value = 1;
                 }
-                engine_temp_long0 = engine_call_memory_extender(_engine_data_18,0x60,(uint8_t)engine_stack_uint_338);
+                engine_temp_long0 = engine_call_memory_extender(_engine_camera_status,0x60,(uint8_t)engine_stack_uint_338);
                 pengine_stack_uint_2b0 = (void*)(engine_temp_long0 + MEMORY_OFFSET_0x20);
-                *pengine_stack_uint_2b0 = &engine_data_18098bcb0;
+                *pengine_stack_uint_2b0 = &engine_camera_status098bcb0;
                 *(void*)(engine_temp_long0 + 0x28) = 0;
                 *(uint32*)(engine_temp_long0 + 0x30) = 0;
                 *pengine_stack_uint_2b0 = &engine_system_context_data;
@@ -20631,7 +20640,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
                 pengine_stack_uint_2a8 = pengine_stack_uint_2b0;
                 engine_call_array_builder(pengine_stack_uint_2b0,0);
                 pengine_stack_uint_2a0 = (void*)(engine_temp_long0 + 0x40);
-                *pengine_stack_uint_2a0 = &engine_data_18098bcb0;
+                *pengine_stack_uint_2a0 = &engine_camera_status098bcb0;
                 *(void*)(engine_temp_long0 + 0x48) = 0;
                 *(uint32*)(engine_temp_long0 + 0x50) = 0;
                 *pengine_stack_uint_2a0 = &engine_system_context_data;
@@ -20663,7 +20672,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
                *(uint32*)((longlong)structure_data_pointer + engine_temp_long0 * 0x20 + 0x1c);
           pengine_stack_uint_328 = (void*)0x0;
           engine_stack_uint_318 = engine_stack_uint_318 & 0xffffffff00000000;
-          pengine_stack_uint_330 = &engine_data_18098bcb0;
+          pengine_stack_uint_330 = &engine_camera_status098bcb0;
           engine_stack_int_374 = engine_temp_int_8 + 1;
           engine_stack_long_2c8 = engine_temp_long2 + 1;
           structure_data_pointer = pengine_stack_uint_308;
@@ -20698,7 +20707,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
       }
       engine_stack_long_2e0 = 0;
       engine_stack_uint_2d0 = 0;
-      pengine_stack_uint_2e8 = &engine_data_18098bcb0;
+      pengine_stack_uint_2e8 = &engine_camera_status098bcb0;
       engine_stack_int_370 = engine_temp_int_8 + 1;
       engine_stack_long_368 = engine_temp_long2 + 1;
       engine_temp_long0 = *(longlong *)(engine_stack_long_2b8 + 0x8a8);
@@ -20734,7 +20743,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
               if (engine_temp_int_8 < 0x10) {
                 engine_temp_int_8 = 0x10;
               }
-              pengine_stack_uint_390 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)engine_temp_int_8,0x13);
+              pengine_stack_uint_390 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)engine_temp_int_8,0x13);
               *pengine_stack_uint_390 = 0;
               engine_temp_uint_24 = (ulonglong)pengine_stack_uint_390 & 0xffffffffffc00000;
               if (engine_temp_uint_24 == 0) {
@@ -20786,7 +20795,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
             }
             pengine_stack_uint_390 = (uint8*)0x0;
             engine_stack_uint_380 = engine_stack_uint_380 & 0xffffffff00000000;
-            pengine_stack_uint_398 = &engine_data_18098bcb0;
+            pengine_stack_uint_398 = &engine_camera_status098bcb0;
             engine_temp_long2 = engine_stack_long_310;
             engine_temp_long0 = engine_stack_long_368;
             if (*(int *)(ppppppengine_data_ptr4 + 6) == 0) {
@@ -20803,7 +20812,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
         if (!engine_comparison_result6) {
           engine_temp_uint_9 = engine_unnamed_function_6240(&engine_stack_uint_268,ppppppengine_data_ptr4 + 8);
           engine_setup_processing_environment(&pengine_stack_uint_330,engine_temp_uint_9);
-          engine_stack_uint_268 = &engine_data_18098bcb0;
+          engine_stack_uint_268 = &engine_camera_status098bcb0;
           pppppengine_data_ptr9 = (uint64_t ******)&engine_data_73;
           if (ppppppengine_data_ptr4[5] != (uint64_t ******)0x0) {
             pppppengine_data_ptr9 = ppppppengine_data_ptr4[5];
@@ -20822,7 +20831,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
           }
           engine_stack_long_2e0 = 0;
           engine_stack_uint_2d0 = 0;
-          pengine_stack_uint_2e8 = &engine_data_18098bcb0;
+          pengine_stack_uint_2e8 = &engine_camera_status098bcb0;
           pengine_stack_uint_308 = (void*)&engine_system_context_data;
           if (pengine_stack_uint_300 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -20830,7 +20839,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
           }
           pengine_stack_uint_300 = (void*)0x0;
           engine_stack_uint_2f0 = 0;
-          pengine_stack_uint_308 = (void*)&engine_data_18098bcb0;
+          pengine_stack_uint_308 = (void*)&engine_camera_status098bcb0;
           pengine_stack_uint_330 = &engine_system_context_data;
           if (pengine_stack_uint_328 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -20838,7 +20847,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
           }
           pengine_stack_uint_328 = (void*)0x0;
           engine_stack_uint_318 = engine_stack_uint_318 & 0xffffffff00000000;
-          pengine_stack_uint_330 = &engine_data_18098bcb0;
+          pengine_stack_uint_330 = &engine_camera_status098bcb0;
         }
       }
       ppppppengine_data_ptr4 = (uint64_t *******)func_0x00018066bd70(ppppppengine_data_ptr4);
@@ -21157,7 +21166,7 @@ void engine_initialize_display_and_core_config(uint64_t *config_ptr)
   }
   engine_data_structure_ptr[5] = 0;
   *(uint32*)(engine_data_structure_ptr + 7) = 0;
-  engine_data_structure_ptr[4] = &engine_data_18098bcb0;
+  engine_data_structure_ptr[4] = &engine_camera_status098bcb0;
   *engine_data_structure_ptr = &engine_system_context_data;
   if (engine_data_structure_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -21165,7 +21174,7 @@ void engine_initialize_display_and_core_config(uint64_t *config_ptr)
   }
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 3) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -21184,7 +21193,7 @@ void engine_initialize_system_handler(uint64_t *engine_data_structure_ptr)
   }
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 3) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -21244,7 +21253,7 @@ void engine_setup_physics_system(uint64_t *engine_data_structure_ptr)
   }
   engine_data_structure_ptr[5] = 0;
   *(uint32*)(engine_data_structure_ptr + 7) = 0;
-  engine_data_structure_ptr[4] = &engine_data_18098bcb0;
+  engine_data_structure_ptr[4] = &engine_camera_status098bcb0;
   *engine_data_structure_ptr = &engine_system_context_data;
   if (engine_data_structure_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -21252,7 +21261,7 @@ void engine_setup_physics_system(uint64_t *engine_data_structure_ptr)
   }
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 3) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -21284,7 +21293,7 @@ uint64_t * engine_handle_system_state(uint64_t *engine_data_structure_ptr,uint64
     engine_temp_long_3 = (longlong)engine_comparison_params - (longlong)engine_data_structure_ptr;
     structure_data_pointer = engine_data_structure_ptr + 1;
     do {
-      *engine_comparison_params = &engine_data_18098bcb0;
+      *engine_comparison_params = &engine_camera_status098bcb0;
       *(void*)(engine_temp_long_3 + (longlong)structure_data_pointer) = 0;
       *(uint32*)(engine_temp_long_3 + 8 + (longlong)structure_data_pointer) = 0;
       *engine_comparison_params = &engine_system_context_data;
@@ -21335,7 +21344,7 @@ void engine_update_system_state(longlong *engine_data_structure_ptr,uint64 engin
       goto LAB_180059885;
     }
   }
-  engine_temp_long_2 = engine_call_memory_extender(_engine_data_18,engine_temp_long_6 << 5,(char)engine_data_structure_ptr[3]);
+  engine_temp_long_2 = engine_call_memory_extender(_engine_camera_status,engine_temp_long_6 << 5,(char)engine_data_structure_ptr[3]);
   engine_temp_long_3 = engine_data_structure_ptr[1];
   engine_temp_long_4 = *engine_data_structure_ptr;
 LAB_180059885:
@@ -21366,7 +21375,7 @@ uint64_t *
 engine_validate_system_operation(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x28,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -21398,7 +21407,7 @@ void engine_process_system_request(longlong engine_data_structure_ptr,longlong e
     strcpy_s(*(void*)(engine_data_structure_ptr + 8),MEMORY_COMPARE_SIZE_0x10);
     return;
   }
-  engine_call_buffer_allocator(&engine_data_18098bc48,MEMORY_COMPARE_SIZE_0x10,engine_result_flag_ptr);
+  engine_call_buffer_allocator(&engine_camera_status098bc48,MEMORY_COMPARE_SIZE_0x10,engine_result_flag_ptr);
   *(uint32*)(engine_data_structure_ptr + 0x10) = 0;
   **(uint8**)(engine_data_structure_ptr + 8) = 0;
   return;
@@ -21467,7 +21476,7 @@ void engine_setup_system_resources(longlong engine_data_structure_ptr,longlong e
   
   engine_stack_value_78 = 0xfffffffffffffffe;
   engine_stack_uint_48 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_98;
-  engine_stack_pointer_70 = &engine_data_1809fdc18;
+  engine_stack_pointer_70 = &engine_camera_status09fdc18;
   engine_stack_pointer_68 = aengine_stack_uint_58;
   engine_stack_value_60 = 0;
   aengine_stack_uint_58[0] = 0;
@@ -21484,7 +21493,7 @@ void engine_setup_system_resources(longlong engine_data_structure_ptr,longlong e
                     // WARNING: Subroutine does not return
     memcpy(engine_stack_pointer_68,*(longlong *)(engine_data_structure_ptr + 8),engine_temporary_long - *(longlong *)(engine_data_structure_ptr + 8));
   }
-  engine_stack_pointer_70 = &engine_data_18098bcb0;
+  engine_stack_pointer_70 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_48 ^ (ulonglong)aengine_stack_uint_98);
 }
@@ -21536,7 +21545,7 @@ void engine_finalize_system_initialization(void)
 {
   longlong engine_temporary_long;
   
-  engine_temporary_long = engine_call_memory_extender(_engine_data_18,0x1ae8,10);
+  engine_temporary_long = engine_call_memory_extender(_engine_camera_status,0x1ae8,10);
   if (engine_temporary_long == 0) {
     return;
   }
@@ -21957,7 +21966,7 @@ void engine_process_system_metrics(uint64_t *engine_data_structure_ptr)
   longlong engine_temp_long1;
   bool engine_temp_byte12;
   
-  *engine_data_structure_ptr = &engine_data_1809fe1f0;
+  *engine_data_structure_ptr = &engine_camera_status09fe1f0;
   if (engine_data_structure_ptr[8] != 0) {
     engine_temp_long1 = 0;
     if ((engine_data_structure_ptr[5] & 0x1f) != 0) {
@@ -21996,7 +22005,7 @@ LAB_1800602a0:
   }
 LAB_18006039b:
   if (engine_data_structure_ptr[0x10] == 0) {
-    *engine_data_structure_ptr = &engine_data_1809fe210;
+    *engine_data_structure_ptr = &engine_camera_status09fe210;
     return;
   }
                     // WARNING: Subroutine does not return
@@ -22090,7 +22099,7 @@ void engine_update_performance_metrics(uint64_t *engine_data_structure_ptr)
   ulonglong engine_temp_uint0;
   bool engine_temp_byte11;
   
-  *engine_data_structure_ptr = &engine_data_1809fe200;
+  *engine_data_structure_ptr = &engine_camera_status09fe200;
   engine_temp_uint_3 = engine_data_structure_ptr[4];
   engine_temp_long_9 = 0;
   engine_temp_uint_4 = engine_data_structure_ptr[5];
@@ -22177,7 +22186,7 @@ LAB_1800604d1:
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
   }
-  *engine_data_structure_ptr = &engine_data_1809fe210;
+  *engine_data_structure_ptr = &engine_camera_status09fe210;
   return;
 }
 
@@ -22186,7 +22195,7 @@ LAB_1800604d1:
 uint64_t * engine_initialize_performance_monitor(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
-  *engine_data_structure_ptr = &engine_data_1809fe210;
+  *engine_data_structure_ptr = &engine_camera_status09fe210;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x58);
   }
@@ -22219,7 +22228,7 @@ void engine_setup_performance_monitor(uint64_t *engine_data_structure_ptr,uint64
       *(void*)(engine_data_structure_ptr[0xe] + 0x10) = 0;
       *(uint8*)(engine_data_structure_ptr[0xe] + 8) = 1;
     }
-    engine_data_structure_ptr[2] = &engine_data_18098bcb0;
+    engine_data_structure_ptr[2] = &engine_camera_status098bcb0;
     return;
   }
   if (*(int *)(engine_data_structure_ptr[1] + 8) == 0) {
@@ -22825,7 +22834,7 @@ void engine_handle_memory_callback(longlong *engine_data_structure_ptr,longlong 
         engine_temp_long_6 = 1;
       }
       engine_temp_long_6 = engine_temp_long_4 + 2 + engine_temp_long_6;
-      engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,engine_temp_long_6 * 8,(char)engine_data_structure_ptr[10],engine_temp_long_7,engine_temp_uint0);
+      engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,engine_temp_long_6 * 8,(char)engine_data_structure_ptr[10],engine_temp_long_7,engine_temp_uint0);
       pengine_temp_long = (longlong *)(engine_temp_long_7 + (engine_data_structure_ptr[5] - *engine_data_structure_ptr >> 3) * 8);
       if (*engine_data_structure_ptr != 0) {
                     // WARNING: Subroutine does not return
@@ -22842,7 +22851,7 @@ void engine_handle_memory_callback(longlong *engine_data_structure_ptr,longlong 
       engine_data_structure_ptr[7] = engine_temp_long_7;
       engine_data_structure_ptr[8] = engine_temp_long_7 + 0x100;
     }
-    engine_temp_uint0 = engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x100,(char)engine_data_structure_ptr[10]);
+    engine_temp_uint0 = engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x100,(char)engine_data_structure_ptr[10]);
     *(void*)(engine_data_structure_ptr[9] + 8) = engine_temp_uint0;
     *(longlong **)engine_data_structure_ptr[6] = engine_result_flag_ptr;
     engine_temp_long_7 = engine_data_structure_ptr[9];
@@ -22931,7 +22940,7 @@ void engine_setup_memory_handler(uint64_t *engine_data_structure_ptr)
     engine_unnamed_function_6430();
   }
   _Mtx_destroy_in_situ();
-  *engine_data_structure_ptr = &engine_data_180a30778;
+  *engine_data_structure_ptr = &engine_camera_status0a30778;
   engine_data_structure_ptr[7] = &engine_system_context_data;
   if (engine_data_structure_ptr[8] != 0) {
                     // WARNING: Subroutine does not return
@@ -22939,7 +22948,7 @@ void engine_setup_memory_handler(uint64_t *engine_data_structure_ptr)
   }
   engine_data_structure_ptr[8] = 0;
   *(uint32*)(engine_data_structure_ptr + 10) = 0;
-  engine_data_structure_ptr[7] = &engine_data_18098bcb0;
+  engine_data_structure_ptr[7] = &engine_camera_status098bcb0;
   engine_data_structure_ptr[1] = &engine_system_context_data;
   if (engine_data_structure_ptr[2] != 0) {
                     // WARNING: Subroutine does not return
@@ -22947,7 +22956,7 @@ void engine_setup_memory_handler(uint64_t *engine_data_structure_ptr)
   }
   engine_data_structure_ptr[2] = 0;
   *(uint32*)(engine_data_structure_ptr + 4) = 0;
-  engine_data_structure_ptr[1] = &engine_data_18098bcb0;
+  engine_data_structure_ptr[1] = &engine_camera_status098bcb0;
   return;
 }
 
@@ -23005,12 +23014,12 @@ void engine_call_input_processor(uint64 engine_data_structure_ptr,longlong engin
   engine_stack_uint_1b8 = 0xfffffffffffffffe;
   engine_stack_uint_38 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_268;
   engine_stack_long_210 = _engine_render_mode;
-  pengine_stack_uint_1a8 = &engine_data_1809fdc18;
+  pengine_stack_uint_1a8 = &engine_camera_status09fdc18;
   pengine_stack_uint_1a0 = aengine_stack_uint_190;
   aengine_stack_uint_190[0] = 0;
   engine_stack_value_198 = 6;
   strcpy_s(aengine_stack_uint_190,MEMORY_COMPARE_SIZE_0x10,&engine_base_data_offset_c0);
-  engine_current_node_ptr = (void*)engine_call_memory_allocator(_engine_data_18,0x208,8,3);
+  engine_current_node_ptr = (void*)engine_call_memory_allocator(_engine_camera_status,0x208,8,3);
   engine_stack_long_248 = engine_temporary_long + 0x70;
   pengine_stack_uint_238 = engine_current_node_ptr;
   engine_configure_display_settings(engine_current_node_ptr,&pengine_stack_uint_1a8,3,engine_temporary_long + 0x2e0);
@@ -23019,7 +23028,7 @@ void engine_call_input_processor(uint64 engine_data_structure_ptr,longlong engin
   engine_setup_display_mode(engine_current_node_ptr);
   engine_prepare_render_buffer(engine_temporary_long + 0x48,&pengine_stack_uint_238);
   *(void**)(engine_temp_long_2 + 400) = engine_current_node_ptr;
-  pengine_stack_uint_1a8 = &engine_data_18098bcb0;
+  pengine_stack_uint_1a8 = &engine_camera_status098bcb0;
   engine_unnamed_function_6300(_engine_data_70 + 0x170,aengine_stack_uint_230,&engine_configuration_data);
   if (0 < *(int *)(engine_result_flag_ptr + 0x10)) {
     engine_call_array_builder(aengine_stack_uint_230,engine_stack_uint_220 + *(int *)(engine_result_flag_ptr + 0x10));
@@ -23056,7 +23065,7 @@ void engine_cleanup_memory_system(longlong *engine_data_structure_ptr)
   
   engine_temp_long_3 = _engine_render_mode;
   engine_stack_long_pointer_8 = engine_data_structure_ptr;
-  engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,0x70,8,3,0xfffffffffffffffe);
+  engine_temp_uint_4 = engine_call_memory_allocator(_engine_camera_status,0x70,8,3,0xfffffffffffffffe);
   engine_temp_ptr_5 = (longlong *)engine_call_memory_configurator(engine_temp_uint_4,0,engine_temp_long_3);
   engine_stack_long_pointer_18 = engine_temp_ptr_5;
   if (engine_temp_ptr_5 != (longlong *)0x0) {
@@ -23070,7 +23079,7 @@ void engine_cleanup_memory_system(longlong *engine_data_structure_ptr)
     (**(code **)(*engine_temp_ptr_5 + 0x28))(engine_temp_ptr_5);
   }
   (*pengine_temp_char_flag)(engine_data_pointer,&engine_stack_long_pointer_8);
-  engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,0x70,8,3);
+  engine_temp_uint_4 = engine_call_memory_allocator(_engine_camera_status,0x70,8,3);
   engine_temp_ptr_array_6 = (longlong *)engine_call_memory_configurator(engine_temp_uint_4,4,engine_temp_long_3);
   engine_stack_long_pointer_20 = engine_temp_ptr_array_6;
   if (engine_temp_ptr_array_6 != (longlong *)0x0) {
@@ -23084,7 +23093,7 @@ void engine_cleanup_memory_system(longlong *engine_data_structure_ptr)
     (**(code **)(*engine_temp_ptr_array_6 + 0x28))(engine_temp_ptr_array_6);
   }
   (*pengine_temp_char_flag)(engine_data_pointer,&engine_stack_long_pointer_8);
-  engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,0x70,8,3);
+  engine_temp_uint_4 = engine_call_memory_allocator(_engine_camera_status,0x70,8,3);
   pengine_temp_long_7 = (longlong *)engine_call_memory_configurator(engine_temp_uint_4,0,engine_temp_long_3);
   if (pengine_temp_long_7 != (longlong *)0x0) {
     pengine_stack_long_ptr_10 = (longlong **)pengine_temp_long_7;
@@ -23136,7 +23145,7 @@ void engine_finalize_memory_system(longlong *engine_data_structure_ptr)
   
   engine_temp_long_3 = _engine_render_mode;
   engine_stack_long_pointer_8 = engine_data_structure_ptr;
-  engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,0x70,8,3,0xfffffffffffffffe);
+  engine_temp_uint_4 = engine_call_memory_allocator(_engine_camera_status,0x70,8,3,0xfffffffffffffffe);
   engine_temp_ptr_5 = (longlong *)engine_call_memory_configurator(engine_temp_uint_4,0,engine_temp_long_3);
   engine_stack_long_pointer_18 = engine_temp_ptr_5;
   if (engine_temp_ptr_5 != (longlong *)0x0) {
@@ -23150,7 +23159,7 @@ void engine_finalize_memory_system(longlong *engine_data_structure_ptr)
     (**(code **)(*engine_temp_ptr_5 + 0x28))(engine_temp_ptr_5);
   }
   (*pengine_temp_char_flag)(engine_data_pointer,&engine_stack_long_pointer_8);
-  engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,0x70,8,3);
+  engine_temp_uint_4 = engine_call_memory_allocator(_engine_camera_status,0x70,8,3);
   engine_temp_ptr_array_6 = (longlong *)engine_call_memory_configurator(engine_temp_uint_4,3,engine_temp_long_3);
   engine_stack_long_pointer_20 = engine_temp_ptr_array_6;
   if (engine_temp_ptr_array_6 != (longlong *)0x0) {
@@ -23164,7 +23173,7 @@ void engine_finalize_memory_system(longlong *engine_data_structure_ptr)
     (**(code **)(*engine_temp_ptr_array_6 + 0x28))(engine_temp_ptr_array_6);
   }
   (*pengine_temp_char_flag)(engine_data_pointer,&engine_stack_long_pointer_8);
-  engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,0x70,8,3);
+  engine_temp_uint_4 = engine_call_memory_allocator(_engine_camera_status,0x70,8,3);
   pengine_temp_long_7 = (longlong *)engine_call_memory_configurator(engine_temp_uint_4,0,engine_temp_long_3);
   if (pengine_temp_long_7 != (longlong *)0x0) {
     pengine_stack_long_ptr_10 = (longlong **)pengine_temp_long_7;
@@ -23288,7 +23297,7 @@ void engine_call_memory_compactor(longlong *engine_data_structure_ptr)
   engine_temp_long_3 = _engine_render_mode;
   if (*(char *)(_engine_render_mode + 0x18) != '\0') {
     engine_stack_long_pointer_8 = engine_data_structure_ptr;
-    engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,0x70,8,3,0xfffffffffffffffe);
+    engine_temp_uint_4 = engine_call_memory_allocator(_engine_camera_status,0x70,8,3,0xfffffffffffffffe);
     engine_temp_ptr_5 = (longlong *)engine_call_memory_configurator(engine_temp_uint_4,6,engine_temp_long_3);
     engine_stack_long_ptr_10 = engine_temp_ptr_5;
     if (engine_temp_ptr_5 != (longlong *)0x0) {
@@ -23400,12 +23409,12 @@ void engine_process_parameter_validation(int *engine_data_structure_ptr)
   }
   engine_stack_long_180 = 0;
   engine_stack_uint_170 = 0;
-  engine_stack_pointer_188 = &engine_data_18098bcb0;
+  engine_stack_pointer_188 = &engine_camera_status098bcb0;
   pengine_stack_uint_1b0 = &engine_system_context_data;
   engine_stack_value_198 = 0;
   pengine_stack_uint_1a8 = (uint32*)0x0;
   engine_stack_uint_1a0 = 0;
-  engine_temporary_pointer = (uint32*)engine_call_memory_extender(_engine_data_18,0x13,0x13);
+  engine_temporary_pointer = (uint32*)engine_call_memory_extender(_engine_camera_status,0x13,0x13);
   *(uint8*)engine_temporary_pointer = 0;
   pengine_stack_uint_1a8 = engine_temporary_pointer;
   engine_temp_uint_3 = engine_call_resource_validator(engine_temporary_pointer);
@@ -23547,7 +23556,7 @@ void engine_handle_system_data(longlong engine_data_structure_ptr)
       engine_stack_value_58 = 0;
       engine_stack_pointer_68 = (void*)0x0;
       engine_stack_value_60 = 0;
-      engine_temporary_pointer = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
+      engine_temporary_pointer = (void*)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,0x13);
       *(uint8*)engine_temporary_pointer = 0;
       engine_stack_pointer_68 = engine_temporary_pointer;
       engine_temp_uint_3 = engine_call_resource_validator(engine_temporary_pointer);
@@ -23624,7 +23633,7 @@ code_r0x0001800630e9:
                         0x180000000,*(uint32*)(engine_data_structure_ptr + 0x50));
           engine_temp_int_4 = WriteConsoleA(_engine_data_f0,engine_temp_uint_ptr_9,engine_temp_uint_2,engine_stack_uint_array_20,0);
           if ((engine_temp_int_4 == 0) || (engine_stack_uint_array_20[0] < engine_temp_uint_2)) {
-            engine_unnamed_function_90(&engine_data_1809fe62c,engine_temp_uint_ptr_9);
+            engine_unnamed_function_90(&engine_camera_status09fe62c,engine_temp_uint_ptr_9);
           }
           engine_temp_int_4 = SetConsoleTextAttribute(_engine_data_f0,0xf);
           if (engine_temp_int_4 == 0) {
@@ -23659,7 +23668,7 @@ code_r0x0001800630e9:
     }
   }
   else {
-    engine_call_buffer_allocator(&engine_data_1809fe608);
+    engine_call_buffer_allocator(&engine_camera_status09fe608);
   }
   return;
 }
@@ -23774,10 +23783,10 @@ engine_validate_data_integrity(uint64_t *engine_data_structure_ptr,ulonglong eng
   }
   engine_data_structure_ptr[7] = 0;
   *(uint32*)(engine_data_structure_ptr + 9) = 0;
-  engine_data_structure_ptr[6] = &engine_data_18098bcb0;
-  *engine_data_structure_ptr = &engine_data_18098bdc8;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  engine_data_structure_ptr[6] = &engine_camera_status098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bdc8;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x70,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -23792,17 +23801,17 @@ engine_call_memory_configurator(uint64_t *engine_data_structure_ptr,uint32_t eng
 {
   longlong *pengine_temp_long;
   
-  *engine_data_structure_ptr = &engine_data_180a21690;
-  *engine_data_structure_ptr = &engine_data_180a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
   *(uint32*)(engine_data_structure_ptr + 1) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bdc8;
+  *engine_data_structure_ptr = &engine_camera_status098bdc8;
   LOCK();
   *(uint8*)(engine_data_structure_ptr + 2) = 0;
   UNLOCK();
   engine_data_structure_ptr[3] = 0xffffffffffffffff;
-  *engine_data_structure_ptr = &engine_data_1809fe650;
+  *engine_data_structure_ptr = &engine_camera_status09fe650;
   pengine_temp_long = engine_data_structure_ptr + 6;
-  *pengine_temp_long = (longlong)&engine_data_18098bcb0;
+  *pengine_temp_long = (longlong)&engine_camera_status098bcb0;
   engine_data_structure_ptr[7] = 0;
   *(uint32*)(engine_data_structure_ptr + 8) = 0;
   *pengine_temp_long = (longlong)&engine_system_context_data;
@@ -24037,7 +24046,7 @@ LAB_180063de9:
     }
     engine_stack_long_288 = 0;
     engine_stack_uint_278 = 0;
-    pengine_stack_uint_290 = &engine_data_18098bcb0;
+    pengine_stack_uint_290 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
     engine_call_data_hasher(engine_stack_uint_38 ^ (ulonglong)aengine_stack_uint_2f8);
   }
@@ -24127,7 +24136,7 @@ void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
   }
   engine_stack_long_298 = 0;
   engine_stack_uint_288 = 0;
-  pengine_stack_uint_2a0 = &engine_data_18098bcb0;
+  pengine_stack_uint_2a0 = &engine_camera_status098bcb0;
   engine_stack_uint_2f8 = 0;
   engine_stack_long_2f0 = 0;
   engine_unnamed_function_6300(engine_data_structure_ptr,&pengine_stack_uint_280,&engine_touch_input_ptr);
@@ -24136,7 +24145,7 @@ void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
     engine_current_node_ptr = pengine_stack_uint_278;
   }
   engine_call_structure_builder(&engine_stack_uint_2f8,engine_current_node_ptr,&engine_memory_pool_address);
-  engine_call_object_registrar(_engine_data_20,&engine_stack_uint_2f8);
+  engine_call_object_registrar(_engine_physics_status,&engine_stack_uint_2f8);
   if (engine_stack_long_2f0 != 0) {
     fclose();
     engine_stack_long_2f0 = 0;
@@ -24151,7 +24160,7 @@ void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
   }
   pengine_stack_uint_278 = (void*)0x0;
   engine_stack_uint_268 = 0;
-  pengine_stack_uint_280 = &engine_data_18098bcb0;
+  pengine_stack_uint_280 = &engine_camera_status098bcb0;
   if (engine_stack_long_2f0 != 0) {
     fclose();
     engine_stack_long_2f0 = 0;
@@ -24182,7 +24191,7 @@ void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
   }
   pengine_stack_uint_258 = (void*)0x0;
   engine_stack_uint_248 = 0;
-  pengine_stack_uint_260 = &engine_data_18098bcb0;
+  pengine_stack_uint_260 = &engine_camera_status098bcb0;
   if (engine_stack_long_2d8 != 0) {
     fclose();
     engine_stack_long_2d8 = 0;
@@ -24269,7 +24278,7 @@ ulonglong engine_unnamed_function_220(uint64 engine_data_structure_ptr)
         if ((void*)*engine_next_node_ptr != (void*)0x0) {
           engine_current_node_ptr = (void*)*engine_next_node_ptr;
         }
-        engine_handle_input_device(&engine_stack_pointer_b8,&engine_data_1809fe62c,engine_current_node_ptr);
+        engine_handle_input_device(&engine_stack_pointer_b8,&engine_camera_status09fe62c,engine_current_node_ptr);
         engine_next_node_ptr = engine_next_node_ptr + 4;
         engine_temp_uint_2 = engine_temp_uint_2 - 1;
       } while (engine_temp_uint_2 != 0);
@@ -24294,7 +24303,7 @@ ulonglong engine_unnamed_function_220(uint64 engine_data_structure_ptr)
     }
     engine_stack_long_b0 = 0;
     engine_stack_value_a0 = engine_stack_value_a0 & 0xffffffff00000000;
-    engine_stack_pointer_b8 = &engine_data_18098bcb0;
+    engine_stack_pointer_b8 = &engine_camera_status098bcb0;
     engine_stack_pointer_58 = &engine_system_context_data;
     if (pengine_stack_uint_50 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -24302,7 +24311,7 @@ ulonglong engine_unnamed_function_220(uint64 engine_data_structure_ptr)
     }
     pengine_stack_uint_50 = (void*)0x0;
     engine_stack_uint_40 = 0;
-    engine_stack_pointer_58 = &engine_data_18098bcb0;
+    engine_stack_pointer_58 = &engine_camera_status098bcb0;
     engine_next_node_ptr = temp_data_pointer;
     if (memory_allocation_result != 0) {
       engine_temp_uint_2 = fclose(memory_allocation_result);
@@ -24526,7 +24535,7 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
   engine_next_node_ptr = (void*)engine_data_structure_ptr[1];
   if (engine_next_node_ptr < (void*)engine_data_structure_ptr[2]) {
     engine_data_structure_ptr[1] = (longlong)(engine_next_node_ptr + 4);
-    *engine_next_node_ptr = &engine_data_18098bcb0;
+    *engine_next_node_ptr = &engine_camera_status098bcb0;
     engine_next_node_ptr[1] = 0;
     *(uint32*)(engine_next_node_ptr + 2) = 0;
     *engine_next_node_ptr = &engine_system_context_data;
@@ -24548,7 +24557,7 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
     if (engine_temp_long1 == 0) {
       engine_temp_long1 = 1;
 LAB_180064eed:
-      engine_temp_long0 = engine_call_memory_extender(_engine_data_18,engine_temp_long1 << 5,(char)engine_data_structure_ptr[3]);
+      engine_temp_long0 = engine_call_memory_extender(_engine_camera_status,engine_temp_long1 << 5,(char)engine_data_structure_ptr[3]);
       engine_next_node_ptr = (void*)engine_data_structure_ptr[1];
       engine_temp_long2 = *engine_data_structure_ptr;
     }
@@ -24557,7 +24566,7 @@ LAB_180064eed:
       if (engine_temp_long1 != 0) goto LAB_180064eed;
     }
     engine_stack_pointer_d0 = (void*)engine_handle_system_state(engine_temp_long2,engine_next_node_ptr,engine_temp_long0);
-    *engine_stack_pointer_d0 = &engine_data_18098bcb0;
+    *engine_stack_pointer_d0 = &engine_camera_status098bcb0;
     engine_stack_pointer_d0[1] = 0;
     *(uint32*)(engine_stack_pointer_d0 + 2) = 0;
     *engine_stack_pointer_d0 = &engine_system_context_data;
@@ -24598,7 +24607,7 @@ LAB_180064eed:
   }
   pengine_stack_uint_100 = (uint8*)0x0;
   engine_stack_uint_f0 = engine_stack_uint_f0 & 0xffffffff00000000;
-  pengine_stack_uint_108 = &engine_data_18098bcb0;
+  pengine_stack_uint_108 = &engine_camera_status098bcb0;
 LAB_180065009:
   engine_next_node_ptr = (void*)(engine_temp_long2 + (longlong)engine_current_node_ptr);
   if (engine_stack_pointer_b8 < (void*)(engine_temp_long2 + (longlong)engine_current_node_ptr)) {
@@ -24764,7 +24773,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
     }
   }
   engine_process_system_configuration(&pengine_stack_uint_1e0,engine_data_pointer_6);
-  pengine_stack_uint_c8 = &engine_data_18098bc80;
+  pengine_stack_uint_c8 = &engine_camera_status098bc80;
   pengine_stack_uint_c0 = aengine_stack_uint_b0;
   engine_stack_uint_b8 = 0;
   aengine_stack_uint_b0[0] = 0;
@@ -24776,7 +24785,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   }
   engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_network_buffer_address,&engine_base_data_offset_80);
   engine_stack_uint_310 = 0;
-  pengine_stack_uint_c8 = &engine_data_18098bcb0;
+  pengine_stack_uint_c8 = &engine_camera_status098bcb0;
   pengine_stack_uint_348 = &engine_camera_buffer_address;
   engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_network_buffer_address,&engine_physics_buffer_address);
   pengine_stack_uint_348 = &engine_render_mode;
@@ -24798,7 +24807,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   }
   engine_stack_ptr_1d8 = (void*)0x0;
   engine_stack_uint_1c8 = 0;
-  pengine_stack_uint_1e0 = &engine_data_18098bcb0;
+  pengine_stack_uint_1e0 = &engine_camera_status098bcb0;
   engine_stack_pointer_1c0 = &engine_system_context_data;
   if (engine_stack_ptr_1b8 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -24806,7 +24815,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   }
   engine_stack_ptr_1b8 = (void*)0x0;
   engine_stack_uint_1a8 = 0;
-  engine_stack_pointer_1c0 = &engine_data_18098bcb0;
+  engine_stack_pointer_1c0 = &engine_camera_status098bcb0;
   pengine_stack_uint_2c0 = &engine_system_context_data;
   engine_stack_uint_2a8 = 0;
   engine_stack_uint_2b8 = 0;
@@ -24849,7 +24858,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   }
   pengine_stack_uint_300 = (void*)0x0;
   engine_stack_uint_2f0 = engine_stack_uint_2f0 & 0xffffffff00000000;
-  pengine_stack_uint_308 = &engine_data_18098bcb0;
+  pengine_stack_uint_308 = &engine_camera_status098bcb0;
   pengine_stack_uint_2e8 = &engine_system_context_data;
   if (pengine_stack_uint_2e0 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -24857,10 +24866,10 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   }
   pengine_stack_uint_2e0 = (void*)0x0;
   engine_stack_uint_2d0 = engine_stack_uint_2d0 & 0xffffffff00000000;
-  pengine_stack_uint_2e8 = &engine_data_18098bcb0;
+  pengine_stack_uint_2e8 = &engine_camera_status098bcb0;
   engine_stack_uint_2b8 = 0;
   engine_stack_uint_2a8 = engine_stack_uint_2a8 & 0xffffffff00000000;
-  pengine_stack_uint_2c0 = &engine_data_18098bcb0;
+  pengine_stack_uint_2c0 = &engine_camera_status098bcb0;
   engine_temp_long4 = engine_data_pointer_58;
   if (engine_data_pointer_58 == 0) {
     QueryPerformanceCounter(&engine_stack_long_268);
@@ -24882,7 +24891,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   engine_stack_pointer_158 = (void*)0x0;
   engine_stack_uint_150 = 0;
   engine_stack_value_148 = 3;
-  engine_stack_pointer_f0 = &engine_data_1809fdc18;
+  engine_stack_pointer_f0 = &engine_camera_status09fdc18;
   engine_stack_pointer_e8 = aengine_stack_uint_d8;
   aengine_stack_uint_d8[0] = 0;
   engine_stack_uint_e0 = 9;
@@ -24891,15 +24900,15 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   engine_data_ptr8 = engine_stack_pointer_158;
   engine_data_ptr9 = pengine_stack_uint_160;
   if (1 < (ulonglong)((longlong)engine_stack_pointer_158 - (longlong)pengine_stack_uint_160 >> 5)) {
-    pengine_stack_uint_118 = &engine_data_1809fdc18;
+    pengine_stack_uint_118 = &engine_camera_status09fdc18;
     pengine_stack_uint_110 = aengine_stack_uint_100;
     aengine_stack_uint_100[0] = 0;
     engine_stack_uint_108 = 1;
     strcpy_s(aengine_stack_uint_100,MEMORY_COMPARE_SIZE_0x10,&engine_render_mode);
     engine_process_data_structure_operations(&engine_stack_pointer_220,engine_data_ptr9 + 4,&pengine_stack_uint_118);
-    pengine_stack_uint_118 = &engine_data_18098bcb0;
+    pengine_stack_uint_118 = &engine_camera_status098bcb0;
   }
-  engine_stack_pointer_f0 = &engine_data_18098bcb0;
+  engine_stack_pointer_f0 = &engine_camera_status098bcb0;
   engine_next_node_ptr = engine_stack_pointer_220;
   for (engine_data_ptr7 = engine_data_ptr9; engine_stack_pointer_220 = engine_next_node_ptr, engine_data_ptr7 != engine_data_ptr8; engine_data_ptr7 = engine_data_ptr7 + 4) {
     (**(code **)*engine_data_ptr7)(engine_data_ptr7,0);
@@ -25012,7 +25021,7 @@ LAB_180065a3e:
           }
           engine_stack_char_pointer_298 = (char *)0x0;
           engine_stack_uint_288 = 0;
-          pengine_stack_uint_2a0 = &engine_data_18098bcb0;
+          pengine_stack_uint_2a0 = &engine_camera_status098bcb0;
           for (engine_data_ptr8 = engine_data_ptr7; engine_data_ptr8 != engine_temporary_pointer; engine_data_ptr8 = engine_data_ptr8 + 4) {
             (**(code **)*engine_data_ptr8)(engine_data_ptr8,0);
           }
@@ -25059,7 +25068,7 @@ LAB_180065a3e:
     }
     engine_stack_long_238 = 0;
     engine_stack_uint_228 = 0;
-    pengine_stack_uint_240 = &engine_data_18098bcb0;
+    pengine_stack_uint_240 = &engine_camera_status098bcb0;
     pengine_stack_uint_260 = engine_data_ptr8;
     pengine_stack_uint_258 = engine_data_ptr7;
   }
@@ -25088,7 +25097,7 @@ LAB_180065a3e:
     }
     engine_stack_pointer_198 = (void*)0x0;
     engine_stack_uint_188 = 0;
-    pengine_stack_uint_1a0 = &engine_data_18098bcb0;
+    pengine_stack_uint_1a0 = &engine_camera_status098bcb0;
   }
   engine_temp_long_9 = engine_stack_long_278;
   fwrite(engine_stack_long_328,1,(longlong)engine_stack_int_320,engine_stack_long_278);
@@ -25124,12 +25133,12 @@ LAB_180065a3e:
   }
   engine_stack_ptr_1f8 = (void*)0x0;
   engine_stack_uint_1e8 = 0;
-  pengine_stack_uint_200 = &engine_data_18098bcb0;
+  pengine_stack_uint_200 = &engine_camera_status098bcb0;
   pengine_stack_uint_330 = &engine_system_context_data;
   if (engine_stack_long_328 == 0) {
     engine_stack_long_328 = 0;
     engine_stack_uint_318 = engine_stack_uint_318 & 0xffffffff00000000;
-    pengine_stack_uint_330 = &engine_data_18098bcb0;
+    pengine_stack_uint_330 = &engine_camera_status098bcb0;
     engine_stack_pointer_218 = engine_data_ptr9;
     if (engine_temp_long_9 != 0) {
       fclose(engine_temp_long_9);
@@ -25142,7 +25151,7 @@ LAB_180065a3e:
     if (pengine_stack_uint_178 == (void*)0x0) {
       pengine_stack_uint_178 = (void*)0x0;
       engine_stack_uint_168 = 0;
-      pengine_stack_uint_180 = &engine_data_18098bcb0;
+      pengine_stack_uint_180 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
       engine_call_data_hasher(engine_stack_uint_38 ^ (ulonglong)aengine_stack_uint_368);
     }
@@ -25235,7 +25244,7 @@ void engine_execute_system_validation(uint64 engine_data_structure_ptr,longlong 
   }
   ppengine_stack_uint_68 = &pengine_stack_uint_a8;
   ppengine_stack_long_60 = &pengine_stack_long_b0;
-  engine_handle_system_data_processing(&ppengine_stack_uint_68,_engine_data_20,&engine_physics_flags);
+  engine_handle_system_data_processing(&ppengine_stack_uint_68,_engine_physics_status,&engine_physics_flags);
   engine_handle_system_data_processing(&ppengine_stack_uint_68,_engine_data_b0,&engine_control_data);
   presource_status_flag = *(code **)(*pengine_stack_long_b0 + 0x40);
   engine_temp_uint_3 = engine_call_data_writer(&ppengine_stack_uint_68,_engine_render_mode + 0x28);
@@ -25247,7 +25256,7 @@ void engine_execute_system_validation(uint64 engine_data_structure_ptr,longlong 
   }
   ppengine_stack_long_60 = (longlong **)0x0;
   engine_stack_uint_50 = 0;
-  ppengine_stack_uint_68 = (undefined **)&engine_data_18098bcb0;
+  ppengine_stack_uint_68 = (undefined **)&engine_camera_status098bcb0;
   presource_status_flag = *(code **)(*pengine_stack_long_b0 + 0x40);
   engine_temp_uint_3 = engine_call_data_writer(&engine_stack_pointer_88,_engine_render_mode + 0xe0);
   (*presource_status_flag)(pengine_stack_long_b0,engine_temp_uint_3);
@@ -25258,7 +25267,7 @@ void engine_execute_system_validation(uint64 engine_data_structure_ptr,longlong 
   }
   engine_stack_long_80 = 0;
   engine_stack_value_70 = 0;
-  engine_stack_pointer_88 = &engine_data_18098bcb0;
+  engine_stack_pointer_88 = &engine_camera_status098bcb0;
   if (engine_result_flag_ptr == 0) {
     engine_temp_long_4 = engine_unnamed_function_160(_engine_data_68);
     (**(code **)(*pengine_stack_long_b0 + 8))(pengine_stack_long_b0,engine_data_structure_ptr,*(uint32*)(engine_temp_long_4 + 0x38));
@@ -25274,7 +25283,7 @@ void engine_execute_system_validation(uint64 engine_data_structure_ptr,longlong 
     }
     engine_stack_long_80 = 0;
     engine_stack_value_70 = 0;
-    engine_stack_pointer_88 = &engine_data_18098bcb0;
+    engine_stack_pointer_88 = &engine_camera_status098bcb0;
   }
   engine_unnamed_function_6350(&pengine_stack_uint_a8);
   pengine_stack_uint_a8 = &engine_system_context_data;
@@ -25340,7 +25349,7 @@ void engine_handle_system_data_processing(longlong *engine_data_structure_ptr,ui
   }
   engine_stack_long_68 = 0;
   engine_stack_value_58 = (ulonglong)engine_stack_value_58._4_4_ << 0x20;
-  engine_stack_pointer_70 = &engine_data_18098bcb0;
+  engine_stack_pointer_70 = &engine_camera_status098bcb0;
   engine_current_node_ptr = &engine_data_73;
   if (pengine_stack_uint_48 != (void*)0x0) {
     engine_current_node_ptr = pengine_stack_uint_48;
@@ -25362,7 +25371,7 @@ void engine_handle_system_data_processing(longlong *engine_data_structure_ptr,ui
   }
   pengine_stack_uint_48 = (void*)0x0;
   engine_stack_uint_38 = 0;
-  pengine_stack_uint_50 = &engine_data_18098bcb0;
+  pengine_stack_uint_50 = &engine_camera_status098bcb0;
   if (engine_stack_long_80 != 0) {
     fclose();
     LOCK();
@@ -25441,7 +25450,7 @@ void engine_process_system_operations(uint64 engine_data_structure_ptr,uint64 en
     }
     engine_stack_long_1b0 = 0;
     engine_stack_uint_1a0 = (ulonglong)engine_stack_uint_1a0._4_4_ << 0x20;
-    engine_stack_ptr_1b8 = &engine_data_18098bcb0;
+    engine_stack_ptr_1b8 = &engine_camera_status098bcb0;
     goto LAB_180066971;
   }
   if (((engine_network_flag != '\0') || (engine_render_flag != '\0')) ||
@@ -25494,7 +25503,7 @@ LAB_18006650a:
     }
     engine_stack_long_130 = 0;
     engine_stack_uint_120 = 0;
-    engine_stack_pointer_138 = &engine_data_18098bcb0;
+    engine_stack_pointer_138 = &engine_camera_status098bcb0;
     engine_call_data_iterator(&engine_stack_pointer_198,&engine_stack_pointer_d0,engine_temp_int_4 + 7,0xffffffff);
     engine_stack_ptr_1b8 = &engine_system_context_data;
     engine_stack_uint_1a0 = 0;
@@ -25518,7 +25527,7 @@ LAB_18006650a:
       engine_temp_uint_6 = engine_stack_value_60;
     }
     engine_handle_input_device(&pengine_stack_uint_178,&engine_performance_buffer_address,engine_temp_uint_6 / 0x100000 & 0xffffffff);
-    engine_handle_system_validation(_engine_render_mode,5,3,&engine_data_18);
+    engine_handle_system_validation(_engine_render_mode,5,3,&engine_camera_status);
     engine_stack_ptr_1d8 = &engine_data_73;
     if (pengine_stack_uint_150 != (void*)0x0) {
       engine_stack_ptr_1d8 = pengine_stack_uint_150;
@@ -25556,8 +25565,8 @@ LAB_18006650a:
     engine_handle_system_operation(&engine_stack_pointer_198,engine_param_5);
     engine_process_system_state_comparison(&engine_stack_pointer_198);
     engine_unnamed_function_5180(&engine_stack_pointer_138);
-    engine_unnamed_function_6300(&engine_stack_pointer_138,&engine_stack_pointer_f0,&engine_data_1809fe848);
-    engine_unnamed_function_6300(&engine_stack_pointer_198,&pengine_stack_uint_110,&engine_data_1809fe848);
+    engine_unnamed_function_6300(&engine_stack_pointer_138,&engine_stack_pointer_f0,&engine_camera_status09fe848);
+    engine_unnamed_function_6300(&engine_stack_pointer_198,&pengine_stack_uint_110,&engine_camera_status09fe848);
     engine_process_audio_data(&pengine_stack_uint_110,&engine_stack_pointer_f0);
     pengine_stack_uint_110 = &engine_system_context_data;
     if (engine_stack_long_108 != 0) {
@@ -25566,7 +25575,7 @@ LAB_18006650a:
     }
     engine_stack_long_108 = 0;
     engine_stack_uint_f8 = 0;
-    pengine_stack_uint_110 = &engine_data_18098bcb0;
+    pengine_stack_uint_110 = &engine_camera_status098bcb0;
     engine_stack_pointer_f0 = &engine_system_context_data;
     if (engine_stack_long_e8 != 0) {
                     // WARNING: Subroutine does not return
@@ -25574,7 +25583,7 @@ LAB_18006650a:
     }
     engine_stack_long_e8 = 0;
     engine_stack_uint_d8 = 0;
-    engine_stack_pointer_f0 = &engine_data_18098bcb0;
+    engine_stack_pointer_f0 = &engine_camera_status098bcb0;
     engine_stack_pointer_138 = &engine_system_context_data;
     if (engine_stack_long_130 != 0) {
                     // WARNING: Subroutine does not return
@@ -25582,7 +25591,7 @@ LAB_18006650a:
     }
     engine_stack_long_130 = 0;
     engine_stack_uint_120 = 0;
-    engine_stack_pointer_138 = &engine_data_18098bcb0;
+    engine_stack_pointer_138 = &engine_camera_status098bcb0;
     engine_configure_system_parameters(&engine_stack_pointer_198);
     engine_unnamed_function_220(&engine_stack_pointer_198);
     engine_validate_system_configuration(&engine_stack_pointer_198);
@@ -25594,7 +25603,7 @@ LAB_18006650a:
     }
     pengine_stack_uint_170 = (void*)0x0;
     engine_stack_uint_160 = engine_stack_uint_160 & 0xffffffff00000000;
-    pengine_stack_uint_178 = &engine_data_18098bcb0;
+    pengine_stack_uint_178 = &engine_camera_status098bcb0;
     engine_stack_pointer_158 = &engine_system_context_data;
     if (pengine_stack_uint_150 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -25602,10 +25611,10 @@ LAB_18006650a:
     }
     pengine_stack_uint_150 = (void*)0x0;
     engine_stack_uint_140 = engine_stack_uint_140 & 0xffffffff00000000;
-    engine_stack_pointer_158 = &engine_data_18098bcb0;
+    engine_stack_pointer_158 = &engine_camera_status098bcb0;
     engine_stack_long_1b0 = 0;
     engine_stack_uint_1a0 = engine_stack_uint_1a0 & 0xffffffff00000000;
-    engine_stack_ptr_1b8 = &engine_data_18098bcb0;
+    engine_stack_ptr_1b8 = &engine_camera_status098bcb0;
     engine_stack_pointer_d0 = &engine_system_context_data;
     if (pengine_stack_uint_c8 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -25613,7 +25622,7 @@ LAB_18006650a:
     }
     pengine_stack_uint_c8 = (void*)0x0;
     engine_stack_uint_b8 = 0;
-    engine_stack_pointer_d0 = &engine_data_18098bcb0;
+    engine_stack_pointer_d0 = &engine_camera_status098bcb0;
     engine_stack_pointer_198 = &engine_system_context_data;
     if (engine_stack_long_190 != 0) {
                     // WARNING: Subroutine does not return
@@ -25621,7 +25630,7 @@ LAB_18006650a:
     }
     engine_stack_long_190 = 0;
     engine_stack_uint_180 = 0;
-    engine_stack_pointer_198 = &engine_data_18098bcb0;
+    engine_stack_pointer_198 = &engine_camera_status098bcb0;
   }
 LAB_180066971:
                     // WARNING: Subroutine does not return
@@ -25662,7 +25671,7 @@ LAB_180066bf4:
         engine_stack_value_88 = 0;
         engine_stack_pointer_98 = (void*)0x0;
         engine_stack_uint_90 = 0;
-        engine_temporary_pointer = (void*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
+        engine_temporary_pointer = (void*)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,0x13);
         *(uint8*)engine_temporary_pointer = 0;
         engine_stack_pointer_98 = engine_temporary_pointer;
         engine_temp_uint_4 = engine_call_resource_validator(engine_temporary_pointer);
@@ -25724,7 +25733,7 @@ LAB_180066bf4:
       if (engine_temp_int_6 < 0x10) {
         comparison_result_index = 0x10;
       }
-      engine_stack_pointer_98 = (void*)engine_call_memory_extender(_engine_data_18,(longlong)comparison_result_index,0x13);
+      engine_stack_pointer_98 = (void*)engine_call_memory_extender(_engine_camera_status,(longlong)comparison_result_index,0x13);
       *(uint8*)engine_stack_pointer_98 = 0;
       engine_temp_uint_4 = engine_call_resource_validator(engine_stack_pointer_98);
       engine_stack_value_88 = CONCAT44(engine_stack_value_88._4_4_,engine_temp_uint_4);
@@ -25787,7 +25796,7 @@ void engine_expand_data_structure_capacity(longlong *engine_data_structure_ptr,l
   engine_temporary_long = 0;
   if (engine_next_node_ptr < (void*)engine_data_structure_ptr[2]) {
     engine_data_structure_ptr[1] = (longlong)(engine_next_node_ptr + 4);
-    *engine_next_node_ptr = &engine_data_18098bcb0;
+    *engine_next_node_ptr = &engine_camera_status098bcb0;
     engine_next_node_ptr[1] = 0;
     *(uint32*)(engine_next_node_ptr + 2) = 0;
     *engine_next_node_ptr = &engine_system_context_data;
@@ -25812,12 +25821,12 @@ void engine_expand_data_structure_capacity(longlong *engine_data_structure_ptr,l
     engine_temp_long_6 = engine_temp_long_6 * 2;
     if (engine_temp_long_6 == 0) goto LAB_180066ec4;
   }
-  engine_temporary_long = engine_call_memory_extender(_engine_data_18,engine_temp_long_6 << 5,(char)engine_data_structure_ptr[3],engine_system_parameter_4,0xfffffffffffffffe);
+  engine_temporary_long = engine_call_memory_extender(_engine_camera_status,engine_temp_long_6 << 5,(char)engine_data_structure_ptr[3],engine_system_parameter_4,0xfffffffffffffffe);
   engine_next_node_ptr = (void*)engine_data_structure_ptr[1];
   engine_temp_long_3 = *engine_data_structure_ptr;
 LAB_180066ec4:
   structure_data_pointer = (void*)engine_handle_system_state(engine_temp_long_3,engine_next_node_ptr,engine_temporary_long);
-  *structure_data_pointer = &engine_data_18098bcb0;
+  *structure_data_pointer = &engine_camera_status098bcb0;
   structure_data_pointer[1] = 0;
   *(uint32*)(structure_data_pointer + 2) = 0;
   *structure_data_pointer = &engine_system_context_data;
@@ -26174,7 +26183,7 @@ void engine_unnamed_function_330(longlong engine_data_structure_ptr)
       engine_temp_uint_4 = _engine_data_40;
       if (*(longlong *)(lStackX_10 + 0x1c8) < 1) {
         engine_temporary_long = *(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20);
-        engine_temp_index = engine_call_memory_allocator(_engine_data_18,0x40,8,10);
+        engine_temp_index = engine_call_memory_allocator(_engine_camera_status,0x40,8,10);
         engine_stack_long_pointer_20 = (longlong *)&engine_stack_value_60;
         pengine_stack_uint_50 = &engine_base_data_offset_70;
         pengine_stack_uint_48 = &engine_base_data_offset_60;
@@ -26293,7 +26302,7 @@ void engine_unnamed_function_360(longlong *engine_data_structure_ptr)
     lStackX_8 = *(longlong *)(engine_temp_long_3 + 0x140);
     engine_temp_long_3 = *(longlong *)(engine_temp_long_3 + 0x1f0);
     if (engine_temp_long_4 - 2U < 2) {
-      pengine_temp_long_8 = (longlong *)engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,8,3);
+      pengine_temp_long_8 = (longlong *)engine_call_memory_allocator(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,8,3);
       *pengine_temp_long_8 = (longlong)&engine_base_data_offset_e0;
       *(bool *)(pengine_temp_long_8 + 1) = engine_temp_long_4 == 3;
     }
@@ -26519,7 +26528,7 @@ void engine_unnamed_function_400(longlong engine_data_structure_ptr,longlong eng
       engine_stack_uint_2c8 = engine_temp_uint_6;
       engine_unnamed_function_460(engine_data_structure_ptr + 0x330,aengine_stack_long_288,engine_temp_uint_8,engine_result_flag_ptr);
       *(void*)(aengine_stack_long_288[0] + 0x118) = 0;
-      pengine_stack_uint_268 = &engine_data_18098bcb0;
+      pengine_stack_uint_268 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
       engine_call_data_hasher(engine_stack_uint_48 ^ (ulonglong)aengine_stack_uint_2e8);
     }
@@ -26798,12 +26807,12 @@ engine_unnamed_function_460(longlong engine_data_structure_ptr,longlong *engine_
   if (engine_temp_long_3 == 0) {
     engine_unnamed_function_6510(engine_data_structure_ptr + MEMORY_OFFSET_0x20,&engine_param_5,*(uint32*)(engine_data_structure_ptr + 0x10),
                   *(uint32*)(engine_data_structure_ptr + 0x18),1);
-    engine_temp_long_3 = engine_call_memory_extender(_engine_data_18,0x128,*(uint8*)(engine_data_structure_ptr + 0x2c));
+    engine_temp_long_3 = engine_call_memory_extender(_engine_camera_status,0x128,*(uint8*)(engine_data_structure_ptr + 0x2c));
     engine_compress_data_buffer(engine_temp_long_3,engine_system_parameter_4);
     *(void*)(engine_temp_long_3 + 0x118) = 0;
     *(void*)(engine_temp_long_3 + 0x120) = 0;
     if ((char)engine_param_5 != '\0') {
-      engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,(ulonglong)engine_param_5._4_4_ * 8 + 8,8,
+      engine_temp_uint_4 = engine_call_memory_allocator(_engine_camera_status,(ulonglong)engine_param_5._4_4_ * 8 + 8,8,
                             *(uint8*)(engine_data_structure_ptr + 0x2c));
                     // WARNING: Subroutine does not return
       memset(engine_temp_uint_4,0,(ulonglong)engine_param_5._4_4_ * 8);
@@ -27075,7 +27084,7 @@ longlong engine_unnamed_function_490(longlong *engine_data_structure_ptr,longlon
     }
     else {
       if (engine_comparison_params == 1) {
-        engine_temporary_long = engine_call_memory_allocator(_engine_data_18,0x20,8,engine_network_flags);
+        engine_temporary_long = engine_call_memory_allocator(_engine_camera_status,0x20,8,engine_network_flags);
         engine_temp_long_2 = *engine_result_flag_ptr;
         *(void*)(engine_temporary_long + 0x10) = 0;
         *(code **)(engine_temporary_long + 0x18) = _guard_check_icall;
@@ -27110,7 +27119,7 @@ engine_compress_data_buffer(uint64_t *engine_data_structure_ptr,longlong engine_
 {
   void* engine_data_pointer;
   
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
   *engine_data_structure_ptr = &engine_base_data_offset_a8;
@@ -27131,7 +27140,7 @@ engine_compress_data_buffer(uint64_t *engine_data_structure_ptr,longlong engine_
 uint64_t * engine_unnamed_function_500(uint64_t *engine_data_structure_ptr)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
   *engine_data_structure_ptr = &engine_base_data_offset_a8;
@@ -27177,7 +27186,7 @@ void engine_unnamed_function_510(longlong engine_data_structure_ptr,longlong eng
 longlong engine_unnamed_function_520(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *(undefined **)(engine_data_structure_ptr + 8) = &engine_data_18098bcb0;
+  *(undefined **)(engine_data_structure_ptr + 8) = &engine_camera_status098bcb0;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x128,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -27190,7 +27199,7 @@ uint64_t *
 engine_decompress_data_buffer(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x118,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -27277,7 +27286,7 @@ void engine_unnamed_function_560(longlong engine_data_structure_ptr,longlong eng
                     // WARNING: Subroutine does not return
     memcpy(pengine_stack_uint_160,*(longlong *)(engine_data_structure_ptr + 8),engine_temporary_long - *(longlong *)(engine_data_structure_ptr + 8));
   }
-  engine_stack_pointer_168 = &engine_data_18098bcb0;
+  engine_stack_pointer_168 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_48 ^ (ulonglong)aengine_stack_value_198);
 }
@@ -27307,7 +27316,7 @@ void engine_unnamed_function_570(longlong engine_data_structure_ptr,longlong eng
     strcpy_s(*(void*)(engine_data_structure_ptr + 8),MEMORY_COMPARE_SIZE_0x100);
     return;
   }
-  engine_call_buffer_allocator(&engine_data_18098bc48,MEMORY_COMPARE_SIZE_0x100,engine_result_flag_ptr);
+  engine_call_buffer_allocator(&engine_camera_status098bc48,MEMORY_COMPARE_SIZE_0x100,engine_result_flag_ptr);
   *(uint32*)(engine_data_structure_ptr + 0x10) = 0;
   **(uint8**)(engine_data_structure_ptr + 8) = 0;
   return;
@@ -27318,7 +27327,7 @@ void engine_unnamed_function_570(longlong engine_data_structure_ptr,longlong eng
 longlong engine_unnamed_function_580(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *(undefined **)(engine_data_structure_ptr + 8) = &engine_data_18098bcb0;
+  *(undefined **)(engine_data_structure_ptr + 8) = &engine_camera_status098bcb0;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x130,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -27338,7 +27347,7 @@ void engine_unnamed_function_590(uint64_t *engine_data_structure_ptr,uint64 engi
   if ((code *)engine_data_structure_ptr[0x2b] != (code *)0x0) {
     (*(code *)engine_data_structure_ptr[0x2b])(engine_data_structure_ptr + 0x29,0,0);
   }
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -27349,7 +27358,7 @@ void engine_unnamed_function_590(uint64_t *engine_data_structure_ptr,uint64 engi
 void engine_unnamed_function_600(longlong engine_data_structure_ptr)
 
 {
-  *(undefined **)(engine_data_structure_ptr + 8) = &engine_data_18098bcb0;
+  *(undefined **)(engine_data_structure_ptr + 8) = &engine_camera_status098bcb0;
   return;
 }
 
@@ -27359,9 +27368,9 @@ uint64_t *
 engine_encrypt_data_stream(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bdc8;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status098bdc8;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x30,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -27584,7 +27593,7 @@ uint64_t * engine_unnamed_function_640(longlong *engine_data_structure_ptr)
             engine_temp_uint_4 = engine_temp_uint2;
             engine_temp_uint2 = engine_temp_uint_4 * 2;
           } while ((engine_temp_uint_4 & 0x7fffffffffffffff) <= engine_temp_uint_6);
-          current_data_pointer = (ulonglong *)engine_call_memory_extender(_engine_data_18,engine_temp_uint_4 * 0x20 + 0x1f,10);
+          current_data_pointer = (ulonglong *)engine_call_memory_extender(_engine_camera_status,engine_temp_uint_4 * 0x20 + 0x1f,10);
           if (current_data_pointer == (ulonglong *)0x0) {
             LOCK();
             engine_data_structure_ptr[7] = engine_data_structure_ptr[7] + -1;
@@ -27628,7 +27637,7 @@ uint64_t * engine_unnamed_function_640(longlong *engine_data_structure_ptr)
     }
   }
   engine_temp_byte17 = false;
-  next_data_pointer = (void*)engine_call_memory_extender(_engine_data_18,0x68,10);
+  next_data_pointer = (void*)engine_call_memory_extender(_engine_camera_status,0x68,10);
   engine_data_ptr1 = engine_data_ptr5;
   if (next_data_pointer != (void*)0x0) {
     next_data_pointer[1] = 0;
@@ -27768,10 +27777,10 @@ engine_decrypt_data_stream(uint64_t *engine_data_structure_ptr,uint64_t *engine_
 {
   code *presource_status_flag;
   
-  *engine_data_structure_ptr = &engine_data_180a21690;
-  *engine_data_structure_ptr = &engine_data_180a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
   *(uint32*)(engine_data_structure_ptr + 1) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bdc8;
+  *engine_data_structure_ptr = &engine_camera_status098bdc8;
   LOCK();
   *(uint8*)(engine_data_structure_ptr + 2) = 0;
   UNLOCK();
@@ -27874,7 +27883,7 @@ uint64_t * engine_unnamed_function_710(uint64_t *engine_data_structure_ptr,ulong
   }
   engine_data_structure_ptr[0x19] = 0;
   *(uint32*)(engine_data_structure_ptr + 0x1b) = 0;
-  engine_data_structure_ptr[0x18] = &engine_data_18098bcb0;
+  engine_data_structure_ptr[0x18] = &engine_camera_status098bcb0;
   engine_call_system_validator(engine_data_structure_ptr);
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0xe8);
@@ -27939,7 +27948,7 @@ void engine_unnamed_function_780(uint64 engine_data_structure_ptr,uint64 engine_
     }
     engine_stack_long_48 = 0;
     engine_stack_uint_38 = 0;
-    pengine_stack_uint_50 = &engine_data_18098bcb0;
+    pengine_stack_uint_50 = &engine_camera_status098bcb0;
   }
   engine_stack_pointer_70 = &engine_system_context_data;
   engine_stack_value_58 = 0;
@@ -28078,7 +28087,7 @@ LAB_180070a3f:
     if (engine_temp_int_4 < 0x10) {
       engine_temp_int_4 = 0x10;
     }
-    engine_data_ptr0 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)engine_temp_int_4,0x13);
+    engine_data_ptr0 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)engine_temp_int_4,0x13);
     *engine_data_ptr0 = 0;
     pengine_stack_uint_110 = engine_data_ptr0;
     engine_temp_index = engine_call_resource_validator(engine_data_ptr0);
@@ -28105,13 +28114,13 @@ LAB_180070a3f:
           if ((int)engine_temp_uint_6 < 0x10) {
             engine_temp_uint_6 = 0x10;
           }
-          engine_data_ptr0 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint_6,0x13);
+          engine_data_ptr0 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint_6,0x13);
           *engine_data_ptr0 = 0;
         }
         else {
           if (engine_temp_uint_6 <= engine_temp_uint4) goto LAB_180070b00;
           engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
-          engine_data_ptr0 = (uint8*)engine_update_system_data(_engine_data_18,engine_data_ptr0,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
+          engine_data_ptr0 = (uint8*)engine_update_system_data(_engine_camera_status,engine_data_ptr0,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
         }
         pengine_stack_uint_110 = engine_data_ptr0;
         engine_stack_uint_100._0_4_ = engine_call_resource_validator(engine_data_ptr0);
@@ -28131,7 +28140,7 @@ LAB_180070b00:
   }
   pengine_stack_uint_110 = (uint8*)0x0;
   engine_stack_uint_100 = (ulonglong)engine_stack_uint_100._4_4_ << 0x20;
-  pengine_stack_uint_118 = &engine_data_18098bcb0;
+  pengine_stack_uint_118 = &engine_camera_status098bcb0;
   pengine_stack_uint_d8 = &engine_system_context_data;
   if (engine_stack_long_d0 != 0) {
                     // WARNING: Subroutine does not return
@@ -28139,7 +28148,7 @@ LAB_180070b00:
   }
   engine_stack_long_d0 = 0;
   engine_stack_uint_c0 = 0;
-  pengine_stack_uint_d8 = &engine_data_18098bcb0;
+  pengine_stack_uint_d8 = &engine_camera_status098bcb0;
   engine_data_ptr8 = &engine_data_73;
   if (engine_stack_pointer_f0 != (void*)0x0) {
     engine_data_ptr8 = engine_stack_pointer_f0;
@@ -28184,7 +28193,7 @@ LAB_180070b00:
       if (engine_temp_int_4 < 0x10) {
         engine_temp_int_4 = 0x10;
       }
-      engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)engine_temp_int_4,0x13);
+      engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)engine_temp_int_4,0x13);
       *engine_stack_pointer_138 = 0;
       engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
       engine_stack_uint_128 = CONCAT44(engine_stack_uint_128._4_4_,engine_temp_uint64_value);
@@ -28192,7 +28201,7 @@ LAB_180070b00:
                     // WARNING: Subroutine does not return
     memcpy(engine_stack_pointer_138 + engine_stack_uint_130,engine_data_ptr8,(longlong)((int)engine_temp_long6 + 2));
   }
-  engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
+  engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,0x13);
   *engine_stack_pointer_138 = 0;
   engine_temp_index = engine_call_resource_validator(engine_stack_pointer_138);
   engine_stack_uint_128 = CONCAT44(engine_stack_uint_128._4_4_,engine_temp_index);
@@ -28201,7 +28210,7 @@ LAB_180070b00:
   engine_temp_uint_6 = 2;
   if (engine_stack_pointer_138 == (uint8*)0x0) {
     engine_stack_uint_130 = 1;
-    engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
+    engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,0x13);
     *engine_stack_pointer_138 = 0;
 LAB_180070db8:
     engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
@@ -28210,7 +28219,7 @@ LAB_180070db8:
   else if (engine_temp_index < 3) {
     engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
     engine_stack_uint_130 = 1;
-    engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,3,MEMORY_COMPARE_SIZE_0x10);
+    engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_138,3,MEMORY_COMPARE_SIZE_0x10);
     goto LAB_180070db8;
   }
   *(uint16*)(engine_stack_pointer_138 + engine_stack_uint_130) = 10;
@@ -28231,7 +28240,7 @@ LAB_180070db8:
             engine_temp_uint4 = 0x10;
           }
           engine_stack_uint_130 = engine_temp_uint_6;
-          engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint4,0x13);
+          engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint4,0x13);
           *engine_stack_pointer_138 = 0;
         }
         else {
@@ -28239,7 +28248,7 @@ LAB_180070db8:
           if (engine_temp_uint4 <= (uint)engine_stack_uint_128) goto LAB_180070e64;
           engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
           engine_stack_uint_130 = engine_temp_uint_6;
-          engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint4,MEMORY_COMPARE_SIZE_0x10);
+          engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_138,engine_temp_uint4,MEMORY_COMPARE_SIZE_0x10);
         }
         engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
         engine_stack_uint_128 = CONCAT44(engine_stack_uint_128._4_4_,engine_temp_uint64_value);
@@ -28253,7 +28262,7 @@ LAB_180070e64:
   }
   if (engine_stack_pointer_138 == (uint8*)0x0) {
     engine_stack_uint_130 = engine_temp_uint_6;
-    engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
+    engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,0x13);
     *engine_stack_pointer_138 = 0;
 LAB_180070ee8:
     engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
@@ -28262,7 +28271,7 @@ LAB_180070ee8:
   else if ((uint)engine_stack_uint_128 < 4) {
     engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
     engine_stack_uint_130 = engine_temp_uint_6;
-    engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,4,MEMORY_COMPARE_SIZE_0x10);
+    engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_138,4,MEMORY_COMPARE_SIZE_0x10);
     goto LAB_180070ee8;
   }
   *(uint16*)(engine_stack_pointer_138 + engine_stack_uint_130) = 0x3a;
@@ -28276,13 +28285,13 @@ LAB_180070ee8:
       if ((int)engine_temp_uint4 < 0x10) {
         engine_temp_uint4 = 0x10;
       }
-      engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint4,0x13);
+      engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint4,0x13);
       *engine_stack_pointer_138 = 0;
     }
     else {
       if (engine_temp_uint4 <= (uint)engine_stack_uint_128) goto LAB_180070f81;
       engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
-      engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint4,MEMORY_COMPARE_SIZE_0x10);
+      engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_138,engine_temp_uint4,MEMORY_COMPARE_SIZE_0x10);
     }
     engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
     engine_stack_uint_128 = CONCAT44(engine_stack_uint_128._4_4_,engine_temp_uint64_value);
@@ -28297,13 +28306,13 @@ LAB_180070f81:
       if ((int)engine_temp_index < 0x10) {
         engine_temp_index = 0x10;
       }
-      engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_index,0x13);
+      engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_index,0x13);
       *engine_stack_pointer_138 = 0;
     }
     else {
       if (engine_temp_index <= (uint)engine_stack_uint_128) goto LAB_180071000;
       engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
-      engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_index,MEMORY_COMPARE_SIZE_0x10);
+      engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_138,engine_temp_index,MEMORY_COMPARE_SIZE_0x10);
     }
     engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
     engine_stack_uint_128 = CONCAT44(engine_stack_uint_128._4_4_,engine_temp_uint64_value);
@@ -28329,13 +28338,13 @@ LAB_180071000:
           if ((int)engine_temp_uint_6 < 0x10) {
             engine_temp_uint_6 = 0x10;
           }
-          engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint_6,0x13);
+          engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint_6,0x13);
           *engine_stack_pointer_138 = 0;
         }
         else {
           if (engine_temp_uint_6 <= (uint)engine_stack_uint_128) goto LAB_1800710b8;
           engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
-          engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
+          engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_138,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
         }
         engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
         engine_stack_uint_128 = CONCAT44(engine_stack_uint_128._4_4_,engine_temp_uint64_value);
@@ -28352,13 +28361,13 @@ LAB_1800710b8:
       if ((int)engine_temp_uint_6 < 0x10) {
         engine_temp_uint_6 = 0x10;
       }
-      engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint_6,0x13);
+      engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint_6,0x13);
       *engine_stack_pointer_138 = 0;
     }
     else {
       if (engine_temp_uint_6 <= (uint)engine_stack_uint_128) goto LAB_18007113f;
       engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
-      engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
+      engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_138,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
     }
     engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
     engine_stack_uint_128 = CONCAT44(engine_stack_uint_128._4_4_,engine_temp_uint64_value);
@@ -28418,7 +28427,7 @@ LAB_18007113f:
     }
     engine_stack_long_d0 = 0;
     engine_stack_uint_c0 = 0;
-    pengine_stack_uint_d8 = &engine_data_18098bcb0;
+    pengine_stack_uint_d8 = &engine_camera_status098bcb0;
   }
   engine_data_ptr0 = pengine_stack_uint_110;
   engine_perform_system_validation(_engine_render_mode,5,0xffffffff00000000,&engine_base_data_offset_50);
@@ -28563,7 +28572,7 @@ LAB_18007113f:
     }
     pengine_stack_uint_110 = (uint8*)0x0;
     engine_stack_uint_100 = engine_stack_uint_100 & 0xffffffff00000000;
-    pengine_stack_uint_118 = &engine_data_18098bcb0;
+    pengine_stack_uint_118 = &engine_camera_status098bcb0;
     pengine_stack_uint_140 = &engine_system_context_data;
     if (engine_stack_pointer_138 != (uint8*)0x0) {
                     // WARNING: Subroutine does not return
@@ -28571,7 +28580,7 @@ LAB_18007113f:
     }
     engine_stack_pointer_138 = (uint8*)0x0;
     engine_stack_uint_128 = engine_stack_uint_128 & 0xffffffff00000000;
-    pengine_stack_uint_140 = &engine_data_18098bcb0;
+    pengine_stack_uint_140 = &engine_camera_status098bcb0;
     pengine_stack_uint_f8 = &engine_system_context_data;
     if (engine_stack_pointer_f0 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -28580,7 +28589,7 @@ LAB_18007113f:
 LAB_1800718e9:
     engine_stack_uint_e0 = 0;
     engine_stack_pointer_f0 = (void*)0x0;
-    pengine_stack_uint_f8 = &engine_data_18098bcb0;
+    pengine_stack_uint_f8 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
     engine_call_data_hasher(engine_stack_uint_48 ^ (ulonglong)aengine_stack_uint_188);
   }
@@ -28657,13 +28666,13 @@ void engine_unnamed_function_800(uint64 engine_data_structure_ptr,longlong engin
     }
     engine_stack_long_48 = 0;
     engine_stack_uint_38 = 0;
-    pengine_stack_uint_50 = &engine_data_18098bcb0;
+    pengine_stack_uint_50 = &engine_camera_status098bcb0;
   }
   engine_stack_pointer_90 = &engine_system_context_data;
   engine_stack_value_78 = 0;
   engine_stack_pointer_88 = (uint8*)0x0;
   engine_stack_value_80 = 0;
-  engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,0x12,0x13);
+  engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_camera_status,0x12,0x13);
   *engine_stack_pointer_88 = 0;
   engine_temp_uint_2 = engine_call_resource_validator(engine_stack_pointer_88);
   engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_2);
@@ -28676,7 +28685,7 @@ void engine_unnamed_function_800(uint64 engine_data_structure_ptr,longlong engin
   engine_stack_value_80 = 0x11;
   if (engine_stack_pointer_88 == (uint8*)0x0) {
     engine_stack_value_80 = 0x11;
-    engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,0x13,0x13);
+    engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_camera_status,0x13,0x13);
     *engine_stack_pointer_88 = 0;
 LAB_180071af3:
     engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
@@ -28684,7 +28693,7 @@ LAB_180071af3:
   }
   else if (engine_temp_uint_2 < 0x13) {
     engine_stack_value_80 = 0x11;
-    engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,0x13,MEMORY_COMPARE_SIZE_0x10,0x13);
+    engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_88,0x13,MEMORY_COMPARE_SIZE_0x10,0x13);
     goto LAB_180071af3;
   }
   *(uint16*)(engine_stack_pointer_88 + engine_stack_value_80) = 10;
@@ -28692,7 +28701,7 @@ LAB_180071af3:
   engine_temp_uint_2 = 0x13;
   if (engine_stack_pointer_88 == (uint8*)0x0) {
     engine_stack_value_80 = 0x12;
-    engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,0x14,0x13);
+    engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_camera_status,0x14,0x13);
     *engine_stack_pointer_88 = 0;
 LAB_180071b69:
     engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
@@ -28700,7 +28709,7 @@ LAB_180071b69:
   }
   else if ((uint)engine_stack_value_78 < 0x14) {
     engine_stack_value_80 = 0x12;
-    engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,0x14,MEMORY_COMPARE_SIZE_0x10,0x13);
+    engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_88,0x14,MEMORY_COMPARE_SIZE_0x10,0x13);
     goto LAB_180071b69;
   }
   *(uint16*)(engine_stack_pointer_88 + engine_stack_value_80) = 10;
@@ -28721,14 +28730,14 @@ LAB_180071b69:
             engine_temp_uint2 = 0x10;
           }
           engine_stack_value_80 = engine_temp_uint_2;
-          engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint2,0x13);
+          engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint2,0x13);
           *engine_stack_pointer_88 = 0;
         }
         else {
           engine_temp_uint1 = engine_stack_value_80;
           if (engine_temp_uint2 <= (uint)engine_stack_value_78) goto LAB_180071c1a;
           engine_stack_value_80 = engine_temp_uint_2;
-          engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint2,MEMORY_COMPARE_SIZE_0x10,0x13);
+          engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_88,engine_temp_uint2,MEMORY_COMPARE_SIZE_0x10,0x13);
         }
         engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
         engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
@@ -28742,7 +28751,7 @@ LAB_180071c1a:
   }
   if (engine_stack_pointer_88 == (uint8*)0x0) {
     engine_stack_value_80 = engine_temp_uint_2;
-    engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,0x15,0x13);
+    engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_camera_status,0x15,0x13);
     *engine_stack_pointer_88 = 0;
 LAB_180071c93:
     engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
@@ -28750,7 +28759,7 @@ LAB_180071c93:
   }
   else if ((uint)engine_stack_value_78 < 0x15) {
     engine_stack_value_80 = engine_temp_uint_2;
-    engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,0x15,MEMORY_COMPARE_SIZE_0x10,0x13);
+    engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_88,0x15,MEMORY_COMPARE_SIZE_0x10,0x13);
     goto LAB_180071c93;
   }
   *(uint16*)(engine_stack_pointer_88 + engine_stack_value_80) = 0x3a;
@@ -28764,12 +28773,12 @@ LAB_180071c93:
       if ((int)engine_temp_uint2 < 0x10) {
         engine_temp_uint2 = 0x10;
       }
-      engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint2,0x13);
+      engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint2,0x13);
       *engine_stack_pointer_88 = 0;
     }
     else {
       if (engine_temp_uint2 <= (uint)engine_stack_value_78) goto LAB_180071d1f;
-      engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint2,MEMORY_COMPARE_SIZE_0x10,0x13);
+      engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_88,engine_temp_uint2,MEMORY_COMPARE_SIZE_0x10,0x13);
     }
     engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
     engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
@@ -28784,12 +28793,12 @@ LAB_180071d1f:
       if ((int)engine_temp_uint1 < 0x10) {
         engine_temp_uint1 = 0x10;
       }
-      engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint1,0x13);
+      engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint1,0x13);
       *engine_stack_pointer_88 = 0;
     }
     else {
       if (engine_temp_uint1 <= (uint)engine_stack_value_78) goto LAB_180071d94;
-      engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint1,MEMORY_COMPARE_SIZE_0x10,0x13);
+      engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_88,engine_temp_uint1,MEMORY_COMPARE_SIZE_0x10,0x13);
     }
     engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
     engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
@@ -28814,12 +28823,12 @@ LAB_180071d94:
           if ((int)engine_temp_uint_2 < 0x10) {
             engine_temp_uint_2 = 0x10;
           }
-          engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint_2,0x13);
+          engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint_2,0x13);
           *engine_stack_pointer_88 = 0;
         }
         else {
           if (engine_temp_uint_2 <= (uint)engine_stack_value_78) goto LAB_180071e34;
-          engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint_2,MEMORY_COMPARE_SIZE_0x10,0x13);
+          engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_88,engine_temp_uint_2,MEMORY_COMPARE_SIZE_0x10,0x13);
         }
         engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
         engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
@@ -28835,12 +28844,12 @@ LAB_180071e34:
       if ((int)engine_temp_uint1 < 0x10) {
         engine_temp_uint1 = 0x10;
       }
-      engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint1,0x13);
+      engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint1,0x13);
       *engine_stack_pointer_88 = 0;
     }
     else {
       if (engine_temp_uint1 <= (uint)engine_stack_value_78) goto LAB_180071eb0;
-      engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint1,MEMORY_COMPARE_SIZE_0x10,0x13);
+      engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_camera_status,engine_stack_pointer_88,engine_temp_uint1,MEMORY_COMPARE_SIZE_0x10,0x13);
     }
     engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
     engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
@@ -28872,7 +28881,7 @@ LAB_180071eb0:
   if (engine_stack_pointer_88 == (uint8*)0x0) {
     engine_stack_pointer_88 = (uint8*)0x0;
     engine_stack_value_78 = engine_stack_value_78 & 0xffffffff00000000;
-    engine_stack_pointer_90 = &engine_data_18098bcb0;
+    engine_stack_pointer_90 = &engine_camera_status098bcb0;
     engine_stack_pointer_70 = &engine_system_context_data;
     if (engine_temp_uint_ptr_9 == (void*)0x0) {
       return;
@@ -28985,7 +28994,7 @@ LAB_180072120:
     if (comparison_result_index < 0x10) {
       comparison_result_index = 0x10;
     }
-    engine_data_ptr0 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)comparison_result_index,0x13);
+    engine_data_ptr0 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)comparison_result_index,0x13);
     *engine_data_ptr0 = 0;
     pengine_stack_uint_108 = engine_data_ptr0;
     engine_temp_uint_4 = engine_call_resource_validator(engine_data_ptr0);
@@ -29012,13 +29021,13 @@ LAB_180072120:
           if ((int)engine_temp_uint_6 < 0x10) {
             engine_temp_uint_6 = 0x10;
           }
-          engine_data_ptr0 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint_6,0x13);
+          engine_data_ptr0 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint_6,0x13);
           *engine_data_ptr0 = 0;
         }
         else {
           if (engine_temp_uint_6 <= engine_temp_uint6) goto LAB_1800721e1;
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
-          engine_data_ptr0 = (uint8*)engine_update_system_data(_engine_data_18,engine_data_ptr0,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
+          engine_data_ptr0 = (uint8*)engine_update_system_data(_engine_camera_status,engine_data_ptr0,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
         }
         pengine_stack_uint_108 = engine_data_ptr0;
         engine_stack_uint_f8._0_4_ = engine_call_resource_validator(engine_data_ptr0);
@@ -29037,7 +29046,7 @@ LAB_1800721e1:
   }
   pengine_stack_uint_108 = (uint8*)0x0;
   engine_stack_uint_f8 = (ulonglong)engine_stack_uint_f8._4_4_ << 0x20;
-  pengine_stack_uint_110 = &engine_data_18098bcb0;
+  pengine_stack_uint_110 = &engine_camera_status098bcb0;
   engine_stack_pointer_f0 = &engine_system_context_data;
   if (engine_stack_long_e8 != 0) {
                     // WARNING: Subroutine does not return
@@ -29045,7 +29054,7 @@ LAB_1800721e1:
   }
   engine_stack_long_e8 = 0;
   engine_stack_uint_d8 = 0;
-  engine_stack_pointer_f0 = &engine_data_18098bcb0;
+  engine_stack_pointer_f0 = &engine_camera_status098bcb0;
   engine_data_ptr5 = &engine_data_73;
   if (engine_stack_param_a0 != (void*)0x0) {
     engine_data_ptr5 = engine_stack_param_a0;
@@ -29109,14 +29118,14 @@ LAB_1800722f5:
         }
         engine_stack_long_e8 = 0;
         engine_stack_uint_d8 = 0;
-        engine_stack_pointer_f0 = &engine_data_18098bcb0;
+        engine_stack_pointer_f0 = &engine_camera_status098bcb0;
       }
       engine_data_ptr0 = pengine_stack_uint_108;
       engine_stack_pointer_138 = &engine_system_context_data;
       engine_stack_uint_120 = 0;
       pengine_stack_uint_130 = (uint8*)0x0;
       engine_stack_uint_128 = 0;
-      pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_data_18,0x15,0x13);
+      pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_camera_status,0x15,0x13);
       *pengine_stack_uint_130 = 0;
       engine_temp_uint_6 = engine_call_resource_validator(pengine_stack_uint_130);
       engine_stack_uint_120 = CONCAT44(engine_stack_uint_120._4_4_,engine_temp_uint_6);
@@ -29130,7 +29139,7 @@ LAB_1800722f5:
       engine_stack_uint_128 = 0x14;
       if (pengine_stack_uint_130 == (uint8*)0x0) {
         engine_stack_uint_128 = 0x14;
-        pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_data_18,0x16,0x13);
+        pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_camera_status,0x16,0x13);
         *pengine_stack_uint_130 = 0;
 LAB_180072521:
         engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
@@ -29139,7 +29148,7 @@ LAB_180072521:
       else if (engine_temp_uint_6 < 0x16) {
         pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
         engine_stack_uint_128 = 0x14;
-        pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,0x16,MEMORY_COMPARE_SIZE_0x10);
+        pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_camera_status,pengine_stack_uint_130,0x16,MEMORY_COMPARE_SIZE_0x10);
         goto LAB_180072521;
       }
       *(uint16*)(pengine_stack_uint_130 + engine_stack_uint_128) = 10;
@@ -29147,7 +29156,7 @@ LAB_180072521:
       engine_temp_uint_6 = 0x16;
       if (pengine_stack_uint_130 == (uint8*)0x0) {
         engine_stack_uint_128 = 0x15;
-        pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_data_18,0x17,0x13);
+        pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_camera_status,0x17,0x13);
         *pengine_stack_uint_130 = 0;
 LAB_1800725ac:
         engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
@@ -29156,7 +29165,7 @@ LAB_1800725ac:
       else if ((uint)engine_stack_uint_120 < 0x17) {
         pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
         engine_stack_uint_128 = 0x15;
-        pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,0x17,MEMORY_COMPARE_SIZE_0x10);
+        pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_camera_status,pengine_stack_uint_130,0x17,MEMORY_COMPARE_SIZE_0x10);
         goto LAB_1800725ac;
       }
       *(uint16*)(pengine_stack_uint_130 + engine_stack_uint_128) = 10;
@@ -29177,7 +29186,7 @@ LAB_1800725ac:
                 engine_temp_uint6 = 0x10;
               }
               engine_stack_uint_128 = engine_temp_uint_6;
-              pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint6,0x13);
+              pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint6,0x13);
               *pengine_stack_uint_130 = 0;
             }
             else {
@@ -29185,7 +29194,7 @@ LAB_1800725ac:
               if (engine_temp_uint6 <= (uint)engine_stack_uint_120) goto LAB_180072662;
               pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
               engine_stack_uint_128 = engine_temp_uint_6;
-              pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint6,MEMORY_COMPARE_SIZE_0x10);
+              pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_camera_status,pengine_stack_uint_130,engine_temp_uint6,MEMORY_COMPARE_SIZE_0x10);
             }
             engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
             engine_stack_uint_120 = CONCAT44(engine_stack_uint_120._4_4_,engine_temp_uint64_value);
@@ -29199,7 +29208,7 @@ LAB_180072662:
       }
       if (pengine_stack_uint_130 == (uint8*)0x0) {
         engine_stack_uint_128 = engine_temp_uint_6;
-        pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_data_18,0x18,0x13);
+        pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_camera_status,0x18,0x13);
         *pengine_stack_uint_130 = 0;
 LAB_1800726e7:
         engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
@@ -29208,7 +29217,7 @@ LAB_1800726e7:
       else if ((uint)engine_stack_uint_120 < 0x18) {
         pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
         engine_stack_uint_128 = engine_temp_uint_6;
-        pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,0x18,MEMORY_COMPARE_SIZE_0x10);
+        pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_camera_status,pengine_stack_uint_130,0x18,MEMORY_COMPARE_SIZE_0x10);
         goto LAB_1800726e7;
       }
       *(uint16*)(pengine_stack_uint_130 + engine_stack_uint_128) = 0x3a;
@@ -29222,13 +29231,13 @@ LAB_1800726e7:
           if ((int)engine_temp_uint6 < 0x10) {
             engine_temp_uint6 = 0x10;
           }
-          pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint6,0x13);
+          pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint6,0x13);
           *pengine_stack_uint_130 = 0;
         }
         else {
           if (engine_temp_uint6 <= (uint)engine_stack_uint_120) goto LAB_180072780;
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
-          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint6,MEMORY_COMPARE_SIZE_0x10);
+          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_camera_status,pengine_stack_uint_130,engine_temp_uint6,MEMORY_COMPARE_SIZE_0x10);
         }
         engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
         engine_stack_uint_120 = CONCAT44(engine_stack_uint_120._4_4_,engine_temp_uint64_value);
@@ -29243,13 +29252,13 @@ LAB_180072780:
           if ((int)engine_temp_uint_4 < 0x10) {
             engine_temp_uint_4 = 0x10;
           }
-          pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint_4,0x13);
+          pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint_4,0x13);
           *pengine_stack_uint_130 = 0;
         }
         else {
           if (engine_temp_uint_4 <= (uint)engine_stack_uint_120) goto LAB_1800727ff;
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
-          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint_4,MEMORY_COMPARE_SIZE_0x10);
+          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_camera_status,pengine_stack_uint_130,engine_temp_uint_4,MEMORY_COMPARE_SIZE_0x10);
         }
         engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
         engine_stack_uint_120 = CONCAT44(engine_stack_uint_120._4_4_,engine_temp_uint64_value);
@@ -29274,13 +29283,13 @@ LAB_1800727ff:
               if ((int)engine_temp_uint_6 < 0x10) {
                 engine_temp_uint_6 = 0x10;
               }
-              pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint_6,0x13);
+              pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint_6,0x13);
               *pengine_stack_uint_130 = 0;
             }
             else {
               if (engine_temp_uint_6 <= (uint)engine_stack_uint_120) goto LAB_1800728ad;
               pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
-              pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
+              pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_camera_status,pengine_stack_uint_130,engine_temp_uint_6,MEMORY_COMPARE_SIZE_0x10);
             }
             engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
             engine_stack_uint_120 = CONCAT44(engine_stack_uint_120._4_4_,engine_temp_uint64_value);
@@ -29297,13 +29306,13 @@ LAB_1800728ad:
           if ((int)engine_temp_uint_8 < 0x10) {
             engine_temp_uint_8 = 0x10;
           }
-          pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint_8,0x13);
+          pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint_8,0x13);
           *pengine_stack_uint_130 = 0;
         }
         else {
           if (engine_temp_uint_8 <= (uint)engine_stack_uint_120) goto LAB_180072934;
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
-          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint_8,MEMORY_COMPARE_SIZE_0x10);
+          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_camera_status,pengine_stack_uint_130,engine_temp_uint_8,MEMORY_COMPARE_SIZE_0x10);
         }
         engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
         engine_stack_uint_120 = CONCAT44(engine_stack_uint_120._4_4_,engine_temp_uint64_value);
@@ -29318,13 +29327,13 @@ LAB_180072934:
           if ((int)engine_temp_uint_4 < 0x10) {
             engine_temp_uint_4 = 0x10;
           }
-          pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint_4,0x13);
+          pengine_stack_uint_130 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)(int)engine_temp_uint_4,0x13);
           *pengine_stack_uint_130 = 0;
         }
         else {
           if (engine_temp_uint_4 <= (uint)engine_stack_uint_120) goto LAB_1800729bd;
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
-          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_data_18,pengine_stack_uint_130,engine_temp_uint_4,MEMORY_COMPARE_SIZE_0x10);
+          pengine_stack_uint_130 = (uint8*)engine_update_system_data(_engine_camera_status,pengine_stack_uint_130,engine_temp_uint_4,MEMORY_COMPARE_SIZE_0x10);
         }
         engine_temp_uint64_value = engine_call_resource_validator(pengine_stack_uint_130);
         engine_stack_uint_120 = CONCAT44(engine_stack_uint_120._4_4_,engine_temp_uint64_value);
@@ -29382,7 +29391,7 @@ LAB_1800729bd:
           engine_stack_uint_b8 = 0;
           pengine_stack_uint_c8 = (void*)0x0;
           engine_stack_uint_c0 = 0;
-          engine_data_ptr3 = (void*)engine_call_memory_extender(_engine_data_18,0x34,0x13);
+          engine_data_ptr3 = (void*)engine_call_memory_extender(_engine_camera_status,0x34,0x13);
           *(uint8*)engine_data_ptr3 = 0;
           pengine_stack_uint_c8 = engine_data_ptr3;
           engine_temp_uint64_value = engine_call_resource_validator(engine_data_ptr3);
@@ -29418,7 +29427,7 @@ LAB_1800729bd:
           }
           pengine_stack_uint_c8 = (void*)0x0;
           engine_stack_uint_b8 = engine_stack_uint_b8 & 0xffffffff00000000;
-          engine_stack_pointer_d0 = &engine_data_18098bcb0;
+          engine_stack_pointer_d0 = &engine_camera_status098bcb0;
         }
         if ((engine_temp_uint_6 & 1) != 0) {
           engine_stack_uint_114 = engine_temp_uint_6 & 0xfffffffe;
@@ -29429,7 +29438,7 @@ LAB_1800729bd:
           }
           engine_stack_long_78 = 0;
           engine_stack_uint_68 = 0;
-          pengine_stack_value_80 = &engine_data_18098bcb0;
+          pengine_stack_value_80 = &engine_camera_status098bcb0;
         }
         pengine_stack_value_148 = &engine_data_73;
         if (engine_data_ptr0 != (void*)0x0) {
@@ -29443,7 +29452,7 @@ LAB_1800729bd:
         }
         engine_stack_long_e8 = 0;
         engine_stack_uint_d8 = 0;
-        engine_stack_pointer_f0 = &engine_data_18098bcb0;
+        engine_stack_pointer_f0 = &engine_camera_status098bcb0;
       }
       engine_data_ptr5 = &engine_data_73;
       if (engine_stack_param_a0 != (void*)0x0) {
@@ -29542,7 +29551,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
   engine_stack_uint_d8 = 0;
   engine_stack_pointer_e8 = (uint16*)0x0;
   engine_stack_uint_e0 = 0;
-  engine_stack_pointer_e8 = (uint16*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
+  engine_stack_pointer_e8 = (uint16*)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,0x13);
   *(uint8*)engine_stack_pointer_e8 = 0;
   engine_temporary_uint = engine_call_resource_validator(engine_stack_pointer_e8);
   engine_stack_uint_d8 = CONCAT44(engine_stack_uint_d8._4_4_,engine_temporary_uint);
@@ -29555,7 +29564,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
   engine_stack_uint_c0 = 0;
   engine_unnamed_function_5100(_engine_data_38,&engine_stack_pointer_68);
   if (engine_stack_pointer_68 != pengine_stack_uint_60) {
-    engine_handle_input_device(&engine_stack_pointer_f0,&engine_data_1809fe62c,&engine_base_data_offset_c0);
+    engine_handle_input_device(&engine_stack_pointer_f0,&engine_camera_status09fe62c,&engine_base_data_offset_c0);
     temp_data_pointer = engine_temporary_pointer;
     engine_data_ptr2 = engine_temporary_pointer;
     if ((longlong)pengine_stack_uint_60 - (longlong)engine_stack_pointer_68 >> 5 != 0) {
@@ -29564,7 +29573,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
         if (*(undefined **)((longlong)(temp_data_pointer + 1) + (longlong)engine_stack_pointer_68) != (void*)0x0) {
           engine_data_ptr3 = *(undefined **)((longlong)(temp_data_pointer + 1) + (longlong)engine_stack_pointer_68);
         }
-        engine_handle_input_device(&engine_stack_pointer_f0,&engine_data_1809fe62c,engine_data_ptr3);
+        engine_handle_input_device(&engine_stack_pointer_f0,&engine_camera_status09fe62c,engine_data_ptr3);
         engine_temp_uint1 = (int)engine_data_ptr2 + 1;
         temp_data_pointer = temp_data_pointer + 4;
         engine_data_ptr2 = (void*)(ulonglong)engine_temp_uint1;
@@ -29574,7 +29583,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
     engine_handle_input_device(&engine_stack_pointer_f0,&engine_base_data_offset_40,&engine_base_data_zero);
     engine_unnamed_function_770(&pengine_stack_uint_110);
     if (engine_stack_int_100 != 0) {
-      engine_handle_input_device(&engine_stack_pointer_f0,&engine_data_1809fe62c,&engine_base_data_offset_48);
+      engine_handle_input_device(&engine_stack_pointer_f0,&engine_camera_status09fe62c,&engine_base_data_offset_48);
       temp_data_pointer = (void*)&engine_data_73;
       if (pengine_stack_uint_108 != (void*)0x0) {
         temp_data_pointer = pengine_stack_uint_108;
@@ -29589,7 +29598,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
     }
     pengine_stack_uint_108 = (void*)0x0;
     engine_stack_uint_f8 = (ulonglong)engine_stack_uint_f8._4_4_ << 0x20;
-    pengine_stack_uint_110 = &engine_data_18098bcb0;
+    pengine_stack_uint_110 = &engine_camera_status098bcb0;
   }
   engine_temp_long_4 = engine_unnamed_function_5340(&pengine_stack_uint_110,engine_result_flag_ptr[1]);
   engine_stack_uint_c0 = *(uint32*)(engine_temp_long_4 + 0x10);
@@ -29607,20 +29616,20 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
   }
   pengine_stack_uint_108 = (void*)0x0;
   engine_stack_uint_f8 = engine_stack_uint_f8 & 0xffffffff00000000;
-  pengine_stack_uint_110 = &engine_data_18098bcb0;
+  pengine_stack_uint_110 = &engine_camera_status098bcb0;
   engine_handle_input_device(&engine_stack_pointer_f0,&engine_base_data_offset_a8,*(uint32*)*engine_result_flag_ptr,
                 *(void*)((uint32*)*engine_result_flag_ptr + 4));
-  engine_handle_input_device(&engine_stack_pointer_f0,&engine_data_1809fe62c,&engine_base_data_offset_d8);
+  engine_handle_input_device(&engine_stack_pointer_f0,&engine_camera_status09fe62c,&engine_base_data_offset_d8);
   engine_data_ptr4 = &engine_data_73;
   if (engine_data_ptr3 != (void*)0x0) {
     engine_data_ptr4 = engine_data_ptr3;
   }
-  engine_handle_input_device(&engine_stack_pointer_f0,&engine_data_1809fe62c,engine_data_ptr4);
+  engine_handle_input_device(&engine_stack_pointer_f0,&engine_camera_status09fe62c,engine_data_ptr4);
   engine_data_ptr0 = (uint16*)&engine_data_73;
   if (engine_stack_pointer_e8 != (uint16*)0x0) {
     engine_data_ptr0 = engine_stack_pointer_e8;
   }
-  engine_call_buffer_manager(_engine_render_mode,5,0xffffffff00000000,3,&engine_data_1809fe62c,engine_data_ptr0);
+  engine_call_buffer_manager(_engine_render_mode,5,0xffffffff00000000,3,&engine_camera_status09fe62c,engine_data_ptr0);
   engine_call_memory_compactor();
   engine_temp_long_4 = _engine_data_70;
   if (_engine_data_70 == 0) {
@@ -29629,7 +29638,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
     engine_stack_uint_f8 = 0;
     pengine_stack_uint_108 = (void*)0x0;
     engine_stack_int_100 = 0;
-    temp_data_pointer = (void*)engine_call_memory_extender(_engine_data_18,0x34,0x13);
+    temp_data_pointer = (void*)engine_call_memory_extender(_engine_camera_status,0x34,0x13);
     *(uint8*)temp_data_pointer = 0;
     pengine_stack_uint_108 = temp_data_pointer;
     engine_temporary_uint = engine_call_resource_validator(temp_data_pointer);
@@ -29661,7 +29670,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
       if (engine_temp_int_2 < 0x10) {
         engine_temp_int_2 = 0x10;
       }
-      engine_temporary_pointer = (void*)engine_call_memory_extender(_engine_data_18,(longlong)engine_temp_int_2,0x13);
+      engine_temporary_pointer = (void*)engine_call_memory_extender(_engine_camera_status,(longlong)engine_temp_int_2,0x13);
       *(uint8*)engine_temporary_pointer = 0;
       pengine_stack_uint_a8 = engine_temporary_pointer;
       engine_temporary_uint = engine_call_resource_validator(engine_temporary_pointer);
@@ -29693,7 +29702,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
     if (engine_temp_uint5 < 0x10) {
       engine_temp_uint1 = 0x10;
     }
-    next_data_pointer = (uint8*)engine_call_memory_extender(_engine_data_18,engine_temp_uint1,0x13);
+    next_data_pointer = (uint8*)engine_call_memory_extender(_engine_camera_status,engine_temp_uint1,0x13);
     *next_data_pointer = 0;
     engine_stack_pointer_88 = next_data_pointer;
     engine_temporary_uint = engine_call_resource_validator(next_data_pointer);
@@ -29712,7 +29721,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
     }
     pengine_stack_uint_108 = (void*)0x0;
     engine_stack_uint_f8 = engine_stack_uint_f8 & 0xffffffff00000000;
-    pengine_stack_uint_110 = &engine_data_18098bcb0;
+    pengine_stack_uint_110 = &engine_camera_status098bcb0;
     engine_temp_uint1 = engine_temp_uint5;
   }
   if ((engine_temp_uint1 & 1) != 0) {
@@ -29724,7 +29733,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
     }
     pengine_stack_uint_a8 = (void*)0x0;
     engine_stack_uint_98 = engine_stack_uint_98 & 0xffffffff00000000;
-    engine_stack_pointer_b0 = &engine_data_18098bcb0;
+    engine_stack_pointer_b0 = &engine_camera_status098bcb0;
   }
   engine_data_ptr4 = &engine_data_73;
   if (engine_data_ptr3 != (void*)0x0) {
@@ -29745,7 +29754,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
   if (engine_stack_pointer_88 == (uint8*)0x0) {
     engine_stack_pointer_88 = (uint8*)0x0;
     engine_stack_value_78 = engine_stack_value_78 & 0xffffffff00000000;
-    engine_stack_pointer_90 = &engine_data_18098bcb0;
+    engine_stack_pointer_90 = &engine_camera_status098bcb0;
     for (engine_temporary_pointer = engine_stack_pointer_68; engine_temporary_pointer != pengine_stack_uint_60; engine_temporary_pointer = engine_temporary_pointer + 4) {
       (**(code **)*engine_temporary_pointer)(engine_temporary_pointer,0);
     }
@@ -29760,7 +29769,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
     }
     pengine_stack_uint_c8 = (void*)0x0;
     engine_stack_uint_b8 = engine_stack_uint_b8 & 0xffffffff00000000;
-    engine_stack_pointer_d0 = &engine_data_18098bcb0;
+    engine_stack_pointer_d0 = &engine_camera_status098bcb0;
     engine_stack_pointer_f0 = &engine_system_context_data;
     if (engine_stack_pointer_e8 == (uint16*)0x0) {
       return engine_stack_char_x10 != '\0';
@@ -29792,7 +29801,7 @@ void engine_unnamed_function_840(uint64 engine_data_structure_ptr,uint64 engine_
     engine_stack_array_18[0] = 0xffff0000;
     engine_process_system_configuration(&pengine_stack_uint_30,engine_result_flag_ptr);
     engine_data_pointer = *(undefined **)*_engine_system_flags;
-    if (engine_data_pointer == &engine_data_18098bb88) {
+    if (engine_data_pointer == &engine_camera_status098bb88) {
       engine_temp_char_flag = *(int *)(_engine_data_c8 + 0xc40) != 0;
     }
     else {
@@ -29831,7 +29840,7 @@ void engine_unnamed_function_850(uint64 engine_data_structure_ptr,uint64 engine_
     engine_stack_array_18[0] = 0xff00ff00;
     engine_process_system_configuration(&pengine_stack_uint_30,engine_result_flag_ptr);
     engine_data_pointer = *(undefined **)*_engine_system_flags;
-    if (engine_data_pointer == &engine_data_18098bb88) {
+    if (engine_data_pointer == &engine_camera_status098bb88) {
       engine_temp_char_flag = *(int *)(_engine_data_c8 + 0xc40) != 0;
     }
     else {
@@ -29870,7 +29879,7 @@ void engine_unnamed_function_860(uint64 engine_data_structure_ptr,uint32_t engin
     engine_stack_uint_array_20[0] = engine_result_flag_ptr;
     engine_process_system_configuration(&pengine_stack_uint_30,engine_comparison_params);
     engine_data_pointer = *(undefined **)*_engine_system_flags;
-    if (engine_data_pointer == &engine_data_18098bb88) {
+    if (engine_data_pointer == &engine_camera_status098bb88) {
       engine_temp_char_flag = *(int *)(_engine_data_c8 + 0xc40) != 0;
     }
     else {
@@ -29968,7 +29977,7 @@ void engine_unnamed_function_870(uint64_t *engine_data_structure_ptr)
   }
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 3) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -30777,12 +30786,12 @@ void engine_unnamed_function_940(longlong *engine_data_structure_ptr,longlong en
             memory_allocation_result = engine_temp_long_7;
           }
           else {
-            memory_allocation_result = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)(pengine_temp_long2 + 2) * 4,4);
+            memory_allocation_result = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)(pengine_temp_long2 + 2) * 4,4);
             engine_temp_uint_6 = (ulonglong)*(ushort *)(pengine_temp_long2 + 2);
           }
           pengine_temp_long2[1] = memory_allocation_result;
           if (engine_temp_uint_6 != 0) {
-            engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_6 << 4,4);
+            engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_6 << 4,4);
           }
           *pengine_temp_long2 = engine_temp_long_7;
                     // WARNING: Subroutine does not return
@@ -30812,12 +30821,12 @@ void engine_unnamed_function_940(longlong *engine_data_structure_ptr,longlong en
             memory_allocation_result = engine_temp_long_7;
           }
           else {
-            memory_allocation_result = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)(engine_temp_long0 + 0x22) * 4,4);
+            memory_allocation_result = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)(engine_temp_long0 + 0x22) * 4,4);
             engine_temp_uint_6 = (ulonglong)*(ushort *)(engine_temp_long0 + 0x22);
           }
           *(longlong *)(engine_temp_long0 + 0x1a) = memory_allocation_result;
           if (engine_temp_uint_6 != 0) {
-            engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_6 << 4,4);
+            engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_6 << 4,4);
           }
           *(longlong *)(engine_temp_long0 + 0x12) = engine_temp_long_7;
                     // WARNING: Subroutine does not return
@@ -30850,13 +30859,13 @@ void engine_unnamed_function_940(longlong *engine_data_structure_ptr,longlong en
           memory_allocation_result = engine_temp_long_7;
         }
         else {
-          memory_allocation_result = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)((longlong)engine_data_structure_ptr + 0x62) * 4,
+          memory_allocation_result = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)((longlong)engine_data_structure_ptr + 0x62) * 4,
                                 4);
           engine_temp_uint_6 = (ulonglong)*(ushort *)((longlong)engine_data_structure_ptr + 0x62);
         }
         *(longlong *)((longlong)engine_data_structure_ptr + 0x5a) = memory_allocation_result;
         if (engine_temp_uint_6 != 0) {
-          engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_6 << 4,4);
+          engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_6 << 4,4);
         }
         *(longlong *)((longlong)engine_data_structure_ptr + 0x52) = engine_temp_long_7;
                     // WARNING: Subroutine does not return
@@ -30882,12 +30891,12 @@ void engine_unnamed_function_940(longlong *engine_data_structure_ptr,longlong en
       memory_allocation_result = engine_temp_long_7;
     }
     else {
-      memory_allocation_result = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)(engine_data_structure_ptr + 10) * 4,4);
+      memory_allocation_result = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)(engine_data_structure_ptr + 10) * 4,4);
       engine_temp_uint_6 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 10);
     }
     engine_data_structure_ptr[9] = memory_allocation_result;
     if (engine_temp_uint_6 != 0) {
-      engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_6 << 4,4);
+      engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_6 << 4,4);
     }
     engine_data_structure_ptr[8] = engine_temp_long_7;
                     // WARNING: Subroutine does not return
@@ -30957,12 +30966,12 @@ void engine_unnamed_function_952(longlong *engine_data_structure_ptr)
             memory_allocation_result = engine_temp_long_7;
           }
           else {
-            memory_allocation_result = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)(pengine_temp_long2 + 2) * 4,4);
+            memory_allocation_result = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)(pengine_temp_long2 + 2) * 4,4);
             engine_temp_uint_6 = (ulonglong)*(ushort *)(pengine_temp_long2 + 2);
           }
           pengine_temp_long2[1] = memory_allocation_result;
           if (engine_temp_uint_6 != 0) {
-            engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_6 << 4,4);
+            engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_6 << 4,4);
           }
           *pengine_temp_long2 = engine_temp_long_7;
                     // WARNING: Subroutine does not return
@@ -30992,12 +31001,12 @@ void engine_unnamed_function_952(longlong *engine_data_structure_ptr)
             memory_allocation_result = engine_temp_long_7;
           }
           else {
-            memory_allocation_result = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)(engine_temp_long0 + 0x22) * 4,4);
+            memory_allocation_result = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)(engine_temp_long0 + 0x22) * 4,4);
             engine_temp_uint_6 = (ulonglong)*(ushort *)(engine_temp_long0 + 0x22);
           }
           *(longlong *)(engine_temp_long0 + 0x1a) = memory_allocation_result;
           if (engine_temp_uint_6 != 0) {
-            engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_6 << 4,4);
+            engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_6 << 4,4);
           }
           *(longlong *)(engine_temp_long0 + 0x12) = engine_temp_long_7;
                     // WARNING: Subroutine does not return
@@ -31031,13 +31040,13 @@ void engine_unnamed_function_952(longlong *engine_data_structure_ptr)
           memory_allocation_result = engine_temp_long_7;
         }
         else {
-          memory_allocation_result = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)((longlong)engine_data_structure_ptr + 0x62) * 4,
+          memory_allocation_result = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)((longlong)engine_data_structure_ptr + 0x62) * 4,
                                 4);
           engine_temp_uint_6 = (ulonglong)*(ushort *)((longlong)engine_data_structure_ptr + 0x62);
         }
         *(longlong *)((longlong)engine_data_structure_ptr + 0x5a) = memory_allocation_result;
         if (engine_temp_uint_6 != 0) {
-          engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_6 << 4,4);
+          engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_6 << 4,4);
         }
         *(longlong *)((longlong)engine_data_structure_ptr + 0x52) = engine_temp_long_7;
                     // WARNING: Subroutine does not return
@@ -31063,12 +31072,12 @@ void engine_unnamed_function_952(longlong *engine_data_structure_ptr)
       memory_allocation_result = engine_temp_long_7;
     }
     else {
-      memory_allocation_result = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)(engine_data_structure_ptr + 10) * 4,4);
+      memory_allocation_result = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)(engine_data_structure_ptr + 10) * 4,4);
       engine_temp_uint_6 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 10);
     }
     engine_data_structure_ptr[9] = memory_allocation_result;
     if (engine_temp_uint_6 != 0) {
-      engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_6 << 4,4);
+      engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_6 << 4,4);
     }
     engine_data_structure_ptr[8] = engine_temp_long_7;
                     // WARNING: Subroutine does not return
@@ -31121,12 +31130,12 @@ void engine_unnamed_function_965(longlong engine_data_structure_ptr)
           engine_temp_uint_2 = unaff_RSI;
         }
         else {
-          engine_temp_uint_2 = engine_call_memory_extender(_engine_data_18,(ulonglong)(ushort)temp_data_pointer[2] * 4,4);
+          engine_temp_uint_2 = engine_call_memory_extender(_engine_camera_status,(ulonglong)(ushort)temp_data_pointer[2] * 4,4);
           engine_temp_index = (ulonglong)(ushort)temp_data_pointer[2];
         }
         temp_data_pointer[1] = engine_temp_uint_2;
         if (engine_temp_index != 0) {
-          unaff_RSI = engine_call_memory_extender(_engine_data_18,engine_temp_index << 4,4);
+          unaff_RSI = engine_call_memory_extender(_engine_camera_status,engine_temp_index << 4,4);
         }
         *temp_data_pointer = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -31154,12 +31163,12 @@ void engine_unnamed_function_965(longlong engine_data_structure_ptr)
           engine_temp_uint_2 = unaff_RSI;
         }
         else {
-          engine_temp_uint_2 = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)(engine_temp_long_4 + 0x22) * 4,4);
+          engine_temp_uint_2 = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)(engine_temp_long_4 + 0x22) * 4,4);
           engine_temp_index = (ulonglong)*(ushort *)(engine_temp_long_4 + 0x22);
         }
         *(ulonglong *)(engine_temp_long_4 + 0x1a) = engine_temp_uint_2;
         if (engine_temp_index != 0) {
-          unaff_RSI = engine_call_memory_extender(_engine_data_18,engine_temp_index << 4,4);
+          unaff_RSI = engine_call_memory_extender(_engine_camera_status,engine_temp_index << 4,4);
         }
         *(ulonglong *)(engine_temp_long_4 + 0x12) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -31192,12 +31201,12 @@ void engine_unnamed_function_965(longlong engine_data_structure_ptr)
           engine_temp_uint_2 = unaff_RSI;
         }
         else {
-          engine_temp_uint_2 = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4,4);
+          engine_temp_uint_2 = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4,4);
           engine_temp_index = (ulonglong)*(ushort *)(unaff_R15 + 0x62);
         }
         *(ulonglong *)(unaff_R15 + 0x5a) = engine_temp_uint_2;
         if (engine_temp_index != 0) {
-          unaff_RSI = engine_call_memory_extender(_engine_data_18,engine_temp_index << 4,4);
+          unaff_RSI = engine_call_memory_extender(_engine_camera_status,engine_temp_index << 4,4);
         }
         *(ulonglong *)(unaff_R15 + 0x52) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -31223,12 +31232,12 @@ void engine_unnamed_function_965(longlong engine_data_structure_ptr)
       engine_temp_uint_2 = unaff_RSI;
     }
     else {
-      engine_temp_uint_2 = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
+      engine_temp_uint_2 = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
       engine_temp_index = (ulonglong)*(ushort *)(unaff_R15 + 0x50);
     }
     *(ulonglong *)(unaff_R15 + 0x48) = engine_temp_uint_2;
     if (engine_temp_index != 0) {
-      unaff_RSI = engine_call_memory_extender(_engine_data_18,engine_temp_index << 4,4);
+      unaff_RSI = engine_call_memory_extender(_engine_camera_status,engine_temp_index << 4,4);
     }
     *(ulonglong *)(unaff_R15 + 0x40) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -31274,12 +31283,12 @@ void engine_unnamed_function_97a(longlong engine_data_structure_ptr)
           engine_temp_uint_2 = unaff_RSI;
         }
         else {
-          engine_temp_uint_2 = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4,4);
+          engine_temp_uint_2 = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4,4);
           engine_temp_uint_3 = (ulonglong)*(ushort *)(unaff_R15 + 0x62);
         }
         *(void*)(unaff_R15 + 0x5a) = engine_temp_uint_2;
         if (engine_temp_uint_3 != 0) {
-          unaff_RSI = engine_call_memory_extender(_engine_data_18,engine_temp_uint_3 << 4,4);
+          unaff_RSI = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_3 << 4,4);
         }
         *(void*)(unaff_R15 + 0x52) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -31305,12 +31314,12 @@ void engine_unnamed_function_97a(longlong engine_data_structure_ptr)
       engine_temp_uint_2 = unaff_RSI;
     }
     else {
-      engine_temp_uint_2 = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
+      engine_temp_uint_2 = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
       engine_temp_uint_3 = (ulonglong)*(ushort *)(unaff_R15 + 0x50);
     }
     *(void*)(unaff_R15 + 0x48) = engine_temp_uint_2;
     if (engine_temp_uint_3 != 0) {
-      unaff_RSI = engine_call_memory_extender(_engine_data_18,engine_temp_uint_3 << 4,4);
+      unaff_RSI = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_3 << 4,4);
     }
     *(void*)(unaff_R15 + 0x40) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -31350,12 +31359,12 @@ void engine_unnamed_function_989(void)
       engine_temporary_uint = unaff_RSI;
     }
     else {
-      engine_temporary_uint = engine_call_memory_extender(_engine_data_18,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
+      engine_temporary_uint = engine_call_memory_extender(_engine_camera_status,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
       engine_temp_uint_2 = (ulonglong)*(ushort *)(unaff_R15 + 0x50);
     }
     *(void*)(unaff_R15 + 0x48) = engine_temporary_uint;
     if (engine_temp_uint_2 != 0) {
-      unaff_RSI = engine_call_memory_extender(_engine_data_18,engine_temp_uint_2 << 4,4);
+      unaff_RSI = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_2 << 4,4);
     }
     *(void*)(unaff_R15 + 0x40) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -31414,7 +31423,7 @@ void engine_unnamed_function_990(longlong engine_data_structure_ptr,longlong eng
   memory_allocation_result = *(longlong *)(engine_result_flag_ptr + 8);
   *(uint32_t **)(engine_result_flag_ptr + 8) = (uint32*)(memory_allocation_result + 1);
   if (engine_temp_int_2 == 0) {
-    pengine_stack_uint_c8 = &engine_data_1809fcc28;
+    pengine_stack_uint_c8 = &engine_camera_status09fcc28;
     pengine_stack_uint_c0 = aengine_stack_uint_b0;
     engine_stack_uint_b8 = 0;
     aengine_stack_uint_b0[0] = 0;
@@ -31425,7 +31434,7 @@ void engine_unnamed_function_990(longlong engine_data_structure_ptr,longlong eng
       engine_process_system_request(&pengine_stack_uint_c8,engine_data_pointer,engine_temp_uint_3);
       *(longlong *)(engine_result_flag_ptr + 8) = *(longlong *)(engine_result_flag_ptr + 8) + (ulonglong)engine_temp_uint_3;
     }
-    pengine_stack_uint_c8 = &engine_data_18098bcb0;
+    pengine_stack_uint_c8 = &engine_camera_status098bcb0;
     engine_data_ptr3 = *(uint32_t **)(engine_result_flag_ptr + 8);
   }
   else {
@@ -31461,7 +31470,7 @@ uint64_t * engine_unnamed_function_1000(uint64 engine_data_structure_ptr,longlon
   uint64 engine_temporary_uint;
   void* structure_data_pointer;
   
-  structure_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x38,8,3,0xfffffffffffffffe);
+  structure_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0x38,8,3,0xfffffffffffffffe);
   *structure_data_pointer = &engine_base_data_offset_18;
   *structure_data_pointer = &engine_base_data_offset_a8;
   *(void*)((longlong)structure_data_pointer + 0x2c) = 0;
@@ -31502,15 +31511,15 @@ void engine_unnamed_function_1010(longlong engine_data_structure_ptr)
   void* engine_temporary_pointer;
   
   if (*(char *)(*(longlong *)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) + 0x28) == '\0') {
-    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_data_18,0xc0,MEMORY_COMPARE_SIZE_0x10,4,0xfffffffffffffffe);
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0xc0,MEMORY_COMPARE_SIZE_0x10,4,0xfffffffffffffffe);
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_68;
-    pengine_temp_long_3[2] = (longlong)&engine_data_18098bcb0;
+    pengine_temp_long_3[2] = (longlong)&engine_camera_status098bcb0;
     pengine_temp_long_3[3] = 0;
     *(uint32*)(pengine_temp_long_3 + 4) = 0;
-    pengine_temp_long_3[2] = (longlong)&engine_data_1809fcc28;
+    pengine_temp_long_3[2] = (longlong)&engine_camera_status09fcc28;
     pengine_temp_long_3[3] = (longlong)(pengine_temp_long_3 + 5);
     *(uint32*)(pengine_temp_long_3 + 4) = 0;
     *(uint8*)(pengine_temp_long_3 + 5) = 0;
@@ -31535,7 +31544,7 @@ void engine_unnamed_function_1010(longlong engine_data_structure_ptr)
     }
     (**(code **)(*main_context_pointer + 0x10))(main_context_pointer,engine_temporary_pointer);
     *(uint8*)(*(longlong *)(engine_data_structure_ptr + 0xb0) + 0xb1) = 1;
-    engine_temporary_long = _engine_data_30;
+    engine_temporary_long = _engine_render_status;
     main_context_pointer = *(longlong **)(engine_data_structure_ptr + 0xb0);
     engine_temp_int_2 = (**(code **)(*main_context_pointer + 0x60))(main_context_pointer);
     *(uint8*)((longlong)main_context_pointer + 0xb2) = 1;
@@ -31787,7 +31796,7 @@ void engine_unnamed_function_1060(uint64_t *engine_data_structure_ptr,ulonglong 
     pengine_temp_long = (longlong *)0x0;
     if (engine_temp_uint_9 != 0) {
       pengine_temp_long = (longlong *)
-               engine_call_memory_extender(_engine_data_18,engine_temp_uint_9 * 0x24,*(uint8*)(engine_data_structure_ptr + 3),current_data_pointer,
+               engine_call_memory_extender(_engine_camera_status,engine_temp_uint_9 * 0x24,*(uint8*)(engine_data_structure_ptr + 3),current_data_pointer,
                              0xfffffffffffffffe);
       current_data_pointer = (void*)engine_data_structure_ptr[1];
       engine_current_node_ptr = (void*)*engine_data_structure_ptr;
@@ -31964,10 +31973,10 @@ uint64_t *
 engine_unnamed_function_1100(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *engine_result_flag_ptr = &engine_data_18098bcb0;
+  *engine_result_flag_ptr = &engine_camera_status098bcb0;
   engine_result_flag_ptr[1] = 0;
   *(uint32*)(engine_result_flag_ptr + 2) = 0;
-  *engine_result_flag_ptr = &engine_data_1809fcc28;
+  *engine_result_flag_ptr = &engine_camera_status09fcc28;
   engine_result_flag_ptr[1] = engine_result_flag_ptr + 3;
   *(uint8*)(engine_result_flag_ptr + 3) = 0;
   *(uint32*)(engine_result_flag_ptr + 2) = 7;
@@ -31987,14 +31996,14 @@ uint64_t * engine_unnamed_function_1110(uint64_t *engine_data_structure_ptr,char
   longlong *pengine_temp_long_3;
   longlong *main_context_pointer;
   
-  *engine_data_structure_ptr = &engine_data_180a21690;
-  *engine_data_structure_ptr = &engine_data_180a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
   *(uint32*)(engine_data_structure_ptr + 1) = 0;
   *engine_data_structure_ptr = &engine_base_data_offset_68;
-  engine_data_structure_ptr[2] = &engine_data_18098bcb0;
+  engine_data_structure_ptr[2] = &engine_camera_status098bcb0;
   engine_data_structure_ptr[3] = 0;
   *(uint32*)(engine_data_structure_ptr + 4) = 0;
-  engine_data_structure_ptr[2] = &engine_data_1809fcc28;
+  engine_data_structure_ptr[2] = &engine_camera_status09fcc28;
   engine_data_structure_ptr[3] = engine_data_structure_ptr + 5;
   *(uint32*)(engine_data_structure_ptr + 4) = 0;
   *(uint8*)(engine_data_structure_ptr + 5) = 0;
@@ -32136,12 +32145,12 @@ uint64_t * engine_unnamed_function_1110(uint64_t *engine_data_structure_ptr,char
   *(uint32*)(engine_data_structure_ptr + 0x35) = 0x3f800000;
   *(uint32*)((longlong)engine_data_structure_ptr + 0x1ac) = 0x7f7fffff;
   *(uint32*)(engine_data_structure_ptr + 0x3a) = 0xffffffff;
-  pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x70,8,9,main_context_pointer,pengine_temp_long_3);
-  *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-  *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+  pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x70,8,9,main_context_pointer,pengine_temp_long_3);
+  *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+  *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
   *(uint32*)(pengine_temp_long_3 + 1) = 0;
   *pengine_temp_long_3 = (longlong)&engine_base_data_offset_8;
-  pengine_temp_long_3[4] = (longlong)&engine_data_18098bcb0;
+  pengine_temp_long_3[4] = (longlong)&engine_camera_status098bcb0;
   pengine_temp_long_3[5] = 0;
   *(uint32*)(pengine_temp_long_3 + 6) = 0;
   pengine_temp_long_3[4] = (longlong)&engine_system_context_data;
@@ -32273,7 +32282,7 @@ void engine_unnamed_function_1140(longlong engine_data_structure_ptr,uint64_t *e
   *(uint32*)(engine_data_structure_ptr + 0x158) = engine_temp_index;
   *(uint32*)(engine_data_structure_ptr + 0x15c) = engine_temp_uint_6;
   if (pengine_temp_long_2 != (longlong *)0x0) {
-    if (*(code **)(*pengine_temp_long_2 + 0x160) == (code *)&engine_data_180277350) {
+    if (*(code **)(*pengine_temp_long_2 + 0x160) == (code *)&engine_camera_status0277350) {
       engine_data_pointer = (void*)((longlong)pengine_temp_long_2 + 0x214);
       *(uint32*)((longlong)pengine_temp_long_2 + 0x244) = 0;
       if (pengine_temp_long_2[8] - pengine_temp_long_2[7] >> 4 == 0) {
@@ -32503,9 +32512,9 @@ void engine_unnamed_function_1150(uint64_t *engine_data_structure_ptr)
     (**(code **)(*(longlong *)engine_data_structure_ptr[0x23] + 0x38))();
   }
   *engine_data_structure_ptr = &engine_base_data_offset_68;
-  engine_data_structure_ptr[2] = &engine_data_18098bcb0;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  engine_data_structure_ptr[2] = &engine_camera_status098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   return;
 }
 
@@ -33016,7 +33025,7 @@ longlong * engine_unnamed_function_1200(longlong *engine_data_structure_ptr,long
   uint32 engine_temp_uint_21;
   
   engine_stack_long_ptr_10 = engine_result_flag_ptr;
-  engine_temp_uint8 = engine_call_memory_allocator(_engine_data_18,0x300,MEMORY_COMPARE_SIZE_0x10,9,0,0xfffffffffffffffe);
+  engine_temp_uint8 = engine_call_memory_allocator(_engine_camera_status,0x300,MEMORY_COMPARE_SIZE_0x10,9,0,0xfffffffffffffffe);
   pengine_temp_long9 = (longlong *)engine_unnamed_function_1110(engine_temp_uint8,0,0);
   *engine_result_flag_ptr = (longlong)pengine_temp_long9;
   if (pengine_temp_long9 != (longlong *)0x0) {
@@ -33530,7 +33539,7 @@ int engine_unnamed_function_1260(longlong engine_data_structure_ptr,longlong *en
   pengine_temp_long = engine_result_flag_ptr + 5;
   engine_temp_long_9 = engine_result_flag_ptr[7] - *pengine_temp_long;
   if ((ulonglong)(engine_temp_long_9 / 0x18) < 0x100) {
-    engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,0x1800,(char)engine_result_flag_ptr[8]);
+    engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,0x1800,(char)engine_result_flag_ptr[8]);
     engine_temp_long_9 = *pengine_temp_long;
     if (engine_temp_long_9 != engine_result_flag_ptr[6]) {
                     // WARNING: Subroutine does not return
@@ -33601,7 +33610,7 @@ void engine_unnamed_function_1270(longlong *engine_data_structure_ptr)
     }
     structure_data_pointer[1] = 0;
     *(uint32*)(structure_data_pointer + 3) = 0;
-    *structure_data_pointer = &engine_data_18098bcb0;
+    *structure_data_pointer = &engine_camera_status098bcb0;
   }
   if (*engine_data_structure_ptr != 0) {
                     // WARNING: Subroutine does not return
@@ -33699,13 +33708,13 @@ void engine_unnamed_function_1290(longlong *engine_data_structure_ptr)
   engine_stack_value_60 = 0xfffffffffffffffe;
   engine_stack_uint_20 = _engine_data_a8 ^ (ulonglong)engine_stack_buffer_88;
   engine_temporary_uint = *(void*)(engine_data_structure_ptr[0x37] + 0x1e0);
-  engine_stack_pointer_58 = &engine_data_18098bc80;
+  engine_stack_pointer_58 = &engine_camera_status098bc80;
   pengine_stack_uint_50 = aengine_stack_uint_40;
   aengine_stack_uint_40[0] = aengine_stack_uint_40[0] & 0xffffffffffffff00;
   engine_stack_uint_48._0_4_ = 0x12;
   strcpy_s(aengine_stack_uint_40,0x20,&engine_base_data_offset_98);
   engine_temp_uint_3 = engine_unnamed_function_5980(engine_temporary_uint,&engine_stack_pointer_58,0);
-  engine_stack_pointer_58 = &engine_data_18098bcb0;
+  engine_stack_pointer_58 = &engine_camera_status098bcb0;
   if (engine_temp_uint_3 != 0) {
     memory_allocation_result = engine_data_structure_ptr[0x37];
     if ((*(ulonglong *)(memory_allocation_result + 0x140) & engine_temp_uint_3) != 0) {
@@ -33873,7 +33882,7 @@ uint64 engine_unnamed_function_1300(longlong engine_data_structure_ptr,longlong 
             engine_temp_uint_9 = engine_temp_uint_3 >> 10;
             engine_temp_uint4 = (ulonglong)engine_temp_uint_9;
             if (*(longlong *)(engine_temp_long1 + 0x3f70 + (ulonglong)engine_temp_uint_9 * 8) == 0) {
-              engine_temp_long0 = engine_call_memory_extender(_engine_data_18,0x2000,0x25);
+              engine_temp_long0 = engine_call_memory_extender(_engine_camera_status,0x2000,0x25);
               pengine_temp_long_2 = (longlong *)(engine_temp_long1 + 0x3f70 + engine_temp_uint4 * 8);
               LOCK();
               engine_temp_byte16 = *pengine_temp_long_2 == 0;
@@ -34040,7 +34049,7 @@ ulonglong engine_unnamed_function_1320(longlong engine_data_structure_ptr,uint *
   pfStackX_18 = engine_comparison_params;
   engine_stack_long_x20 = engine_system_parameter_4;
   if (*(char *)(engine_data_structure_ptr + 0xf9) == '\0') {
-    engine_temp_uint_24 = engine_call_memory_allocator(_engine_data_18,0xc0,8,9);
+    engine_temp_uint_24 = engine_call_memory_allocator(_engine_camera_status,0xc0,8,9);
     engine_temp_uint_24 = engine_unnamed_function_2620(engine_temp_uint_24);
     *(void*)(engine_data_structure_ptr + 0x1d8) = engine_temp_uint_24;
     LOCK();
@@ -34105,7 +34114,7 @@ LAB_180077879:
         engine_temp_int_33 = *(int *)(_engine_data_70 + 0x224);
         engine_data_ptr_26 = *(void**)(engine_data_structure_ptr + 600);
         if (engine_data_ptr_26 == (void*)0x0) {
-          engine_data_ptr_26 = (void*)engine_call_memory_allocator(_engine_data_18,0x58,8,3);
+          engine_data_ptr_26 = (void*)engine_call_memory_allocator(_engine_camera_status,0x58,8,3);
           *(void*)((longlong)engine_data_ptr_26 + 0x2c) = 0xffffffffffffffff;
           *(uint32*)(engine_data_ptr_26 + 9) = 0xffffffff;
           *engine_data_ptr_26 = 0;
@@ -34143,7 +34152,7 @@ LAB_180077879:
             do {
               engine_temp_int_33 = (int)engine_temp_uint_34;
               if (*(longlong *)engine_current_node_ptr5 == 0) {
-                engine_temp_long_27 = engine_call_memory_extender(_engine_data_18,0xc000,0x25);
+                engine_temp_long_27 = engine_call_memory_extender(_engine_camera_status,0xc000,0x25);
                 LOCK();
                 engine_temp_byte36 = *(longlong *)(engine_current_node_ptr0 + (longlong)engine_temp_int_33 * 2 + 2) == 0;
                 if (engine_temp_byte36) {
@@ -34469,7 +34478,7 @@ void engine_unnamed_function_133c(void)
   do {
     engine_temp_int_40 = (int)engine_temp_uint_41;
     if (*(longlong *)engine_next_node_ptr2 == 0) {
-      engine_temp_long_33 = engine_call_memory_extender(_engine_data_18,0xc000,0x25);
+      engine_temp_long_33 = engine_call_memory_extender(_engine_camera_status,0xc000,0x25);
       LOCK();
       engine_temp_byte43 = *(longlong *)(engine_current_node_ptr6 + (longlong)engine_temp_int_40 * 2 + 2) == 0;
       if (engine_temp_byte43) {
@@ -35696,7 +35705,7 @@ LAB_1800782e0:
   engine_unnamed_function_1290(engine_data_structure_ptr);
   if ((*(longlong *)(engine_data_structure_ptr + 600) == 0) &&
      ((*(uint *)(*(longlong *)(engine_data_structure_ptr + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    current_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x58,8,9);
+    current_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0x58,8,9);
     *(void*)((longlong)current_data_pointer + 0x2c) = 0xffffffffffffffff;
     *(uint32*)(current_data_pointer + 9) = 0xffffffff;
     *current_data_pointer = 0;
@@ -35798,7 +35807,7 @@ LAB_1800782e0:
   engine_unnamed_function_1290();
   if ((*(longlong *)(engine_register_rbx + 600) == 0) &&
      ((*(uint *)(*(longlong *)(engine_register_rbx + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    current_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x58,8,9);
+    current_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0x58,8,9);
     *(void*)((longlong)current_data_pointer + 0x2c) = 0xffffffffffffffff;
     *(uint32*)(current_data_pointer + 9) = 0xffffffff;
     *current_data_pointer = 0;
@@ -35901,7 +35910,7 @@ LAB_1800782e0:
   engine_unnamed_function_1290();
   if ((*(longlong *)(engine_register_rbx + 600) == 0) &&
      ((*(uint *)(*(longlong *)(engine_register_rbx + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    current_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x58,8,9);
+    current_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0x58,8,9);
     *(void*)((longlong)current_data_pointer + 0x2c) = 0xffffffffffffffff;
     *(uint32*)(current_data_pointer + 9) = 0xffffffff;
     *current_data_pointer = 0;
@@ -35994,7 +36003,7 @@ LAB_1800782e0:
   engine_unnamed_function_1290();
   if ((*(longlong *)(engine_register_rbx + 600) == 0) &&
      ((*(uint *)(*(longlong *)(engine_register_rbx + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    current_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x58,8,9);
+    current_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0x58,8,9);
     *(void*)((longlong)current_data_pointer + 0x2c) = 0xffffffffffffffff;
     *(uint32*)(current_data_pointer + 9) = 0xffffffff;
     *current_data_pointer = 0;
@@ -36026,7 +36035,7 @@ void engine_unnamed_function_1460(void)
   uint64 unaff_RDI;
   
   if ((*(uint *)(*(longlong *)(engine_register_rbx + 0x1b8) + 0x388) >> 0x19 & 1) != 0) {
-    engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x58,8,9);
+    engine_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0x58,8,9);
     *(void*)((longlong)engine_data_pointer + 0x2c) = 0xffffffffffffffff;
     *(uint32*)(engine_data_pointer + 9) = 0xffffffff;
     *engine_data_pointer = unaff_RDI;
@@ -36077,8 +36086,8 @@ void engine_unnamed_function_1480(uint64_t *engine_data_structure_ptr,uint64 eng
   uint64 engine_temp_index;
   
   engine_temp_index = 0xfffffffffffffffe;
-  if (0 < *(int *)(_engine_data_00 + 0x40)) {
-    engine_data_structure_ptr[0x26] = *(void*)(_engine_data_00 + 0x38);
+  if (0 < *(int *)(_engine_input_status + 0x40)) {
+    engine_data_structure_ptr[0x26] = *(void*)(_engine_input_status + 0x38);
   }
   pengine_temp_long_2 = engine_data_structure_ptr + 1;
   engine_temp_long_3 = 7;
@@ -36215,8 +36224,8 @@ void engine_unnamed_function_1490(uint64_t *engine_data_structure_ptr,longlong e
     pengine_temp_long_8 = pengine_temp_long_8 + 1;
   } while (engine_temp_int_9 < 7);
   engine_temp_uint_4 = engine_unnamed_function_5700(engine_result_flag_ptr,&engine_stack_value_58);
-  engine_temporary_long = _engine_data_00;
-  engine_temp_int_9 = engine_unnamed_function_5650(_engine_data_00,engine_temp_uint_4);
+  engine_temporary_long = _engine_input_status;
+  engine_temp_int_9 = engine_unnamed_function_5650(_engine_input_status,engine_temp_uint_4);
   if ((engine_temp_int_9 == -1) || (engine_temp_long_7 = (longlong)engine_temp_int_9 * 0x68 + *(longlong *)(engine_temporary_long + 0x38), engine_temp_long_7 == 0)) {
     engine_temp_long_7 = *(longlong *)(engine_temporary_long + 0x28);
   }
@@ -36227,9 +36236,9 @@ void engine_unnamed_function_1490(uint64_t *engine_data_structure_ptr,longlong e
   }
   engine_stack_uint_50 = 0;
   engine_stack_uint_40 = 0;
-  engine_stack_value_58 = &engine_data_18098bcb0;
+  engine_stack_value_58 = &engine_camera_status098bcb0;
   if (engine_temp_long_7 == 0) {
-    engine_temp_long_7 = *(longlong *)(_engine_data_00 + 0x38);
+    engine_temp_long_7 = *(longlong *)(_engine_input_status + 0x38);
   }
   engine_data_structure_ptr[0x26] = engine_temp_long_7;
   if ((*(char *)(engine_result_flag_ptr + 0x248) == '\0') && (*(longlong *)(engine_result_flag_ptr + 0x3c8) != 0)) {
@@ -36974,7 +36983,7 @@ void engine_unnamed_function_1530(longlong engine_data_structure_ptr,longlong en
             *pengine_temp_long = 0;
           }
           else {
-            pengine_temp_long_34 = (longlong *)engine_call_memory_allocator(_engine_data_18,(longlong)resource_status_flag6 * 4);
+            pengine_temp_long_34 = (longlong *)engine_call_memory_allocator(_engine_camera_status,(longlong)resource_status_flag6 * 4);
             *pengine_temp_long = (longlong)pengine_temp_long_34;
           }
         }
@@ -37054,7 +37063,7 @@ void engine_unnamed_function_1530(longlong engine_data_structure_ptr,longlong en
             do {
               engine_temp_int_45 = (int)engine_temp_uint_48;
               if (*(longlong *)engine_next_node_ptr7 == 0) {
-                engine_temp_long_35 = engine_call_memory_extender(_engine_data_18,0x2000,0x25);
+                engine_temp_long_35 = engine_call_memory_extender(_engine_camera_status,0x2000,0x25);
                 LOCK();
                 engine_temp_byte50 = *(longlong *)(engine_next_node_ptr2 + (longlong)engine_temp_int_45 * 2 + 2) == 0;
                 if (engine_temp_byte50) {
@@ -37286,7 +37295,7 @@ void engine_unnamed_function_1544(longlong engine_data_structure_ptr)
             *pengine_temp_long = 0;
           }
           else {
-            pengine_temp_long_34 = (longlong *)engine_call_memory_allocator(_engine_data_18,(longlong)resource_status_flag6 * 4);
+            pengine_temp_long_34 = (longlong *)engine_call_memory_allocator(_engine_camera_status,(longlong)resource_status_flag6 * 4);
             *pengine_temp_long = (longlong)pengine_temp_long_34;
           }
         }
@@ -37366,7 +37375,7 @@ void engine_unnamed_function_1544(longlong engine_data_structure_ptr)
             do {
               engine_temp_int_45 = (int)engine_temp_uint_48;
               if (*(longlong *)engine_next_node_ptr7 == 0) {
-                engine_temp_long_35 = engine_call_memory_extender(_engine_data_18,0x2000,0x25);
+                engine_temp_long_35 = engine_call_memory_extender(_engine_camera_status,0x2000,0x25);
                 LOCK();
                 engine_temp_byte50 = *(longlong *)(engine_next_node_ptr2 + (longlong)engine_temp_int_45 * 2 + 2) == 0;
                 if (engine_temp_byte50) {
@@ -37579,7 +37588,7 @@ void engine_unnamed_function_155a(void)
             *pengine_temp_long = 0;
           }
           else {
-            pengine_temp_long_32 = (longlong *)engine_call_memory_allocator(_engine_data_18,(longlong)resource_status_flag4 * 4);
+            pengine_temp_long_32 = (longlong *)engine_call_memory_allocator(_engine_camera_status,(longlong)resource_status_flag4 * 4);
             *pengine_temp_long = (longlong)pengine_temp_long_32;
           }
         }
@@ -37659,7 +37668,7 @@ void engine_unnamed_function_155a(void)
             do {
               engine_temp_int_42 = (int)engine_temp_uint_46;
               if (*(longlong *)engine_next_node_ptr5 == 0) {
-                engine_temp_long_43 = engine_call_memory_extender(_engine_data_18,0x2000,0x25);
+                engine_temp_long_43 = engine_call_memory_extender(_engine_camera_status,0x2000,0x25);
                 LOCK();
                 engine_temp_byte48 = *(longlong *)(engine_current_node_ptr9 + (longlong)engine_temp_int_42 * 2 + 2) == 0;
                 if (engine_temp_byte48) {
@@ -37868,7 +37877,7 @@ void engine_unnamed_function_1569(longlong engine_data_structure_ptr,uint engine
             *pengine_temp_long = 0;
           }
           else {
-            pengine_temp_long_32 = (longlong *)engine_call_memory_allocator(_engine_data_18,(longlong)resource_status_flag4 * 4);
+            pengine_temp_long_32 = (longlong *)engine_call_memory_allocator(_engine_camera_status,(longlong)resource_status_flag4 * 4);
             *pengine_temp_long = (longlong)pengine_temp_long_32;
           }
         }
@@ -37948,7 +37957,7 @@ void engine_unnamed_function_1569(longlong engine_data_structure_ptr,uint engine
             do {
               engine_temp_int_42 = (int)engine_temp_uint_45;
               if (*(longlong *)engine_next_node_ptr4 == 0) {
-                engine_temp_long_33 = engine_call_memory_extender(_engine_data_18,0x2000,0x25);
+                engine_temp_long_33 = engine_call_memory_extender(_engine_camera_status,0x2000,0x25);
                 LOCK();
                 engine_temp_byte47 = *(longlong *)(engine_current_node_ptr8 + (longlong)engine_temp_int_42 * 2 + 2) == 0;
                 if (engine_temp_byte47) {
@@ -38079,7 +38088,7 @@ void engine_unnamed_function_157e(void)
             *pengine_temp_long = 0;
           }
           else {
-            pengine_temp_long_8 = (longlong *)engine_call_memory_allocator(_engine_data_18,(longlong)engine_temp_char_4 * 4);
+            pengine_temp_long_8 = (longlong *)engine_call_memory_allocator(_engine_camera_status,(longlong)engine_temp_char_4 * 4);
             *pengine_temp_long = (longlong)pengine_temp_long_8;
           }
         }
@@ -38159,7 +38168,7 @@ void engine_unnamed_function_157e(void)
             do {
               engine_temp_int9 = (int)engine_temp_uint_22;
               if (*(longlong *)engine_data_ptr_21 == 0) {
-                engine_temp_long_9 = engine_call_memory_extender(_engine_data_18,0x2000,0x25);
+                engine_temp_long_9 = engine_call_memory_extender(_engine_camera_status,0x2000,0x25);
                 LOCK();
                 engine_comparison_result4 = *(longlong *)(engine_data_ptr5 + (longlong)engine_temp_int9 * 2 + 2) == 0;
                 if (engine_comparison_result4) {
@@ -38234,7 +38243,7 @@ undefined * engine_unnamed_function_1580(longlong engine_data_structure_ptr,uint
               0x48) < engine_data_pointer_58) {
     engine_get_game_state_status(&engine_data_58);
     if (engine_data_pointer_58 == -1) {
-      _engine_audio_flags = &engine_data_1809fcc28;
+      _engine_audio_flags = &engine_camera_status09fcc28;
       _engine_data_68 = &engine_data_78;
 
 // void engine_unnamed_function_1590(longlong engine_data_structure_ptr)
@@ -38763,7 +38772,7 @@ void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
           engine_temp_long2 = 0;
         }
         else {
-          engine_temp_long2 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_41 << 4,*(uint8*)(engine_temp_long_21 + 0x18 + engine_temp_long_22))
+          engine_temp_long2 = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_41 << 4,*(uint8*)(engine_temp_long_21 + 0x18 + engine_temp_long_22))
           ;
           engine_temp_long7 = *(longlong *)(engine_temp_long_21 + 8 + engine_temp_long_22);
           engine_temp_long_24 = *(longlong *)(engine_temp_long_21 + engine_temp_long_22);
@@ -38891,7 +38900,7 @@ void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
         if (engine_temp_long7 == 0) {
           engine_temp_long7 = 1;
 LAB_180079c12:
-          pengine_temp_int3 = (int *)engine_call_memory_extender(_engine_data_18,engine_temp_long7 * 4,
+          pengine_temp_int3 = (int *)engine_call_memory_extender(_engine_camera_status,engine_temp_long7 * 4,
                                          *(uint8*)(engine_temp_long_31 + 0x18 + engine_stack_long_170));
           pengine_temp_int_20 = *(int **)(engine_temp_long_31 + 8 + engine_temp_long_23);
           pengine_temp_int5 = *(int **)(engine_temp_long_31 + engine_temp_long_23);
@@ -38927,7 +38936,7 @@ LAB_180079c12:
         if (engine_temp_long7 == 0) {
           engine_temp_long7 = 1;
 LAB_180079cd7:
-          pengine_temp_int3 = (int *)engine_call_memory_extender(_engine_data_18,engine_temp_long7 * 4,
+          pengine_temp_int3 = (int *)engine_call_memory_extender(_engine_camera_status,engine_temp_long7 * 4,
                                          *(uint8*)(engine_temp_long_31 + 0x18 + engine_stack_long_170));
           pengine_temp_int_20 = *(int **)(engine_temp_long_31 + 8 + engine_temp_long_23);
           pengine_temp_int5 = *(int **)(engine_temp_long_31 + engine_temp_long_23);
@@ -38962,7 +38971,7 @@ LAB_180079cd7:
         if (engine_temp_long_31 == 0) {
           engine_temp_long_31 = 1;
 LAB_180079d9b:
-          pengine_temp_int5 = (int *)engine_call_memory_extender(_engine_data_18,engine_temp_long_31 * 4,
+          pengine_temp_int5 = (int *)engine_call_memory_extender(_engine_camera_status,engine_temp_long_31 * 4,
                                          *(uint8*)(engine_temp_long_21 + 0x18 + engine_stack_long_170));
           pengine_temp_int_20 = *(int **)(engine_temp_long_21 + 8 + engine_temp_long_23);
           pengine_temp_int3 = *(int **)(engine_temp_long_21 + engine_temp_long_23);
@@ -39213,7 +39222,7 @@ LAB_18007a5ac:
                     engine_stack_uint_20 = 1;
 LAB_18007ac04:
                     paengine_temp_uint_42 = (uint8_t (*) [16])
-                               engine_call_memory_extender(_engine_data_18,engine_stack_uint_20 * 0x14,
+                               engine_call_memory_extender(_engine_camera_status,engine_stack_uint_20 * 0x14,
                                              (char)engine_stack_int_pointer_218[engine_temp_uint_41 * 8 + 6]);
                     paengine_temp_uint_37 = *(uint8_t (**) [16])(pengine_temp_int + engine_temp_uint_41 * 8 + 2);
                     paengine_temp_uint_35 = *(uint8_t (**) [16])(pengine_temp_int + engine_temp_uint_41 * 8);
@@ -39451,7 +39460,7 @@ LAB_180079e40:
       engine_stack_value_198 = (int *)0x0;
       engine_stack_int_pointer_190 = (int *)0x0;
       engine_stack_uint_188 = 3;
-      pengine_temp_int4 = (int *)engine_call_memory_extender(_engine_data_18,4,CONCAT71((uint7)(uint3)(engine_stack_uint_18 >> 8),3));
+      pengine_temp_int4 = (int *)engine_call_memory_extender(_engine_camera_status,4,CONCAT71((uint7)(uint3)(engine_stack_uint_18 >> 8),3));
       *pengine_temp_int4 = *pengine_temp_int_20;
       pengine_temp_int_20 = pengine_temp_int4 + 1;
       engine_stack_int_pointer_218 = (int *)0x0;
@@ -39480,7 +39489,7 @@ LAB_180079e40:
             if ((longlong)engine_stack_uint_1d8 >> 2 == 0) {
               piStack_1f0 = (int *)0x1;
 LAB_180079fb3:
-              pengine_temp_int6 = (int *)engine_call_memory_extender(_engine_data_18,(longlong)piStack_1f0 * 4,
+              pengine_temp_int6 = (int *)engine_call_memory_extender(_engine_camera_status,(longlong)piStack_1f0 * 4,
                                              CONCAT71((int7)(engine_stack_uint_20 >> 8),3));
             }
             else {
@@ -39544,7 +39553,7 @@ LAB_180079fb3:
                 if ((longlong)engine_stack_uint_1d8 >> 2 == 0) {
                   engine_temp_long_21 = 1;
 LAB_18007a203:
-                  pengine_temp_int6 = (int *)engine_call_memory_extender(_engine_data_18,engine_temp_long_21 * 4,3);
+                  pengine_temp_int6 = (int *)engine_call_memory_extender(_engine_camera_status,engine_temp_long_21 * 4,3);
                 }
                 else {
                   engine_temp_long_21 = ((longlong)engine_stack_uint_1d8 >> 2) * 2;
@@ -39584,7 +39593,7 @@ LAB_18007a203:
                 if ((longlong)engine_stack_uint_1d8 >> 2 == 0) {
                   engine_temp_long_21 = 1;
 LAB_18007a142:
-                  pengine_temp_int5 = (int *)engine_call_memory_extender(_engine_data_18,engine_temp_long_21 * 4,3);
+                  pengine_temp_int5 = (int *)engine_call_memory_extender(_engine_camera_status,engine_temp_long_21 * 4,3);
                 }
                 else {
                   engine_temp_long_21 = ((longlong)engine_stack_uint_1d8 >> 2) * 2;
@@ -39669,7 +39678,7 @@ LAB_18007a312:
       }
       else {
         pengine_stack_long_168 = pengine_stack_long_168 + 4;
-        engine_temp_long_21 = engine_call_memory_extender(_engine_data_18,((longlong)engine_temp_uint_41 >> 2) * 4,3);
+        engine_temp_long_21 = engine_call_memory_extender(_engine_camera_status,((longlong)engine_temp_uint_41 >> 2) * 4,3);
       }
       *pengine_temp_long_39 = engine_temp_long_21;
       pengine_temp_long_39[1] = engine_temp_long_21;
@@ -39827,13 +39836,13 @@ void engine_unnamed_function_1780(longlong *engine_data_structure_ptr)
       *(int *)(engine_temporary_long + 0x14) = *(int *)(engine_temporary_long + 0x14) + 1;
       UNLOCK();
       ppengine_stack_uint_220 = &engine_stack_ptr_1f8;
-      engine_stack_ptr_1f8 = &engine_data_1809fcc28;
+      engine_stack_ptr_1f8 = &engine_camera_status09fcc28;
       engine_stack_ptr_1f0 = aengine_stack_uint_1e0;
       engine_stack_uint_1e8 = 0;
       aengine_stack_uint_1e0[0] = 0;
       engine_stack_uint_160 = 0x24;
       engine_stack_long_158 = engine_temporary_long;
-      engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x100,8,3);
+      engine_temp_uint_2 = engine_call_memory_allocator(_engine_camera_status,MEMORY_COMPARE_SIZE_0x100,8,3);
       pengine_current_node_ptr = (undefined **)engine_allocate_temporary_memory(engine_temp_uint_2,&engine_stack_ptr_1f8);
       ppengine_stack_uint_208 = pengine_current_node_ptr;
       if (pengine_current_node_ptr != (undefined **)0x0) {
@@ -39849,18 +39858,18 @@ void engine_unnamed_function_1780(longlong *engine_data_structure_ptr)
       if (pengine_current_node_ptr != (undefined **)0x0) {
         (**(code **)(*pengine_current_node_ptr + 0x38))(pengine_current_node_ptr);
       }
-      engine_stack_ptr_1f8 = &engine_data_18098bcb0;
+      engine_stack_ptr_1f8 = &engine_camera_status098bcb0;
       engine_stack_long_78 = engine_data_structure_ptr[1];
       LOCK();
       *(int *)(engine_stack_long_78 + 0x10) = *(int *)(engine_stack_long_78 + 0x10) + 1;
       UNLOCK();
       pppengine_stack_uint_228 = (undefined ***)&pengine_stack_uint_118;
-      pengine_stack_uint_118 = &engine_data_1809fcc28;
+      pengine_stack_uint_118 = &engine_camera_status09fcc28;
       pengine_stack_uint_110 = aengine_stack_uint_100;
       engine_stack_uint_108 = 0;
       aengine_stack_uint_100[0] = 0;
       engine_stack_value_80 = 0x26;
-      engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x100,8,3);
+      engine_temp_uint_2 = engine_call_memory_allocator(_engine_camera_status,MEMORY_COMPARE_SIZE_0x100,8,3);
       main_context_pointer = (longlong *)engine_allocate_temporary_memory(engine_temp_uint_2,&pengine_stack_uint_118);
       pengine_stack_long_200 = main_context_pointer;
       if (main_context_pointer != (longlong *)0x0) {
@@ -39877,7 +39886,7 @@ void engine_unnamed_function_1780(longlong *engine_data_structure_ptr)
         (**(code **)(*main_context_pointer + 0x38))(main_context_pointer);
       }
       pppengine_stack_uint_228 = (undefined ***)&pengine_stack_uint_118;
-      pengine_stack_uint_118 = &engine_data_18098bcb0;
+      pengine_stack_uint_118 = &engine_camera_status098bcb0;
     }
     LOCK();
     *(uint8*)((longlong)engine_data_structure_ptr + 0x15) = 0;
@@ -39989,7 +39998,7 @@ uint engine_unnamed_function_1800(uint *engine_data_structure_ptr,int engine_res
     do {
       engine_temp_int_4 = (int)engine_temp_index;
       if (*(longlong *)next_data_pointer == 0) {
-        engine_temp_long_2 = engine_call_memory_extender(_engine_data_18,0x80000,0x25);
+        engine_temp_long_2 = engine_call_memory_extender(_engine_camera_status,0x80000,0x25);
         LOCK();
         engine_temp_byte9 = *(longlong *)(engine_data_structure_ptr + (longlong)engine_temp_int_4 * 2 + 2) == 0;
         if (engine_temp_byte9) {
@@ -40049,7 +40058,7 @@ uint32 engine_unnamed_function_1818(longlong engine_data_structure_ptr)
   do {
     engine_temp_int_4 = (int)unaff_RSI;
     if (*engine_temp_ptr_array_6 == 0) {
-      engine_temp_long_2 = engine_call_memory_extender(_engine_data_18,0x80000,0x25);
+      engine_temp_long_2 = engine_call_memory_extender(_engine_camera_status,0x80000,0x25);
       pengine_temp_long = (longlong *)(unaff_RBP + 8 + (longlong)engine_temp_int_4 * 8);
       LOCK();
       engine_temp_byte7 = *pengine_temp_long == 0;
@@ -40128,7 +40137,7 @@ uint engine_unnamed_function_1830(uint *engine_data_structure_ptr,int engine_res
     do {
       engine_temp_int_6 = (int)engine_temp_uint64_value;
       if (*(longlong *)engine_data_ptr0 == 0) {
-        engine_temp_long_2 = engine_call_memory_extender(_engine_data_18,0x4000,0x25);
+        engine_temp_long_2 = engine_call_memory_extender(_engine_camera_status,0x4000,0x25);
         LOCK();
         engine_temp_byte11 = *(longlong *)(engine_data_structure_ptr + (longlong)engine_temp_int_6 * 2 + 2) == 0;
         if (engine_temp_byte11) {
@@ -40197,7 +40206,7 @@ uint32 engine_unnamed_function_1848(longlong engine_data_structure_ptr)
   do {
     engine_temp_int_5 = (int)unaff_RSI;
     if (*pengine_temp_long_8 == 0) {
-      engine_temp_long_2 = engine_call_memory_extender(_engine_data_18,0x4000,0x25);
+      engine_temp_long_2 = engine_call_memory_extender(_engine_camera_status,0x4000,0x25);
       pengine_temp_long = (longlong *)(unaff_RDI + 8 + (longlong)engine_temp_int_5 * 8);
       LOCK();
       engine_temp_byte9 = *pengine_temp_long == 0;
@@ -40579,7 +40588,7 @@ void engine_unnamed_function_1960(longlong *engine_data_structure_ptr,ulonglong 
         engine_temporary_long = 0;
       }
       else {
-        engine_temporary_long = engine_call_memory_extender(_engine_data_18,engine_temp_index << 4,(char)engine_data_structure_ptr[3]);
+        engine_temporary_long = engine_call_memory_extender(_engine_camera_status,engine_temp_index << 4,(char)engine_data_structure_ptr[3]);
         engine_temp_long_3 = *engine_data_structure_ptr;
         engine_temp_long_4 = engine_data_structure_ptr[1];
       }
@@ -40636,7 +40645,7 @@ void engine_unnamed_function_1976(longlong engine_data_structure_ptr,longlong en
     engine_temporary_long = 0;
   }
   else {
-    engine_temporary_long = engine_call_memory_extender(_engine_data_18,engine_temp_uint_2 << 4,(char)unaff_RDI[3]);
+    engine_temporary_long = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_2 << 4,(char)unaff_RDI[3]);
     engine_result_flag_ptr = *unaff_RDI;
     unaff_RBP = unaff_RDI[1];
   }
@@ -40781,7 +40790,7 @@ void engine_unnamed_function_2010(longlong *engine_data_structure_ptr,ulonglong 
     engine_temporary_long = 0;
   }
   else {
-    engine_temporary_long = engine_call_memory_extender(_engine_data_18,engine_temp_uint_3 * 4,(char)engine_data_structure_ptr[3]);
+    engine_temporary_long = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_3 * 4,(char)engine_data_structure_ptr[3]);
     engine_temp_long_6 = *engine_data_structure_ptr;
     memory_allocation_result = engine_data_structure_ptr[1];
   }
@@ -40839,7 +40848,7 @@ void engine_unnamed_function_202b(longlong engine_data_structure_ptr,ulonglong e
     engine_temporary_long = 0;
   }
   else {
-    engine_temporary_long = engine_call_memory_extender(_engine_data_18,engine_temp_uint_2 * 4,(char)engine_register_rbx[3]);
+    engine_temporary_long = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_2 * 4,(char)engine_register_rbx[3]);
     engine_system_parameter_4 = *engine_register_rbx;
     unaff_RDI = engine_register_rbx[1];
   }
@@ -40912,7 +40921,7 @@ void engine_unnamed_function_2050(longlong *engine_data_structure_ptr)
     }
     structure_data_pointer[1] = 0;
     *(uint32*)(structure_data_pointer + 3) = 0;
-    *structure_data_pointer = &engine_data_18098bcb0;
+    *structure_data_pointer = &engine_camera_status098bcb0;
   }
   if (*engine_data_structure_ptr != 0) {
                     // WARNING: Subroutine does not return
@@ -40946,7 +40955,7 @@ void engine_unnamed_function_2060(uint *engine_data_structure_ptr,int *engine_re
   engine_temp_uint_3 = engine_temp_uint_2 >> 0xb;
   engine_temp_uint64_value = (ulonglong)engine_temp_uint_3;
   if (*(longlong *)(engine_data_structure_ptr + (ulonglong)engine_temp_uint_3 * 2 + 2) == 0) {
-    engine_temp_long_4 = engine_call_memory_extender(_engine_data_18,0x8000,0x25);
+    engine_temp_long_4 = engine_call_memory_extender(_engine_camera_status,0x8000,0x25);
     LOCK();
     engine_temp_byte8 = *(longlong *)(engine_data_structure_ptr + engine_temp_uint64_value * 2 + 2) == 0;
     if (engine_temp_byte8) {
@@ -41084,7 +41093,7 @@ uint64_t * engine_unnamed_function_2100(uint64_t *engine_data_structure_ptr,uint
   engine_result_flag_ptr[3] = 0;
   engine_data_structure_ptr[2] = engine_configure_resource_manager;
   engine_data_structure_ptr[3] = engine_initialize_debug_tools;
-  engine_temporary_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x20,8,engine_network_flags,0xfffffffffffffffe);
+  engine_temporary_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0x20,8,engine_network_flags,0xfffffffffffffffe);
   *engine_temporary_pointer = engine_temp_uint_2;
   *(uint8*)(engine_temporary_pointer + 1) = engine_temporary_uint;
   engine_temporary_pointer[2] = engine_temp_uint_3;
@@ -41132,8 +41141,8 @@ void engine_unnamed_function_2110(uint64 engine_data_structure_ptr,longlong *eng
   pengine_stack_long_98 = engine_result_flag_ptr;
   strcpy_s(aengine_stack_value_70,0x40,&engine_audio_flags);
   engine_unnamed_function_5770();
-  engine_stack_pointer_88 = &engine_data_18098bcb0;
-  engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,3);
+  engine_stack_pointer_88 = &engine_camera_status098bcb0;
+  engine_temp_uint_2 = engine_call_memory_allocator(_engine_camera_status,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,3);
   engine_unnamed_function_2280(engine_temporary_uint,engine_result_flag_ptr);
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_temp_uint_2;
   *(int *)(*engine_result_flag_ptr + 0x18) = engine_comparison_params;
@@ -41177,8 +41186,8 @@ void engine_unnamed_function_2120(uint64 engine_data_structure_ptr,longlong *eng
   pengine_stack_long_98 = engine_result_flag_ptr;
   strcpy_s(aengine_stack_value_70,0x40,&engine_audio_flags);
   engine_unnamed_function_5770();
-  engine_stack_pointer_88 = &engine_data_18098bcb0;
-  engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,3);
+  engine_stack_pointer_88 = &engine_camera_status098bcb0;
+  engine_temp_uint_2 = engine_call_memory_allocator(_engine_camera_status,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,3);
   engine_unnamed_function_2290(engine_temporary_uint,engine_result_flag_ptr);
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_temp_uint_2;
   *(int *)(*engine_result_flag_ptr + 0x18) = engine_comparison_params;
@@ -41219,8 +41228,8 @@ void engine_unnamed_function_2130(uint64 engine_data_structure_ptr,longlong *eng
   pengine_stack_long_98 = engine_result_flag_ptr;
   strcpy_s(aengine_stack_value_70,0x40,&engine_audio_flags);
   engine_unnamed_function_5770();
-  engine_stack_pointer_88 = &engine_data_18098bcb0;
-  engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,3);
+  engine_stack_pointer_88 = &engine_camera_status098bcb0;
+  engine_temporary_uint = engine_call_memory_allocator(_engine_camera_status,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,3);
   engine_unnamed_function_2260(engine_data_structure_ptr,engine_result_flag_ptr);
   engine_stack_uint_a8 = 1;
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_temporary_uint;
@@ -41263,8 +41272,8 @@ void engine_unnamed_function_2140(uint64 engine_data_structure_ptr,longlong *eng
   pengine_stack_long_98 = engine_result_flag_ptr;
   strcpy_s(aengine_stack_value_70,0x40,&engine_audio_flags);
   engine_unnamed_function_5770();
-  engine_stack_pointer_88 = &engine_data_18098bcb0;
-  engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,0x20);
+  engine_stack_pointer_88 = &engine_camera_status098bcb0;
+  engine_temp_uint_2 = engine_call_memory_allocator(_engine_camera_status,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,0x20);
   engine_unnamed_function_2260(engine_temporary_uint,engine_result_flag_ptr);
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_temp_uint_2;
   *(uint32*)(*engine_result_flag_ptr + 0x18) = engine_comparison_params;
@@ -41313,8 +41322,8 @@ void engine_unnamed_function_2150(longlong engine_data_structure_ptr,longlong *e
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
-    engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
+    engine_stack_pointer_98 = &engine_camera_status098bcb0;
+    engine_temp_long_4 = engine_call_memory_allocator(_engine_camera_status,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2310(engine_temp_uint_2,&pengine_stack_long_b0);
     pengine_temp_long_3 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_4;
@@ -41383,8 +41392,8 @@ void engine_unnamed_function_2160(longlong engine_data_structure_ptr,longlong *e
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
-    engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
+    engine_stack_pointer_98 = &engine_camera_status098bcb0;
+    engine_temp_long_4 = engine_call_memory_allocator(_engine_camera_status,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2320(engine_temp_uint_2,&pengine_stack_long_b0);
     pengine_temp_long_3 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_4;
@@ -41453,8 +41462,8 @@ void engine_unnamed_function_2170(longlong engine_data_structure_ptr,longlong *e
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
-    engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_3 = engine_call_memory_allocator(_engine_data_18,engine_temp_int_4,MEMORY_COMPARE_SIZE_0x10,0x1e);
+    engine_stack_pointer_98 = &engine_camera_status098bcb0;
+    engine_temp_long_3 = engine_call_memory_allocator(_engine_camera_status,engine_temp_int_4,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2330(engine_temporary_uint,&pengine_stack_long_b0);
     pengine_temp_long_2 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_3;
@@ -41523,8 +41532,8 @@ void engine_unnamed_function_2180(longlong engine_data_structure_ptr,longlong *e
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
-    engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
+    engine_stack_pointer_98 = &engine_camera_status098bcb0;
+    engine_temp_long_4 = engine_call_memory_allocator(_engine_camera_status,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2340(engine_temp_uint_2,&pengine_stack_long_b0);
     pengine_temp_long_3 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_4;
@@ -41593,8 +41602,8 @@ void engine_unnamed_function_2190(longlong engine_data_structure_ptr,longlong *e
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
-    engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
+    engine_stack_pointer_98 = &engine_camera_status098bcb0;
+    engine_temp_long_4 = engine_call_memory_allocator(_engine_camera_status,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2280(engine_temp_uint_2,&pengine_stack_long_b0);
     pengine_temp_long_3 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_4;
@@ -41662,8 +41671,8 @@ void engine_unnamed_function_2200(longlong engine_data_structure_ptr,longlong *e
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
-    engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
+    engine_stack_pointer_98 = &engine_camera_status098bcb0;
+    engine_temp_long_4 = engine_call_memory_allocator(_engine_camera_status,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2260(engine_temp_uint_2,&pengine_stack_long_b0);
     pengine_temp_long_3 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_4;
@@ -41732,8 +41741,8 @@ void engine_unnamed_function_2210(longlong engine_data_structure_ptr,longlong *e
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
-    engine_stack_pointer_98 = &engine_data_18098bcb0;
-    engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
+    engine_stack_pointer_98 = &engine_camera_status098bcb0;
+    engine_temp_long_4 = engine_call_memory_allocator(_engine_camera_status,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
     engine_unnamed_function_2290(engine_temp_uint_2,&pengine_stack_long_b0);
     pengine_temp_long_3 = pengine_stack_long_b0;
     pengine_stack_long_b0[2] = engine_temp_long_4;
@@ -41799,7 +41808,7 @@ void engine_unnamed_function_2220(longlong *engine_data_structure_ptr,ulonglong 
     engine_temporary_pointer = (void*)0x0;
     if (engine_temp_uint_9 != 0) {
       engine_temporary_pointer = (void*)
-               engine_call_memory_extender(_engine_data_18,engine_temp_uint_9 << 5,(char)engine_data_structure_ptr[3],engine_system_parameter_4,0xfffffffffffffffe);
+               engine_call_memory_extender(_engine_camera_status,engine_temp_uint_9 << 5,(char)engine_data_structure_ptr[3],engine_system_parameter_4,0xfffffffffffffffe);
       current_data_pointer = (void*)engine_data_structure_ptr[1];
       engine_data_ptr0 = (void*)*engine_data_structure_ptr;
     }
@@ -41913,7 +41922,7 @@ void engine_unnamed_function_2230(longlong *engine_data_structure_ptr,ulonglong 
     engine_temporary_pointer = (void*)0x0;
     if (engine_temp_uint_9 != 0) {
       engine_temporary_pointer = (void*)
-               engine_call_memory_extender(_engine_data_18,engine_temp_uint_9 << 5,(char)engine_data_structure_ptr[3],engine_system_parameter_4,0xfffffffffffffffe);
+               engine_call_memory_extender(_engine_camera_status,engine_temp_uint_9 << 5,(char)engine_data_structure_ptr[3],engine_system_parameter_4,0xfffffffffffffffe);
       current_data_pointer = (void*)engine_data_structure_ptr[1];
       engine_data_ptr0 = (void*)*engine_data_structure_ptr;
     }
@@ -42029,7 +42038,7 @@ void engine_unnamed_function_2240(longlong *engine_data_structure_ptr,longlong *
     if (engine_temp_long0 == 0) goto LAB_180082720;
   }
   engine_temporary_pointer = (void*)
-           engine_call_memory_extender(_engine_data_18,engine_temp_long0 << 5,(char)engine_data_structure_ptr[3],engine_data_ptr2,0xfffffffffffffffe);
+           engine_call_memory_extender(_engine_camera_status,engine_temp_long0 << 5,(char)engine_data_structure_ptr[3],engine_data_ptr2,0xfffffffffffffffe);
   engine_data_ptr2 = (uint32*)engine_data_structure_ptr[1];
   temp_data_pointer = (uint32*)*engine_data_structure_ptr;
 LAB_180082720:
@@ -42063,7 +42072,7 @@ LAB_180082720:
   engine_temp_uint_3 = *(uint *)(engine_result_flag_ptr + 3);
   *(uint *)(next_data_pointer + 3) = engine_temp_uint_3;
   if (engine_temp_long1 != 0) {
-    current_data_pointer = (void*)engine_call_memory_extender(_engine_data_18,engine_temp_long1 * 4,engine_temp_uint_3 & 0xff,engine_data_ptr2,engine_temp_uint3);
+    current_data_pointer = (void*)engine_call_memory_extender(_engine_camera_status,engine_temp_long1 * 4,engine_temp_uint_3 & 0xff,engine_data_ptr2,engine_temp_uint3);
   }
   *next_data_pointer = current_data_pointer;
   next_data_pointer[1] = current_data_pointer;
@@ -42135,9 +42144,9 @@ uint64_t * engine_unnamed_function_2260(longlong engine_data_structure_ptr,uint6
   }
   engine_temporary_long = *(longlong *)(engine_data_structure_ptr + 200);
   if (*(longlong *)(engine_data_structure_ptr + 0xc0) == engine_temporary_long) {
-    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42154,8 +42163,8 @@ uint64_t * engine_unnamed_function_2260(longlong engine_data_structure_ptr,uint6
     pengine_temp_long_3[2] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[3] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[4] = -0x5a5a5a5a5a5a5a5b;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42207,9 +42216,9 @@ uint64_t * engine_unnamed_function_2280(longlong engine_data_structure_ptr,uint6
   }
   engine_temporary_long = *(longlong *)(engine_data_structure_ptr + 200);
   if (*(longlong *)(engine_data_structure_ptr + 0xc0) == engine_temporary_long) {
-    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42226,8 +42235,8 @@ uint64_t * engine_unnamed_function_2280(longlong engine_data_structure_ptr,uint6
     pengine_temp_long_3[2] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[3] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[4] = -0x5a5a5a5a5a5a5a5b;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42265,9 +42274,9 @@ uint64_t * engine_unnamed_function_2290(longlong engine_data_structure_ptr,uint6
   }
   engine_temporary_long = *(longlong *)(engine_data_structure_ptr + 200);
   if (*(longlong *)(engine_data_structure_ptr + 0xc0) == engine_temporary_long) {
-    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42284,8 +42293,8 @@ uint64_t * engine_unnamed_function_2290(longlong engine_data_structure_ptr,uint6
     pengine_temp_long_3[2] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[3] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[4] = -0x5a5a5a5a5a5a5a5b;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42375,7 +42384,7 @@ longlong engine_initialize_physics_engine(longlong *engine_data_structure_ptr,lo
   }
   else {
     if (engine_comparison_params == 1) {
-      engine_next_node_ptr = (void*)engine_call_memory_allocator(_engine_data_18,0x20,8,engine_network_flags,0xfffffffffffffffe);
+      engine_next_node_ptr = (void*)engine_call_memory_allocator(_engine_camera_status,0x20,8,engine_network_flags,0xfffffffffffffffe);
       engine_data_pointer = (void*)*engine_result_flag_ptr;
       *engine_next_node_ptr = *engine_data_pointer;
       *(uint8*)(engine_next_node_ptr + 1) = *(uint8*)(engine_data_pointer + 1);
@@ -42418,7 +42427,7 @@ void engine_setup_ui_system(longlong engine_data_structure_ptr,uint64 engine_res
   longlong *engine_memory_allocation_pointer;
   
   engine_temp_long_3 = *engine_system_parameter_4;
-  engine_temp_index = engine_call_memory_allocator(_engine_data_18,0xf0,8,3,0xfffffffffffffffe);
+  engine_temp_index = engine_call_memory_allocator(_engine_camera_status,0xf0,8,3,0xfffffffffffffffe);
   engine_temp_ptr_array_6 = (longlong *)engine_unnamed_function_1720(engine_temp_index);
   if (engine_temp_ptr_array_6 != (longlong *)0x0) {
     (**(code **)(*engine_temp_ptr_array_6 + 0x28))(engine_temp_ptr_array_6);
@@ -42539,7 +42548,7 @@ longlong engine_configure_resource_manager(longlong *engine_data_structure_ptr,l
   }
   else {
     if (engine_comparison_params == 1) {
-      engine_temporary_long = engine_call_memory_allocator(_engine_data_18,0x20,8,engine_network_flags,0xfffffffffffffffe);
+      engine_temporary_long = engine_call_memory_allocator(_engine_camera_status,0x20,8,engine_network_flags,0xfffffffffffffffe);
       engine_unnamed_function_1680(engine_temporary_long,*engine_result_flag_ptr);
       *engine_data_structure_ptr = engine_temporary_long;
       return 0;
@@ -42586,7 +42595,7 @@ longlong engine_initialize_audio_system(longlong *engine_data_structure_ptr,long
   }
   else {
     if (engine_comparison_params == 1) {
-      engine_next_node_ptr = (void*)engine_call_memory_allocator(_engine_data_18,0x20,8,engine_network_flags,0xfffffffffffffffe);
+      engine_next_node_ptr = (void*)engine_call_memory_allocator(_engine_camera_status,0x20,8,engine_network_flags,0xfffffffffffffffe);
       engine_data_pointer = (void*)*engine_result_flag_ptr;
       *engine_next_node_ptr = *engine_data_pointer;
       *(uint8*)(engine_next_node_ptr + 1) = *(uint8*)(engine_data_pointer + 1);
@@ -42671,9 +42680,9 @@ uint64_t * engine_unnamed_function_2310(longlong engine_data_structure_ptr,uint6
   }
   engine_temporary_long = *(longlong *)(engine_data_structure_ptr + 200);
   if (*(longlong *)(engine_data_structure_ptr + 0xc0) == engine_temporary_long) {
-    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42690,8 +42699,8 @@ uint64_t * engine_unnamed_function_2310(longlong engine_data_structure_ptr,uint6
     pengine_temp_long_3[2] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[3] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[4] = -0x5a5a5a5a5a5a5a5b;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42729,9 +42738,9 @@ uint64_t * engine_unnamed_function_2320(longlong engine_data_structure_ptr,uint6
   }
   engine_temporary_long = *(longlong *)(engine_data_structure_ptr + 200);
   if (*(longlong *)(engine_data_structure_ptr + 0xc0) == engine_temporary_long) {
-    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42748,8 +42757,8 @@ uint64_t * engine_unnamed_function_2320(longlong engine_data_structure_ptr,uint6
     pengine_temp_long_3[2] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[3] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[4] = -0x5a5a5a5a5a5a5a5b;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42787,9 +42796,9 @@ uint64_t * engine_unnamed_function_2330(longlong engine_data_structure_ptr,uint6
   }
   engine_temporary_long = *(longlong *)(engine_data_structure_ptr + 200);
   if (*(longlong *)(engine_data_structure_ptr + 0xc0) == engine_temporary_long) {
-    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42806,8 +42815,8 @@ uint64_t * engine_unnamed_function_2330(longlong engine_data_structure_ptr,uint6
     pengine_temp_long_3[2] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[3] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[4] = -0x5a5a5a5a5a5a5a5b;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42845,9 +42854,9 @@ uint64_t * engine_unnamed_function_2340(longlong engine_data_structure_ptr,uint6
   }
   engine_temporary_long = *(longlong *)(engine_data_structure_ptr + 200);
   if (*(longlong *)(engine_data_structure_ptr + 0xc0) == engine_temporary_long) {
-    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x28,8,0x20,engine_temp_uint_4,engine_temp_index);
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42864,8 +42873,8 @@ uint64_t * engine_unnamed_function_2340(longlong engine_data_structure_ptr,uint6
     pengine_temp_long_3[2] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[3] = -0x5a5a5a5a5a5a5a5b;
     pengine_temp_long_3[4] = -0x5a5a5a5a5a5a5a5b;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21690;
-    *pengine_temp_long_3 = (longlong)&engine_data_180a21720;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21690;
+    *pengine_temp_long_3 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(pengine_temp_long_3 + 1) = 0;
     *pengine_temp_long_3 = (longlong)&engine_base_data_offset_60;
     pengine_temp_long_3[2] = 0;
@@ -42928,8 +42937,8 @@ engine_unnamed_function_2370(uint64_t *engine_data_structure_ptr,ulonglong engin
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_88;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x28,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -42943,8 +42952,8 @@ engine_unnamed_function_2380(uint64_t *engine_data_structure_ptr,ulonglong engin
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_f0;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x28,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -42958,8 +42967,8 @@ engine_unnamed_function_2390(uint64_t *engine_data_structure_ptr,ulonglong engin
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_58;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x28,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -42973,8 +42982,8 @@ engine_unnamed_function_2400(uint64_t *engine_data_structure_ptr,ulonglong engin
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_c0;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x28,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -42988,8 +42997,8 @@ engine_unnamed_function_2410(uint64_t *engine_data_structure_ptr,ulonglong engin
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_28;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x28,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -43003,8 +43012,8 @@ engine_unnamed_function_2420(uint64_t *engine_data_structure_ptr,ulonglong engin
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_90;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x28,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -43018,8 +43027,8 @@ engine_unnamed_function_2430(uint64_t *engine_data_structure_ptr,ulonglong engin
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_f8;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x28,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -43033,8 +43042,8 @@ engine_unnamed_function_2430(uint64_t *engine_data_structure_ptr,ulonglong engin
 void engine_unnamed_function_2440(uint64_t *engine_data_structure_ptr)
 
 {
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   return;
 }
 
@@ -43044,8 +43053,8 @@ uint64_t *
 engine_unnamed_function_2450(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x28,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -43182,8 +43191,8 @@ engine_unnamed_function_2490(uint64_t *engine_data_structure_ptr,ulonglong engin
   if ((longlong *)engine_data_structure_ptr[4] != (longlong *)0x0) {
     (**(code **)(*(longlong *)engine_data_structure_ptr[4] + 0x38))();
   }
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x30,engine_comparison_params,engine_system_parameter_4,engine_temporary_uint);
   }
@@ -43196,8 +43205,8 @@ uint64_t * engine_unnamed_function_2500(uint64_t *engine_data_structure_ptr,uint
 
 {
   engine_unnamed_function_6548(engine_data_structure_ptr + 3,8,MEMORY_COMPARE_SIZE_0x10,engine_update_game_state,0xfffffffffffffffe);
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0xa0);
   }
@@ -43209,8 +43218,8 @@ uint64_t * engine_unnamed_function_2500(uint64_t *engine_data_structure_ptr,uint
 uint64_t * engine_unnamed_function_2510(uint64_t *engine_data_structure_ptr)
 
 {
-  *engine_data_structure_ptr = &engine_data_180a21690;
-  *engine_data_structure_ptr = &engine_data_180a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
   *(uint32*)(engine_data_structure_ptr + 1) = 0;
   *engine_data_structure_ptr = &engine_base_data_offset_98;
   engine_call_framework_initializer(engine_data_structure_ptr + 3,8,MEMORY_COMPARE_SIZE_0x10,&engine_calculate_frame_time,engine_update_game_state);
@@ -43251,13 +43260,13 @@ void engine_unnamed_function_2520(uint64_t *engine_data_structure_ptr,uint engin
   pengine_stack_uint_120 = engine_data_structure_ptr;
   if (engine_data_structure_ptr[3] != 0) {
     pengine_stack_pointer_138 = &pengine_stack_uint_108;
-    pengine_stack_uint_108 = &engine_data_1809fcc28;
+    pengine_stack_uint_108 = &engine_camera_status09fcc28;
     pengine_stack_uint_100 = aengine_stack_uint_f0;
     engine_stack_uint_f8 = 0;
     aengine_stack_uint_f0[0] = 0;
     engine_stack_value_70 = 0x25;
     engine_stack_uint_68 = engine_data_structure_ptr[3];
-    engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x100,8,3);
+    engine_temporary_uint = engine_call_memory_allocator(_engine_camera_status,MEMORY_COMPARE_SIZE_0x100,8,3);
     pengine_data_ptr_2 = (undefined **)engine_allocate_temporary_memory(engine_temporary_uint,&pengine_stack_uint_108);
     ppengine_stack_uint_118 = pengine_data_ptr_2;
     if (pengine_data_ptr_2 != (undefined **)0x0) {
@@ -43274,10 +43283,10 @@ void engine_unnamed_function_2520(uint64_t *engine_data_structure_ptr,uint engin
       (**(code **)(*pengine_data_ptr_2 + 0x38))(pengine_data_ptr_2);
     }
     pppengine_stack_uint_130 = (undefined ***)&pengine_stack_uint_108;
-    pengine_stack_uint_108 = &engine_data_18098bcb0;
+    pengine_stack_uint_108 = &engine_camera_status098bcb0;
   }
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x20);
   }
@@ -43316,13 +43325,13 @@ void engine_unnamed_function_2530(uint64_t *engine_data_structure_ptr,uint engin
   pengine_stack_uint_120 = engine_data_structure_ptr;
   if (engine_data_structure_ptr[3] != 0) {
     pengine_stack_pointer_138 = &pengine_stack_uint_108;
-    pengine_stack_uint_108 = &engine_data_1809fcc28;
+    pengine_stack_uint_108 = &engine_camera_status09fcc28;
     pengine_stack_uint_100 = aengine_stack_uint_f0;
     engine_stack_uint_f8 = 0;
     aengine_stack_uint_f0[0] = 0;
     engine_stack_value_70 = 0x23;
     engine_stack_uint_68 = engine_data_structure_ptr[3];
-    engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x100,8,3);
+    engine_temporary_uint = engine_call_memory_allocator(_engine_camera_status,MEMORY_COMPARE_SIZE_0x100,8,3);
     pengine_data_ptr_2 = (undefined **)engine_allocate_temporary_memory(engine_temporary_uint,&pengine_stack_uint_108);
     ppengine_stack_uint_118 = pengine_data_ptr_2;
     if (pengine_data_ptr_2 != (undefined **)0x0) {
@@ -43339,10 +43348,10 @@ void engine_unnamed_function_2530(uint64_t *engine_data_structure_ptr,uint engin
       (**(code **)(*pengine_data_ptr_2 + 0x38))(pengine_data_ptr_2);
     }
     pppengine_stack_uint_130 = (undefined ***)&pengine_stack_uint_108;
-    pengine_stack_uint_108 = &engine_data_18098bcb0;
+    pengine_stack_uint_108 = &engine_camera_status098bcb0;
   }
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x28);
   }
@@ -43406,7 +43415,7 @@ void engine_unnamed_function_2560(int *engine_data_structure_ptr)
     engine_data_structure_ptr[3] = 0;
     return;
   }
-  engine_temporary_uint = engine_call_memory_extender(_engine_data_18,(longlong)engine_data_structure_ptr[1] << 4,(char)engine_data_structure_ptr[8]);
+  engine_temporary_uint = engine_call_memory_extender(_engine_camera_status,(longlong)engine_data_structure_ptr[1] << 4,(char)engine_data_structure_ptr[8]);
   if (*(longlong *)(engine_data_structure_ptr + 2) != 0) {
                     // WARNING: Subroutine does not return
     memcpy(engine_temporary_uint,*(longlong *)(engine_data_structure_ptr + 2),(longlong)*engine_data_structure_ptr << 4);
@@ -44041,7 +44050,7 @@ engine_unnamed_function_2690(ulonglong engine_data_structure_ptr,uint64 engine_r
     return (ulonglong *)0x0;
   }
   engine_data_pointer = (ulonglong *)
-           engine_call_memory_extender(_engine_data_18,engine_data_structure_ptr * 0x50 + 0x10,0xf,engine_system_parameter_4,0xfffffffffffffffe);
+           engine_call_memory_extender(_engine_camera_status,engine_data_structure_ptr * 0x50 + 0x10,0xf,engine_system_parameter_4,0xfffffffffffffffe);
   *engine_data_pointer = engine_data_structure_ptr << 0x20 | 0x50;
   comparison_result_index = 0;
   structure_data_pointer = engine_data_pointer + 8;
@@ -44098,7 +44107,7 @@ void engine_unnamed_function_2700(longlong *engine_data_structure_ptr,longlong *
   engine_temp_uint64_value = *(ushort *)(engine_data_structure_ptr + 2);
   engine_temp_uint_8 = engine_temp_uint3;
   if ((ulonglong)engine_temp_uint64_value != 0) {
-    engine_temp_uint_8 = engine_call_memory_extender(_engine_data_18,(ulonglong)engine_temp_uint64_value * 4,0xf);
+    engine_temp_uint_8 = engine_call_memory_extender(_engine_camera_status,(ulonglong)engine_temp_uint64_value * 4,0xf);
     engine_temp_uint64_value = *(ushort *)(engine_data_structure_ptr + 2);
   }
   engine_data_structure_ptr[1] = engine_temp_uint_8;
@@ -44221,7 +44230,7 @@ void engine_unnamed_function_2717(void)
     engine_temp_uint_8 = 0;
   }
   else {
-    engine_temp_uint_9 = engine_call_memory_extender(_engine_data_18,in_RAX * 4,0xf);
+    engine_temp_uint_9 = engine_call_memory_extender(_engine_camera_status,in_RAX * 4,0xf);
     engine_temp_uint_8 = (engine_undefined_value)unaff_R14[2];
   }
   unaff_R14[1] = engine_temp_uint_9;
@@ -44503,7 +44512,7 @@ void engine_unnamed_function_2780(int *engine_data_structure_ptr)
     engine_data_structure_ptr[3] = 0;
     return;
   }
-  engine_temporary_uint = engine_call_memory_extender(_engine_data_18,(longlong)engine_data_structure_ptr[1] * 0x14,(char)engine_data_structure_ptr[8]);
+  engine_temporary_uint = engine_call_memory_extender(_engine_camera_status,(longlong)engine_data_structure_ptr[1] * 0x14,(char)engine_data_structure_ptr[8]);
   if (*(longlong *)(engine_data_structure_ptr + 2) != 0) {
                     // WARNING: Subroutine does not return
     memcpy(engine_temporary_uint,*(longlong *)(engine_data_structure_ptr + 2),(longlong)*engine_data_structure_ptr * 0x14);
@@ -44597,7 +44606,7 @@ void engine_unnamed_function_2820(int *engine_data_structure_ptr)
     engine_data_structure_ptr[3] = 0;
     return;
   }
-  engine_temporary_uint = engine_call_memory_extender(_engine_data_18,(longlong)engine_data_structure_ptr[1] * 0xc,(char)engine_data_structure_ptr[8]);
+  engine_temporary_uint = engine_call_memory_extender(_engine_camera_status,(longlong)engine_data_structure_ptr[1] * 0xc,(char)engine_data_structure_ptr[8]);
   if (*(longlong *)(engine_data_structure_ptr + 2) != 0) {
                     // WARNING: Subroutine does not return
     memcpy(engine_temporary_uint,*(longlong *)(engine_data_structure_ptr + 2),(longlong)*engine_data_structure_ptr * 0xc);
@@ -44691,7 +44700,7 @@ void engine_unnamed_function_2860(int *engine_data_structure_ptr)
     engine_data_structure_ptr[3] = 0;
     return;
   }
-  engine_temporary_uint = engine_call_memory_extender(_engine_data_18,(longlong)engine_data_structure_ptr[1] * 0x5c,(char)engine_data_structure_ptr[8]);
+  engine_temporary_uint = engine_call_memory_extender(_engine_camera_status,(longlong)engine_data_structure_ptr[1] * 0x5c,(char)engine_data_structure_ptr[8]);
   if (*(longlong *)(engine_data_structure_ptr + 2) != 0) {
                     // WARNING: Subroutine does not return
     memcpy(engine_temporary_uint,*(longlong *)(engine_data_structure_ptr + 2),(longlong)*engine_data_structure_ptr * 0x5c);
@@ -44806,7 +44815,7 @@ uint8_t engine_unnamed_function_2910(float *engine_data_structure_ptr)
        ((ABS(engine_data_structure_ptr[4]) < 0.0001 && (ABS(engine_data_structure_ptr[5] - 1.0) < 0.0001)))) &&
       ((ABS(engine_data_structure_ptr[6]) < 0.0001 && ((ABS(engine_data_structure_ptr[8]) < 0.0001 && (ABS(engine_data_structure_ptr[9]) < 0.0001)))))) &&
      (ABS(engine_data_structure_ptr[10] - 1.0) < 0.0001)) {
-    resource_status_flag = func_0x000180086150(engine_data_structure_ptr + 0xc,&engine_data_30);
+    resource_status_flag = func_0x000180086150(engine_data_structure_ptr + 0xc,&engine_render_status);
     if (resource_status_flag != '\0') {
       return 1;
     }
@@ -44853,7 +44862,7 @@ void engine_unnamed_function_2920(ulonglong *engine_data_structure_ptr,uint64_t 
       goto LAB_180086316;
     }
   }
-  engine_temporary_pointer = (uint32*)engine_call_memory_extender(_engine_data_18,engine_temp_long_6 * 0x18,(char)engine_data_structure_ptr[3]);
+  engine_temporary_pointer = (uint32*)engine_call_memory_extender(_engine_camera_status,engine_temp_long_6 * 0x18,(char)engine_data_structure_ptr[3]);
   next_data_pointer = (void*)*engine_data_structure_ptr;
   current_data_pointer = (void*)engine_data_structure_ptr[1];
 LAB_180086316:
@@ -44907,7 +44916,7 @@ void engine_unnamed_function_293b(longlong engine_data_structure_ptr,uint64 engi
       goto LAB_180086316;
     }
   }
-  engine_next_node_ptr = (uint32*)engine_call_memory_extender(_engine_data_18,memory_allocation_result * 0x18,(char)engine_register_rbx[3]);
+  engine_next_node_ptr = (uint32*)engine_call_memory_extender(_engine_camera_status,memory_allocation_result * 0x18,(char)engine_register_rbx[3]);
   engine_system_parameter_4 = *engine_register_rbx;
   unaff_RDI = engine_register_rbx[1];
 LAB_180086316:
@@ -44980,7 +44989,7 @@ void engine_unnamed_function_2940(ulonglong *engine_data_structure_ptr,uint64_t 
       goto LAB_18008642b;
     }
   }
-  engine_temporary_pointer = (uint32*)engine_call_memory_extender(_engine_data_18,engine_temp_long_7 << 4,(char)engine_data_structure_ptr[3]);
+  engine_temporary_pointer = (uint32*)engine_call_memory_extender(_engine_camera_status,engine_temp_long_7 << 4,(char)engine_data_structure_ptr[3]);
   temp_data_pointer = (void*)*engine_data_structure_ptr;
   next_data_pointer = (void*)engine_data_structure_ptr[1];
 LAB_18008642b:
@@ -45018,9 +45027,9 @@ engine_unnamed_function_2950(uint64_t *engine_data_structure_ptr,ulonglong engin
   }
   engine_data_structure_ptr[5] = 0;
   *(uint32*)(engine_data_structure_ptr + 7) = 0;
-  engine_data_structure_ptr[4] = &engine_data_18098bcb0;
-  *engine_data_structure_ptr = &engine_data_180a21720;
-  *engine_data_structure_ptr = &engine_data_180a21690;
+  engine_data_structure_ptr[4] = &engine_camera_status098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status0a21720;
+  *engine_data_structure_ptr = &engine_camera_status0a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x70,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -45048,10 +45057,10 @@ engine_unnamed_function_2970(uint64_t *engine_data_structure_ptr,longlong engine
 {
   longlong engine_temporary_long;
   
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
-  *engine_data_structure_ptr = &engine_data_1809fcc28;
+  *engine_data_structure_ptr = &engine_camera_status09fcc28;
   engine_data_structure_ptr[1] = engine_data_structure_ptr + 3;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
   *(uint8*)(engine_data_structure_ptr + 3) = 0;
@@ -45075,7 +45084,7 @@ uint64_t * engine_process_input_events(uint64 engine_data_structure_ptr,uint32_t
 {
   void* engine_data_pointer;
   
-  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
+  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0xb8,8,0x1a,0xfffffffffffffffe);
   engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_f8;
   engine_data_pointer[0x16] = 0;
@@ -45091,7 +45100,7 @@ uint64_t * engine_handle_keyboard_input(uint64 engine_data_structure_ptr,uint32_
 {
   void* engine_data_pointer;
   
-  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb0,8,0x1a,0xfffffffffffffffe);
+  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0xb0,8,0x1a,0xfffffffffffffffe);
   engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_40;
   return engine_data_pointer;
@@ -45121,7 +45130,7 @@ uint64_t * engine_handle_mouse_input(uint64 engine_data_structure_ptr,uint32_t e
 {
   void* engine_data_pointer;
   
-  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
+  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0xb8,8,0x1a,0xfffffffffffffffe);
   engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_88;
   engine_data_pointer[0x16] = 0;
@@ -45155,7 +45164,7 @@ uint64_t * engine_update_game_state(uint64 engine_data_structure_ptr,uint32_t en
 {
   void* engine_data_pointer;
   
-  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
+  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0xb8,8,0x1a,0xfffffffffffffffe);
   engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_d0;
   engine_data_pointer[0x16] = 0;
@@ -45171,7 +45180,7 @@ uint64_t * engine_process_physics_simulation(uint64 engine_data_structure_ptr,ui
 {
   void* engine_data_pointer;
   
-  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
+  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0xb8,8,0x1a,0xfffffffffffffffe);
   engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_10;
   engine_data_pointer[0x16] = 0;
@@ -45187,7 +45196,7 @@ uint64_t * engine_render_frame(uint64 engine_data_structure_ptr,uint32_t engine_
 {
   void* engine_data_pointer;
   
-  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
+  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0xb8,8,0x1a,0xfffffffffffffffe);
   engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_58;
   engine_data_pointer[0x16] = 0;
@@ -45203,7 +45212,7 @@ uint64_t * engine_update_audio_system(uint64 engine_data_structure_ptr,uint32_t 
 {
   void* engine_data_pointer;
   
-  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
+  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0xb8,8,0x1a,0xfffffffffffffffe);
   engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_78;
   engine_data_pointer[0x16] = 0;
@@ -45219,7 +45228,7 @@ uint64_t * engine_process_network_events(uint64 engine_data_structure_ptr,uint32
 {
   void* engine_data_pointer;
   
-  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
+  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0xb8,8,0x1a,0xfffffffffffffffe);
   engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_a8;
   engine_data_pointer[0x16] = 0;
@@ -45235,7 +45244,7 @@ uint64_t * engine_process_graphics_buffer(uint64 engine_data_structure_ptr,uint3
 {
   void* engine_data_pointer;
   
-  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
+  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0xb8,8,0x1a,0xfffffffffffffffe);
   engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_e0;
   engine_data_pointer[0x16] = 0;
@@ -45461,10 +45470,10 @@ void engine_unnamed_function_3050(longlong engine_data_structure_ptr,longlong *e
       }
       pengine_stack_uint_280 = (uint8*)0x0;
       engine_stack_uint_270 = engine_stack_uint_270 & 0xffffffff00000000;
-      pengine_stack_uint_288 = &engine_data_18098bcb0;
+      pengine_stack_uint_288 = &engine_camera_status098bcb0;
     }
   }
-  pengine_stack_uint_258 = &engine_data_18098bcb0;
+  pengine_stack_uint_258 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_38 ^ (ulonglong)aengine_stack_uint_2a8);
 }
@@ -45692,7 +45701,7 @@ LAB_18008733a:
     }
     pbStack_48 = (byte *)0x0;
     engine_stack_uint_38 = engine_stack_uint_38 & 0xffffffff00000000;
-    pengine_stack_uint_50 = &engine_data_18098bcb0;
+    pengine_stack_uint_50 = &engine_camera_status098bcb0;
     if (engine_data_ptr0 != engine_data_pointer) {
       return engine_data_ptr0[8];
     }
@@ -45810,7 +45819,7 @@ LAB_18008758f:
   }
   engine_stack_long_b0 = 0;
   engine_stack_value_a0 = engine_stack_value_a0 & 0xffffffff00000000;
-  engine_stack_pointer_b8 = &engine_data_18098bcb0;
+  engine_stack_pointer_b8 = &engine_camera_status098bcb0;
   engine_stack_pointer_98 = &engine_system_context_data;
   if (engine_stack_long_90 != 0) {
                     // WARNING: Subroutine does not return
@@ -45818,7 +45827,7 @@ LAB_18008758f:
   }
   engine_stack_long_90 = 0;
   engine_stack_value_80 = engine_stack_value_80 & 0xffffffff00000000;
-  engine_stack_pointer_98 = &engine_data_18098bcb0;
+  engine_stack_pointer_98 = &engine_camera_status098bcb0;
   engine_stack_pointer_78 = &engine_system_context_data;
   if (engine_stack_long_70 != 0) {
                     // WARNING: Subroutine does not return
@@ -45826,7 +45835,7 @@ LAB_18008758f:
   }
   engine_stack_long_70 = 0;
   engine_stack_value_60 = engine_stack_value_60 & 0xffffffff00000000;
-  engine_stack_pointer_78 = &engine_data_18098bcb0;
+  engine_stack_pointer_78 = &engine_camera_status098bcb0;
   engine_stack_pointer_58 = &engine_system_context_data;
   if (pengine_stack_uint_50 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -46004,7 +46013,7 @@ void engine_unnamed_function_3130(uint64_t *engine_data_structure_ptr,uint64_t *
     engine_handle_input_device(engine_system_parameter_4,&engine_base_data_offset_68,engine_data_ptr1);
     if (aengine_stack_long_108[0] != -1) {
       LOCK();
-      _engine_data_64 = _engine_data_64 + -1;
+      _engine_audio_status = _engine_audio_status + -1;
       UNLOCK();
       CloseHandle(aengine_stack_long_108[0]);
       aengine_stack_long_108[0] = -1;
@@ -46039,7 +46048,7 @@ LAB_18008807f:
       engine_handle_input_device(engine_system_parameter_4,&engine_base_data_offset_80,engine_data_ptr1);
       if (engine_temp_long5 != -1) {
         LOCK();
-        _engine_data_64 = _engine_data_64 + -1;
+        _engine_audio_status = _engine_audio_status + -1;
         UNLOCK();
         CloseHandle(aengine_stack_long_108[0]);
         aengine_stack_long_108[0] = -1;
@@ -46051,7 +46060,7 @@ LAB_18008807f:
       }
       pengine_stack_uint_120 = (uint8*)0x0;
       engine_stack_uint_110 = engine_stack_uint_110 & 0xffffffff00000000;
-      pengine_stack_uint_128 = &engine_data_18098bcb0;
+      pengine_stack_uint_128 = &engine_camera_status098bcb0;
       *engine_result_flag_ptr = &engine_system_context_data;
       if (engine_result_flag_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -46059,7 +46068,7 @@ LAB_18008807f:
       }
       engine_result_flag_ptr[1] = 0;
       *(uint32*)(engine_result_flag_ptr + 3) = 0;
-      *engine_result_flag_ptr = &engine_data_18098bcb0;
+      *engine_result_flag_ptr = &engine_camera_status098bcb0;
       *engine_comparison_params = &engine_system_context_data;
       if (engine_comparison_params[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -46067,14 +46076,14 @@ LAB_18008807f:
       }
       engine_comparison_params[1] = 0;
       *(uint32*)(engine_comparison_params + 3) = 0;
-      *engine_comparison_params = &engine_data_18098bcb0;
+      *engine_comparison_params = &engine_camera_status098bcb0;
       goto LAB_180088131;
     }
     if (engine_stack_int_98 == 0x43415054) {
       if (engine_stack_uint_94 < 3) {
         SetFilePointerEx(engine_temp_long5,0,&engine_stack_long_d0,1);
         engine_stack_long_c8 = engine_stack_long_d0;
-        pengine_temp_long_20 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x20,8,3);
+        pengine_temp_long_20 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x20,8,3);
         *pengine_temp_long_20 = 0;
         pengine_temp_long_20[1] = 0;
         pengine_temp_long_20[2] = 0;
@@ -46103,12 +46112,12 @@ LAB_18008807f:
         }
         if (engine_temp_long5 != -1) {
           LOCK();
-          _engine_data_64 = _engine_data_64 + -1;
+          _engine_audio_status = _engine_audio_status + -1;
           UNLOCK();
           CloseHandle(aengine_stack_long_108[0]);
           aengine_stack_long_108[0] = -1;
         }
-        engine_data_ptr1 = (uint8*)engine_call_memory_allocator(_engine_data_18,0x1a0,8,0x1a);
+        engine_data_ptr1 = (uint8*)engine_call_memory_allocator(_engine_camera_status,0x1a0,8,0x1a);
         *engine_data_ptr1 = 0;
         *(uint32*)(engine_data_ptr1 + 4) = 0xffffffff;
         *(uint32*)(engine_data_ptr1 + 8) = engine_stack_uint_90;
@@ -46119,7 +46128,7 @@ LAB_18008807f:
         engine_setup_processing_environment(engine_data_ptr1 + 0x18,engine_result_flag_ptr);
         engine_setup_processing_environment(engine_data_ptr1 + 0x38,engine_comparison_params);
         engine_data_ptr_24 = (void*)(engine_data_ptr1 + 0x58);
-        *engine_data_ptr_24 = &engine_data_18098bcb0;
+        *engine_data_ptr_24 = &engine_camera_status098bcb0;
         *(void*)(engine_data_ptr1 + 0x60) = 0;
         *(uint32*)(engine_data_ptr1 + 0x68) = 0;
         *engine_data_ptr_24 = &engine_system_context_data;
@@ -46205,7 +46214,7 @@ LAB_180087f81:
               pengine_temp_long4 = (longlong *)pengine_temp_long2[0x11];
               if (pengine_temp_long4 == (longlong *)0x0) {
                 if (pengine_stack_uint_d8[0x178] == '\0') {
-                  pengine_temp_long4 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x28,8,0x1a);
+                  pengine_temp_long4 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x28,8,0x1a);
                   *pengine_temp_long4 = (longlong)&engine_base_data_zero;
                   pengine_temp_long4[1] = 0;
                   pengine_temp_long4[2] = (longlong)pengine_temp_long2;
@@ -46215,7 +46224,7 @@ LAB_180087f81:
                   pengine_stack_long_e8 = pengine_temp_long4;
                 }
                 else {
-                  pengine_temp_long4 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x28,8,0x1a);
+                  pengine_temp_long4 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x28,8,0x1a);
                   *pengine_temp_long4 = (longlong)&engine_base_data_zero;
                   pengine_temp_long4[1] = 0;
                   pengine_temp_long4[2] = (longlong)pengine_temp_long2;
@@ -46276,7 +46285,7 @@ LAB_180087f81:
                 if (engine_temp_long5 == 0) {
                   engine_temp_long5 = 1;
 LAB_180087f16:
-                  pengine_temp_long4 = (longlong *)engine_call_memory_extender(_engine_data_18,engine_temp_long5 * 8,engine_data_ptr1[0x198]);
+                  pengine_temp_long4 = (longlong *)engine_call_memory_extender(_engine_camera_status,engine_temp_long5 * 8,engine_data_ptr1[0x198]);
                   engine_data_ptr_24 = *(void**)(engine_data_ptr1 + 0x188);
                   engine_data_ptr7 = (void*)*pengine_temp_long_21;
                 }
@@ -46316,7 +46325,7 @@ LAB_180087f16:
       engine_handle_input_device(engine_system_parameter_4,&engine_base_data_offset_b8,engine_stack_uint_94,engine_data_ptr1);
       if (engine_temp_long5 != -1) {
         LOCK();
-        _engine_data_64 = _engine_data_64 + -1;
+        _engine_audio_status = _engine_audio_status + -1;
         UNLOCK();
         CloseHandle(aengine_stack_long_108[0]);
         aengine_stack_long_108[0] = -1;
@@ -46336,7 +46345,7 @@ LAB_180087f16:
       engine_handle_input_device(engine_system_parameter_4,&engine_base_data_offset_98,engine_data_ptr1);
       if (engine_temp_long5 != -1) {
         LOCK();
-        _engine_data_64 = _engine_data_64 + -1;
+        _engine_audio_status = _engine_audio_status + -1;
         UNLOCK();
         CloseHandle(aengine_stack_long_108[0]);
         aengine_stack_long_108[0] = -1;
@@ -46350,7 +46359,7 @@ LAB_180087f16:
     }
   }
   pengine_stack_uint_120 = (uint8*)0x0;
-  pengine_stack_uint_128 = &engine_data_18098bcb0;
+  pengine_stack_uint_128 = &engine_camera_status098bcb0;
   engine_unnamed_function_6290(engine_result_flag_ptr);
   engine_unnamed_function_6290(engine_comparison_params);
 LAB_180088131:
@@ -46476,7 +46485,7 @@ void engine_unnamed_function_3140(uint64 engine_data_structure_ptr,uint8_t engin
       }
       engine_stack_long_248 = 0;
       engine_stack_uint_238 = engine_stack_uint_238 & 0xffffffff00000000;
-      pengine_stack_uint_250 = &engine_data_18098bcb0;
+      pengine_stack_uint_250 = &engine_camera_status098bcb0;
       pengine_stack_uint_2b0 = &engine_system_context_data;
       if (pengine_stack_uint_2a8 != (uint8*)0x0) {
                     // WARNING: Subroutine does not return
@@ -46484,7 +46493,7 @@ void engine_unnamed_function_3140(uint64 engine_data_structure_ptr,uint8_t engin
       }
       pengine_stack_uint_2a8 = (uint8*)0x0;
       engine_stack_uint_298 = engine_stack_uint_298 & 0xffffffff00000000;
-      pengine_stack_uint_2b0 = &engine_data_18098bcb0;
+      pengine_stack_uint_2b0 = &engine_camera_status098bcb0;
       engine_temp_long0 = engine_temp_long0 + 0x60;
       engine_temp_long4 = engine_temp_long4 + -1;
     } while (engine_temp_long4 != 0);
@@ -46563,7 +46572,7 @@ void engine_unnamed_function_3140(uint64 engine_data_structure_ptr,uint8_t engin
       }
       pengine_stack_uint_288 = (void*)0x0;
       engine_stack_uint_278 = engine_stack_uint_278 & 0xffffffff00000000;
-      pengine_stack_uint_290 = &engine_data_18098bcb0;
+      pengine_stack_uint_290 = &engine_camera_status098bcb0;
       pengine_stack_uint_2d0 = &engine_system_context_data;
       if (pengine_stack_uint_2c8 != (uint8*)0x0) {
                     // WARNING: Subroutine does not return
@@ -46571,7 +46580,7 @@ void engine_unnamed_function_3140(uint64 engine_data_structure_ptr,uint8_t engin
       }
       pengine_stack_uint_2c8 = (uint8*)0x0;
       engine_stack_uint_2b8 = engine_stack_uint_2b8 & 0xffffffff00000000;
-      pengine_stack_uint_2d0 = &engine_data_18098bcb0;
+      pengine_stack_uint_2d0 = &engine_camera_status098bcb0;
       engine_stack_long_258 = engine_temp_long_6 + 1;
     } while (engine_stack_long_258 < engine_temp_long0);
     if (engine_stack_int_2e8 != 0) goto LAB_180088ac9;
@@ -46812,7 +46821,7 @@ LAB_1800892fd:
     }
     engine_stack_long_40 = 0;
     engine_stack_uint_30 = 0;
-    pengine_stack_uint_48 = &engine_data_18098bcb0;
+    pengine_stack_uint_48 = &engine_camera_status098bcb0;
   }
   if (pbStack_60 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
@@ -46901,7 +46910,7 @@ void engine_unnamed_function_3180(void)
       engine_stack_long_90 = 0;
       engine_stack_value_88 = 0;
       ppengine_stack_uint_a8 = &engine_stack_pointer_78;
-      engine_stack_pointer_78 = &engine_data_18098bc80;
+      engine_stack_pointer_78 = &engine_camera_status098bc80;
       engine_stack_pointer_70 = aengine_stack_uint_60;
       engine_stack_uint_68 = 0;
       aengine_stack_uint_60[0] = 0;
@@ -46938,7 +46947,7 @@ void engine_unnamed_function_3180(void)
           engine_expand_data_structure(engine_temp_long_3 + 8,&engine_stack_pointer_98);
         }
       }
-      engine_stack_pointer_78 = &engine_data_18098bcb0;
+      engine_stack_pointer_78 = &engine_camera_status098bcb0;
       ppengine_stack_uint_a8 = &engine_stack_pointer_98;
       engine_stack_pointer_98 = &engine_system_context_data;
       if (engine_stack_long_90 != 0) {
@@ -46947,7 +46956,7 @@ void engine_unnamed_function_3180(void)
       }
       engine_stack_long_90 = 0;
       engine_stack_value_80 = engine_stack_value_80 & 0xffffffff00000000;
-      engine_stack_pointer_98 = &engine_data_18098bcb0;
+      engine_stack_pointer_98 = &engine_camera_status098bcb0;
       engine_temp_uint_6 = (ulonglong)((int)engine_temp_uint_6 + 1);
       engine_temp_long0 = engine_temp_long0 + -1;
       engine_temp_uint_9 = engine_temp_uint_9 + MEMORY_OFFSET_0x20;
@@ -46964,7 +46973,7 @@ void engine_unnamed_function_3180(void)
 void engine_unnamed_function_3190(uint64_t *engine_data_structure_ptr)
 
 {
-  engine_data_structure_ptr[4] = &engine_data_18098bcb0;
+  engine_data_structure_ptr[4] = &engine_camera_status098bcb0;
   *engine_data_structure_ptr = &engine_system_context_data;
   if (engine_data_structure_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -46972,7 +46981,7 @@ void engine_unnamed_function_3190(uint64_t *engine_data_structure_ptr)
   }
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 3) = 0;
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   return;
 }
 
@@ -47168,7 +47177,7 @@ LAB_180089891:
     engine_temp_uint_7 = (ulonglong)engine_temp_int_7;
     engine_temp_char_value = *(char *)(engine_temp_uint_7 + *(longlong *)(*_engine_data_70 + 0x8c8));
     if (engine_temp_char_value == '\0') {
-      pengine_stack_uint_1a8 = &engine_data_1809fdc18;
+      pengine_stack_uint_1a8 = &engine_camera_status09fdc18;
       pengine_stack_uint_1a0 = aengine_stack_uint_190;
       aengine_stack_uint_190[0] = 0;
       engine_stack_value_198 = 0;
@@ -47201,12 +47210,12 @@ LAB_180089891:
     engine_temp_int8 = engine_stack_int_340;
     if ((engine_temp_uint_26 & 2) != 0) {
       engine_temp_uint_26 = engine_temp_uint_26 & 0xfffffffd;
-      pengine_stack_uint_1a8 = &engine_data_18098bcb0;
+      pengine_stack_uint_1a8 = &engine_camera_status098bcb0;
       engine_stack_uint_3e4 = engine_temp_uint_26;
     }
     if ((engine_temp_uint_26 & 1) != 0) {
       engine_temp_uint_26 = engine_temp_uint_26 & 0xfffffffe;
-      apengine_stack_uint_180[0] = &engine_data_18098bcb0;
+      apengine_stack_uint_180[0] = &engine_camera_status098bcb0;
       engine_stack_uint_3e4 = engine_temp_uint_26;
     }
     engine_temp_uint_27 = (ulonglong)engine_temp_uint_26;
@@ -47297,7 +47306,7 @@ LAB_180089891:
         }
         engine_stack_uint_2a0 = 0;
         engine_stack_uint_290 = engine_stack_uint_290 & 0xffffffff00000000;
-        pengine_stack_uint_2a8 = &engine_data_18098bcb0;
+        pengine_stack_uint_2a8 = &engine_camera_status098bcb0;
       }
       engine_unnamed_function_6270(&engine_stack_pointer_158,engine_temp_long_28);
       engine_temp_long1 = engine_stack_long_310;
@@ -47367,8 +47376,8 @@ LAB_180089891:
       }
       pengine_stack_uint_2c0 = (void*)0x0;
       engine_stack_uint_2b0 = engine_stack_uint_2b0 & 0xffffffff00000000;
-      pengine_stack_uint_2c8 = &engine_data_18098bcb0;
-      engine_stack_pointer_158 = &engine_data_18098bcb0;
+      pengine_stack_uint_2c8 = &engine_camera_status098bcb0;
+      engine_stack_pointer_158 = &engine_camera_status098bcb0;
       pengine_stack_uint_3d8 = &engine_system_context_data;
       if (engine_stack_long_3d0 != 0) {
                     // WARNING: Subroutine does not return
@@ -47376,7 +47385,7 @@ LAB_180089891:
       }
       engine_stack_long_3d0 = 0;
       engine_stack_uint_3c0 = engine_stack_uint_3c0 & 0xffffffff00000000;
-      pengine_stack_uint_3d8 = &engine_data_18098bcb0;
+      pengine_stack_uint_3d8 = &engine_camera_status098bcb0;
     }
     pengine_stack_uint_3b0 = &engine_system_context_data;
     if (engine_data_ptr_23 != (uint8*)0x0) {
@@ -47385,7 +47394,7 @@ LAB_180089891:
     }
     pengine_stack_uint_3a8 = (uint8*)0x0;
     engine_stack_uint_398 = engine_stack_uint_398 & 0xffffffff00000000;
-    pengine_stack_uint_3b0 = &engine_data_18098bcb0;
+    pengine_stack_uint_3b0 = &engine_camera_status098bcb0;
     pengine_stack_uint_308 = &engine_system_context_data;
     if (pengine_stack_uint_300 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -47393,7 +47402,7 @@ LAB_180089891:
     }
     pengine_stack_uint_300 = (void*)0x0;
     engine_stack_uint_2f0 = engine_stack_uint_2f0 & 0xffffffff00000000;
-    pengine_stack_uint_308 = &engine_data_18098bcb0;
+    pengine_stack_uint_308 = &engine_camera_status098bcb0;
     pengine_stack_uint_350 = &engine_system_context_data;
     if (engine_next_node_ptr != (uint8*)0x0) {
                     // WARNING: Subroutine does not return
@@ -47401,7 +47410,7 @@ LAB_180089891:
     }
     pengine_stack_uint_348 = (uint8*)0x0;
     engine_stack_uint_338 = engine_stack_uint_338 & 0xffffffff00000000;
-    pengine_stack_uint_350 = &engine_data_18098bcb0;
+    pengine_stack_uint_350 = &engine_camera_status098bcb0;
     engine_temp_long6 = engine_stack_long_310;
   }
   else {
@@ -47424,7 +47433,7 @@ LAB_180089891:
       if (engine_temp_int_7 < 0x10) {
         engine_temp_int_7 = 0x10;
       }
-      pengine_stack_uint_388 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)engine_temp_int_7,0x13);
+      pengine_stack_uint_388 = (uint8*)engine_call_memory_extender(_engine_camera_status,(longlong)engine_temp_int_7,0x13);
       *pengine_stack_uint_388 = 0;
       engine_temp_uint_7 = (ulonglong)pengine_stack_uint_388 & 0xffffffffffc00000;
       if (engine_temp_uint_7 != 0) {
@@ -47505,7 +47514,7 @@ LAB_180089891:
       engine_unnamed_function_3220(&ppengine_stack_uint_278);
       if (engine_stack_long_1e0 - engine_stack_long_1e8 >> 3 != 0) {
         engine_temp_long1 = engine_temp_long6 + 0x48;
-        engine_temp_long_28 = engine_call_memory_extender(_engine_data_18,0x40,*(uint8*)(engine_temp_long6 + 0x70));
+        engine_temp_long_28 = engine_call_memory_extender(_engine_camera_status,0x40,*(uint8*)(engine_temp_long6 + 0x70));
         engine_call_data_writer(engine_temp_long_28 + MEMORY_OFFSET_0x20,&pengine_stack_uint_330);
         engine_temp_long_9 = engine_process_data_structure_comparison(engine_temp_long1,acStack_3e8,engine_temp_long_28 + MEMORY_OFFSET_0x20);
         if (acStack_3e8[0] != '\0') {
@@ -47543,7 +47552,7 @@ LAB_180089891:
     }
     engine_stack_long_328 = 0;
     engine_stack_uint_318 = engine_stack_uint_318 & 0xffffffff00000000;
-    pengine_stack_uint_330 = &engine_data_18098bcb0;
+    pengine_stack_uint_330 = &engine_camera_status098bcb0;
     pengine_stack_uint_390 = &engine_system_context_data;
     if (engine_next_node_ptr != (uint8*)0x0) {
                     // WARNING: Subroutine does not return
@@ -47551,7 +47560,7 @@ LAB_180089891:
     }
     pengine_stack_uint_388 = (uint8*)0x0;
     engine_stack_uint_378 = engine_stack_uint_378 & 0xffffffff00000000;
-    pengine_stack_uint_390 = &engine_data_18098bcb0;
+    pengine_stack_uint_390 = &engine_camera_status098bcb0;
   }
   engine_stack_long_288 = engine_stack_long_288 + 1;
   if (engine_stack_long_1f0 <= engine_stack_long_288) {
@@ -47789,11 +47798,11 @@ LAB_18008a753:
         engine_stack_uint_388 = 0;
         aengine_stack_uint_380[0] = 0;
         if (engine_temp_int_23 != -1) {
-          pengine_stack_uint_3e8 = &engine_data_1809fdc18;
+          pengine_stack_uint_3e8 = &engine_camera_status09fdc18;
           pengine_stack_uint_3e0 = aengine_stack_uint_3d0;
           aengine_stack_uint_3d0[0] = 0;
           engine_stack_uint_3d8 = 6;
-          strcpy_s(aengine_stack_uint_3d0,MEMORY_COMPARE_SIZE_0x10,&engine_data_180a3c07c);
+          strcpy_s(aengine_stack_uint_3d0,MEMORY_COMPARE_SIZE_0x10,&engine_camera_status0a3c07c);
           if (*(uint *)(engine_data_ptr_27 + 2) < engine_stack_uint_3d8) {
 LAB_18008a841:
             engine_temp_byte6 = false;
@@ -47811,15 +47820,15 @@ LAB_18008a841:
             engine_temp_byte6 = true;
           }
           engine_stack_uint_5a8 = 0;
-          pengine_stack_uint_3e8 = &engine_data_18098bcb0;
+          pengine_stack_uint_3e8 = &engine_camera_status098bcb0;
           engine_temp_uint_25 = 0;
           if (engine_temp_byte6) {
-            pengine_stack_uint_3c0 = &engine_data_1809fdc18;
+            pengine_stack_uint_3c0 = &engine_camera_status09fdc18;
             pengine_stack_uint_3b8 = aengine_stack_uint_3a8;
             aengine_stack_uint_3a8[0] = 0;
             engine_stack_uint_3b0 = 6;
-            strcpy_s(aengine_stack_uint_3a8,MEMORY_COMPARE_SIZE_0x10,&engine_data_180a3c07c);
-            pengine_stack_uint_3c0 = &engine_data_18098bcb0;
+            strcpy_s(aengine_stack_uint_3a8,MEMORY_COMPARE_SIZE_0x10,&engine_camera_status0a3c07c);
+            pengine_stack_uint_3c0 = &engine_camera_status098bcb0;
             engine_temp_uint_25 = engine_stack_uint_3b0;
           }
           engine_stack_uint_5a8 = 0;
@@ -47836,7 +47845,7 @@ LAB_18008a841:
           }
           engine_stack_long_410 = 0;
           engine_stack_uint_400 = 0;
-          pengine_stack_uint_418 = &engine_data_18098bcb0;
+          pengine_stack_uint_418 = &engine_camera_status098bcb0;
         }
         engine_temp_uint_26 = engine_temp_int_23 + 1;
         engine_temp_int_23 = *(int *)(engine_data_ptr_27 + 2);
@@ -47895,7 +47904,7 @@ LAB_18008a841:
           engine_data_ptr_21 = pengine_stack_uint_150;
         }
         strcpy_s(pengine_stack_uint_390,MEMORY_COMPARE_SIZE_0x100,engine_data_ptr_21);
-        engine_stack_pointer_158 = &engine_data_18098bcb0;
+        engine_stack_pointer_158 = &engine_camera_status098bcb0;
         engine_stack_uint_5a8 = 0;
         pengine_stack_uint_598 = &engine_system_context_data;
         if (pengine_stack_uint_590 != (void*)0x0) {
@@ -47904,7 +47913,7 @@ LAB_18008a841:
         }
         pengine_stack_uint_590 = (void*)0x0;
         engine_stack_uint_580 = engine_stack_uint_580 & 0xffffffff00000000;
-        pengine_stack_uint_598 = &engine_data_18098bcb0;
+        pengine_stack_uint_598 = &engine_camera_status098bcb0;
         engine_stack_uint_528 = 0;
         if (pengine_stack_uint_530 != (uint8*)0x0) {
           *pengine_stack_uint_530 = 0;
@@ -47972,7 +47981,7 @@ LAB_18008acc1:
               if (engine_temp_long5 == 0) {
                 engine_temp_long5 = 1;
 LAB_18008ae5a:
-                pengine_temp_long6 = (longlong *)engine_call_memory_extender(_engine_data_18,engine_temp_long5 * 8,(char)engine_temporary_pointer[3]);
+                pengine_temp_long6 = (longlong *)engine_call_memory_extender(_engine_camera_status,engine_temp_long5 * 8,(char)engine_temporary_pointer[3]);
                 pengine_temp_long_28 = (longlong *)engine_temporary_pointer[1];
                 pengine_temp_long_22 = (longlong *)*engine_temporary_pointer;
               }
@@ -48029,7 +48038,7 @@ LAB_18008ae5a:
           }
           pengine_stack_uint_430 = (void*)0x0;
           engine_stack_uint_420 = 0;
-          pengine_stack_uint_438 = &engine_data_18098bcb0;
+          pengine_stack_uint_438 = &engine_camera_status098bcb0;
           resource_status_flag2 = (*(code *)engine_data_structure_ptr[0xf])(&pengine_stack_uint_558);
           pengine_stack_uint_558 = &engine_system_context_data;
           if (resource_status_flag2 != '\0') {
@@ -48039,7 +48048,7 @@ LAB_18008ae5a:
             }
             pengine_stack_uint_550 = (uint8*)0x0;
             engine_stack_uint_540 = (ulonglong)engine_stack_uint_540._4_4_ << 0x20;
-            pengine_stack_uint_558 = &engine_data_18098bcb0;
+            pengine_stack_uint_558 = &engine_camera_status098bcb0;
             goto LAB_18008acc1;
           }
           if (pengine_stack_uint_550 != (uint8*)0x0) {
@@ -48048,10 +48057,10 @@ LAB_18008ae5a:
           }
           pengine_stack_uint_550 = (uint8*)0x0;
           engine_stack_uint_540 = (ulonglong)engine_stack_uint_540._4_4_ << 0x20;
-          pengine_stack_uint_558 = &engine_data_18098bcb0;
+          pengine_stack_uint_558 = &engine_camera_status098bcb0;
         }
-        pengine_stack_uint_398 = &engine_data_18098bcb0;
-        pengine_stack_uint_278 = &engine_data_18098bcb0;
+        pengine_stack_uint_398 = &engine_camera_status098bcb0;
+        pengine_stack_uint_278 = &engine_camera_status098bcb0;
         engine_stack_long_478 = engine_stack_long_478 + 1;
       } while (engine_stack_long_478 < engine_stack_long_448);
     }
@@ -48175,7 +48184,7 @@ LAB_18008ae5a:
     }
     pengine_stack_uint_530 = (uint8*)0x0;
     engine_stack_uint_520 = engine_stack_uint_520 & 0xffffffff00000000;
-    pengine_stack_uint_538 = &engine_data_18098bcb0;
+    pengine_stack_uint_538 = &engine_camera_status098bcb0;
     pengine_stack_uint_578 = current_data_pointer;
     pengine_stack_uint_570 = next_data_pointer;
     for (engine_data_ptr_27 = engine_temp_uint_ptr_9; engine_data_ptr_27 != engine_data_ptr0; engine_data_ptr_27 = engine_data_ptr_27 + 4) {
@@ -48348,7 +48357,7 @@ ulonglong engine_unnamed_function_3250(longlong engine_data_structure_ptr,longlo
     engine_temp_long_6 = 0;
     engine_stack_long_50 = engine_temp_long_6;
     if (engine_temp_long_7 != 0) {
-      engine_stack_long_50 = engine_call_memory_extender(_engine_data_18,engine_temp_long_7 * 8,engine_stack_uint_38 & 0xff);
+      engine_stack_long_50 = engine_call_memory_extender(_engine_camera_status,engine_temp_long_7 * 8,engine_stack_uint_38 & 0xff);
     }
     engine_stack_long_40 = engine_stack_long_50 + engine_temp_long_7 * 8;
     engine_temp_long_7 = *(longlong *)(engine_temp_long_2 + 0x180);
@@ -48426,7 +48435,7 @@ void engine_unnamed_function_3260(longlong engine_data_structure_ptr,longlong *e
   engine_temp_long_8 = (longlong)engine_temp_int_4;
   engine_stack_long_60 = engine_temp_long_8;
   if (engine_temp_int_4 != 0) {
-    engine_stack_long_80 = engine_call_memory_extender(_engine_data_18,engine_temp_long_8 * 8,3);
+    engine_stack_long_80 = engine_call_memory_extender(_engine_camera_status,engine_temp_long_8 * 8,3);
     engine_stack_long_78 = engine_temp_long_8 * 8 + engine_stack_long_80;
   }
   if (engine_temp_long_8 < 1) {
@@ -48451,7 +48460,7 @@ void engine_unnamed_function_3260(longlong engine_data_structure_ptr,longlong *e
   engine_temp_uint_2 = *(ulonglong *)*engine_result_flag_ptr;
   engine_stack_long_88 = engine_stack_long_80;
   engine_stack_uint_68 = engine_temp_uint_2;
-  engine_temp_long_8 = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(engine_data_structure_ptr + 0xd8));
+  engine_temp_long_8 = engine_call_memory_extender(_engine_camera_status,0x28,*(uint8*)(engine_data_structure_ptr + 0xd8));
   *(ulonglong *)(engine_temp_long_8 + MEMORY_OFFSET_0x20) = engine_temp_uint_2;
   engine_temp_byte9 = true;
   engine_current_node_ptr = engine_data_pointer;
@@ -48599,7 +48608,7 @@ void engine_unnamed_function_3270(uint64 engine_data_structure_ptr,longlong engi
   }
   engine_stack_char_pointer_a0 = engine_process_frame_update;
   pcStack_98 = engine_start_main_loop;
-  engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x38,8,engine_network_flags);
+  engine_temp_uint_3 = engine_call_memory_allocator(_engine_camera_status,0x38,8,engine_network_flags);
   engine_unnamed_function_3730(engine_temp_uint_3,&engine_stack_long_240);
   aengine_stack_uint_b0[0] = engine_temp_uint_3;
   if (aengine_stack_uint_90 != engine_param_6) {
@@ -48631,7 +48640,7 @@ void engine_unnamed_function_3270(uint64 engine_data_structure_ptr,longlong engi
   if (engine_stack_char_pointer_a0 != (code *)0x0) {
     (*engine_stack_char_pointer_a0)(aengine_stack_uint_b0,0,0);
   }
-  engine_stack_ptr_1f8 = &engine_data_18098bcb0;
+  engine_stack_ptr_1f8 = &engine_camera_status098bcb0;
   pengine_stack_uint_258 = (void*)aengine_stack_uint_238;
   if (pcStack_228 != (code *)0x0) {
     (*pcStack_228)(aengine_stack_uint_238,0,0);
@@ -48701,7 +48710,7 @@ void engine_unnamed_function_3290(uint64 engine_data_structure_ptr,longlong engi
   if (resource_status_flag == '\0') {
     if (aengine_stack_long_2f0[0] != -1) {
       LOCK();
-      _engine_data_64 = _engine_data_64 + -1;
+      _engine_audio_status = _engine_audio_status + -1;
       UNLOCK();
       CloseHandle(aengine_stack_long_2f0[0]);
       aengine_stack_long_2f0[0] = -1;
@@ -48722,7 +48731,7 @@ void engine_unnamed_function_3290(uint64 engine_data_structure_ptr,longlong engi
   }
 LAB_18008c01e:
   SetFilePointerEx(engine_temp_long_6,engine_temp_long_7,aengine_stack_uint_2b0,0);
-  pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x20,8,3);
+  pengine_temp_long_3 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x20,8,3);
   *pengine_temp_long_3 = 0;
   pengine_temp_long_3[1] = 0;
   pengine_temp_long_3[2] = 0;
@@ -48761,7 +48770,7 @@ LAB_18008c01e:
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(pengine_temp_long_3);
   }
-  main_context_pointer = (longlong *)engine_call_memory_allocator(_engine_data_18,0x20,8,3);
+  main_context_pointer = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x20,8,3);
   *main_context_pointer = 0;
   main_context_pointer[1] = 0;
   main_context_pointer[2] = 0;
@@ -48829,7 +48838,7 @@ void engine_unnamed_function_3300(longlong engine_data_structure_ptr,longlong *e
   engine_stack_uint_8b8 = 0;
   pengine_stack_long_8a0 = engine_result_flag_ptr;
   engine_temp_uint_4 = (**(code **)(*engine_result_flag_ptr + 8))(engine_result_flag_ptr);
-  engine_stack_pointer_888 = &engine_data_18098bb30;
+  engine_stack_pointer_888 = &engine_camera_status098bb30;
   engine_stack_pointer_880 = aengine_stack_uint_870;
   aengine_stack_uint_870[0] = 0;
   engine_stack_uint_878 = *(uint *)(engine_result_flag_ptr + 0xf);
@@ -48872,7 +48881,7 @@ void engine_unnamed_function_3300(longlong engine_data_structure_ptr,longlong *e
   engine_stack_uint_8ac = (uint32_t)engine_result_flag_ptr[2];
   engine_stack_uint_8a8 = *(uint32*)((longlong)engine_result_flag_ptr + 0x14);
   engine_stack_uint_8a4 = (uint32_t)engine_result_flag_ptr[3];
-  engine_temp_long_6 = engine_call_memory_extender(_engine_data_18,0x38,*(uint8*)(engine_temporary_pointer + 0xb));
+  engine_temp_long_6 = engine_call_memory_extender(_engine_camera_status,0x38,*(uint8*)(engine_temporary_pointer + 0xb));
   *(uint32*)(engine_temp_long_6 + MEMORY_OFFSET_0x20) = engine_stack_uint_8b0;
   *(uint32*)(engine_temp_long_6 + 0x24) = engine_stack_uint_8ac;
   *(uint32*)(engine_temp_long_6 + 0x28) = engine_stack_uint_8a8;
@@ -49008,7 +49017,7 @@ LAB_18008cc42:
     pengine_stack_long_80 = (longlong *)0x0;
     engine_stack_value_78 = 3;
     if (engine_stack_long_50 != 0) {
-      pengine_stack_long_88 = (longlong *)engine_call_memory_extender(_engine_data_18,engine_stack_long_50 * 0x10,3);
+      pengine_stack_long_88 = (longlong *)engine_call_memory_extender(_engine_camera_status,engine_stack_long_50 * 0x10,3);
       pengine_stack_long_80 = pengine_stack_long_88 + engine_temp_long_8 * 2;
     }
     ppppuStackX_10 = &ppppengine_stack_value_70;
@@ -49087,7 +49096,7 @@ LAB_18008ce20:
           if (engine_temp_long_22 == 0) {
             engine_temp_long_22 = 1;
 LAB_18008ce85:
-            pengine_temp_long3 = (longlong *)engine_call_memory_extender(_engine_data_18,engine_temp_long_22 * 8,(char)engine_result_flag_ptr[3]);
+            pengine_temp_long3 = (longlong *)engine_call_memory_extender(_engine_camera_status,engine_temp_long_22 * 8,(char)engine_result_flag_ptr[3]);
             pengine_temp_long8 = (longlong *)engine_result_flag_ptr[1];
             pengine_temp_long6 = (longlong *)*engine_result_flag_ptr;
           }
@@ -49153,7 +49162,7 @@ LAB_18008caf0:
     engine_temp_int4 = *(int *)(engine_data_ptr7 + 6);
   }
   pppengine_next_node_ptr = *(uint64_t *****)*engine_result_flag_ptr;
-  engine_temp_long_8 = engine_call_memory_extender(_engine_data_18,0x30,(uint8_t)engine_stack_uint_48);
+  engine_temp_long_8 = engine_call_memory_extender(_engine_camera_status,0x30,(uint8_t)engine_stack_uint_48);
   *(uint64_t *****)(engine_temp_long_8 + MEMORY_OFFSET_0x20) = pppengine_next_node_ptr;
   *(int *)(engine_temp_long_8 + 0x28) = engine_temp_int4 << 0x10;
   engine_comparison_result4 = true;
@@ -49347,18 +49356,18 @@ undefined * engine_unnamed_function_3360(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _engine_data_f8) {
-    engine_get_game_state_status(&engine_data_f8);
-    if (_engine_data_f8 == -1) {
-      _engine_data_00 = 0;
+              0x48) < _engine_network_status) {
+    engine_get_game_state_status(&engine_network_status);
+    if (_engine_network_status == -1) {
+      _engine_input_status = 0;
       _engine_system_flags = 0;
-      _engine_data_00 = engine_unnamed_function_3390();
+      _engine_input_status = engine_unnamed_function_3390();
       engine_unnamed_function_6530(engine_unnamed_function_6580);
-      engine_set_game_state_data(&engine_data_f8);
-      return &engine_data_00;
+      engine_set_game_state_data(&engine_network_status);
+      return &engine_input_status;
     }
   }
-  return &engine_data_00;
+  return &engine_input_status;
 }
 
 
@@ -49372,15 +49381,15 @@ void engine_unnamed_function_3370(uint64 engine_data_structure_ptr,uint64 engine
 {
   longlong *pengine_temp_long;
   
-  pengine_temp_long = _engine_data_00;
-  engine_unnamed_function_3400(engine_data_structure_ptr,_engine_data_00[1],engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
-  _engine_data_00[1] = (longlong)pengine_temp_long;
-  *_engine_data_00 = (longlong)pengine_temp_long;
-  _engine_data_00[2] = (longlong)pengine_temp_long;
+  pengine_temp_long = _engine_input_status;
+  engine_unnamed_function_3400(engine_data_structure_ptr,_engine_input_status[1],engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+  _engine_input_status[1] = (longlong)pengine_temp_long;
+  *_engine_input_status = (longlong)pengine_temp_long;
+  _engine_input_status[2] = (longlong)pengine_temp_long;
   _engine_system_flags = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_engine_data_00,0x58);
+  free(_engine_input_status,0x58);
   return;
 }
 
@@ -49395,7 +49404,7 @@ void engine_unnamed_function_3380(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_engine_data_00,0x58);
+  free(_engine_input_status,0x58);
   return;
 }
 
@@ -49428,7 +49437,7 @@ void engine_unnamed_function_3400(uint64 engine_data_structure_ptr,longlong *eng
   
   resource_status_flag = *(char *)((longlong)engine_result_flag_ptr + MEMORY_OFFSET_0x19);
   while (resource_status_flag == '\0') {
-    engine_unnamed_function_3400(&engine_data_00,engine_result_flag_ptr[2]);
+    engine_unnamed_function_3400(&engine_input_status,engine_result_flag_ptr[2]);
     pengine_temp_long_2 = (longlong *)*engine_result_flag_ptr;
     free(engine_result_flag_ptr,0x58);
     engine_result_flag_ptr = pengine_temp_long_2;
@@ -49445,7 +49454,7 @@ engine_unnamed_function_3410(uint64_t *engine_data_structure_ptr,longlong engine
 {
   void* engine_data_pointer;
   
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   engine_data_structure_ptr[1] = 0;
   *(uint32*)(engine_data_structure_ptr + 2) = 0;
   *engine_data_structure_ptr = &engine_base_data_offset_c8;
@@ -49791,7 +49800,7 @@ void engine_unnamed_function_3490(uint64_t *engine_data_structure_ptr,uint64 eng
   uint64 engine_temp_index;
   bool engine_temp_byte6;
   
-  engine_temp_long_3 = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(engine_data_structure_ptr + 5));
+  engine_temp_long_3 = engine_call_memory_extender(_engine_camera_status,0x28,*(uint8*)(engine_data_structure_ptr + 5));
   engine_temporary_uint = *engine_comparison_params;
   engine_temp_byte6 = true;
   *(ulonglong *)(engine_temp_long_3 + MEMORY_OFFSET_0x20) = engine_temporary_uint;
@@ -49988,7 +49997,7 @@ engine_unnamed_function_353a:
   else {
     engine_temp_uint_8 = 1;
   }
-  engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,0x38,(char)engine_data_structure_ptr[5]);
+  engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,0x38,(char)engine_data_structure_ptr[5]);
   engine_temporary_uint = engine_param_5[1];
   engine_temp_uint_2 = engine_param_5[2];
   engine_temp_uint_3 = engine_param_5[3];
@@ -50021,7 +50030,7 @@ void engine_unnamed_function_353a(uint32_t engine_data_structure_ptr)
   if (engine_register_rbx != unaff_RSI) {
     memcmp(engine_data_structure_ptr,engine_register_rbx + MEMORY_OFFSET_0x20,MEMORY_COMPARE_SIZE_0x10);
   }
-  engine_temp_long_4 = engine_call_memory_extender(_engine_data_18,0x38,*(uint8*)(unaff_RSI + 0x28));
+  engine_temp_long_4 = engine_call_memory_extender(_engine_camera_status,0x38,*(uint8*)(unaff_RSI + 0x28));
   engine_temporary_uint = unaff_RBP[1];
   engine_temp_uint_2 = unaff_RBP[2];
   engine_temp_uint_3 = unaff_RBP[3];
@@ -50084,7 +50093,7 @@ void engine_unnamed_function_3550(longlong *engine_data_structure_ptr,ulonglong 
     engine_temporary_long = 0;
   }
   else {
-    engine_temporary_long = engine_call_memory_extender(_engine_data_18,engine_temp_uint_3 * 0x30,(char)engine_data_structure_ptr[3]);
+    engine_temporary_long = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_3 * 0x30,(char)engine_data_structure_ptr[3]);
     engine_temp_long_4 = *engine_data_structure_ptr;
     engine_temp_long_2 = engine_data_structure_ptr[1];
   }
@@ -50136,7 +50145,7 @@ void engine_unnamed_function_356b(void)
     engine_temporary_long = 0;
   }
   else {
-    engine_temporary_long = engine_call_memory_extender(_engine_data_18,engine_temp_uint_2 * 0x30,(char)unaff_RDI[3]);
+    engine_temporary_long = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_2 * 0x30,(char)unaff_RDI[3]);
     engine_register_r9 = *unaff_RDI;
     unaff_RBP = unaff_RDI[1];
   }
@@ -50211,7 +50220,7 @@ void engine_expand_data_structure(longlong *engine_data_structure_ptr,longlong e
     if (lStackX_18 == 0) goto LAB_18008dde0;
   }
   engine_data_pointer = (void*)
-           engine_call_memory_extender(_engine_data_18,lStackX_18 * 0x60,(char)engine_data_structure_ptr[3],engine_system_parameter_4,
+           engine_call_memory_extender(_engine_camera_status,lStackX_18 * 0x60,(char)engine_data_structure_ptr[3],engine_system_parameter_4,
                          0xfffffffffffffffe);
   next_data_pointer = (void*)engine_data_structure_ptr[1];
   engine_next_node_ptr = (void*)*engine_data_structure_ptr;
@@ -50221,7 +50230,7 @@ LAB_18008dde0:
     engine_temp_long_9 = (longlong)engine_data_pointer - (longlong)engine_next_node_ptr;
     engine_next_node_ptr = engine_next_node_ptr + 1;
     do {
-      *engine_temporary_pointer = &engine_data_18098bcb0;
+      *engine_temporary_pointer = &engine_camera_status098bcb0;
       *(void*)(engine_temp_long_9 + (longlong)engine_next_node_ptr) = 0;
       *(uint32*)(engine_temp_long_9 + 8 + (longlong)engine_next_node_ptr) = 0;
       *engine_temporary_pointer = &engine_system_context_data;
@@ -50236,10 +50245,10 @@ LAB_18008dde0:
       *engine_next_node_ptr = 0;
       engine_next_node_ptr[2] = 0;
       structure_data_pointer = (void*)((longlong)engine_next_node_ptr + engine_temp_long_9 + 0x18);
-      *structure_data_pointer = &engine_data_18098bcb0;
+      *structure_data_pointer = &engine_camera_status098bcb0;
       *(void*)(engine_temp_long_9 + MEMORY_OFFSET_0x20 + (longlong)engine_next_node_ptr) = 0;
       *(uint32*)(engine_temp_long_9 + 0x28 + (longlong)engine_next_node_ptr) = 0;
-      *structure_data_pointer = &engine_data_18098bc80;
+      *structure_data_pointer = &engine_camera_status098bc80;
       engine_current_node_ptr = (uint8*)((longlong)engine_next_node_ptr + engine_temp_long_9 + 0x30);
       *(uint8**)(engine_temp_long_9 + MEMORY_OFFSET_0x20 + (longlong)engine_next_node_ptr) = engine_current_node_ptr;
       *(uint32*)(engine_temp_long_9 + 0x28 + (longlong)engine_next_node_ptr) = 0;
@@ -50298,7 +50307,7 @@ void engine_unnamed_function_3570(longlong engine_data_structure_ptr,uint64 engi
   if ((engine_system_parameter_4 == '\0') && (engine_comparison_params != engine_data_structure_ptr)) {
     memcmp(engine_param_5,engine_comparison_params + MEMORY_OFFSET_0x20,MEMORY_COMPARE_SIZE_0x10,0,0xfffffffffffffffe);
   }
-  engine_temporary_long = engine_call_memory_extender(_engine_data_18,0xc0,*(uint8*)(engine_data_structure_ptr + 0x28));
+  engine_temporary_long = engine_call_memory_extender(_engine_camera_status,0xc0,*(uint8*)(engine_data_structure_ptr + 0x28));
   engine_temp_uint_2 = engine_param_5[1];
   engine_temp_uint_3 = engine_param_5[2];
   engine_temp_uint_4 = engine_param_5[3];
@@ -50336,7 +50345,7 @@ void engine_unnamed_function_3580(longlong engine_data_structure_ptr,uint64 engi
   }
   engine_temp_uint_6 = 0;
 LAB_18008e13f:
-  memory_allocation_result = engine_call_memory_extender(_engine_data_18,0x38,*(uint8*)(engine_data_structure_ptr + 0x28));
+  memory_allocation_result = engine_call_memory_extender(_engine_camera_status,0x38,*(uint8*)(engine_data_structure_ptr + 0x28));
   engine_temporary_uint = engine_param_5[1];
   engine_temp_uint_2 = engine_param_5[2];
   engine_temp_uint_3 = engine_param_5[3];
@@ -50398,7 +50407,7 @@ void engine_unnamed_function_3590(longlong *engine_data_structure_ptr,uint64_t *
       }
       engine_data_ptr5 = engine_data_ptr4;
       if (engine_temp_uint3 != 0) {
-        engine_data_ptr4 = (uint32*)engine_call_memory_extender(_engine_data_18,engine_temp_uint3 << 4,(char)engine_data_structure_ptr[3]);
+        engine_data_ptr4 = (uint32*)engine_call_memory_extender(_engine_camera_status,engine_temp_uint3 << 4,(char)engine_data_structure_ptr[3]);
         engine_temp_uint_ptr_9 = (void*)*engine_data_structure_ptr;
         engine_data_ptr5 = engine_data_ptr4;
       }
@@ -50578,7 +50587,7 @@ void engine_unnamed_function_3607(void)
     }
     engine_data_ptr5 = engine_data_ptr4;
     if (engine_temp_uint3 != 0) {
-      engine_data_ptr4 = (uint32*)engine_call_memory_extender(_engine_data_18,engine_temp_uint3 << 4,(char)unaff_RBP[3]);
+      engine_data_ptr4 = (uint32*)engine_call_memory_extender(_engine_camera_status,engine_temp_uint3 << 4,(char)unaff_RBP[3]);
       next_data_pointer = (void*)*unaff_RBP;
       engine_data_ptr5 = engine_data_ptr4;
     }
@@ -51183,7 +51192,7 @@ longlong engine_process_frame_update(longlong *engine_data_structure_ptr,longlon
   }
   else {
     if (engine_comparison_params == 1) {
-      engine_temporary_long = engine_call_memory_allocator(_engine_data_18,0x38,8,engine_network_flags);
+      engine_temporary_long = engine_call_memory_allocator(_engine_camera_status,0x38,8,engine_network_flags);
       engine_unnamed_function_3730(engine_temporary_long,*engine_result_flag_ptr);
       *engine_data_structure_ptr = engine_temporary_long;
       return 0;
@@ -51258,7 +51267,7 @@ void engine_unnamed_function_3740(uint64 engine_data_structure_ptr,longlong engi
   }
   *(void*)(engine_result_flag_ptr + 0x28) = 0;
   *(uint32*)(engine_result_flag_ptr + 0x38) = 0;
-  *(void*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20) = &engine_data_18098bcb0;
+  *(void*)(engine_result_flag_ptr + MEMORY_OFFSET_0x20) = &engine_camera_status098bcb0;
   if (engine_result_flag_ptr != 0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_result_flag_ptr);
@@ -52864,7 +52873,7 @@ uint64_t *
 engine_unnamed_function_3920(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  *engine_data_structure_ptr = &engine_data_18098bcb0;
+  *engine_data_structure_ptr = &engine_camera_status098bcb0;
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x218,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
@@ -52896,7 +52905,7 @@ void engine_unnamed_function_3930(longlong engine_data_structure_ptr,longlong en
     strcpy_s(*(void*)(engine_data_structure_ptr + 8),0x200);
     return;
   }
-  engine_call_buffer_allocator(&engine_data_18098bc48,0x200,engine_result_flag_ptr);
+  engine_call_buffer_allocator(&engine_camera_status098bc48,0x200,engine_result_flag_ptr);
   *(uint32*)(engine_data_structure_ptr + 0x10) = 0;
   **(uint8**)(engine_data_structure_ptr + 8) = 0;
   return;
@@ -52982,7 +52991,7 @@ void engine_unnamed_function_3970(longlong engine_data_structure_ptr,longlong en
                     // WARNING: Subroutine does not return
     memcpy(pengine_stack_uint_260,*(longlong *)(engine_data_structure_ptr + 8),engine_temporary_long - *(longlong *)(engine_data_structure_ptr + 8));
   }
-  pengine_stack_uint_268 = &engine_data_18098bcb0;
+  pengine_stack_uint_268 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_48 ^ (ulonglong)aengine_stack_uint_298);
 }
@@ -52996,7 +53005,7 @@ uint64_t * engine_initialize_rendering_context(uint64 engine_data_structure_ptr,
 {
   void* engine_data_pointer;
   
-  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
+  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0xb8,8,0x1a,0xfffffffffffffffe);
   engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_18;
   engine_data_pointer[0x16] = 0;
@@ -53012,7 +53021,7 @@ uint64_t * engine_setup_display_manager(uint64 engine_data_structure_ptr,uint32_
 {
   void* engine_data_pointer;
   
-  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
+  engine_data_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0xb8,8,0x1a,0xfffffffffffffffe);
   engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_e8;
   engine_data_pointer[0x16] = 0;
@@ -53046,7 +53055,7 @@ uint64_t * engine_unnamed_function_3980(uint64_t *engine_data_structure_ptr)
   engine_data_structure_ptr[0x75] = 0;
   _Mtx_init_in_situ(engine_data_structure_ptr + 0x106,MEMORY_COMPARE_SIZE_0x102);
   do {
-    engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x3d0,8,3);
+    engine_temp_uint_3 = engine_call_memory_allocator(_engine_camera_status,0x3d0,8,3);
     main_context_pointer = (longlong *)engine_unnamed_function_6100(engine_temp_uint_3);
     if (main_context_pointer != (longlong *)0x0) {
       (**(code **)(*main_context_pointer + 0x28))(main_context_pointer);
@@ -53056,7 +53065,7 @@ uint64_t * engine_unnamed_function_3980(uint64_t *engine_data_structure_ptr)
     if (pengine_temp_long != (longlong *)0x0) {
       (**(code **)(*pengine_temp_long + 0x38))();
     }
-    engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x300,MEMORY_COMPARE_SIZE_0x10,3);
+    engine_temp_uint_3 = engine_call_memory_allocator(_engine_camera_status,0x300,MEMORY_COMPARE_SIZE_0x10,3);
     main_context_pointer = (longlong *)engine_unnamed_function_1110(engine_temp_uint_3,1);
     if (main_context_pointer != (longlong *)0x0) {
       (**(code **)(*main_context_pointer + 0x28))(main_context_pointer);
@@ -53485,7 +53494,7 @@ longlong * engine_unnamed_function_4040(longlong *engine_data_structure_ptr)
   }
   *(uint32*)(engine_data_structure_ptr + 0x1a7) = 0;
   *(uint32*)(engine_data_structure_ptr + 5) = 0xff101010;
-  engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,0x300,MEMORY_COMPARE_SIZE_0x10,3);
+  engine_temp_uint_2 = engine_call_memory_allocator(_engine_camera_status,0x300,MEMORY_COMPARE_SIZE_0x10,3);
   pengine_temp_long_3 = (longlong *)engine_unnamed_function_1110(engine_temp_uint_2,1);
   if (pengine_temp_long_3 != (longlong *)0x0) {
     (**(code **)(*pengine_temp_long_3 + 0x28))(pengine_temp_long_3);
@@ -53604,7 +53613,7 @@ void engine_process_render_queue(void)
                    (ulonglong)(*(uint *)(*(longlong *)(_engine_data_70 + 8) + 0x13c) & 1) * 0x48);
   *(char *)(engine_temp_long_6 + 0x1888) = resource_status_flag;
   engine_temp_char_flag = *(char *)(engine_temp_long_6 + 0x1889);
-  if (*(int *)(_engine_data_20 + 0x2370) == 0) {
+  if (*(int *)(_engine_physics_status + 0x2370) == 0) {
     if (resource_status_flag == engine_temp_char_flag) goto LAB_1800911c4;
     if (resource_status_flag != '\0') goto LAB_180091164;
     engine_stack_pointer_88 = &engine_global_config_data;
@@ -53618,7 +53627,7 @@ void engine_process_render_queue(void)
     if (pengine_stack_long_98 != (longlong *)0x0) {
       (**(code **)(*pengine_stack_long_98 + 0x38))();
     }
-    engine_stack_pointer_88 = &engine_data_18098bcb0;
+    engine_stack_pointer_88 = &engine_camera_status098bcb0;
     (**(code **)(**(longlong **)(engine_temp_long_6 + 0x1698) + 0x60))();
 LAB_180091192:
     (**(code **)(*_engine_data_78 + 0x10))();
@@ -53754,7 +53763,7 @@ void engine_unnamed_function_4070(void)
     engine_temp_long_9 = engine_unnamed_function_5210();
     *pengine_temp_long_7 = engine_temp_long_9;
     engine_temp_uint6 = 0;
-    pengine_stack_uint_c8 = &engine_data_1809fcc28;
+    pengine_stack_uint_c8 = &engine_camera_status09fcc28;
     pengine_stack_uint_c0 = aengine_stack_uint_b0;
     aengine_stack_uint_b0[0] = 0;
     engine_stack_uint_b8 = 0x1d;
@@ -53764,7 +53773,7 @@ void engine_unnamed_function_4070(void)
       engine_data_ptr3 = pengine_stack_uint_c0;
     }
     (**(code **)(*(longlong *)(engine_temp_long_9 + 0x3520) + 0x10))((longlong *)(engine_temp_long_9 + 0x3520),engine_data_ptr3);
-    pengine_stack_uint_c8 = &engine_data_18098bcb0;
+    pengine_stack_uint_c8 = &engine_camera_status098bcb0;
     engine_unnamed_function_4280(*pengine_temp_long_7,&engine_base_data_offset_a8);
     *(uint *)(*pengine_temp_long_7 + 4) = *(uint *)(*pengine_temp_long_7 + 4) | 0x8000000;
     *(uint *)(*pengine_temp_long_7 + 4) = *(uint *)(*pengine_temp_long_7 + 4) | 4;
@@ -53873,7 +53882,7 @@ void engine_unnamed_function_4070(void)
       engine_stack_uint_100 = 0;
       pengine_stack_uint_110 = (uint32*)0x0;
       engine_stack_uint_108 = 0;
-      pengine_stack_uint_110 = (uint32*)engine_call_memory_extender(_engine_data_18,0x1f,0x13);
+      pengine_stack_uint_110 = (uint32*)engine_call_memory_extender(_engine_camera_status,0x1f,0x13);
       *(uint8*)pengine_stack_uint_110 = 0;
       engine_temp_uint_8 = engine_call_resource_validator(pengine_stack_uint_110);
       *pengine_stack_uint_110 = 0x44414853;
@@ -53894,7 +53903,7 @@ void engine_unnamed_function_4070(void)
       }
       pengine_stack_uint_110 = (uint32*)0x0;
       engine_stack_uint_100 = (ulonglong)engine_stack_uint_100._4_4_ << 0x20;
-      pengine_stack_uint_118 = &engine_data_18098bcb0;
+      pengine_stack_uint_118 = &engine_camera_status098bcb0;
     }
     engine_temp_long_9 = _engine_data_70;
     if (engine_particle_flag != '\0') {
@@ -54111,7 +54120,7 @@ void engine_unnamed_function_4080(ulonglong engine_data_structure_ptr)
               pengine_temp_long_23 = pengine_temp_long0;
             }
             else {
-              pengine_temp_long0 = (longlong *)engine_call_memory_extender(_engine_data_18,engine_temp_uint9 * 8,(char)engine_temp_ptr_array_6[0x310]);
+              pengine_temp_long0 = (longlong *)engine_call_memory_extender(_engine_camera_status,engine_temp_uint9 * 8,(char)engine_temp_ptr_array_6[0x310]);
               pengine_temp_long3 = (longlong *)engine_temp_ptr_array_6[0x30e];
               pengine_temp_long8 = (longlong *)engine_temp_ptr_array_6[0x30d];
               pengine_temp_long_23 = pengine_temp_long0;
@@ -54436,7 +54445,7 @@ void engine_unnamed_function_4080(ulonglong engine_data_structure_ptr)
       aengine_stack_uint_120[0] = 0;
       engine_stack_uint_128 = 0x12;
       strcpy_s(aengine_stack_uint_120,0x40,&engine_base_data_offset_e0);
-      pengine_stack_uint_d8 = &engine_data_1809fcc28;
+      pengine_stack_uint_d8 = &engine_camera_status09fcc28;
       engine_stack_pointer_d0 = aengine_stack_uint_c0;
       aengine_stack_uint_c0[0] = 0;
       engine_stack_uint_c8 = engine_stack_uint_128;
@@ -54445,7 +54454,7 @@ void engine_unnamed_function_4080(ulonglong engine_data_structure_ptr)
         engine_data_ptr_21 = pengine_stack_uint_130;
       }
       strcpy_s(aengine_stack_uint_c0,0x80,engine_data_ptr_21);
-      pengine_temp_long3 = (longlong *)engine_unnamed_function_5120(_engine_data_30,&pengine_stack_long_1c8,&pengine_stack_uint_d8,&engine_stack_uint_250);
+      pengine_temp_long3 = (longlong *)engine_unnamed_function_5120(_engine_render_status,&pengine_stack_long_1c8,&pengine_stack_uint_d8,&engine_stack_uint_250);
       pengine_temp_long3 = (longlong *)*pengine_temp_long3;
       if (pengine_temp_long3 != (longlong *)0x0) {
         pengine_stack_long_1d0 = pengine_temp_long3;
@@ -54459,8 +54468,8 @@ void engine_unnamed_function_4080(ulonglong engine_data_structure_ptr)
       if (pengine_stack_long_1c8 != (longlong *)0x0) {
         (**(code **)(*pengine_stack_long_1c8 + 0x38))();
       }
-      pengine_stack_uint_d8 = &engine_data_18098bcb0;
-      engine_stack_pointer_138 = &engine_data_18098bcb0;
+      pengine_stack_uint_d8 = &engine_camera_status098bcb0;
+      engine_stack_pointer_138 = &engine_camera_status098bcb0;
     }
     engine_stack_long_218 = 0;
     engine_stack_long_210 = 0;
@@ -54557,7 +54566,7 @@ void engine_unnamed_function_4080(ulonglong engine_data_structure_ptr)
   if (engine_temp_int_24 != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temp_int_24);
   }
-  engine_temp_uint2 = engine_call_memory_allocator(_engine_data_18,0xe0,8,3);
+  engine_temp_uint2 = engine_call_memory_allocator(_engine_camera_status,0xe0,8,3);
   ppengine_stack_long_298 = (longlong **)&engine_stack_uint_1a0;
   engine_stack_pointer_190 = &engine_base_data_offset_d0;
   engine_stack_pointer_188 = &engine_base_data_offset_c0;
@@ -55014,7 +55023,7 @@ LAB_180092c16:
               engine_temp_long2 = 1;
 LAB_180092e59:
               next_data_pointer = (void*)
-                       engine_call_memory_extender(_engine_data_18,engine_temp_long2 * 0x30,
+                       engine_call_memory_extender(_engine_camera_status,engine_temp_long2 * 0x30,
                                      *(uint8*)(_engine_data_68 + 0xb0));
               engine_data_ptr_21 = *(void**)(engine_temp_long5 + 0xa0);
               engine_data_pointer_6 = *(void**)(engine_temp_long5 + 0x98);
@@ -55121,7 +55130,7 @@ LAB_180092e59:
               engine_temp_long2 = 1;
 LAB_180093089:
               next_data_pointer = (void*)
-                       engine_call_memory_extender(_engine_data_18,engine_temp_long2 * 0x30,
+                       engine_call_memory_extender(_engine_camera_status,engine_temp_long2 * 0x30,
                                      *(uint8*)(_engine_data_68 + 0xd0));
               engine_data_ptr_21 = *(void**)(engine_temp_long5 + 0xc0);
               engine_data_pointer_6 = *(void**)(engine_temp_long5 + 0xb8);
@@ -55228,7 +55237,7 @@ LAB_180093089:
               engine_temp_long2 = 1;
 LAB_1800932b6:
               next_data_pointer = (void*)
-                       engine_call_memory_extender(_engine_data_18,engine_temp_long2 * 0x30,
+                       engine_call_memory_extender(_engine_camera_status,engine_temp_long2 * 0x30,
                                      *(uint8*)(_engine_data_68 + 0x90));
               engine_data_ptr_21 = *(void**)(engine_temp_long5 + 0x80);
               engine_data_pointer_6 = *(void**)(engine_temp_long5 + 0x78);
@@ -55335,7 +55344,7 @@ LAB_1800932b6:
               engine_temp_long2 = 1;
 LAB_1800934cd:
               next_data_pointer = (void*)
-                       engine_call_memory_extender(_engine_data_18,engine_temp_long2 * 0x30,
+                       engine_call_memory_extender(_engine_camera_status,engine_temp_long2 * 0x30,
                                      *(uint8*)(_engine_data_68 + 0x70));
               engine_data_ptr_21 = *(void**)(engine_temp_long5 + 0x60);
               engine_data_pointer_6 = *(void**)(engine_temp_long5 + 0x58);
@@ -55499,12 +55508,12 @@ void engine_unnamed_function_4180(uint64 engine_data_structure_ptr,int engine_re
     engine_temp_long_2 = *(longlong *)(_engine_data_70 + 8);
     uStackX_8 = CONCAT44(engine_comparison_params,engine_result_flag_ptr);
     engine_temp_long_ptr_9 = (longlong *)
-             engine_call_memory_allocator(_engine_data_18,0x48,8,CONCAT71((int7)((ulonglong)engine_temporary_long >> 8),3),
+             engine_call_memory_allocator(_engine_camera_status,0x48,8,CONCAT71((int7)((ulonglong)engine_temporary_long >> 8),3),
                            0xfffffffffffffffe);
-    *engine_temp_long_ptr_9 = (longlong)&engine_data_180a21690;
-    *engine_temp_long_ptr_9 = (longlong)&engine_data_180a21720;
+    *engine_temp_long_ptr_9 = (longlong)&engine_camera_status0a21690;
+    *engine_temp_long_ptr_9 = (longlong)&engine_camera_status0a21720;
     *(uint32*)(engine_temp_long_ptr_9 + 1) = 0;
-    *engine_temp_long_ptr_9 = (longlong)&engine_data_18098bdc8;
+    *engine_temp_long_ptr_9 = (longlong)&engine_camera_status098bdc8;
     LOCK();
     *(uint8*)(engine_temp_long_ptr_9 + 2) = 0;
     UNLOCK();
@@ -55551,7 +55560,7 @@ void engine_unnamed_function_4190(void)
   *(uint8*)(_engine_data_70 + 0x1ec) = 0;
   memory_allocation_result = *(longlong *)(engine_temp_long_2 + 0x1800);
   if (memory_allocation_result == 0) {
-    engine_temp_uint_6 = engine_call_memory_allocator(_engine_data_18,0x160,8,3,engine_temp_uint_6);
+    engine_temp_uint_6 = engine_call_memory_allocator(_engine_camera_status,0x160,8,3,engine_temp_uint_6);
     engine_temp_uint_6 = engine_unnamed_function_6120(engine_temp_uint_6);
     engine_configure_data_structure(engine_temp_long_2 + 0x1800,engine_temp_uint_6);
     memory_allocation_result = *(longlong *)(engine_temp_long_2 + 0x1800);
@@ -55596,7 +55605,7 @@ void engine_unnamed_function_4200(uint64 engine_data_structure_ptr,uint64 engine
     *(uint8*)(*(longlong *)(engine_temp_long_3 + 0x1800) + 0xf0) = 1;
     memory_allocation_result = _engine_data_70;
   }
-  *(float *)(memory_allocation_result + MEMORY_OFFSET_0x200) = 1.0 / (float)*(int *)(_engine_data_20 + 0x1b90);
+  *(float *)(memory_allocation_result + MEMORY_OFFSET_0x200) = 1.0 / (float)*(int *)(_engine_physics_status + 0x1b90);
   engine_temp_int_4 = _Mtx_unlock(engine_temporary_long);
   if (engine_temp_int_4 != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temp_int_4);
@@ -55700,7 +55709,7 @@ void engine_unnamed_function_4220(longlong *engine_data_structure_ptr,uint64_t *
       goto LAB_180093cb6;
     }
   }
-  current_data_pointer = (void*)engine_call_memory_extender(_engine_data_18,engine_temp_long0 * 0x30,(char)engine_data_structure_ptr[3]);
+  current_data_pointer = (void*)engine_call_memory_extender(_engine_camera_status,engine_temp_long0 * 0x30,(char)engine_data_structure_ptr[3]);
   engine_data_ptr1 = (void*)engine_data_structure_ptr[1];
   engine_temp_uint_ptr_9 = (void*)*engine_data_structure_ptr;
 LAB_180093cb6:
@@ -55784,7 +55793,7 @@ void engine_unnamed_function_4230(longlong *engine_data_structure_ptr,uint64 eng
     if (engine_temp_long0 == 0) goto LAB_180093e1b;
   }
   engine_temporary_pointer = (uint8*)
-           engine_call_memory_extender(_engine_data_18,engine_temp_long0 * 0x50,(char)engine_data_structure_ptr[3],engine_temp_long_8,0xfffffffffffffffe);
+           engine_call_memory_extender(_engine_camera_status,engine_temp_long0 * 0x50,(char)engine_data_structure_ptr[3],engine_temp_long_8,0xfffffffffffffffe);
   engine_temp_long_9 = engine_data_structure_ptr[1];
   engine_temp_long_8 = *engine_data_structure_ptr;
 LAB_180093e1b:
@@ -55802,7 +55811,7 @@ LAB_180093e1b:
       *(uint32*)(temp_data_pointer + -3) = engine_temp_uint_2;
       *(uint32*)((longlong)temp_data_pointer + -0x14) = engine_temp_uint_3;
       *(uint32*)(temp_data_pointer + -2) = engine_temp_uint_4;
-      temp_data_pointer[-1] = &engine_data_18098bcb0;
+      temp_data_pointer[-1] = &engine_camera_status098bcb0;
       *temp_data_pointer = 0;
       *(uint32*)(temp_data_pointer + 1) = 0;
       temp_data_pointer[-1] = &engine_system_context_data;
@@ -55836,7 +55845,7 @@ LAB_180093e1b:
       }
       *(void*)(engine_temp_long_8 + MEMORY_OFFSET_0x20) = 0;
       *(uint32*)(engine_temp_long_8 + 0x30) = 0;
-      *(void*)(engine_temp_long_8 + 0x18) = &engine_data_18098bcb0;
+      *(void*)(engine_temp_long_8 + 0x18) = &engine_camera_status098bcb0;
       engine_temp_long_8 = engine_temp_long_8 + 0x50;
     } while (engine_temp_long_8 != engine_temp_long_9);
     engine_temp_long_8 = *engine_data_structure_ptr;
@@ -55862,7 +55871,7 @@ uint8_t * engine_unnamed_function_4240(uint8_t *engine_data_structure_ptr,uint8_
   engine_temporary_uint = *(void*)(engine_result_flag_ptr + 0xc);
   *(void*)(engine_data_structure_ptr + 4) = *(void*)(engine_result_flag_ptr + 4);
   *(void*)(engine_data_structure_ptr + 0xc) = engine_temporary_uint;
-  *(undefined **)(engine_data_structure_ptr + 0x18) = &engine_data_18098bcb0;
+  *(undefined **)(engine_data_structure_ptr + 0x18) = &engine_camera_status098bcb0;
   *(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20) = 0;
   *(uint32*)(engine_data_structure_ptr + 0x28) = 0;
   *(undefined **)(engine_data_structure_ptr + 0x18) = &engine_system_context_data;
@@ -56135,7 +56144,7 @@ void engine_unnamed_function_4280(longlong engine_data_structure_ptr,longlong en
     structure_data_pointer = engine_stack_pointer_70;
   }
   strcpy_s(*(void*)(engine_data_structure_ptr + 0x3528),0x40,structure_data_pointer);
-  engine_stack_pointer_78 = &engine_data_18098bcb0;
+  engine_stack_pointer_78 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_18 ^ (ulonglong)aengine_stack_uint_a8);
 }
@@ -56266,7 +56275,7 @@ void engine_unnamed_function_4310(uint64 engine_data_structure_ptr,uint64 engine
   uint8 aengine_stack_value_70 [72];
   ulonglong engine_stack_uint_28;
   
-  engine_temporary_uint = _engine_data_30;
+  engine_temporary_uint = _engine_render_status;
   engine_stack_value_a0 = 0xfffffffffffffffe;
   engine_stack_uint_28 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_d8;
   engine_stack_uint_a8 = 0;
@@ -56286,7 +56295,7 @@ void engine_unnamed_function_4310(uint64 engine_data_structure_ptr,uint64 engine
   engine_stack_uint_b8 = 0;
   engine_unnamed_function_5140(engine_temporary_uint,engine_result_flag_ptr,&engine_stack_pointer_88,0);
   engine_stack_uint_a8 = 1;
-  engine_stack_pointer_88 = &engine_data_18098bcb0;
+  engine_stack_pointer_88 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_28 ^ (ulonglong)aengine_stack_uint_d8);
 }
@@ -56326,7 +56335,7 @@ void engine_unnamed_function_4320(uint64 engine_data_structure_ptr,uint64 engine
   uint8 aengine_stack_value_70 [72];
   ulonglong engine_stack_uint_28;
   
-  engine_temporary_uint = _engine_data_30;
+  engine_temporary_uint = _engine_render_status;
   engine_stack_value_a0 = 0xfffffffffffffffe;
   engine_stack_uint_28 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_c8;
   engine_stack_uint_a8 = 0;
@@ -56345,7 +56354,7 @@ void engine_unnamed_function_4320(uint64 engine_data_structure_ptr,uint64 engine
   }
   engine_unnamed_function_5130(engine_temporary_uint,engine_result_flag_ptr,&engine_stack_pointer_88,engine_system_parameter_4);
   engine_stack_uint_a8 = 1;
-  engine_stack_pointer_88 = &engine_data_18098bcb0;
+  engine_stack_pointer_88 = &engine_camera_status098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(engine_stack_uint_28 ^ (ulonglong)aengine_stack_uint_c8);
 }
@@ -56711,11 +56720,11 @@ LAB_18009556a:
   }
   pbStack_48 = (byte *)0x0;
   engine_stack_uint_38 = 0;
-  pengine_stack_uint_50 = &engine_data_18098bcb0;
+  pengine_stack_uint_50 = &engine_camera_status098bcb0;
   if (engine_data_ptr0 == engine_data_ptr1) {
     return 0;
   }
-  engine_byte_ptr_4 = (byte *)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,CONCAT71((int7)((ulonglong)engine_data_ptr3 >> 8),0x13))
+  engine_byte_ptr_4 = (byte *)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,CONCAT71((int7)((ulonglong)engine_data_ptr3 >> 8),0x13))
   ;
   *engine_byte_ptr_4 = 0;
   engine_call_resource_validator(engine_byte_ptr_4);
@@ -56854,11 +56863,11 @@ LAB_18009580a:
   }
   pbStack_48 = (byte *)0x0;
   engine_stack_uint_38 = 0;
-  pengine_stack_uint_50 = &engine_data_18098bcb0;
+  pengine_stack_uint_50 = &engine_camera_status098bcb0;
   if (engine_data_ptr0 == engine_data_ptr1) {
     return 0;
   }
-  engine_byte_ptr_4 = (byte *)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,CONCAT71((int7)((ulonglong)engine_data_ptr3 >> 8),0x13))
+  engine_byte_ptr_4 = (byte *)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,CONCAT71((int7)((ulonglong)engine_data_ptr3 >> 8),0x13))
   ;
   *engine_byte_ptr_4 = 0;
   engine_call_resource_validator(engine_byte_ptr_4);
@@ -56932,13 +56941,13 @@ void engine_unnamed_function_4410(uint64 engine_data_structure_ptr,uint32_t engi
   engine_temp_uint_3 = engine_unnamed_function_5420();
   _engine_data_b0 = engine_temp_uint_3;
   engine_unnamed_function_6130(0);
-  engine_temp_uint_6 = engine_call_memory_allocator(_engine_data_18,0xe8,8,3,engine_temp_uint_6);
+  engine_temp_uint_6 = engine_call_memory_allocator(_engine_camera_status,0xe8,8,3,engine_temp_uint_6);
   engine_temp_uint_6 = engine_unnamed_function_4390(engine_temp_uint_6,engine_temp_uint_3);
   *engine_data_pointer = engine_temp_uint_6;
   engine_temp_uint_6 = engine_unnamed_function_5420();
   _engine_data_b0 = engine_temp_uint_6;
   engine_unnamed_function_6130(0);
-  engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0xe8,8,3);
+  engine_temp_uint_3 = engine_call_memory_allocator(_engine_camera_status,0xe8,8,3);
   engine_temp_uint_6 = engine_unnamed_function_4390(engine_temp_uint_3,engine_temp_uint_6);
   engine_data_pointer[1] = engine_temp_uint_6;
   engine_unnamed_function_4500(*engine_data_pointer,engine_result_flag_ptr,engine_comparison_params,engine_handle_render_frame);
@@ -57022,7 +57031,7 @@ void engine_unnamed_function_4420(uint64 engine_data_structure_ptr,longlong engi
   engine_unnamed_function_5470();
   engine_temp_char_ptr_7 = (char *)engine_unnamed_function_4780(engine_comparison_params + 0xf0,engine_result_flag_ptr + MEMORY_OFFSET_0x20);
   acStackX_20[0] = *engine_temp_char_ptr_7;
-  next_data_pointer = (uint16*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
+  next_data_pointer = (uint16*)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,0x13);
   *(uint8*)next_data_pointer = 0;
   engine_temp_uint_4 = engine_call_resource_validator(next_data_pointer);
   *next_data_pointer = 0x2323;
@@ -57030,7 +57039,7 @@ void engine_unnamed_function_4420(uint64 engine_data_structure_ptr,longlong engi
   engine_temp_int_5 = *(int *)(engine_result_flag_ptr + 0x30);
   if (0 < engine_temp_int_5) {
     if ((engine_temp_int_5 != -2) && (engine_temp_uint_4 < engine_temp_int_5 + 3U)) {
-      next_data_pointer = (uint16*)engine_update_system_data(_engine_data_18,next_data_pointer,engine_temp_int_5 + 3U,MEMORY_COMPARE_SIZE_0x10,0x13);
+      next_data_pointer = (uint16*)engine_update_system_data(_engine_camera_status,next_data_pointer,engine_temp_int_5 + 3U,MEMORY_COMPARE_SIZE_0x10,0x13);
       engine_call_resource_validator(next_data_pointer);
       engine_temp_int_5 = *(int *)(engine_result_flag_ptr + 0x30);
     }
@@ -57160,7 +57169,7 @@ LAB_18009611a:
   if (engine_stack_byte_pointer_28 == (byte *)0x0) {
     engine_stack_byte_pointer_28 = (byte *)0x0;
     engine_stack_uint_18 = 0;
-    pengine_stack_uint_30 = &engine_data_18098bcb0;
+    pengine_stack_uint_30 = &engine_camera_status098bcb0;
     if (current_data_pointer != next_data_pointer) {
       comparison_result_index = _Mtx_lock(current_data_pointer + 0x2d);
       if (comparison_result_index != 0) {
@@ -57307,7 +57316,7 @@ void engine_unnamed_function_4440(uint64 engine_data_structure_ptr,longlong engi
       }
       pengine_stack_uint_a8 = (uint8*)0x0;
       engine_stack_uint_98 = (ulonglong)engine_stack_uint_98._4_4_ << 0x20;
-      engine_stack_pointer_b0 = &engine_data_18098bcb0;
+      engine_stack_pointer_b0 = &engine_camera_status098bcb0;
       engine_temp_uint_23 = (int)engine_temp_uint_22 + 1;
       engine_temp_uint_22 = (ulonglong)engine_temp_uint_23;
       engine_temp_uint_24 = engine_temp_uint_24 + 8;
@@ -57534,7 +57543,7 @@ LAB_180096691:
       engine_call_cleanup_routine(engine_temp_long1);
     }
   }
-  engine_temp_long1 = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(engine_temp_uint_ptr_9 + 5));
+  engine_temp_long1 = engine_call_memory_extender(_engine_camera_status,0x28,*(uint8*)(engine_temp_uint_ptr_9 + 5));
   engine_temp_double27 = *(double *)(engine_result_flag_ptr + 0x40);
   *(float *)(engine_temp_long1 + MEMORY_OFFSET_0x20) = (float)engine_temp_double27;
   engine_temp_byte3 = true;
@@ -57686,7 +57695,7 @@ void engine_unnamed_function_4460(uint64 engine_data_structure_ptr,longlong engi
   engine_stack_value_788 = 0xfffffffffffffffe;
   engine_stack_value_58 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_958;
   engine_stack_long_800 = engine_comparison_params;
-  (**(code **)(*(longlong *)(engine_comparison_params + MEMORY_OFFSET_0x20) + 0x10))((longlong *)(engine_comparison_params + MEMORY_OFFSET_0x20),&engine_data_180a0143c);
+  (**(code **)(*(longlong *)(engine_comparison_params + MEMORY_OFFSET_0x20) + 0x10))((longlong *)(engine_comparison_params + MEMORY_OFFSET_0x20),&engine_camera_status0a0143c);
   engine_setup_processing_environment(&pengine_stack_uint_7d8,engine_result_flag_ptr);
   engine_temp_long_9 = engine_unnamed_function_4810(engine_next_node_ptr + 8,&pengine_stack_uint_7d8);
   pengine_stack_uint_7d8 = &engine_system_context_data;
@@ -57697,7 +57706,7 @@ void engine_unnamed_function_4460(uint64 engine_data_structure_ptr,longlong engi
   }
   engine_stack_long_7d0 = 0;
   engine_stack_uint_7c0 = 0;
-  pengine_stack_uint_7d8 = &engine_data_18098bcb0;
+  pengine_stack_uint_7d8 = &engine_camera_status098bcb0;
   engine_temp_long3 = engine_temp_long_9 + 0x128;
   engine_stack_long_810 = engine_temp_long3;
   engine_temp_int_7 = _Mtx_lock(engine_temp_long3);
@@ -57737,13 +57746,13 @@ void engine_unnamed_function_4460(uint64 engine_data_structure_ptr,longlong engi
   aengine_stack_long_8c0[0] = 0;
   engine_temp_char_value = engine_unnamed_function_5350(&engine_base_data_offset_60,aengine_stack_long_8c0,0);
   if (engine_temp_char_value != '\0') {
-    pengine_stack_uint_728 = &engine_data_18098bc80;
+    pengine_stack_uint_728 = &engine_camera_status098bc80;
     pengine_stack_uint_720 = aengine_stack_uint_710;
     aengine_stack_uint_710[0] = 0;
     engine_stack_uint_718 = 0x11;
     strcpy_s(aengine_stack_uint_710,0x20,&engine_base_data_offset_48);
     engine_call_data_transformer(engine_next_node_ptr,engine_result_flag_ptr,&pengine_stack_uint_728);
-    pengine_stack_uint_728 = &engine_data_18098bcb0;
+    pengine_stack_uint_728 = &engine_camera_status098bcb0;
   }
   func_0x00018012e760();
   engine_temp_char_value = engine_unnamed_function_5370(&engine_base_data_offset_78,engine_temp_long_9 + 0x124);
@@ -57819,7 +57828,7 @@ LAB_180096e94:
     engine_stack_uint_880 = 0;
     aengine_stack_long_8c0[0] = engine_temp_long_9 + 0xf0;
     engine_stack_long_868 = engine_temp_long_9 + 0x30;
-    engine_data_ptr1 = (uint32*)engine_call_memory_extender(_engine_data_18,MEMORY_COMPARE_SIZE_0x10,0x13);
+    engine_data_ptr1 = (uint32*)engine_call_memory_extender(_engine_camera_status,MEMORY_COMPARE_SIZE_0x10,0x13);
     *(uint8*)engine_data_ptr1 = 0;
     engine_stack_pointer_888 = engine_data_ptr1;
     engine_temp_uint_8 = engine_call_resource_validator(engine_data_ptr1);
@@ -57946,7 +57955,7 @@ void engine_handle_render_frame(uint8_t *engine_data_structure_ptr)
   uint engine_temp_uint_6;
   ulonglong engine_temp_uint64_value;
   
-  structure_data_pointer = (uint8*)engine_call_memory_allocator(_engine_data_18,0x30,8,3);
+  structure_data_pointer = (uint8*)engine_call_memory_allocator(_engine_camera_status,0x30,8,3);
   engine_temp_uint64_value = 0;
   *(void*)(structure_data_pointer + 0x14) = 0;
   *structure_data_pointer = 0;
@@ -57962,14 +57971,14 @@ void engine_handle_render_frame(uint8_t *engine_data_structure_ptr)
   *(void*)(structure_data_pointer + 0x24) = *(void*)(engine_data_structure_ptr + 0x24);
   engine_temp_uint_3 = engine_temp_uint64_value;
   if ((longlong)*(int *)(engine_data_structure_ptr + 0x10) != 0) {
-    engine_temp_uint_3 = engine_call_memory_extender(_engine_data_18,(longlong)*(int *)(engine_data_structure_ptr + 0x10) * 8,3);
+    engine_temp_uint_3 = engine_call_memory_extender(_engine_camera_status,(longlong)*(int *)(engine_data_structure_ptr + 0x10) * 8,3);
   }
   *(ulonglong *)(structure_data_pointer + 8) = engine_temp_uint_3;
   engine_temp_uint_3 = engine_temp_uint64_value;
   if (0 < *(int *)(engine_data_structure_ptr + 0x10)) {
     do {
       engine_temporary_long = *(longlong *)(engine_temp_uint_3 + *(longlong *)(engine_data_structure_ptr + 8));
-      engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,0xa8,8,3);
+      engine_temp_uint_4 = engine_call_memory_allocator(_engine_camera_status,0xa8,8,3);
       memory_allocation_result = engine_unnamed_function_5410(engine_temp_uint_4,0);
       engine_unnamed_function_5510(memory_allocation_result,engine_temporary_long);
       engine_unnamed_function_5520(memory_allocation_result + 0x10,engine_temporary_long + 0x10);
@@ -58006,7 +58015,7 @@ void engine_unnamed_function_4482(void)
   engine_temp_index = unaff_RBP;
   do {
     engine_temporary_long = *(longlong *)(engine_temp_index + *(longlong *)(unaff_R14 + 8));
-    engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,0xa8,8,3);
+    engine_temp_uint_2 = engine_call_memory_allocator(_engine_camera_status,0xa8,8,3);
     engine_temp_long_3 = engine_unnamed_function_5410(engine_temp_uint_2,0);
     engine_unnamed_function_5510(engine_temp_long_3,engine_temporary_long);
     engine_unnamed_function_5520(engine_temp_long_3 + 0x10,engine_temporary_long + 0x10);
@@ -58124,7 +58133,7 @@ void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine
   *(void*)(engine_temp_long_3 + 0x110) = engine_system_parameter_4;
   *(undefined **)(engine_temp_long_3 + 0x100) = &engine_base_data_offset_70;
   *(code **)(engine_temp_long_3 + 0xf8) = engine_process_input_events;
-  engine_temp_index = engine_call_memory_allocator(_engine_data_18,0xa0,8,3);
+  engine_temp_index = engine_call_memory_allocator(_engine_camera_status,0xa0,8,3);
   engine_temp_ptr_array_6 = (longlong *)engine_unnamed_function_2510(engine_temp_index);
   pengine_stack_long_70 = engine_temp_ptr_array_6;
   if (engine_temp_ptr_array_6 != (longlong *)0x0) {
@@ -58132,15 +58141,15 @@ void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine
   }
   *(uint32*)(engine_temp_ptr_array_6 + 2) = 0x1fffe;
   *(uint16*)((longlong)engine_temp_ptr_array_6 + 0x14) = 0x100;
-  pengine_temp_long_7 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x28,8,3);
-  pengine_stack_uint_60 = &engine_data_1809fdc18;
+  pengine_temp_long_7 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x28,8,3);
+  pengine_stack_uint_60 = &engine_camera_status09fdc18;
   engine_stack_pointer_58 = aengine_stack_uint_48;
   aengine_stack_uint_48[0] = 0;
   engine_stack_uint_50 = 5;
   ppengine_stack_long_148 = (longlong **)pengine_temp_long_7;
   strcpy_s(aengine_stack_uint_48,MEMORY_COMPARE_SIZE_0x10,&engine_base_data_offset_b8);
-  *pengine_temp_long_7 = (longlong)&engine_data_180a21690;
-  *pengine_temp_long_7 = (longlong)&engine_data_180a21720;
+  *pengine_temp_long_7 = (longlong)&engine_camera_status0a21690;
+  *pengine_temp_long_7 = (longlong)&engine_camera_status0a21720;
   *(uint32*)(pengine_temp_long_7 + 1) = 0;
   *pengine_temp_long_7 = (longlong)&engine_base_data_offset_68;
   LOCK();
@@ -58158,15 +58167,15 @@ void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine
   if (pengine_stack_long_a0 != (longlong *)0x0) {
     (**(code **)(*pengine_stack_long_a0 + 0x38))();
   }
-  pengine_stack_uint_60 = &engine_data_18098bcb0;
+  pengine_stack_uint_60 = &engine_camera_status098bcb0;
   engine_temp_long_4 = engine_data_structure_ptr[2];
   ppengine_stack_long_148 = &pengine_stack_long_130;
   pengine_stack_long_130 = engine_temp_ptr_array_6;
   (**(code **)(*engine_temp_ptr_array_6 + 0x28))(engine_temp_ptr_array_6);
   engine_unnamed_function_6030(engine_temp_long_4,&pengine_stack_long_130);
-  pengine_temp_long_7 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x30,8,3);
-  *pengine_temp_long_7 = (longlong)&engine_data_180a21690;
-  *pengine_temp_long_7 = (longlong)&engine_data_180a21720;
+  pengine_temp_long_7 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x30,8,3);
+  *pengine_temp_long_7 = (longlong)&engine_camera_status0a21690;
+  *pengine_temp_long_7 = (longlong)&engine_camera_status0a21720;
   *(uint32*)(pengine_temp_long_7 + 1) = 0;
   *pengine_temp_long_7 = (longlong)&engine_base_data_offset_30;
   pengine_temp_long_7[4] = 0;
@@ -58178,9 +58187,9 @@ void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine
   *(uint32*)(pengine_temp_long_7 + 2) = 0xffff;
   *(uint8*)(pengine_temp_long_7 + 3) = 1;
   *(uint32*)((longlong)pengine_temp_long_7 + 0x14) = 2;
-  pengine_temp_long_8 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x20,8,3);
-  *pengine_temp_long_8 = (longlong)&engine_data_180a21690;
-  *pengine_temp_long_8 = (longlong)&engine_data_180a21720;
+  pengine_temp_long_8 = (longlong *)engine_call_memory_allocator(_engine_camera_status,0x20,8,3);
+  *pengine_temp_long_8 = (longlong)&engine_camera_status0a21690;
+  *pengine_temp_long_8 = (longlong)&engine_camera_status0a21720;
   *(uint32*)(pengine_temp_long_8 + 1) = 0;
   *pengine_temp_long_8 = (longlong)&engine_base_data_zero;
   LOCK();
@@ -58200,7 +58209,7 @@ void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine
   pengine_stack_long_128 = pengine_temp_long_7;
   (**(code **)(*pengine_temp_long_7 + 0x28))(pengine_temp_long_7);
   engine_unnamed_function_6040(engine_temp_long_4,&pengine_stack_long_128);
-  engine_temp_index = engine_call_memory_allocator(_engine_data_18,0x3b0,MEMORY_COMPARE_SIZE_0x10,3);
+  engine_temp_index = engine_call_memory_allocator(_engine_camera_status,0x3b0,MEMORY_COMPARE_SIZE_0x10,3);
   pengine_temp_long_8 = (longlong *)engine_unnamed_function_5950(engine_temp_index,1);
   if (pengine_temp_long_8 != (longlong *)0x0) {
     pengine_stack_long_90 = pengine_temp_long_8;
@@ -58435,7 +58444,7 @@ void engine_unnamed_function_4510(longlong engine_data_structure_ptr)
   if (engine_stack_long_148 == 0) {
     engine_stack_uint_138 = engine_stack_uint_138 & 0xffffffff00000000;
     engine_stack_long_148 = 0;
-    pengine_stack_uint_150 = &engine_data_18098bcb0;
+    pengine_stack_uint_150 = &engine_camera_status098bcb0;
     if (engine_stack_long_pointer_18 != (longlong *)0x0) {
       (**(code **)(*engine_stack_long_pointer_18 + 0x38))();
     }
@@ -58447,7 +58456,7 @@ void engine_unnamed_function_4510(longlong engine_data_structure_ptr)
     if (engine_stack_long_e8 == 0) {
       engine_stack_long_e8 = 0;
       engine_stack_uint_d8 = engine_stack_uint_d8 & 0xffffffff00000000;
-      engine_stack_pointer_f0 = &engine_data_18098bcb0;
+      engine_stack_pointer_f0 = &engine_camera_status098bcb0;
       if (pengine_stack_long_f8 != (longlong *)0x0) {
         (**(code **)(*pengine_stack_long_f8 + 0x38))();
       }
@@ -58891,7 +58900,7 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
                 (**(code **)(*pengine_temp_long9 + 0x168))(pengine_temp_long9,1,&engine_stack_uint_250);
                 engine_data_structure_ptr = engine_stack_long_298;
                 engine_temp_int_25 = engine_stack_int_2c4;
-                if (engine_data_46 == '\0') {
+                if (engine_ui_status == '\0') {
                   pengine_temp_long9 = *(longlong **)(*(longlong *)(_engine_data_38 + 0x1cd8) + 0x8400);
                   (**(code **)(*pengine_temp_long9 + 0x60))(pengine_temp_long9,(*engine_current_node_ptr6 / 3) * 3,engine_stack_int_2c8,0);
                   engine_data_structure_ptr = engine_stack_long_298;
@@ -58953,18 +58962,18 @@ engine_process_input_events(uint64 engine_data_structure_ptr,uint64 engine_resul
               0x48) < _engine_frame_counter) {
     engine_get_game_state_status(&engine_frame_counter);
     if (_engine_frame_counter == -1) {
-      _engine_data_18 = &engine_system_context_data;
-      _engine_data_30 = 0;
-      _engine_data_20 = (void*)0x0;
+      _engine_camera_status = &engine_system_context_data;
+      _engine_render_status = 0;
+      _engine_physics_status = (void*)0x0;
       _engine_render_mode = 0;
       engine_unnamed_function_6530(engine_unnamed_function_6590);
       engine_set_game_state_data(&engine_frame_counter);
     }
   }
-  engine_unnamed_function_5560(*(void*)(_engine_data_70 + 8),&engine_data_18,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_2);
+  engine_unnamed_function_5560(*(void*)(_engine_data_70 + 8),&engine_camera_status,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_2);
   engine_data_pointer = &engine_data_73;
-  if (_engine_data_20 != (void*)0x0) {
-    engine_data_pointer = _engine_data_20;
+  if (_engine_physics_status != (void*)0x0) {
+    engine_data_pointer = _engine_physics_status;
   }
   return engine_data_pointer;
 }
@@ -59016,7 +59025,7 @@ uint8_t engine_unnamed_function_4540(uint64 engine_data_structure_ptr,longlong e
   }
   engine_system_parameter_4[1] = 0;
   *(uint32*)(engine_system_parameter_4 + 3) = 0;
-  *engine_system_parameter_4 = &engine_data_18098bcb0;
+  *engine_system_parameter_4 = &engine_camera_status098bcb0;
   return engine_temporary_uint;
 }
 
@@ -59331,11 +59340,11 @@ LAB_18009a8d1:
       if (engine_stack_pointer_98 != (void*)0x0) {
         engine_temp_uint_ptr_9 = engine_stack_pointer_98;
       }
-      engine_temp_long_4 = strstr(engine_temp_uint_ptr_9,&engine_data_180a01440);
+      engine_temp_long_4 = strstr(engine_temp_uint_ptr_9,&engine_camera_status0a01440);
       if (engine_temp_long_4 == 0) {
-        engine_temporary_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x70,8,3);
+        engine_temporary_pointer = (void*)engine_call_memory_allocator(_engine_camera_status,0x70,8,3);
         engine_temp_uint1 = engine_stack_uint_b0;
-        *engine_temporary_pointer = &engine_data_18098bcb0;
+        *engine_temporary_pointer = &engine_camera_status098bcb0;
         engine_temporary_pointer[1] = 0;
         *(uint32*)(engine_temporary_pointer + 2) = 0;
         *engine_temporary_pointer = &engine_system_context_data;
@@ -59343,7 +59352,7 @@ LAB_18009a8d1:
         engine_temporary_pointer[1] = 0;
         *(uint32*)(engine_temporary_pointer + 2) = 0;
         engine_stack_pointer_18 = engine_temporary_pointer + 4;
-        *engine_stack_pointer_18 = &engine_data_18098bcb0;
+        *engine_stack_pointer_18 = &engine_camera_status098bcb0;
         engine_temporary_pointer[5] = 0;
         *(uint32*)(engine_temporary_pointer + 6) = 0;
         *engine_stack_pointer_18 = &engine_system_context_data;
@@ -59463,7 +59472,7 @@ LAB_18009ac35:
       }
       engine_stack_pointer_98 = (void*)0x0;
       engine_stack_value_88 = engine_stack_value_88 & 0xffffffff00000000;
-      engine_stack_param_a0 = &engine_data_18098bcb0;
+      engine_stack_param_a0 = &engine_camera_status098bcb0;
     }
     pengine_stack_uint_c0 = &engine_system_context_data;
     if (pbStack_b8 != (byte *)0x0) {
@@ -59472,7 +59481,7 @@ LAB_18009ac35:
     }
     pbStack_b8 = (byte *)0x0;
     engine_stack_uint_a8 = engine_stack_uint_a8 & 0xffffffff00000000;
-    pengine_stack_uint_c0 = &engine_data_18098bcb0;
+    pengine_stack_uint_c0 = &engine_camera_status098bcb0;
     engine_data_pointer_6 = (void*)func_0x00018066bd70(engine_data_pointer_6);
   } while( true );
 }
@@ -59747,7 +59756,7 @@ void engine_unnamed_function_4620(uint64_t *engine_data_structure_ptr)
         engine_temp_long0 = 0;
       }
       else {
-        engine_temp_long0 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_9 * 4,*(uint8*)(engine_data_structure_ptr + 0x46));
+        engine_temp_long0 = engine_call_memory_extender(_engine_camera_status,engine_temp_uint_9 * 4,*(uint8*)(engine_data_structure_ptr + 0x46));
       }
       if (engine_temp_long_3 != engine_temp_long_2) {
                     // WARNING: Subroutine does not return
@@ -59817,7 +59826,7 @@ void engine_unnamed_function_463b(longlong engine_data_structure_ptr)
       engine_temp_long_3 = 0;
     }
     else {
-      engine_temp_long_3 = engine_call_memory_extender(_engine_data_18,engine_temp_index * 4,(char)engine_register_rbx[3]);
+      engine_temp_long_3 = engine_call_memory_extender(_engine_camera_status,engine_temp_index * 4,(char)engine_register_rbx[3]);
     }
     if (engine_temp_long_2 != engine_temporary_long) {
                     // WARNING: Subroutine does not return
@@ -59878,7 +59887,7 @@ void engine_unnamed_function_464a(void)
     engine_temp_long_2 = 0;
   }
   else {
-    engine_temp_long_2 = engine_call_memory_extender(_engine_data_18,unaff_RBP * 4,(char)engine_register_rbx[3]);
+    engine_temp_long_2 = engine_call_memory_extender(_engine_camera_status,unaff_RBP * 4,(char)engine_register_rbx[3]);
   }
   if (unaff_RDI != unaff_RSI) {
                     // WARNING: Subroutine does not return
@@ -61085,7 +61094,7 @@ longlong * engine_unnamed_function_4840(uint64 engine_data_structure_ptr,longlon
   engine_stack_uint_30 = 0;
   engine_stack_pointer_40 = (uint32*)0x0;
   engine_stack_uint_38 = 0;
-  engine_current_node_ptr = (uint32*)engine_call_memory_extender(_engine_data_18,0x1d,0x13,engine_system_parameter_4,0,0xfffffffffffffffe);
+  engine_current_node_ptr = (uint32*)engine_call_memory_extender(_engine_camera_status,0x1d,0x13,engine_system_parameter_4,0,0xfffffffffffffffe);
   *(uint8*)engine_current_node_ptr = 0;
   engine_stack_pointer_40 = engine_current_node_ptr;
   engine_temp_uint_2 = engine_call_resource_validator(engine_current_node_ptr);
@@ -61106,7 +61115,7 @@ longlong * engine_unnamed_function_4840(uint64 engine_data_structure_ptr,longlon
   }
   engine_stack_pointer_40 = (uint32*)0x0;
   engine_stack_uint_30 = (ulonglong)engine_stack_uint_30._4_4_ << 0x20;
-  pengine_stack_uint_48 = &engine_data_18098bcb0;
+  pengine_stack_uint_48 = &engine_camera_status098bcb0;
   engine_unnamed_function_2280(engine_temporary_uint,engine_result_flag_ptr);
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_comparison_params;
   *(uint32*)(*engine_result_flag_ptr + 0x18) = engine_system_parameter_4;
@@ -61268,7 +61277,7 @@ LAB_18009be87:
   }
   engine_temp_uint0 = 0;
 LAB_18009bed0:
-  engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,0x48,(char)engine_data_structure_ptr[5]);
+  engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,0x48,(char)engine_data_structure_ptr[5]);
   engine_call_data_writer(engine_temp_long_7 + MEMORY_OFFSET_0x20,engine_param_5);
   *(uint32*)(engine_temp_long_7 + 0x40) = 0;
                     // WARNING: Subroutine does not return
@@ -61500,7 +61509,7 @@ LAB_18009c267:
   }
   engine_temp_uint0 = 0;
 LAB_18009c2b0:
-  engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,0x48,(char)engine_data_structure_ptr[5]);
+  engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,0x48,(char)engine_data_structure_ptr[5]);
   engine_call_data_writer(engine_temp_long_7 + MEMORY_OFFSET_0x20,engine_param_5);
   *(uint8*)(engine_temp_long_7 + 0x40) = 0;
                     // WARNING: Subroutine does not return
@@ -61660,7 +61669,7 @@ LAB_18009c4f7:
   }
   engine_temp_uint0 = 0;
 LAB_18009c540:
-  engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,0x1c0,(char)engine_data_structure_ptr[5]);
+  engine_temp_long_7 = engine_call_memory_extender(_engine_camera_status,0x1c0,(char)engine_data_structure_ptr[5]);
   engine_call_data_writer(engine_temp_long_7 + MEMORY_OFFSET_0x20,engine_param_5);
   engine_unnamed_function_4580(engine_temp_long_7 + 0x40);
                     // WARNING: Subroutine does not return
@@ -61739,7 +61748,7 @@ engine_unnamed_function_490a:
   else {
     engine_temp_uint_6 = 1;
   }
-  memory_allocation_result = engine_call_memory_extender(_engine_data_18,0x28,(char)engine_data_structure_ptr[5]);
+  memory_allocation_result = engine_call_memory_extender(_engine_camera_status,0x28,(char)engine_data_structure_ptr[5]);
   *(int *)(memory_allocation_result + MEMORY_OFFSET_0x20) = *engine_param_5;
   *(uint32*)(memory_allocation_result + 0x24) = 0;
                     // WARNING: Subroutine does not return
@@ -61759,7 +61768,7 @@ void engine_unnamed_function_490a(void)
   uint32_t *unaff_RSI;
   longlong unaff_RDI;
   
-  engine_temporary_long = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(unaff_RDI + 0x28));
+  engine_temporary_long = engine_call_memory_extender(_engine_camera_status,0x28,*(uint8*)(unaff_RDI + 0x28));
   *(uint32*)(engine_temporary_long + MEMORY_OFFSET_0x20) = *unaff_RSI;
   *(uint32*)(engine_temporary_long + 0x24) = 0;
                     // WARNING: Subroutine does not return
@@ -61779,7 +61788,7 @@ void engine_unnamed_function_4911(void)
   uint32_t *unaff_RSI;
   longlong unaff_RDI;
   
-  engine_temporary_long = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(unaff_RDI + 0x28));
+  engine_temporary_long = engine_call_memory_extender(_engine_camera_status,0x28,*(uint8*)(unaff_RDI + 0x28));
   *(uint32*)(engine_temporary_long + MEMORY_OFFSET_0x20) = *unaff_RSI;
   *(uint32*)(engine_temporary_long + 0x24) = 0;
                     // WARNING: Subroutine does not return
@@ -61799,7 +61808,7 @@ void engine_unnamed_function_4915(void)
   uint32_t *unaff_RSI;
   longlong unaff_RDI;
   
-  engine_temporary_long = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(unaff_RDI + 0x28));
+  engine_temporary_long = engine_call_memory_extender(_engine_camera_status,0x28,*(uint8*)(unaff_RDI + 0x28));
   *(uint32*)(engine_temporary_long + MEMORY_OFFSET_0x20) = *unaff_RSI;
   *(uint32*)(engine_temporary_long + 0x24) = 0;
                     // WARNING: Subroutine does not return
@@ -62159,7 +62168,7 @@ LAB_18009c8cb:
   }
   engine_validation_result = 0;
 LAB_18009c8d4:
-  engine_data_offset = engine_call_memory_extender(_engine_data_18,0x48,*(uint8*)(engine_structure_ptr + 0x28),engine_validation_flag,
+  engine_data_offset = engine_call_memory_extender(_engine_camera_status,0x48,*(uint8*)(engine_structure_ptr + 0x28),engine_validation_flag,
                         0xfffffffffffffffe);
   engine_call_data_writer(engine_data_offset + MEMORY_OFFSET_0x20,engine_control_data);
   *(uint32*)(engine_data_offset + 0x40) = 0;
@@ -62272,7 +62281,7 @@ LAB_18009ca27:
   }
   engine_temp_uint_9 = 0;
 LAB_18009ca70:
-  engine_temp_long_8 = engine_call_memory_extender(_engine_data_18,0x70,*(uint8*)(engine_data_structure_ptr + 5));
+  engine_temp_long_8 = engine_call_memory_extender(_engine_camera_status,0x70,*(uint8*)(engine_data_structure_ptr + 5));
   engine_call_data_writer(engine_temp_long_8 + MEMORY_OFFSET_0x20,engine_system_parameter_4);
   engine_temp_long_7 = engine_temp_long_8 + 0x40;
   *(void*)(engine_temp_long_8 + 0x58) = 0;
@@ -62332,7 +62341,7 @@ LAB_18009cb7a:
   }
   engine_temp_uint_6 = 0;
 LAB_18009cb85:
-  memory_allocation_result = engine_call_memory_extender(_engine_data_18,0x70,*(uint8*)(engine_data_structure_ptr + 0x28),engine_system_parameter_4,
+  memory_allocation_result = engine_call_memory_extender(_engine_camera_status,0x70,*(uint8*)(engine_data_structure_ptr + 0x28),engine_system_parameter_4,
                         0xfffffffffffffffe);
   engine_call_data_writer(memory_allocation_result + MEMORY_OFFSET_0x20,engine_param_5);
   engine_temp_long_4 = memory_allocation_result + 0x40;
