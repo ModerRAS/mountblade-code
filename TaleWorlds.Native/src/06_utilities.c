@@ -3329,51 +3329,61 @@ undefined8 ValidateSystemAccess(longlong param_1,longlong param_2)
 undefined8 UpdateObjectStatusFlags(longlong objectContext)
 
 {
-  uint *puVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  longlong *plVar4;
-  longlong alStackX_8 [4];
+  uint *statusFlagsPointer;
+  longlong objectDataPointer;
+  undefined8 operationResult;
+  longlong *objectIterator;
+  longlong contextHandles [4];
   
-  uVar3 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_8);
-  if ((int)uVar3 == 0) {
-    plVar4 = *(longlong **)(alStackX_8[0] + 0x20);
-    while ((*(longlong **)(alStackX_8[0] + 0x20) <= plVar4 &&
-           (plVar4 < *(longlong **)(alStackX_8[0] + 0x20) + *(int *)(alStackX_8[0] + 0x28)))) {
-      lVar2 = *plVar4;
-      plVar4 = plVar4 + 1;
-      if ((*(longlong *)(lVar2 + 0x18) == *(longlong *)(alStackX_8[0] + 8)) &&
-         (lVar2 = *(longlong *)(lVar2 + 0x10), lVar2 != 0)) {
-        puVar1 = (uint *)(lVar2 + 0x2d8);
-        *puVar1 = *puVar1 | 4;
+  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10), contextHandles);
+  if ((int)operationResult == 0) {
+    objectIterator = *(longlong **)(contextHandles[0] + 0x20);
+    while ((*(longlong **)(contextHandles[0] + 0x20) <= objectIterator &&
+           (objectIterator < *(longlong **)(contextHandles[0] + 0x20) + *(int *)(contextHandles[0] + 0x28)))) {
+      objectDataPointer = *objectIterator;
+      objectIterator = objectIterator + 1;
+      if ((*(longlong *)(objectDataPointer + 0x18) == *(longlong *)(contextHandles[0] + 8)) &&
+         (objectDataPointer = *(longlong *)(objectDataPointer + 0x10), objectDataPointer != 0)) {
+        statusFlagsPointer = (uint *)(objectDataPointer + 0x2d8);
+        *statusFlagsPointer = *statusFlagsPointer | 4;
       }
     }
-    uVar3 = 0;
+    operationResult = 0;
   }
-  return uVar3;
+  return operationResult;
 }
 
 
 
-undefined8 FUN_180890500(longlong param_1,undefined8 param_2)
+/**
+ * @brief 递减系统资源计数器
+ * 
+ * 该函数用于管理系统资源的计数器，当资源使用完成后递减计数器
+ * 主要用于资源管理和内存分配跟踪
+ * 
+ * @param systemContext 系统上下文指针，包含系统资源管理信息
+ * @param resourceHandle 资源句柄，标识要管理的特定资源
+ * @return undefined8 操作状态码，0表示成功，0x1c表示错误
+ */
+undefined8 DecrementSystemResourceCounter(longlong systemContext, undefined8 resourceHandle)
 
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  int iVar3;
-  longlong alStackX_8 [2];
+  longlong contextData;
+  undefined8 operationResult;
+  int resourceCounter;
+  longlong contextHandles [2];
   
-  uVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_8);
-  lVar1 = alStackX_8[0];
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  operationResult = func_0x00018088c530(*(undefined4 *)(systemContext + 0x10), contextHandles);
+  contextData = contextHandles[0];
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  if (*(int *)(alStackX_8[0] + 0x4c) < 1) {
+  if (*(int *)(contextHandles[0] + 0x4c) < 1) {
     return 0x1c;
   }
-  iVar3 = *(int *)(alStackX_8[0] + 0x4c) + -1;
-  *(int *)(alStackX_8[0] + 0x4c) = iVar3;
-  if (*(int *)(alStackX_8[0] + 0x58) + *(int *)(alStackX_8[0] + 0x54) + iVar3 != 0) {
+  resourceCounter = *(int *)(contextHandles[0] + 0x4c) + -1;
+  *(int *)(contextHandles[0] + 0x4c) = resourceCounter;
+  if (*(int *)(contextHandles[0] + 0x58) + *(int *)(contextHandles[0] + 0x54) + resourceCounter != 0) {
     return 0;
   }
   alStackX_8[0] = 0;

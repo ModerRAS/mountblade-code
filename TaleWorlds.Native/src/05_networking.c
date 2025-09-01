@@ -1364,7 +1364,7 @@ LAB_180840d1b:
     puStack_148 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&UNK_180982b98);
+    NetworkSendErrorReport(iVar1,0xb,param_1,&NetworkErrorReportTable);
   }
 LAB_180840cf0:
                     // WARNING: Subroutine does not return
@@ -1393,7 +1393,7 @@ int ProcessNetworkDataBuffer(longlong bufferContext, longlong dataBuffer, int bu
   
   uVar1 = *(undefined4 *)(param_1 + 0x18);
   iVar2 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b7d0(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -1490,7 +1490,7 @@ int FormatNetworkConnectionRequest(longlong requestContext, longlong requestData
   
   uVar1 = *(undefined8 *)(param_1 + 0x18);
   iVar2 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074bda0(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -1518,7 +1518,7 @@ int ProcessNetworkConnectionResponse(longlong responseContext, longlong response
   
   uVar1 = *(undefined1 *)(param_1 + 0x18);
   iVar2 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -1535,7 +1535,7 @@ int FUN_180840ff0(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x18);
   iVar2 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b830(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -1552,7 +1552,7 @@ int FUN_180841060(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x18);
   iVar2 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -1650,7 +1650,7 @@ int FUN_1808412b0(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x18);
   iVar2 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -1806,7 +1806,7 @@ int FUN_180841790(longlong param_1,longlong param_2,int param_3)
   uStack_c = *(undefined4 *)(param_1 + 0x1c);
   uVar1 = *(undefined4 *)(param_1 + 0x20);
   iVar2 = FUN_18074b650(param_2,param_3,&uStack_18);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -1823,7 +1823,7 @@ int FUN_180841830(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x14);
   iVar2 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b7d0(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -1840,7 +1840,7 @@ int FUN_1808418a0(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x14);
   iVar2 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -1980,7 +1980,7 @@ int FUN_180841bc0(longlong param_1,longlong param_2,int param_3)
   uStack_10 = *(undefined4 *)(param_1 + 0x3c);
   uStack_c = *(undefined4 *)(param_1 + 0x40);
   iVar2 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18088ebb0(iVar2 + param_2,param_3 - iVar2,&uStack_38);
   iVar2 = iVar2 + iVar3;
@@ -2005,7 +2005,7 @@ int FUN_180841cc0(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x14);
   iVar2 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b830(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -2674,7 +2674,7 @@ int FUN_180842990(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x10);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180984248);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -2818,7 +2818,7 @@ int FUN_180842e00(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x10);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983560);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -2835,7 +2835,7 @@ int FUN_180842e70(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x10);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983710);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -2852,7 +2852,7 @@ int FUN_180842ee0(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x10);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809835f0);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -2915,7 +2915,7 @@ int FUN_1808430d0(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x10);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983ce0);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -2932,7 +2932,7 @@ int FUN_180843140(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x10);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983d60);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -2969,7 +2969,7 @@ int FUN_1808431b0(longlong param_1,longlong param_2,int param_3)
   uStack_10 = *(undefined4 *)(param_1 + 0x40);
   uStack_c = *(undefined4 *)(param_1 + 0x44);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809838a8);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
   iVar2 = iVar2 + iVar3;
@@ -3273,7 +3273,7 @@ int FUN_180843b70(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x10);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983b50);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -3321,7 +3321,7 @@ int FUN_180843ce0(longlong param_1,longlong param_2,int param_3)
   uStack_c = *(undefined4 *)(param_1 + 0x1c);
   uVar1 = *(undefined4 *)(param_1 + 0x20);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809820b0);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
@@ -3350,7 +3350,7 @@ int FUN_180843d90(longlong param_1,longlong param_2,int param_3)
   uStack_c = *(undefined4 *)(param_1 + 0x1c);
   uVar1 = *(undefined4 *)(param_1 + 0x20);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981ec0);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
@@ -3371,7 +3371,7 @@ int FUN_180843e40(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x10);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982878);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b7d0(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -3431,7 +3431,7 @@ int FUN_180843fa0(longlong param_1,longlong param_2,int param_3)
   uStack_c = *(undefined4 *)(param_1 + 0x1c);
   uVar1 = *(undefined4 *)(param_1 + 0x20);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981fc0);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
@@ -3460,7 +3460,7 @@ int FUN_180844050(longlong param_1,longlong param_2,int param_3)
   uStack_c = *(undefined4 *)(param_1 + 0x1c);
   uVar1 = *(undefined4 *)(param_1 + 0x20);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981dc0);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
@@ -3489,7 +3489,7 @@ int FUN_180844100(longlong param_1,longlong param_2,int param_3)
   uStack_c = *(undefined4 *)(param_1 + 0x1c);
   uVar1 = *(undefined4 *)(param_1 + 0x20);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981f40);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
@@ -3518,7 +3518,7 @@ int FUN_1808441b0(longlong param_1,longlong param_2,int param_3)
   uStack_c = *(undefined4 *)(param_1 + 0x1c);
   uVar1 = *(undefined4 *)(param_1 + 0x20);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981d40);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
@@ -3539,7 +3539,7 @@ int FUN_180844260(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x10);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982978);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b7d0(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -3576,7 +3576,7 @@ int FUN_180844300(longlong param_1,longlong param_2,int param_3)
   uStack_c = *(undefined4 *)(param_1 + 0x1c);
   uVar1 = *(undefined4 *)(param_1 + 0x20);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982038);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
@@ -3605,7 +3605,7 @@ int FUN_1808443b0(longlong param_1,longlong param_2,int param_3)
   uStack_c = *(undefined4 *)(param_1 + 0x1c);
   uVar1 = *(undefined4 *)(param_1 + 0x20);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981e40);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
@@ -3817,7 +3817,7 @@ int FUN_1808449c0(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x10);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809823e0);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b7d0(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -96019,7 +96019,7 @@ int FUN_180896a30(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined4 *)(param_1 + 0x14);
   iVar2 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
@@ -96036,7 +96036,7 @@ int FUN_180896aa0(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(undefined8 *)(param_1 + 0x10);
   iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809863f8);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074be80(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
