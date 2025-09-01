@@ -17353,10 +17353,10 @@ int InitializeSystemThreadPool(void)
 {
   long long initializationStatus;
   
-  _DAT_180c967b8 = 3;
+  SystemPerformanceStatusFlag = 3;
   SystemGlobalDataReferenceD = &SystemGlobalDataBufferD;
-  _DAT_180c96798 = &DAT_180c96790;
-  _DAT_180c967a0 = 0;
+  SystemPerformanceCounterA = &DAT_180c96790;
+  SystemPerformanceCounterB = 0;
   _DAT_180c967a8 = 0;
   _DAT_180c967b0 = 0;
   initializationStatus = ValidateSystemConfiguration(SystemConfigValidatorOctonary);
