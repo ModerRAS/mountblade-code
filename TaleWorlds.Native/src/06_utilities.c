@@ -12903,33 +12903,33 @@ void ProcessComplexResourceWithRegisters(void)
         validationStatus2 = *(uint8_t4 *)(localContextPointer + 0x14);
         resourceData1 = *(uint8_t4 *)(localContextPointer + 0x18);
         resourceData2 = *(uint8_t4 *)(localContextPointer + 0x1c);
-        *(uint8_t4 *)(ExecutionContextPointer + -0x78) = 0;
-        *(int *)(ExecutionContextPointer + -0x68) = iVar8;
-        *(uint8_t **)(ExecutionContextPointer + -0x80) = &SystemResourceTemplateB;
-        iVar8 = iVar8 + 1;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x54) = uStackX_20;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x70) = unaff_EBX;
-        *(uint8_t4 *)(ExecutionContextPointer + -100) = unsignedResult3;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x60) = unsignedResult4;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x5c) = unsignedValue5;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x58) = unsignedValue6;
-        iVar9 = GetAndValidateResourceData(unsignedResult3,ExecutionContextPointer + -0x80);
-        if ((iVar9 != 0) || (iVar9 = SearchResourceTable(resourceTable,&fStackX_24,0), iVar9 != 0)) break;
-        if (fStackX_24 != 1.0) {
-          in_stack_00000048 = fStackX_24;
-          in_stack_00000030 = &SystemDataTypeTemplateD;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000038 = iVar9;
-          iVar9 = GetAndValidateResourceData(fStackX_24,&ObjectStackBuffer30);
-          if (iVar9 != 0) break;
+        *(uint8_t4 *)(executionContext + -0x78) = 0;
+        *(int *)(executionContext + -0x68) = validationErrorCode;
+        *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateB;
+        validationErrorCode = validationErrorCode + 1;
+        *(uint8_t4 *)(executionContext + -0x54) = contextFlags;
+        *(uint8_t4 *)(executionContext + -0x70) = systemRegister1;
+        *(uint8_t4 *)(executionContext + -100) = validationStatus1;
+        *(uint8_t4 *)(executionContext + -0x60) = validationStatus2;
+        *(uint8_t4 *)(executionContext + -0x5c) = resourceData1;
+        *(uint8_t4 *)(executionContext + -0x58) = resourceData2;
+        tempIndex = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
+        if ((tempIndex != 0) || (tempIndex = SearchResourceTable(resourceTablePointer,&stackFloat1,0), tempIndex != 0)) break;
+        if (stackFloat1 != 1.0) {
+          stackResourceValue = stackFloat1;
+          dataTypeTemplate = &SystemDataTypeTemplateD;
+          stackValidationFlags = contextFlags;
+          validationErrorCode = tempIndex;
+          tempIndex = GetAndValidateResourceData(stackFloat1,&ObjectStackBuffer30);
+          if (tempIndex != 0) break;
         }
       }
-      iVar7 = iVar7 + 1;
+      operationResult = operationResult + 1;
     } while( true );
   }
 LAB_1808974ec:
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(ulonglong *)(ExecutionContextPointer + 0x1d0) ^ (ulonglong)&SystemSecurityValidationBuffer);
+  FinalizeSecurityOperation(*(ulonglong *)(executionContext + 0x1d0) ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
