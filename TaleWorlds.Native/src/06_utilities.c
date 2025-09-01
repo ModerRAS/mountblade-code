@@ -3473,9 +3473,9 @@ undefined8 ValidateSystemAccess(longlong param_1,longlong param_2)
   if (*(int *)(alStackX_8[0] + 0x58) + *(int *)(alStackX_8[0] + 0x54) +
       *(int *)(alStackX_8[0] + 0x4c) == 1) {
     alStackX_8[0] = 0;
-    iVar2 = FUN_18088c740(alStackX_8);
+    iVar2 = ValidateSystemObjectConfiguration(alStackX_8);
     if (iVar2 == 0) {
-      iVar2 = FUN_1808c7b30(lVar1,*(undefined8 *)(lVar1 + 8),*(undefined8 *)(param_2 + 0x90),
+      iVar2 = ProcessSystemObjectValidation(lVar1,*(undefined8 *)(lVar1 + 8),*(undefined8 *)(param_2 + 0x90),
                             *(undefined8 *)(param_2 + 800));
       if (iVar2 == 0) {
                     // WARNING: Subroutine does not return

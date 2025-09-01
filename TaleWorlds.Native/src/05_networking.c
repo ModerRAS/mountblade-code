@@ -8500,34 +8500,49 @@ void ManageNetworkConnectionDataSize(longlong *connectionContext,uint packetData
 
 
 
-// 函数: void FUN_180848dc0(longlong *connectionContext,uint packetData,NetworkHandle dataSize)
-void FUN_180848dc0(longlong *connectionContext,uint packetData,NetworkHandle dataSize)
+// 函数: void ProcessNetworkConnectionContext(longlong *connectionContext,uint packetData,NetworkHandle dataSize)
+/**
+ * @brief 处理网络连接上下文
+ * 
+ * 该函数负责处理网络连接的上下文数据，包括：
+ * - 连接上下文初始化
+ * - 网络安全验证
+ * - 数据包处理
+ * - 连接状态管理
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据
+ * @param dataSize 数据大小
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionContext(longlong *connectionContext,uint packetData,NetworkHandle dataSize)
 
 {
   int networkStatus1;
-  NetworkHandle uStackX_18;
-  NetworkByte auStackX_20 [8];
+  NetworkHandle securityContextHandle;
+  NetworkByte securityContextBuffer [8];
   
   if (packetData < 0x10600) {
     *(NetworkStatus *)(connectionContext + 2) = 0;
-FUN_18088f050:
-    networkStatus1 = FUN_18088f710(dataSize,auStackX_20);
-    if ((networkStatus1 == 0) && (networkStatus1 = FUN_18088f710(auStackX_20,&uStackX_18), networkStatus1 == 0)) {
-      networkStatus1 = ValidateNetworkSecurityContext(uStackX_18,&UNK_180986258,(longlong)connectionContext + 0x14,connectionContext + 3,
+NetworkSecurityContextValidation:
+    networkStatus1 = FUN_18088f710(dataSize,securityContextBuffer);
+    if ((networkStatus1 == 0) && (networkStatus1 = FUN_18088f710(securityContextBuffer,&securityContextHandle), networkStatus1 == 0)) {
+      networkStatus1 = ValidateNetworkSecurityContext(securityContextHandle,&UNK_180986258,(longlong)connectionContext + 0x14,connectionContext + 3,
                             (longlong)connectionContext + 0x1c);
       if (((networkStatus1 == 3) ||
-          (((networkStatus1 = FUN_18088eea0(&uStackX_18,(longlong)connectionContext + 0x14), networkStatus1 == 0 &&
-            (networkStatus1 = FUN_18088eea0(&uStackX_18,connectionContext + 3), networkStatus1 == 0)) &&
-           (networkStatus1 = FUN_18088eea0(&uStackX_18,(longlong)connectionContext + 0x1c), networkStatus1 == 0)))) &&
-         (networkStatus1 = FUN_18088f710(auStackX_20,&uStackX_18), networkStatus1 == 0)) {
-        networkStatus1 = ValidateNetworkSecurityContext(uStackX_18,&UNK_180986258,connectionContext + 4,(longlong)connectionContext + 0x24,
+          (((networkStatus1 = FUN_18088eea0(&securityContextHandle,(longlong)connectionContext + 0x14), networkStatus1 == 0 &&
+            (networkStatus1 = FUN_18088eea0(&securityContextHandle,connectionContext + 3), networkStatus1 == 0)) &&
+           (networkStatus1 = FUN_18088eea0(&securityContextHandle,(longlong)connectionContext + 0x1c), networkStatus1 == 0)))) &&
+         (networkStatus1 = FUN_18088f710(securityContextBuffer,&securityContextHandle), networkStatus1 == 0)) {
+        networkStatus1 = ValidateNetworkSecurityContext(securityContextHandle,&UNK_180986258,connectionContext + 4,(longlong)connectionContext + 0x24,
                               connectionContext + 5);
         if (((networkStatus1 == 3) ||
-            (((networkStatus1 = FUN_18088eea0(&uStackX_18,connectionContext + 4), networkStatus1 == 0 &&
-              (networkStatus1 = FUN_18088eea0(&uStackX_18,(longlong)connectionContext + 0x24), networkStatus1 == 0)) &&
-             (networkStatus1 = FUN_18088eea0(&uStackX_18,connectionContext + 5), networkStatus1 == 0)))) &&
-           (networkStatus1 = FUN_18088f3a0(auStackX_20,(longlong)connectionContext + 0x2c), networkStatus1 == 0)) {
-          FUN_18088f3a0(auStackX_20,connectionContext + 7);
+            (((networkStatus1 = FUN_18088eea0(&securityContextHandle,connectionContext + 4), networkStatus1 == 0 &&
+              (networkStatus1 = FUN_18088eea0(&securityContextHandle,(longlong)connectionContext + 0x24), networkStatus1 == 0)) &&
+             (networkStatus1 = FUN_18088eea0(&securityContextHandle,connectionContext + 5), networkStatus1 == 0)))) &&
+           (networkStatus1 = FUN_18088f3a0(securityContextBuffer,(longlong)connectionContext + 0x2c), networkStatus1 == 0)) {
+          FUN_18088f3a0(securityContextBuffer,connectionContext + 7);
         }
       }
     }
@@ -8538,7 +8553,7 @@ FUN_18088f050:
     *(NetworkHandle *)((longlong)connectionContext + 0x44) = 0;
     *(NetworkStatus *)((longlong)connectionContext + 0x4c) = 0;
     networkStatus1 = FUN_18088ee20(dataSize,connectionContext + 2);
-    if (networkStatus1 == 0) goto FUN_18088f050;
+    if (networkStatus1 == 0) goto NetworkSecurityContextValidation;
   }
   else {
     (**(code **)(*connectionContext + 0x18))(connectionContext,dataSize);
@@ -8551,56 +8566,70 @@ FUN_18088f050:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180848e50(char *connectionContext,NetworkHandle *packetData)
-void FUN_180848e50(char *connectionContext,NetworkHandle *packetData)
+// 函数: void ValidateNetworkConnectionContext(char *connectionContext,NetworkHandle *packetData)
+/**
+ * @brief 验证网络连接上下文
+ * 
+ * 该函数负责验证网络连接的上下文数据，包括：
+ * - 连接上下文格式验证
+ * - 数据包初始化
+ * - 网络安全检查
+ * - 连接参数验证
+ * 
+ * @param connectionContext 网络连接上下文字符串
+ * @param packetData 数据包数据指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ValidateNetworkConnectionContext(char *connectionContext,NetworkHandle *packetData)
 
 {
-  char *pcVar1;
-  char cVar2;
-  NetworkByte tertiaryNetworkFlag;
-  NetworkData2 quaternaryNetworkFlag;
-  int iVar5;
-  char *pcVar6;
-  NetworkByte *puVar7;
-  NetworkByte *puVar8;
-  longlong lVar9;
-  NetworkByte *networkPointer10;
-  NetworkByte auStack_b8 [32];
-  NetworkStatus uStack_98;
-  NetworkStatus uStack_94;
-  NetworkStatus uStack_90;
-  NetworkStatus uStack_8c;
-  NetworkByte *apuStack_88 [5];
-  NetworkByte uStack_60;
-  NetworkByte auStack_5f [8];
-  NetworkByte uStack_57;
-  NetworkByte auStack_56 [4];
-  NetworkByte uStack_52;
-  NetworkByte auStack_51 [4];
-  NetworkByte uStack_4d;
-  NetworkByte auStack_4c [4];
-  NetworkByte uStack_48;
-  NetworkByte auStack_47 [10];
-  NetworkByte auStack_3d [5];
-  ulonglong networkBuffer;
+  char *contextPointer;
+  char contextChar;
+  NetworkByte validationFlag;
+  NetworkData2 networkFlag;
+  int validationStatus;
+  char *tempPointer;
+  NetworkByte *dataPointer;
+  NetworkByte *bufferPointer;
+  longlong offsetValue;
+  NetworkByte *networkDataPointer;
+  NetworkByte securityBuffer [32];
+  NetworkStatus networkStatus1;
+  NetworkStatus networkStatus2;
+  NetworkStatus networkStatus3;
+  NetworkStatus networkStatus4;
+  NetworkByte *bufferArray [5];
+  NetworkByte bufferByte1;
+  NetworkByte bufferData1 [8];
+  NetworkByte bufferByte2;
+  NetworkByte bufferData2 [4];
+  NetworkByte bufferByte3;
+  NetworkByte bufferData3 [4];
+  NetworkByte bufferByte4;
+  NetworkByte bufferData4 [4];
+  NetworkByte bufferByte5;
+  NetworkByte bufferData5 [10];
+  NetworkByte bufferData6 [5];
+  ulonglong securityGuardValue;
   
-  networkBuffer = NetworkSecurityGuardValue ^ (ulonglong)auStack_b8;
+  securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)securityBuffer;
   if (packetData != (NetworkHandle *)0x0) {
-    if ((((connectionContext == (char *)0x0) || (iVar5 = func_0x00018076b690(), iVar5 != 0x26)) ||
+    if ((((connectionContext == (char *)0x0) || (validationStatus = func_0x00018076b690(), validationStatus != 0x26)) ||
         (*connectionContext != '{')) || (connectionContext[0x25] != '}')) {
-FUN_180848ff1:
+NetworkContextValidationFailed:
       *packetData = 0;
       packetData[1] = 0;
     }
     else {
-      func_0x00018076b450(&uStack_60,connectionContext,0x27);
-      uStack_57 = 0;
-      apuStack_88[0] = auStack_5f;
-      lVar9 = 0;
-      uStack_52 = 0;
-      apuStack_88[1] = auStack_56;
-      uStack_4d = 0;
-      apuStack_88[2] = auStack_51;
+      func_0x00018076b450(&bufferByte1,connectionContext,0x27);
+      bufferByte2 = 0;
+      bufferArray[0] = bufferData1;
+      offsetValue = 0;
+      bufferByte3 = 0;
+      bufferArray[1] = bufferData2;
+      bufferByte4 = 0;
+      bufferArray[2] = bufferData3;
       apuStack_88[3] = auStack_4c;
       apuStack_88[4] = auStack_47;
       uStack_48 = 0;
@@ -8813,30 +8842,46 @@ void ProcessNetworkConnectionStateSynchronization(void)
 
 
 
-// 函数: void FUN_180848ff1(void)
-void FUN_180848ff1(void)
+// 函数: void HandleNetworkConnectionContextFailure(void)
+/**
+ * @brief 处理网络连接上下文失败
+ * 
+ * 该函数负责处理网络连接上下文验证失败的情况，
+ * 执行必要的清理和错误处理操作。
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void HandleNetworkConnectionContextFailure(void)
 
 {
-  longlong unaff_RBP;
-  NetworkHandle *unaff_R15;
+  longlong stackFramePointer;
+  NetworkHandle *connectionHandle;
   
-  *unaff_R15 = 0;
-  unaff_R15[1] = 0;
+  *connectionHandle = 0;
+  connectionHandle[1] = 0;
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(*(ulonglong *)(stackFramePointer + 0x27) ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
-// 函数: void FUN_18084900b(void)
-void FUN_18084900b(void)
+// 函数: void HandleNetworkConnectionDataFailure(void)
+/**
+ * @brief 处理网络连接数据失败
+ * 
+ * 该函数负责处理网络连接数据失败的情况，
+ * 执行必要的清理和错误处理操作。
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void HandleNetworkConnectionDataFailure(void)
 
 {
-  longlong unaff_RBP;
+  longlong stackFramePointer;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(*(ulonglong *)(stackFramePointer + 0x27) ^ (ulonglong)&stack0x00000000);
 }
 
 

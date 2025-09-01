@@ -7244,13 +7244,13 @@ void InitializeSystemEventProcessor(void)
   undefined8 *eventPreviousNode;
   code *eventStackPointer;
   
-  systemDataTable = (longlong *)GetSystemRootPointer();
-  systemRootNode = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  systemPreviousNode = systemRootNode;
-  systemCurrentNode = (undefined8 *)systemRootNode[1];
-  while (systemNodeFlag == '\0') {
+  eventSystemDataTable = (longlong *)GetSystemRootPointer();
+  eventRootNode = (undefined8 *)*eventSystemDataTable;
+  eventNodeFlag = *(char *)((longlong)eventRootNode[1] + 0x19);
+  eventSearchFunctionPointer = GetSystemSearchFunctionD;
+  eventPreviousNode = eventRootNode;
+  eventCurrentNode = (undefined8 *)eventRootNode[1];
+  while (eventNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
@@ -7891,8 +7891,9 @@ void InitializeSystemDeviceManager(void)
 
 
 
-// 函数: void FUN_180036650(void)
-void FUN_180036650(void)
+// 函数: void InitializeSystemServiceManager(void)
+// 功能: 初始化系统服务管理器，负责系统服务的启动和管理
+void InitializeSystemServiceManager(void)
 
 {
   char systemNodeFlag;
@@ -7941,8 +7942,9 @@ void FUN_180036650(void)
 
 
 
-// 函数: void FUN_180036750(void)
-void FUN_180036750(void)
+// 函数: void InitializeSystemDriverManager(void)
+// 功能: 初始化系统驱动管理器，负责设备驱动的加载和管理
+void InitializeSystemDriverManager(void)
 
 {
   char systemNodeFlag;
@@ -7991,8 +7993,9 @@ void FUN_180036750(void)
 
 
 
-// 函数: void FUN_180036850(void)
-void FUN_180036850(void)
+// 函数: void InitializeSystemModuleManager(void)
+// 功能: 初始化系统模块管理器，负责系统模块的加载和管理
+void InitializeSystemModuleManager(void)
 
 {
   char systemNodeFlag;
@@ -8041,8 +8044,9 @@ void FUN_180036850(void)
 
 
 
-// 函数: void FUN_180036950(void)
-void FUN_180036950(void)
+// 函数: void InitializeSystemComponentManager(void)
+// 功能: 初始化系统组件管理器，负责系统组件的注册和管理
+void InitializeSystemComponentManager(void)
 
 {
   char systemNodeFlag;
@@ -8091,8 +8095,9 @@ void FUN_180036950(void)
 
 
 
-// 函数: void FUN_180036a50(void)
-void FUN_180036a50(void)
+// 函数: void InitializeSystemPluginManager(void)
+// 功能: 初始化系统插件管理器，负责系统插件的加载和管理
+void InitializeSystemPluginManager(void)
 
 {
   char systemNodeFlag;
@@ -8182,8 +8187,9 @@ int FUN_180036be0(void)
   _DAT_180bf90b0 = &UNK_18098bc80;
   _DAT_180bf90b8 = &DAT_180bf90c8;
 
-// 函数: void FUN_180036cc0(void)
-void FUN_180036cc0(void)
+// 函数: void InitializeSystemExtensionManager(void)
+// 功能: 初始化系统扩展管理器，负责系统扩展的加载和管理
+void InitializeSystemExtensionManager(void)
 
 {
   undefined8 in_R9;
@@ -8206,8 +8212,9 @@ void FUN_180036cc0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180036d50(void)
-void FUN_180036d50(void)
+// 函数: void InitializeSystemLibraryManager(void)
+// 功能: 初始化系统库管理器，负责系统库的加载和管理
+void InitializeSystemLibraryManager(void)
 
 {
   undefined8 in_R9;
@@ -8228,8 +8235,9 @@ void FUN_180036d50(void)
 
 
 
-// 函数: void FUN_180036df0(void)
-void FUN_180036df0(void)
+// 函数: void InitializeSystemFrameworkManager(void)
+// 功能: 初始化系统框架管理器，负责系统框架的初始化和管理
+void InitializeSystemFrameworkManager(void)
 
 {
   char systemNodeFlag;
