@@ -11023,8 +11023,20 @@ undefined8 FUN_180895e00(longlong param_1,undefined8 param_2,longlong param_3)
 
 
 
-undefined8
-FUN_180895e19(int param_1,int param_2,undefined8 param_3,undefined8 param_4,undefined8 param_5)
+/**
+ * @brief 参数验证和处理函数
+ * 
+ * 该函数用于验证和处理传入的参数，确保参数的有效性
+ * 主要用于系统初始化和配置过程中的参数检查
+ * 
+ * @param minValue 最小值，用于参数验证的基准值
+ * @param maxValue 最大值，用于参数验证的比较值
+ * @param systemContext 系统上下文信息，包含系统状态和配置
+ * @param options 处理选项或标志，控制处理行为
+ * @param additionalData 附加数据或配置信息
+ * @return uint64_t 处理结果，成功返回0，失败返回错误码
+ */
+uint64_t ValidateAndProcessParameters(int minValue,int maxValue,undefined8 systemContext,undefined8 options,undefined8 additionalData)
 
 {
   undefined8 uVar1;
@@ -11034,15 +11046,15 @@ FUN_180895e19(int param_1,int param_2,undefined8 param_3,undefined8 param_4,unde
   longlong unaff_RDI;
   undefined8 uStackX_20;
   
-  if (param_2 < param_1) {
-    param_2 = param_1;
+  if (maxValue < minValue) {
+    maxValue = minValue;
   }
-  uVar1 = FUN_1807d3f50(unaff_RDI + 0x10,param_2);
+  uVar1 = FUN_1807d3f50(unaff_RDI + 0x10,maxValue);
   if ((int)uVar1 == 0) {
     puVar2 = (undefined8 *)
              ((longlong)*(int *)(unaff_RDI + 0x18) * 0x10 + *(longlong *)(unaff_RDI + 0x10));
     *puVar2 = uStackX_20;
-    puVar2[1] = param_5;
+    puVar2[1] = additionalData;
     *(int *)(unaff_RDI + 0x18) = *(int *)(unaff_RDI + 0x18) + 1;
     *unaff_RBX = unaff_EBP;
     *(int *)(unaff_RDI + 0x24) = *(int *)(unaff_RDI + 0x24) + 1;
@@ -12129,7 +12141,18 @@ LAB_180896ce3:
       iVar3 = iVar3 + 1;
     } while( true );
   }
-FUN_1808974f4:
+/**
+ * @brief 模块处理错误跳转函数
+ * 
+ * 该函数是模块处理过程中的错误跳转点，用于处理模块初始化和配置错误
+ * 当模块处理过程中发生错误时，跳转到统一的错误处理流程
+ * 
+ * @param stackData 栈数据，包含错误处理的上下文信息
+ * @note 此函数不返回，直接跳转到错误处理程序
+ */
+void ModuleProcessErrorHandler(void)
+void ModuleProcessErrorHandler(void)
+{
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_328);
 }
@@ -12757,7 +12780,18 @@ LAB_1808974ec:
       }
     }
   }
-FUN_180897b16:
+/**
+ * @brief 缓冲区验证错误跳转函数
+ * 
+ * 该函数是缓冲区验证过程中的错误跳转点，用于处理缓冲区验证失败的情况
+ * 当缓冲区验证过程中发生错误时，跳转到统一的错误处理流程
+ * 
+ * @param stackData 栈数据，包含错误处理的上下文信息
+ * @note 此函数不返回，直接跳转到错误处理程序
+ */
+void BufferValidationErrorHandler(void)
+void BufferValidationErrorHandler(void)
+{
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1e8);
 }
@@ -13019,7 +13053,18 @@ FUN_180897b16:
       }
     }
   }
-FUN_180897b0e:
+/**
+ * @brief 数据处理错误跳转函数
+ * 
+ * 该函数是数据处理过程中的错误跳转点，用于处理数据验证和转换错误
+ * 当数据处理过程中发生错误时，跳转到统一的错误处理流程
+ * 
+ * @param stackData 栈数据，包含错误处理的上下文信息
+ * @note 此函数不返回，直接跳转到错误处理程序
+ */
+void DataProcessingErrorHandler(void)
+void DataProcessingErrorHandler(void)
+{
                     // WARNING: Subroutine does not return
   FUN_1808fc050(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
@@ -13263,7 +13308,18 @@ FUN_180897b0e:
       }
     }
   }
-FUN_180897afe:
+/**
+ * @brief 浮点处理错误跳转函数
+ * 
+ * 该函数是浮点数处理过程中的错误跳转点，用于处理浮点数计算和验证错误
+ * 当浮点数处理过程中发生错误时，跳转到统一的错误处理流程
+ * 
+ * @param stackData 栈数据，包含错误处理的上下文信息
+ * @note 此函数不返回，直接跳转到错误处理程序
+ */
+void FloatProcessingErrorHandler(void)
+void FloatProcessingErrorHandler(void)
+{
                     // WARNING: Subroutine does not return
   FUN_1808fc050(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
