@@ -5523,69 +5523,87 @@ void PerformNetworkSecurityValidation(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180845d20(NetworkHandle connectionContext,NetworkStatus *packetData,ulonglong *dataSize)
-void FUN_180845d20(NetworkHandle connectionContext,NetworkStatus *packetData,ulonglong *dataSize)
+// 函数: void ProcessNetworkConnectionAndValidatePacket(NetworkHandle connectionContext,NetworkStatus *packetData,ulonglong *dataSize)
+/**
+ * @brief 处理网络连接并验证数据包
+ * 
+ * 该函数负责处理网络连接并验证传入的数据包：
+ * - 验证输入参数有效性
+ * - 执行安全守卫检查
+ * - 初始化网络连接ID
+ * - 处理网络数据包
+ * - 验证网络资源
+ * - 清理网络连接
+ * 
+ * @param connectionContext 网络连接上下文句柄
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据大小指针
+ * @return void
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionAndValidatePacket(NetworkHandle connectionContext,NetworkStatus *packetData,ulonglong *dataSize)
 
 {
   NetworkStatus primaryNetworkFlag;
   NetworkStatus secondaryNetworkFlag;
   NetworkStatus tertiaryNetworkFlag;
-  int networkStatus4;
-  int iVar5;
-  NetworkByte auStack_188 [32];
-  NetworkByte *puStack_168;
-  longlong alStack_158 [2];
-  NetworkHandle *apuStack_148 [2];
-  NetworkByte auStack_138 [256];
-  ulonglong networkBuffer;
+  int connectionInitStatus;
+  int resourceValidationStatus;
+  NetworkByte securityStackBuffer [32];
+  NetworkByte *dataProcessingBuffer;
+  longlong connectionDataArray [2];
+  NetworkHandle *resourceHandleArray [2];
+  NetworkByte networkDataBuffer [256];
+  ulonglong securityGuardValue;
   
-  networkBuffer = NetworkSecurityGuardValue ^ (ulonglong)auStack_188;
+  securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)securityStackBuffer;
   if ((dataSize == (ulonglong *)0x0) || (*dataSize = 0, packetData == (NetworkStatus *)0x0)) {
     if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(networkBuffer ^ (ulonglong)auStack_188);
+      PerformSecurityGuardCheck(securityGuardValue ^ (ulonglong)securityStackBuffer);
     }
-    networkStatus4 = FUN_18074bc50(auStack_138,0x100,packetData);
-    iVar5 = ProcessNetworkBufferData(auStack_138 + networkStatus4,0x100 - networkStatus4,&g_NetworkBufferDataTemplate);
-    ProcessNetworkAddressValidation(auStack_138 + (networkStatus4 + iVar5),0x100 - (networkStatus4 + iVar5),dataSize);
-    puStack_168 = auStack_138;
+    connectionInitStatus = ProcessNetworkPacketValidation(networkDataBuffer,0x100,packetData);
+    resourceValidationStatus = ProcessNetworkBufferData(networkDataBuffer + connectionInitStatus,0x100 - connectionInitStatus,&g_NetworkBufferDataTemplate);
+    ProcessNetworkAddressValidation(networkDataBuffer + (connectionInitStatus + resourceValidationStatus),0x100 - (connectionInitStatus + resourceValidationStatus),dataSize);
+    dataProcessingBuffer = networkDataBuffer;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(0x1f,0xb,connectionContext,&UNK_180981d40);
+    LogNetworkConnectionError(0x1f,0xb,connectionContext,&NetworkErrorContextBuffer);
   }
-  alStack_158[1] = 0;
-  networkStatus4 = NetworkConnectionIdInitialize(connectionContext,alStack_158);
-  if (networkStatus4 == 0) {
-    if ((*(uint *)(alStack_158[0] + 0x24) >> 1 & 1) == 0) goto LAB_180845d97;
-    iVar5 = FUN_18088c740(alStack_158 + 1);
-    if (iVar5 == 0) goto LAB_180845e35;
+  connectionDataArray[1] = 0;
+  connectionInitStatus = NetworkConnectionIdInitialize(connectionContext,connectionDataArray);
+  if (connectionInitStatus == 0) {
+    if ((*(uint *)(connectionDataArray[0] + 0x24) >> 1 & 1) == 0) goto ResourceCleanupRequired;
+    resourceValidationStatus = ValidateNetworkResourceHandle(connectionDataArray + 1);
+    if (resourceValidationStatus == 0) goto ConnectionProcessComplete;
   }
   else {
-LAB_180845e35:
-    iVar5 = networkStatus4;
+ConnectionProcessComplete:
+    resourceValidationStatus = connectionInitStatus;
   }
-  if ((iVar5 == 0) &&
-     (networkStatus4 = FUN_18088dec0(*(NetworkHandle *)(alStack_158[0] + 0x98),apuStack_148,0x28), networkStatus4 == 0))
+  if ((resourceValidationStatus == 0) &&
+     (connectionInitStatus = InitializeNetworkResourceContext(*(NetworkHandle *)(connectionDataArray[0] + 0x98),resourceHandleArray,0x28), connectionInitStatus == 0))
   {
-    *apuStack_148[0] = &UNK_180981cd8;
-    *(NetworkStatus *)(apuStack_148[0] + 4) = 0;
-    *(NetworkStatus *)(apuStack_148[0] + 1) = 0x28;
+    *resourceHandleArray[0] = &NetworkResourceContext;
+    *(NetworkStatus *)(resourceHandleArray[0] + 4) = 0;
+    *(NetworkStatus *)(resourceHandleArray[0] + 1) = 0x28;
     primaryNetworkFlag = packetData[1];
     secondaryNetworkFlag = packetData[2];
     tertiaryNetworkFlag = packetData[3];
-    *(NetworkStatus *)(apuStack_148[0] + 2) = *packetData;
-    *(NetworkStatus *)((longlong)apuStack_148[0] + 0x14) = primaryNetworkFlag;
-    *(NetworkStatus *)(apuStack_148[0] + 3) = secondaryNetworkFlag;
-    *(NetworkStatus *)((longlong)apuStack_148[0] + 0x1c) = tertiaryNetworkFlag;
-    networkStatus4 = ProcessNetworkConnectionCleanup(*(NetworkHandle *)(alStack_158[0] + 0x98),apuStack_148[0]);
-    if (networkStatus4 == 0) {
-      *dataSize = (ulonglong)*(uint *)(apuStack_148[0] + 4);
+    *(NetworkStatus *)(resourceHandleArray[0] + 2) = *packetData;
+    *(NetworkStatus *)((longlong)resourceHandleArray[0] + 0x14) = primaryNetworkFlag;
+    *(NetworkStatus *)(resourceHandleArray[0] + 3) = secondaryNetworkFlag;
+    *(NetworkStatus *)((longlong)resourceHandleArray[0] + 0x1c) = tertiaryNetworkFlag;
+    connectionInitStatus = ProcessNetworkConnectionCleanup(*(NetworkHandle *)(connectionDataArray[0] + 0x98),resourceHandleArray[0]);
+    if (connectionInitStatus == 0) {
+      *dataSize = (ulonglong)*(uint *)(resourceHandleArray[0] + 4);
                     // WARNING: Subroutine does not return
-      FUN_18088c790(alStack_158 + 1);
+      CleanupNetworkResources(connectionDataArray + 1);
     }
   }
-LAB_180845d97:
+ResourceCleanupRequired:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_158 + 1);
+  CleanupNetworkResources(connectionDataArray + 1);
 }
 
 
