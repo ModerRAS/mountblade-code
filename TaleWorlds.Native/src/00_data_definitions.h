@@ -2558,8 +2558,8 @@ int InitializeSystemEventHandler(void)
   SystemStringConfigTemplateA = &SystemMemoryConfigTemplate;
   SystemStringConfigPointerA = &SystemStringConfigBufferA;
   SystemStringConfigBufferA = 0;
-  _DAT_180bfaa88 = 0x20;
-  strcpy_s(&DAT_180bfaa90,0x80,&UnknownDataPointer180a24d80);
+  SystemStringConfigBufferSizeA = 0x20;
+  strcpy_s(&SystemStringConfigBufferA,0x80,&UnknownDataPointer180a24d80);
   ModuleInitializationResult = RegisterSystemModule(&SystemModuleEntryPointD);
   return (ModuleInitializationResult != 0) - 1;
 }
