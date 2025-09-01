@@ -19625,7 +19625,7 @@ LAB_180046a90:
   iVar5 = (int)((ulong long)((long long)ppppuVar9 - *(long long *)(param_1 + 8)) >> 8) + -1;
   *(int *)(param_1 + 0x68) = iVar5;
   pppuStackX_8 = &pppuStack_68;
-  FUN_180049fd0(&pppuStack_68,uStack_58);
+  InitializeAndCleanupSystemMemoryAllocator(&pppuStack_68,uStack_58);
   pppuStackX_8 = (void* ***)&puStack_138;
   puStack_138 = (void* *)&SystemGlobalDataReference;
   if (lStack_130 == 0) {
@@ -19642,7 +19642,7 @@ LAB_180046a90:
 void InitializeSystemDataBlock(void* *param_1,void* param_2,void* param_3,void* param_4)
 
 {
-  FUN_180049fd0(param_1 + 0x1a,param_1[0x1c],param_3,param_4,0xfffffffffffffffe);
+  InitializeAndCleanupSystemMemoryAllocator(param_1 + 0x1a,param_1[0x1c],param_3,param_4,0xfffffffffffffffe);
   *param_1 = &SystemGlobalDataReference;
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -21957,14 +21957,27 @@ void ResetSystemMemoryAllocator(void* *param_1)
 
 
 
-// 函数: void FUN_180049fd0(void* param_1,void* *param_2,void* param_3,void* param_4)
-void FUN_180049fd0(void* param_1,void* *param_2,void* param_3,void* param_4)
+// 函数: void InitializeAndCleanupSystemMemoryAllocator(void* param_1,void* *param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统内存分配器初始化和清理函数
+ * 
+ * 该函数初始化系统内存分配器，设置内存分配器引用，执行清理操作，
+ * 并确保内存分配器处于正确的状态。
+ * 
+ * @param param_1 系统上下文参数
+ * @param param_2 指向内存分配器指针的指针
+ * @param param_3 清理参数
+ * @param param_4 清理参数
+ * 
+ * @note 这是系统内存管理的重要组成部分，确保内存分配器的正确初始化和清理
+ */
+void InitializeAndCleanupSystemMemoryAllocator(void* param_1,void* *param_2,void* param_3,void* param_4)
 
 {
   if (param_2 == (void* *)0x0) {
     return;
   }
-  FUN_180049fd0(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
+  InitializeAndCleanupSystemMemoryAllocator(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
   param_2[8] = &SystemGlobalDataReference;
   if (param_2[9] != 0) {
                     // WARNING: Subroutine does not return
