@@ -584,9 +584,9 @@ void* AnalyticsEngine;
 void* VisualizationTool;
 void* HistoricalDataStorage;
 void* SystemFileSystemSettingsBuffer;
-void* SystemDataBuffer029;
-void* SystemDataBuffer030;
-void* SystemDataBuffer031;
+void* SystemDatabaseSettingsBuffer;
+void* SystemSecuritySettingsBuffer;
+void* SystemLoggingSettingsBuffer;
 void* SystemDataBuffer032;
 void* SystemDataBuffer033;
 void* SystemDataBuffer034;
@@ -1720,14 +1720,14 @@ undefined SystemMemoryConfigDataTemplateN;
  * 配置内存质量评估和改进策略
  */
 void SetupMemoryQuality;
-undefined SystemMemoryQualityController;
-undefined1 SystemMemoryQualityEnabled;
-undefined SystemMemoryQualityThreshold;
-undefined SystemMemoryQualityMetric;
-undefined8 SystemPerformanceCounterA;
-undefined SystemMemoryValidationController;
-undefined SystemMemoryValidationStatus;
-undefined SystemMemoryValidationFlags;
+void* SystemMemoryQualityController;
+bool SystemMemoryQualityEnabled;
+void* SystemMemoryQualityThreshold;
+void* SystemMemoryQualityMetric;
+void* SystemPerformanceCounterA;
+void* SystemMemoryValidationController;
+void* SystemMemoryValidationStatus;
+void* SystemMemoryValidationFlags;
 undefined SystemMemoryValidationData;
 
  void InitializeMemoryValidation;
