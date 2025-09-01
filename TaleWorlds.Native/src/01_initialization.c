@@ -20498,9 +20498,9 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
   void* uStackX_8;
   
   uStackX_8 = SystemResourcePointer;
-  iVar3 = FUN_180046b80(&DAT_180bf5240);
+  iVar3 = FindSystemDataIndex(&DAT_180bf5240);
   if (iVar3 == -1) {
-    iVar3 = FUN_180046890(&DAT_180bf5240,param_2);
+    iVar3 = FindSystemDataIndexAlternative(&DAT_180bf5240,param_2);
   }
   systemPreviousNode = (void* *)(SystemInitializationDataStart + 0xd0 + (long long)iVar3 * 0x100);
   punsignedSystemValue4 = systemPreviousNode;
