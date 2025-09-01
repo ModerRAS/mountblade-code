@@ -21254,8 +21254,20 @@ void LockSystemMutex(long long param_1,uint8_t param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800495d0(void* param_1,void* *param_2,long long *param_3)
-void FUN_1800495d0(void* param_1,void* *param_2,long long *param_3)
+// 函数: void ProcessSystemTimestampHandler(void* param_1,void* *param_2,long long *param_3)
+/**
+ * @brief 系统时间戳处理器
+ * 
+ * 该函数处理系统时间戳相关的操作，包括时间获取、时间比较和时间处理。
+ * 它使用系统时间戳来执行各种时间相关的计算和处理。
+ * 
+ * @param param_1 系统上下文参数
+ * @param param_2 输出参数，用于返回处理结果
+ * @param param_3 时间戳参数
+ * 
+ * @note 这是系统时间管理的重要组成部分，确保时间相关操作的正确性
+ */
+void ProcessSystemTimestampHandler(void* param_1,void* *param_2,long long *param_3)
 
 {
   int iVar1;
@@ -21314,7 +21326,7 @@ uint8_t FUN_1800496b0(long long param_1,void* param_2,void* param_3,void* param_
   }
   else {
     uStackX_8 = 1;
-    FUN_1800495d0(param_1,&lStack_20,&uStackX_8,param_4,uVar3);
+    ProcessSystemTimestampHandler(param_1,&lStack_20,&uStackX_8,param_4,uVar3);
     uVar1 = *(uint8_t *)(param_1 + 0x98);
   }
   *(uint8_t *)(param_1 + 0x98) = 0;
@@ -21694,8 +21706,19 @@ FUN_180049bb0(void* *param_1,ulong long param_2,void* param_3,void* param_4)
 
 
 
-// 函数: void FUN_180049bf0(long long param_1,long long param_2)
-void FUN_180049bf0(long long param_1,long long param_2)
+// 函数: void ProcessSystemStringCopySmall(long long param_1,long long param_2)
+/**
+ * @brief 系统字符串复制处理器（小尺寸）
+ * 
+ * 该函数处理小尺寸字符串的复制操作，最大长度限制为0x40字节。
+ * 它检查源字符串长度，执行字符串复制，并设置相应的长度标志。
+ * 
+ * @param targetBuffer 目标缓冲区指针
+ * @param sourceString 源字符串指针
+ * 
+ * @note 这是系统字符串处理的重要组成部分，专门处理小尺寸字符串的复制
+ */
+void ProcessSystemStringCopySmall(long long targetBuffer,long long sourceString)
 
 {
   long long lVar1;
@@ -21725,8 +21748,20 @@ void FUN_180049bf0(long long param_1,long long param_2)
 
 
 
-// 函数: void FUN_180049c70(long long param_1,void* param_2,int param_3)
-void FUN_180049c70(long long param_1,void* param_2,int param_3)
+// 函数: void ProcessSystemMemoryCopySmall(long long param_1,void* param_2,int param_3)
+/**
+ * @brief 系统内存复制处理器（小尺寸）
+ * 
+ * 该函数处理小尺寸内存的复制操作，最大长度限制为0x40字节。
+ * 它检查复制长度，执行内存复制，并设置相应的结束标志。
+ * 
+ * @param targetBuffer 目标缓冲区指针
+ * @param sourceData 源数据指针
+ * @param copyLength 复制长度
+ * 
+ * @note 这是系统内存处理的重要组成部分，专门处理小尺寸内存的复制
+ */
+void ProcessSystemMemoryCopySmall(long long targetBuffer,void* sourceData,int copyLength)
 
 {
   if (param_3 + 1 < 0x40) {
@@ -37716,7 +37751,7 @@ void FUN_1800606e0(long long *param_1)
         }
         else {
           uStackX_8 = 0x32;
-          FUN_1800495d0(param_1 + 0x2a,&plStack_20,&uStackX_8);
+          ProcessSystemTimestampHandler(param_1 + 0x2a,&plStack_20,&uStackX_8);
           *(uint8_t *)(param_1 + 0x3d) = 0;
           if (cStack_18 == '\0') goto LAB_1800607cc;
         }
