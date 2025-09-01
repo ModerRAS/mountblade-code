@@ -11095,12 +11095,12 @@ longlong SystemMemoryFree(longlong *memoryPtr)
   }
   NetworkRequestResult = (ulonglong)memoryPtr & 0xffffffffffc00000;
   if (NetworkRequestResult != 0) {
-    lVar2 = NetworkRequestResult + 0x80 + ((longlong)param_1 - NetworkRequestResult >> 0x10) * 0x50;
+    lVar2 = NetworkRequestResult + 0x80 + ((longlong)memoryPtr - NetworkRequestResult >> 0x10) * 0x50;
     lVar2 = lVar2 - (ulonglong)*(uint *)(lVar2 + 4);
     if ((*(void ***)(NetworkRequestResult + 0x70) == &ExceptionList) && (*(char *)(lVar2 + 0xe) == '\0')) {
       lVar3 = *(longlong *)(lVar2 + 0x20);
-      *param_1 = lVar3;
-      *(longlong **)(lVar2 + 0x20) = param_1;
+      *memoryPtr = lVar3;
+      *(longlong **)(lVar2 + 0x20) = memoryPtr;
       pLoopCounter = (int *)(lVar2 + 0x18);
       *pLoopCounter = *pLoopCounter + -1;
       if (*pLoopCounter == 0) {
