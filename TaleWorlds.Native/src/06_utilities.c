@@ -10140,15 +10140,19 @@ void ExecuteSecurityOperationHandler(void)
  * 该函数负责执行系统安全操作的终结处理
  * 包括资源锁定检查和安全操作的最终执行
  * 这是一个不会返回的函数
+ * 
+ * @return 无返回值
+ * @note 此函数不会返回，会直接调用终结操作
+ * @warning 调用此函数将触发安全清理操作，程序不会继续执行
  */
-void FinalizeSecurityOperationFunction(void)
+void FinalizeSecurityOperationHandler(void)
 
 {
-  int operationResult;
-  int64_t securityContext;
-  int64_t *resourcePointer;
-  int64_t resourceValue;
-  uint64_t stackParameter;
+  int32_t OperationStatus;
+  int64_t SecurityContext;
+  int64_t *ResourcePointer;
+  int64_t ResourceValue;
+  uint64_t StackParameter;
   
   resourceValue = *(int64_t *)(securityContext + 0x48);
   if ((resourceValue != 0) || (operationResult = AcquireResourceLock(), operationResult == 0)) {
@@ -15060,27 +15064,27 @@ uint64_t BinarySearchInArray(int64_t ArrayData,uint *SearchKey,uint8_t SearchCon
  * @return 处理状态码，0x1f表示无效索引，0x41表示成功处理
  */
 uint32_t
-ProcessResourceHashData(int64_t *ResourceTable,int ResourceIndex,uint32_t *HashDataOutput,uint8_t1 *ResourceBuffer,int BufferSize,
+HandleResourceHashProcessing(int64_t *ResourceTable, int ResourceIndex, uint32_t *HashDataOutput, uint8_t *ResourceBuffer, int BufferSize,
              int *ProcessedCount)
 
 {
   uint32_t *HashEntryPointer;
-  uint8_t1 DataByte;
-  uint HashValue;
-  uint3 HashIndex;
+  uint8_t DataByte;
+  uint32_t HashValue;
+  uint32_t HashIndex;
   uint32_t HashComponent1;
   uint32_t HashComponent2;
-  uint EntryIndex;
-  int DataLength;
-  int CopyLength;
-  uint8_t1 *SourceBuffer;
-  uint8_t1 *DestBuffer;
-  uint ProcessedBytes;
+  uint32_t EntryIndex;
+  int32_t DataLength;
+  int32_t CopyLength;
+  uint8_t *SourceBuffer;
+  uint8_t *DestBuffer;
+  uint32_t ProcessedBytes;
   int64_t ResourceOffset;
-  uint8_t1 *ResourceData;
-  int RemainingLength;
+  uint8_t *ResourceData;
+  int32_t RemainingLength;
   uint32_t StatusFlag;
-  int TotalProcessed;
+  int32_t TotalProcessed;
   
   if ((-1 < ResourceIndex) && (ResourceIndex < (int)ResourceTable[3])) {
     if (HashDataOutput != (uint32_t *)0x0) {
