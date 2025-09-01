@@ -17063,7 +17063,7 @@ void engine_confirm_system_readiness(void)
     engine_setup_network_component(&engine_network_state_ptr,*(uint32*)(pengine_temp_char_flag_2 + 0x80));
     engine_setup_network_component(&engine_network_config_ptr,*(uint32*)(pengine_temp_char_flag_2 + 0x84));
     engine_setup_network_component(&engine_network_stats_ptr,*(uint32*)(pengine_temp_char_flag_2 + 0x88));
-    FUN_18012cfe0();
+    engine_initialize_graphics_context();
     _engine_data_b0 = engine_temp_uint_2;
     engine_temp_int_4 = _Mtx_unlock(0x180c91970);
     if (engine_temp_int_4 != 0) {
@@ -17359,11 +17359,11 @@ void engine_manage_system_thread(longlong *engine_data_structure_ptr)
   main_context_pointer = (longlong *)engine_call_memory_allocator(_engine_data_18,0x208,8,3);
   lStack_78 = engine_temp_long_3 + 0x70;
   pplStack_60 = (longlong **)main_context_pointer;
-  FUN_18020e0e0(main_context_pointer,&puStack_50,3,engine_temp_long_3 + 0x2e0);
+  engine_configure_display_settings(main_context_pointer,&puStack_50,3,engine_temp_long_3 + 0x2e0);
   *main_context_pointer = (longlong)&engine_base_data_offset_20;
   plStack_68 = main_context_pointer;
-  FUN_18020e840(main_context_pointer);
-  FUN_18005ea90(engine_temp_long_3 + 0x48,&plStack_68);
+  engine_setup_display_mode(main_context_pointer);
+  engine_prepare_render_buffer(engine_temp_long_3 + 0x48,&plStack_68);
   engine_data_structure_ptr[1] = (longlong)main_context_pointer;
   puStack_50 = &engine_data_18098bcb0;
   engine_data_pointer = (void*)engine_data_structure_ptr[1];
@@ -17547,7 +17547,7 @@ void engine_process_system_event_queue(uint64 engine_data_structure_ptr,uint64 e
   void* puStack_20;
   void* puStack_18;
   
-  FUN_1800b4ec0(engine_data_structure_ptr,1,1,engine_system_parameter_4,0xfffffffffffffffe);
+  engine_initialize_rendering_pipeline(engine_data_structure_ptr,1,1,engine_system_parameter_4,0xfffffffffffffffe);
   if (_engine_particle_buffer_ptr != (longlong *)0x0) {
     engine_temp_char_flag = (**(code **)(*_engine_particle_buffer_ptr + 0x48))();
     if ((engine_temp_char_flag != '\0') && (_engine_particle_buffer_ptr[2] != 0)) {
@@ -17558,19 +17558,19 @@ void engine_process_system_event_queue(uint64 engine_data_structure_ptr,uint64 e
   puStack_18 = &engine_base_data_offset_c0;
   engine_call_event_dispatcher(auStack_30);
   *(uint8*)(_engine_network_flag_4 + 0x3a0) = 1;
-  FUN_18005e630(_engine_data_68);
-  FUN_18005e630(_engine_data_68);
+  engine_setup_memory_manager(_engine_data_68);
+  engine_setup_memory_manager(_engine_data_68);
   if (_engine_data_48 != 0) {
-    FUN_18006eb30();
+    engine_initialize_resource_manager();
   }
-  FUN_18005e630(_engine_data_68);
-  FUN_18005e630(_engine_data_68);
-  FUN_18005e630(_engine_data_68);
+  engine_setup_memory_manager(_engine_data_68);
+  engine_setup_memory_manager(_engine_data_68);
+  engine_setup_memory_manager(_engine_data_68);
   if (_engine_data_48 != 0) {
-    FUN_18006eb30();
+    engine_initialize_resource_manager();
   }
-  FUN_18005e630(_engine_data_68);
-  FUN_1800b4ec0();
+  engine_setup_memory_manager(_engine_data_68);
+  engine_initialize_rendering_pipeline();
   engine_temporary_long = _engine_data_90;
   *(uint8*)(_engine_data_90 + 0x1504) = 0;
   *(uint8*)(engine_temporary_long + 0x1506) = 0;
@@ -22978,11 +22978,11 @@ void engine_call_input_processor(uint64 engine_data_structure_ptr,longlong engin
   engine_current_node_ptr = (void*)engine_call_memory_allocator(_engine_data_18,0x208,8,3);
   lStack_248 = engine_temporary_long + 0x70;
   puStack_238 = engine_current_node_ptr;
-  FUN_18020e0e0(engine_current_node_ptr,&puStack_1a8,3,engine_temporary_long + 0x2e0);
+  engine_configure_display_settings(engine_current_node_ptr,&puStack_1a8,3,engine_temporary_long + 0x2e0);
   *engine_current_node_ptr = &engine_base_data_offset_20;
   puStack_238 = engine_current_node_ptr;
-  FUN_18020e840(engine_current_node_ptr);
-  FUN_18005ea90(engine_temporary_long + 0x48,&puStack_238);
+  engine_setup_display_mode(engine_current_node_ptr);
+  engine_prepare_render_buffer(engine_temporary_long + 0x48,&puStack_238);
   *(void**)(engine_temp_long_2 + 400) = engine_current_node_ptr;
   puStack_1a8 = &engine_data_18098bcb0;
   FUN_180627e10(_engine_data_70 + 0x170,auStack_230,&engine_configuration_data);
@@ -33431,7 +33431,7 @@ int FUN_180076c50(longlong engine_data_structure_ptr,longlong *engine_result_fla
         engine_temp_int_5 = engine_temp_int_5 + 1;
         if (*engine_result_flag_ptr != 0) {
           uStackX_8 = engine_data_structure_ptr;
-          FUN_18005ea90(*engine_result_flag_ptr,&uStackX_8);
+          engine_prepare_render_buffer(*engine_result_flag_ptr,&uStackX_8);
         }
       }
     }
@@ -57718,7 +57718,7 @@ LAB_180096e94:
     goto LAB_180096e94;
   }
   FUN_180095da0(engine_next_node_ptr,engine_comparison_params,engine_temp_long_9);
-  FUN_18012cfe0();
+  engine_initialize_graphics_context();
   if (*(char *)(engine_temp_long_9 + 0x126) != '\0') {
     engine_setup_processing_environment(auStack_858,engine_result_flag_ptr);
     engine_temp_int_7 = uStack_848 + 6;
@@ -59386,7 +59386,7 @@ LAB_18009abec:
 LAB_18009ac35:
           engine_temporary_pointer[0xd] = plStackX_20;
           FUN_18009a7c0(engine_data_structure_ptr,engine_result_flag_ptr,&engine_stack_param_a0,engine_temporary_pointer,param_5);
-          FUN_18005ea90(pengine_temp_long_3 + 9,&local_resource_node);
+          engine_prepare_render_buffer(pengine_temp_long_3 + 9,&local_resource_node);
         }
         else {
           next_data_pointer = (void*)current_data_pointer[10];

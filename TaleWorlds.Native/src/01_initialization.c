@@ -837,6 +837,19 @@ void system_initialize_main(void)
  * 
  * 简化实现：仅保留核心子系统初始化逻辑
  */
+/**
+ * @brief 系统子系统初始化函数
+ * 
+ * 初始化系统的各个子系统，包括：
+ * - 子系统管理器初始化
+ * - 子系统内存分配
+ * - 子系统节点配置
+ * - 子系统状态设置
+ * 
+ * @return void 无返回值
+ * 
+ * 简化实现：主要处理子系统初始化的核心逻辑
+ */
 void system_initialize_subsystem(void)
 
 {
@@ -14561,9 +14574,9 @@ void system_manage_scene_graph_3(void)
     }
     else {
       if (0x100 < ((uint64_t)system_system_stack_alt_ptr & 0xffffffff)) {
-        system_internal_func_dc8();
+        system_handle_system_events();
 system_label:
-        system_internal_func_dc8();
+        system_handle_system_events();
         system_code_ptr_b = (code *)swi(3);
         (*system_code_ptr_b)();
         return;
@@ -14622,7 +14635,7 @@ system_label:
   }
   system_system_stack_uint_value = 0;
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_data_array);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_data_array);
 }
 
 
@@ -15177,7 +15190,7 @@ void system_initialize_texture_manager_3(void)
   }
   system_system_stack_byte_ptr = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_498);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_498);
 }
 
 
@@ -15420,7 +15433,7 @@ void system_manage_animation_states_3(void)
   }
   system_system_stack_byte_ptr = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_a8_alt);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_a8_alt);
 }
 
 
@@ -15850,7 +15863,7 @@ void system_manage_sound_resources_3(void)
   system_system_stack_uint_value = 0;
   if (*(int *)(system_global_data_ptr + 0x224) - system_global_data_ptr < 0xfb) {
                     // WARNING: Subroutine does not return
-    system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_698);
+    system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_698);
   }
   *(uint8_t* *)(system_global_data_ptr + 0x39) = 1;
   system_temp_pointer_array_primary = (int64_t ***)system_process_context_data(system_global_data_ptr,200,8,3);
@@ -17049,7 +17062,7 @@ void system_initialize_script_runtime_3(void)
     __Throw_C_system_error_varstd__YAXH_Z(system_parameter_value_primary);
   }
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_58);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_58);
 }
 
 
@@ -17250,7 +17263,7 @@ void system_process_resource_requests_3(void)
   }
   system_system_stack_byte_ptr = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_118);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_118);
 }
 
 
@@ -17392,7 +17405,7 @@ void system_process_job_completion_3(void)
   }
   system_system_stack_byte_ptr = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_d8);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_d8);
 }
 
 
@@ -18120,7 +18133,7 @@ void system_configure_language_settings_3(void)
   system_system_stack_uint_value = 1;
   system_system_stack_byte_ptr = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_data_array);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_data_array);
 }
 
 
@@ -18324,7 +18337,7 @@ void system_handle_resource_allocation_4(void)
            (int64_t)((int)system_offset_value + 2));
   }
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_78);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_78);
 }
 
 
@@ -18880,7 +18893,7 @@ void system_initialize_resource_manager_4(void)
 void system_handle_system_events_4(void)
   code *system_function_ptr;
   
-  system_internal_func_dc8();
+  system_handle_system_events();
   system_function_ptr = (code *)swi(3);
   (*system_function_ptr)();
   return;
@@ -20969,9 +20982,9 @@ void system_process_game_logic_4(void)
     if (*(char *)(system_context_ptr + 0x22d) == '\0') {
       system_context_data_handle = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
       if ((*(int *)(system_context_data_handle + 0x48) < system_global_data_ptr) &&
-         (system_internal_func_b90(&system_data_d49140), system_global_data_ptr == -1)) {
+         (system_initialize_data(&system_data_d49140), system_global_data_ptr == -1)) {
         system_global_data_ptr = system_config_array;
-        system_internal_func_b30(&system_data_d49140);
+        system_cleanup_data(&system_data_d49140);
       }
       system_float_ = (float)exp2f();
       system_float_ = (float)exp2f();
@@ -20992,9 +21005,9 @@ void system_process_game_logic_4(void)
         system_temp_float_secondary = system_temp_float_primary;
       }
       if ((*(int *)(system_context_data_handle + 0x48) < system_global_data_ptr) &&
-         (system_internal_func_b90(&system_data_d49148), system_global_data_ptr == -1)) {
+         (system_initialize_data(&system_data_d49148), system_global_data_ptr == -1)) {
         system_global_data_ptr = system_temp_float_secondary;
-        system_internal_func_b30(&system_data_d49148);
+        system_cleanup_data(&system_data_d49148);
       }
       system_global_data_ptr = (1.0 - system_float_) * system_global_data_ptr + system_temp_float_secondary * system_float_;
       system_float_ = ((float)(int)((system_global_data_ptr / system_global_data_ptr) / system_float_) * system_float_ - 1.0) * system_float_ *
@@ -21288,7 +21301,7 @@ void system_configure_pathfinding_4(void)
   system_system_stack_double_ptr_1a8 = &system_system_stack_byte_ptr;
   system_system_stack_byte_ptr = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_1c8);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_1c8);
 }
 
 
@@ -21825,7 +21838,7 @@ void system_manage_scene_graph_4(void)
   system_system_stack_uint_value = system_system_stack_uint_value & 0xffffffff00000000;
   system_system_stack_byte_ptr = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_238);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_238);
 }
 
 
@@ -22193,7 +22206,7 @@ system_label:
     } while (system_system_stack_varint_var < (int)system_context_data_handle);
   }
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_178);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_178);
 }
 
 
@@ -22714,7 +22727,7 @@ void system_configure_mipmap_generation_4(void)
   }
   (*system_code_ptr_b)(system_context_ptr_1,&system_system_stack_alt_ptr);
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_98);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_98);
 }
 
 
@@ -22764,7 +22777,7 @@ void system_handle_texture_compression_4(void)
     do {
       if (*(int *)(system_context_ptr + 0xcc) == 0) {
                     // WARNING: Subroutine does not return
-        system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_c8);
+        system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_c8);
       }
       Sleep(10);
       system_offset_value = system_global_data_ptr;
@@ -22950,7 +22963,7 @@ void system_process_lighting_calculations_4(void)
   *(uint32_t* *)(system_config_array + 3) = 0;
   *system_config_array = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_158);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_158);
 }
 
 
@@ -25709,7 +25722,7 @@ void system_process_event_queue_5(void)
   }
   system_process_context_data(&pppppsystem_system_stack_ptr_360);
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_3b8);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_3b8);
 }
 
 
@@ -25940,9 +25953,9 @@ void system_process_performance_metrics_5(void)
 
 
 void system_manage_security_context_5(void)
-  system_internal_func_8a8(system_context_ptr + 0x7d,0x58,4,system_initialize_audio,0xfffffffffffffffe);
-  system_internal_func_8a8(system_context_ptr + 0x51,0x58,4,system_initialize_audio);
-  system_internal_func_8a8(system_context_ptr + 0x11,0x20,0x10,system_initialize_graphics);
+  system_initialize_module(system_context_ptr + 0x7d,0x58,4,system_initialize_audio,0xfffffffffffffffe);
+  system_initialize_module(system_context_ptr + 0x51,0x58,4,system_initialize_audio);
+  system_initialize_module(system_context_ptr + 0x11,0x20,0x10,system_initialize_graphics);
   system_context_ptr[8] = &system_initialization_null_pointer;
   if (system_context_ptr[9] != 0) {
                     // WARNING: Subroutine does not return
@@ -26238,7 +26251,7 @@ void system_handle_system_events_5(void)
   }
   system_system_stack_byte_ptr = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_98);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_98);
 }
 
 
@@ -27643,7 +27656,7 @@ void system_manage_scene_graph_5(void)
     (*(code *)system_context_ptr[2])(system_context_ptr,0,0);
   }
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_128);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_128);
 }
 
 
@@ -28106,7 +28119,7 @@ void system_process_shadow_mapping_5(void)
     }
   }
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_478);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_478);
 }
 
 
@@ -28931,7 +28944,7 @@ void system_configure_rigid_body_dynamics_5(void)
   system_system_stack_double_ptr_170 = asystem_system_stack_ptr_108;
   asystem_system_stack_ptr_108[0] = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_1b8);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_1b8);
 }
 
 
@@ -32060,7 +32073,7 @@ void system_manage_debug_context_5(void)
   *system_context_ptr = *system_context_ptr + 1;
   if ((*(int64_t *)(system_context_ptr + 4) != 0) && (*(int64_t *)(system_context_ptr + 2) != 0)) {
                     // WARNING: Subroutine does not return
-    system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_1f8);
+    system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_1f8);
   }
   system_system_stack_storage = 0;
   system_system_stack_storage = 0;
@@ -32642,7 +32655,7 @@ system_label:
     system_system_stack_uint_value = 0;
     system_system_stack_byte_ptr = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-    system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_2f8);
+    system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_2f8);
   }
   system_system_stack_byte_ptr = system_byte_pointer_d;
                     // WARNING: Subroutine does not return
@@ -32777,7 +32790,7 @@ void system_handle_text_translation_5(void)
     UNLOCK();
   }
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_358);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_358);
 }
 
 
@@ -33007,7 +33020,7 @@ void system_initialize_mod_support_5(void)
     system_system_stack_uint_value = 0xf;
     system_system_stack_uint_value = 0;
                     // WARNING: Subroutine does not return
-    system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_data_array);
+    system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_data_array);
   }
   system_system_stack_uint_value = 0;
   system_system_stack_uint_value = 0xf;
@@ -33626,7 +33639,7 @@ system_label:
       system_system_stack_uint_value = 0;
       system_system_stack_context_ptr_b = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-      system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_368);
+      system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_368);
     }
                     // WARNING: Subroutine does not return
     system_process_context_data();
@@ -34035,7 +34048,7 @@ system_label:
   }
 system_label:
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_1f8);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_1f8);
 }
 
 
@@ -34317,7 +34330,7 @@ void system_handle_module_loading_6(void)
     if (system_unsigned_counter_value <= system_context_ptr) {
       system_unsigned_counter_value = 0xffffffffffffffff;
     }
-    system_context_data_handle = system_internal_func_418(system_unsigned_counter_value);
+    system_context_data_handle = system_allocate_handle(system_unsigned_counter_value);
     if (system_context_data_handle == 0) {
                     // WARNING: Subroutine does not return
       _invalsystem_id_parameter_nosystem_info_noreturn();
@@ -34778,7 +34791,7 @@ void system_process_data_synchronization_6(void)
       *(uint8_t *)(alStack_288[0] + 0x118) = 0;
       system_system_stack_byte_ptr = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-      system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_2e8);
+      system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_2e8);
     }
     system_byte_pointer_e = (uint8_t *)(system_temp_byte_primary * 0x130 + system_context_ptr + 0x2003d0);
     *(uint64_t *)(system_context_ptr + 0x2133d0) = system_temp_byte_primary + 1;
@@ -35460,7 +35473,7 @@ void system_configure_physics_system_6(void)
   }
   system_system_stack_byte_ptr = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_198);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_198);
 }
 
 
@@ -36037,7 +36050,7 @@ void system_handle_file_operations_6(void)
   system_process_context_data();
   system_process_context_data();
   if ((*(char *)(system_global_data_ptr + 0x20) == '\0') && (*(char *)(system_global_data_ptr + 0x21) == '\0')) {
-    system_parameter_value_secondary = system_internal_func_418(0x428);
+    system_parameter_value_secondary = system_allocate_handle(0x428);
     system_system_stack_alt_ptr = (int64_t *)system_process_context_data(system_parameter_value_secondary);
   }
   else {
@@ -36666,7 +36679,7 @@ void system_process_game_logic_6(void)
   do {
     if ((system_status_char == '\0') || (system_temp_unsigned_value = 0, *(char *)(system_context_ptr + 0x400) != '\0')) {
                     // WARNING: Subroutine does not return
-      system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_278);
+      system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_278);
     }
     system_system_stack_context_ptr_bf8 = &system_initialization_null_pointer;
     pbStack_1f0 = abStack_1e0;
@@ -40247,7 +40260,7 @@ system_label:
     system_system_stack_byte_ptr = (void* *)0x0;
     system_system_stack_byte_ptr = &system_initialization_null_pointer;
                     // WARNING: Subroutine does not return
-    system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_188);
+    system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_188);
   }
 system_label:
   system_context_ptr_18 = &system_data_value_bc73;
@@ -42874,7 +42887,7 @@ void system_configure_task_scheduler_6(void)
   *(uint32_t* *)(system_context_ptr + 0x34) = *system_context_ptr_13;
   *(int64_t *)(system_config_array + 8) = *(int64_t *)(system_config_array + 8) + 4;
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_f8);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_f8);
 }
 
 
@@ -43830,7 +43843,7 @@ void system_initialize_debug_renderer_6(void)
   }
   system_context_data_handle = system_context_ptr[0x3c];
   if (system_context_data_handle != 0) {
-    system_internal_func_8a8(system_context_data_handle,0x18,0x10,system_initialize_module_a,system_unsigned_counter_value,system_context_data_handle);
+    system_initialize_module(system_context_data_handle,0x18,0x10,system_initialize_module_a,system_unsigned_counter_value,system_context_data_handle);
                     // WARNING: Subroutine does not return
     system_process_context_data(system_context_data_handle);
   }
@@ -44986,7 +44999,7 @@ void system_initialize_localization_6(void)
   }
 system_label:
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_data_array);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_data_array);
 }
 
 
@@ -46786,7 +46799,7 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint64_t syste
   system_temp_unsigned_value_primary = 0xfffffffffffffffe;
   *system_context_ptr = &system_memory_ptr_ai;
   system_process_context_data();
-  system_internal_func_8a8(system_context_ptr + 1,8,7,system_initialize_resource,system_temp_unsigned_value_primary);
+  system_initialize_module(system_context_ptr + 1,8,7,system_initialize_resource,system_temp_unsigned_value_primary);
   if ((system_config_array & 1) != 0) {
     free(system_context_ptr,0x158);
   }
@@ -48705,7 +48718,7 @@ void* * system_process_context_data(int64_t system_context_ptr,uint8_t system_co
   }
   if (*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
               0x48) < _system_global_data_ptr_varab) {
-    system_internal_func_b90(&system_global_data_ptr_varab);
+    system_initialize_data(&system_global_data_ptr_varab);
     if (_system_global_data_ptr_varab == -1) {
       system_global_data_ptr = &system_initialization_null_pointer;
       system_global_data_ptr = &system_data_d49178;
@@ -50928,7 +50941,7 @@ void system_handle_system_events_7(void)
   }
   *(uint32_t* *)(system_temp_storage_value + 0x3c) = *(uint32_t* *)(system_thread_count + 0x114);
                     // WARNING: Subroutine does not return
-  system_internal_func_050(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_68);
+  system_process_stack_operation(system_system_stack_uint_value ^ (uint64_t)system_system_stack_buffer_68);
 }
 
 
@@ -51914,10 +51927,10 @@ code_r0x00018007db1b:
         system_float_ = fStack_124;
         system_float_ = fStack_128;
         if (*(int *)(system_context_data_handle + system_context_data_handle) < iRam0000000180d49150) {
-          system_internal_func_b90(0x180d49150);
+          system_initialize_data(0x180d49150);
           if (iRam0000000180d49150 == -1) {
             fRam0000000180d49154 = 1.0;
-            system_internal_func_b30(0x180d49150);
+            system_cleanup_data(0x180d49150);
           }
           system_context_data_handle = 0x48;
           system_float_ = fRam0000000180d49154;
