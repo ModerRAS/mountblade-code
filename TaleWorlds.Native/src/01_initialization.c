@@ -19034,48 +19034,48 @@ void ResetSystemBuffer(uint8_t *bufferPointer)
  * 数据复制和缓冲区管理。它使用栈缓冲区来处理临时数据，
  * 并执行相应的系统操作。
  * 
- * @param param_1 主操作参数
- * @param param_2 辅助操作参数
- * @param param_3 配置参数
+ * @param MainParameter 主操作参数
+ * @param AuxiliaryParameter 辅助操作参数
+ * @param ConfigurationParameter 配置参数
  * 
  * @note 这是一个通用的系统缓冲区处理函数
  */
-void ProcessSystemThreeParameterBuffer(long long param_1,long long param_2,long long param_3)
+void ProcessSystemThreeParameterBuffer(long long MainParameter,long long AuxiliaryParameter,long long ConfigurationParameter)
 
 {
-  long long lVar1;
-  long long lVar2;
-  long long lVar3;
-  uint8_t auStack_498 [32];
-  void* uStack_478;
-  void* *puStack_468;
-  uint8_t *puStack_460;
-  uint32_t uStack_458;
-  uint8_t auStack_450 [1032];
-  ulong long uStack_48;
+  long long StringSearchResult;
+  long long StringLengthCounter;
+  long long BufferLengthCounter;
+  uint8_t StackSecurityBuffer [32];
+  void* SystemSecurityFlag;
+  void* *SystemMemoryReference;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemBufferLength;
+  uint8_t SystemDataBuffer [1032];
+  ulong long SystemChecksumValue;
   
-  uStack_478 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulong long)auStack_498;
-  puStack_468 = &UNK_18098bb30;
-  puStack_460 = auStack_450;
-  uStack_458 = 0;
-  auStack_450[0] = 0;
-  lVar1 = strstr(*(void* *)(param_1 + 8));
-  if (lVar1 != 0) {
-    lVar2 = -1;
-    lVar3 = -1;
+  SystemSecurityFlag = 0xfffffffffffffffe;
+  SystemChecksumValue = _DAT_180bf00a8 ^ (ulong long)StackSecurityBuffer;
+  SystemMemoryReference = &UNK_18098bb30;
+  SystemBufferPointer = SystemDataBuffer;
+  SystemBufferLength = 0;
+  SystemDataBuffer[0] = 0;
+  StringSearchResult = strstr(*(void* *)(MainParameter + 8));
+  if (StringSearchResult != 0) {
+    StringLengthCounter = -1;
+    BufferLengthCounter = -1;
     do {
-      lVar3 = lVar3 + 1;
-    } while (*(char *)(param_2 + lVar3) != '\0');
+      StringLengthCounter = StringLengthCounter + 1;
+    } while (*(char *)(AuxiliaryParameter + StringLengthCounter) != '\0');
     do {
-      lVar2 = lVar2 + 1;
-    } while (*(char *)(lVar2 + param_3) != '\0');
+      BufferLengthCounter = BufferLengthCounter + 1;
+    } while (*(char *)(BufferLengthCounter + ConfigurationParameter) != '\0');
                     // WARNING: Subroutine does not return
-    memcpy(puStack_460,*(long long *)(param_1 + 8),lVar1 - *(long long *)(param_1 + 8));
+    memcpy(SystemBufferPointer,*(long long *)(MainParameter + 8),StringSearchResult - *(long long *)(MainParameter + 8));
   }
-  puStack_468 = &SystemMemoryAllocatorReference;
+  SystemMemoryReference = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_498);
+  ValidateSystemChecksum(SystemChecksumValue ^ (ulong long)StackSecurityBuffer);
 }
 
 
@@ -19088,19 +19088,19 @@ void ProcessSystemThreeParameterBuffer(long long param_1,long long param_2,long 
  * 该函数负责释放系统信号量，它会重复调用ReleaseSemaphore函数
  * 直到成功释放为止。这确保了信号量的正确释放和系统同步。
  * 
- * @param param_1 信号量句柄指针
- * @param param_2 释放计数
+ * @param SemaphoreHandle 信号量句柄指针
+ * @param ReleaseCount 释放计数
  * 
  * @note 这是系统同步机制的重要组成部分，确保信号量的正确释放
  */
-void ReleaseSystemSemaphore(void* *param_1,uint32_t param_2)
+void ReleaseSystemSemaphore(void* *SemaphoreHandle,uint32_t ReleaseCount)
 
 {
-  int iVar1;
+  int ReleaseResult;
   
   do {
-    iVar1 = ReleaseSemaphore(*param_1,param_2,0);
-  } while (iVar1 == 0);
+    ReleaseResult = ReleaseSemaphore(*SemaphoreHandle,ReleaseCount,0);
+  } while (ReleaseResult == 0);
   return;
 }
 
@@ -19115,19 +19115,19 @@ void ReleaseSystemSemaphore(void* *param_1,uint32_t param_2)
  * 然后调用_Mtx_unlock函数进行解锁操作。如果解锁失败，
  * 会抛出相应的错误。
  * 
- * @param param_1 互斥锁指针
+ * @param MutexHandle 互斥锁指针
  * 
  * @note 这是系统线程同步的重要组成部分，确保互斥锁的正确解锁
  */
-void UnlockSystemMutex(void* *param_1)
+void UnlockSystemMutex(void* *MutexHandle)
 
 {
-  int iVar1;
+  int UnlockResult;
   
-  if (*(char *)(param_1 + 1) != '\0') {
-    iVar1 = _Mtx_unlock(*param_1);
-    if (iVar1 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar1);
+  if (*(char *)(MutexHandle + 1) != '\0') {
+    UnlockResult = _Mtx_unlock(*MutexHandle);
+    if (UnlockResult != 0) {
+      __Throw_C_error_std__YAXH_Z(UnlockResult);
     }
   }
   return;
@@ -19468,14 +19468,14 @@ void ProcessSystemThreeParameterData(long long param1,long long param2,long long
 
 
 
-void* * GetSystemMemoryAllocatorReference(void* *param_1,ulong long param_2)
+void* * GetSystemMemoryAllocatorReference(void* *MemoryAllocatorPointer,ulong long MemoryAllocationFlags)
 
 {
-  *param_1 = &SystemMemoryAllocatorReference;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x18);
+  *MemoryAllocatorPointer = &SystemMemoryAllocatorReference;
+  if ((MemoryAllocationFlags & 1) != 0) {
+    free(MemoryAllocatorPointer,0x18);
   }
-  return param_1;
+  return MemoryAllocatorPointer;
 }
 
 
@@ -19498,23 +19498,23 @@ void UnlockSystemMutex(void* *param_1)
 
 
 // 函数: void LockSystemMutexAndBroadcast(long long param_1)
-void LockSystemMutexAndBroadcast(long long param_1)
+void LockSystemMutexAndBroadcast(long long SystemContextPointer)
 
 {
-  int iVar1;
+  int LockResult;
   
-  iVar1 = _Mtx_lock(param_1 + 0x48);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  LockResult = _Mtx_lock(SystemContextPointer + 0x48);
+  if (LockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(LockResult);
   }
-  *(uint8_t *)(param_1 + 0x98) = 1;
-  iVar1 = _Cnd_broadcast(param_1);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  *(uint8_t *)(SystemContextPointer + 0x98) = 1;
+  LockResult = _Cnd_broadcast(SystemContextPointer);
+  if (LockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(LockResult);
   }
-  iVar1 = _Mtx_unlock(param_1 + 0x48);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  LockResult = _Mtx_unlock(SystemContextPointer + 0x48);
+  if (LockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(LockResult);
   }
   return;
 }
@@ -19523,45 +19523,45 @@ void LockSystemMutexAndBroadcast(long long param_1)
 
 
 // 函数: void InitializeSystemReferencePointers(void* *param_1)
-void InitializeSystemReferencePointers(void* *param_1)
+void InitializeSystemReferencePointers(void* *SystemReferencePointer)
 
 {
-  *param_1 = &UNK_18098bdc8;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *SystemReferencePointer = &UNK_18098bdc8;
+  *SystemReferencePointer = &UNK_180a21720;
+  *SystemReferencePointer = &UNK_180a21690;
   return;
 }
 
 
 
 void* *
-InitializeSystemReferencePointersWithCleanup(void* *param_1,ulong long param_2,void* param_3,void* param_4)
+InitializeSystemReferencePointersWithCleanup(void* *SystemReferencePointer,ulong long CleanupFlags,void* CleanupParameter1,void* CleanupParameter2)
 
 {
-  *param_1 = &UNK_18098bdc8;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x20,param_3,param_4,0xfffffffffffffffe);
+  *SystemReferencePointer = &UNK_18098bdc8;
+  *SystemReferencePointer = &UNK_180a21720;
+  *SystemReferencePointer = &UNK_180a21690;
+  if ((CleanupFlags & 1) != 0) {
+    free(SystemReferencePointer,0x20,CleanupParameter1,CleanupParameter2,0xfffffffffffffffe);
   }
-  return param_1;
+  return SystemReferencePointer;
 }
 
 
 
 
 // 函数: void ProcessSystemMemoryRange(long long *param_1)
-void ProcessSystemMemoryRange(long long *param_1)
+void ProcessSystemMemoryRange(long long *MemoryRangePointer)
 
 {
-  long long lVar1;
-  long long lVar2;
+  long long MemoryRangeEnd;
+  long long CurrentMemoryAddress;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x100) {
-    FUN_180046b10(lVar2);
+  MemoryRangeEnd = MemoryRangePointer[1];
+  for (CurrentMemoryAddress = *MemoryRangePointer; CurrentMemoryAddress != MemoryRangeEnd; CurrentMemoryAddress = CurrentMemoryAddress + 0x100) {
+    FUN_180046b10(CurrentMemoryAddress);
   }
-  if (*param_1 == 0) {
+  if (*MemoryRangePointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
