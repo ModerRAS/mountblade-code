@@ -13585,15 +13585,15 @@ void SystemInitializerA(void)
             StackResourceTemplatePointer = &SystemResourceTemplateFile;
             StackContextBufferPointer = StackContextBuffer;
             StackFloatRegisterValue = FloatRegisterValue;
-            ResourceIndex3 = GetAndValidateResourceData(fStack000000000000004c,&ObjectStackBufferResource28);
-            fStack000000000000004c = extraout_XMM0_Da_03;
+            ResourceIndex3 = GetAndValidateResourceData(StackFloatPrimaryValue,&ObjectStackBufferResource28);
+            StackFloatPrimaryValue = extraout_XMM0_Da_03;
             if (ResourceIndex3 != 0) goto ProcessMemoryRelease;
           }
-          ResourceIndex3 = CheckResourceIntegrity(fStack000000000000004c,&ObjectStackBufferResource50,0);
+          ResourceIndex3 = CheckResourceIntegrity(StackFloatPrimaryValue,&ObjectStackBufferResource50,0);
           if (ResourceIndex3 == 0) {
-            if (in_stack_00000050 != 1.0) {
-              fStack0000000000000040 = in_stack_00000050;
-              in_stack_00000028 = &SystemResourceTemplateGraphics;
+            if (StackFloatParameter != 1.0) {
+              StackFloatResourceValue = StackFloatParameter;
+              StackResourceTemplatePointer = &SystemResourceTemplateGraphics;
               in_stack_00000038 = StackContextBuffer;
               in_stack_00000030 = FloatRegisterValue;
               ResourceIndex3 = GetAndValidateResourceData(in_stack_00000050,&ObjectStackBufferResource28);
