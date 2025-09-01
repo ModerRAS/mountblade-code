@@ -28745,7 +28745,19 @@ void SystemResourceCleaner(long long *SystemResourcePointer)
 
 
 // 函数: void FUN_180055e30(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180055e30(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统资源处理器包装函数
+ * 
+ * 该函数是系统资源处理器的包装函数，它调用底层的资源处理函数
+ * 来执行具体的资源操作。它简化了资源处理的调用接口。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 处理参数2（未使用）
+ * @param param_3 处理参数3
+ * @param param_4 处理参数4
+ * @note 这是一个包装函数，用于简化系统资源处理的调用
+ */
+void SystemResourceProcessorWrapper(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   FUN_180058210(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -28756,7 +28768,16 @@ void FUN_180055e30(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 // 函数: void FUN_180055e60(long long SystemResourcePointer)
-void FUN_180055e60(long long SystemResourcePointer)
+/**
+ * @brief 系统资源释放器函数
+ * 
+ * 该函数负责释放系统资源，遍历资源数组并释放每个资源占用的内存。
+ * 它会调用每个资源的清理函数，确保资源被正确释放，避免内存泄漏。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源数组和计数信息
+ * @note 这是系统资源管理的重要组成部分，用于确保资源的正确释放
+ */
+void SystemResourceReleaser(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
@@ -28792,7 +28813,17 @@ void FUN_180055e60(long long SystemResourcePointer)
 
 
 
-long long FUN_180055e80(long long SystemResourcePointer)
+/**
+ * @brief 系统资源初始化函数
+ * 
+ * 该函数负责初始化系统资源的基本结构，设置内存分配器引用、
+ * 全局数据引用和计数器。它为系统资源准备基本的数据结构。
+ * 
+ * @param SystemResourcePointer 系统资源指针，用于初始化的资源结构
+ * @return 返回初始化后的系统资源指针
+ * @note 这是系统资源初始化的基础函数
+ */
+long long SystemResourceInitializer(long long SystemResourcePointer)
 
 {
   *(void* *)(SystemResourcePointer + 8) = &SystemMemoryAllocatorReference;
@@ -28809,7 +28840,16 @@ long long FUN_180055e80(long long SystemResourcePointer)
 
 
 // 函数: void FUN_180055ed0(long long SystemResourcePointer)
-void FUN_180055ed0(long long SystemResourcePointer)
+/**
+ * @brief 系统资源重置函数
+ * 
+ * 该函数负责重置系统资源的状态，清理现有的资源引用，
+ * 并重新设置内存分配器和全局数据引用。它确保资源处于初始状态。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含要重置的资源信息
+ * @note 这是系统资源管理的重要组成部分，用于资源状态的重置
+ */
+void SystemResourceResetter(long long SystemResourcePointer)
 
 {
   *(void* *)(SystemResourcePointer + 8) = &SystemGlobalDataReference;
@@ -28827,7 +28867,19 @@ void FUN_180055ed0(long long SystemResourcePointer)
 
 
 // 函数: void FUN_180055f20(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180055f20(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统资源处理器函数
+ * 
+ * 该函数负责处理系统资源的操作，调用底层的资源处理函数
+ * 来执行具体的资源管理任务。它提供了一个统一的资源处理接口。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 处理参数2（未使用）
+ * @param param_3 处理参数3
+ * @param param_4 处理参数4
+ * @note 这是系统资源管理的核心处理函数
+ */
+void SystemResourceHandler(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   FUN_180058210(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -28838,7 +28890,16 @@ void FUN_180055f20(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 // 函数: void FUN_180055f50(long long SystemResourcePointer)
-void FUN_180055f50(long long SystemResourcePointer)
+/**
+ * @brief 系统资源清理器函数
+ * 
+ * 该函数负责清理系统资源，遍历资源数组并释放每个资源占用的内存。
+ * 它会调用每个资源的清理函数，确保资源被正确释放，避免内存泄漏。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源数组和计数信息
+ * @note 这是系统资源管理的重要组成部分，用于确保资源的正确释放
+ */
+void SystemResourceCleaner(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
@@ -29937,7 +29998,15 @@ void FUN_1800572d0(long long SystemResourcePointer)
 
 
 // 函数: void FUN_1800572e6(void)
-void FUN_1800572e6(void)
+/**
+ * @brief 系统清理包装函数
+ * 
+ * 该函数是系统清理操作的包装函数，它调用系统清理函数来释放资源
+ * 并执行必要的清理操作。确保系统资源被正确释放。
+ * 
+ * @note 这是系统资源管理的重要组成部分，用于确保资源的正确释放
+ */
+void SystemCleanupWrapper(void)
 
 {
   FUN_18004b790();
@@ -29949,7 +30018,15 @@ void FUN_1800572e6(void)
 
 
 // 函数: void FUN_180057314(void)
-void FUN_180057314(void)
+/**
+ * @brief 系统节点初始化函数
+ * 
+ * 该函数负责初始化系统节点的基本结构，设置节点的自引用指针、
+ * 数据指针和状态标志。它为系统节点准备基本的数据结构。
+ * 
+ * @note 这是系统节点管理的基础函数，用于初始化节点结构
+ */
+void SystemNodeInitializer(void)
 
 {
   long long unaff_RBX;
@@ -30089,7 +30166,15 @@ void FUN_18005736b(long long SystemResourcePointer,ulong long param_2,void* para
 
 
 // 函数: void FUN_180057446(void)
-void FUN_180057446(void)
+/**
+ * @brief 系统内存清零函数
+ * 
+ * 该函数负责清零系统内存区域，确保内存处于初始状态。
+ * 它会检查内存指针的有效性，然后执行内存清零操作。
+ * 
+ * @note 这是系统内存管理的重要组成部分，用于内存初始化
+ */
+void SystemMemoryZeroer(void)
 
 {
   long long unaff_RBX;

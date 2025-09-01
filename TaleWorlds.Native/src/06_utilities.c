@@ -23430,121 +23430,121 @@ void InitializeSystemInterface(void)
 uint64_t ValidateResourcePackageStructure(int64_t objectContextParam,int64_t *validationContextParam)
 
 {
-  int64_t *processPointer;
-  uint64_t validationResult;
-  uint unsignedValue3;
-  bool bVar4;
-  uint aSecurityValidationContext [2];
-  uint auStackX_20 [2];
-  uint8_t1 resourceValidationBuffer [32];
+  int64_t *ResourceContextPointer;
+  uint64_t ValidationStatus;
+  uint32_t ResourceSize;
+  bool HasResourceData;
+  uint32_t SecurityValidationContext[2];
+  uint32_t ResourceHashBuffer[2];
+  uint8_t ResourceValidationBuffer[32];
   
-  validationResult = ComputeDataChecksum(validationContextParam,resourceValidationBuffer,0,0x54534c50);
-  if ((int)validationResult != 0) {
-    return validationResult;
+  ValidationStatus = ComputeDataChecksum(validationContextParam,ResourceValidationBuffer,0,0x54534c50);
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  plocalContextPointer = (int64_t *)*validationContextParam;
-  unsignedResult3 = 0x1c;
-  if (*plocalContextPointer == 0) {
-    validationResult = 0x1c;
+  ResourceContextPointer = (int64_t *)*validationContextParam;
+  ResourceSize = 0x1c;
+  if (*ResourceContextPointer == 0) {
+    ValidationStatus = 0x1c;
   }
   else {
-    if (plocalContextPointer[2] != 0) {
-      aSecurityValidationContext[0] = 0;
-      validationResult = ValidateResourceAccess(*plocalContextPointer,aSecurityValidationContext);
-      if ((int)validationResult != 0) {
-        return validationResult;
+    if (ResourceContextPointer[2] != 0) {
+      SecurityValidationContext[0] = 0;
+      ValidationStatus = ValidateResourceAccess(*ResourceContextPointer,SecurityValidationContext);
+      if ((int)ValidationStatus != 0) {
+        return ValidationStatus;
       }
-      if ((uint64_t)plocalContextPointer[2] < (uint64_t)aSecurityValidationContext[0] + 4) {
-        validationResult = 0x11;
-        goto LAB_18089cef2;
+      if ((uint64_t)ResourceContextPointer[2] < (uint64_t)SecurityValidationContext[0] + 4) {
+        ValidationStatus = 0x11;
+        goto ValidateHashResult;
       }
     }
-    validationResult = CalculateResourceHash(*plocalContextPointer,auStackX_20,1,4,0);
+    ValidationStatus = CalculateResourceHash(*ResourceContextPointer,ResourceHashBuffer,1,4,0);
   }
-LAB_18089cef2:
-  if ((int)validationResult != 0) {
-    return validationResult;
+ValidateHashResult:
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
-  *(uint *)(objectContextParam + 0x10) = auStackX_20[0];
-  validationResult = 0xd;
-  if (auStackX_20[0] < 5) {
-    validationResult = 0;
+  *(uint *)(objectContextParam + 0x10) = ResourceHashBuffer[0];
+  ValidationStatus = 0xd;
+  if (ResourceHashBuffer[0] < 5) {
+    ValidationStatus = 0;
   }
-  if ((int)validationResult != 0) {
-    return validationResult;
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  plocalContextPointer = (int64_t *)*validationContextParam;
-  if (*plocalContextPointer == 0) {
-    validationResult = 0x1c;
+  ResourceContextPointer = (int64_t *)*validationContextParam;
+  if (*ResourceContextPointer == 0) {
+    ValidationStatus = 0x1c;
   }
   else {
-    if (plocalContextPointer[2] != 0) {
-      aSecurityValidationContext[0] = 0;
-      validationResult = ValidateResourceAccess(*plocalContextPointer,aSecurityValidationContext);
-      if ((int)validationResult != 0) {
-        return validationResult;
+    if (ResourceContextPointer[2] != 0) {
+      SecurityValidationContext[0] = 0;
+      ValidationStatus = ValidateResourceAccess(*ResourceContextPointer,SecurityValidationContext);
+      if ((int)ValidationStatus != 0) {
+        return ValidationStatus;
       }
-      if ((uint64_t)plocalContextPointer[2] < (uint64_t)aSecurityValidationContext[0] + 4) {
-        validationResult = 0x11;
-        goto LAB_18089cf93;
+      if ((uint64_t)ResourceContextPointer[2] < (uint64_t)SecurityValidationContext[0] + 4) {
+        ValidationStatus = 0x11;
+        goto ValidateSecondHash;
       }
     }
-    validationResult = CalculateResourceHash(*plocalContextPointer,auStackX_20,1,4,0);
+    ValidationStatus = CalculateResourceHash(*ResourceContextPointer,ResourceHashBuffer,1,4,0);
   }
-LAB_18089cf93:
-  if ((int)validationResult != 0) {
-    return validationResult;
+ValidateSecondHash:
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
-  *(uint *)(objectContextParam + 0x14) = auStackX_20[0];
-  validationResult = 0xd;
-  if (auStackX_20[0] < 3) {
-    validationResult = 0;
+  *(uint *)(objectContextParam + 0x14) = ResourceHashBuffer[0];
+  ValidationStatus = 0xd;
+  if (ResourceHashBuffer[0] < 3) {
+    ValidationStatus = 0;
   }
-  if ((int)validationResult != 0) {
-    return validationResult;
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
-  validationResult = InitializeResourceProcessor(validationContextParam,objectContextParam,0);
-  if ((int)validationResult != 0) {
-    return validationResult;
+  ValidationStatus = InitializeResourceProcessor(validationContextParam,objectContextParam,0);
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
-  if (2 < (int)validationContextParam[8] - 0x65U) goto LAB_18089d07f;
-  bVar4 = false;
-  if (*(int *)(resourceData[1] + 0x18) != 0) goto LAB_18089d06e;
-  plocalContextPointer = (int64_t *)*validationContextParam;
-  if (*plocalContextPointer != 0) {
-    if (plocalContextPointer[2] == 0) {
-LAB_18089d034:
-      unsignedResult3 = CalculateResourceHash(*plocalContextPointer,aSecurityValidationContext,1,1,0);
+  if (2 < (int)validationContextParam[8] - 0x65U) goto FinalizeValidation;
+  HasResourceData = false;
+  if (*(int *)(resourceData[1] + 0x18) != 0) goto ReturnValidationResult;
+  ResourceContextPointer = (int64_t *)*validationContextParam;
+  if (*ResourceContextPointer != 0) {
+    if (ResourceContextPointer[2] == 0) {
+CalculateResourceHash:
+      ResourceSize = CalculateResourceHash(*ResourceContextPointer,SecurityValidationContext,1,1,0);
     }
     else {
-      auStackX_20[0] = 0;
-      unsignedResult3 = ValidateResourceAccess(*plocalContextPointer,auStackX_20);
-      if (unsignedResult3 == 0) {
-        if ((uint64_t)auStackX_20[0] + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089d034;
-        unsignedResult3 = 0x11;
+      ResourceHashBuffer[0] = 0;
+      ResourceSize = ValidateResourceAccess(*ResourceContextPointer,ResourceHashBuffer);
+      if (ResourceSize == 0) {
+        if ((uint64_t)ResourceHashBuffer[0] + 1 <= (uint64_t)ResourceContextPointer[2]) goto CalculateResourceHash;
+        ResourceSize = 0x11;
       }
     }
   }
-  if (unsignedResult3 == 0) {
-    bVar4 = (char)aSecurityValidationContext[0] != '\0';
-    unsignedResult3 = 0;
+  if (ResourceSize == 0) {
+    HasResourceData = (char)SecurityValidationContext[0] != '\0';
+    ResourceSize = 0;
   }
-  if (unsignedResult3 != 0) {
-LAB_18089d06e:
-    return (uint64_t)unsignedResult3;
+  if (ResourceSize != 0) {
+ReturnValidationResult:
+    return (uint64_t)ResourceSize;
   }
-  if (bVar4) {
+  if (HasResourceData) {
     *(uint32_t *)(objectContextParam + 0x10) = 3;
   }
-LAB_18089d07f:
+FinalizeValidation:
                     // WARNING: Subroutine does not return
-  CleanupResourceData(validationContextParam,resourceValidationBuffer);
+  CleanupResourceData(validationContextParam,ResourceValidationBuffer);
 }
 
 
@@ -70007,6 +70007,20 @@ void Unwind_18090d500(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
+/**
+ * @brief 执行系统展开操作（版本18090d510）
+ * 
+ * 该函数负责执行系统展开操作，处理特定上下文的清理
+ * 调用清理函数并传递清理标志，用于处理系统资源的释放
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，用于验证和执行清理操作
+ * @param CleanupOption 清理选项，指定清理操作的类型和方式
+ * @param CleanupFlag 清理标志，控制清理行为的标志位
+ * @return 无返回值
+ * @note 此函数会在异常处理过程中自动调用
+ * @warning 调用此函数会执行特定的清理函数
+ */
 void Unwind_18090d510(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
