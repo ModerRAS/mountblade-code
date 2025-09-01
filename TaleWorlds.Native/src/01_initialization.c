@@ -1,6 +1,53 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 系统初始化模块
+
+/**
+ * @brief 系统内存页面处理函数
+ * 
+ * 该函数负责处理系统内存页面的操作，包括内存页面的初始化、
+ * 清理和管理。这是内存管理系统的核心函数。
+ * 
+ * @param memoryAddress 内存地址参数
+ * @note 这是底层内存操作函数，用于管理内存页面
+ */
+void ProcessSystemMemoryPage(long long memoryAddress);
+
+/**
+ * @brief 系统资源释放函数
+ * 
+ * 该函数负责释放系统资源，包括内存、句柄和其他系统资源。
+ * 当资源引用计数归零时调用此函数进行资源清理。
+ * 
+ * @note 这是资源管理系统的重要组成部分
+ */
+void ReleaseSystemResource(void);
+
+/**
+ * @brief 系统内存缓冲区初始化函数
+ * 
+ * 该函数负责初始化系统内存缓冲区，设置内存模板和缓冲区参数。
+ * 用于系统内存分配和管理的前期准备工作。
+ * 
+ * @param memoryTemplate 内存模板指针
+ * @param bufferSize 缓冲区大小
+ * @param sourceData 源数据指针（可选）
+ * @note 这是内存管理系统的初始化函数
+ */
+void InitializeSystemMemoryBuffer(void* memoryTemplate, long long bufferSize, void* sourceData);
+
+/**
+ * @brief 数据写入缓冲区函数
+ * 
+ * 该函数负责将数据写入指定的缓冲区，支持多种数据格式和写入模式。
+ * 用于系统数据的存储和传输操作。
+ * 
+ * @param buffer 目标缓冲区指针
+ * @param dataSize 数据大小
+ * @param ... 可变参数，根据不同的写入模式传递不同的参数
+ * @note 这是数据操作系统的核心函数
+ */
+void WriteDataToBuffer(void* buffer, long long dataSize, ...);
 /**
  * @brief 游戏系统主入口点
  * 
@@ -19389,7 +19436,7 @@ void ProcessSystemStringCopyWithLimit(long long targetBuffer,long long sourceStr
     strcpy_s(*(void* *)(targetBuffer + 8),0x20);
     return;
   }
-  FUN_180626f80(&SystemMemoryTemplateG,0x20,sourceString);
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x20,sourceString);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
@@ -19629,7 +19676,7 @@ void ProcessSystemMemoryRange(long long *MemoryRangePointer)
   
   MemoryRangeEnd = MemoryRangePointer[1];
   for (CurrentMemoryAddress = *MemoryRangePointer; CurrentMemoryAddress != MemoryRangeEnd; CurrentMemoryAddress = CurrentMemoryAddress + 0x100) {
-    FUN_180046b10(CurrentMemoryAddress);
+    ProcessSystemMemoryPage(CurrentMemoryAddress);
   }
   if (*MemoryRangePointer == 0) {
     return;
@@ -19697,7 +19744,7 @@ void ReleaseMemoryBlockReference(ulong long *SystemResourcePointer)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -19836,7 +19883,7 @@ LAB_1800469fd:
   lVar6 = *(long long *)(SystemResourcePointer + 8);
   if (lVar6 != lVar4) {
     do {
-      FUN_180046b10(lVar6);
+      ProcessSystemMemoryPage(lVar6);
       lVar6 = lVar6 + 0x100;
     } while (lVar6 != lVar4);
     lVar6 = *(long long *)(SystemResourcePointer + 8);
@@ -20234,7 +20281,7 @@ void InitializeSystemCoreEngine(void)
   uStack_600 = 0;
   puStack_610 = (uint8_t *)0x0;
   uStack_608 = 0;
-  FUN_1806277c0(&puStack_618,iStack_668);
+  WriteDataToBuffer(&puStack_618,iStack_668);
   if (iStack_668 != 0) {
                     // WARNING: Subroutine does not return
     memcpy(puStack_610,lStack_670,iStack_668 + 1);
@@ -20248,7 +20295,7 @@ void InitializeSystemCoreEngine(void)
   }
   FUN_18062c1e0(&lStack_678,1);
   iVar3 = uStack_608 + 0x11;
-  FUN_1806277c0(&puStack_618,iVar3);
+  WriteDataToBuffer(&puStack_618,iVar3);
   puVar8 = (uint32_t *)(puStack_610 + uStack_608);
   *puVar8 = 0x69676e65;
   puVar8[1] = 0x635f656e;
@@ -20507,7 +20554,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2
   uVar16 = *(uint *)(SystemStatusFlagsPointer + 0x180);
   uVar10 = (ulong long)uVar16;
   if (*(long long *)(SystemStatusFlagsPointer + 0x178) != 0) {
-    FUN_1806277c0(&puStack_c8,uVar10,param_3,param_4,1,0xfffffffffffffffe);
+    WriteDataToBuffer(&puStack_c8,uVar10,param_3,param_4,1,0xfffffffffffffffe);
   }
   if (uVar16 != 0) {
                     // WARNING: Subroutine does not return
@@ -20792,7 +20839,7 @@ void ProcessSystemMemoryRegion(long long *SystemResourcePointer)
   
   lVar1 = SystemResourcePointer[1];
   for (lVar2 = *SystemResourcePointer; lVar2 != lVar1; lVar2 = lVar2 + 0x100) {
-    FUN_180046b10(lVar2);
+    ProcessSystemMemoryPage(lVar2);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -20863,7 +20910,7 @@ void ProcessSystemExceptionList(ulong long *SystemResourcePointer)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -21975,7 +22022,7 @@ void ProcessSystemStringCopySmall(long long targetBuffer,long long sourceString)
     strcpy_s(*(void* *)(SystemResourcePointer + 8),0x40);
     return;
   }
-  FUN_180626f80(&SystemMemoryTemplateG,0x40,param_2);
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x40,param_2);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
@@ -22360,7 +22407,7 @@ void ProcessSystemStringCopyMedium(long long targetBuffer,long long sourceString
     strcpy_s(*(void* *)(targetBuffer + 8),0x80);
     return;
   }
-  FUN_180626f80(&SystemMemoryTemplateG,0x80,sourceString);
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x80,sourceString);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
@@ -24030,7 +24077,7 @@ void CleanupSystemResources(long long ResourceHandle)
         ReferenceCount = (int *)(ArrayBase + 0x18);
         *ReferenceCount = *ReferenceCount + -1;
         if (*ReferenceCount == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -24181,7 +24228,7 @@ void SystemMemoryInitialize(long long SystemResourcePointer)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -24245,7 +24292,7 @@ void FUN_18004c260(ulong long *SystemResourcePointer)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -25619,7 +25666,7 @@ void FUN_18004f8e0(long long SystemResourcePointer)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -25674,7 +25721,7 @@ void FUN_18004f900(long long SystemResourcePointer)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -26187,7 +26234,7 @@ void FUN_180051d00(long long SystemResourcePointer)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -29154,7 +29201,7 @@ void FUN_180056f70(long long SystemResourcePointer,long long param_2)
     strcpy_s(*(void* *)(SystemResourcePointer + 8),0x400);
     return;
   }
-  FUN_180626f80(&SystemMemoryTemplateG,0x400);
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x400);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
@@ -29656,7 +29703,7 @@ void FUN_180057550(long long SystemResourcePointer)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -29711,7 +29758,7 @@ void FUN_180057556(long long SystemResourcePointer)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -29764,7 +29811,7 @@ void FUN_180057580(void)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -29805,7 +29852,7 @@ void FUN_1800575b6(void)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -29846,7 +29893,7 @@ void FUN_1800575d4(void)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -29992,7 +30039,7 @@ void FUN_180057790(long long SystemResourcePointer)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -30047,7 +30094,7 @@ void FUN_180057796(long long SystemResourcePointer)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -30198,7 +30245,7 @@ void FUN_180057814(void)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -30281,7 +30328,7 @@ void FUN_1800578a0(void)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -30766,7 +30813,7 @@ void FUN_180058160(ulong long *SystemResourcePointer)
       piVar1 = (int *)(lVar6 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -32745,7 +32792,7 @@ void FUN_180059940(long long SystemResourcePointer,long long param_2)
     strcpy_s(*(void* *)(SystemResourcePointer + 8),0x10);
     return;
   }
-  FUN_180626f80(&SystemMemoryTemplateG,0x10,param_2);
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x10,param_2);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
@@ -32860,7 +32907,7 @@ void FUN_180059ba0(void* *SystemResourcePointer)
       piVar1 = (int *)(lVar2 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -33051,7 +33098,7 @@ void CleanupSystemResources(long long *ResourceHandle)
       piVar1 = (int *)(lVar4 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -33112,7 +33159,7 @@ void FUN_180059ee4(long long *SystemResourcePointer)
       piVar1 = (int *)(lVar4 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -33181,7 +33228,7 @@ void FUN_180059f4f(void)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -33216,7 +33263,7 @@ void FUN_180059fb0(void* *SystemResourcePointer)
       piVar1 = (int *)(lVar2 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -33279,7 +33326,7 @@ void FUN_180059fc0(long long *SystemResourcePointer)
       piVar1 = (int *)(lVar4 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -33317,7 +33364,7 @@ void FUN_18005a010(long long SystemResourcePointer)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -33391,7 +33438,7 @@ void FUN_18005a100(long long SystemResourcePointer)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -33430,7 +33477,7 @@ void FUN_18005a130(long long SystemResourcePointer)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -33469,7 +33516,7 @@ void FUN_18005a170(long long SystemResourcePointer)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -34440,7 +34487,7 @@ void* FUN_18005c8a0(long long SystemResourcePointer,void* param_2)
         if (*(void* **)(SystemResourcePointer + 0x48) != (void* *)0x0) {
           puVar2 = *(void* **)(SystemResourcePointer + 0x48);
         }
-        FUN_180626f80(&UNK_18098bc00,puVar2);
+        InitializeSystemMemoryBuffer(&UNK_18098bc00,puVar2);
       }
       FUN_180627be0(SystemResourcePointer,SystemResourcePointer + 0x80);
       return 0;
@@ -34521,7 +34568,7 @@ void FUN_18005ca20(long long SystemResourcePointer,uint32_t param_2)
       if (*(void* **)(SystemResourcePointer + 0x1eb0) != (void* *)0x0) {
         puVar2 = *(void* **)(SystemResourcePointer + 0x1eb0);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      InitializeSystemMemoryBuffer(&UNK_18098bc00,puVar2);
     }
     *(uint32_t *)(SystemResourcePointer + 0x1ea0) = *(uint32_t *)(SystemResourcePointer + 0x1ee8);
     return;
@@ -44123,7 +44170,7 @@ void FUN_18006b440(long long SystemResourcePointer,uint32_t param_2)
       if (*(void* **)(SystemResourcePointer + 0x1dd0) != (void* *)0x0) {
         puVar2 = *(void* **)(SystemResourcePointer + 0x1dd0);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      InitializeSystemMemoryBuffer(&UNK_18098bc00,puVar2);
     }
     *(uint32_t *)(SystemResourcePointer + 0x1dc0) = *(uint32_t *)(SystemResourcePointer + 0x1e08);
     return;
@@ -44151,7 +44198,7 @@ void FUN_18006b4c0(long long SystemResourcePointer,uint32_t param_2)
       if (*(void* **)(SystemResourcePointer + 0x1d60) != (void* *)0x0) {
         puVar2 = *(void* **)(SystemResourcePointer + 0x1d60);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      InitializeSystemMemoryBuffer(&UNK_18098bc00,puVar2);
     }
     *(uint32_t *)(SystemResourcePointer + 0x1d50) = *(uint32_t *)(SystemResourcePointer + 0x1d98);
     return;
@@ -46474,7 +46521,7 @@ void FUN_18006e4a0(long long *SystemResourcePointer)
       piVar1 = (int *)(lVar4 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -46535,7 +46582,7 @@ void FUN_18006e4a4(long long *SystemResourcePointer)
       piVar1 = (int *)(lVar4 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -46604,7 +46651,7 @@ void FUN_18006e50f(void)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          ReleaseSystemResource();
           return;
         }
       }
@@ -46639,7 +46686,7 @@ void FUN_18006e570(void* *SystemResourcePointer)
       piVar1 = (int *)(lVar2 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -46702,7 +46749,7 @@ void FUN_18006e580(long long *SystemResourcePointer)
       piVar1 = (int *)(lVar4 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
@@ -54034,7 +54081,7 @@ void FUN_180077710(long long SystemResourcePointer)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        ReleaseSystemResource();
         return;
       }
     }
