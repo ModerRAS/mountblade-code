@@ -6661,43 +6661,43 @@ undefined8 ValidateObjectContextAndProcessBuffers(longlong objectContext, longlo
     return 0x1f;
   }
   validationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&stackBuffer);
-  if ((int)uVar3 == 0) {
-    uVar6 = 0;
-    uVar8 = uVar6;
-    if (lStackX_8 != 0) {
-      uVar8 = lStackX_8 - 8;
+  if ((int)validationStatus == 0) {
+    bufferIndex = 0;
+    bufferArrayOffset = bufferIndex;
+    if (stackBuffer != 0) {
+      bufferArrayOffset = stackBuffer - 8;
     }
-    uVar9 = uVar6;
-    if (0 < *(int *)(uVar8 + 0x28)) {
+    bufferEntryOffset = bufferIndex;
+    if (0 < *(int *)(bufferArrayOffset + 0x28)) {
       do {
-        lVar7 = *(longlong *)(uVar8 + 0x20) + uVar9;
-        lVar1 = *(longlong *)(lVar7 + 0x10);
-        if (lVar1 == 0) {
+        bufferContext = *(longlong *)(bufferArrayOffset + 0x20) + bufferEntryOffset;
+        bufferEntryPointer = *(longlong *)(bufferContext + 0x10);
+        if (bufferEntryPointer == 0) {
           return 0x1e;
         }
-        if (*(int *)(lVar1 + 0x58) < 1) {
-          puVar4 = &DAT_18098bc73;
+        if (*(int *)(bufferEntryPointer + 0x58) < 1) {
+          stringPointer = &DAT_18098bc73;
         }
         else {
-          puVar4 = *(undefined **)(lVar1 + 0x50);
+          stringPointer = *(undefined **)(bufferEntryPointer + 0x50);
         }
-        iVar2 = func_0x00018076b630(puVar4,param_1 + 0x1c);
-        if (iVar2 == 0) {
-          uVar3 = ValidateBufferContext(lVar7,param_1 + 0x18);
-          if ((int)uVar3 != 0) {
-            return uVar3;
+        comparisonResult = func_0x00018076b630(stringPointer,objectContext + 0x1c);
+        if (comparisonResult == 0) {
+          validationStatus = ValidateBufferContext(bufferContext,objectContext + 0x18);
+          if ((int)validationStatus != 0) {
+            return validationStatus;
           }
-          uVar3 = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
-          return uVar3;
+          validationStatus = FUN_18088d7c0(*(undefined8 *)(systemContext + 0x98),objectContext);
+          return validationStatus;
         }
-        uVar5 = (int)uVar6 + 1;
-        uVar6 = (ulonglong)uVar5;
-        uVar9 = uVar9 + 0x18;
-      } while ((int)uVar5 < *(int *)(uVar8 + 0x28));
+        iterationCounter = (int)bufferIndex + 1;
+        bufferIndex = (ulonglong)iterationCounter;
+        bufferEntryOffset = bufferEntryOffset + 0x18;
+      } while ((int)iterationCounter < *(int *)(bufferArrayOffset + 0x28));
     }
-    uVar3 = 0x4a;
+    validationStatus = 0x4a;
   }
-  return uVar3;
+  return validationStatus;
 }
 
 
@@ -7148,108 +7148,136 @@ void ValidateObjectContextAndProcessOperation(longlong ObjectContext, longlong S
 
 
 
-undefined8 FUN_180892780(longlong param_1,longlong param_2)
+/**
+ * @brief 验证对象上下文并处理浮点数范围
+ * 
+ * 该函数验证对象上下文的有效性，并处理浮点数的范围检查和调整
+ * 检查浮点数是否在有效范围内，并在必要时进行调整
+ * 
+ * @param objectContext 对象上下文指针，包含对象的状态和浮点数值
+ * @param systemContext 系统上下文指针，包含系统配置信息
+ * @return undefined8 操作结果，成功返回0，失败返回错误码
+ */
+undefined8 ValidateObjectContextAndProcessFloatRange(longlong objectContext, longlong systemContext)
 
 {
-  float fVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  float fVar4;
-  longlong lStackX_8;
-  longlong alStackX_18 [2];
+  float inputValue;
+  longlong dataPointer;
+  undefined8 validationStatus;
+  float rangeValue;
+  longlong stackBuffer;
+  longlong contextBuffer [2];
   
-  lStackX_8 = CONCAT44(lStackX_8._4_4_,*(uint *)(param_1 + 0x20));
-  if ((*(uint *)(param_1 + 0x20) & 0x7f800000) == 0x7f800000) {
+  stackBuffer = CONCAT44(stackBuffer._4_4_,*(uint *)(objectContext + 0x20));
+  if ((*(uint *)(objectContext + 0x20) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar3 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),alStackX_18);
-  if ((int)uVar3 == 0) {
-    if (alStackX_18[0] == 0) {
-      alStackX_18[0] = 0;
+  validationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),contextBuffer);
+  if ((int)validationStatus == 0) {
+    if (contextBuffer[0] == 0) {
+      contextBuffer[0] = 0;
     }
     else {
-      alStackX_18[0] = alStackX_18[0] + -8;
+      contextBuffer[0] = contextBuffer[0] + -8;
     }
-    lStackX_8 = 0;
-    uVar3 = FUN_1808681d0(alStackX_18[0],param_1 + 0x18,&lStackX_8);
-    if ((int)uVar3 == 0) {
-      if (lStackX_8 == 0) {
+    stackBuffer = 0;
+    validationStatus = FUN_1808681d0(contextBuffer[0],objectContext + 0x18,&stackBuffer);
+    if ((int)validationStatus == 0) {
+      if (stackBuffer == 0) {
         return 0x4a;
       }
-      lVar2 = *(longlong *)(lStackX_8 + 0x10);
-      if (lVar2 == 0) {
+      dataPointer = *(longlong *)(stackBuffer + 0x10);
+      if (dataPointer == 0) {
         return 0x1e;
       }
-      if ((*(byte *)(lVar2 + 0x34) & 0x11) != 0) {
+      if ((*(byte *)(dataPointer + 0x34) & 0x11) != 0) {
         return 0x1f;
       }
-      fVar1 = *(float *)(param_1 + 0x20);
-      fVar4 = *(float *)(lVar2 + 0x38);
-      if ((*(float *)(lVar2 + 0x38) <= fVar1) &&
-         (fVar4 = *(float *)(lVar2 + 0x3c), fVar1 <= *(float *)(lVar2 + 0x3c))) {
-        fVar4 = fVar1;
+      inputValue = *(float *)(objectContext + 0x20);
+      rangeValue = *(float *)(dataPointer + 0x38);
+      if ((*(float *)(dataPointer + 0x38) <= inputValue) &&
+         (rangeValue = *(float *)(dataPointer + 0x3c), inputValue <= *(float *)(dataPointer + 0x3c))) {
+        rangeValue = inputValue;
       }
-      *(float *)(param_1 + 0x20) = fVar4;
-      *(float *)(lStackX_8 + 4) = fVar4;
+      *(float *)(objectContext + 0x20) = rangeValue;
+      *(float *)(stackBuffer + 4) = rangeValue;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      FUN_18088d720(*(undefined8 *)(systemContext + 0x98),objectContext);
     }
   }
-  return uVar3;
+  return validationStatus;
 }
 
 
 
-undefined8 FUN_180892880(longlong param_1,longlong param_2)
+/**
+ * @brief 验证对象上下文并处理浮点数比较
+ * 
+ * 该函数验证对象上下文的有效性，并进行浮点数的比较操作
+ * 检查浮点数是否在指定范围内，并根据结果执行相应操作
+ * 
+ * @param objectContext 对象上下文指针，包含对象的状态和浮点数值
+ * @param systemContext 系统上下文指针，包含系统配置信息
+ * @return undefined8 操作结果，成功返回0，失败返回错误码
+ */
+undefined8 ValidateObjectContextAndProcessFloatComparison(longlong objectContext, longlong systemContext)
 
 {
-  float fVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  longlong lStackX_8;
-  longlong alStackX_18 [2];
+  float floatValue;
+  longlong dataPointer;
+  undefined8 validationStatus;
+  longlong stackBuffer;
+  longlong contextBuffer [2];
   
-  uVar3 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),alStackX_18);
-  if ((int)uVar3 == 0) {
-    if (alStackX_18[0] == 0) {
-      alStackX_18[0] = 0;
+  validationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),contextBuffer);
+  if ((int)validationStatus == 0) {
+    if (contextBuffer[0] == 0) {
+      contextBuffer[0] = 0;
     }
     else {
-      alStackX_18[0] = alStackX_18[0] + -8;
+      contextBuffer[0] = contextBuffer[0] + -8;
     }
-    lStackX_8 = 0;
-    uVar3 = FUN_1808681d0(alStackX_18[0],param_1 + 0x18,&lStackX_8);
-    if ((int)uVar3 == 0) {
-      if (lStackX_8 == 0) {
+    stackBuffer = 0;
+    validationStatus = FUN_1808681d0(contextBuffer[0],objectContext + 0x18,&stackBuffer);
+    if ((int)validationStatus == 0) {
+      if (stackBuffer == 0) {
         return 0x4a;
       }
-      lVar2 = *(longlong *)(lStackX_8 + 0x10);
-      if (lVar2 == 0) {
+      dataPointer = *(longlong *)(stackBuffer + 0x10);
+      if (dataPointer == 0) {
         return 0x1e;
       }
-      if ((*(byte *)(lVar2 + 0x34) & 0x11) != 0) {
+      if ((*(byte *)(dataPointer + 0x34) & 0x11) != 0) {
         return 0x1f;
       }
-      uVar3 = FUN_18084de40(lVar2,param_1 + 0x25,param_1 + 0x20);
-      if ((int)uVar3 == 0) {
-        fVar1 = *(float *)(param_1 + 0x20);
-        if ((*(float *)(lVar2 + 0x38) <= fVar1) &&
-           (fVar1 < *(float *)(lVar2 + 0x3c) || fVar1 == *(float *)(lVar2 + 0x3c))) {
-          uVar3 = *(undefined8 *)(param_2 + 0x98);
-          *(float *)(lStackX_8 + 4) = fVar1;
+      validationStatus = FUN_18084de40(dataPointer,objectContext + 0x25,objectContext + 0x20);
+      if ((int)validationStatus == 0) {
+        floatValue = *(float *)(objectContext + 0x20);
+        if ((*(float *)(dataPointer + 0x38) <= floatValue) &&
+           (floatValue < *(float *)(dataPointer + 0x3c) || floatValue == *(float *)(dataPointer + 0x3c))) {
+          validationStatus = *(undefined8 *)(systemContext + 0x98);
+          *(float *)(stackBuffer + 4) = floatValue;
                     // WARNING: Subroutine does not return
-          FUN_18088d720(uVar3,param_1);
+          FUN_18088d720(validationStatus,objectContext);
         }
-        uVar3 = 0x1c;
+        validationStatus = 0x1c;
       }
     }
   }
-  return uVar3;
+  return validationStatus;
 }
 
 
 
-undefined8 FUN_1808928d3(void)
+/**
+ * @brief 处理浮点数比较操作
+ * 
+ * 该函数处理浮点数的比较操作，验证数据有效性并进行范围检查
+ * 检查浮点数是否在指定范围内，并根据结果执行相应操作
+ * 
+ * @return undefined8 操作结果，成功返回0，失败返回错误码
+ */
+undefined8 ProcessFloatComparisonOperation(void)
 
 {
   float fVar1;
