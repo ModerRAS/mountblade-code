@@ -14,9 +14,9 @@
  */
 void InitializeModuleDependencies(longlong moduleHandle, longlong moduleContext);
 void* g_moduleDependencyTable;
-undefined g_moduleDependencyCount;
-undefined g_moduleDependencyFlags;
-undefined g_moduleDependencyStatus;
+uint32_t g_moduleDependencyCount;
+uint32_t g_moduleDependencyFlags;
+uint32_t g_moduleDependencyStatus;
 undefined g_moduleDependencyLock;
 undefined g_moduleDependencyMutex;
 undefined1 g_moduleDependencyInitialized;
