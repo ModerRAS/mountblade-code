@@ -10861,7 +10861,7 @@ longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong c
   }
   return lVar2;
 }
-longlong SystemBufferHandle(uint64_t param_1,uint64_t param_2,longlong param_3)
+longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong configData)
 {
   longlong *pModuleInitializationResult;
   longlong lVar2;
@@ -10905,7 +10905,7 @@ longlong SystemBufferHandle(uint64_t param_1,uint64_t param_2,longlong param_3)
   }
   return lVar2;
 }
-longlong SystemBufferOperate(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
+longlong SystemBufferOperate(uint64_t bufferId, uint64_t operateData, uint64_t *resultData)
 {
   uint64_t MemoryAddress;
   longlong lVar2;
@@ -10926,7 +10926,7 @@ longlong SystemBufferOperate(uint64_t param_1,uint64_t param_2,uint64_t *param_3
   }
   return 0;
 }
-uint64_t SystemBufferProcess(uint64_t param_1)
+uint64_t SystemBufferProcess(uint64_t bufferId)
 {
   uint64_t MemoryAddress;
   uint64_t *pBufferSize;
