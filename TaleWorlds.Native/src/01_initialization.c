@@ -806,48 +806,53 @@ void InitializeSystemDataTableBaseAllocator(void)
  * 设置内存分配策略和数据结构管理。
  */
 void InitializeSystemDataTableAllocator(void)
-
 {
-  char systemNodeFlag;
-  undefined8 *systemDataTable;
+  char isSystemNodeActive;
+  void** systemDataTablePointer;
   int memoryCompareResult;
-  longlong *systemMemoryPointer;
-  longlong systemTimeValue;
-  undefined8 *systemRootNode;
-  undefined8 *systemCurrentNode;
-  undefined8 *systemNextNode;
-  undefined8 *systemPreviousNode;
+  long long* systemMemoryPointer;
+  long long systemTimeValue;
+  void** systemRootNodePointer;
+  void** currentSystemNode;
+  void** nextSystemNode;
+  void** previousSystemNode;
+  void** allocatedSystemNode;
   uint64_t systemInitializationFlag;
+  long long memoryAllocationSize;
   
-  systemDataTable = (longlong *)GetSystemRootPointer();
-  systemRootNode = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
+  systemDataTablePointer = (long long*)GetSystemRootPointer();
+  systemRootNodePointer = (void**)*systemDataTablePointer;
+  isSystemNodeActive = *(char*)((long long)systemRootNodePointer[1] + 0x19);
   systemInitializationFlag = 0;
-  systemPreviousNode = systemRootNode;
-  systemCurrentNode = (undefined8 *)systemRootNode[1];
-  while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c9b8,0x10);
+  previousSystemNode = systemRootNodePointer;
+  currentSystemNode = (void**)systemRootNodePointer[1];
+  
+  while (isSystemNodeActive == '\0') {
+    memoryCompareResult = memcmp(currentSystemNode + 4, &DAT_18098c9b8, 0x10);
     if (memoryCompareResult < 0) {
-      systemNextNode = (undefined8 *)systemCurrentNode[2];
-      systemCurrentNode = systemPreviousNode;
+      nextSystemNode = (void**)currentSystemNode[2];
+      currentSystemNode = previousSystemNode;
     }
     else {
-      systemNextNode = (undefined8 *)*systemCurrentNode;
+      nextSystemNode = (void**)*currentSystemNode;
     }
-    systemPreviousNode = systemCurrentNode;
-    systemCurrentNode = systemNextNode;
-    systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
+    previousSystemNode = currentSystemNode;
+    currentSystemNode = nextSystemNode;
+    isSystemNodeActive = *(char*)((long long)nextSystemNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
-    systemPreviousNode = systemAllocatedNode;
+  
+  if ((previousSystemNode == systemRootNodePointer) || 
+      (memoryCompareResult = memcmp(&DAT_18098c9b8, previousSystemNode + 4, 0x10), memoryCompareResult < 0)) {
+    memoryAllocationSize = GetSystemMemorySize(systemDataTablePointer);
+    AllocateSystemMemory(systemDataTablePointer, &allocatedSystemNode, previousSystemNode, memoryAllocationSize + 0x20, memoryAllocationSize);
+    previousSystemNode = allocatedSystemNode;
   }
-  puVar7[6] = 0x4666df49b97e0f10;
-  puVar7[7] = 0x4e4b0d63a6ad1d8f;
-  puVar7[8] = &UNK_18098c7b8;
-  systemPreviousNode[9] = 0;
-  puVar7[10] = resourceInitializationCallback;
+  
+  previousSystemNode[6] = 0x4666df49b97e0f10;
+  previousSystemNode[7] = 0x4e4b0d63a6ad1d8f;
+  previousSystemNode[8] = &UNK_18098c7b8;
+  previousSystemNode[9] = 0;
+  previousSystemNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -861,48 +866,53 @@ void InitializeSystemDataTableAllocator(void)
  * 设置系统运行的基本配置和状态。
  */
 void InitializeSystemCoreConfig(void)
-
 {
-  char systemNodeFlag;
-  undefined8 *systemDataTable;
+  char isSystemNodeActive;
+  void** systemDataTablePointer;
   int memoryCompareResult;
-  longlong *systemMemoryPointer;
-  longlong systemTimeValue;
-  undefined8 *systemRootNode;
-  undefined8 *systemCurrentNode;
-  undefined8 *systemNextNode;
-  undefined8 *systemPreviousNode;
+  long long* systemMemoryPointer;
+  long long systemTimeValue;
+  void** systemRootNodePointer;
+  void** currentSystemNode;
+  void** nextSystemNode;
+  void** previousSystemNode;
+  void** allocatedSystemNode;
   uint64_t systemInitializationFlag;
+  long long memoryAllocationSize;
   
-  systemDataTable = (longlong *)GetSystemRootPointer();
-  systemRootNode = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
+  systemDataTablePointer = (long long*)GetSystemRootPointer();
+  systemRootNodePointer = (void**)*systemDataTablePointer;
+  isSystemNodeActive = *(char*)((long long)systemRootNodePointer[1] + 0x19);
   systemInitializationFlag = 0;
-  systemPreviousNode = systemRootNode;
-  systemCurrentNode = (undefined8 *)systemRootNode[1];
-  while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
+  previousSystemNode = systemRootNodePointer;
+  currentSystemNode = (void**)systemRootNodePointer[1];
+  
+  while (isSystemNodeActive == '\0') {
+    memoryCompareResult = memcmp(currentSystemNode + 4, &DAT_18098c940, 0x10);
     if (memoryCompareResult < 0) {
-      systemNextNode = (undefined8 *)systemCurrentNode[2];
-      systemCurrentNode = systemPreviousNode;
+      nextSystemNode = (void**)currentSystemNode[2];
+      currentSystemNode = previousSystemNode;
     }
     else {
-      systemNextNode = (undefined8 *)*systemCurrentNode;
+      nextSystemNode = (void**)*currentSystemNode;
     }
-    systemPreviousNode = systemCurrentNode;
-    systemCurrentNode = systemNextNode;
-    systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
+    previousSystemNode = currentSystemNode;
+    currentSystemNode = nextSystemNode;
+    isSystemNodeActive = *(char*)((long long)nextSystemNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
-    systemPreviousNode = systemAllocatedNode;
+  
+  if ((previousSystemNode == systemRootNodePointer) || 
+      (memoryCompareResult = memcmp(&DAT_18098c940, previousSystemNode + 4, 0x10), memoryCompareResult < 0)) {
+    memoryAllocationSize = GetSystemMemorySize(systemDataTablePointer);
+    AllocateSystemMemory(systemDataTablePointer, &allocatedSystemNode, previousSystemNode, memoryAllocationSize + 0x20, memoryAllocationSize);
+    previousSystemNode = allocatedSystemNode;
   }
-  puVar7[6] = 0x46ecbd4daf41613e;
-  puVar7[7] = 0xdc42c056bbde8482;
-  puVar7[8] = &UNK_18098c7c8;
-  systemPreviousNode[9] = 0;
-  puVar7[10] = resourceInitializationCallback;
+  
+  previousSystemNode[6] = 0x46ecbd4daf41613e;
+  previousSystemNode[7] = 0xdc42c056bbde8482;
+  previousSystemNode[8] = &UNK_18098c7c8;
+  previousSystemNode[9] = 0;
+  previousSystemNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8298,50 +8308,60 @@ void InitializeSystemFrameworkManager(void)
 
 
 
-// 函数: void FUN_180036ef0(void)
-void FUN_180036ef0(void)
-
+/**
+ * @brief 初始化系统搜索管理器D
+ * 
+ * 该函数负责初始化系统的搜索管理器组件，设置搜索相关的
+ * 数据结构和回调函数。
+ */
+void InitializeSystemSearchManagerD(void)
 {
-  char systemNodeFlag;
-  undefined8 *systemDataTable;
+  char isSystemNodeActive;
+  void** systemDataTablePointer;
   int memoryCompareResult;
-  longlong *systemMemoryPointer;
-  longlong systemTimeValue;
-  undefined8 *systemRootNode;
-  undefined8 *systemCurrentNode;
-  undefined8 *systemNextNode;
-  undefined8 *systemPreviousNode;
-  code *pcStackX_18;
+  long long* systemMemoryPointer;
+  long long systemTimeValue;
+  void** systemRootNodePointer;
+  void** currentSystemNode;
+  void** nextSystemNode;
+  void** previousSystemNode;
+  void** allocatedSystemNode;
+  void* systemSearchFunctionPointer;
+  long long memoryAllocationSize;
   
-  systemDataTable = (longlong *)GetSystemRootPointer();
-  systemRootNode = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
+  systemDataTablePointer = (long long*)GetSystemRootPointer();
+  systemRootNodePointer = (void**)*systemDataTablePointer;
+  isSystemNodeActive = *(char*)((long long)systemRootNodePointer[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  systemPreviousNode = systemRootNode;
-  systemCurrentNode = (undefined8 *)systemRootNode[1];
-  while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
+  previousSystemNode = systemRootNodePointer;
+  currentSystemNode = (void**)systemRootNodePointer[1];
+  
+  while (isSystemNodeActive == '\0') {
+    memoryCompareResult = memcmp(currentSystemNode + 4, &DAT_180a01078, 0x10);
     if (memoryCompareResult < 0) {
-      systemNextNode = (undefined8 *)systemCurrentNode[2];
-      systemCurrentNode = systemPreviousNode;
+      nextSystemNode = (void**)currentSystemNode[2];
+      currentSystemNode = previousSystemNode;
     }
     else {
-      systemNextNode = (undefined8 *)*systemCurrentNode;
+      nextSystemNode = (void**)*currentSystemNode;
     }
-    systemPreviousNode = systemCurrentNode;
-    systemCurrentNode = systemNextNode;
-    systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
+    previousSystemNode = currentSystemNode;
+    currentSystemNode = nextSystemNode;
+    isSystemNodeActive = *(char*)((long long)nextSystemNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
-    systemPreviousNode = systemAllocatedNode;
+  
+  if ((previousSystemNode == systemRootNodePointer) || 
+      (memoryCompareResult = memcmp(&DAT_180a01078, previousSystemNode + 4, 0x10), memoryCompareResult < 0)) {
+    memoryAllocationSize = GetSystemMemorySize(systemDataTablePointer);
+    AllocateSystemMemory(systemDataTablePointer, &allocatedSystemNode, previousSystemNode, memoryAllocationSize + 0x20, memoryAllocationSize);
+    previousSystemNode = allocatedSystemNode;
   }
-  puVar7[6] = 0x431d7c8d7c475be2;
-  puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
-  puVar7[9] = 4;
-  systemPreviousNode[10] = eventCallbackPointer;
+  
+  previousSystemNode[6] = 0x431d7c8d7c475be2;
+  previousSystemNode[7] = 0xb97f048d2153e1b0;
+  previousSystemNode[8] = &UNK_180a00388;
+  previousSystemNode[9] = 4;
+  previousSystemNode[10] = eventCallbackPointer;
   return;
 }
 
