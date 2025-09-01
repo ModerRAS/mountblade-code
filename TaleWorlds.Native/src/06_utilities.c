@@ -26771,7 +26771,15 @@ void UnwindExceptionHandlerType5(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180901f30(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理函数：解卷处理器类型6
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 
+ * @param param_1 异常上下文参数
+ * @param param_2 系统上下文指针
+ */
+void UnwindExceptionHandlerType6(undefined8 param_1,longlong param_2)
 
 {
   **(undefined8 **)(param_2 + 0x48) = &UNK_180a21690;

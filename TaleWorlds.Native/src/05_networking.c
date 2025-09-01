@@ -10377,8 +10377,18 @@ LAB_18084ad66:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084ade0(NetworkHandle connectionContext,NetworkStatus packetData)
-void FUN_18084ade0(NetworkHandle connectionContext,NetworkStatus packetData)
+/**
+ * @brief 网络状态数据处理器
+ * 
+ * 该函数处理网络状态数据。
+ * 它接收连接上下文和状态数据，进行处理和传输操作。
+ * 
+ * @param connectionContext 网络连接句柄
+ * @param packetData 状态数据包
+ * @return void
+ * @note 该函数用于网络状态数据的处理和分发
+ */
+void NetworkStatusDataProcessor(NetworkHandle connectionContext,NetworkStatus packetData)
 
 {
   int networkStatus1;
