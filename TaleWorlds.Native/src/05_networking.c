@@ -3318,7 +3318,7 @@ int ProcessNetworkPacketWithBufferCopy(longlong connectionContext,longlong packe
   int copiedDataSize;
   
   bufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  initialProcessedSize = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983560);
+  initialProcessedSize = ProcessNetworkBufferData(packetData,dataSize,&NetworkCompressionTemplate);
   copiedDataSize = NetworkBufferCopyData(packetData + initialProcessedSize,dataSize - initialProcessedSize,&NetworkBufferDataTemplate);
   initialProcessedSize = initialProcessedSize + copiedDataSize;
   copiedDataSize = ProcessNetworkBufferCopy(initialProcessedSize + packetData,dataSize - initialProcessedSize,bufferStatus);
