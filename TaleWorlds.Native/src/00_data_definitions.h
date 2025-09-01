@@ -11825,7 +11825,7 @@ uint64_t SystemDataInitialize(int initFlags)
       unaff_XMM6._8_4_ = (fVar22 + fVar22) - fVar22 * fVar22 * aBufferSize1._0_4_;
       unaff_XMM6._12_4_ = (fVar23 + fVar23) - fVar23 * fVar23 * aBufferSize1._0_4_;
       do {
-        BufferSize0 = thunk_FUN_1808fe1a0();
+        BufferSize0 = GetUIRenderState();
         aBufferSize5._0_4_ = (float)BufferSize0 * 2.0;
         aBufferSize5._4_4_ = (float)((ulonglong)BufferSize0 >> 0x20) * 2.0;
         aBufferSize5._8_4_ = (float)extraout_XMM0_Qb * 2.0;

@@ -35331,7 +35331,7 @@ void* ProcessAndReleaseSystemResource(void* SystemResourcePointer,ulong long Con
 void ProcessAndCleanupBatchSystemResources(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  *SystemResourcePointer = &UNK_1809fddc8;
+  *SystemResourcePointer = &SystemConfigDataTemplateA;
   FUN_18005ab50(SystemResourcePointer + 0x143);
   FUN_18005ab50(SystemResourcePointer + 0x134);
   FUN_18005b7c0(SystemResourcePointer + 0x126);
@@ -35354,7 +35354,7 @@ void ProcessAndCleanupBatchSystemResources(void* *SystemResourcePointer,void* Co
   FUN_18005b7c0(SystemResourcePointer + 0x38);
   FUN_18005b7c0(SystemResourcePointer + 0x2a);
   FUN_18005b7c0(SystemResourcePointer + 0x1c);
-  *SystemResourcePointer = &UNK_180a02968;
+  *SystemResourcePointer = &SystemMemoryPoolTemplateA;
   SystemResourcePointer[0x18] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x19] != 0) {
                     // WARNING: Subroutine does not return
@@ -35564,7 +35564,7 @@ void* ManageSystemResource(void* systemResourcePointer, unsigned long long confi
 void CleanupSystemResource(void** systemResourcePointer, void* configurationDataPointer, void* additionalParameter, void* configurationFlag)
 
 {
-  *systemResourcePointer = &UNK_1809fde10;
+  *systemResourcePointer = &SystemMemoryManagerTemplateA;
   CleanupSystemMemoryAllocation();
   CleanupSystemMemoryAllocation();
   ExecuteSystemResourceOperation((long long)*systemResourcePointer + 0x262, configurationDataPointer, additionalParameter, configurationFlag);
@@ -35596,7 +35596,7 @@ void CleanupSystemResource(void** systemResourcePointer, void* configurationData
   FUN_18005b960(SystemResourcePointer + 0x4c);
   FUN_18005b960(SystemResourcePointer + 0x34);
   FUN_18005b960(SystemResourcePointer + 0x1c);
-  *SystemResourcePointer = &UNK_180a02968;
+  *SystemResourcePointer = &SystemMemoryPoolTemplateA;
   SystemResourcePointer[0x18] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x19] != 0) {
                     // WARNING: Subroutine does not return
