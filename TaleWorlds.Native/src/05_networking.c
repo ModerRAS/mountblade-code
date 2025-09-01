@@ -7329,7 +7329,7 @@ LAB_180847dc9:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847df0(ulonglong connectionContext,NetworkByte *packetData)
+// 函数: void ProcessNetworkPacketTransfer(ulonglong connectionContext,NetworkByte *packetData)
 /**
  * @brief 处理网络连接上下文数据包
  * 
@@ -7413,7 +7413,7 @@ bool ValidateNetworkConnectionContext(NetworkHandle connectionContext)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847f60(NetworkHandle connectionContext)
+// 函数: void NetworkConnectionHandleRelease(NetworkHandle connectionContext)
 /**
  * @brief 处理网络连接句柄验证
  * 
@@ -7467,7 +7467,7 @@ LAB_180848016:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180848090(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize,NetworkHandle *param_4)
+// 函数: void NetworkConnectionDataProcessor(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize,NetworkHandle *param_4)
 /**
  * @brief 处理网络连接状态和数据包传输
  * 
