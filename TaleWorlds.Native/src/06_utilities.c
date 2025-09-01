@@ -1320,7 +1320,6 @@ void* MemoryValidationStatusData;
 void* MemoryValidationConfigData;
 void* MemoryMappingDescriptor;
 
- void InitializeMemoryMapping(void);
 /**
  * @brief 初始化内存映射
  * 
@@ -1341,7 +1340,6 @@ void* MemoryPagingControlRegisters;
 void* MemoryPagingBufferPointer;
 void* MemoryPagingReservedMemory;
 
- void ValidateMemoryIntegrity(void);
 /**
  * @brief 验证内存完整性
  * 
@@ -1355,7 +1353,6 @@ uint32_t MemoryValidationStatus;
 void* MemoryValidationConfig;
 void* MemoryValidationHandle;
 
- void ProcessMemoryAllocation(void);
 /**
  * @brief 处理内存分配
  * 
