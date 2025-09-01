@@ -54673,7 +54673,7 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
   ulonglong uVar6;
   
   puVar3 = *(undefined8 **)(param_2 + 0x80);
-  *puVar3 = &UNK_180a17010;
+  *puVar3 = &SystemDataPointer004;
   if ((longlong *)puVar3[0x1049] != (longlong *)0x0) {
     (**(code **)(*(longlong *)puVar3[0x1049] + 0x38))();
   }
@@ -54821,7 +54821,7 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
   ulonglong uVar6;
   
   puVar3 = *(undefined8 **)(param_2 + 0x90);
-  *puVar3 = &UNK_180a17010;
+  *puVar3 = &SystemDataPointer004;
   if ((longlong *)puVar3[0x1049] != (longlong *)0x0) {
     (**(code **)(*(longlong *)puVar3[0x1049] + 0x38))();
   }
@@ -55664,7 +55664,7 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
   ulonglong uVar6;
   
   puVar3 = *(undefined8 **)(param_2 + 0x40);
-  *puVar3 = &UNK_180a17010;
+  *puVar3 = &SystemDataPointer004;
   if ((longlong *)puVar3[0x1049] != (longlong *)0x0) {
     (**(code **)(*(longlong *)puVar3[0x1049] + 0x38))();
   }
@@ -61927,7 +61927,7 @@ void Unwind_18090c1a0(undefined8 param_1,longlong param_2)
 void Unwind_18090c1b0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x40) = &UNK_180a07218;
+  **(undefined8 **)(param_2 + 0x40) = &SystemMemoryTable001;
   return;
 }
 
@@ -61977,7 +61977,7 @@ void Unwind_18090c1d0(undefined8 param_1,longlong param_2)
   
   lVar1 = param_2 + 0x138;
   *(undefined **)((longlong)*(int *)(*(longlong *)(param_2 + 0x80) + 4) + -0xb8 + lVar1) =
-       &UNK_180a03ad8;
+       &SystemMemoryPointer001;
   iVar2 = *(int *)(*(longlong *)(param_2 + 0x80) + 4);
   *(int *)((longlong)iVar2 + -0xbc + lVar1) = iVar2 + -0xb8;
   ValidateSystemResource(param_2 + 0x98);
@@ -62235,7 +62235,7 @@ void Unwind_18090c2e0(undefined8 param_1,longlong param_2)
 void Unwind_18090c2f0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x78) = &UNK_180a07218;
+  **(undefined8 **)(param_2 + 0x78) = &SystemMemoryTable001;
   return;
 }
 
@@ -75583,7 +75583,7 @@ void Unwind_180910360(undefined8 param_1,longlong param_2)
 void Unwind_180910390(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x40) = &UNK_180a05068;
+  **(undefined8 **)(param_2 + 0x40) = &SystemResourceTable001;
   return;
 }
 
@@ -75592,7 +75592,7 @@ void Unwind_180910390(undefined8 param_1,longlong param_2)
 void Unwind_1809103a0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x48) = &UNK_1809fcca0;
+  **(undefined8 **)(param_2 + 0x48) = &SystemResourceTable002;
   return;
 }
 
@@ -75601,7 +75601,7 @@ void Unwind_1809103a0(undefined8 param_1,longlong param_2)
 void Unwind_1809103b0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x48) = &UNK_1809fcd18;
+  **(undefined8 **)(param_2 + 0x48) = &SystemResourceTable003;
   return;
 }
 
@@ -75664,7 +75664,7 @@ void Unwind_1809103e0(undefined8 param_1,longlong param_2)
 void Unwind_1809103f0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x90) = &UNK_180a05068;
+  **(undefined8 **)(param_2 + 0x90) = &SystemResourceTable001;
   return;
 }
 

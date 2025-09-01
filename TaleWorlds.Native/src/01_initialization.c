@@ -5370,7 +5370,7 @@ void InitializeSystemMessageProcessor(void)
 int InitializeSystemDebugManager(void)
 
 {
-  long long lVar1;
+  long long DebugManagerStatus;
   void* in_R9;
   
   SystemConfigDataPointerF = &SystemGlobalDataPointerB;
@@ -12687,7 +12687,7 @@ void InitializeSystemDeviceDataNodeManager(void)
 int InitializeSystemGlobalDataTable(void)
 
 {
-  long long lVar1;
+  long long DataTableStatus;
   void* in_R9;
   
   _DAT_180bfa350 = &UNK_1809fcc28;
@@ -18048,21 +18048,21 @@ void InitializeSystemInfoAndUserEnvironment(void)
     (**(code **)(**(long long **)(_DAT_180c86870 + 0x2b0) + 0x98))
               (*(long long **)(_DAT_180c86870 + 0x2b0),&puStack_1b8);
     StartInputSystem();
-    lVar3 = _DAT_180c86928;
-    uVar5 = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x70,8,3);
-    plVar6 = (long long *)AllocateSystemMemory(uVar5,8,lVar3);
-    plStack_190 = plVar6;
-    if (plVar6 != (long long *)0x0) {
-      (**(code **)(*plVar6 + 0x28))(plVar6);
+    SystemContextHandle = _DAT_180c86928;
+    MemoryAllocationSize = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x70,8,3);
+    AllocatedMemoryPointer = (long long *)AllocateSystemMemory(MemoryAllocationSize,8,SystemContextHandle);
+    MemoryBlockPointer = AllocatedMemoryPointer;
+    if (AllocatedMemoryPointer != (long long *)0x0) {
+      (**(code **)(*AllocatedMemoryPointer + 0x28))(AllocatedMemoryPointer);
     }
-    *(uint32_t *)(plVar6 + 0xd) = 0xbb80073;
-    puVar1 = *(void* **)(lVar3 + 400);
-    pcVar2 = *(code **)*puVar1;
-    applStack_150[0] = &plStack_208;
-    plStack_208 = plVar6;
-    (**(code **)(*plVar6 + 0x28))(plVar6);
-    (*pcVar2)(puVar1,&plStack_208);
-    (**(code **)(*plVar6 + 0x38))(plVar6);
+    *(uint32_t *)(AllocatedMemoryPointer + 0xd) = 0xbb80073;
+    SystemInterfacePointer = *(void* **)(SystemContextHandle + 400);
+    InterfaceFunctionPointer = *(code **)*SystemInterfacePointer;
+    ComputerNameBufferPointer = &MemoryBufferSize;
+    MemoryBufferSize = AllocatedMemoryPointer;
+    (**(code **)(*AllocatedMemoryPointer + 0x28))(AllocatedMemoryPointer);
+    (*InterfaceFunctionPointer)(SystemInterfacePointer,&MemoryBufferSize);
+    (**(code **)(*AllocatedMemoryPointer + 0x38))(AllocatedMemoryPointer);
     ConfigureInputSystem();
     puStack_1d8 = &SystemGlobalDataReference;
     uStack_1c0 = 0;
@@ -18073,31 +18073,31 @@ void InitializeSystemInfoAndUserEnvironment(void)
     puStack_1f0 = (void* *)0x0;
     uStack_1e8 = 0;
     plStack_208 = (long long *)CONCAT44(plStack_208._4_4_,0x10);
-    iVar4 = GetComputerNameA(applStack_150,&plStack_208);
-    if (iVar4 == 0) {
+    OperationResult = GetComputerNameA(ComputerNameBufferPointer,&MemoryBufferSize);
+    if (OperationResult == 0) {
       LogSystemError(&UNK_180a3c110);
     }
     else {
-      if (0xf < ((ulong long)plStack_208 & 0xffffffff)) goto LAB_180044db8;
-      *(uint8_t *)((long long)applStack_150 + ((ulong long)plStack_208 & 0xffffffff)) = 0;
-      (**(code **)(puStack_1d8 + 0x10))(&puStack_1d8,applStack_150);
+      if (0xf < ((ulong long)MemoryBufferSize & 0xffffffff)) goto LAB_180044db8;
+      *(uint8_t *)((long long)ComputerNameBufferPointer + ((ulong long)MemoryBufferSize & 0xffffffff)) = 0;
+      (**(code **)(puStack_1d8 + 0x10))(&puStack_1d8,ComputerNameBufferPointer);
     }
-    plStack_208 = (long long *)CONCAT44(plStack_208._4_4_,0x101);
-    iVar4 = GetUserNameA(auStack_138,&plStack_208);
-    if (iVar4 == 0) {
+    MemoryBufferSize = (long long *)CONCAT44(MemoryBufferSize._4_4_,0x101);
+    OperationResult = GetUserNameA(UserNameBuffer,&MemoryBufferSize);
+    if (OperationResult == 0) {
       LogSystemError(&UNK_180a3c138);
     }
     else {
-      if (0x100 < ((ulong long)plStack_208 & 0xffffffff)) {
+      if (0x100 < ((ulong long)MemoryBufferSize & 0xffffffff)) {
         ProcessSystemEvent();
 LAB_180044db8:
         ProcessSystemEvent();
-        pcVar2 = (code *)swi(3);
-        (*pcVar2)();
+        ExceptionHandlerFunction = (code *)swi(3);
+        (*ExceptionHandlerFunction)();
         return;
       }
-      auStack_138[(ulong long)plStack_208 & 0xffffffff] = 0;
-      (**(code **)(puStack_1f8 + 0x10))(&puStack_1f8,auStack_138);
+      UserNameBuffer[(ulong long)MemoryBufferSize & 0xffffffff] = 0;
+      (**(code **)(puStack_1f8 + 0x10))(&puStack_1f8,UserNameBuffer);
     }
     puStack_218 = &SystemStringTemplate;
     if (puStack_1f0 != (void* *)0x0) {
@@ -18221,21 +18221,21 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long initializa
   if ((char)*libraryHandle != '\0') goto LAB_180044faf;
   mutexPointer = symbolTablePointer;
   initializationResult = LockMutex(symbolTablePointer);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  if (initializationResult != 0) {
+    __Throw_C_error_std__YAXH_Z(initializationResult);
   }
   SymSetOptions(0x2017);
   InitializeSystemLogging(&puStack_b8);
-  puVar13 = &SystemStringTemplate;
-  if (puStack_b0 != (void* *)0x0) {
-    puVar13 = puStack_b0;
+  SearchPathTemplate = &SystemStringTemplate;
+  if (CustomSearchPath != (void* *)0x0) {
+    SearchPathTemplate = CustomSearchPath;
   }
-  SymSetSearchPath(_DAT_180c96218,puVar13);
-  lVar7 = plVar6[0xb];
-  if (lVar7 == 0) {
-    lVar7 = LoadLibraryA(&UNK_180a3c428);
-    plVar6[0xb] = lVar7;
-    if (lVar7 != 0) goto LAB_180044ee3;
+  SymSetSearchPath(_DAT_180c96218,SearchPathTemplate);
+  LibraryHandle = AllocatedMemoryPointer[0xb];
+  if (LibraryHandle == 0) {
+    LibraryHandle = LoadLibraryA(&UNK_180a3c428);
+    AllocatedMemoryPointer[0xb] = LibraryHandle;
+    if (LibraryHandle != 0) goto LAB_180044ee3;
     puStack_b8 = &SystemGlobalDataReference;
     if (puStack_b0 != (void* *)0x0) {
                     // WARNING: Subroutine does not return
