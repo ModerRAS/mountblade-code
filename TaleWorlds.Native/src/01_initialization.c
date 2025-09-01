@@ -1554,9 +1554,9 @@ void InitializeSystemCoreData(void)
   void** PreviousNode;
   void** NextNode;
   void** NewNode;
-  code *initializationCallback;
+  code *InitializationCallback;
   
-  systemHandle = (long long*)GetSystemRootPointer();
+  SystemHandle = (long long*)GetSystemRootPointer();
   systemRootPointer = (void* *)*systemHandle;
   StatusFlag = *(char*)((long long)systemRootPointer[1] + 0x19);
   initializationCallback = GetSystemInitializationCallback;
