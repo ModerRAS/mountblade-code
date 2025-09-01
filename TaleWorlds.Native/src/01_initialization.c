@@ -1531,11 +1531,11 @@ void InitializeSystemCoreData(void)
     AllocateSystemMemory(SystemDataTablePointer,&AllocatedSystemNode,PreviousSystemNode,RequiredMemorySize + 0x20,RequiredMemorySize);
     PreviousSystemNode = AllocatedSystemNode;
   }
-  PreviousNode[6] = 0x421c3cedd07d816d;
-  PreviousNode[7] = 0xbec25de793b7afa6;
-  PreviousNode[8] = &SystemNodeLinkPointerA;
-  PreviousNode[9] = 0;
-  PreviousNode[10] = InitializationCallback;
+  PreviousSystemNode[6] = 0x421c3cedd07d816d;
+  PreviousSystemNode[7] = 0xbec25de793b7afa6;
+  PreviousSystemNode[8] = &SystemNodeLinkPointerA;
+  PreviousSystemNode[9] = 0;
+  PreviousSystemNode[10] = SystemInitializationCallback;
   return;
 }
 
