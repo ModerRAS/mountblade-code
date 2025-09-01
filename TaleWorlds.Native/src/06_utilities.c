@@ -50280,27 +50280,27 @@ void SystemUnwindValidationHandler(uint8_t8 param_1,longlong param_2)
   longlong ResourceIndex;
   ulonglong AddressMask;
   
-  pvalidationResult = *(uint8_t8 **)(param_2 + 0x230);
-  if (pvalidationResult == (uint8_t8 *)0x0) {
+  ValidationResult = *(uint8_t8 **)(param_2 + 0x230);
+  if (ValidationResult == (uint8_t8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
-      *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+  AddressMask = (ulonglong)ValidationResult & 0xffffffffffc00000;
+  if (AddressMask != 0) {
+    ResourceIndex = AddressMask + 0x80 + ((longlong)ValidationResult - AddressMask >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (ulonglong)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(AddressMask + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ValidationResult = *(uint8_t8 *)(ResourceIndex + 0x20);
+      *(uint8_t8 **)(ResourceIndex + 0x20) = ValidationResult;
+      ReferenceCount = (int *)(ResourceIndex + 0x18);
+      *ReferenceCount = *ReferenceCount + -1;
+      if (*ReferenceCount == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          pvalidationResult,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(AddressMask,CONCAT71(0xff000000,*(void ***)(AddressMask + 0x70) == &ExceptionList),
+                          ValidationResult,AddressMask,0xfffffffffffffffe);
     }
   }
   return;
