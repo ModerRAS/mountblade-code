@@ -20341,7 +20341,7 @@ void* CopySystemDataStructure(void* *SystemResourcePointer,void* *sourceDataPoin
 {
   *SystemResourcePointer = *sourceDataPointer;
   *(uint32_t *)(SystemResourcePointer + 1) = *(uint32_t *)(sourceDataPointer + 1);
-  InitializeSystemResourceExtended(SystemResourcePointer + 2,param_2 + 2,param_3,param_4,0xfffffffffffffffe);
+  InitializeSystemResourceExtended(SystemResourcePointer + 2,sourceDataPointer + 2,copyFlags,additionalParams,0xfffffffffffffffe);
   *(uint32_t *)(SystemResourcePointer + 0x15) = *(uint32_t *)(param_2 + 0x15);
   *(uint32_t *)((long long)SystemResourcePointer + 0xac) = *(uint32_t *)((long long)param_2 + 0xac);
   SystemResourcePointer[0x16] = param_2[0x16];

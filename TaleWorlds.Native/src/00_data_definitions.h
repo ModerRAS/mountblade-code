@@ -11056,19 +11056,19 @@ uint64_t SystemMemoryAllocate(uint64_t memorySize)
 {
   uint64_t MemoryAddress;
   longlong lVar2;
-  MemoryAddress = MemoryAllocateEx(_DAT_180c8ed18,param_1,0x19);
+  MemoryAddress = MemoryAllocateEx(_DAT_180c8ed18,memorySize,0x19);
   lVar2 = MemoryValidateEx(MemoryAddress);
   LOCK();
   _DAT_180c967c8 = _DAT_180c967c8 + lVar2;
   UNLOCK();
   return MemoryAddress;
 }
-uint64_t SystemMemoryResize(uint64_t param_1,uint64_t param_2)
+uint64_t SystemMemoryResize(uint64_t memoryAddress, uint64_t newSize)
 {
   int64_t ModuleInitializationResult;
   uint64_t BufferSize;
   ModuleInitializationResult = MemoryValidateEx();
-  BufferSize = FUN_18062b680(_DAT_180c8ed18,param_1,param_2,0x19);
+  BufferSize = FUN_18062b680(_DAT_180c8ed18,memoryAddress,newSize,0x19);
   LOCK();
   _DAT_180c967c8 = _DAT_180c967c8 - ModuleInitializationResult;
   UNLOCK();
