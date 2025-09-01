@@ -60005,12 +60005,12 @@ void FUN_18007940e(void)
 
 
 
-void* * FUN_180079430(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void* * GetSystemResourceConfigurationPointer(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* unsignedSystemValue1;
+  void* configurationResultPointer;
   
-  unsignedSystemValue1 = 0xfffffffffffffffe;
+  configurationResultPointer = (void*)0xfffffffffffffffe;
   if (*(long long *)(SystemResourcePointer + 0x1b8) != 0) {
     return (void* *)(*(long long *)(SystemResourcePointer + 0x1b8) + 0x10);
   }
@@ -60022,7 +60022,16 @@ void* * FUN_180079430(long long SystemResourcePointer,void* ConfigurationDataPoi
       SystemDataValue7 = &SystemDataValue8;
 
 // 函数: void FUN_180079520(long long SystemResourcePointer)
-void FUN_180079520(long long SystemResourcePointer)
+/**
+ * @brief 系统资源锁定状态管理器函数
+ * 
+ * 该函数负责管理系统资源的锁定状态，确保资源访问的同步性。
+ * 它会检查资源的状态标志，并在必要时等待资源解锁。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含需要管理的资源信息
+ * @note 这是系统资源同步管理的重要组成部分，用于确保资源访问的安全性
+ */
+void ManageSystemResourceLockState(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
@@ -60050,7 +60059,16 @@ void FUN_180079520(long long SystemResourcePointer)
 
 
 
-uint8_t FUN_18007953e(void)
+/**
+ * @brief 系统资源状态获取器函数
+ * 
+ * 该函数负责获取系统资源的当前状态，包括锁定状态和可用性。
+ * 它会轮询资源状态，并在资源可用时返回状态信息。
+ * 
+ * @return 系统资源状态字节，包含资源的当前状态信息
+ * @note 这是系统资源状态监控的重要组成部分，用于实时获取资源状态
+ */
+uint8_t GetSystemResourceState(void)
 
 {
   uint8_t *pointerToUnsigned1;
@@ -60082,8 +60100,15 @@ uint8_t FUN_18007953e(void)
 
 
 
-// 函数: void FUN_18007959e(void)
-void FUN_18007959e(void)
+/**
+ * @brief 系统空操作函数
+ * 
+ * 该函数是一个空操作函数，用于占位或作为默认的空实现。
+ * 在某些情况下，它可能被用作回调函数或默认处理函数。
+ * 
+ * @note 这是一个占位函数，不执行任何实际操作
+ */
+void SystemNoOperation(void)
 
 {
   return;
@@ -60091,7 +60116,16 @@ void FUN_18007959e(void)
 
 
 
-uint8_t FUN_1800795a4(void)
+/**
+ * @brief 系统状态标志获取器函数
+ * 
+ * 该函数负责获取系统的状态标志，包括系统运行状态和错误状态。
+ * 它会读取系统状态寄存器，并返回当前的状态信息。
+ * 
+ * @return 系统状态标志字节，包含系统的当前状态信息
+ * @note 这是系统状态监控的重要组成部分，用于实时获取系统状态
+ */
+uint8_t GetSystemStatusFlag(void)
 
 {
   uint8_t *pointerToUnsigned1;
