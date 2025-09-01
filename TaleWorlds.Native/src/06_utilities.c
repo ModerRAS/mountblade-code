@@ -2116,8 +2116,8 @@ undefined LogOutputConfigDataTemplateB;
  * 格式化消息并输出到配置的目标
  */
 void ProcessLogMessage;
-undefined UNK_180a015f0;
-undefined UNK_180a015fc;
+undefined LogMessageProcessorDataTemplateA;
+undefined LogMessageProcessorDataTemplateB;
 undefined UNK_180a01604;
 undefined UNK_180a01610;
 undefined DAT_180a01440;
@@ -12266,7 +12266,7 @@ LAB_180896ce3:
     }
   }
   if (((param_4 != '\0') || (*(int *)(*(longlong *)(param_2 + 0x2e8) + 0x34) == 0)) &&
-     (iVar3 = FUN_180897b40(param_1,param_2,param_3), iVar3 == 0)) {
+     (iVar3 = ProcessResourceOperation(param_1,param_2,param_3), iVar3 == 0)) {
     for (iVar3 = 0; (-1 < iVar3 && (iVar3 < *(int *)(param_2 + 0x48))); iVar3 = iVar3 + 1) {
       lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + (longlong)iVar3 * 8);
       resourceTable = *(longlong *)(lVar1 + 0x68);
@@ -12548,7 +12548,7 @@ void ModuleProcessErrorHandler(void)
   float in_stack_00000048;
   
   if (((unaff_R15B != '\0') || (*(int *)(*(longlong *)(unaff_R13 + 0x2e8) + 0x34) == unaff_R12D)) &&
-     (iVar7 = FUN_180897b40(), iVar7 == 0)) {
+     (iVar7 = ProcessResourceOperation(), iVar7 == 0)) {
     for (iVar7 = 0; (-1 < iVar7 && (iVar7 < *(int *)(unaff_R13 + 0x48))); iVar7 = iVar7 + 1) {
       lVar1 = *(longlong *)(*(longlong *)(unaff_R13 + 0x40) + (longlong)iVar7 * 8);
       resourceTable = *(longlong *)(lVar1 + 0x68);
@@ -83191,12 +83191,21 @@ bool CheckSystemConfigurationStatus(undefined8 *configurationPointer)
 
 
  void FUN_1809413ed(undefined8 param_1,longlong param_2)
-void FUN_1809413ed(undefined8 param_1,longlong param_2)
+/**
+ * @brief 处理网络连接数据传输
+ * 
+ * 该函数负责处理网络连接的数据传输操作
+ * 在特定条件下执行网络数据传输和验证
+ * 
+ * @param ConnectionHandle 网络连接句柄
+ * @param ConnectionContext 网络连接上下文
+ */
+void ProcessNetworkConnectionDataTransfer(undefined8 ConnectionHandle, longlong ConnectionContext)
 
 {
-  if (*(char *)(param_2 + 0x20) == '\0') {
-    FUN_1808fc914(*(undefined8 *)(param_2 + 0x50),*(undefined8 *)(param_2 + 0x58),
-                  *(undefined8 *)(param_2 + 0x28),*(undefined8 *)(param_2 + 0x70));
+  if (*(char *)(ConnectionContext + 0x20) == '\0') {
+    FUN_1808fc914(*(undefined8 *)(ConnectionContext + 0x50),*(undefined8 *)(ConnectionContext + 0x58),
+                  *(undefined8 *)(ConnectionContext + 0x28),*(undefined8 *)(ConnectionContext + 0x70));
   }
   return;
 }

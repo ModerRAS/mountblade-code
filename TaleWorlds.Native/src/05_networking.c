@@ -7188,8 +7188,8 @@ void ProcessNetworkConnectionPacketTransfer(longlong connectionContext,longlong 
     }
     cStack_60 = '\0';
     puStack_68 = &UNK_1809845a0;
-    networkStatus3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x80,packetData);
-    if ((networkStatus3 != 0) || (networkStatus3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x90,packetData), networkStatus3 != 0))
+    networkStatus3 = NetworkConnectionValidator(&puStack_68,lVar4 + 0x80,packetData);
+    if ((networkStatus3 != 0) || (networkStatus3 = NetworkConnectionValidator(&puStack_68,lVar4 + 0x90,packetData), networkStatus3 != 0))
     goto LAB_180847c35;
     if (cStack_60 == '\0') {
       for (quinaryNetworkFlag = *(ulonglong *)(connectionContext + 0x70);
@@ -7201,8 +7201,8 @@ void ProcessNetworkConnectionPacketTransfer(longlong connectionContext,longlong 
                     // WARNING: Subroutine does not return
           ProcessNetworkPacketArray(quinaryNetworkFlag,&puStack_58);
         }
-        networkStatus3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x80,packetData);
-        if ((networkStatus3 != 0) || (networkStatus3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x90,packetData), networkStatus3 != 0))
+        networkStatus3 = NetworkConnectionValidator(&puStack_68,lVar4 + 0x80,packetData);
+        if ((networkStatus3 != 0) || (networkStatus3 = NetworkConnectionValidator(&puStack_68,lVar4 + 0x90,packetData), networkStatus3 != 0))
         goto LAB_180847c35;
         if (cStack_60 != '\0') goto LAB_180847bfb;
       }
@@ -7215,7 +7215,7 @@ void ProcessNetworkConnectionPacketTransfer(longlong connectionContext,longlong 
                     // WARNING: Subroutine does not return
           ProcessNetworkPacketArray(quinaryNetworkFlag,&puStack_58);
         }
-        lVar4 = FUN_18083fb90(packetData,lVar4 + 0x38);
+        lVar4 = NetworkDataOffsetProcessor(packetData,lVar4 + 0x38);
         if (lVar4 == 0) goto LAB_180847c35;
         cVar1 = func_0x00018084dda0(lVar4);
         if (cVar1 != '\0') goto LAB_180847bfb;
@@ -7223,8 +7223,8 @@ void ProcessNetworkConnectionPacketTransfer(longlong connectionContext,longlong 
       cStack_50 = '\0';
       puStack_58 = &UNK_1809845c0;
       plStack_48 = packetData;
-      networkStatus3 = FUN_18084b990(&puStack_58,connectionContext,packetData);
-      if ((networkStatus3 != 0) || (networkStatus3 = FUN_18084be00(&puStack_58,connectionContext,packetData), networkStatus3 != 0))
+      networkStatus3 = NetworkConnectionPacketValidator(&puStack_58,connectionContext,packetData);
+      if ((networkStatus3 != 0) || (networkStatus3 = NetworkConnectionDataValidator(&puStack_58,connectionContext,packetData), networkStatus3 != 0))
       goto LAB_180847c35;
       bVar2 = 1;
       if (cStack_50 != '\0') goto LAB_180847bfb;
@@ -8798,7 +8798,7 @@ FUN_180848ff1:
 
 
 
-// 函数: void FUN_180848f4e(void)
+// 函数: void NetworkConnectionInitialize(void)
 /**
  * @brief 处理网络连接状态同步
  * 
@@ -14997,7 +14997,7 @@ NetworkHandle FUN_18084d86d(void)
 
 
 
-NetworkHandle FUN_18084d93b(NetworkHandle connectionContext,int packetData)
+NetworkHandle ProcessNetworkPacketValidation(NetworkHandle connectionContext,int packetData)
 
 {
   uint primaryNetworkFlag;
@@ -15085,7 +15085,7 @@ NetworkData * NetworkDataManager(void)
 
 
 
-NetworkHandle * FUN_18084da70(NetworkHandle *connectionContext)
+NetworkHandle * InitializeNetworkConnectionContext(NetworkHandle *connectionContext)
 
 {
   FUN_1808b0200(connectionContext,0x16);
@@ -113238,7 +113238,7 @@ NetworkHandle ValidateAndProcessNetworkPacket(longlong connectionContext,longlon
       if (*(int *)(packetData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      primaryNetworkFlag = FUN_180899ef0(*packetData,connectionContext + 0x60);
+      primaryNetworkFlag = NetworkConnectionContextValidator(*packetData,connectionContext + 0x60);
       if ((int)primaryNetworkFlag != 0) {
         return primaryNetworkFlag;
       }
