@@ -6519,13 +6519,13 @@ void ValidateObjectContextAndUpdateStatus(longlong objectContext, longlong syste
   
   iVar1 = ValidateObjectContext(*(uint8_t4 *)(param_1 + 0x10),&uStackX_8);
   if (iVar1 == 0) {
-    iVar1 = func_0x0001808c8710(uStackX_8);
+    iVar1 = ValidateSystemParameter(uStackX_8);
     if (iVar1 < 1) {
-      iVar1 = func_0x0001808c8700(uStackX_8);
+      iVar1 = ValidateSystemContext(uStackX_8);
       *(uint *)(param_1 + 0x18) = (uint)(iVar1 < 1);
     }
     else {
-      iVar1 = func_0x0001808c8700(uStackX_8);
+      iVar1 = ValidateSystemContext(uStackX_8);
       if (iVar1 < 1) {
         *(uint8_t4 *)(param_1 + 0x18) = 2;
       }
@@ -6559,13 +6559,13 @@ void ValidateAndProcessSystemStatusData(void)
   longlong systemStatusPointer;
   uint8_t8 systemParameter;
   
-  validationStatus = func_0x0001808c8710(systemParameter);
+  validationStatus = ValidateSystemParameter(systemParameter);
   if (validationStatus < 1) {
-    validationStatus = func_0x0001808c8700(systemParameter);
+    validationStatus = ValidateSystemContext(systemParameter);
     *(uint *)(systemStatusPointer + 0x18) = (uint)(validationStatus < 1);
   }
   else {
-    validationStatus = func_0x0001808c8700(systemParameter);
+    validationStatus = ValidateSystemContext(systemParameter);
     if (validationStatus < 1) {
       *(uint8_t4 *)(systemStatusPointer + 0x18) = 2;
     }
@@ -6798,7 +6798,7 @@ uint8_t8 ValidateObjectContextAndProcessBuffers(longlong objectContext, longlong
         else {
           stringPointer = *(uint8_t **)(bufferEntryPointer + 0x50);
         }
-        comparisonResult = func_0x00018076b630(stringPointer,objectContext + 0x1c);
+        comparisonResult = CompareStringWithContext(stringPointer,objectContext + 0x1c);
         if (comparisonResult == 0) {
           validationStatus = ValidateBufferContext(bufferContext,objectContext + 0x18);
           if ((int)validationStatus != 0) {
@@ -6862,7 +6862,7 @@ uint64_t ValidateSystemBufferContext(void)
       else {
         stringPointer = *(uint8_t **)(bufferDataPointer + 0x50);
       }
-      validationStatus = func_0x00018076b630(stringPointer);
+      validationStatus = CompareStringWithContext(stringPointer);
       if (validationStatus == 0) {
         operationResult = ValidateBufferContext(contextPointer,systemContext2 + 0x18);
         if ((int)operationResult != 0) {

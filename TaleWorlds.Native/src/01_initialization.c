@@ -18821,12 +18821,12 @@ void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
 void ProcessSystemMemoryCopy(long long targetBuffer,void* sourceData,int copyLength)
 
 {
-  if (param_3 + 1 < 0x400) {
+  if (copyLength + 1 < 0x400) {
                     // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(param_1 + 8),param_2,(long long)param_3);
+    memcpy(*(uint8_t **)(targetBuffer + 8),sourceData,(long long)copyLength);
   }
-  **(uint8_t **)(param_1 + 8) = 0;
-  *(uint32_t *)(param_1 + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
   return;
 }
 
