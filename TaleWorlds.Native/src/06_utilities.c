@@ -6303,7 +6303,7 @@ void ExpandDynamicBufferCapacity(int64_t objectContext, int64_t SystemContext)
     *(int *)(bufferContext + 0x2c) = validationStatus;
   }
   *(int64_t *)(*(int64_t *)(bufferContext + 0x20) + (int64_t)*(int *)(bufferContext + 0x28) * 8) =
-       tempStackBuffer;
+       temporaryStackBuffer;
   *(int *)(bufferContext + 0x28) = *(int *)(bufferContext + 0x28) + 1;
 LAB_180891fc0:
                     // WARNING: Subroutine does not return
