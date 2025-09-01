@@ -116,7 +116,7 @@ bool SystemStatusFlag1Initialized;
  * 用于判断系统是否处于特定的运行状态
  */
 uint32_t GetSystemStatusFlag2(void);
-bool systemStatusFlag2Initialized;
+bool SystemStatusFlag2Initialized;
 
 
 /**
@@ -126,7 +126,7 @@ bool systemStatusFlag2Initialized;
  * 用于判断系统是否处于特定的运行状态
  */
 uint32_t GetSystemStatusFlag3(void);
-bool systemStatusFlag3Initialized;
+bool SystemStatusFlag3Initialized;
 
  /**
  * @brief 获取系统状态标志4
@@ -135,7 +135,7 @@ bool systemStatusFlag3Initialized;
  * 用于判断系统是否处于特定的运行状态
  */
 uint32_t GetSystemStatusFlag4(void);
-bool systemStatusFlag4Initialized;
+bool SystemStatusFlag4Initialized;
 
 
 /**
