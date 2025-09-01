@@ -2328,15 +2328,15 @@ undefined SystemMemoryConfigDataTemplateAA68;
 undefined SystemMemoryConfigDataTemplateABB0;
 undefined UNK_18098be5c;
 undefined SystemMemoryConfigDataTemplateAAC8;
-undefined UNK_180a2aad0;
-undefined UNK_180a2aa78;
-undefined UNK_180a2aa90;
-undefined UNK_180a2aaa8;
-undefined UNK_180a2aab8;
-undefined UNK_180a2aae0;
-undefined UNK_180a2aaf0;
-undefined UNK_180a2ab48;
-undefined UNK_180a2ab58;
+undefined SystemMemoryConfigDataTemplateAAD0;
+undefined SystemMemoryConfigDataTemplateAA78;
+undefined SystemMemoryConfigDataTemplateAA90;
+undefined SystemMemoryConfigDataTemplateAAA8;
+undefined SystemMemoryConfigDataTemplateAAB8;
+undefined SystemMemoryConfigDataTemplateAAE0;
+undefined SystemMemoryConfigDataTemplateAAF0;
+undefined SystemMemoryConfigDataTemplateAB48;
+undefined SystemMemoryConfigDataTemplateAB58;
 undefined DAT_180d49d0c;
 undefined DAT_180d49d10;
 undefined DAT_180d49d18;
@@ -9919,9 +9919,9 @@ LAB_180894aca:
   if (iVar1 == 0) {
     iVar1 = ValidateResourceTable(param_2,param_1 + 0x18,*(undefined4 *)(param_1 + 0x10));
     if (iVar1 == 0) {
-      iVar1 = FUN_18088f5c0(param_2,param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8);
+      iVar1 = ProcessResourceEntryWithValidation(param_2,param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8);
       if (iVar1 == 0) {
-        FUN_18088f470(param_2,param_1 + 0x14);
+        CleanupResourceEntryData(param_2,param_1 + 0x14);
       }
     }
   }
@@ -9982,7 +9982,7 @@ uint32_t ProcessSystemConfigurationAndValidation(longlong systemContext,undefine
       *(longlong **)(param_1 + 0x58) = plVar1;
       **(longlong **)(param_4 + 0x10) = (longlong)plVar1;
       func_0x0001808ded80(param_4,uStackX_20);
-      FUN_180882c20(param_1,uStackX_20);
+      ProcessDataBlockOperation(param_1,uStackX_20);
     }
   }
 LAB_180894ebf:
@@ -10075,23 +10075,23 @@ uint64_t ProcessObjectLifecycleManagement(longlong objectHandle)
   undefined8 uVar3;
   uint uVar4;
   
-  FUN_18088c620();
-  FUN_180840270(param_1 + 0xd8);
-  iVar2 = FUN_180744cc0(dataContext + 0x70);
-  if ((iVar2 == 0) && (iVar2 = FUN_180895130(dataContext + 0x80), iVar2 == 0)) {
+  InitializeConfigurationContext();
+  FreeMemoryResource(param_1 + 0xd8);
+  iVar2 = ProcessDataContextOperations(dataContext + 0x70);
+  if ((iVar2 == 0) && (iVar2 = FindEntryInResourcePool(dataContext + 0x80), iVar2 == 0)) {
     *(undefined4 *)(param_1 + 0x90) = 0xffffffff;
     *(undefined4 *)(dataContext + 0x94) = 0;
   }
-  FUN_180895130(dataContext + 0x80);
-  FUN_180744cc0(dataContext + 0x70);
-  iVar2 = FUN_180744cc0(param_1 + 0x28);
-  if ((iVar2 == 0) && (iVar2 = FUN_180895070(param_1 + 0x38), iVar2 == 0)) {
+  FindEntryInResourcePool(dataContext + 0x80);
+  ProcessDataContextOperations(dataContext + 0x70);
+  iVar2 = ProcessDataContextOperations(param_1 + 0x28);
+  if ((iVar2 == 0) && (iVar2 = ValidateResourceEntryIntegrity(param_1 + 0x38), iVar2 == 0)) {
     *(undefined4 *)(param_1 + 0x48) = 0xffffffff;
     *(undefined4 *)(param_1 + 0x4c) = 0;
   }
-  FUN_180895070(param_1 + 0x38);
-  FUN_180744cc0(param_1 + 0x28);
-  FUN_180894ef0(param_1 + 0x18);
+  ValidateResourceEntryIntegrity(param_1 + 0x38);
+  ProcessDataContextOperations(param_1 + 0x28);
+  InitializeResourceEntryData(param_1 + 0x18);
   plVar1 = (longlong *)(param_1 + 8);
   uVar4 = *(uint *)(param_1 + 0x14);
   if ((int)((uVar4 ^ (int)uVar4 >> 0x1f) - ((int)uVar4 >> 0x1f)) < 0) {
@@ -10113,7 +10113,7 @@ uint64_t ProcessObjectLifecycleManagement(longlong objectHandle)
   }
   *(undefined4 *)(param_1 + 0x10) = 0;
   if ((0 < (int)((uVar4 ^ (int)uVar4 >> 0x1f) - ((int)uVar4 >> 0x1f))) &&
-     (uVar3 = FUN_180849030(plVar1,0), (int)uVar3 != 0)) {
+     (uVar3 = CheckResourceTableStatus(plVar1,0), (int)uVar3 != 0)) {
     return uVar3;
   }
   return 0;
@@ -11778,8 +11778,8 @@ LAB_18089638e:
       resourceHash0 = (ulonglong)uVar8;
     } while ((int)uVar8 < *(int *)(param_1 + 0x20));
   }
-  iVar4 = FUN_180744cc0(dataContext + 0x70);
-  if ((iVar4 == 0) && (iVar4 = FUN_180895130(dataContext + 0x80), iVar4 == 0)) {
+  iVar4 = ProcessDataContextOperations(dataContext + 0x70);
+  if ((iVar4 == 0) && (iVar4 = FindEntryInResourcePool(dataContext + 0x80), iVar4 == 0)) {
     *(undefined4 *)(param_1 + 0x90) = 0xffffffff;
     *(undefined4 *)(dataContext + 0x94) = 0;
   }
@@ -11855,7 +11855,7 @@ undefined8 * InitializeDataStructure(undefined8 *dataPointer, ulonglong flags)
 undefined8 * InitializeAlternativeDataStructure(undefined8 *dataPointer, ulonglong flags)
 {
   *dataPointer = &UNK_180986370;
-  FUN_180840270(dataPointer + 5);
+  FreeMemoryResource(dataPointer + 5);
   *dataPointer = &UNK_180986350;
   if ((flags & 1) != 0) {
     free(dataPointer,0x38);
@@ -14343,14 +14343,14 @@ LAB_18089866f:
     if (iVar3 < 0x40) {
       iVar3 = 0x40;
     }
-    iVar3 = FUN_180849030(param_1 + 0x28,iVar3);
+    iVar3 = CheckResourceTableStatus(param_1 + 0x28,iVar3);
     if (iVar3 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)(param_1 + 0x34) >> 0x1f;
   if (((int)((*(uint *)(param_1 + 0x34) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar3 = FUN_180849030(param_1 + 0x28,iVar6), iVar3 != 0)) {
+     (iVar3 = CheckResourceTableStatus(param_1 + 0x28,iVar6), iVar3 != 0)) {
     return;
   }
   iVar3 = *(int *)(param_1 + 0x30);
@@ -14384,7 +14384,7 @@ undefined8 ProcessResourceDataExpansion(longlong *param_1,int param_2)
   
   uVar3 = (int)*(uint *)((longlong)param_1 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((longlong)param_1 + 0xc) ^ uVar3) - uVar3) < param_2) &&
-     (uVar2 = FUN_180849030(param_1,param_2), (int)uVar2 != 0)) {
+     (uVar2 = CheckResourceTableStatus(param_1,param_2), (int)uVar2 != 0)) {
     return uVar2;
   }
   iVar1 = (int)param_1[1];
@@ -15965,13 +15965,13 @@ undefined8 QueryResourceTable(undefined8 param_1, longlong *param_2)
   }
   lVar4 = (longlong)aiStackX_18[0];
   if (aiStackX_18[0] == 0) {
-    FUN_180840270(param_2);
+    FreeMemoryResource(param_2);
   }
   else {
     tableEntry = aiStackX_18[0] + 1;
     uVar3 = (int)*(uint *)((longlong)param_2 + 0xc) >> 0x1f;
     if (((int)((*(uint *)((longlong)param_2 + 0xc) ^ uVar3) - uVar3) < tableEntry) &&
-       (uVar2 = FUN_180849030(param_2,tableEntry), (int)uVar2 != 0)) {
+       (uVar2 = CheckResourceTableStatus(param_2,tableEntry), (int)uVar2 != 0)) {
       return uVar2;
     }
     iVar1 = (int)param_2[1];
@@ -16010,13 +16010,13 @@ undefined8 InitializeResourceBuffer(void)
   int in_stack_00000040;
   
   if (in_stack_00000040 == 0) {
-    FUN_180840270();
+    FreeMemoryResource();
   }
   else {
     iVar4 = in_stack_00000040 + 1;
     uVar3 = (int)*(uint *)((longlong)unaff_RBX + 0xc) >> 0x1f;
     if (((int)((*(uint *)((longlong)unaff_RBX + 0xc) ^ uVar3) - uVar3) < iVar4) &&
-       (uVar2 = FUN_180849030(), (int)uVar2 != 0)) {
+       (uVar2 = CheckResourceTableStatus(), (int)uVar2 != 0)) {
       return uVar2;
     }
     iVar1 = (int)unaff_RBX[1];
@@ -17820,7 +17820,14 @@ undefined8 ValidateResourceTableEntry(longlong resourceContext, undefined8 *reso
 
 
 
-undefined8 FUN_18089ac64(void)
+/**
+ * @brief 获取资源表状态
+ * 
+ * 该函数负责获取当前资源表的状态信息
+ * 
+ * @return 资源表状态标志
+ */
+undefined8 GetResourceTableStatus(void)
 
 {
   longlong in_RAX;
@@ -17883,7 +17890,15 @@ ac96(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18089ace4(void)
+/**
+ * @brief 初始化资源表缓存
+ * 
+ * 该函数负责初始化资源表的缓存系统
+ * 提高资源访问性能
+ * 
+ * @return 初始化结果状态码
+ */
+undefined8 InitializeResourceTableCache(void)
 
 {
   float fVar1;
@@ -17998,7 +18013,7 @@ ae50(longlong param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
 
 
 
-ulonglong FUN_18089af12(void)
+ulonglong ValidateAndProcessResourceData(void)
 
 {
   longlong *plVar1;
@@ -18464,7 +18479,17 @@ b400(longlong param_1,undefined8 param_2)
 
 
 
-undefined8 FUN_18089b460(longlong param_1,longlong *param_2)
+/**
+ * @brief 处理资源缓冲区数据
+ * 
+ * 该函数负责处理资源缓冲区中的数据
+ * 进行数据验证和格式转换
+ * 
+ * @param ResourceContext 资源上下文指针
+ * @param ResourceData 资源数据指针
+ * @return 处理结果状态码
+ */
+undefined8 ProcessResourceBufferData(longlong ResourceContext, longlong *ResourceData)
 
 {
   longlong lVar1;
@@ -18574,7 +18599,15 @@ LAB_1808a2e6d:
 
 
 
-undefined8 FUN_18089b52a(void)
+/**
+ * @brief 获取资源池信息
+ * 
+ * 该函数负责获取资源池的相关信息
+ * 包括资源数量、状态等
+ * 
+ * @return 资源池信息指针
+ */
+undefined8 GetResourcePoolInfo(void)
 
 {
   longlong lVar1;
@@ -19812,7 +19845,7 @@ be10(longlong param_1,undefined8 *param_2,int param_3)
   lVar6 = (longlong)(int)auStackX_8[0];
   uVar4 = (int)*(uint *)(param_1 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(param_1 + 0x2c) ^ uVar4) - uVar4) < (int)auStackX_8[0]) &&
-     (iVar2 = FUN_180849030(param_1 + 0x20,auStackX_8[0]), iVar2 != 0)) {
+     (iVar2 = CheckResourceTableStatus(param_1 + 0x20,auStackX_8[0]), iVar2 != 0)) {
     return;
   }
   iVar2 = *(int *)(param_1 + 0x28);
@@ -19921,7 +19954,7 @@ be41(void)
   lVar5 = (longlong)(int)in_stack_00000050;
   uVar3 = (int)*(uint *)(unaff_R15 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(unaff_R15 + 0x2c) ^ uVar3) - uVar3) < (int)in_stack_00000050) &&
-     (iVar2 = FUN_180849030(unaff_R15 + 0x20,in_stack_00000050), iVar2 != 0)) {
+     (iVar2 = CheckResourceTableStatus(unaff_R15 + 0x20,in_stack_00000050), iVar2 != 0)) {
     return;
   }
   iVar2 = *(int *)(unaff_R15 + 0x28);
