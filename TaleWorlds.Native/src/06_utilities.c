@@ -12785,7 +12785,7 @@ void ProcessComplexResourceWithRegisters(void)
   uint32_t resourceData2;
   int operationResult;
   int processingCounter;
-  int tempIndex;
+  int temporaryIndex;
   uint32_t systemRegister1;
   int64_t executionContext;
   int systemRegister2;
@@ -13028,8 +13028,8 @@ void ProcessComplexResourceWithRegisters(void)
       resourceTablePointer = *(int64_t *)(localContextPointer + 0x48);
       if (resourceTablePointer != 0) {
         contextFlags = 0;
-        tempIndex = ValidateBufferContext(resourceTablePointer,&contextFlags);
-        if (tempIndex != 0) break;
+        temporaryIndex = ValidateBufferContext(resourceTablePointer,&contextFlags);
+        if (temporaryIndex != 0) break;
         validationStatus1 = *(uint32_t *)(localContextPointer + 0x10);
         validationStatus2 = *(uint32_t *)(localContextPointer + 0x14);
         resourceData1 = *(uint32_t *)(localContextPointer + 0x18);
