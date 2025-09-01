@@ -29454,7 +29454,15 @@ void SystemUnwindInitializeResourceHandlerTemplateF8(uint8_t objectContextParam,
 
 
 
-void Unwind_180902460(uint8_t objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时初始化系统资源处理器模板到0x118偏移位置
+ * 设置验证上下文的系统资源处理器模板，检查并重置相关状态
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数在系统异常处理过程中被调用，用于初始化资源处理器模板
+ * @warning 如果验证上下文的0x120偏移位置不为0，将触发系统紧急退出
+ */
+void SystemUnwindInitializeResourceHandlerTemplate118(uint8_t objectContextParam, long long validationContextParam)
 
 {
   **(uint8_t **)(validationContextParam + 0x148) = &SystemDataStructure;
@@ -29463,7 +29471,14 @@ void Unwind_180902460(uint8_t objectContextParam,longlong validationContextParam
 
 
 
-void Unwind_180902470(uint8_t objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时设置系统数据结构到0x138偏移位置
+ * 将系统数据结构指针设置到验证上下文的指定位置
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数用于在异常处理过程中设置系统数据结构
+ */
+void SystemUnwindSetSystemDataStructure138(uint8_t objectContextParam, long long validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0xd0) = &SystemDataStructure;
@@ -29472,7 +29487,14 @@ void Unwind_180902470(uint8_t objectContextParam,longlong validationContextParam
 
 
 
-void Unwind_180902480(uint8_t objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时设置系统数据结构到0x158偏移位置
+ * 将系统数据结构指针设置到验证上下文的指定位置
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数用于在异常处理过程中设置系统数据结构
+ */
+void SystemUnwindSetSystemDataStructure158(uint8_t objectContextParam, long long validationContextParam)
 
 {
   if ((*(uint *)(resourceData + 0x50) & 1) != 0) {
@@ -29502,7 +29524,17 @@ void Unwind_1809024c0(uint8_t objectContextParam,longlong validationContextParam
 
 
 
-void Unwind_1809024d0(uint8_t objectContextParam,longlong validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * 在异常处理时清理资源哈希表回调
+ * 遍历资源哈希表并执行所有回调函数进行清理
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param param_3 参数3，用于回调函数
+ * @param param_4 参数4，用于回调函数
+ * @note 此函数用于在异常处理过程中清理资源哈希表
+ * @warning 如果资源哈希表不为空，将触发系统紧急退出
+ */
+void SystemUnwindCleanupResourceHashTableCallbacks(uint8_t objectContextParam, long long validationContextParam, uint8_t param_3, uint8_t param_4)
 
 {
   uint8_t *presourceHash;
@@ -29523,7 +29555,15 @@ void Unwind_1809024d0(uint8_t objectContextParam,longlong validationContextParam
 
 
 
-void Unwind_1809024e0(uint8_t objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时初始化系统资源处理器模板到0x100偏移位置
+ * 设置验证上下文的系统资源处理器模板，检查并重置相关状态
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数在系统异常处理过程中被调用，用于初始化资源处理器模板
+ * @warning 如果验证上下文的0x108偏移位置不为0，将触发系统紧急退出
+ */
+void SystemUnwindInitializeResourceHandlerTemplate100(uint8_t objectContextParam, long long validationContextParam)
 
 {
   *(uint8_t *)(validationContextParam + 0x100) = &SystemResourceHandlerTemplate;
@@ -29539,7 +29579,15 @@ void Unwind_1809024e0(uint8_t objectContextParam,longlong validationContextParam
 
 
 
-void Unwind_1809024f0(uint8_t objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时初始化系统资源处理器模板到0x88偏移位置
+ * 设置验证上下文的系统资源处理器模板，检查并重置相关状态
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数在系统异常处理过程中被调用，用于初始化资源处理器模板
+ * @warning 如果验证上下文的0x90偏移位置不为0，将触发系统紧急退出
+ */
+void SystemUnwindInitializeResourceHandlerTemplate88(uint8_t objectContextParam, long long validationContextParam)
 
 {
   *(uint8_t *)(validationContextParam + 0x88) = &SystemResourceHandlerTemplate;
