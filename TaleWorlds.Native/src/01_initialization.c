@@ -21921,8 +21921,18 @@ FUN_180049eb0(void* *param_1,long long param_2,void* param_3,void* param_4)
 
 
 
-// 函数: void FUN_180049f30(void* *param_1)
-void FUN_180049f30(void* *param_1)
+// 函数: void ResetSystemMemoryAllocator(void* *param_1)
+/**
+ * @brief 系统内存分配器重置函数
+ * 
+ * 该函数重置系统内存分配器，清理内存分配器状态，重置全局数据引用，
+ * 并确保内存分配器处于干净的状态。
+ * 
+ * @param param_1 指向内存分配器指针的指针
+ * 
+ * @note 这是系统内存管理的重要组成部分，确保内存分配器的正确重置
+ */
+void ResetSystemMemoryAllocator(void* *param_1)
 
 {
   param_1[4] = &SystemGlobalDataReference;
